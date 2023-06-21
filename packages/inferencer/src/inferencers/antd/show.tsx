@@ -1,29 +1,41 @@
-import * as RefineAntd from "@refinedev/antd";
-import * as AntdPackage from "antd";
+import {
+    Show,
+    TagField,
+    TextField,
+    ImageField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/antd";
+import { Typography } from "antd";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     toSingular,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+    idQuoteWrapper,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for show page in Ant Design
@@ -35,6 +47,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -48,6 +61,10 @@ export const renderer = ({
         ["Show", "@refinedev/antd"],
         ["Typography", "antd"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -130,7 +147,12 @@ export const renderer = ({
                     accessor(recordName, field.key) + "?.length";
                 imports.push(["TagField", "@refinedev/antd"]);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                     <>
                     ${(() => {
@@ -178,7 +200,12 @@ export const renderer = ({
                 // `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${variableIsLoading} ? <>Loading...</> : (
                     <>
                     ${(() => {
@@ -220,14 +247,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <TextField value={${accessor(
                     recordName,
                     field.key,
@@ -244,14 +281,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <ImageField style={{ maxWidth: 200 }} value={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <ImageField style={{ maxWidth: 200 }} value={${accessor(
                     recordName,
                     field.key,
@@ -272,7 +319,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -281,7 +333,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <EmailField value={${accessor(
                     recordName,
                     field.key,
@@ -302,14 +359,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <UrlField value={${accessor(
                     recordName,
                     field.key,
@@ -330,7 +397,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {(${accessor(
                     recordName,
                     field.key,
@@ -340,7 +412,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <BooleanField value={${accessor(
                     recordName,
                     field.key,
@@ -358,14 +435,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <DateField value={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <DateField value={${accessor(
                     recordName,
                     field.key,
@@ -381,7 +468,12 @@ export const renderer = ({
         if (field.type === "richtext") {
             imports.push(["MarkdownField", "@refinedev/antd"]);
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <MarkdownField value={${accessor(
                     recordName,
                     field.key,
@@ -400,14 +492,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Title level={5}>${prettyString(field.key)}</Title>
+                <Title level={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <NumberField value={${accessor(
                     recordName,
                     field.key,
@@ -446,17 +548,20 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     ${printImports(imports)}
     
     const { Title } = Typography;
 
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { queryResult } = useShow(${
             isCustomPage
                 ? `{ 
                     resource: "${resource.name}", 
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
                         meta,
@@ -496,8 +601,23 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/antd", "RefineAntd", RefineAntd],
-        ["antd", "AntdPackage", AntdPackage],
+        [
+            "@refinedev/antd",
+            "RefineAntd",
+            {
+                Show,
+                TagField,
+                TextField,
+                ImageField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["antd", "AntdPackage", { Typography }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

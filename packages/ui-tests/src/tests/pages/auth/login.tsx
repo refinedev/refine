@@ -1,6 +1,13 @@
 import React, { FC } from "react";
 
-import { render, TestWrapper } from "@test";
+import {
+    fireEvent,
+    mockAuthProvider,
+    mockRouterBindings,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 import { LoginPageProps } from "@refinedev/core";
 
 export const pageLoginTests = function (
@@ -156,6 +163,36 @@ export const pageLoginTests = function (
             expect(queryByTestId("refine-logo")).not.toBeInTheDocument();
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = render(<LoginPage title={false} />, {
+                wrapper: TestWrapper({}),
+            });
+
+            expect(queryByText(/refine project/i)).not.toBeInTheDocument();
+        });
+
+        it("should pass contentProps", async () => {
+            const { getByTestId } = render(
+                <LoginPage contentProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
+        it("should pass wrapperProps", async () => {
+            const { getByTestId } = render(
+                <LoginPage wrapperProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
         it("should renderContent only", async () => {
             const {
                 queryByText,
@@ -218,6 +255,105 @@ export const pageLoginTests = function (
                 }),
             ).toBeInTheDocument();
             expect(queryByTestId("custom-content")).toBeInTheDocument();
+        });
+
+        it("should run login mutation when form is submitted", async () => {
+            const loginMock = jest.fn().mockResolvedValue({ success: true });
+            const { getByLabelText, getAllByText } = render(<LoginPage />, {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        login: loginMock,
+                    },
+                }),
+            });
+
+            fireEvent.change(getByLabelText(/email/i), {
+                target: { value: "demo@refine.dev" },
+            });
+
+            fireEvent.change(getByLabelText(/password/i), {
+                target: { value: "demo" },
+            });
+
+            fireEvent.click(getByLabelText(/remember me/i));
+
+            fireEvent.click(getAllByText(/sign in/i)[1]);
+
+            await waitFor(() => {
+                expect(loginMock).toBeCalledTimes(1);
+            });
+
+            expect(loginMock).toBeCalledWith({
+                email: "demo@refine.dev",
+                password: "demo",
+                remember: true,
+            });
+        });
+
+        it("should work with new router provider Link", async () => {
+            jest.spyOn(console, "error").mockImplementation((message) => {
+                console.warn(message);
+            });
+            const LinkComponentMock = jest.fn();
+
+            render(<LoginPage />, {
+                wrapper: TestWrapper({
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            Link: LinkComponentMock,
+                        },
+                    }),
+                }),
+            });
+
+            expect(LinkComponentMock).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/forgot-password",
+                }),
+                {},
+            );
+
+            expect(LinkComponentMock).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/register",
+                }),
+                {},
+            );
+        });
+
+        it("should run login mutation when provider button is clicked", async () => {
+            const loginMock = jest.fn().mockResolvedValue({ success: true });
+            const { getByText } = render(
+                <LoginPage
+                    providers={[
+                        {
+                            name: "Google",
+                            label: "Google",
+                        },
+                    ]}
+                />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: {
+                            ...mockAuthProvider,
+                            login: loginMock,
+                        },
+                    }),
+                },
+            );
+
+            expect(getByText(/google/i)).toBeInTheDocument();
+
+            fireEvent.click(getByText(/google/i));
+
+            await waitFor(() => {
+                expect(loginMock).toBeCalledTimes(1);
+            });
+
+            expect(loginMock).toBeCalledWith({
+                providerName: "Google",
+            });
         });
     });
 };

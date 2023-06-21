@@ -24,7 +24,7 @@ describe("redirectPath", () => {
         },
     );
 
-    it.each(["edit", "create", "clone"] as const)(
+    it.each(["edit", "create", "clone", "list"] as const)(
         "should return redirect option according to action %s",
         (action) => {
             const redirectOptions: IRefineContextOptions["redirect"] = {
@@ -47,6 +47,9 @@ describe("redirectPath", () => {
                     break;
                 case "edit":
                     expect(result).toEqual(redirectOptions.afterEdit);
+                    break;
+                case "list":
+                    expect(result).toBeFalsy();
                     break;
             }
         },

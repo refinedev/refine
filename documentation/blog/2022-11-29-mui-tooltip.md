@@ -1,6 +1,6 @@
 ---
 title: How to use Material UI Tooltip
-description: We'll discover the Material UI (MUI) Tooltip component with examples
+description: We'll discover the Material UI Tooltip component with examples
 slug: material-ui-tooltip-component
 authors: doro_onome
 tags: [material-ui, react]
@@ -19,21 +19,21 @@ hide_table_of_contents: false
 
 ## Introduction
 
-Material UI is a dynamic React framework that offers abundant customisable components and utilities that help developers create better web apps with improved UI/UX. One such component is the MUI Tooltip, which is a custom-made MUI component that displays informative text on an element’s hover, click, focus, or tap.  
+Material UI is a dynamic React framework that offers abundant customisable components and utilities that help developers create better web apps with improved UI/UX. One such component is the Material UI Tooltip, which is a custom-made Material UI component that displays informative text on an element’s hover, click, focus, or tap.  
 
 This article will deeply dive into the Material UI Tooltip component and highlight its functionalities, variations, and event placements. We will also explore a potential use case in a typical React application. 
 
 Steps we'll cover:
 - [What is Material UI?](#what-is-material-ui)
 - [Getting started with Material UI Tooltip](#getting-started-with-material-ui-tooltip)
-- [Positioning MUI Tooltips](#positioning-mui-tooltips)
-- [How to customise your MUI Tooltip component](#how-to-customise-your-mui-tooltip-component)
-- [MUI Tooltip Event Triggers](#mui-tooltip-event-triggers)
-- [MUI Tooltip custom child(ren) elements](#mui-tooltip-custom-children-elements)
-- [Building a Login form UI with React and MUI Tooltip](#building-a-login-form-ui-with-react-and-mui-tooltip)
+- [Positioning Material UI Tooltips](#positioning-material-ui-tooltips)
+- [How to customise your Material UI Tooltip component](#how-to-customise-your-material-ui-tooltip-component)
+- [Material UI Tooltip Event Triggers](#material-ui-tooltip-event-triggers)
+- [Material UI Tooltip custom child(ren) elements](#material-ui-tooltip-custom-children-elements)
+- [Building a Login form UI with React and Material UI Tooltip](#building-a-login-form-ui-with-react-and-material-ui-tooltip)
 
 ## What is Material UI?
-Material-UI is a user interface framework that provides pre-defined and customisable React components to help with web development. The Material-UI components are based on Google's top Material Design. Many developers now structure their projects with Material UI because it simplifies and improves web design.
+Material UI is a user interface framework that provides pre-defined and customisable React components to help with web development. The Material UI components are based on Google's top Material Design. Many developers now structure their projects with Material UI because it simplifies and improves web design.
 
 Material UI comes with several component categories, including
 - Data Display components
@@ -41,12 +41,12 @@ Material UI comes with several component categories, including
 - Navigation components
 - Layout components, e.t.c.
 
-The MUI Tooltip is a vivid example of the Data display components. 
+The Material UI Tooltip is a vivid example of the Data display components. 
 
 ## Getting started with Material UI Tooltip
 Tooltips reveal explanatory text when an element is hovered, focused, or tapped. Material UI includes custom Tooltip components that help highlight the context of an element on the DOM.
 
-Here’s a demo of how to use the MUI `<Tooltip/>` component:
+Here’s a demo of how to use the Material UI `<Tooltip/>` component:
 
 ```ts
 import * as React from 'react';
@@ -72,11 +72,11 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"250px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-1.gif"  alt="MUI tooltip " />
+   <img style={{alignSelf:"center", width:"250px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-1.gif"  alt="Material UI tooltip " />
 </div>
 
 
-## Positioning MUI Tooltips
+## Positioning Material UI Tooltips
 The Tooltip has 12 different placement options. They lack directional arrows and instead rely on the motion from the source to convey direction.
 
 
@@ -161,15 +161,15 @@ export default function PositionedTooltips() {
 </details>
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.gif"  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.gif"  alt="Material UI tooltip " />
 </div>
 
 
 
 **Note**: Tooltip positioning is critical when using them in a web application. A poorly placed Tooltip may detract from the overall UX of the app.
 
-## How to customise your MUI Tooltip component
-MUI Tooltip is a very dynamic component, so it has several variations. Here are a few ways you can customise MUI Tooltip in your next project:
+## How to customise your Material UI Tooltip component
+Material UI Tooltip is a very dynamic component, so it has several variations. Here are a few ways you can customise Material UI Tooltip in your next project:
 
 ### Arrow Tooltips
 You can use the `arrow` prop to add an arrow to your tooltip, indicating which element it refers to. This gives the Tooltip element more definition as it points at the element it describes.
@@ -198,18 +198,20 @@ Here’s what it looks like:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="Material UI tooltip " />
 </div>
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
 
 ### Width variations
-The MUI Tooltip component wraps long text by default, but you can adjust its width to suit your preferences and how well it fits that aspect of your application.
+The Material UI Tooltip component wraps long text by default, but you can adjust its width to suit your preferences and how well it fits that aspect of your application.
 
 Here’s a sample:
 
@@ -260,13 +262,13 @@ export default function VariableWidth() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.gif"  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.gif"  alt="Material UI tooltip " />
 </div>
 
 
 
-### MUI Tooltip Transitions
-The MUI Tooltip can be animated with different transitions and display delay variations. It could be set to grow, fade and zoom like this:
+### Material UI Tooltip Transitions
+The Material UI Tooltip can be animated with different transitions and display delay variations. It could be set to grow, fade and zoom like this:
 
 ```ts
 import * as React from 'react';
@@ -304,7 +306,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.gif"  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.gif"  alt="Material UI tooltip " />
 </div>
 
 
@@ -379,12 +381,12 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-6.gif"  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-6.gif"  alt="Material UI tooltip " />
 </div>
 
 
 
-## MUI Tooltip Event Triggers
+## Material UI Tooltip Event Triggers
 You can control the kind of events that have to be carried out for your Tooltip to display. You can customise the actions required to show a Tooltip like this:
 
 ```tsx
@@ -443,7 +445,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-7.gif"  alt="MUI tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-7.gif"  alt="Material UI tooltip" />
 </div>
 
 
@@ -454,8 +456,8 @@ Here’s the result:
 </a>
 </div>
 
-## MUI Tooltip custom child(ren) elements
-The MUI tooltip's child element must have DOM event listeners. If the child is a custom React element, you must ensure that its props are distributed to the underlying DOM element.
+## Material UI Tooltip custom child(ren) elements
+The Material UI tooltip's child element must have DOM event listeners. If the child is a custom React element, you must ensure that its props are distributed to the underlying DOM element.
 
 ```tsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -474,7 +476,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-## Building a Login form UI with React and MUI Tooltip
+## Building a Login form UI with React and Material UI Tooltip
 The Material UI Tooltip component can be used in so many ways and in different aspects of any web application. For the sake of this article, we will demonstrate some of its functionalities in a typical currency Login form UI.
 
 Here’s the code:
@@ -524,12 +526,12 @@ The code above illustrates a simple login form UI with instructions provided to 
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.gif"  alt="MUI tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.gif"  alt="Material UI tooltip" />
 </div>
 
 
 ## Conclusion
-This article showcased the importance of Material UI to web applications. We then put the spotlight on the MUI Tooltip component describing its striking functionalities and application in a React application. We also looked into a Login page with instructions displayed in MUI Tooltips as a potential use case.  
+This article showcased the importance of Material UI to web applications. We then put the spotlight on the Material UI Tooltip component describing its striking functionalities and application in a React application. We also looked into a Login page with instructions displayed in Material UI Tooltips as a potential use case.  
 
 
  

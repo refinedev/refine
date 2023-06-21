@@ -1,8 +1,8 @@
-import React from "react";
 import { useMany } from "@refinedev/core";
-import { useDataGrid, List, EditButton } from "@refinedev/mui";
+import { EditButton, List, ShowButton, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -18,7 +18,7 @@ export const PostList: React.FC = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
@@ -51,7 +51,12 @@ export const PostList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 renderCell: function render({ row }) {
-                    return <EditButton hideText recordItemId={row.id} />;
+                    return (
+                        <div>
+                            <EditButton hideText recordItemId={row.id} />
+                            <ShowButton hideText recordItemId={row.id} />
+                        </div>
+                    );
                 },
                 align: "center",
                 headerAlign: "center",

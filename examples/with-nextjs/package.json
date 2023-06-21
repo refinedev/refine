@@ -6,26 +6,28 @@
     "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "build": "refine build && rm -rf .next/cache",
     "start:prod": "refine start",
-    "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.13.2",
-    "@refinedev/core": "^4.14.0",
-    "@refinedev/cli": "^2.5.3",
-    "@refinedev/nextjs-router": "^5.1.6",
+    "@refinedev/antd": "^5.24.0",
+    "@refinedev/core": "^4.22.0",
+    "@refinedev/cli": "^2.7.0",
+    "@refinedev/nextjs-router": "^5.3.2",
     "@refinedev/simple-rest": "^4.5.0",
     "cross-env": "^7.0.3",
-    "next": "^13.0.6",
+    "next": "13.0.6",
     "nookies": "^2.5.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "antd": "^5.0.5"
   },
   "devDependencies": {
-    "@types/node": "^12.20.11",
+    "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/parser": "5.48.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "cypress": "^12.11.0"
   }
 }

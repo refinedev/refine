@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography, Link } from "@mui/material";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 import { UrlFieldProps } from "../types";
 
@@ -8,7 +9,7 @@ import { UrlFieldProps } from "../types";
  * and {@link https://mui.com/material-ui/react-link/#main-content `<Link>`} components from Material UI.
  * You can pass a URL in its `value` property and you can show a text in its place by passing any `children`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/fields/url} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
     children,

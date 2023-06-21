@@ -1,0 +1,123 @@
+import { Option, useDeleteMany, useSelect } from "@refinedev/core";
+import { List, useDataGrid } from "@refinedev/mui";
+import React from "react";
+
+import Button from "@mui/material/Button";
+import {
+    DataGrid,
+    GridColDef,
+    GridValueFormatterParams,
+} from "@mui/x-data-grid";
+
+import { ICategory, IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
+        [],
+    );
+    const hasSelected = selectedRowKeys.length > 0;
+
+    const { mutate } = useDeleteMany<IPost>();
+
+    const deleteSelectedItems = () => {
+        mutate(
+            {
+                resource: "posts",
+                ids: selectedRowKeys.map(String),
+            },
+            {
+                onSuccess: () => {
+                    setSelectedRowKeys([]);
+                },
+            },
+        );
+    };
+
+    const { dataGridProps } = useDataGrid<IPost>({
+        initialPageSize: 10,
+    });
+
+    const {
+        options,
+        queryResult: { isLoading },
+    } = useSelect<ICategory>({
+        resource: "categories",
+        hasPagination: false,
+    });
+
+    const columns = React.useMemo<GridColDef<IPost>[]>(
+        () => [
+            {
+                field: "id",
+                headerName: "ID",
+                type: "number",
+                width: 50,
+            },
+            { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "singleSelect",
+                headerAlign: "left",
+                align: "left",
+                minWidth: 250,
+                flex: 0.5,
+                valueOptions: options,
+                valueFormatter: (params: GridValueFormatterParams<Option>) => {
+                    return params.value;
+                },
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = options.find(
+                        (item) =>
+                            item.value.toString() ===
+                            row.category.id.toString(),
+                    );
+                    return category?.label;
+                },
+            },
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 120,
+                flex: 0.3,
+                type: "singleSelect",
+                valueOptions: ["draft", "published", "rejected"],
+            },
+        ],
+        [options, isLoading],
+    );
+
+    return (
+        <List
+            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            headerButtons={
+                <Button
+                    id="delete-selected"
+                    onClick={deleteSelectedItems}
+                    disabled={!hasSelected}
+                    size="small"
+                    variant="contained"
+                    color="error"
+                >
+                    Delete Selected
+                </Button>
+            }
+        >
+            <DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+                checkboxSelection
+                onRowSelectionModelChange={(newSelectionModel) => {
+                    setSelectedRowKeys(newSelectionModel as React.Key[]);
+                }}
+                pageSizeOptions={[10, 20, 50, 100]}
+                rowSelectionModel={selectedRowKeys}
+            />
+        </List>
+    );
+};

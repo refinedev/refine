@@ -1,5 +1,6 @@
 import { useSelect, HttpError } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 
 import { IPost } from "interfaces";
 
@@ -12,6 +13,7 @@ export const PostEdit: React.FC = () => {
         handleSubmit,
         formState: { errors },
         steps: { currentStep, gotoStep },
+        control,
     } = useStepsForm<IPost, HttpError, IPost>();
 
     const { options } = useSelect({
@@ -26,6 +28,7 @@ export const PostEdit: React.FC = () => {
                     <>
                         <label>Title: </label>
                         <input
+                            id="title"
                             {...register("title", {
                                 required: "This field is required",
                             })}
@@ -37,7 +40,7 @@ export const PostEdit: React.FC = () => {
                 return (
                     <>
                         <label>Status: </label>
-                        <select {...register("status")}>
+                        <select id="status" {...register("status")}>
                             <option value="published">published</option>
                             <option value="draft">draft</option>
                             <option value="rejected">rejected</option>
@@ -47,29 +50,44 @@ export const PostEdit: React.FC = () => {
             case 2:
                 return (
                     <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                            defaultValue={queryResult?.data?.data.category.id}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
+                        <Controller
+                            name="category.id"
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <>
+                                        <label>Category: </label>
+                                        <select
+                                            id="category"
+                                            {...field}
+                                            value={
+                                                queryResult?.data?.data.category
+                                                    .id
+                                            }
+                                        >
+                                            {options?.map((category) => (
+                                                <option
+                                                    key={category.value}
+                                                    value={category.value}
+                                                >
+                                                    {category.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {errors.category && (
+                                            <span>
+                                                {errors.category.message}
+                                            </span>
+                                        )}
+                                    </>
+                                );
+                            }}
+                        />
                         <br />
                         <br />
                         <label>Content: </label>
                         <textarea
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}
@@ -108,6 +126,7 @@ export const PostEdit: React.FC = () => {
             <div style={{ display: "flex", gap: 8 }}>
                 {currentStep > 0 && (
                     <button
+                        disabled={formLoading}
                         onClick={() => {
                             gotoStep(currentStep - 1);
                         }}
@@ -117,6 +136,7 @@ export const PostEdit: React.FC = () => {
                 )}
                 {currentStep < stepTitles.length - 1 && (
                     <button
+                        disabled={formLoading}
                         onClick={() => {
                             gotoStep(currentStep + 1);
                         }}
@@ -125,7 +145,12 @@ export const PostEdit: React.FC = () => {
                     </button>
                 )}
                 {currentStep === stepTitles.length - 1 && (
-                    <button onClick={handleSubmit(onFinish)}>Save</button>
+                    <button
+                        disabled={formLoading}
+                        onClick={handleSubmit(onFinish)}
+                    >
+                        Save
+                    </button>
                 )}
             </div>
         </div>

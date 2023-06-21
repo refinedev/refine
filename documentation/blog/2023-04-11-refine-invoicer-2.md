@@ -53,16 +53,7 @@ For this tutorial, we'll be select the following options:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.gif"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.gif"  alt="react invoice generator" />
 
 <br />
 
@@ -139,15 +130,7 @@ npm run dev
 After that, if we navigate to `http://localhost:3000`, and we should have a **refine** app asking us to log in:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/login.png"  alt="react invoice generator" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/login.png"  alt="react invoice generator" />
 
 <br />
 
@@ -156,15 +139,7 @@ After that, if we navigate to `http://localhost:3000`, and we should have a **re
 If we log in with the default values, we should be able to view a dashboard with the following `blog posts` and `categories` resources:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/welcome.png"  alt="react invoice generator" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/welcome.png"  alt="react invoice generator" />
 
 <br />
 
@@ -850,15 +825,7 @@ Next, we have to be able to access the **Strapi** Admin UI that is hosted locall
 
 The admin dashboard at `/admin` after signing up and logging in should look something like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/strapi_welcome.png"  alt="react invoice generator" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/strapi_welcome.png"  alt="react invoice generator" />
 
 <br />
 
@@ -880,15 +847,7 @@ The `users` collection is already created when we initialize a **Strapi** instan
 The `companies` collection should look like this:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/company_collection.png"  alt="react invoice generator" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/company_collection.png"  alt="react invoice generator" />
 
 <br />
 
@@ -899,15 +858,7 @@ The `companies` collection should look like this:
 
 The `clients` collection looks like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/client.png"  alt="react invoice generator" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/client.png"  alt="react invoice generator" />
 
 <br />
 

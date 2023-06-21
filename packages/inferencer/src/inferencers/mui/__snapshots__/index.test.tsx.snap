@@ -21,7 +21,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
           />
         </div>
         <div
@@ -39,17 +39,14 @@ exports[`MuiInferencer should match the snapshot 1`] = `
           aria-colcount="14"
           aria-multiselectable="false"
           aria-rowcount="3"
-          class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard css-eej5f8-MuiDataGrid-root"
+          class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard MuiDataGrid-withBorderColor css-k2120h-MuiDataGrid-root"
           role="grid"
         >
-          <div>
-            <div />
-          </div>
           <div
             class="MuiDataGrid-main css-204u17-MuiDataGrid-main"
           >
             <div
-              class="MuiDataGrid-columnHeaders css-z8fhq1-MuiDataGrid-columnHeaders"
+              class="MuiDataGrid-columnHeaders MuiDataGrid-withBorderColor css-1iyq7zh-MuiDataGrid-columnHeaders"
               style="min-height: 56px; max-height: 56px; line-height: 56px;"
             >
               <div
@@ -66,7 +63,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     aria-colindex="1"
                     aria-label="Id"
                     aria-sort="none"
-                    class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--alignRight MuiDataGrid-columnHeader--sortable MuiDataGrid-columnHeader--numeric"
+                    class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--alignRight MuiDataGrid-columnHeader--sortable MuiDataGrid-columnHeader--numeric MuiDataGrid-withBorderColor"
                     data-field="id"
                     role="columnheader"
                     style="height: 56px; width: 100px; min-width: 100px; max-width: 100px;"
@@ -84,7 +81,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                         >
                           <div
                             aria-label=""
-                            class="MuiDataGrid-columnHeaderTitle css-1jbbcbn-MuiDataGrid-columnHeaderTitle"
+                            class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
                             data-mui-internal-clone-element="true"
                           >
                             Id
@@ -121,13 +118,13 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                         class="MuiDataGrid-menuIcon"
                       >
                         <button
-                          aria-controls=":r2:"
-                          aria-haspopup="true"
+                          aria-expanded="false"
+                          aria-haspopup="menu"
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                          data-mui-internal-clone-element="true"
                           id=":r3:"
                           tabindex="-1"
-                          title="Menu"
                           type="button"
                         >
                           <svg
@@ -168,7 +165,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     aria-colindex="2"
                     aria-label="Title"
                     aria-sort="none"
-                    class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable"
+                    class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
                     data-field="title"
                     role="columnheader"
                     style="height: 56px; width: 0px; min-width: 0; max-width: 0;"
@@ -186,7 +183,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                         >
                           <div
                             aria-label=""
-                            class="MuiDataGrid-columnHeaderTitle css-1jbbcbn-MuiDataGrid-columnHeaderTitle"
+                            class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
                             data-mui-internal-clone-element="true"
                           >
                             Title
@@ -223,13 +220,13 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                         class="MuiDataGrid-menuIcon"
                       >
                         <button
-                          aria-controls=":r5:"
-                          aria-haspopup="true"
+                          aria-expanded="false"
+                          aria-haspopup="menu"
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
-                          id=":r6:"
+                          data-mui-internal-clone-element="true"
+                          id=":r9:"
                           tabindex="-1"
-                          title="Menu"
                           type="button"
                         >
                           <svg
@@ -270,7 +267,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     aria-colindex="3"
                     aria-label="Slug"
                     aria-sort="none"
-                    class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable"
+                    class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
                     data-field="slug"
                     role="columnheader"
                     style="height: 56px; width: 0px; min-width: 0; max-width: 0;"
@@ -288,7 +285,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                         >
                           <div
                             aria-label=""
-                            class="MuiDataGrid-columnHeaderTitle css-1jbbcbn-MuiDataGrid-columnHeaderTitle"
+                            class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
                             data-mui-internal-clone-element="true"
                           >
                             Slug
@@ -325,13 +322,13 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                         class="MuiDataGrid-menuIcon"
                       >
                         <button
-                          aria-controls=":r8:"
-                          aria-haspopup="true"
+                          aria-expanded="false"
+                          aria-haspopup="menu"
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
-                          id=":r9:"
+                          data-mui-internal-clone-element="true"
+                          id=":rf:"
                           tabindex="-1"
-                          title="Menu"
                           type="button"
                         >
                           <svg
@@ -372,263 +369,243 @@ exports[`MuiInferencer should match the snapshot 1`] = `
               </div>
             </div>
             <div
-              style="overflow: visible; width: 0px;"
+              class="MuiDataGrid-virtualScroller css-axafay-MuiDataGrid-virtualScroller"
+              style="overflow-x: hidden; overflow-y: hidden;"
             >
               <div
-                class="MuiDataGrid-virtualScroller css-1w5m2wr-MuiDataGrid-virtualScroller"
-                style="width: 0px; height: auto; margin-top: 56px; overflow-x: hidden; overflow-y: hidden;"
+                class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
+                style="width: auto; height: 104px; min-height: auto;"
               >
                 <div
-                  class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
-                  style="width: auto; height: 104px; min-height: auto;"
+                  class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
+                  style="transform: translate3d(0px, 0px, 0px);"
                 >
                   <div
-                    class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
-                    style="transform: translate3d(0px, 0px, 0px);"
+                    aria-rowindex="2"
+                    aria-selected="false"
+                    class="MuiDataGrid-row"
+                    data-id="11"
+                    data-rowindex="0"
+                    role="row"
+                    style="max-height: 52px; min-height: 52px;"
                   >
                     <div
-                      aria-rowindex="2"
-                      aria-selected="false"
-                      class="MuiDataGrid-row"
-                      data-id="11"
-                      data-rowindex="0"
-                      role="row"
-                      style="max-height: 52px; min-height: 52px;"
+                      aria-colindex="1"
+                      aria-colspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textRight MuiDataGrid-withBorderColor"
+                      data-colindex="0"
+                      data-field="id"
+                      role="cell"
+                      style="min-width: 100px; max-width: 100px; min-height: 52px; max-height: 52px;"
+                      tabindex="-1"
                     >
                       <div
-                        aria-colindex="1"
-                        aria-colspan="1"
-                        class="MuiDataGrid-cell MuiDataGrid-cell--textRight"
-                        data-colindex="0"
-                        data-field="id"
-                        role="cell"
-                        style="min-width: 100px; max-width: 100px; min-height: 52px; max-height: 52px;"
-                        tabindex="-1"
+                        class="MuiDataGrid-cellContent"
+                        title="11"
                       >
-                        <div
-                          class="MuiDataGrid-cellContent"
-                          title="11"
-                        >
-                          11
-                        </div>
-                      </div>
-                      <div
-                        aria-colindex="2"
-                        aria-colspan="1"
-                        class="MuiDataGrid-cell MuiDataGrid-cell--textLeft"
-                        data-colindex="1"
-                        data-field="title"
-                        role="cell"
-                        style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                        tabindex="-1"
-                      >
-                        <div
-                          class="MuiDataGrid-cellContent"
-                          title="Nobis exercitationem officia quia est."
-                        >
-                          Nobis exercitationem officia quia est.
-                        </div>
-                      </div>
-                      <div
-                        aria-colindex="3"
-                        aria-colspan="1"
-                        class="MuiDataGrid-cell MuiDataGrid-cell--textLeft"
-                        data-colindex="2"
-                        data-field="slug"
-                        role="cell"
-                        style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                        tabindex="-1"
-                      >
-                        <div
-                          class="MuiDataGrid-cellContent"
-                          title="provident-culpa-facere"
-                        >
-                          provident-culpa-facere
-                        </div>
+                        11
                       </div>
                     </div>
                     <div
-                      aria-rowindex="3"
-                      aria-selected="false"
-                      class="MuiDataGrid-row MuiDataGrid-row--lastVisible"
-                      data-id="21"
-                      data-rowindex="1"
-                      role="row"
-                      style="max-height: 52px; min-height: 52px;"
+                      aria-colindex="2"
+                      aria-colspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                      data-colindex="1"
+                      data-field="title"
+                      role="cell"
+                      style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                      tabindex="-1"
                     >
                       <div
-                        aria-colindex="1"
-                        aria-colspan="1"
-                        class="MuiDataGrid-cell MuiDataGrid-cell--textRight"
-                        data-colindex="0"
-                        data-field="id"
-                        role="cell"
-                        style="min-width: 100px; max-width: 100px; min-height: 52px; max-height: 52px;"
-                        tabindex="-1"
+                        class="MuiDataGrid-cellContent"
+                        title="Nobis exercitationem officia quia est."
                       >
-                        <div
-                          class="MuiDataGrid-cellContent"
-                          title="21"
-                        >
-                          21
-                        </div>
+                        Nobis exercitationem officia quia est.
                       </div>
+                    </div>
+                    <div
+                      aria-colindex="3"
+                      aria-colspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                      data-colindex="2"
+                      data-field="slug"
+                      role="cell"
+                      style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                      tabindex="-1"
+                    >
                       <div
-                        aria-colindex="2"
-                        aria-colspan="1"
-                        class="MuiDataGrid-cell MuiDataGrid-cell--textLeft"
-                        data-colindex="1"
-                        data-field="title"
-                        role="cell"
-                        style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                        tabindex="-1"
+                        class="MuiDataGrid-cellContent"
+                        title="provident-culpa-facere"
                       >
-                        <div
-                          class="MuiDataGrid-cellContent"
-                          title="Eaque in nesciunt."
-                        >
-                          Eaque in nesciunt.
-                        </div>
+                        provident-culpa-facere
                       </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-rowindex="3"
+                    aria-selected="false"
+                    class="MuiDataGrid-row MuiDataGrid-row--lastVisible"
+                    data-id="21"
+                    data-rowindex="1"
+                    role="row"
+                    style="max-height: 52px; min-height: 52px;"
+                  >
+                    <div
+                      aria-colindex="1"
+                      aria-colspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textRight MuiDataGrid-withBorderColor"
+                      data-colindex="0"
+                      data-field="id"
+                      role="cell"
+                      style="min-width: 100px; max-width: 100px; min-height: 52px; max-height: 52px;"
+                      tabindex="-1"
+                    >
                       <div
-                        aria-colindex="3"
-                        aria-colspan="1"
-                        class="MuiDataGrid-cell MuiDataGrid-cell--textLeft"
-                        data-colindex="2"
-                        data-field="slug"
-                        role="cell"
-                        style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                        tabindex="-1"
+                        class="MuiDataGrid-cellContent"
+                        title="21"
                       >
-                        <div
-                          class="MuiDataGrid-cellContent"
-                          title="quod-quos-commodi"
-                        >
-                          quod-quos-commodi
-                        </div>
+                        21
+                      </div>
+                    </div>
+                    <div
+                      aria-colindex="2"
+                      aria-colspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                      data-colindex="1"
+                      data-field="title"
+                      role="cell"
+                      style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                      tabindex="-1"
+                    >
+                      <div
+                        class="MuiDataGrid-cellContent"
+                        title="Eaque in nesciunt."
+                      >
+                        Eaque in nesciunt.
+                      </div>
+                    </div>
+                    <div
+                      aria-colindex="3"
+                      aria-colspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                      data-colindex="2"
+                      data-field="slug"
+                      role="cell"
+                      style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                      tabindex="-1"
+                    >
+                      <div
+                        class="MuiDataGrid-cellContent"
+                        title="quod-quos-commodi"
+                      >
+                        quod-quos-commodi
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              class="Mui-resizeTriggers"
-            >
-              <div
-                class="expand-trigger"
-              >
-                <div
-                  style="width: 1px; height: 1px;"
-                />
-              </div>
-              <div
-                class="contract-trigger"
-              />
-            </div>
           </div>
-          <div>
+          <div
+            class="MuiDataGrid-footerContainer MuiDataGrid-withBorderColor css-wop1k0-MuiDataGrid-footerContainer"
+          >
+            <div />
             <div
-              class="MuiDataGrid-footerContainer css-17jjc08-MuiDataGrid-footerContainer"
+              class="MuiTablePagination-root css-rtrcn9-MuiTablePagination-root"
             >
-              <div />
               <div
-                class="MuiTablePagination-root css-rtrcn9-MuiTablePagination-root"
+                class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular MuiTablePagination-toolbar css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar"
               >
                 <div
-                  class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular MuiTablePagination-toolbar css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar"
+                  class="MuiTablePagination-spacer css-1psng7p-MuiTablePagination-spacer"
+                />
+                <p
+                  class="MuiTablePagination-selectLabel css-pdct74-MuiTablePagination-selectLabel"
+                  id=":r1:"
+                >
+                  Rows per page:
+                </p>
+                <div
+                  class="MuiInputBase-root MuiInputBase-colorPrimary css-16c50h-MuiInputBase-root-MuiTablePagination-select"
                 >
                   <div
-                    class="MuiTablePagination-spacer css-1psng7p-MuiTablePagination-spacer"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby=":r1: :r0:"
+                    class="MuiSelect-select MuiTablePagination-select MuiSelect-standard MuiInputBase-input css-194a1fa-MuiSelect-select-MuiInputBase-input"
+                    id=":r0:"
+                    role="button"
+                    tabindex="0"
+                  >
+                    25
+                  </div>
+                  <input
+                    aria-hidden="true"
+                    aria-invalid="false"
+                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                    tabindex="-1"
+                    value="25"
                   />
-                  <p
-                    class="MuiTablePagination-selectLabel css-pdct74-MuiTablePagination-selectLabel"
-                    id=":r1:"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiTablePagination-selectIcon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
+                    data-testid="ArrowDropDownIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    Rows per page:
-                  </p>
-                  <div
-                    class="MuiInputBase-root MuiInputBase-colorPrimary css-16c50h-MuiInputBase-root-MuiTablePagination-select"
-                  >
-                    <div
-                      aria-expanded="false"
-                      aria-haspopup="listbox"
-                      aria-labelledby=":r1: :r0:"
-                      class="MuiSelect-select MuiTablePagination-select MuiSelect-standard MuiInputBase-input css-194a1fa-MuiSelect-select-MuiInputBase-input"
-                      id=":r0:"
-                      role="button"
-                      tabindex="0"
-                    >
-                      25
-                    </div>
-                    <input
-                      aria-hidden="true"
-                      aria-invalid="false"
-                      class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                      tabindex="-1"
-                      value="25"
+                    <path
+                      d="M7 10l5 5 5-5z"
                     />
+                  </svg>
+                </div>
+                <p
+                  class="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
+                >
+                  1–2 of 2
+                </p>
+                <div
+                  class="MuiTablePagination-actions"
+                >
+                  <button
+                    aria-label="Go to previous page"
+                    class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+                    disabled=""
+                    tabindex="-1"
+                    title="Go to previous page"
+                    type="button"
+                  >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiTablePagination-selectIcon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
-                      data-testid="ArrowDropDownIcon"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="KeyboardArrowLeftIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M7 10l5 5 5-5z"
+                        d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
                       />
                     </svg>
-                  </div>
-                  <p
-                    class="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
+                  </button>
+                  <button
+                    aria-label="Go to next page"
+                    class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+                    disabled=""
+                    tabindex="-1"
+                    title="Go to next page"
+                    type="button"
                   >
-                    1–2 of 2
-                  </p>
-                  <div
-                    class="MuiTablePagination-actions"
-                  >
-                    <button
-                      aria-label="Go to previous page"
-                      class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
-                      disabled=""
-                      tabindex="-1"
-                      title="Go to previous page"
-                      type="button"
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="KeyboardArrowRightIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
                     >
-                      <svg
-                        aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                        data-testid="KeyboardArrowLeftIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      aria-label="Go to next page"
-                      class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
-                      disabled=""
-                      tabindex="-1"
-                      title="Go to next page"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                        data-testid="KeyboardArrowRightIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                      <path
+                        d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
+                      />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1116,7 +1093,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
               <span
                 class="token imports maybe-class-name"
               >
-                GridColumns
+                GridColDef
               </span>
               <span
                 class="token imports"
@@ -1184,6 +1161,22 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token imports"
@@ -1270,10 +1263,54 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostList
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -2992,25 +3029,25 @@ exports[`MuiInferencer should match the snapshot 1`] = `
               <span
                 class="token maybe-class-name"
               >
-                GridColumns
+                GridColDef
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                [
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ]
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
-                &lt;
-              </span>
-              <span
-                class="token builtin"
-                style="color: rgb(86, 156, 214);"
-              >
-                any
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;&gt;
+                &gt;
               </span>
               <span
                 class="token punctuation"
@@ -9911,7 +9948,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
           >
             Create 
           </h5>
@@ -9930,8 +9967,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rb:"
-              id=":rb:-label"
+              for=":rk:"
+              id=":rk:-label"
             >
               Title
             </label>
@@ -9941,7 +9978,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rb:"
+                id=":rk:"
                 name="title"
                 type="text"
                 value=""
@@ -9966,8 +10003,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rc:"
-              id=":rc:-label"
+              for=":rl:"
+              id=":rl:-label"
             >
               Slug
             </label>
@@ -9977,7 +10014,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rc:"
+                id=":rl:"
                 name="slug"
                 type="text"
                 value=""
@@ -10002,8 +10039,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rd:"
-              id=":rd:-label"
+              for=":rm:"
+              id=":rm:-label"
             >
               Content
             </label>
@@ -10013,7 +10050,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <textarea
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rd:"
+                id=":rm:"
                 name="content"
                 style="height: 0px; overflow: hidden;"
               />
@@ -10044,8 +10081,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":re:"
-              id=":re:-label"
+              for=":rn:"
+              id=":rn:-label"
             >
               Hit
             </label>
@@ -10055,7 +10092,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":re:"
+                id=":rn:"
                 name="hit"
                 type="number"
                 value=""
@@ -10084,8 +10121,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":rf:"
-                id=":rf:-label"
+                for=":ro:"
+                id=":ro:-label"
               >
                 Category
                 <span
@@ -10105,7 +10142,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":rf:"
+                  id=":ro:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -10163,8 +10200,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":rh:"
-                id=":rh:-label"
+                for=":rq:"
+                id=":rq:-label"
               >
                 User
                 <span
@@ -10184,7 +10221,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":rh:"
+                  id=":rq:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -10238,8 +10275,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rj:"
-              id=":rj:-label"
+              for=":rs:"
+              id=":rs:-label"
             >
               Status
             </label>
@@ -10249,7 +10286,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rj:"
+                id=":rs:"
                 name="status"
                 type="text"
                 value=""
@@ -10274,8 +10311,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rk:"
-              id=":rk:-label"
+              for=":rt:"
+              id=":rt:-label"
             >
               Status Color
             </label>
@@ -10285,7 +10322,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rk:"
+                id=":rt:"
                 name="status_color"
                 type="text"
                 value=""
@@ -10310,8 +10347,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rl:"
-              id=":rl:-label"
+              for=":ru:"
+              id=":ru:-label"
             >
               Created At
             </label>
@@ -10321,7 +10358,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rl:"
+                id=":ru:"
                 name="createdAt"
                 type="text"
                 value=""
@@ -10346,8 +10383,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rm:"
-              id=":rm:-label"
+              for=":rv:"
+              id=":rv:-label"
             >
               Published At
             </label>
@@ -10357,7 +10394,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rm:"
+                id=":rv:"
                 name="publishedAt"
                 type="text"
                 value=""
@@ -10386,8 +10423,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":rn:"
-                id=":rn:-label"
+                for=":r10:"
+                id=":r10:-label"
               >
                 Tags
                 <span
@@ -10407,7 +10444,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":rn:"
+                  id=":r10:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -10461,8 +10498,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rp:"
-              id=":rp:-label"
+              for=":r12:"
+              id=":r12:-label"
             >
               Language
             </label>
@@ -10472,7 +10509,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rp:"
+                id=":r12:"
                 name="language"
                 type="number"
                 value=""
@@ -10497,8 +10534,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
         class="MuiCardActions-root MuiCardActions-spacing css-otuins-MuiCardActions-root"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-          id=":rq:"
+          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+          id=":r13:"
           tabindex="0"
           type="button"
         >
@@ -10932,6 +10969,83 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <span
                 class="token imports maybe-class-name"
               >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/core"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
                 Controller
               </span>
               <span
@@ -11019,10 +11133,54 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostCreate
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -24813,7 +24971,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
           >
             Edit 
           </h5>
@@ -24824,39 +24982,9 @@ exports[`MuiInferencer should match the snapshot 3`] = `
           <div
             class="MuiBox-root css-10egq61"
           >
-            <a
-              href="/custom-page"
-              style="text-decoration: none;"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-198eyrn-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                title=""
-                type="button"
-              >
-                <span
-                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                    data-testid="ListOutlinedIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7zm-4 6h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"
-                    />
-                  </svg>
-                </span>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </a>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-              id=":rr:"
+              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium refine-refresh-button css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+              id=":r14:"
               tabindex="0"
               type="button"
             >
@@ -24896,8 +25024,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-disabled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rs:"
-              id=":rs:-label"
+              for=":r15:"
+              id=":r15:-label"
             >
               Id
             </label>
@@ -24908,7 +25036,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
                 disabled=""
-                id=":rs:"
+                id=":r15:"
                 name="id"
                 type="number"
                 value=""
@@ -24933,8 +25061,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rt:"
-              id=":rt:-label"
+              for=":r16:"
+              id=":r16:-label"
             >
               Title
             </label>
@@ -24944,7 +25072,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rt:"
+                id=":r16:"
                 name="title"
                 type="text"
                 value=""
@@ -24969,8 +25097,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":ru:"
-              id=":ru:-label"
+              for=":r17:"
+              id=":r17:-label"
             >
               Slug
             </label>
@@ -24980,7 +25108,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":ru:"
+                id=":r17:"
                 name="slug"
                 type="text"
                 value=""
@@ -25005,8 +25133,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rv:"
-              id=":rv:-label"
+              for=":r18:"
+              id=":r18:-label"
             >
               Content
             </label>
@@ -25016,7 +25144,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <textarea
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rv:"
+                id=":r18:"
                 name="content"
                 style="height: 0px; overflow: hidden;"
               />
@@ -25047,8 +25175,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r10:"
-              id=":r10:-label"
+              for=":r19:"
+              id=":r19:-label"
             >
               Hit
             </label>
@@ -25058,7 +25186,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r10:"
+                id=":r19:"
                 name="hit"
                 type="number"
                 value=""
@@ -25087,8 +25215,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for=":r11:"
-                id=":r11:-label"
+                for=":r1a:"
+                id=":r1a:-label"
               >
                 Category
                 <span
@@ -25108,7 +25236,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r11:"
+                  id=":r1a:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -25188,8 +25316,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for=":r13:"
-                id=":r13:-label"
+                for=":r1c:"
+                id=":r1c:-label"
               >
                 User
                 <span
@@ -25209,7 +25337,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r13:"
+                  id=":r1c:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -25285,8 +25413,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r15:"
-              id=":r15:-label"
+              for=":r1e:"
+              id=":r1e:-label"
             >
               Status
             </label>
@@ -25296,7 +25424,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r15:"
+                id=":r1e:"
                 name="status"
                 type="text"
                 value=""
@@ -25321,8 +25449,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r16:"
-              id=":r16:-label"
+              for=":r1f:"
+              id=":r1f:-label"
             >
               Status Color
             </label>
@@ -25332,7 +25460,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r16:"
+                id=":r1f:"
                 name="status_color"
                 type="text"
                 value=""
@@ -25357,8 +25485,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r17:"
-              id=":r17:-label"
+              for=":r1g:"
+              id=":r1g:-label"
             >
               Created At
             </label>
@@ -25368,7 +25496,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r17:"
+                id=":r1g:"
                 name="createdAt"
                 type="text"
                 value=""
@@ -25393,8 +25521,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r18:"
-              id=":r18:-label"
+              for=":r1h:"
+              id=":r1h:-label"
             >
               Published At
             </label>
@@ -25404,7 +25532,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r18:"
+                id=":r1h:"
                 name="publishedAt"
                 type="text"
                 value=""
@@ -25433,8 +25561,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for=":r19:"
-                id=":r19:-label"
+                for=":r1i:"
+                id=":r1i:-label"
               >
                 Tags
                 <span
@@ -25477,7 +25605,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-152mnda-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r19:"
+                  id=":r1i:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -25553,8 +25681,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1b:"
-              id=":r1b:-label"
+              for=":r1k:"
+              id=":r1k:-label"
             >
               Language
             </label>
@@ -25564,7 +25692,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1b:"
+                id=":r1k:"
                 name="language"
                 type="number"
                 value=""
@@ -25589,8 +25717,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
         class="MuiCardActions-root MuiCardActions-spacing css-otuins-MuiCardActions-root"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-          id=":r1c:"
+          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+          id=":r1l:"
           tabindex="0"
           type="button"
         >
@@ -26024,6 +26152,83 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <span
                 class="token imports maybe-class-name"
               >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/core"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
                 Controller
               </span>
               <span
@@ -26111,10 +26316,54 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostEdit
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -26491,10 +26740,10 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                  
               </span>
               <span
-                class="token number"
-                style="color: rgb(181, 206, 168);"
+                class="token string"
+                style="color: rgb(206, 145, 120);"
               >
-                11
+                "11"
               </span>
               <span
                 class="token punctuation"
@@ -40846,7 +41095,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
           >
             Show 
           </h5>
@@ -40857,39 +41106,9 @@ exports[`MuiInferencer should match the snapshot 4`] = `
           <div
             class="MuiBox-root css-10egq61"
           >
-            <a
-              href="/custom-page"
-              style="text-decoration: none;"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-198eyrn-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                title=""
-                type="button"
-              >
-                <span
-                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                    data-testid="ListOutlinedIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7zm-4 6h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"
-                    />
-                  </svg>
-                </span>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </a>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-              id=":r1d:"
+              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium refine-refresh-button css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+              id=":r1m:"
               tabindex="0"
               type="button"
             >
@@ -41221,8 +41440,16 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useShow
+                    useShow
               </span>
               <span
                 class="token imports punctuation"
@@ -41232,8 +41459,21 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useOne
+                    
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                IResourceComponentsProps
               </span>
               <span
                 class="token imports punctuation"
@@ -41243,9 +41483,53 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useMany 
+                    useOne
               </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              >
+                    useMany
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -41657,10 +41941,54 @@ exports[`MuiInferencer should match the snapshot 4`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostShow
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -41848,10 +42176,10 @@ exports[`MuiInferencer should match the snapshot 4`] = `
                  
               </span>
               <span
-                class="token number"
-                style="color: rgb(181, 206, 168);"
+                class="token string"
+                style="color: rgb(206, 145, 120);"
               >
-                21
+                "21"
               </span>
               <span
                 class="token punctuation"

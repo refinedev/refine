@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useNavigation,
     useTranslate,
@@ -7,8 +7,12 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus } from "@tabler/icons";
 
@@ -25,8 +29,16 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
+
     const translate = useTranslate();
     const routerType = useRouterType();
     const Link = useLink();
@@ -86,6 +98,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     title={disabledTitle()}
                     isDisabled={data?.can === false}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     {...rest}
                 >
                     <IconSquarePlus size={20} {...svgIconProps} />
@@ -97,6 +110,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     leftIcon={<IconSquarePlus size={20} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.create", "Create")}

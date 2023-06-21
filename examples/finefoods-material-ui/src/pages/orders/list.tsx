@@ -1,44 +1,42 @@
-import React from "react";
 import {
-    IResourceComponentsProps,
     BaseRecord,
     CrudFilters,
-    HttpError,
-    useTranslate,
-    useNavigation,
-    useUpdate,
-    useExport,
     getDefaultFilter,
+    HttpError,
+    IResourceComponentsProps,
+    useExport,
+    useNavigation,
+    useTranslate,
+    useUpdate,
 } from "@refinedev/core";
 import {
-    useDataGrid,
-    NumberField,
     DateField,
-    useAutocomplete,
-    List,
     ExportButton,
+    List,
+    NumberField,
+    useAutocomplete,
+    useDataGrid,
 } from "@refinedev/mui";
+import React from "react";
 
-import {
-    Grid,
-    Box,
-    TextField,
-    Button,
-    Typography,
-    Stack,
-    Autocomplete,
-    CardContent,
-    Card,
-    CardHeader,
-} from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
-import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import { useForm } from "@refinedev/react-hook-form";
-import { Controller } from "react-hook-form";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 
-import { OrderStatus, CustomTooltip } from "components";
+import { CustomTooltip, OrderStatus } from "components";
 import { IOrder, IOrderFilterVariables } from "interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
@@ -83,7 +81,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<IOrder>>(
+    const columns = React.useMemo<GridColDef<IOrder>[]>(
         () => [
             {
                 field: "orderNumber",
@@ -194,7 +192,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 100,
                 sortable: false,
                 getActions: ({ id }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         icon={<CheckOutlinedIcon color="success" />}
@@ -214,7 +211,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             });
                         }}
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={2}
                         icon={<CloseOutlinedIcon color="error" />}
@@ -459,7 +455,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         onRowClick={({ id }) => {
                             show("orders", id);
                         }}
-                        rowsPerPageOptions={[10, 20, 50, 100]}
+                        pageSizeOptions={[10, 20, 50, 100]}
                         sx={{
                             ...dataGridProps.sx,
                             "& .MuiDataGrid-row": {

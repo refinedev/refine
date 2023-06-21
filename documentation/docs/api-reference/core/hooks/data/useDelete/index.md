@@ -4,11 +4,9 @@ siderbar_label: useDelete
 source: packages/core/src/hooks/data/useDelete.ts
 ---
 
-`useDelete` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
+`useDelete` is used when you want to delete a record. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
--   It uses the `deleteOne` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
-
-It is useful when you want to update a record.
+It uses the `deleteOne` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 ## Basic Usage
 
@@ -27,25 +25,29 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
-When the `useDelete` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
+When the `useDelete` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Invalidating Queries
 
-When the `useDelete` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
+When the `useDelete` mutation runs successfully, it will invalidate the following queries from the current `resource`: `"list"` and `"many"` by default. Which means that, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
-[Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
+> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+:::caution
+This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+:::
 
-When the `useDelete` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. It is useful when you want to log the changes to the database.
+When the `useDelete` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. This is useful when you want to log the changes to the database.
 
-[Refer to the `auditLogProvider` documentation for more information &#8594](/docs/api-reference/core/providers/audit-log-provider/)
+> For more information, refer to the [`auditLogProvider` documentation &#8594](/docs/api-reference/core/providers/audit-log-provider/)
 
 ## Properties
 
@@ -92,7 +94,7 @@ mutate(
 
 ### `resource` <PropTag required />
 
-It will be passed to the `deleteOne` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `deleteOne` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
+This parameter will be passed to the `deleteOne` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `deleteOne` method.
 
 ```tsx
 const { mutate } = useDelete();
@@ -102,9 +104,11 @@ mutate({
 });
 ```
 
+> For more information, refer to the [creating a data provider tutorial &#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
+
 ### `id` <PropTag required />
 
-It will be passed to the `deleteOne` method from the `dataProvider` as a parameter. It is used to determine which record to delete.
+This parameter will be passed to the `deleteOne` method from the `dataProvider` as a parameter. It is used to determine which record to delete.
 
 ```tsx
 const { mutate } = useDelete();
@@ -119,7 +123,7 @@ mutate({
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic`, and `undoable`. The default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
-[Refer to the mutation mode documentation for more information &#8594](/docs/advanced-tutorials/mutation-mode)
+> For more information, refer to the [mutation mode documentation &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
 const { mutate } = useDelete();
@@ -160,9 +164,11 @@ mutate({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data is fetched successfully, `useDelete` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDelete` calls the `open` function from `NotificationProvider`:
 
 ```tsx
 const { mutate } = useDelete();
@@ -180,9 +186,11 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data fetching is failed, `useDelete` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
+This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDelete` calls the `open` function from `NotificationProvider`:
 
 ```tsx
 const { mutate } = useDelete();
@@ -205,9 +213,7 @@ mutate({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
-
-In the following example, we pass the `headers` property in the `meta` object to the `deleteOne` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `deleteOne` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
 ```tsx
 const { mutate } = useDelete();
@@ -246,9 +252,11 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
 const { mutate } = useDelete();
@@ -276,7 +284,7 @@ mutate({
 
 Returns an object with TanStack Query's `useMutation` return values.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
+> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ## API
 
@@ -295,7 +303,9 @@ Returns an object with TanStack Query's `useMutation` return values.
 | dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 | `default`                           |
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                  |
 
-> `*`: These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
+:::note
+These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
+:::
 
 <br/>
 
@@ -311,4 +321,4 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 | Description                                | Type                                                                                                                                                                       |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { id: BaseKey; },`<br/>` DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { id: BaseKey; }, DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |

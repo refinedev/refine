@@ -99,7 +99,7 @@ export const UnitCircle: React.FC<Props> = ({
     return (
         <svg width={width} height={height} viewBox="0 0 100 100">
             <circle
-                className="empty-dashes"
+                className="empty-dashes stroke-gray-500 dark:stroke-gray-600"
                 cx={cx}
                 cy={cy}
                 r={r}
@@ -109,9 +109,6 @@ export const UnitCircle: React.FC<Props> = ({
                 strokeWidth={strokeWidth}
                 strokeDasharray={dashArrayMultiple}
                 strokeDashoffset={dashOffsetMultiple}
-                style={{
-                    stroke: "var(--tutorial-toc-text-color-light)",
-                }}
             />
             {unitItemStatuses.map((item, index) => {
                 if (item.status === "completed") {

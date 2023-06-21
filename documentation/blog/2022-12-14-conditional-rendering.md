@@ -46,7 +46,10 @@ To begin, create a new React application on your [codesandbox](https://codesandb
 
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
@@ -104,15 +107,7 @@ export default function App() {
 When a user logs in, the state is set to **true**, and the **welcome message** from the `HeaderComponent` is displayed to the user as follows:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-1.png"  alt="conditional rendering react" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-1.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -120,15 +115,7 @@ When a user logs in, the state is set to **true**, and the **welcome message** f
 If the user is not logged in, the state is set to **false**, and the following **message** is displayed from the `NotloggedIn` component:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-2.png"  alt="conditional rendering react" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-2.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -196,15 +183,7 @@ export default function App() {
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-3.png"  alt="conditional rendering react" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-3.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -214,15 +193,7 @@ If the user has no permission, the state is set to **false** and `null` is rende
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-4.png"  alt="conditional rendering react" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-4.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -269,15 +240,7 @@ The component will render based on what the users enter as follows:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-5.png"  alt="conditional rendering react" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-5.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -388,15 +351,7 @@ export default function App() {
 The result is shown below:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-6.png"  alt="conditional rendering react" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-6.png"  alt="conditional rendering react" />
 
 <br />
 

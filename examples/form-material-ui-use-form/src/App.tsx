@@ -10,12 +10,15 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostShow } from "pages/posts/show";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -39,6 +42,10 @@ const App: React.FC = () => {
                                 list: "/posts",
                                 create: "/posts/create",
                                 edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
                         ]}
                         options={{
@@ -71,12 +78,17 @@ const App: React.FC = () => {
                                         path="edit/:id"
                                         element={<PostEdit />}
                                     />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
                                 </Route>
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

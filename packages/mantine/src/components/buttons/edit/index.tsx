@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useCan,
     useNavigation,
@@ -7,8 +7,12 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconPencil } from "@tabler/icons";
 
@@ -17,10 +21,10 @@ import { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/edit-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
     resource: resourceNameFromProps,
@@ -34,8 +38,15 @@ export const EditButton: React.FC<EditButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const translate = useTranslate();
 
     const routerType = useRouterType();
@@ -101,6 +112,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     title={disabledTitle()}
                     disabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...(variant
                         ? {
                               variant:
@@ -118,6 +130,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     leftIcon={<IconPencil size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.edit", "Edit")}

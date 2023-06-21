@@ -1,11 +1,9 @@
-import * as RefineCore from "@refinedev/core";
-import * as RefineReactHookForm from "@refinedev/react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     toSingular,
@@ -14,20 +12,22 @@ import {
     getOptionLabel,
     noOp,
     getVariableName,
-    toPlural,
-} from "@/utilities";
+    translatePrettyString,
+    translateActionTitle,
+    translateButtonTitle,
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for create page with unstyled html elements
@@ -38,6 +38,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -46,8 +47,13 @@ export const renderer = ({
     const imports: Array<ImportElement> = [
         ["React", "react", true],
         ["useNavigation", "@refinedev/core"],
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["useForm", "@refinedev/react-hook-form"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -85,7 +91,12 @@ export const renderer = ({
             return jsx`
             <label>
                 <span style={{ marginRight: "8px" }}>
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </span>
                 <select
                     placeholder="Select ${toSingular(field.resource.name)}"
@@ -143,7 +154,12 @@ export const renderer = ({
             return jsx`
                 <label>
                     <span style={{ marginRight: "8px" }}>
-                        ${prettyString(field.key)}
+                        ${translatePrettyString({
+                            resource,
+                            field,
+                            i18n,
+                            noQuotes: true,
+                        })}
                     </span>
                     <${inp}
                         ${
@@ -197,7 +213,12 @@ export const renderer = ({
             return jsx`
                 <label>
                     <span style={{ marginRight: "8px" }}>
-                        ${prettyString(field.key)}
+                        ${translatePrettyString({
+                            resource,
+                            field,
+                            i18n,
+                            noQuotes: true,
+                        })}
                     </span>
                     <input
                         type="checkbox"
@@ -244,11 +265,13 @@ export const renderer = ({
     const canList = !!resource.list;
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         ${
             canList
                 ? `
@@ -300,12 +323,11 @@ export const renderer = ({
                 <div style={{ display: "flex", justifyContent: ${
                     canList ? '"space-between"' : '"flex-start"'
                 } }}>
-                    <h1>
-                        ${prettyString(
-                            toSingular(resource.label ?? resource.name) +
-                                " Create",
-                        )}
-                    </h1>
+                    <h1>${translateActionTitle({
+                        resource,
+                        action: "create",
+                        i18n,
+                    })}</h1>
                     ${
                         canList
                             ? jsx`
@@ -315,10 +337,11 @@ export const renderer = ({
                                     list("${resource.name}");
                                 }}
                         >
-                            ${prettyString(
-                                toPlural(resource.label ?? resource.name) +
-                                    " List",
-                            )}
+                            ${translateActionTitle({
+                                resource,
+                                action: "list",
+                                i18n,
+                            })}
                         </button>
                         </div>
                     `
@@ -329,7 +352,10 @@ export const renderer = ({
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                         ${renderedFields.join("")}
                         <div>
-                            <input type="submit" value="Save" />
+                            <input type="submit" value=${translateButtonTitle({
+                                action: "save",
+                                i18n,
+                            })} />
                         </div>
                     </div>
                 </form>
@@ -345,12 +371,7 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@refinedev/core", "RefineCore", RefineCore],
-        [
-            "@refinedev/react-hook-form",
-            "RefineReactHookForm",
-            RefineReactHookForm,
-        ],
+        ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

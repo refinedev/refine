@@ -74,6 +74,7 @@ function getReletadPosts(allBlogPosts, metadata) {
     const filteredPostInfos = randomThreeRelatedPosts.map((post) => {
         return {
             title: post.metadata.title,
+            description: post.metadata.description,
             permalink: post.metadata.permalink,
             formattedDate: post.metadata.formattedDate,
             authors: post.metadata.authors,
@@ -98,6 +99,7 @@ function getAuthorPosts(allBlogPosts, metadata) {
     const filteredPostInfos = randomThreeAuthorPosts.map((post) => {
         return {
             title: post.metadata.title,
+            description: post.metadata.description,
             permalink: post.metadata.permalink,
             formattedDate: post.metadata.formattedDate,
             authors: post.metadata.authors,
@@ -210,6 +212,17 @@ async function blogPluginExtended(...pluginArgs) {
                         JSON.stringify(metadata, null, 2),
                     );
 
+                    const tagsProp = Object.values(blogTags).map((tag) => ({
+                        label: tag.label,
+                        permalink: tag.permalink,
+                        count: tag.items.length,
+                    }));
+
+                    const tagsPropPath = await createData(
+                        `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
+                        JSON.stringify(tagsProp, null, 2),
+                    );
+
                     addRoute({
                         path: permalink,
                         component: "@theme/BlogListPage",
@@ -226,6 +239,7 @@ async function blogPluginExtended(...pluginArgs) {
                                     : items,
                             ),
                             metadata: aliasedSource(pageMetadataPath),
+                            tags: aliasedSource(tagsPropPath),
                         },
                     });
                 }),
@@ -311,6 +325,19 @@ async function blogPluginExtended(...pluginArgs) {
                             JSON.stringify(metadata, null, 2),
                         );
 
+                        const tagsProp = Object.values(blogTags).map((tag) => ({
+                            label: tag.label,
+                            permalink: tag.permalink,
+                            count: tag.items.length,
+                        }));
+
+                        const tagsPropPath = await createData(
+                            `${utils.docuHash(
+                                `${blogTagsListPath}-tags`,
+                            )}.json`,
+                            JSON.stringify(tagsProp, null, 2),
+                        );
+
                         addRoute({
                             path: metadata.permalink,
                             component: "@theme/BlogTagsPostsPage",
@@ -318,6 +345,7 @@ async function blogPluginExtended(...pluginArgs) {
                             modules: {
                                 items: blogPostItemsModule(items),
                                 tag: aliasedSource(tagPropPath),
+                                tags: aliasedSource(tagsPropPath),
                                 listMetadata: aliasedSource(listMetadataPath),
                             },
                         });

@@ -1,26 +1,24 @@
-import React, { ComponentProps, useMemo } from "react";
 import {
-    useMany,
-    HttpError,
     CrudFilters,
     getDefaultFilter,
+    HttpError,
+    useMany,
 } from "@refinedev/core";
-import { useDataGrid, TagField, List, useAutocomplete } from "@refinedev/mui";
+import { List, TagField, useAutocomplete, useDataGrid } from "@refinedev/mui";
+import React, { ComponentProps, useMemo } from "react";
 
-import {
-    Grid,
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    InputAdornment,
-    TextField,
-    Autocomplete,
-} from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { SearchOutlined } from "@mui/icons-material";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
@@ -69,7 +67,7 @@ export const PostList: React.FC = () => {
         },
     });
 
-    const columns = useMemo<GridColumns<IPost>>(
+    const columns = useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
@@ -159,6 +157,7 @@ export const PostList: React.FC = () => {
                         >
                             <TextField
                                 {...register("q")}
+                                id="q"
                                 label="Search"
                                 placeholder="ID, Title, Content, etc."
                                 margin="normal"
@@ -179,6 +178,7 @@ export const PostList: React.FC = () => {
                                 name="status"
                                 render={({ field }) => (
                                     <Autocomplete
+                                        id="status"
                                         options={[
                                             "published",
                                             "draft",
@@ -206,6 +206,7 @@ export const PostList: React.FC = () => {
                                 name="category"
                                 render={({ field }) => (
                                     <Autocomplete
+                                        id="category"
                                         {...autocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {
@@ -254,7 +255,7 @@ export const PostList: React.FC = () => {
                         disableColumnFilter={true}
                         filterModel={undefined}
                         autoHeight
-                        rowsPerPageOptions={[10, 20, 50, 100]}
+                        pageSizeOptions={[10, 20, 50, 100]}
                     />
                 </List>
             </Grid>

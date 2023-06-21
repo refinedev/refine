@@ -8,21 +8,21 @@ slug: /
 
 **refine** is a React-based framework that enables rapid development of web applications. It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts of a project like **authentication**, **access control**, **routing**, **networking**, **state management** and **i18n**.
 
-**refine** is *headless by design*, offering unlimited styling and customization options.
+**refine** is _headless by design_, offering unlimited styling and customization options.
 
 ## What do you mean by "headless" ?
 
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI* *components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your _UI_ _components_ and _business logic_, so they never keep you from customizing your _UI_ or coding your own flow.
 
-refine also ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+refine also ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
 All in all, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_.
 
 ## Use cases
 
-**refine** shines when it comes to *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_. Thanks to the built-in **SSR support**, **refine** can also power _customer-facing_ applications like _storefronts_.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="Refine diagram" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine diagram" />
 
 ## Key Features
 
@@ -60,10 +60,6 @@ All in all, **refine** just works _seamlessly_ with any _custom designs_ or _UI 
 -   [Join the GitHub Discussions](https://github.com/refinedev/refine/discussions) to ask anything about the refine project or give feedback; we would love to hear your thoughts!
 -   [Learn how to contribute to the refine!](/docs/contributing/)
 -   [Join our Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) and become a blog writer for **refine**.
-
-## Roadmap
-
-You can find Refine's Public Roadmap [here!](https://github.com/refinedev/refine/projects/1)
 
 ## Next Steps
 

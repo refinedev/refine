@@ -107,9 +107,9 @@ export function useUpdatePassword<TVariables extends UpdatePasswordFormTypes>(
 ): UseUpdatePasswordCombinedReturnType<TVariables>;
 
 /**
- * `useUpdatePassword` calls `updatePassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ * `useUpdatePassword` calls `updatePassword` method from {@link https://refine.dev/docs/api-reference/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useUpdatePassword} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useUpdatePassword} for more details.
  *
  * @typeParam TData - Result data of the query
  * @typeParam TVariables - Values for mutation function. default `{}`

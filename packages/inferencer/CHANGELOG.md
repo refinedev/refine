@@ -1,5 +1,179 @@
 # @pankod/refine-mantine
 
+## 4.1.2
+
+### Patch Changes
+
+-   [#4499](https://github.com/refinedev/refine/pull/4499) [`b120a0394f8`](https://github.com/refinedev/refine/commit/b120a0394f89474e5d2c0c085dadf264a36e6607) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: show code button for inferencers was not visible in smaller screens.
+
+## 4.1.1
+
+### Patch Changes
+
+-   [#4499](https://github.com/refinedev/refine/pull/4499) [`b120a0394f8`](https://github.com/refinedev/refine/commit/b120a0394f89474e5d2c0c085dadf264a36e6607) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: show code button for inferencers was not visible in smaller screens.
+
+## 4.1.0
+
+### Minor Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - According to the changes made in `@refinedev/mui` to support the latest version of the `@mui/x-data-grid` package, we've updated the `@refinedev/inferencer` package to support the changes in the generated codes. While the usage of the components did not change, the generated code in Material UI inferencer components have changed.
+
+    **Breaking Changes**
+
+    With this release, the peer dependency of `@refinedev/mui` is updated to `^5.0.0` and the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `ListInferencer` logic to check for `canDelete` property in resource definitions to decide whether to include `DeleteButton` in the actions column of the `List` view or not.
+
+-   Updated dependencies [[`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c)]:
+    -   @refinedev/core@4.20.0
+
+## 4.0.0
+
+### Major Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - According to the changes made in `@refinedev/mui` to support the latest version of the `@mui/x-data-grid` package, we've updated the `@refinedev/inferencer` package to support the changes in the generated codes. While the usage of the components did not change, the generated code in Material UI inferencer components have changed.
+
+    **Breaking Changes**
+
+    With this release, the peer dependency of `@refinedev/mui` is updated to `^5.0.0` and the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `ListInferencer` logic to check for `canDelete` property in resource definitions to decide whether to include `DeleteButton` in the actions column of the `List` view or not.
+
+-   Updated dependencies [[`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0)]:
+    -   @refinedev/core@4.19.0
+    -   @refinedev/mui@5.0.0
+
+## 3.5.8
+
+### Patch Changes
+
+-   [#4427](https://github.com/refinedev/refine/pull/4427) [`b4298166b6f`](https://github.com/refinedev/refine/commit/b4298166b6f3f4260129c0171891f9203e3d4183) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Inferencer assumes `id` is number in custom pages.
+    From now on, if `id` is `typeof string`, and `inferencer` will infer it as `string`.
+-   Updated dependencies [[`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527), [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f), [`0602f4cdf1c`](https://github.com/refinedev/refine/commit/0602f4cdf1c38f2b9dea8a293680a1872f4a448d), [`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527)]:
+    -   @refinedev/core@4.18.0
+
+## 3.5.7
+
+### Patch Changes
+
+-   [#4427](https://github.com/refinedev/refine/pull/4427) [`b4298166b6f`](https://github.com/refinedev/refine/commit/b4298166b6f3f4260129c0171891f9203e3d4183) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Inferencer assumes `id` is number in custom pages.
+    From now on, if `id` is `typeof string`, and `inferencer` will infer it as `string`.
+-   Updated dependencies [[`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527), [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f), [`0602f4cdf1c`](https://github.com/refinedev/refine/commit/0602f4cdf1c38f2b9dea8a293680a1872f4a448d), [`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527)]:
+    -   @refinedev/core@4.17.0
+
+## 3.5.6
+
+### Patch Changes
+
+-   [#4402](https://github.com/refinedev/refine/pull/4402) [`4c41be2a2ae`](https://github.com/refinedev/refine/commit/4c41be2a2ae294cb5a7e18754c63b0c0c504300d) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `translate` function dependency to the table hooks if `i18n` is enabled.
+
+-   Updated dependencies [[`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389), [`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389)]:
+    -   @refinedev/core@4.16.2
+
+## 3.5.5
+
+### Patch Changes
+
+-   [#4402](https://github.com/refinedev/refine/pull/4402) [`4c41be2a2ae`](https://github.com/refinedev/refine/commit/4c41be2a2ae294cb5a7e18754c63b0c0c504300d) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `translate` function dependency to the table hooks if `i18n` is enabled.
+
+## 3.5.4
+
+### Patch Changes
+
+-   [#4398](https://github.com/refinedev/refine/pull/4398) [`8a424c227a8`](https://github.com/refinedev/refine/commit/8a424c227a8c14d5a1d227bf50b96af1f625cc82) Thanks [@aliemir](https://github.com/aliemir)! - Updated the type imports in the files to get the `tsc` working for the type definitions in the `dist` folder. This will fix the issue with the components not being properly typed in user projects.
+
+## 3.5.3
+
+### Patch Changes
+
+-   [#4398](https://github.com/refinedev/refine/pull/4398) [`8a424c227a8`](https://github.com/refinedev/refine/commit/8a424c227a8c14d5a1d227bf50b96af1f625cc82) Thanks [@aliemir](https://github.com/aliemir)! - Updated the type imports in the files to get the `tsc` working for the type definitions in the `dist` folder. This will fix the issue with the components not being properly typed in user projects.
+
+## 3.5.2
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: support i18n
+
+    Supports i18n if [`i18nProvider`](https://refine.dev/docs/api-reference/core/providers/i18n-provider/) is defined.
+
+-   Updated dependencies [[`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873), [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657)]:
+    -   @refinedev/core@4.16.0
+
+## 3.5.1
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: support i18n
+
+    Supports i18n if [`i18nProvider`](https://refine.dev/docs/api-reference/core/providers/i18n-provider/) is defined.
+
+-   Updated dependencies [[`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873), [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657)]:
+    -   @refinedev/core@4.15.0
+
+## 3.5.0
+
+### Minor Changes
+
+-   [#4382](https://github.com/refinedev/refine/pull/4382) [`83ff1076f5c`](https://github.com/refinedev/refine/commit/83ff1076f5c25257b4a8a0c7f3695eab046be452) Thanks [@aliemir](https://github.com/aliemir)! - Updated the inference process for `list` and `create` actions to use all items in the list instead of just the first item. This is done to avoid breaking the output when a single record is corrupted or wrongfully inferred.
+
+    Now, for the `list` and `create` actions, each item in the list response will be used to infer the fields then the most repeated fields will be accepted as the type for the field.
+
+### Patch Changes
+
+-   [#4383](https://github.com/refinedev/refine/pull/4383) [`8b3137e9e9d`](https://github.com/refinedev/refine/commit/8b3137e9e9ddeb81ed10c77327662f52f87d19da) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the code generation issue with Mantine's `create` and `edit` inferencers when used with `meta` values.
+
+## 3.4.0
+
+### Minor Changes
+
+-   [#4382](https://github.com/refinedev/refine/pull/4382) [`83ff1076f5c`](https://github.com/refinedev/refine/commit/83ff1076f5c25257b4a8a0c7f3695eab046be452) Thanks [@aliemir](https://github.com/aliemir)! - Updated the inference process for `list` and `create` actions to use all items in the list instead of just the first item. This is done to avoid breaking the output when a single record is corrupted or wrongfully inferred.
+
+    Now, for the `list` and `create` actions, each item in the list response will be used to infer the fields then the most repeated fields will be accepted as the type for the field.
+
+### Patch Changes
+
+-   [#4383](https://github.com/refinedev/refine/pull/4383) [`8b3137e9e9d`](https://github.com/refinedev/refine/commit/8b3137e9e9ddeb81ed10c77327662f52f87d19da) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the code generation issue with Mantine's `create` and `edit` inferencers when used with `meta` values.
+
+## 3.3.6
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
+## 3.3.5
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
+## 3.3.4
+
+### Patch Changes
+
+-   [#4293](https://github.com/refinedev/refine/pull/4293) [`7fa008b7ff7`](https://github.com/refinedev/refine/commit/7fa008b7ff7a46d34bbd513f1ac654ccebed9cf3) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: minimized the packages scope
+
+## 3.3.3
+
+### Patch Changes
+
+-   [#4293](https://github.com/refinedev/refine/pull/4293) [`7fa008b7ff7`](https://github.com/refinedev/refine/commit/7fa008b7ff7a46d34bbd513f1ac654ccebed9cf3) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: minimized the packages scope
+
+## 3.3.2
+
+### Patch Changes
+
+-   [#4265](https://github.com/refinedev/refine/pull/4265) [`ff43684f787`](https://github.com/refinedev/refine/commit/ff43684f787880d120a66d5747bb3e4cbade5ea6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fixed an issue that caused the duplicate field error
+
+## 3.3.1
+
+### Patch Changes
+
+-   [#4265](https://github.com/refinedev/refine/pull/4265) [`ff43684f787`](https://github.com/refinedev/refine/commit/ff43684f787880d120a66d5747bb3e4cbade5ea6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fixed an issue that caused the duplicate field error
+
 ## 3.3.0
 
 ### Minor Changes

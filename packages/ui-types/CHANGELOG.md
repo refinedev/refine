@@ -1,5 +1,53 @@
 # @pankod/refine-ui-types
 
+## 1.16.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added crud component types.
+    Now `ActionButtonRenderer` has a new generic type `TExtraProps`. This will allow us to pass extra props to the renderer.
+
+    feat: added `TEditButtonProps`, `TDeleteButtonProps`, `TRefreshButtonProps`, and, `TListButtonProps` generic types to `RefineCrudShowProps`.
+    Now `RefineCrudShowProps` can take generic types for all the buttons.
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+## 1.15.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added crud component types.
+    Now `ActionButtonRenderer` has a new generic type `TExtraProps`. This will allow us to pass extra props to the renderer.
+
+    feat: added `TEditButtonProps`, `TDeleteButtonProps`, `TRefreshButtonProps`, and, `TListButtonProps` generic types to `RefineCrudShowProps`.
+    Now `RefineCrudShowProps` can take generic types for all the buttons.
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+## 1.14.0
+
+### Minor Changes
+
+-   [#4291](https://github.com/refinedev/refine/pull/4291) [`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added a new prop that `sticky` to `RefineThemedLayoutV2HeaderProps` type
+
+    fix: deprecated the `isStick` prop of `RefineThemedLayoutV2HeaderProps` type
+
+    To provide backwards compatibility, `isSticky` is still supported, but it is deprecated and will be removed in the next major version.
+
+## 1.13.0
+
+### Minor Changes
+
+-   [#4291](https://github.com/refinedev/refine/pull/4291) [`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added a new prop that `sticky` to `RefineThemedLayoutV2HeaderProps` type
+
+    fix: deprecated the `isStick` prop of `RefineThemedLayoutV2HeaderProps` type
+
+    To provide backwards compatibility, `isSticky` is still supported, but it is deprecated and will be removed in the next major version.
+
 ## 1.12.0
 
 ### Minor Changes

@@ -60,14 +60,7 @@ To use Google lighthouse in Chrome DevTools, navigate to the site you want to au
 
 You  can open Chrome DevTools by pressing the <kbd> F12 </kbd>  key. Click the lighthouse tab after that.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/checked-categories.png" alt="Lighthouse checked" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/checked-categories.png" alt="Lighthouse checked" />
 
 <br/>
 
@@ -88,14 +81,7 @@ After successfully analyzing the page, Google lighthouse will present the lighth
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-all-categories.png" alt="Lighthouse scores for all categories" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-all-categories.png" alt="Lighthouse scores for all categories" />
 
 <br/>
 
@@ -241,14 +227,7 @@ Like using Google lighthouse in chrome DevTools, start by navigating to the site
 Open the Google lighthouse chrome extension popup by clicking the extension icon in the Chrome toolbar.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png" alt="Lighthouse extension dropdown" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png" alt="Lighthouse extension dropdown" />
 
 <br/>
 
@@ -268,18 +247,18 @@ As pointed out above, Google lighthouse can audit a website for performance, bes
 
 If you navigate to the [refine landing page](https://refine.dev/) and use Lighthouse to audit the site for PWA features and best practices, you will get a report similar to the image below. Because [refine](https://refine.dev/) is not a PWA, most of the tests will fail. Google lighthouse will highlight the failing test and provide a link to documentation that explains the feature.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-pwa-category.png" alt="Lighthouse pwa" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-pwa-category.png" alt="Lighthouse pwa" />
 
 <br/>
 
 It is worth mentioning that PWAs have several features and best practices to follow. Google lighthouse can audit only a  handful of these features. You need to check some of them manually. Google lighthouse will also hint at the items you need to check manually.
+
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ## How to view Google lighthouse report
 
@@ -359,24 +338,3 @@ Therefore, you must go above and beyond to test your site with actual users even
 
 ---
 
-## Build your React-based CRUD applications without constraints
-
-Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

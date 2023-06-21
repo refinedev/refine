@@ -38,10 +38,10 @@
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
-    "react-router-dom": "^6.8.1",
+    "react-router-dom": "6.11.2",
     "ts-jest": "^29.0.3",
     "tslib": "^2.3.1",
-    "tsup": "^5.11.13"
+    "tsup": "^6.7.0"
   },
   "dependencies": {
     "lodash-es": "^4.17.21",

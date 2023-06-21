@@ -75,7 +75,7 @@ and then you are done!
 
 ## Running in development mode
 
-`node` version 16 is required.
+`node` version 18 is required.
 
 This project has multiple packages and uses [Lerna][lerna] to manage packages under `packages/`.
 
@@ -193,7 +193,7 @@ You can use `import` statements to show them in the code block but they will be 
 :::
 
 :::info
-Refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@refinedev/live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
+refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@refinedev/live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
 :::
 
 ### Properties

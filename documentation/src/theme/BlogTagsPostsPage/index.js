@@ -1,17 +1,17 @@
 import React from "react";
 import clsx from "clsx";
-import Translate, { translate } from "@docusaurus/Translate";
+import { translate } from "@docusaurus/Translate";
 import {
     PageMetadata,
     HtmlClassNameProvider,
     ThemeClassNames,
     usePluralForm,
 } from "@docusaurus/theme-common";
-import Link from "@docusaurus/Link";
 import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
+import TagsList from "@theme/TagsList";
 
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -53,32 +53,42 @@ function BlogTagsPostsPageMetadata({ tag }) {
     );
 }
 
-function BlogTagsPostsPageContent({ tag, items, sidebar, listMetadata }) {
-    const title = useBlogTagsPostsPageTitle(tag);
-
+function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
     return (
         <BlogLayout sidebar={sidebar}>
-            <header className="margin-bottom--lg">
-                <h1 className="font-montserrat">{title}</h1>
-
-                <Link
-                    href={tag.allTagsPath}
-                    className="uppercase all-tags-button text-white font-extrabold p-2 rounded-[10px] inline-flex items-center"
-                >
-                    <Translate
-                        id="theme.tags.tagsPageLink"
-                        description="The label of the link targeting the tag list page"
-                    >
-                        View All Tags
-                    </Translate>
-                </Link>
-            </header>
-            <BlogPostItems items={items} />
-            <br />
-            <BlogListPaginator
-                metadata={listMetadata}
-                basePath={`/blog/tags/${tag.label}`}
-            />
+            <div
+                className={clsx(
+                    "py-8",
+                    "blog-md:py-16",
+                    "px-4",
+                    "max-w-[512px]",
+                    "blog-md:px-7",
+                    "blog-md:max-w-screen-blog-md",
+                    "blog-2xl:px-0",
+                    "blog-2xl:max-w-screen-blog-md",
+                    "w-full",
+                    "mx-auto",
+                )}
+            >
+                <TagsList tags={tags} />
+                <div className={clsx("pt-0 blog-md:pt-16")}>
+                    <div className="text-gray-500 dark:text-gray-400">
+                        Posts tagged with
+                    </div>
+                    <h1 className="!mb-0">{tag.label}</h1>
+                </div>
+                <BlogPostItems
+                    items={items}
+                    showTitle={false}
+                    isTagsPage={true}
+                />
+                <div className="blog-md:border-t border-t-gray-200 dark:border-t-gray-700">
+                    <BlogListPaginator
+                        metadata={listMetadata}
+                        basePath={`/blog/tags/${tag.label}`}
+                    />
+                </div>
+            </div>
         </BlogLayout>
     );
 }

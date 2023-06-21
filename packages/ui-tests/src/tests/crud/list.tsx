@@ -85,15 +85,24 @@ export const crudListTests = function (
         });
 
         it("should render create button", async () => {
-            const { queryByTestId } = renderList(<List />, undefined, {
-                resources: [
-                    {
-                        name: "posts",
-                        create: () => null,
-                    },
-                ],
-                routerInitialEntries: ["/posts"],
-            });
+            const { queryByTestId } = renderList(
+                <List
+                    headerButtons={({ defaultButtons, createButtonProps }) => {
+                        expect(createButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+                undefined,
+                {
+                    resources: [
+                        {
+                            name: "posts",
+                            create: () => null,
+                        },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                },
+            );
 
             expect(
                 queryByTestId(RefineButtonTestIds.CreateButton),
@@ -101,22 +110,37 @@ export const crudListTests = function (
         });
 
         it("should not render create button on resource#canCreate=false", async () => {
-            const { queryByTestId } = renderList(<List />, undefined, {
-                resources: [
-                    {
-                        name: "posts",
-                        canCreate: false,
-                    },
-                ],
-                routerInitialEntries: ["/posts"],
-            });
+            const { queryByTestId } = renderList(
+                <List
+                    headerButtons={({ defaultButtons, createButtonProps }) => {
+                        expect(createButtonProps).not.toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+                undefined,
+                {
+                    resources: [
+                        {
+                            name: "posts",
+                            canCreate: false,
+                        },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                },
+            );
 
             expect(queryByTestId(RefineButtonTestIds.CreateButton)).toBeNull();
         });
 
         it("should render create button on resource#canCreate=false & props#createButtonProps!=null", async () => {
             const { getByText, queryByTestId } = renderList(
-                <List createButtonProps={{ "aria-label": "Create Button" }} />,
+                <List
+                    createButtonProps={{ "aria-label": "Create Button" }}
+                    headerButtons={({ defaultButtons, createButtonProps }) => {
+                        expect(createButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
                 undefined,
                 { routerInitialEntries: ["/posts"] },
             );
@@ -130,7 +154,13 @@ export const crudListTests = function (
 
         it("should not render create button on resource#canCreate=true & props#canCreate=false", async () => {
             const { queryByTestId } = renderList(
-                <List canCreate={false} />,
+                <List
+                    canCreate={false}
+                    headerButtons={({ defaultButtons, createButtonProps }) => {
+                        expect(createButtonProps).toBeUndefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
                 undefined,
                 {
                     resources: [
@@ -148,7 +178,13 @@ export const crudListTests = function (
 
         it("should render create button on resource#canCreate=false & props#canCreate=true", async () => {
             const { queryByTestId } = renderList(
-                <List canCreate={true} />,
+                <List
+                    canCreate={true}
+                    headerButtons={({ defaultButtons, createButtonProps }) => {
+                        expect(createButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
                 undefined,
                 {
                     resources: [
@@ -166,16 +202,25 @@ export const crudListTests = function (
         });
 
         it("should render disabled create button if user doesn't have permission", async () => {
-            const { queryByTestId } = renderList(<List canCreate={true} />, {
-                can: ({ action }) => {
-                    switch (action) {
-                        case "create":
-                            return Promise.resolve({ can: false });
-                        default:
-                            return Promise.resolve({ can: false });
-                    }
+            const { queryByTestId } = renderList(
+                <List
+                    canCreate={true}
+                    headerButtons={({ defaultButtons, createButtonProps }) => {
+                        expect(createButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+                {
+                    can: ({ action }) => {
+                        switch (action) {
+                            case "create":
+                                return Promise.resolve({ can: false });
+                            default:
+                                return Promise.resolve({ can: false });
+                        }
+                    },
                 },
-            });
+            );
 
             await waitFor(() =>
                 expect(

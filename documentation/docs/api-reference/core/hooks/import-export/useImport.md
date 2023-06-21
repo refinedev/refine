@@ -10,7 +10,7 @@ Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
 ## Basic Usage
 
-Here is a basic usage example of `useImport` hook:
+Here is a basic usage example of the `useImport` hook:
 
 ```tsx
 import { useImport } from "@refinedev/core";
@@ -82,7 +82,7 @@ useImport({
 
 ### `onFinish`
 
-If you want to do something after the import is finished, you can use the `onFinish` property. It returns an object with two properties: `succeeded` and `errored` which contain the responses of the successful and failed requests.
+If you want to do something after the import is finished, you can use the `onFinish` property. It returns an object with two properties: `succeeded` and `errored`, which contain the responses of the successful and failed requests.
 
 ```ts
 useImport({
@@ -163,7 +163,7 @@ It is set to `.csv` by default.
 
 #### `onChange`
 
-It handles the file change event. If the file exists, it will call the [`handleChange`][#handlechange] method with the file as an argument.
+It handles the file change event. If the file exists, it will call the `handleChange` method with the file as an argument.
 
 ### `handleChange`
 
@@ -192,13 +192,13 @@ return (
 
 ### `mutationResult`
 
-Returns the result of the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) hook.
+Returns the result of either the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or the [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) hook.
 
 ## FAQ
 
 ### Handling Relational Data
 
-Sometimes you need to process your parsed `CSV` data for certain cases, such as when your data includes relational data and references to other data, or when your backend API requires a specific data format. To handle this, you can use the `mapData` option in `useImport` to customize the process.
+Sometimes you need to process your parsed `CSV` data for certain cases, such as when your data includes relational data and references to other data or when your backend API requires a specific data format. To handle this, you can use the `mapData` option in `useImport` to customize the process.
 
 For example, the `CSV` file is as follows:
 
@@ -254,7 +254,7 @@ With this code, the parsed data will be mapped to conform to the API requirement
 | inputProps     | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                                                                          |
 | handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                    |
 | isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                     |
-| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`][usemutation]) \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>` { resource: string; values: TVariables[]; },`<br/>` unknown>`][usemutation]) |
+| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]},TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
 
 ### Type Parameters
 
@@ -270,7 +270,6 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [papaparse]: https://www.papaparse.com/
 [usemutation]: https://tanstack.com/query/latest/docs/react/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[successerrornotification]: /api-reference/core/interfaces.md#successerrornotification
 [useimportinputpropstype]: /api-reference/core/interfaces.md#useimportinputpropstype
 
 ## Example

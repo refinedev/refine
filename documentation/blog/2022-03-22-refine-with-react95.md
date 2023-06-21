@@ -19,14 +19,7 @@ Just be aware that the source code example in this post have been updated to ver
 
 :::
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Overview" />
 <br />
 
 With **refine**'s **headless** feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility. To build a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we'll use the **refine** headless feature.
@@ -39,14 +32,7 @@ In this tutorial, we will use [Supabase](https://supabase.com/) Database in the 
 
 Let's start by creating our **refine** project. You can use the superplate to create a refine project. superplate will quickly create our **refine** project according to the features we choose.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_setup.gif" alt="Refine Project Setup" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_setup.gif" alt="Refine Project Setup" />
 <br />
 
 That's it! After the installation process is finished, our **refine** project is ready. In addition, Supabase Data Provider features will also come ready. As we mentioned above, since we are using the headless feature of **refine**, we will manage the UI processes ourselves. In this project, we will use `React95` for the UI. Let's continue by installing the necessary packages in our **refine** Project directory.
@@ -358,17 +344,10 @@ export const LoginPage = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_login.png" alt="Refine Login Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_login.png" alt="Refine Login Page" />
 <br />
 
-We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/api-reference/core/providers/auth-provider/) [`<useLogin>`](/docs/api-reference/core/hooks/auth/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
+We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/api-reference/core/providers/auth-provider/) [`<useLogin>`](/docs/api-reference/core/hooks/authentication/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
 
 ## Refine Post Page
 
@@ -497,14 +476,7 @@ export const PostList = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/table.png" alt="Refine Table" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/table.png" alt="Refine Table" />
 <br />
 
 As you can see, our first step is complete. Thanks to the `@refinedev/react-table` adapter, we fetch our Supabase data and process as table data. Then we placed this data in React95 components. Now let's move on to the second step.
@@ -705,14 +677,7 @@ export const opt = [
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/advanced_table.gif" alt="Refine Table" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/advanced_table.gif" alt="Refine Table" />
 <br />
 
 You may quickly handle sorting and paging operations by simply adding a few lines thanks to **refine**'s out-of-the-box features. We have completed our Post page by adding the pagination and sorting features provided by the Refine `useTable` hook to our table.
@@ -923,14 +888,7 @@ export const PostEdit: React.FC = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create_edit.gif" alt="Refine Create and Edit Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create_edit.gif" alt="Refine Create and Edit Page" />
 <br />
 
 We can manage our forms and generate Posts thanks to the `refine-react-hook-form` adapter, and we may save the Post that we created with the **refine** `onFinish` method directly to Supabase.
@@ -1072,14 +1030,7 @@ function App() {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/menu.gif" alt="Refine95 Menu" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/menu.gif" alt="Refine95 Menu" />
 <br />
 
 Now we'll make a top menu component that's specific to the Windows 95 design.
@@ -1153,26 +1104,12 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/top_menu.gif" alt="Refine Top Menu" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/top_menu.gif" alt="Refine Top Menu" />
 <br />
 
 ## Project Overview
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Project Overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Project Overview" />
 <br />
 
 ## Live CodeSandbox Example

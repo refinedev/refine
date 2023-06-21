@@ -6,7 +6,6 @@ authors: joseph_mawa
 tags: [refine, strapi, mantine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fsocial.png
 hide_table_of_contents: false
-is_featured: true
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Ffeatured.png
 ---
 
@@ -122,15 +121,7 @@ pnpm run dev
 
 The command above launches the development server on local host on port 3000 in your default web browser. The landing page should look like the image below.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-landing-page.png"  alt="react admin panel" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-landing-page.png"  alt="react admin panel" />
 
 <br />
 
@@ -267,7 +258,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     }));
 
     return (
-        <List createButtonProps={CreateButton}>
+        <List>
             <Table highlightOnHover striped withBorder withColumnBorders>
                 <thead>
                     {getHeaderGroups().map((headerGroup) => (
@@ -369,7 +360,7 @@ function App() {
 
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 
@@ -417,29 +408,13 @@ For this demonstration, use the credentials below to log into an existing accoun
 > Email: demo@refine.dev
 > Password: demodemo
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-login-page.png"  alt="react admin panel" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-login-page.png"  alt="react admin panel" />
 
 <br />
 
 When you log into your refine application, you should have a table similar to the image below. Though still incomplete, it is a simple React admin panel.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Flist_new.png"  alt="react admin panel" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Flist_new.png"  alt="react admin panel" />
 
 <br />
 
@@ -507,15 +482,7 @@ Since each post object now has a category field, we need to add a category colum
 
 The code above should modify your table to include a Category column like the image below.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Flist_with_category.png"  alt="react admin panel" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Flist_with_category.png"  alt="react admin panel" />
 
 <br />
 
@@ -652,15 +619,7 @@ function App() {
 
 Clicking the create button will now navigate you to the `/posts/create` page. The `/posts/create` page looks like the image below. You can use it to create a new post. After filling and submitting the form with details of your post, it should now be available in the list of all posts.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-create-page.png"  alt="react admin panel" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-create-page.png"  alt="react admin panel" />
 
 ### How to edit a record
 
@@ -706,15 +665,7 @@ const columns = React.useMemo<ColumnDef<any>[]>(
 
 After adding the code above, your table should include the `Actions` column. Clicking the edit button at the moment will again redirect you to a non-existent page.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Factions_edit.png"  alt="react admin panel" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Factions_edit.png"  alt="react admin panel" />
 
 <br/>
 
@@ -839,14 +790,7 @@ function App() {
 
 Clicking the edit button should now redirect you to a page for editing the contents of a specific record. The edit page will look like the image below.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-edit-page.png"  alt="react admin panel" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-edit-page.png"  alt="react admin panel" />
 
 ### How to delete a record
 
@@ -909,14 +853,7 @@ const columns = React.useMemo<ColumnDef<any>[]>(
 
 After making the above changes, your table will have the delete action button like in the image below. Click the delete button to delete a specific record.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Factions_delete.png"  alt="react admin panel" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Factions_delete.png"  alt="react admin panel" />
 
 #### How to add delete button on the edit page
 
@@ -951,14 +888,7 @@ function App() {
 
 Your edit page should now include a delete button on the bottom right.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-edit-page-with-delete-btn.png"  alt="react admin panel" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-edit-page-with-delete-btn.png"  alt="react admin panel" />
 
 ## How to implement mutation mode
 

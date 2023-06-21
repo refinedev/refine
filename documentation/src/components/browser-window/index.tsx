@@ -12,63 +12,93 @@
 import React from "react";
 import clsx from "clsx";
 
-import styles from "./styles.module.css";
-
 interface Props {
     children?: React.ReactNode;
     minHeight?: number;
     url?: string;
-    right?: React.ReactNode;
+    hasBottom?: boolean;
 }
 
 export default function BrowserWindow({
     children,
     minHeight,
     url = "http://localhost:3000",
-    right,
+    hasBottom = false,
 }: Props): JSX.Element {
     return (
-        <div className={styles.browserWindow} style={{ minHeight }}>
-            <div className={styles.browserWindowHeader}>
-                <div className={styles.buttons}>
-                    <span
-                        className={styles.dot}
-                        style={{ background: "#f25f58" }}
+        <div className={clsx("flex", "flex-col", "h-full")}>
+            <div
+                className={clsx(
+                    "flex-shrink-0",
+                    "rounded-tl-lg",
+                    "rounded-tr-lg",
+                    "border-b",
+                    "border-b-gray-200 dark:border-b-gray-900",
+                    "px-4 py-2",
+                    "flex items-center justify-center",
+                    "bg-gray-100 dark:bg-gray-700",
+                    "relative",
+                )}
+            >
+                <div
+                    className={clsx(
+                        "absolute",
+                        "h-full",
+                        "left-3",
+                        "top-0",
+                        "flex items-center justify-center",
+                        "gap-1",
+                    )}
+                >
+                    <div
+                        className={clsx(
+                            "w-2.5 h-2.5",
+                            "rounded-full",
+                            "bg-refine-red",
+                        )}
                     />
-                    <span
-                        className={styles.dot}
-                        style={{ background: "#fbbe3c" }}
+                    <div
+                        className={clsx(
+                            "w-2.5 h-2.5",
+                            "rounded-full",
+                            "bg-refine-orange",
+                        )}
                     />
-                    <span
-                        className={styles.dot}
-                        style={{ background: "#58cb42" }}
+                    <div
+                        className={clsx(
+                            "w-2.5 h-2.5",
+                            "rounded-full",
+                            "bg-refine-green",
+                        )}
                     />
                 </div>
                 <div
                     className={clsx(
-                        styles.browserWindowAddressBar,
-                        "text--truncate",
+                        "rounded-lg",
+                        "p-2",
+                        "bg-gray-0 dark:bg-gray-800",
+                        "flex items-center justify-center",
+                        "text-gray-500 dark:text-gray-400",
+                        "text-xs",
+                        "w-full",
+                        "max-w-[260px]",
+                        "md:max-w-[320px]",
                     )}
                 >
-                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-mini.svg" />
-                    {url}
+                    {`${url}`.replace(/^http(s?):\/\//, "")}
                 </div>
-                {right ? (
-                    right
-                ) : (
-                    <div className={styles.browserWindowMenuIcon}>
-                        <div>
-                            <span className={styles.bar} />
-                            <span className={styles.bar} />
-                            <span className={styles.bar} />
-                        </div>
-                    </div>
-                )}
             </div>
-
             <div
-                className={styles.browserWindowBody}
-                style={{ overflow: "hidden" }}
+                className={clsx(
+                    "flex-1",
+                    "overflow-hidden",
+                    "p-1",
+                    "bg-gray-100 dark:bg-gray-700",
+                    !hasBottom && "rounded-bl-lg rounded-br-lg",
+                    hasBottom && "border-b-gray-200 dark:border-b-gray-900",
+                    hasBottom && "border-b",
+                )}
+                style={{ minHeight }}
             >
                 {children}
             </div>

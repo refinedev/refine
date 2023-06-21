@@ -1,5 +1,29 @@
 # @pankod/refine-cli
 
+## 2.7.0
+
+### Minor Changes
+
+-   [#4516](https://github.com/refinedev/refine/pull/4516) [`6fdf9c002c5`](https://github.com/refinedev/refine/commit/6fdf9c002c55359a7c6fcd7e03b3ca0698a44996) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: added HeadlessInferencer support for the `create-resource` command.
+
+## 2.6.0
+
+### Minor Changes
+
+-   [#4516](https://github.com/refinedev/refine/pull/4516) [`6fdf9c002c5`](https://github.com/refinedev/refine/commit/6fdf9c002c55359a7c6fcd7e03b3ca0698a44996) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: added HeadlessInferencer support for the `create-resource` command.
+
+## 2.5.5
+
+### Patch Changes
+
+-   [#4350](https://github.com/refinedev/refine/pull/4350) [`79955f1dfef`](https://github.com/refinedev/refine/commit/79955f1dfefc558798e5f3af4e4548a391ec488d) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added proxy command to CLI
+
+## 2.5.4
+
+### Patch Changes
+
+-   [#4350](https://github.com/refinedev/refine/pull/4350) [`79955f1dfef`](https://github.com/refinedev/refine/commit/79955f1dfefc558798e5f3af4e4548a391ec488d) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added proxy command to CLI
+
 ## 2.5.3
 
 ### Patch Changes

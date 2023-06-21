@@ -1,8 +1,9 @@
 import React, { SVGProps } from "react";
-import { CreateInferencerConfig } from "@/types";
-import { prettierFormat } from "@/utilities";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/vsDark";
+
+import { CreateInferencerConfig } from "../../types";
+import { prettierFormat } from "../../utilities";
 
 export const SharedCodeViewer: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, loading }) => {
@@ -35,7 +36,7 @@ export const SharedCodeViewer: CreateInferencerConfig["codeViewerComponent"] =
         // Visibility Check
         React.useEffect(() => {
             if (typeof window !== "undefined") {
-                const mediaQuery = window.matchMedia("(max-width: 1024px)");
+                const mediaQuery = window.matchMedia("(max-width: 449px)");
                 if (mediaQuery.matches) {
                     setIsVisible(false);
                 } else {

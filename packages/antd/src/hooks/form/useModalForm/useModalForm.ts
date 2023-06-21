@@ -1,9 +1,5 @@
 import React, { useCallback } from "react";
 import { FormInstance, FormProps, ModalProps } from "antd";
-import {
-    useModalForm as useModalFormSF,
-    UseModalFormConfig as UseModalFormConfigSF,
-} from "sunflower-antd";
 
 import {
     useTranslate,
@@ -20,6 +16,7 @@ import {
     useGo,
 } from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useModal } from "@hooks/modal";
 
 export type useModalFormFromSFReturnType<TResponse, TVariables> = {
     open: boolean;
@@ -85,17 +82,20 @@ export type UseModalFormProps<
         TResponse,
         TResponseError
     > &
-    UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps &
-    FormWithSyncWithLocationParams;
+    FormWithSyncWithLocationParams & {
+        defaultVisible?: boolean;
+        autoSubmitClose?: boolean;
+        autoResetForm?: boolean;
+    };
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences/#httperror `HttpError`}
  * @typeParam TVariables - Values for params. default `{}`
  *
  *
@@ -109,6 +109,9 @@ export const useModalForm = <
     TResponseError extends HttpError = TError,
 >({
     syncWithLocation,
+    defaultVisible = false,
+    autoSubmitClose = true,
+    autoResetForm = true,
     ...rest
 }: UseModalFormProps<
     TQueryFnData,
@@ -125,7 +128,7 @@ export const useModalForm = <
     TResponse,
     TResponseError
 > => {
-    const initiallySynced = React.useRef(false);
+    const [initiallySynced, setInitiallySynced] = React.useState(false);
 
     const useFormProps = useForm<
         TQueryFnData,
@@ -147,8 +150,10 @@ export const useModalForm = <
 
     const action = rest.action ?? actionFromParams ?? "";
 
-    const syncingId =
-        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+    const syncingId = !(
+        typeof syncWithLocation === "object" &&
+        syncWithLocation?.syncId === false
+    );
 
     const syncWithLocationKey =
         typeof syncWithLocation === "object" && "key" in syncWithLocation
@@ -161,21 +166,34 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const sunflowerUseModal = useModalFormSF<TResponse, TVariables>({
-        ...rest,
-        form: form,
-        submit: onFinish as any,
+    const { show, close, modalProps } = useModal({
+        modalProps: {
+            open: defaultVisible,
+        },
     });
 
-    const {
-        visible,
-        show,
-        formProps: modalFormProps,
+    const visible = modalProps.open || false;
+    const sunflowerUseModal: useModalFormFromSFReturnType<
+        TResponse,
+        TVariables
+    > = {
         modalProps,
-    } = sunflowerUseModal;
+        form,
+        formLoading,
+        formProps,
+        formResult: undefined,
+        formValues: form.getFieldsValue,
+        defaultFormValuesLoading: false,
+        initialValues: {},
+        submit: onFinish as any,
+        close,
+        open: modalProps.open || false,
+        show,
+        visible,
+    };
 
     React.useEffect(() => {
-        if (initiallySynced.current === false && syncWithLocationKey) {
+        if (initiallySynced === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
                 if (openStatus) {
@@ -194,12 +212,12 @@ export const useModalForm = <
                 }
             }
 
-            initiallySynced.current = true;
+            setInitiallySynced(true);
         }
     }, [syncWithLocationKey, parsed, syncingId, setId]);
 
     React.useEffect(() => {
-        if (initiallySynced.current === true) {
+        if (initiallySynced === true) {
             if (visible && syncWithLocationKey) {
                 go({
                     query: {
@@ -227,6 +245,9 @@ export const useModalForm = <
     const saveButtonPropsSF = {
         disabled: formLoading,
         loading: formLoading,
+        onClick: () => {
+            form.submit();
+        },
     };
 
     const handleClose = useCallback(() => {
@@ -274,11 +295,21 @@ export const useModalForm = <
         close: handleClose,
         open: visible,
         formProps: {
-            ...modalFormProps,
+            ...formProps,
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps.onFinish,
+            onFinish: async (values) => {
+                await onFinish(values);
+
+                if (autoSubmitClose) {
+                    close();
+                }
+
+                if (autoResetForm) {
+                    form.resetFields();
+                }
+            },
         },
         modalProps: {
             ...newModalProps,

@@ -56,11 +56,7 @@ The code snippet above will produce this type of error:
 
 
 
-<div class="img-container">
- 
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-1.png"  alt="json error" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-1.png"  alt="json error" />
 
 <br />
 
@@ -115,11 +111,7 @@ Using the code snippet above, I want to clarify that `JSON.parse()` is being don
 
 
 
-<div class="img-container">
- 
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-2.png"  alt="json error" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-2.png"  alt="json error" />
 
 <br />
 
@@ -136,11 +128,7 @@ fetch("https://dummyjson.com/myProduct/1")
 [https://dummyjson.com/myProduct/1](https://dummyjson.com/myProduct/1) that has been used as our API is an endpoint that I made up, so it is not a valid API endpoint and as you know parsing it will be you trying to parse something that isn't JSON, as it is not a formatted JSON.
 
 
-<div class="img-container">
- 
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-3.png"  alt="json error" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-3.png"  alt="json error" />
 
 <br />
 
@@ -170,10 +158,9 @@ Spelling errors do not apply only to API endpoints, they can also occur while at
 - Use the try-and-catch method in your function to prevent your app from crashing.
     
 
-
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 
@@ -215,11 +202,7 @@ const getLocalStorage = () => {
 ```
 
 
-<div class="img-container">
- 
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-4.png"  alt="json error" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-4.png"  alt="json error" />
 
 <br />
 

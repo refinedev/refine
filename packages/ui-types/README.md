@@ -12,8 +12,7 @@
     <a href="https://discord.gg/refine">Discord</a> |
     <a href="https://refine.dev/examples/">Examples</a> | 
     <a href="https://refine.dev/blog/">Blog</a> | 
-    <a href="https://refine.dev/docs/">Documentation</a> | 
-    <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
+    <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
 
@@ -58,11 +57,11 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 **refine** is _headless by design_, thereby offering unlimited styling and customization options.
 
-## What do you mean by "headless" ?
+## What do you mean by "headless"?
 
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from _UI components_ and _business logic_, so that they never keep you from customizing your _UI_ or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## Use cases
 
@@ -163,7 +162,7 @@ const App: React.FC = () => {
                 notificationProvider={notificationProvider}
                 resources={[
                     {
-                        name: 'posts',
+                        name: "posts",
                         list: "/posts",
                         show: "/posts/show/:id",
                         create: "/posts/create",
@@ -171,30 +170,39 @@ const App: React.FC = () => {
                         meta: { canDelete: true },
                     },
                     {
-                        name: 'categories',
+                        name: "categories",
                         list: "/categories",
                         show: "/categories/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         <Route index element={<NavigateToResource />} />
                         <Route path="posts">
                             <Route index element={<AntdInferencer />} />
-                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
                             <Route path="create" element={<AntdInferencer />} />
-                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
                         </Route>
                         <Route path="categories">
                             <Route index element={<AntdInferencer />} />
-                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
                         </Route>
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
@@ -202,7 +210,7 @@ const App: React.FC = () => {
             </Refine>
         </BrowserRouter>
     );
-};   
+};
 
 export default App;
 ```
@@ -231,10 +239,6 @@ You can get the auto-generated pages codes by clicking the `Show Code` button on
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 
 👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
-
-## Roadmap
-
-You can find refine's <a href="https://github.com/refinedev/refine/projects/1">Public Roadmap here!</a>
 
 ## Stargazers
 

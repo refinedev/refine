@@ -30,12 +30,14 @@ export const CreatePostModal: React.FC<
         <Modal opened={visible} onClose={close} title={title}>
             <TextInput
                 mt={8}
+                id="title"
                 label="Title"
                 placeholder="Title"
                 {...getInputProps("title")}
             />
             <Select
                 mt={8}
+                id="status"
                 label="Status"
                 placeholder="Pick one"
                 {...getInputProps("status")}
@@ -47,6 +49,7 @@ export const CreatePostModal: React.FC<
             />
             <Select
                 mt={8}
+                id="categoryId"
                 label="Category"
                 placeholder="Pick one"
                 {...getInputProps("category.id")}
@@ -55,7 +58,11 @@ export const CreatePostModal: React.FC<
             <Text mt={8} weight={500} size="sm" color="#212529">
                 Content
             </Text>
-            <MDEditor data-color-mode="light" {...getInputProps("content")} />
+            <MDEditor
+                id="content"
+                data-color-mode="light"
+                {...getInputProps("content")}
+            />
             {errors.content && (
                 <Text mt={2} weight={500} size="xs" color="red">
                     {errors.content}

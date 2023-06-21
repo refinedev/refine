@@ -97,12 +97,7 @@ const App = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route
@@ -168,6 +163,7 @@ setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -223,6 +219,7 @@ const App = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route
@@ -268,6 +265,7 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -323,6 +321,7 @@ const App = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route
@@ -368,6 +367,7 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -423,6 +423,7 @@ const App = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route
@@ -468,6 +469,7 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -521,6 +523,7 @@ const App = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route

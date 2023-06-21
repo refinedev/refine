@@ -38,43 +38,43 @@
     },
     {
       "from": "/docs/core/hooks/auth/useAuthenticated/",
-      "to": "/docs/api-reference/core/hooks/auth/useIsAuthenticated/"
+      "to": "/docs/api-reference/core/hooks/authentication/useIsAuthenticated/"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useAuthenticated/",
-      "to": "/docs/api-reference/core/hooks/auth/useIsAuthenticated/"
+      "to": "/docs/api-reference/core/hooks/authentication/useIsAuthenticated/"
     },
     {
       "from": "/docs/core/hooks/auth/useCheckError/",
-      "to": "/docs/api-reference/core/hooks/auth/useOnError/"
+      "to": "/docs/api-reference/core/hooks/authentication/useOnError/"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useCheckError/",
-      "to": "/docs/api-reference/core/hooks/auth/useOnError/"
+      "to": "/docs/api-reference/core/hooks/authentication/useOnError/"
     },
     {
       "from": "/docs/core/hooks/auth/useGetIdentity/",
-      "to": "/docs/api-reference/core/hooks/auth/useGetIdentity/"
+      "to": "/docs/api-reference/core/hooks/authentication/useGetIdentity/"
     },
     {
       "from": "/docs/core/hooks/auth/useLogin/",
-      "to": "/docs/api-reference/core/hooks/auth/useLogin/"
+      "to": "/docs/api-reference/core/hooks/authentication/useLogin/"
     },
     {
       "from": "/docs/core/hooks/auth/useLogout/",
-      "to": "/docs/api-reference/core/hooks/auth/useLogout/"
+      "to": "/docs/api-reference/core/hooks/authentication/useLogout/"
     },
     {
       "from": "/docs/core/hooks/auth/usePermissions/",
-      "to": "/docs/api-reference/core/hooks/auth/usePermissions/"
+      "to": "/docs/api-reference/core/hooks/authentication/usePermissions/"
     },
     {
       "from": "/docs/core/hooks/auth/useRegister/",
-      "to": "/docs/api-reference/core/hooks/auth/useRegister/"
+      "to": "/docs/api-reference/core/hooks/authentication/useRegister/"
     },
     {
       "from": "/docs/core/hooks/auth/useUpdatePassword/",
-      "to": "/docs/api-reference/core/hooks/auth/useUpdatePassword/"
+      "to": "/docs/api-reference/core/hooks/authentication/useUpdatePassword/"
     },
     {
       "from": "/docs/core/hooks/data/useApiUrl/",
@@ -489,10 +489,6 @@
       "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
-      "from": "/docs/examples/customTheme/",
-      "to": "/docs/api-reference/antd/theming"
-    },
-    {
       "from": "/docs/ui-frameworks/antd/customization/antd-custom-theme/",
       "to": "/docs/api-reference/antd/theming"
     },
@@ -706,7 +702,7 @@
     },
     {
       "from": "/docs/core/hooks/auth/useResetPassword/",
-      "to": "/docs/api-reference/core/hooks/auth/useForgotPassword/"
+      "to": "/docs/api-reference/core/hooks/authentication/useForgotPassword/"
     },
     {
       "from": "/docs/examples/authorization/",
@@ -776,6 +772,78 @@
     {
       "from": "/docs/examples/remix/remix-mui/",
       "to": "/docs/examples/remix/remix-material-ui/"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useIsAuthenticated",
+      "to": "/docs/api-reference/core/hooks/authentication/useIsAuthenticated"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useOnError",
+      "to": "/docs/api-reference/core/hooks/authentication/useOnError"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useGetIdentity",
+      "to": "/docs/api-reference/core/hooks/authentication/useGetIdentity"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useLogin",
+      "to": "/docs/api-reference/core/hooks/authentication/useLogin"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useLogout",
+      "to": "/docs/api-reference/core/hooks/authentication/useLogout"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/usePermissions",
+      "to": "/docs/api-reference/core/hooks/authentication/usePermissions"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useRegister",
+      "to": "/docs/api-reference/core/hooks/authentication/useRegister"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useForgotPassword",
+      "to": "/docs/api-reference/core/hooks/authentication/useForgotPassword"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useUpdatePassword",
+      "to": "/docs/api-reference/core/hooks/authentication/useUpdatePassword"
+    },
+    {
+      "from": "/docs/examples/customization/customTheme",
+      "to": "/docs/examples/customization/theme/customThemeAntd"
+    },
+    {
+      "from": "/docs/examples/customTheme",
+      "to": "/docs/examples/customization/theme/customThemeAntd"
+    },
+    {
+      "from": "/docs/examples/import-export",
+      "to": "/docs/examples/import-export/antd"
+    },
+    {
+      "from": "/docs/api-reference/",
+      "to": "/docs/api-reference/general-concepts/"
+    },
+    {
+      "from": "/examples/",
+      "to": "/docs/examples/"
+    },
+    {
+      "from": "/become-a-refine-expert/",
+      "to": "/"
+    },
+    {
+      "from": "/use-cases/",
+      "to": "/"
+    },
+    {
+      "from": "/week-of-refine/",
+      "to": "/"
+    },
+    {
+      "from": "/docs/examples/next-js/NextAuth.js/",
+      "to": "/docs/examples/next-js/NextAuth-js/"
     }
   ]
 }

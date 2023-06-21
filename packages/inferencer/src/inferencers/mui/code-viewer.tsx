@@ -1,5 +1,10 @@
 import React from "react";
-import { Button, Box, Modal, IconButton } from "@mui/material";
+
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
+
 import {
     IconCode,
     IconMessageCircle,
@@ -8,9 +13,9 @@ import {
     IconCheck,
 } from "@tabler/icons";
 
-import { prettierFormat } from "@/utilities";
-import { CreateInferencerConfig } from "@/types";
-import { CodeHighlight } from "@/components";
+import { prettierFormat } from "../../utilities";
+import { CreateInferencerConfig } from "../../types";
+import { CodeHighlight } from "../../components";
 
 /**
  * @deprecated Please use `SharedCodeViewer` instead

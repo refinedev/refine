@@ -9,6 +9,11 @@ const paramsWithId = {
     id: "11",
 };
 
+const paramsWithOutId = {
+    resource: "posts",
+    id: null,
+};
+
 const paramsWithUniqueId = {
     resource: "posts",
     id: "hede/hede",
@@ -49,5 +54,13 @@ describe("handleUseParams", () => {
                 id: encodeURIComponent(paramsWithBase64EncodedId.id),
             }),
         ).toEqual(paramsWithBase64EncodedId);
+    });
+
+    it("should return params without id", () => {
+        expect(handleUseParams(paramsWithOutId)).toEqual(paramsWithOutId);
+    });
+
+    it("should return params empty object with does not passed", () => {
+        expect(handleUseParams()).toEqual({});
     });
 });

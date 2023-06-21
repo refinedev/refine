@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import {
@@ -9,17 +9,21 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { CreateButtonProps } from "../types";
 
 /**
  * <CreateButton> uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#create `create`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#create `create`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful to redirect the app to the create page route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/create-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/components/buttons/create-button} for more details.
  */
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resource: resourceNameFromProps,
@@ -31,8 +35,16 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
+
     const translate = useTranslate();
     const routerType = useRouterType();
     const Link = useLink();
@@ -93,6 +105,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.CreateButton}
+                className={RefineButtonClassNames.CreateButton}
                 type="primary"
                 {...rest}
             >

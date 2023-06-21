@@ -52,7 +52,7 @@ We are going to break this article into two sections first, the text animation, 
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 
@@ -102,14 +102,7 @@ Finally, we use the Framer Motion `transition` prop because every effective anim
 
 The easing shows the scale at which the text animation enters before going to its original scale. 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale1.gif" alt="Scale for text" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale1.gif" alt="Scale for text" />
 
 <br/>
 
@@ -133,14 +126,7 @@ function App() {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale2.gif" alt="Scale for text" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale2.gif" alt="Scale for text" />
 
 <br/>
 
@@ -250,14 +236,7 @@ The inner carousel will perform the spinning and sliding effects. The framer mot
 
 This will give it a unique spinning effect, as you can see below:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-1.gif" alt="Scale for photo" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-1.gif" alt="Scale for photo" />
 
 <br/>
 
@@ -296,14 +275,7 @@ function App() {
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-2.gif" alt="Scale for photo" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-2.gif" alt="Scale for photo" />
 
 <br/>
 
@@ -340,14 +312,7 @@ function App() {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-3.gif" alt="Scale for photo" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-3.gif" alt="Scale for photo" />
 
 <br/>
 

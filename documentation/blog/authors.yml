@@ -54,7 +54,7 @@ ozkalai:
 
 necati:
     name: Necati Özmen
-    title: Head of Content, refine
+    title: Head of Growth at refine
     url: https://github.com/necatiozmen
     image_url: https://github.com/necatiozmen.png
     description: Feeling Irie
@@ -185,3 +185,18 @@ peter_osah:
     name: Peter Osah
     title: Web Developer
     image_url: /img/generic-profile.png
+
+irakli_tchigladze:
+    name: Irakli Tchigladze
+    title: Web Developer
+    image_url: /img/generic-profile.png
+
+victor_uma:
+    name: Victor Uma
+    title: Software Developer
+    image_url: https://github.com/uma-victor1.png
+
+wisdom_ekpotu:
+    name: Wisdom Ekpotu
+    title: Software Engineer
+    image_url: https://github.com/wisdomekpotu.png

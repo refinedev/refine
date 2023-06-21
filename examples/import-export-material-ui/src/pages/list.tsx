@@ -1,13 +1,13 @@
-import { useImport, useExport, useNotification, useOne } from "@refinedev/core";
+import { useExport, useImport, useNotification, useOne } from "@refinedev/core";
 
-import { useDataGrid, ImportButton, List, ExportButton } from "@refinedev/mui";
+import { ExportButton, ImportButton, List, useDataGrid } from "@refinedev/mui";
 
-import { Stack } from "@mui/material";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import Stack from "@mui/material/Stack";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../interfaces";
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     {
         field: "id",
         headerName: "ID",

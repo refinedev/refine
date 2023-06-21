@@ -1,5 +1,6 @@
 import React from "react";
-import { Box } from "@mui/material";
+
+import Box from "@mui/material/Box";
 
 import { ThemedLayoutContextProvider } from "@contexts";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
@@ -25,12 +26,16 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
             <Box display="flex" flexDirection="row">
                 <SiderToRender Title={Title} />
                 <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        flex: 1,
-                        minHeight: "100vh",
-                    }}
+                    sx={[
+                        {
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: 1,
+                            minHeight: "100vh",
+                        },
+                        { overflow: "auto" },
+                        { overflow: "clip" },
+                    ]}
                 >
                     <HeaderToRender />
                     <Box

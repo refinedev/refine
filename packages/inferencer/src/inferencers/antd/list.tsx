@@ -1,28 +1,41 @@
-import * as RefineAntd from "@refinedev/antd";
-import * as AntdPackage from "antd";
+import {
+    useTable,
+    List,
+    TagField,
+    ImageField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+} from "@refinedev/antd";
+import { Table, Space } from "antd";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
+    translatePrettyString,
     accessor,
     printImports,
     noOp,
     getVariableName,
-} from "@/utilities";
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for list page in Ant Design
@@ -33,6 +46,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -48,6 +62,10 @@ export const renderer = ({
         ["Table", "antd"],
         ["Space", "antd"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -119,7 +137,11 @@ export const renderer = ({
                       field.accessor ? `"${field.accessor}"` : ""
                   }]}`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = "";
 
@@ -186,7 +208,11 @@ export const renderer = ({
                           field.accessor ? `"${field.accessor}"` : ""
                       }]}`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = jsx`render={(value: any) => <ImageField style={{ maxWidth: "100px" }} value={${accessor(
                 "value",
@@ -220,7 +246,11 @@ export const renderer = ({
                           field.accessor ? `"${field.accessor}"` : ""
                       }]}`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = jsx`render={(value: any) => <EmailField value={${accessor(
                 "value",
@@ -260,7 +290,11 @@ export const renderer = ({
                           field.accessor ? `"${field.accessor}"` : ""
                       }]}`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = jsx`render={(value: any) => <UrlField value={${accessor(
                 "value",
@@ -292,7 +326,11 @@ export const renderer = ({
                           field.accessor ? `"${field.accessor}"` : ""
                       }]}`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = jsx`render={(value: any) => <BooleanField value={${accessor(
                 "value",
@@ -325,7 +363,11 @@ export const renderer = ({
                           field.accessor ? `"${field.accessor}"` : ""
                       }]}`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = jsx`render={(value: any) => <DateField value={${accessor(
                 "value",
@@ -362,7 +404,11 @@ export const renderer = ({
                     ? `dataIndex={["${field.key}", "${field.accessor}"]}`
                     : `dataIndex="${field.key}"`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
 
             let render = jsx`render={(value: any) => <MarkdownField value={(${accessor(
                 "value",
@@ -397,7 +443,11 @@ export const renderer = ({
                     ? `dataIndex={["${field.key}", "${field.accessor}"]}`
                     : `dataIndex="${field.key}"`;
 
-            const title = `title="${prettyString(field.key)}"`;
+            const title = `title=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })}`;
             let render = "";
 
             if (field.multiple) {
@@ -426,7 +476,14 @@ export const renderer = ({
         return undefined;
     };
 
-    const { canEdit, canShow, canDelete } = resource ?? {};
+    const {
+        canEdit,
+        canShow,
+        canDelete: canDeleteProp,
+        meta: resourceMeta,
+    } = resource ?? {};
+
+    const canDelete = canDeleteProp || resourceMeta?.canDelete;
 
     if (canEdit) {
         imports.push(["EditButton", "@refinedev/antd"]);
@@ -438,11 +495,15 @@ export const renderer = ({
         imports.push(["DeleteButton", "@refinedev/antd"]);
     }
 
+    const actionColumnTitle = i18n
+        ? `{translate("table.actions")}`
+        : `"Actions"`;
+
     const actionButtons =
         canEdit || canShow || canDelete
             ? jsx`
             <Table.Column
-                title="Actions"
+                title=${actionColumnTitle}
                 dataIndex="actions"
                 render={(_, record: BaseRecord) => (
                     <Space>
@@ -511,10 +572,13 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { tableProps } = useTable({
             syncWithLocation: true,
             ${isCustomPage ? ` resource: "${resource.name}",` : ""}
@@ -545,8 +609,25 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/antd", "RefineAntd", RefineAntd],
-        ["antd", "AntdPackage", AntdPackage],
+        [
+            "@refinedev/antd",
+            "RefineAntd",
+            {
+                useTable,
+                List,
+                TagField,
+                ImageField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                EditButton,
+                ShowButton,
+                DeleteButton,
+            },
+        ],
+        ["antd", "AntdPackage", { Table, Space }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

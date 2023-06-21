@@ -57,6 +57,8 @@ const siteConfig = {
                 blog: false,
                 theme: {
                     customCss: [
+                        require.resolve("./src/refine-theme/css/fonts.css"),
+                        require.resolve("./src/refine-theme/css/custom.css"),
                         require.resolve("./src/css/custom.css"),
                         require.resolve("./src/css/split-pane.css"),
                         require.resolve("./src/css/demo-page.css"),
@@ -69,7 +71,6 @@ const siteConfig = {
         ],
     ],
     plugins: [
-        path.resolve(__dirname, "plugins/use-case-routes.js"),
         [
             "@docusaurus/plugin-client-redirects",
             {
@@ -117,8 +118,8 @@ const siteConfig = {
     ],
     themeConfig: {
         prism: {
-            theme: require("prism-react-renderer/themes/vsDark"),
-            darkTheme: require("prism-react-renderer/themes/vsDark"),
+            theme: require("prism-react-renderer/themes/nightOwl"),
+            darkTheme: require("prism-react-renderer/themes/nightOwl"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!
                 {
@@ -277,6 +278,11 @@ const siteConfig = {
                 },
             ],
         },
+        docs: {
+            sidebar: {
+                autoCollapseCategories: true,
+            },
+        },
     },
     customFields: {
         /** Footer Fields */
@@ -284,7 +290,7 @@ const siteConfig = {
             '<strong style="font-weight:700;">refine</strong> is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by <strong style="font-weight:700;">CRUD</strong> operations and provides industry standard solutions.',
         contactTitle: "Contact",
         contactDescription: [
-            "Refine Dev Corporation",
+            "refine Dev Corporation",
             "256 Chapman Road STE 105-4 Newark, DE 19702",
         ],
         contactEmail: "info@refine.dev",
@@ -294,6 +300,23 @@ const siteConfig = {
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
         /** ---- */
         tutorial: tutorialData,
+    },
+    webpack: {
+        jsLoader: (isServer) => ({
+            loader: require.resolve("swc-loader"),
+            options: {
+                jsc: {
+                    parser: {
+                        syntax: "typescript",
+                        tsx: true,
+                    },
+                    target: "es2017",
+                },
+                module: {
+                    type: isServer ? "commonjs" : "es6",
+                },
+            },
+        }),
     },
 };
 

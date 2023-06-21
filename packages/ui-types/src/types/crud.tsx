@@ -1,8 +1,12 @@
 import { PropsWithChildren } from "react";
 import { BaseKey, MutationMode } from "@refinedev/core";
 
-export type ActionButtonRenderer =
-    | ((context: { defaultButtons: React.ReactNode }) => React.ReactNode)
+export type ActionButtonRenderer<
+    TExtraProps extends {} = Record<keyof any, unknown>,
+> =
+    | ((
+          context: { defaultButtons: React.ReactNode } & TExtraProps,
+      ) => React.ReactNode)
     | React.ReactNode;
 
 /**
@@ -47,7 +51,12 @@ export type RefineCrudListProps<
      * Header action buttons to be displayed in the header
      * @default If `canCreate` is passed `<CreateButton />` otherwise `null`
      */
-    headerButtons?: ActionButtonRenderer;
+    headerButtons?: ActionButtonRenderer<{
+        /**
+         * Default `<CreateButton />` props
+         */
+        createButtonProps: TCreateButtonProps | undefined;
+    }>;
     /**
      * Additional props to be passed to the wrapper of the header buttons
      */
@@ -120,7 +129,12 @@ export type RefineCrudCreateProps<
      * Footer action buttons to be displayed in the footer
      * @default `<SaveButton />`
      */
-    footerButtons?: ActionButtonRenderer;
+    footerButtons?: ActionButtonRenderer<{
+        /**
+         * Default `<SaveButton />` props
+         */
+        saveButtonProps: TSaveButtonProps | undefined;
+    }>;
     /**
      * Additional props to be passed to the wrapper of the footer buttons
      */
@@ -148,6 +162,8 @@ export type RefineCrudEditProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
+    TRefreshButtonProps extends {} = Record<keyof any, unknown>,
+    TListButtonProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     /**
      * Resource name for API data interactions
@@ -184,16 +200,34 @@ export type RefineCrudEditProps<
      * Header action buttons to be displayed in the header
      * @default If `recordItemId` is passed `<RefreshButton />` otherwise `<RefreshButton /> <ListButton />`
      */
-    headerButtons?: ActionButtonRenderer;
+    headerButtons?: ActionButtonRenderer<{
+        /**
+         * Default `<RefreshButton />` props
+         */
+        refreshButtonProps: TRefreshButtonProps | undefined;
+        /**
+         * Default `<ListButton />` props
+         */
+        listButtonProps: TListButtonProps | undefined;
+    }>;
     /**
      * Additional props to be passed to the wrapper of the header buttons
      */
     headerButtonProps?: THeaderButtonProps;
     /**
      * Footer action buttons to be displayed in the footer
-     * @default If `canDelete` is passed `<SaveButton /> <ListButton />` otherwise `<SaveButton />`
+     * @default If `canDelete` is passed `<SaveButton /> <DeleteButton />` otherwise `<SaveButton />`
      */
-    footerButtons?: ActionButtonRenderer;
+    footerButtons?: ActionButtonRenderer<{
+        /**
+         * Default `<DeleteButton />` props
+         */
+        deleteButtonProps: TDeleteButtonProps | undefined;
+        /**
+         * Default `<SaveButton />` props
+         */
+        saveButtonProps: TSaveButtonProps | undefined;
+    }>;
     /**
      * Additional props to be passed to the wrapper of the footer buttons
      */
@@ -242,6 +276,10 @@ export type RefineCrudShowProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
+    TEditButtonProps extends {} = Record<keyof any, unknown>,
+    TDeleteButtonProps extends {} = Record<keyof any, unknown>,
+    TRefreshButtonProps extends {} = Record<keyof any, unknown>,
+    TListButtonProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     /**
      * Resource name for API data interactions
@@ -277,7 +315,24 @@ export type RefineCrudShowProps<
     /**
      * Header action buttons to be displayed in the header
      */
-    headerButtons?: ActionButtonRenderer;
+    headerButtons?: ActionButtonRenderer<{
+        /**
+         * Default `<EditButton />` props
+         */
+        editButtonProps: TEditButtonProps | undefined;
+        /**
+         * Default `<DeleteButton />` props
+         */
+        deleteButtonProps: TDeleteButtonProps | undefined;
+        /**
+         * Default `<RefreshButton />` props
+         */
+        refreshButtonProps: TRefreshButtonProps | undefined;
+        /**
+         * Default `<ListButton />` props
+         */
+        listButtonProps: TListButtonProps | undefined;
+    }>;
     /**
      * Additional props to be passed to the wrapper of the header buttons
      */

@@ -1,4 +1,3 @@
-import React from "react";
 import {
     CrudFilters,
     getDefaultFilter,
@@ -7,33 +6,32 @@ import {
     useTranslate,
 } from "@refinedev/core";
 import {
-    useDataGrid,
     BooleanField,
     DateField,
-    ShowButton,
     List,
+    ShowButton,
+    useDataGrid,
 } from "@refinedev/mui";
+import React from "react";
 
-import {
-    Grid,
-    Avatar,
-    Button,
-    TextField,
-    Box,
-    InputAdornment,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    CardHeader,
-    Card,
-    CardContent,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
 
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
@@ -72,7 +70,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<IUser>>(
+    const columns = React.useMemo<GridColDef<IUser>[]>(
         () => [
             {
                 field: "gsm",
@@ -276,7 +274,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                         columns={columns}
                         filterModel={undefined}
                         autoHeight
-                        rowsPerPageOptions={[10, 20, 50, 100]}
+                        pageSizeOptions={[10, 20, 50, 100]}
                     />
                 </List>
             </Grid>

@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { HttpError } from "@refinedev/core";
 import { Edit, SaveButton } from "@refinedev/mui";
-import {
-    TextField,
-    MenuItem,
-    Button,
-    Box,
-    Stepper,
-    Step,
-    StepButton,
-} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";

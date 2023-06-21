@@ -1,6 +1,6 @@
 ---
 title: A Guide on Material UI AutoComplete in React
-description: We'll discover the Material UI (MUI) AutoComplete component with examples
+description: We'll discover the Material UI AutoComplete component with examples
 slug: material-ui-autocomplete-component
 authors: doro_onome
 tags: [material-ui, react]
@@ -24,30 +24,30 @@ hide_table_of_contents: false
  
 
 ## Introduction
-Material UI provides a unique set of components and utilities to help developers have a better creative experience with web applications. One such component is the MUI `<Autocomplete/>` component. This article will dive deep into the **Material UI Autocomplete** component, highlight its accompanied features and explore a potential use case in a real-world application.
+Material UI provides a unique set of components and utilities to help developers have a better creative experience with web applications. One such component is the Material UI `<Autocomplete/>` component. This article will dive deep into the **Material UI Autocomplete** component, highlight its accompanied features and explore a potential use case in a real-world application.
 
 Steps we'll cover:
 - [What is Material UI?](#what-is-material-ui)
-- [Getting Started with MUI Autocomplete](#getting-started-with-mui-autocomplete)
-- [MUI Autocomplete props](#mui-autocomplete-props)
+- [Getting Started with Material UI Autocomplete](#getting-started-with-material-ui-autocomplete)
+- [Material UI Autocomplete props](#material-ui-autocomplete-props)
   - [RenderInput](#renderinput)
 - [GetOptionLabel](#getoptionlabel)
 - [GetOptionSelected](#getoptionselected)
   - [Free solo](#free-solo)
   - [GroupBy](#groupby)
-- [MUI Autocomplete features](#mui-autocomplete-features)
-  - [MUI Autocomplete State Management](#mui-autocomplete-state-management)
+- [Material UI Autocomplete features](#material-ui-autocomplete-features)
+  - [Material UI Autocomplete State Management](#material-ui-autocomplete-state-management)
   - [The useAutocomplete Hook](#the-useautocomplete-hook)
   - [Asynchronous Requests](#asynchronous-requests)
   - [Multiple Values](#multiple-values)
   - [Fixed Options](#fixed-options)
   - [Checkboxes](#checkboxes)
 - [Cloning Google’s Home Page UI with Material UI Autocomplete](#cloning-googles-home-page-ui-with-material-ui-autocomplete)
-- [MUI Autocomplete Limitations](#mui-autocomplete-limitations)
+- [Material UI Autocomplete Limitations](#material-ui-autocomplete-limitations)
   - [autocomplete/autofill](#autocompleteautofill)
 
 ## What is Material UI?
-Developed in 2014, Material UI is a React framework that provides adequate tools(components and utilities) to create a web application. MUI enables the use of various customisable components to create a UI for a company's web and mobile apps. Many developers now use Material UI to structure their projects because it makes web design more straightforward and effective.
+Developed in 2014, Material UI is a React framework that provides adequate tools(components and utilities) to create a web application. Material UI enables the use of various customisable components to create a UI for a company's web and mobile apps. Many developers now use Material UI to structure their projects because it makes web design more straightforward and effective.
 
 Material UI offers several component categories, including Navigations components, Input components, Data Display components, Feedback components, e.t.c. The **Material UI Autocomplete** component is a prime example of the Input components.
 
@@ -57,7 +57,7 @@ npm `npm install @mui/material @emotion/react @emotion/styled`
 
 yarn: `yarn add @mui/material @emotion/react @emotion/styled`
 
-## Getting Started with MUI Autocomplete
+## Getting Started with Material UI Autocomplete
 The Material UI `<Autocomplete />` component can be identified as an improved React text input that includes several suggested options for better optimisation. It is an enhanced version of `react-select` or `downshift` packages.
 
 The `<Autocomplete />` component is best used for modifying single-line textbox values to accommodate more options. The component’s `value` is obtained from a predetermined range of acceptable values/options.
@@ -72,7 +72,7 @@ interface AutocompleteOption {
 type AutocompleteOption = string;
 ```
 
-Below is a simple illustration of **MUI Autocomplete** in play:
+Below is a simple illustration of **Material UI Autocomplete** in play:
 
 ```tsx
 import * as React from 'react';
@@ -107,10 +107,10 @@ The code above showcases an input text field that displays 5 songs as predefined
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/image1.png"  alt="MUI useAutoComplete" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/image1.png"  alt="Material UI useAutoComplete" />
 </div>
 
-## MUI Autocomplete props
+## Material UI Autocomplete props
 
 ### RenderInput
 The `renderInput` prop allows you to customise the rendered input to display the option values in whatever form you please.
@@ -150,7 +150,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/renderInput.gif"  alt="MUI useAutoComplete renderInput" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/renderInput.gif"  alt="Material UI useAutoComplete renderInput" />
 </div>
 
 
@@ -239,13 +239,13 @@ export default function FreeSolo() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/free-solo.gif"  alt="MUI useAutoComplete freeSolo" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/free-solo.gif"  alt="Material UI useAutoComplete freeSolo" />
 </div>
 
 
 
 ### GroupBy
-You can sort the MUI Autocomplete options with the `groupBy` prop. To do this, you must ensure that the values are sorted systematically in the same dimension as they are grouped to avoid duplicate headers.
+You can sort the Material UI Autocomplete options with the `groupBy` prop. To do this, you must ensure that the values are sorted systematically in the same dimension as they are grouped to avoid duplicate headers.
 
 Here’s what I mean:
 
@@ -286,7 +286,7 @@ The code above illustrates the use of the `groupBy` prop in the `<Autocomplete/>
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/groupby.gif"  alt="MUI useAutoComplete groupby" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/groupby.gif"  alt="Material UI useAutoComplete groupby" />
 </div>
 
 
@@ -297,13 +297,16 @@ Here’s the result:
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
-## MUI Autocomplete features
+## Material UI Autocomplete features
 
-### MUI Autocomplete State Management
+### Material UI Autocomplete State Management
 The `Autocomplete` component has two manageable states:
 
 The `value` state represents the value chosen by the user by clicking or pressing “Enter.”
@@ -353,7 +356,7 @@ export default function ManageableStates() {
 The code showcases how the values of the `AutoComplete` component can be controlled and altered in state.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/state-management.gif"  alt="MUI useAutoComplete statemanagement" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/state-management.gif"  alt="Material UI useAutoComplete statemanagement" />
 </div>
 
 
@@ -456,7 +459,7 @@ The code above showcases a simple use case for the `useAutocomplete` hook. It he
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/useAutoComplete.gif"  alt="MUI useAutoComplete" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/useAutoComplete.gif"  alt="Material UI useAutoComplete" />
 </div>
 
 
@@ -561,16 +564,16 @@ export default function Asynchronous() {
 }
 ```
 
-The code above showcases an asynchronous DOM display of the MUI Autocomplete component illustrating the “Load on open” feature.
+The code above showcases an asynchronous DOM display of the Material UI Autocomplete component illustrating the “Load on open” feature.
  
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/async.gif"  alt="MUI useAutoComplete async" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/async.gif"  alt="Material UI useAutoComplete async" />
 </div>
 
 ### Multiple Values
-MUI Autocomplete also provides a feature for users to select more than one value. You can do that by calling the `multiple` prop inside the `<Autocomplete />` component. You can also set a default option value like this:
+Material UI Autocomplete also provides a feature for users to select more than one value. You can do that by calling the `multiple` prop inside the `<Autocomplete />` component. You can also set a default option value like this:
 
 ```tsx
 import * as React from 'react';
@@ -613,7 +616,7 @@ export default function Tags() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/multiplevalues.gif"  alt="MUI useAutoComplete multiplevalues" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/multiplevalues.gif"  alt="Material UI useAutoComplete multiplevalues" />
 </div>
 
 
@@ -684,13 +687,13 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/fixedoptions.gif"  alt="MUI useAutoComplete fixedoptions" />
+   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/fixedoptions.gif"  alt="Material UI useAutoComplete fixedoptions" />
 </div>
 
 
 
 ### Checkboxes
-When using the MUI `<Autocomplete` component, you can choose to use checkboxes as search input option values. This helps you choose your options definitively and makes for a better user experience. 
+When using the Material UI `<Autocomplete` component, you can choose to use checkboxes as search input option values. This helps you choose your options definitively and makes for a better user experience. 
 
 Consider the code below:
 
@@ -741,13 +744,13 @@ export default function CheckboxesTags() {
 }
 ```
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.gif"  alt="MUI useAutoComplete checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.gif"  alt="Material UI useAutoComplete checkbox" />
 </div>
 
 
 
 ## Cloning Google’s Home Page UI with Material UI Autocomplete
-The majority of products incorporate search inputs into various elements of their web applications. Google's Home page layout illustrates how search inputs might be used in typical real-world application. For the sake of this tutorial, we will use React and **MUI Autocomplete** to replicate Google's home page layout.
+The majority of products incorporate search inputs into various elements of their web applications. Google's Home page layout illustrates how search inputs might be used in typical real-world application. For the sake of this tutorial, we will use React and **Material UI Autocomplete** to replicate Google's home page layout.
 
 Here’s the code:
 
@@ -844,7 +847,7 @@ export default Home
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/google.gif"  alt="MUI useAutoComplete google" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/google.gif"  alt="Material UI useAutoComplete google" />
 </div>
 
 <br/>
@@ -855,7 +858,7 @@ Here’s the result:
 </div>
 
 
-## MUI Autocomplete Limitations
+## Material UI Autocomplete Limitations
 
 ### autocomplete/autofill
 Heuristics are built into browsers to assist users in filling out form inputs, but tend to hurt the component's UX. With the `autoComplete="off"` attribute, the component disables the input `autocomplete` feature (remembering what the user wrote for a specific field in a previous session). One possible fix is removing the id and letting the component generate one randomly.
@@ -866,5 +869,5 @@ Set `autoComplete="new-password"`. Some browsers will recommend a secure passwor
 
 
 ## Conclusion
-In this article, we discussed the **Material UI Autocomplete** component, its 'option' props, functionalities and variations. We then moved on to clone Google's Home page using the Autocomplete component. . Despite its limitations, MUI Autocomplete assists developers in generating a responsive and interactive search input for any web interface. I hope you find this post useful. 
+In this article, we discussed the **Material UI Autocomplete** component, its 'option' props, functionalities and variations. We then moved on to clone Google's Home page using the Autocomplete component. . Despite its limitations, Material UI Autocomplete assists developers in generating a responsive and interactive search input for any web interface. I hope you find this post useful. 
 

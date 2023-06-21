@@ -13,7 +13,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     outputs:
       published: ${{ steps.changesets.outputs.published }}
@@ -94,7 +94,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: "18.x"
       - name: Add key to allow access to repository
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -109,6 +109,8 @@ jobs:
           IdentityFile ~/.ssh/id_rsa
           EOT
       - name: Build packages
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           npm ci
           npm run bootstrap:all
@@ -120,6 +122,7 @@ jobs:
           USE_SSH: true
           GIT_USER: pankod-bot
           NODE_ENV: production
+          NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           cd documentation
           git config --global user.email "bot@pankod.com"

@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import {
-    Box,
-    Drawer,
-    List,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Collapse,
-    Tooltip,
-    IconButton,
-    Paper,
-} from "@mui/material";
-import {
-    ListOutlined,
-    Logout,
-    ExpandLess,
-    ExpandMore,
-    ChevronLeft,
-    Dashboard,
-} from "@mui/icons-material";
+
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+
+import ListOutlined from "@mui/icons-material/ListOutlined";
+import Logout from "@mui/icons-material/Logout";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import Dashboard from "@mui/icons-material/Dashboard";
+
 import {
     CanAccess,
     ITreeMenu,
@@ -38,7 +37,7 @@ import {
 import { RefineThemedLayoutV2SiderProps } from "../types";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
-import { useSiderVisible } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
@@ -46,15 +45,15 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     meta,
 }) => {
     const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
 
     const drawerWidth = () => {
-        if (drawerSiderVisible) return 240;
-        return 56;
+        if (siderCollapsed) return 56;
+        return 240;
     };
 
     const t = useTranslate();
@@ -134,13 +133,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             <Tooltip
                                 title={label ?? name}
                                 placement="right"
-                                disableHoverListener={drawerSiderVisible}
+                                disableHoverListener={!siderCollapsed}
                                 arrow
                             >
                                 <ListItemButton
                                     onClick={() => {
-                                        if (!drawerSiderVisible) {
-                                            setDrawerSiderVisible?.(true);
+                                        if (siderCollapsed) {
+                                            setSiderCollapsed(false);
                                             if (!isOpen) {
                                                 handleClick(item.key || "");
                                             }
@@ -159,9 +158,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                             justifyContent: "center",
                                             minWidth: "24px",
                                             transition: "margin-right 0.3s",
-                                            marginRight: drawerSiderVisible
-                                                ? "12px"
-                                                : "0px",
+                                            marginRight: siderCollapsed
+                                                ? "0px"
+                                                : "12px",
                                             color: "currentColor",
                                         }}
                                     >
@@ -189,7 +188,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                     )}
                                 </ListItemButton>
                             </Tooltip>
-                            {drawerSiderVisible && (
+                            {!siderCollapsed && (
                                 <Collapse
                                     in={open[item.key || ""]}
                                     timeout="auto"
@@ -215,7 +214,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     <Tooltip
                         title={label ?? name}
                         placement="right"
-                        disableHoverListener={drawerSiderVisible}
+                        disableHoverListener={!siderCollapsed}
                         arrow
                     >
                         <ListItemButton
@@ -223,7 +222,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             to={route}
                             selected={isSelected}
                             onClick={() => {
-                                setSiderVisible?.(false);
+                                setMobileSiderOpen(false);
                             }}
                             sx={{
                                 pl: isNested ? 4 : 2,
@@ -238,9 +237,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                 sx={{
                                     justifyContent: "center",
                                     transition: "margin-right 0.3s",
-                                    marginRight: drawerSiderVisible
-                                        ? "12px"
-                                        : "0px",
+                                    marginRight: siderCollapsed
+                                        ? "0px"
+                                        : "12px",
                                     minWidth: "24px",
                                     color: "currentColor",
                                 }}
@@ -266,7 +265,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             <Tooltip
                 title={translate("dashboard.title", "Dashboard")}
                 placement="right"
-                disableHoverListener={drawerSiderVisible}
+                disableHoverListener={!siderCollapsed}
                 arrow
             >
                 <ListItemButton
@@ -274,7 +273,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     to="/"
                     selected={selectedKey === "/"}
                     onClick={() => {
-                        setSiderVisible?.(false);
+                        setMobileSiderOpen(false);
                     }}
                     sx={{
                         pl: 2,
@@ -291,7 +290,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             justifyContent: "center",
                             minWidth: "24px",
                             transition: "margin-right 0.3s",
-                            marginRight: drawerSiderVisible ? "12px" : "0px",
+                            marginRight: siderCollapsed ? "0px" : "12px",
                             color: "currentColor",
                             fontSize: "14px",
                         }}
@@ -332,7 +331,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         <Tooltip
             title={t("buttons.logout", "Logout")}
             placement="right"
-            disableHoverListener={drawerSiderVisible}
+            disableHoverListener={!siderCollapsed}
             arrow
         >
             <ListItemButton
@@ -347,7 +346,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         justifyContent: "center",
                         minWidth: "24px",
                         transition: "margin-right 0.3s",
-                        marginRight: drawerSiderVisible ? "12px" : "0px",
+                        marginRight: siderCollapsed ? "0px" : "12px",
                         color: "currentColor",
                     }}
                 >
@@ -372,7 +371,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 dashboard,
                 logout,
                 items,
-                collapsed: !drawerSiderVisible,
+                collapsed: siderCollapsed,
             });
         }
         return (
@@ -420,8 +419,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <Drawer
                     variant="temporary"
                     elevation={2}
-                    open={siderVisible}
-                    onClose={() => setSiderVisible?.(false)}
+                    open={mobileSiderOpen}
+                    onClose={() => setMobileSiderOpen(false)}
                     ModalProps={{
                         keepMounted: true, // Better open performance on mobile.
                     }}
@@ -471,23 +470,24 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             width: "100%",
                             height: 64,
                             display: "flex",
+                            flexShrink: 0,
                             alignItems: "center",
-                            justifyContent: !drawerSiderVisible
+                            justifyContent: siderCollapsed
                                 ? "center"
                                 : "space-between",
-                            paddingLeft: !drawerSiderVisible ? 0 : "16px",
-                            paddingRight: !drawerSiderVisible ? 0 : "8px",
+                            paddingLeft: siderCollapsed ? 0 : "16px",
+                            paddingRight: siderCollapsed ? 0 : "8px",
                             variant: "outlined",
                             borderRadius: 0,
                             borderBottom: (theme) =>
                                 `1px solid ${theme.palette.action.focus}`,
                         }}
                     >
-                        <RenderToTitle collapsed={!drawerSiderVisible} />
-                        {drawerSiderVisible && (
+                        <RenderToTitle collapsed={siderCollapsed} />
+                        {!siderCollapsed && (
                             <IconButton
                                 size="small"
-                                onClick={() => setDrawerSiderVisible?.(false)}
+                                onClick={() => setSiderCollapsed(true)}
                             >
                                 {<ChevronLeft />}
                             </IconButton>

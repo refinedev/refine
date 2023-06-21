@@ -209,7 +209,7 @@ As part of the core package, each method in these providers comes with a corresp
 
 ## Support Packages
 
-**refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/) and [**MUI**](https://refine.dev/docs/api-reference/mui/). Backend supplementary modules include [**Strapi**](https://strapi.io/), **GraphQL**, **NestJS** and .
+**refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/) and [**Material UI**](https://refine.dev/docs/api-reference/mui/). Backend supplementary modules include [**Strapi**](https://strapi.io/), **GraphQL**, **NestJS** and .
 
 For a complete list of all these modules, check out [this page](https://refine.dev/docs/packages/list-of-packages/).
 

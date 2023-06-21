@@ -56,14 +56,7 @@ npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
 Navigate to the `refine-navbar` folder and run `npm run dev` command.
 
 
-<div class="img-container">
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-1.png" alt="app welcome page" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-1.png" alt="app welcome page" />
 
 <br/>
 
@@ -154,14 +147,7 @@ import 'App.css'
 ```
 
 
-<div class="img-container">
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-2.png" alt="post page" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-2.png" alt="post page" />
 
 <br/>
 
@@ -287,14 +273,7 @@ const App: React.FC = () => {
 
 The output of the above code is as follows:
 
-<div class="img-container">
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-3.png" alt="post page" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-3.png" alt="post page" />
 
 <br/>
 
@@ -316,14 +295,7 @@ Let's make it mobile responsive by adding the mobile menu:
 ```
 
 
-<div class="img-container">
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-4.png" alt="post page" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-4.png" alt="post page" />
 
 <br/>
 
@@ -381,7 +353,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
@@ -436,14 +411,7 @@ Add following CSS classes to `App.css` file:
     margin: 0 15px !important;
 }
 ```
-<div class="img-container">
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-5.png" alt="post page" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-5.png" alt="post page" />
 
 <br/>
 
@@ -481,14 +449,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-<div class="img-container">
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-6.png" alt="post page" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-6.png" alt="post page" />
 
 <br/>
 

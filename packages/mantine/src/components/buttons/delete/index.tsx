@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     useDelete,
     useTranslate,
@@ -7,8 +7,12 @@ import {
     useResource,
     pickNotDeprecated,
     useWarnAboutChange,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons";
 
@@ -19,7 +23,7 @@ import { DeleteButtonProps } from "../types";
  * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button>`} and {@link https://mantine.dev/core/modal/ `<Modal>`} components.
  * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/delete-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resource: resourceNameFromProps,
@@ -41,8 +45,15 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const translate = useTranslate();
 
     const { id, resource } = useResource(
@@ -63,6 +74,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             enabled: accessControlEnabled,
         },
     });
+
+    const disabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
 
     const [opened, setOpened] = useState(false);
 
@@ -120,6 +141,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                             (recordItemId ?? id) === variables?.id && isLoading
                         }
                         data-testid={RefineButtonTestIds.DeleteButton}
+                        className={RefineButtonClassNames.DeleteButton}
                         {...(variant
                             ? {
                                   variant:
@@ -141,8 +163,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         loading={
                             (recordItemId ?? id) === variables?.id && isLoading
                         }
+                        title={disabledTitle()}
                         leftIcon={<IconTrash size={18} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
+                        className={RefineButtonClassNames.DeleteButton}
                         {...rest}
                     >
                         {children ?? translate("buttons.delete", "Delete")}

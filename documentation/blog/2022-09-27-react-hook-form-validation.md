@@ -110,15 +110,7 @@ The second command will start the development server for our project and automat
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-dashboard.png"  alt="react Hook Form dashboard" />
-
-</div>
+<img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-dashboard.png"  alt="react Hook Form dashboard" />
 
 <br />
 
@@ -297,20 +289,12 @@ export default Create;
  </p>
 </details>
 
-Here, we created a regular HTML form using a form element and the MUI TextField form control components.  
+Here, we created a regular HTML form using a form element and the Material UI TextField form control components.  
 Each `<TextField>` will be used for getting the first name, last name, address, employment status, place of work, role, and phone number values. We also created an interface object of the form, we’ll be using this later in the article.
 
 If you save your progress and open up the browser, you should see a form similar to the one below.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.png"  alt="react Hook Form view" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.png"  alt="react Hook Form view" />
 
 <br />
 
@@ -348,7 +332,7 @@ const {
 });
 ```
 
-The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as MUI. 
+The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as Materal UI. 
 
 The component takes care of the registration process of components that don't expose input's ref but rely on a state. So it's a register method, but for controlled inputs.
 
@@ -384,7 +368,7 @@ Here's a basic usage of the controller component:
 
 In the example above, we're passing the controller properties to the `<TextField>` component via the field parameter and rendering it with the `<Controller>` render property.
 
-Since we're using MUI for our project, our focus will be on the Controller hook.
+Since we're using Material UI for our project, our focus will be on the Controller hook.
 
 Now to integrate React Hook Form into our application, we'll import the Controller component and the `useForm` hook inside the `create.tsx` file like so:
 
@@ -600,17 +584,8 @@ That’s it, our form has been successfully integrated with React Hook Form. Nex
 
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png"   description={<div>
-          Meet the headless, React-based solution to build sleek CRUD applications. With refine, you can build complex projects without having advanced frontend skills.
-            <br />
-            <br />
-            Try{" "}
-            <a href="https://github.com/refinedev/refine" target="_blank">
-                refine
-            </a>{" "}
-            to rapidly build your next <b>CRUD</b> project, whether {"it's"} an
-            admin panel, dashboard, internal tool or storefront.
-        </div>}  />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
 
 ---
 
@@ -663,15 +638,7 @@ To display the error, we’d have to render a message based on the state of the 
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.gif"  alt="react Hook Form input" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.gif"  alt="react Hook Form input" />
 
 <br />
 
@@ -768,7 +735,7 @@ That’s all we have to do to set up our schema, next we’ll look at a new way 
 </div>
 
 ## Handling errors
-Handling errors with MUI's TextField component is fairly straightforward, all we have to do is destructure the errors property from the useForm’s formState method:
+Handling errors with Material UI's TextField component is fairly straightforward, all we have to do is destructure the errors property from the useForm’s formState method:
 
 ```tsx
 const { control, formState: { errors }} = useForm<IFormValue>
@@ -803,15 +770,7 @@ Then, pass the error object and message to the `error` and `helperText` props li
 
 This will check if there's an error with the `error` prop, then it'll display a dynamic message with the help of the `helperText` prop.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big.gif"  alt="react Hook Form yup" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big.gif"  alt="react Hook Form yup" />
 
 <br />
 
@@ -892,15 +851,7 @@ Make sure to add a fragment tag, or else Typescript will throw an error.
 
 Now, if you save your progress and go to the browser, the company and role fields should only display when the Employed option is selected.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.gif"  alt="react Hook Form error handling" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.gif"  alt="react Hook Form error handling" />
 
 <br />
 
@@ -941,15 +892,7 @@ Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` 
 
 Now, if you save your progress and head over to the browser, you should get a logged object of the form’s data in your console when you fill in the fields and submit the form.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.gif"  alt="React Hook Form error handling" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.gif"  alt="React Hook Form error handling" />
 
 <br />
 

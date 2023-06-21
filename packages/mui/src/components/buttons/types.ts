@@ -1,6 +1,5 @@
 import { UseImportInputPropsType } from "@refinedev/core";
-import { LoadingButtonProps } from "@mui/lab";
-import { ButtonProps, SvgIconProps } from "@mui/material";
+
 import {
     RefineCloneButtonProps,
     RefineCreateButtonProps,
@@ -13,6 +12,10 @@ import {
     RefineSaveButtonProps,
     RefineShowButtonProps,
 } from "@refinedev/ui-types";
+
+import type { LoadingButtonProps } from "@mui/lab/LoadingButton";
+import type { ButtonProps } from "@mui/material/Button";
+import type { SvgIconProps } from "@mui/material/SvgIcon";
 
 export type CloneButtonProps = RefineCloneButtonProps<
     ButtonProps,

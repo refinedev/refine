@@ -2,16 +2,14 @@ import { HttpError } from "@refinedev/core";
 import { Create, useAutocomplete, SaveButton } from "@refinedev/mui";
 import { useTheme } from "@mui/material/styles";
 
-import {
-    Box,
-    TextField,
-    Autocomplete,
-    Button,
-    Step,
-    StepButton,
-    Stepper,
-    useMediaQuery,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Button from "@mui/material/Button";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
+import Stepper from "@mui/material/Stepper";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { useStepsForm } from "@refinedev/react-hook-form";
 
@@ -48,6 +46,7 @@ export const PostCreate: React.FC = () => {
             case 0:
                 return (
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -69,6 +68,7 @@ export const PostCreate: React.FC = () => {
                             rules={{ required: "This field is required" }}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="status"
                                     options={["published", "draft", "rejected"]}
                                     {...field}
                                     onChange={(_, value) => {
@@ -94,6 +94,7 @@ export const PostCreate: React.FC = () => {
                             rules={{ required: "This field is required" }}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="category"
                                     {...autocompleteProps}
                                     {...field}
                                     onChange={(_, value) => {
@@ -135,6 +136,7 @@ export const PostCreate: React.FC = () => {
                 return (
                     <>
                         <TextField
+                            id="slug"
                             {...register("slug", {
                                 required: "This field is required",
                             })}
@@ -145,6 +147,7 @@ export const PostCreate: React.FC = () => {
                             label="Slug"
                         />
                         <TextField
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}

@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { useTranslate, BaseKey } from "@refinedev/core";
-import {
-    Card,
-    CardHeader,
-    Box,
-    IconButton,
-    CardMedia,
-    CardContent,
-    Typography,
-    Tooltip,
-    Popover,
-    Button,
-    Divider,
-    TextField,
-} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
+import Popover from "@mui/material/Popover";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import TextField from "@mui/material/TextField";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 

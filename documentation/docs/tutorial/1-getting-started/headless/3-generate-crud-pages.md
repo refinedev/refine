@@ -72,13 +72,14 @@ Then, we need to add the `<HeadlessInferencer/>` component which is used by pass
 
 :::info
 
-The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/understanding-resources/index. For now, you can assume that the resource is a collection of data on your API used in the app.
+The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/understanding-resources/index). For now, you can assume that the resource is a collection of data on your API used in the app.
 
 :::
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -118,6 +119,7 @@ const App = () => {
                             </Layout>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         {/* highlight-start */}
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
@@ -217,12 +219,7 @@ const App = () => {
                             </Layout>
                         }
                     >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="blog_posts" />
-                            }
-                        />
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -261,6 +258,7 @@ setInitialRoutes(["/blog-posts/create"]);
 import { Refine } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -294,6 +292,7 @@ const App = () => {
                             </Layout>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -331,6 +330,7 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -364,6 +364,7 @@ const App = () => {
                             </Layout>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -401,6 +402,7 @@ setInitialRoutes(["/blog-posts/show/123"]);
 import { Refine } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -436,6 +438,7 @@ const App = () => {
                             </Layout>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route

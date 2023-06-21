@@ -85,7 +85,9 @@ const SampleCreate = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -649,7 +651,9 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the header.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -665,6 +669,58 @@ const PostCreate: React.FC = () => {
             footerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <span>Rest of your page here</span>
+        </Create>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/create"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.CreateButton />
+                    </div>
+                ),
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] component.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+// visible-block-start
+import { Create, SaveButton } from "@refinedev/mui";
+import { Button } from "@mui/material";
+
+const PostCreate: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <Create
+            // highlight-start
+            footerButtons={({ saveButtonProps }) => (
+                <>
+                    <SaveButton
+                        {...saveButtonProps}
+                        type="primary"
+                        sx={{ marginRight: 8 }}
+                    >
+                        Save
+                    </SaveButton>
                     <Button type="primary">Custom Button</Button>
                 </>
             )}
@@ -771,7 +827,7 @@ const SampleList = () => {
             },
         });
 
-    const columns = React.useMemo<GridColumns<any>>(
+    const columns = React.useMemo<GridColDef<any>[]>(
         () => [
             {
                 field: "id",
@@ -837,3 +893,5 @@ const Wrapper = ({ children }) => {
     );
 };
 ```
+
+[save-button]: /docs/api-reference/mui/components/buttons/save-button/

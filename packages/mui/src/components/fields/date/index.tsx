@@ -1,8 +1,10 @@
 import React from "react";
 
 import dayjs from "dayjs";
+
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import { Typography } from "@mui/material";
+
+import Typography from "@mui/material/Typography";
 
 import { DateFieldProps } from "../types";
 
@@ -14,7 +16,7 @@ const defaultLocale = dayjs.locale();
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format and
  * Material UI {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>`} component
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/fields/date} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/date} for more details.
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,

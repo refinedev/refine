@@ -11,7 +11,7 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::info
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
@@ -30,7 +30,7 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 ## Pagination
 
-`useTable` has a pagination feature. The pagination is done by passing `current` and `pageSize` keys to `pagination` object. The `current` is the current page and the `pageSize` is the number of records per page.
+`useTable` has a pagination feature. The pagination is done by passing the `current` and `pageSize` keys to `pagination` object. The `current` is the current page, and the `pageSize` is the number of records per page.
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
@@ -38,13 +38,13 @@ By default, the `current` is 1 and the `pageSize` is 10. You can change default 
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
-By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
+By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting it to "off".
 
 <PaginationLivePreview/>
 
 ## Sorting
 
-`useTable` has a sorter feature. The sorter is done by using the `initial` and `permanent` keys to `sorters` object. The `initial` is the initial sorter state and the `permanent` is the permanent sorter state. These states are a [`CrudSorter`][crudsorter] type that contains the field and the order of the sorter.
+`useTable` has a sorter feature. The sorter is done by using the `initial` and `permanent` keys to `sorters` object. The `initial` is the initial sorter state, and the `permanent` is the permanent sorter state. These states are a [`CrudSorter`][crudsorting] type that contains the field and the order of the sorter.
 
 You can change the sorters state by using the `setSorters` function. Every change will trigger a new fetch.
 
@@ -54,27 +54,29 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 ## Filtering
 
-`useTable` has a filter feature. The filter is done by using the `initial`, `permanent` and `defaultBehavior` keys to `filters` object. The `initial` is the initial filter state and the `permanent` is the permanent filter state. These states are a [`CrudFilter`][crudfilter] type that contains the field, the operator and the value of the filter.
+`useTable` has a filter feature. The filter is done by using the `initial`, `permanent` and `defaultBehavior` keys to `filters` object. The `initial` is the initial filter state, and the `permanent` is the permanent filter state. These states are a [`CrudFilter`][crudfilters] type that contains the field, the operator, and the value of the filter.
 
 You can change the filters state by using the `setFilters` function. Every change will trigger a new fetch.
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. You can change the default behavior with [`filters.defaultBehavior`](#filtersdefaultbehavior) prop.
+`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the second parameter. You can change the default behavior with the [`filters.defaultBehavior`](#filtersdefaultbehavior) prop.
 
 :::info
-If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
+If you are using `merge` behavior and want to remove one of the filters, you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
 :::
 
 <FilteringLivePreview/>
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -159,7 +161,7 @@ useTable({
 
 It can be `"off"`, or `"server"`.
 
--   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+-   **"off":** `sorters` do not get sent to the server. You can use the `sorters` value to sort the records on the client side.
 -   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
@@ -174,8 +176,6 @@ useTable({
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
-
 ```tsx
 useTable({
     sorters: {
@@ -189,11 +189,11 @@ useTable({
 });
 ```
 
+> For more information, refer to the [`CrudSorting` interface&#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
 ### `sorters.permanent`
 
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
-
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useTable({
@@ -207,6 +207,8 @@ useTable({
     },
 });
 ```
+
+> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `filters.mode`
 
@@ -229,8 +231,6 @@ useTable({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
-
 ```tsx
 useTable({
     filters: {
@@ -245,11 +245,11 @@ useTable({
 });
 ```
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### `filters.permanent`
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useTable({
@@ -265,6 +265,8 @@ useTable({
 });
 ```
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### `filters.defaultBehavior`
 
 > Default: `merge`
@@ -273,7 +275,7 @@ The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
@@ -289,9 +291,9 @@ useTable({
 
 > Default: `false`
 
-When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+When you use the `syncWithLocation` feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
-Also you can set this value globally on [`<Refine>`][refine swl] component.
+Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useTable({
@@ -317,8 +319,6 @@ useTable({
 
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
-
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -359,9 +359,13 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `successNotification`
 
-> [`NotificationProvider`][notification-provider] is required for this prop to work.
+:::caution
+[`NotificationProvider`][notification-provider] is required for this prop to work.
+:::
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -379,7 +383,9 @@ useTable({
 
 ### `errorNotification`
 
-> [`NotificationProvider`][notification-provider] is required for this prop to work.
+:::caution
+[`NotificationProvider`][notification-provider] is required for this prop to work.
+:::
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -397,10 +403,11 @@ useTable({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useTable({
@@ -408,9 +415,13 @@ useTable({
 });
 ```
 
+> For more information, refer to the [Live / Realtime page](/docs/api-reference/core/providers/live-provider/#livemode)
+
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -424,7 +435,9 @@ useTable({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
@@ -505,8 +518,6 @@ Use `sorters.permanent` instead.
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
-
 ```tsx
 useTable({
     permanentSorter: [
@@ -518,6 +529,8 @@ useTable({
 });
 ```
 
+> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
@@ -525,8 +538,6 @@ Use `filters.initial` instead.
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useTable({
@@ -540,6 +551,8 @@ useTable({
 });
 ```
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
@@ -547,8 +560,6 @@ Use `filters.permanent` instead.
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useTable({
@@ -562,6 +573,8 @@ useTable({
 });
 ```
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
@@ -574,7 +587,7 @@ The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
@@ -823,16 +836,11 @@ errorNotification-default='"There was an error creating resource (status code: `
 | setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                         |
 
-[table]: https://ant.design/components/table/#API
-[form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters
 [httperror]: /api-reference/core/interfaces.md#httperror
-[table search]: /advanced-tutorials/search/table-search.md
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
-[live mode]: /api-reference/core/providers/live-provider.md#usage-in-a-hook
-[live mod props]: /api-reference/core/interfaces.md#livemodeprops
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [notification-provider]: /api-reference/core/providers/notification-provider.md

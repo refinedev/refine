@@ -1,6 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { TestWrapper, act, mockRouterBindings } from "@test";
+import {
+    TestWrapper,
+    act,
+    mockRouterBindings,
+    mockLegacyRouterProvider,
+} from "@test";
 
 import { useRegister } from ".";
 
@@ -253,6 +258,87 @@ describe("useRegister Hook", () => {
         expect(mockGo).not.toBeCalled();
     });
 
+    it("should successfully register with redirect on legacyRouterProvider", async () => {
+        const mockReplace = jest.fn();
+        const { result } = renderHook(() => useRegister(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    ...mockAuthProvider,
+                    register: ({ email, password }: any) => {
+                        if (email && password) {
+                            return Promise.resolve({
+                                success: true,
+                                redirectTo: "redirectTo",
+                            });
+                        }
+                        return Promise.resolve({
+                            success: false,
+                            error: new Error("Missing fields"),
+                        });
+                    },
+                },
+                legacyRouterProvider: {
+                    ...mockLegacyRouterProvider(),
+                    useHistory: () => ({
+                        replace: mockReplace,
+                    }),
+                },
+            }),
+        });
+
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
+
+        await act(async () => {
+            register({ email: "test", password: "test" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(mockReplace).toBeCalledWith("redirectTo");
+    });
+
+    it("should successfully register without redirect on legacyRouterProvider", async () => {
+        const mockReplace = jest.fn();
+        const { result } = renderHook(() => useRegister(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    ...mockAuthProvider,
+                    register: ({ email, password }: any) => {
+                        if (email && password) {
+                            return Promise.resolve({
+                                success: true,
+                            });
+                        }
+                        return Promise.resolve({
+                            success: false,
+                            error: new Error("Missing fields"),
+                        });
+                    },
+                },
+                legacyRouterProvider: {
+                    ...mockLegacyRouterProvider(),
+                    useHistory: () => ({
+                        replace: mockReplace,
+                    }),
+                },
+            }),
+        });
+
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
+
+        await act(async () => {
+            register({ email: "test", password: "test" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(mockReplace).toBeCalledWith("/");
+    });
+
     it("fail register", async () => {
         const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
@@ -341,9 +427,7 @@ describe("useRegister Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -374,9 +458,7 @@ describe("useRegister Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -410,9 +492,7 @@ describe("useRegister Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -454,9 +534,7 @@ describe("useRegister Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -496,9 +574,7 @@ describe("useRegister Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -510,5 +586,123 @@ describe("useRegister Hook authProvider selection", () => {
 
         expect(legacyRegisterMock).toHaveBeenCalled();
         expect(registerMock).not.toHaveBeenCalled();
+    });
+});
+
+describe("useRegister Hook use v3LegacyAuthProviderCompatible", () => {
+    it("should successfully register with redirect on legacyRouterProvider", async () => {
+        const mockReplace = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useRegister({
+                    v3LegacyAuthProviderCompatible: true,
+                }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        register: () => Promise.resolve("redirectTo"),
+                    },
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                        useHistory: () => ({
+                            replace: mockReplace,
+                        }),
+                    },
+                }),
+            },
+        );
+
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
+
+        await act(async () => {
+            register({ email: "test", password: "test" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(mockReplace).toBeCalledWith("redirectTo");
+    });
+
+    it("should successfully register without redirect on legacyRouterProvider", async () => {
+        const mockReplace = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useRegister({
+                    v3LegacyAuthProviderCompatible: true,
+                }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        register: () => Promise.resolve(),
+                    },
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                        useHistory: () => ({
+                            replace: mockReplace,
+                        }),
+                    },
+                }),
+            },
+        );
+
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
+
+        await act(async () => {
+            register({ email: "test", password: "test" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(mockReplace).toBeCalledWith("/");
+    });
+
+    it("should successfully register with redirect", async () => {
+        const mockGo = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useRegister({
+                    v3LegacyAuthProviderCompatible: true,
+                }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        register: () => Promise.resolve("redirectTo"),
+                    },
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            go: () => mockGo,
+                        },
+                    }),
+                }),
+            },
+        );
+
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
+
+        await act(async () => {
+            register({ email: "test", password: "test" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "redirectTo", type: "replace" });
     });
 });

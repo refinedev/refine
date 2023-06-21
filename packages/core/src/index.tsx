@@ -116,5 +116,8 @@ export {
     useActiveAuthProvider,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
+export { generateDefaultDocumentTitle } from "./definitions";
 
 export { ResourceContext } from "./contexts/resource/index";
+export { TranslationContext } from "./contexts/translation/index";
+export { AccessControlContext } from "./contexts/accessControl/index";

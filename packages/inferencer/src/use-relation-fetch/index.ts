@@ -6,15 +6,15 @@ import {
     removeRelationSuffix,
     toPlural,
     toSingular,
-} from "@/utilities";
+} from "../utilities";
 import {
     FieldInferencer,
     InferField,
     InferencerComponentProps,
     ResourceInferenceAttempt,
-} from "@/types";
+} from "../types";
 import { get } from "lodash";
-import { pickMeta } from "@/utilities/get-meta-props";
+import { pickMeta } from "../utilities/get-meta-props";
 
 type UseRelationFetchProps = {
     record?: Record<string, unknown>;

@@ -43,4 +43,10 @@ describe("composeRoute", () => {
 
         expect(result).toEqual("/users/1/Doe");
     });
+
+    it("should return route when not match object", () => {
+        const result = composeRoute("/users/:other", {});
+
+        expect(result).toEqual("/users/:other");
+    });
 });

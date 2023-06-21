@@ -70,7 +70,7 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
  *
  * It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/core/hooks/data/useMany} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useMany} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
@@ -129,7 +129,7 @@ export const useMany = <
         resource,
         types: ["*"],
         params: {
-            ids: ids ?? [],
+            ids: ids,
             meta: combinedMeta,
             metaData: combinedMeta,
             subscriptionType: "useMany",
@@ -153,7 +153,7 @@ export const useMany = <
                     resource,
                     ids,
                     meta: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -161,7 +161,7 @@ export const useMany = <
                         },
                     },
                     metaData: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -176,7 +176,7 @@ export const useMany = <
                             resource,
                             id,
                             meta: {
-                                ...(combinedMeta || {}),
+                                ...combinedMeta,
                                 queryContext: {
                                     queryKey,
                                     pageParam,
@@ -184,7 +184,7 @@ export const useMany = <
                                 },
                             },
                             metaData: {
-                                ...(combinedMeta || {}),
+                                ...combinedMeta,
                                 queryContext: {
                                     queryKey,
                                     pageParam,

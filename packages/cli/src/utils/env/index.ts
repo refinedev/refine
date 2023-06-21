@@ -37,4 +37,11 @@ export const ENV = {
         process.env.UPDATE_NOTIFIER_IS_DISABLED || "false",
     UPDATE_NOTIFIER_CACHE_TTL:
         process.env.UPDATE_NOTIFIER_CACHE_TTL || 1000 * 60 * 60 * 24, // 24 hours,
+    REFINE_PROXY_DOMAIN:
+        process.env.REFINE_PROXY_DOMAIN || "https://refine.dev",
+    REFINE_PROXY_TARGET:
+        process.env.REFINE_PROXY_TARGET || "http://localhost:3000",
+    REFINE_PROXY_PORT: process.env.REFINE_PROXY_PORT || "7313",
+    REFINE_PROXY_REWRITE_URL:
+        process.env.REFINE_REWRITE_URL || "http://localhost:7313",
 };

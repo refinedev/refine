@@ -1,8 +1,12 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { LoadingButton } from "@mui/lab";
-import { SaveOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveOutlined from "@mui/icons-material/SaveOutlined";
 
 import { SaveButtonProps } from "../types";
 
@@ -10,7 +14,7 @@ import { SaveButtonProps } from "../types";
  * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component.
  * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/save-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/save-button} for more details.
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
@@ -28,6 +32,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             sx={{ minWidth: 0, ...sx }}
             variant="contained"
             data-testid={RefineButtonTestIds.SaveButton}
+            className={RefineButtonClassNames.SaveButton}
             {...restProps}
         >
             {hideText ? (

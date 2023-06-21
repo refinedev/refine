@@ -52,9 +52,7 @@ Let's see how Neumorphism affects the user interface using what we know about it
 Neumorphism requires little or no use of flashy elements. The properties needed are shadows and lights.  
 Neuomorphism makes UI elements appear inside or directly on the background layer, in contrast to other design trends that make items appear above the background.
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/card.png" alt="card image" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/card.png" alt="card image" />
 
 
 <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"><i>From: Neumorphism in user interfaces by Michal Malewicz</i></a>
@@ -64,9 +62,7 @@ Neuomorphism makes UI elements appear inside or directly on the background layer
 
 The image below illustrates the simplest UI design template for Neumorphism; feel free to modify it as you see fit.
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/background.png" alt="background image" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/background.png" alt="background image" />
 
 
 <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"><i>From: Neumorphism in user interfaces by Michal Malewicz</i></a>
@@ -85,9 +81,7 @@ The main issue Neumorphism has in terms of accessibility is contrast; you'll not
 
 The image below displays an original Neumorphic design and the outcome under low vision.
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/vision.png" alt="background image" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/vision.png" alt="background image" />
 
 
 <a href="https://axesslab.com/neumorphism/"><i>From: Neumorphism – the accessible and inclusive way by Hampus Sethfors</i></a>
@@ -100,12 +94,12 @@ Neumorphism's top accessibility rule is to comply with the [Web Content Accessib
 
 Another issue is with clickable items; even though you're aiming for minimalism, don't abuse the flat design idea. When users interact with clickable objects like buttons and links, they need to change their appearance and should be obvious.
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ## Neumorphism in CSS
 Now that you know how Neumorphism affects UI/UX let's look at how you as a developer might use it in actual projects.
@@ -138,14 +132,10 @@ button:hover {
 ```
 
 #### Normal State
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/normal_state.png" alt="normal state" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/normal_state.png" alt="normal state" />
 
 #### Hover State
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/hover_state.png" alt="hover state" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/hover_state.png" alt="hover state" />
 
 <br/>
 
@@ -193,9 +183,7 @@ body {
 </style>
 ```
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/cards.png" alt="cards" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/cards.png" alt="cards" />
 
 <br/>
 
@@ -242,9 +230,7 @@ form input[type="text"] {
 }
 </style>
 ```
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/textbox.png" alt="textbox" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/textbox.png" alt="textbox" />
 
 <br/>
 
@@ -323,17 +309,13 @@ form .form_group .checked {
 ```
 
 ##### Unchecked
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/unchecked.png" alt="unchecked" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/unchecked.png" alt="unchecked" />
 
 <br/>
 
 ##### Checked
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/checked.png" alt="checked" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/checked.png" alt="checked" />
 
 <br/>
 
@@ -371,23 +353,3 @@ Additionally, you may learn more about [Neumorphism's history](https://www.svgat
 </div>
 
 
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open source, React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials and example projects.

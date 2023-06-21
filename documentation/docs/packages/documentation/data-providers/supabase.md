@@ -407,7 +407,7 @@ export default authProvider;
 </details>
 
 :::tip
-Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/auth/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/authentication/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
 <br/>
@@ -442,14 +442,7 @@ At this point, our refine app is configured to communicate with Supabase API and
 
 If you head over to localhost:3000, you'll see a welcome page.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.png" alt="welcome" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.png" alt="welcome" />
 
 <br/>
 
@@ -1116,14 +1109,7 @@ Sign in the app with followings credentials:
 
 We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.png" alt="list" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.png" alt="list" />
 
 <br/>
 <br/>
@@ -1132,14 +1118,7 @@ Now click on the `Create` button to create a new post. The app will navigate to 
 
 Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.png" alt="create" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.png" alt="create" />
 
 <br/>
 
@@ -1185,14 +1164,7 @@ You will find the Google Auth option in the Auth providers section; enable it an
 
 [Refer to Supabase docs for more information about Credentials &#8594](https://supabase.com/docs/guides/auth/auth-google#create-your-google-credentials)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" alt="supabaseConfig" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" alt="supabaseConfig" />
 
 <br/>
 
@@ -1200,14 +1172,7 @@ Here is the result:
 
 <br/>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login.gif" alt="socialLogin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login.gif" alt="socialLogin" />
 
 <br/>
 
@@ -1272,9 +1237,7 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 
 <br/>
 
-<div class="img-container">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time.gif" alt="realTime" />
-</div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time.gif" alt="realTime" />
 
 <br/>
 
@@ -1286,7 +1249,8 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-    :::
+
+:::
 
 ## Using `meta` to pass values to data provider
 
@@ -1295,6 +1259,40 @@ The [`meta`](/docs/api-reference/general-concepts.md/#meta) property is used to 
 We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
 Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/documentation/data-providers/supabase/#adding-a-list-page).
+
+### `select` - Getting selected fields
+
+By default, the data provider query methods use the `*` value for the `select` property, while the mutation methods do not use the `select` property. You can pass the `select` property in the `meta` object to override this behavior.
+
+For example, if you want to get only the `title` and `content` fields from the `posts` table instead of all fields, you can override the `"*"` value by passing the `select` property in the `meta` as shown below:
+
+```tsx
+useList({
+    resource: "posts",
+    //highlight-start
+    meta: {
+        select: "title, content",
+    },
+    // highlight-end
+});
+```
+
+Also, since mutation methods do not use the `select` property by default, you can pass the `select` property in the `meta` object to get the selected fields.
+
+```tsx
+useCreate({
+    resource: "posts",
+    variables: {
+        title: "Hello World",
+        content: "Lorem ipsum dolor sit amet",
+    },
+    //highlight-start
+    meta: {
+        select: "title, content",
+    },
+    // highlight-end
+});
+```
 
 ### `select` - Handling one-to-many relationship
 

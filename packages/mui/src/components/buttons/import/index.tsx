@@ -1,16 +1,20 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { LoadingButton } from "@mui/lab";
-import { ImportExportOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+import ImportExportOutlined from "@mui/icons-material/ImportExportOutlined";
 
 import { ImportButtonProps } from "../types";
 
 /**
- * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
+ * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.
  * It uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content  `<LoadingButton>`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/import-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     inputProps,
@@ -36,6 +40,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 loading={loading}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ImportButton}
+                className={RefineButtonClassNames.ImportButton}
                 {...restProps}
             >
                 {hideText ? (

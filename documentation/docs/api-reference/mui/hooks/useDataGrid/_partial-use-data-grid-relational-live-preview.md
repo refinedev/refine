@@ -8,7 +8,7 @@ import { Option, useSelect } from "@refinedev/core";
 import { useDataGrid, List } from "@refinedev/mui";
 import {
     DataGrid,
-    GridColumns,
+    GridColDef,
     GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
@@ -50,7 +50,7 @@ const PostsList: React.FC = () => {
     });
     // highlight-end
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",

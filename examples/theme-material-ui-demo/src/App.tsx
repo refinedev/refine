@@ -8,13 +8,15 @@ import {
     RefineThemes,
     ThemedLayoutV2,
 } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -197,6 +199,7 @@ const App: React.FC = () => {
                             </Route>
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

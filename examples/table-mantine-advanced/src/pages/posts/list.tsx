@@ -89,6 +89,7 @@ export const PostList: React.FC = () => {
 
                             {table.getIsSomeRowsSelected() && (
                                 <Button
+                                    id="delete-selected"
                                     size="xs"
                                     color="red"
                                     variant="outline"
@@ -254,10 +255,14 @@ export const PostList: React.FC = () => {
                         </td>
                         <td>{id}</td>
                         <td>
-                            <TextInput {...getInputProps("title")} />
+                            <TextInput
+                                id="title-input"
+                                {...getInputProps("title")}
+                            />
                         </td>
                         <td>
                             <Select
+                                id="category-select"
                                 {...getInputProps("category.id")}
                                 {...selectProps}
                             />
@@ -347,7 +352,7 @@ export const PostList: React.FC = () => {
                                         </tr>
 
                                         {row.getIsExpanded() && (
-                                            <tr>
+                                            <tr id="expanded-row">
                                                 <td
                                                     colSpan={
                                                         row.getVisibleCells()

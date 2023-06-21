@@ -1,12 +1,12 @@
-import React from "react";
 import { Option, useSelect, useUpdateMany } from "@refinedev/core";
-import { useDataGrid, List } from "@refinedev/mui";
+import { List, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import {
     DataGrid,
-    GridColumns,
     GridValueFormatterParams,
+    GridColDef,
 } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
@@ -47,7 +47,7 @@ export const PostList: React.FC = () => {
         resource: "categories",
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
@@ -98,6 +98,7 @@ export const PostList: React.FC = () => {
             wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
             headerButtons={
                 <Button
+                    id="update-selected"
                     onClick={() => updateSelectedItems()}
                     disabled={!hasSelected}
                     size="small"
@@ -112,11 +113,11 @@ export const PostList: React.FC = () => {
                 columns={columns}
                 autoHeight
                 checkboxSelection
-                onSelectionModelChange={(newSelectionModel) => {
+                onRowSelectionModelChange={(newSelectionModel) => {
                     setSelectedRowKeys(newSelectionModel as React.Key[]);
                 }}
-                rowsPerPageOptions={[10, 20, 50, 100]}
-                selectionModel={selectedRowKeys}
+                pageSizeOptions={[10, 20, 50, 100]}
+                rowSelectionModel={selectedRowKeys}
             />
         </List>
     );

@@ -32,7 +32,7 @@ import {
 import { IconList, IconPower, IconDashboard } from "@tabler/icons";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
-import { useSiderVisible } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 import { RefineThemedLayoutV2SiderProps } from "../types";
 
@@ -44,8 +44,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
 }) => {
     const theme = useMantineTheme();
-    const { siderVisible, setSiderVisible, drawerSiderVisible } =
-        useSiderVisible();
+    const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
+        useThemedLayoutContext();
 
     const routerType = useRouterType();
     const NewLink = useLink();
@@ -66,7 +66,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const drawerWidth = () => {
-        if (drawerSiderVisible) return 80;
+        if (siderCollapsed) return 80;
         return 200;
     };
 
@@ -81,20 +81,20 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 display: "flex",
                 marginTop: "12px",
                 justifyContent:
-                    drawerSiderVisible && !siderVisible
+                    siderCollapsed && !mobileSiderOpen
                         ? "center"
                         : "flex-start",
             },
             icon: {
-                marginRight: drawerSiderVisible && !siderVisible ? 0 : 12,
+                marginRight: siderCollapsed && !mobileSiderOpen ? 0 : 12,
             },
             body: {
-                display: drawerSiderVisible && !siderVisible ? "none" : "flex",
+                display: siderCollapsed && !mobileSiderOpen ? "none" : "flex",
             },
         };
 
     const commonTooltipProps: Partial<TooltipProps> = {
-        disabled: !drawerSiderVisible || siderVisible,
+        disabled: !siderCollapsed || mobileSiderOpen,
         position: "right",
         withinPortal: true,
         withArrow: true,
@@ -127,20 +127,20 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         <NavLink
                             key={item.key}
                             label={
-                                drawerSiderVisible && !siderVisible
+                                siderCollapsed && !mobileSiderOpen
                                     ? null
                                     : label
                             }
                             icon={icon ?? defaultNavIcon}
                             active={isSelected}
                             childrenOffset={
-                                drawerSiderVisible && !siderVisible ? 0 : 12
+                                siderCollapsed && !mobileSiderOpen ? 0 : 12
                             }
                             defaultOpened={defaultOpenKeys.includes(
                                 item.key || "",
                             )}
                             pl={
-                                drawerSiderVisible || siderVisible
+                                siderCollapsed || mobileSiderOpen
                                     ? "12px"
                                     : "18px"
                             }
@@ -166,7 +166,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <NavLink
                     key="dashboard"
                     label={
-                        drawerSiderVisible && !siderVisible
+                        siderCollapsed && !mobileSiderOpen
                             ? null
                             : t("dashboard.title", "Dashboard")
                     }
@@ -203,12 +203,12 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             <NavLink
                 key="logout"
                 label={
-                    drawerSiderVisible && !siderVisible
+                    siderCollapsed && !mobileSiderOpen
                         ? null
                         : t("buttons.logout", "Logout")
                 }
                 icon={<IconPower size={20} />}
-                pl={drawerSiderVisible || siderVisible ? "12px" : "18px"}
+                pl={siderCollapsed || mobileSiderOpen ? "12px" : "18px"}
                 onClick={handleLogout}
                 styles={commonNavLinkStyles}
             />
@@ -221,7 +221,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 dashboard,
                 logout,
                 items,
-                collapsed: drawerSiderVisible,
+                collapsed: siderCollapsed,
             });
         }
         return (
@@ -237,8 +237,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         <>
             <MediaQuery largerThan="md" styles={{ display: "none" }}>
                 <Drawer
-                    opened={siderVisible}
-                    onClose={() => setSiderVisible?.(false)}
+                    opened={mobileSiderOpen}
+                    onClose={() => setMobileSiderOpen(false)}
                     size={200}
                     zIndex={1200}
                     withCloseButton={false}
@@ -296,14 +296,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 >
                     <Flex
                         h="64px"
-                        pl={drawerSiderVisible ? 0 : "16px"}
+                        pl={siderCollapsed ? 0 : "16px"}
                         align="center"
-                        justify={drawerSiderVisible ? "center" : "flex-start"}
+                        justify={siderCollapsed ? "center" : "flex-start"}
                         sx={{
                             borderBottom: `1px solid ${borderColor}`,
                         }}
                     >
-                        <RenderToTitle collapsed={drawerSiderVisible} />
+                        <RenderToTitle collapsed={siderCollapsed} />
                     </Flex>
                     <Navbar.Section
                         grow

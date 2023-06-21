@@ -389,7 +389,7 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `resource`
 
@@ -997,7 +997,15 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, refreshButtonProps, listButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -1017,6 +1025,77 @@ const PostEdit: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button variant="outline" type="primary">
+                        Custom Button
+                    </Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            legacyRouterProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    edit: PostEdit,
+                    list: () => (
+                        <div>
+                            <p>This page is empty.</p>
+                            <EditButton recordItemId="123">
+                                Edit Item 123
+                            </EditButton>
+                        </div>
+                    ),
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `refreshButtonProps` and `listButtonProps` to utilize the default values of the [`<ListButton>`][list-button] and [`<RefreshButton>`][refresh-button] components.
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { Edit, RefreshButton, ListButton } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
+
+const PostEdit: React.FC = () => {
+    return (
+        <Edit
+            // highlight-start
+            headerButtons={({ refreshButtonProps, listButtonProps }) => (
+                <>
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
                     <Button variant="outline" type="primary">
                         Custom Button
                     </Button>
@@ -1130,7 +1209,15 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`<DeleteButton>`][delete-button] at the footer.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps, deleteButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -1150,6 +1237,69 @@ const PostEdit: React.FC = () => {
             footerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button variant="gradient">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            legacyRouterProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    edit: PostEdit,
+                    list: () => (
+                        <div>
+                            <p>This page is empty.</p>
+                            <EditButton recordItemId="123">
+                                Edit Item 123
+                            </EditButton>
+                        </div>
+                    ),
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` and `deleteButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] and [`<DeleteButton>`][delete-button] components.
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { Edit, SaveButton, DeleteButton } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
+
+const PostEdit: React.FC = () => {
+    return (
+        <Edit
+            // highlight-start
+            footerButtons={({ saveButtonProps, deleteButtonProps }) => (
+                <>
+                    <SaveButton {...saveButtonProps} hideText />
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} hideText />
+                    )}
                     <Button variant="gradient">Custom Button</Button>
                 </>
             )}
@@ -1262,3 +1412,8 @@ render(
 ### Props
 
 <PropsTable module="@refinedev/mantine/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
+
+[list-button]: /docs/api-reference/mantine/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/mantine/components/buttons/refresh-button/
+[save-button]: /docs/api-reference/mantine/components/buttons/save-button/
+[delete-button]: /docs/api-reference/mantine/components/buttons/delete-button/

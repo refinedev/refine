@@ -1,6 +1,6 @@
 ---
 title: How to use Material UI Checkbox
-description: We'll discover the Material UI (MUI) Checkbox component with examples
+description: We'll discover the Material UI Checkbox component with examples
 slug: material-ui-checkbox-component
 authors: doro_onome
 tags: [material-ui, react]
@@ -15,8 +15,8 @@ Material UI offers a wide range of component and utilities that empowers develop
 
 Steps we'll cover:
 - [What is Material UI?](#what-is-material-ui)
-- [Getting started with MUI Checkbox](#getting-started-with-mui-checkbox)
-- [Customizing your MUI Checkbox](#customizing-your-mui-checkbox)
+- [Getting started with Material UI Checkbox](#getting-started-with-material-ui-checkbox)
+- [Customizing your Material UI Checkbox](#customizing-your-material-ui-checkbox)
   - [Adding Labels](#adding-labels)
   - [Controlling the Checkbox Size](#controlling-the-checkbox-size)
   - [Controlling the Checkbox Color](#controlling-the-checkbox-color)
@@ -25,10 +25,10 @@ Steps we'll cover:
 - [Other handy features](#other-handy-features)
   - [FormGroup](#formgroup)
   - [Indeterminate](#indeterminate)
-- [When to use the MUI Checkbox](#when-to-use-the-mui-checkbox)
+- [When to use the Material UI Checkbox](#when-to-use-the-mui-checkbox)
   - [Checkboxes vs Radio buttons](#checkboxes-vs-radio-buttons)
   - [Checkboxes vs Switches](#checkboxes-vs-switches)
-- [MUI Checkbox Accessibility](#mui-checkbox-accessibility)
+- [Material UI Checkbox Accessibility](#material-ui-checkbox-accessibility)
 
 ## What is Material UI?
 Material UI is a powerful and efficient tool that simplifies web design by providing ready-made components and technically available utilities.  It is a design language created by Google in 2014. It can be used with all JavaScript frameworks and libraries, such as AngularJS and VueJS, to make the application more amazing and responsive. Material UI is one of the top React User Interface libraries, with over 35,000 stars on GitHub. Many developers now structure their projects with Material UI because it simplifies and improves web design.
@@ -36,10 +36,10 @@ Material UI is a powerful and efficient tool that simplifies web design by provi
 Material UI comes with several component categories, including
 Layout, Navigation, Feedback, Data display components, Input components, e.t.c.
 
-The MUI Checkbox is a striking example of the Input components. 
+The Material UI Checkbox is a striking example of the Input components. 
 
-## Getting started with MUI Checkbox
-MUI Checkboxes allow you to choose an option out of a list of options to represent the response(s) to a question or a preferential choice(s) on a particular subject. Checkboxes can be used to toggle between options. To save space, use checkboxes instead of on/off switches when multiple options exist.
+## Getting started with Material UI Checkbox
+Material UI Checkboxes allow you to choose an option out of a list of options to represent the response(s) to a question or a preferential choice(s) on a particular subject. Checkboxes can be used to toggle between options. To save space, use checkboxes instead of on/off switches when multiple options exist.
 
 Below is a simple illustration of how you can typically import and use the Material UI Checkbox in your next project:
 
@@ -65,14 +65,14 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-1.png"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-1.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
 
 
-## Customizing your MUI Checkbox
-The Material UI Checkbox showcases the dynamism of the MUI framework because it offers several props and utilities with which you can easily customise it to fit your web application. Below are some ways to use the MUI Checkbox: 
+## Customizing your Material UI Checkbox
+The Material UI Checkbox showcases the dynamism of the Material UI framework because it offers several props and utilities with which you can easily customise it to fit your web application. Below are some ways to use the Material UI Checkbox: 
 
 ### Adding Labels
 The FormControlLabel component allows you to give the Checkbox a label.
@@ -96,13 +96,13 @@ export default function CheckboxLabels() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-2.png"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-2.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
 
 ### Controlling the Checkbox Size
-The `size` prop denotes the size of the component. You can customise the size of your MUI Checkbox with the `size` prop. Here’s how:
+The `size` prop denotes the size of the component. You can customise the size of your Material UI Checkbox with the `size` prop. Here’s how:
 
 ```ts
 import * as React from 'react';
@@ -126,7 +126,7 @@ export default function SizeCheckboxes() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-3.png"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-3.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -134,13 +134,15 @@ export default function SizeCheckboxes() {
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
 
 ### Controlling the Checkbox Color
-You can customise the color of your MUI Checkbox with the `color` prop like this: 
+You can customise the color of your Material UI Checkbox with the `color` prop like this: 
 
 ```ts
 import * as React from 'react';
@@ -163,7 +165,7 @@ export default function BasicButtonGroup() {
 				>
 					Checkbox colors
 				</h1>
-				<strong>React MUI Checkbox API</strong>
+				<strong>React Material UI Checkbox API</strong>
 				<br />
 				<br />
 			</div>
@@ -188,7 +190,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-4.png"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-4.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -246,7 +248,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.gif"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.gif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -279,7 +281,7 @@ export default function IconCheckboxes() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-6.gif"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-6.gif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -379,13 +381,13 @@ export default function CheckboxesGroup() {
 }
 ```
 
-The code above displays a list of subjects for students ti choose from. The MUI Checkboxes are wrapped and rendered with the `<FornGroup/>` component. 
+The code above displays a list of subjects for students ti choose from. The Material UI Checkboxes are wrapped and rendered with the `<FornGroup/>` component. 
 
 Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.gif"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.gif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -449,7 +451,7 @@ export default function IndeterminateCheckbox() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.gif"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.gif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -462,7 +464,7 @@ export default function IndeterminateCheckbox() {
 </div>
 
 
-## When to use the MUI Checkbox
+## When to use the Material UI Checkbox
 
 ### Checkboxes vs Radio buttons
 You may come to a point in your application's development where you need to set a list of options for users to choose from, and you may be unsure whether to use a Checkbox or a Radio button component to render this list. Well, this section will provide general UI guidelines on how to pick these components to match your application appropriately.
@@ -489,8 +491,8 @@ A single choice is required, and you want to provide two options for an on/off d
 
 
 
-Building a Contact form UI with React and the MUI Checkbox
-The Material UI Checkbox can be incorporated into various aspects of a variety of web applications. For the sake of this article, we will explore a potential use case by building a simple contact form UI with the MUI Checkbox as a distinct component.
+Building a Contact form UI with React and the Material UI Checkbox
+The Material UI Checkbox can be incorporated into various aspects of a variety of web applications. For the sake of this article, we will explore a potential use case by building a simple contact form UI with the Material UI Checkbox as a distinct component.
 
 Here’s the code:
 
@@ -545,13 +547,13 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.gif"  alt="mui checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.gif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
 
 
-## MUI Checkbox Accessibility
+## Material UI Checkbox Accessibility
 All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilising the <Label/>` component. You can also add an attribute to the input component with the `inputProps` prop. Some of these attributes include `aria-label`, `aria-labelledby`, and `title`. 
 
 ```ts

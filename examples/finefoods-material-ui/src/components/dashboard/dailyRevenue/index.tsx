@@ -1,9 +1,12 @@
 import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { NumberField } from "@refinedev/mui";
-import { Box, Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
-import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 
 import { ChartTooltip } from "../chartTooltip";
 import { ISalesChart } from "interfaces";

@@ -1,22 +1,29 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, TestWrapper, mockLegacyRouterProvider } from "@test";
+import {
+    act,
+    TestWrapper,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useOnError } from ".";
 
-const mockFn = jest.fn();
+const mockReplace = jest.fn();
+const mockPush = jest.fn();
 
 const mockRouterProvider = {
     ...mockLegacyRouterProvider(),
     useHistory: () => ({
-        push: mockFn,
-        replace: mockFn,
+        replace: mockReplace,
+        push: mockPush,
     }),
 };
 // NOTE : Will be removed in v5
 describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
     beforeEach(() => {
-        mockFn.mockReset();
+        mockReplace.mockReset();
+        mockPush.mockReset();
 
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message === "rejected" || message === "/customPath") return;
@@ -45,7 +52,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
             },
         );
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -56,7 +63,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
         });
 
         expect(onErrorMock).toBeCalledTimes(1);
-        expect(mockFn).toBeCalledWith("/login");
+        expect(mockPush).toBeCalledWith("/login");
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
@@ -80,7 +87,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
             },
         );
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -91,14 +98,15 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
         });
 
         await act(async () => {
-            expect(mockFn).toBeCalledWith("/customPath");
+            expect(mockPush).toBeCalledWith("/customPath");
         });
     });
 });
 
 describe("useOnError Hook", () => {
     beforeEach(() => {
-        mockFn.mockReset();
+        mockReplace.mockReset();
+        mockPush.mockReset();
 
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message === "rejected" || message === "/customPath") return;
@@ -125,7 +133,7 @@ describe("useOnError Hook", () => {
             }),
         });
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -136,7 +144,83 @@ describe("useOnError Hook", () => {
         });
 
         await act(async () => {
-            expect(mockFn).toBeCalledWith("/login");
+            expect(mockPush).toBeCalledWith("/login");
+        });
+    });
+
+    it("not logout and redirect to given path if check error rejected with legacyRouterProvider", async () => {
+        const { result } = renderHook(() => useOnError(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve({ success: true }),
+                    check: () => Promise.resolve({ authenticated: true }),
+                    onError: () =>
+                        Promise.resolve({
+                            error: new Error("rejected"),
+                            redirectTo: "/login",
+                            logout: false,
+                        }),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve({ success: true }),
+                },
+                legacyRouterProvider: mockRouterProvider,
+            }),
+        });
+
+        const { mutate: checkError } = result.current;
+
+        await act(async () => {
+            await checkError({});
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        await act(async () => {
+            expect(mockReplace).toBeCalledWith("/login");
+        });
+    });
+
+    it("not logout and redirect to given path if check error rejected", async () => {
+        const mockGo = jest.fn();
+        const { result } = renderHook(() => useOnError(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve({ success: true }),
+                    check: () => Promise.resolve({ authenticated: true }),
+                    onError: () =>
+                        Promise.resolve({
+                            error: new Error("rejected"),
+                            redirectTo: "/login",
+                            logout: false,
+                        }),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve({ success: true }),
+                },
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGo,
+                    },
+                }),
+            }),
+        });
+
+        const { mutate: checkError } = result.current;
+
+        await act(async () => {
+            await checkError({});
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        await act(async () => {
+            expect(mockGo).toBeCalledWith({
+                to: "/login",
+                type: "replace",
+            });
         });
     });
 });
@@ -164,9 +248,7 @@ describe("useOnError Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -204,9 +286,7 @@ describe("useOnError Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});

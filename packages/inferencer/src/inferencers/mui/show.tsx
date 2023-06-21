@@ -1,32 +1,41 @@
-import * as RefineMui from "@refinedev/mui";
-import * as EmotionReact from "@emotion/react";
-import * as EmotionStyled from "@emotion/styled";
-import * as MuiLab from "@mui/lab";
-import * as MuiMaterial from "@mui/material";
-import * as MuiXDataGrid from "@mui/x-data-grid";
+import {
+    Show,
+    TagField,
+    TextFieldComponent,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/mui";
 
-import { createInferencer } from "@/create-inferencer";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+    idQuoteWrapper,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for show page in Material UI
@@ -38,6 +47,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -49,7 +59,12 @@ export const renderer = ({
         ["Show", "@refinedev/mui"],
         ["Typography", "@mui/material"],
         ["Stack", "@mui/material"],
+        ["IResourceComponentsProps", "@refinedev/core"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -137,7 +152,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 {${variableIsLoading} && ${variableDataLength} ? (
                     <>
@@ -183,7 +203,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
 
                 {${variableIsLoading} ? (
@@ -230,7 +255,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -242,7 +272,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <TextField value={${accessor(
                     recordName,
@@ -261,7 +296,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -273,7 +313,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <img style={{ maxWidth: 200, width: "100%", height: 200 }} src={${accessor(
                     recordName,
@@ -297,7 +342,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -308,7 +358,12 @@ export const renderer = ({
             }
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <EmailField value={${accessor(
                     recordName,
@@ -332,7 +387,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -343,7 +403,12 @@ export const renderer = ({
             }
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <UrlField value={${accessor(
                     recordName,
@@ -367,7 +432,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(
@@ -382,7 +452,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <BooleanField value={${accessor(
                     recordName,
@@ -404,7 +479,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -416,7 +496,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <DateField value={${accessor(
                     recordName,
@@ -435,7 +520,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <MarkdownField value={${accessor(
                     recordName,
@@ -460,7 +550,12 @@ export const renderer = ({
 
                 return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -472,7 +567,12 @@ export const renderer = ({
 
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
-                    ${prettyString(field.key)}
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
                 </Typography>
                 <NumberField value={${accessor(
                     recordName,
@@ -511,16 +611,18 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
 
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { queryResult } = useShow(${
             isCustomPage
                 ? `{ 
                     resource: "${resource.name}", 
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
                         meta,
@@ -562,12 +664,22 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/mui", "RefineMui", RefineMui],
-        ["@emotion/react", "EmotionReact", EmotionReact],
-        ["@emotion/styled", "EmotionStyled", EmotionStyled],
-        ["@mui/lab", "MuiLab", MuiLab],
-        ["@mui/material", "MuiMaterial", MuiMaterial],
-        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+        [
+            "@refinedev/mui",
+            "RefineMui",
+            {
+                Show,
+                TagField,
+                TextFieldComponent,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["@mui/material", "MuiMaterial", { Typography, Stack }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

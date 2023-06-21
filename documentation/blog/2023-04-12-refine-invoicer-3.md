@@ -859,16 +859,7 @@ These are pretty much everything we need for the `list`, `create`, `edit` and `d
 At this point, let's run the **refine** server and the **Strapi** server at `http://localhost:1337`. And we should be presented with a login screen at `http://localhost:3000/login`:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/login.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/login.png"  alt="react invoice generator" />
 
 <br />
 
@@ -932,16 +923,7 @@ When we create a few companies, they should be displayed in the page:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/compaines.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/compaines.png"  alt="react invoice generator" />
 
 <br />
 
@@ -1354,16 +1336,7 @@ We are invoking `useDelete()` hook and picking the `mutate()` function for delet
 With these views completed, now we should be able to create, list, update and delete `clients` records from within our **refine** app.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/clients.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/clients.png"  alt="react invoice generator" />
 
 <br />
 
@@ -1667,16 +1640,7 @@ The `delete` action is implemented inside the `<DeleteButton />` for each row in
 
 With these completed, we should now be able to create, list, edit and delete `contacts`.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/contacts.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/contacts.png"  alt="react invoice generator" />
 
 <br />
 

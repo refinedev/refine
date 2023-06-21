@@ -22,7 +22,6 @@ jobs:
   #      run: |
   #        npm ci
   #        npm run lint
-
   build:
     runs-on: ubuntu-latest
     concurrency:
@@ -30,7 +29,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
     name: Bootstrap and Test
     steps:
       - uses: actions/checkout@v3
@@ -57,3 +56,16 @@ jobs:
       - name: Test
         run: |
           npm run test:all --skip-nx-cache
+
+  tsdoc-check:
+    runs-on: ubuntu-latest
+    name: Check TSDoc Links
+    concurrency:
+      group: ${{ github.ref }}-tsdoc-check
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+      - name: Check TSDoc Links
+        run: npx tsdoc-link-check --patterns packages/**

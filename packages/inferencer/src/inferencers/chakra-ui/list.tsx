@@ -1,31 +1,56 @@
-import * as RefineChakraUI from "@refinedev/chakra-ui";
-import * as ChakraUI from "@chakra-ui/react";
-import * as RefineReactTable from "@refinedev/react-table";
-import * as TanstackReactTable from "@tanstack/react-table";
-import * as TablerIcons from "@tabler/icons";
+import {
+    List,
+    usePagination,
+    TagField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+} from "@refinedev/chakra-ui";
+import {
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    HStack,
+    Button,
+    IconButton,
+    Box,
+    Image,
+} from "@chakra-ui/react";
+import { useTable } from "@refinedev/react-table";
+import { flexRender } from "@tanstack/react-table";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     dotAccessor,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 const getAccessorKey = (field: InferField) => {
     return Array.isArray(field.accessor) || field.multiple
@@ -44,6 +69,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -62,7 +88,6 @@ export const renderer = ({
         ["Tr", "@chakra-ui/react"],
         ["Th", "@chakra-ui/react"],
         ["Tbody", "@chakra-ui/react"],
-        ["Tr", "@chakra-ui/react"],
         ["Td", "@chakra-ui/react"],
         ["HStack", "@chakra-ui/react"],
         ["Button", "@chakra-ui/react"],
@@ -72,6 +97,10 @@ export const renderer = ({
         ["IconChevronRight", "@tabler/icons"],
         ["IconChevronLeft", "@tabler/icons"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -141,7 +170,12 @@ export const renderer = ({
             }
 
             const id = `id: "${field.key}"`;
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
             const accessorKey = getAccessorKey(field);
 
             let cell = "";
@@ -242,7 +276,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -303,7 +342,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -354,7 +398,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -405,7 +454,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -455,7 +509,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -504,7 +563,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -551,7 +615,12 @@ export const renderer = ({
         if (field && (field.type === "text" || field.type === "number")) {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = "";
 
@@ -604,7 +673,14 @@ export const renderer = ({
         return undefined;
     };
 
-    const { canEdit, canShow, canDelete } = resource ?? {};
+    const {
+        canEdit,
+        canShow,
+        canDelete: canDeleteProp,
+        meta: resourceMeta,
+    } = resource ?? {};
+
+    const canDelete = canDeleteProp || resourceMeta?.canDelete;
 
     if (canEdit) {
         imports.push(["EditButton", "@refinedev/chakra-ui"]);
@@ -689,14 +765,17 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     import React from "react";
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
-        ], []);
+        ], [${i18n ? "translate" : ""}]);
 
         const {
             getHeaderGroups,
@@ -859,11 +938,44 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/chakra-ui", "RefineChakraUI", RefineChakraUI],
-        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
-        ["@tabler/icons", "TablerIcons", TablerIcons],
-        ["@chakra-ui/react", "ChakraUI", ChakraUI],
-        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
+        [
+            "@refinedev/chakra-ui",
+            "RefineChakraUI",
+            {
+                List,
+                usePagination,
+                TagField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                EditButton,
+                ShowButton,
+                DeleteButton,
+            },
+        ],
+        ["@refinedev/react-table", "RefineReactTable", { useTable }],
+        ["@tabler/icons", "TablerIcons", { IconChevronRight, IconChevronLeft }],
+        [
+            "@chakra-ui/react",
+            "ChakraUI",
+            {
+                TableContainer,
+                Table,
+                Thead,
+                Tr,
+                Th,
+                Tbody,
+                Td,
+                HStack,
+                Button,
+                IconButton,
+                Box,
+                Image,
+            },
+        ],
+        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

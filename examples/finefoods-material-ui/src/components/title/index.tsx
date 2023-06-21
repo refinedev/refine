@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 
 import { BikeWhiteIcon, FineFoodsIcon } from "components/icons";
 

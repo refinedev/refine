@@ -34,10 +34,10 @@ function _optionalChain(ops) {
     }
     return value;
 }
-var _path = require("path");
-var _path2 = _interopRequireDefault(_path);
 var _fsextra = require("fs-extra");
 var _fsextra2 = _interopRequireDefault(_fsextra);
+var _path = require("path");
+var _path2 = _interopRequireDefault(_path);
 
 const getDocContent = async (docPath) => {
     const accessPath = docPath.startsWith("@site/")

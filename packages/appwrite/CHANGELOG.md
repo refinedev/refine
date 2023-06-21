@@ -1,5 +1,35 @@
 # @pankod/refine-appwrite
 
+## 6.4.2
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 6.4.1
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 6.4.0
+
+### Minor Changes
+
+-   [#4269](https://github.com/refinedev/refine/pull/4269) [`396bf067e3c`](https://github.com/refinedev/refine/commit/396bf067e3c78aaf533e368a68b3e07e0ca64d82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to appwrite
+
+## 6.3.0
+
+### Minor Changes
+
+-   [#4269](https://github.com/refinedev/refine/pull/4269) [`396bf067e3c`](https://github.com/refinedev/refine/commit/396bf067e3c78aaf533e368a68b3e07e0ca64d82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to appwrite
+
+## 6.2.0
+
+### Minor Changes
+
+-   [#4269](https://github.com/refinedev/refine/pull/4269) [`396bf067e3c`](https://github.com/refinedev/refine/commit/396bf067e3c78aaf533e368a68b3e07e0ca64d82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to appwrite
+
 ## 6.1.0
 
 ### Minor Changes

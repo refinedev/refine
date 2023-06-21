@@ -88,10 +88,10 @@ export type UseDeleteProps<
  *
  * It uses `deleteOne` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useDelete} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useDelete} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences/#httperror `HttpError`}
  * @typeParam TVariables - Values for params. default `{}`
  *
  */
@@ -217,10 +217,15 @@ export const useDelete = <
                 resource,
                 mutationMode,
                 dataProviderName,
+                meta,
+                metaData,
             }) => {
+                const preferredMeta = pickNotDeprecated(meta, metaData);
                 const queryKey = queryKeys(
                     resource,
                     pickDataProvider(resource, dataProviderName, resources),
+                    preferredMeta,
+                    preferredMeta,
                 );
 
                 const mutationModePropOrContext =
@@ -322,7 +327,7 @@ export const useDelete = <
                 },
                 context,
             ) => {
-                const resourceSingular = pluralize.singular(resource ?? "");
+                const resourceSingular = pluralize.singular(resource);
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
@@ -352,7 +357,7 @@ export const useDelete = <
                     channel: `resources/${resource}`,
                     type: "deleted",
                     payload: {
-                        ids: id ? [id] : [],
+                        ids: [id],
                     },
                     date: new Date(),
                 });
@@ -392,7 +397,7 @@ export const useDelete = <
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
 
-                    const resourceSingular = pluralize.singular(resource ?? "");
+                    const resourceSingular = pluralize.singular(resource);
 
                     const notificationConfig =
                         typeof errorNotification === "function"

@@ -80,7 +80,7 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
  *
  * It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/core/hooks/data/useCustom} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useCustom} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
@@ -147,7 +147,7 @@ export const useCustom = <
                     method,
                     ...config,
                     meta: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -155,7 +155,7 @@ export const useCustom = <
                         },
                     },
                     metaData: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -171,7 +171,7 @@ export const useCustom = <
                     typeof successNotification === "function"
                         ? successNotification(data, {
                               ...config,
-                              ...(combinedMeta || {}),
+                              ...combinedMeta,
                           })
                         : successNotification;
 
@@ -185,7 +185,7 @@ export const useCustom = <
                     typeof errorNotification === "function"
                         ? errorNotification(err, {
                               ...config,
-                              ...(combinedMeta || {}),
+                              ...combinedMeta,
                           })
                         : errorNotification;
 

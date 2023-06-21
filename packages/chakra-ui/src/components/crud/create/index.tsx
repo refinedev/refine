@@ -13,13 +13,14 @@ import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 // We use @tabler/icons for icons but you can use any icon library you want.
 import { IconArrowLeft } from "@tabler/icons";
 
-import { Breadcrumb, SaveButton } from "@components";
+import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {
         children,
-        saveButtonProps,
+        saveButtonProps: saveButtonPropsFromProps,
         isLoading,
         resource: resourceFromProps,
         footerButtons: footerButtonsFromProps,
@@ -48,12 +49,12 @@ export const Create: React.FC<CreateProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const defaultFooterButtons = (
-        <SaveButton
-            {...(isLoading ? { disabled: true } : {})}
-            {...saveButtonProps}
-        />
-    );
+    const saveButtonProps: SaveButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        ...saveButtonPropsFromProps,
+    };
+
+    const defaultFooterButtons = <SaveButton {...saveButtonProps} />;
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
@@ -87,7 +88,10 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const footerButtons = footerButtonsFromProps
         ? typeof footerButtonsFromProps === "function"
-            ? footerButtonsFromProps({ defaultButtons: defaultFooterButtons })
+            ? footerButtonsFromProps({
+                  defaultButtons: defaultFooterButtons,
+                  saveButtonProps,
+              })
             : footerButtonsFromProps
         : defaultFooterButtons;
 
@@ -97,7 +101,11 @@ export const Create: React.FC<CreateProps> = (props) => {
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (
-                    <Heading as="h3" size="lg">
+                    <Heading
+                        as="h3"
+                        size="lg"
+                        className={RefinePageHeaderClassNames.Title}
+                    >
                         {title}
                     </Heading>
                 );
@@ -107,7 +115,11 @@ export const Create: React.FC<CreateProps> = (props) => {
         }
 
         return (
-            <Heading as="h3" size="lg">
+            <Heading
+                as="h3"
+                size="lg"
+                className={RefinePageHeaderClassNames.Title}
+            >
                 {translate(
                     `${resource?.name}.titles.create`,
                     `Create ${userFriendlyResourceName(

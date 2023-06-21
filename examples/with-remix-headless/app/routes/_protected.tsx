@@ -2,9 +2,14 @@ import { Outlet } from "@remix-run/react";
 import { LoaderArgs, redirect } from "@remix-run/node";
 
 import { authProvider } from "~/authProvider";
+import { Layout } from "~/components/layout";
 
 export default function AuthenticatedLayout() {
-    return <Outlet />;
+    return (
+        <Layout>
+            <Outlet />
+        </Layout>
+    );
 }
 
 /**

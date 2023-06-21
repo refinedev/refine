@@ -49,9 +49,7 @@ The above command will prompt you to select the configurations for your project.
 
 <br />
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="terminal" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="terminal" />
  
 
 Now change the directory into the project folder and install the required dependencies with the command below.
@@ -197,14 +195,7 @@ In the above code snippet, we created a **Post** type to tell Typescript the obj
  Then we created the items variable to be a placeholder for the posts and created a `loadThings` function to fetch data from the API and update the `items` variable. The `loadThings` function will be called when the components mount, which are implemented in Svelte using the `onMount` decorator.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/list.png" alt="list1" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/list.png" alt="list1" />
 
 <br/>
 
@@ -310,16 +301,16 @@ let open = false;
 In the above code snippets, we attached an event handler to change the value of the open variable to show the modal.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/create.png" alt="create" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/create.png" alt="create" />
 
 <br/>
+
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ## Update Blog
 To update the blog post, we'll create a Sveltekit dynamic route. This route will use the `id` of each blog as a param. Sveltekit implements `file-system-based` routing, which means that your application routes are defined by your directories, and version 3 requires you to have a `+page.svelte` and a `+page.js` or `+page.server` file in each of the directories. 
@@ -396,14 +387,7 @@ In the above code snippet, we imported the components to create a UI for this pa
  Then we created an `editPost` function which sends a Put request to the API with the data we which to update in the payload as JSON.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/edit.png" alt="edit" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/edit.png" alt="edit" />
 
 <br/>
 

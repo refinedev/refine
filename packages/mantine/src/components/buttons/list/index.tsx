@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useCan,
     useNavigation,
@@ -9,8 +9,12 @@ import {
     useRouterType,
     useLink,
     pickNotDeprecated,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons";
 
@@ -19,10 +23,10 @@ import { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
- * It uses the  {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/list-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/list-button} for more details.
  **/
 export const ListButton: React.FC<ListButtonProps> = ({
     resource: resourceNameFromProps,
@@ -35,8 +39,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const { listUrl: generateListUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();
@@ -106,6 +117,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
+                    className={RefineButtonClassNames.ListButton}
                     {...commonProps}
                 >
                     <IconList size={18} {...svgIconProps} />
@@ -117,6 +129,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     leftIcon={<IconList size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
+                    className={RefineButtonClassNames.ListButton}
                     {...rest}
                 >
                     {children ??

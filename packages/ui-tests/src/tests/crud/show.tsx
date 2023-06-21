@@ -28,7 +28,9 @@ const renderShow = (
 };
 
 export const crudShowTests = function (
-    Show: React.ComponentType<RefineCrudShowProps<any, any, any, any, any, {}>>,
+    Show: React.ComponentType<
+        RefineCrudShowProps<any, any, any, any, any, {}, any, any, any, any>
+    >,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / CRUD Show", () => {
         beforeAll(() => {
@@ -42,7 +44,21 @@ export const crudShowTests = function (
         });
 
         it("should render default edit and delete buttons successfuly", async () => {
-            const { queryByTestId } = renderShow(<Show canEdit canDelete />);
+            const { queryByTestId } = renderShow(
+                <Show
+                    canEdit
+                    canDelete
+                    headerButtons={({
+                        defaultButtons,
+                        editButtonProps,
+                        deleteButtonProps,
+                    }) => {
+                        expect(editButtonProps).toBeDefined();
+                        expect(deleteButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+            );
 
             expect(
                 queryByTestId(RefineButtonTestIds.EditButton),

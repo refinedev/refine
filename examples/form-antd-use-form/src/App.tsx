@@ -9,6 +9,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -34,6 +35,9 @@ const App: React.FC = () => {
                             create: "/posts/create",
                             clone: "/posts/clone/:id",
                             edit: "/posts/edit/:id",
+                            meta: {
+                                canDelete: true,
+                            },
                         },
                     ]}
                     notificationProvider={notificationProvider}
@@ -71,6 +75,7 @@ const App: React.FC = () => {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

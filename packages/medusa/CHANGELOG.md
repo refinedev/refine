@@ -1,5 +1,35 @@
 # @pankod/refine-medusa
 
+## 2.4.2
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 2.4.1
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 2.4.0
+
+### Minor Changes
+
+-   [#4281](https://github.com/refinedev/refine/pull/4281) [`ebfb075f07e`](https://github.com/refinedev/refine/commit/ebfb075f07e793e5ff7c5c3f712136fb54d8b0de) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to medusa
+
+## 2.3.0
+
+### Minor Changes
+
+-   [#4281](https://github.com/refinedev/refine/pull/4281) [`ebfb075f07e`](https://github.com/refinedev/refine/commit/ebfb075f07e793e5ff7c5c3f712136fb54d8b0de) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to medusa
+
+## 2.2.0
+
+### Minor Changes
+
+-   [#4281](https://github.com/refinedev/refine/pull/4281) [`ebfb075f07e`](https://github.com/refinedev/refine/commit/ebfb075f07e793e5ff7c5c3f712136fb54d8b0de) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to medusa
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
+import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
-import { useDataGrid, List } from "@refinedev/mui";
 
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { ICommit } from "interfaces";
 
@@ -18,7 +18,7 @@ export const PostList: React.FC = () => {
 
     const { data } = tableQueryResult;
 
-    const columns: GridColumns<ICommit> = [
+    const columns: GridColDef<ICommit>[] = [
         {
             field: "sha",
             headerName: "SHA",
@@ -67,14 +67,13 @@ export const PostList: React.FC = () => {
             <DataGrid
                 getRowId={(row) => row.sha}
                 {...dataGridProps}
-                onPageChange={(page, details) => {
-                    // Github API returns the latest commit date as the next cursor
+                onPaginationModelChange={(model, details) => {
                     const lastRow = data?.data[data.data.length - 1];
                     const next = lastRow?.commit.committer.date;
                     if (next) {
                         setNext(next);
                     }
-                    dataGridProps.onPageChange?.(page, details);
+                    dataGridProps.onPaginationModelChange?.(model, details);
                 }}
                 columns={columns}
                 autoHeight

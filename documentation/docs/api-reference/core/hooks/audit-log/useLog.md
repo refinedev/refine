@@ -5,7 +5,7 @@ title: useLog
 
 ## Overview
 
-If you need to create or update an audit log, **refine** provides the `useLog` hook for it. The hook returns two mutations called `log` and `rename`.
+If you need to create or update an audit log, you can use **refine**'s `useLog` hook. This hook will return two mutations called `log` and `rename`
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -15,7 +15,7 @@ const { log, rename } = useLog();
 
 ## `log`
 
-`log` is used to create an audit log event. The mutation uses `create` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#create) under the hood.
+The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#create) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -56,21 +56,21 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ### Type Parameters
 
-| Property   | Desription                                                                          | Type                                           | Default                                        |
-| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
+| TVariables | Values for mutation function                                                                      | `{}`                                                         | `{}`                                                         |
 
 ### Return value
 
 | Description                               | Type                                                                                                                                                                      |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData},`<br/>`TError,`<br/>` { id: BaseKey; name: string; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 ## `rename`
 
-`log` is used to update an audit log event. The mutation uses `update` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#update) under the hood.
+The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#update) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -97,17 +97,17 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 ### Type Parameters
 
-| Property   | Desription                                                                          | Type                                           | Default                                        |
-| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
+| TVariables | Values for mutation function                                                                      | `{}`                                                         | `{}`                                                         |
 
 ### Return value
 
 | Description                               | Type                                                                                                                                                                      |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData},`<br/>`TError,`<br/>` { id: BaseKey; name: string; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 <br />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useCan,
     useNavigation,
@@ -7,8 +7,12 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons";
 
@@ -17,10 +21,10 @@ import { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation useNavigation} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/clone-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/clone-button} for more details.
  *
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
@@ -35,8 +39,16 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
+
     const { cloneUrl: generateCloneUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();
@@ -107,6 +119,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                           }
                         : { variant: "default" })}
                     data-testid={RefineButtonTestIds.CloneButton}
+                    className={RefineButtonClassNames.CloneButton}
                     {...commonProps}
                 >
                     <IconSquarePlus size={18} {...svgIconProps} />
@@ -118,6 +131,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CloneButton}
+                    className={RefineButtonClassNames.CloneButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.clone", "Clone")}

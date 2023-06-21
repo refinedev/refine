@@ -1,4 +1,3 @@
-import React from "react";
 import {
     HttpError,
     IResourceComponentsProps,
@@ -6,27 +5,24 @@ import {
     useShow,
     useTranslate,
 } from "@refinedev/core";
+import React from "react";
 
+import AccountBalanceOutlined from "@mui/icons-material/AccountBalanceOutlined";
+import DirectionsCarFilledOutlined from "@mui/icons-material/DirectionsCarFilledOutlined";
+import EmailOutlined from "@mui/icons-material/EmailOutlined";
+import LocalPhoneOutlined from "@mui/icons-material/LocalPhoneOutlined";
+import MapOutlined from "@mui/icons-material/MapOutlined";
+import StoreOutlined from "@mui/icons-material/StoreOutlined";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { List, useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import {
-    Avatar,
-    Grid,
-    Paper,
-    Stack,
-    Typography,
-    Button,
-    Tooltip,
-    Rating,
-} from "@mui/material";
-import {
-    LocalPhoneOutlined,
-    MapOutlined,
-    DirectionsCarFilledOutlined,
-    EmailOutlined,
-    AccountBalanceOutlined,
-    StoreOutlined,
-} from "@mui/icons-material";
 
 import { ICourier, IReview } from "interfaces";
 
@@ -81,7 +77,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
         syncWithLocation: false,
     });
 
-    const columns = React.useMemo<GridColumns<IReview>>(
+    const columns = React.useMemo<GridColDef<IReview>[]>(
         () => [
             {
                 field: "order.id",
@@ -197,7 +193,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                             columns={columns}
                             autoHeight
                             rowHeight={80}
-                            rowsPerPageOptions={[4, 10, 20, 100]}
+                            pageSizeOptions={[4, 10, 20, 100]}
                         />
                     </List>
                 </Stack>

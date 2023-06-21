@@ -147,14 +147,7 @@ Run the `yarn dev` command to start the refine development server.
 yarn dev
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.png" alt="dashboard" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.png" alt="dashboard" />
 
 <br/>
 
@@ -162,14 +155,7 @@ yarn dev
 
 Head over to app.supabase.com and sign in to your Supabase account. Next, create a new project by clicking on the "New Project" button.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="setupSupabase" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="setupSupabase" />
 
 <br/>
 
@@ -177,24 +163,10 @@ Add the name of the project and the database password, and wait for Supabase to 
 
 Once the project is created, go to Authentication -> Settings to configure the Auth providers.
 
-<div class="img-container">
-    <div class="window" style={{alignSelf:"center", width:"400px"}} >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="supabase2" />
-</div>
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="supabase2" />
 
 <br/>
-<div class="img-container">
-    <div class="window" style={{alignSelf:"center", width:"400px"}} >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.png" alt="supabase3" />
-</div>
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.png" alt="supabase3" />
 
 <br/>
 
@@ -346,6 +318,14 @@ For example, when you use the `useList` hook, Refine internally calls the `getLi
 In this case, we pass the supabaseClient as the data provider. Supabase is supported out-of-the-box as a data provider by Refine. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
 
 [You can learn more about data provider in the Refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+
+
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ## Auth Provider
 

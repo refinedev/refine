@@ -5,17 +5,21 @@ import {
     useResource,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { LoadingButton } from "@mui/lab";
-import { RefreshOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+import RefreshOutlined from "@mui/icons-material/RefreshOutlined";
 
 import { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component
- * to update the data shown on the page via the {@link https://refine.dev/docs/core/hooks/data/useOne `useOne`} method provided by your dataProvider.
+ * to update the data shown on the page via the {@link https://refine.dev/docs/api-reference/core/hooks/data/useOne `useOne`} method provided by your dataProvider.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/refresh-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/refresh-button} for more details.
  */
 export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resource: resourceNameFromProps,
@@ -58,6 +62,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             onClick={(e) => (onClick ? onClick(e) : refetch())}
             sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.RefreshButton}
+            className={RefineButtonClassNames.RefreshButton}
             {...restProps}
         >
             {hideText ? (

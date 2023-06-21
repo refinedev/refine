@@ -50,14 +50,7 @@ Steps we'll cover:
 Today we will be building a filtering system that will let us sort the results through filter buttons and custom search queries.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/demo.png" alt="demo" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/demo.png" alt="demo" />
 
 <br/>
 
@@ -83,9 +76,7 @@ The content cards will be listed directly below.
 When putting everything into the wireframe, we get the following schema:
 
 
-<div class="img-container">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.png" alt="wireframe" /> 
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.png" alt="wireframe" />
 
 <br/>
 
@@ -97,9 +88,7 @@ The recommended way to set up the refine project is to use [superplate](https://
 Run `npm create refine-app@latest tutorial -- -p refine-react -b v3` and select your package manager, project name, user interface framework, router, data, auth provider, and internationalization library.
 
 
-<div class="img-container">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/terminal.png" alt="terminal" /> 
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/terminal.png" alt="terminal" />
 
 <br/>
 
@@ -110,14 +99,7 @@ Within seconds it should automatically bring up your default browser with the pr
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/boilerplate.png" alt="boilerplate" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/boilerplate.png" alt="boilerplate" />
 
 <br/>
 
@@ -327,6 +309,14 @@ To style the search bar, open the `Search.module.css` file and include the follo
 ```
 
 We set the search bar to use all the available with of the parent wrapper, added some margin and padding, removed the default border, set the search box to be rounded, and defined the specific font size.
+
+
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ### Content card
 
@@ -562,14 +552,7 @@ Check if your development server is still running in the terminal. If it is not 
 First, we will test the functionality of the filter buttons.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.gif" alt="filters" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.gif" alt="filters" />
 
 <br/>
 
@@ -577,14 +560,7 @@ If the filter button is pressed, only the corresponding cards of that category i
 
 Now type in some search queries in the search bar.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.gif" alt="search" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.gif" alt="search" />
 
 <br/>
 
@@ -593,14 +569,7 @@ Search results are fully dynamic, meaning the filtering is updated each time you
 Finally, let's test the app on different screen sizes.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/mobile.gif" alt="mobile" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/mobile.gif" alt="mobile" />
 
 <br/>
 
@@ -625,31 +594,3 @@ Feel free to modify the app with your own custom features. Play around with diff
 
 <CodeSandboxExample path="blog-refine-filtering" />
 
----
-<div style={{backgroundColor:"#F8F8F8", padding:"18px", borderRadius:"10px"}}>
-<div style={{fontSize:"32px", fontWeight:"700", lineHeight:"1.4", marginBottom:"25px"}} >Stop wasting your time copy/pasting your table code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>

@@ -8,10 +8,16 @@ import {
     useResource,
 } from "@refinedev/core";
 
-import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-import { CreateButton, Breadcrumb } from "@components";
+import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
+
 import { ListProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
  * `<List>` provides us a layout for displaying the page.
@@ -23,7 +29,7 @@ export const List: React.FC<ListProps> = ({
     title,
     canCreate,
     children,
-    createButtonProps,
+    createButtonProps: createButtonPropsFromProps,
     resource: resourceFromProps,
     breadcrumb: breadcrumbFromProps,
     wrapperProps,
@@ -42,7 +48,8 @@ export const List: React.FC<ListProps> = ({
 
     const isCreateButtonVisible =
         canCreate ??
-        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
+        ((resource?.canCreate ?? !!resource?.create) ||
+            createButtonPropsFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
@@ -56,15 +63,19 @@ export const List: React.FC<ListProps> = ({
             <Breadcrumb />
         );
 
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
+
     const defaultHeaderButtons = isCreateButtonVisible ? (
-        <CreateButton
-            resource={
-                routerType === "legacy"
-                    ? resource?.route
-                    : resource?.identifier ?? resource?.name
-            }
-            {...createButtonProps}
-        />
+        <CreateButton {...createButtonProps} />
     ) : null;
 
     return (
@@ -74,7 +85,10 @@ export const List: React.FC<ListProps> = ({
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
                     title ?? (
-                        <Typography variant="h5">
+                        <Typography
+                            variant="h5"
+                            className={RefinePageHeaderClassNames.Title}
+                        >
                             {translate(
                                 `${resource?.name}.titles.list`,
                                 userFriendlyResourceName(
@@ -94,6 +108,7 @@ export const List: React.FC<ListProps> = ({
                             ? typeof headerButtons === "function"
                                 ? headerButtons({
                                       defaultButtons: defaultHeaderButtons,
+                                      createButtonProps,
                                   })
                                 : headerButtons
                             : defaultHeaderButtons}

@@ -7,7 +7,7 @@ export const PostList: React.FC = () => {
         initialSorter: [
             {
                 field: "id",
-                order: "desc",
+                order: "asc",
             },
         ],
     });

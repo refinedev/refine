@@ -3,6 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, act, mockRouterBindings } from "@test";
 
 import { useSelect } from "./";
+import * as pickResource from "../../definitions/helpers/pick-resource";
 import {
     CrudFilters,
     IDataContext,
@@ -295,6 +296,15 @@ describe("useSelect Hook", () => {
         await waitFor(() => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
+
+        onSearch("");
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(5);
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
     });
 
     it("should onSearchFromProp work as expected", async () => {
@@ -464,6 +474,80 @@ describe("useSelect Hook", () => {
         ]);
         expect(mockFunc).toBeCalled();
     });
+
+    // case: undefined means defaultValueQueryOptions should not provided, queryOptions.enabled should be false
+    // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled to test not override each other
+    it.each([true, false, undefined])(
+        `should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)`,
+        async (enabled) => {
+            const mockDataProvider = {
+                default: {
+                    ...MockJSONServer.default,
+                    getList: jest.fn(() =>
+                        Promise.resolve({ data: [], total: 0 }),
+                    ),
+                    getMany: jest.fn(() => Promise.resolve({ data: [] })),
+                },
+            } as IDataMultipleContextProvider;
+
+            renderHook(
+                () =>
+                    useSelect({
+                        resource: "posts",
+                        defaultValue: ["1", "2", "3", "4"],
+                        ...(typeof enabled === "undefined"
+                            ? {}
+                            : {
+                                  defaultValueQueryOptions: {
+                                      enabled: !enabled,
+                                  },
+                              }),
+                        queryOptions: {
+                            enabled: !!enabled,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                if (typeof enabled === "undefined") {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        0,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        0,
+                    );
+                    return;
+                }
+
+                if (enabled) {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        1,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        0,
+                    );
+
+                    return;
+                }
+
+                if (!enabled && typeof enabled !== "undefined") {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        0,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        1,
+                    );
+                    return;
+                }
+            });
+        },
+    );
 
     it("should use fetchSize option as pageSize when fetching list", async () => {
         const posts = [
@@ -870,5 +954,38 @@ describe("useSelect Hook", () => {
                 }),
             }),
         );
+    });
+
+    it("should use resourceFromProps", async () => {
+        jest.spyOn(pickResource, "pickResource").mockReturnValue(undefined);
+
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
+        const { options } = result.current;
+
+        await waitFor(() => expect(options).toHaveLength(2));
+
+        expect(options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
+        ]);
     });
 });

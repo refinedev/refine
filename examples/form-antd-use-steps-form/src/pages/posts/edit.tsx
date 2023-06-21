@@ -17,6 +17,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         formProps,
         saveButtonProps,
         queryResult,
+        formLoading,
     } = useStepsForm<IPost>();
 
     const postData = queryResult?.data?.data;
@@ -93,6 +94,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit
+            isLoading={formLoading}
             footerButtons={
                 <>
                     {current > 0 && (

@@ -18,8 +18,6 @@ hide_table_of_contents: false
 
 
 
-
-
 ## Introduction
 Branches are kind of blocks in a repository where we write new features, fix bugs etc. For example, if three developers are working on a project, they can create their own branches and work on them as the branches are isolated, so everyone can work in their branch.
 
@@ -48,12 +46,13 @@ Steps we'll cover:
   - [How to automatically delete a branch when it is merge back into master](#how-to-automatically-delete-a-branch-when-it-is-merge-back-into-master)
   - [I am getting an error when I delete a branch having the same name as a tag](#i-am-getting-an-error-when-i-delete-a-branch-having-the-same-name-as-a-tag)
 
+
 ## Why you might need to remove a branch
 You need to ensure that your Git repository is not a mess of outdated and old branches that are not being worked on anymore. You should perform periodic cleanup of the branches where you would either remove the old branches or you would merge them into the master. Your code repository should be neat, tidy, and easy to navigate.
 
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 

@@ -1,20 +1,33 @@
 import React from "react";
-import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
-import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
+import {
+    useGetIdentity,
+    useActiveAuthProvider,
+    pickNotDeprecated,
+} from "@refinedev/core";
+
+import AppBar from "@mui/material/AppBar";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
 import { RefineThemedLayoutV2HeaderProps } from "../types";
+
 import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
-    isSticky = true,
+    isSticky,
+    sticky,
 }) => {
     const authProvider = useActiveAuthProvider();
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
+    const prefferedSticky = pickNotDeprecated(sticky, isSticky) ?? true;
+
     return (
-        <AppBar position={isSticky ? "sticky" : "relative"}>
+        <AppBar position={prefferedSticky ? "sticky" : "relative"}>
             <Toolbar>
                 <HamburgerMenu />
                 <Stack

@@ -282,9 +282,9 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-`useForm` is a hook that allows to manage forms. It has some `action` methods that `create`, `edit` and `clone` the form. The hook return value comes to according to the called action and it can run different logic depending on the `action`.
+`useForm` is a hook that allows you to manage forms. It has some `action` methods that `create`, `edit` and `clone` the form. The hook return value comes according to the called action, and it can run different logic depending on the `action`.
 
-You can think of `useForm` as a bridge between your `state` and `dataProvider`. It's a low-level hook that you can use to build your own form components. It's also use `notificationProvider` to inform users according to the `action` and `dataProvider` response.
+You can think of `useForm` as a bridge between your `state` and `dataProvider`. It's a low-level hook that you can use to build your own form components. It's also using `notificationProvider` to inform users according to the `action` and `dataProvider` responses.
 
 Let's review how `useForm` works behind the scenes.
 
@@ -304,7 +304,7 @@ After form is submitted:
 3. `useCreate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `create` function and returns the response.
 4. `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
-6. `useForm`, redirects to the `list` page.
+6. `useForm` redirects to the `list` page.
 
 </TabItem>
 
@@ -319,7 +319,7 @@ After form is submitted:
 3.  `useUpdate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `update` function and returns the response.
 4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
-6.  `useForm`, redirects to the `list` page.
+6.  `useForm` redirects to the `list` page.
 
 </TabItem>
 
@@ -334,7 +334,7 @@ After form is submitted:
 3.  `useUpdate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `update` function and returns the response.
 4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
-6.  `useForm`, redirects to the `list` page.
+6.  `useForm` redirects to the `list` page.
 
 </TabItem>
 
@@ -403,7 +403,7 @@ values={[
 
 `useForm` uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) under the hood for mutations on create mode.
 
-In the following example, we'll show how to use `useForm` with `action: "create"`.
+In the following example, we will show how to use `useForm` with `action: "create"`.
 
 ```tsx live  url=http://localhost:3000/posts/create previewHeight=420px
 setInitialRoutes(["/posts/create"]);
@@ -514,7 +514,7 @@ render(<App />);
 
 <TabItem value="edit">
 
-`action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+`action: "edit"` is used for editing an existing record. It requires the `id` to determine the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
 It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/).
 
@@ -638,7 +638,7 @@ render(<App />);
 
 <TabItem value="clone">
 
-`action: "clone"` is used for cloning an existing record. It requires the `id` for determining the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
+`action: "clone"` is used for cloning an existing record. It requires the `id` to determine the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
 
 You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
 
@@ -816,7 +816,9 @@ setId("123");
 
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
-> Note: `id` is required when `action: "edit"` or `action: "clone"`.
+:::note
+`id` is required when `action: "edit"` or `action: "clone"`.
+:::
 
 ```tsx
 useForm({
@@ -828,7 +830,7 @@ useForm({
 
 ### `redirect`
 
-`redirect` is used for determining the page to redirect after the form is submitted. By default, it uses the `list`. It can be changed with the `redirect` property.
+`redirect` is used for determining the page to redirect to after the form is submitted. By default, it uses the `list`. It can be changed with the `redirect` property.
 
 It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the page from redirecting to the list page after the form is submitted.
 
@@ -895,7 +897,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
-If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
 :::
 
 ```tsx
@@ -909,7 +911,7 @@ useForm({
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
-> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode) page.
+> For more information about mutation modes, refer to the [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
 useForm({
@@ -919,7 +921,9 @@ useForm({
 
 ### `successNotification`
 
-> [`NotificationProvider`][notification-provider] is required for this prop to work.
+:::caution
+[`NotificationProvider`][notification-provider] is required for this prop to work.
+:::
 
 After form is submitted successfully, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -937,7 +941,9 @@ useForm({
 
 ### `errorNotification`
 
-> [`NotificationProvider`][notification-provider] is required for this prop to work.
+:::caution
+`NotificationProvider`][notification-provider] is required for this prop to work.
+:::
 
 After form is submit is failed, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -970,8 +976,6 @@ useForm({
 -   Filling the path parameters when generating the redirection path.
 -   Providing additional parameters to the redirection path after the form is submitted.
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
-
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
@@ -1000,9 +1004,45 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+
+### `queryMeta`
+
+In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` property to the `useForm` hook. This property is used to pass additional information to the `useOne` hook that is used to fetch the data in the `edit` and `clone` modes. This is useful when you have to apply different values to the `useOne` hook from the `useCreate` or `useUpdate` hook mutations.
+
+```tsx
+useForm({
+    queryMeta: {
+        querySpecificValue: "someValue",
+    },
+});
+```
+
+:::tip
+If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+:::
+
+### `mutationMeta`
+
+In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta` property to the `useForm` hook. This property is used to pass additional information to the `useCreate` or `useUpdate` hook mutations. This is useful when you have to apply different values to the `useCreate` or `useUpdate` hooks from the `useOne` hook query.
+
+```tsx
+useForm({
+    mutationMeta: {
+        mutationSpecificValue: "someValue",
+    },
+});
+```
+
+:::tip
+If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+:::
+
 ### `queryOptions`
 
-> Works only in `action: "edit"` or `action: "clone"` mode.
+:::caution
+Works only in `action: "edit"` or `action: "clone"` mode.
+:::
 
 in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
 
@@ -1016,7 +1056,9 @@ useForm({
 
 ### `createMutationOptions`
 
-> This option is only available when `action: "create"` or `action: "clone"`.
+:::caution
+This option is only available when `action: "create"` or `action: "clone"`.
+:::
 
 In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
@@ -1030,7 +1072,9 @@ useForm({
 
 ### `updateMutationOptions`
 
-> This option is only available when `action: "edit"`.
+:::caution
+This option is only available when `action: "edit"`.
+:::
 
 In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
@@ -1045,13 +1089,14 @@ useForm({
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useForm({
     liveMode: "auto",
 });
 ```
+
+> For more information, refer to the [Live / Realtime page](/docs/api-reference/core/providers/live-provider/#livemode)
 
 ### `onLiveEvent`
 
@@ -1203,13 +1248,19 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
+### How to pass `meta` values only for the mutation or query?
+
+You can use `meta` property to pass common values to the mutation and the query. But in some cases, you may want to pass different values to the mutation and the query. To do this, you can use `mutationMeta` and `queryMeta` properties.
+
 ## API Reference
 
 ### Properties
 
 <PropsTable module="@refinedev/core/useForm" />
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+:::caution
+These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+:::
 
 ### Type Parameters
 

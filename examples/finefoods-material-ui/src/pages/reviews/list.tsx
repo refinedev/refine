@@ -1,23 +1,22 @@
-import React from "react";
 import {
+    BaseKey,
+    IResourceComponentsProps,
+    useNavigation,
     useTranslate,
     useUpdateMany,
-    useNavigation,
-    IResourceComponentsProps,
-    BaseKey,
 } from "@refinedev/core";
+import React from "react";
 
-import { useDataGrid, List } from "@refinedev/mui";
-import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import {
-    Typography,
-    Tooltip,
-    Avatar,
-    Rating,
-    Stack,
-    Button,
-} from "@mui/material";
-import { Check, Clear } from "@mui/icons-material";
+import Check from "@mui/icons-material/Check";
+import Clear from "@mui/icons-material/Clear";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { List, useDataGrid } from "@refinedev/mui";
 
 import { IReview } from "interfaces";
 
@@ -70,7 +69,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         );
     };
 
-    const columns = React.useMemo<GridColumns<IReview>>(
+    const columns = React.useMemo<GridColDef<IReview>[]>(
         () => [
             {
                 field: "avatar",
@@ -155,7 +154,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("table.actions"),
                 type: "actions",
                 getActions: ({ row }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         label={t("buttons.accept")}
@@ -163,7 +161,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         onClick={() => handleUpdate(row.id, "approved")}
                         showInMenu
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={2}
                         label={t("buttons.reject")}
@@ -205,11 +202,11 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 autoHeight
                 checkboxSelection
                 density="comfortable"
-                onSelectionModelChange={(newSelectionModel) => {
+                onRowSelectionModelChange={(newSelectionModel) => {
                     setSelectedRowKeys(newSelectionModel as React.Key[]);
                 }}
-                rowsPerPageOptions={[10, 20, 50, 100]}
-                selectionModel={selectedRowKeys}
+                pageSizeOptions={[10, 20, 50, 100]}
+                rowSelectionModel={selectedRowKeys}
             />
         </List>
     );

@@ -9,7 +9,7 @@ Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 
 ## Basic Usage
 
-Here is a basic usage example of `useExport` hook:
+Here is a basic usage example of the `useExport` hook:
 
 ```tsx
 import { useExport } from "@refinedev/core";
@@ -74,7 +74,7 @@ useExport<IPost>({
 
 If you want to sort the data before exporting it, you can use the `sorters` property. It will be passed to the `getList` method of your data provider.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface&#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```ts
 useExport({
@@ -91,7 +91,7 @@ useExport({
 
 If you want to filter the data before exporting it, you can use the `filters` property. It will be passed to the `getList` method of your data provider.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```ts
 useExport({
@@ -117,9 +117,7 @@ useExport({
 
 ### `pageSize`
 
-> Default: 20
-
-Requests to fetch data are made in batches. The `pageSize` property determines the number of items to be fetched in each request.
+Requests to fetch data are made in batches of 20 by default. The `pageSize` property determines the number of items to be fetched in each request.
 
 ```ts
 useExport({
@@ -131,7 +129,7 @@ useExport({
 
 You can pass additional options to the `export-to-csv` package by using the `exportOptions` property.
 
-[Refer to the `ExportToCsv` options for more information &#8594](https://github.com/alexcaza/export-to-csv#api)
+> For more information, refer to the [`ExportToCsv` options &#8594](https://github.com/alexcaza/export-to-csv#api)
 
 ```ts
 useExport({
@@ -247,7 +245,7 @@ Consider this endpoint containing some relational data:
 ]
 ```
 
-We have the `category` and `user` fields as possible relational data keys. Their data is out of the responsibility of this export operation.
+We have the `category` and `user` fields as possible relational data keys. Their data is not responsibility of this export operation.
 
 If we want to save their `id`'s without any other related data, we can use a mapping function to save `category.id` as `categoryId` and `user.id` as `userId`.
 

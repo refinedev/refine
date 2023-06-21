@@ -1,18 +1,17 @@
 import * as React from "react";
 import { LoginPageProps, useActiveAuthProvider } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import {
-    Button,
-    TextField,
-    FormControlLabel,
-    Checkbox,
-    Link,
-    Box,
-    Typography,
-    Container,
-    Card,
-    CardContent,
-} from "@mui/material";
+
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 import { BaseRecord, HttpError, useLogin, useTranslate } from "@refinedev/core";
 
@@ -26,7 +25,7 @@ type ILoginForm = {
  * @deprecated LoginPage is deprecated. Use AuthPage instead. @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page} for more details.
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/components/refine-config/#loginpage} for more details.
  */
 export const LoginPage: React.FC<LoginPageProps> = () => {
     const {

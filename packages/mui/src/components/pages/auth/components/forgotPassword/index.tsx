@@ -1,15 +1,15 @@
-import {
-    Box,
-    BoxProps,
-    Button,
-    Card,
-    CardContent,
-    CardContentProps,
-    Container,
-    Link as MuiLink,
-    TextField,
-    Typography,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import MuiLink from "@mui/material/Link";
+
+import type { BoxProps } from "@mui/material/Box";
+import type { CardContentProps } from "@mui/material/CardContent";
+
 import {
     ForgotPasswordFormTypes,
     ForgotPasswordPageProps,

@@ -4,7 +4,7 @@ title: useCan
 siderbar_label: useCan
 ---
 
-`useCan` uses the [Access Control Provider's][access-control-provider] `can` function as the query function for [TanStack Query's][tanstack-query] [`useQuery`][use-query]. It takes the [parameters][can-params] that `can` takes. It can also be configured with [`queryOptions`][query-options] for [`useQuery`][use-query]. Returns the result of [`useQuery`][use-query].
+`useCan` uses the [Access Control Provider's][access-control-provider] `can` function as the query function for [TanStack Query's][tanstack-query] [`useQuery`][use-query]. It takes the [parameters][can-params] that `can` takes. It can also be configured with [`queryOptions`][query-options] for `useQuery`. Returns the result of `useQuery`.
 
 ## Basic Usage
 
@@ -20,7 +20,7 @@ const { data } = useCan({
 
 ## Performance
 
-As the number of points that checks for access control in your app increases the performance of your app may take a hit especially if its access control involves remote endpoints. Caching the access control checks helps a great deal. Since **refine** uses [TanStack Query][tanstack-query] it can be easily done configuring [`staleTime` and `cacheTime`][query-options] properties.
+As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a bit, and since **refine** uses [TanStack Query][tanstack-query], it can be easily done by confiruging the [`staleTime` and `cacheTime`][query-options] properties.
 
 ```ts
 import { useCan } from "@refinedev/core";
@@ -83,9 +83,9 @@ useCan({
 
 ## Return values
 
-Query result of [TanStack Query's][tanstack-query] [`useQuery`][use-query].
+`useCan` will return the Query result of [TanStack Query's][tanstack-query] [`useQuery`][use-query].
 
-For example if you want to check if the user can create a post return value will be:
+For example, if you want to check if the user can create a post based on the return value:
 
 ```tsx
 <Refine

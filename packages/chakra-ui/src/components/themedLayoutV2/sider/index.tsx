@@ -34,15 +34,15 @@ import { IconList, IconDashboard, IconPower } from "@tabler/icons";
 
 import { ThemedTitleV2 as DefaultTitle } from "../title";
 import { RefineThemedLayoutV2SiderProps } from "../types";
-import { useSiderVisible } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
 }) => {
-    const { siderVisible, setSiderVisible, drawerSiderVisible } =
-        useSiderVisible();
+    const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
+        useThemedLayoutContext();
 
     const routerType = useRouterType();
     const NewLink = useLink();
@@ -62,14 +62,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const siderWidth = () => {
-        if (!drawerSiderVisible) return "56px";
+        if (siderCollapsed) return "56px";
         return "200px";
     };
 
     const commonTooltipProps: Omit<TooltipProps, "children"> = {
         placement: "right",
         hasArrow: true,
-        isDisabled: drawerSiderVisible || siderVisible,
+        isDisabled: !siderCollapsed || mobileSiderOpen,
     };
 
     const renderTreeView = (tree: ITreeMenu[]) => {
@@ -120,7 +120,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                         }
                                         borderRadius={0}
                                         pl={
-                                            !drawerSiderVisible && !siderVisible
+                                            siderCollapsed && !mobileSiderOpen
                                                 ? 6
                                                 : 5
                                         }
@@ -162,8 +162,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                         isActive={isSelected}
                                         {...linkProps}
                                     >
-                                        {(siderVisible ||
-                                            drawerSiderVisible) && (
+                                        {(mobileSiderOpen ||
+                                            !siderCollapsed) && (
                                             <Box flexGrow={1} textAlign="left">
                                                 {label}
                                             </Box>
@@ -176,7 +176,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                 <AccordionPanel
                                     p={0}
                                     pl={
-                                        !drawerSiderVisible && !siderVisible
+                                        siderCollapsed && !mobileSiderOpen
                                             ? 0
                                             : 4
                                     }
@@ -204,7 +204,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <Button
                     width="full"
                     justifyContent={
-                        !siderVisible && !drawerSiderVisible
+                        !mobileSiderOpen && siderCollapsed
                             ? "center"
                             : "flex-start"
                     }
@@ -219,7 +219,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     as={Link}
                     to="/"
                 >
-                    {(siderVisible || drawerSiderVisible) &&
+                    {(mobileSiderOpen || !siderCollapsed) &&
                         t("dashboard.title", "Dashboard")}
                 </Button>
             </Tooltip>
@@ -251,11 +251,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     borderRadius={0}
                     width="full"
                     justifyContent={
-                        !siderVisible && !drawerSiderVisible
+                        !mobileSiderOpen && siderCollapsed
                             ? "center"
                             : "flex-start"
                     }
-                    pl={!siderVisible && !drawerSiderVisible ? 6 : 5}
+                    pl={!mobileSiderOpen && siderCollapsed ? 6 : 5}
                     fontWeight="normal"
                     leftIcon={<IconPower size={16} />}
                     variant="ghost"
@@ -265,7 +265,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     }}
                     onClick={handleLogout}
                 >
-                    {(siderVisible || drawerSiderVisible) &&
+                    {(mobileSiderOpen || !siderCollapsed) &&
                         t("buttons.logout", "Logout")}
                 </Button>
             </Box>
@@ -294,13 +294,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         <>
             <Drawer
                 placement="left"
-                isOpen={siderVisible}
-                onClose={() => setSiderVisible?.(!siderVisible)}
+                isOpen={mobileSiderOpen}
+                onClose={() => setMobileSiderOpen(!mobileSiderOpen)}
             >
                 <DrawerOverlay />
                 <DrawerContent w="200px" maxW="200px">
                     <Box
                         display="flex"
+                        flexShrink={0}
                         pl={4}
                         alignItems="center"
                         height="64px"
@@ -308,6 +309,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         bg={useColorModeValue(
                             "refine.sider.header.light",
                             "refine.sider.header.dark",
+                        )}
+                        borderBottom="1px"
+                        borderBottomColor={useColorModeValue(
+                            "gray.200",
+                            "gray.700",
                         )}
                     >
                         <RenderToTitle collapsed={false} />
@@ -319,6 +325,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             "refine.sider.bg.light",
                             "refine.sider.bg.dark",
                         )}
+                        overflow="auto"
                     >
                         <Box width="full">{renderSider()}</Box>
                     </VStack>
@@ -342,25 +349,30 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             >
                 <Box
                     display="flex"
-                    pl={!drawerSiderVisible ? 0 : 4}
-                    justifyContent={
-                        !drawerSiderVisible ? "center" : "flex-start"
-                    }
+                    flexShrink={0}
+                    pl={siderCollapsed ? 0 : 4}
+                    justifyContent={siderCollapsed ? "center" : "flex-start"}
                     alignItems="center"
                     fontSize="14px"
                     height="64px"
                     borderRight="1px"
                     borderRightColor={useColorModeValue("gray.200", "gray.700")}
+                    borderBottom="1px"
+                    borderBottomColor={useColorModeValue(
+                        "gray.200",
+                        "gray.700",
+                    )}
                     bg={useColorModeValue(
                         "refine.sider.header.light",
                         "refine.sider.header.dark",
                     )}
                 >
-                    <RenderToTitle collapsed={!drawerSiderVisible} />
+                    <RenderToTitle collapsed={siderCollapsed} />
                 </Box>
                 <VStack
                     alignItems="start"
-                    paddingTop={2}
+                    paddingY={2}
+                    height="100%"
                     flexGrow={1}
                     borderRight="1px"
                     borderRightColor={useColorModeValue("gray.200", "gray.700")}
@@ -369,7 +381,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         "refine.sider.bg.dark",
                     )}
                 >
-                    <Box width="full">{renderSider()}</Box>
+                    <Box width="full" overflow="auto">
+                        {renderSider()}
+                    </Box>
                 </VStack>
             </Box>
         </>

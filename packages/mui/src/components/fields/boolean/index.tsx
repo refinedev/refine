@@ -1,14 +1,15 @@
 import React from "react";
 
-import { Tooltip } from "@mui/material";
-import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
+import Tooltip from "@mui/material/Tooltip";
+import CheckOutlined from "@mui/icons-material/CheckOutlined";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import { BooleanFieldProps } from "../types";
 
 /**
  * This field is used to display boolean values. It uses the {@link https://mui.com/material-ui/react-tooltip/#main-content `<Tooltip>`} values from Materila UI.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/fields/boolean} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,

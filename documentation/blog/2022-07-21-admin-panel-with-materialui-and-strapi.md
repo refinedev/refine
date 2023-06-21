@@ -128,7 +128,7 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 
 ---
 
-<PromotionBanner title="Tired of looking for the best template for your B2B app" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 
@@ -382,14 +382,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Resource only List component" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Resource only List component" />
 <br/>
 
 
@@ -548,14 +541,7 @@ Try it on the browser and see if you can create new posts from scratch.
 <br />
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif" alt="Create record action" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif" alt="Create record action" />
 
 <br/>
 
@@ -886,14 +872,7 @@ export const PostList: React.FC = () => {
 
 Now we are able to delete record by clicking delete button and confirmation. 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif" alt="Create record action" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif" alt="Create record action" />
 
 <br/>
 <br/>
@@ -1007,14 +986,7 @@ The default timeout period setted to 5000ms. You can change it by setting `undoa
 <br/>
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif" alt="Create record action" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif" alt="Create record action" />
 
 <br/>
 

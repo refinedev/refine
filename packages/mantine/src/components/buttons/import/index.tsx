@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons";
 
@@ -8,10 +11,10 @@ import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ImportButtonProps } from "../types";
 
 /**
- * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
+ * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.
  * It uses uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/import-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     inputProps,
@@ -39,6 +42,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     component="span"
                     loading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
+                    className={RefineButtonClassNames.ImportButton}
                     {...commonProps}
                 >
                     <IconFileImport size={18} {...svgIconProps} />
@@ -50,6 +54,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     leftIcon={<IconFileImport size={18} {...svgIconProps} />}
                     loading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
+                    className={RefineButtonClassNames.ImportButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.import", "Import")}

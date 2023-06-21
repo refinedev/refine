@@ -8,7 +8,12 @@ import {
     useResource,
 } from "@refinedev/core";
 
-import { Breadcrumb, CreateButton, PageHeader } from "@components";
+import {
+    Breadcrumb,
+    CreateButton,
+    CreateButtonProps,
+    PageHeader,
+} from "@components";
 import { ListProps } from "../types";
 
 /**
@@ -21,7 +26,7 @@ export const List: React.FC<ListProps> = ({
     canCreate,
     title,
     children,
-    createButtonProps,
+    createButtonProps: createButtonPropsFromProps,
     resource: resourceFromProps,
     wrapperProps,
     contentProps,
@@ -40,23 +45,28 @@ export const List: React.FC<ListProps> = ({
 
     const isCreateButtonVisible =
         canCreate ??
-        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
+        ((resource?.canCreate ?? !!resource?.create) ||
+            createButtonPropsFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  size: "middle",
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
+
     const defaultExtra = isCreateButtonVisible ? (
-        <CreateButton
-            size="middle"
-            resource={
-                routerType === "legacy"
-                    ? resource?.route
-                    : resource?.identifier ?? resource?.name
-            }
-            {...createButtonProps}
-        />
+        <CreateButton {...createButtonProps} />
     ) : null;
 
     return (
@@ -82,6 +92,7 @@ export const List: React.FC<ListProps> = ({
                             {typeof headerButtons === "function"
                                 ? headerButtons({
                                       defaultButtons: defaultExtra,
+                                      createButtonProps,
                                   })
                                 : headerButtons}
                         </Space>

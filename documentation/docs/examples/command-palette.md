@@ -1,8 +1,8 @@
 ---
 id: command-palette
 title: Command Palette
-description: kbar integration for `command`/`crtrl`+`k` interface for your Refine App.
-example-tags: [command-palette,kbar]
+description: kbar integration for `command`/`crtrl`+`k` interface for your refine App.
+example-tags: [command-palette]
 ---
 
 [kbar](https://kbar.vercel.app/) is a fully extensible command+k interface for your site.

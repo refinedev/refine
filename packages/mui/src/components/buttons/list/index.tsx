@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useCan,
     useNavigation,
@@ -9,19 +9,24 @@ import {
     useRouterType,
     useLink,
     pickNotDeprecated,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { Button } from "@mui/material";
-import { ListOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import Button from "@mui/material/Button";
+import ListOutlined from "@mui/icons-material/ListOutlined";
 
 import { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
- * It uses the  {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/list-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/list-button} for more details.
  */
 export const ListButton: React.FC<ListButtonProps> = ({
     resource: resourceNameFromProps,
@@ -34,8 +39,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const { listUrl: generateListUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();
@@ -100,6 +112,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ListButton}
+                className={RefineButtonClassNames.ListButton}
                 {...restProps}
             >
                 {hideText ? (

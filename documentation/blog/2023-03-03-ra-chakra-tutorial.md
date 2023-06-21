@@ -158,15 +158,7 @@ npm run dev
 
 The refine application should be up and running after you run the command. To access it, go to http://localhost:3000.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fwelcome.jpeg"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fwelcome.jpeg"  alt="react admin tutorial" />
 
 <br />
 
@@ -492,15 +484,7 @@ const columns = React.useMemo<GridColumns<IPost>>(
     );
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fhandling-relationships.png"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fhandling-relationships.png"  alt="react admin tutorial" />
 
 <br />
 
@@ -769,21 +753,16 @@ function App() {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fviewing.png"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fviewing.png"  alt="react admin tutorial" />
 
 <br />
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
@@ -930,15 +909,7 @@ function App() {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fcreating-record-min.gif"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fcreating-record-min.gif"  alt="react admin tutorial" />
 
 <br />
 
@@ -1146,15 +1117,7 @@ function App() {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fediting-record-min.gif"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fediting-record-min.gif"  alt="react admin tutorial" />
 
 <br />
 
@@ -1218,15 +1181,7 @@ function App() {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fdeleting-post-record.png"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fdeleting-post-record.png"  alt="react admin tutorial" />
 
 <br />
 
@@ -1503,15 +1458,7 @@ We can also disable filtering for the `actions` column by setting the column's e
 },
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Ffiltering-min.gif"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Ffiltering-min.gif"  alt="react admin tutorial" />
 
 <br />
 
@@ -1544,15 +1491,7 @@ function App() {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fmutationmode-min.gif"  alt="react admin tutorial" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fmutationmode-min.gif"  alt="react admin tutorial" />
 
 <br />
 

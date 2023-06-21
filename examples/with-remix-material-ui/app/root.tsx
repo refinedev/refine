@@ -18,6 +18,7 @@ import routerProvider, {
 } from "@refinedev/remix-router";
 
 import { withEmotionCache } from "@emotion/react";
+// eslint-disable-next-line no-restricted-imports
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import { authProvider } from "~/authProvider";
@@ -27,7 +28,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
-    title: "Remix + Refine + MUI App",
+    title: "Remix + Refine + Material UI App",
     viewport: "width=device-width,initial-scale=1",
 });
 

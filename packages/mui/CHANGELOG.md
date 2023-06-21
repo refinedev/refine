@@ -1,5 +1,419 @@
 # @pankod/refine-mui
 
+## 5.3.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
+## 5.2.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
+## 5.1.0
+
+### Minor Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `@mui/x-data-grid` dependency to the latest version (`v6`). This update introduces some changes to the existing codebases which are addressed in Material UI's migration guide for `@mui/x-data-grid` from `v5` to `v6`. We've created a simple migration guide to navigate refine users through the changes that might be required in their codebases. While this guide does not cover all the changes, it will help you get started with the migration process.
+
+    **Breaking Changes**
+
+    `useDataGrid` no longer returns `page`, `pageSize`, `onPageChange` and `onPageSizeChange`. According to the changes in the `DataGrid` API, `useDataGrid` now returns `paginationModel` and `onPaginationModelChange` props which are used to control the pagination state of the `DataGrid` and contains the previous logic of `page`, `pageSize`, `onPageChange` and `onPageSizeChange`.
+
+    With this release, the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `@context` alias to the declaration configuration, this was causing buildtime errors when creating declarations for the package.
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added `overflow: auto` and `overflow: clip` (if supported) properties to the content container of the `ThemedLayoutV2` to make sure the `DataGrid` component doesn't break the layout.
+
+## 5.0.0
+
+### Major Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `@mui/x-data-grid` dependency to the latest version (`v6`). This update introduces some changes to the existing codebases which are addressed in Material UI's migration guide for `@mui/x-data-grid` from `v5` to `v6`. We've created a simple migration guide to navigate refine users through the changes that might be required in their codebases. While this guide does not cover all the changes, it will help you get started with the migration process.
+
+    **Breaking Changes**
+
+    `useDataGrid` no longer returns `page`, `pageSize`, `onPageChange` and `onPageSizeChange`. According to the changes in the `DataGrid` API, `useDataGrid` now returns `paginationModel` and `onPaginationModelChange` props which are used to control the pagination state of the `DataGrid` and contains the previous logic of `page`, `pageSize`, `onPageChange` and `onPageSizeChange`.
+
+    With this release, the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `@context` alias to the declaration configuration, this was causing buildtime errors when creating declarations for the package.
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added `overflow: auto` and `overflow: clip` (if supported) properties to the content container of the `ThemedLayoutV2` to make sure the `DataGrid` component doesn't break the layout.
+
+## 4.18.2
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
+## 4.18.1
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
+## 4.18.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/mui";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
+## 4.17.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/mui";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
+## 4.16.4
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
+## 4.16.3
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
+## 4.16.2
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
+## 4.16.1
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
+## 4.16.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/mui";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.16.0
+    -   @refinedev/react-hook-form@4.4.0
+
+## 4.15.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/mui";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.15.0
+    -   @refinedev/react-hook-form@4.3.0
+
+## 4.14.7
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+-   Updated dependencies [[`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec)]:
+    -   @refinedev/ui-types@1.14.0
+
+## 4.14.6
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+## 4.14.5
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
+## 4.14.4
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
+## 4.14.3
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
+## 4.14.2
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
+## 4.14.1
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
 ## 4.14.0
 
 ### Minor Changes
@@ -209,7 +623,7 @@
 
 ### Patch Changes
 
--   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for Material UI
 
 -   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
     -   @refinedev/react-hook-form@4.1.6
@@ -218,7 +632,7 @@
 
 ### Patch Changes
 
--   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for Material UI
 
 -   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
     -   @refinedev/react-hook-form@4.1.5
@@ -323,7 +737,7 @@
 
 ### Minor Changes
 
--   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Material UI components.
 
     ```tsx
     import { Refine } from "@refinedev/core";
@@ -400,7 +814,7 @@
 
 ### Minor Changes
 
--   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Material UI components.
 
     ```tsx
     import { Refine } from "@refinedev/core";

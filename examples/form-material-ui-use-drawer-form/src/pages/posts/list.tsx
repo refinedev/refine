@@ -1,8 +1,8 @@
-import React from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { HttpError, useMany } from "@refinedev/core";
-import { useDataGrid, List, EditButton } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { EditButton, List, useDataGrid } from "@refinedev/mui";
 import { useModalForm } from "@refinedev/react-hook-form";
+import React from "react";
 
 import { CreatePostDrawer, EditPostDrawer } from "components";
 import { ICategory, IPost } from "interfaces";
@@ -21,6 +21,7 @@ export const PostList: React.FC = () => {
 
     const createDrawerFormProps = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "create" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showCreateDrawer },
@@ -28,12 +29,13 @@ export const PostList: React.FC = () => {
 
     const editDrawerFormProps = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "edit" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showEditDrawer },
     } = editDrawerFormProps;
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",

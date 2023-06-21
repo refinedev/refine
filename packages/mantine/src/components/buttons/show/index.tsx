@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useCan,
     useNavigation,
@@ -7,8 +7,12 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    AccessControlContext,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconEye } from "@tabler/icons";
 
@@ -17,10 +21,10 @@ import { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
- * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when red sirecting the app to the show page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/show-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
     resource: resourceNameFromProps,
@@ -34,8 +38,15 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const { showUrl: generateShowUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();
@@ -106,6 +117,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
+                    className={RefineButtonClassNames.ShowButton}
                     {...commonProps}
                 >
                     <IconEye size={18} {...svgIconProps} />
@@ -117,6 +129,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     leftIcon={<IconEye size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
+                    className={RefineButtonClassNames.ShowButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.show", "Show")}

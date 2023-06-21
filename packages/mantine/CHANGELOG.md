@@ -1,5 +1,379 @@
 # @pankod/refine-mantine
 
+## 2.18.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
+## 2.17.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
+## 2.16.2
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
+## 2.16.1
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
+## 2.16.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/mantine";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
+## 2.15.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/mantine";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
+## 2.14.4
+
+### Patch Changes
+
+-   [#4391](https://github.com/refinedev/refine/pull/4391) [`5fcc36c0272`](https://github.com/refinedev/refine/commit/5fcc36c0272993897b7b074215a4228ca5bb53aa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: name attribute to input fields in `forgotPassword`, `register` and `updatePassword` forms
+
+## 2.14.3
+
+### Patch Changes
+
+-   [#4391](https://github.com/refinedev/refine/pull/4391) [`5fcc36c0272`](https://github.com/refinedev/refine/commit/5fcc36c0272993897b7b074215a4228ca5bb53aa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: name attribute to input fields in `forgotPassword`, `register` and `updatePassword` forms
+
+## 2.14.2
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
+## 2.14.1
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
+## 2.14.0
+
+### Minor Changes
+
+-   [#4306](https://github.com/refinedev/refine/pull/4306) [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `syncWithLocation.syncId` default to `true` for `useModalForm`.
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/mantine";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.16.0
+
+## 2.13.0
+
+### Minor Changes
+
+-   [#4306](https://github.com/refinedev/refine/pull/4306) [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `syncWithLocation.syncId` default to `true` for `useModalForm`.
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/mantine";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.15.0
+
+## 2.12.9
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+-   Updated dependencies [[`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec)]:
+    -   @refinedev/ui-types@1.14.0
+
+## 2.12.8
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+## 2.12.7
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+## 2.12.6
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+## 2.12.5
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+## 2.12.4
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
+## 2.12.3
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
 ## 2.12.2
 
 ### Patch Changes

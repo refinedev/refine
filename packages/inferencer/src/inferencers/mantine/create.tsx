@@ -1,29 +1,36 @@
-import * as RefineMantine from "@refinedev/mantine";
-import * as MantineCore from "@mantine/core";
+import { Create, useForm, useSelect } from "@refinedev/mantine";
+import {
+    MultiSelect,
+    Select,
+    TextInput,
+    Checkbox,
+    Textarea,
+    NumberInput,
+} from "@mantine/core";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     printImports,
     isIDKey,
     getOptionLabel,
     dotAccessor,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for create page in Mantine
@@ -34,6 +41,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -42,10 +50,15 @@ export const renderer = ({
     const imports: Array<
         [element: string, module: string, isDefaultImport?: boolean]
     > = [
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["Create", "@refinedev/mantine"],
         ["useForm", "@refinedev/mantine"],
     ];
     let initialValues: Record<string, any> = {};
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -98,9 +111,11 @@ export const renderer = ({
                 imports.push(["MultiSelect", "@mantine/core"]);
 
                 return jsx`
-                    <MultiSelect mt="sm" label="${prettyString(
-                        field.key,
-                    )}" {...getInputProps("${dotAccessor(
+                    <MultiSelect mt="sm" label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })} {...getInputProps("${dotAccessor(
                     field.key,
                     undefined,
                 )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
@@ -110,9 +125,11 @@ export const renderer = ({
             imports.push(["Select", "@mantine/core"]);
 
             return jsx`
-                <Select mt="sm" label="${prettyString(
-                    field.key,
-                )}" {...getInputProps("${dotAccessor(
+                <Select mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -145,9 +162,11 @@ export const renderer = ({
             }
 
             return jsx`
-                <TextInput mt="sm" label="${prettyString(
-                    field.key,
-                )}" {...getInputProps("${dotAccessor(
+                <TextInput mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -185,9 +204,11 @@ export const renderer = ({
             }
 
             return jsx`
-                <Checkbox mt="sm" label="${prettyString(
-                    field.key,
-                )}" {...getInputProps("${dotAccessor(
+                <Checkbox mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -228,9 +249,11 @@ export const renderer = ({
             }
 
             return jsx`
-                <Textarea mt="sm" label="${prettyString(
-                    field.key,
-                )}" autosize {...getInputProps("${dotAccessor(
+                <Textarea mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} autosize {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -259,9 +282,11 @@ export const renderer = ({
             }
 
             return jsx`
-                <NumberInput mt="sm" label="${prettyString(
-                    field.key,
-                )}" {...getInputProps("${dotAccessor(
+                <NumberInput mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -305,11 +330,13 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { formLoading } } = useForm({
             initialValues: ${JSON.stringify(initialValues)},
             ${
@@ -328,13 +355,11 @@ export const renderer = ({
                           meta,
                           "getOne",
                       )
-                    ? `{
-                      refineCoreProps: { ${getMetaProps(
+                    ? `refineCoreProps: { ${getMetaProps(
                           resource.identifier ?? resource.name,
                           meta,
                           "getOne",
-                      )} }
-                      }`
+                      )} }`
                     : ""
             }
         });
@@ -356,8 +381,12 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@refinedev/mantine", "RefineMantine", RefineMantine],
-        ["@mantine/core", "MantineCore", MantineCore],
+        ["@refinedev/mantine", "RefineMantine", { Create, useForm, useSelect }],
+        [
+            "@mantine/core",
+            "MantineCore",
+            { MultiSelect, Select, TextInput, Checkbox, Textarea, NumberInput },
+        ],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

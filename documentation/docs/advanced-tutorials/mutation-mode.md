@@ -3,7 +3,6 @@ id: mutation-mode
 title: Mutation Mode
 ---
 
-
 ## Overview
 
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`.  
@@ -19,14 +18,7 @@ The mutation runs immediately. Redirection and UI updates are executed after the
 
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/pessimistic.gif" alt="pessimistic mode" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/pessimistic.gif" alt="pessimistic mode" />
 
 <br />
 
@@ -40,14 +32,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/optimistic.gif" alt="optimistic mode" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/optimistic.gif" alt="optimistic mode" />
 
 <br />
 
@@ -61,14 +46,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/undoable.gif" alt="undoable mode" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/undoable.gif" alt="undoable mode" />
 
 <br />
 
@@ -118,4 +96,37 @@ mutate({
 
 ## Example
 
-<CodeSandboxExample path="mutation-mode" />
+<Tabs
+defaultValue="antd"
+values={[
+{label: 'Antd Design', value: 'antd'},
+{label: 'Chakra UI', value: 'chakra-ui'},
+{label: 'Mantine', value: 'mantine'},
+{label: 'Material UI', value: 'material-ui'}
+]}>
+
+<TabItem value="antd">
+
+<CodeSandboxExample path="form-antd-mutation-mode" />
+
+</TabItem>
+
+<TabItem value="chakra-ui">
+
+<CodeSandboxExample path="form-chakra-ui-mutation-mode" />
+
+</TabItem>
+
+<TabItem value="mantine">
+
+<CodeSandboxExample path="form-mantine-mutation-mode" />
+
+</TabItem>
+
+<TabItem value="material-ui">
+
+<CodeSandboxExample path="form-material-ui-mutation-mode" />
+
+</TabItem>
+
+</Tabs>

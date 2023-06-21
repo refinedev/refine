@@ -91,16 +91,7 @@ After that, navigate to `http://localhost:3000`, and lo and behold! we have a **
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-05-refine-pixels-2/welcome.png
-"  alt="react crud app welcome" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-05-refine-pixels-2/welcome.png"  alt="react crud app welcome" />
 
 <br />
 

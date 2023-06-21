@@ -45,7 +45,7 @@ Steps we'll cover:
 
 refine's can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
 
-It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, MUI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
+It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, Material UI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
 
 
 ## What is Airtable?
@@ -57,15 +57,7 @@ To use Airtable, we will have to sign up for Airtable. To sign up, visit [here](
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/signup.jpeg"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/signup.jpeg"  alt="react crud app airtable" />
 
 <br />
 <br />
@@ -74,15 +66,7 @@ After signup, you will be redirected to the dashboard from where you can create 
 
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_base.jpeg"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_base.jpeg"  alt="react crud app airtable" />
 
 <br />
 
@@ -93,15 +77,7 @@ To create a base, click **Add a base**. On creating a base, we will create a tab
 
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_table.jpeg"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_table.jpeg"  alt="react crud app airtable" />
 
 <br />
 <br />
@@ -110,15 +86,7 @@ We will create a table called **categories** which will hold the categories' dat
 
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_categories.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_categories.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -142,15 +110,12 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 
 
 
-<div class="img-container">
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/refine_cli.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/refine_cli.png"  alt="react crud app airtable" />
 
 <br />
 
 
-refine is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, MUI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
+refine is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, Material UI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
 
 On selecting these options, the CLI will bootstrap a refine application with the Airtable provider.
 
@@ -163,15 +128,7 @@ npm run dev
 After Running the command, the Refine application should be up and running. Visit http://localhost:3000 to access it.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -297,15 +254,7 @@ export default App;
 
 Preview of the posts route in the refine application
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/page_no_exist.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/page_no_exist.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -478,7 +427,10 @@ We also use the [`useNavigation()`](https://refine.dev/docs/api-references/hooks
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
@@ -653,15 +605,7 @@ export default App;
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/handling-relationships.jpeg"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/handling-relationships.jpeg"  alt="react crud app airtable" />
 
 <br />
 
@@ -828,15 +772,7 @@ export const PostList: React.FC = () => {
 ```
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/view_single_post.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/view_single_post.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -1074,15 +1010,7 @@ export default App;
 ```
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create.gif"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create.gif"  alt="react crud app airtable" />
 
 <br />
 
@@ -1330,15 +1258,7 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/edit.gif"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/edit.gif"  alt="react crud app airtable" />
 
 <br />
 
@@ -1398,15 +1318,7 @@ export const PostList: React.FC = () => {
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.gif"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.gif"  alt="react crud app airtable" />
 
 <br />
 

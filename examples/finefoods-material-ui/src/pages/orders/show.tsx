@@ -1,4 +1,5 @@
-import React from "react";
+import { useTheme } from "@mui/material/styles";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import {
     IResourceComponentsProps,
     useNavigation,
@@ -7,38 +8,35 @@ import {
     useUpdate,
 } from "@refinedev/core";
 import { List } from "@refinedev/mui";
-import { useTheme } from "@mui/material/styles";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import React from "react";
 
-import {
-    Avatar,
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    IconButton,
-    Stack,
-    Step,
-    StepLabel,
-    Stepper,
-    Typography,
-    Paper,
-    useMediaQuery,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import dayjs from "dayjs";
 
-import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-import MopedIcon from "@mui/icons-material/Moped";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import MopedIcon from "@mui/icons-material/Moped";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 
 import { CourierInfoBox, Map, MapMarker } from "components";
 
-import { IEvent, IOrder, IProduct } from "interfaces";
 import { useOrderCustomKbarActions } from "hooks";
+import { IEvent, IOrder, IProduct } from "interfaces";
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -58,7 +56,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
     const isSmallOrLess = useMediaQuery(theme.breakpoints.down("sm"));
 
-    const columns = React.useMemo<GridColumns<IProduct>>(
+    const columns = React.useMemo<GridColDef<IProduct>[]>(
         () => [
             {
                 field: "name",

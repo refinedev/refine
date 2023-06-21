@@ -48,6 +48,9 @@ export default function App(): JSX.Element {
                                 create: "/posts/create",
                                 edit: "/posts/edit/:id",
                                 show: "/posts/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
                         ]}
                         options={{

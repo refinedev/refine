@@ -1,27 +1,38 @@
-import * as RefineChakraUI from "@refinedev/chakra-ui";
-import * as ChakraUI from "@chakra-ui/react";
+import {
+    Show,
+    TagField,
+    TextField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/chakra-ui";
+import { Heading, HStack, Image } from "@chakra-ui/react";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+    idQuoteWrapper,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for show page in Chakra UI
@@ -33,6 +44,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -41,9 +53,14 @@ export const renderer = ({
     const recordName = "record";
     const imports: Array<[element: string, module: string]> = [
         ["useShow", "@refinedev/core"],
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["Show", "@refinedev/chakra-ui"],
         ["Heading", "@chakra-ui/react"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -129,9 +146,12 @@ export const renderer = ({
                     ["HStack", "@chakra-ui/react"],
                 );
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                     <>
                     ${(() => {
@@ -180,9 +200,12 @@ export const renderer = ({
                 // `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 {${variableIsLoading} ? <>Loading...</> : (
                     <>
                     ${(() => {
@@ -225,9 +248,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <HStack spacing="12px">
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -236,9 +262,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <TextField value={${accessor(
                     recordName,
                     field.key,
@@ -255,18 +284,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <Image sx={{ maxWidth: 200 }} src={${accessor(
                     recordName,
                     field.key,
@@ -288,9 +323,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <HStack spacing="12px">
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -299,9 +337,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <EmailField value={${accessor(
                     recordName,
                     field.key,
@@ -323,9 +364,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <HStack spacing="12px">
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -334,9 +378,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <UrlField value={${accessor(
                     recordName,
                     field.key,
@@ -358,9 +405,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <HStack spacing="12px">
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -369,9 +419,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <BooleanField value={${accessor(
                     recordName,
                     field.key,
@@ -389,18 +442,24 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <DateField value={${val}} key={${val}} />
                 ))}
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <DateField value={${accessor(
                     recordName,
                     field.key,
@@ -416,9 +475,12 @@ export const renderer = ({
         if (field.type === "richtext") {
             imports.push(["MarkdownField", "@refinedev/chakra-ui"]);
             return jsx`
-                <Heading as="h5" size="sm" mt={4}>${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <MarkdownField value={${accessor(
                     recordName,
                     field.key,
@@ -441,9 +503,12 @@ export const renderer = ({
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <HStack spacing="12px">
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -452,9 +517,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Heading as="h5" size="sm" mt={4} >${prettyString(
-                    field.key,
-                )}</Heading>
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
                 <NumberField value={${accessor(
                     recordName,
                     field.key,
@@ -501,16 +569,18 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { queryResult } = useShow(${
             isCustomPage
                 ? `{ 
                     resource: "${resource.name}", 
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
                         meta,
@@ -550,8 +620,22 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/chakra-ui", "RefineChakraUI", RefineChakraUI],
-        ["@chakra-ui/react", "ChakraUI", ChakraUI],
+        [
+            "@refinedev/chakra-ui",
+            "RefineChakraUI",
+            {
+                Show,
+                TagField,
+                TextField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["@chakra-ui/react", "ChakraUI", { Heading, HStack, Image }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

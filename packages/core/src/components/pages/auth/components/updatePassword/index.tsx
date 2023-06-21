@@ -56,13 +56,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label>
+                    <label htmlFor="password-input">
                         {translate(
                             "pages.updatePassword.fields.password",
                             "New Password",
                         )}
                     </label>
                     <input
+                        id="password-input"
                         name="password"
                         type="password"
                         required
@@ -70,13 +71,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
-                    <label>
+                    <label htmlFor="confirm-password-input">
                         {translate(
                             "pages.updatePassword.fields.confirmPassword",
                             "Confirm New Password",
                         )}
                     </label>
                     <input
+                        id="confirm-password-input"
                         name="confirmPassword"
                         type="password"
                         required

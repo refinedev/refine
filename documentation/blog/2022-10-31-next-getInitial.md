@@ -185,7 +185,10 @@ You can learn more about configuration options for the HTTP header field `Cache-
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
@@ -201,15 +204,7 @@ The GIF below shows how `getInitialProps` behaves when it's used to fetch data f
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getInitProp.gif"  alt="getinitialprops" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getInitProp.gif"  alt="getinitialprops" />
 
 <br />
 
@@ -269,15 +264,7 @@ However, when we make client-side navigation to the home page `localhost:3000` u
 The GIF below shows the same example from the previous section using `getServerSideProps` to fetch a list of users from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API for server-side rendering.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getServerProp.gif"  alt="getserversideprops" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getServerProp.gif"  alt="getserversideprops" />
 
 <br />
 

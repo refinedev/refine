@@ -5,8 +5,9 @@ import {
     FormLabel,
     Input,
     Select,
+    Textarea,
 } from "@chakra-ui/react";
-import { useSelect } from "@refinedev/core";
+import { HttpError, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { IPost } from "../../interfaces";
@@ -17,7 +18,7 @@ export const PostCreate = () => {
         saveButtonProps,
         register,
         formState: { errors },
-    } = useForm<IPost>();
+    } = useForm<IPost, HttpError, IPost>();
 
     const { options } = useSelect({
         resource: "categories",
@@ -39,7 +40,7 @@ export const PostCreate = () => {
             <FormControl mb="3" isInvalid={!!errors?.status}>
                 <FormLabel>Status</FormLabel>
                 <Select
-                    id="content"
+                    id="status"
                     placeholder="Select Post Status"
                     {...register("status", {
                         required: "Status is required",
@@ -53,12 +54,12 @@ export const PostCreate = () => {
                     {`${errors.status?.message}`}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+            <FormControl mb="3" isInvalid={!!errors?.category?.id}>
                 <FormLabel>Category</FormLabel>
                 <Select
                     id="categoryId"
                     placeholder="Select Category"
-                    {...register("categoryId", {
+                    {...register("category.id", {
                         required: "Category is required",
                     })}
                 >
@@ -69,7 +70,19 @@ export const PostCreate = () => {
                     ))}
                 </Select>
                 <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
+                    {`${errors.category?.id?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.content}>
+                <FormLabel>Content</FormLabel>
+                <Textarea
+                    id="content"
+                    {...register("content", {
+                        required: "content is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {`${errors.content?.message}`}
                 </FormErrorMessage>
             </FormControl>
         </Create>

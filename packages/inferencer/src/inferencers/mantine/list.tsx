@@ -1,30 +1,41 @@
-import * as RefineMantine from "@refinedev/mantine";
-import * as RefineReactTable from "@refinedev/react-table";
-import * as MantineCore from "@mantine/core";
-import * as TanstackReactTable from "@tanstack/react-table";
+import {
+    List,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+    TagField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+} from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ScrollArea, Table, Pagination, Group, Image } from "@mantine/core";
+import { flexRender } from "@tanstack/react-table";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     dotAccessor,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 const getAccessorKey = (field: InferField) => {
     return Array.isArray(field.accessor) || field.multiple
@@ -43,6 +54,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -63,6 +75,10 @@ export const renderer = ({
         ["ShowButton", "@refinedev/mantine"],
         ["DeleteButton", "@refinedev/mantine"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -132,7 +148,12 @@ export const renderer = ({
             }
 
             const id = `id: "${field.key}"`;
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
             const accessorKey = getAccessorKey(field);
 
             let cell = "";
@@ -229,7 +250,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -291,7 +317,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -342,7 +373,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -393,7 +429,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -443,7 +484,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -492,7 +538,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -539,7 +590,12 @@ export const renderer = ({
         if (field && (field.type === "text" || field.type === "number")) {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = "";
 
@@ -592,7 +648,14 @@ export const renderer = ({
         return undefined;
     };
 
-    const { canEdit, canShow, canDelete } = resource ?? {};
+    const {
+        canEdit,
+        canShow,
+        canDelete: canDeleteProp,
+        meta: resourceMeta,
+    } = resource ?? {};
+
+    const canDelete = canDeleteProp || resourceMeta?.canDelete;
 
     if (canEdit) {
         imports.push(["EditButton", "@refinedev/mantine"]);
@@ -604,13 +667,14 @@ export const renderer = ({
         imports.push(["DeleteButton", "@refinedev/mantine"]);
     }
 
+    const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
     const actionButtons =
         canEdit || canShow || canDelete
             ? jsx`
     {
         id: "actions",
         accessorKey: "id",
-        header: "Actions",
+        header: ${actionColumnTitle},
         cell: function render({ getValue }) {
             return (
                 <Group spacing="xs" noWrap>
@@ -674,15 +738,17 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     import React from "react";
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
-        ], []);
+        ], [${i18n ? "translate" : ""}]);
 
         const {
             getHeaderGroups,
@@ -795,10 +861,29 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/mantine", "RefineMantine", RefineMantine],
-        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
-        ["@mantine/core", "MantineCore", MantineCore],
-        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
+        [
+            "@refinedev/mantine",
+            "RefineMantine",
+            {
+                List,
+                EditButton,
+                ShowButton,
+                DeleteButton,
+                TagField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+            },
+        ],
+        ["@refinedev/react-table", "RefineReactTable", { useTable }],
+        [
+            "@mantine/core",
+            "MantineCore",
+            { ScrollArea, Table, Pagination, Group, Image },
+        ],
+        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

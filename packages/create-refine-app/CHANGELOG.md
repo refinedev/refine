@@ -1,5 +1,55 @@
 # create-refine-app
 
+## 1.11.0
+
+### Minor Changes
+
+-   [#4518](https://github.com/refinedev/refine/pull/4518) [`d93747281f7`](https://github.com/refinedev/refine/commit/d93747281f76c7a7c90c0278033447d352ca44f3) Thanks [@aliemir](https://github.com/aliemir)! - Updated `superplate-cli` version and updated `superplate` runner command with environment variables.
+
+## 1.10.0
+
+### Minor Changes
+
+-   [#4518](https://github.com/refinedev/refine/pull/4518) [`d93747281f7`](https://github.com/refinedev/refine/commit/d93747281f76c7a7c90c0278033447d352ca44f3) Thanks [@aliemir](https://github.com/aliemir)! - Updated `superplate-cli` version and updated `superplate` runner command with environment variables.
+
+## 1.9.0
+
+### Minor Changes
+
+-   [#4438](https://github.com/refinedev/refine/pull/4438) [`cd5a8bfa27b`](https://github.com/refinedev/refine/commit/cd5a8bfa27b36bf0c0f41b41e515e18028c03615) Thanks [@aliemir](https://github.com/aliemir)! - Ability to disable telemetry through `--disable-telemetry` flag
+
+## 1.8.0
+
+### Minor Changes
+
+-   [#4438](https://github.com/refinedev/refine/pull/4438) [`cd5a8bfa27b`](https://github.com/refinedev/refine/commit/cd5a8bfa27b36bf0c0f41b41e515e18028c03615) Thanks [@aliemir](https://github.com/aliemir)! - Ability to disable telemetry through `--disable-telemetry` flag
+
+## 1.7.3
+
+### Patch Changes
+
+-   [#4372](https://github.com/refinedev/refine/pull/4372) [`9f33a3a6c12`](https://github.com/refinedev/refine/commit/9f33a3a6c12d6fe44c9b55859dc995823e9d2a0c) Thanks [@aliemir](https://github.com/aliemir)! - Bumped version of `superplate-cli` to latest version.
+
+## 1.7.2
+
+### Patch Changes
+
+-   [#4372](https://github.com/refinedev/refine/pull/4372) [`9f33a3a6c12`](https://github.com/refinedev/refine/commit/9f33a3a6c12d6fe44c9b55859dc995823e9d2a0c) Thanks [@aliemir](https://github.com/aliemir)! - Bumped version of `superplate-cli` to latest version.
+
+## 1.7.0
+
+### Minor Changes
+
+-   [#4270](https://github.com/refinedev/refine/pull/4270) [`92c9dd7187d`](https://github.com/refinedev/refine/commit/92c9dd7187d977ca520f933b950228b765a99ec3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added Vite support.
+    Now with Vite support, you can create your app with Vite.
+
+## 1.6.0
+
+### Minor Changes
+
+-   [#4270](https://github.com/refinedev/refine/pull/4270) [`92c9dd7187d`](https://github.com/refinedev/refine/commit/92c9dd7187d977ca520f933b950228b765a99ec3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added Vite support.
+    Now with Vite support, you can create your app with Vite.
+
 ## 1.5.10
 
 ### Patch Changes

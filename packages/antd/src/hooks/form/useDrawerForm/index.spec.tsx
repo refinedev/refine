@@ -132,10 +132,12 @@ describe("useDrawerForm Hook", () => {
 
         await act(async () => {
             result.current.show();
-            result.current.saveButtonProps.onClick?.({} as any);
+            result.current.formProps.onFinish?.({});
         });
 
-        expect(result.current.drawerProps.open).toBe(false);
+        await waitFor(() =>
+            expect(result.current.drawerProps.open).toBe(false),
+        );
     });
 
     it("when 'autoSubmitClose' is false, 'close' should not be called when 'submit' is called", async () => {
@@ -218,7 +220,7 @@ describe("useDrawerForm Hook", () => {
 
         await act(async () => {
             result.current.show();
-            result.current.saveButtonProps.onClick?.({} as any);
+            result.current.formProps.onFinish?.({});
             jest.runAllTimers();
         });
 
@@ -231,4 +233,40 @@ describe("useDrawerForm Hook", () => {
         expect(updateMock).toBeCalledTimes(1);
         expect(result.current.drawerProps.open).toBe(false);
     });
+
+    it.each(["optimistic", "undoable"] as const)(
+        "when mutationMode is '%s', the form should be closed when the mutation is successful",
+        async (mutationMode) => {
+            jest.useFakeTimers();
+            const updateMock = jest.fn(
+                () => new Promise((resolve) => setTimeout(resolve, 1000)),
+            );
+
+            const { result } = renderHook(
+                () =>
+                    useDrawerForm({
+                        action: "edit",
+                        resource: "posts",
+                        id: 1,
+                        mutationMode,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer,
+                            update: updateMock,
+                        },
+                    }),
+                },
+            );
+
+            await act(async () => {
+                result.current.show();
+                result.current.formProps.onFinish?.({});
+                jest.runAllTimers();
+            });
+
+            expect(result.current.drawerProps.open).toBe(false);
+        },
+    );
 });

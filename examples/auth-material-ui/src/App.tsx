@@ -12,18 +12,17 @@ import {
     RefineSnackbarProvider,
     AuthPage,
 } from "@refinedev/mui";
-import {
-    CssBaseline,
-    GlobalStyles,
-    FormControlLabel,
-    Checkbox,
-} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
@@ -31,6 +30,14 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
+
+/**
+ *  mock auth credentials to simulate authentication
+ */
+const authCredentials = {
+    email: "demo@refine.dev",
+    password: "demodemo",
+};
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
@@ -51,7 +58,7 @@ const App: React.FC = () => {
                 };
             }
 
-            if (email) {
+            if (email === authCredentials.email) {
                 localStorage.setItem("email", email);
                 return {
                     success: true,
@@ -68,7 +75,7 @@ const App: React.FC = () => {
             };
         },
         register: async (params) => {
-            if (params.email && params.password) {
+            if (params.email === authCredentials.email && params.password) {
                 localStorage.setItem("email", params.email);
                 return {
                     success: true,
@@ -84,7 +91,7 @@ const App: React.FC = () => {
             };
         },
         updatePassword: async (params) => {
-            if (params.newPassword) {
+            if (params.password === authCredentials.password) {
                 //we can update password here
                 return {
                     success: true,
@@ -99,7 +106,7 @@ const App: React.FC = () => {
             };
         },
         forgotPassword: async (params) => {
-            if (params.email) {
+            if (params.email === authCredentials.email) {
                 //we can send email with reset password link here
                 return {
                     success: true,
@@ -246,6 +253,11 @@ const App: React.FC = () => {
                                         <AuthPage
                                             type="login"
                                             rememberMe={<RememeberMe />}
+                                            formProps={{
+                                                defaultValues: {
+                                                    ...authCredentials,
+                                                },
+                                            }}
                                             providers={[
                                                 {
                                                     name: "google",
@@ -278,11 +290,6 @@ const App: React.FC = () => {
                                     element={
                                         <AuthPage
                                             type="register"
-                                            formProps={{
-                                                defaultValues: {
-                                                    email: "test@example.com",
-                                                },
-                                            }}
                                             providers={[
                                                 {
                                                     name: "google",
@@ -333,6 +340,7 @@ const App: React.FC = () => {
                             </Route>
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

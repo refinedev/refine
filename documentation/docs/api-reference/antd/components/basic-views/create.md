@@ -627,7 +627,9 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the header.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -652,6 +654,56 @@ const PostCreate: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/create"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <CreateButton />
+                    </div>
+                ),
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] component.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+// visible-block-start
+import { Create, SaveButton } from "@refinedev/antd";
+
+const PostCreate: React.FC = () => {
+    return (
+        <Create
+            // highlight-start
+            footerButtons={({ saveButtonProps }) => (
+                <>
+                    <SaveButton
+                        {...saveButtonProps}
+                        type="primary"
+                        style={{ marginRight: 8 }}
+                    >
+                        Save
+                    </SaveButton>
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Create>
+    );
+};
+
 // visible-block-end
 
 render(
@@ -734,3 +786,4 @@ render(
 <PropsTable module="@refinedev/antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
 
 [breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
+[save-button]: /docs/api-reference/antd/components/buttons/save-button/

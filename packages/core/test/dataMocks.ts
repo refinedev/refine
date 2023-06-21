@@ -8,6 +8,8 @@ import {
     RouterBindings,
     ParsedParams,
     IResourceItem,
+    LegacyAuthProvider,
+    AuthBindings,
 } from "../src/interfaces";
 
 export const posts = [
@@ -41,6 +43,11 @@ export const posts = [
     },
 ];
 
+export const categories = [
+    { id: 1, name: "refine" },
+    { id: 2, name: "react" },
+];
+
 const MockDataProvider = () => {
     return {
         default: {
@@ -55,6 +62,19 @@ const MockDataProvider = () => {
             updateMany: () => Promise.resolve({ data: [] }),
             getApiUrl: () => "https://api.fake-rest.refine.dev",
             custom: () => Promise.resolve({ data: [...posts] }),
+        },
+        categories: {
+            create: () => Promise.resolve({ data: categories[0] }),
+            createMany: () => Promise.resolve({ data: categories }),
+            deleteOne: () => Promise.resolve({ data: categories[0] }),
+            deleteMany: () => Promise.resolve({ data: [] }),
+            getList: () => Promise.resolve({ data: categories, total: 2 }),
+            getMany: () => Promise.resolve({ data: [...categories] }),
+            getOne: () => Promise.resolve({ data: categories[0] }),
+            update: () => Promise.resolve({ data: categories[0] }),
+            updateMany: () => Promise.resolve({ data: [] }),
+            getApiUrl: () => "https://categories.api.fake-rest.refine.dev",
+            custom: () => Promise.resolve({ data: [...categories] }),
         },
     };
 };
@@ -133,4 +153,22 @@ export const mockLegacyRouterProvider = () => {
     };
 
     return provider;
+};
+
+export const mockLegacyAuthProvider: LegacyAuthProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve(["admin"]),
+    getUserIdentity: () =>
+        Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
+};
+
+export const mockAuthProvider: AuthBindings = {
+    login: async () => ({ success: true }),
+    logout: async () => ({ success: true }),
+    onError: async () => ({}),
+    check: async () => ({ authenticated: true }),
+    getIdentity: async () => ({ name: "John Doe", avatar: "localhost:3000" }),
 };

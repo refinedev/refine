@@ -1,33 +1,43 @@
-import * as RefineMui from "@refinedev/mui";
-import * as EmotionReact from "@emotion/react";
-import * as EmotionStyled from "@emotion/styled";
-import * as MuiLab from "@mui/lab";
-import * as MuiMaterial from "@mui/material";
-import * as MuiXDataGrid from "@mui/x-data-grid";
-
-import { createInferencer } from "@/create-inferencer";
 import {
-    jsx,
-    componentName,
-    prettyString,
-    accessor,
-    printImports,
-    isIDKey,
-    noOp,
-    getVariableName,
-} from "@/utilities";
+    DateField,
+    DeleteButton,
+    EditButton,
+    EmailField,
+    List,
+    MarkdownField,
+    SaveButton,
+    ShowButton,
+    TagField,
+    UrlField,
+    useDataGrid,
+} from "@refinedev/mui";
 
+import Checkbox from "@mui/material/Checkbox";
+import { DataGrid } from "@mui/x-data-grid";
+
+import { createInferencer } from "../../create-inferencer";
+import {
+    accessor,
+    componentName,
+    getMetaProps,
+    getVariableName,
+    isIDKey,
+    jsx,
+    noOp,
+    printImports,
+    translatePrettyString,
+} from "../../utilities";
+
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
+    ImportElement,
     InferencerResultComponent,
     InferField,
-    ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for list page in Material UI
@@ -38,6 +48,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -48,12 +59,17 @@ export const renderer = ({
         ["React", "react", true],
         ["useDataGrid", "@refinedev/mui"],
         ["DataGrid", "@mui/x-data-grid"],
-        ["GridColumns", "@mui/x-data-grid"],
+        ["GridColDef", "@mui/x-data-grid"],
         ["EditButton", "@refinedev/mui"],
         ["ShowButton", "@refinedev/mui"],
         ["DeleteButton", "@refinedev/mui"],
         ["List", "@refinedev/mui"],
+        ["IResourceComponentsProps", "@refinedev/core"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -140,7 +156,12 @@ export const renderer = ({
         },`
                     : "";
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let renderCell = "";
 
@@ -217,7 +238,12 @@ export const renderer = ({
         if (field.type === "image") {
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -279,7 +305,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -343,7 +374,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -407,7 +443,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -469,7 +510,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -526,7 +572,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -582,7 +633,12 @@ export const renderer = ({
         if (field && (field.type === "text" || field.type === "number")) {
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -649,7 +705,14 @@ export const renderer = ({
         return undefined;
     };
 
-    const { canEdit, canShow, canDelete } = resource ?? {};
+    const {
+        canEdit,
+        canShow,
+        canDelete: canDeleteProp,
+        meta: resourceMeta,
+    } = resource ?? {};
+
+    const canDelete = canDeleteProp || resourceMeta?.canDelete;
 
     if (canEdit) {
         imports.push(["EditButton", "@refinedev/mui"]);
@@ -661,12 +724,13 @@ export const renderer = ({
         imports.push(["DeleteButton", "@refinedev/mui"]);
     }
 
+    const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
     const actionButtons =
         canEdit || canShow || canDelete
             ? jsx`
             {
                 field: "actions",
-                headerName: "Actions",
+                headerName: ${actionColumnTitle},
                 sortable: false,
                 renderCell: function render({ row }) {
                     return (
@@ -721,11 +785,13 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { dataGridProps } = useDataGrid(
             ${
                 isCustomPage
@@ -752,9 +818,9 @@ export const renderer = ({
     
         ${relationHooksCode}
 
-        const columns = React.useMemo<GridColumns<any>>(() => [
+        const columns = React.useMemo<GridColDef[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",\r\n")}
-        ], [${relationVariableNames.join(",")}]);
+        ], [${i18n ? "translate, " : ""}${relationVariableNames.join(",")}]);
 
         return (
             <List>
@@ -771,12 +837,25 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/mui", "RefineMui", RefineMui],
-        ["@emotion/react", "EmotionReact", EmotionReact],
-        ["@emotion/styled", "EmotionStyled", EmotionStyled],
-        ["@mui/lab", "MuiLab", MuiLab],
-        ["@mui/material", "MuiMaterial", MuiMaterial],
-        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+        [
+            "@refinedev/mui",
+            "RefineMui",
+            {
+                useDataGrid,
+                EditButton,
+                SaveButton,
+                DeleteButton,
+                List,
+                TagField,
+                EmailField,
+                UrlField,
+                DateField,
+                MarkdownField,
+                ShowButton,
+            },
+        ],
+        ["@mui/x-data-grid", "MuiXDataGrid", { DataGrid }],
+        ["@mui/material", "MuiMaterial", { Checkbox }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

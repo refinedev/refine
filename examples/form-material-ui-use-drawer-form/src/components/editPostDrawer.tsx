@@ -1,15 +1,13 @@
 import { HttpError } from "@refinedev/core";
 import { Edit, useAutocomplete } from "@refinedev/mui";
-import {
-    Autocomplete,
-    Box,
-    Drawer,
-    IconButton,
-    TextField,
-} from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { CloseOutlined } from "@mui/icons-material";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import { IPost } from "interfaces";
 
@@ -55,6 +53,7 @@ export const EditPostDrawer: React.FC<
                     sx={{ display: "flex", flexDirection: "column" }}
                 >
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -74,6 +73,7 @@ export const EditPostDrawer: React.FC<
                         defaultValue={null as any}
                         render={({ field }) => (
                             <Autocomplete
+                                id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
                                 onChange={(_, value) => {
@@ -101,6 +101,7 @@ export const EditPostDrawer: React.FC<
                         defaultValue={null as any}
                         render={({ field }) => (
                             <Autocomplete
+                                id="category"
                                 {...autocompleteProps}
                                 {...field}
                                 onChange={(_, value) => {
@@ -134,6 +135,7 @@ export const EditPostDrawer: React.FC<
                         )}
                     />
                     <TextField
+                        id="content"
                         {...register("content", {
                             required: "This field is required",
                         })}

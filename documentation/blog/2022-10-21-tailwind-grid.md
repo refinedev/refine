@@ -129,15 +129,7 @@ Let's add three explicit columns:
 Now, we have all the `div`s flowed into 3 columns according to Grid Formatting Context:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-1.png"  alt="tailwind grid 1" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-1.png"  alt="tailwind grid 1" />
 
 <br />
 
@@ -156,15 +148,7 @@ Now we have a gap between the children `div`s:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-3.png"  alt="tailwind grid 2" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-3.png"  alt="tailwind grid 2" />
 
 <br />
 
@@ -180,15 +164,7 @@ We can add columns at larger breakpoints:
 Here, we're using Tailwind's default breakpoints at `md:	768px` and `lg:	1024px`. We can see the number of columns increasing at `768px` and `1024px`:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-4.gif"  alt="tailwind grid 4" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-4.gif"  alt="tailwind grid 4" />
 
 <br />
 
@@ -206,15 +182,7 @@ Below, we place the first `div` as a navbar. We are doing this with `col-span-{n
   <h1 class="tile-marker">ONE</h1>
 </div>
 ```
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-5.gif"  alt="tailwind grid 5" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-5.gif"  alt="tailwind grid 5" />
 
 <br />
 
@@ -269,15 +237,7 @@ Let's see an instance of it with the fourth `div`:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-6.png"  alt="tailwind grid 6" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-6.png"  alt="tailwind grid 6" />
 
 <br />
 
@@ -290,7 +250,10 @@ Now if we look closely at the layout, we see that everything is haphazard and it
 
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 
@@ -314,15 +277,7 @@ Here, `row-start-5` tells the footer to be placed to the bottom row. It looks li
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-7.gif"  alt="tailwind grid 7" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-7.gif"  alt="tailwind grid 7" />
 
 <br />
 
@@ -340,15 +295,7 @@ We have it shaping into a better website layout:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-8.gif"  alt="tailwind grid 8" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-8.gif"  alt="tailwind grid 8" />
 
 <br />
 
@@ -365,15 +312,7 @@ We can change the order of a region by altering the the value of `n` in `row-sta
 We have something looking like this:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-9.gif"  alt="tailwind grid 4" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-9.gif"  alt="tailwind grid 4" />
 
 <br />
 

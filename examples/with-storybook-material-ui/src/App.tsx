@@ -2,6 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
@@ -11,7 +12,8 @@ import {
     WelcomePage,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -38,6 +40,7 @@ const App: React.FC = () => {
                             <Route path="*" element={<WelcomePage />} />
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

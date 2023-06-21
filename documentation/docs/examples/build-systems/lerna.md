@@ -1,7 +1,7 @@
 ---
 id: lerna
 title: Monorepo with Lerna
-example-tags: [build-systems,lerna]
+example-tags: [build-systems]
 ---
 
 [Lerna](https://lerna.js.org) is a fast, modern build system for managing and publishing multiple JavaScript/TypeScript packages from the same repository. In this example, you'll see how to use Lerna to setup a monorepo with **refine**.

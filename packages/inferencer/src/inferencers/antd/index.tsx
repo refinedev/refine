@@ -5,6 +5,7 @@ import { ShowInferencer } from "./show";
 import { ListInferencer } from "./list";
 import { CreateInferencer } from "./create";
 import { EditInferencer } from "./edit";
+
 import type { InferencerComponentProps } from "../../types";
 
 const AntdInferencer: React.FC<InferencerComponentProps> = ({

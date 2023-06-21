@@ -57,7 +57,7 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
               </svg>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
+              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
             >
               Edit Post
             </h3>
@@ -71,7 +71,7 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
             href="/posts"
           >
             <button
-              class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
+              class="mantine-UnstyledButton-root mantine-Button-root refine-list-button mantine-1gzbrws"
               data-button="true"
               title=""
               type="button"
@@ -146,7 +146,7 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
             </button>
           </a>
           <button
-            class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
+            class="mantine-UnstyledButton-root mantine-Button-root refine-refresh-button mantine-1gzbrws"
             data-button="true"
             type="button"
           >
@@ -707,7 +707,7 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
         class="mantine-Group-root mantine-n0y6vz"
       >
         <button
-          class="mantine-UnstyledButton-root mantine-Button-root mantine-4xmesm"
+          class="mantine-UnstyledButton-root mantine-Button-root refine-save-button mantine-4xmesm"
           data-button="true"
           type="button"
         >
@@ -880,6 +880,83 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
               class="token-line"
               style="color: rgb(156, 220, 254);"
             >
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/core"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -1202,10 +1279,54 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostEdit
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"

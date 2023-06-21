@@ -1,14 +1,15 @@
 {
   "name": "@refinedev/strapi-v4",
   "description": "refine Strapi REST data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "5.0.0",
+  "version": "5.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "private": false,
   "files": [
     "dist",
-    "src"
+    "src",
+    "./refine.config.js"
   ],
   "engines": {
     "node": ">=10"
@@ -39,7 +40,7 @@
     "nock": "^13.1.3",
     "ts-jest": "^29.0.3",
     "tslib": "^2.3.1",
-    "tsup": "^5.11.13"
+    "tsup": "^6.7.0"
   },
   "dependencies": {
     "axios": "^0.26.1",
