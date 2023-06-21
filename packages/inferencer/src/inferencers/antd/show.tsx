@@ -81,7 +81,7 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     ids: ${ids} || [],
                     queryOptions: {
-                        enabled: !!${recordName},
+                        enabled: !!${recordName} && !!${ids}?.length,
                     },
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
@@ -126,10 +126,12 @@ export const renderer = ({
             const variableIsLoading = getVariableName(field.key, "IsLoading");
 
             if (field.multiple) {
+                const variableDataLength =
+                    accessor(recordName, field.key) + "?.length";
                 imports.push(["TagField", "@refinedev/antd"]);
                 return jsx`
                 <Title level={5}>${prettyString(field.key)}</Title>
-                {${variableIsLoading} ? <>Loading...</> : (
+                {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                     <>
                     ${(() => {
                         if (field.relationInfer) {
@@ -152,7 +154,7 @@ export const renderer = ({
                                         undefined,
                                         field.relationInfer.accessor,
                                     );
-                                    return `{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}`;
+                                    return `{record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />) : <>No Data</>}`;
                                 }
                             } else {
                                 return undefined;

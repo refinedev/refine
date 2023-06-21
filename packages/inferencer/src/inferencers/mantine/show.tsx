@@ -79,7 +79,7 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     ids: ${ids} || [],
                     queryOptions: {
-                        enabled: !!${recordName},
+                        enabled: !!${recordName} && !!${ids}?.length,
                     },
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
@@ -125,6 +125,8 @@ export const renderer = ({
             const variableIsLoading = getVariableName(field.key, "IsLoading");
 
             if (field.multiple) {
+                const variableDataLength =
+                    accessor(recordName, field.key) + "?.length";
                 imports.push(
                     ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
@@ -132,7 +134,7 @@ export const renderer = ({
 
                 return jsx`
                 <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                {${variableIsLoading} ? <>Loading...</> : (
+                {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                     <>
                     ${(() => {
                         if (field.relationInfer) {
@@ -151,9 +153,9 @@ export const renderer = ({
                                         field.relationInfer.accessor,
                                     );
                                     return `
-                                    <Group spacing="xs">
+                                    {record?.${field.key}?.length ? <Group spacing="xs">
                                         {${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}
-                                    </Group>
+                                    </Group> : <>No Data</>}
                                     `;
                                 }
                             } else {

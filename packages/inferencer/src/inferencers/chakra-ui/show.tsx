@@ -77,7 +77,7 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     ids: ${ids} || [],
                     queryOptions: {
-                        enabled: !!${recordName},
+                        enabled: !!${recordName} && !!${ids}?.length,
                     },
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
@@ -122,6 +122,8 @@ export const renderer = ({
             const variableIsLoading = getVariableName(field.key, "IsLoading");
 
             if (field.multiple) {
+                const variableDataLength =
+                    accessor(recordName, field.key) + "?.length";
                 imports.push(
                     ["TagField", "@refinedev/chakra-ui"],
                     ["HStack", "@chakra-ui/react"],
@@ -130,7 +132,7 @@ export const renderer = ({
                 <Heading as="h5" size="sm" mt={4} >${prettyString(
                     field.key,
                 )}</Heading>
-                {${variableIsLoading} ? <>Loading...</> : (
+                {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                     <>
                     ${(() => {
                         if (field.relationInfer) {
@@ -153,7 +155,7 @@ export const renderer = ({
                                         undefined,
                                         field.relationInfer.accessor,
                                     );
-                                    return `<HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack>`;
+                                    return `{record?.${field.key}?.length ? <HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack> : <>No Data</>}`;
                                 }
                             } else {
                                 return `Not Handled.`;
