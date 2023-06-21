@@ -1,5 +1,4 @@
-import pluralize from "pluralize";
-import { humanizeString } from "@definitions";
+import { useRefineContext } from "@hooks/refine";
 
 /**
  * A method that the internal uses
@@ -9,9 +8,12 @@ export const userFriendlyResourceName = (
     resource = "",
     type: "singular" | "plural",
 ): string => {
-    const humanizeResource = humanizeString(resource);
+    const { options } = useRefineContext();
+    const { textTransformers } = options;
+
+    const humanizeResource = textTransformers.humanize(resource);
     if (type === "singular") {
-        return pluralize.singular(humanizeResource);
+        return textTransformers.singular(humanizeResource);
     }
-    return pluralize.plural(humanizeResource);
+    return textTransformers.plural(humanizeResource);
 };

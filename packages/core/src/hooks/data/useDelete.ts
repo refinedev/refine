@@ -4,7 +4,6 @@ import {
     UseMutationResult,
     UseMutationOptions,
 } from "@tanstack/react-query";
-import pluralize from "pluralize";
 
 import {
     useResource,
@@ -18,6 +17,7 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -134,6 +134,9 @@ export const useDelete = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
+    const { options } = useRefineContext();
+
+    const { textTransformers } = options;
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
@@ -343,7 +346,7 @@ export const useDelete = <
             ) => {
                 const { resource, identifier } = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceSingular = textTransformers.singular(identifier);
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
@@ -420,7 +423,8 @@ export const useDelete = <
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
 
-                    const resourceSingular = pluralize.singular(identifier);
+                    const resourceSingular =
+                        textTransformers.singular(identifier);
 
                     const notificationConfig =
                         typeof errorNotification === "function"

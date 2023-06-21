@@ -19,7 +19,6 @@ import {
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
-import pluralize from "pluralize";
 import {
     useResource,
     useMutationMode,
@@ -32,6 +31,7 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import {
     queryKeys,
@@ -165,6 +165,9 @@ export const useUpdate = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
+    const { options } = useRefineContext();
+
+    const { textTransformers } = options;
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -401,7 +404,7 @@ export const useUpdate = <
             ) => {
                 const { resource, identifier } = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceSingular = textTransformers.singular(identifier);
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -487,7 +490,8 @@ export const useUpdate = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(identifier);
+                    const resourceSingular =
+                        textTransformers.singular(identifier);
 
                     const notificationConfig =
                         typeof errorNotification === "function"

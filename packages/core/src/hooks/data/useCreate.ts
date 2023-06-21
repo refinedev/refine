@@ -3,7 +3,6 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
-import pluralize from "pluralize";
 import {
     pickDataProvider,
     pickNotDeprecated,
@@ -28,6 +27,7 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import {
     useLoadingOvertime,
@@ -128,6 +128,9 @@ export const useCreate = <
     const { log } = useLog();
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const { options } = useRefineContext();
+
+    const { textTransformers } = options;
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -173,7 +176,7 @@ export const useCreate = <
             ) => {
                 const { resource, identifier } = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceSingular = textTransformers.singular(identifier);
 
                 const notificationConfig =
                     typeof successNotificationFromProp === "function"
@@ -250,7 +253,7 @@ export const useCreate = <
 
                 const { identifier } = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceSingular = textTransformers.singular(identifier);
 
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"

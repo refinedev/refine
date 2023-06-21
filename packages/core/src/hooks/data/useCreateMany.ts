@@ -3,7 +3,6 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
-import pluralize from "pluralize";
 
 import {
     BaseRecord,
@@ -22,6 +21,7 @@ import {
     useInvalidate,
     useLog,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import {
     handleMultiple,
@@ -102,6 +102,9 @@ export const useCreateMany = <
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
+    const { options } = useRefineContext();
+
+    const { textTransformers } = options;
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -161,7 +164,7 @@ export const useCreateMany = <
             ) => {
                 const { resource, identifier } = select(resourceName);
 
-                const resourcePlural = pluralize.plural(identifier);
+                const resourcePlural = textTransformers.plural(identifier);
 
                 const notificationConfig =
                     typeof successNotification === "function"
