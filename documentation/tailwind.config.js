@@ -33,6 +33,8 @@ module.exports = {
                     "landing-stats-fallback-bg": "#242442",
                     "landing-footer-bg": "#0F0F3D",
                     "landing-footer-border": "#2E2E78",
+                    "walkthrough-button-bg": "#4D4DB2",
+                    "walkthrough-button-alt-bg": "#474E6B",
                 },
                 gray: {
                     0: "#FFFFFF",
@@ -64,6 +66,10 @@ module.exports = {
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
             },
             backgroundImage: {
+                "walkthrough-button-shadow":
+                    "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",
+                "walkthrough-button-alt-shadow":
+                    "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #474E6B 6%, #474E6B 44%, #A3A3F5 50%, #474E6B 56%, #474E6B 94%, #A3A3F5 100%)",
                 "selected-tab-light":
                     "linear-gradient(180deg, rgba(110, 179, 247, 0) 50%, rgba(0, 128, 255, 0.25) 100%)",
                 "selected-tab-dark":
@@ -145,8 +151,21 @@ module.exports = {
                     "playground-slide-up-mobile 45s linear infinite",
                 "hackathon-button-bg":
                     "hackathon-button-bg 2s ease-in-out infinite alternate",
+                "walkthrough-bounce":
+                    "walkthrough-bounce 3s ease-in-out infinite",
             },
             keyframes: {
+                "walkthrough-bounce": {
+                    "0%": {
+                        transform: "translateY(8%)",
+                    },
+                    "50%": {
+                        transform: "none",
+                    },
+                    "100%": {
+                        transform: "translateY(8%)",
+                    },
+                },
                 "hackathon-button-bg": {
                     "0%": {
                         backgroundPosition: "0% 0%",
@@ -239,6 +258,7 @@ module.exports = {
             "blog-max": "1408px",
             "blog-xl": "1440px",
             "blog-2xl": "1584px",
+            walkthrough: "976px",
         },
     },
     plugins: [
