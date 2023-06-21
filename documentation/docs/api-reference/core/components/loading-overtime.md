@@ -1,19 +1,19 @@
 ---
-id: loading-overtime-indicator
-title: <LoadingOvertimeIndicator>
+id: loading-overtime
+title: <LoadingOvertime>
 swizzle: true
 ---
 
-The `<LoadingOvertimeIndicator>` component is used to display a loading indicator when the page is taking too long to load. It is useful when you have a page that takes a long time to load and you want to let the user know that the page is still loading.
+The `<LoadingOvertime>` component is used to display a loading indicator when the page is taking too long to load. It is useful when you have a page that takes a long time to load and you want to let the user know that the page is still loading.
 
 ## Usage
 
 ### Usage based on `isLoading`
 
-The `<LoadingOvertimeIndicator>` component calculates the elapsed time based when the `isLoading` prop is `true`. You can provide the `interval` and `onInterval` props to customize the interval and the callback function that will be called on every interval.
+The `<LoadingOvertime>` component calculates the elapsed time based when the `isLoading` prop is `true`. You can provide the `interval` and `onInterval` props to customize the interval and the callback function that will be called on every interval.
 
 ```tsx
-import { LoadingOvertimeIndicator, useOne } from "@refinedev/core";
+import { LoadingOvertime, useOne } from "@refinedev/core";
 
 const overtimeComponents = {
     3000: <p>It's taking a bit longer than expected.</p>,
@@ -24,14 +24,14 @@ const MyPage = () => {
     const { data, isFetching } = useOne({...});
 
     return (
-        <LoadingOvertimeIndicator
+        <LoadingOvertime
             overtimeComponents={overtimeComponents}
-            isLoading={isFetching ?? true}
+            isLoading={isFetching ?? false}
             interval={1000}
             onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >
             <YourComponent />
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };
 ```
@@ -42,10 +42,10 @@ const MyPage = () => {
 
 ### Usage based on `elapsedTime`
 
-If the `elapsedTime` prop is provided, the `<LoadingOvertimeIndicator>` component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
+If the `elapsedTime` prop is provided, the `<LoadingOvertime>` component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
 ```tsx
-import { LoadingOvertimeIndicator, useOne } from "@refinedev/core";
+import { LoadingOvertime, useOne } from "@refinedev/core";
 
 const overtimeComponents = {
     3000: <p>It's taking a bit longer than expected.</p>,
@@ -59,12 +59,12 @@ const MyPage = () => {
     } = useOne({...});
 
     return (
-        <LoadingOvertimeIndicator
+        <LoadingOvertime
             overtimeComponents={overtimeComponents}
             elapsedTime={elapsedTime ?? 0}
         >
             <YourComponent />
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };
 ```
@@ -82,7 +82,7 @@ Same as the previous example:
 You can use this component without children. In this case, the component will only render `overtimeComponents` based on the elapsed time.
 
 ```tsx
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={overtimeComponents}
     elapsedTime={4000}
 />
@@ -110,12 +110,12 @@ const overtimeComponents = {
     5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={overtimeComponents}
     elapsedTime={4000}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>;
+</LoadingOvertime>;
 ```
 
 ### `elapsedTime`
@@ -128,12 +128,12 @@ const overtimeComponents = {
     5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={overtimeComponents}
     elapsedTime={4000}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>;
+</LoadingOvertime>;
 ```
 
 ### `isLoading`
@@ -146,12 +146,12 @@ const overtimeComponents = {
     5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={overtimeComponents}
     isLoading={true}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>;
+</LoadingOvertime>;
 ```
 
 ### `interval`
@@ -164,12 +164,12 @@ const overtimeComponents = {
     5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={overtimeComponents}
     interval={500}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>;
+</LoadingOvertime>;
 ```
 
 ### `onInterval`
@@ -182,18 +182,18 @@ const overtimeComponents = {
     5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={overtimeComponents}
     onInterval={(elapsedInterval) =>
         console.log("elapsedInterval: ", elapsedInterval)
     }
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>;
+</LoadingOvertime>;
 ```
 
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@refinedev/core/LoadingOvertimeIndicator"/>
+<PropsTable module="@refinedev/core/LoadingOvertime"/>

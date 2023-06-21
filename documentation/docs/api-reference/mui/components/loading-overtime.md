@@ -1,34 +1,34 @@
 ---
-id: loading-overtime-indicator
-title: <LoadingOvertimeIndicator>
+id: loading-overtime
+title: <LoadingOvertime>
 swizzle: true
 ---
 
-The `<LoadingOvertimeIndicator>` component is used to display a loading indicator when the page is taking too long to load. It is useful when you have a page that takes a long time to load and you want to let the user know that the page is still loading.
+The `<LoadingOvertime>` component is used to display a loading indicator when the page is taking too long to load. It is useful when you have a page that takes a long time to load and you want to let the user know that the page is still loading.
 
-By default, the `<LoadingOvertimeIndicator>` has two components that will be shown based on the elapsed time. The first component will be shown when the elapsed time is greater than 3000 milliseconds. The second component will be shown when the elapsed time is greater than 5000 milliseconds.
+By default, the `<LoadingOvertime>` has two components that will be shown based on the elapsed time. The first component will be shown when the elapsed time is greater than 3000 milliseconds. The second component will be shown when the elapsed time is greater than 5000 milliseconds.
 
 ## Usage
 
 ### Usage based on `isLoading`
 
-The `<LoadingOvertimeIndicator>` component calculates the elapsed time based when the `isLoading` prop is `true`. You can provide the `interval` and `onInterval` props to customize the interval and the callback function that will be called on every interval.
+The `<LoadingOvertime>` component calculates the elapsed time based when the `isLoading` prop is `true`. You can provide the `interval` and `onInterval` props to customize the interval and the callback function that will be called on every interval.
 
 ```tsx
 import { useOne } from "@refinedev/core";
-import { LoadingOvertimeIndicator } from "@refinedev/mantine";
+import { LoadingOvertime } from "@refinedev/mui";
 
 const MyPage = () => {
     const { data, isFetching } = useOne({...});
 
     return (
-        <LoadingOvertimeIndicator
-            isLoading={isFetching ?? true}
+        <LoadingOvertime
+            isLoading={isFetching ?? false}
             interval={1000}
             onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >
             <YourComponent />
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };
 ```
@@ -39,11 +39,11 @@ const MyPage = () => {
 
 ### Usage based on `elapsedTime`
 
-If the `elapsedTime` prop is provided, the `<LoadingOvertimeIndicator>` component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
+If the `elapsedTime` prop is provided, the `<LoadingOvertime>` component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
 ```tsx
 import { useOne } from "@refinedev/core";
-import { LoadingOvertimeIndicator } from "@refinedev/mantine";
+import { LoadingOvertime } from "@refinedev/mui";
 
 const MyPage = () => {
     const {
@@ -52,11 +52,11 @@ const MyPage = () => {
     } = useOne({...});
 
     return (
-        <LoadingOvertimeIndicator
+        <LoadingOvertime
             elapsedTime={elapsedTime ?? 0}
         >
             <YourComponent />
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };
 ```
@@ -70,7 +70,7 @@ Same as the previous example, if the `elapsedTime` is less than 3000 millisecond
 You can use this component without children. In this case, the component will only render the indicator.
 
 ```tsx
-<LoadingOvertimeIndicator elapsedTime={4000} />
+<LoadingOvertime elapsedTime={4000} />
 ```
 
 :::
@@ -90,28 +90,29 @@ An object that contains the components to render based on the elapsed time. The 
 If the `elapsedTime` is less than the key, the component only renders the children. If the `elapsedTime` is greater than the key, the component renders the matching component based on key and children.
 
 ```tsx
-import {
-    LoadingOvertimeIndicator,
-    overtimeComponents,
-} from "@refinedev/mantine";
-import { Alert } from "@mantine/core";
-import { IconAlertCircle } from "@tabler/icons";
+import { LoadingOvertime, overtimeComponents } from "@refinedev/mui";
+import Alert from "@mui/material/Alert";
 
 const customOvertimeComponents = {
     ...overtimeComponents,
     2000: (
-        <Alert icon={<IconAlertCircle />} color="yellow" mb="1rem">
+        <Alert
+            severity="warning"
+            sx={{
+                marginBottom: "1rem",
+            }}
+        >
             Still loading...
         </Alert>
     ),
 };
 
-<LoadingOvertimeIndicator
+<LoadingOvertime
     overtimeComponents={customOvertimeComponents}
     elapsedTime={2000}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>;
+</LoadingOvertime>;
 ```
 
 ### `elapsedTime`
@@ -119,9 +120,7 @@ const customOvertimeComponents = {
 The elapsed time in milliseconds. If provided, the component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
 ```tsx
-<LoadingOvertimeIndicator elapsedTime={4000}>
-    {/* Children to render */}
-</LoadingOvertimeIndicator>
+<LoadingOvertime elapsedTime={4000}>{/* Children to render */}</LoadingOvertime>
 ```
 
 ### `isLoading`
@@ -129,9 +128,7 @@ The elapsed time in milliseconds. If provided, the component will use it to dete
 A boolean value that indicates whether the page is loading or not. When the value is `true`, the component will calculate the elapsed time. When the value is `false`, the component will not render the indicator.
 
 ```tsx
-<LoadingOvertimeIndicator isLoading={true}>
-    {/* Children to render */}
-</LoadingOvertimeIndicator>
+<LoadingOvertime isLoading={true}>{/* Children to render */}</LoadingOvertime>
 ```
 
 ### `interval`
@@ -139,9 +136,7 @@ A boolean value that indicates whether the page is loading or not. When the valu
 The interval in milliseconds to calculate the elapsed time. The default value is `1000` milliseconds.
 
 ```tsx
-<LoadingOvertimeIndicator interval={500}>
-    {/* Children to render */}
-</LoadingOvertimeIndicator>
+<LoadingOvertime interval={500}>{/* Children to render */}</LoadingOvertime>
 ```
 
 ### `onInterval`
@@ -149,17 +144,17 @@ The interval in milliseconds to calculate the elapsed time. The default value is
 A callback function that will be called on every interval. The callback function will receive the elapsed time in milliseconds as the first argument.
 
 ```tsx
-<LoadingOvertimeIndicator
+<LoadingOvertime
     onInterval={(elapsedInterval) =>
         console.log("elapsedInterval: ", elapsedInterval)
     }
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>
+</LoadingOvertime>
 ```
 
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@refinedev/mantine/LoadingOvertimeIndicator"/>
+<PropsTable module="@refinedev/mui/LoadingOvertime"/>
