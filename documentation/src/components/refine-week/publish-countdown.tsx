@@ -73,7 +73,7 @@ const PublishCountdown = ({ publishDate, className }: Props) => {
                             fill="currentColor"
                         >
                             {hours} : {minutes} : {seconds}
-                        </text>{" "}
+                        </text>
                     </>
                 )}
             </svg>

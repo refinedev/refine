@@ -11,7 +11,7 @@ type Props = {
 
 export const RefineWeek = ({ variant }: Props) => {
     return (
-        <div className={clsx("pb-20")}>
+        <div className={clsx("pb-20", "overflow-hidden")}>
             <RefineWeekDesktop
                 className={clsx("hidden lg:block")}
                 variant={variant}
