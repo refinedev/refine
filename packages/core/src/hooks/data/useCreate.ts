@@ -29,6 +29,11 @@ import {
     useOnError,
     useMeta,
 } from "@hooks";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 type useCreateParams<TData, TError, TVariables> = {
     /**
@@ -83,7 +88,7 @@ export type UseCreateProps<
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
-};
+} & UseLoadingOvertimeOptionsProps;
 
 /**
  * `useCreate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
@@ -104,11 +109,13 @@ export const useCreate = <
     TVariables = {},
 >({
     mutationOptions,
+    overtimeOptions,
 }: UseCreateProps<TData, TError, TVariables> = {}): UseCreateReturnType<
     TData,
     TError,
     TVariables
-> => {
+> &
+    UseLoadingOvertimeReturnType => {
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -258,5 +265,11 @@ export const useCreate = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };
