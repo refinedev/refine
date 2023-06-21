@@ -25,7 +25,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+        tableProps?.dataSource?.map((item) => item?.category?.id) ?? [];
     const { data, isLoading } = useMany<ICategory>({
         resource: "categories",
         ids: categoryIds,
