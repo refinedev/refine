@@ -307,6 +307,10 @@ Before we get started, let's look at which parts are going to be translated:
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
         "importProgress": "Importing: {{processed}}/{{total}}"
     },
+    "loadingOvertimeIndicator": {
+        "3000": "It's taking a bit longer than expected.",
+        "5000": "This is taking longer than expected, please hang on."
+    },
     "loading": "Loading",
     "tags": {
         "clone": "Clone"
@@ -455,6 +459,10 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "editSuccess": "Successfully edited {{resource}}",
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
         "importProgress": "Importing: {{processed}}/{{total}}"
+    },
+    "loadingOvertimeIndicator": {
+        "3000": "It's taking a bit longer than expected.",
+        "5000": "This is taking longer than expected, please hang on."
     },
     "loading": "Loading",
     "tags": {
@@ -614,6 +622,10 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
         "importProgress": "{{processed}}/{{total}} importiert"
     },
+    "loadingOvertimeIndicator": {
+        "3000": "Es dauert ein bisschen länger als erwartet.",
+        "5000": "Dies dauert länger als erwartet, bitte warten Sie."
+    },
     "loading": "Wird geladen",
     "tags": {
         "clone": "Klon"
@@ -654,7 +666,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "show": "#{{id}} Beitrag anzeigen | refine",
             "edit": "#{{id}} Beitrag bearbeiten | refine",
             "create": "Neuen Beitrag erstellen | refine",
-            "clone" : "#{{id}} Beitrag klonen | refine"
+            "clone": "#{{id}} Beitrag klonen | refine"
         }
     }
 }

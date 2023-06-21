@@ -101,6 +101,10 @@
     "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
     "importProgress": "Importing: {{processed}}/{{total}}"
   },
+  "loadingOvertimeIndicator": {
+    "3000": "It's taking a bit longer than expected.",
+    "5000": "This is taking longer than expected, please hang on."
+  },
   "loading": "Loading",
   "tags": {
     "clone": "Clone"
@@ -116,7 +120,7 @@
       "content": "Content",
       "status": "Status",
       "category": "Category",
-      "categoryId" : "Category",
+      "categoryId": "Category",
       "category_id": "Category",
       "createdAt": "Created At",
       "created_at": "Created At",
@@ -139,7 +143,7 @@
       "content": "Content",
       "status": "Status",
       "category": "Category",
-      "categoryId" : "Category",
+      "categoryId": "Category",
       "category_id": "Category",
       "createdAt": "Created At",
       "created_at": "Created At",

@@ -121,6 +121,10 @@
         "editSuccess": "{{resource}} erfolgreich bearbeitet.",
         "importProgress": "{{processed}}/{{total}} importiert"
     },
+    "loadingOvertimeIndicator": {
+        "3000": "Es dauert ein bisschen länger als erwartet.",
+        "5000": "Dies dauert länger als erwartet, bitte warten Sie."
+    },
     "categories": {
         "categories": "Kategorien",
         "titles": {
