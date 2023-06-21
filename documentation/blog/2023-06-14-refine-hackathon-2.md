@@ -6,6 +6,7 @@ authors: necati
 tags: [community, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 

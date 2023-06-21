@@ -7,7 +7,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, Nullable, IStatus } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -16,7 +16,7 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
+    } = useForm<IPost, HttpError, Nullable<IPost>>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -50,7 +50,7 @@ export const PostEdit: React.FC = () => {
                     // eslint-disable-next-line
                     defaultValue={null as any}
                     render={({ field }) => (
-                        <Autocomplete
+                        <Autocomplete<IStatus>
                             id="status"
                             options={["published", "draft", "rejected"]}
                             {...field}
@@ -78,7 +78,7 @@ export const PostEdit: React.FC = () => {
                     // eslint-disable-next-line
                     defaultValue={null as any}
                     render={({ field }) => (
-                        <Autocomplete
+                        <Autocomplete<ICategory>
                             id="category"
                             {...autocompleteProps}
                             {...field}

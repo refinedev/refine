@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo } from "react";
-import BrowserOnly from "@docusaurus/BrowserOnly";
+import React, { useEffect } from "react";
 import ErrorBoundary from "@docusaurus/ErrorBoundary";
 import { useLocation } from "@docusaurus/router";
 import { PageMetadata } from "@docusaurus/theme-common";
@@ -7,7 +6,6 @@ import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
 import ErrorPageContent from "@theme/ErrorPageContent";
 import LayoutProvider from "@theme/Layout/Provider";
 import SkipToContent from "@theme/SkipToContent";
-import GithubCTA from "../components/github-floating-cta";
 import { LivePreviewProvider } from "../components/live-preview-context";
 import useIsMobile from "../hooks/use-is-mobile";
 import clsx from "clsx";
@@ -40,14 +38,6 @@ export const CommonLayout = (props: any) => {
         }
     }, [location, isMobile]);
 
-    const showGithubCta = useMemo(() => {
-        if (location.pathname.startsWith("/docs")) {
-            return false;
-        }
-
-        return true;
-    }, [location, isMobile]);
-
     useEffect(() => {
         if (isMobile) {
             window?.Intercom?.("update", { hide_default_launcher: true });
@@ -72,7 +62,6 @@ export const CommonLayout = (props: any) => {
                     <LivePreviewProvider>{children}</LivePreviewProvider>
                 </ErrorBoundary>
             </div>
-            {/* {showGithubCta && <BrowserOnly>{() => <GithubCTA />}</BrowserOnly>} */}
         </LayoutProvider>
     );
 };

@@ -423,6 +423,49 @@ describe("useTable Hook", () => {
         expect(result.current.sorter).toStrictEqual(sorters);
         expect(result.current.sorters).toStrictEqual(sorters);
     });
+
+    it("works correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    resource: "posts",
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () => {
+                                return new Promise((res) => {
+                                    setTimeout(
+                                        () => res({ data: [], total: 2 }),
+                                        1000,
+                                    );
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isFetching).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(!result.current.tableQueryResult.isFetching).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
+    });
 });
 
 describe("useTable Filters", () => {

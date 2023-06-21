@@ -82,6 +82,15 @@ const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
             palette: {
                 ...RefinePalettes[paletteName],
             },
+            components: {
+                MuiButton: {
+                    styleOverrides: {
+                        root: {
+                            color: "#fff",
+                        },
+                    },
+                },
+            },
         }),
     };
 }, {}) as Record<keyof typeof RefinePalettes, Theme>;

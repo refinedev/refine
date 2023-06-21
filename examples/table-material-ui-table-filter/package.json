@@ -19,7 +19,7 @@
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0",
     "cross-env": "^7.0.3",
     "typescript": "^4.7.4",
@@ -32,7 +32,8 @@
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "eject": "react-scripts eject",
     "refine": "refine",
-    "cypress": "cypress open -C ./cypress.config.ts"
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "browserslist": {
     "production": [

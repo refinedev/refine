@@ -801,6 +801,29 @@ useForm({
 
 Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
 
+### `overtimeOptions`
+
+If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useForm({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Return Values
 
 :::tip
@@ -906,6 +929,15 @@ You can override the default behavior by passing an `onFinish` function in the h
 
 For example you can [change values before sending to the API](/docs/api-reference/antd/hooks/form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
+### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useForm();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ## FAQ
 
 ### How can Invalidate other resources?
@@ -1015,6 +1047,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 | formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                          |
 | id              | Record id for `clone` and `create` action               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                             |
 | setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                   |
+| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                         |
 
 ## Example
 

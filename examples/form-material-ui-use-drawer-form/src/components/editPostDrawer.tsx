@@ -9,10 +9,10 @@ import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-import { IPost } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "interfaces";
 
 export const EditPostDrawer: React.FC<
-    UseModalFormReturnType<IPost, HttpError, IPost>
+    UseModalFormReturnType<IPost, HttpError, Nullable<IPost>>
 > = ({
     saveButtonProps,
     refineCore: { queryResult },
@@ -72,7 +72,7 @@ export const EditPostDrawer: React.FC<
                         // eslint-disable-next-line
                         defaultValue={null as any}
                         render={({ field }) => (
-                            <Autocomplete
+                            <Autocomplete<IStatus>
                                 id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
@@ -100,7 +100,7 @@ export const EditPostDrawer: React.FC<
                         // eslint-disable-next-line
                         defaultValue={null as any}
                         render={({ field }) => (
-                            <Autocomplete
+                            <Autocomplete<ICategory>
                                 id="category"
                                 {...autocompleteProps}
                                 {...field}

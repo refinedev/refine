@@ -30,7 +30,7 @@
     "i18next-xhr-backend": "^3.2.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "^6.8.1",
     "react-i18next": "^11.8.11",
     "react-input-mask": "^2.0.4",
     "@uiw/react-md-editor": "^3.19.5",

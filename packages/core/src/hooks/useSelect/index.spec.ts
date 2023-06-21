@@ -988,4 +988,51 @@ describe("useSelect Hook", () => {
             { label: "Recusandae consectetur aut atque est.", value: "2" },
         ]);
     });
+
+    it("works correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () => {
+                                return new Promise((res) => {
+                                    setTimeout(
+                                        () =>
+                                            res({
+                                                data: [],
+                                                total: 2,
+                                            } as any),
+                                        1000,
+                                    );
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(!result.current.queryResult.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
+    });
 });

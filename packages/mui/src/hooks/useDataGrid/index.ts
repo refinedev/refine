@@ -9,6 +9,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
+    useLoadingOvertime,
 } from "@refinedev/core";
 import { useState } from "react";
 
@@ -137,6 +138,7 @@ export function useDataGrid<
     meta,
     metaData,
     dataProviderName,
+    overtimeOptions,
 }: UseDataGridProps<
     TQueryFnData,
     TError,
@@ -162,6 +164,7 @@ export function useDataGrid<
         setSorter,
         pageCount,
         createLinkForSyncWithLocation,
+        overtime,
     } = useTableCore<TQueryFnData, TError, TData>({
         permanentSorter,
         permanentFilter,
@@ -185,6 +188,7 @@ export function useDataGrid<
         meta: pickNotDeprecated(meta, metaData),
         metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
+        overtimeOptions,
     });
 
     const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
@@ -329,5 +333,6 @@ export function useDataGrid<
         setFilters,
         search,
         createLinkForSyncWithLocation,
+        overtime,
     };
 }
