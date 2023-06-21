@@ -28,6 +28,7 @@ describe("inferencer-headless", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
+        cy.interceptGETCategory();
         cy.interceptGETCategories();
         cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
@@ -37,10 +38,8 @@ describe("inferencer-headless", () => {
 
     it("should list resource", () => {
         cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
 
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         waitForLoading();
 
         cy.url().should("include", "/blog-posts");
@@ -50,7 +49,6 @@ describe("inferencer-headless", () => {
 
     it("should show resource", () => {
         cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
         waitForLoading();
 
         cy.get("td > div > button").contains("Show").first().click();
@@ -78,7 +76,6 @@ describe("inferencer-headless", () => {
 
     it("should create resource", () => {
         cy.interceptPOSTBlogPost();
-        cy.interceptGETCategory();
 
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
@@ -122,8 +119,8 @@ describe("inferencer-headless", () => {
         cy.interceptGETBlogPost();
 
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         waitForLoading();
+        cy.wait("@getCategories");
 
         cy.get("button").contains("Edit").click();
         waitForLoading();
