@@ -148,3 +148,105 @@ Cypress.Commands.add("interceptGETCategory", () => {
         })
         .as("getCategory");
 });
+
+Cypress.Commands.add("interceptGETBlogPosts", () => {
+    return cy
+        .intercept(
+            {
+                method: "GET",
+                hostname: hostname,
+                pathname: "/blog_posts",
+            },
+            {
+                fixture: "blog-posts.json",
+            },
+        )
+        .as("getBlogPosts");
+});
+
+Cypress.Commands.add("interceptGETBlogPost", () => {
+    return cy
+        .fixture("blog-posts")
+        .then((posts) => {
+            return cy.intercept(
+                {
+                    method: "GET",
+                    hostname: hostname,
+                    pathname: "/blog_posts/*",
+                },
+
+                (req) => {
+                    const id = getIdFromURL(req.url);
+                    const post = posts.find((post) => post.id === id);
+
+                    if (!post) {
+                        req.reply(404, {});
+                        return;
+                    }
+
+                    req.reply(post);
+                },
+            );
+        })
+        .as("getBlogPost");
+});
+
+Cypress.Commands.add("interceptPOSTBlogPost", () => {
+    return cy.fixture("blog-posts").then((posts) =>
+        cy
+            .intercept(
+                {
+                    method: "POST",
+                    hostname: hostname,
+                    pathname: "/blog_posts",
+                },
+                (req) => {
+                    const merged = Object.assign({}, req.body, {
+                        id: posts.length + 1,
+                    });
+
+                    return req.reply(merged);
+                },
+            )
+            .as("postBlogPost"),
+    );
+});
+
+Cypress.Commands.add("interceptPATCHBlogPost", () => {
+    return cy
+        .fixture("blog-posts")
+        .then((posts) => {
+            return cy.intercept(
+                {
+                    method: "PATCH",
+                    hostname: hostname,
+                    pathname: "/blog_posts/*",
+                },
+
+                (req) => {
+                    const id = getIdFromURL(req.url);
+                    const post = posts.find((post) => post.id === id);
+
+                    if (!post) {
+                        return req.reply(404, {});
+                    }
+                    const merged = Object.assign({}, post, req.body);
+                    return req.reply(merged);
+                },
+            );
+        })
+        .as("patchBlogPost");
+});
+
+Cypress.Commands.add("interceptDELETEBlogPost", () => {
+    return cy
+        .intercept(
+            {
+                method: "DELETE",
+                hostname: hostname,
+                pathname: "/blog_posts/*",
+            },
+            {},
+        )
+        .as("deleteBlogPost");
+});

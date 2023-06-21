@@ -240,16 +240,16 @@ export const resourceDelete = ({ ui }: IResourceDeleteParams) => {
     cy.getDeleteButton().first().click();
     switch (ui) {
         case "antd":
-            cy.getAntdPopoverDeleteButton().click();
+            cy.getAntdPopoverDeleteButton().click({ force: true });
             break;
         case "chakra-ui":
-            cy.getChakraUIPopoverDeleteButton().click();
+            cy.getChakraUIPopoverDeleteButton().click({ force: true });
             break;
         case "mantine":
-            cy.getMantinePopoverDeleteButton().click();
+            cy.getMantinePopoverDeleteButton().click({ force: true });
             break;
         case "material-ui":
-            cy.getMaterialUIDeletePopoverButton().click();
+            cy.getMaterialUIDeletePopoverButton().click({ force: true });
             break;
     }
 
