@@ -1,10 +1,10 @@
+import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
 import {
-    useShow,
-    IResourceComponentsProps,
-    useOne,
+    Show,
+    MarkdownField,
+    overtimeComponents,
     LoadingOvertimeIndicator,
-} from "@refinedev/core";
-import { Show, MarkdownField, overtimeComponents } from "@refinedev/antd";
+} from "@refinedev/antd";
 import { Typography, Alert } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";

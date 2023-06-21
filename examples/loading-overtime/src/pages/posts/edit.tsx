@@ -1,9 +1,12 @@
 import React from "react";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
-    IResourceComponentsProps,
+    Edit,
+    useForm,
+    useSelect,
     LoadingOvertimeIndicator,
-} from "@refinedev/core";
-import { Edit, useForm, useSelect, overtimeComponents } from "@refinedev/antd";
+    overtimeComponents,
+} from "@refinedev/antd";
 
 import { Form, Input, Select, Alert } from "antd";
 import MDEditor from "@uiw/react-md-editor";
@@ -56,7 +59,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <LoadingOvertimeIndicator
                 overtimeComponents={customOvertimeComponents}
-                isLoading={queryResult?.isLoading ?? true}
+                isLoading={queryResult?.isLoading ?? false}
             >
                 <Form {...formProps} layout="vertical">
                     <Form.Item

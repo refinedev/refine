@@ -22,7 +22,7 @@ const MyPage = () => {
     return (
         <LoadingOvertimeIndicator
             overtimeComponents={overtimeComponents}
-            isLoading={isFetching ?? true}
+            isLoading={isFetching ?? false}
             interval={1000}
         >
             <YourComponent />
