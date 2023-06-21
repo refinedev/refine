@@ -2,6 +2,9 @@
 /// <reference types="../../cypress/support" />
 
 describe("table-material-ui-advanced", () => {
+    cy.interceptGETPosts();
+    cy.interceptGETCategories();
+
     beforeEach(() => {
         cy.visit("http://localhost:3000/posts/data-grid");
     });

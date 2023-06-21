@@ -3,6 +3,9 @@
 
 describe("table-material-ui-table-filter", () => {
     beforeEach(() => {
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.visit("http://localhost:3000");
     });
 
