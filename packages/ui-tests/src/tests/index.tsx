@@ -4,4 +4,4 @@ export * from "./buttons";
 export * from "./fields";
 export * from "./layout";
 export * from "./pages";
-export * from "./loadingOvertimeIndicator";
+export * from "./loadingOvertime";

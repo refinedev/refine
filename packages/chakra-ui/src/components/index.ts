@@ -23,4 +23,4 @@ export * from "./fields";
 export * from "./pages";
 export * from "./breadcrumb";
 export * from "./undoableNotification";
-export * from "./loadingOvertimeIndicator";
+export * from "./loadingOvertime";

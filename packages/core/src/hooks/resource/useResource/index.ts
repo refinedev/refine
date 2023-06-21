@@ -37,6 +37,10 @@ export type UseResourceLegacyProps = {
  */
 export type UseResourceParam = string | undefined;
 
+type SelectReturnType<T extends boolean> = T extends true
+    ? { resource: IResourceItem; identifier: string }
+    : { resource: IResourceItem; identifier: string } | undefined;
+
 export type UseResourceReturnType = {
     resources: IResourceItem[];
     resource?: IResourceItem;
@@ -46,10 +50,16 @@ export type UseResourceReturnType = {
     resourceName?: string;
     id?: BaseKey;
     action?: Action;
+    select: <T extends boolean = true>(
+        resourceName: string,
+        force?: T,
+    ) => SelectReturnType<T>;
+    identifier?: string;
 };
 
 type UseResourceReturnTypeWithResource = UseResourceReturnType & {
     resource: IResourceItem;
+    identifier: string;
 };
 
 /**
@@ -89,6 +99,37 @@ export function useResource(
             args && typeof args !== "string" ? args.recordItemId : undefined,
     };
 
+    const select = <T extends boolean = true>(
+        resourceName: string,
+        force = true,
+    ): SelectReturnType<T> => {
+        const isLegacy = routerType === "legacy";
+        const pickedResource = pickResource(resourceName, resources, isLegacy);
+
+        if (pickedResource) {
+            return {
+                resource: pickedResource,
+                identifier: pickedResource.identifier ?? pickedResource.name,
+            } as SelectReturnType<T>;
+        }
+
+        if (force) {
+            const resource: IResourceItem = {
+                name: resourceName,
+                identifier: resourceName,
+            };
+
+            const identifier = resource.identifier ?? resource.name;
+
+            return {
+                resource,
+                identifier,
+            } as SelectReturnType<T>;
+        }
+
+        return undefined as SelectReturnType<T>;
+    };
+
     /**
      * Legacy Router - Start
      *
@@ -112,6 +153,8 @@ export function useResource(
         const legacyAction = legacyParams.action;
         const legacyResourceName =
             oldProps?.resourceName ?? legacyResource?.name;
+        const legacyIdentifier =
+            legacyResource?.identifier ?? legacyResource?.name;
 
         return {
             resources,
@@ -119,6 +162,8 @@ export function useResource(
             resourceName: legacyResourceName,
             id: legacyId,
             action: legacyAction,
+            select,
+            identifier: legacyIdentifier,
         };
     }
     /** Legacy Router - End */
@@ -147,5 +192,7 @@ export function useResource(
         resourceName: resource?.name,
         id: params.id,
         action: params.action,
+        select,
+        identifier: resource?.identifier ?? resource?.name,
     };
 }

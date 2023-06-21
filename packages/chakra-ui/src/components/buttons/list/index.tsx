@@ -56,7 +56,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { resource } = useResource(
+    const { resource, identifier } = useResource(
         resourceNameFromProps ?? resourceNameOrRouteName,
     );
 
@@ -102,11 +102,11 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 <IconButton
                     variant="outline"
                     aria-label={translate(
-                        `${resource?.name}.titles.list`,
+                        `${identifier}.titles.list`,
                         userFriendlyResourceName(
                             resource?.meta?.label ??
                                 resource?.label ??
-                                resource?.name ??
+                                identifier ??
                                 resourceNameOrRouteName,
                             "plural",
                         ),
@@ -132,14 +132,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     {children ??
                         translate(
                             `${
-                                resource?.name ??
+                                identifier ??
                                 resourceNameFromProps ??
                                 resourceNameOrRouteName
                             }.titles.list`,
                             userFriendlyResourceName(
                                 resource?.meta?.label ??
                                     resource?.label ??
-                                    resource?.name ??
+                                    identifier ??
                                     pickNotDeprecated(
                                         resourceNameFromProps,
                                         resourceNameOrRouteName,

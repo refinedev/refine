@@ -118,7 +118,11 @@ export const useModalForm = <
     const { resource: resourceProp, action: actionProp } =
         refineCoreProps ?? {};
 
-    const { resource, action: actionFromParams } = useResource(resourceProp);
+    const {
+        resource,
+        action: actionFromParams,
+        identifier,
+    } = useResource(resourceProp);
 
     const parsed = useParsed();
     const go = useGo();
@@ -134,7 +138,7 @@ export const useModalForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
+            ? `modal-${identifier}-${action}`
             : undefined;
 
     const {
@@ -266,14 +270,14 @@ export const useModalForm = <
     );
 
     const title = translate(
-        `${resource?.name}.titles.${actionProp}`,
+        `${identifier}.titles.${actionProp}`,
         undefined,
         `${userFriendlyResourceName(
             `${actionProp} ${
                 resource?.meta?.label ??
                 resource?.options?.label ??
                 resource?.label ??
-                resource?.name
+                identifier
             }`,
             "singular",
         )}`,

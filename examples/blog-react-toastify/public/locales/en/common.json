@@ -101,6 +101,10 @@
     "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
     "importProgress": "Importing: {{processed}}/{{total}}"
   },
+  "loadingOvertime": {
+    "3000": "It's taking a bit longer than expected.",
+    "5000": "This is taking longer than expected, please hang on."
+  },
   "loading": "Loading",
   "tags": {
     "clone": "Clone"

@@ -37,6 +37,33 @@ const App: React.FC = () => {
                                 }, 5000);
                             });
                         },
+                        update: async (params) => {
+                            return new Promise((resolve) => {
+                                setTimeout(() => {
+                                    resolve(
+                                        dataProvider(API_URL).update(params),
+                                    );
+                                }, 6000);
+                            });
+                        },
+                        getOne: async (params) => {
+                            return new Promise((resolve) => {
+                                setTimeout(() => {
+                                    resolve(
+                                        dataProvider(API_URL).getOne(params),
+                                    );
+                                }, 6000);
+                            });
+                        },
+                        create: async (params) => {
+                            return new Promise((resolve) => {
+                                setTimeout(() => {
+                                    resolve(
+                                        dataProvider(API_URL).create(params),
+                                    );
+                                }, 6000);
+                            });
+                        },
                     }}
                     resources={[
                         {
@@ -54,6 +81,15 @@ const App: React.FC = () => {
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
+                        reactQuery: {
+                            clientConfig: {
+                                defaultOptions: {
+                                    queries: {
+                                        cacheTime: 0,
+                                    },
+                                },
+                            },
+                        },
                         overtime: {
                             interval: 1000,
                             onInterval(elapsedInterval) {

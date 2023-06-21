@@ -1,8 +1,8 @@
 import Link from "@docusaurus/Link";
-import React, { useMemo } from "react";
 import clsx from "clsx";
+import React, { useMemo } from "react";
 
-import { useGithubContext } from "@site/src/context/GithubContext";
+import { useCommunityStatsContext } from "@site/src/context/CommunityStats";
 import { HeaderGithubIcon } from "../icons/header-github";
 
 type GitHubStarProps = {
@@ -10,15 +10,15 @@ type GitHubStarProps = {
 };
 
 export const GitHubStar: React.FC<GitHubStarProps> = ({ isPermanentDark }) => {
-    const { starCount, loading } = useGithubContext();
+    const { githubStarCount, loading } = useCommunityStatsContext();
 
     const formattedStarCount = useMemo(() => {
-        if (loading || !starCount) return <div className="w-5 h-5" />;
+        if (loading || !githubStarCount) return <div className="w-5 h-5" />;
 
         return new Intl.NumberFormat("en", {
             notation: "compact",
-        }).format(starCount);
-    }, [starCount, loading]);
+        }).format(githubStarCount);
+    }, [githubStarCount, loading]);
 
     return (
         <Link

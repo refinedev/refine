@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useCreateMany } from "./useCreateMany";
+import * as UseInvalidate from "../invalidate/index";
 
 describe("useCreateMany Hook", () => {
     it("should work with rest json server", async () => {
@@ -344,6 +345,251 @@ describe("useCreateMany Hook", () => {
                 message: "Error",
                 type: "error",
             });
+        });
+    });
+
+    it("should select correct dataProviderName", async () => {
+        const createManyDefaultMock = jest.fn();
+        const createManyFooMock = jest.fn();
+
+        const { result } = renderHook(() => useCreateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        createMany: createManyDefaultMock,
+                    },
+                    foo: {
+                        ...MockJSONServer.default,
+                        createMany: createManyFooMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "posts",
+                        meta: {
+                            dataProviderName: "foo",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: [
+                {
+                    foo: "bar",
+                },
+            ],
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createManyFooMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+        expect(createManyDefaultMock).not.toBeCalled();
+    });
+
+    it("should get correct `meta` of related resource", async () => {
+        const createManyMock = jest.fn();
+
+        const { result } = renderHook(() => useCreateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        createMany: createManyMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "posts",
+                        meta: {
+                            foo: "bar",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: [
+                {
+                    title: "awesome post",
+                },
+            ],
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createManyMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                }),
+            }),
+        );
+    });
+
+    describe("when passing `identifier` instead of `name`", () => {
+        it("should select correct dataProviderName", async () => {
+            const createManyDefaultMock = jest.fn();
+            const createManyFooMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            createMany: createManyDefaultMock,
+                        },
+                        foo: {
+                            ...MockJSONServer.default,
+                            createMany: createManyFooMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                dataProviderName: "foo",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                values: [
+                    {
+                        foo: "bar",
+                    },
+                ],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createManyFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(createManyDefaultMock).not.toBeCalled();
+        });
+
+        it("should invalidate query store with `identifier`", async () => {
+            const invalidateStore = jest.fn();
+            jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(
+                invalidateStore,
+            );
+            const createManyMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            createMany: createManyMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                values: [
+                    {
+                        foo: "bar",
+                    },
+                ],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(invalidateStore).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "featured-posts",
+                }),
+            );
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const createManyMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            createMany: createManyMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "all-posts",
+                            meta: {
+                                foo: "bar",
+                            },
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                bar: "baz",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                values: [
+                    {
+                        title: "awesome post",
+                    },
+                ],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createManyMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        bar: "baz",
+                    }),
+                }),
+            );
         });
     });
 

@@ -122,7 +122,7 @@ export const useCreate = <
     });
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const { log } = useLog();
@@ -136,20 +136,23 @@ export const useCreate = <
         unknown
     >(
         ({
-            resource,
+            resource: resourceName,
             values,
             meta,
             metaData,
             dataProviderName,
         }: useCreateParams<TData, TError, TVariables>) => {
+            const { resource, identifier } = select(resourceName);
+
             const combinedMeta = getMeta({
+                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 
             return dataProvider(
-                pickDataProvider(resource, dataProviderName, resources),
+                pickDataProvider(identifier, dataProviderName, resources),
             ).create<TData, TVariables>({
-                resource,
+                resource: resource.name,
                 variables: values,
                 meta: combinedMeta,
                 metaData: combinedMeta,
@@ -159,7 +162,7 @@ export const useCreate = <
             onSuccess: (
                 data,
                 {
-                    resource,
+                    resource: resourceName,
                     successNotification: successNotificationFromProp,
                     dataProviderName,
                     invalidates = ["list", "many"],
@@ -168,20 +171,22 @@ export const useCreate = <
                     metaData,
                 },
             ) => {
-                const resourceSingular = pluralize.singular(resource);
+                const { resource, identifier } = select(resourceName);
+
+                const resourceSingular = pluralize.singular(identifier);
 
                 const notificationConfig =
                     typeof successNotificationFromProp === "function"
-                        ? successNotificationFromProp(data, values, resource)
+                        ? successNotificationFromProp(data, values, identifier)
                         : successNotificationFromProp;
 
                 handleNotification(notificationConfig, {
-                    key: `create-${resource}-notification`,
+                    key: `create-${identifier}-notification`,
                     message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
+                                `${identifier}.${identifier}`,
                                 resourceSingular,
                             ),
                         },
@@ -192,9 +197,9 @@ export const useCreate = <
                 });
 
                 invalidateStore({
-                    resource,
+                    resource: identifier,
                     dataProviderName: pickDataProvider(
-                        resource,
+                        identifier,
                         dataProviderName,
                         resources,
                     ),
@@ -202,7 +207,7 @@ export const useCreate = <
                 });
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "created",
                     payload: {
                         ids: data?.data?.id ? [data.data.id] : undefined,
@@ -210,16 +215,21 @@ export const useCreate = <
                     date: new Date(),
                 });
 
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
+
                 const { fields, operation, variables, ...rest } =
-                    pickNotDeprecated(meta, metaData) || {};
+                    combinedMeta || {};
 
                 log?.mutate({
                     action: "create",
-                    resource,
+                    resource: resource.name,
                     data: values,
                     meta: {
                         dataProviderName: pickDataProvider(
-                            resource,
+                            identifier,
                             dataProviderName,
                             resources,
                         ),
@@ -231,27 +241,30 @@ export const useCreate = <
             onError: (
                 err: TError,
                 {
-                    resource,
+                    resource: resourceName,
                     errorNotification: errorNotificationFromProp,
                     values,
                 },
             ) => {
                 checkError(err);
-                const resourceSingular = pluralize.singular(resource);
+
+                const { identifier } = select(resourceName);
+
+                const resourceSingular = pluralize.singular(identifier);
 
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"
-                        ? errorNotificationFromProp(err, values, resource)
+                        ? errorNotificationFromProp(err, values, identifier)
                         : errorNotificationFromProp;
 
                 handleNotification(notificationConfig, {
-                    key: `create-${resource}-notification`,
+                    key: `create-${identifier}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
+                                `${identifier}.${identifier}`,
                                 resourceSingular,
                             ),
                             statusCode: err.statusCode,

@@ -75,11 +75,11 @@ module.exports = {
             },
             {
                 group: "Other",
-                label: "LoadingOvertimeIndicator",
+                label: "LoadingOvertime",
                 files: [
                     {
-                        src: "./src/components/loadingOvertimeIndicator/index.tsx",
-                        dest: "./components/loadingOvertimeIndicator.tsx",
+                        src: "./src/components/loadingOvertime/index.tsx",
+                        dest: "./components/loadingOvertime.tsx",
                     },
                 ],
             },

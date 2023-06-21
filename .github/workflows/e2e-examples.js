@@ -60,7 +60,12 @@ const getProjectInfo = async (path) => {
     }
 
     // check for next and remix
-    if (dependencies.includes("next") || devDependencies.includes("next") || dependencies.includes("@remix-run/node") || devDependencies.includes("@remix-run/node")) {
+    if (
+        dependencies.includes("next") ||
+        devDependencies.includes("next") ||
+        dependencies.includes("@remix-run/node") ||
+        devDependencies.includes("@remix-run/node")
+    ) {
         port = 3000;
         command = "npm run build && npm run start:prod";
     }
@@ -69,8 +74,7 @@ const getProjectInfo = async (path) => {
         dependencies.includes("react-scripts") ||
         devDependencies.includes("react-scripts")
     ) {
-
-        additionalParams = "-- --host 127.0.0.1"
+        additionalParams = "-- --host 127.0.0.1";
     }
 
     return {
@@ -188,7 +192,9 @@ const runTests = async () => {
     for await (const path of examplesToRun) {
         console.log(`::group::Example ${path}`);
 
-        const { port, command, additionalParams } = await getProjectInfo(`${EXAMPLES_DIR}/${path}`);
+        const { port, command, additionalParams } = await getProjectInfo(
+            `${EXAMPLES_DIR}/${path}`,
+        );
         console.log("port", port);
         console.log("command", command);
         console.log("additionalParams", additionalParams);
@@ -248,7 +254,7 @@ const runTests = async () => {
 
         try {
             if (!failed) {
-                const params = `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+                const params = `-- --record --key ${KEY} --group ${path}`;
                 const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
 
                 prettyLog("blue", `Running tests for ${path}`);

@@ -24,4 +24,4 @@ export * from "./table";
 export * from "./pages";
 export * from "./breadcrumb";
 export * from "./pageHeader";
-export * from "./loadingOvertimeIndicator";
+export * from "./loadingOvertime";
