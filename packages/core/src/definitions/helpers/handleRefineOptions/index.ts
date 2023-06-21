@@ -75,6 +75,17 @@ export const handleRefineOptions = ({
                 defaultRefineOptions.redirect.afterEdit,
         },
         overtime: options?.overtime ?? defaultRefineOptions.overtime,
+        textTransformers: {
+            humanize:
+                options?.textTransformers?.humanize ??
+                defaultRefineOptions.textTransformers.humanize,
+            plural:
+                options?.textTransformers?.plural ??
+                defaultRefineOptions.textTransformers.plural,
+            singular:
+                options?.textTransformers?.singular ??
+                defaultRefineOptions.textTransformers.singular,
+        },
     };
 
     const disableTelemetryWithDefault =
