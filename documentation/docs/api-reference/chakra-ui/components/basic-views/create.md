@@ -293,6 +293,10 @@ render(
 );
 ```
 
+If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
+
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+
 ### `goBack`
 
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.

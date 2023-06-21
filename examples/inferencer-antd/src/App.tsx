@@ -1,141 +1,175 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
 import {
+    ErrorComponent,
     notificationProvider,
     ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
+    ThemedSiderV2,
 } from "@refinedev/antd";
-import { AntdInferencer } from "@refinedev/inferencer/antd";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+import routerBindings, {
+    CatchAllNavigate,
+    DocumentTitleHandler,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { authProvider } from "./authProvider";
+import { Header } from "./components/header";
+import { ColorModeContextProvider } from "./contexts/color-mode";
+import {
+    BlogPostCreate,
+    BlogPostEdit,
+    BlogPostList,
+    BlogPostShow,
+} from "./pages/blog-posts";
+import {
+    CategoryCreate,
+    CategoryEdit,
+    CategoryList,
+    CategoryShow,
+} from "./pages/categories";
+import { ForgotPassword } from "./pages/forgotPassword";
+import { Login } from "./pages/login";
+import { Register } from "./pages/register";
 
-const App: React.FC = () => {
+function App() {
+    const { t, i18n } = useTranslation();
+
+    const i18nProvider = {
+        translate: (key: string, params: object) => t(key, params),
+        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+        getLocale: () => i18n.language,
+    };
+
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                            create: "/samples/create",
-                            edit: "/samples/edit/:id",
-                            show: "/samples/show/:id",
-                            meta: {
-                                canDelete: true,
+            <RefineKbarProvider>
+                <ColorModeContextProvider>
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerBindings}
+                        authProvider={authProvider}
+                        i18nProvider={i18nProvider}
+                        resources={[
+                            {
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                create: "/blog-posts/create",
+                                edit: "/blog-posts/edit/:id",
+                                show: "/blog-posts/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                            meta: {
-                                canDelete: true,
+                            {
+                                name: "categories",
+                                list: "/categories",
+                                create: "/categories/create",
+                                edit: "/categories/edit/:id",
+                                show: "/categories/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
-                        },
-                        {
-                            name: "users",
-                            list: "/users",
-                            create: "/users/create",
-                            edit: "/users/edit/:id",
-                            show: "/users/show/:id",
-                            meta: {
-                                canDelete: true,
-                            },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="samples" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2
+                                            Header={() => <Header sticky />}
+                                            Sider={() => (
+                                                <ThemedSiderV2 fixed />
+                                            )}
+                                        >
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
-
-                            <Route path="samples">
-                                <Route index element={<AntdInferencer />} />
+                            >
                                 <Route
-                                    path="create"
-                                    element={<AntdInferencer />}
+                                    index
+                                    element={
+                                        <NavigateToResource resource="blog_posts" />
+                                    }
+                                />
+                                <Route path="/blog-posts">
+                                    <Route index element={<BlogPostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<BlogPostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<BlogPostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<BlogPostShow />}
+                                    />
+                                </Route>
+                                <Route path="/categories">
+                                    <Route index element={<CategoryList />} />
+                                    <Route
+                                        path="create"
+                                        element={<CategoryCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CategoryEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<CategoryShow />}
+                                    />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<Login />} />
+                                <Route
+                                    path="/register"
+                                    element={<Register />}
                                 />
                                 <Route
-                                    path="edit/:id"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<AntdInferencer />}
+                                    path="/forgot-password"
+                                    element={<ForgotPassword />}
                                 />
                             </Route>
+                        </Routes>
 
-                            <Route path="categories">
-                                <Route index element={<AntdInferencer />} />
-                                <Route
-                                    path="create"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<AntdInferencer />}
-                                />
-                            </Route>
-
-                            <Route path="users">
-                                <Route index element={<AntdInferencer />} />
-                                <Route
-                                    path="create"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<AntdInferencer />}
-                                />
-                            </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </ConfigProvider>
+                        <RefineKbar />
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </ColorModeContextProvider>
+            </RefineKbarProvider>
         </BrowserRouter>
     );
-};
+}
 
 export default App;

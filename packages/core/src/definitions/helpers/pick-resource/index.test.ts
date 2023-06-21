@@ -60,4 +60,10 @@ describe("pickResource", () => {
 
         expect(resource?.name).toBe("name");
     });
+
+    it("should return undefined if `identifier` is not defined", () => {
+        const resource = pickResource(undefined, [{ name: "name" }], true);
+
+        expect(resource).toBeUndefined();
+    });
 });
