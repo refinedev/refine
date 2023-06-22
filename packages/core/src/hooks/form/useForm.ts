@@ -177,7 +177,19 @@ export type UseFormProps<
 > &
     ActionParams &
     LiveModeProps &
-    UseLoadingOvertimeOptionsProps;
+    UseLoadingOvertimeOptionsProps & {
+        onAutosaveSuccess?: (
+            data: CreateResponse<TResponse> | UpdateResponse<TResponse>,
+            variables: TVariables,
+            context: any,
+        ) => void;
+
+        onAutosaveError?: (
+            error: TResponseError,
+            variables: TVariables,
+            context: any,
+        ) => void;
+    };
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -202,7 +214,17 @@ export type UseFormReturnType<
         idFromFunction?: BaseKey | undefined,
         routeParams?: Record<string, string | number>,
     ) => void;
-} & UseLoadingOvertimeReturnType;
+} & UseLoadingOvertimeReturnType & {
+        onFinishAutoSave: (
+            values: TVariables,
+        ) => Promise<UpdateResponse<TResponse> | void> | void;
+    } & {
+        autoSaveProps: UseUpdateReturnType<
+            TResponse,
+            TResponseError,
+            TVariables
+        >;
+    };
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -248,6 +270,8 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     overtimeOptions,
+    onAutosaveSuccess,
+    onAutosaveError,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -378,6 +402,10 @@ export const useForm = <
     const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
         mutationResultUpdate;
 
+    const mutationAutoSave = useUpdate<TResponse, TResponseError, TVariables>(
+        {},
+    );
+
     const { setWarnWhen } = useWarnAboutChange();
 
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
@@ -441,6 +469,37 @@ export const useForm = <
                 );
             },
         );
+    };
+
+    const onFinishAutoSave = (
+        values: TVariables,
+    ): Promise<UpdateResponse<TResponse> | void> | void => {
+        if (!resource || !isEdit) return;
+
+        const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
+            id: id ?? "",
+            values,
+            resource: identifier ?? resource.name,
+            successNotification: false,
+            errorNotification: false,
+            meta: { ...combinedMeta, ...mutationMeta },
+            metaData: { ...combinedMeta, ...mutationMeta },
+            dataProviderName,
+            invalidates: [], // TODO: check if necessary
+        };
+
+        return mutationAutoSave.mutate(variables, {
+            onSuccess: (data, _, context) => {
+                if (onAutosaveSuccess) {
+                    onAutosaveSuccess(data, values, context);
+                }
+            },
+            onError: (error: TResponseError, _, context) => {
+                if (onAutosaveError) {
+                    return onAutosaveError(error, values, context);
+                }
+            },
+        });
     };
 
     const onFinishUpdate = async (values: TVariables) => {
@@ -532,6 +591,10 @@ export const useForm = <
     return {
         ...result,
         queryResult,
+        onFinishAutoSave,
+        autoSaveProps: {
+            ...mutationAutoSave,
+        },
         id,
         setId,
         redirect: (redirect, idFromFunction?: BaseKey | undefined) => {
