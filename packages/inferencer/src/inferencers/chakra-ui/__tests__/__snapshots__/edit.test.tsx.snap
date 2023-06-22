@@ -1438,7 +1438,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        resetField
+                        setValue
               </span>
               <span
                 class="token punctuation"
@@ -1943,7 +1943,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                 class="token function"
                 style="color: rgb(220, 220, 170);"
               >
-                resetField
+                setValue
               </span>
               <span
                 class="token punctuation"
@@ -1956,6 +1956,39 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                 style="color: rgb(206, 145, 120);"
               >
                 "category.id"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              >
+                 postsData
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                category
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                id
               </span>
               <span
                 class="token punctuation"
@@ -2380,7 +2413,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                 class="token function"
                 style="color: rgb(220, 220, 170);"
               >
-                resetField
+                setValue
               </span>
               <span
                 class="token punctuation"
@@ -2393,6 +2426,39 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                 style="color: rgb(206, 145, 120);"
               >
                 "user.id"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              >
+                 postsData
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                user
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                id
               </span>
               <span
                 class="token punctuation"
@@ -2770,7 +2836,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                 class="token function"
                 style="color: rgb(220, 220, 170);"
               >
-                resetField
+                setValue
               </span>
               <span
                 class="token punctuation"
@@ -2783,6 +2849,39 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                 style="color: rgb(206, 145, 120);"
               >
                 "tags"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              >
+                 postsData
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                tags
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                id
               </span>
               <span
                 class="token punctuation"
