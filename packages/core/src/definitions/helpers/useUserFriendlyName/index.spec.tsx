@@ -4,7 +4,7 @@ import { useUserFriendlyName } from ".";
 import { defaultRefineOptions } from "@contexts/refine";
 import { TestWrapper } from "@test/index";
 
-describe("userFriendlyResourceName Helper", () => {
+describe("useUserFriendlyName helper hook", () => {
     describe("with default options", () => {
         it("should convert kebab-case to humanizeString with plural", async () => {
             const singularKebapCase = "red-tomato";
