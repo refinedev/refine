@@ -12,8 +12,6 @@ sidebar_label: <Refine>
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
-import { PostList } from "pages/posts";
-
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
@@ -42,7 +40,7 @@ export default App;
 <br/>
 
 A [`dataProvider`](/api-reference/core/providers/data-provider.md) is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.  
+Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
 A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
 
 [Refer to the Data Provider documentation for detailed information. &#8594](/api-reference/core/providers/data-provider.md)
@@ -53,8 +51,10 @@ To activate multiple data provider in refine, we have to pass the default key wi
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 
-import defaultDataProvider from "./dataProvider";
-import exampleDataProvider from "./dataProvider";
+import {
+    default as defaultDataProvider,
+    default as exampleDataProvider,
+} from "./dataProvider";
 
 const App: React.FC = () => {
     return (
@@ -103,8 +103,6 @@ Routes for the action pages that are for interacting with the CRUD API operation
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/json-server";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
@@ -148,7 +146,62 @@ https://api.fake-rest.refine.dev/posts/1
 
 ### `identifier`
 
-You can pass this value to a resource and it will be used as the main matching key for the resource. This is useful when you have multiple resources with the same `name`.
+The `identifier` value serves as the main matching key for a resource. It allows you to effectively differentiate between multiple resources that share the same `name`.
+
+There are scenarios where you may have multiple resources with the same `name` but different `meta` values. For instance, you might want a `posts` resource utilizing the default data provider and another `posts` resource utilizing the "typicode" data provider. In this case, you can use the `identifier` to differentiate between them.
+
+```tsx
+import { Refine } from "@refinedev/core";
+
+<Refine
+    ...
+    dataProvider={{
+        default: defaultDataProvider,
+        typicode: typicodeDataProvider,
+    }}
+    resources={[
+        {
+            name: "posts",
+            identifier: "posts",
+            meta: {
+                foo: "bar",
+            },
+        },
+        {
+            name: "posts",
+            identifier: "featured-posts",
+            meta: {
+                foo: "baz",
+                filter: {
+                    featured: true,
+                },
+                dataProviderName: "typicode",
+            },
+        },
+    ]}
+>
+...
+</Refine>;
+```
+
+As you can see in the example above, we have two resources with the same `name` but different `identifier` values. Also, both resources have different `meta` values. Using the `identifier`, we can differentiate between the two resources like so:
+
+```tsx
+import { useTable } from "@refinedev/core";
+
+useTable({
+    resource: "featured-posts",
+});
+
+const typicodeDataProvider = {
+    //...
+    getList: async ({ resource, meta }) => {
+        console.log(resource); // "posts"
+        console.log(meta); // { foo: "baz", filter: { featured: true } }
+    },
+    //...
+};
+```
 
 ### `list`
 
@@ -159,7 +212,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -175,7 +228,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -191,7 +244,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -207,7 +260,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -366,7 +419,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 Customize or disable the breadcrumb. By default it uses the Breadcrumb component from respective package.
 
-The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/api-reference/mantine/components/basic-views/create/#breadcrumb), [MUI](/docs/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
+The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/api-reference/mantine/components/basic-views/create/#breadcrumb), [Material UI](/docs/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
 
 [Refer to the Breadcrumb docs for further information. &#8594](/docs/api-reference/antd/components/breadcrumb/)
 
@@ -445,8 +498,8 @@ const App: React.FC = () => {
 
 ### `undoableTimeout`
 
-The duration of the timeout period in **undoable** mode is shown in milliseconds. Mutations can be canceled during this period. This period can also be set on the supported data hooks.  
-The value set in hooks will override the value set with `undoableTimeout`.  
+The duration of the timeout period in **undoable** mode is shown in milliseconds. Mutations can be canceled during this period. This period can also be set on the supported data hooks.
+The value set in hooks will override the value set with `undoableTimeout`.
 `undoableTimeout` has a default value of `5000`.
 
 ```tsx title="App.tsx"
@@ -463,7 +516,8 @@ const App: React.FC = () => {
 
 ### `syncWithLocation`
 
-List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
+List query parameter values can be edited manually by typing directly in the URL.
+`syncWithLocation`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
 :::info
 
@@ -479,14 +533,12 @@ When `syncWithLocation` is active, the URL on the listing page shows query param
 
 Users can change the current page, items count per page, and sort and filter parameters.
 
-The default value is `false`.
-
 ### `warnWhenUnsavedChanges`
 
 When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
-To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
+`warnWhenUnsavedChanges`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
-:::info
+:::caution
 This feature also requires `UnsavedChangesNotifier` component to be mounted. You can import this component from your router package.
 :::
 
@@ -497,21 +549,18 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/warnwhen.png" />
 
 </div>
-<br/>
-
-The default value is `false`.
 
 ### `liveMode`
 
-Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
+`liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is recieved. The `off` value can be used to avoid creating a subscription all together.
 
-[Refer to live provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#livemode)
+> For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#livemode)
 
 ### `disableTelemetry`
 
 **refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **refine** experience. You can disable this by setting `disableTelemetry` to `true`.
 
-[Refer to refine telemetry documentation for detailed information. &#8594](/further-readings/telemetry.md)
+> For more information, refer to the [refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
 ### `redirect`
 
@@ -559,8 +608,6 @@ Config for React Query client that **refine** uses.
 }
 ```
 
-[Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
-
 ```tsx
 const App: React.FC = () => (
     <Refine
@@ -603,9 +650,11 @@ const App: React.FC = () => (
 );
 ```
 
+> For more information, refer to the [QueryClient documentation &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
+
 #### `devtoolConfig`
 
-Config for customizing React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
+Config for customizing the React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
 
 **refine** uses some defaults that apply to react-query devtool:
 
@@ -615,8 +664,6 @@ Config for customizing React Query Devtools. If you want to disable the Devtools
     position: "bottom-right"
 }
 ```
-
-[Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
 
 ```tsx {4-7}
 const App: React.FC = () => (
@@ -636,13 +683,54 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
+> For more information, refer to the [Devtools documentation &#8594](https://react-query.tanstack.com/devtools#options)
+
+### `overtime`
+
+If you want loading overtime for the request, you can use the `overtime` object. It is useful when you want to show a loading indicator when the request takes too long.
+
+```tsx
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            overtime: {
+                interval: 1000, // default value is 1000
+                onInterval: (elapsedInterval, context) => {
+                    console.log(elapsedInterval, context);
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
+#### `interval`
+
+The interval value in milliseconds. The default value is `1000`.
+
+#### `onInterval`
+
+The callback function that will be called on every interval. The default value is `undefined`.
+
+The callback function receives two parameters:
+
+-   `elapsedInterval`: The elapsed interval in milliseconds.
+-   `context`:
+
+| Description  | Type                                                                       |
+| ------------ | -------------------------------------------------------------------------- |
+| resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
+| resourceName | `string` \| `undefined`                                                    |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
+| action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 ## `onLiveEvent`
 
 Callback to handle all live events.
 
-[Refer to live provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#refine)
+> For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#refine)
 
 ## ~~`catchAll`~~
 
@@ -669,8 +757,6 @@ const App: React.FC = () => {
 };
 ```
 
-<br />
-
 ## ~~`LoginPage`~~
 
 :::caution Deprecated
@@ -695,8 +781,6 @@ const App: React.FC = () => (
     />
 );
 ```
-
-<br />
 
 ## ~~`DashboardPage`~~
 
@@ -723,8 +807,6 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
-
 ## ~~`ReadyPage`~~
 
 :::caution Deprecated
@@ -750,8 +832,6 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
-
 ## ~~`Sider`~~
 
 :::caution Deprecated
@@ -764,9 +844,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
-[Refer to the `useMenu` hook documentation for detailed sidebar customization. &#8594](/api-reference/core/hooks/ui/useMenu.md)
-
-<br />
+> For more information, refer to the [`useMenu` hook documentation &#8594](/api-reference/core/hooks/ui/useMenu.md)
 
 ## ~~`Footer`~~
 
@@ -790,8 +868,6 @@ const App: React.FC = () => (
     />
 );
 ```
-
-<br />
 
 ## ~~`Header`~~
 
@@ -857,8 +933,6 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
-
 A completely custom layout can also be implemented instead of the **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
 ```tsx title="App.tsx"
@@ -877,11 +951,11 @@ const App: React.FC = () => (
 );
 ```
 
-[Refer to the Custom Layout documentation for detailed information. &#8594](/advanced-tutorials/custom-layout.md)
+:::note
+children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
+:::
 
-> `children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
-
-<br />
+> For more information, refer to the [Custom Layout documentation &#8594](/advanced-tutorials/custom-layout.md)
 
 ## ~~`OffLayoutArea`~~
 

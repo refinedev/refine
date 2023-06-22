@@ -42,15 +42,13 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
         return (
             <div
                 className={clsx(
-                    "inline",
+                    "flex justify-center items-center",
+                    "text-sm",
                     "text-gray-0",
-                    "text-xs",
-                    "leading-6",
-                    "py-0.5",
-                    "px-2",
-                    "rounded",
-                    "bg-refine-yellow",
-                    "tracking-wide",
+                    "rounded-full",
+                    "bg-refine-red",
+                    "ml-1",
+                    "w-4 h-4",
                 )}
                 title={alt}
             >

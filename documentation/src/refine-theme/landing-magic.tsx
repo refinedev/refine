@@ -167,7 +167,16 @@ export const LandingMagic = () => {
     }, [dataY]);
 
     return (
-        <div className="w-full relative pb-12 max-w-screen-landing-2xl mx-auto">
+        <div
+            className={clsx(
+                "w-full",
+                "relative",
+                "pb-12",
+                "max-w-screen-landing-2xl",
+                "mx-auto",
+                "block landing-lg:hidden",
+            )}
+        >
             <div
                 className={clsx(
                     "w-full h-full",
@@ -283,6 +292,7 @@ export const LandingMagic = () => {
                                             "rounded-lg",
                                             "relative",
                                             "overflow-hidden",
+                                            "animation-parent",
                                         )}
                                     >
                                         <motion.div
@@ -335,6 +345,7 @@ export const LandingMagic = () => {
                                             "rounded-lg",
                                             "relative",
                                             "overflow-hidden",
+                                            "animation-parent",
                                         )}
                                     >
                                         <motion.div

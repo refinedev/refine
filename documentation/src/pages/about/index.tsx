@@ -1,5 +1,5 @@
 import Head from "@docusaurus/Head";
-import { RedditIcon } from "@site/src/components/landing/icons/gray-social-icons";
+import { FooterRedditIcon as RedditIcon } from "@site/src/refine-theme/icons/footer-reddit";
 import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
@@ -15,8 +15,10 @@ import clsx from "clsx";
 import React from "react";
 import { backedBy } from "../../assets/backed-by";
 import { team } from "../../assets/team";
+import { useColorMode } from "@docusaurus/theme-common";
 
 const About: React.FC = () => {
+    const { colorMode } = useColorMode();
     return (
         <>
             <Head title="About | refine">
@@ -342,7 +344,10 @@ const About: React.FC = () => {
                         ))}
                         <div className="flex justify-center flex-col text-center">
                             <div className="w-full not-prose m-0 mb-6 mt-6">
-                                <JoinUsIcon className="w-full" />
+                                <JoinUsIcon
+                                    className="w-full"
+                                    isDark={colorMode === "dark"}
+                                />
                             </div>
                             <a
                                 target="_blank"

@@ -1,5 +1,45 @@
 # @pankod/refine-ui-tests
 
+## 1.7.2
+
+### Patch Changes
+
+-   [#4550](https://github.com/refinedev/refine/pull/4550) [`74468063d31`](https://github.com/refinedev/refine/commit/74468063d31195f2f9b6808189d2b761b41cbb29) Thanks [@aliemir](https://github.com/aliemir)! - Updated layout header tests to fallback to `img` in case of `presentation` role is not present.c
+
+-   Updated dependencies [[`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf), [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42), [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf)]:
+    -   @refinedev/core@4.24.0
+
+## 1.7.1
+
+### Patch Changes
+
+-   [#4550](https://github.com/refinedev/refine/pull/4550) [`74468063d31`](https://github.com/refinedev/refine/commit/74468063d31195f2f9b6808189d2b761b41cbb29) Thanks [@aliemir](https://github.com/aliemir)! - Updated layout header tests to fallback to `img` in case of `presentation` role is not present.c
+
+-   Updated dependencies [[`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf), [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42), [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf)]:
+    -   @refinedev/core@4.23.0
+
+## 1.7.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated button specs to test new access control provider behaviour.
+
+### Patch Changes
+
+-   Updated dependencies [[`a3c8d4f84c7`](https://github.com/refinedev/refine/commit/a3c8d4f84c7b20b6d30f43310f5260b2f57b801a), [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445)]:
+    -   @refinedev/core@4.22.0
+
+## 1.6.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated button specs to test new access control provider behaviour.
+
+### Patch Changes
+
+-   Updated dependencies [[`a3c8d4f84c7`](https://github.com/refinedev/refine/commit/a3c8d4f84c7b20b6d30f43310f5260b2f57b801a), [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445)]:
+    -   @refinedev/core@4.21.0
+
 ## 1.5.0
 
 ### Minor Changes

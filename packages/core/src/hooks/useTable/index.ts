@@ -40,6 +40,11 @@ import {
 } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
 import { BaseListProps } from "../data/useList";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -173,7 +178,8 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -211,7 +217,7 @@ export type useTableReturnType<
     pageSize: number;
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
     pageCount: number;
-};
+} & UseLoadingOvertimeReturnType;
 
 /**
  * By using useTable, you are able to get properties that are compatible with
@@ -256,6 +262,7 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
+    overtimeOptions,
 }: useTableProps<TQueryFnData, TError, TData> = {}): useTableReturnType<
     TData,
     TError
@@ -350,21 +357,19 @@ export function useTable<
     /** New way of `replace` calls to the router is using `useGo` */
     const go = useGo();
 
-    const { resource } = useResource(resourceFromProp);
+    const { resource, identifier } = useResource(resourceFromProp);
 
     const combinedMeta = getMeta({
         resource,
         meta: preferredMeta,
     });
 
-    const resourceInUse = resource?.name;
-
     React.useEffect(() => {
         warnOnce(
-            typeof resourceInUse === "undefined",
+            typeof identifier === "undefined",
             `useTable: \`resource\` is not defined.`,
         );
-    }, [resourceInUse]);
+    }, [identifier]);
 
     const [sorters, setSorters] = useState<CrudSorting>(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
@@ -509,7 +514,7 @@ export function useTable<
     }, [syncWithLocation, current, pageSize, sorters, filters]);
 
     const queryResult = useList<TQueryFnData, TError, TData>({
-        resource: resourceInUse,
+        resource: identifier,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
         filters: isServerSideFilteringEnabled
@@ -566,6 +571,12 @@ export function useTable<
         setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
     };
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         tableQueryResult: queryResult,
         sorters,
@@ -582,5 +593,8 @@ export function useTable<
             ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
             : 1,
         createLinkForSyncWithLocation,
+        overtime: {
+            elapsedTime,
+        },
     };
 }

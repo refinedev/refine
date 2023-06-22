@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
 import {
@@ -11,6 +11,7 @@ import {
     useRouterType,
     useLink,
     pickNotDeprecated,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -36,8 +37,16 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
+
     const { listUrl: generateListUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();
@@ -47,7 +56,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { resource } = useResource(
+    const { resource, identifier } = useResource(
         resourceNameFromProps ?? propResourceNameOrRouteName,
     );
 
@@ -105,14 +114,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     (children ??
                         translate(
                             `${
-                                resource?.name ??
+                                identifier ??
                                 resourceNameFromProps ??
                                 propResourceNameOrRouteName
                             }.titles.list`,
                             userFriendlyResourceName(
                                 resource?.meta?.label ??
                                     resource?.label ??
-                                    resource?.name ??
+                                    identifier ??
                                     pickNotDeprecated(
                                         resourceNameFromProps,
                                         propResourceNameOrRouteName,

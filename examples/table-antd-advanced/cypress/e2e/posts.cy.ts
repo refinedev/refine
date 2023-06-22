@@ -3,6 +3,7 @@
 
 describe("table-antd-advanced", () => {
     beforeEach(() => {
+        cy.interceptGETPosts();
         cy.visit("http://localhost:3000");
     });
 

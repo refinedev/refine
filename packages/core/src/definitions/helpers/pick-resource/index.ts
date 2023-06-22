@@ -32,9 +32,10 @@ export const pickResource = (
         return resource;
     }
 
-    const resource = resources.find(
-        (r) => (r.identifier ?? r.name) === identifier,
-    );
+    let resource = resources.find((r) => r.identifier === identifier);
+    if (!resource) {
+        resource = resources.find((r) => r.name === identifier);
+    }
 
     return resource;
 };

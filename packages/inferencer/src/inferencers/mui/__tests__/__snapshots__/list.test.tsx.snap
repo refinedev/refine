@@ -33,7 +33,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
           aria-colcount="14"
           aria-multiselectable="false"
           aria-rowcount="3"
-          class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard MuiDataGrid-withBorderColor css-1unvvm1-MuiDataGrid-root"
+          class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard MuiDataGrid-withBorderColor css-k2120h-MuiDataGrid-root"
           role="grid"
         >
           <div

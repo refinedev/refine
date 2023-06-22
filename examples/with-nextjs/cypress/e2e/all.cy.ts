@@ -4,16 +4,13 @@
 describe("with-nextjs", () => {
     const BASE_URL = "http://localhost:3000";
 
-    const mockPost = {
-        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        status: "Published",
-    };
-
     const fillForm = () => {
-        cy.get("#title").clear();
-        cy.get("#title").type(mockPost.title);
-        cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
-        cy.setAntdSelect({ id: "status", value: mockPost.status });
+        cy.fixture("mock-post").then((mockPost) => {
+            cy.get("#title").clear();
+            cy.get("#title").type(mockPost.title);
+            cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+            cy.setAntdSelect({ id: "status", value: mockPost.status });
+        });
     };
 
     const assertSuccessResponse = (response: any) => {
@@ -22,13 +19,15 @@ describe("with-nextjs", () => {
         expect(response?.statusCode).to.eq(200);
         expect(body).to.have.property("id");
         expect(body).to.have.property("category");
-        expect(body?.title).to.eq(mockPost.title);
 
-        expect(body?.status?.toLowerCase()).to.eq(
-            mockPost?.status?.toLowerCase(),
-        );
+        cy.fixture("mock-post").then((mockPost) => {
+            expect(body?.title).to.eq(mockPost.title);
+            // expect(body?.content).to.eq(mockPost.content);
+            expect(body?.status?.toLowerCase()).to.eq(
+                mockPost?.status?.toLowerCase(),
+            );
+        });
 
-        cy.getAntdNotification().should("contain", "Success");
         cy.location().should((loc) => {
             expect(loc.pathname).to.eq("/posts");
         });
@@ -191,8 +190,13 @@ describe("with-nextjs", () => {
         beforeEach(() => {
             login();
         });
+
         it("should create record", () => {
             cy.getCreateButton().click();
+            cy.wait("@getCategories");
+            cy.location("pathname").should("eq", "/posts/create");
+
+            cy.assertDocumentTitle("Post", "create");
 
             fillForm();
             submitForm();
@@ -202,31 +206,40 @@ describe("with-nextjs", () => {
                 assertSuccessResponse(response);
             });
         });
-        it("should edit record", () => {
-            cy.getEditButton().first().click();
 
+        it("should edit record", () => {
             // wait loading state and render to be finished
-            cy.wait("@getPost");
-            cy.getSaveButton().should("not.be.disabled");
+            cy.wait("@getPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.getEditButton().last().click();
+            cy.wait("@getPost");
+            cy.wait("@getCategories");
+
+            cy.assertDocumentTitle("Post", "edit");
 
             fillForm();
             submitForm();
 
             cy.wait("@patchPost").then((interception) => {
                 const response = interception?.response;
+
                 assertSuccessResponse(response);
             });
         });
+
         it("should delete record", () => {
-            cy.getEditButton().first().click();
+            cy.wait("@getPosts");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");
-            cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
+            cy.getSaveButton().should("not.be.disabled");
 
-            cy.getDeleteButton().first().click();
+            cy.getDeleteButton().last().click();
             cy.getAntdPopoverDeleteButton().click();
 
             cy.wait("@deletePost").then((interception) => {
@@ -262,7 +275,7 @@ describe("with-nextjs", () => {
         });
 
         it("should edit form render errors", () => {
-            cy.getEditButton().first().click();
+            cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");
@@ -293,7 +306,7 @@ describe("with-nextjs", () => {
 
         it("should edit form warn when unsaved changes", () => {
             cy.wait("@getPosts");
-            cy.getEditButton().first().click();
+            cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");

@@ -39,6 +39,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type UpdateParams<TData, TError, TVariables> = {
     /**
@@ -98,7 +103,8 @@ export type UseUpdateReturnType<
     TError,
     UpdateParams<TData, TError, TVariables>,
     UpdateContext<TData>
->;
+> &
+    UseLoadingOvertimeReturnType;
 
 export type UseUpdateProps<
     TData extends BaseRecord = BaseRecord,
@@ -114,7 +120,7 @@ export type UseUpdateProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
-};
+} & UseLoadingOvertimeOptionsProps;
 
 /**
  * `useUpdate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for update mutations.
@@ -134,12 +140,13 @@ export const useUpdate = <
     TVariables = {},
 >({
     mutationOptions,
+    overtimeOptions,
 }: UseUpdateProps<TData, TError, TVariables> = {}): UseUpdateReturnType<
     TData,
     TError,
     TVariables
 > => {
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
 
@@ -168,7 +175,7 @@ export const useUpdate = <
         ({
             id,
             values,
-            resource,
+            resource: resourceName,
             mutationMode,
             undoableTimeout,
             onCancel,
@@ -176,7 +183,10 @@ export const useUpdate = <
             metaData,
             dataProviderName,
         }) => {
+            const { resource, identifier } = select(resourceName);
+
             const combinedMeta = getMeta({
+                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 
@@ -188,9 +198,9 @@ export const useUpdate = <
 
             if (!(mutationModePropOrContext === "undoable")) {
                 return dataProvider(
-                    pickDataProvider(resource, dataProviderName, resources),
+                    pickDataProvider(identifier, dataProviderName, resources),
                 ).update<TData, TVariables>({
-                    resource,
+                    resource: resource.name,
                     id,
                     variables: values,
                     meta: combinedMeta,
@@ -202,13 +212,13 @@ export const useUpdate = <
                     const doMutation = () => {
                         dataProvider(
                             pickDataProvider(
-                                resource,
+                                identifier,
                                 dataProviderName,
                                 resources,
                             ),
                         )
                             .update<TData, TVariables>({
-                                resource,
+                                resource: resource.name,
                                 id,
                                 variables: values,
                                 meta: combinedMeta,
@@ -230,7 +240,7 @@ export const useUpdate = <
                         type: ActionTypes.ADD,
                         payload: {
                             id: id,
-                            resource: resource,
+                            resource: identifier,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -243,7 +253,7 @@ export const useUpdate = <
         },
         {
             onMutate: async ({
-                resource,
+                resource: resourceName,
                 id,
                 mutationMode,
                 values,
@@ -251,11 +261,13 @@ export const useUpdate = <
                 meta,
                 metaData,
             }) => {
+                const { identifier } = select(resourceName);
+
                 const preferredMeta = pickNotDeprecated(meta, metaData);
+
                 const queryKey = queryKeys(
-                    resource,
-                    pickDataProvider(resource, dataProviderName, resources),
-                    preferredMeta,
+                    identifier,
+                    pickDataProvider(identifier, dataProviderName, resources),
                     preferredMeta,
                 );
 
@@ -351,15 +363,17 @@ export const useUpdate = <
                 _error,
                 {
                     id,
-                    resource,
+                    resource: resourceName,
                     dataProviderName,
                     invalidates = ["list", "many", "detail"],
                 },
             ) => {
+                const { identifier } = select(resourceName);
+
                 invalidateStore({
-                    resource,
+                    resource: identifier,
                     dataProviderName: pickDataProvider(
-                        resource,
+                        identifier,
                         dataProviderName,
                         resources,
                     ),
@@ -369,14 +383,14 @@ export const useUpdate = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id, resource },
+                    payload: { id, resource: identifier },
                 });
             },
             onSuccess: (
                 data,
                 {
                     id,
-                    resource,
+                    resource: resourceName,
                     successNotification,
                     dataProviderName,
                     values,
@@ -385,15 +399,17 @@ export const useUpdate = <
                 },
                 context,
             ) => {
-                const resourceSingular = pluralize.singular(resource);
+                const { resource, identifier } = select(resourceName);
+
+                const resourceSingular = pluralize.singular(identifier);
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { id, values }, resource)
+                        ? successNotification(data, { id, values }, identifier)
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${resource}-notification`,
+                    key: `${id}-${identifier}-notification`,
                     description: translate(
                         "notifications.success",
                         "Successful",
@@ -402,7 +418,7 @@ export const useUpdate = <
                         "notifications.editSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
+                                `${identifier}.${identifier}`,
                                 resourceSingular,
                             ),
                         },
@@ -412,7 +428,7 @@ export const useUpdate = <
                 });
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "updated",
                     payload: {
                         ids: data.data?.id ? [data.data.id] : undefined,
@@ -440,13 +456,13 @@ export const useUpdate = <
 
                 log?.mutate({
                     action: "update",
-                    resource,
+                    resource: resource.name,
                     data: values,
                     previousData,
                     meta: {
                         id,
                         dataProviderName: pickDataProvider(
-                            resource,
+                            identifier,
                             dataProviderName,
                             resources,
                         ),
@@ -456,11 +472,12 @@ export const useUpdate = <
             },
             onError: (
                 err: TError,
-                { id, resource, errorNotification, values },
+                { id, resource: resourceName, errorNotification, values },
                 context,
             ) => {
-                // set back the queries to the context:
+                const { identifier } = select(resourceName);
 
+                // set back the queries to the context:
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query[0], query[1]);
@@ -470,20 +487,20 @@ export const useUpdate = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(resource);
+                    const resourceSingular = pluralize.singular(identifier);
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(err, { id, values }, resource)
+                            ? errorNotification(err, { id, values }, identifier)
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${id}-${resource}-notification`,
+                        key: `${id}-${identifier}-notification`,
                         message: translate(
                             "notifications.editError",
                             {
                                 resource: translate(
-                                    `${resource}.${resource}`,
+                                    `${identifier}.${identifier}`,
                                     resourceSingular,
                                 ),
                                 statusCode: err.statusCode,
@@ -499,5 +516,11 @@ export const useUpdate = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };

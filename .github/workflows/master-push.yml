@@ -109,6 +109,8 @@ jobs:
           IdentityFile ~/.ssh/id_rsa
           EOT
       - name: Build packages
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           npm ci
           npm run bootstrap:all
@@ -120,6 +122,7 @@ jobs:
           USE_SSH: true
           GIT_USER: pankod-bot
           NODE_ENV: production
+          NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           cd documentation
           git config --global user.email "bot@pankod.com"

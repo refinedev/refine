@@ -1,7 +1,7 @@
-import React from "react";
 import clsx from "clsx";
-import { useGithubContext } from "../context/GithubContext";
-import { GithubIcon } from "../components/landing/icons";
+import React from "react";
+import { useCommunityStatsContext } from "../context/CommunityStats";
+import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const CommonGithubStarButton = ({ className }: Props) => {
-    const { loading, starCount } = useGithubContext();
+    const { loading, githubStarCount } = useCommunityStatsContext();
 
     return (
         <a
@@ -39,7 +39,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
                     />
                 ) : (
                     <span className={clsx("min-w-10 font-semibold")}>
-                        {starCount?.toLocaleString()}
+                        {githubStarCount?.toLocaleString()}
                     </span>
                 )}
             </div>

@@ -100,6 +100,7 @@ export const useTable = <
         setSorter,
         createLinkForSyncWithLocation,
         pageCount,
+        overtime,
     } = useTableCore<TQueryFnData, TError, TData>({
         permanentSorter,
         permanentFilter,
@@ -264,5 +265,6 @@ export const useTable = <
         setPageSize,
         pageCount,
         createLinkForSyncWithLocation,
+        overtime,
     };
 };

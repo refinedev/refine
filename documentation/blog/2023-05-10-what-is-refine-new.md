@@ -6,6 +6,7 @@ authors: necati
 tags: [community, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-10-what-is-refine-new/social.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 ## Introduction

@@ -1,5 +1,91 @@
 # @pankod/refine-chakra-ui
 
+## 2.18.2
+
+### Patch Changes
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: prioritization of forgotten `identifier`
+
+    If `identifier` is provided, it will be used instead of `name`.
+
+    ```tsx
+    import { DeleteButton } from "@refinedev/chakra-ui";
+
+    <DeleteButton resource="identifier-value" recordItemId="123" />;
+    ```
+
+    fix: use translate keys with `identifier`
+
+    Previously, the translate keys were generated using resource `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `translate` keys are generated using `identifier` if it's present.
+
+-   Updated dependencies [[`9a895ea39dc`](https://github.com/refinedev/refine/commit/9a895ea39dcbb5ad73904fa29ee9fcfcf25b7ea4), [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42)]:
+    -   @refinedev/react-hook-form@4.4.2
+
+## 2.18.1
+
+### Patch Changes
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: prioritization of forgotten `identifier`
+
+    If `identifier` is provided, it will be used instead of `name`.
+
+    ```tsx
+    import { DeleteButton } from "@refinedev/chakra-ui";
+
+    <DeleteButton resource="identifier-value" recordItemId="123" />;
+    ```
+
+    fix: use translate keys with `identifier`
+
+    Previously, the translate keys were generated using resource `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `translate` keys are generated using `identifier` if it's present.
+
+-   Updated dependencies [[`9a895ea39dc`](https://github.com/refinedev/refine/commit/9a895ea39dcbb5ad73904fa29ee9fcfcf25b7ea4), [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42)]:
+    -   @refinedev/react-hook-form@4.4.1
+
+## 2.18.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
+## 2.17.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
 ## 2.16.2
 
 ### Patch Changes

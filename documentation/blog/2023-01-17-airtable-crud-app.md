@@ -45,7 +45,7 @@ Steps we'll cover:
 
 refine's can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
 
-It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, MUI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
+It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, Material UI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
 
 
 ## What is Airtable?
@@ -115,7 +115,7 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 <br />
 
 
-refine is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, MUI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
+refine is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, Material UI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
 
 On selecting these options, the CLI will bootstrap a refine application with the Airtable provider.
 

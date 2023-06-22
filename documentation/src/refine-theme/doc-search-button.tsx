@@ -59,7 +59,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                 {!iconOnly && (
                     <div
                         className={clsx(
-                            "flex items-center justify-between gap-5",
+                            "flex items-center justify-between gap-5 w-full",
                         )}
                     >
                         <span className="opacity-75">

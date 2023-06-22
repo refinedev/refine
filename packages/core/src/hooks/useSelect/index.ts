@@ -21,9 +21,13 @@ import {
     Prettify,
 } from "../../interfaces";
 import { pickNotDeprecated } from "@definitions/helpers";
-import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource/index";
 import { BaseListProps } from "../data/useList";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
     /**
@@ -132,14 +136,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
     onSearch: (value: string) => void;
     options: Option[];
-};
+} & UseLoadingOvertimeReturnType;
 
 /**
  * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.
@@ -189,20 +194,15 @@ export const useSelect = <
         meta,
         metaData,
         dataProviderName,
+        overtimeOptions,
     } = props;
 
-    const { resources } = useResource();
+    const { resource, identifier } = useResource(resourceFromProps);
+
     const getMeta = useMeta();
 
-    /**
-     * Since `identifier` is an optional but prioritized way to match resources, users can provide identifier instead of resource name.
-     */
-    const pickedResource = pickResource(resourceFromProps, resources);
-
-    const resource = pickedResource?.name ?? resourceFromProps;
-
     const combinedMeta = getMeta({
-        resource: pickedResource,
+        resource,
         meta: pickNotDeprecated(meta, metaData),
     });
 
@@ -226,7 +226,7 @@ export const useSelect = <
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
     const defaultValueQueryResult = useMany<TQueryFnData, TError, TData>({
-        resource,
+        resource: identifier,
         ids: defaultValues,
         queryOptions: {
             ...defaultValueQueryOptions,
@@ -259,7 +259,7 @@ export const useSelect = <
     );
 
     const queryResult = useList<TQueryFnData, TError, TData>({
-        resource,
+        resource: identifier,
         sorters: pickNotDeprecated(sorters, sort),
         filters: filters.concat(search),
         pagination: {
@@ -305,6 +305,12 @@ export const useSelect = <
         }
     };
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         queryResult,
         defaultValueQueryResult,
@@ -313,5 +319,6 @@ export const useSelect = <
             [options, selectedOptions],
         ),
         onSearch: debounce(onSearch, debounceValue),
+        overtime: { elapsedTime },
     };
 };

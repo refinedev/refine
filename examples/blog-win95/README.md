@@ -2,7 +2,7 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://github.com/refinedev/refine">
-  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:350px;" align="center" />
 </a>
 <br />
 <br />
@@ -48,7 +48,7 @@ This just a fun example app that we built to demonstrate the power of refine. Yo
 
 It's _headless by design_, thereby offering unlimited styling and customization options.
 
-[**refine**](https://github.com/refinedev/refine) seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+[**refine**](https://github.com/refinedev/refine) seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ### Live CodeSandbox Example
 
