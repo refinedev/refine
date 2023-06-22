@@ -35,11 +35,19 @@ const error: HttpError = {
 };
 ```
 
-> You can find more information about the `HttpError` type [here][http-error].
+> Refer to the `HttpError` type [here][http-error].
+
+`errors` fields can be `string` or `string[]` or `boolean` or `{ key: string; message: string }`
+
+-   `string` or `string[]`: If the field is an array, multiple error messages will be displayed. If the field is a string, only one error message will be displayed.
+-   `boolean`: If the field is `true`, "This field is required." message will be displayed. If the field is `false`, no error message will be displayed.
+-   `{ key: string; message: string }`: If the field is an object, the `key` field will be used as a translation key. If the `key` is not found in the translation, the `message` field will be displayed.
+
+### How does it work?
 
 When `dataProvider` returns rejected promise with [`errors`][http-error] field, **refine** will automatically display the error messages in the form with the corresponding fields.
 
-This handled in the `useForm` hook, when the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the error messages returned from the `dataProvider`.
+This will handled in the `useForm` hook, when the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the error messages returned from the `dataProvider`.
 
 ## Example with Core useForm
 
@@ -67,7 +75,10 @@ console.log(form.mutationResult.error?.errors);
 For this example, we mock data provider to return rejected promise with `errors` field.
 You can see full example [here](/docs/examples/form/mantine/serverSideFormValidation/)
 
-When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][mantine-use-form] automatically display the error messages in the form with the corresponding fields.
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][mantine-use-form] automatically set the `form.errors` state with the error messages returned from the `dataProvider`.
+You can pass [`getInputProps(<field-name>)`](https://mantine.dev/form/use-form/#getinputprops) to the input component to display the error messages.
+
+Here is the example of how you can return errors from the `dataProvider`:
 
 ```ts
 import { HttpError, Refine } from "@refinedev/core";
