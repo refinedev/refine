@@ -203,7 +203,6 @@ describe("inferencer-chakra-ui", () => {
     });
 
     it("should change language", () => {
-        cy.wait("@getCategories");
         cy.wait("@getBlogPosts");
         cy.getChakraUILoadingOverlay().should("not.exist");
 
@@ -232,7 +231,6 @@ describe("inferencer-chakra-ui", () => {
 
     it("should change theme", () => {
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         cy.getChakraUILoadingOverlay().should("not.exist");
 
         cy.get("html").then(($html) => {

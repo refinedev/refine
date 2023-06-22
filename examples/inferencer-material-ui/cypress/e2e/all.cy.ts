@@ -242,7 +242,6 @@ describe("inferencer-material-ui", () => {
         const getLightModeIcon = () =>
             cy.get('button > svg[data-testid="LightModeOutlinedIcon"]');
 
-        cy.wait("@getCategories");
         cy.wait("@getBlogPosts");
         cy.getMaterialUILoadingCircular().should("not.exist");
 
