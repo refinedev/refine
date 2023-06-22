@@ -24,6 +24,7 @@ describe("inferencer-mantine", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
+        cy.interceptGETCategory();
         cy.interceptGETCategories();
         cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
@@ -33,7 +34,6 @@ describe("inferencer-mantine", () => {
 
     it("should list resource", () => {
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         cy.getMantineLoadingOverlay().should("not.exist");
 
         cy.url().should("include", "/blog-posts");
@@ -44,7 +44,6 @@ describe("inferencer-mantine", () => {
 
     it("should show resource", () => {
         cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
 
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");

@@ -24,6 +24,7 @@ describe("inferencer-antd", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
+        cy.interceptGETCategory();
         cy.interceptGETCategories();
         cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
@@ -33,7 +34,6 @@ describe("inferencer-antd", () => {
 
     it("should list resource", () => {
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.url().should("include", "/blog-posts");
@@ -44,7 +44,6 @@ describe("inferencer-antd", () => {
 
     it("should show resource", () => {
         cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
 
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
