@@ -25,6 +25,7 @@ describe("inferencer-chakra-ui", () => {
         cy.clearAllSessionStorage();
 
         cy.interceptGETCategories();
+        cy.interceptGETCategory();
         cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
 
@@ -33,7 +34,6 @@ describe("inferencer-chakra-ui", () => {
 
     it("should list resource", () => {
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         cy.getChakraUILoadingOverlay().should("not.exist");
 
         cy.url().should("include", "/blog-posts");
