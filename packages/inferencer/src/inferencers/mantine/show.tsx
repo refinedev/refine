@@ -96,7 +96,7 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     ids: ${ids} || [],
                     queryOptions: {
-                        enabled: !!${recordName},
+                        enabled: !!${recordName} && !!${ids}?.length,
                     },
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
@@ -142,6 +142,8 @@ export const renderer = ({
             const variableIsLoading = getVariableName(field.key, "IsLoading");
 
             if (field.multiple) {
+                const variableDataLength =
+                    accessor(recordName, field.key) + "?.length";
                 imports.push(
                     ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
@@ -154,7 +156,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                {${variableIsLoading} ? <>Loading...</> : (
+                {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                     <>
                     ${(() => {
                         if (field.relationInfer) {

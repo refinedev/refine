@@ -85,7 +85,7 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     ids: ${ids} || [],
                     queryOptions: {
-                        enabled: !!${recordName},
+                        enabled: !!${recordName} && !!${ids}?.length,
                     },
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
@@ -130,6 +130,8 @@ export const renderer = ({
             const variableIsLoading = getVariableName(field.key, "IsLoading");
 
             if (field.multiple) {
+                const variableDataLength =
+                    accessor(recordName, field.key) + "?.length";
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
                     <h5>${translatePrettyString({
@@ -139,7 +141,7 @@ export const renderer = ({
                         noQuotes: true,
                     })}</h5>
                     <ul>
-                    {${variableIsLoading} ? <>Loading...</> : (
+                    {${variableIsLoading} && ${variableDataLength} ? <>Loading...</> : (
                         <>
                         ${(() => {
                             if (field.relationInfer) {
