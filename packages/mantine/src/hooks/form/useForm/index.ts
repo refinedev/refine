@@ -142,7 +142,7 @@ export const useForm = <
                 let newError = "";
 
                 if (Array.isArray(fieldError)) {
-                    newError = fieldError.join(". ");
+                    newError = fieldError.join(" ");
                 }
 
                 if (typeof fieldError === "string") {
