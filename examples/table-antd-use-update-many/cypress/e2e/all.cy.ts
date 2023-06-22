@@ -3,6 +3,9 @@
 
 describe("table-antd-use-update-many", () => {
     beforeEach(() => {
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.visit("http://localhost:3000");
     });
 

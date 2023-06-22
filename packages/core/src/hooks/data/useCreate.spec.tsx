@@ -1,10 +1,9 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useCreate } from "./useCreate";
-import { IRefineContextProvider } from "src/interfaces";
-import { defaultRefineOptions } from "@contexts/refine";
+import * as UseInvalidate from "../invalidate/index";
 
 describe("useCreate Hook", () => {
     it("with rest json server", async () => {
@@ -440,6 +439,241 @@ describe("useCreate Hook", () => {
             });
 
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+    });
+
+    it("should select correct dataProviderName", async () => {
+        const createDefaultMock = jest.fn();
+        const createFooMock = jest.fn();
+
+        const { result } = renderHook(() => useCreate(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        create: createDefaultMock,
+                    },
+                    foo: {
+                        ...MockJSONServer.default,
+                        create: createFooMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "posts",
+                        meta: {
+                            dataProviderName: "foo",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: {
+                foo: "bar",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createFooMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+        expect(createDefaultMock).not.toBeCalled();
+    });
+
+    it("should get correct `meta` of related resource", async () => {
+        const createMock = jest.fn();
+
+        const { result } = renderHook(() => useCreate(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        create: createMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "posts",
+                        meta: {
+                            foo: "bar",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: {
+                title: "awesome post",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                }),
+            }),
+        );
+    });
+
+    describe("when passing `identifier` instead of `name`", () => {
+        it("should select correct dataProviderName", async () => {
+            const createDefaultMock = jest.fn();
+            const createFooMock = jest.fn();
+
+            const { result } = renderHook(() => useCreate(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            create: createDefaultMock,
+                        },
+                        foo: {
+                            ...MockJSONServer.default,
+                            create: createFooMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                dataProviderName: "foo",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                values: {
+                    foo: "bar",
+                },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(createDefaultMock).not.toBeCalled();
+        });
+
+        it("should invalidate query store with `identifier`", async () => {
+            const invalidateStore = jest.fn();
+            jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(
+                invalidateStore,
+            );
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useCreate(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            create: createMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                values: {
+                    foo: "bar",
+                },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(invalidateStore).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "featured-posts",
+                }),
+            );
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useCreate(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            create: createMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "all-posts",
+                            meta: {
+                                foo: "bar",
+                            },
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                bar: "baz",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                values: {
+                    title: "awesome post",
+                },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        bar: "baz",
+                    }),
+                }),
+            );
         });
     });
 });

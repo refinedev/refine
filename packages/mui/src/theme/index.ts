@@ -85,9 +85,12 @@ const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
             components: {
                 MuiButton: {
                     styleOverrides: {
-                        root: {
-                            color: "#fff",
-                        },
+                        root: ({ ownerState }) => ({
+                            ...(ownerState.variant === "contained" &&
+                                ownerState.color === "primary" && {
+                                    color: "#fff",
+                                }),
+                        }),
                     },
                 },
             },

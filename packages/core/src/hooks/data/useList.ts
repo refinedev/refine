@@ -124,7 +124,7 @@ export const useList = <
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
 >({
-    resource,
+    resource: resourceFromProp,
     config,
     filters,
     hasPagination,
@@ -145,7 +145,8 @@ export const useList = <
     TError
 > &
     UseLoadingOvertimeReturnType => {
-    const { resources } = useResource();
+    const { resources, resource, identifier } = useResource(resourceFromProp);
+
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -156,7 +157,7 @@ export const useList = <
     const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
-        resource,
+        identifier,
         dataProviderName,
         resources,
     );
@@ -174,7 +175,7 @@ export const useList = <
     });
     const isServerPagination = prefferedPagination.mode === "server";
 
-    const combinedMeta = getMeta({ meta: preferredMeta });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     const notificationValues = {
         meta: combinedMeta,
@@ -192,17 +193,12 @@ export const useList = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    const queryKey = queryKeys(
-        resource,
-        pickedDataProvider,
-        preferredMeta,
-        preferredMeta,
-    );
+    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
 
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
-        resource,
+        resource: identifier,
         types: ["*"],
         params: {
             meta: combinedMeta,
@@ -215,7 +211,7 @@ export const useList = <
             subscriptionType: "useList",
             ...liveParams,
         },
-        channel: `resources/${resource}`,
+        channel: `resources/${resource?.name}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
@@ -241,7 +237,7 @@ export const useList = <
         }),
         ({ queryKey, pageParam, signal }) => {
             return getList<TQueryFnData>({
-                resource: resource!,
+                resource: resource?.name ?? "",
                 pagination: prefferedPagination,
                 hasPagination: isServerPagination,
                 filters: prefferedFilters,
@@ -270,7 +266,7 @@ export const useList = <
             enabled:
                 typeof queryOptions?.enabled !== "undefined"
                     ? queryOptions?.enabled
-                    : !!resource,
+                    : !!resource?.name,
             select: (rawData) => {
                 let data = rawData;
 
@@ -301,7 +297,7 @@ export const useList = <
                         ? successNotification(
                               data,
                               notificationValues,
-                              resource,
+                              identifier,
                           )
                         : successNotification;
 
@@ -313,11 +309,11 @@ export const useList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, notificationValues, resource)
+                        ? errorNotification(err, notificationValues, identifier)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${resource}-useList-notification`,
+                    key: `${identifier}-useList-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },
