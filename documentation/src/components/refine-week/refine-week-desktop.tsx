@@ -17,6 +17,8 @@ type Props = {
 };
 
 export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
+    const timelineRef = React.useRef<HTMLDivElement>(null);
+
     const { logo: Logo } = data;
 
     return (
@@ -60,7 +62,15 @@ export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
                             "mt-10",
                         )}
                     >
-                        <LetsStartButton />
+                        <LetsStartButton
+                            onClick={() => {
+                                timelineRef.current?.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                    inline: "nearest",
+                                });
+                            }}
+                        />
                         <TwitterButton href={data.shareTweetUrl} />
                     </div>
                 </div>
@@ -80,6 +90,7 @@ export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
             </div>
 
             <div
+                ref={timelineRef}
                 className={clsx(
                     "text-center",
                     "text-[32px] leading-[40px]",

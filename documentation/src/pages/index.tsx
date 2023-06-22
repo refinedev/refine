@@ -12,30 +12,6 @@ import { LandingTiles } from "../refine-theme/landing-tiles";
 import { LandingMagic } from "../refine-theme/landing-magic";
 
 function Home() {
-    React.useEffect(() => {
-        // if (typeof window !== "undefined" && window.location.hash) {
-        //     const id = window.location.hash.replace("#", "");
-        //     const element = document.getElementById(id);
-        //     if (element) {
-        //         element.scrollIntoView();
-        //     }
-        // }
-        // return () => {
-        //     // scroll to top after unmount with set timeout
-        //     setTimeout(() => {
-        //         if (typeof window !== "undefined" && window.location.hash) {
-        //             const id = window.location.hash.replace("#", "");
-        //             const element = document.getElementById(id);
-        //             if (element) {
-        //                 element.scrollIntoView();
-        //             }
-        //         } else {
-        //             window.scrollTo(0, 0);
-        //         }
-        //     }, 0);
-        // };
-    }, []);
-
     return (
         <>
             <Head>

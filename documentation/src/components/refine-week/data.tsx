@@ -13,6 +13,20 @@ import { FooterTwitterIcon as TwitterIcon } from "../../refine-theme/icons/foote
 // If `publishDate` is defined, a countdown will be displayed for the timeline item.
 // The format for `publishDate` is `YYYY-MM-DDTHH:mm+03:00` = `2023-06-20T13:00+03:00`.
 
+const pageURL = typeof location !== "undefined" ? location.href : "";
+const hashtags = "opensource";
+const supabaseShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+    pageURL,
+)}&text=${encodeURIComponent(
+    `📚 refineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
+)}&hashtags=${hashtags}`;
+
+const strapiShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+    pageURL,
+)}&text=${encodeURIComponent(
+    `📚 refineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
+)}&hashtags=${hashtags}`;
+
 export const data = {
     supabase: {
         logo: SupabaseWithText,
@@ -82,7 +96,7 @@ export const data = {
                 image2x: "/week-of-refine/supabase-timeline-4-2x.jpg",
             },
         ],
-        shareTweetUrl: "https://twitter.com/intent/tweet?text=%23refineweek",
+        shareTweetUrl: supabaseShareTweetURL,
         tweetIDList: [
             "1645507785621209097",
             "1635625661778763776",
@@ -150,7 +164,7 @@ export const data = {
                 image2x: "/week-of-refine/strapi-timeline-5-2x.png",
             },
         ],
-        shareTweetUrl: "https://twitter.com/intent/tweet?text=%23refineweek",
+        shareTweetUrl: strapiShareTweetURL,
         tweetIDList: [
             "1645507785621209097",
             "1635625661778763776",
