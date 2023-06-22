@@ -14,7 +14,7 @@ import {
     useNavigation,
     useRefineContext,
     useResource,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRouterType,
     useToPath,
     useTranslate,
@@ -63,6 +63,7 @@ export const Show: React.FC<ShowProps> = (props) => {
     const back = useBack();
     const go = useGo();
     const { goBack, list: legacyGoList } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const {
         resource,
@@ -199,7 +200,7 @@ export const Show: React.FC<ShowProps> = (props) => {
                             >
                                 {translate(
                                     `${identifier}.titles.show`,
-                                    `Show ${userFriendlyResourceName(
+                                    `Show ${getUserFriendlyName(
                                         resource?.meta?.label ??
                                             resource?.options?.label ??
                                             resource?.label ??

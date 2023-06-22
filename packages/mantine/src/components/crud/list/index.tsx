@@ -3,7 +3,7 @@ import { Box, Card, Group, Stack, Title } from "@mantine/core";
 import {
     useRefineContext,
     useResource,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRouterType,
     useTranslate,
 } from "@refinedev/core";
@@ -31,6 +31,7 @@ export const List: React.FC<ListProps> = (props) => {
         useRefineContext();
 
     const routerType = useRouterType();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const { resource, identifier } = useResource(resourceFromProps);
 
@@ -87,7 +88,7 @@ export const List: React.FC<ListProps> = (props) => {
                         >
                             {translate(
                                 `${identifier}.titles.list`,
-                                userFriendlyResourceName(
+                                getUserFriendlyName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
