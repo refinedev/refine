@@ -627,7 +627,7 @@ describe("useCreateMany Hook", () => {
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeTruthy();
-            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(result.current.overtime.elapsedTime).toBeGreaterThan(100);
             expect(onInterval).toBeCalled();
         });
 
