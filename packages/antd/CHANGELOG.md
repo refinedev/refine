@@ -1,5 +1,35 @@
 # @pankod/refine-antd
 
+## 5.25.0
+
+### Minor Changes
+
+-   [#4523](https://github.com/refinedev/refine/pull/4523) [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: implement following hooks have `useLoadingOvertime` hook
+
+    -   [`useSelect`](https://refine.dev/docs/api-reference/antd/hooks/field/useSelect/#overtimeoptions)
+    -   [`useDrawerForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useDrawerForm/#overtimeoptions)
+    -   [`useForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/#overtimeoptions)
+    -   [`useModalForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm/#overtimeoptions)
+    -   [`useStepsForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useStepsForm/#overtimeoptions)
+    -   [`useSimpleList`](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/#overtimeoptions)
+    -   [`useTable`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/#overtimeoptions)
+
+### Patch Changes
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: prioritization of forgotten `identifier`
+
+    If `identifier` is provided, it will be used instead of `name`.
+
+    ```tsx
+    import { DeleteButton } from "@refinedev/antd";
+
+    <DeleteButton resource="identifier-value" recordItemId="123" />;
+    ```
+
+    fix: use translate keys with `identifier`
+
+    Previously, the translate keys were generated using resource `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `translate` keys are generated using `identifier` if it's present.
+
 ## 5.24.0
 
 ### Minor Changes
