@@ -74,4 +74,3 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 [use-can]: /docs/api-reference/core/hooks/accessControl/useCan/
 [access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
-[can]: /docs/api-reference/core/hooks/accessControl/useCan/#can

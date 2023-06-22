@@ -12,8 +12,6 @@ sidebar_label: <Refine>
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
-import { PostList } from "pages/posts";
-
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
@@ -53,8 +51,10 @@ To activate multiple data provider in refine, we have to pass the default key wi
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 
-import defaultDataProvider from "./dataProvider";
-import exampleDataProvider from "./dataProvider";
+import {
+    default as defaultDataProvider,
+    default as exampleDataProvider,
+} from "./dataProvider";
 
 const App: React.FC = () => {
     return (
@@ -102,8 +102,6 @@ Routes for the action pages that are for interacting with the CRUD API operation
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/json-server";
-
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -214,7 +212,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -230,7 +228,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -246,7 +244,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -262,7 +260,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -717,8 +715,9 @@ The interval value in milliseconds. The default value is `1000`.
 The callback function that will be called on every interval. The default value is `undefined`.
 
 The callback function receives two parameters:
- - `elapsedInterval`: The elapsed interval in milliseconds.
- - `context`: 
+
+-   `elapsedInterval`: The elapsed interval in milliseconds.
+-   `context`:
 
 | Description  | Type                                                                       |
 | ------------ | -------------------------------------------------------------------------- |
