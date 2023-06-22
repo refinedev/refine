@@ -14,23 +14,89 @@ By default, the `<LoadingOvertime>` has two components that will be shown based 
 
 The `<LoadingOvertime>` component calculates the elapsed time based when the `isLoading` prop is `true`. You can provide the `interval` and `onInterval` props to customize the interval and the callback function that will be called on every interval.
 
-```tsx
-import { useOne } from "@refinedev/core";
-import { LoadingOvertime } from "@refinedev/antd";
+```tsx live url=http://localhost:3000/posts/show/123
+import dataProvider from "@refinedev/simple-rest";
+import { ShowButton } from "@refinedev/antd";
+// visible-block-start
+import { useShow } from "@refinedev/core";
+//highlight-next-line
+import { LoadingOvertime, Show, MarkdownField } from "@refinedev/antd";
+import { Typography } from "antd";
 
-const MyPage = () => {
-    const { data, isFetching } = useOne({...});
+const { Title, Text } = Typography;
+
+const PostShow: React.FC = () => {
+    const { queryResult } = useShow<IPost>();
+    //highlight-next-line
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
 
     return (
+        //highlight-start
         <LoadingOvertime
-            isLoading={isFetching ?? false}
+            isLoading={isLoading}
             interval={1000}
             onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >
-            <YourComponent />
+            {/* highlight-end */}
+            <Show isLoading={isLoading}>
+                <Title level={5}>Id</Title>
+                <Text>{record?.id}</Text>
+
+                <Title level={5}>Title</Title>
+                <Text>{record?.title}</Text>
+
+                <Title level={5}>Content</Title>
+                <MarkdownField value={record?.content} />
+            </Show>
+            {/* highlight-next-line */}
         </LoadingOvertime>
     );
 };
+// visible-block-end
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const customDataProvider = {
+    ...dataProvider(API_URL),
+    getOne: async (params) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(dataProvider(API_URL).getOne(params));
+            }, 6000);
+        });
+    },
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/show/123"]}
+        dataProvider={customDataProvider}
+        options={{
+            reactQuery: {
+                clientConfig: {
+                    defaultOptions: {
+                        queries: {
+                            cacheTime: 0,
+                        },
+                    },
+                },
+            },
+        }}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <ShowButton recordItemId="123">Show Details</ShowButton>
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 -   If elapsed time is less than 3000 milliseconds, only the children will be shown.
@@ -41,24 +107,85 @@ const MyPage = () => {
 
 If the `elapsedTime` prop is provided, the `<LoadingOvertime>` component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
-```tsx
-import { useOne } from "@refinedev/core";
-import { LoadingOvertime } from "@refinedev/antd";
+```tsx live url=http://localhost:3000/posts/show/123
+import dataProvider from "@refinedev/simple-rest";
+import { ShowButton } from "@refinedev/antd";
+// visible-block-start
+import { useShow } from "@refinedev/core";
+//highlight-next-line
+import { LoadingOvertime, Show, MarkdownField } from "@refinedev/antd";
+import { Typography } from "antd";
 
-const MyPage = () => {
-    const {
-        data,
-        overtime: { elapsedTime },
-    } = useOne({...});
+const { Title, Text } = Typography;
+
+const PostShow: React.FC = () => {
+    //highlight-next-line
+    const { queryResult, overtime } = useShow<IPost>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
 
     return (
-        <LoadingOvertime
-            elapsedTime={elapsedTime ?? 0}
-        >
-            <YourComponent />
+        //highlight-start
+        <LoadingOvertime elapsedTime={overtime.elapsedTime ?? 0}>
+            {/* highlight-end */}
+            <Show isLoading={isLoading}>
+                <Title level={5}>Id</Title>
+                <Text>{record?.id}</Text>
+
+                <Title level={5}>Title</Title>
+                <Text>{record?.title}</Text>
+
+                <Title level={5}>Content</Title>
+                <MarkdownField value={record?.content} />
+            </Show>
+            {/* highlight-next-line */}
         </LoadingOvertime>
     );
 };
+// visible-block-end
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const customDataProvider = {
+    ...dataProvider(API_URL),
+    getOne: async (params) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(dataProvider(API_URL).getOne(params));
+            }, 6000);
+        });
+    },
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/show/123"]}
+        dataProvider={customDataProvider}
+        options={{
+            reactQuery: {
+                clientConfig: {
+                    defaultOptions: {
+                        queries: {
+                            cacheTime: 0,
+                        },
+                    },
+                },
+            },
+        }}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <ShowButton recordItemId="123">Show Details</ShowButton>
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 Same as the previous example, if the `elapsedTime` is less than 3000 milliseconds, only the children will be shown. If the `elapsedTime` is greater than 3000 milliseconds, the matching component and children will be shown. If the `elapsedTime` is greater than 5000 milliseconds, the matching component and children will be shown.
