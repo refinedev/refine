@@ -89,8 +89,9 @@ export const useForm = <
     resource,
     onMutationSuccess: onMutationSuccessProp,
     onMutationError,
-    onAutosaveSuccess,
-    onAutosaveError,
+    autoSave,
+    onAutoSaveSuccess,
+    onAutoSaveError,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect,
@@ -145,8 +146,8 @@ export const useForm = <
             ? onMutationSuccessProp
             : undefined,
         onMutationError,
-        onAutosaveSuccess,
-        onAutosaveError,
+        onAutoSaveSuccess,
+        onAutoSaveError,
         redirect,
         action,
         resource,
@@ -191,7 +192,6 @@ export const useForm = <
     };
 
     const debounceWithonFinishAutoSave = debounce((allValues) => {
-        setWarnWhen(false);
         return onFinishAutoSave(allValues);
     }, 1000);
 
@@ -199,7 +199,12 @@ export const useForm = <
         if (changeValues && warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
-        debounceWithonFinishAutoSave(allValues);
+
+        if (autoSave) {
+            setWarnWhen(false);
+            return debounceWithonFinishAutoSave(allValues);
+        }
+
         return changeValues;
     };
 

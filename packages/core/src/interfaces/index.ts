@@ -85,4 +85,4 @@ export * from "./bindings";
 
 export * from "./prettify";
 
-export * from "./autosave";
+export * from "./autoSave";

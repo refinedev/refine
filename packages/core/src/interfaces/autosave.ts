@@ -1,22 +1,21 @@
-import { UseUpdateReturnType } from "../hooks/data/useUpdate";
-import { BaseRecord, HttpError, UpdateResponse } from ".";
+import { BaseRecord, UpdateResponse } from ".";
 import { MutationStatus } from "@tanstack/react-query";
 
-export type AutosaveProps<TResponse, TResponseError, TVariables> = {
-    onAutosaveSuccess?: (
+export type AutoSaveProps<TResponse, TResponseError, TVariables> = {
+    autoSave?: boolean;
+    onAutoSaveSuccess?: (
         data: UpdateResponse<TResponse>,
         variables: TVariables,
         context: any,
     ) => void;
-
-    onAutosaveError?: (
+    onAutoSaveError?: (
         error: TResponseError,
         variables: TVariables,
         context: any,
     ) => void;
 };
 
-export type AutosaveReturnType<
+export type AutoSaveReturnType<
     TData extends BaseRecord = BaseRecord,
     // TError extends HttpError = HttpError,
     TVariables = {},

@@ -27,8 +27,8 @@ import {
     IQueryKeys,
     FormAction,
     MetaQuery,
-    AutosaveProps,
-    AutosaveReturnType,
+    AutoSaveProps,
+    AutoSaveReturnType,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -180,7 +180,7 @@ export type UseFormProps<
     ActionParams &
     LiveModeProps &
     UseLoadingOvertimeOptionsProps &
-    AutosaveProps<TResponse, TResponseError, TVariables>;
+    AutoSaveProps<TResponse, TResponseError, TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -206,7 +206,7 @@ export type UseFormReturnType<
         routeParams?: Record<string, string | number>,
     ) => void;
 } & UseLoadingOvertimeReturnType &
-    AutosaveReturnType<TResponse, TVariables>;
+    AutoSaveReturnType<TResponse, TVariables>;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -252,8 +252,9 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     overtimeOptions,
-    onAutosaveSuccess,
-    onAutosaveError,
+    autoSave,
+    onAutoSaveSuccess,
+    onAutoSaveError,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -472,13 +473,13 @@ export const useForm = <
 
         return mutationAutoSave.mutate(variables, {
             onSuccess: (data, _, context) => {
-                if (onAutosaveSuccess) {
-                    onAutosaveSuccess(data, values, context);
+                if (onAutoSaveSuccess) {
+                    onAutoSaveSuccess(data, values, context);
                 }
             },
             onError: (error: TResponseError, _, context) => {
-                if (onAutosaveError) {
-                    return onAutosaveError(error, values, context);
+                if (onAutoSaveError) {
+                    return onAutoSaveError(error, values, context);
                 }
             },
         });
