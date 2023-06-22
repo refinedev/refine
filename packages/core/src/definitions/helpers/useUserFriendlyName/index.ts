@@ -10,7 +10,7 @@ export const useUserFriendlyName = () => {
     } = useRefineContext();
 
     const getFriendlyName = (
-        name: string,
+        name = "",
         type: "singular" | "plural",
     ): string => {
         const humanizeName = textTransformers.humanize(name);
