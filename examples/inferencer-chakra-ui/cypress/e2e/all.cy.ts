@@ -219,7 +219,11 @@ describe("inferencer-chakra-ui", () => {
 
         // reload the page and assert the language is persisted
         cy.reload();
+
+        cy.getChakraUILoadingOverlay().should("exist");
+
         cy.wait("@getBlogPosts");
+
         cy.getChakraUILoadingOverlay().should("not.exist");
         // assert the dropdown value has changed
         cy.get('[data-test-id="language-button"]').should(
@@ -265,8 +269,11 @@ describe("inferencer-chakra-ui", () => {
 
                 // reload page and assert theme is persisted
                 cy.reload();
+
+                cy.getChakraUILoadingOverlay().should("exist");
+
                 cy.wait("@getBlogPosts");
-                cy.wait("@getCategories");
+
                 cy.getChakraUILoadingOverlay().should("not.exist");
 
                 // assert theme is persisted in html
