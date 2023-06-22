@@ -5,14 +5,20 @@ import {
     useLoadingOvertime,
 } from "../../hooks/useLoadingOvertime";
 
-type PropsWithLoading = CommonProps & UseLoadingOvertimeCoreProps;
+type PropsWithLoading = CommonProps &
+    Partial<UseLoadingOvertimeCoreProps> & {
+        elapsedTime?: never;
+    };
 
 type PropsWithElapsedTime = CommonProps & {
     /**
      * The elapsed time in milliseconds.
      * If this prop is provided, the component will not use the `useLoadingOvertime` hook.
      */
-    elapsedTime: number;
+    elapsedTime?: number;
+    isLoading?: never;
+    interval?: never;
+    onInterval?: never;
 };
 
 type CommonProps = {
@@ -54,7 +60,7 @@ export function LoadingOvertime(props: loadingOvertimeProps): JSX.Element {
     );
 
     const renderOvertimeComponent = React.useCallback(
-        (elapsedTime: number) => {
+        (elapsedTime = 0) => {
             const overtimeComponent = sortedIntervalKeys.find(
                 (intervalKey) => elapsedTime >= Number(intervalKey),
             );
@@ -69,7 +75,7 @@ export function LoadingOvertime(props: loadingOvertimeProps): JSX.Element {
     );
 
     if ("elapsedTime" in props) {
-        const { elapsedTime } = props;
+        const { elapsedTime = 0 } = props;
 
         return (
             <>
@@ -79,7 +85,7 @@ export function LoadingOvertime(props: loadingOvertimeProps): JSX.Element {
         );
     }
 
-    const { isLoading, interval, onInterval } = props;
+    const { isLoading = false, interval, onInterval } = props;
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading,
