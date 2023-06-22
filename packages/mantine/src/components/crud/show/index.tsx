@@ -68,6 +68,7 @@ export const Show: React.FC<ShowProps> = (props) => {
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
 
     const goListPath = useToPath({
@@ -98,10 +99,7 @@ export const Show: React.FC<ShowProps> = (props) => {
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
     const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
@@ -109,10 +107,7 @@ export const Show: React.FC<ShowProps> = (props) => {
               ...(isLoading ? { disabled: true } : {}),
               color: "primary",
               variant: "filled",
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+              resource: routerType === "legacy" ? resource?.route : identifier,
               recordItemId: id,
           }
         : undefined;
@@ -121,9 +116,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             ? {
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                      routerType === "legacy" ? resource?.route : identifier,
                   recordItemId: id,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -137,10 +130,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             : undefined;
     const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resource?.identifier ?? resource?.name,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -208,12 +198,12 @@ export const Show: React.FC<ShowProps> = (props) => {
                                 className={RefinePageHeaderClassNames.Title}
                             >
                                 {translate(
-                                    `${resource?.name}.titles.show`,
+                                    `${identifier}.titles.show`,
                                     `Show ${userFriendlyResourceName(
                                         resource?.meta?.label ??
                                             resource?.options?.label ??
                                             resource?.label ??
-                                            resource?.name,
+                                            identifier,
                                         "singular",
                                     )}`,
                                 )}

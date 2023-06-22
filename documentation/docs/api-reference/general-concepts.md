@@ -72,7 +72,9 @@ const PostList: React.FC = () => {
 The value passed to the `resource` property is also used to determine the active `resource` from the `resources` array, which is optional for API interactions, but enables useful `refine` features such as redirecting to the list page after create and update operations.
 :::
 
----
+If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
+
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 :::info
 If you want to use `resource` with nested routes, refer to the [related section in FAQ &#8594](/faq.md#how-can-i-request-an-api-with-nested-route)
