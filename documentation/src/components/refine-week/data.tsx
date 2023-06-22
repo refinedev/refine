@@ -13,16 +13,15 @@ import { FooterTwitterIcon as TwitterIcon } from "../../refine-theme/icons/foote
 // If `publishDate` is defined, a countdown will be displayed for the timeline item.
 // The format for `publishDate` is `YYYY-MM-DDTHH:mm+03:00` = `2023-06-20T13:00+03:00`.
 
-const pageURL = typeof location !== "undefined" ? location.href : "";
 const hashtags = "opensource";
 const supabaseShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-    pageURL,
+    "https://refine.dev/week-of-refine-supabase/",
 )}&text=${encodeURIComponent(
     `📚 refineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
 )}&hashtags=${hashtags}`;
 
 const strapiShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-    pageURL,
+    "https://refine.dev/week-of-refine-strapi/",
 )}&text=${encodeURIComponent(
     `📚 refineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
 )}&hashtags=${hashtags}`;
