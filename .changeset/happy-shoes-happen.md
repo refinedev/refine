@@ -17,12 +17,12 @@ const overtimeComponents = {
 };
 
 const MyPage = () => {
-    const { data, isFetching } = useOne({...});
+    const { data, isLoading } = useOne({...});
 
     return (
         <LoadingOvertime
             overtimeComponents={overtimeComponents}
-            isLoading={isFetching ?? false}
+            isLoading={isLoading}
             interval={1000}
         >
             <YourComponent />
@@ -50,7 +50,7 @@ const MyPage = () => {
     return (
         <LoadingOvertime
             overtimeComponents={overtimeComponents}
-            elapsedTime={elapsedTime ?? 0}
+            elapsedTime={elapsedTime}
         >
             <YourComponent />
         </LoadingOvertime>
