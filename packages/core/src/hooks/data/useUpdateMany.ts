@@ -140,9 +140,9 @@ export const useUpdateMany = <
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
-    const { options } = useRefineContext();
-
-    const { textTransformers } = options;
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,

@@ -134,9 +134,9 @@ export const useDelete = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
-    const { options } = useRefineContext();
-
-    const { textTransformers } = options;
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,

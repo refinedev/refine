@@ -8,8 +8,9 @@ export const userFriendlyResourceName = (
     resource = "",
     type: "singular" | "plural",
 ): string => {
-    const { options } = useRefineContext();
-    const { textTransformers } = options;
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const humanizeResource = textTransformers.humanize(resource);
     if (type === "singular") {

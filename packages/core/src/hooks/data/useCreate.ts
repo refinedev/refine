@@ -128,9 +128,9 @@ export const useCreate = <
     const { log } = useLog();
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
-    const { options } = useRefineContext();
-
-    const { textTransformers } = options;
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         CreateResponse<TData>,

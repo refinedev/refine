@@ -37,9 +37,9 @@ export const useBreadcrumb = ({
     const parsed = useParsed();
     const translate = useTranslate();
     const { resources, resource, action } = useResource();
-    const { options } = useRefineContext();
-
-    const { textTransformers } = options;
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const breadcrumbs: BreadcrumbsType[] = [];
 

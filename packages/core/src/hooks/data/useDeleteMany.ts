@@ -133,9 +133,9 @@ export const useDeleteMany = <
     const { resources, select } = useResource();
     const queryClient = useQueryClient();
     const getMeta = useMeta();
-    const { options } = useRefineContext();
-
-    const { textTransformers } = options;
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         DeleteManyResponse<TData>,
