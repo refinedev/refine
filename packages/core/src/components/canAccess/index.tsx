@@ -1,20 +1,7 @@
 import React from "react";
 
-import {
-    useCan,
-    useParsed,
-    useResource,
-    useResourceWithRoute,
-    useRouterContext,
-    useRouterType,
-} from "@hooks";
-import {
-    BaseKey,
-    IResourceItem,
-    ITreeMenu,
-    ResourceRouterParams,
-} from "../../interfaces";
-import { pickResource } from "@definitions/helpers/pick-resource";
+import { useCan, useResource } from "@hooks";
+import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 
 type CanAccessBaseProps = {
     /**
@@ -54,95 +41,33 @@ export type CanAccessProps = CanAccessBaseProps | CanAccessWithoutParamsProps;
 
 export const CanAccess: React.FC<CanAccessProps> = ({
     resource: resourceFromProp,
-    action,
+    action: actionFromProp,
     params,
     fallback,
     children,
     ...rest
 }) => {
-    const routerType = useRouterType();
-    const { resources } = useResource();
-    const { useParams } = useRouterContext();
     const {
-        resource: resourceFromRouter,
-        id: idFromRouter,
-        action: actionFromRouter,
-    } = useParsed();
+        resource,
+        id: idFromRoute,
+        action: actionFromRoute,
+    } = useResource(resourceFromProp);
+    const { identifier } = useResource();
 
-    const {
-        resource: legacyResourceFromRoute,
-        id: legacyIdFromParams,
-        action: legacyActionFromParams,
-    } = useParams<ResourceRouterParams>();
+    const getDefaultId = () => {
+        const idFromPropsOrRoute = params?.id ?? idFromRoute;
 
-    const newResourceNameFromRouter = resourceFromRouter?.name;
-
-    /** We only accept `id` from URL params if `resource` is not explicitly passed. */
-    /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
-    const defaultId =
-        !resourceFromProp ||
-        resourceFromProp ===
-            (routerType === "legacy"
-                ? legacyResourceFromRoute
-                : newResourceNameFromRouter)
-            ? params?.id ??
-              (routerType === "legacy" ? legacyIdFromParams : idFromRouter)
-            : params?.id;
-
-    /** `resourceName` fallback value depends on the router type */
-    const resourceName =
-        resourceFromProp ??
-        (routerType === "legacy"
-            ? legacyResourceFromRoute
-            : newResourceNameFromRouter);
-
-    let resource: IResourceItem | undefined;
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    if (routerType === "legacy") {
-        if (resourceName) {
-            resource = resourceWithRoute(resourceName);
+        if (resourceFromProp && resourceFromProp !== identifier) {
+            return params?.id;
         }
-    } else {
-        /** If `resource` is provided by the user, then try to pick the resource of create a dummy one */
-        if (resourceFromProp) {
-            const picked = pickResource(resourceFromProp, resources);
-            if (picked) {
-                resource = picked;
-            } else {
-                resource = {
-                    name: resourceFromProp,
-                    route: resourceFromProp,
-                };
-            }
-        } else {
-            /** If `resource` is not provided, check the resource from the router params */
-            if (typeof resourceFromRouter === "string") {
-                const picked = pickResource(resourceFromRouter, resources);
-                if (picked) {
-                    resource = picked;
-                } else {
-                    resource = {
-                        name: resourceFromRouter,
-                        route: resourceFromRouter,
-                    };
-                }
-            } else {
-                /** If `resource` is passed as an IResourceItem, use it or `resource` is undefined and cannot be inferred. */
-                resource = resourceFromRouter;
-            }
-        }
-    }
+
+        return idFromPropsOrRoute;
+    };
+    const defaultId = getDefaultId();
 
     const { data } = useCan({
         resource: resourceFromProp ?? resource?.name,
-        action:
-            action ??
-            (routerType === "legacy"
-                ? legacyActionFromParams
-                : actionFromRouter) ??
-            "",
+        action: actionFromProp ?? actionFromRoute ?? "",
         params: params ?? {
             id: defaultId,
             resource: resource,

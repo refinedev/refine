@@ -138,6 +138,10 @@ useSimpleList({
 });
 ```
 
+If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
+
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+
 ### `pagination.current`
 
 > Default: `1`
@@ -637,6 +641,29 @@ useSimpleList({
 });
 ```
 
+### `overtimeOptions`
+
+If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useSimpleList({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Return Values
 
 ### `queryResult`
@@ -766,6 +793,15 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useSimpleList();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ### ~~`sorter`~~
 
 :::caution Deprecated
@@ -819,6 +855,7 @@ A function to set current [sorters state][crudsorting].
 | ~~setSorter~~   | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                        |
 | filters         | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
 | setFilters      | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| overtime        | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                              |
 
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting

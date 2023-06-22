@@ -53,12 +53,7 @@ const App: React.FC = () => {
                                 </ThemedLayoutV2>
                             }
                         >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
+                            <Route index element={<NavigateToResource />} />
 
                             <Route path="/posts">
                                 <Route index element={<PostList />} />

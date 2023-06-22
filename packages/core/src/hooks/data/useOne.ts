@@ -29,6 +29,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
     /**
@@ -67,7 +72,8 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<{ id?: BaseKey } & MetaQuery>
 > &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -87,7 +93,7 @@ export const useOne = <
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
 >({
-    resource,
+    resource: resourceFromProp,
     id,
     queryOptions,
     successNotification,
@@ -98,10 +104,13 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    overtimeOptions,
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetOneResponse<TData>
-> => {
-    const { resources } = useResource();
+> &
+    UseLoadingOvertimeReturnType => {
+    const { resources, resource, identifier } = useResource(resourceFromProp);
+
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -112,24 +121,22 @@ export const useOne = <
     const getMeta = useMeta();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
-
-    const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        preferredMeta,
-        preferredMeta,
+    const pickedDataProvider = pickDataProvider(
+        identifier,
+        dataProviderName,
+        resources,
     );
 
-    const { getOne } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
+    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
 
-    const combinedMeta = getMeta({ meta: preferredMeta });
+    const { getOne } = dataProvider(pickedDataProvider);
+
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
-        resource,
+        resource: identifier,
         types: ["*"],
-        channel: `resources/${resource}`,
+        channel: `resources/${resource?.name}`,
         params: {
             ids: id ? [id] : [],
             id: id,
@@ -141,7 +148,8 @@ export const useOne = <
         enabled:
             typeof queryOptions?.enabled !== "undefined"
                 ? queryOptions?.enabled
-                : typeof resource !== "undefined" && typeof id !== "undefined",
+                : typeof resource?.name !== "undefined" &&
+                  typeof id !== "undefined",
         liveMode,
         onLiveEvent,
     });
@@ -154,7 +162,7 @@ export const useOne = <
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
             getOne<TQueryFnData>({
-                resource: resource!,
+                resource: resource?.name ?? "",
                 id: id!,
                 meta: {
                     ...combinedMeta,
@@ -190,7 +198,7 @@ export const useOne = <
                                   id,
                                   ...combinedMeta,
                               },
-                              resource,
+                              identifier,
                           )
                         : successNotification;
 
@@ -208,12 +216,12 @@ export const useOne = <
                                   id,
                                   ...combinedMeta,
                               },
-                              resource,
+                              identifier,
                           )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${resource}-getOne-notification`,
+                    key: `${id}-${identifier}-getOne-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },
@@ -226,5 +234,11 @@ export const useOne = <
         },
     );
 
-    return queryResponse;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResponse.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...queryResponse, overtime: { elapsedTime } };
 };

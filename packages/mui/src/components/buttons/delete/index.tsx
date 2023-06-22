@@ -63,7 +63,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         accessControlContext.options.buttons.hideIfUnauthorized;
     const translate = useTranslate();
 
-    const { id, resource } = useResource(
+    const { id, resource, identifier } = useResource(
         resourceNameFromProps ?? resourceNameOrRouteName,
     );
 
@@ -103,13 +103,13 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     const handleCloseOnConfirm = () => {
-        if ((recordItemId ?? id) && resource?.name) {
+        if ((recordItemId ?? id) && identifier) {
             setWarnWhen(false);
             setOpen(false);
             mutate(
                 {
                     id: recordItemId ?? id ?? "",
-                    resource: resource?.name,
+                    resource: identifier,
                     mutationMode,
                     successNotification,
                     errorNotification,

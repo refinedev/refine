@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper } from "@test";
 
 import { useDataGrid } from "./";
 import { CrudFilters } from "@refinedev/core";
@@ -160,4 +160,45 @@ describe("useDataGrid Hook", () => {
             );
         },
     );
+
+    it("works correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useDataGrid({
+                    resource: "posts",
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer,
+                        getList: () => {
+                            return new Promise((res) => {
+                                setTimeout(
+                                    () => res({ data: [], total: 2 }),
+                                    1000,
+                                );
+                            });
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
+    });
 });
