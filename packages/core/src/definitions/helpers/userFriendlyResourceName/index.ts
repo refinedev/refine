@@ -1,20 +1,18 @@
-import { useRefineContext } from "@hooks/refine";
+import pluralize from "pluralize";
+import { humanizeString } from "@definitions";
 
 /**
  * A method that the internal uses
  * @internal
+ * @deprecated use `useUserFriendlyName` instead.
  */
 export const userFriendlyResourceName = (
     resource = "",
     type: "singular" | "plural",
 ): string => {
-    const {
-        options: { textTransformers },
-    } = useRefineContext();
-
-    const humanizeResource = textTransformers.humanize(resource);
+    const humanizeResource = humanizeString(resource);
     if (type === "singular") {
-        return textTransformers.singular(humanizeResource);
+        return pluralize.singular(humanizeResource);
     }
-    return textTransformers.plural(humanizeResource);
+    return pluralize.plural(humanizeResource);
 };
