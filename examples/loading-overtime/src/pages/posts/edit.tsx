@@ -59,7 +59,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <LoadingOvertime
                 overtimeComponents={customOvertimeComponents}
-                isLoading={queryResult?.isLoading ?? false}
+                isLoading={queryResult?.isLoading}
             >
                 <Form {...formProps} layout="vertical">
                     <Form.Item

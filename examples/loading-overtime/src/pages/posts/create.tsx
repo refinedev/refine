@@ -16,7 +16,7 @@ export const PostCreate: React.FC = () => {
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <LoadingOvertime elapsedTime={overtime.elapsedTime ?? 0}>
+            <LoadingOvertime elapsedTime={overtime.elapsedTime}>
                 <Form {...formProps} layout="vertical">
                     <Form.Item
                         label="Title"

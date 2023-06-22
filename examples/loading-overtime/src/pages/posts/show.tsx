@@ -59,7 +59,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <LoadingOvertime
             overtimeComponents={customOvertimeComponents}
-            elapsedTime={overtime.elapsedTime ?? 0}
+            elapsedTime={overtime.elapsedTime}
         >
             <Show isLoading={isLoading}>
                 <Title level={5}>Id</Title>
