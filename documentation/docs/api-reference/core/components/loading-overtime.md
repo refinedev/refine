@@ -360,4 +360,10 @@ const overtimeComponents = {
 
 ### Properties
 
-<PropsTable module="@refinedev/core/LoadingOvertime"/>
+<PropsTable 
+    module="@refinedev/core/LoadingOvertime" 
+    isLoading-default="`false`"
+    elapsedTime-description="The elapsed time in milliseconds. If this prop is provided, the component will not calculate the elapsed time itself."
+    elapsedTime-type="`number | undefined`"
+    elapsedTime-default="0"
+/>

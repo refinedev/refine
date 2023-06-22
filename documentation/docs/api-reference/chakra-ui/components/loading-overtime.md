@@ -343,4 +343,11 @@ A callback function that will be called on every interval. The callback function
 
 ### Properties
 
-<PropsTable module="@refinedev/chakra-ui/LoadingOvertime"/>
+<PropsTable 
+    module="@refinedev/chakra-ui/LoadingOvertime"
+    overtimeComponents-default="`overTimeComponents` comes from `@refinedev/chakra-ui`"
+    isLoading-default="`false`"
+    elapsedTime-description="The elapsed time in milliseconds. If this prop is provided, the component will not calculate the elapsed time itself."
+    elapsedTime-type="`number | undefined`"
+    elapsedTime-default="0"
+/>
