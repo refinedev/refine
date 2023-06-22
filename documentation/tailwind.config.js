@@ -50,6 +50,18 @@ module.exports = {
                     900: "#14141F",
                     1000: "#000000",
                 },
+                "refine-week": {
+                    supabase: {
+                        "cover-shadow": "rgba(62, 207, 142, 0.25)",
+                        "day-indicator-start": "#1FAD66",
+                        "day-indicator-stop": "#3ECF8E",
+                    },
+                    strapi: {
+                        "cover-shadow": "rgba(73, 69, 255, 0.25)",
+                        "day-indicator-start": "#4945FF",
+                        "day-indicator-stop": "#4D88FF",
+                    },
+                },
             },
             fontFamily: {
                 sans: ["Outfit", ...defaultTheme.fontFamily.sans],
@@ -137,6 +149,14 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
                 "hackathon-button-bg":
                     "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
+                "refine-week-supabase-timeline-item-bg":
+                    "linear-gradient(360deg, rgba(62, 207, 142, 0) 0%, rgba(62, 207, 142, 0.25) 50%, rgba(62, 207, 142, 0) 100%)",
+                "refine-week-supabase-timeline-item-bg-lg":
+                    "linear-gradient(256deg, rgba(62, 207, 142, 0.25) 0%, rgba(62, 207, 142, 0) 60%)",
+                "refine-week-strapi-timeline-item-bg":
+                    "linear-gradient(360deg, rgba(73, 69, 255, 0) 0%, rgba(73, 69, 255, 0.25) 50%, rgba(73, 69, 255, 0) 100%)",
+                "refine-week-strapi-timeline-item-bg-lg":
+                    "linear-gradient(256deg, rgba(73, 69, 255, 0.25) 0%, rgba(73, 69, 255, 0) 60%)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
