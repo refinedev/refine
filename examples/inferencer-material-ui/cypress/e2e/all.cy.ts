@@ -24,6 +24,7 @@ describe("inferencer-material-ui", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
+        cy.interceptGETCategory();
         cy.interceptGETCategories();
         cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
@@ -33,7 +34,6 @@ describe("inferencer-material-ui", () => {
 
     it("should list resource", () => {
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         cy.getMaterialUILoadingCircular().should("not.exist");
 
         cy.url().should("include", "/blog-posts");
@@ -44,7 +44,6 @@ describe("inferencer-material-ui", () => {
 
     it("should show resource", () => {
         cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
 
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
