@@ -1,5 +1,13 @@
 # @pankod/refine-graphql
 
+## 6.4.3
+
+### Patch Changes
+
+-   [#4530](https://github.com/refinedev/refine/pull/4530) [`a90f14301c3`](https://github.com/refinedev/refine/commit/a90f14301c37d0a57299258c3a525fd95d6b11c1) Thanks [@hbtecRJE](https://github.com/hbtecRJE)! - fix(graphql): issue with graphql liveprovider subscription query
+
+    For the graphql subscription, 'query' was used instead of 'subscription'.
+
 ## 6.4.2
 
 ### Patch Changes

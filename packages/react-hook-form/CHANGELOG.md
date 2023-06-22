@@ -1,5 +1,30 @@
 # @pankod/refine-react-hook-form
 
+## 4.4.1
+
+### Patch Changes
+
+-   [#4576](https://github.com/refinedev/refine/pull/4576) [`9a895ea39dc`](https://github.com/refinedev/refine/commit/9a895ea39dcbb5ad73904fa29ee9fcfcf25b7ea4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `handleSubmitReactHookForm` now returns a Promise without awaiting it.
+    With this change, unhandled errors will propagate to the caller.
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: prioritization of forgotten `identifier`
+
+    If `identifier` is provided, it will be used instead of `name`.
+
+    ```tsx
+    import { useModalForm } from "@refinedev/react-hook-form";
+
+    useModalForm({
+        refineCoreProps: {
+            resource: "identifier-value",
+        },
+    });
+    ```
+
+    fix: use translate keys with `identifier`
+
+    Previously, the translate keys were generated using resource `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `translate` keys are generated using `identifier` if it's present.
+
 ## 4.4.0
 
 ### Minor Changes
