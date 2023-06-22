@@ -51,6 +51,7 @@ function Home() {
                 description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design System, an enterprise-level UI toolkit."
             >
                 <div className={clsx("bg-refine-bg")}>
+                    <LandingHeader />
                     <div
                         className={clsx(
                             "top-section",
@@ -59,7 +60,6 @@ function Home() {
                             "landing-mask-image-hero-wide",
                         )}
                     >
-                        <LandingHeader />
                         <LandingHero />
                     </div>
                     <LandingMagic />

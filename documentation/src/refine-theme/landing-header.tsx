@@ -18,79 +18,109 @@ export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
     return (
-        <header
-            className={clsx(
-                "w-full",
-                "max-w-screen-landing-2xl",
-                "px-4",
-                "landing-sm:px-6",
-                "landing-md:px-8",
-                "landing-xl:px-12",
-                "landing-2xl:px-[88px]",
-                "py-5",
-                "landing-md:py-9",
-                "landing-xl:py-11",
-                "flex items-center justify-between",
-                "mx-auto",
-            )}
-        >
+        <>
             <div
                 className={clsx(
-                    "flex",
-                    "items-center justify-start",
-                    "landing-xl:w-[264px]",
+                    "h-2 header-sm:h-4 header-md:h-6",
+                    "w-full",
+                    "bg-landing-header-bg",
+                    "backdrop-blur-header-blur",
                 )}
-            >
-                <Link to="/" className={clsx("flex", "justify-center")}>
-                    <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
-                </Link>
-            </div>
-            <div className={clsx("hidden landing-xl:flex", "gap-8")}>
-                <Menu isPermanentDark />
-            </div>
-            <div
+            />
+            <header
                 className={clsx(
-                    "flex items-center justify-end",
-                    "gap-6",
-                    "landing-xl:w-[264px]",
+                    "w-full",
+                    "bg-landing-header-bg",
+                    "backdrop-blur-header-blur",
+                    "sticky top-0 z-10",
                 )}
             >
                 <div
                     className={clsx(
-                        "hidden landing-xl:flex",
-                        "items-center gap-6",
+                        "px-4",
+                        "landing-sm:px-6",
+                        "landing-md:px-8",
+                        "landing-xl:px-12",
+                        "landing-2xl:px-[88px]",
+                        "py-3",
+                        "max-w-screen-landing-2xl",
+                        "flex items-center",
+                        "mx-auto",
                     )}
                 >
-                    <SearchBar CustomButton={LandingDocSearchButton} />
-                    <LandingGithubStarButton />
-                    <a
-                        href="https://discord.gg/refine"
-                        target="_blank"
-                        rel="noreferrer"
+                    <div
                         className={clsx(
-                            "w-6 h-6",
                             "flex",
-                            "items-center justify-center",
-                            "text-gray-0",
-                            "focus:no-underline",
-                            "hover:text-gray-0",
+                            "items-center justify-start",
+                            "w-[240px]",
                         )}
                     >
-                        <DiscordIcon className="text-gray-0" />
-                    </a>
+                        <Link to="/" className={clsx("flex", "justify-center")}>
+                            <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
+                        </Link>
+                    </div>
+                    <div className="flex items-center justify-end landing-xl:justify-between grow">
+                        <div
+                            className={clsx("hidden landing-xl:flex", "gap-8")}
+                        >
+                            <Menu isPermanentDark />
+                        </div>
+                        <div
+                            className={clsx(
+                                "flex items-center justify-end",
+                                "gap-6",
+                                "landing-xl:w-[264px]",
+                            )}
+                        >
+                            <div
+                                className={clsx(
+                                    "hidden landing-xl:flex",
+                                    "items-center gap-6",
+                                )}
+                            >
+                                <SearchBar
+                                    CustomButton={LandingDocSearchButton}
+                                />
+                                <LandingGithubStarButton />
+                                <a
+                                    href="https://discord.gg/refine"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={clsx(
+                                        "w-6 h-6",
+                                        "flex",
+                                        "items-center justify-center",
+                                        "text-gray-0",
+                                        "focus:no-underline",
+                                        "hover:text-gray-0",
+                                    )}
+                                >
+                                    <DiscordIcon className="text-gray-0" />
+                                </a>
+                            </div>
+                            <button
+                                type="button"
+                                className="block landing-xl:hidden text-gray-0"
+                                onClick={() => setIsModalOpen(true)}
+                            >
+                                <HamburgerIcon />
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <button
-                    type="button"
-                    className="block landing-xl:hidden text-gray-0"
-                    onClick={() => setIsModalOpen(true)}
-                >
-                    <HamburgerIcon />
-                </button>
-            </div>
-            <MobileMenuModal
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
+                <MobileMenuModal
+                    isModalOpen={isModalOpen}
+                    setIsModalOpen={setIsModalOpen}
+                />
+            </header>
+            <div
+                className={clsx(
+                    "h-2 header-sm:h-4 header-md:h-6",
+                    "w-full",
+                    "bg-landing-header-bg",
+                    "backdrop-blur-header-blur",
+                )}
             />
-        </header>
+        </>
     );
 };
