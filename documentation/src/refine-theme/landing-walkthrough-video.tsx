@@ -107,8 +107,19 @@ const WalkthroughNextButton = ({
     children: React.ReactNode;
 }) => {
     return (
-        <button
+        <motion.button
             type="button"
+            initial={{ opacity: 0, translateY: 30, rotateX: -90 }}
+            animate={{
+                opacity: 1,
+                rotateX: 0,
+                translateY: 0,
+            }}
+            exit={{ opacity: 0, rotateX: -90, translateY: 30 }}
+            transition={{
+                duration: 0.3,
+                delay: 0.4,
+            }}
             className={clsx(
                 "-mt-6",
                 "ml-4",
@@ -156,13 +167,13 @@ const WalkthroughNextButton = ({
             >
                 {children}
             </div>
-        </button>
+        </motion.button>
     );
 };
 
 const WalkthroughRestartButton = ({ onClick }: { onClick: () => void }) => {
     return (
-        <button
+        <motion.button
             type="button"
             className={clsx(
                 "-mt-6",
@@ -179,6 +190,17 @@ const WalkthroughRestartButton = ({ onClick }: { onClick: () => void }) => {
                 "focus:outline-none",
                 "z-[1]",
             )}
+            initial={{ opacity: 0, translateY: 30, rotateX: -90 }}
+            animate={{
+                opacity: 1,
+                rotateX: 0,
+                translateY: 0,
+            }}
+            exit={{ opacity: 0, rotateX: -90, translateY: 30 }}
+            transition={{
+                duration: 0.3,
+                delay: 0.4,
+            }}
             onClick={onClick}
         >
             <div
@@ -226,7 +248,7 @@ const WalkthroughRestartButton = ({ onClick }: { onClick: () => void }) => {
                     </span>
                 </span>
             </div>
-        </button>
+        </motion.button>
     );
 };
 
@@ -277,13 +299,15 @@ const WalkthroughPhaseWrapper = ({
             }}
             className={clsx("absolute", "left-0", "bottom-0")}
         >
-            <WalkthroughCodeWindow code={code} />
-            {end && <WalkthroughRestartButton onClick={onClick} />}
-            {text && (
-                <WalkthroughNextButton onClick={onClick}>
-                    <WalkthroughNextButtonLabel text={text} />
-                </WalkthroughNextButton>
-            )}
+            <AnimatePresence>
+                <WalkthroughCodeWindow code={code} />
+                {end && <WalkthroughRestartButton onClick={onClick} />}
+                {text && (
+                    <WalkthroughNextButton onClick={onClick}>
+                        <WalkthroughNextButtonLabel text={text} />
+                    </WalkthroughNextButton>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };
