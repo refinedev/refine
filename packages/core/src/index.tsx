@@ -86,6 +86,7 @@ export {
     ParseFunction,
     Prettify,
     FormWithSyncWithLocationParams,
+    AutoSaveIndicatorProps,
 } from "./interfaces";
 
 // all auth types

@@ -27,6 +27,8 @@ import {
     IQueryKeys,
     FormAction,
     MetaQuery,
+    AutosaveProps,
+    AutosaveReturnType,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -177,19 +179,8 @@ export type UseFormProps<
 > &
     ActionParams &
     LiveModeProps &
-    UseLoadingOvertimeOptionsProps & {
-        onAutosaveSuccess?: (
-            data: CreateResponse<TResponse> | UpdateResponse<TResponse>,
-            variables: TVariables,
-            context: any,
-        ) => void;
-
-        onAutosaveError?: (
-            error: TResponseError,
-            variables: TVariables,
-            context: any,
-        ) => void;
-    };
+    UseLoadingOvertimeOptionsProps &
+    AutosaveProps<TResponse, TResponseError, TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -214,17 +205,8 @@ export type UseFormReturnType<
         idFromFunction?: BaseKey | undefined,
         routeParams?: Record<string, string | number>,
     ) => void;
-} & UseLoadingOvertimeReturnType & {
-        onFinishAutoSave: (
-            values: TVariables,
-        ) => Promise<UpdateResponse<TResponse> | void> | void;
-    } & {
-        autoSaveProps: UseUpdateReturnType<
-            TResponse,
-            TResponseError,
-            TVariables
-        >;
-    };
+} & UseLoadingOvertimeReturnType &
+    AutosaveReturnType<TResponse, TVariables>;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -485,7 +467,7 @@ export const useForm = <
             meta: { ...combinedMeta, ...mutationMeta },
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
-            invalidates: [], // TODO: check if necessary
+            invalidates: [],
         };
 
         return mutationAutoSave.mutate(variables, {
@@ -593,7 +575,7 @@ export const useForm = <
         queryResult,
         onFinishAutoSave,
         autoSaveProps: {
-            ...mutationAutoSave,
+            status: mutationAutoSave.status,
         },
         id,
         setId,
