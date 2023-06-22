@@ -48,11 +48,12 @@
 [![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon2)
 
 
+
 <br/>
 <a href="https://refine.dev/">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/18739364/200257042-3f2aa7f7-a07f-4824-8d2a-b25f26b6fd32.png">
-  <img alt="how-works-refine" src="https://github.com/refinedev/refine/assets/18739364/a68390e8-7709-4c7f-b6df-8727aad386ce">
+
+  <img alt="how-works-refine" src="https://github.com/refinedev/refine/assets/18739364/d998e07f-8d61-4d12-9f18-505ac8fdd76d">
 </picture>
 </a>
 
