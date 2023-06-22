@@ -9,8 +9,8 @@
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.25.0",
-    "@refinedev/core": "^4.23.0",
+    "@refinedev/antd": "^5.26.0",
+    "@refinedev/core": "^4.24.0",
     "@refinedev/cli": "^2.7.0",
     "@refinedev/nextjs-router": "^5.3.2",
     "@refinedev/simple-rest": "^4.5.0",

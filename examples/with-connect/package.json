@@ -3,8 +3,8 @@
   "version": "3.20.1",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.25.0",
-    "@refinedev/core": "^4.23.0",
+    "@refinedev/antd": "^5.26.0",
+    "@refinedev/core": "^4.24.0",
     "@refinedev/cli": "^2.7.0",
     "@refinedev/react-router-v6": "^4.3.2",
     "@refinedev/simple-rest": "^4.5.0",

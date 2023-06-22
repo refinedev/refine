@@ -1,5 +1,35 @@
 # @pankod/refine-mui
 
+## 5.5.0
+
+### Minor Changes
+
+-   [#4523](https://github.com/refinedev/refine/pull/4523) [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: implement following hooks have `useLoadingOvertime` hook
+
+    -   [`useAutocomplete`](https://refine.dev/docs/api-reference/mui/hooks/useAutocomplete/#overtimeoptions)
+    -   [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/#overtimeoptions)
+
+### Patch Changes
+
+-   [#4557](https://github.com/refinedev/refine/pull/4557) [`781050e56a4`](https://github.com/refinedev/refine/commit/781050e56a459f8c17e0e65c9f7a1cae88811f19) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: `Button` text color on [`RefineThemes`](https://refine.dev/docs/api-reference/mui/theming/#predefined-themes)
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: prioritization of forgotten `identifier`
+
+    If `identifier` is provided, it will be used instead of `name`.
+
+    ```tsx
+    import { DeleteButton } from "@refinedev/mui";
+
+    <DeleteButton resource="identifier-value" recordItemId="123" />;
+    ```
+
+    fix: use translate keys with `identifier`
+
+    Previously, the translate keys were generated using resource `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `translate` keys are generated using `identifier` if it's present.
+
+-   Updated dependencies [[`9a895ea39dc`](https://github.com/refinedev/refine/commit/9a895ea39dcbb5ad73904fa29ee9fcfcf25b7ea4), [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42)]:
+    -   @refinedev/react-hook-form@4.4.2
+
 ## 5.4.0
 
 ### Minor Changes
