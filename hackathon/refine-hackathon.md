@@ -15,6 +15,7 @@ As with the first, this Hackathon is about showcasing your skills, creativity, a
 
 ⏰ The Hackathon will kick off on June 21, and we're proud to host it in collaboration with the [DEV](https://dev.to/refine) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
 
+👉 Refer to refine Open Source Hackathon [official announcement post]((https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn)).
 
 🚀 The prizel pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
 
@@ -68,8 +69,8 @@ Supabase and MUI will also be providing swag kits for the winners.
 ### Schedule
 - The Hackathon begins on Wednesday 21st June 2023
 - Work on your project any time for the next four weeks
-- Submission deadline (Monday, July 20, 2023)
-- The winners will be announced on Monday, July 26, 2023
+- Submission deadline Monday, July 20, 2023
+- Submission judging begins Monday, July 24, 2023
 
 
 
@@ -89,6 +90,23 @@ You can use any data provider or UI framework in the refine app for the three ma
 - **Best Project built using [Material UI](https://mui.com/material-ui/getting-started/overview/)** 
   - The project must use Material UI as the UI framework in the refine app
 
+
+Five Grand Prize Winners (one per category):
+
+- $1,000 USD gift card or equivalent
+- $300 USD credit to the Forem Shop
+- DEV Sticker Pack
+- Special Swag Kits from refine, Supabase and MUI
+
+Runner-Up Prizes (10 Total – across all categories):
+
+- $250 USD gift card or equivalent
+- $150 USD credit to the Forem Shop
+- DEV Sticker Pack
+- Special Swag Kits from refine
+
+
+
 #### Runner-up
 - There will be ten runner-up prizes.
 
@@ -101,8 +119,8 @@ You can use any data provider or UI framework in the refine app for the three ma
 
 
 ## Submission
-- Submissions activated on [DEV](https://dev.to/) platform on 21th of June.
-- All detailed information on submissions will be explained on the DEV Hackathon Launch day.
+- Submissions activated on [DEV](https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn) platform 
+- All detailed information on submissions will be explained on the [refine + DEV Hackathon Announcement Post](https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn).
 
 
 ## Rules
