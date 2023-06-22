@@ -5,7 +5,7 @@ import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { RefineWeek } from "@site/src/components/refine-week";
 import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 
-const RefineWeekStrapi = () => {
+const RefineWeekSupabase = () => {
     return (
         <CommonLayout>
             <div className="refine-prose">
@@ -14,11 +14,11 @@ const RefineWeekStrapi = () => {
                 </Head>
 
                 <CommonHeader hasSticky={true} />
-                <RefineWeek variant="strapi" />
+                <RefineWeek variant="supabase" />
                 <BlogFooter />
             </div>
         </CommonLayout>
     );
 };
 
-export default RefineWeekStrapi;
+export default RefineWeekSupabase;
