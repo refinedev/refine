@@ -1,4 +1,10 @@
-import { AuthBindings } from "@refinedev/core";
+import {
+    Action,
+    AuthBindings,
+    IResourceItem,
+    ParsedParams,
+    RouterBindings,
+} from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 /* import {
@@ -18,7 +24,7 @@ export const posts = [
         categoryId: 1,
         status: "active",
         userId: 5,
-        tags: [16, 31, 45],
+        tags: [1, 2],
     },
     {
         id: "2",
@@ -26,7 +32,7 @@ export const posts = [
         slug: "consequatur-molestiae-rerum",
         content:
             "Quia ut autem. Hic dolorum magni est quisquam. Modi est id et est. Est sapiente velit iure non voluptatem natus enim. Distinctio ipsa repellendus est. Sunt ipsam dignissimos vero error est cumque eaque. Consequatur voluptas suscipit optio incidunt doloremque quia harum harum. Totam voluptatibus aperiam quia. Est omnis deleniti et aut at fugit temporibus debitis modi. Magni aut vel quod magnam.",
-        categoryId: 38,
+        categoryId: 2,
         status: "active",
         userId: 36,
         tags: [16, 30, 46],
@@ -51,7 +57,52 @@ const MockDataProvider = () => {
 
 export const MockJSONServer = MockDataProvider() as any;
 
-export const MockRouterProvider = {
+export const mockRouterBindings = ({
+    pathname,
+    params,
+    resource,
+    action,
+    id,
+    fns,
+}: {
+    pathname?: string;
+    params?: ParsedParams;
+    resource?: IResourceItem;
+    action?: Action;
+    id?: string;
+    fns?: Partial<RouterBindings>;
+} = {}): RouterBindings => {
+    const bindings: RouterBindings = {
+        go: () => {
+            return ({ type }) => {
+                if (type === "path") return "";
+                return undefined;
+            };
+        },
+        parse: () => {
+            return () => {
+                return {
+                    params: {
+                        ...params,
+                    },
+                    pathname,
+                    resource: resource,
+                    action: action,
+                    id: id || undefined,
+                };
+            };
+        },
+        back: () => {
+            return () => undefined;
+        },
+        Link: () => null,
+        ...fns,
+    };
+
+    return bindings;
+};
+
+export const MockLegacyRouterProvider = {
     useHistory: () => {
         const navigate = useNavigate();
 

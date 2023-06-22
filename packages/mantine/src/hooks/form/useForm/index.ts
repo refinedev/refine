@@ -11,6 +11,7 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
+    useTranslate,
 } from "@refinedev/core";
 
 type FormVariableType<TVariables, TTransformed> = ReturnType<
@@ -97,6 +98,8 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const translate = useTranslate();
+
     const warnWhenUnsavedChangesProp = refineCoreProps?.warnWhenUnsavedChanges;
 
     const {
@@ -105,19 +108,6 @@ export const useForm = <
     } = useWarnAboutChange();
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
-
-    const useFormCoreResult = useFormCore<
-        TQueryFnData,
-        TError,
-        FormVariableType<TVariables, TTransformed>,
-        TData,
-        TResponse,
-        TResponseError
-    >({
-        ...refineCoreProps,
-    });
-
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     const useMantineFormResult = useMantineForm<
         TVariables,
@@ -131,7 +121,54 @@ export const useForm = <
         onSubmit: onMantineSubmit,
         isDirty,
         resetDirty,
+        setFieldError,
     } = useMantineFormResult;
+
+    const useFormCoreResult = useFormCore<
+        TQueryFnData,
+        TError,
+        FormVariableType<TVariables, TTransformed>,
+        TData,
+        TResponse,
+        TResponseError
+    >({
+        ...refineCoreProps,
+        onMutationError: (error, _variables, _context) => {
+            const errors = error?.errors;
+
+            for (const key in errors) {
+                const fieldError = errors[key];
+
+                let newError = "";
+
+                if (Array.isArray(fieldError)) {
+                    newError = fieldError.join(". ");
+                }
+
+                if (typeof fieldError === "string") {
+                    newError = fieldError;
+                }
+
+                if (typeof fieldError === "boolean") {
+                    newError = "Something went wrong.";
+                }
+
+                if (typeof fieldError === "object" && "key" in fieldError) {
+                    const translatedMessage = translate(
+                        fieldError.key,
+                        fieldError.message,
+                    );
+
+                    newError = translatedMessage;
+                }
+                setFieldError(key, newError);
+            }
+
+            refineCoreProps?.onMutationError?.(error, _variables, _context);
+        },
+    });
+
+    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     useEffect(() => {
         if (typeof queryResult?.data !== "undefined") {

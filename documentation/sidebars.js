@@ -780,6 +780,7 @@ module.exports = {
                                         "examples/form/mantine/useForm",
                                         "examples/form/mantine/useModalForm",
                                         "examples/form/mantine/useStepsForm",
+                                        "examples/form/mantine/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -1028,6 +1029,7 @@ module.exports = {
                             label: "Form",
                             items: [
                                 "advanced-tutorials/forms/custom-form-validation",
+                                "advanced-tutorials/forms/server-side-form-validation",
                                 "advanced-tutorials/forms/save-and-continue",
                             ],
                         },

@@ -4,7 +4,13 @@ import ReactRouterDom, { Route, Routes } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
 import { ErrorComponent } from ".";
-import { render, fireEvent, TestWrapper } from "@test";
+import {
+    render,
+    fireEvent,
+    TestWrapper as BaseTestWrapper,
+    MockLegacyRouterProvider,
+    ITestWrapperProps,
+} from "@test";
 
 const mHistory = jest.fn();
 
@@ -12,6 +18,12 @@ jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
     useNavigate: () => mHistory,
 }));
+
+const TestWrapper = (props: ITestWrapperProps) =>
+    BaseTestWrapper({
+        ...props,
+        legacyRouterProvider: MockLegacyRouterProvider,
+    });
 
 describe("ErrorComponent", () => {
     pageErrorTests.bind(this)(ErrorComponent);

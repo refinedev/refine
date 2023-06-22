@@ -117,10 +117,17 @@ sidebar_label: Interface References
 
 ## HttpError
 
-| Key        | Type     |
-| ---------- | -------- |
-| message    | `string` |
-| statusCode | `number` |
+| Key        | Type                                    |
+| ---------- | --------------------------------------- |
+| message    | `string`                                |
+| statusCode | `number`                                |
+| errors     | [`ValidationErrors`](#validationerrors) |
+
+## ValidationErrors
+
+| Key               | Type                                                                      |
+| ----------------- | ------------------------------------------------------------------------- |
+| `[field: string]` | `string` \| `string[]` \| `boolean` \| `{ key: string; message: string }` |
 
 ## Delete Button Props
 

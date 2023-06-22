@@ -1,3 +1,11 @@
+---
+"@refinedev/core": minor
+---
+
+feat: added `errros` field to `HttpError` type.
+From now on, you can pass `errors` field to `HttpError`. This field will be used to display errors in the corresponding fields in the form.
+
+```ts
 export interface ValidationErrors {
     [field: string]:
         | string
@@ -11,3 +19,4 @@ export interface HttpError extends Record<string, any> {
     statusCode: number;
     errors?: ValidationErrors;
 }
+```

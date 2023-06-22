@@ -1,7 +1,13 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { render, TestWrapper, ITestWrapperProps, act } from "@test";
+import {
+    render,
+    TestWrapper,
+    ITestWrapperProps,
+    act,
+    MockLegacyRouterProvider,
+} from "@test";
 
 import { Breadcrumb } from "./";
 import { breadcrumbTests } from "@refinedev/ui-tests";
@@ -15,7 +21,10 @@ const renderBreadcrumb = (
             <Route path="/:resource/:action" element={children} />
         </Routes>,
         {
-            wrapper: TestWrapper(wrapperProps),
+            wrapper: TestWrapper({
+                ...wrapperProps,
+                legacyRouterProvider: MockLegacyRouterProvider,
+            }),
         },
     );
 };

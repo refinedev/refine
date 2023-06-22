@@ -2,7 +2,13 @@ import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@refinedev/core";
 
-import { ITestWrapperProps, render, TestWrapper, waitFor } from "@test";
+import {
+    ITestWrapperProps,
+    MockLegacyRouterProvider,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 import { Edit } from "./";
 import { crudEditTests } from "@refinedev/ui-tests";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
@@ -24,6 +30,7 @@ const renderEdit = (
         </Routes>,
         {
             wrapper: TestWrapper({
+                legacyRouterProvider: MockLegacyRouterProvider,
                 routerInitialEntries: ["/posts/edit/1"],
                 accessControlProvider,
                 ...wrapperOptions,
@@ -51,6 +58,7 @@ describe("Edit", () => {
             </Routes>,
             {
                 wrapper: TestWrapper({
+                    legacyRouterProvider: MockLegacyRouterProvider,
                     routerInitialEntries: ["/custom"],
                 }),
             },
@@ -80,6 +88,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -113,6 +122,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -146,6 +156,7 @@ describe("Edit", () => {
 
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -176,6 +187,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -197,6 +209,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -298,6 +311,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts" }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -316,6 +330,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts" }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
