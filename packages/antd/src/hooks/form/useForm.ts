@@ -2,6 +2,7 @@ import React from "react";
 import { FormInstance, FormProps, Form } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 import { ButtonProps } from "antd";
+import debounce from "lodash/debounce";
 
 import {
     HttpError,
@@ -88,6 +89,8 @@ export const useForm = <
     resource,
     onMutationSuccess: onMutationSuccessProp,
     onMutationError,
+    onAutosaveSuccess,
+    onAutosaveError,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect,
@@ -142,6 +145,8 @@ export const useForm = <
             ? onMutationSuccessProp
             : undefined,
         onMutationError,
+        onAutosaveSuccess,
+        onAutosaveError,
         redirect,
         action,
         resource,
@@ -165,7 +170,8 @@ export const useForm = <
         overtimeOptions,
     });
 
-    const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
+    const { formLoading, onFinish, queryResult, id, onFinishAutoSave } =
+        useFormCoreResult;
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -184,10 +190,16 @@ export const useForm = <
         }
     };
 
-    const onValuesChange = (changeValues: object) => {
+    const debounceWithonFinishAutoSave = debounce((allValues) => {
+        setWarnWhen(false);
+        return onFinishAutoSave(allValues);
+    }, 1000);
+
+    const onValuesChange = (changeValues: object, allValues: any) => {
         if (changeValues && warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+        debounceWithonFinishAutoSave(allValues);
         return changeValues;
     };
 
