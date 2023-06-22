@@ -122,6 +122,7 @@ const WalkthroughNextButton = ({
                 "ring-refine-bg",
                 "group",
                 "focus:outline-none",
+                "z-[1]",
             )}
             onClick={onClick}
         >
@@ -176,6 +177,7 @@ const WalkthroughRestartButton = ({ onClick }: { onClick: () => void }) => {
                 "ring-refine-bg",
                 "group",
                 "focus:outline-none",
+                "z-[1]",
             )}
             onClick={onClick}
         >
