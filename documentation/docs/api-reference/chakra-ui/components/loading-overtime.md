@@ -265,7 +265,7 @@ You can use this component without children. In this case, the component will on
 
 :::
 
-:::info
+:::caution
 
 The component will not accept both `elapsedTime` and `isLoading`, `interval`, and `onInterval` props at the same time. If you provide both, the component will work based on the `elapsedTime` prop.
 
