@@ -702,7 +702,7 @@ You have the flexibility to customize these messages by using the `textTransform
 ```tsx
 const App: React.FC = () => (
     <Refine
-        ...
+        // ...
         options={{
             textTransformers: {
                 humanize: (text) => text,
