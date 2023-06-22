@@ -1,5 +1,14 @@
 # @pankod/refine-mantine
 
+## 4.1.4
+
+### Patch Changes
+
+-   [#4561](https://github.com/refinedev/refine/pull/4561) [`9812a3d874a`](https://github.com/refinedev/refine/commit/9812a3d874ad7c7246d10ae1ff994201c822b655) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: select current value on `<Select>` component for `Chakra-UI` and `headless`
+
+-   Updated dependencies [[`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf), [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42), [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf)]:
+    -   @refinedev/core@4.24.0
+
 ## 4.1.3
 
 ### Patch Changes

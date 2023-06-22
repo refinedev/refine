@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@refinedev/cli": "^2.7.0",
-    "@refinedev/core": "^4.23.0",
+    "@refinedev/core": "^4.24.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -15,7 +15,7 @@
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1",
     "@refinedev/simple-rest": "^4.5.0",
-    "@refinedev/mantine": "^2.19.0",
+    "@refinedev/mantine": "^2.20.0",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.1.0",
