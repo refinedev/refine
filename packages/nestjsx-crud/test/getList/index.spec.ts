@@ -133,7 +133,7 @@ describe("getList", () => {
         expect(total).toBe(2);
     });
 
-    it("correct response with out pagination", async () => {
+    it("correct response without pagination", async () => {
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
