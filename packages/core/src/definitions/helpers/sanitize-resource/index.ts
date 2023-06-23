@@ -4,8 +4,15 @@ import { IResourceItem } from "../../../interfaces/bindings/resource";
  * Remove all properties that are non-serializable from a resource object.
  */
 export const sanitizeResource = (
-    resource: Partial<IResourceItem> & { children?: unknown },
-): Partial<IResourceItem> => {
+    resource?: Partial<IResourceItem> &
+        Required<Pick<IResourceItem, "name">> & { children?: unknown },
+):
+    | (Partial<IResourceItem> & Required<Pick<IResourceItem, "name">>)
+    | undefined => {
+    if (!resource) {
+        return undefined;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {
         icon,
