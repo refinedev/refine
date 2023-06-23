@@ -255,8 +255,6 @@ export const useForm = <
         },
     };
 
-    console.log(form.getFieldsError());
-
     return {
         form: formSF.form,
         formProps: {
