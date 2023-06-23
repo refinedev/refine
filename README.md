@@ -1,6 +1,3 @@
-
-
-
 <br/>
 
 <div align="center" style="margin: 30px;">
@@ -13,8 +10,8 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
@@ -44,22 +41,15 @@
 
 </div>
 
-
 [![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon2)
-
-
 
 <br/>
 <a href="https://refine.dev/">
 <picture>
 
-  <img alt="how-works-refine" src="https://github.com/refinedev/refine/assets/18739364/d998e07f-8d61-4d12-9f18-505ac8fdd76d">
+  <img alt="how-refine-works" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/how-refine-works.jpeg">
 </picture>
 </a>
-
-
-
-
 
 ## What is refine?
 
@@ -79,7 +69,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 <br/>
 
 <a  href="https://s.refine.dev/refine-new-github">
-<img  src="https://github.com/refinedev/refine/assets/18739364/260fbc5e-d890-4d47-bd5a-eb3ff98057a6">
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine.new.png">
 </a>
 <br/>
 <br/>
@@ -93,7 +83,6 @@ You can preview, modify, and download your project immediately, thereby streamli
 <img src="https://user-images.githubusercontent.com/18739364/231501815-295deedd-cbee-4b90-80dc-12116ee53274.gif"    />
 </a>
 </div>
-
 
 ## Use cases
 
