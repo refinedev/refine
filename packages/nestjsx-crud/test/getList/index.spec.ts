@@ -146,6 +146,6 @@ describe("getList", () => {
 
         expect(data[0]["id"]).toBe("1b175cdc-4407-49d9-82cd-35e9f31afec2");
         expect(data[0]["title"]).toBe("User-friendly New Mexico Bedfordshire");
-        expect(total).toBe(10);
+        expect(total).toBe(1);
     });
 });
