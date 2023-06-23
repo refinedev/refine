@@ -520,20 +520,18 @@ describe("useForm Hook", () => {
                     action: "edit",
                     id: 1,
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        default: {
-                            ...MockJSONServer.default,
-                            getOne: () => {
-                                return new Promise((res) => {
-                                    setTimeout(() => res({} as any), 1000);
-                                });
-                            },
+                        ...MockJSONServer.default,
+                        getOne: () => {
+                            return new Promise((res) => {
+                                setTimeout(() => res({} as any), 1000);
+                            });
                         },
                     },
 
@@ -548,14 +546,17 @@ describe("useForm Hook", () => {
             },
         );
 
-        await waitFor(() => {
-            expect(result.current.queryResult?.isFetching).toBeTruthy();
-            expect(result.current.overtime.elapsedTime).toBe(900);
-            expect(onInterval).toBeCalled();
-        });
+        await waitFor(
+            () => {
+                expect(result.current.queryResult?.isFetching).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBe(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
-            expect(!result.current.queryResult?.isFetching).toBeTruthy();
+            expect(result.current.queryResult?.isFetching).toBeFalsy();
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
     });
@@ -746,23 +747,20 @@ describe("useForm Hook", () => {
                         resource: "posts",
                         action: "create",
                         overtimeOptions: {
-                            interval: 100,
+                            interval: 500,
                             onInterval,
                         },
                     }),
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
-                            default: {
-                                ...MockJSONServer.default,
-                                create: () => {
-                                    return new Promise((res) => {
-                                        setTimeout(() => res({} as any), 1000);
-                                    });
-                                },
+                            ...MockJSONServer.default,
+                            create: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
                             },
                         },
-
                         resources: [
                             {
                                 name: "posts",
@@ -778,14 +776,19 @@ describe("useForm Hook", () => {
                 title: "foo",
             });
 
-            await waitFor(() => {
-                expect(result.current.mutationResult?.isLoading).toBeTruthy();
-                expect(result.current.overtime.elapsedTime).toBe(900);
-                expect(onInterval).toBeCalled();
-            });
+            await waitFor(
+                () => {
+                    expect(
+                        result.current.mutationResult?.isLoading,
+                    ).toBeTruthy();
+                    expect(result.current.overtime.elapsedTime).toEqual(500);
+                    expect(onInterval).toBeCalledWith(500);
+                },
+                { timeout: 1000 },
+            );
 
             await waitFor(() => {
-                expect(!result.current.mutationResult?.isLoading).toBeTruthy();
+                expect(result.current.mutationResult?.isLoading).toBeFalsy();
                 expect(result.current.overtime.elapsedTime).toBeUndefined();
             });
         });
@@ -979,20 +982,18 @@ describe("useForm Hook", () => {
                         action: "edit",
                         id: 1,
                         overtimeOptions: {
-                            interval: 100,
+                            interval: 500,
                             onInterval,
                         },
                     }),
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
-                            default: {
-                                ...MockJSONServer.default,
-                                update: () => {
-                                    return new Promise((res) => {
-                                        setTimeout(() => res({} as any), 1000);
-                                    });
-                                },
+                            ...MockJSONServer.default,
+                            update: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
                             },
                         },
 
@@ -1011,11 +1012,16 @@ describe("useForm Hook", () => {
                 title: "foo",
             });
 
-            await waitFor(() => {
-                expect(result.current.mutationResult?.isLoading).toBeTruthy();
-                expect(result.current.overtime.elapsedTime).toBe(900);
-                expect(onInterval).toBeCalled();
-            });
+            await waitFor(
+                () => {
+                    expect(
+                        result.current.mutationResult?.isLoading,
+                    ).toBeTruthy();
+                    expect(result.current.overtime.elapsedTime).toEqual(500);
+                    expect(onInterval).toBeCalledWith(500);
+                },
+                { timeout: 1000 },
+            );
 
             await waitFor(() => {
                 expect(!result.current.mutationResult?.isLoading).toBeTruthy();

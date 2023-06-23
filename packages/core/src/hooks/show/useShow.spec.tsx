@@ -375,20 +375,18 @@ describe("useShow Hook", () => {
                     resource: "posts",
                     id: "1",
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        default: {
-                            ...MockJSONServer.default,
-                            getOne: () => {
-                                return new Promise((res) => {
-                                    setTimeout(() => res({} as any), 1000);
-                                });
-                            },
+                        ...MockJSONServer.default,
+                        getOne: () => {
+                            return new Promise((res) => {
+                                setTimeout(() => res({} as any), 1000);
+                            });
                         },
                     },
                     resources: [{ name: "posts" }],
@@ -396,14 +394,17 @@ describe("useShow Hook", () => {
             },
         );
 
-        await waitFor(() => {
-            expect(result.current.queryResult.isLoading).toBeTruthy();
-            expect(result.current.overtime.elapsedTime).toBe(900);
-            expect(onInterval).toBeCalled();
-        });
+        await waitFor(
+            () => {
+                expect(result.current.queryResult.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBe(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
-            expect(!result.current.queryResult.isLoading).toBeTruthy();
+            expect(result.current.queryResult.isLoading).toBeFalsy();
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
     });
