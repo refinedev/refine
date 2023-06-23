@@ -1,3 +1,9 @@
+import {
+    ParsedParams,
+    IResourceItem,
+    Action,
+    RouterBindings,
+} from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 export const posts = [
@@ -75,4 +81,49 @@ export const MockRouterProvider = {
     },
     Link,
     Prompt: () => null,
+};
+
+export const mockRouterBindings = ({
+    pathname,
+    params,
+    resource,
+    action,
+    id,
+    fns,
+}: {
+    pathname?: string;
+    params?: ParsedParams;
+    resource?: IResourceItem;
+    action?: Action;
+    id?: string;
+    fns?: Partial<RouterBindings>;
+} = {}): RouterBindings => {
+    const bindings: RouterBindings = {
+        go: () => {
+            return ({ type }) => {
+                if (type === "path") return "";
+                return undefined;
+            };
+        },
+        parse: () => {
+            return () => {
+                return {
+                    params: {
+                        ...params,
+                    },
+                    pathname,
+                    resource: resource,
+                    action: action,
+                    id: id || undefined,
+                };
+            };
+        },
+        back: () => {
+            return () => undefined;
+        },
+        Link: () => null,
+        ...fns,
+    };
+
+    return bindings;
 };

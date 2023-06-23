@@ -1,13 +1,20 @@
 import React, { ReactNode } from "react";
 import { MemoryRouter } from "react-router-dom";
-import { Refine, DataProvider, IResourceItem } from "@refinedev/core";
+import {
+    Refine,
+    DataProvider,
+    IResourceItem,
+    I18nProvider,
+} from "@refinedev/core";
 
-import { MockRouterProvider, MockJSONServer } from "./dataMocks";
+import { MockJSONServer, mockRouterBindings } from "./dataMocks";
+import "@testing-library/jest-dom/extend-expect";
 
 interface ITestWrapperProps {
     dataProvider?: DataProvider;
     resources?: IResourceItem[];
     routerInitialEntries?: string[];
+    i18nProvider?: I18nProvider;
 }
 
 export const TestWrapper: (
@@ -16,14 +23,16 @@ export const TestWrapper: (
     dataProvider,
     resources,
     routerInitialEntries,
+    i18nProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
         return (
             <MemoryRouter initialEntries={routerInitialEntries}>
                 <Refine
+                    i18nProvider={i18nProvider}
                     dataProvider={dataProvider ?? MockJSONServer}
-                    routerProvider={MockRouterProvider}
+                    routerProvider={mockRouterBindings()}
                     resources={resources ?? [{ name: "posts" }]}
                     options={{
                         reactQuery: {
