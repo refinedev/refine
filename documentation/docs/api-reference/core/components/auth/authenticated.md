@@ -6,13 +6,13 @@ sidebar_label: <Authenticated>
 
 `<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].
 
-It internally uses [`useIsAuthenticated`][use-is-authenticated]'s return values (`data.authenticated`, `data.error`, and, `isLoading`) to provide its functionality.
+It internally uses `useIsAuthenticated`'s return values (`data.authenticated`, `data.error`, and, `isLoading`) to provide its functionality.
 
 When:
 
--   `data.authenticated` is `true`, it renders to children.
+-   `data.authenticated` is `true`, it renders its children.
 -   `data.authenticated` is `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
--   `isLoading` is `true`, it renders [`loading`](#loading) prop.
+-   `isLoading` is `true`, it renders the [`loading`](#loading) prop.
 
 You may want to use this component when rendering a page that requires authentication. You will be able to render a fallback or redirect to an authentication page depending on your case. `Authenticated` can also be used to render a conditional content based on the user's authentication status.
 
@@ -32,7 +32,7 @@ const MyPage = () => (
 
 ### `redirectOnFail`
 
-The path to redirect to if the user is not logged in. If left empty, the user will be redirected to the `redirectTo` property of the `check` function of the `AuthProvider`.
+The path to redirect to if the user is not logged in. If left empty, the user will be redirected to the value in the `redirectTo` property of the `check` function of the `AuthProvider`.
 
 :::info
 

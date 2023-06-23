@@ -3132,7 +3132,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
-                ===
+                ==
               </span>
               <span
                 class="token plain"
@@ -3843,7 +3843,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
-                ===
+                ==
               </span>
               <span
                 class="token plain"

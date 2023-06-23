@@ -39,7 +39,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
                     />
                 ) : (
                     <span className={clsx("min-w-10 font-semibold")}>
-                        {githubStarCount?.toLocaleString()}
+                        {githubStarCount?.toLocaleString?.() ?? "11500"}
                     </span>
                 )}
             </div>
