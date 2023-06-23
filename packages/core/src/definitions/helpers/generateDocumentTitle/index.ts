@@ -1,6 +1,6 @@
 import { IResourceItem } from "@contexts/resource";
 import capitalize from "lodash/capitalize";
-import { useUserFriendlyName } from "../useUserFriendlyName";
+import { userFriendlyResourceName } from "../userFriendlyResourceName";
 
 /**
  * Generates document title for the given resource and action.
@@ -18,8 +18,6 @@ export function generateDefaultDocumentTitle(
     action?: string,
     id?: string,
 ) {
-    const getUserFriendlyName = useUserFriendlyName();
-
     const actionPrefixMatcher = {
         create: "Create new ",
         clone: `#${id ?? ""} Clone `,
@@ -34,7 +32,7 @@ export function generateDefaultDocumentTitle(
         resource?.label ??
         resource?.meta?.label ??
         capitalize(
-            getUserFriendlyName(
+            userFriendlyResourceName(
                 identifier,
                 action === "list" ? "plural" : "singular",
             ),
