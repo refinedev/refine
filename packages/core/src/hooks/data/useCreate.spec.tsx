@@ -77,13 +77,11 @@ describe("useCreate Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        default: {
-                            ...MockJSONServer.default,
-                            create: () => {
-                                return new Promise((res) => {
-                                    setTimeout(() => res({} as any), 1000);
-                                });
-                            },
+                        ...MockJSONServer.default,
+                        create: () => {
+                            return new Promise((res) => {
+                                setTimeout(() => res({} as any), 1000);
+                            });
                         },
                     },
                     resources: [{ name: "posts" }],
