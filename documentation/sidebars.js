@@ -791,6 +791,17 @@ module.exports = {
                                         "examples/form/mui/useForm",
                                         "examples/form/mui/useModalForm",
                                         "examples/form/mui/useStepsForm",
+                                        "examples/form/mui/serverSideFormValidation",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Chakra UI",
+                                    items: [
+                                        "examples/form/chakra-ui/useDrawerForm",
+                                        "examples/form/chakra-ui/useForm",
+                                        "examples/form/chakra-ui/useModalForm",
+                                        "examples/form/chakra-ui/serverSideFormValidation",
                                     ],
                                 },
                                 {

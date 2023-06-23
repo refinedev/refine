@@ -14,6 +14,7 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
+    useTranslate,
 } from "@refinedev/core";
 
 export type UseFormReturnType<
@@ -96,25 +97,14 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const translate = useTranslate();
+
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
         setWarnWhen,
     } = useWarnAboutChange();
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
-
-    const useFormCoreResult = useFormCore<
-        TQueryFnData,
-        TError,
-        TVariables,
-        TData,
-        TResponse,
-        TResponseError
-    >({
-        ...refineCoreProps,
-    });
-
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     const useHookFormResult = useHookForm<TVariables, TContext>({
         ...rest,
@@ -125,7 +115,65 @@ export const useForm = <
         setValue,
         getValues,
         handleSubmit: handleSubmitReactHookForm,
+        setError,
     } = useHookFormResult;
+
+    const useFormCoreResult = useFormCore<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
+        ...refineCoreProps,
+        onMutationError: (error, _variables, _context) => {
+            const errors = error?.errors;
+
+            for (const key in errors) {
+                // when the key is not in the variables, react-hook-form not working
+                const isKeyInVariables = Object.keys(_variables).includes(
+                    key.split(".")[0],
+                );
+                if (!isKeyInVariables) {
+                    continue;
+                }
+
+                const fieldError = errors[key];
+
+                let newError = "";
+
+                if (Array.isArray(fieldError)) {
+                    newError = fieldError.join(" ");
+                }
+
+                if (typeof fieldError === "string") {
+                    newError = fieldError;
+                }
+
+                if (typeof fieldError === "boolean" && fieldError) {
+                    newError = "Field is not valid.";
+                }
+
+                if (typeof fieldError === "object" && "key" in fieldError) {
+                    const translatedMessage = translate(
+                        fieldError.key,
+                        fieldError.message,
+                    );
+
+                    newError = translatedMessage;
+                }
+
+                setError(key as Path<TVariables>, {
+                    message: newError,
+                });
+            }
+
+            refineCoreProps?.onMutationError?.(error, _variables, _context);
+        },
+    });
+
+    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     useEffect(() => {
         const data = queryResult?.data?.data;

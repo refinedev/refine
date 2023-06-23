@@ -4,6 +4,8 @@ title: Server-Side Form Validation
 ---
 
 import MantineLivePreview from "./partials/\_mantine-server-side-form-validation.md";
+import MaterialUILivePreview from "./partials/\_material-ui-server-side-form-validation.md";
+import ChakraUILivePreview from "./partials/\_chakra-ui-server-side-form-validation.md";
 
 Server-side form validation is a technique used to validate form data on the server before processing it. Unlike client-side validation, which is performed in the user's browser using JavaScript, server-side validation occurs on the server-side code, typically in the backend of the application.
 
@@ -129,6 +131,25 @@ const form = useForm({
 console.log(form.mutationResult.error?.errors);
 ```
 
+### with React Hook Form
+
+> You can find more information about the `useForm` hook [here][react-hook-form-use-form].
+
+Due to the fact that [`useForm`][react-hook-form-use-form] hook is framework agnostic, you need to render the `errors` returned from the `dataProvider` manually.
+
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][core-use-form] hook will return `errors` state, which is an object with the following shape:
+
+```ts
+import { useForm } from "@refinedev/core";
+
+const form = useForm({
+    // ...
+});
+
+// you can access the errors state from the useForm hook
+console.log(form.formState.errors);
+```
+
 ### with Mantine
 
 <MantineLivePreview />
@@ -165,6 +186,84 @@ const Page = () => {
 };
 ```
 
+### with Material UI
+
+<MaterialUILivePreview />
+
+> You can find more information about the `useForm` hook [here][react-hook-form-use-form].
+
+For this example, we mock data provider to return rejected promise with `errors` field.
+You can see full example [here](/docs/examples/form/mui/serverSideFormValidation/)
+
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][react-hook-form-use-form] automatically set the `formState.errors` state with the error messages returned from the `dataProvider`. You can pass [`formState.errors.status.message`](https://react-hook-form.com/docs/useform/formstate) to the input component to display the error messages.
+
+Here is an code of how you can display the error messages:
+
+```tsx
+import TextField from "@mui/material/TextField";
+import { useForm } from "@refinedev/react-hook-form";
+
+const Page = () => {
+    const {
+        register,
+        formState: { errors },
+    } = useForm();
+
+    // ...
+
+    return (
+        // ...
+        <TextField
+            {...register("title")}
+            error={!!errors.status}
+            helperText={errors.status?.message}
+        />
+    );
+};
+```
+
+### with Chakra UI
+
+<ChakraUILivePreview />
+
+> You can find more information about the `useForm` hook [here][react-hook-form-use-form].
+
+For this example, we mock data provider to return rejected promise with `errors` field.
+You can see full example [here](/docs/examples/form/chakra-ui/serverSideFormValidation/)
+
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][react-hook-form-use-form] automatically set the `formState.errors` state with the error messages returned from the `dataProvider`. You can pass [`formState.errors.status.message`](https://react-hook-form.com/docs/useform/formstate) to the input component to display the error messages.
+
+Here is an code of how you can display the error messages:
+
+```tsx
+import {
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
+} from "@chakra-ui/react";
+import { useForm } from "@refinedev/react-hook-form";
+
+const Page = () => {
+    const {
+        register,
+        formState: { errors },
+    } = useForm();
+
+    // ...
+
+    return (
+        // ...
+        <FormControl isInvalid={!!errors?.title}>
+            <FormLabel>Title</FormLabel>
+            <Input id="title" type="text" {...register("title")} />
+            <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
+        </FormControl>
+    );
+};
+```
+
 [core-use-form]: /docs/api-reference/core/hooks/useForm/
 [mantine-use-form]: /docs/api-reference/mantine/hooks/form/useForm/
 [http-error]: /docs/api-reference/core/interfaceReferences/#httperror
+[react-hook-form-use-form]: /docs/packages/documentation/react-hook-form/useForm/
