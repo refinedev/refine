@@ -13,6 +13,7 @@ import {
     CreateResponse,
     UpdateResponse,
     pickNotDeprecated,
+    useTranslate,
 } from "@refinedev/core";
 
 export type UseFormProps<
@@ -87,7 +88,7 @@ export const useForm = <
     action,
     resource,
     onMutationSuccess: onMutationSuccessProp,
-    onMutationError,
+    onMutationError: onMutationErrorProp,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect,
@@ -124,6 +125,8 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const translate = useTranslate();
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TResponse, TVariables>({
         form: formAnt,
@@ -141,7 +144,61 @@ export const useForm = <
         onMutationSuccess: onMutationSuccessProp
             ? onMutationSuccessProp
             : undefined,
-        onMutationError,
+        onMutationError: (error, _variables, _context) => {
+            const errors = error?.errors;
+
+            // antd form expects error object to be in a specific format.
+            const parsedErrors: {
+                name: string | number | (string | number)[];
+                errors?: string[];
+            }[] = [];
+
+            for (const key in errors) {
+                const fieldError = errors[key];
+
+                let newError: string[] = [];
+
+                if (Array.isArray(fieldError)) {
+                    newError = fieldError;
+                }
+
+                if (typeof fieldError === "string") {
+                    newError = [fieldError];
+                }
+
+                if (typeof fieldError === "boolean" && fieldError) {
+                    newError = ["Field is not valid."];
+                }
+
+                if (typeof fieldError === "object" && "key" in fieldError) {
+                    const translatedMessage = translate(
+                        fieldError.key,
+                        fieldError.message,
+                    );
+
+                    newError = [translatedMessage];
+                }
+
+                // antd form expects the key to be an array.
+                // if the key is a number, it will be parsed to a number because.
+                const newKey = key.split(".").map((item) => {
+                    // check if item is a number
+                    if (!isNaN(Number(item))) {
+                        return Number(item);
+                    }
+                    return item;
+                });
+
+                parsedErrors.push({
+                    name: newKey,
+                    errors: newError,
+                });
+            }
+
+            form.setFields(parsedErrors);
+
+            onMutationErrorProp?.(error, _variables, _context);
+        },
         redirect,
         action,
         resource,
@@ -197,6 +254,8 @@ export const useForm = <
             form.submit();
         },
     };
+
+    console.log(form.getFieldsError());
 
     return {
         form: formSF.form,

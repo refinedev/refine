@@ -6,6 +6,7 @@ title: Server-Side Form Validation
 import MantineLivePreview from "./partials/\_mantine-server-side-form-validation.md";
 import MaterialUILivePreview from "./partials/\_material-ui-server-side-form-validation.md";
 import ChakraUILivePreview from "./partials/\_chakra-ui-server-side-form-validation.md";
+import AntdLivePreview from "./partials/\_antd-server-side-form-validation.md";
 
 Server-side form validation is a technique used to validate form data on the server before processing it. Unlike client-side validation, which is performed in the user's browser using JavaScript, server-side validation occurs on the server-side code, typically in the backend of the application.
 
@@ -150,6 +151,41 @@ const form = useForm({
 console.log(form.formState.errors);
 ```
 
+### with Ant Design
+
+<AntdLivePreview />
+
+> You can find more information about the `useForm` hook [here][antd-use-form].
+
+For this example, we mock data provider to return rejected promise with `errors` field.
+You can see full example [here](/docs/examples/form/antd/serverSideFormValidation/)
+
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][antd-use-form] automatically set the `form.errors` state with the error messages returned from the `dataProvider`.
+
+You can pass [`formProps`](/docs/api-reference/antd/hooks/form/useForm/#formprops) to the [`<Form>`](https://ant.design/components/form/) component to display the error messages. `<Form>` component will automatically display the error messages for the corresponding fields.
+
+Here is an code of how you can display the error messages:
+
+```tsx
+import { useForm } from "@refinedev/antd";
+import { Form } from "antd";
+
+const Page = () => {
+    const { formProps } = useForm();
+
+    // ...
+
+    return (
+        // ...
+        <Form {...formProps}>
+            <Form.Item label="Title" name="title">
+                <Input />
+            </Form.Item>
+        </Form>
+    );
+};
+```
+
 ### with Mantine
 
 <MantineLivePreview />
@@ -263,6 +299,7 @@ const Page = () => {
 };
 ```
 
+[antd-use-form]: /docs/api-reference/antd/hooks/form/useForm/
 [core-use-form]: /docs/api-reference/core/hooks/useForm/
 [mantine-use-form]: /docs/api-reference/mantine/hooks/form/useForm/
 [http-error]: /docs/api-reference/core/interfaceReferences/#httperror
