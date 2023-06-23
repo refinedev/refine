@@ -15,6 +15,7 @@ import {
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
 } from "@refinedev/core";
+import debounce from "lodash/debounce";
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -114,7 +115,8 @@ export const useForm = <
         ...refineCoreProps,
     });
 
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
+    const { queryResult, onFinish, formLoading, onFinishAutoSave } =
+        useFormCoreResult;
 
     const useHookFormResult = useHookForm<TVariables, TContext>({
         ...rest,
@@ -150,10 +152,20 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
+    const debounceWithonFinishAutoSave = debounce((values) => {
+        return onFinishAutoSave(values);
+    }, 1000);
+
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+
+        if (refineCoreProps?.autoSave) {
+            setWarnWhen(false);
+            return debounceWithonFinishAutoSave(changeValues);
+        }
+
         return changeValues;
     };
 
