@@ -1,5 +1,13 @@
 # @pankod/refine-nestjsx-crud
 
+## 4.3.3
+
+### Patch Changes
+
+-   [#4589](https://github.com/refinedev/refine/pull/4589) [`11241b16000`](https://github.com/refinedev/refine/commit/11241b160005cd18fcea173de17bb45847763c9c) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: `getList` without pagination response
+
+    Without the `limit` and `offset` parameters in the [`nestjsx/crud`](https://github.com/nestjsx/crud) library, the result is without paging. However, it was always expected to be paginated in the data provider. It now supports both situations.
+
 ## 4.3.2
 
 ### Patch Changes
