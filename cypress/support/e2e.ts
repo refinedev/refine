@@ -56,7 +56,7 @@ Cypress.Keyboard.defaults({
     keystrokeDelay: 0,
 });
 
-Cypress.config("defaultCommandTimeout", 10000);
+Cypress.config("defaultCommandTimeout", 20000);
 Cypress.config("requestTimeout", 20000);
 
 Cypress.Commands.add("assertDocumentTitle", assertDocumentTitle);

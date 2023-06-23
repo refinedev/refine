@@ -21,8 +21,8 @@
     "antd": "^5.0.5"
   },
   "scripts": {
-    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
+    "start": "cross-env GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true refine start",
+    "build": "cross-env GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true refine build",
     "eject": "react-scripts eject",
     "refine": "refine"
   },
