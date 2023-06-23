@@ -220,7 +220,6 @@ describe("inferencer-antd", () => {
     });
 
     it("should change language", () => {
-        cy.wait("@getCategories");
         cy.wait("@getBlogPosts");
         cy.getAntdLoadingOverlay().should("not.exist");
 
@@ -251,7 +250,6 @@ describe("inferencer-antd", () => {
     });
 
     it("should change theme", () => {
-        cy.wait("@getCategories");
         cy.wait("@getBlogPosts");
         cy.getAntdLoadingOverlay().should("not.exist");
 
