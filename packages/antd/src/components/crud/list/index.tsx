@@ -2,7 +2,7 @@ import React from "react";
 import { Space } from "antd";
 import {
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useResource,
@@ -40,6 +40,7 @@ export const List: React.FC<ListProps> = ({
         useRefineContext();
 
     const routerType = useRouterType();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const { resource, identifier } = useResource(resourceFromProps);
 
@@ -75,7 +76,7 @@ export const List: React.FC<ListProps> = ({
                     title ??
                     translate(
                         `${identifier}.titles.list`,
-                        userFriendlyResourceName(
+                        getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??

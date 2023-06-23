@@ -8,7 +8,7 @@ import {
     useModal,
     useParsed,
     useResource,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useTranslate,
     useWarnAboutChange,
 } from "@refinedev/core";
@@ -126,6 +126,7 @@ export const useModalForm = <
 
     const parsed = useParsed();
     const go = useGo();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const action = actionProp ?? actionFromParams ?? "";
 
@@ -272,7 +273,7 @@ export const useModalForm = <
     const title = translate(
         `${identifier}.titles.${actionProp}`,
         undefined,
-        `${userFriendlyResourceName(
+        `${getUserFriendlyName(
             `${actionProp} ${
                 resource?.meta?.label ??
                 resource?.options?.label ??

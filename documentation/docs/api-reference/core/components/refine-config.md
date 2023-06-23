@@ -685,6 +685,39 @@ const App: React.FC = () => (
 
 > For more information, refer to the [Devtools documentation &#8594](https://react-query.tanstack.com/devtools#options)
 
+### `textTransformers`
+
+The `textTransformers` option in **refine** is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
+
+You have the flexibility to customize these messages by using the `textTransformers` option. For instance, if you wish to disable any transformation, you can set the `textTransformers` option as shown in the example below:
+
+```tsx
+const App: React.FC = () => (
+    <Refine
+        // ...
+        options={{
+            textTransformers: {
+                humanize: (text) => text,
+                plural: (text) => text,
+                singular: (text) => text,
+            },
+        }}
+    />
+);
+```
+
+#### `humanize`
+
+The function converts the resource name to a more human-readable format. The default value uses the [`humanize-string`](https://www.npmjs.com/package/humanize-string) library.
+
+#### `plural`
+
+The function converts the resource name to its plural form. The default value uses the [`pluralize`](https://www.npmjs.com/package/pluralize) library.
+
+#### `singular`
+
+The function converts the resource name to its singular form. The default value uses the [`pluralize`](https://www.npmjs.com/package/pluralize) library.
+
 ### `overtime`
 
 If you want loading overtime for the request, you can use the `overtime` object. It is useful when you want to show a loading indicator when the request takes too long.

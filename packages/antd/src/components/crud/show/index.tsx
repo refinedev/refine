@@ -3,7 +3,7 @@ import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useResource,
     useToPath,
@@ -59,6 +59,7 @@ export const Show: React.FC<ShowProps> = ({
     const back = useBack();
     const go = useGo();
     const { goBack, list: legacyGoList } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const {
         resource,
@@ -147,7 +148,7 @@ export const Show: React.FC<ShowProps> = ({
                     title ??
                     translate(
                         `${identifier}.titles.show`,
-                        `Show ${userFriendlyResourceName(
+                        `Show ${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??

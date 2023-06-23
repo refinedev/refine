@@ -1,4 +1,6 @@
 import React from "react";
+import pluralize from "pluralize";
+import { humanizeString } from "../../definitions/helpers/humanizeString";
 
 import {
     IRefineContextOptions,
@@ -22,6 +24,11 @@ export const defaultRefineOptions: IRefineContextOptions = {
     },
     overtime: {
         interval: 1000,
+    },
+    textTransformers: {
+        humanize: humanizeString,
+        plural: pluralize.plural,
+        singular: pluralize.singular,
     },
 };
 

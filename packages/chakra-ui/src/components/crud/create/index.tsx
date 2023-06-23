@@ -2,7 +2,7 @@ import React from "react";
 import {
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useResource,
@@ -41,6 +41,7 @@ export const Create: React.FC<CreateProps> = (props) => {
     const routerType = useRouterType();
     const back = useBack();
     const { goBack } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const { resource, action, identifier } = useResource(resourceFromProps);
 
@@ -122,7 +123,7 @@ export const Create: React.FC<CreateProps> = (props) => {
             >
                 {translate(
                     `${identifier}.titles.create`,
-                    `Create ${userFriendlyResourceName(
+                    `Create ${getUserFriendlyName(
                         resource?.meta?.label ??
                             resource?.options?.label ??
                             resource?.label ??

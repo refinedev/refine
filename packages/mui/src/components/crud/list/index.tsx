@@ -2,7 +2,7 @@ import React from "react";
 
 import {
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useResource,
@@ -41,6 +41,7 @@ export const List: React.FC<ListProps> = ({
     const translate = useTranslate();
     const { options: { breadcrumb: globalBreadcrumb } = {} } =
         useRefineContext();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const routerType = useRouterType();
 
@@ -89,7 +90,7 @@ export const List: React.FC<ListProps> = ({
                         >
                             {translate(
                                 `${identifier}.titles.list`,
-                                userFriendlyResourceName(
+                                getUserFriendlyName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
