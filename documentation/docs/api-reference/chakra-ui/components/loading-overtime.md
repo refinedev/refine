@@ -45,13 +45,13 @@ import { Heading, Text, Spacer } from "@chakra-ui/react";
 const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     //highlight-next-line
-    const { data, isLoading } = queryResult;
+    const { data, isLoading, isFetching } = queryResult;
     const record = data?.data;
 
     return (
         //highlight-start
         <LoadingOvertime
-            isLoading={isLoading}
+            isLoading={isLoading || isFetching}
             interval={1000}
             onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >

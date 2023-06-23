@@ -28,13 +28,13 @@ const { Title, Text } = Typography;
 const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     //highlight-next-line
-    const { data, isLoading } = queryResult;
+    const { data, isLoading, isFetching } = queryResult;
     const record = data?.data;
 
     return (
         //highlight-start
         <LoadingOvertime
-            isLoading={isLoading}
+            isLoading={isLoading || isFetching}
             interval={1000}
             onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >
@@ -246,9 +246,7 @@ const customOvertimeComponents = {
 The elapsed time in milliseconds. If provided, the component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
 ```tsx
-<LoadingOvertime elapsedTime={4000}>
-    {/* Children to render */}
-</LoadingOvertime>
+<LoadingOvertime elapsedTime={4000}>{/* Children to render */}</LoadingOvertime>
 ```
 
 ### `isLoading`
@@ -256,9 +254,7 @@ The elapsed time in milliseconds. If provided, the component will use it to dete
 A boolean value that indicates whether the page is loading or not. When the value is `true`, the component will calculate the elapsed time. When the value is `false`, the component will not render the indicator.
 
 ```tsx
-<LoadingOvertime isLoading={true}>
-    {/* Children to render */}
-</LoadingOvertime>
+<LoadingOvertime isLoading={true}>{/* Children to render */}</LoadingOvertime>
 ```
 
 ### `interval`
@@ -266,9 +262,7 @@ A boolean value that indicates whether the page is loading or not. When the valu
 The interval in milliseconds to calculate the elapsed time. The default value is `1000` milliseconds.
 
 ```tsx
-<LoadingOvertime interval={500}>
-    {/* Children to render */}
-</LoadingOvertime>
+<LoadingOvertime interval={500}>{/* Children to render */}</LoadingOvertime>
 ```
 
 ### `onInterval`

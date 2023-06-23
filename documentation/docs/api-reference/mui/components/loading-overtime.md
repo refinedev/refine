@@ -31,13 +31,13 @@ import { Stack, Typography } from "@mui/material";
 
 const SampleShow = () => {
     const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+    const { data, isLoading, isFetching } = queryResult;
     const record = data?.data;
 
     return (
         //highlight-start
         <LoadingOvertime
-            isLoading={isLoading}
+            isLoading={isLoading || isFetching}
             interval={1000}
             onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >
