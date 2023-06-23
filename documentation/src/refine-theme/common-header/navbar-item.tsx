@@ -55,6 +55,8 @@ export const NavbarItem: React.FC<NavbarItemProps> = ({
                           "rounded-lg",
                           "bg-hackathon-button-bg",
                           "animate-hackathon-button-bg",
+                          "bg-refine-bg",
+                          "text-gray-0",
                           "bg-[length:200%_100%]",
                           "text-[14px]",
                       ]
