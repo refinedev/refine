@@ -599,7 +599,7 @@ describe("useCreateMany Hook", () => {
             () =>
                 useCreateMany({
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
@@ -625,11 +625,14 @@ describe("useCreateMany Hook", () => {
             values: [{ title: "foo" }, { title: "bar" }],
         });
 
-        await waitFor(() => {
-            expect(result.current.isLoading).toBeTruthy();
-            expect(result.current.overtime.elapsedTime).toBeGreaterThan(100);
-            expect(onInterval).toBeCalled();
-        });
+        await waitFor(
+            () => {
+                expect(result.current.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toEqual(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeFalsy();

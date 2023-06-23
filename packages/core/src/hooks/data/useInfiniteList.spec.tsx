@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -841,35 +841,40 @@ describe("useInfiniteList Hook", () => {
     });
 
     it("works correctly with `interval` and `onInterval` params", async () => {
-        jest.useFakeTimers();
         const onInterval = jest.fn();
         const { result } = renderHook(
             () =>
                 useInfiniteList({
                     resource: "posts",
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: {
+                        ...MockJSONServer.default,
+                        getList: () => {
+                            return new Promise((res) => {
+                                setTimeout(() => res({} as any), 1000);
+                            });
+                        },
+                    },
                     resources: [{ name: "posts" }],
                 }),
             },
         );
 
-        act(() => {
-            jest.advanceTimersByTime(1000);
-        });
+        await waitFor(
+            () => {
+                expect(result.current.isLoading).toBeTruthy();
 
-        await waitFor(() => {
-            expect(result.current.isLoading).toBeTruthy();
-        });
-
-        expect(result.current.overtime.elapsedTime).toBe(1000);
-        expect(onInterval).toBeCalled();
+                expect(result.current.overtime.elapsedTime).toBe(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeFalsy();

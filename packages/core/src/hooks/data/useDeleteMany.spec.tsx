@@ -119,7 +119,7 @@ describe("useDeleteMany Hook", () => {
             () =>
                 useDeleteMany({
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
@@ -145,11 +145,14 @@ describe("useDeleteMany Hook", () => {
             ids: [1, 2],
         });
 
-        await waitFor(() => {
-            expect(result.current.isLoading).toBeTruthy();
-            expect(result.current.overtime.elapsedTime).toBeGreaterThan(100);
-            expect(onInterval).toBeCalled();
-        });
+        await waitFor(
+            () => {
+                expect(result.current.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toEqual(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeFalsy();

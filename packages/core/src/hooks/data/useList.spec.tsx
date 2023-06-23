@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -996,35 +996,39 @@ describe("useList Hook", () => {
     });
 
     it("works correctly with `interval` and `onInterval` params", async () => {
-        jest.useFakeTimers();
         const onInterval = jest.fn();
         const { result } = renderHook(
             () =>
                 useList({
                     resource: "posts",
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: {
+                        ...MockJSONServer.default,
+                        getList: () => {
+                            return new Promise((res) => {
+                                setTimeout(() => res({} as any), 1000);
+                            });
+                        },
+                    },
                     resources: [{ name: "posts" }],
                 }),
             },
         );
 
-        act(() => {
-            jest.advanceTimersByTime(1000);
-        });
-
-        await waitFor(() => {
-            expect(result.current.isLoading).toBeTruthy();
-        });
-
-        expect(result.current.overtime.elapsedTime).toBe(1000);
-        expect(onInterval).toBeCalled();
+        await waitFor(
+            () => {
+                expect(result.current.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toEqual(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeFalsy();

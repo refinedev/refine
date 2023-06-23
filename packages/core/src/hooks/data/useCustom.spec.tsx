@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -417,36 +417,41 @@ describe("useCustom Hook", () => {
     });
 
     it("works correctly with `interval` and `onInterval` params", async () => {
-        jest.useFakeTimers();
         const onInterval = jest.fn();
+
         const { result } = renderHook(
             () =>
                 useCustom({
                     url: "remoteUrl",
                     method: "get",
                     overtimeOptions: {
-                        interval: 100,
+                        interval: 500,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: {
+                        ...MockJSONServer.default,
+                        custom: () => {
+                            return new Promise((res) => {
+                                setTimeout(() => res({} as any), 1000);
+                            });
+                        },
+                    },
                     resources: [{ name: "posts" }],
                 }),
             },
         );
 
-        act(() => {
-            jest.advanceTimersByTime(1000);
-        });
-
-        await waitFor(() => {
-            expect(result.current.isLoading).toBeTruthy();
-        });
-
-        expect(result.current.overtime.elapsedTime).toBe(1000);
-        expect(onInterval).toBeCalled();
+        await waitFor(
+            () => {
+                expect(result.current.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBe(500);
+                expect(onInterval).toBeCalledWith(500);
+            },
+            { timeout: 1000 },
+        );
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeFalsy();
