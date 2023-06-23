@@ -43,6 +43,7 @@ const NumberField = ({ number, label }: { number: number; label: string }) => {
 
 const GithubStats = ({ className }: { className?: string }) => {
     const { githubStarCount, githubCommitCount } = useCommunityStatsContext();
+
     return (
         <div
             className={clsx(
@@ -105,7 +106,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                         </div>
                         <div className={clsx("block", "landing-md:hidden")}>
                             <NumberField
-                                number={githubStarCount}
+                                number={githubStarCount ?? 11500}
                                 label="GitHub Stars"
                             />
                         </div>
@@ -117,7 +118,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                             )}
                         >
                             <NumberField
-                                number={githubCommitCount}
+                                number={githubCommitCount ?? 5100}
                                 label="Commits"
                             />
                             <div className={clsx("block landing-md:hidden")}>
@@ -128,7 +129,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                             </div>
                             <div className={clsx("hidden", "landing-md:block")}>
                                 <NumberField
-                                    number={githubStarCount}
+                                    number={githubStarCount ?? 11500}
                                     label="GitHub Stars"
                                 />
                             </div>
@@ -144,7 +145,10 @@ const GithubStats = ({ className }: { className?: string }) => {
                     )}
                 >
                     <NumberField number={150} label="Contributors" />
-                    <NumberField number={githubCommitCount} label="Commits" />
+                    <NumberField
+                        number={githubCommitCount ?? 5100}
+                        label="Commits"
+                    />
                 </div>
             </div>
         </div>
@@ -194,7 +198,7 @@ const DiscordStats = () => {
                 </div>
                 <div className={clsx("flex flex-col gap-6")}>
                     <NumberField
-                        number={discordMemberCount}
+                        number={discordMemberCount ?? 2500}
                         label="Discord Members"
                     />
                 </div>

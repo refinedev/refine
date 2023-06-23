@@ -244,7 +244,7 @@ export const renderer = ({
                             field.key,
                             "",
                         )} = meta.${variableName}?.find(
-                            (item) => item.id === getValue<any>(),
+                            (item) => item.id == getValue<any>(),
                         );
 
                         return ${accessor(
