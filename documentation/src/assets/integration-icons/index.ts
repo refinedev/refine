@@ -26,3 +26,4 @@ export { default as EntRefine } from "./entrefine";
 export { default as Chakra } from "./chakra";
 export { default as SupabaseWithText } from "./supabase-with-text";
 export { default as StrapiWithText } from "./strapi-with-text";
+export { default as UseGenerated } from "./usegenerated";
