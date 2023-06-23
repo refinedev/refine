@@ -5,7 +5,7 @@ import { HttpError } from "@refinedev/core";
 
 import { Form, Input, Select } from "antd";
 import { useForm, useSelect } from "..";
-import { MockJSONServer, TestWrapper, act, render, waitFor } from "@test";
+import { MockJSONServer, TestWrapper, render, waitFor, fireEvent } from "@test";
 import { mockRouterBindings } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
 
@@ -151,21 +151,53 @@ describe("useForm hook", () => {
             },
         });
 
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-            expect(getByTestId("refine-save-button")).not.toBeDisabled();
-        });
-
-        await act(() => {
-            getByTestId("refine-save-button").click();
-            return Promise.resolve();
-        });
+        const saveButton = getByTestId("refine-save-button");
 
         await waitFor(() => {
             expect(document.body).not.toHaveTextContent("loading");
+            expect(saveButton).not.toBeDisabled();
         });
 
-        expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
+        fireEvent.click(saveButton);
+
+        await waitFor(() => {
+            expect(document.body).not.toHaveTextContent("loading");
+            expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
+        });
+
+        await waitFor(() => {
+            expect(getByText("Title is required")).toBeInTheDocument();
+            expect(getByText("Category is required")).toBeInTheDocument();
+            expect(getByText("Translated content error")).toBeInTheDocument();
+            expect(getByText("Field is not valid.")).toBeInTheDocument();
+        });
+    });
+
+    it("should set update errors from data provider", async () => {
+        const onMutationErrorMock = jest.fn();
+
+        const { getByText, getByTestId } = renderForm({
+            formParams: {
+                onMutationError: onMutationErrorMock,
+                resource: "posts",
+                action: "edit",
+                id: "1",
+            },
+        });
+
+        const saveButton = getByTestId("refine-save-button");
+
+        await waitFor(() => {
+            expect(document.body).not.toHaveTextContent("loading");
+            expect(saveButton).not.toBeDisabled();
+        });
+
+        fireEvent.click(saveButton);
+
+        await waitFor(() => {
+            expect(document.body).not.toHaveTextContent("loading");
+            expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
+        });
 
         await waitFor(() => {
             expect(getByText("Title is required")).toBeInTheDocument();
