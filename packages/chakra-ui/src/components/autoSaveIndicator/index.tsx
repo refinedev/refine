@@ -1,5 +1,6 @@
 import React from "react";
 import { AutoSaveIndicatorProps } from "@refinedev/core";
+import { Text } from "@chakra-ui/react";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
@@ -21,5 +22,5 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             message = "waiting for changes";
             break;
     }
-    return <span>{message}</span>;
+    return <Text>{message}</Text>;
 };

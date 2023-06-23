@@ -1,5 +1,6 @@
 import React from "react";
 import { AutoSaveIndicatorProps } from "@refinedev/core";
+import Typography from "@mui/material/Typography";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
@@ -22,5 +23,5 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             break;
     }
 
-    return <span>{message}</span>;
+    return <Typography>{message}</Typography>;
 };
