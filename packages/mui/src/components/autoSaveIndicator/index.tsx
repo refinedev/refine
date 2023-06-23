@@ -1,25 +1,26 @@
 import React from "react";
-import { AutoSaveIndicatorProps } from "@refinedev/core";
+import { AutoSaveIndicatorProps, useTranslate } from "@refinedev/core";
 import Typography from "@mui/material/Typography";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
 }) => {
+    const translate = useTranslate();
     let message = null;
 
     switch (status) {
         case "success":
-            message = "saved";
+            message = translate("autosave.success", "saved");
             break;
         case "error":
-            message = "autosave error";
+            message = translate("autosave.error", "autosave error");
             break;
         case "loading":
-            message = "saving...";
+            message = translate("autosave.loading", "saving...");
             break;
         default:
             // for idle
-            message = "waiting for changes";
+            message = translate("autosave.idle", "waiting for changes");
             break;
     }
 
