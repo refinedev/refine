@@ -12,7 +12,7 @@ const IntegrationsLayout = ({ children }: React.PropsWithChildren<{}>) => {
                 <html data-page="integrations" data-customized="true" />
             </Head>
             <div className={clsx("refine-prose, pb-16")}>
-                <CommonHeader />
+                <CommonHeader hasSticky />
                 <div
                     className={clsx(
                         "max-w-[944px]",

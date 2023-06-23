@@ -101,7 +101,7 @@ export const LandingHeader = () => {
             </header>
             {offset && (
                 <div
-                    className={clsx("w-full", "z-[10]", "sticky", "top-[64px]")}
+                    className={clsx("w-full", "z-[3]", "sticky", "top-[64px]")}
                 >
                     <div
                         className={clsx(
