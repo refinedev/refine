@@ -8,7 +8,6 @@ import {
 } from "@refinedev/core";
 import React, { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
-import capitalize from "lodash/capitalize";
 
 type Props = {
     handler?: (options: {
@@ -30,11 +29,9 @@ export function DocumentTitleHandler({ handler }: Props) {
     const resourceName =
         resource?.label ??
         resource?.meta?.label ??
-        capitalize(
-            getUserFriendlyName(
-                identifier,
-                action === "list" ? "plural" : "singular",
-            ),
+        getUserFriendlyName(
+            identifier,
+            action === "list" ? "plural" : "singular",
         );
 
     useLayoutEffect(() => {
