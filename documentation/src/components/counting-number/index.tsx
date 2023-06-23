@@ -29,7 +29,7 @@ export const CountingNumber: React.FC<CountingNumberProps> = ({
         /* ref={ref} */
         >
             {/* {format ? rounded.toLocaleString("en-US") : rounded} */}
-            {format ? to.toLocaleString("en-US") : to}
+            {format ? to?.toLocaleString?.("en-US") ?? to ?? 0 : to}
         </span>
     );
 };
