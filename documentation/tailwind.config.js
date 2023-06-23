@@ -65,6 +65,7 @@ module.exports = {
             },
             backgroundColor: {
                 "landing-header-bg": "rgba(10, 10, 41, 0.70)",
+                "landing-header-border": "rgba(48, 52, 80, 0.70)",
                 "common-header-bg-dark": "rgba(29, 30, 48, 0.70)",
                 "common-header-bg-light": "rgba(244, 248, 251, 0.85)",
             },

@@ -46,13 +46,13 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                     "dark:bg-common-header-bg-dark",
                     "backdrop-blur-header-blur",
                     "px-4 header-md:px-8",
-                    "py-3",
+                    "py-[7px]",
                     hasSticky && "sticky top-0 z-10",
                 )}
             >
-                <div className={clsx("max-w-[1440px]", "mx-auto")}>
+                <div className={clsx("max-w-[1264px]", "mx-auto")}>
                     <div className="flex items-center">
-                        <div className="header-md:w-[240px]">
+                        <div className={clsx("flex items-center", "w-[240px]")}>
                             <Link to="/">
                                 <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
                             </Link>
@@ -114,8 +114,8 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                     hasSticky && [
                         "z-0",
                         "sticky",
-                        "top-14",
-                        "header-md:top-16",
+                        "top-[46px]",
+                        "header-md:top-[56px]",
                     ],
                 )}
             >

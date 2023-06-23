@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import SearchBar from "@theme/SearchBar";
 import Link from "@docusaurus/Link";
@@ -17,86 +17,72 @@ import { RefineLogoIcon } from "./icons/refine-logo";
 export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
+    const [offset, setOffset] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 100) {
+                return setOffset(true);
+            }
+
+            return setOffset(false);
+        };
+
+        window.removeEventListener("scroll", onScroll);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
     return (
         <>
             <div
-                className={clsx(
-                    "h-2 header-sm:h-4 header-md:h-6",
-                    "w-full",
-                    "bg-landing-header-bg",
-                    "backdrop-blur-header-blur",
-                )}
+                className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
+                    "bg-landing-header-bg": offset,
+                    "backdrop-blur-header-blur": offset,
+                })}
             />
             <header
                 className={clsx(
                     "w-full",
-                    "bg-landing-header-bg",
-                    "backdrop-blur-header-blur",
+                    {
+                        "bg-landing-header-bg": offset,
+                        "backdrop-blur-header-blur": offset,
+                    },
+                    "px-4 header-md:px-8",
+                    "py-3",
                     "sticky top-0 z-10",
                 )}
             >
-                <div
-                    className={clsx(
-                        "px-4",
-                        "landing-sm:px-6",
-                        "landing-md:px-8",
-                        "landing-xl:px-12",
-                        "landing-2xl:px-[88px]",
-                        "py-3",
-                        "max-w-screen-landing-2xl",
-                        "flex items-center",
-                        "mx-auto",
-                    )}
-                >
-                    <div
-                        className={clsx(
-                            "flex",
-                            "items-center justify-start",
-                            "w-[240px]",
-                        )}
-                    >
-                        <Link to="/" className={clsx("flex", "justify-center")}>
-                            <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
-                        </Link>
-                    </div>
-                    <div className="flex items-center justify-end landing-xl:justify-between grow">
-                        <div
-                            className={clsx("hidden landing-xl:flex", "gap-8")}
-                        >
-                            <Menu isPermanentDark />
+                <div className={clsx("max-w-[1264px]", "mx-auto")}>
+                    <div className={clsx("flex items-center")}>
+                        <div className={clsx("flex items-center", "w-[240px]")}>
+                            <Link to="/">
+                                <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
+                            </Link>
                         </div>
-                        <div
-                            className={clsx(
-                                "flex items-center justify-end",
-                                "gap-6",
-                                "landing-xl:w-[264px]",
-                            )}
-                        >
+                        <div className="flex items-center justify-end landing-xl:justify-between grow">
                             <div
-                                className={clsx(
-                                    "hidden landing-xl:flex",
-                                    "items-center gap-6",
-                                )}
+                                className={clsx("hidden header-md:flex gap-8")}
                             >
+                                <Menu isPermanentDark />
+                            </div>
+                            <div className="hidden header-md:flex items-center justify-end gap-8">
                                 <SearchBar
                                     CustomButton={LandingDocSearchButton}
                                 />
-                                <LandingGithubStarButton />
-                                <a
-                                    href="https://discord.gg/refine"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={clsx(
-                                        "w-6 h-6",
-                                        "flex",
-                                        "items-center justify-center",
-                                        "text-gray-0",
-                                        "focus:no-underline",
-                                        "hover:text-gray-0",
-                                    )}
-                                >
-                                    <DiscordIcon className="text-gray-0" />
-                                </a>
+                                <div className="flex items-center gap-3">
+                                    <LandingGithubStarButton />
+                                    <Link
+                                        to="https://discord.gg/refine"
+                                        className={clsx(
+                                            "no-underline, hover:text-inherit",
+                                        )}
+                                    >
+                                        <DiscordIcon className="text-gray-0" />
+                                    </Link>
+                                </div>
                             </div>
                             <button
                                 type="button"
@@ -114,13 +100,24 @@ export const LandingHeader = () => {
                 />
             </header>
             <div
-                className={clsx(
-                    "h-2 header-sm:h-4 header-md:h-6",
-                    "w-full",
-                    "bg-landing-header-bg",
-                    "backdrop-blur-header-blur",
-                )}
+                className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
+                    "bg-landing-header-bg": offset,
+                    "backdrop-blur-header-blur": offset,
+                })}
             />
+            {offset && (
+                <div
+                    className={clsx("w-full", "z-[10]", "sticky", "top-[56px]")}
+                >
+                    <div
+                        className={clsx(
+                            "w-full",
+                            "h-px",
+                            "bg-landing-header-border",
+                        )}
+                    />
+                </div>
+            )}
         </>
     );
 };

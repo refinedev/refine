@@ -56,7 +56,8 @@ function Home() {
                         className={clsx(
                             "top-section",
                             "bg-landing-stars",
-                            "mb-12",
+                            "mb-12 -mt-[100px]",
+                            "pt-[100px]",
                             "landing-mask-image-hero-wide",
                         )}
                     >
