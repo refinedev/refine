@@ -596,12 +596,12 @@ To customize the back button or to disable it, you can use the `goBack` property
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useBack } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 
 const BackButton = () => {
-    const goBack = useBack();
+    const { goBack } = useNavigation();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>;
+    return <Button onClick={goBack}>BACK!</Button>;
 };
 
 const PostEdit: React.FC = () => {

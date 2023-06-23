@@ -302,7 +302,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
-setInitialRoutes(["/posts/create"]);
+setInitialRoutes(["/posts", "/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/chakra-ui";
 
@@ -310,8 +310,6 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 /* highlight-next-line */
 import { IconMoodSmile } from "@tabler/icons";
-
-console.log("IconMoodSmile", IconMoodSmile);
 
 const PostCreate: React.FC = () => {
     return (
