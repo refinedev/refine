@@ -26,9 +26,18 @@ export const dataProvider = (
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
+        // with pagination
+        if (data.data && data.total) {
+            return {
+                data: data.data,
+                total: data.total,
+            };
+        }
+
+        // without pagination
         return {
-            data: data.data,
-            total: data.total,
+            data,
+            total: data.length,
         };
     },
 
