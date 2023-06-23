@@ -70,7 +70,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             >
                 <HamburgerMenu />
                 <Group>
-                    <Menu shadow="md">
+                    <Menu
+                        shadow="md"
+                        data-test-id="language-button"
+                        aria-label={currentLocale}
+                    >
                         <Menu.Target>
                             <ActionIcon variant="outline">
                                 <IconLanguage size={18} />

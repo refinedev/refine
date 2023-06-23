@@ -202,9 +202,39 @@ describe("inferencer-chakra-ui", () => {
         });
     });
 
+    it("should change language", () => {
+        cy.wait("@getBlogPosts");
+        cy.getChakraUILoadingOverlay().should("not.exist");
+
+        // click on the language switch
+        cy.get('[data-test-id="language-button"]').click();
+
+        // find the dropdown trigger and click it
+        cy.get("button[value=de]").click();
+
+        // assert localStoage has changed
+        cy.getAllLocalStorage().then((ls) => {
+            expect(ls[BASE_URL]["i18nextLng"]).to.eq("de");
+        });
+
+        // reload the page and assert the language is persisted
+        cy.reload();
+
+        cy.getChakraUILoadingOverlay().should("exist");
+
+        cy.wait("@getBlogPosts");
+
+        cy.getChakraUILoadingOverlay().should("not.exist");
+        // assert the dropdown value has changed
+        cy.get('[data-test-id="language-button"]').should(
+            "have.attr",
+            "aria-label",
+            "de",
+        );
+    });
+
     it("should change theme", () => {
         cy.wait("@getBlogPosts");
-        cy.wait("@getCategories");
         cy.getChakraUILoadingOverlay().should("not.exist");
 
         cy.get("html").then(($html) => {
@@ -239,8 +269,11 @@ describe("inferencer-chakra-ui", () => {
 
                 // reload page and assert theme is persisted
                 cy.reload();
+
+                cy.getChakraUILoadingOverlay().should("exist");
+
                 cy.wait("@getBlogPosts");
-                cy.wait("@getCategories");
+
                 cy.getChakraUILoadingOverlay().should("not.exist");
 
                 // assert theme is persisted in html
