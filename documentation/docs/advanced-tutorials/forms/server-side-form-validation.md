@@ -45,40 +45,11 @@ const error: HttpError = {
 
 ### How does it work?
 
-When `dataProvider` returns rejected promise with [`errors`][http-error] field, **refine** will automatically display the error messages in the form with the corresponding fields.
+When the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the `errors` returned from the `dataProvider`.
 
-This will handled in the `useForm` hook, when the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the error messages returned from the `dataProvider`.
+## Examples
 
-## Example with Core useForm
-
-> You can find more information about the `useForm` hook [here][core-use-form].
-
-Due to the fact that [`useForm`][core-use-form] hook is framework agnostic, you need to render the `errors` returned from the `dataProvider` manually.
-
-When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][core-use-form] hook will return `errors` state, which is an object with the following shape:
-
-```ts
-const form = useForm({
-    // ...
-});
-
-// you can access the errors state from the useForm hook
-console.log(form.mutationResult.error?.errors);
-```
-
-## Example with Mantine useForm
-
-<MantineLivePreview />
-
-> You can find more information about the `useForm` hook [here][mantine-use-form].
-
-For this example, we mock data provider to return rejected promise with `errors` field.
-You can see full example [here](/docs/examples/form/mantine/serverSideFormValidation/)
-
-When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][mantine-use-form] automatically set the `form.errors` state with the error messages returned from the `dataProvider`.
-You can pass [`getInputProps(<field-name>)`](https://mantine.dev/form/use-form/#getinputprops) to the input component to display the error messages.
-
-Here is the example of how you can return errors from the `dataProvider`:
+In the following examples, we will use this mock `dataProvider` to demonstrate how to handle server-side validation.
 
 ```ts
 import { HttpError, Refine } from "@refinedev/core";
@@ -135,6 +106,61 @@ const App = () => {
         >
             // ---
         </Refine>
+    );
+};
+```
+
+### with Core useForm
+
+> You can find more information about the `useForm` hook [here][core-use-form].
+
+Due to the fact that [`useForm`][core-use-form] hook is framework agnostic, you need to render the `errors` returned from the `dataProvider` manually.
+
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][core-use-form] hook will return `errors` state, which is an object with the following shape:
+
+```ts
+import { useForm } from "@refinedev/core";
+
+const form = useForm({
+    // ...
+});
+
+// you can access the errors state from the useForm hook
+console.log(form.mutationResult.error?.errors);
+```
+
+### with Mantine
+
+<MantineLivePreview />
+
+> You can find more information about the `useForm` hook [here][mantine-use-form].
+
+For this example, we mock data provider to return rejected promise with `errors` field.
+You can see full example [here](/docs/examples/form/mantine/serverSideFormValidation/)
+
+When `dataProvider` returns rejected promise with [`errors`][http-error] field, [`useForm`][mantine-use-form] automatically set the `form.errors` state with the error messages returned from the `dataProvider`.
+
+You can pass [`getInputProps(<field-name>)`](https://mantine.dev/form/use-form/#getinputprops) to the input component to display the error messages.
+
+Here is an code of how you can display the error messages:
+
+```tsx
+import { useForm } from "@refinedev/mantine";
+import { TextInput } from "@mantine/core";
+
+const Page = () => {
+    const { errors, getInputProps } = useForm();
+
+    // ...
+
+    return (
+        // ...
+        <TextInput
+            id="title"
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
     );
 };
 ```
