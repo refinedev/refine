@@ -3,6 +3,7 @@ import { MutationStatus } from "@tanstack/react-query";
 
 export type AutoSaveProps<TResponse, TResponseError, TVariables> = {
     autoSave?: boolean;
+    autoSaveDebounce?: number;
     onAutoSaveSuccess?: (
         data: UpdateResponse<TResponse>,
         variables: TVariables,

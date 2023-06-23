@@ -90,6 +90,7 @@ export const useForm = <
     onMutationSuccess: onMutationSuccessProp,
     onMutationError,
     autoSave,
+    autoSaveDebounce,
     onAutoSaveSuccess,
     onAutoSaveError,
     submitOnEnter = false,
@@ -193,7 +194,7 @@ export const useForm = <
 
     const debounceWithonFinishAutoSave = debounce((allValues) => {
         return onFinishAutoSave(allValues);
-    }, 1000);
+    }, autoSaveDebounce || 1000);
 
     const onValuesChange = (changeValues: object, allValues: any) => {
         if (changeValues && warnWhenUnsavedChanges) {

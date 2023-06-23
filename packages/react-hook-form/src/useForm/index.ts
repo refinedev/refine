@@ -154,7 +154,7 @@ export const useForm = <
 
     const debounceWithonFinishAutoSave = debounce((values) => {
         return onFinishAutoSave(values);
-    }, 1000);
+    }, refineCoreProps?.autoSaveDebounce || 1000);
 
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {

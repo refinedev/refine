@@ -252,7 +252,6 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     overtimeOptions,
-    autoSave,
     onAutoSaveSuccess,
     onAutoSaveError,
 }: UseFormProps<

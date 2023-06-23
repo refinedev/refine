@@ -163,10 +163,10 @@ export const useForm = <
         const debouceFn = setTimeout(() => {
             if (isValuesChanged && refineCoreProps?.autoSave && values) {
                 setWarnWhen(false);
-                // TODO: fix `any` type
+                // TODO: fix `any` type and
                 onFinishAutoSave(values as any);
             }
-        }, 1000);
+        }, refineCoreProps?.autoSaveDebounce || 1000);
         return () => clearTimeout(debouceFn);
     }, [values]);
 
