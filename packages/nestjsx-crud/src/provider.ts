@@ -26,10 +26,19 @@ export const dataProvider = (
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
-        return {
-            data: data.data,
-            total: data.total,
-        };
+        // without pagination
+        if (Array.isArray(data)) {
+            return {
+                data,
+                total: data.length,
+            };
+        } else {
+            // with pagination
+            return {
+                data: data.data,
+                total: data.total,
+            };
+        }
     },
 
     getMany: async ({ resource, ids, meta }) => {
