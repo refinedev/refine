@@ -1,5 +1,5 @@
 import { HttpError } from "@refinedev/core";
-import { Edit, useAutocomplete } from "@refinedev/mui";
+import { Edit, useAutocomplete, AutoSaveIndicator } from "@refinedev/mui";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -12,11 +12,15 @@ import { IPost, ICategory, Nullable, IStatus } from "interfaces";
 export const PostEdit: React.FC = () => {
     const {
         saveButtonProps,
-        refineCore: { queryResult },
+        refineCore: { queryResult, autoSaveProps },
         register,
         control,
         formState: { errors },
-    } = useForm<IPost, HttpError, Nullable<IPost>>();
+    } = useForm<IPost, HttpError, Nullable<IPost>>({
+        refineCoreProps: {
+            autoSave: true,
+        },
+    });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -24,7 +28,10 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            saveButtonProps={saveButtonProps}
+            headerButtons={<AutoSaveIndicator {...autoSaveProps} />}
+        >
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
