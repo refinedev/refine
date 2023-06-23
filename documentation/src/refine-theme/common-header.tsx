@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "@site/src/theme/SearchBar";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 import { HeaderDiscordIcon } from "./icons/header-discord";
 import { RefineLogoIcon } from "./icons/refine-logo";
@@ -10,9 +11,8 @@ import { HamburgerIcon } from "./icons/hamburger";
 import { GitHubStar } from "./common-header/github-star";
 import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 import { Menu } from "./common-header/menu";
-import { DocSearchButton } from "./doc-search-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { CommonDocSearchButton } from "./common-doc-search-button";
 
 type Props = {
     hasSticky?: boolean;
@@ -46,7 +46,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                     "dark:bg-common-header-bg-dark",
                     "backdrop-blur-header-blur",
                     "px-4 header-md:px-8",
-                    "py-[7px]",
+                    "py-3",
                     hasSticky && "sticky top-0 z-10",
                 )}
             >
@@ -63,13 +63,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                             </div>
                             <div className="hidden header-md:flex items-center justify-end gap-8">
                                 <SearchBar
-                                    CustomButton={(props) => (
-                                        <DocSearchButton
-                                            {...props}
-                                            placeholder="Search"
-                                            className="min-w-[144px]"
-                                        />
-                                    )}
+                                    CustomButton={CommonDocSearchButton}
                                 />
                                 <div className="flex items-center gap-3">
                                     <GitHubStar />
@@ -111,12 +105,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
             <div
                 className={clsx(
                     "w-full",
-                    hasSticky && [
-                        "z-0",
-                        "sticky",
-                        "top-[46px]",
-                        "header-md:top-[56px]",
-                    ],
+                    hasSticky && ["z-0", "sticky", "top-[64px]"],
                 )}
             >
                 <div

@@ -23,7 +23,7 @@ export const LandingHeader = () => {
         const onScroll = () => {
             const scrollY = window.scrollY;
 
-            if (scrollY > 100) {
+            if (scrollY > 24) {
                 return setOffset(true);
             }
 
@@ -51,7 +51,7 @@ export const LandingHeader = () => {
                         "backdrop-blur-header-blur": offset,
                     },
                     "px-4 header-md:px-8",
-                    "py-3",
+                    "py-4",
                     "sticky top-0 z-10",
                 )}
             >
@@ -99,15 +99,9 @@ export const LandingHeader = () => {
                     setIsModalOpen={setIsModalOpen}
                 />
             </header>
-            <div
-                className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
-                    "bg-landing-header-bg": offset,
-                    "backdrop-blur-header-blur": offset,
-                })}
-            />
             {offset && (
                 <div
-                    className={clsx("w-full", "z-[10]", "sticky", "top-[56px]")}
+                    className={clsx("w-full", "z-[10]", "sticky", "top-[64px]")}
                 >
                     <div
                         className={clsx(
@@ -118,6 +112,12 @@ export const LandingHeader = () => {
                     />
                 </div>
             )}
+            <div
+                className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
+                    "bg-landing-header-bg": offset,
+                    "backdrop-blur-header-blur": offset,
+                })}
+            />
         </>
     );
 };
