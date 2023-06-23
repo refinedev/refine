@@ -35,6 +35,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/testing-library__jest-dom": "^5.14.3",
+    "@types/lodash": "^4.14.171",
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-plugin-inline-image": "^0.0.8",
     "identity-obj-proxy": "^3.0.0",
@@ -56,7 +57,9 @@
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
     "sunflower-antd": "1.0.0-beta.3",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "lodash-es": "^4.17.21",
+    "lodash": "^4.17.21"
   },
   "author": "refine",
   "license": "MIT",
