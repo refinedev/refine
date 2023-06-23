@@ -1,11 +1,11 @@
-import { DataProvider, BaseRecord } from "@refinedev/core";
-import { GraphQLClient } from "graphql-request";
-import * as gql from "gql-query-builder";
+import { BaseRecord, DataProvider } from "@refinedev/core";
 import camelCase from "camelcase";
+import * as gql from "gql-query-builder";
+import { GraphQLClient } from "graphql-request";
 import {
+    camelizeKeys,
     generateFilters,
     generateSorting,
-    camelizeKeys,
     upperCaseValues,
 } from "../utils";
 
@@ -34,13 +34,12 @@ const dataProvider = (
 
     return {
         getOne: async ({ resource, id, meta }) => {
-            const operation = `${meta?.operation ?? resource}_by_pk`;
-            const camelizedOperation = camelCase(operation);
+            const operation = defaultNamingConvention
+                ? `${meta?.operation ?? resource}_by_pk`
+                : camelCase(`${meta?.operation ?? resource}_by_pk`);
 
             const { query, variables } = gql.query({
-                operation: defaultNamingConvention
-                    ? operation
-                    : camelizedOperation,
+                operation,
                 variables: {
                     id: {
                         value: id,
@@ -106,9 +105,9 @@ const dataProvider = (
                 ? meta?.operation ?? resource
                 : camelCase(meta?.operation ?? resource);
 
-            const aggregateOperation = `${operation}_aggregate`;
-
-            const camelizedAggregateOperation = camelCase(aggregateOperation);
+            const aggregateOperation = defaultNamingConvention
+                ? `${operation}_aggregate`
+                : camelCase(`${operation}_aggregate`);
 
             const hasuraSortingType = defaultNamingConvention
                 ? `[${operation}_order_by!]`
@@ -154,9 +153,7 @@ const dataProvider = (
                     },
                 },
                 {
-                    operation: defaultNamingConvention
-                        ? aggregateOperation
-                        : camelizedAggregateOperation,
+                    operation: aggregateOperation,
                     fields: [{ aggregate: ["count"] }],
                     variables: {
                         where: {
@@ -180,17 +177,16 @@ const dataProvider = (
                 ? meta?.operation ?? resource
                 : camelCase(meta?.operation ?? resource);
 
-            const insertOperation = `insert_${operation}_one`;
-            const camelizedInsertOperation = camelCase(insertOperation);
+            const insertOperation = defaultNamingConvention
+                ? `insert_${operation}_one`
+                : camelCase(`insert_${operation}_one`);
 
             const insertType = defaultNamingConvention
                 ? `${operation}_insert_input`
                 : camelCase(`${operation}_insert_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: defaultNamingConvention
-                    ? insertOperation
-                    : camelizedInsertOperation,
+                operation: insertOperation,
                 variables: {
                     object: {
                         type: insertType,
@@ -214,8 +210,9 @@ const dataProvider = (
         createMany: async ({ resource, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const insertOperation = `insert_${operation}`;
-            const camelizedInsertOperation = camelCase(insertOperation);
+            const insertOperation = defaultNamingConvention
+                ? `insert_${operation}`
+                : camelCase(`insert_${operation}`);
 
             const insertType = defaultNamingConvention
                 ? `[${operation}_insert_input!]`
@@ -224,9 +221,7 @@ const dataProvider = (
                   })}]`;
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: defaultNamingConvention
-                    ? insertOperation
-                    : camelizedInsertOperation,
+                operation: insertOperation,
                 variables: {
                     objects: {
                         type: insertType,
@@ -254,8 +249,9 @@ const dataProvider = (
         update: async ({ resource, id, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const updateOperation = `update_${operation}_by_pk`;
-            const camelizedUpdateOperation = camelCase(updateOperation);
+            const updateOperation = defaultNamingConvention
+                ? `update_${operation}_by_pk`
+                : camelCase(`update_${operation}_by_pk`);
 
             const pkColumnsType = defaultNamingConvention
                 ? `${operation}_pk_columns_input`
@@ -267,9 +263,7 @@ const dataProvider = (
                 : camelCase(`${operation}_set_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: defaultNamingConvention
-                    ? updateOperation
-                    : camelizedUpdateOperation,
+                operation: updateOperation,
                 variables: {
                     ...(defaultNamingConvention
                         ? {
@@ -310,8 +304,9 @@ const dataProvider = (
         updateMany: async ({ resource, ids, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const updateOperation = `update_${operation}`;
-            const camelizedUpdateOperation = camelCase(updateOperation);
+            const updateOperation = defaultNamingConvention
+                ? `update_${operation}`
+                : camelCase(`update_${operation}`);
 
             const whereType = defaultNamingConvention
                 ? `${operation}_bool_exp`
@@ -321,9 +316,7 @@ const dataProvider = (
                 : camelCase(`${operation}_set_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: defaultNamingConvention
-                    ? updateOperation
-                    : camelizedUpdateOperation,
+                operation: updateOperation,
                 variables: {
                     where: {
                         type: whereType,
@@ -360,13 +353,12 @@ const dataProvider = (
         deleteOne: async ({ resource, id, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const deleteOperation = `delete_${operation}_by_pk`;
-            const camelizedDeleteOperation = camelCase(deleteOperation);
+            const deleteOperation = defaultNamingConvention
+                ? `delete_${operation}_by_pk`
+                : camelCase(`delete_${operation}_by_pk`);
 
             const { query, variables } = gql.mutation({
-                operation: defaultNamingConvention
-                    ? deleteOperation
-                    : camelizedDeleteOperation,
+                operation: deleteOperation,
                 variables: {
                     id: {
                         value: id,
@@ -388,17 +380,16 @@ const dataProvider = (
         deleteMany: async ({ resource, ids, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const deleteOperation = `delete_${operation}`;
-            const camelizedDeleteOperation = camelCase(deleteOperation);
+            const deleteOperation = defaultNamingConvention
+                ? `delete_${operation}`
+                : camelCase(`delete_${operation}`);
 
             const whereType = defaultNamingConvention
                 ? `${operation}_bool_exp`
                 : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.mutation({
-                operation: defaultNamingConvention
-                    ? deleteOperation
-                    : camelizedDeleteOperation,
+                operation: deleteOperation,
                 fields: [
                     {
                         returning: meta?.fields ?? ["id"],
