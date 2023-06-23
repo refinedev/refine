@@ -115,6 +115,7 @@ export {
     legacyResourceTransform,
     matchResourceFromRoute,
     useActiveAuthProvider,
+    useUserFriendlyName,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
 export { generateDefaultDocumentTitle } from "./definitions";

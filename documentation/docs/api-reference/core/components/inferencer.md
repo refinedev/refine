@@ -4,7 +4,7 @@ title: Inferencer
 sidebar_label: Inferencer
 ---
 
-You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `HeadlessListInferencer`, `HeadlessShowInferencer`, `HeadlessEditInferencer`, `HeadlessCreateInferencer` and `HeadlessInferencer` (which combines all in one place) components.
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `HeadlessListInferencer`, `HeadlessShowInferencer`, `HeadlessEditInferencer`, `HeadlessCreateInferencer`, and finally `HeadlessInferencer` components, the last of which combines all in one place.
 
 :::caution Dependencies
 
@@ -94,14 +94,14 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about the `@refinedev/inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
 :::
 
 ## Views
 
 ### `List`
 
-Generates a sample list view for your resources according to the API response. It uses `useTable` hook from `@refinedev/react-table`.
+Generates a sample list view for your resources according to the API response. It uses the `useTable` hook from `@refinedev/react-table`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/samples"]);
@@ -164,7 +164,7 @@ render(<App />);
 
 ### `Show`
 
-Generates a sample show view for your resources according to the API response. It uses `useShow` hook from `@refinedev/core`.
+Generates a sample show view for your resources according to the API response. It uses the `useShow` hook from `@refinedev/core`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/show/123
 setInitialRoutes(["/samples/show/123"]);
@@ -227,7 +227,7 @@ render(<App />);
 
 ### `Create`
 
-Generates a sample create view for your resources according to the first record in list API response. It uses `useForm` hook from `@refinedev/react-hook-form`.
+Generates a sample create view for your resources according to the first record in list API response. It uses the `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/create
 setInitialRoutes(["/samples/create"]);
@@ -290,7 +290,7 @@ render(<App />);
 
 ### `Edit`
 
-Generates a sample edit view for your resources according to the API response. It uses `useForm` hook from `@refinedev/react-hook-form`.
+Generates a sample edit view for your resources according to the API response. It uses the `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/edit/123
 setInitialRoutes(["/samples/edit/123"]);
@@ -353,6 +353,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@refinedev/inferencer/headless` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup **refine** app with `@refinedev/inferencer/headless` components.
 
 <CodeSandboxExample path="inferencer-headless" />

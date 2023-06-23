@@ -172,7 +172,7 @@ export const useForm = <
     const handleSubmit: UseFormHandleSubmit<TVariables> =
         (onValid, onInvalid) => async (e) => {
             setWarnWhen(false);
-            return await handleSubmitReactHookForm(onValid, onInvalid)(e);
+            return handleSubmitReactHookForm(onValid, onInvalid)(e);
         };
 
     const saveButtonProps = {

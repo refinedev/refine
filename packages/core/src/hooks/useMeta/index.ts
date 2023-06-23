@@ -17,7 +17,7 @@ export const useMeta = () => {
         resource?: IResourceItem;
         meta?: MetaQuery;
     } = {}) => {
-        const { meta } = sanitizeResource(resource ?? {});
+        const { meta } = sanitizeResource(resource) ?? { meta: {} };
 
         // this fields came from the query params and should be removed from the meta because they are not part of the meta.
         const {

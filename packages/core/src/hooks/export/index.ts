@@ -8,7 +8,7 @@ import {
     MetaQuery,
 } from "../../interfaces";
 import {
-    userFriendlyResourceName,
+    useUserFriendlyName,
     pickDataProvider,
     pickNotDeprecated,
 } from "@definitions";
@@ -114,8 +114,9 @@ export const useExport = <
     const { resource, resources, identifier } = useResource(
         pickNotDeprecated(resourceFromProps, resourceName),
     );
+    const getFriendlyName = useUserFriendlyName();
 
-    const filename = `${userFriendlyResourceName(
+    const filename = `${getFriendlyName(
         identifier,
         "plural",
     )}-${new Date().toLocaleString()}`;

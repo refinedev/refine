@@ -86,3 +86,5 @@ export * from "./bindings";
 export * from "./prettify";
 
 export * from "./autoSave";
+
+export * from "./textTransformers";

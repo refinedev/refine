@@ -110,7 +110,10 @@ describe("useCan Hook", () => {
                 useCan({
                     action: "list",
                     resource: "posts",
-                    params: { id: 1, resource: { icon: "test" } as any },
+                    params: {
+                        id: 1,
+                        resource: { icon: "test", name: "posts" } as any,
+                    },
                 }),
             {
                 wrapper: TestWrapper({
@@ -125,6 +128,7 @@ describe("useCan Hook", () => {
             action: "list",
             params: {
                 id: 1,
+                resource: { name: "posts" },
             },
             resource: "posts",
         });

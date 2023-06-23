@@ -4,7 +4,6 @@ import {
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
-import pluralize from "pluralize";
 
 import {
     useResource,
@@ -18,6 +17,7 @@ import {
     useLog,
     useOnError,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -140,6 +140,9 @@ export const useUpdateMany = <
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -406,7 +409,7 @@ export const useUpdateMany = <
             ) => {
                 const { resource, identifier } = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceSingular = textTransformers.singular(identifier);
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -501,7 +504,8 @@ export const useUpdateMany = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(identifier);
+                    const resourceSingular =
+                        textTransformers.singular(identifier);
 
                     const notificationConfig =
                         typeof errorNotification === "function"

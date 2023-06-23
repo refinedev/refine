@@ -1,4 +1,6 @@
 import { generateDefaultDocumentTitle } from ".";
+import * as UseRefineContext from "../../../hooks/refine/useRefineContext";
+import { defaultRefineOptions } from "@contexts/refine";
 
 const translateMock = jest.fn(
     (key: string, options?: any, defaultMessage?: string | undefined) => {
@@ -7,6 +9,10 @@ const translateMock = jest.fn(
 );
 
 describe("generateDocumentTitle", () => {
+    jest.spyOn(UseRefineContext, "useRefineContext").mockReturnValue({
+        options: defaultRefineOptions,
+    } as any);
+
     beforeEach(() => {
         translateMock.mockClear();
     });

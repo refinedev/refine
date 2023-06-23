@@ -6,7 +6,7 @@ import {
     useResource,
     IResourceItem,
     useCanWithoutCache,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRouterType,
     useGo,
 } from "@refinedev/core";
@@ -48,6 +48,7 @@ export const useRefineKbar = (): void => {
         show: goToShow,
         edit: goToEdit,
     } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const kbarContext = useContext(KBarContext);
 
@@ -125,7 +126,7 @@ export const useRefineKbar = (): void => {
             label ??
             t(
                 `${resource.name}.${resource.name}`,
-                userFriendlyResourceName(resource.name, "plural"),
+                getUserFriendlyName(resource.name, "plural"),
             );
         const tempActions: Action[] = [];
 

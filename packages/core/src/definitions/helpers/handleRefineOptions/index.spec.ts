@@ -53,6 +53,11 @@ describe("handleRefineOptions", () => {
             overtime: {
                 interval: 1000,
             },
+            textTransformers: {
+                humanize: expect.any(Function),
+                plural: expect.any(Function),
+                singular: expect.any(Function),
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -113,6 +118,11 @@ describe("handleRefineOptions", () => {
             overtime: {
                 interval: 1000,
             },
+            textTransformers: {
+                humanize: expect.any(Function),
+                plural: expect.any(Function),
+                singular: expect.any(Function),
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -156,6 +166,11 @@ describe("handleRefineOptions", () => {
             },
             overtime: {
                 interval: 1000,
+            },
+            textTransformers: {
+                humanize: expect.any(Function),
+                plural: expect.any(Function),
+                singular: expect.any(Function),
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);

@@ -109,11 +109,11 @@ export const renderer = ({
                 });
 
                 React.useEffect(() => {
-                    resetField("${dotAccessor(
+                    setValue("${dotAccessor(
                         field.key,
                         undefined,
                         field.accessor,
-                    )}");
+                    )}", ${recordName}?.${field.key}?.id);
                 }, [${getVariableName(field.key, "Options")}]);
             `;
             }
@@ -392,7 +392,7 @@ export const renderer = ({
             refineCore: { formLoading, queryResult },
             saveButtonProps,
             register,
-            resetField,
+            setValue,
             formState: { errors },
         } = useForm(
             ${

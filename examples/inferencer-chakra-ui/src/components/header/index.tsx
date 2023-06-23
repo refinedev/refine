@@ -74,7 +74,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 <Menu>
                     <MenuButton
                         as={IconButton}
-                        aria-label="Options"
+                        data-test-id="language-button"
+                        aria-label={currentLocale}
                         icon={<IconLanguage />}
                         variant="ghost"
                     />
