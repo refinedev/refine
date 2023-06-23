@@ -1,5 +1,4 @@
 import { IResourceItem } from "@contexts/resource";
-import capitalize from "lodash/capitalize";
 import { userFriendlyResourceName } from "../userFriendlyResourceName";
 
 /**
@@ -17,6 +16,7 @@ export function generateDefaultDocumentTitle(
     resource?: IResourceItem,
     action?: string,
     id?: string,
+    resourceName?: string,
 ) {
     const actionPrefixMatcher = {
         create: "Create new ",
@@ -28,15 +28,15 @@ export function generateDefaultDocumentTitle(
 
     const identifier = resource?.identifier ?? resource?.name;
 
-    const resourceName =
+    const resourceNameFallback =
         resource?.label ??
         resource?.meta?.label ??
-        capitalize(
-            userFriendlyResourceName(
-                identifier,
-                action === "list" ? "plural" : "singular",
-            ),
+        userFriendlyResourceName(
+            identifier,
+            action === "list" ? "plural" : "singular",
         );
+
+    const resourceNameWithFallback = resourceName ?? resourceNameFallback;
 
     const defaultTitle = translate("documentTitle.default", "refine");
     const suffix = translate("documentTitle.suffix", " | refine");
@@ -50,7 +50,7 @@ export function generateDefaultDocumentTitle(
                 actionPrefixMatcher[
                     action as keyof typeof actionPrefixMatcher
                 ] ?? ""
-            }${resourceName}${suffix}`,
+            }${resourceNameWithFallback}${suffix}`,
         );
     }
 
