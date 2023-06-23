@@ -1,5 +1,13 @@
 # @pankod/refine-hasura
 
+## 6.4.3
+
+### Patch Changes
+
+-   [#4584](https://github.com/refinedev/refine/pull/4584) [`6305f41d2a6`](https://github.com/refinedev/refine/commit/6305f41d2a6738e489ca5d500fe4d7be72d666d0) Thanks [@IkumaTadokoro](https://github.com/IkumaTadokoro)! - fix: issue with #4574
+
+    We had a problem when using Hasura Provider with grapqhql-convention where it causes could not retrieve some response issue to happen, now it's fixed.
+
 ## 6.4.2
 
 ### Patch Changes

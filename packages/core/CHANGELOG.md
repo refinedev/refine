@@ -1,5 +1,36 @@
 # @pankod/refine-core
 
+## 4.25.0
+
+### Minor Changes
+
+-   [#4568](https://github.com/refinedev/refine/pull/4568) [`8c2b3be35b0`](https://github.com/refinedev/refine/commit/8c2b3be35b0132fc9a7b79287d281a9f922424d0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: add the `textTransformers` option to `<Refine/>` component
+
+    The `textTransformers` option in **refine** is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
+
+    You have the flexibility to customize these messages by using the `textTransformers` option. For instance, if you wish to disable any transformation, you can set the `textTransformers` option as shown in the example below:
+
+    ```tsx
+    const App: React.FC = () => (
+        <Refine
+            // ...
+            options={{
+                textTransformers: {
+                    humanize: (text) => text,
+                    plural: (text) => text,
+                    singular: (text) => text,
+                },
+            }}
+        />
+    );
+    ```
+
+### Patch Changes
+
+-   [#4583](https://github.com/refinedev/refine/pull/4583) [`c3c0deed564`](https://github.com/refinedev/refine/commit/c3c0deed564bdbded58c615357a55e666473923a) Thanks [@aliemir](https://github.com/aliemir)! - Added the missing `resource` property in `params` of the `useCan` call, which was leading to missing resource details in the access control checks in the `can` function.
+
+    The provided `resource` item is sanitized to remove non-serializable properties such as `icon` etc. If you need such items, you should try to access your `resource` item directly from your defitinions.
+
 ## 4.24.0
 
 ### Minor Changes
