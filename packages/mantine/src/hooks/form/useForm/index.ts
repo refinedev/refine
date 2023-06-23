@@ -117,7 +117,8 @@ export const useForm = <
         ...refineCoreProps,
     });
 
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
+    const { queryResult, onFinish, formLoading, onFinishAutoSave } =
+        useFormCoreResult;
 
     const useMantineFormResult = useMantineForm<
         TVariables,
@@ -131,6 +132,7 @@ export const useForm = <
         onSubmit: onMantineSubmit,
         isDirty,
         resetDirty,
+        values,
     } = useMantineFormResult;
 
     useEffect(() => {
@@ -156,6 +158,17 @@ export const useForm = <
             setWarnWhen(isValuesChanged);
         }
     }, [isValuesChanged]);
+
+    useEffect(() => {
+        const debouceFn = setTimeout(() => {
+            if (isValuesChanged && refineCoreProps?.autoSave && values) {
+                setWarnWhen(false);
+                // TODO: fix `any` type
+                onFinishAutoSave(values as any);
+            }
+        }, 1000);
+        return () => clearTimeout(debouceFn);
+    }, [values]);
 
     const onSubmit: (typeof useMantineFormResult)["onSubmit"] =
         (handleSubmit, handleValidationFailure) => async (e) => {
