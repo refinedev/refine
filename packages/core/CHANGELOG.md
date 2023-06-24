@@ -1,5 +1,216 @@
 # @pankod/refine-core
 
+## 4.25.0
+
+### Minor Changes
+
+-   [#4568](https://github.com/refinedev/refine/pull/4568) [`8c2b3be35b0`](https://github.com/refinedev/refine/commit/8c2b3be35b0132fc9a7b79287d281a9f922424d0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: add the `textTransformers` option to `<Refine/>` component
+
+    The `textTransformers` option in **refine** is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
+
+    You have the flexibility to customize these messages by using the `textTransformers` option. For instance, if you wish to disable any transformation, you can set the `textTransformers` option as shown in the example below:
+
+    ```tsx
+    const App: React.FC = () => (
+        <Refine
+            // ...
+            options={{
+                textTransformers: {
+                    humanize: (text) => text,
+                    plural: (text) => text,
+                    singular: (text) => text,
+                },
+            }}
+        />
+    );
+    ```
+
+### Patch Changes
+
+-   [#4583](https://github.com/refinedev/refine/pull/4583) [`c3c0deed564`](https://github.com/refinedev/refine/commit/c3c0deed564bdbded58c615357a55e666473923a) Thanks [@aliemir](https://github.com/aliemir)! - Added the missing `resource` property in `params` of the `useCan` call, which was leading to missing resource details in the access control checks in the `can` function.
+
+    The provided `resource` item is sanitized to remove non-serializable properties such as `icon` etc. If you need such items, you should try to access your `resource` item directly from your defitinions.
+
+## 4.24.0
+
+### Minor Changes
+
+-   [#4523](https://github.com/refinedev/refine/pull/4523) [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `useLoadingOvertime` hook and implement primitive hooks
+
+    If you need to do something when the loading time exceeds the specified time, refine provides the `useLoadingOvertime` hook. It returns the elapsed time in milliseconds.
+
+    ```tsx
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading,
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log("loading overtime", elapsedInterval);
+        },
+    });
+
+    console.log(elapsedTime); // 1000, 2000, 3000, ...
+    ```
+
+    This hook implements the primitive data hooks:
+
+    -   [`useCreate`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/#overtimeoptions)
+    -   [`useCreateMany`](https://refine.dev/docs/api-reference/core/hooks/data/useCreateMany/#overtimeoptions)
+    -   [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/#overtimeoptions)
+    -   [`useCustomMutation`](https://refine.dev/docs/api-reference/core/hooks/data/useCustomMutation/#overtimeoptions)
+    -   [`useDelete`](https://refine.dev/docs/api-reference/core/hooks/data/useDelete/#overtimeoptions)
+    -   [`useDeleteMany`](https://refine.dev/docs/api-reference/core/hooks/data/useDeleteMany/#overtimeoptions)
+    -   [`useList`](https://refine.dev/docs/api-reference/core/hooks/data/useList/#overtimeoptions)
+    -   [`useInfiniteList`](https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList/#overtimeoptions)
+    -   [`useMany`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/#overtimeoptions)
+    -   [`useOne`](https://refine.dev/docs/api-reference/core/hooks/data/useOne/#overtimeoptions)
+    -   [`useUpdate`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/#overtimeoptions)
+    -   [`useUpdateMany`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#overtimeoptions)
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: support multiple `resource` usage with the same name via the `identifier`
+
+    Previously, data hooks only worked with resource name. So if you had multiple `resource` usage with the same name, it would cause issues.
+
+    Now the following hooks and its derivatives support `identifier` to distinguish between the resources:
+
+    -   `useList`
+    -   `useInfiniteList`
+    -   `useOne`
+    -   `useMany`
+    -   `useCreate`
+    -   `useCreateMany`
+    -   `useUpdate`
+    -   `useUpdateMany`
+    -   `useDelete`
+    -   `useDeleteMany`
+
+    fix: generate correct `queryKey`'s for queries with `identifier`
+
+    Previously, the `queryKey` was generated using `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `queryKey`'s are generated using `identifier` if it's present.
+
+-   [#4523](https://github.com/refinedev/refine/pull/4523) [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `useLoadingOvertime` hook
+
+    if you need to do something when the loading time exceeds the specified time, refine provides the `useLoadingOvertime` hook. It returns the elapsed time in milliseconds.
+
+    ```tsx
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading,
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log("loading overtime", elapsedInterval);
+        },
+    });
+    ```
+
+    `interval` and `onInterval` are optional. It can be controlled globally from `<Refine />` options.
+
+    ```tsx
+    <Refine
+        //...
+        options={{
+            //...
+            overtime: {
+                interval: 2000, // default 1000
+                onInterval(elapsedInterval) {
+                    console.log(
+                        "loading overtime",
+                        elapsedInterval,
+                    );
+                },
+            },
+        }}
+    >
+    ```
+
+## 4.23.0
+
+### Minor Changes
+
+-   [#4523](https://github.com/refinedev/refine/pull/4523) [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `useLoadingOvertime` hook and implement primitive hooks
+
+    If you need to do something when the loading time exceeds the specified time, refine provides the `useLoadingOvertime` hook. It returns the elapsed time in milliseconds.
+
+    ```tsx
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading,
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log("loading overtime", elapsedInterval);
+        },
+    });
+
+    console.log(elapsedTime); // 1000, 2000, 3000, ...
+    ```
+
+    This hook implements the primitive data hooks:
+
+    -   [`useCreate`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/#overtimeoptions)
+    -   [`useCreateMany`](https://refine.dev/docs/api-reference/core/hooks/data/useCreateMany/#overtimeoptions)
+    -   [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/#overtimeoptions)
+    -   [`useCustomMutation`](https://refine.dev/docs/api-reference/core/hooks/data/useCustomMutation/#overtimeoptions)
+    -   [`useDelete`](https://refine.dev/docs/api-reference/core/hooks/data/useDelete/#overtimeoptions)
+    -   [`useDeleteMany`](https://refine.dev/docs/api-reference/core/hooks/data/useDeleteMany/#overtimeoptions)
+    -   [`useList`](https://refine.dev/docs/api-reference/core/hooks/data/useList/#overtimeoptions)
+    -   [`useInfiniteList`](https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList/#overtimeoptions)
+    -   [`useMany`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/#overtimeoptions)
+    -   [`useOne`](https://refine.dev/docs/api-reference/core/hooks/data/useOne/#overtimeoptions)
+    -   [`useUpdate`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/#overtimeoptions)
+    -   [`useUpdateMany`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#overtimeoptions)
+
+-   [#4527](https://github.com/refinedev/refine/pull/4527) [`ceadcd29fc9`](https://github.com/refinedev/refine/commit/ceadcd29fc9e42c875a4b0a78622e9fc14b4ce42) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: support multiple `resource` usage with the same name via the `identifier`
+
+    Previously, data hooks only worked with resource name. So if you had multiple `resource` usage with the same name, it would cause issues.
+
+    Now the following hooks and its derivatives support `identifier` to distinguish between the resources:
+
+    -   `useList`
+    -   `useInfiniteList`
+    -   `useOne`
+    -   `useMany`
+    -   `useCreate`
+    -   `useCreateMany`
+    -   `useUpdate`
+    -   `useUpdateMany`
+    -   `useDelete`
+    -   `useDeleteMany`
+
+    fix: generate correct `queryKey`'s for queries with `identifier`
+
+    Previously, the `queryKey` was generated using `name`. This caused issues when you had multiple `resource` usage with the same name. Now the `queryKey`'s are generated using `identifier` if it's present.
+
+-   [#4523](https://github.com/refinedev/refine/pull/4523) [`18d446b1069`](https://github.com/refinedev/refine/commit/18d446b1069c75b5033d0ce8defcb8c32fcce5cf) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `useLoadingOvertime` hook
+
+    if you need to do something when the loading time exceeds the specified time, refine provides the `useLoadingOvertime` hook. It returns the elapsed time in milliseconds.
+
+    ```tsx
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading,
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log("loading overtime", elapsedInterval);
+        },
+    });
+    ```
+
+    `interval` and `onInterval` are optional. It can be controlled globally from `<Refine />` options.
+
+    ```tsx
+    <Refine
+        //...
+        options={{
+            //...
+            overtime: {
+                interval: 2000, // default 1000
+                onInterval(elapsedInterval) {
+                    console.log(
+                        "loading overtime",
+                        elapsedInterval,
+                    );
+                },
+            },
+        }}
+    >
+    ```
+
 ## 4.22.0
 
 ### Minor Changes

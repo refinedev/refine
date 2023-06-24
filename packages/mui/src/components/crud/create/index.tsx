@@ -3,7 +3,7 @@ import React from "react";
 import {
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useBack,
@@ -53,8 +53,9 @@ export const Create: React.FC<CreateProps> = ({
     const routerType = useRouterType();
     const back = useBack();
     const { goBack } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
-    const { resource, action } = useResource(resourceFromProps);
+    const { resource, action, identifier } = useResource(resourceFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
@@ -87,12 +88,12 @@ export const Create: React.FC<CreateProps> = ({
                             className={RefinePageHeaderClassNames.Title}
                         >
                             {translate(
-                                `${resource?.name}.titles.create`,
-                                `Create ${userFriendlyResourceName(
+                                `${identifier}.titles.create`,
+                                `Create ${getUserFriendlyName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
-                                        resource?.name,
+                                        identifier,
                                     "singular",
                                 )}`,
                             )}

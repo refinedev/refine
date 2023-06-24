@@ -1,6 +1,6 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:350px;" align="center" />
 </a>
 <br />
 <br />
@@ -31,11 +31,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example base-headless
+npm create refine-app@latest -- --example inferencer-headless
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open base-headless example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/base-headless?view=preview&theme=dark&codemirror=1)
+[![Open inferencer-headless example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/inferencer-headless?view=preview&theme=dark&codemirror=1)

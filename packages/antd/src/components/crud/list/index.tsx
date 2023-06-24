@@ -2,7 +2,7 @@ import React from "react";
 import { Space } from "antd";
 import {
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useResource,
@@ -40,8 +40,9 @@ export const List: React.FC<ListProps> = ({
         useRefineContext();
 
     const routerType = useRouterType();
+    const getUserFriendlyName = useUserFriendlyName();
 
-    const { resource } = useResource(resourceFromProps);
+    const { resource, identifier } = useResource(resourceFromProps);
 
     const isCreateButtonVisible =
         canCreate ??
@@ -58,9 +59,7 @@ export const List: React.FC<ListProps> = ({
             ? {
                   size: "middle",
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                      routerType === "legacy" ? resource?.route : identifier,
                   ...createButtonPropsFromProps,
               }
             : undefined;
@@ -76,12 +75,12 @@ export const List: React.FC<ListProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resource?.name}.titles.list`,
-                        userFriendlyResourceName(
+                        `${identifier}.titles.list`,
+                        getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                resource?.name,
+                                identifier,
                             "plural",
                         ),
                     )

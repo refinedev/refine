@@ -4,7 +4,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useToPath,
     useResource,
@@ -74,11 +74,13 @@ export const Edit: React.FC<EditProps> = ({
     const back = useBack();
     const go = useGo();
     const { goBack, list: legacyGoList } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const {
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
 
     const goListPath = useToPath({
@@ -109,19 +111,13 @@ export const Edit: React.FC<EditProps> = ({
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
 
     const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resource?.identifier ?? resource?.name,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -138,9 +134,7 @@ export const Edit: React.FC<EditProps> = ({
             ? ({
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                      routerType === "legacy" ? resource?.route : identifier,
                   mutationMode,
                   variant: "outlined",
                   onSuccess: () => {
@@ -180,12 +174,12 @@ export const Edit: React.FC<EditProps> = ({
                             className={RefinePageHeaderClassNames.Title}
                         >
                             {translate(
-                                `${resource?.name}.titles.edit`,
-                                `Edit ${userFriendlyResourceName(
+                                `${identifier}.titles.edit`,
+                                `Edit ${getUserFriendlyName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
-                                        resource?.name,
+                                        identifier,
                                     "singular",
                                 )}`,
                             )}

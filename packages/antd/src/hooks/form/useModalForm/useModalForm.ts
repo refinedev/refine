@@ -9,7 +9,7 @@ import {
     BaseRecord,
     LiveModeProps,
     BaseKey,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useResource,
     FormWithSyncWithLocationParams,
     useParsed,
@@ -143,10 +143,15 @@ export const useModalForm = <
 
     const { form, formProps, id, setId, formLoading, onFinish } = useFormProps;
 
-    const { resource, action: actionFromParams } = useResource(rest.resource);
+    const {
+        resource,
+        action: actionFromParams,
+        identifier,
+    } = useResource(rest.resource);
 
     const parsed = useParsed();
     const go = useGo();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const action = rest.action ?? actionFromParams ?? "";
 
@@ -159,7 +164,7 @@ export const useModalForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
+            ? `modal-${identifier}-${action}`
             : undefined;
 
     const translate = useTranslate();
@@ -316,13 +321,13 @@ export const useModalForm = <
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
             title: translate(
-                `${resource?.name}.titles.${rest.action}`,
-                `${userFriendlyResourceName(
+                `${identifier}.titles.${rest.action}`,
+                `${getUserFriendlyName(
                     `${rest.action} ${
                         resource?.meta?.label ??
                         resource?.options?.label ??
                         resource?.label ??
-                        resource?.name
+                        identifier
                     }`,
                     "singular",
                 )}`,

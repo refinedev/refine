@@ -4,7 +4,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useBack,
@@ -64,11 +64,13 @@ export const Edit: React.FC<EditProps> = (props) => {
     const back = useBack();
     const go = useGo();
     const { goBack, list: legacyGoList } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const {
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
 
     const goListPath = useToPath({
@@ -92,19 +94,13 @@ export const Edit: React.FC<EditProps> = (props) => {
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
 
     const refreshButtonProps: RefreshButtonProps | undefined = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resource?.identifier ?? resource?.name,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -114,9 +110,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             ? ({
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                      routerType === "legacy" ? resource?.route : identifier,
                   mutationMode,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -218,12 +212,12 @@ export const Edit: React.FC<EditProps> = (props) => {
                 className={RefinePageHeaderClassNames.Title}
             >
                 {translate(
-                    `${resource?.name}.titles.edit`,
-                    `Edit ${userFriendlyResourceName(
+                    `${identifier}.titles.edit`,
+                    `Edit ${getUserFriendlyName(
                         resource?.meta?.label ??
                             resource?.options?.label ??
                             resource?.label ??
-                            resource?.name,
+                            identifier,
                         "singular",
                     )}`,
                 )}

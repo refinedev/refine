@@ -3,7 +3,6 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
-import pluralize from "pluralize";
 
 import {
     BaseRecord,
@@ -22,6 +21,7 @@ import {
     useInvalidate,
     useLog,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import {
     handleMultiple,
@@ -95,13 +95,16 @@ export const useCreateMany = <
 > &
     UseLoadingOvertimeReturnType => {
     const dataProvider = useDataProvider();
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -109,23 +112,26 @@ export const useCreateMany = <
         useCreateManyParams<TData, TError, TVariables>
     >(
         ({
-            resource,
+            resource: resourceName,
             values,
             meta,
             metaData,
             dataProviderName,
         }: useCreateManyParams<TData, TError, TVariables>) => {
+            const { resource, identifier } = select(resourceName);
+
             const combinedMeta = getMeta({
+                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 
             const selectedDataProvider = dataProvider(
-                pickDataProvider(resource, dataProviderName, resources),
+                pickDataProvider(identifier, dataProviderName, resources),
             );
 
             if (selectedDataProvider.createMany) {
                 return selectedDataProvider.createMany<TData, TVariables>({
-                    resource,
+                    resource: resource.name,
                     variables: values,
                     meta: combinedMeta,
                     metaData: combinedMeta,
@@ -134,7 +140,7 @@ export const useCreateMany = <
                 return handleMultiple(
                     values.map((val) =>
                         selectedDataProvider.create<TData, TVariables>({
-                            resource,
+                            resource: resource.name,
                             variables: val,
                             meta: combinedMeta,
                             metaData: combinedMeta,
@@ -147,7 +153,7 @@ export const useCreateMany = <
             onSuccess: (
                 response,
                 {
-                    resource,
+                    resource: resourceName,
                     successNotification,
                     dataProviderName,
                     invalidates = ["list", "many"],
@@ -156,21 +162,23 @@ export const useCreateMany = <
                     metaData,
                 },
             ) => {
-                const resourcePlural = pluralize.plural(resource);
+                const { resource, identifier } = select(resourceName);
+
+                const resourcePlural = textTransformers.plural(identifier);
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(response, values, resource)
+                        ? successNotification(response, values, identifier)
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `createMany-${resource}-notification`,
+                    key: `createMany-${identifier}-notification`,
                     message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
-                                resource,
+                                `${identifier}.${identifier}`,
+                                identifier,
                             ),
                         },
                         `Successfully created ${resourcePlural}`,
@@ -180,9 +188,9 @@ export const useCreateMany = <
                 });
 
                 invalidateStore({
-                    resource,
+                    resource: identifier,
                     dataProviderName: pickDataProvider(
-                        resource,
+                        identifier,
                         dataProviderName,
                         resources,
                     ),
@@ -194,7 +202,7 @@ export const useCreateMany = <
                     .map((item) => item.id!);
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "created",
                     payload: {
                         ids,
@@ -202,16 +210,21 @@ export const useCreateMany = <
                     date: new Date(),
                 });
 
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
+
                 const { fields, operation, variables, ...rest } =
-                    pickNotDeprecated(meta, metaData) || {};
+                    combinedMeta || {};
 
                 log?.mutate({
                     action: "createMany",
-                    resource,
+                    resource: resource.name,
                     data: values,
                     meta: {
                         dataProviderName: pickDataProvider(
-                            resource,
+                            identifier,
                             dataProviderName,
                             resources,
                         ),
@@ -220,25 +233,30 @@ export const useCreateMany = <
                     },
                 });
             },
-            onError: (err: TError, { resource, errorNotification, values }) => {
+            onError: (
+                err: TError,
+                { resource: resourceName, errorNotification, values },
+            ) => {
+                const { identifier } = select(resourceName);
+
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, values, resource)
+                        ? errorNotification(err, values, identifier)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `createMany-${resource}-notification`,
+                    key: `createMany-${identifier}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
-                                resource,
+                                `${identifier}.${identifier}`,
+                                identifier,
                             ),
                             statusCode: err.statusCode,
                         },
-                        `There was an error creating ${resource} (status code: ${err.statusCode}`,
+                        `There was an error creating ${identifier} (status code: ${err.statusCode}`,
                     ),
                     type: "error",
                 });

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { GithubProvider } from "../context/GithubContext";
+import { CommunityStatsProvider } from "../context/CommunityStats";
 
 const Root: FC = ({ children }) => {
-    return <GithubProvider>{children}</GithubProvider>;
+    return <CommunityStatsProvider>{children}</CommunityStatsProvider>;
 };
 
 export default Root;

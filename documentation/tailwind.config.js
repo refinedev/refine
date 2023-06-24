@@ -33,6 +33,8 @@ module.exports = {
                     "landing-stats-fallback-bg": "#242442",
                     "landing-footer-bg": "#0F0F3D",
                     "landing-footer-border": "#2E2E78",
+                    "walkthrough-button-bg": "#4D4DB2",
+                    "walkthrough-button-alt-bg": "#474E6B",
                 },
                 gray: {
                     0: "#FFFFFF",
@@ -47,6 +49,18 @@ module.exports = {
                     800: "#1D1E30",
                     900: "#14141F",
                     1000: "#000000",
+                },
+                "refine-week": {
+                    supabase: {
+                        "cover-shadow": "rgba(62, 207, 142, 0.25)",
+                        "day-indicator-start": "#1FAD66",
+                        "day-indicator-stop": "#3ECF8E",
+                    },
+                    strapi: {
+                        "cover-shadow": "rgba(73, 69, 255, 0.25)",
+                        "day-indicator-start": "#4945FF",
+                        "day-indicator-stop": "#4D88FF",
+                    },
                 },
             },
             fontFamily: {
@@ -63,7 +77,20 @@ module.exports = {
                 startTiles: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
             },
+            backgroundColor: {
+                "landing-header-bg": "rgba(10, 10, 41, 0.70)",
+                "landing-header-border": "rgba(48, 52, 80, 0.70)",
+                "common-header-bg-dark": "rgba(29, 30, 48, 0.70)",
+                "common-header-bg-light": "rgba(244, 248, 251, 0.85)",
+            },
+            backdropBlur: {
+                "header-blur": "12px",
+            },
             backgroundImage: {
+                "walkthrough-button-shadow":
+                    "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",
+                "walkthrough-button-alt-shadow":
+                    "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #474E6B 6%, #474E6B 44%, #A3A3F5 50%, #474E6B 56%, #474E6B 94%, #A3A3F5 100%)",
                 "selected-tab-light":
                     "linear-gradient(180deg, rgba(110, 179, 247, 0) 50%, rgba(0, 128, 255, 0.25) 100%)",
                 "selected-tab-dark":
@@ -131,6 +158,14 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
                 "hackathon-button-bg":
                     "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
+                "refine-week-supabase-timeline-item-bg":
+                    "linear-gradient(360deg, rgba(62, 207, 142, 0) 0%, rgba(62, 207, 142, 0.25) 50%, rgba(62, 207, 142, 0) 100%)",
+                "refine-week-supabase-timeline-item-bg-lg":
+                    "linear-gradient(256deg, rgba(62, 207, 142, 0.25) 0%, rgba(62, 207, 142, 0) 60%)",
+                "refine-week-strapi-timeline-item-bg":
+                    "linear-gradient(360deg, rgba(73, 69, 255, 0) 0%, rgba(73, 69, 255, 0.25) 50%, rgba(73, 69, 255, 0) 100%)",
+                "refine-week-strapi-timeline-item-bg-lg":
+                    "linear-gradient(256deg, rgba(73, 69, 255, 0.25) 0%, rgba(73, 69, 255, 0) 60%)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -145,8 +180,21 @@ module.exports = {
                     "playground-slide-up-mobile 45s linear infinite",
                 "hackathon-button-bg":
                     "hackathon-button-bg 2s ease-in-out infinite alternate",
+                "walkthrough-bounce":
+                    "walkthrough-bounce 3s ease-in-out infinite",
             },
             keyframes: {
+                "walkthrough-bounce": {
+                    "0%": {
+                        transform: "translateY(8%)",
+                    },
+                    "50%": {
+                        transform: "none",
+                    },
+                    "100%": {
+                        transform: "translateY(8%)",
+                    },
+                },
                 "hackathon-button-bg": {
                     "0%": {
                         backgroundPosition: "0% 0%",
@@ -239,6 +287,7 @@ module.exports = {
             "blog-max": "1408px",
             "blog-xl": "1440px",
             "blog-2xl": "1584px",
+            walkthrough: "976px",
         },
     },
     plugins: [

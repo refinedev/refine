@@ -3,7 +3,7 @@ import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useResource,
@@ -47,8 +47,9 @@ export const Create: React.FC<CreateProps> = ({
     const routerType = useRouterType();
     const back = useBack();
     const { goBack } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
-    const { resource, action } = useResource(resourceFromProps);
+    const { resource, action, identifier } = useResource(resourceFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
@@ -82,12 +83,12 @@ export const Create: React.FC<CreateProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resource?.name}.titles.create`,
-                        `Create ${userFriendlyResourceName(
+                        `${identifier}.titles.create`,
+                        `Create ${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                resource?.name,
+                                identifier,
                             "singular",
                         )}`,
                     )

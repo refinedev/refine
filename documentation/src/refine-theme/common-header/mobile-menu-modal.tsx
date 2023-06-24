@@ -49,7 +49,9 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                         <div
                             className={clsx(
                                 "flex items-center justify-between",
-                                "p-4",
+                                "px-4 py-3",
+                                "landing-sm:px-6",
+                                "landing-md:px-8",
                             )}
                         >
                             <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />

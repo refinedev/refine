@@ -8,7 +8,7 @@ import {
     useModal,
     useParsed,
     useResource,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useTranslate,
     useWarnAboutChange,
 } from "@refinedev/core";
@@ -118,10 +118,15 @@ export const useModalForm = <
         autoResetForm = true,
     } = modalProps ?? {};
 
-    const { resource, action: actionFromParams } = useResource(resourceProp);
+    const {
+        resource,
+        action: actionFromParams,
+        identifier,
+    } = useResource(resourceProp);
 
     const parsed = useParsed();
     const go = useGo();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const action = actionProp ?? actionFromParams ?? "";
 
@@ -134,7 +139,7 @@ export const useModalForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
+            ? `modal-${identifier}-${action}`
             : undefined;
 
     const useMantineFormResult = useForm<
@@ -269,14 +274,14 @@ export const useModalForm = <
     );
 
     const title = translate(
-        `${resource?.name}.titles.${actionProp}`,
+        `${identifier}.titles.${actionProp}`,
         undefined,
-        `${userFriendlyResourceName(
+        `${getUserFriendlyName(
             `${actionProp} ${
                 resource?.meta?.label ??
                 resource?.options?.label ??
                 resource?.label ??
-                resource?.name
+                identifier
             }`,
             "singular",
         )}`,

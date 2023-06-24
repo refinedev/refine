@@ -4,6 +4,7 @@ import { humanizeString } from "@definitions";
 /**
  * A method that the internal uses
  * @internal
+ * @deprecated use `useUserFriendlyName` instead.
  */
 export const userFriendlyResourceName = (
     resource = "",

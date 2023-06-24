@@ -203,4 +203,47 @@ describe("useResourceSubscription Hook", () => {
         expect(onUnsubscribeMock).toBeCalledWith(true);
         expect(onUnsubscribeMock).toBeCalledTimes(1);
     });
+
+    it("should invalidate queries based on queryKey created with `identifier`", async () => {
+        const mockCallbackEventPayload = { type: "mock" };
+        const onSubscribeMock = jest.fn(({ callback }) =>
+            callback(mockCallbackEventPayload),
+        );
+
+        renderHook(
+            () =>
+                useResourceSubscription({
+                    onLiveEvent: onLiveEventMock,
+                    channel: "resources/posts",
+                    resource: "featured-posts",
+                    types: ["*"],
+                    liveMode: "auto",
+                }),
+            {
+                wrapper: TestWrapper({
+                    liveProvider: {
+                        subscribe: onSubscribeMock,
+                        unsubscribe: () => jest.fn(),
+                        publish: () => jest.fn(),
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                        },
+                    ],
+                }),
+            },
+        );
+
+        expect(onSubscribeMock).toBeCalled();
+        expect(onLiveEventMock).toBeCalledWith(mockCallbackEventPayload);
+        expect(invalidateQueriesMock).toBeCalledWith([
+            "default",
+            "featured-posts",
+        ]);
+    });
 });

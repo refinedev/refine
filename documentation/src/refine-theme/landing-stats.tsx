@@ -1,8 +1,9 @@
-import React from "react";
+import { useCommunityStatsContext } from "@site/src/context/CommunityStats";
 import clsx from "clsx";
-import { LandingStatsGithubIcon } from "./icons/landing-stats-github";
+import React from "react";
 import { CountingNumber } from "../components/counting-number";
 import { LandingStatsDiscordIcon } from "./icons/landing-stats-discord";
+import { LandingStatsGithubIcon } from "./icons/landing-stats-github";
 import { LandingStatsTwitterIcon } from "./icons/landing-stats-twitter";
 
 const NumberField = ({ number, label }: { number: number; label: string }) => {
@@ -41,6 +42,8 @@ const NumberField = ({ number, label }: { number: number; label: string }) => {
 };
 
 const GithubStats = ({ className }: { className?: string }) => {
+    const { githubStarCount, githubCommitCount } = useCommunityStatsContext();
+
     return (
         <div
             className={clsx(
@@ -102,7 +105,10 @@ const GithubStats = ({ className }: { className?: string }) => {
                             <NumberField number={150} label="Contributors" />
                         </div>
                         <div className={clsx("block", "landing-md:hidden")}>
-                            <NumberField number={11300} label="GitHub Stars" />
+                            <NumberField
+                                number={githubStarCount ?? 11500}
+                                label="GitHub Stars"
+                            />
                         </div>
                         <div
                             className={clsx(
@@ -111,7 +117,10 @@ const GithubStats = ({ className }: { className?: string }) => {
                                 "flex-row landing-md:flex-row landing-lg:flex-col gap-6",
                             )}
                         >
-                            <NumberField number={5000} label="Commits" />
+                            <NumberField
+                                number={githubCommitCount ?? 5100}
+                                label="Commits"
+                            />
                             <div className={clsx("block landing-md:hidden")}>
                                 <NumberField
                                     number={150}
@@ -120,7 +129,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                             </div>
                             <div className={clsx("hidden", "landing-md:block")}>
                                 <NumberField
-                                    number={11300}
+                                    number={githubStarCount ?? 11500}
                                     label="GitHub Stars"
                                 />
                             </div>
@@ -136,7 +145,10 @@ const GithubStats = ({ className }: { className?: string }) => {
                     )}
                 >
                     <NumberField number={150} label="Contributors" />
-                    <NumberField number={5000} label="Commits" />
+                    <NumberField
+                        number={githubCommitCount ?? 5100}
+                        label="Commits"
+                    />
                 </div>
             </div>
         </div>
@@ -144,6 +156,7 @@ const GithubStats = ({ className }: { className?: string }) => {
 };
 
 const DiscordStats = () => {
+    const { discordMemberCount } = useCommunityStatsContext();
     return (
         <div
             className={clsx(
@@ -184,7 +197,10 @@ const DiscordStats = () => {
                     />
                 </div>
                 <div className={clsx("flex flex-col gap-6")}>
-                    <NumberField number={2000} label="Discord Members" />
+                    <NumberField
+                        number={discordMemberCount ?? 2500}
+                        label="Discord Members"
+                    />
                 </div>
             </div>
         </div>

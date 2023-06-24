@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useResource, useDataProvider } from "@hooks";
+import { useResource, useDataProvider, useMeta } from "@hooks";
 import {
     BaseRecord,
     MapDataFn,
@@ -8,7 +8,7 @@ import {
     MetaQuery,
 } from "../../interfaces";
 import {
-    userFriendlyResourceName,
+    useUserFriendlyName,
     pickDataProvider,
     pickNotDeprecated,
 } from "@definitions";
@@ -110,23 +110,25 @@ export const useExport = <
     const [isLoading, setIsLoading] = useState(false);
 
     const dataProvider = useDataProvider();
-
-    const { resource, resources } = useResource(
+    const getMeta = useMeta();
+    const { resource, resources, identifier } = useResource(
         pickNotDeprecated(resourceFromProps, resourceName),
     );
+    const getFriendlyName = useUserFriendlyName();
 
-    const filename = `${userFriendlyResourceName(
-        resource?.name,
+    const filename = `${getFriendlyName(
+        identifier,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(
-            resource?.identifier ?? resource?.name,
-            dataProviderName,
-            resources,
-        ),
+        pickDataProvider(identifier, dataProviderName, resources),
     );
+
+    const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
 
     const triggerExport = async () => {
         setIsLoading(true);
@@ -147,8 +149,8 @@ export const useExport = <
                         pageSize,
                         mode: "server",
                     },
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                 });
 
                 current++;

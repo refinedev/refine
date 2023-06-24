@@ -3,7 +3,7 @@ import { Box, Card, Group, Stack, Title } from "@mantine/core";
 import {
     useRefineContext,
     useResource,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRouterType,
     useTranslate,
 } from "@refinedev/core";
@@ -31,8 +31,9 @@ export const List: React.FC<ListProps> = (props) => {
         useRefineContext();
 
     const routerType = useRouterType();
+    const getUserFriendlyName = useUserFriendlyName();
 
-    const { resource } = useResource(resourceFromProps);
+    const { resource, identifier } = useResource(resourceFromProps);
 
     const isCreateButtonVisible =
         canCreate ??
@@ -49,9 +50,7 @@ export const List: React.FC<ListProps> = (props) => {
             ? ({
                   size: "sm",
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                      routerType === "legacy" ? resource?.route : identifier,
                   ...createButtonPropsFromProps,
               } as const)
             : undefined;
@@ -88,12 +87,12 @@ export const List: React.FC<ListProps> = (props) => {
                             className={RefinePageHeaderClassNames.Title}
                         >
                             {translate(
-                                `${resource?.name}.titles.list`,
-                                userFriendlyResourceName(
+                                `${identifier}.titles.list`,
+                                getUserFriendlyName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
-                                        resource?.name,
+                                        identifier,
                                     "plural",
                                 ),
                             )}

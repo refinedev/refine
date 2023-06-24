@@ -3,7 +3,7 @@ import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useResource,
     useToPath,
@@ -59,11 +59,13 @@ export const Show: React.FC<ShowProps> = ({
     const back = useBack();
     const go = useGo();
     const { goBack, list: legacyGoList } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const {
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
 
     const goListPath = useToPath({
@@ -86,20 +88,14 @@ export const Show: React.FC<ShowProps> = ({
 
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
     const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
         ? {
               ...(isLoading ? { disabled: true } : {}),
               type: "primary",
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+              resource: routerType === "legacy" ? resource?.route : identifier,
               recordItemId: id,
           }
         : undefined;
@@ -108,9 +104,7 @@ export const Show: React.FC<ShowProps> = ({
             ? {
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                      routerType === "legacy" ? resource?.route : identifier,
                   recordItemId: id,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -124,10 +118,7 @@ export const Show: React.FC<ShowProps> = ({
             : undefined;
     const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resource?.identifier ?? resource?.name,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -156,12 +147,12 @@ export const Show: React.FC<ShowProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resource?.name}.titles.show`,
-                        `Show ${userFriendlyResourceName(
+                        `${identifier}.titles.show`,
+                        `Show ${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                resource?.name,
+                                identifier,
                             "singular",
                         )}`,
                     )

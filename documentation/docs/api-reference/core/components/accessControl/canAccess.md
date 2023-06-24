@@ -9,20 +9,17 @@ source: packages/core/src/components/canAccess/index.tsx
 
 It internally uses [`useCan`][use-can]'s return values to provide its functionality.
 
-Passes the given properties to the `can` method from your [access control provider][access-control-provider]. After, if it returns:
+Passes the given properties to the `can` method from your access control provider. After, if it returns `true`, it renders the children, otherwise, if it returns `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null`.
 
--   `true`, it renders the children.
--   `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null`.
-
-[Refer to Access Control Provider for more information. &#8594][access-control-provider]
+> For more information, refer to [Access Control Provider &#8594][access-control-provider]
 
 ## Basic Usage
 
-By default, `CanAccess` component will infer the current `resource` and the `action` based on your route automatically. `id` will also be inferred if the current route includes one.
+By default, the `CanAccess` component will infer the current `resource` and the `action` based on your route automatically. `id` will also be inferred if the current route includes one.
 
-So if you are at `/posts` route, `CanAccess` will check authorization for `posts` resource and `list` action.
+So if you are at the `/posts` route, `CanAccess` will check authorization for the `posts` resource and the `list` action.
 
-For `/posts/show/:id` route, action will be `show`.
+For `/posts/show/:id` route, the action will be `show`.
 
 ```tsx
 import { CanAccess } from "@refinedev/core";
@@ -36,9 +33,9 @@ const MyComponent = () => (
 
 ### Usage with props
 
-You may have a case like in the `/posts/show/:id` page, where inferred resource is `posts` and action is `show`, but you want to authorize a different resource eg. `category`.
+You may have a case like in the `/posts/show/:id` page, where, inferred resource is `posts` and action is `show`, but you want to authorize a different resource eg. `category`.
 
-In this case, you can explicitly pass props to `CanAccess` component for authorizing a different resource.
+In this case, you can explicitly pass props to the `CanAccess` component for authorizing a different resource.
 
 ```tsx
 import { CanAccess } from "@refinedev/core";
@@ -57,7 +54,7 @@ export const MyComponent = () => {
 
 ## Properties
 
-It's also accepts all the properties of [`useCan`](/docs/api-reference/core/hooks/accessControl/useCan/#properties).
+It also accepts all the properties of [`useCan`](/docs/api-reference/core/hooks/accessControl/useCan/#properties).
 
 ### `fallback`
 
@@ -77,4 +74,3 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 [use-can]: /docs/api-reference/core/hooks/accessControl/useCan/
 [access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
-[can]: /docs/api-reference/core/hooks/accessControl/useCan/#can

@@ -9,33 +9,9 @@ import { LandingHero } from "../refine-theme/landing-hero";
 import { LandingPlayground } from "../refine-theme/landing-playground";
 import { LandingStats } from "../refine-theme/landing-stats";
 import { LandingTiles } from "../refine-theme/landing-tiles";
-import { LandingMagic } from "../refine-theme/landing-magic";
+import { LandingWalkthrough } from "../refine-theme/landing-walkthrough";
 
 function Home() {
-    React.useEffect(() => {
-        // if (typeof window !== "undefined" && window.location.hash) {
-        //     const id = window.location.hash.replace("#", "");
-        //     const element = document.getElementById(id);
-        //     if (element) {
-        //         element.scrollIntoView();
-        //     }
-        // }
-        // return () => {
-        //     // scroll to top after unmount with set timeout
-        //     setTimeout(() => {
-        //         if (typeof window !== "undefined" && window.location.hash) {
-        //             const id = window.location.hash.replace("#", "");
-        //             const element = document.getElementById(id);
-        //             if (element) {
-        //                 element.scrollIntoView();
-        //             }
-        //         } else {
-        //             window.scrollTo(0, 0);
-        //         }
-        //     }, 0);
-        // };
-    }, []);
-
     return (
         <>
             <Head>
@@ -51,18 +27,19 @@ function Home() {
                 description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design System, an enterprise-level UI toolkit."
             >
                 <div className={clsx("bg-refine-bg")}>
+                    <LandingHeader />
                     <div
                         className={clsx(
                             "top-section",
                             "bg-landing-stars",
-                            "mb-12",
+                            "mb-12 -mt-[100px]",
+                            "pt-[100px]",
                             "landing-mask-image-hero-wide",
                         )}
                     >
-                        <LandingHeader />
                         <LandingHero />
                     </div>
-                    <LandingMagic />
+                    <LandingWalkthrough />
                     <LandingTiles />
                     <LandingPlayground />
                     <LandingStats />

@@ -1,13 +1,13 @@
-import React from "react";
 import clsx from "clsx";
-import { useGithubContext } from "../context/GithubContext";
+import React from "react";
+import { useCommunityStatsContext } from "../context/CommunityStats";
 import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
 export const LandingGithubStarButton = () => {
-    const { loading, starCount } = useGithubContext();
+    const { loading, githubStarCount } = useCommunityStatsContext();
 
-    const short = `${Math.floor((starCount ?? 0) / 1000)}k`;
+    const short = `${((githubStarCount ?? 11500) / 1000).toFixed(1)}k`;
 
     return (
         <a
