@@ -83,7 +83,7 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm install react-i18next i18next
+npm install react-i18next i18next i18next-http-backend i18next-browser-languagedetector
 ```
 
 </TabItem>
@@ -91,7 +91,7 @@ npm install react-i18next i18next
 <TabItem value="yarn">
 
 ```bash
-yarn add react-i18next i18next
+yarn add react-i18next i18next i18next-http-backend i18next-browser-languagedetector
 ```
 
 </TabItem>
@@ -99,7 +99,7 @@ yarn add react-i18next i18next
 <TabItem value="pnpm">
 
 ```bash
-pnpm install react-i18next i18next
+pnpm install react-i18next i18next i18next-http-backend i18next-browser-languagedetector
 ```
 
 </TabItem>
@@ -124,6 +124,7 @@ i18n.use(Backend)
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json", // locale files path
         },
+        ns: ["common"],
         defaultNS: "common",
         fallbackLng: ["en", "de"],
     });
