@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -87,6 +87,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                   }
                 : undefined;
 
+            const linkStyle: CSSProperties =
+                activeItemDisabled && isSelected
+                    ? { pointerEvents: "none" }
+                    : {};
+
             return (
                 <CanAccess
                     key={item.key}
@@ -161,16 +166,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                             borderRightColor: "brand.200",
                                         }}
                                         isActive={isSelected}
-                                        onClick={(
-                                            event: React.MouseEvent<HTMLElement>,
-                                        ) => {
-                                            if (
-                                                activeItemDisabled &&
-                                                isSelected
-                                            ) {
-                                                event.preventDefault();
-                                            }
-                                        }}
+                                        style={linkStyle}
                                         {...linkProps}
                                     >
                                         {(mobileSiderOpen ||

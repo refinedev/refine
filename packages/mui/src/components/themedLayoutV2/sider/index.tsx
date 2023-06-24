@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -205,6 +205,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 );
             }
 
+            const linkStyle: CSSProperties =
+                activeItemDisabled && isSelected
+                    ? { pointerEvents: "none" }
+                    : {};
+
             return (
                 <CanAccess
                     key={item.key}
@@ -222,11 +227,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             component={ActiveLink}
                             to={route}
                             selected={isSelected}
-                            onClick={(event: React.MouseEvent<HTMLElement>) => {
-                                if (activeItemDisabled && isSelected) {
-                                    event.preventDefault();
-                                }
-
+                            style={linkStyle}
+                            onClick={() => {
                                 setMobileSiderOpen(false);
                             }}
                             sx={{

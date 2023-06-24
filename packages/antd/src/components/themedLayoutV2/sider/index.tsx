@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
 import {
     DashboardOutlined,
@@ -109,6 +109,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     undefined && children.length === 0
             );
 
+            const linkStyle: CSSProperties =
+                activeItemDisabled && isSelected
+                    ? { pointerEvents: "none" }
+                    : {};
+
             return (
                 <CanAccess
                     key={item.key}
@@ -121,17 +126,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     <Menu.Item
                         key={item.key}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                        style={linkStyle}
                     >
-                        <Link
-                            to={route ?? ""}
-                            onClick={(event: React.MouseEvent<HTMLElement>) => {
-                                if (activeItemDisabled && isSelected) {
-                                    event.preventDefault();
-                                }
-                            }}
-                        >
-                            {label}
-                        </Link>
+                        <Link to={route ?? ""}>{label}</Link>
                         {!siderCollapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
