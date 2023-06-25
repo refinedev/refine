@@ -309,7 +309,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
-setInitialRoutes(["/posts", "/posts/edit/123"]);
+setInitialRoutes(["/posts", "/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
 import routerProvider from "@refinedev/react-router-v6/legacy";

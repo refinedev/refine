@@ -459,7 +459,7 @@ export const App: React.FC = () => {
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
-setInitialRoutes(["/posts", "/posts/edit/123"]);
+setInitialRoutes(["/posts", "/posts/show/123"]);
 import { Refine } from "@refinedev/core";
 import { ShowButton } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
