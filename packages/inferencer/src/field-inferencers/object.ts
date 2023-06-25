@@ -3,7 +3,13 @@ import { FieldInferencer } from "../types";
 
 const idPropertyRegexp = /id$/i;
 
-export const objectInfer: FieldInferencer = (key, value, record, infer) => {
+export const objectInfer: FieldInferencer = (
+    key,
+    value,
+    record,
+    infer,
+    type,
+) => {
     const isNotNull = value !== null;
     const isNotArray = !Array.isArray(value);
     const isObject = typeof value === "object";
@@ -13,7 +19,11 @@ export const objectInfer: FieldInferencer = (key, value, record, infer) => {
             Object.keys(value).length === 1 &&
             idPropertyRegexp.test(Object.keys(value)[0]);
 
-        if (onlyHasId) {
+        const hasAnyId = Object.keys(value).some((k) =>
+            idPropertyRegexp.test(k),
+        );
+
+        if (onlyHasId || ((type === "create" || type === "edit") && hasAnyId)) {
             return {
                 key,
                 type: "relation",
@@ -43,6 +53,7 @@ export const objectInfer: FieldInferencer = (key, value, record, infer) => {
                 (value as Record<string, unknown>)[innerFieldKey],
                 value as Record<string, unknown>,
                 infer,
+                type,
             );
 
             if (innerFieldType) {

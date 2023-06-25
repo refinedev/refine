@@ -13,9 +13,10 @@ export const composeInferencers = (
         value,
         record,
         infer = fieldInferencer,
+        type,
     ) => {
         const inferences = inferencers.map((inferencer) =>
-            inferencer(key, value, record, infer),
+            inferencer(key, value, record, infer, type),
         );
         const picked = pickInferredField(inferences);
 
