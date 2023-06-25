@@ -409,6 +409,32 @@ render(
 );
 ```
 
+:::caution
+
+If your route has no `:action` parameter or your action is `list`, the back button will not be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property.
+
+```tsx
+/* highlight-next-line */
+import { useBack } from "@refinedev/core";
+import { Show } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostShow: React.FC = () => {
+    /* highlight-next-line */
+    const back = useBack();
+    const BackButton = () => <Button>←</Button>;
+
+    return (
+        /* highlight-next-line */
+        <Show goBack={<BackButton />} headerProps={{ onBack: back }}>
+            <p>Rest of your page here</p>
+        </Show>
+    );
+};
+```
+
+:::
+
 ### `isLoading`
 
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below.

@@ -253,10 +253,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
-import { Button } from "antd";
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     const BackButton = () => <Button>←</Button>;
@@ -287,6 +287,32 @@ render(
     />,
 );
 ```
+
+:::caution
+
+If your route has no `:action` parameter or your action is `list`, the back button will not be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property.
+
+```tsx
+/* highlight-next-line */
+import { useBack } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostCreate: React.FC = () => {
+    /* highlight-next-line */
+    const back = useBack();
+    const BackButton = () => <Button>←</Button>;
+
+    return (
+        /* highlight-next-line */
+        <Create goBack={<BackButton />} headerProps={{ onBack: back }}>
+            <p>Rest of your page here</p>
+        </Create>
+    );
+};
+```
+
+:::
 
 ### `isLoading`
 
