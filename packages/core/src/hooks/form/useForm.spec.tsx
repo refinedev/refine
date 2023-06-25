@@ -11,6 +11,7 @@ import { useForm } from "./useForm";
 
 import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
+import { useList, useOne } from "..";
 
 const SimpleWrapper = TestWrapper({});
 
@@ -1020,6 +1021,98 @@ describe("useForm Hook", () => {
             await waitFor(() => {
                 expect(!result.current.mutationResult?.isLoading).toBeTruthy();
                 expect(result.current.overtime.elapsedTime).toBeUndefined();
+            });
+        });
+
+        it("should work with optimistic update", async () => {
+            const initialTitle =
+                "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+            const updatedTitle = "optimistic test";
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        id: "1",
+                        mutationMode: "optimistic",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer.default,
+                            update: async () => {
+                                return new Promise((res, rej) => {
+                                    setTimeout(() => rej(), 500);
+                                });
+                            },
+                        },
+                        routerProvider: mockRouterBindings(),
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            const { result: useOneResult } = renderHook(
+                () => useOne({ resource: "posts", id: "1" }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                    }),
+                },
+            );
+
+            const { result: useListResult } = renderHook(
+                () => useList({ resource: "posts" }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(
+                    useListResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(initialTitle);
+            });
+
+            await waitFor(() => {
+                expect(useOneResult.current.data?.data.title).toEqual(
+                    initialTitle,
+                );
+            });
+
+            act(() => {
+                result.current.onFinish({ title: updatedTitle });
+            });
+
+            await waitFor(() => {
+                expect(
+                    useListResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(updatedTitle);
+            });
+
+            await waitFor(() => {
+                expect(useOneResult.current.data?.data.title).toEqual(
+                    updatedTitle,
+                );
+            });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult.isError).toEqual(true);
+            });
+
+            await waitFor(() => {
+                expect(
+                    useListResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(initialTitle);
+            });
+
+            await waitFor(() => {
+                expect(useOneResult.current.data?.data.title).toEqual(
+                    initialTitle,
+                );
             });
         });
     });
