@@ -88,7 +88,7 @@ const authProvider: AuthBindings = {
     updatePassword: (params) => {
         // you can access query strings from params.queryStrings
         console.log(params.token);
-        if (param.token === "123") {
+        if (params.token === "123") {
             // your logic to update the password
         }
         // ---
