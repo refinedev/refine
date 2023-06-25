@@ -1,9 +1,10 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useUpdateMany } from "./useUpdateMany";
 import * as UseInvalidate from "../invalidate/index";
+import { useList } from "./useList";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
@@ -54,27 +55,68 @@ describe("useUpdateMany Hook", () => {
     });
 
     it("should works with optimistic update", async () => {
+        const initialTitle1 =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const initialTitle2 = "Recusandae consectetur aut atque est.";
+
+        const updatedTitle = "optimistic test";
+
         const { result } = renderHook(() => useUpdateMany(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    updateMany: async () => {
+                        return new Promise((res, rej) => {
+                            setTimeout(() => rej(), 500);
+                        });
+                    },
+                },
                 resources: [{ name: "posts" }],
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "optimistic",
-            ids: ["1", "2"],
-            values: { id: "1", title: "test" },
+        const { result: useListResult } = renderHook(
+            () => useList({ resource: "posts" }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            const [post1, post2] = useListResult.current.data?.data ?? [];
+
+            expect(post1.title).toBe(initialTitle1);
+            expect(post2.title).toBe(initialTitle2);
+        });
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "optimistic",
+                ids: ["1", "2"],
+                values: { title: updatedTitle },
+            });
         });
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            const [post1, post2] = useListResult.current.data?.data ?? [];
+
+            expect(post1.title).toBe(updatedTitle);
+            expect(post2.title).toBe(updatedTitle);
         });
 
-        const { isSuccess } = result.current;
+        await waitFor(() => {
+            expect(result.current.isError).toBeTruthy();
+        });
 
-        expect(isSuccess).toBeTruthy();
+        await waitFor(() => {
+            const [post1, post2] = useListResult.current.data?.data ?? [];
+
+            expect(post1.title).toBe(initialTitle1);
+            expect(post2.title).toBe(initialTitle2);
+        });
     });
 
     it("should works with undoable update", async () => {
