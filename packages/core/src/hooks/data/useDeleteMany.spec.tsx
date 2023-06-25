@@ -1,9 +1,10 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useDeleteMany } from "./useDeleteMany";
 import * as UseInvalidate from "../invalidate/index";
+import { useList } from "./useList";
 
 describe("useDeleteMany Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -31,24 +32,53 @@ describe("useDeleteMany Hook", () => {
     it("should works with optimistic update", async () => {
         const { result } = renderHook(() => useDeleteMany(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    deleteMany: () => {
+                        return new Promise((res, rej) => {
+                            setTimeout(() => rej(), 1000);
+                        });
+                    },
+                },
                 resources: [{ name: "posts" }],
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "optimistic",
-            ids: ["1"],
+        const { result: useListResult } = renderHook(
+            () =>
+                useList({
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(useListResult.current.data?.data).toHaveLength(2);
+        });
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "optimistic",
+                ids: ["1", "2"],
+            });
         });
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            expect(useListResult.current.data?.data).toHaveLength(0);
         });
 
-        const { isSuccess } = result.current;
+        await waitFor(() => {
+            expect(result.current.isError).toBeTruthy();
+        });
 
-        expect(isSuccess).toBeTruthy();
+        await waitFor(() => {
+            expect(useListResult.current.data?.data).toHaveLength(2);
+        });
     });
 
     it("should works with undoable update", async () => {
