@@ -12,7 +12,7 @@ describe("composeInferencers", () => {
             inferencer3,
         ]);
 
-        composedInferencer("key", "value", {}, composedInferencer);
+        composedInferencer("key", "value", {}, composedInferencer, "list");
 
         expect(inferencer1).toHaveBeenCalled();
         expect(inferencer2).toHaveBeenCalled();
@@ -23,18 +23,21 @@ describe("composeInferencers", () => {
             "value",
             {},
             composedInferencer,
+            "list",
         );
         expect(inferencer2).toHaveBeenCalledWith(
             "key",
             "value",
             {},
             composedInferencer,
+            "list",
         );
         expect(inferencer3).toHaveBeenCalledWith(
             "key",
             "value",
             {},
             composedInferencer,
+            "list",
         );
     });
 });

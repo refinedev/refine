@@ -19,11 +19,9 @@ export const objectInfer: FieldInferencer = (
             Object.keys(value).length === 1 &&
             idPropertyRegexp.test(Object.keys(value)[0]);
 
-        const hasAnyId = Object.keys(value).some((k) =>
-            idPropertyRegexp.test(k),
-        );
+        const hasId = Object.keys(value).some((k) => idPropertyRegexp.test(k));
 
-        if (onlyHasId || ((type === "create" || type === "edit") && hasAnyId)) {
+        if (onlyHasId) {
             return {
                 key,
                 type: "relation",
@@ -74,6 +72,20 @@ export const objectInfer: FieldInferencer = (
                         ? `${fieldableKeys}.${innerFieldType.accessor[0]}`
                         : `${fieldableKeys}.${innerFieldType.accessor}`
                     : fieldableKeys;
+
+                if (
+                    innerFieldType?.type === "text" &&
+                    (type === "create" || type === "edit") &&
+                    hasId
+                ) {
+                    return {
+                        key,
+                        type: "relation",
+                        relation: true,
+                        accessor: "id",
+                        priority: 1,
+                    };
+                }
 
                 return {
                     ...innerFieldType,
