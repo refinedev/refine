@@ -1,6 +1,6 @@
 import { IResourceItem } from "@contexts/resource";
 import { userFriendlyResourceName } from "../userFriendlyResourceName";
-import { useTranslate } from "@hooks/translate";
+import type { useTranslate } from "@hooks/translate";
 import { safeTranslate } from "../safe-translate";
 
 /**

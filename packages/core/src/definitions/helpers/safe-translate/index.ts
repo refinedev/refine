@@ -1,4 +1,4 @@
-import { useTranslate } from "@hooks/translate";
+import type { useTranslate } from "@hooks/translate";
 
 export const safeTranslate = (
     translate: ReturnType<typeof useTranslate>,
