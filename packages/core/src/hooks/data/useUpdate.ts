@@ -59,7 +59,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      */
     mutationMode?: MutationMode;
     /**
-     * Duration to wait before executing the mutation when `mutationMode = "undoable"`
+     * Duration in ms to wait before executing the mutation when `mutationMode = "undoable"`
      */
     undoableTimeout?: number;
     /**

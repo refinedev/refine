@@ -16,11 +16,13 @@ describe("useUpdate Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "pessimistic",
-            id: "1",
-            values: { id: "1", title: "test" },
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "pessimistic",
+                id: "1",
+                values: { id: "1", title: "test" },
+            });
         });
 
         await waitFor(() => {
@@ -114,33 +116,96 @@ describe("useUpdate Hook", () => {
         });
     });
 
-    it("should works with undoable update", async () => {
-        const onCancelMock = jest.fn();
+    fit("should work with undoable update", async () => {
+        const initialTitle =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const updatedTitle = "undoable test";
 
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    update: async () => {
+                        console.log("IM CALLED");
+                        return {
+                            data: {
+                                id: "1",
+                                title: updatedTitle,
+                            },
+                        } as any;
+                    },
+                },
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "undoable",
-            onCancel: onCancelMock,
-            undoableTimeout: 0,
-            id: "1",
-            values: { id: "1", title: "undoable test" },
+        const { result: useOneResult } = renderHook(
+            () => useOne({ resource: "posts", id: "1" }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
+        const { result: useListResult } = renderHook(
+            () => useList({ resource: "posts" }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(
+                useListResult.current.data?.data.map((d) => d.title),
+            ).toContainEqual(initialTitle);
         });
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
         });
 
-        expect(onCancelMock).toHaveBeenCalledTimes(1);
-        const { isSuccess } = result.current;
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+                id: "1",
+                values: { title: updatedTitle },
+            });
+        });
 
-        expect(isSuccess).toBeTruthy();
+        await waitFor(() => {
+            expect(
+                useListResult.current.data?.data.map((d) => d.title),
+            ).toContainEqual(initialTitle);
+        });
+
+        await waitFor(() => {
+            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            expect(
+                useListResult.current.data?.data.map((d) => d.title),
+            ).toContainEqual(updatedTitle);
+        });
+
+        await waitFor(() => {
+            expect(useOneResult.current.data?.data.title).toEqual(updatedTitle);
+        });
+
+        await waitFor(
+            () => {
+                expect(result.current.isSuccess).toBeTruthy();
+            },
+            { timeout: 2000 },
+        );
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
