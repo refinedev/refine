@@ -13,8 +13,16 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
-import { Show, Breadcrumb } from "@refinedev/antd";
+import { BrowserRouter } from "react-router-dom";
+import {
+    ConfigProvider,
+    RefineThemes,
+    Show,
+    // highlight-next-line
+    Breadcrumb,
+} from "@refinedev/antd";
 
+//highlight-start
 const PostIcon = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -37,6 +45,7 @@ const PostIcon = (
         <line x1={5} y1={18} x2={5} y2="18.01"></line>
     </svg>
 );
+//highlight-end
 
 const PostShow: React.FC = () => {
     return (
@@ -46,6 +55,29 @@ const PostShow: React.FC = () => {
         >
             <p>Content of your show page...</p>
         </Show>
+    );
+};
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    //...
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            // highlight-next-line
+                            meta: { icon: PostIcon },
+                        },
+                    ]}
+                >
+                    //...
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -58,13 +90,14 @@ const PostList = () => {
     );
 };
 
-
 setInitialRoutes(["/posts/show/123"]);
 
 render(
     <ReactRouterDom.BrowserRouter>
         <RefineCore.Refine
-            dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+            dataProvider={RefineSimpleRest.default(
+                "https://api.fake-rest.refine.dev",
+            )}
             routerProvider={RefineReactRouterV6.default}
             resources={[
                 {
@@ -77,8 +110,14 @@ render(
         >
             <RefineAntd.Layout>
                 <ReactRouterDom.Routes>
-                    <ReactRouterDom.Route path="/posts" element={<PostList />} />
-                    <ReactRouterDom.Route path="/posts/show/:id" element={<PostShow />} />
+                    <ReactRouterDom.Route
+                        path="/posts"
+                        element={<PostList />}
+                    />
+                    <ReactRouterDom.Route
+                        path="/posts/show/:id"
+                        element={<PostShow />}
+                    />
                 </ReactRouterDom.Routes>
             </RefineAntd.Layout>
         </RefineCore.Refine>
