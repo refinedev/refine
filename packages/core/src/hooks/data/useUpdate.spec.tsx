@@ -10,10 +10,11 @@ import {
     renderUseMany,
     assertList,
     assertOne,
+    assertMutationSuccess,
 } from "@test/mutation-helpers";
 
 describe("useUpdate Hook", () => {
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -39,7 +40,7 @@ describe("useUpdate Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
         const initialTitle =
             "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
         const updatedTitle = "optimistic test";
@@ -136,12 +137,7 @@ describe("useUpdate Hook", () => {
 
         await assertList(useManyResult, "title", updatedTitle);
 
-        await waitFor(
-            () => {
-                expect(result.current.isSuccess).toBeTruthy();
-            },
-            { timeout: 2000 },
-        );
+        await assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

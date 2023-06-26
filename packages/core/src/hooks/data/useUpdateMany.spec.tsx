@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import {
     assertList,
+    assertMutationSuccess,
     renderUseList,
     renderUseMany,
 } from "@test/mutation-helpers";
@@ -34,7 +35,7 @@ describe("useUpdateMany Hook", () => {
         expect(status).toBe("success");
     });
 
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useUpdateMany(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -58,7 +59,7 @@ describe("useUpdateMany Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
         const initialTitle1 =
             "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
         const initialTitle2 = "Recusandae consectetur aut atque est.";
@@ -121,7 +122,7 @@ describe("useUpdateMany Hook", () => {
         ]);
     });
 
-    it("should works with undoable update", async () => {
+    it("should work with undoable update", async () => {
         const initialTitle1 =
             "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
         const initialTitle2 = "Recusandae consectetur aut atque est.";
@@ -163,9 +164,7 @@ describe("useUpdateMany Hook", () => {
 
         await assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+        await assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

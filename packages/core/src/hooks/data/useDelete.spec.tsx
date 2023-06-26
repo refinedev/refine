@@ -9,10 +9,11 @@ import {
     renderUseMany,
     assertList,
     assertListLength,
+    assertMutationSuccess,
 } from "@test/mutation-helpers";
 
 describe("useDelete Hook", () => {
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useDelete(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -35,7 +36,7 @@ describe("useDelete Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
         const { result } = renderHook(() => useDelete(), {
             wrapper: TestWrapper({
                 dataProvider: {
@@ -85,7 +86,7 @@ describe("useDelete Hook", () => {
         await assertList(useManyResult, "id", ["1", "2"]);
     });
 
-    it("should works with undoable update", async () => {
+    it("should work with undoable update", async () => {
         const { result } = renderHook(() => useDelete(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -118,9 +119,7 @@ describe("useDelete Hook", () => {
         await assertListLength(useManyResult, 1);
         await assertList(useManyResult, "id", ["2"]);
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+        assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

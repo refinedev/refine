@@ -83,3 +83,12 @@ export const assertListLength = async (
         expect(listResult.current.data?.data).toHaveLength(length);
     });
 };
+
+export const assertMutationSuccess = async (mutationResult: any) => {
+    await waitFor(
+        () => {
+            expect(mutationResult.current.isSuccess).toBeTruthy();
+        },
+        { timeout: 2000 },
+    );
+};
