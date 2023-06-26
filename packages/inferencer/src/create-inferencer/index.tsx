@@ -84,7 +84,7 @@ export const createInferencer: CreateInferencer = ({
             value: any,
             record: Record<string, unknown>,
         ) => {
-            const inferResult = infer(key, value, record, infer);
+            const inferResult = infer(key, value, record, infer, type);
 
             if (inferResult) {
                 if (resource) {
@@ -94,6 +94,7 @@ export const createInferencer: CreateInferencer = ({
                         resource,
                         record,
                         infer,
+                        type,
                     );
 
                     const customTransformedFields = fieldTransformer
@@ -200,7 +201,13 @@ export const createInferencer: CreateInferencer = ({
                     .map((key) => {
                         const value = record[key];
 
-                        const inferResult = infer(key, value, record, infer);
+                        const inferResult = infer(
+                            key,
+                            value,
+                            record,
+                            infer,
+                            type,
+                        );
 
                         return inferResult;
                     })
@@ -213,6 +220,7 @@ export const createInferencer: CreateInferencer = ({
                         resource,
                         record,
                         infer,
+                        type,
                     );
 
                     const customTransformedFields = fieldTransformer
