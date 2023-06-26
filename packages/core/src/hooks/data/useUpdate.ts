@@ -288,7 +288,7 @@ export const useUpdate = <
                     },
                 );
 
-                if (!(mutationModePropOrContext === "pessimistic")) {
+                if (mutationModePropOrContext !== "pessimistic") {
                     // Set the previous queries to the new ones:
                     queryClient.setQueriesData(
                         queryKey.list(),
