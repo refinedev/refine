@@ -5,6 +5,7 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useDeleteMany } from "./useDeleteMany";
 import * as UseInvalidate from "../invalidate/index";
 import { useList } from "./useList";
+import { useMany } from "./useMany";
 
 describe("useDeleteMany Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -56,8 +57,25 @@ describe("useDeleteMany Hook", () => {
             },
         );
 
+        const { result: useManyResult } = renderHook(
+            () =>
+                useMany({
+                    resource: "posts",
+                    ids: ["1", "2"],
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
         await waitFor(() => {
             expect(useListResult.current.data?.data).toHaveLength(2);
+        });
+
+        await waitFor(() => {
+            expect(useManyResult.current.data?.data).toHaveLength(2);
         });
 
         act(() => {
@@ -73,11 +91,19 @@ describe("useDeleteMany Hook", () => {
         });
 
         await waitFor(() => {
+            expect(useManyResult.current.data?.data).toHaveLength(0);
+        });
+
+        await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
 
         await waitFor(() => {
             expect(useListResult.current.data?.data).toHaveLength(2);
+        });
+
+        await waitFor(() => {
+            expect(useManyResult.current.data?.data).toHaveLength(2);
         });
     });
 

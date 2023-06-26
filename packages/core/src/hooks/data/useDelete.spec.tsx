@@ -5,6 +5,7 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useDelete } from "./useDelete";
 import * as UseInvalidate from "../invalidate/index";
 import { useList } from "./useList";
+import { useMany } from "./useMany";
 
 describe("useDelete Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -54,9 +55,23 @@ describe("useDelete Hook", () => {
             },
         );
 
+        const { result: useManyResult } = renderHook(
+            () => useMany({ resource: "posts", ids: ["1", "2"] }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
         await waitFor(() => {
             expect(useListResult.current.data?.data).toHaveLength(2);
             expect(useListResult.current.data?.data[0].id).toEqual("1");
+        });
+
+        await waitFor(() => {
+            expect(useManyResult.current.data?.data).toHaveLength(2);
+            expect(useManyResult.current.data?.data[0].id).toEqual("1");
         });
 
         act(() => {
@@ -73,12 +88,22 @@ describe("useDelete Hook", () => {
         });
 
         await waitFor(() => {
+            expect(useManyResult.current.data?.data).toHaveLength(1);
+            expect(useManyResult.current.data?.data[0].id).toEqual("2");
+        });
+
+        await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
 
         await waitFor(() => {
             expect(useListResult.current.data?.data).toHaveLength(2);
             expect(useListResult.current.data?.data[0].id).toEqual("1");
+        });
+
+        await waitFor(() => {
+            expect(useManyResult.current.data?.data).toHaveLength(2);
+            expect(useManyResult.current.data?.data[0].id).toEqual("1");
         });
     });
 

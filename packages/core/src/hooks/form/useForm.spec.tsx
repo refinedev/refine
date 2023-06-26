@@ -11,7 +11,7 @@ import { useForm } from "./useForm";
 
 import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
-import { useList, useOne } from "..";
+import { useList, useMany, useOne } from "..";
 
 const SimpleWrapper = TestWrapper({});
 
@@ -1071,11 +1071,14 @@ describe("useForm Hook", () => {
                 },
             );
 
-            await waitFor(() => {
-                expect(
-                    useListResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(initialTitle);
-            });
+            const { result: useManyResult } = renderHook(
+                () => useMany({ resource: "posts", ids: ["1", "2"] }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                    }),
+                },
+            );
 
             await waitFor(() => {
                 expect(useOneResult.current.data?.data.title).toEqual(
@@ -1083,14 +1086,20 @@ describe("useForm Hook", () => {
                 );
             });
 
-            act(() => {
-                result.current.onFinish({ title: updatedTitle });
+            await waitFor(() => {
+                expect(
+                    useListResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(initialTitle);
             });
 
             await waitFor(() => {
                 expect(
-                    useListResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(updatedTitle);
+                    useManyResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(initialTitle);
+            });
+
+            act(() => {
+                result.current.onFinish({ title: updatedTitle });
             });
 
             await waitFor(() => {
@@ -1100,7 +1109,25 @@ describe("useForm Hook", () => {
             });
 
             await waitFor(() => {
+                expect(
+                    useListResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(updatedTitle);
+            });
+
+            await waitFor(() => {
+                expect(
+                    useManyResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(updatedTitle);
+            });
+
+            await waitFor(() => {
                 expect(result.current.mutationResult.isError).toEqual(true);
+            });
+
+            await waitFor(() => {
+                expect(useOneResult.current.data?.data.title).toEqual(
+                    initialTitle,
+                );
             });
 
             await waitFor(() => {
@@ -1110,9 +1137,9 @@ describe("useForm Hook", () => {
             });
 
             await waitFor(() => {
-                expect(useOneResult.current.data?.data.title).toEqual(
-                    initialTitle,
-                );
+                expect(
+                    useManyResult.current.data?.data.map((d) => d.title),
+                ).toContainEqual(initialTitle);
             });
         });
     });

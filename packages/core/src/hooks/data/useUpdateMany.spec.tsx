@@ -5,6 +5,7 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useUpdateMany } from "./useUpdateMany";
 import * as UseInvalidate from "../invalidate/index";
 import { useList } from "./useList";
+import { useMany } from "./useMany";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
@@ -84,8 +85,24 @@ describe("useUpdateMany Hook", () => {
             },
         );
 
+        const { result: useManyResult } = renderHook(
+            () => useMany({ resource: "posts", ids: ["1", "2"] }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
         await waitFor(() => {
             const [post1, post2] = useListResult.current.data?.data ?? [];
+
+            expect(post1.title).toBe(initialTitle1);
+            expect(post2.title).toBe(initialTitle2);
+        });
+
+        await waitFor(() => {
+            const [post1, post2] = useManyResult.current.data?.data ?? [];
 
             expect(post1.title).toBe(initialTitle1);
             expect(post2.title).toBe(initialTitle2);
@@ -108,11 +125,25 @@ describe("useUpdateMany Hook", () => {
         });
 
         await waitFor(() => {
+            const [post1, post2] = useManyResult.current.data?.data ?? [];
+
+            expect(post1.title).toBe(updatedTitle);
+            expect(post2.title).toBe(updatedTitle);
+        });
+
+        await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
 
         await waitFor(() => {
             const [post1, post2] = useListResult.current.data?.data ?? [];
+
+            expect(post1.title).toBe(initialTitle1);
+            expect(post2.title).toBe(initialTitle2);
+        });
+
+        await waitFor(() => {
+            const [post1, post2] = useManyResult.current.data?.data ?? [];
 
             expect(post1.title).toBe(initialTitle1);
             expect(post2.title).toBe(initialTitle2);

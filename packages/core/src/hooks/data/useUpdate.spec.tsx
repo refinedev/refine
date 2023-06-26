@@ -6,6 +6,7 @@ import { useUpdate } from "./useUpdate";
 import * as UseInvalidate from "../invalidate/index";
 import { useOne } from "./useOne";
 import { useList } from "./useList";
+import { useMany } from "./useMany";
 
 describe("useUpdate Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -72,6 +73,19 @@ describe("useUpdate Hook", () => {
             },
         );
 
+        const { result: useManyResult } = renderHook(
+            () => useMany({ resource: "posts", ids: ["1", "2"] }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
+        });
+
         await waitFor(() => {
             expect(
                 useListResult.current.data?.data.map((d) => d.title),
@@ -79,7 +93,9 @@ describe("useUpdate Hook", () => {
         });
 
         await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
+            expect(
+                useManyResult.current.data?.data.map((d) => d.title),
+            ).toContainEqual(initialTitle);
         });
 
         act(() => {
@@ -92,13 +108,19 @@ describe("useUpdate Hook", () => {
         });
 
         await waitFor(() => {
+            expect(useOneResult.current.data?.data.title).toEqual(updatedTitle);
+        });
+
+        await waitFor(() => {
             expect(
                 useListResult.current.data?.data.map((d) => d.title),
             ).toContainEqual(updatedTitle);
         });
 
         await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(updatedTitle);
+            expect(
+                useManyResult.current.data?.data.map((d) => d.title),
+            ).toContainEqual(initialTitle);
         });
 
         await waitFor(() => {
@@ -123,18 +145,7 @@ describe("useUpdate Hook", () => {
 
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
-                dataProvider: {
-                    ...MockJSONServer.default,
-                    update: async () => {
-                        console.log("IM CALLED");
-                        return {
-                            data: {
-                                id: "1",
-                                title: updatedTitle,
-                            },
-                        } as any;
-                    },
-                },
+                dataProvider: MockJSONServer,
             }),
         });
 
