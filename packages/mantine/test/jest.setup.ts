@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import * as util from "util";
-// import { createMockServer } from "./dataMocks";
 
 /** Mantine mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
@@ -16,13 +15,6 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 window.scroll = jest.fn();
 window.alert = jest.fn();
-
-/** mock service worker setup */
-// const server = createMockServer();
-
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());
 
 Object.defineProperty(window, "TextEncoder", {
     writable: true,
