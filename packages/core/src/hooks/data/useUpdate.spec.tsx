@@ -116,7 +116,7 @@ describe("useUpdate Hook", () => {
         });
     });
 
-    fit("should work with undoable update", async () => {
+    it("should work with undoable update", async () => {
         const initialTitle =
             "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
         const updatedTitle = "undoable test";
