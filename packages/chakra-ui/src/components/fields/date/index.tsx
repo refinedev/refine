@@ -13,7 +13,7 @@ import { DateFieldProps } from "../types";
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format and
- * Mantine {@link https://chakra-ui.com/docs/components/text `<Text>`} component
+ * Chakra UI {@link https://chakra-ui.com/docs/components/text `<Text>`} component
  *
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/fields/date} for more details.
  */
