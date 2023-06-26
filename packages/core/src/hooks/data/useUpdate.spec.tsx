@@ -130,11 +130,11 @@ describe("useUpdate Hook", () => {
             });
         });
 
-        assertOne(useOneResult, "title", updatedTitle);
+        await assertOne(useOneResult, "title", updatedTitle);
 
-        assertList(useListResult, "title", updatedTitle);
+        await assertList(useListResult, "title", updatedTitle);
 
-        assertList(useManyResult, "title", updatedTitle);
+        await assertList(useManyResult, "title", updatedTitle);
 
         await waitFor(
             () => {

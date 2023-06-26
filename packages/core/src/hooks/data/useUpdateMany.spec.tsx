@@ -83,9 +83,15 @@ describe("useUpdateMany Hook", () => {
 
         const useManyResult = renderUseMany();
 
-        assertList(useListResult, "title", [initialTitle1, initialTitle2]);
+        await assertList(useListResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
 
-        assertList(useManyResult, "title", [initialTitle1, initialTitle2]);
+        await assertList(useManyResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
 
         act(() => {
             result.current.mutate({
@@ -96,17 +102,23 @@ describe("useUpdateMany Hook", () => {
             });
         });
 
-        assertList(useListResult, "title", [updatedTitle, updatedTitle]);
+        await assertList(useListResult, "title", [updatedTitle, updatedTitle]);
 
-        assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
+        await assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
 
-        assertList(useListResult, "title", [initialTitle1, initialTitle2]);
+        await assertList(useListResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
 
-        assertList(useManyResult, "title", [initialTitle1, initialTitle2]);
+        await assertList(useManyResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
     });
 
     it("should works with undoable update", async () => {
@@ -127,23 +139,29 @@ describe("useUpdateMany Hook", () => {
 
         const useManyResult = renderUseMany();
 
-        assertList(useListResult, "title", [initialTitle1, initialTitle2]);
+        await assertList(useListResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
 
-        assertList(useManyResult, "title", [initialTitle1, initialTitle2]);
+        await assertList(useManyResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
 
         act(() => {
             result.current.mutate({
                 ids: ["1", "2"],
                 resource: "posts",
                 mutationMode: "undoable",
-                undoableTimeout: 0,
-                values: { id: "1", title: "test" },
+                undoableTimeout: 1000,
+                values: { id: "1", title: updatedTitle },
             });
         });
 
-        assertList(useListResult, "title", [updatedTitle, updatedTitle]);
+        await assertList(useListResult, "title", [updatedTitle, updatedTitle]);
 
-        assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
+        await assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
