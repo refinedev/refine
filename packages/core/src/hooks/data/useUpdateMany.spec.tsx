@@ -1,11 +1,14 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import {
+    assertList,
+    renderUseList,
+    renderUseMany,
+} from "@test/mutation-helpers";
 
 import { useUpdateMany } from "./useUpdateMany";
 import * as UseInvalidate from "../invalidate/index";
-import { useList } from "./useList";
-import { useMany } from "./useMany";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
@@ -76,37 +79,13 @@ describe("useUpdateMany Hook", () => {
             }),
         });
 
-        const { result: useListResult } = renderHook(
-            () => useList({ resource: "posts" }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useListResult = renderUseList();
 
-        const { result: useManyResult } = renderHook(
-            () => useMany({ resource: "posts", ids: ["1", "2"] }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useManyResult = renderUseMany();
 
-        await waitFor(() => {
-            const [post1, post2] = useListResult.current.data?.data ?? [];
+        assertList(useListResult, "title", [initialTitle1, initialTitle2]);
 
-            expect(post1.title).toBe(initialTitle1);
-            expect(post2.title).toBe(initialTitle2);
-        });
-
-        await waitFor(() => {
-            const [post1, post2] = useManyResult.current.data?.data ?? [];
-
-            expect(post1.title).toBe(initialTitle1);
-            expect(post2.title).toBe(initialTitle2);
-        });
+        assertList(useManyResult, "title", [initialTitle1, initialTitle2]);
 
         act(() => {
             result.current.mutate({
@@ -117,37 +96,17 @@ describe("useUpdateMany Hook", () => {
             });
         });
 
-        await waitFor(() => {
-            const [post1, post2] = useListResult.current.data?.data ?? [];
+        assertList(useListResult, "title", [updatedTitle, updatedTitle]);
 
-            expect(post1.title).toBe(updatedTitle);
-            expect(post2.title).toBe(updatedTitle);
-        });
-
-        await waitFor(() => {
-            const [post1, post2] = useManyResult.current.data?.data ?? [];
-
-            expect(post1.title).toBe(updatedTitle);
-            expect(post2.title).toBe(updatedTitle);
-        });
+        assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
 
-        await waitFor(() => {
-            const [post1, post2] = useListResult.current.data?.data ?? [];
+        assertList(useListResult, "title", [initialTitle1, initialTitle2]);
 
-            expect(post1.title).toBe(initialTitle1);
-            expect(post2.title).toBe(initialTitle2);
-        });
-
-        await waitFor(() => {
-            const [post1, post2] = useManyResult.current.data?.data ?? [];
-
-            expect(post1.title).toBe(initialTitle1);
-            expect(post2.title).toBe(initialTitle2);
-        });
+        assertList(useManyResult, "title", [initialTitle1, initialTitle2]);
     });
 
     it("should works with undoable update", async () => {

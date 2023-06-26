@@ -7,11 +7,19 @@ import {
     act,
     mockLegacyRouterProvider,
 } from "@test";
+
+import {
+    assertList,
+    assertOne,
+    renderUseList,
+    renderUseMany,
+    renderUseOne,
+} from "@test/mutation-helpers";
+
 import { useForm } from "./useForm";
 
 import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
-import { useList, useMany, useOne } from "..";
 
 const SimpleWrapper = TestWrapper({});
 
@@ -1053,94 +1061,35 @@ describe("useForm Hook", () => {
                 },
             );
 
-            const { result: useOneResult } = renderHook(
-                () => useOne({ resource: "posts", id: "1" }),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                    }),
-                },
-            );
+            const useOneResult = renderUseOne();
+            const useListResult = renderUseList();
+            const useManyResult = renderUseMany();
 
-            const { result: useListResult } = renderHook(
-                () => useList({ resource: "posts" }),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                    }),
-                },
-            );
+            await assertOne(useOneResult, "title", initialTitle);
 
-            const { result: useManyResult } = renderHook(
-                () => useMany({ resource: "posts", ids: ["1", "2"] }),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                    }),
-                },
-            );
+            await assertList(useListResult, "title", initialTitle);
 
-            await waitFor(() => {
-                expect(useOneResult.current.data?.data.title).toEqual(
-                    initialTitle,
-                );
-            });
-
-            await waitFor(() => {
-                expect(
-                    useListResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(initialTitle);
-            });
-
-            await waitFor(() => {
-                expect(
-                    useManyResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(initialTitle);
-            });
+            await assertList(useManyResult, "title", initialTitle);
 
             act(() => {
                 result.current.onFinish({ title: updatedTitle });
             });
 
-            await waitFor(() => {
-                expect(useOneResult.current.data?.data.title).toEqual(
-                    updatedTitle,
-                );
-            });
+            await assertOne(useOneResult, "title", updatedTitle);
 
-            await waitFor(() => {
-                expect(
-                    useListResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(updatedTitle);
-            });
+            await assertList(useListResult, "title", updatedTitle);
 
-            await waitFor(() => {
-                expect(
-                    useManyResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(updatedTitle);
-            });
+            await assertList(useManyResult, "title", updatedTitle);
 
             await waitFor(() => {
                 expect(result.current.mutationResult.isError).toEqual(true);
             });
 
-            await waitFor(() => {
-                expect(useOneResult.current.data?.data.title).toEqual(
-                    initialTitle,
-                );
-            });
+            await assertOne(useOneResult, "title", initialTitle);
 
-            await waitFor(() => {
-                expect(
-                    useListResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(initialTitle);
-            });
+            await assertList(useListResult, "title", initialTitle);
 
-            await waitFor(() => {
-                expect(
-                    useManyResult.current.data?.data.map((d) => d.title),
-                ).toContainEqual(initialTitle);
-            });
+            await assertList(useManyResult, "title", initialTitle);
         });
     });
 });

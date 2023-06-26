@@ -4,9 +4,13 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useUpdate } from "./useUpdate";
 import * as UseInvalidate from "../invalidate/index";
-import { useOne } from "./useOne";
-import { useList } from "./useList";
-import { useMany } from "./useMany";
+import {
+    renderUseOne,
+    renderUseList,
+    renderUseMany,
+    assertList,
+    assertOne,
+} from "@test/mutation-helpers";
 
 describe("useUpdate Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -55,48 +59,17 @@ describe("useUpdate Hook", () => {
             }),
         });
 
-        const { result: useOneResult } = renderHook(
-            () => useOne({ resource: "posts", id: "1" }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useOneResult = renderUseOne();
 
-        const { result: useListResult } = renderHook(
-            () => useList({ resource: "posts" }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useListResult = renderUseList();
 
-        const { result: useManyResult } = renderHook(
-            () => useMany({ resource: "posts", ids: ["1", "2"] }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useManyResult = renderUseMany();
 
-        await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
-        });
+        await assertOne(useOneResult, "title", initialTitle);
 
-        await waitFor(() => {
-            expect(
-                useListResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(initialTitle);
-        });
+        await assertList(useListResult, "title", initialTitle);
 
-        await waitFor(() => {
-            expect(
-                useManyResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(initialTitle);
-        });
+        await assertList(useManyResult, "title", initialTitle);
 
         act(() => {
             result.current.mutate({
@@ -107,35 +80,21 @@ describe("useUpdate Hook", () => {
             });
         });
 
-        await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(updatedTitle);
-        });
+        await assertOne(useOneResult, "title", updatedTitle);
 
-        await waitFor(() => {
-            expect(
-                useListResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(updatedTitle);
-        });
+        await assertList(useListResult, "title", updatedTitle);
 
-        await waitFor(() => {
-            expect(
-                useManyResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(initialTitle);
-        });
+        await assertList(useManyResult, "title", updatedTitle);
 
         await waitFor(() => {
             expect(result.current.isError).toEqual(true);
         });
 
-        await waitFor(() => {
-            expect(
-                useListResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(initialTitle);
-        });
+        await assertOne(useOneResult, "title", initialTitle);
 
-        await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
-        });
+        await assertList(useListResult, "title", initialTitle);
+
+        await assertList(useManyResult, "title", initialTitle);
     });
 
     it("should work with undoable update", async () => {
@@ -149,33 +108,17 @@ describe("useUpdate Hook", () => {
             }),
         });
 
-        const { result: useOneResult } = renderHook(
-            () => useOne({ resource: "posts", id: "1" }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useOneResult = renderUseOne();
 
-        const { result: useListResult } = renderHook(
-            () => useList({ resource: "posts" }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useListResult = renderUseList();
 
-        await waitFor(() => {
-            expect(
-                useListResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(initialTitle);
-        });
+        const useManyResult = renderUseMany();
 
-        await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
-        });
+        await assertOne(useOneResult, "title", initialTitle);
+
+        await assertList(useListResult, "title", initialTitle);
+
+        await assertList(useManyResult, "title", initialTitle);
 
         act(() => {
             result.current.mutate({
@@ -187,29 +130,11 @@ describe("useUpdate Hook", () => {
             });
         });
 
-        await waitFor(() => {
-            expect(
-                useListResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(initialTitle);
-        });
+        assertOne(useOneResult, "title", updatedTitle);
 
-        await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(initialTitle);
-        });
+        assertList(useListResult, "title", updatedTitle);
 
-        await waitFor(() => {
-            expect(result.current.isLoading).toBeTruthy();
-        });
-
-        await waitFor(() => {
-            expect(
-                useListResult.current.data?.data.map((d) => d.title),
-            ).toContainEqual(updatedTitle);
-        });
-
-        await waitFor(() => {
-            expect(useOneResult.current.data?.data.title).toEqual(updatedTitle);
-        });
+        assertList(useManyResult, "title", updatedTitle);
 
         await waitFor(
             () => {

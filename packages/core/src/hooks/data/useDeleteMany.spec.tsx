@@ -6,6 +6,11 @@ import { useDeleteMany } from "./useDeleteMany";
 import * as UseInvalidate from "../invalidate/index";
 import { useList } from "./useList";
 import { useMany } from "./useMany";
+import {
+    assertListLength,
+    renderUseList,
+    renderUseMany,
+} from "@test/mutation-helpers";
 
 describe("useDeleteMany Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -45,38 +50,13 @@ describe("useDeleteMany Hook", () => {
             }),
         });
 
-        const { result: useListResult } = renderHook(
-            () =>
-                useList({
-                    resource: "posts",
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useListResult = renderUseList();
 
-        const { result: useManyResult } = renderHook(
-            () =>
-                useMany({
-                    resource: "posts",
-                    ids: ["1", "2"],
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                }),
-            },
-        );
+        const useManyResult = renderUseMany();
 
-        await waitFor(() => {
-            expect(useListResult.current.data?.data).toHaveLength(2);
-        });
+        await assertListLength(useListResult, 2);
 
-        await waitFor(() => {
-            expect(useManyResult.current.data?.data).toHaveLength(2);
-        });
+        await assertListLength(useManyResult, 2);
 
         act(() => {
             result.current.mutate({
@@ -86,25 +66,17 @@ describe("useDeleteMany Hook", () => {
             });
         });
 
-        await waitFor(() => {
-            expect(useListResult.current.data?.data).toHaveLength(0);
-        });
+        await assertListLength(useListResult, 0);
 
-        await waitFor(() => {
-            expect(useManyResult.current.data?.data).toHaveLength(0);
-        });
+        await assertListLength(useManyResult, 0);
 
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
 
-        await waitFor(() => {
-            expect(useListResult.current.data?.data).toHaveLength(2);
-        });
+        await assertListLength(useListResult, 2);
 
-        await waitFor(() => {
-            expect(useManyResult.current.data?.data).toHaveLength(2);
-        });
+        await assertListLength(useManyResult, 2);
     });
 
     it("should works with undoable update", async () => {
