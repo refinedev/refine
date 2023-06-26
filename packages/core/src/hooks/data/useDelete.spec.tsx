@@ -57,8 +57,8 @@ describe("useDelete Hook", () => {
         await assertListLength(useListResult, 2);
         await assertList(useListResult, "id", ["1", "2"]);
 
-        await assertList(useManyResult, "id", ["1", "2"]);
         await assertListLength(useManyResult, 2);
+        await assertList(useManyResult, "id", ["1", "2"]);
 
         act(() => {
             result.current.mutate({
@@ -81,8 +81,8 @@ describe("useDelete Hook", () => {
         await assertListLength(useListResult, 2);
         await assertList(useListResult, "id", ["1", "2"]);
 
-        await assertList(useManyResult, "id", ["1", "2"]);
         await assertListLength(useManyResult, 2);
+        await assertList(useManyResult, "id", ["1", "2"]);
     });
 
     it("should works with undoable update", async () => {
@@ -93,20 +93,34 @@ describe("useDelete Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            id: "1",
-            resource: "posts",
-            mutationMode: "undoable",
-            undoableTimeout: 0,
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertListLength(useListResult, 2);
+        await assertList(useListResult, "id", ["1", "2"]);
+
+        await assertListLength(useManyResult, 2);
+        await assertList(useManyResult, "id", ["1", "2"]);
+
+        act(() => {
+            result.current.mutate({
+                id: "1",
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+            });
         });
+
+        await assertListLength(useListResult, 1);
+        await assertList(useListResult, "id", ["2"]);
+
+        await assertListLength(useManyResult, 1);
+        await assertList(useManyResult, "id", ["2"]);
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
         });
-
-        const { isSuccess } = result.current;
-
-        expect(isSuccess).toBeTruthy();
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

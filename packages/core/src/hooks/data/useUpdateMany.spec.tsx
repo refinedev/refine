@@ -110,6 +110,12 @@ describe("useUpdateMany Hook", () => {
     });
 
     it("should works with undoable update", async () => {
+        const initialTitle1 =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const initialTitle2 = "Recusandae consectetur aut atque est.";
+
+        const updatedTitle = "optimistic test";
+
         const { result } = renderHook(() => useUpdateMany(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -117,21 +123,31 @@ describe("useUpdateMany Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            ids: ["1", "2"],
-            resource: "posts",
-            mutationMode: "undoable",
-            undoableTimeout: 0,
-            values: { id: "1", title: "test" },
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        assertList(useListResult, "title", [initialTitle1, initialTitle2]);
+
+        assertList(useManyResult, "title", [initialTitle1, initialTitle2]);
+
+        act(() => {
+            result.current.mutate({
+                ids: ["1", "2"],
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 0,
+                values: { id: "1", title: "test" },
+            });
         });
+
+        assertList(useListResult, "title", [updatedTitle, updatedTitle]);
+
+        assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
         });
-
-        const { isSuccess } = result.current;
-
-        expect(isSuccess).toBeTruthy();
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

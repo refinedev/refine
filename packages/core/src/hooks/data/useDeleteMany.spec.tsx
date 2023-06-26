@@ -87,20 +87,30 @@ describe("useDeleteMany Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "undoable",
-            undoableTimeout: 0,
-            ids: ["1"],
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertListLength(useListResult, 2);
+
+        await assertListLength(useManyResult, 2);
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+                ids: ["1", "2"],
+            });
         });
+
+        await assertListLength(useListResult, 0);
+
+        await assertListLength(useManyResult, 0);
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
         });
-
-        const { isSuccess } = result.current;
-
-        expect(isSuccess).toBeTruthy();
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
