@@ -619,6 +619,32 @@ render(
 );
 ```
 
+:::caution
+
+If your route has no `:action` parameter or your action is `list`, the back button will not be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property.
+
+```tsx
+/* highlight-next-line */
+import { useBack } from "@refinedev/core";
+import { Edit } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostEdit: React.FC = () => {
+    /* highlight-next-line */
+    const back = useBack();
+    const BackButton = () => <Button>←</Button>;
+
+    return (
+        /* highlight-next-line */
+        <Edit goBack={<BackButton />} headerProps={{ onBack: back }}>
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+```
+
+:::
+
 ### `isLoading`
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.

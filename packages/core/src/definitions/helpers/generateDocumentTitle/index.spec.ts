@@ -111,4 +111,16 @@ describe("generateDocumentTitle", () => {
                 "#1 Show Post | refine",
             );
     });
+
+    it("should use the fallback value when `translate` returns the key", () => {
+        translateMock.mockReturnValueOnce("documentTitle.posts.show");
+        expect(
+            generateDefaultDocumentTitle(
+                translateMock,
+                { name: "posts" },
+                "show",
+                "1",
+            ),
+        ).toBe("#1 Show Post | refine");
+    });
 });

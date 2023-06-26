@@ -45,14 +45,21 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     const breadCrumbItems = breadcrumbs.map(({ label, icon, href }) => ({
         key: `breadcrumb-item-${label}`,
         title: (
-            <>
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 4,
+                }}
+            >
                 {!hideIcons && icon}
                 {href ? (
                     <ActiveLink to={href}>{label}</ActiveLink>
                 ) : (
                     <span>{label}</span>
                 )}
-            </>
+            </div>
         ),
     }));
 
