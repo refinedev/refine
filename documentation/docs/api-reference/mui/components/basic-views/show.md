@@ -381,13 +381,33 @@ export const App: React.FC = () => {
 To customize the back button or to disable it, you can use the `goBack` property.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+import { useNavigation } from "@refinedev/core";
+
+const RealBackButton = () => {
+    const { goBack } = useNavigation();
+
+    return <Button onClick={goBack}>BACK!</Button>;
+};
+
+const RealPostShow: React.FC = () => {
+    return (
+        <Show
+            // highlight-next-line
+            goBack={<RealBackButton />}
+        >
+            <span>Rest of your page here</span>
+        </Show>
+    );
+};
+
+
 // visible-block-start
 import { Show } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@refinedev/core";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     return <Button onClick={goBack}>BACK!</Button>;
 };
@@ -416,7 +436,7 @@ render(
                         <RefineMui.ShowButton recordItemId={123} />
                     </div>
                 ),
-                show: PostShow,
+                show: RealPostShow,
             },
         ]}
     />,
