@@ -21,7 +21,7 @@ const renderList = (list: ReactNode) => {
 
 describe("<List/>", () => {
     beforeEach(() => {
-        // This is an issue on `mui` side rather than `refine`. Ignoring for now but might need to be fixed.
+        // This is an issue on `chakra-ui` side rather than `refine`. Ignoring for now but might need to be fixed.
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.includes?.("validateDOMNesting")) {
                 return;

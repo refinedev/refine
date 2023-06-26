@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import * as util from "util";
 // import { createMockServer } from "./dataMocks";
 
-/** Antd mocks */
+/** Mantine mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
     return {
         matches: false,
