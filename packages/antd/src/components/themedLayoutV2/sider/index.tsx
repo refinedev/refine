@@ -128,7 +128,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                         style={linkStyle}
                     >
-                        <Link to={route ?? ""}>{label}</Link>
+                        <Link to={route ?? ""} style={linkStyle}>
+                            {label}
+                        </Link>
                         {!siderCollapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}

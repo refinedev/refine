@@ -1,3 +1,4 @@
+import React from "react";
 import {
     ParsedParams,
     IResourceItem,
@@ -150,7 +151,11 @@ export const mockRouterBindings = ({
         back: () => {
             return () => undefined;
         },
-        Link: () => null,
+        Link: ({ to, children, ...props }) => (
+            <a href={to} {...props}>
+                {children}
+            </a>
+        ),
         ...fns,
     };
 
