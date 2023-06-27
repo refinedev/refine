@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.25.1
+
+### Patch Changes
+
+-   [#4599](https://github.com/refinedev/refine/pull/4599) [`5bb6f47a4d4`](https://github.com/refinedev/refine/commit/5bb6f47a4d4e29a7de5426879754fcd78e3fa4d5) Thanks [@aliemir](https://github.com/aliemir)! - Update default document title generation to use the fallback title when `i18n`'s `translate` function returns the `key` value.
+
 ## 4.25.0
 
 ### Minor Changes
