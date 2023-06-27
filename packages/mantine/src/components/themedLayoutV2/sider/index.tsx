@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -42,6 +42,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     render,
     meta,
     Title: TitleFromProps,
+    activeItemDisabled = false,
 }) => {
     const theme = useMantineTheme();
     const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
@@ -114,6 +115,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 ? {}
                 : { component: Link as any, to: route };
 
+            const disablePointerStyle: CSSProperties =
+                activeItemDisabled && isSelected
+                    ? { pointerEvents: "none" }
+                    : {};
+
             return (
                 <CanAccess
                     key={item.key}
@@ -145,6 +151,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                     : "18px"
                             }
                             styles={commonNavLinkStyles}
+                            style={disablePointerStyle}
                             {...additionalLinkProps}
                         >
                             {isParent && renderTreeView(children, selectedKey)}
