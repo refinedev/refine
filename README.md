@@ -90,17 +90,23 @@ You can preview, modify, and download your project immediately, thereby streamli
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
+<div>
 <a href="https://s.refine.dev/readme-admin-panel" target="_blank">
  <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
 </a>
+</div>
 
+<div>
  <a href="https://s.refine.dev/readme-medium-clone" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
 </a>
+</div>
 
+<div>
  <a href="https://s.refine.dev/readme-ssr-storefront" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
 </a>
+</div>
 
 <br/>
 <br/>
