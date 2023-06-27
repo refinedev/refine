@@ -1,8 +1,6 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { configure } from "@testing-library/dom";
-import * as util from "util";
-// import { createMockServer } from "./dataMocks";
 
 configure({
     asyncUtilTimeout: 10000,
@@ -21,12 +19,5 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 window.scroll = jest.fn();
 window.alert = jest.fn();
-
-/** mock service worker setup */
-// const server = createMockServer();
-
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());
 
 jest.setTimeout(20000);

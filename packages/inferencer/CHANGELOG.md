@@ -1,5 +1,39 @@
 # @pankod/refine-mantine
 
+## 4.2.0
+
+### Minor Changes
+
+-   [#4582](https://github.com/refinedev/refine/pull/4582) [`2edadc3a2aa`](https://github.com/refinedev/refine/commit/2edadc3a2aa46f193179279e29f0625b3287191f) Thanks [@rasitcolakel](https://github.com/rasitcolakel)! - fix: added predefined relationInfer control
+
+### Patch Changes
+
+-   [#4601](https://github.com/refinedev/refine/pull/4601) [`090653717d6`](https://github.com/refinedev/refine/commit/090653717d6356cd67a27bb6e5b0ec51e87315cf) Thanks [@aliemir](https://github.com/aliemir)! - Updated inferencer functions to check for relational fields with representable values. If the inferencer type is `show` or `list`, the inferencer will use the available properties to show the field instead of trying to fetch the relational data.
+
+    ```tsx
+    // posts/1
+    {
+        id: 1,
+        name: "Post 1",
+        tags: [
+            {
+                id: 5,
+                name: "Tag 5"
+            },
+            {
+                id: 6,
+                name: "Tag 6"
+            }
+        ],
+        content: "...",
+    }
+    ```
+
+    Above structure will show the `tags` field in list and show inferencers using the `name` property instead of trying to fetch the relational data. But `edit` and `create` inferencers will still work with the relational data.
+
+-   Updated dependencies [[`5bb6f47a4d4`](https://github.com/refinedev/refine/commit/5bb6f47a4d4e29a7de5426879754fcd78e3fa4d5)]:
+    -   @refinedev/core@4.25.1
+
 ## 4.1.4
 
 ### Patch Changes

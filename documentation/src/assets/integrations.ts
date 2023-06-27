@@ -23,6 +23,7 @@ import {
     Ably,
     Dp,
     Elide,
+    UseGenerated,
     EntRefine,
     Chakra,
 } from "./integration-icons";
@@ -190,6 +191,20 @@ export const integrations: IntegrationsType = {
                 },
             ],
         },
+        {
+            name: "useGenerated Data Provider",
+            icon: UseGenerated,
+            description:
+                "Connector for backends created with <strong>useGenerated</strong> (GraphQL)",
+            url: "https://github.com/usegen/refine-use-generated",
+            status: "stable",
+            contributors: [
+                {
+                    name: "usegen",
+                    url: "https://github.com/usegen",
+                },
+            ],
+        },
     ],
     frameworks: [
         {
@@ -309,6 +324,21 @@ export const integrations: IntegrationsType = {
                 {
                     name: "diazoxide",
                     url: "https://github.com/diazoxide",
+                },
+            ],
+        },
+        ,
+        {
+            name: "useGenerated Data Provider",
+            icon: UseGenerated,
+            description:
+                "Connector for backends created with <strong>useGenerated</strong> (GraphQL)",
+            url: "https://github.com/usegen/refine-use-generated",
+            status: "stable",
+            contributors: [
+                {
+                    name: "usegen",
+                    url: "https://github.com/usegen",
                 },
             ],
         },
