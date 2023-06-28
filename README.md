@@ -44,12 +44,9 @@
 [![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon2)
 
 <br/>
-<a href="https://refine.dev/">
-<picture>
 
-  <img alt="how-refine-works" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/how-refine-works.jpeg">
-</picture>
-</a>
+[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/readme/how-refine-works.jpeg)](https://refine.dev)
+
 
 ## What is refine?
 
