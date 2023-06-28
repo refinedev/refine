@@ -1,5 +1,24 @@
 # @pankod/refine-antd
 
+## 5.28.0
+
+### Minor Changes
+
+-   [#4502](https://github.com/refinedev/refine/pull/4502) [`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38) Thanks [@Mr0nline](https://github.com/Mr0nline)! - feat: ability to tweak active sider items navigation
+
+    Visiting active sider items triggers page reloads due to them being links. We can now provide activeItemDisabled prop to disable such reloads.
+
+### Patch Changes
+
+-   [#4607](https://github.com/refinedev/refine/pull/4607) [`fed630dcc3e`](https://github.com/refinedev/refine/commit/fed630dcc3ef291efbfa96ed6f8e5c5448ac16a6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - test: added tests for `<ThemedSiderV2/>`.
+
+-   [#4609](https://github.com/refinedev/refine/pull/4609) [`48aaf739352`](https://github.com/refinedev/refine/commit/48aaf739352c6d8edc21cb111cc871de8f68549e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: `icon` and `label` alignment in `Breadcrumb` component
+
+    Fixed the issue that the `icon` and `label` to be misaligned in the `Breadcrumb` component.
+
+-   Updated dependencies [[`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38)]:
+    -   @refinedev/ui-types@1.18.0
+
 ## 5.27.0
 
 ### Minor Changes
