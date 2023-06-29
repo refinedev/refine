@@ -13,9 +13,9 @@ As with the first, this Hackathon is about showcasing your skills, creativity, a
 **[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry-standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
 
-⏰ The Hackathon will kick off on June 21, and we're proud to host it in collaboration with the [DEV](https://dev.to/refine) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
+⏰ The Hackathon kicked off on June 21, and we're proud to host it in collaboration with the DEV platform.
 
-👉 Refer to refine Open Source Hackathon [official announcement post]((https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn)).
+👉 **Refer to refine Open Source Hackathon [official announcement post](https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn).**
 
 🚀 The prizel pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
 

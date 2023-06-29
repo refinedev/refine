@@ -1,5 +1,18 @@
 # @pankod/refine-ui-tests
 
+## 1.9.0
+
+### Minor Changes
+
+-   [#4502](https://github.com/refinedev/refine/pull/4502) [`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38) Thanks [@Mr0nline](https://github.com/Mr0nline)! - feat: added tests for `<ThemedSiderV2/>`'s `activeItemDisabled` prop.
+    When `activeItemDisabled` prop is `trye`, the active item will be disabled and not clickable.
+
+### Patch Changes
+
+-   Updated dependencies [[`c3c0deed564`](https://github.com/refinedev/refine/commit/c3c0deed564bdbded58c615357a55e666473923a), [`8c2b3be35b0`](https://github.com/refinedev/refine/commit/8c2b3be35b0132fc9a7b79287d281a9f922424d0), [`5bb6f47a4d4`](https://github.com/refinedev/refine/commit/5bb6f47a4d4e29a7de5426879754fcd78e3fa4d5), [`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38)]:
+    -   @refinedev/core@4.26.0
+    -   @refinedev/ui-types@1.18.0
+
 ## 1.8.0
 
 ### Minor Changes
