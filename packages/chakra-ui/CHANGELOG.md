@@ -1,5 +1,25 @@
 # @pankod/refine-chakra-ui
 
+## 2.20.0
+
+### Minor Changes
+
+-   [#4502](https://github.com/refinedev/refine/pull/4502) [`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38) Thanks [@Mr0nline](https://github.com/Mr0nline)! - feat: ability to tweak active sider items navigation
+
+    Visiting active sider items triggers page reloads due to them being links. We can now provide activeItemDisabled prop to disable such reloads.
+
+### Patch Changes
+
+-   [#4607](https://github.com/refinedev/refine/pull/4607) [`fed630dcc3e`](https://github.com/refinedev/refine/commit/fed630dcc3ef291efbfa96ed6f8e5c5448ac16a6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: TSDoc typos.
+    TSDoc descriptions texts has Mantine instead of Chakra UI.
+
+    feat: added `ThemedLayoutV2` tests.
+
+-   [#4607](https://github.com/refinedev/refine/pull/4607) [`fed630dcc3e`](https://github.com/refinedev/refine/commit/fed630dcc3ef291efbfa96ed6f8e5c5448ac16a6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - test: added tests for `<ThemedSiderV2/>`.
+
+-   Updated dependencies [[`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38)]:
+    -   @refinedev/ui-types@1.18.0
+
 ## 2.19.0
 
 ### Minor Changes
