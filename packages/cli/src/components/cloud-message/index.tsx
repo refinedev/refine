@@ -20,7 +20,9 @@ const CloudMessage: React.FC = () => {
 
             <Newline />
             <Text>
-                {`Interested in any of the new backend features of refine? Join now and get early access -> https://s.refine.dev/meet-enterprise`}
+                Interested in any of the new backend features of refine? Join
+                now and get early access -&gt;
+                https://s.refine.dev/meet-enterprise
             </Text>
         </Box>
     );
