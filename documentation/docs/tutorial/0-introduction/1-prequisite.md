@@ -23,7 +23,8 @@ A clickable task checklist is waiting for you at the end of each page to measure
 <details>
 <summary>What if i need help or want to learn more about <strong>refine</strong>, or want to give feedback to developers behind it?</summary>
 
--   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+-   [🌟 Apply for the Priority support program!](https://s.refine.dev/slack) you can apply to priority support program and receive assistance from the refine **core** team in your **private** channel.
+-   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help and ask questions to the community.
 -   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
 
 </details>
