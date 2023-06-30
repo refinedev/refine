@@ -13,6 +13,7 @@ import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 import { Menu } from "./common-header/menu";
 import { CommonThemeToggle } from "./common-theme-toggle";
 import { CommonDocSearchButton } from "./common-doc-search-button";
+import { TopAnnouncement } from "./top-announcement";
 
 type Props = {
     hasSticky?: boolean;
@@ -31,6 +32,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
 
     return (
         <>
+            <TopAnnouncement />
             <div
                 className={clsx(
                     "h-2 header-sm:h-4 header-md:h-6",
