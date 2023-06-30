@@ -3,16 +3,23 @@ import React from "react";
 
 export const TopAnnouncement = () => {
     return (
-        <div
+        <a
+            href="https://s.refine.dev/discover-enterprise"
+            target="_blank"
+            rel="noreferrer"
             className={clsx(
+                "block",
                 "w-full",
                 "p-2",
                 "header-md:p-4",
                 "bg-refine-blue",
                 // "bg-opacity-[0.15]",
-                "text-xs",
+                "text-base",
                 "text-gray-900",
                 "text-center",
+                "no-underline",
+                "hover:no-underline",
+                "hover:text-gray-900",
             )}
             style={{
                 borderBottom: "1px solid rgba(0, 128, 255, 0.15)",
@@ -20,22 +27,18 @@ export const TopAnnouncement = () => {
                     "linear-gradient(180deg, rgba(0, 128, 255, 0.05) 0%, rgba(110, 179, 247, 0.00) 100%), #F6FAFE",
             }}
         >
-            👀 Interested in the latest enterprise backend features of refine? 👉{" "}
-            <a
-                href="https://s.refine.dev/discover-enterprise"
-                target="_blank"
-                rel="noreferrer"
+            👀 Interested in the latest enterprise backend features of refine?
+            👉{" "}
+            <span
                 className={clsx(
                     "font-bold",
                     "text-refine-blue",
                     "hover:text-refine-blue-dark",
-                    "no-underline",
-                    "hover:no-underline",
                 )}
             >
                 Join now
-            </a>{" "}
+            </span>{" "}
             and get early access!
-        </div>
+        </a>
     );
 };
