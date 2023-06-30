@@ -20,9 +20,9 @@ export const TopAnnouncement = () => {
                     "linear-gradient(180deg, rgba(0, 128, 255, 0.05) 0%, rgba(110, 179, 247, 0.00) 100%), #F6FAFE",
             }}
         >
-            👀 Interested in the new enterprise backend features of refine? 👉{" "}
+            👀 Interested in the latest enterprise backend features of refine? 👉{" "}
             <a
-                href="https://s.refine.dev/go-enterprise"
+                href="https://s.refine.dev/discover-enterprise"
                 target="_blank"
                 rel="noreferrer"
                 className={clsx(
