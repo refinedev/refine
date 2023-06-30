@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@refinedev/cli": "^2.7.1",
-    "@refinedev/core": "^4.26.1",
+    "@refinedev/cli": "^2.7.2",
+    "@refinedev/core": "^4.26.2",
     "@refinedev/inferencer": "^4.3.0",
     "@refinedev/kbar": "^1.1.0",
     "react": "^18.0.0",
