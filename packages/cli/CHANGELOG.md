@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 2.7.1
+
+### Patch Changes
+
+-   [#4614](https://github.com/refinedev/refine/pull/4614) [`c9fecca3c33`](https://github.com/refinedev/refine/commit/c9fecca3c332671e836bb42d06afc62c3e28d4d2) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: add refine cloud early access message
+
 ## 2.7.0
 
 ### Minor Changes
