@@ -1559,6 +1559,6 @@ As highlighted above, when you integrate refine with Tremor, you can build compl
 
 ## Live CodeSandbox Example
 
- <CodeSandboxExample path="blog-react-toastify" /> 
+ <CodeSandboxExample path="blog-refine-tremor" /> 
 
 ---
