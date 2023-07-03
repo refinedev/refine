@@ -47,6 +47,9 @@ export const useRelationFetch = ({
                 const promises = allFields.map(async (field) => {
                     if (field && (field.relation || field.canRelation)) {
                         if (record) {
+                            if (field.relationInfer) {
+                                return field;
+                            }
                             const dataProviderName = dataProviderFromResource(
                                 field.resource,
                             );

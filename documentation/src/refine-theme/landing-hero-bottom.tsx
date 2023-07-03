@@ -1,6 +1,7 @@
 import React from "react";
 import { LandingSlidingHighlights } from "./landing-sliding-highlights";
 import clsx from "clsx";
+import { YCombinatorIcon } from "./icons/ycombinator";
 
 export const LandingHeroBottom = () => {
     return (
@@ -94,19 +95,7 @@ export const LandingHeroBottom = () => {
                         <LandingSlidingHighlights />
                     </div>
                     <div className="pt-16 landing-md:pt-12">
-                        <a
-                            href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <img
-                                src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=dark&period=daily"
-                                alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
-                                style={{ width: "250px", height: "54px" }}
-                                width="250"
-                                height="54"
-                            />
-                        </a>
+                        <YCombinatorIcon />
                     </div>
                 </div>
             </div>
