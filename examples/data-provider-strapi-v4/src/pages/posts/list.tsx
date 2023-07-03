@@ -16,7 +16,7 @@ import {
 
 import { Table, Select, Space, Form, Radio, Tag } from "antd";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 import { API_URL } from "../../constants";
 
