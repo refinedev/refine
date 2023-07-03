@@ -1,5 +1,5 @@
 import { HttpError } from "@refinedev/core";
-import { Edit, useAutocomplete, AutoSaveIndicator } from "@refinedev/mui";
+import { Edit, useAutocomplete } from "@refinedev/mui";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -28,10 +28,7 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            headerButtons={<AutoSaveIndicator {...autoSaveProps} />}
-        >
+        <Edit saveButtonProps={saveButtonProps} autoSaveProps={autoSaveProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
