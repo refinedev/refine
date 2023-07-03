@@ -3,7 +3,7 @@
 
 describe("table-material-ui-cursor-pagination", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
     });
 
     it("should work with pagination", () => {
