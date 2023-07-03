@@ -1,6 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-import { Edit, useForm, useSelect, AutoSaveIndicator } from "@refinedev/antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 
@@ -22,10 +22,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            headerButtons={<AutoSaveIndicator {...autoSaveProps} />}
-        >
+        <Edit saveButtonProps={saveButtonProps} autoSaveProps={autoSaveProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
