@@ -1,4 +1,4 @@
-# refine react-toastify demo
+# React Admin Dashboard with Tremor and refine
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
