@@ -4,8 +4,8 @@ import { EditButton, List, useDataGrid } from "@refinedev/mui";
 import { useModalForm } from "@refinedev/react-hook-form";
 import React from "react";
 
-import { CreatePostModal, EditPostModal } from "components";
-import { ICategory, IPost, Nullable } from "interfaces";
+import { CreatePostModal, EditPostModal } from "../../components";
+import { ICategory, IPost, Nullable } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();

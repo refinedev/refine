@@ -8,8 +8,6 @@ const container = document.getElementById("root");
 // eslint-disable-next-line
 const root = createRoot(container!);
 
-console.log(window.location.origin);
-
 root.render(
     <React.StrictMode>
         <Auth0Provider
