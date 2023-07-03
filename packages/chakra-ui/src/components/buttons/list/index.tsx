@@ -21,7 +21,7 @@ import { IconList } from "@tabler/icons";
 import { ListButtonProps } from "../types";
 
 /**
- * `<ListButton>` is using uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
+ * `<ListButton>` is using uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *

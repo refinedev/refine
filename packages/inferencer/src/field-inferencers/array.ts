@@ -1,6 +1,12 @@
 import { FieldInferencer, InferType } from "../types";
 
-export const arrayInfer: FieldInferencer = (key, value, record, infer) => {
+export const arrayInfer: FieldInferencer = (
+    key,
+    value,
+    record,
+    infer,
+    type,
+) => {
     const isArray = Array.isArray(value);
     const isBasicArray =
         Array.isArray(value) &&
@@ -8,7 +14,7 @@ export const arrayInfer: FieldInferencer = (key, value, record, infer) => {
 
     if (isArray) {
         if (!isBasicArray) {
-            const inferredInnerType = infer(key, value[0], record, infer);
+            const inferredInnerType = infer(key, value[0], record, infer, type);
             if (inferredInnerType) {
                 return {
                     ...inferredInnerType,
@@ -20,7 +26,7 @@ export const arrayInfer: FieldInferencer = (key, value, record, infer) => {
                 return false;
             }
         }
-        const basicType = infer(key, value[0], record, infer) || {
+        const basicType = infer(key, value[0], record, infer, type) || {
             type: "string" as InferType,
         };
 

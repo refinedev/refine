@@ -13,6 +13,7 @@ import { LandingGithubStarButton } from "./landing-github-star-button";
 import { DiscordIcon } from "./icons/discord";
 import { HamburgerIcon } from "./icons/hamburger";
 import { RefineLogoIcon } from "./icons/refine-logo";
+import { TopAnnouncement } from "./top-announcement";
 
 export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -37,6 +38,7 @@ export const LandingHeader = () => {
 
     return (
         <>
+            <TopAnnouncement />
             <div
                 className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
                     "bg-landing-header-bg": offset,

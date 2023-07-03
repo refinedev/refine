@@ -2237,7 +2237,57 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
+                record 
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &&
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                !
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                !
+              </span>
+              <span
+                class="token plain"
+              >
                 record
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                tags
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                length
               </span>
               <span
                 class="token punctuation"
@@ -6366,6 +6416,39 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
+                &&
+              </span>
+              <span
+                class="token plain"
+              >
+                 record
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                tags
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                length 
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
                 ?
               </span>
               <span
@@ -6501,6 +6584,69 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                                         
               </span>
               <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              >
+                record
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                tags
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?.
+              </span>
+              <span
+                class="token plain"
+              >
+                length 
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ?
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                            
+              </span>
+              <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -6601,7 +6747,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                            
+                                                
               </span>
               <span
                 class="token punctuation"
@@ -6710,7 +6856,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                
+                                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -6737,7 +6883,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                                    
+                                                        
               </span>
               <span
                 class="token tag attr-name"
@@ -6794,7 +6940,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                                    
+                                                        
               </span>
               <span
                 class="token tag attr-name"
@@ -6851,7 +6997,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                                
+                                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -6870,7 +7016,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                                
               </span>
               <span
                 class="token punctuation"
@@ -6901,7 +7047,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        
+                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -6920,6 +7066,109 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 &gt;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                        
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;/
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                        
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
               </span>
               <span
                 class="token plain-text"

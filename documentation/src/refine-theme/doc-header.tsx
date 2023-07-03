@@ -9,6 +9,7 @@ import { DocSidebarModal } from "./doc-sidebar-modal";
 import { RefineLogo } from "./common-refine-logo";
 import { CommonHamburgerIcon } from "./common-hamburger-icon";
 import { DocSearchButton } from "./doc-search-button";
+import { TopAnnouncement } from "./top-announcement";
 
 export const HEADER_HEIGHT = 67;
 
@@ -113,20 +114,23 @@ export const Mobile = () => {
 
 export const DocHeader = () => {
     return (
-        <div
-            className={clsx(
-                "flex items-center",
-                "h-12 sm:h-16",
-                "z-10",
-                "sticky",
-                "top-0",
-                "py-2 sm:py-3 px-4 sm:px-6",
-                "bg-gray-50 dark:bg-gray-800",
-                "border-b border-gray-100 dark:border-gray-700",
-            )}
-        >
-            <Desktop />
-            <Mobile />
-        </div>
+        <>
+            <TopAnnouncement />
+            <div
+                className={clsx(
+                    "flex items-center",
+                    "h-12 sm:h-16",
+                    "z-10",
+                    "sticky",
+                    "top-0",
+                    "py-2 sm:py-3 px-4 sm:px-6",
+                    "bg-gray-50 dark:bg-gray-800",
+                    "border-b border-gray-100 dark:border-gray-700",
+                )}
+            >
+                <Desktop />
+                <Mobile />
+            </div>
+        </>
     );
 };
