@@ -1,12 +1,20 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useUpdate } from "./useUpdate";
 import * as UseInvalidate from "../invalidate/index";
+import {
+    renderUseOne,
+    renderUseList,
+    renderUseMany,
+    assertList,
+    assertOne,
+    assertMutationSuccess,
+} from "@test/mutation-helpers";
 
 describe("useUpdate Hook", () => {
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -14,11 +22,13 @@ describe("useUpdate Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "pessimistic",
-            id: "1",
-            values: { id: "1", title: "test" },
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "pessimistic",
+                id: "1",
+                values: { id: "1", title: "test" },
+            });
         });
 
         await waitFor(() => {
@@ -30,56 +40,104 @@ describe("useUpdate Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
+        const initialTitle =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const updatedTitle = "optimistic test";
+
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    update: async () => {
+                        return new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                return reject(new Error("Error"));
+                            }, 500);
+                        });
+                    },
+                },
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "optimistic",
-            id: "1",
-            values: { id: "1", title: "optimistic test" },
+        const useOneResult = renderUseOne();
+
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertOne(useOneResult, "title", initialTitle);
+
+        await assertList(useListResult, "title", initialTitle);
+
+        await assertList(useManyResult, "title", initialTitle);
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "optimistic",
+                id: "1",
+                values: { title: updatedTitle },
+            });
         });
+
+        await assertOne(useOneResult, "title", updatedTitle);
+
+        await assertList(useListResult, "title", updatedTitle);
+
+        await assertList(useManyResult, "title", updatedTitle);
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            expect(result.current.isError).toEqual(true);
         });
-        const { isSuccess } = result.current;
 
-        expect(isSuccess).toBeTruthy();
+        await assertOne(useOneResult, "title", initialTitle);
+
+        await assertList(useListResult, "title", initialTitle);
+
+        await assertList(useManyResult, "title", initialTitle);
     });
 
-    it("should works with undoable update", async () => {
-        const onCancelMock = jest.fn();
+    it("should work with undoable update", async () => {
+        const initialTitle =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const updatedTitle = "undoable test";
 
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "undoable",
-            onCancel: onCancelMock,
-            undoableTimeout: 0,
-            id: "1",
-            values: { id: "1", title: "undoable test" },
+        const useOneResult = renderUseOne();
+
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertOne(useOneResult, "title", initialTitle);
+
+        await assertList(useListResult, "title", initialTitle);
+
+        await assertList(useManyResult, "title", initialTitle);
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+                id: "1",
+                values: { title: updatedTitle },
+            });
         });
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+        await assertOne(useOneResult, "title", updatedTitle);
 
-        expect(onCancelMock).toHaveBeenCalledTimes(1);
-        const { isSuccess } = result.current;
+        await assertList(useListResult, "title", updatedTitle);
 
-        expect(isSuccess).toBeTruthy();
+        await assertList(useManyResult, "title", updatedTitle);
+
+        await assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
