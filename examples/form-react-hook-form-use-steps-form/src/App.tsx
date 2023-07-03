@@ -7,7 +7,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { PostCreate, PostEdit, PostList } from "pages/posts";
+import { PostCreate, PostEdit, PostList } from "./pages/posts";
 
 const App: React.FC = () => {
     return (
