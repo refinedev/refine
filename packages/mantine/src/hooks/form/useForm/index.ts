@@ -79,7 +79,6 @@ export const useForm = <
     TResponseError extends HttpError = TError,
 >({
     refineCoreProps,
-    transformValues,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -164,8 +163,8 @@ export const useForm = <
         if (isValuesChanged && refineCoreProps?.autoSave && values) {
             setWarnWhen(false);
 
-            const transformedValues = transformValues
-                ? transformValues(values)
+            const transformedValues = rest.transformValues
+                ? rest.transformValues(values)
                 : (values as TTransformed);
 
             onFinishAutoSave(transformedValues);
