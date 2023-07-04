@@ -1,5 +1,5 @@
-import { BaseRecord, UpdateResponse } from ".";
-import { MutationStatus } from "@tanstack/react-query";
+import { BaseRecord, HttpError, UpdateResponse } from ".";
+import { UseUpdateReturnType } from "../hooks/data/useUpdate";
 
 export type AutoSaveProps<TResponse, TResponseError, TVariables> = {
     autoSave?: boolean;
@@ -18,7 +18,6 @@ export type AutoSaveProps<TResponse, TResponseError, TVariables> = {
 
 export type AutoSaveReturnType<
     TData extends BaseRecord = BaseRecord,
-    // TError extends HttpError = HttpError,
     TVariables = {},
 > = {
     autoSaveProps: AutoSaveIndicatorProps;
@@ -27,6 +26,11 @@ export type AutoSaveReturnType<
     ) => Promise<UpdateResponse<TData> | void> | void;
 };
 
-export type AutoSaveIndicatorProps = {
-    status: MutationStatus;
-}; // UseUpdateReturnType<TData, TError, TVariables>;
+export type AutoSaveIndicatorProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = Pick<
+    UseUpdateReturnType<TData, TError, TVariables>,
+    "data" | "error" | "status"
+>;

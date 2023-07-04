@@ -576,6 +576,8 @@ export const useForm = <
         onFinishAutoSave,
         autoSaveProps: {
             status: mutationAutoSave.status,
+            error: mutationAutoSave.error,
+            data: mutationAutoSave.data,
         },
         id,
         setId,
