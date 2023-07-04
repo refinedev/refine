@@ -1,9 +1,4 @@
-import {
-    Edit,
-    useForm,
-    useSelect,
-    AutoSaveIndicator,
-} from "@refinedev/mantine";
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, MultiSelect } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
@@ -54,10 +49,7 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            headerButtons={<AutoSaveIndicator {...autoSaveProps} />}
-        >
+        <Edit saveButtonProps={saveButtonProps} autoSaveProps={autoSaveProps}>
             <form>
                 <TextInput
                     mt={8}
