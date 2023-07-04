@@ -206,7 +206,7 @@ export type UseFormReturnType<
         routeParams?: Record<string, string | number>,
     ) => void;
 } & UseLoadingOvertimeReturnType &
-    AutoSaveReturnType<TResponse, TVariables>;
+    AutoSaveReturnType<TResponse, TResponseError, TVariables>;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -576,8 +576,8 @@ export const useForm = <
         onFinishAutoSave,
         autoSaveProps: {
             status: mutationAutoSave.status,
-            error: mutationAutoSave.error,
             data: mutationAutoSave.data,
+            error: mutationAutoSave.error,
         },
         id,
         setId,

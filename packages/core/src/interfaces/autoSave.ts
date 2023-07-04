@@ -18,9 +18,13 @@ export type AutoSaveProps<TResponse, TResponseError, TVariables> = {
 
 export type AutoSaveReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    autoSaveProps: AutoSaveIndicatorProps;
+    autoSaveProps: Pick<
+        UseUpdateReturnType<TData, TError, TVariables>,
+        "data" | "error" | "status"
+    >;
     onFinishAutoSave: (
         values: TVariables,
     ) => Promise<UpdateResponse<TData> | void> | void;
@@ -30,7 +34,7 @@ export type AutoSaveIndicatorProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = Pick<
-    UseUpdateReturnType<TData, TError, TVariables>,
-    "data" | "error" | "status"
->;
+> = Partial<
+    Pick<UseUpdateReturnType<TData, TError, TVariables>, "data" | "error">
+> &
+    Required<Pick<UseUpdateReturnType<TData, TError, TVariables>, "status">>;
