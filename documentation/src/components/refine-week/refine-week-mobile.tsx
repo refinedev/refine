@@ -52,8 +52,8 @@ export const RefineWeekMobile = ({ variant, data, className }: Props) => {
                         "rounded-[4px]",
                         "z-[1]",
                     )}
-                    src={data.cover}
-                    srcSet={data.cover2x}
+                    src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${data.cover}`}
+                    srcSet={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${data.cover2x}`}
                     alt={data.coverAlt}
                 />
             </div>
@@ -196,8 +196,8 @@ export const RefineWeekMobile = ({ variant, data, className }: Props) => {
                                             "object-cover",
                                             "rounded-[4px]",
                                         )}
-                                        src={item.image}
-                                        srcSet={item.image2x}
+                                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${item.image}`}
+                                        srcSet={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${item.image2x}`}
                                         alt={item.title}
                                     />
                                 </div>
