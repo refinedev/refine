@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Edit, AutoSaveIndicator } from "@refinedev/chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import {
     FormControl,
     FormErrorMessage,
@@ -41,7 +41,7 @@ export const PostEdit = () => {
         <Edit
             isLoading={formLoading}
             saveButtonProps={saveButtonProps}
-            headerButtons={<AutoSaveIndicator {...autoSaveProps} />}
+            autoSaveProps={autoSaveProps}
         >
             <FormControl mb="3" isInvalid={!!errors?.title}>
                 <FormLabel>Title</FormLabel>
