@@ -1,27 +1,12 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { AutoSaveIndicatorProps, useTranslate } from "@refinedev/core";
 import { Typography, theme } from "antd";
 import {
-    CloudOutlined,
-    CheckCircleOutlined,
+    EllipsisOutlined,
     SyncOutlined,
-    CloseCircleOutlined,
+    CheckCircleOutlined,
+    ExclamationCircleOutlined,
 } from "@ant-design/icons";
-
-const IconWrapper: React.FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <span
-            style={{
-                position: "relative",
-                top: "3px",
-                left: "5px",
-            }}
-        >
-            <CloudOutlined style={{ fontSize: "22px" }} />
-            {children}
-        </span>
-    );
-};
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
@@ -31,64 +16,21 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     const { token } = useToken();
 
     let message = null;
-    let icon = <IconWrapper />;
+    let icon = <EllipsisOutlined />;
 
     switch (status) {
         case "success":
             message = translate("autosave.success", "saved");
-            icon = (
-                <IconWrapper>
-                    <CheckCircleOutlined
-                        style={{
-                            fontSize: "10px",
-                            position: "absolute",
-                            right: "6px",
-                            top: "6px",
-                            background: token.colorBgLayout,
-                            color: token.colorSuccess,
-                            borderRadius: "50%",
-                        }}
-                    />
-                </IconWrapper>
-            );
+            icon = <CheckCircleOutlined />;
             break;
         case "error":
             message = translate("autosave.error", "error");
-            icon = (
-                <IconWrapper>
-                    <CloseCircleOutlined
-                        style={{
-                            fontSize: "10px",
-                            position: "absolute",
-                            right: "6px",
-                            top: "6px",
-                            background: token.colorBgLayout,
-                            color: token.colorError,
-                            borderRadius: "50%",
-                        }}
-                    />
-                </IconWrapper>
-            );
+            icon = <ExclamationCircleOutlined />;
 
             break;
         case "loading":
             message = translate("autosave.loading", "saving changes...");
-            icon = (
-                <IconWrapper>
-                    <SyncOutlined
-                        spin
-                        style={{
-                            fontSize: "10px",
-                            position: "absolute",
-                            right: "6px",
-                            top: "6px",
-                            background: token.colorBgLayout,
-                            color: token.colorInfo,
-                            borderRadius: "50%",
-                        }}
-                    />
-                </IconWrapper>
-            );
+            icon = <SyncOutlined />;
 
             break;
         default:
@@ -106,7 +48,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             }}
         >
             {message}
-            {icon}
+            <span style={{ marginLeft: ".2rem" }}>{icon}</span>
         </Typography.Text>
     );
 };
