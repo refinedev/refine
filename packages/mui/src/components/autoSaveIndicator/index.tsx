@@ -1,82 +1,31 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { AutoSaveIndicatorProps, useTranslate } from "@refinedev/core";
 import Typography from "@mui/material/Typography";
-import CloudQueueIcon from "@mui/icons-material/CloudQueue";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
-import LoopIcon from "@mui/icons-material/Loop";
-
-const IconWrapper: React.FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <span
-            style={{
-                position: "relative",
-                top: "2px",
-                marginLeft: "0.3rem",
-            }}
-        >
-            <CloudQueueIcon fontSize="medium" />
-            {children}
-        </span>
-    );
-};
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
+import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
+import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
 }) => {
     const translate = useTranslate();
     let message = null;
-    let icon = <IconWrapper />;
+    let icon = <MoreHorizOutlinedIcon fontSize="small" />;
 
     switch (status) {
         case "success":
             message = translate("autosave.success", "saved");
-            icon = (
-                <IconWrapper>
-                    <CheckIcon
-                        color="info"
-                        sx={{
-                            position: "absolute",
-                            top: 7,
-                            right: 7,
-                            fontSize: "12px",
-                        }}
-                    />
-                </IconWrapper>
-            );
+            icon = <TaskAltOutlinedIcon fontSize="small" />;
             break;
         case "error":
             message = translate("autosave.error", "error");
-            icon = (
-                <IconWrapper>
-                    <CloseIcon
-                        color="error"
-                        sx={{
-                            position: "absolute",
-                            top: 7,
-                            right: 7,
-                            fontSize: "12px",
-                        }}
-                    />
-                </IconWrapper>
-            );
+            icon = <ErrorOutlineOutlinedIcon fontSize="small" />;
 
             break;
         case "loading":
             message = translate("autosave.loading", "saving changes...");
-            icon = (
-                <IconWrapper>
-                    <LoopIcon
-                        sx={{
-                            position: "absolute",
-                            top: 7,
-                            right: 7,
-                            fontSize: "12px",
-                        }}
-                    />
-                </IconWrapper>
-            );
-
+            icon = <SyncOutlinedIcon fontSize="small" />;
             break;
         default:
             // for idle
@@ -88,13 +37,18 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
         <Typography
             color="gray"
             fontSize="0.8rem"
+            position="relative"
             display="flex"
             alignItems="center"
             flexWrap="wrap"
-            marginRight=".5rem"
+            marginRight=".3rem"
         >
             {message}
-            {icon}
+            <span
+                style={{ position: "relative", top: "3px", marginLeft: "3px" }}
+            >
+                {icon}
+            </span>
         </Typography>
     );
 };
