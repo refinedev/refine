@@ -165,7 +165,7 @@ export const useForm = <
 
             const transformedValues = rest.transformValues
                 ? rest.transformValues(values)
-                : (values as TTransformed);
+                : (values as unknown as TTransformed);
 
             onFinishAutoSave(transformedValues);
         }
