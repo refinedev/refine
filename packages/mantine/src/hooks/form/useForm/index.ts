@@ -159,7 +159,7 @@ export const useForm = <
         }
     }, [isValuesChanged]);
 
-    useEffect((): any => {
+    useEffect(() => {
         if (isValuesChanged && refineCoreProps?.autoSave && values) {
             setWarnWhen(false);
 

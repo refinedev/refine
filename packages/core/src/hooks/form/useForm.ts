@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
+import debounce from "lodash/debounce";
 
 import {
     useWarnAboutChange,
@@ -44,7 +45,6 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import debounce from "lodash/debounce";
 
 export type ActionParams = {
     /**
@@ -486,9 +486,13 @@ export const useForm = <
         });
     };
 
-    const onFinishAutoSave = debounce((allValues) => {
-        return onFinishAutoSaveMutation(allValues);
-    }, autoSaveDebounce || 1000);
+    const onFinishAutoSave = React.useMemo(
+        () =>
+            debounce((allValues) => {
+                return onFinishAutoSaveMutation(allValues);
+            }, autoSaveDebounce || 1000),
+        [],
+    );
 
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
