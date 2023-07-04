@@ -57,7 +57,6 @@ export type UseFormProps<
     TResponse extends BaseRecord = TData,
     TResponseError extends HttpError = TError,
 > = {
-    onFinishAutoSave?: (values: TTransformed) => TTransformed;
     refineCoreProps?: UseFormCoreProps<
         TQueryFnData,
         TError,
@@ -80,7 +79,6 @@ export const useForm = <
     TResponseError extends HttpError = TError,
 >({
     refineCoreProps,
-    onFinishAutoSave: onFinishAutoSaveFromProps = (values) => values,
     transformValues,
     ...rest
 }: UseFormProps<
@@ -166,11 +164,11 @@ export const useForm = <
         if (isValuesChanged && refineCoreProps?.autoSave && values) {
             setWarnWhen(false);
 
-            const transformedValues = transformValues?.(values);
+            const transformedValues = transformValues
+                ? transformValues(values)
+                : (values as TTransformed);
 
-            if (transformedValues) {
-                onFinishAutoSave(onFinishAutoSaveFromProps(transformedValues));
-            }
+            onFinishAutoSave(transformedValues);
         }
     }, [values]);
 
