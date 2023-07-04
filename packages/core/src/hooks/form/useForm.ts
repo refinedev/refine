@@ -44,6 +44,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import debounce from "lodash/debounce";
 
 export type ActionParams = {
     /**
@@ -254,6 +255,7 @@ export const useForm = <
     overtimeOptions,
     onAutoSaveSuccess,
     onAutoSaveError,
+    autoSaveDebounce,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -453,7 +455,7 @@ export const useForm = <
         );
     };
 
-    const onFinishAutoSave = (
+    const onFinishAutoSaveMutation = (
         values: TVariables,
     ): Promise<UpdateResponse<TResponse> | void> | void => {
         if (!resource || !isEdit) return;
@@ -483,6 +485,10 @@ export const useForm = <
             },
         });
     };
+
+    const onFinishAutoSave = debounce((allValues) => {
+        return onFinishAutoSaveMutation(allValues);
+    }, autoSaveDebounce || 1000);
 
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);

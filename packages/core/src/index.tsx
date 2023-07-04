@@ -87,6 +87,7 @@ export {
     Prettify,
     FormWithSyncWithLocationParams,
     AutoSaveIndicatorProps,
+    AutoSaveProps,
 } from "./interfaces";
 
 // all auth types

@@ -1,8 +1,7 @@
 import React from "react";
-import { FormInstance, FormProps, Form } from "antd";
+import { FormInstance, FormProps, Form, ButtonProps } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
-import { ButtonProps } from "antd";
-import debounce from "lodash/debounce";
+import { AutoSaveProps } from "@refinedev/core";
 
 import {
     HttpError,
@@ -36,7 +35,11 @@ export type UseFormProps<
      * Shows notification when unsaved changes exist
      */
     warnWhenUnsavedChanges?: boolean;
-};
+    /**
+     * onFinish is override when `autosave` is on
+     */
+    onFinishAutoSave?: (values: TVariables) => TVariables;
+} & AutoSaveProps<TResponse, TResponseError, TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -90,7 +93,6 @@ export const useForm = <
     onMutationSuccess: onMutationSuccessProp,
     onMutationError,
     autoSave,
-    autoSaveDebounce,
     onAutoSaveSuccess,
     onAutoSaveError,
     submitOnEnter = false,
@@ -114,6 +116,9 @@ export const useForm = <
     updateMutationOptions,
     id: idFromProps,
     overtimeOptions,
+    onFinishAutoSave: onFinishAutoSaveFromProps = (
+        values: TVariables,
+    ): TVariables => values,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -192,10 +197,6 @@ export const useForm = <
         }
     };
 
-    const debounceWithonFinishAutoSave = debounce((allValues) => {
-        return onFinishAutoSave(allValues);
-    }, autoSaveDebounce || 1000);
-
     const onValuesChange = (changeValues: object, allValues: any) => {
         if (changeValues && warnWhenUnsavedChanges) {
             setWarnWhen(true);
@@ -203,7 +204,8 @@ export const useForm = <
 
         if (autoSave) {
             setWarnWhen(false);
-            return debounceWithonFinishAutoSave(allValues);
+
+            return onFinishAutoSave(onFinishAutoSaveFromProps(allValues));
         }
 
         return changeValues;

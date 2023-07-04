@@ -57,6 +57,7 @@ export type UseFormProps<
     TResponse extends BaseRecord = TData,
     TResponseError extends HttpError = TError,
 > = {
+    onFinishAutoSave?: (values: TVariables) => TVariables;
     refineCoreProps?: UseFormCoreProps<
         TQueryFnData,
         TError,
@@ -79,6 +80,8 @@ export const useForm = <
     TResponseError extends HttpError = TError,
 >({
     refineCoreProps,
+    onFinishAutoSave: onFinishAutoSaveFromProps = (values) => values,
+    transformValues,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -159,15 +162,15 @@ export const useForm = <
         }
     }, [isValuesChanged]);
 
-    useEffect(() => {
-        const debouceFn = setTimeout(() => {
-            if (isValuesChanged && refineCoreProps?.autoSave && values) {
-                setWarnWhen(false);
-                // TODO: fix `any` type and
-                onFinishAutoSave(values as any);
-            }
-        }, refineCoreProps?.autoSaveDebounce || 1000);
-        return () => clearTimeout(debouceFn);
+    useEffect((): any => {
+        if (isValuesChanged && refineCoreProps?.autoSave && values) {
+            setWarnWhen(false);
+
+            const x = transformValues?.(values) ?? values;
+
+            // onFinishAutoSaveFromProps(x);
+            onFinishAutoSave(x);
+        }
     }, [values]);
 
     const onSubmit: (typeof useMantineFormResult)["onSubmit"] =
