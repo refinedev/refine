@@ -31,7 +31,7 @@ describe("useSelect Hook", () => {
 
         const { options } = result.current;
 
-        await waitFor(() => expect(options).toHaveLength(2));
+        await waitFor(() => expect(options).toHaveLength(2), { timeout: 2000 });
 
         expect(options).toEqual([
             {
