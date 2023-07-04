@@ -34,7 +34,8 @@ export type AutoSaveIndicatorProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = Partial<
-    Pick<UseUpdateReturnType<TData, TError, TVariables>, "data" | "error">
-> &
-    Required<Pick<UseUpdateReturnType<TData, TError, TVariables>, "status">>;
+> = {
+    data?: UseUpdateReturnType<TData, TError, TVariables>["data"];
+    error?: UseUpdateReturnType<TData, TError, TVariables>["error"];
+    status: UseUpdateReturnType<TData, TError, TVariables>["status"];
+};
