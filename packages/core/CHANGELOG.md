@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.26.3
+
+### Patch Changes
+
+-   [#4626](https://github.com/refinedev/refine/pull/4626) [`03597ed8a9a`](https://github.com/refinedev/refine/commit/03597ed8a9ad1bd2a6d51e6d7181de76b16c38f9) Thanks [@aliemir](https://github.com/aliemir)! - Added `resource` sanitization to the `useCanWithoutCache` hook to avoid cyclic value errors.
+
 ## 4.26.2
 
 ### Patch Changes
