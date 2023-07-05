@@ -25,7 +25,16 @@ export type AutoSaveIndicatorProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
+    /**
+     * The data returned by the update request.
+     */
     data?: UseUpdateReturnType<TData, TError, TVariables>["data"];
+    /**
+     * The error returned by the update request.
+     */
     error?: UseUpdateReturnType<TData, TError, TVariables>["error"];
+    /**
+     * The status of the update request.
+     */
     status: UseUpdateReturnType<TData, TError, TVariables>["status"];
 };
