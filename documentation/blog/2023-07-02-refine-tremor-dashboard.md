@@ -59,7 +59,7 @@ Follow the steps to create a new refine project. Select Vite as your build tool,
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/refine-tool.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/refine-tool.png"  alt="react admin dashboard" />
 </div>
 
 <br/>
@@ -96,7 +96,7 @@ Your project should look like the image below.
 
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/blog-list.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/blog-list.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -165,7 +165,7 @@ td:last-child {
 ## What is Tremor
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/what-is-tremor.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/what-is-tremor.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -495,7 +495,7 @@ After successfully making the above changes, you should see the Dashboard entry 
 
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dasboard-error-message.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dasboard-error-message.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -662,7 +662,7 @@ The Overview section should now look like the image below. The Overview template
 You can switch between the Overview and Details sections using the tab.
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/overview-template.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/overview-template.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -795,7 +795,7 @@ export const KpiCard = ({
 
 The component above will look like the image below after rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/p-indicator-card.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/p-indicator-card.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -935,7 +935,7 @@ export const DashboardPage: React.FC = () => {
 
 After applying the above changes, your Dashboard section should look like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-three-kpis.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-three-kpis.png"  alt="react admin dashboard" />
 
 
 Similarly, let us create a component to visualize the daily variation of our KPIs over time. We will display it below the KPIs. Create the `src/pages/dashboard/chartView/index.tsx` file. You can copy and paste the code below into it.
@@ -1063,7 +1063,7 @@ export function ChartView({ revenue, orders, customers }: IProps) {
 
 The component above will look like the image below after rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/chart-showing-kpis.png"  alt="react crud app airtable" /> 
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/chart-showing-kpis.png"  alt="react admin dashboard" /> 
 
 
 
@@ -1144,7 +1144,7 @@ export const DashboardPage: React.FC = () => {
 Your dashboard Overview section should now look like the image below.
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-overview-sectipn.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-overview-sectipn.png"  alt="react admin dashboard" />
 
 
 
@@ -1155,7 +1155,7 @@ We have finished creating the Overview section. Let's create the Details section
 
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details.png"  alt="react admin dashboard" />
 
 
 
@@ -1529,7 +1529,7 @@ export const DashboardPage: React.FC = () => {
 The Details section of your dashboard should now look like the image below.
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="react admin dashboard" />
 
 
 

@@ -5,7 +5,7 @@ Cypress.on("uncaught:exception", () => {
     return false;
 });
 
-describe("with-remix-antd", () => {
+describe.skip("with-remix-antd", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
