@@ -853,11 +853,12 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autosave`](#autosave) feature or not.
 
 ```tsx
 useForm({
-    onMutationSuccess: (data, variables, context) => {
-        console.log({ data, variables, context });
+    onMutationSuccess: (data, variables, context, isAutoSave) => {
+        console.log({ data, variables, context, isAutoSave });
     },
 });
 ```
@@ -871,11 +872,12 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autosave`](#autosave) feature or not.
 
 ```tsx
 useForm({
-    onMutationError: (data, variables, context) => {
-        console.log({ data, variables, context });
+    onMutationError: (data, variables, context, isAutoSave) => {
+        console.log({ data, variables, context, isAutoSave });
     },
 });
 ```
@@ -1141,6 +1143,37 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 // You can use it like this:
 {elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
+
+### `autoSave`
+
+If you want to save the form automatically, you can pass the `autoSave` prop to the this hook. It is useful when you want to save the form automatically when the user changes the form values. 
+
+It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+```tsx
+useForm({
+    autoSave: true,
+})
+```
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+### `autoSaveDebounce`
+
+Set the debounce time for the `autosave` prop. Default value is `1000`.
+
+```tsx
+useForm({
+    autosave: true,
+    // highlight-next-line
+    autoSaveDebounce: 2000,
+})
+```
+
 ## Return Values
 
 ### `queryResult`
@@ -1221,6 +1254,10 @@ const { overtime } = useForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
+### `autoSaveProps`
+
+If open [`autosave`](#autosave) prop, `autoSaveProps` object is returned from this hook. `autoSaveProps` object has `data`, `error` and `status` properties. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
 
 ## FAQ
 
@@ -1322,6 +1359,7 @@ These props have default values in `RefineContext` and can also be set on **<[Re
 | setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                               |
 | redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
 | overtime       | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                     |
+| autoSaveProps  | Auto save props                                        | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                        |
 
 ## Example
 
