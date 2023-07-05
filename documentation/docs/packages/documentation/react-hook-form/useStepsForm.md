@@ -1058,6 +1058,39 @@ const stepsForm = useStepsForm({
     },
 });
 ```
+### `autoSave`
+
+If you want to save the form automatically, you can pass the `autoSave` prop to the this hook. It is useful when you want to save the form automatically when the user changes the form values. 
+
+It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+```tsx
+useStepsForm({
+    refineCoreProps: {
+        autoSave: true,
+    }
+})
+```
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+### `autoSaveDebounce`
+
+Set the debounce time for the `autosave` prop. Default value is `1000`.
+
+```tsx
+useStepsForm({
+    refineCoreProps: {
+        autosave: true,
+        // highlight-next-line
+        autoSaveDebounce: 2000,
+    }
+})
+```
 
 ## Return Values
 

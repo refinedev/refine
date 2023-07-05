@@ -638,6 +638,39 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 // You can use it like this:
 {elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
+### `autoSave`
+
+If you want to save the form automatically, you can pass the `autoSave` prop to the this hook. It is useful when you want to save the form automatically when the user changes the form values. 
+
+It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+```tsx
+useDrawerForm({
+    refineCoreProps: {
+        autoSave: true,
+    }
+})
+```
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+### `autoSaveDebounce`
+
+Set the debounce time for the `autosave` prop. Default value is `1000`.
+
+```tsx
+useDrawerForm({
+    refineCoreProps: {
+        autosave: true,
+        // highlight-next-line
+        autoSaveDebounce: 2000,
+    }
+})
+```
 ## Return Values
 
 :::tip
@@ -796,6 +829,10 @@ const { overtime } = useDrawerForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+### `autoSaveProps`
+
+If open [`autosave`](#autosave) prop, `autoSaveProps` object is returned from this hook. `autoSaveProps` object has `data`, `error` and `status` properties. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
+
 ## FAQ
 ### How can I change the form data before submitting it to the API?
 
