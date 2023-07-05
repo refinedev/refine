@@ -43,7 +43,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "kbar": "^0.1.0-beta.36"
+    "kbar": "^0.1.0-beta.40"
   },
   "repository": {
     "type": "git",

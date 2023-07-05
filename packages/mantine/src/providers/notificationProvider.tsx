@@ -5,7 +5,7 @@ import {
     updateNotification,
     hideNotification,
 } from "@mantine/notifications";
-import { ActionIcon, Group, Text } from "@mantine/core";
+import { ActionIcon, Box, Group, Text } from "@mantine/core";
 import { IconCheck, IconRotate2, IconX } from "@tabler/icons";
 
 import { RingCountdown } from "@components";
@@ -36,7 +36,14 @@ export const notificationProvider = (): NotificationProvider => {
     };
 
     const notificationProvider: NotificationProvider = {
-        open: ({ message, type, undoableTimeout, key, cancelMutation }) => {
+        open: ({
+            message,
+            description,
+            type,
+            undoableTimeout,
+            key,
+            cancelMutation,
+        }) => {
             if (type === "progress") {
                 if (isNotificationActive(key)) {
                     updateNotification({
@@ -47,7 +54,12 @@ export const notificationProvider = (): NotificationProvider => {
                                     <RingCountdown
                                         undoableTimeout={undoableTimeout ?? 0}
                                     />
-                                    <Text>{message}</Text>
+                                    <Box>
+                                        <Text>{message}</Text>
+                                        {description && (
+                                            <Text>{description}</Text>
+                                        )}
+                                    </Box>
                                 </Group>
                                 <ActionIcon
                                     variant="default"
@@ -84,7 +96,12 @@ export const notificationProvider = (): NotificationProvider => {
                                     <RingCountdown
                                         undoableTimeout={undoableTimeout ?? 0}
                                     />
-                                    <Text>{message}</Text>
+                                    <Box>
+                                        <Text>{message}</Text>
+                                        {description && (
+                                            <Text>{description}</Text>
+                                        )}
+                                    </Box>
                                 </Group>
                                 <ActionIcon
                                     variant="default"
@@ -100,6 +117,7 @@ export const notificationProvider = (): NotificationProvider => {
                                 </ActionIcon>
                             </Group>
                         ),
+
                         styles: {
                             root: {
                                 paddingLeft: "8px",
@@ -124,6 +142,7 @@ export const notificationProvider = (): NotificationProvider => {
                                 <IconX size={18} />
                             ),
                         message,
+                        title: description,
                         autoClose: 5000,
                     });
                 } else {
@@ -137,6 +156,7 @@ export const notificationProvider = (): NotificationProvider => {
                                 <IconX size={18} />
                             ),
                         message,
+                        title: description,
                         onClose: () => {
                             removeNotification(key);
                         },
