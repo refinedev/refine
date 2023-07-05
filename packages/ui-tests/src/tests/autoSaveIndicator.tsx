@@ -19,8 +19,8 @@ export const autoSaveIndicatorTests = function (
                 <AutoSaveIndicator status="error" />,
             );
 
-            await findByText("error");
-            getByText("error");
+            await findByText("autosave error");
+            getByText("autosave error");
         });
 
         it("should render idle", async () => {
@@ -32,13 +32,13 @@ export const autoSaveIndicatorTests = function (
             getByText("waiting for changes");
         });
 
-        it("should render idle", async () => {
+        it("should render loading", async () => {
             const { findByText, getByText } = render(
                 <AutoSaveIndicator status="loading" />,
             );
 
-            await findByText("saving changes...");
-            getByText("saving changes...");
+            await findByText("saving...");
+            getByText("saving...");
         });
     });
 };
