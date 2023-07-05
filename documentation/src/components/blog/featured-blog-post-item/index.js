@@ -35,8 +35,8 @@ export const FeaturedBlogPostItem = () => {
                     />
                 </div>
             </Link>
-            <div className="py-4 md:px-6">
-                <div className="flex gap-1 mb-2">
+            <div className="px-4 py-4 md:px-6  md:py-6">
+                <div className="mb-2 flex gap-1 md:mb-4 2xl:mb-6">
                     {tags.map((tag) => (
                         <Link
                             className={clsx(
@@ -45,7 +45,7 @@ export const FeaturedBlogPostItem = () => {
                                 "text-gray-600 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-400",
                                 "no-underline",
                                 "rounded",
-                                "py-1 px-2",
+                                "px-2 py-1",
                             )}
                             href={tag.permalink}
                             key={tag.permalink}
@@ -54,7 +54,7 @@ export const FeaturedBlogPostItem = () => {
                         </Link>
                     ))}
                 </div>
-                <div className="mb-3">
+                <div className="mb-2 md:mb-4 2xl:mb-6">
                     <Link
                         itemProp="url"
                         to={permalink}
@@ -63,8 +63,9 @@ export const FeaturedBlogPostItem = () => {
                     >
                         <div
                             className={clsx(
-                                "text-color-base",
-                                "text-sm md:text-2xl xl:text-3xl ",
+                                "mb-2 md:mb-4 2xl:mb-6",
+                                "text-gray-700 dark:text-gray-200",
+                                "text-sm sm:text-2xl 2xl:text-[32px] 2xl:leading-10",
                                 "font-lg",
                                 "font-bold",
                             )}
@@ -72,7 +73,13 @@ export const FeaturedBlogPostItem = () => {
                             {title}
                         </div>
                     </Link>
-                    <div className="text-color-base line-clamp-3 mt-1 text-sm leading-6">
+                    <div
+                        className={clsx(
+                            "line-clamp-3",
+                            "text-gray-700 dark:text-gray-300",
+                            "text-xs md:text-base 2xl:text-xl",
+                        )}
+                    >
                         {description}
                     </div>
                 </div>
@@ -84,7 +91,7 @@ export const FeaturedBlogPostItem = () => {
                         className={clsx(
                             "text-gray-600 hover:text-gray-600",
                             "dark:text-gray-400 hover:dark:text-gray-400",
-                            "text-xs",
+                            "text-xs 2xl:text-base",
                             "no-underline",
                         )}
                     >
@@ -100,7 +107,7 @@ export const FeaturedBlogPostItem = () => {
                         className={clsx(
                             "text-gray-600 hover:text-gray-600",
                             "dark:text-gray-400 hover:dark:text-gray-400",
-                            "text-xs",
+                            "text-xs 2xl:text-base",
                             "leading-6",
                             "no-underline",
                         )}

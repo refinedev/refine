@@ -16,6 +16,7 @@ import React from "react";
 import { backedBy } from "../../assets/backed-by";
 import { team } from "../../assets/team";
 import { useColorMode } from "@docusaurus/theme-common";
+import { YCombinatorCircleIcon } from "@site/src/refine-theme/icons/ycombinator-circle";
 
 const About: React.FC = () => {
     const { colorMode } = useColorMode();
@@ -57,57 +58,63 @@ const About: React.FC = () => {
                         .
                     </h1>
                 </div>
-                <div
-                    className={clsx(
-                        "xl:max-w-[1120px]",
-                        "lg:max-w-[912px]",
-                        "md:max-w-[624px]",
-                        "sm:max-w-[480px]",
-                        "max-w-[328px]",
-                        "w-full mx-auto",
-                    )}
-                >
+
+                <div className={clsx("max-w-[1120px]", "mx-auto w-full")}>
                     <div
                         className={clsx(
-                            "grid",
-                            "xl:grid-cols-2 xl:gap-12",
-                            "grid-cols-1 lg:gap-8 gap-4",
+                            "flex flex-col xl:flex-row",
+                            "gap-4 xl:gap-16",
                         )}
                     >
-                        <div className="flex justify-center items-center rounded-lg">
-                            <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/about.jpg" />
+                        <div
+                            className={clsx(
+                                "mx-auto flex items-center justify-center",
+                                "w-[328px] sm:w-[480px] md:w-[624px] lg:w-[912px] xl:w-[576px]",
+                            )}
+                        >
+                            <img
+                                className="rounded-[12px]"
+                                src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/about.jpg"
+                            />
                         </div>
-                        <div className="flex flex-col justify-center text-2xl text-gray-700">
-                            <p>
-                                Shortly after its initial release on September
-                                2021, refine has gained attraction of
-                                open-source community and has become
-                                increasingly popular among web application
-                                frameworks.
-                            </p>
-                            <p>
-                                With the aim of sustaining the growth and
-                                expanding the user base, the project was backed
-                                by prominent VC’s and angel investors on May
-                                2022.
-                            </p>
-                            <p>
-                                Today, the US-based company has an international
-                                team of 10+ members leading the development of
-                                the open-core and building new products for the
-                                ecosystem.
-                            </p>
+                        <div
+                            className={clsx(
+                                "mx-auto flex flex-col xl:justify-center",
+                                "w-[328px] sm:w-[480px] md:w-[624px] lg:w-[912px] xl:w-[480px]",
+                                "text-gray-700",
+                            )}
+                        >
+                            <div className={clsx("max-w-[642px]")}>
+                                <p className="text-xs sm:text-base">
+                                    Shortly after its initial release on
+                                    September 2021, refine has gained attraction
+                                    of open-source community and has become
+                                    increasingly popular among web application
+                                    frameworks.
+                                </p>
+                                <p className="text-xs sm:text-base">
+                                    With the aim of sustaining the growth and
+                                    expanding the user base, the project was
+                                    backed by prominent VC’s and angel investors
+                                    on May 2022.
+                                </p>
+                                <p className="text-xs sm:text-base">
+                                    Today, the US-based company has an
+                                    international team of 10+ members leading
+                                    the development of the open-core and
+                                    building new products for the ecosystem.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div
                     className={clsx(
-                        "xl:max-w-[1024px] xl:py-16",
-                        "lg:max-w-[912px] lg:py-10",
-                        "md:max-w-[624px] py-6",
-                        "sm:max-w-[480px]",
-                        "max-w-[336px]",
-                        "w-full mx-auto",
+                        "w-[328px] sm:w-[480px] md:w-[624px] lg:w-[912px] xl:w-[1120px]",
+                        "mx-auto mt-10 w-full md:mt-20 lg:mt-32",
+                        "flex flex-col xl:flex-row",
+                        "gap-4 xl:gap-16",
                     )}
                 >
                     <div
@@ -118,13 +125,18 @@ const About: React.FC = () => {
                             "rounded-full ",
                             "bg-refine-red bg-opacity-10",
                             "shrink-0",
-                            "xl:hidden mb-6",
+                            "xl:hidden",
                         )}
                     >
                         <OpenSourceIcon className="text-refine-red" />
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:gap-16 gap-8">
-                        <div className="w-full flex justify-between gap-4">
+                    <div className="flex flex-col gap-2 lg:flex-row lg:gap-8 xl:gap-16">
+                        <div
+                            className={clsx(
+                                "flex flex-col gap-6 lg:flex-row",
+                                "w-[328px] sm:w-[480px] md:w-[624px] lg:w-[912px] xl:w-[576px]",
+                            )}
+                        >
                             <div
                                 className={clsx(
                                     "justify-center items-center",
@@ -140,7 +152,7 @@ const About: React.FC = () => {
                             </div>
 
                             <div>
-                                <p className="font-bold text-sm md:text-lg lg:text-2xl text-gray-900 dark:text-gray-300 mb-3">
+                                <p className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-300 md:text-lg lg:text-2xl">
                                     Open-source contributions have always been a
                                     major part of refine’s success.
                                 </p>
@@ -154,15 +166,15 @@ const About: React.FC = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="xl:w-[400px] w-full shrink-0 grid grid-cols-2 gap-4 xl:py-5">
+                        <div className="grid w-full shrink-0 grid-cols-2 gap-4 lg:w-[400px]">
                             <a
                                 target="_blank"
                                 href="https://github.com/refinedev/refine"
                                 className={clsx(
-                                    "flex flex-row justify-start gap-3",
+                                    "flex h-max flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
-                                    "p-4 rounded-xl",
+                                    "rounded-xl p-4",
                                     "no-underline hover:no-underline",
                                 )}
                                 rel="noreferrer"
@@ -188,7 +200,7 @@ const About: React.FC = () => {
                                 href="https://discord.gg/refine"
                                 rel="noreferrer"
                                 className={clsx(
-                                    "flex flex-row justify-start gap-3",
+                                    "flex  h-max flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
@@ -216,7 +228,7 @@ const About: React.FC = () => {
                                 href="https://reddit.com/r/refine"
                                 rel="noreferrer"
                                 className={clsx(
-                                    "flex flex-row justify-start gap-3",
+                                    "flex  h-max flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
@@ -245,7 +257,7 @@ const About: React.FC = () => {
                                 href="https://twitter.com/refine_dev"
                                 rel="noreferrer"
                                 className={clsx(
-                                    "flex flex-row justify-start gap-3",
+                                    "flex  h-max flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
@@ -271,11 +283,12 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
                 <div
                     className={clsx(
-                        "lg:max-w-[912px] lg:py-8",
-                        "md:max-w-[624px] md:py-4",
-                        "sm:max-w-[480px] py-3",
+                        "lg:max-w-[912px] lg:py-32",
+                        "md:max-w-[624px] md:py-20",
+                        "sm:max-w-[480px] py-10",
                         "max-w-[328px]",
                         "w-full mx-auto",
                     )}
@@ -286,6 +299,9 @@ const About: React.FC = () => {
                             "md:text-2xl md:leading-8",
                             "text-center text-gray-800 dark:text-gray-200",
                         )}
+                        style={{
+                            margin: 0,
+                        }}
                     >
                         Our Team
                     </h4>
@@ -298,6 +314,7 @@ const About: React.FC = () => {
                             "sm:grid-cols-[repeat(3,144px)]",
                             "grid-cols-[repeat(2,144px)] gap-6",
                             "align-top",
+                            "mt-6 md:mt-12 lg:mt-16",
                         )}
                     >
                         {team.map(({ name, avatar, role1, role2 }) => (
@@ -342,10 +359,10 @@ const About: React.FC = () => {
                                 )}
                             </div>
                         ))}
-                        <div className="flex justify-center flex-col text-center">
-                            <div className="w-full not-prose m-0 mb-6 mt-6">
+                        <div className="flex flex-col justify-between text-center lg:justify-start">
+                            <div className="w-full not-prose m-0">
                                 <JoinUsIcon
-                                    className="w-full"
+                                    className="m-0 w-full lg:mb-6"
                                     isDark={colorMode === "dark"}
                                 />
                             </div>
@@ -398,8 +415,7 @@ const About: React.FC = () => {
 
                     <div
                         className={clsx(
-                            "flex justify-center items-center w-full",
-                            "bg-gray-100 dark:bg-gray-700",
+                            "flex justify-center items-center w-full gap-10",
                             "rounded-xl",
                             "py-6",
                             "mb-16",
@@ -407,15 +423,58 @@ const About: React.FC = () => {
                     >
                         <div
                             className={clsx(
-                                "flex justify-center items-center",
-                                "w-[144px] h-[144px]",
-                                "md:w-[192px] md:h-[192px]",
-                                "rounded-full",
-                                "bg-gray-900 dark:bg-gray-0",
-                                "shrink-0",
+                                "flex flex-col justify-center items-center gap-6",
                             )}
                         >
-                            <Istanbul500Icon className="text-gray-0 dark:text-gray-700 h-auto w-[102px] md:w-[136px]" />
+                            <div
+                                className={clsx(
+                                    "flex justify-center items-center",
+                                    "w-[144px] h-[144px]",
+                                    "md:w-[192px] md:h-[192px]",
+                                    "rounded-full",
+                                    "bg-gray-900 dark:bg-gray-0",
+                                    "shrink-0",
+                                )}
+                            >
+                                <YCombinatorCircleIcon />
+                            </div>
+                            <span
+                                className={clsx(
+                                    "text-xs md:text-base",
+                                    "text-gray-900 dark:text-gray-0",
+                                    "font-semibold",
+                                )}
+                            >
+                                Y Combinator
+                            </span>
+                        </div>
+
+                        <div
+                            className={clsx(
+                                "flex flex-col justify-center items-center gap-6",
+                            )}
+                        >
+                            <div
+                                className={clsx(
+                                    "flex justify-center items-center",
+                                    "w-[144px] h-[144px]",
+                                    "md:w-[192px] md:h-[192px]",
+                                    "rounded-full",
+                                    "bg-gray-900 dark:bg-gray-0",
+                                    "shrink-0",
+                                )}
+                            >
+                                <Istanbul500Icon className="text-gray-0 dark:text-gray-700 h-auto w-[102px] md:w-[136px]" />
+                            </div>
+                            <span
+                                className={clsx(
+                                    "text-xs md:text-base",
+                                    "text-gray-900 dark:text-gray-0",
+                                    "font-semibold",
+                                )}
+                            >
+                                500 Emerging Europe
+                            </span>
                         </div>
                     </div>
 
@@ -435,8 +494,8 @@ const About: React.FC = () => {
                                 className="flex justify-start flex-col text-center"
                             >
                                 <img
-                                    srcSet={`${avatar} 1500w`}
-                                    src={avatar}
+                                    srcSet={`${avatar[colorMode]} 1500w`}
+                                    src={avatar[colorMode]}
                                     alt={name}
                                     className="w-full not-prose m-0 mb-6"
                                 />
@@ -478,7 +537,7 @@ const About: React.FC = () => {
                         "xl:max-w-[1016px] lg:py-16",
                         "lg:max-w-[912px] lg:py-16",
                         "md:max-w-[624px] md:py-10",
-                        "sm:max-w-[480px] py-6",
+                        "sm:max-w-[480px] py-8",
                         "max-w-[328px]",
                         "w-full mx-auto",
                     )}
@@ -494,8 +553,8 @@ const About: React.FC = () => {
                         We are Here
                     </h4>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:gap-16 gap-8">
-                        <div className="lg:w-[590px] lg:h-[416px] w-full lg:order-last shrink-0">
+                    <div className="flex flex-col md:gap-8 lg:flex-row lg:gap-10 xl:gap-24">
+                        <div className="w-full shrink-0 lg:order-last lg:h-[416px] lg:w-[624px]">
                             <Link to="https://goo.gl/maps/D4NZ5gn6VsWaRtXT6">
                                 <img
                                     className="m-0 p-0"
@@ -505,7 +564,7 @@ const About: React.FC = () => {
                             </Link>
                         </div>
                         <div className="flex justify-start flex-col items-start gap-8 lg:pt-12 pt-6">
-                            <div className="flex justify-center items-center gap-6">
+                            <div className="flex w-max items-center justify-center gap-6">
                                 <div
                                     className={clsx(
                                         "flex justify-center items-center",

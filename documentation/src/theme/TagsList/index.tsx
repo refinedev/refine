@@ -62,7 +62,7 @@ const Desktop = ({
                 "justify-between",
                 "items-start",
                 "bg-gray-50 dark:bg-gray-800",
-                "rounded-xl p-2",
+                "rounded-xl p-4 2xl:p-6",
             )}
         >
             <ul

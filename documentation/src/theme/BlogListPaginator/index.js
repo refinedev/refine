@@ -20,32 +20,42 @@ export default function BlogListPaginator(props) {
 
     return (
         <nav
-            className="flex justify-end"
+            className={clsx(
+                "blog-md:justify-end flex items-center justify-center",
+            )}
             aria-label={translate({
                 id: "theme.blog.paginator.navAriaLabel",
                 message: "Blog list page navigation",
                 description: "The ARIA label for the blog pagination",
             })}
         >
-            <ul className="flex list-none items-center gap-1">
-                {currentPage !== 1 && (
-                    <li>
-                        <Link
-                            to={
-                                currentPage - 1 === 1
-                                    ? basePath
-                                    : `${basePath}/page/${currentPage - 1}`
-                            }
-                            className={clsx(
-                                "text-gray-500 dark:text-gray-0",
-                                "rounded",
-                                "hover:no-underline",
-                            )}
-                        >
-                            <ChevronLeft />
-                        </Link>
-                    </li>
-                )}
+            <ul
+                className="flex list-none items-center gap-1"
+                style={{
+                    padding: 0,
+                }}
+            >
+                <li>
+                    <Link
+                        to={
+                            currentPage - 1 === 1
+                                ? basePath
+                                : `${basePath}/page/${currentPage - 1}`
+                        }
+                        className={clsx(
+                            "text-gray-500 dark:text-gray-400",
+                            "rounded",
+                            "hover:no-underline",
+                            "hover:no-underline",
+                            {
+                                "pointer-events-none opacity-20":
+                                    currentPage === 1,
+                            },
+                        )}
+                    >
+                        <ChevronLeft />
+                    </Link>
+                </li>
 
                 {paginationRange.map((pageNumber) => {
                     if (pageNumber === DOTS) {
@@ -53,12 +63,12 @@ export default function BlogListPaginator(props) {
                             <li
                                 key={`page:${pageNumber}`}
                                 className={clsx(
-                                    "flex",
-                                    "text-gray-500 dark:text-gray-0",
+                                    "flex items-center justify-center",
+                                    "text-gray-500 dark:text-gray-400",
                                     "rounded",
                                     "hover:no-underline",
-                                    "px-3 py-1",
                                     "no-underline",
+                                    "h-[32px] w-[32px]",
                                 )}
                             >
                                 &#8230;
@@ -75,11 +85,12 @@ export default function BlogListPaginator(props) {
                                         : `${basePath}/page/${pageNumber}`
                                 }
                                 className={clsx(
-                                    "flex",
-                                    "text-gray-500 dark:text-gray-0",
+                                    "text-sm",
+                                    "flex items-center justify-center",
+                                    "text-gray-500 dark:text-gray-400",
                                     "rounded",
                                     "hover:no-underline",
-                                    "px-3 py-1",
+                                    "h-[32px] w-[32px]",
                                     "no-underline",
                                     pageNumber === currentPage &&
                                         "bg-gray-100 dark:bg-gray-700",
@@ -91,24 +102,26 @@ export default function BlogListPaginator(props) {
                     );
                 })}
 
-                {currentPage !== lastPage && (
-                    <li>
-                        <Link
-                            to={
-                                currentPage === lastPage
-                                    ? undefined
-                                    : `${basePath}/page/${currentPage + 1}`
-                            }
-                            className={clsx(
-                                "text-gray-500 dark:text-gray-0",
-                                "rounded",
-                                "hover:no-underline",
-                            )}
-                        >
-                            <ChevronRight />
-                        </Link>
-                    </li>
-                )}
+                <li>
+                    <Link
+                        to={
+                            currentPage === lastPage
+                                ? undefined
+                                : `${basePath}/page/${currentPage + 1}`
+                        }
+                        className={clsx(
+                            "text-gray-500 dark:text-gray-400",
+                            "rounded",
+                            "hover:no-underline",
+                            {
+                                "pointer-events-none opacity-20":
+                                    currentPage === lastPage,
+                            },
+                        )}
+                    >
+                        <ChevronRight />
+                    </Link>
+                </li>
             </ul>
         </nav>
     );

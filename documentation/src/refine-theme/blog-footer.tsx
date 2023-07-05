@@ -1,10 +1,13 @@
 import clsx from "clsx";
 import React from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
 
 export const BlogFooter = () => {
+    const { colorMode } = useColorMode();
+
     return (
         <>
             <div
@@ -25,7 +28,7 @@ export const BlogFooter = () => {
             >
                 <div
                     className={clsx(
-                        "max-w-screen-landing-2xl",
+                        "max-w-[1264px]",
                         "w-full",
                         "flex flex-col",
                         "gap-6",
@@ -69,7 +72,7 @@ export const BlogFooter = () => {
                                     rel="noreferrer"
                                 >
                                     <img
-                                        src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=dark&period=daily"
+                                        src={`https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=${colorMode}&period=daily`}
                                         alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
                                         style={{
                                             width: "200px",

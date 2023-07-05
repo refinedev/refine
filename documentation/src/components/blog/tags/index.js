@@ -7,7 +7,7 @@ export const Tags = () => {
     const { metadata } = useBlogPost();
 
     return (
-        <div className="flex gap-2 pl-1 pb-6 flex-wrap">
+        <div className="flex flex-wrap gap-2 pb-6 pl-1">
             {metadata.tags.map((tag) => (
                 <Link
                     to={tag.permalink}
@@ -22,9 +22,7 @@ export const Tags = () => {
                         "whitespace-nowrap",
                     )}
                     key={tag.permalink}
-                >
-                    {tag.label}
-                </Link>
+                />
             ))}
         </div>
     );
