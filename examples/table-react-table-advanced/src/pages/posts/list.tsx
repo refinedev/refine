@@ -12,7 +12,7 @@ import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const {

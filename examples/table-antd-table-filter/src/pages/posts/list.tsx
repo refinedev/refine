@@ -32,7 +32,7 @@ import {
     Col,
 } from "antd";
 
-import { IPost, ICategory, IPostFilterVariables } from "interfaces";
+import { IPost, ICategory, IPostFilterVariables } from "../../interfaces";
 
 const { RangePicker } = DatePicker;
 

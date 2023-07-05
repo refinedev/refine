@@ -17,8 +17,8 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { BasicDataGrid } from "pages/dataGrid";
-import { PostList } from "pages/table";
+import { BasicDataGrid } from "./pages/dataGrid";
+import { PostList } from "./pages/table";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
