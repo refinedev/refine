@@ -4,16 +4,6 @@ import { UseUpdateReturnType } from "../hooks/data/useUpdate";
 export type AutoSaveProps<TResponse, TResponseError, TVariables> = {
     autoSave?: boolean;
     autoSaveDebounce?: number;
-    onAutoSaveSuccess?: (
-        data: UpdateResponse<TResponse>,
-        variables: TVariables,
-        context: any,
-    ) => void;
-    onAutoSaveError?: (
-        error: TResponseError,
-        variables: TVariables,
-        context: any,
-    ) => void;
 };
 
 export type AutoSaveReturnType<

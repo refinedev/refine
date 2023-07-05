@@ -93,8 +93,6 @@ export const useForm = <
     onMutationSuccess: onMutationSuccessProp,
     onMutationError,
     autoSave,
-    onAutoSaveSuccess,
-    onAutoSaveError,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect,
@@ -150,8 +148,6 @@ export const useForm = <
             ? onMutationSuccessProp
             : undefined,
         onMutationError,
-        onAutoSaveSuccess,
-        onAutoSaveError,
         redirect,
         action,
         resource,

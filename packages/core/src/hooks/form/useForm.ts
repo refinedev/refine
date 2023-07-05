@@ -107,6 +107,7 @@ type ActionFormProps<
         data: CreateResponse<TResponse> | UpdateResponse<TResponse>,
         variables: TVariables,
         context: any,
+        isAutoSave?: boolean,
     ) => void;
     /**
      * Called when a mutation encounters an error
@@ -115,6 +116,7 @@ type ActionFormProps<
         error: TResponseError,
         variables: TVariables,
         context: any,
+        isAutoSave?: boolean,
     ) => void;
     /**
      * Duration to wait before executing mutations when `mutationMode = "undoable"`
@@ -253,8 +255,6 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     overtimeOptions,
-    onAutoSaveSuccess,
-    onAutoSaveError,
     autoSaveDebounce,
 }: UseFormProps<
     TQueryFnData,
@@ -474,13 +474,13 @@ export const useForm = <
 
         return mutationAutoSave.mutate(variables, {
             onSuccess: (data, _, context) => {
-                if (onAutoSaveSuccess) {
-                    onAutoSaveSuccess(data, values, context);
+                if (onMutationSuccess) {
+                    onMutationSuccess(data, values, context, true);
                 }
             },
             onError: (error: TResponseError, _, context) => {
-                if (onAutoSaveError) {
-                    return onAutoSaveError(error, values, context);
+                if (onMutationError) {
+                    return onMutationError(error, values, context, true);
                 }
             },
         });
