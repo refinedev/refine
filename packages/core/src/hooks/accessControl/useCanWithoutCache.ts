@@ -1,10 +1,39 @@
-import { useContext } from "react";
+import React from "react";
 
 import { AccessControlContext } from "@contexts/accessControl";
+import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 import { IAccessControlContext } from "../../interfaces";
 
 export const useCanWithoutCache = (): IAccessControlContext => {
-    const { can } = useContext(AccessControlContext);
+    const { can: canFromContext } = React.useContext(AccessControlContext);
+
+    const can = React.useMemo(() => {
+        if (!canFromContext) {
+            return undefined;
+        }
+
+        const canWithSanitizedResource: NonNullable<
+            typeof canFromContext
+        > = async ({ params, ...rest }) => {
+            const sanitizedResource = params?.resource
+                ? sanitizeResource(params.resource)
+                : undefined;
+
+            return canFromContext({
+                ...rest,
+                ...(params
+                    ? {
+                          params: {
+                              ...params,
+                              resource: sanitizedResource,
+                          },
+                      }
+                    : {}),
+            });
+        };
+
+        return canWithSanitizedResource;
+    }, [canFromContext]);
 
     return { can };
 };
