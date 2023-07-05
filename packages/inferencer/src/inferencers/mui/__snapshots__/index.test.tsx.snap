@@ -10058,7 +10058,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                 aria-hidden="true"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
                 readonly=""
-                style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+                style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding-top: 0px; padding-bottom: 0px; width: 100%;"
                 tabindex="-1"
               />
               <fieldset
@@ -25152,7 +25152,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                 aria-hidden="true"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
                 readonly=""
-                style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+                style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding-top: 0px; padding-bottom: 0px; width: 100%;"
                 tabindex="-1"
               />
               <fieldset
@@ -41247,7 +41247,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             Image
           </p>
           <div
-            class="MuiStack-root css-w4z10b-MuiStack-root"
+            class="MuiStack-root css-1aehucs-MuiStack-root"
           >
             <img
               src="http://loremflickr.com/640/480/abstract"
@@ -41260,7 +41260,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             Tags
           </p>
           <div
-            class="MuiStack-root css-w4z10b-MuiStack-root"
+            class="MuiStack-root css-1aehucs-MuiStack-root"
           >
             <div
               class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
