@@ -15,7 +15,6 @@ import {
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
 } from "@refinedev/core";
-import debounce from "lodash/debounce";
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -66,6 +65,10 @@ export type UseFormProps<
      * @default `false*`
      */
     warnWhenUnsavedChanges?: boolean;
+    /**
+     * onFinish is override when `autosave` is on
+     */
+    onFinishAutoSave?: (values: TVariables) => TVariables;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -79,6 +82,7 @@ export const useForm = <
 >({
     refineCoreProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    onFinishAutoSave: onFinishAutoSaveFromProps = (values) => values,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -152,18 +156,15 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
-    const debounceWithonFinishAutoSave = debounce((values) => {
-        return onFinishAutoSave(values);
-    }, refineCoreProps?.autoSaveDebounce || 1000);
-
-    const onValuesChange = (changeValues: Record<string, any>) => {
+    const onValuesChange = (changeValues: TVariables) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
 
         if (refineCoreProps?.autoSave) {
             setWarnWhen(false);
-            return debounceWithonFinishAutoSave(changeValues);
+
+            return onFinishAutoSave(onFinishAutoSaveFromProps(changeValues));
         }
 
         return changeValues;
