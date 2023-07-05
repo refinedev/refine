@@ -1,5 +1,13 @@
 # @pankod/refine-kbar
 
+## 1.1.1
+
+### Patch Changes
+
+-   [#4626](https://github.com/refinedev/refine/pull/4626) [`03597ed8a9a`](https://github.com/refinedev/refine/commit/03597ed8a9ad1bd2a6d51e6d7181de76b16c38f9) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the action types for predefined kbar actions per resource.
+
+-   [#4626](https://github.com/refinedev/refine/pull/4626) [`03597ed8a9a`](https://github.com/refinedev/refine/commit/03597ed8a9ad1bd2a6d51e6d7181de76b16c38f9) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `kbar` package to latest version and updated the re-exports of the package.
+
 ## 1.1.0
 
 ### Minor Changes
