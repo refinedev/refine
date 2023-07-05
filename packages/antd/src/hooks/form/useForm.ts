@@ -116,9 +116,7 @@ export const useForm = <
     updateMutationOptions,
     id: idFromProps,
     overtimeOptions,
-    onFinishAutoSave: onFinishAutoSaveFromProps = (
-        values: TVariables,
-    ): TVariables => values,
+    onFinishAutoSave: onFinishAutoSaveFromProps = (values) => values,
 }: UseFormProps<
     TQueryFnData,
     TError,
