@@ -266,10 +266,9 @@ const SidebarLink = ({
             <div
                 className={clsx(
                     "absolute",
-                    isActive && isSame ? "opacity-100" : "opacity-0",
+                    isActive && isSame ? "opacity-50" : "opacity-0",
                     "rounded-lg",
                     !isActive && !isSame && "group-hover:opacity-50",
-                    "bg-opacity-50",
                     "bg-gray-50 dark:bg-gray-700",
                     "transition-opacity",
                     "duration-200 ease-in-out",
