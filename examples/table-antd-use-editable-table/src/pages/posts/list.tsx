@@ -10,7 +10,7 @@ import {
 
 import { Table, Form, Space, Button, Input } from "antd";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const {

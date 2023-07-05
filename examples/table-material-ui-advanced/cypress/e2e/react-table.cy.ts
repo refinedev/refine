@@ -5,7 +5,7 @@ describe("table-material-ui-advanced", () => {
     beforeEach(() => {
         cy.interceptGETPosts();
         cy.interceptGETCategories();
-        cy.visit("http://localhost:3000/posts/react-table");
+        cy.visit("http://localhost:5173/posts/react-table");
     });
 
     it("the row should be expandable", () => {

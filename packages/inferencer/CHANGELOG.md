@@ -1,5 +1,14 @@
 # @pankod/refine-mantine
 
+## 4.3.1
+
+### Patch Changes
+
+-   [#4634](https://github.com/refinedev/refine/pull/4634) [`5de50a6af75`](https://github.com/refinedev/refine/commit/5de50a6af75475fbdb46b7b72484fd01f708f33a) Thanks [@aliemir](https://github.com/aliemir)! - Added an additional info log and a link to the documentation into the inferencer components after relation requests are made.
+
+-   Updated dependencies [[`03597ed8a9a`](https://github.com/refinedev/refine/commit/03597ed8a9ad1bd2a6d51e6d7181de76b16c38f9)]:
+    -   @refinedev/core@4.26.3
+
 ## 4.3.0
 
 ### Minor Changes

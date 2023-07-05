@@ -14,8 +14,8 @@ import { Alert, Button, Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "interfaces";
-import { supabaseClient, normalizeFile } from "utility";
+import { IPost, ICategory } from "../../interfaces";
+import { supabaseClient, normalizeFile } from "../../utility";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [isDeprecated, setIsDeprecated] = useState(false);
