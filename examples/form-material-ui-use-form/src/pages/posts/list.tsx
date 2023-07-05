@@ -4,7 +4,7 @@ import React from "react";
 
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();

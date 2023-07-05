@@ -17,9 +17,9 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "../src/pages/posts";
 import { useState } from "react";
-import MutationModePicker from "components/mutation-mode-picker";
+import MutationModePicker from "../src/components/mutation-mode-picker";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

@@ -29,7 +29,7 @@ import { useFormContext } from "react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "../src/pages/posts";
 
 /**
  *  mock auth credentials to simulate authentication
