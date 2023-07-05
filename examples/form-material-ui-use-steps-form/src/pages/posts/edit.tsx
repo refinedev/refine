@@ -15,7 +15,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost, IStatus, Nullable } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
 
 const stepTitles = [
     "Edit Title",

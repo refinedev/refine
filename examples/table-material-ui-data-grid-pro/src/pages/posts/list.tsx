@@ -4,7 +4,7 @@ import { Option, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
@@ -91,7 +91,6 @@ export const PostList: React.FC = () => {
         [options, isLoading],
     );
 
-    console.log("dataGridProps", dataGridProps);
     return (
         <List>
             <DataGridPro

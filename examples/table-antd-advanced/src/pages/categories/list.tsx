@@ -10,7 +10,7 @@ import {
 
 import { Table, Space } from "antd";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<ICategory>();

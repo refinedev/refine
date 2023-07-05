@@ -14,7 +14,7 @@ import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost, IStatus, Nullable } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "../interfaces";
 
 export const CreatePostModal: React.FC<
     UseModalFormReturnType<IPost, HttpError, Nullable<IPost>>

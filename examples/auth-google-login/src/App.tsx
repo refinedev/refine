@@ -23,9 +23,9 @@ import { ConfigProvider } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { Login } from "pages/login";
-import { parseJwt } from "utils/parse-jwt";
+import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
+import { Login } from "../src/pages/login";
+import { parseJwt } from "../src/utils/parse-jwt";
 
 const axiosInstance = axios.create();
 

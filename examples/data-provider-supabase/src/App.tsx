@@ -24,8 +24,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { supabaseClient } from "utility";
+import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
+import { supabaseClient } from "../src/utility";
 
 const authProvider: AuthBindings = {
     login: async ({ email, password, providerName }) => {
