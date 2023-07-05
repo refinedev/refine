@@ -139,7 +139,7 @@ export const useRefineKbar = (): void => {
         ) {
             const { can: canList } = (await can?.({
                 resource: name,
-                action: RefineKbarActionType.Show,
+                action: RefineKbarActionType.List,
                 params: { id: idFromParams, resource },
             })) || { can: true };
             if (canList) {
@@ -262,7 +262,7 @@ export const useRefineKbar = (): void => {
             ) {
                 const { can: canAccessEdit } = (await can?.({
                     resource: name,
-                    action: RefineKbarActionType.Show,
+                    action: RefineKbarActionType.Edit,
                     params: { id: idFromParams, resource },
                 })) || { can: true };
                 if (canAccessEdit) {
@@ -299,7 +299,7 @@ export const useRefineKbar = (): void => {
             if (canDelete) {
                 const { can: canAccessDelete } = (await can?.({
                     resource: name,
-                    action: RefineKbarActionType.Show,
+                    action: RefineKbarActionType.Delete,
                     params: { id: idFromParams, resource },
                 })) || { can: true };
                 if (canAccessDelete) {
