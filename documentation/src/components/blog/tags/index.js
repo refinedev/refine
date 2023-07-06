@@ -22,7 +22,9 @@ export const Tags = () => {
                         "whitespace-nowrap",
                     )}
                     key={tag.permalink}
-                />
+                >
+                    {tag.label}
+                </Link>
             ))}
         </div>
     );

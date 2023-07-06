@@ -37,50 +37,75 @@ const AuthorCard = ({ author }) => {
                 "mx-auto",
             )}
         >
-            <div className="flex items-center">
-                <Link to={`/blog/author/${author?.key}`} itemProp="url">
-                    <img
-                        src={author?.imageURL}
-                        alt={author?.name}
-                        loading="lazy"
+            <div
+                className={clsx(
+                    "w-full",
+                    "flex items-center justify-between flex-wrap",
+                )}
+            >
+                <div className={clsx("flex items-center", "gap-2 sm:gap-6")}>
+                    <Link
+                        to={`/blog/author/${author?.key}`}
+                        itemProp="url"
+                        className="flex-shrink-0"
+                    >
+                        <img
+                            src={author?.imageURL}
+                            alt={author?.name}
+                            loading="lazy"
+                            className={clsx(
+                                "flex flex-shrink-0",
+                                "h-12 w-12",
+                                "blog-sm:h-[88px] blog-sm:w-[88px]",
+                                "blog-md:h-[120px] blog-md:w-[120px]",
+                                "rounded-full object-cover",
+                            )}
+                        />
+                    </Link>
+                    <div
                         className={clsx(
-                            "flex",
-                            "h-12 w-12",
-                            "blog-sm:h-[88px] blog-sm:w-[88px]",
-                            "blog-md:h-[120px] blog-md:w-[120px]",
-                            "rounded-full object-cover",
+                            "not-prose flex flex-col justify-between",
                         )}
-                    />
-                </Link>
-                <div className="ml-3 not-prose">
-                    <h1 className="m-0 p-0 pb-2 text-4xl font-bold text-gray-900 dark:text-gray-200">
-                        {author?.name}
-                    </h1>
-                    <div className="text-gray-600 dark:text-gray-400">
-                        {author?.title}
+                    >
+                        <h1
+                            className={clsx(
+                                "text-xl sm:text-[40px] sm:leading-[56px]",
+                                "m-0 p-0 pb-2 font-bold text-gray-900 dark:text-gray-200",
+                            )}
+                        >
+                            {author?.name}
+                        </h1>
+                        <div
+                            className={clsx(
+                                "text-xs sm:text-base",
+                                "text-gray-600 dark:text-gray-400",
+                            )}
+                        >
+                            {author?.title}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {authorHasSocialInfo && (
-                <div className="flex justify-center gap-3">
-                    {author?.github && (
-                        <Link to={author?.github}>
-                            <Github className="h-6 w-6" />
-                        </Link>
-                    )}
-                    {author?.twitter && (
-                        <Link to={author?.twitter}>
-                            <Twitter className="h-6 w-6" />
-                        </Link>
-                    )}
-                    {author?.linkedin && (
-                        <Link to={author?.linkedin}>
-                            <Linkedin className="h-6 w-6" />
-                        </Link>
-                    )}
-                </div>
-            )}
+                {authorHasSocialInfo && (
+                    <div className="flex justify-center gap-3">
+                        {author?.github && (
+                            <Link to={author?.github}>
+                                <Github className="h-6 w-6" />
+                            </Link>
+                        )}
+                        {author?.twitter && (
+                            <Link to={author?.twitter}>
+                                <Twitter className="h-6 w-6" />
+                            </Link>
+                        )}
+                        {author?.linkedin && (
+                            <Link to={author?.linkedin}>
+                                <Linkedin className="h-6 w-6" />
+                            </Link>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -61,8 +61,8 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
                         </header>
                         <article
                             className={clsx(
-                                "grid grid-cols-2",
-                                "gap-4",
+                                "grid grid-cols-1 sm:grid-cols-2",
+                                "gap-2 sm:gap-4 2xl:gap-8",
                                 "not-prose",
                             )}
                         >

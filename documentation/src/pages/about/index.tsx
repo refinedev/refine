@@ -372,7 +372,7 @@ const About: React.FC = () => {
                                 className={clsx(
                                     "text-xs leading-4",
                                     "lg:text-base lg:leading-6",
-                                    "no-underline hover:no-underline text-refine-blue dark:text-refine-blue font-semibold mb-0",
+                                    "no-underline hover:no-underline text-refine-link-light dark:text-refine-link-dark font-semibold mb-0",
                                 )}
                                 rel="noreferrer"
                             >
@@ -384,7 +384,7 @@ const About: React.FC = () => {
                                 className={clsx(
                                     "text-xs leading-4",
                                     "lg:text-base lg:leading-6",
-                                    "no-underline hover:no-underline text-refine-blue dark:text-refine-blue m-o",
+                                    "no-underline hover:no-underline text-refine-link-light dark:text-refine-link-dark m-0",
                                 )}
                                 rel="noreferrer"
                             >
