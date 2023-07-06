@@ -6,7 +6,7 @@ description: <AutoSaveIndicator> component shows `autosave` status on edit actio
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 
-`<AutoSaveIndicator>` component from **refine** for **Material UI** contains logic for showing `autosave` feature. 
+`<AutoSaveIndicator>` component from **refine** for **Material UI** can be used to communicate auto-save status to the user. 
 
 Simple usage is as follows:
 
