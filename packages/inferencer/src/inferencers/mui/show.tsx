@@ -99,7 +99,7 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     ids: ${ids} || [],
                     queryOptions: {
-                        enabled: !!${recordName},
+                        enabled: !!${recordName} && !!${ids}?.length,
                     },
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
@@ -146,6 +146,8 @@ export const renderer = ({
             const variableIsLoading = getVariableName(field.key, "IsLoading");
 
             if (field.multiple) {
+                const variableDataLength =
+                    accessor(recordName, field.key) + "?.length";
                 imports.push(["TagField", "@refinedev/mui"]);
 
                 return jsx`
@@ -157,7 +159,7 @@ export const renderer = ({
                         noQuotes: true,
                     })}
                 </Typography>
-                {${variableIsLoading} ? (
+                {${variableIsLoading} && ${variableDataLength} ? (
                     <>
                         Loading...
                     </>
@@ -180,11 +182,11 @@ export const renderer = ({
                                         field.relationInfer.accessor,
                                     );
                                     return `
-                                        <Stack direction="row" spacing={1}>
+                                        {record?.${field.key}?.length ? <Stack direction="row" spacing={1}>
                                             {${variableName}?.data?.map((${mapItemName}: any) => (
                                                 <TagField key={${val}} value={${val}} />
                                             ))}
-                                        </Stack>
+                                        </Stack> : <></>}
                                     `;
                                 }
                             } else {

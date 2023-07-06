@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./styles.css";
 
-import { PostCreate, PostEdit, PostList } from "pages/posts";
+import { PostCreate, PostEdit, PostList } from "./pages/posts";
 
 const App: React.FC = () => {
     return (

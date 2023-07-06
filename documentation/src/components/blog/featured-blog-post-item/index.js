@@ -38,18 +38,20 @@ export const FeaturedBlogPostItem = () => {
             <div className="py-4 md:px-6">
                 <div className="flex gap-1 mb-2">
                     {tags.map((tag) => (
-                        <label
+                        <Link
                             className={clsx(
                                 "text-xs",
                                 "bg-gray-100 dark:bg-gray-700",
-                                "text-gray-600 dark:text-gray-400",
+                                "text-gray-600 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-400",
+                                "no-underline",
                                 "rounded",
                                 "py-1 px-2",
                             )}
+                            href={tag.permalink}
                             key={tag.permalink}
                         >
                             {tag.label}
-                        </label>
+                        </Link>
                     ))}
                 </div>
                 <div className="mb-3">

@@ -1,5 +1,9 @@
 import nock from "nock";
 
+/**
+ * Hasura default 'snake_case' naming convention
+ */
+
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($where: posts_bool_exp) { posts (where: $where) { id, title, content, category { id } } }",
@@ -44,6 +48,10 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "6a091aa7e8675488-IST",
         ],
     );
+
+/**
+ * Graphql default 'camelCase' naming convention
+ */
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {

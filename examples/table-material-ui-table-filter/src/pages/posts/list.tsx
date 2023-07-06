@@ -29,7 +29,7 @@ import {
     IPostFilterVariables,
     IStatus,
     Nullable,
-} from "interfaces";
+} from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps, filters, search } = useDataGrid<

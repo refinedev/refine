@@ -19,7 +19,7 @@ import { Table, Form, Input, Select, Space, Button } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(

@@ -15,6 +15,7 @@ export const LandingHeroTop = () => {
                 "gap-10",
                 "landing-md:gap-16",
                 "landing-lg:gap-8",
+                "mt-4",
             )}
         >
             <div>

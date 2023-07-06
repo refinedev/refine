@@ -200,3 +200,8 @@ wisdom_ekpotu:
     name: Wisdom Ekpotu
     title: Software Engineer
     image_url: https://github.com/wisdomekpotu.png
+
+marvel_ken:
+    name: Marvel Ken
+    title: Software Developer
+    image_url: /img/generic-profile.png

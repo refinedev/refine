@@ -6,7 +6,7 @@ import {
     useResource,
     IResourceItem,
     useCanWithoutCache,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRouterType,
     useGo,
 } from "@refinedev/core";
@@ -48,6 +48,7 @@ export const useRefineKbar = (): void => {
         show: goToShow,
         edit: goToEdit,
     } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const kbarContext = useContext(KBarContext);
 
@@ -125,7 +126,7 @@ export const useRefineKbar = (): void => {
             label ??
             t(
                 `${resource.name}.${resource.name}`,
-                userFriendlyResourceName(resource.name, "plural"),
+                getUserFriendlyName(resource.name, "plural"),
             );
         const tempActions: Action[] = [];
 
@@ -138,7 +139,7 @@ export const useRefineKbar = (): void => {
         ) {
             const { can: canList } = (await can?.({
                 resource: name,
-                action: RefineKbarActionType.Show,
+                action: RefineKbarActionType.List,
                 params: { id: idFromParams, resource },
             })) || { can: true };
             if (canList) {
@@ -261,7 +262,7 @@ export const useRefineKbar = (): void => {
             ) {
                 const { can: canAccessEdit } = (await can?.({
                     resource: name,
-                    action: RefineKbarActionType.Show,
+                    action: RefineKbarActionType.Edit,
                     params: { id: idFromParams, resource },
                 })) || { can: true };
                 if (canAccessEdit) {
@@ -298,7 +299,7 @@ export const useRefineKbar = (): void => {
             if (canDelete) {
                 const { can: canAccessDelete } = (await can?.({
                     resource: name,
-                    action: RefineKbarActionType.Show,
+                    action: RefineKbarActionType.Delete,
                     params: { id: idFromParams, resource },
                 })) || { can: true };
                 if (canAccessDelete) {

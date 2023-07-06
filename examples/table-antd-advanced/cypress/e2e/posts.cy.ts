@@ -4,7 +4,7 @@
 describe("table-antd-advanced", () => {
     beforeEach(() => {
         cy.interceptGETPosts();
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
     });
 
     it("should be view list page", () => {

@@ -5,13 +5,14 @@ import figlet from "figlet";
 
 import checkUpdates from "@commands/check-updates";
 import createResource from "@commands/create-resource";
-import whoami from "@commands/whoami";
-import update from "@commands/update";
-import swizzle from "@commands/swizzle";
-import { dev, build, start, run } from "@commands/runner";
-import "@utils/env";
-import { telemetryHook } from "@telemetryindex";
 import proxy from "@commands/proxy";
+import { build, dev, run, start } from "@commands/runner";
+import swizzle from "@commands/swizzle";
+import update from "@commands/update";
+import whoami from "@commands/whoami";
+import { telemetryHook } from "@telemetryindex";
+import "@utils/env";
+import NotifyCloud from "./cloud-notifier";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_CLI_VERSION = "1.0.0";
@@ -47,6 +48,10 @@ const bootstrap = () => {
     checkUpdates(program);
     whoami(program);
     proxy(program);
+
+    program.hook("preAction", (thisCommand) => {
+        NotifyCloud();
+    });
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];

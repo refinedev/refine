@@ -14,7 +14,7 @@ describe("composeTransformers", () => {
             transformer3,
         ]);
 
-        composedTransformer([], [], { name: "test" }, {}, inferencer);
+        composedTransformer([], [], { name: "test" }, {}, inferencer, "list");
 
         expect(transformer1).toHaveBeenCalled();
         expect(transformer2).toHaveBeenCalled();

@@ -110,7 +110,10 @@ describe("useCan Hook", () => {
                 useCan({
                     action: "list",
                     resource: "posts",
-                    params: { id: 1, resource: { icon: "test" } as any },
+                    params: {
+                        id: 1,
+                        resource: { icon: "test", name: "posts" } as any,
+                    },
                 }),
             {
                 wrapper: TestWrapper({
@@ -125,6 +128,7 @@ describe("useCan Hook", () => {
             action: "list",
             params: {
                 id: 1,
+                resource: { name: "posts" },
             },
             resource: "posts",
         });
@@ -184,6 +188,52 @@ describe("useCanWithoutCache", () => {
             }),
         });
 
-        expect(result.current).toEqual({ can: canMock });
+        result.current.can?.({
+            action: "list",
+            resource: "posts",
+        });
+
+        expect(canMock).toBeCalledWith({
+            action: "list",
+            resource: "posts",
+        });
+    });
+    it("should sanitize the `resource` if provided", () => {
+        const canMock = jest.fn();
+
+        const { result } = renderHook(() => useCanWithoutCache(), {
+            wrapper: TestWrapper({
+                accessControlProvider: {
+                    can: canMock,
+                },
+            }),
+        });
+
+        result.current.can?.({
+            action: "list",
+            resource: "posts",
+            params: {
+                id: 1,
+                resource: {
+                    name: "posts",
+                    meta: { icon: "test" },
+                    options: { icon: "test" },
+                    icon: "test",
+                } as any,
+            },
+        });
+
+        expect(canMock).toBeCalledWith({
+            action: "list",
+            resource: "posts",
+            params: {
+                id: 1,
+                resource: {
+                    name: "posts",
+                    meta: {},
+                    options: {},
+                },
+            },
+        });
     });
 });

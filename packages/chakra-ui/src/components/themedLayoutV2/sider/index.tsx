@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -40,6 +40,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
+    activeItemDisabled = false,
 }) => {
     const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
         useThemedLayoutContext();
@@ -85,6 +86,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                       to: route,
                   }
                 : undefined;
+
+            const linkStyle: CSSProperties =
+                activeItemDisabled && isSelected
+                    ? { pointerEvents: "none" }
+                    : {};
 
             return (
                 <CanAccess
@@ -160,6 +166,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                             borderRightColor: "brand.200",
                                         }}
                                         isActive={isSelected}
+                                        style={linkStyle}
                                         {...linkProps}
                                     >
                                         {(mobileSiderOpen ||

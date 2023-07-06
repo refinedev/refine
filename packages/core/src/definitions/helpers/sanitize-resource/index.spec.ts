@@ -43,4 +43,7 @@ describe("sanitizeResource", () => {
             },
         });
     });
+    it("should return undefined if resource is not passed", () => {
+        expect(sanitizeResource()).toEqual(undefined);
+    });
 });

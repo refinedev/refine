@@ -2458,3 +2458,86 @@ nock("https://api.nestjsx-crud.refine.dev:443", {
             'W/"1823-IZKKvFv/U47CIu6x2eTo3YvoRq4"',
         ],
     );
+
+nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
+    .get("/posts")
+    .query({})
+    .reply(
+        200,
+        [
+            {
+                status: "published",
+                id: "1b175cdc-4407-49d9-82cd-35e9f31afec2",
+                title: "User-friendly New Mexico Bedfordshire",
+                content:
+                    "Nobis autem asperiores ut ea architecto dignissimos. Velit id magnam quod corrupti adipisci. Ratione ut saepe rerum omnis dolores perspiciatis sed eos. Recusandae quia animi sint perferendis vero eius sunt commodi ut.\n \rPraesentium ut pariatur voluptatem minima repellendus. Dolor deleniti non cum nostrum accusantium. A deleniti est eveniet cupiditate quo praesentium. Quia sed illo aut voluptas.\n \rIpsum in et voluptatem. Neque qui rerum et quasi sint quis voluptates. Nobis eum dolores ut vel enim officiis. Adipisci accusantium non voluptas eveniet odio eius.\n \rDolore provident pariatur et dignissimos molestiae aut id nisi. Voluptas praesentium aliquid debitis natus sapiente sunt laudantium perferendis. Architecto possimus aut laudantium explicabo quia expedita quasi atque. Ut ut occaecati vel voluptas assumenda incidunt cumque totam.\n \rMollitia facere id. Delectus quo cum et eligendi. Qui non distinctio praesentium nihil tempora ea.\n \rUt accusantium autem occaecati. Eos quae minus autem neque et quis voluptates earum eos. Excepturi veniam dolores laborum porro dolorem dolores omnis ducimus velit. Nobis earum molestias similique. Dolorem sint recusandae ea nihil voluptatem nihil rerum. Autem a fugiat eligendi tempora ut ipsa.\n \rHarum soluta fuga. Esse non praesentium quo rerum velit labore. Et in officia veritatis ipsam qui distinctio. Culpa aut quia explicabo eum et dicta sed quia. In adipisci neque consequatur at.\n \rRerum sed aut nisi et enim ut. Qui at quis dicta omnis quia beatae id. Fugiat ducimus molestiae. Nisi ratione provident. Ipsam tempora cum vel odit assumenda quibusdam debitis.\n \rDoloremque repellendus voluptatem quis. Quo et eos eligendi libero quia tempora illum rerum. Quas eum et accusamus tenetur esse in eum rerum qui. Ratione vero perspiciatis aut. Aut aliquid cum saepe. Voluptatem quo molestiae sapiente voluptas.\n \rEt ut et velit officia sequi omnis placeat. Quia dignissimos a et deleniti tenetur ea. Asperiores et magnam earum quasi. Neque explicabo autem voluptate quasi ut. Similique repellendus optio non accusantium aut assumenda et quas.",
+                slug: "user-friendly-new-mexico-bedfordshire",
+                images: [
+                    {
+                        uid: "rc-upload-an6pptxt4k",
+                        name: "random-image.jpg",
+                        url: "https://picsum.photos/800",
+                        type: "image/jpeg",
+                        size: 141940,
+                    },
+                ],
+                createdAt: "2021-06-21T11:13:32.165Z",
+                updatedAt: "2021-06-21T11:13:32.249Z",
+                category: {
+                    id: "07f14be2-72b4-495e-8193-2e4ce70d9be9",
+                    title: "Libyan Dinar Relationships Mexico",
+                    createdAt: "2021-06-21T11:13:32.249Z",
+                    updatedAt: "2021-06-21T11:13:32.249Z",
+                },
+                user: {
+                    id: "ebf27bb0-4e2c-4ea4-9081-1bfb56a966a0",
+                    firstName: "Rosemarie",
+                    lastName: "Schmitt",
+                    email: "rosemarie_Schmitt63@hotmail.com",
+                    status: true,
+                    createdAt: "2021-06-21T11:13:32.073Z",
+                    updatedAt: "2021-06-21T11:13:32.073Z",
+                },
+                tags: [
+                    {
+                        id: "244d1b9a-450c-44fc-914e-2e00c2493171",
+                        title: "red",
+                        createdAt: "2021-06-21T11:13:32.084Z",
+                        updatedAt: "2021-06-21T11:13:32.084Z",
+                    },
+                    {
+                        id: "faa9f2ea-2181-4472-aff3-0c7ef9fd9c62",
+                        title: "engineer",
+                        createdAt: "2021-06-21T11:13:32.092Z",
+                        updatedAt: "2021-06-21T11:13:32.092Z",
+                    },
+                    {
+                        id: "f283715b-54a0-43d1-8668-9b68ebc54ca3",
+                        title: "transmitting",
+                        createdAt: "2021-06-21T11:13:32.097Z",
+                        updatedAt: "2021-06-21T11:13:32.097Z",
+                    },
+                ],
+            },
+        ],
+        [
+            "Server",
+            "nginx/1.17.10",
+            "Date",
+            "Mon, 21 Jun 2021 12:07:07 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "32420",
+            "Connection",
+            "close",
+            "Vary",
+            "Accept-Encoding",
+            "X-Powered-By",
+            "Express",
+            "Access-Control-Allow-Origin",
+            "*",
+            "ETag",
+            'W/"7ea4-FLkQQcM/K2rMJ8DU8rb7gsS/ZRw"',
+        ],
+    );

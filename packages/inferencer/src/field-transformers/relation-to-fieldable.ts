@@ -6,6 +6,7 @@ export const relationToFieldable: FieldTransformer = (
     resource,
     record,
     infer,
+    type,
 ) => {
     const mapped: Array<InferField> = fields.map((field) => {
         if (field.relation && field.type === "relation" && !field.resource) {
@@ -13,7 +14,7 @@ export const relationToFieldable: FieldTransformer = (
                 ? (record[field.key] as any)[field.accessor as string]
                 : record[field.key];
 
-            const inferredType = infer(field.key, value, record, infer);
+            const inferredType = infer(field.key, value, record, infer, type);
 
             if (inferredType && inferredType.type !== "relation") {
                 return {
