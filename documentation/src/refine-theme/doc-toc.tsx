@@ -64,7 +64,7 @@ export const TOCItem = ({
                 activeId === id &&
                     `dark:text-gray-0 bg-gray-50  text-gray-900 hover:text-gray-900 dark:bg-gray-700/50`,
                 activeId !== id &&
-                    `text-gray-500 hover:text-gray-900 dark:text-gray-500`,
+                    `dark:hover:text-gray-0 text-gray-500 hover:text-gray-900 dark:text-gray-500`,
                 "rounded-lg",
                 "transition-colors duration-200 ease-in-out",
                 "block",
@@ -95,7 +95,7 @@ export const DocTOC = () => {
                 "pl-3",
                 "pr-3",
                 "py-12",
-                "border-l dark:border-l-gray-700 border-l-gray-100",
+                "border-l border-l-gray-100 dark:border-l-gray-700",
                 !hasTOC && "invisible",
             )}
         >

@@ -1,7 +1,10 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgAntd = (props: SVGProps<SVGSVGElement>) => (
+const SvgAntd = ({
+    withBrandColor = true,
+    ...props
+}: SVGProps<SVGSVGElement> & { withBrandColor?: boolean }) => (
     <svg
         width={64}
         height={64}
@@ -35,8 +38,11 @@ const SvgAntd = (props: SVGProps<SVGSVGElement>) => (
                 y2={16.296}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="#4285EB" />
-                <stop offset={1} stopColor="#2EC7FF" />
+                <stop stopColor={withBrandColor ? "#4285EB" : "currentColor"} />
+                <stop
+                    offset={1}
+                    stopColor={withBrandColor ? "#2EC7FF" : "currentColor"}
+                />
             </linearGradient>
             <linearGradient
                 id="antd_svg__b"
@@ -46,9 +52,15 @@ const SvgAntd = (props: SVGProps<SVGSVGElement>) => (
                 y2={68.116}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="#29CDFF" />
-                <stop offset={0.379} stopColor="#148EFF" />
-                <stop offset={1} stopColor="#0A60FF" />
+                <stop stopColor={withBrandColor ? "#29CDFF" : "currentColor"} />
+                <stop
+                    offset={0.379}
+                    stopColor={withBrandColor ? "#148EFF" : "currentColor"}
+                />
+                <stop
+                    offset={1}
+                    stopColor={withBrandColor ? "#0A60FF" : "currentColor"}
+                />
             </linearGradient>
             <linearGradient
                 id="antd_svg__c"
@@ -58,9 +70,15 @@ const SvgAntd = (props: SVGProps<SVGSVGElement>) => (
                 y2={43.167}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="#FA816E" />
-                <stop offset={0.415} stopColor="#F74A5C" />
-                <stop offset={1} stopColor="#F51D2C" />
+                <stop stopColor={withBrandColor ? "#FA816E" : "currentColor"} />
+                <stop
+                    offset={0.415}
+                    stopColor={withBrandColor ? "#F74A5C" : "currentColor"}
+                />
+                <stop
+                    offset={1}
+                    stopColor={withBrandColor ? "#F51D2C" : "currentColor"}
+                />
             </linearGradient>
             <linearGradient
                 id="antd_svg__d"
@@ -70,9 +88,15 @@ const SvgAntd = (props: SVGProps<SVGSVGElement>) => (
                 y2={41.902}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="#FA8E7D" />
-                <stop offset={0.513} stopColor="#F74A5C" />
-                <stop offset={1} stopColor="#F51D2C" />
+                <stop stopColor={withBrandColor ? "#FA8E7D" : "currentColor"} />
+                <stop
+                    offset={0.513}
+                    stopColor={withBrandColor ? "#F74A5C" : "currentColor"}
+                />
+                <stop
+                    offset={1}
+                    stopColor={withBrandColor ? "#F51D2C" : "currentColor"}
+                />
             </linearGradient>
         </defs>
     </svg>

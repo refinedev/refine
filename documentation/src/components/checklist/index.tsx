@@ -44,6 +44,7 @@ const Checklist: React.FC<Props> = ({ children }) => {
     return (
         <div
             className={clsx(
+                "rounded-lg",
                 "border-l-gray-400 dark:border-l-gray-600",
                 "dark:bg-gray-800 bg-gray-50",
             )}
@@ -60,19 +61,27 @@ const Checklist: React.FC<Props> = ({ children }) => {
                 )}
             >
                 <div className="border-b border-gray-200 dark:border-gray-600">
-                    <h3
+                    <div
                         className={clsx(
-                            "font-semibold",
+                            "not-prose",
                             "mt-0 mb-3",
                             "flex items-center",
-                            "gap-3",
-                            "dark:text-gray-300 text-gray-500",
-                            "uppercase",
-                            "text-base leading-6",
+                            "gap-2",
                         )}
                     >
-                        <CheckListIcon /> Checklist
-                    </h3>
+                        <CheckListIcon className="w-4 h-4" />
+                        <h3
+                            className={clsx(
+                                "m-0 p-0",
+                                "font-semibold",
+                                "dark:text-gray-300 text-gray-500",
+                                "uppercase",
+                                "text-base leading-6",
+                            )}
+                        >
+                            Checklist
+                        </h3>
+                    </div>
                 </div>
                 <div>{children}</div>
                 <div className="flex items-center justify-center">

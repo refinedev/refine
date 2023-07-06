@@ -1,5 +1,6 @@
 import React from "react";
 import { useTutorialChecklists } from "../../hooks/use-tutorial-checklists";
+import clsx from "clsx";
 
 type Props = {
     id: string;
@@ -31,7 +32,7 @@ export const TutorialCircle: React.FC<Props> = ({
     const cy = 50;
     const strokeWidth = 10;
     const standardOffsetLength = 20;
-    const emptyColor = "#718096";
+    const emptyColor = "#6C7793";
     const completedColor = "#48bb78";
 
     const parts = tutorialCheckStatuses.length;
@@ -68,7 +69,10 @@ export const TutorialCircle: React.FC<Props> = ({
     return (
         <svg width={width} height={height} viewBox="0 0 100 100">
             <circle
-                className="empty-dashes"
+                className={clsx(
+                    "empty-dashes",
+                    "text-gray-300 dark:text-gray-500",
+                )}
                 cx={cx}
                 cy={cy}
                 r={r}
@@ -78,9 +82,7 @@ export const TutorialCircle: React.FC<Props> = ({
                 strokeWidth={strokeWidth}
                 strokeDasharray={dashArrayMultiple}
                 strokeDashoffset={dashOffsetMultiple}
-                style={{
-                    stroke: "var(--tutorial-toc-text-color-light)",
-                }}
+                stroke="currentColor"
             />
             {tutorialCheckStatuses.map((item, index) => {
                 if (item.status === "completed") {

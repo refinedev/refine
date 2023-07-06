@@ -17,9 +17,7 @@ Before you start, you can read the [API references](/docs/api-reference/general-
 
 After this step, the tutorial will proceed according to your UI framework choice. You can choose one of the following UI frameworks or just go with the headless UI option:
 
-<SelectTutorialFramework />
-
-<br/>
+<SelectTutorialFramework className="mb-8 pt-3"/>
 
 <UIConditional is="antd">
 

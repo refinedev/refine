@@ -96,12 +96,13 @@ const TutorialUIStatus = () => {
                         <LinkWithId
                             id="tutorial/introduction/select-framework"
                             className={clsx(
-                                "!text-refine-blue",
                                 "underline",
                                 "text-sm",
+                                "text-refine-link-light",
+                                "dark:text-refine-link-dark",
                             )}
                         >
-                            change
+                            Change
                         </LinkWithId>
                     </div>
                 </div>
