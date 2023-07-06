@@ -386,7 +386,7 @@ export const useForm = <
     const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
         mutationResultUpdate;
 
-    const mutationAutoSave = useUpdate<TResponse, TResponseError, TVariables>(
+    const autoSaveMutation = useUpdate<TResponse, TResponseError, TVariables>(
         {},
     );
 
@@ -472,7 +472,7 @@ export const useForm = <
             invalidates: [],
         };
 
-        return mutationAutoSave.mutate(variables, {
+        return autoSaveMutation.mutate(variables, {
             onSuccess: (data, _, context) => {
                 if (onMutationSuccess) {
                     onMutationSuccess(data, values, context, true);
@@ -585,9 +585,9 @@ export const useForm = <
         queryResult,
         onFinishAutoSave,
         autoSaveProps: {
-            status: mutationAutoSave.status,
-            data: mutationAutoSave.data,
-            error: mutationAutoSave.error,
+            status: autoSaveMutation.status,
+            data: autoSaveMutation.data,
+            error: autoSaveMutation.error,
         },
         id,
         setId,
