@@ -76,7 +76,7 @@ export const EXAMPLES: Examples = [
         buttons: [
             {
                 text: "Demo",
-                link: "https://refine.dev/docs/examples/real-world-refine-example",
+                link: "https://refine-real-world.netlify.app/",
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
@@ -121,7 +121,7 @@ export const EXAMPLES: Examples = [
         buttons: [
             {
                 text: "Blog",
-                link: "https://refine.dev/week-of-refine/",
+                link: "https://refine.dev/week-of-refine-supabase/",
                 icon: (props) => <PageIcon {...props} />,
             },
             {
