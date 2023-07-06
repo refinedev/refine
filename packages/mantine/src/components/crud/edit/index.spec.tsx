@@ -445,7 +445,6 @@ describe("auto save", () => {
                 action: "edit",
                 autoSave: {
                     enabled: true,
-                    // debounce: 500,
                 },
             },
         });
