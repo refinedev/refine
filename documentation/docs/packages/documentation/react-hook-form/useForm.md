@@ -941,7 +941,7 @@ Works only in `action: "edit"` mode.
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 #### `enabled`
 
-For open the `autoSave` feature, you should set `enabled` to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useForm({
@@ -1054,7 +1054,7 @@ Loading state of a modal. It's `true` when `useForm` is currently being submitte
 
 ### `autoSaveProps`
 
-If the [`autoSave`](#autoSave) prop is enabled, the hook returns an `autoSaveProps` object. The `autoSaveProps` object contains the properties `data`, `error`, and `status`. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
+If `autoSave` prop is enabled, the hook returns an `autoSaveProps` object with `data`, `error`, and `status` properties. `data` holds the mutation's returned data, `error` stores any returned error, and `status` indicates the mutation's status.
 
 ## FAQ
 

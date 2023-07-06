@@ -652,7 +652,7 @@ Works only in `action: "edit"` mode.
 
 #### `enabled`
 
-For open the `autoSave` feature, you should set `enabled` to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useDrawerForm({
@@ -838,7 +838,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 ### `autoSaveProps`
 
-If the [`autoSave`](#autoSave) prop is enabled, the hook returns an `autoSaveProps` object. The `autoSaveProps` object contains the properties `data`, `error`, and `status`. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
+If `autoSave` prop is enabled, the hook returns an `autoSaveProps` object with `data`, `error`, and `status` properties. `data` holds the mutation's returned data, `error` stores any returned error, and `status` indicates the mutation's status.
 
 ## FAQ
 ### How can I change the form data before submitting it to the API?

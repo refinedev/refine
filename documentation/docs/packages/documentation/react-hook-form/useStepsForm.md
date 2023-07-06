@@ -1072,7 +1072,7 @@ Works only in `action: "edit"` mode.
 
 #### `enabled`
 
-For open the `autoSave` feature, you should set `enabled` to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useStepsForm({
