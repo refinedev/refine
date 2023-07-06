@@ -1076,7 +1076,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 ### `autoSaveProps`
 
-If open [`autoSave`](#autoSave) prop, `autoSaveProps` object is returned from this hook. `autoSaveProps` object has `data`, `error` and `status` properties. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
+If the [`autoSave`](#autoSave) prop is enabled, the hook returns an `autoSaveProps` object. The `autoSaveProps` object contains the properties `data`, `error`, and `status`. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
 
 ## FAQ
 
