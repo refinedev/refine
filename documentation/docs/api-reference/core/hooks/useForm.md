@@ -1146,7 +1146,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `autoSave`
 
-If you want to save the form automatically after some time when user edits the form, you can pass the `autoSave` prop to the this hook. 
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -1265,7 +1265,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `autoSaveProps`
 
-If `autoSave` prop is enabled, the hook returns an `autoSaveProps` object with `data`, `error`, and `status` properties. `data` holds the mutation's returned data, `error` stores any returned error, and `status` indicates the mutation's status.
+If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
 

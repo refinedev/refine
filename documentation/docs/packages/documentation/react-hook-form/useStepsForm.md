@@ -1060,7 +1060,7 @@ const stepsForm = useStepsForm({
 ```
 ### `autoSave`
 
-If you want to save the form automatically after some time when user edits the form, you can pass the `autoSave` prop to the this hook. 
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
