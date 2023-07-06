@@ -19,8 +19,8 @@ export const autoSaveIndicatorTests = function (
                 <AutoSaveIndicator status="error" />,
             );
 
-            await findByText("autosave error");
-            getByText("autosave error");
+            await findByText("auto save error");
+            getByText("auto save error");
         });
 
         it("should render idle", async () => {

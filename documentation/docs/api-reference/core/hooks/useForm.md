@@ -853,7 +853,7 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autosave`](#autosave) feature or not.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
@@ -872,7 +872,7 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autosave`](#autosave) feature or not.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
@@ -1150,11 +1150,6 @@ If you want to save the form automatically after some time when user edits the f
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-```tsx
-useForm({
-    autoSave: true,
-})
-```
 
 :::caution
 Works only in `action: "edit"` mode.
@@ -1162,15 +1157,28 @@ Works only in `action: "edit"` mode.
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-### `autoSaveDebounce`
+#### `enabled`
 
-Set the debounce time for the `autosave` prop. Default value is `1000`.
+For open the `autoSave` feature, you should set `enabled` to `true`.
 
 ```tsx
 useForm({
-    autosave: true,
-    // highlight-next-line
-    autoSaveDebounce: 2000,
+    autoSave: {
+        enabled: true
+    },
+})
+```
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        debounce: 2000,
+    },
 })
 ```
 
@@ -1257,7 +1265,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `autoSaveProps`
 
-If open [`autosave`](#autosave) prop, `autoSaveProps` object is returned from this hook. `autoSaveProps` object has `data`, `error` and `status` properties. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
+If open [`autoSave`](#autoSave) prop, `autoSaveProps` object is returned from this hook. `autoSaveProps` object has `data`, `error` and `status` properties. `data` is the data returned from the mutation. `error` is the error returned from the mutation. `status` is the status of the mutation.
 
 ## FAQ
 

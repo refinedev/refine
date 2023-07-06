@@ -22,7 +22,9 @@ export const PostEdit = () => {
         setValue,
     } = useForm<IPost>({
         refineCoreProps: {
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         },
     });
 

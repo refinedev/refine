@@ -160,9 +160,9 @@
   "table": {
     "actions": "Actions"
   },
-  "autosave": {
+  "autoSave": {
     "success": "saved",
-    "error": "autosave error",
+    "error": "auto save error",
     "loading": "saving...",
     "idle": "waiting for changes"
   }

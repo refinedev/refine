@@ -18,7 +18,9 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
     } = useForm<IPost, HttpError, Nullable<IPost>>({
         refineCoreProps: {
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         },
     });
 

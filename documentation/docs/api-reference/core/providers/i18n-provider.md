@@ -326,9 +326,9 @@ Before we get started, let's look at which parts are going to be translated:
             "clone": "#{{id}} Clone Post | refine"
         }
     },
-    "autosave": {
+    "autoSave": {
         "success": "saved",
-        "error": "autosave error",
+        "error": "auto save error",
         "loading": "saving...",
         "idle": "waiting for changes"
     }
@@ -506,9 +506,9 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "clone": "#{{id}} Clone Post | refine"
         }
     },
-    "autosave": {
+    "autoSave": {
         "success": "saved",
-        "error": "autosave error",
+        "error": "auto save error",
         "loading": "saving...",
         "idle": "waiting for changes"
     }
@@ -670,7 +670,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "clone" : "#{{id}} Beitrag klonen | refine"
         }
     },
-    "autosave": {
+    "autoSave": {
         "success": "gespeichert",
         "error": "fehler beim automatischen speichern",
         "loading": "speichern...",

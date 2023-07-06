@@ -1454,7 +1454,9 @@ const PostEdit: React.FC = () => {
         },
         // highlight-start
         refineCoreProps: {
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         },
         // highlight-end
     });

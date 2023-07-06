@@ -160,7 +160,7 @@
   "table": {
     "actions": "Aktionen"
   },
-  "autosave": {
+  "autoSave": {
     "success": "gespeichert",
     "error": "fehler beim automatischen speichern",
     "loading": "speichern...",

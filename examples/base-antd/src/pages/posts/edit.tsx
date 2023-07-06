@@ -12,7 +12,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult, autoSaveProps } =
         useForm<IPost>({
             warnWhenUnsavedChanges: true,
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         });
 
     const postData = queryResult?.data?.data;

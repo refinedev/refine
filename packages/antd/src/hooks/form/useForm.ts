@@ -36,10 +36,10 @@ export type UseFormProps<
      */
     warnWhenUnsavedChanges?: boolean;
     /**
-     * onFinish is override when `autosave` is on
+     * onFinish is override when `autoSave` is on
      */
     onFinishAutoSave?: (values: TVariables) => TVariables;
-} & AutoSaveProps<TResponse, TResponseError, TVariables>;
+} & AutoSaveProps;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -196,7 +196,7 @@ export const useForm = <
             setWarnWhen(true);
         }
 
-        if (autoSave) {
+        if (autoSave?.enabled) {
             setWarnWhen(false);
 
             return onFinishAutoSave(onFinishAutoSaveFromProps(allValues));

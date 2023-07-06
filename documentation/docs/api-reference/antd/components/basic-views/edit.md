@@ -1241,8 +1241,11 @@ const PostEdit: React.FC = () => {
         autoSaveProps 
     } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
-        // highlight-next-line
-        autoSave: true,
+        // highlight-start
+        autoSave: {
+            enabled: true,
+        },
+        // highlight-end
     });
 
     const postData = queryResult?.data?.data;

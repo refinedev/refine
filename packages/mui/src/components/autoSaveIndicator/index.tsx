@@ -15,21 +15,21 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
 
     switch (status) {
         case "success":
-            message = translate("autosave.success", "saved");
+            message = translate("autoSave.success", "saved");
             icon = <TaskAltOutlinedIcon fontSize="small" />;
             break;
         case "error":
-            message = translate("autosave.error", "error");
+            message = translate("autoSave.error", "error");
             icon = <ErrorOutlineOutlinedIcon fontSize="small" />;
 
             break;
         case "loading":
-            message = translate("autosave.loading", "saving changes...");
+            message = translate("autoSave.loading", "saving changes...");
             icon = <SyncOutlinedIcon fontSize="small" />;
             break;
         default:
             // for idle
-            message = translate("autosave.idle", "waiting for changes");
+            message = translate("autoSave.idle", "waiting for changes");
             break;
     }
 

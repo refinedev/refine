@@ -183,7 +183,7 @@ export type UseFormProps<
     ActionParams &
     LiveModeProps &
     UseLoadingOvertimeOptionsProps &
-    AutoSaveProps<TResponse, TResponseError, TVariables>;
+    AutoSaveProps;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -255,7 +255,7 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     overtimeOptions,
-    autoSaveDebounce,
+    autoSave,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -490,7 +490,7 @@ export const useForm = <
         () =>
             debounce((allValues) => {
                 return onFinishAutoSaveMutation(allValues);
-            }, autoSaveDebounce || 1000),
+            }, autoSave?.debounce || 1000),
         [],
     );
 

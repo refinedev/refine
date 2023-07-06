@@ -32,7 +32,9 @@ export const PostEdit: React.FC = () => {
                 value.length < 10 ? "Too short content" : null,
         },
         refineCoreProps: {
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         },
     });
 

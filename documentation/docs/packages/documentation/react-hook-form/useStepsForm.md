@@ -1064,30 +1064,37 @@ If you want to save the form automatically after some time when user edits the f
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-```tsx
-useStepsForm({
-    refineCoreProps: {
-        autoSave: true,
-    }
-})
-```
-
 :::caution
 Works only in `action: "edit"` mode.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-### `autoSaveDebounce`
+#### `enabled`
 
-Set the debounce time for the `autosave` prop. Default value is `1000`.
+For open the `autoSave` feature, you should set `enabled` to `true`.
 
 ```tsx
 useStepsForm({
     refineCoreProps: {
-        autosave: true,
-        // highlight-next-line
-        autoSaveDebounce: 2000,
+        autoSave: {
+            enabled: true
+        },
+    }
+})
+```
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useStepsForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            debounce: 2000,
+        },
     }
 })
 ```

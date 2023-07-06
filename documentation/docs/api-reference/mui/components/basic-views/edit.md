@@ -1246,7 +1246,9 @@ const SampleEdit = () => {
     } = useForm({
         // highlight-start
         refineCoreProps: {
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         },
         // highlight-end
     });

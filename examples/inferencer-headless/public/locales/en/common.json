@@ -164,7 +164,7 @@
     "go": "Go to Page",
     "show": "Show"
   },
-  "autosave": {
+  "autoSave": {
     "success": "gespeichert",
     "error": "fehler beim automatischen speichern",
     "loading": "speichern...",

@@ -1340,7 +1340,9 @@ const PostEdit: React.FC = () => {
     } = useForm<IPost>({
         // highlight-start
         refineCoreProps: {
-            autoSave: true,
+            autoSave: {
+                enabled: true,
+            },
         },
         // highlight-end
     });

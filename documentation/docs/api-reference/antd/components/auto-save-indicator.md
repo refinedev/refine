@@ -2,7 +2,7 @@
 id: antd-auto-save-indicator
 title: <AutoSaveIndicator>
 sidebar_label: <AutoSaveIndicator>
-description: <AutoSaveIndicator> component shows `autosave` status on edit actions.
+description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 
@@ -15,7 +15,9 @@ import { AutoSaveIndicator, useForm } from "@refinedev/antd";
 
 const MyComponent = () => {
     const { autoSaveProps } = useForm({
-        autoSave: true,
+        autoSave: {
+            enabled: true,
+        },
     });
 
     return (
