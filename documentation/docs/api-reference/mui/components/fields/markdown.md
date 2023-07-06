@@ -14,57 +14,57 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<MarkdownField>` in a show page.
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live hideCode url=http://localhost:3000/posts/show/123
 // visible-block-start
+import React from "react";
+import { useShow } from "@refinedev/core";
 import {
-    useDataGrid,
-    List,
+    Show,
+    TextFieldComponent as TextField,
     // highlight-next-line
     MarkdownField,
 } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { Stack, Typography } from "@mui/material";
 
-const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 100, flex: 1 },
-    {
-        field: "content",
-        headerName: "Content",
-        renderCell: function render({ row }) {
-            // highlight-start
-            return <MarkdownField value={row?.content} />;
-            // highlight-end
-        },
-        minWidth: 100,
-        flex: 2,
-    },
-];
-
-const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+const SampleShow = () => {
+    const { queryResult: { data, isLoading } } = useShow();
+    const record = data?.data;
 
     return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
+        <Show isLoading={isLoading}>
+            <Stack gap={1}>
+                <Typography variant="body1" fontWeight="bold">
+                    Title
+                </Typography>
+                <TextField value={record?.title} />
+                <Typography variant="body1" fontWeight="bold">
+                    Content
+                </Typography>
+                {/* highlight-next-line */}
+                <MarkdownField value={record?.content} />
+            </Stack>
+        </Show>
     );
 };
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-}
 // visible-block-end
+
+Show.defaultProps = { breadcrumb: false };
 
 render(
     <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-            },
-        ]}
+        initialRoutes={["/samples", "/samples/show/123"]}
+        resources={[{
+                name: "samples",
+                show: SampleShow,
+                list: () => (
+                        <div>
+                            <p>This page is empty.</p>
+                            <RefineMui.ShowButton recordItemId="123">
+                                Show Item 123
+                            </RefineMui.ShowButton>
+                        </div>
+                    ),
+        }]}
     />,
 );
 ```
