@@ -51,7 +51,7 @@ export const SHOW_CASES: Examples = [
     },
 
     {
-        title: "Finefoods Material Ui Admin Panel",
+        title: "Finefoods Material UI Admin Panel",
         description:
             "Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/mui-finefoods.jpg",
