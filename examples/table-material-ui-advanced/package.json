@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@refinedev/core": "^4.26.2",
+    "@refinedev/core": "^4.26.4",
     "@refinedev/cli": "^2.7.2",
     "@refinedev/mui": "^5.7.0",
     "@refinedev/react-hook-form": "^4.4.2",
@@ -16,23 +16,25 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
     "@mui/x-data-grid": "^6.6.0",
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@uiw/react-md-editor": "^3.19.5",
-    "react-scripts": "^5.0.0",
-    "cross-env": "^7.0.3",
+    "react-hook-form": "^7.30.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "cypress": "^12.11.0",
     "typescript": "^4.7.4",
-    "react-hook-form": "^7.30.0",
-    "cypress": "^12.11.0"
+    "vite": "^4.3.1"
   },
   "scripts": {
-    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine",
     "cypress": "cypress open -C ./cypress.config.ts",
     "cypress:run": "cypress run -C ./cypress.config.ts"

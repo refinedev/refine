@@ -1,8 +1,8 @@
 import { HttpError } from "@refinedev/core";
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
-import { Modal } from "components/modal";
-import { IPost } from "interfaces";
+import { Modal } from "../../components/modal";
+import { IPost } from "../../interfaces";
 
 export const EditPost: React.FC<
     UseModalFormReturnType<IPost, HttpError, IPost>

@@ -44,7 +44,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
-setInitialRoutes(["/posts/show/123"]);
+setInitialRoutes(["/samples", "/samples/show/123"]);
 import { Refine } from "@refinedev/core";
 import { ShowButton } from "@refinedev/mantine";
 
@@ -53,7 +53,7 @@ import { useShow } from "@refinedev/core";
 import { Show, MarkdownField } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
-const PostShow: React.FC = () => {
+const SampleShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -81,8 +81,8 @@ const App = () => {
         <Refine
             resources={[
                 {
-                    name: "posts",
-                    show: PostShow,
+                    name: "samples",
+                    show: SampleShow,
                     list: () => (
                         <div>
                             <p>This page is empty.</p>

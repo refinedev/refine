@@ -1,5 +1,43 @@
 # @pankod/refine-mantine
 
+## 2.22.2
+
+### Patch Changes
+
+-   [#4629](https://github.com/refinedev/refine/pull/4629) [`58cc48b7b8f`](https://github.com/refinedev/refine/commit/58cc48b7b8fafc46145a28ca686ce1527a737da4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `description` prop does not show up in Mantine notification.
+    With this fix, you can now use `description` prop to show a description in the notification.
+
+    ```tsx
+    import { useNotification } from "@refinedev/core";
+
+    const { open } = useNotification();
+
+    open?.({
+        description: "This is a description",
+        message: "This is a message",
+        type: "progress",
+    });
+    ```
+
+## 2.22.1
+
+### Patch Changes
+
+-   [#4629](https://github.com/refinedev/refine/pull/4629) [`58cc48b7b8f`](https://github.com/refinedev/refine/commit/58cc48b7b8fafc46145a28ca686ce1527a737da4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `description` prop does not show up in Mantine notification.
+    With this fix, you can now use `description` prop to show a description in the notification.
+
+    ```tsx
+    import { useNotification } from "@refinedev/core";
+
+    const { open } = useNotification();
+
+    open?.({
+        description: "This is a description",
+        message: "This is a message",
+        type: "progress",
+    });
+    ```
+
 ## 2.22.0
 
 ### Minor Changes

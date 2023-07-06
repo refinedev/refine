@@ -25,7 +25,7 @@ import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
-const PostShow: React.FC = () => {
+const SampleShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -52,16 +52,19 @@ interface IPost {
 
 render(
     <RefineAntdDemo
-        initialRoutes={["/posts/show/123"]}
+        initialRoutes={["/samples", "/samples/show/123"]}
         resources={[
             {
-                name: "posts",
-                list: () => (
-                    <RefineAntd.List>
-                        <p>List page here...</p>
-                    </RefineAntd.List>
+                name: "samples",
+                 list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineAntd.ShowButton recordItemId="123">
+                            Show Item 123
+                        </RefineAntd.ShowButton>
+                    </div>
                 ),
-                show: PostShow,
+                show: SampleShow,
             },
         ]}
     />,

@@ -3,7 +3,7 @@ import React from "react";
 
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-import { ICommit } from "interfaces";
+import { ICommit } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const [next, setNext] = React.useState<string | undefined>(undefined);

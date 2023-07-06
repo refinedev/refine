@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import "./App.css";
 
-import { PostList } from "pages/posts";
+import { PostList } from "./pages/posts";
 
 const App: React.FC = () => {
     return (
