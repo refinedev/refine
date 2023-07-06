@@ -19,12 +19,12 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             icon = <TaskAltOutlinedIcon fontSize="small" />;
             break;
         case "error":
-            message = translate("autoSave.error", "error");
+            message = translate("autoSave.error", "auto save error");
             icon = <ErrorOutlineOutlinedIcon fontSize="small" />;
 
             break;
         case "loading":
-            message = translate("autoSave.loading", "saving changes...");
+            message = translate("autoSave.loading", "saving...");
             icon = <SyncOutlinedIcon fontSize="small" />;
             break;
         default:

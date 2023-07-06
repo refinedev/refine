@@ -24,12 +24,12 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             icon = <CheckCircleOutlined />;
             break;
         case "error":
-            message = translate("autoSave.error", "error");
+            message = translate("autoSave.error", "auto save error");
             icon = <ExclamationCircleOutlined />;
 
             break;
         case "loading":
-            message = translate("autoSave.loading", "saving changes...");
+            message = translate("autoSave.loading", "saving...");
             icon = <SyncOutlined />;
 
             break;
