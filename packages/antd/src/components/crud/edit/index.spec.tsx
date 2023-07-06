@@ -468,5 +468,54 @@ describe("Edit", () => {
             // check saved message
             expect(getByText("saved")).toBeTruthy();
         });
+
+        it("check error status", async () => {
+            jest.useFakeTimers();
+
+            const { getByText, getByTestId } = render(
+                <Routes>
+                    <Route
+                        path="/:resource/edit/:id"
+                        element={<EditPageWithAutoSave />}
+                    ></Route>
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts", canDelete: false }],
+                        routerInitialEntries: ["/posts/edit/1"],
+                        dataProvider: {
+                            ...MockJSONServer,
+                            update: () => {
+                                return new Promise((res, rej) => {
+                                    setTimeout(() => rej("error"), 1000);
+                                });
+                            },
+                        },
+                    }),
+                },
+            );
+
+            getByText("Edit Post");
+            getByText("waiting for changes");
+
+            // update title and wait
+            await act(async () => {
+                fireEvent.change(getByTestId("title"), {
+                    target: { value: "test" },
+                });
+
+                jest.advanceTimersByTime(1100);
+            });
+
+            // check saving message
+            expect(getByText("saving...")).toBeTruthy();
+
+            await act(async () => {
+                jest.advanceTimersByTime(1000);
+            });
+
+            // check saved message
+            expect(getByText("auto save error")).toBeTruthy();
+        });
     });
 });
