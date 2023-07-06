@@ -4,7 +4,9 @@ title: List
 swizzle: true
 ---
 
-`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+
+It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -68,14 +70,14 @@ render(
 ```
 
 :::note
-The button text is defined automatically by **refine** based on _resource_ object name property.
+The button text is defined automatically by **refine** based on the _resource_ object name property.
 :::
 
 ## Properties
 
 ### `resource`
 
-Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
+The redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -116,7 +118,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `meta`
 
@@ -134,7 +136,7 @@ const MyComponent = () => {
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
@@ -191,7 +193,7 @@ export const MyListComponent = () => {
 
 > `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+The redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;

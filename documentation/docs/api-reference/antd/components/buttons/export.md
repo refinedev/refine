@@ -4,9 +4,9 @@ title: Export
 swizzle: true
 ---
 
-`<ExportButton>` is an Ant Design [`<Button>`][button] with a default export icon and a default text with "Export". It only has presentational value.
+`<ExportButton>` is an Ant Design [`<Button>`][button] with a default export icon and a "Export" text. It only has presentational value.
 
-[Refer to the for more detailed information about `useExport`. &#8594][useexport]
+> For more information, refer to the [`useExport` documentation &#8594][useexport]
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -14,7 +14,9 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
+You can use it like any other Ant Design [`<Button>`][button].
+
+For example, you can use it with [useExport][useexport]:
 
 ```tsx live
 // visible-block-start
@@ -70,7 +72,7 @@ render(
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;

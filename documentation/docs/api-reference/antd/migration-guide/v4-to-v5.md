@@ -5,7 +5,8 @@ title: Migration Guide
 
 Ant Design released a new major version as a v5. This document will help you upgrade from antd 4.x version to antd 5.x version.
 
-Ant Design removed `less` and adopt `CSS-in-JS`, for better support of dynamic themes. The bottom layer uses [`@ant-design/cssinjs`](https://github.com/ant-design/cssinjs) as a solution.
+Ant Design removed `less` and adopted `CSS-in-JS` for better support of dynamic themes. The bottom layer uses [`@ant-design/cssinjs`](https://github.com/ant-design/cssinjs) as a solution.
+
 Some components are removed or renamed, and some APIs are changed.
 
 Some of the changes are:
@@ -15,7 +16,7 @@ Some of the changes are:
 -   `moment.js` is replaced with `day.js`.
 -   `less` is removed from `antd` package.
 
-> Please refer to [Ant Design Migration Guide](https://ant.design/docs/react/migration-v5) for detailed information.
+> For more information, please refer to [Ant Design Migration Guide](https://ant.design/docs/react/migration-v5).
 
 :::info A little more clarification
 
@@ -61,7 +62,7 @@ npm i @refinedev/antd@latest
 
 ## 🪄 Migrating your project automatically with Codemod ✨ (recommended)
 
-`@refinedev/codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) version from 3.x.x to 4.x.x.
+`@refinedev/codemod` package handles the breaking changes for your project automatically, migrating your [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) version from 3.x.x to 4.x.x. without any manual steps
 
 Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
 
@@ -71,7 +72,7 @@ npx @refinedev/codemod antd4-to-antd5
 
 And it's done. Now your project uses `@refinedev/antd@4.x.x`.
 
-> 🚨 Customized or swizzled [components](#customized-sider) and [.less](#less-users) files cannot be migrated automatically. You need to migrate them manually.
+> 🚨 The Customized or swizzled [components](#customized-sider) and [.less](#less-users) files cannot be migrated automatically. You need to migrate them manually.
 
 ## Migrating your project manually
 
@@ -86,7 +87,7 @@ And it's done. Now your project uses `@refinedev/antd@4.x.x`.
 
 ### Updating Props
 
-`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to incosistency with all UI packages. Use `headerButtons` and `headerProps` props instead.
+`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and has been removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to incosistency with all UI packages. Use the `headerButtons` and `headerProps` props instead.
 
 ```diff title="List.tsx"
 - <List actionButtons={actionButtons} pageHeaderProps={pageHeaderProps}>
@@ -139,8 +140,11 @@ You can give theme dark to the `<Menu>` component in the `<Sider>` component.
 
 ### Customized `<Header>`
 
+:::caution
 If you have customized or `swizzled` the `<Header>` component, there may be a color mismatch issue.
-You can remove constant background color in `<Header>` component.
+:::
+
+You can remove constant background color in `<Header>` component:
 
 ```diff title="Header.tsx"
    <AntdLayout.Header
@@ -156,7 +160,7 @@ You can remove constant background color in `<Header>` component.
 
 ### LESS Users
 
-Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to manually migrate your `.less` files to `CSS-in-JS`. [Ant Design's documentation for less migration.](https://ant.design/docs/react/migration-v5#less-migration)
+Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to manually migrate your `.less` files to `CSS-in-JS`. [Ant Design's documentation for `less` migration.](https://ant.design/docs/react/migration-v5#less-migration)
 
 ## Known Issues
 

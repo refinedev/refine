@@ -9,14 +9,14 @@ For some data types, displaying and editing as plain text may cause user experie
 
 Custom components may be useful when working with markdown (with markdown editor), JSON based rich text (draft, quill like editors), and HTML (a HTML editor). It can be used in table columns and form fields
 
-[Refer to the Ant Design docs for more detailed information about `<Form>`. &#8594](https://ant.design/components/form/)
+> For more information, refer to the [Ant Design's `<Form>` documentation. &#8594](https://ant.design/components/form/)
 
 ## Example
 
-We will demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms.
+We will demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms:
 
 ```tsx title="/src/pages/posts/edit.tsx"
-import React, { useState } from "react";
+import React from "react";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 

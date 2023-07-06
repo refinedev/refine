@@ -125,7 +125,7 @@ const GithubIcon = (
 
 ## Usage
 
-`<AuthPage>` component can be used like this:
+The `<AuthPage>` component can be used like this:
 
 ```tsx live url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
@@ -198,7 +198,7 @@ render(<App />);
 
 ## Types
 
-`<AuthPage>` component has the following types:
+The `<AuthPage>` component has the following types:
 
 -   [`login`](#login) - a type of login page and default type.
 -   [`register`](#register) - a type of registration page.
@@ -618,10 +618,10 @@ const authProvider: AuthBindings = {
 ### `providers`
 
 :::info
-`providers` property is only available for types `login` and `register`.
+The `providers` property is only available for types `login` and `register`.
 :::
 
-`providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. Check out the [Interface](#interface) section for more information.
+The `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type.
 
 ```tsx
 const MyLoginPage = () => {
@@ -645,16 +645,18 @@ const MyLoginPage = () => {
 };
 ```
 
+> For more information, refer to the [Interface section &#8594](#interface)
+
 ### `rememberMe`
 
 :::info
-`rememberMe` property is only available for type `login`.
+The `rememberMe` property is only available for type `login`.
 :::
 
-`rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
+The `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
 :::info
-You have to wrap your remember me component with `Form.Item` component from **antd** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
+You have to wrap your remember me component with the `Form.Item` component from **Ant Design** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
 :::
 
 ```tsx
@@ -684,10 +686,10 @@ const MyLoginPage = () => {
 ### `loginLink`
 
 :::info
-`loginLink` property is only available for types `register` and `forgotPassword`.
+The `loginLink` property is only available for types `register` and `forgotPassword`.
 :::
 
-`loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
+The `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
 
 ```tsx
 const MyRegisterPage = () => {
@@ -714,10 +716,10 @@ const MyRegisterPage = () => {
 ### `registerLink`
 
 :::info
-`registerLink` property is only available for type `login`.
+The `registerLink` property is only available for type `login`.
 :::
 
-`registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
+The `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -745,10 +747,10 @@ const MyLoginPage = () => {
 ### `forgotPasswordLink`
 
 :::info
-`forgotPasswordLink` property is only available for type `login`.
+The `forgotPasswordLink` property is only available for type `login`.
 :::
 
-`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
+The `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Its default value is `"/forgot-password"`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -775,7 +777,7 @@ const MyLoginPage = () => {
 
 ### `wrapperProps`
 
-`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
+The `wrapperProps` is used for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
 ```tsx
 const MyLoginPage = () => {
@@ -796,7 +798,7 @@ const MyLoginPage = () => {
 
 ### `contentProps`
 
-`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
+The `contentProps` is used for passing props to the content component which is the card component. In the example below, you can see that the title, header, and content styles are changed with `contentProps`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -822,7 +824,7 @@ const MyLoginPage = () => {
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
+The `formProps` is used for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
 ```tsx
 const MyLoginPage = () => {
@@ -859,10 +861,10 @@ const MyLoginPage = () => {
 };
 ```
 
-Or you can customize the title with `ThemedTitle` component.
+Or you can customize the title with the `ThemedTitle` component.
 
 ```tsx
-import { AuthPage, ThemedTitle } from "@refinedev/antd";
+import { AuthPage } from "@refinedev/antd";
 
 const MyLoginPage = () => {
     return (
@@ -881,7 +883,7 @@ const MyLoginPage = () => {
 
 ### `renderContent`
 
-`renderContent` uses to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
+`renderContent` is used to render the form content and the [title](#title). You can use this property to render your own content, or change the default content and title that it gives you.
 
 ```tsx
 import { AuthPage } from "@refinedev/antd";
@@ -921,7 +923,7 @@ const MyLoginPage = () => {
 
 ### How can I remove the default title and logo ?
 
-You can use `renderContent` property to remove the default title and logo.
+You can use the `renderContent` property to remove the default title and logo.
 
 ```tsx
 import { AuthPage } from "@refinedev/antd";
@@ -943,7 +945,7 @@ const MyLoginPage = () => {
 };
 ```
 
-Or you can give `false` to `title` property to remove the default title.
+Or you can give `false` to the `title` property to remove the default title.
 
 ```tsx
 import { AuthPage } from "@refinedev/antd";
@@ -964,7 +966,7 @@ const MyLoginPage = () => {
 
 ### Properties
 
-<PropsTable module="@refinedev/antd/AuthPage" 
+<PropsTable module="@refinedev/antd/AuthPage"
 formProps-type="[`FormProps`](https://ant.design/components/form/#API)"
 wrapperProps-type="[`WrapperProps`](https://ant.design/components/layout/#API)"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
@@ -986,6 +988,3 @@ interface OAuthProvider {
 [register]: /docs/api-reference/core/providers/auth-provider/#register
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
-[get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
-[logout]: /docs/api-reference/core/providers/auth-provider/#logout-

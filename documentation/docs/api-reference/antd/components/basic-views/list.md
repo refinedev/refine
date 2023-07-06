@@ -5,7 +5,7 @@ sidebar_label: List
 swizzle: true
 ---
 
-`<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving the page titles.
+`<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving titles to the page.
 
 We will show what `<List>` does using properties with examples.
 
@@ -99,7 +99,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ### `title`
 
-It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural form of resource name by default.
+`title` allows you to add a title to the `<List>` component. If you don't pass the title props, it uses plural form of resource name by default.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
@@ -130,12 +130,11 @@ render(
 
 ### `resource`
 
-`<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
+The `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 setInitialRoutes(["/custom"]);
 
-import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
@@ -180,9 +179,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
-
-Create button redirects to the create page of the resource according to the value it reads from the URL.
+`canCreate` allows us to add the create button inside the `<List>` component. If you want to customize this button you can use `createButtonProps` property like the code below:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 const { Create } = RefineAntd;
@@ -275,7 +272,11 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+:::note
+The create button redirects to the create page of the resource according to the value it reads from the URL.
+:::
+
+> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `breadcrumb`
 
@@ -332,7 +333,7 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+You can use the `wrapperProps` property if you want to customize the wrapper of the `<List/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
@@ -371,9 +372,7 @@ render(
 
 ### `headerProps`
 
-If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
-
-[Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
+You can use the `headerProps` property to customize the header of the `<List/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
@@ -411,9 +410,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`PageHeader` documentation &#8594](https://ant.design/components/page-header/)
+
 ### `contentProps`
 
-If you want to customize the content of the `<List/>` component, you can use the `contentProps` property. `<List/>` components content is wrapped with a `<div/>` and `contentProps` can get every attribute that `<div/>` can get.
+You can use the `contentProps` property to customize the content of the `<Create/>` component. The `<List/>` components content is wrapped with a `<div/>` and `contentProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
@@ -458,7 +459,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 :::caution
 
-If "create" resource is not defined or [`canCrate`](#cancreate-and-createbuttonprops) is `false`, (#cancreate-and-createbuttonprops), the [`<CreateButton>`][create-button] will not render and `createButtonProps` will be `undefined`.
+If the "create" resource is not defined or if [`canCrate`](#cancreate-and-createbuttonprops) is false, the [`<CreateButton>`][create-button] will not render and `createButtonProps`will be `undefined`.
 
 :::
 
@@ -545,8 +546,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
 import { List } from "@refinedev/antd";
@@ -584,17 +583,18 @@ render(
 );
 ```
 
+> For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@refinedev/antd/List" 
-headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
+<PropsTable module="@refinedev/antd/List"
+headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 createButtonProps-type="[`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName: string }`"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 canCreate-default="If the resource is passed a create component, `true` else `false`"
 />
 
-[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
 [create-button]: /docs/api-reference/antd/components/buttons/create-button/

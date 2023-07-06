@@ -6,7 +6,7 @@ sidebar_label: <FilterDropdown>
 
 ## Usage
 
-`<FilterDropdown>` is a helper component for [filter dropdowns in Ant Design `<Table>` components.](https://ant.design/components/table/#components-table-demo-custom-filter-panel)
+`<FilterDropdown>` is a helper component for [filter dropdowns in Ant Design's `<Table>` components.](https://ant.design/components/table/#components-table-demo-custom-filter-panel)
 
 It serves as a bridge by synchronizing between its children's input value and `<Table>`'s filter values.
 
@@ -68,7 +68,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 <br/>
 
 :::tip
-We added category options for `<Select>` manually for the sake of simplicity but [useSelect](/docs/api-reference/antd/hooks/field/useSelect/) hook can be used to populate the props of `<Select>`
+We added category options for `<Select>` manually for the sake of simplicity but the [useSelect](/docs/api-reference/antd/hooks/field/useSelect/) hook can be used to automatically populate the props of `<Select>`
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -92,7 +92,7 @@ These are to be passed from [`<Table.Column>`'s filterDropdown](https://ant.desi
 
 Determines the value passed to children. `mapValue` takes `selectedKeys` as an argument.
 
-For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
+For example when using `useSelect` for `<Select>` component, in which case, the values must be mapped to `number`s using `mapValue`.
 
 ```tsx
 import { getDefaultFilter } from "@refinedev/core";
@@ -145,10 +145,10 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 ```
 
 :::caution
-If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlocation) is enabled, on page refresh filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.
+If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlocation) is enabled, on page refresh, the filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.
 
-> `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
-> :::
+`getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
+:::
 
 <PropsTable module="@refinedev/antd/FilterDropdown"/>
 
