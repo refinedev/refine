@@ -1111,6 +1111,25 @@ useStepsForm({
     },
 })
 ```
+#### `onFinish`
+
+If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
+
+```tsx
+useStepsForm({
+    autoSave: {
+        enabled: true,
+        // highlight-start
+        onFinish: (values) => {
+            return {
+                foo: "bar",
+                ...values,
+            };
+        },
+        // highlight-end
+    },
+})
+```
 
 ## Return Values
 
