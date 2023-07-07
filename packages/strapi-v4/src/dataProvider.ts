@@ -1,11 +1,12 @@
 import { AxiosInstance } from "axios";
-import { DataProvider as IDataProvider } from "@refinedev/core";
+import { HttpError, DataProvider as IDataProvider } from "@refinedev/core";
 import { stringify } from "qs";
 import {
     axiosInstance,
     generateFilter,
     generateSort,
     normalizeData,
+    transformHttpError,
 } from "./utils";
 
 export const DataProvider = (
@@ -100,10 +101,16 @@ export const DataProvider = (
             dataVariables = variables;
         }
 
-        const { data } = await httpClient.post(url, dataVariables);
-        return {
-            data,
-        };
+        try {
+            const { data } = await httpClient.post(url, dataVariables);
+            return {
+                data,
+            };
+        } catch (error: any) {
+            const httpError = transformHttpError(error);
+
+            throw httpError;
+        }
     },
 
     update: async ({ resource, id, variables }) => {
@@ -115,13 +122,21 @@ export const DataProvider = (
             dataVariables = variables;
         }
 
-        const { data } = await httpClient.put(url, dataVariables);
-        return {
-            data,
-        };
+        try {
+            const { data } = await httpClient.put(url, dataVariables);
+            return {
+                data,
+            };
+        } catch (error: any) {
+            const httpError = transformHttpError(error);
+
+            throw httpError;
+        }
     },
 
     updateMany: async ({ resource, ids, variables }) => {
+        const errors: HttpError[] = [];
+
         const response = await Promise.all(
             ids.map(async (id) => {
                 const url = `${apiUrl}/${resource}/${id}`;
@@ -131,26 +146,49 @@ export const DataProvider = (
                 if (resource === "users") {
                     dataVariables = variables;
                 }
-                const { data } = await httpClient.put(url, dataVariables);
-                return data;
+
+                try {
+                    const { data } = await httpClient.put(url, dataVariables);
+                    return data;
+                } catch (error: any) {
+                    const httpError = transformHttpError(error);
+
+                    errors.push(httpError);
+                }
             }),
         );
+
+        if (errors.length > 0) {
+            throw errors;
+        }
 
         return { data: response };
     },
 
     createMany: async ({ resource, variables }) => {
+        const errors: HttpError[] = [];
+
         const response = await Promise.all(
             variables.map(async (param) => {
-                const { data } = await httpClient.post(
-                    `${apiUrl}/${resource}`,
-                    {
-                        data: param,
-                    },
-                );
-                return data;
+                try {
+                    const { data } = await httpClient.post(
+                        `${apiUrl}/${resource}`,
+                        {
+                            data: param,
+                        },
+                    );
+                    return data;
+                } catch (error: any) {
+                    const httpError = transformHttpError(error);
+
+                    errors.push(httpError);
+                }
             }),
         );
+
+        if (errors.length > 0) {
+            throw errors;
+        }
 
         return { data: response };
     },
