@@ -65,10 +65,6 @@ export type UseFormProps<
      * @default `false*`
      */
     warnWhenUnsavedChanges?: boolean;
-    /**
-     * onFinish is override when `autoSave` is on
-     */
-    onFinishAutoSave?: (values: TVariables) => TVariables;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -82,7 +78,6 @@ export const useForm = <
 >({
     refineCoreProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
-    onFinishAutoSave: onFinishAutoSaveFromProps = (values) => values,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -164,7 +159,13 @@ export const useForm = <
         if (refineCoreProps?.autoSave) {
             setWarnWhen(false);
 
-            return onFinishAutoSave(onFinishAutoSaveFromProps(changeValues));
+            const onFinishProps = refineCoreProps.autoSave?.onFinish;
+
+            if (onFinishProps) {
+                return onFinishAutoSave(onFinishProps(changeValues));
+            }
+
+            return onFinishAutoSave(changeValues);
         }
 
         return changeValues;

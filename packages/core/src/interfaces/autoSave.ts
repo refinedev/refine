@@ -1,10 +1,11 @@
 import { BaseRecord, HttpError, UpdateResponse } from ".";
 import { UseUpdateReturnType } from "../hooks/data/useUpdate";
 
-export type AutoSaveProps = {
+export type AutoSaveProps<TVariables> = {
     autoSave?: {
         enabled: boolean;
         debounce?: number;
+        onFinish?: (values: TVariables) => TVariables;
     };
 };
 

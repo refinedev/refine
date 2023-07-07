@@ -183,7 +183,7 @@ export type UseFormProps<
     ActionParams &
     LiveModeProps &
     UseLoadingOvertimeOptionsProps &
-    AutoSaveProps;
+    AutoSaveProps<TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,

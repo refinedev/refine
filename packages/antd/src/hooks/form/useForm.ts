@@ -35,11 +35,7 @@ export type UseFormProps<
      * Shows notification when unsaved changes exist
      */
     warnWhenUnsavedChanges?: boolean;
-    /**
-     * onFinish is override when `autoSave` is on
-     */
-    onFinishAutoSave?: (values: TVariables) => TVariables;
-} & AutoSaveProps;
+} & AutoSaveProps<TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -114,7 +110,6 @@ export const useForm = <
     updateMutationOptions,
     id: idFromProps,
     overtimeOptions,
-    onFinishAutoSave: onFinishAutoSaveFromProps = (values) => values,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -199,7 +194,10 @@ export const useForm = <
         if (autoSave?.enabled) {
             setWarnWhen(false);
 
-            return onFinishAutoSave(onFinishAutoSaveFromProps(allValues));
+            const onFinishFromProps =
+                autoSave?.onFinish ?? ((values) => values);
+
+            return onFinishAutoSave(onFinishFromProps(allValues));
         }
 
         return changeValues;
