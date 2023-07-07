@@ -72,7 +72,6 @@
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;
-    @apply prose-code:mx-0.5;
 
     @apply max-w-none;
 }
@@ -152,7 +151,11 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-    @apply !text-refine-link-light dark:!text-refine-link-dark;
+    @apply !text-refine-link-light dark:!text-refine-link-dark !align-bottom;
+}
+
+p:has(> code) code {
+    @apply !align-text-bottom mx-0.5;
 }
 
 .admonition.admonition-caution code {
