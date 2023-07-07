@@ -239,7 +239,7 @@ export const TutorialTOC = () => {
                     <LinkWithId
                         id={doc.id}
                         isCurrent={doc.current}
-                        className={clsx("text-gray-500", "leading-[22px]", {
+                        className={clsx("leading-[22px]", {
                             "text-gray-900 dark:text-white":
                                 currentDocId === doc.id,
                             "hover:cursor-default hover:no-underline hover:text-gray-900":
