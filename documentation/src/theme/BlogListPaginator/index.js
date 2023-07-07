@@ -38,7 +38,9 @@ export default function BlogListPaginator(props) {
                 <li>
                     <Link
                         to={
-                            currentPage - 1 === 1
+                            currentPage === 1
+                                ? undefined
+                                : currentPage - 1 === 1
                                 ? basePath
                                 : `${basePath}/page/${currentPage - 1}`
                         }
