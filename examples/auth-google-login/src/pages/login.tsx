@@ -41,7 +41,7 @@ export const Login: React.FC = () => {
             } catch (error) {
                 console.log(error);
             }
-        }, []);
+        }, [GOOGLE_CLIENT_ID, window.google, divRef.current]);
 
         return <div ref={divRef} id="login-with-google-button" />;
     };
@@ -54,23 +54,16 @@ export const Login: React.FC = () => {
                 alignItems: "center",
             }}
         >
-            <Space direction="vertical" align="center">
+            <Space direction="vertical" align="center" size="large">
                 <ThemedTitleV2
                     collapsed={false}
                     wrapperStyles={{
                         fontSize: "22px",
-                        marginBottom: "16px",
                     }}
                 />
                 <GoogleButton />
                 <Typography.Text type="secondary">
-                    Powered by
-                    <img
-                        style={{ padding: "0 5px" }}
-                        alt="Google"
-                        src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
-                    />
-                    Google
+                    Powered by Google
                 </Typography.Text>
             </Space>
         </Layout>
