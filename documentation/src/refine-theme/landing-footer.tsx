@@ -3,6 +3,7 @@ import React from "react";
 import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
+import { ProductHuntLogo } from "./product-hunt-logo";
 
 export const LandingFooter = () => {
     return (
@@ -29,13 +30,12 @@ export const LandingFooter = () => {
                         "w-full",
                         "flex flex-col",
                         "gap-6",
-                        "landing-sm:gap-4",
-                        "landing-md:gap-9",
                         "mx-auto",
                     )}
                 >
-                    <div className={clsx()}>
+                    <div className={clsx("flex items-center justify-between")}>
                         <RefineLogoIcon className="text-gray-0" />
+                        <ProductHuntLogo className="hidden landing-md:block" />
                     </div>
                     <div
                         className={clsx(
@@ -54,7 +54,7 @@ export const LandingFooter = () => {
                                 "landing-lg:opacity-100",
                                 "landing-lg:text-base",
                                 "text-gray-0",
-                                "landing-xl:max-w-[300px]",
+                                "w-full landing-md:max-w-[304px]",
                                 "w-full",
                                 "flex-shrink-0",
                                 "mb-6",
@@ -62,36 +62,26 @@ export const LandingFooter = () => {
                             )}
                         >
                             {footerDescription}
-                            <div className="mt-4 w-fit mx-auto landing-xl:mx-0">
-                                <a
-                                    href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <img
-                                        src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=dark&period=daily"
-                                        alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
-                                        style={{
-                                            width: "200px",
-                                            height: "42px",
-                                        }}
-                                        width="250"
-                                        height="54"
-                                    />
-                                </a>
-                            </div>
                         </div>
+                        <ProductHuntLogo
+                            className={clsx(
+                                "block landing-md:hidden",
+                                "mx-auto mb-10",
+                            )}
+                        />
                         <div
                             className={clsx(
                                 "w-full",
                                 "landing-lg:w-auto",
                                 "grid grid-cols-2 landing-md:grid-cols-3 landing-lg:grid-cols-5",
-                                "gap-4",
+                                "gap-10 landing-md:gap-4",
                             )}
                         >
                             {menuItems.map((menu) => (
                                 <div
-                                    className={clsx("flex flex-col gap-4")}
+                                    className={clsx(
+                                        "flex flex-col gap-4 max-w-[304px]",
+                                    )}
                                     key={menu.label}
                                 >
                                     <div className="text-base font-semibold text-gray-0">
@@ -119,7 +109,7 @@ export const LandingFooter = () => {
                             ))}
                             <div
                                 className={clsx(
-                                    "landing-md:col-span-3 landing-lg:col-span-2",
+                                    "landing-md:col-span-3 landing-lg:col-span-2 max-w-[304px]",
                                 )}
                             >
                                 <div className={clsx("flex flex-col gap-4")}>
