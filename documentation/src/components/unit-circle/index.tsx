@@ -60,7 +60,7 @@ export const UnitCircle: React.FC<Props> = ({
     const r = 45;
     const cx = 50;
     const cy = 50;
-    const strokeWidth = 10;
+    const strokeWidth = 8;
     const standardOffsetLength = 20;
     const completedColor = "#48bb78";
 

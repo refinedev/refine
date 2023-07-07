@@ -52,14 +52,15 @@ const LinkWithId = ({
     );
 };
 
-const markdownConverter = (text) => {
+const markdownConverter = (text: string) => {
     const numericStartRegexp = /^\d+\.\s?/g;
-    const numericStart = text.match(numericStartRegexp)?.[0] || "";
+    // use this to get the numeric start
+    const _numericStart = text.match(numericStartRegexp)?.[0] || "";
     const numericStartIgnore = text.replace(numericStartRegexp, "");
 
     const marked = snarkdown(numericStartIgnore);
 
-    return `${numericStart}${marked}`;
+    return `${marked}`;
 };
 
 const TutorialUIStatus = () => {
@@ -218,16 +219,23 @@ export const TutorialTOC = () => {
         >["units"][number]["docs"][number],
     ) => {
         const formattedTitle = markdownConverter(doc.title);
+        const unitNo = doc.title.split(".")[0];
 
         return (
             <li
                 key={doc.id}
-                className={clsx("flex flex-row items-start gap-2", "pb-2")}
+                className={clsx("flex flex-row items-start gap-2", "pb-4")}
             >
-                <div className={clsx("mt-0.5", "h-5 w-5", "flex-shrink-0")}>
-                    <TutorialCircle id={doc.id} width="100%" height="100%" />
+                <div className={clsx("mt-0.5", "h-8 w-8", "flex-shrink-0")}>
+                    <TutorialCircle
+                        id={doc.id}
+                        width="100%"
+                        height="100%"
+                        unitNo={isNaN(Number(unitNo)) ? undefined : unitNo}
+                        isCurrent={doc.current}
+                    />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 pt-[6px]">
                     <LinkWithId
                         id={doc.id}
                         isCurrent={doc.current}
@@ -278,17 +286,15 @@ export const TutorialTOC = () => {
                     unit.unit === selectedUnit &&
                         "bg-gradient-to-t from-gray-50 dark:from-gray-800 from-40% to-gray-200 dark:to-gray-700",
                     "-mb-1",
-                    "px-[3.5px] pt-0.5",
-                    "flex items-start justify-center",
-                    "h-[32px] w-[32px]",
+                    "flex items-center justify-center",
+                    "w-[40px] h-[44px]",
                     "cursor-pointer",
                     "rounded-tl-[24px] rounded-tr-[24px]",
                     "border-none",
-                    " -[24px]",
                     "font-semibold",
                 )}
             >
-                <UnitCircle unit={unit.unit} width="100%" height="28px" />
+                <UnitCircle unit={unit.unit} width="32px" height="32px" />
             </button>
         );
     };
@@ -305,23 +311,26 @@ export const TutorialTOC = () => {
 
     return (
         <div className={clsx("tutorial-tracker", "max-h-[calc(100vh-6rem]")}>
-            <div className={clsx("tutorial-units", "mb-1", "flex gap-0.5")}>
+            <div
+                className={clsx(
+                    "tutorial-units",
+                    "mb-1 px-2",
+                    "flex items-center gap-0.5",
+                )}
+            >
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div
                 className={clsx(
                     "rounded",
-                    "px-3 py-3",
+                    "pt-6 px-3 pb-2",
                     "bg-gray-50 dark:bg-gray-800",
-                    {
-                        "rounded-tl-none": currentUnit?.no === 1,
-                    },
                 )}
             >
                 {/* <div className={clsx("mb-2", "text-sm font-bold")}>
                     {currentUnit?.title ?? currentUnit?.unit ?? "-"}
                 </div> */}
-                <div className={clsx("text-sm", "mt-2")}>
+                <div className={clsx("text-sm")}>
                     {renderUnitDocs(currentUnit)}
                 </div>
             </div>
