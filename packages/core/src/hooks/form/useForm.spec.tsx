@@ -7,6 +7,15 @@ import {
     act,
     mockLegacyRouterProvider,
 } from "@test";
+
+import {
+    assertList,
+    assertOne,
+    renderUseList,
+    renderUseMany,
+    renderUseOne,
+} from "@test/mutation-helpers";
+
 import { useForm } from "./useForm";
 
 import { posts } from "@test/dataMocks";
@@ -1021,6 +1030,66 @@ describe("useForm Hook", () => {
                 expect(!result.current.mutationResult?.isLoading).toBeTruthy();
                 expect(result.current.overtime.elapsedTime).toBeUndefined();
             });
+        });
+
+        it("should work with optimistic update", async () => {
+            const initialTitle =
+                "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+            const updatedTitle = "optimistic test";
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        id: "1",
+                        mutationMode: "optimistic",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer.default,
+                            update: async () => {
+                                return new Promise((res, rej) => {
+                                    setTimeout(() => rej(), 500);
+                                });
+                            },
+                        },
+                        routerProvider: mockRouterBindings(),
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            const useOneResult = renderUseOne();
+            const useListResult = renderUseList();
+            const useManyResult = renderUseMany();
+
+            await assertOne(useOneResult, "title", initialTitle);
+
+            await assertList(useListResult, "title", initialTitle);
+
+            await assertList(useManyResult, "title", initialTitle);
+
+            act(() => {
+                result.current.onFinish({ title: updatedTitle });
+            });
+
+            await assertOne(useOneResult, "title", updatedTitle);
+
+            await assertList(useListResult, "title", updatedTitle);
+
+            await assertList(useManyResult, "title", updatedTitle);
+
+            await waitFor(() => {
+                expect(result.current.mutationResult.isError).toEqual(true);
+            });
+
+            await assertOne(useOneResult, "title", initialTitle);
+
+            await assertList(useListResult, "title", initialTitle);
+
+            await assertList(useManyResult, "title", initialTitle);
         });
     });
 });

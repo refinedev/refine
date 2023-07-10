@@ -5,7 +5,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useRefineContext,
     useRouterType,
     useBack,
@@ -65,6 +65,7 @@ export const Edit: React.FC<EditProps> = ({
     const back = useBack();
     const go = useGo();
     const { goBack, list: legacyGoList } = useNavigation();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const {
         resource,
@@ -160,7 +161,7 @@ export const Edit: React.FC<EditProps> = ({
                     title ??
                     translate(
                         `${identifier}.titles.edit`,
-                        `Edit ${userFriendlyResourceName(
+                        `Edit ${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??

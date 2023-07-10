@@ -44,6 +44,7 @@ export type FieldInferencer = (
     value: unknown,
     record: Record<string, unknown>,
     infer: FieldInferencer,
+    type?: "list" | "show" | "edit" | "create",
 ) => InferField | null | false;
 
 export type FieldTransformer = (
@@ -52,6 +53,7 @@ export type FieldTransformer = (
     resource: IResourceItem,
     record: Record<string, unknown>,
     infer: FieldInferencer,
+    type: "list" | "show" | "edit" | "create",
 ) => Array<InferField>;
 
 export type RecordField = {

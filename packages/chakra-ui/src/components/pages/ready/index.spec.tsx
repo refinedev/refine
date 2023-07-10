@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mantine/core";
+import { Button } from "@chakra-ui/react";
 import { pageReadyTests } from "@refinedev/ui-tests";
 
 import { render } from "@test";

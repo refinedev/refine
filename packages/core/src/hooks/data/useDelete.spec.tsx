@@ -1,12 +1,19 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useDelete } from "./useDelete";
 import * as UseInvalidate from "../invalidate/index";
+import {
+    renderUseList,
+    renderUseMany,
+    assertList,
+    assertListLength,
+    assertMutationSuccess,
+} from "@test/mutation-helpers";
 
 describe("useDelete Hook", () => {
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useDelete(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -29,30 +36,57 @@ describe("useDelete Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
         const { result } = renderHook(() => useDelete(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    deleteOne: () => {
+                        return new Promise((res, rej) => {
+                            setTimeout(() => rej(), 500);
+                        });
+                    },
+                },
                 resources: [{ name: "posts" }],
             }),
         });
 
-        result.current.mutate({
-            id: "1",
-            resource: "posts",
-            mutationMode: "optimistic",
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertListLength(useListResult, 2);
+        await assertList(useListResult, "id", ["1", "2"]);
+
+        await assertListLength(useManyResult, 2);
+        await assertList(useManyResult, "id", ["1", "2"]);
+
+        act(() => {
+            result.current.mutate({
+                id: "1",
+                resource: "posts",
+                mutationMode: "optimistic",
+            });
         });
+
+        await assertListLength(useListResult, 1);
+        await assertList(useListResult, "id", ["2"]);
+
+        await assertListLength(useManyResult, 1);
+        await assertList(useManyResult, "id", ["2"]);
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            expect(result.current.isError).toBeTruthy();
         });
 
-        const { isSuccess } = result.current;
+        await assertListLength(useListResult, 2);
+        await assertList(useListResult, "id", ["1", "2"]);
 
-        expect(isSuccess).toBeTruthy();
+        await assertListLength(useManyResult, 2);
+        await assertList(useManyResult, "id", ["1", "2"]);
     });
 
-    it("should works with undoable update", async () => {
+    it("should work with undoable update", async () => {
         const { result } = renderHook(() => useDelete(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -60,20 +94,32 @@ describe("useDelete Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            id: "1",
-            resource: "posts",
-            mutationMode: "undoable",
-            undoableTimeout: 0,
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertListLength(useListResult, 2);
+        await assertList(useListResult, "id", ["1", "2"]);
+
+        await assertListLength(useManyResult, 2);
+        await assertList(useManyResult, "id", ["1", "2"]);
+
+        act(() => {
+            result.current.mutate({
+                id: "1",
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+            });
         });
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+        await assertListLength(useListResult, 1);
+        await assertList(useListResult, "id", ["2"]);
 
-        const { isSuccess } = result.current;
+        await assertListLength(useManyResult, 1);
+        await assertList(useManyResult, "id", ["2"]);
 
-        expect(isSuccess).toBeTruthy();
+        assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

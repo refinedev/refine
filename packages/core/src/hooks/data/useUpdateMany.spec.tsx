@@ -1,6 +1,12 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import {
+    assertList,
+    assertMutationSuccess,
+    renderUseList,
+    renderUseMany,
+} from "@test/mutation-helpers";
 
 import { useUpdateMany } from "./useUpdateMany";
 import * as UseInvalidate from "../invalidate/index";
@@ -29,7 +35,7 @@ describe("useUpdateMany Hook", () => {
         expect(status).toBe("success");
     });
 
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useUpdateMany(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -53,31 +59,76 @@ describe("useUpdateMany Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
+        const initialTitle1 =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const initialTitle2 = "Recusandae consectetur aut atque est.";
+
+        const updatedTitle = "optimistic test";
+
         const { result } = renderHook(() => useUpdateMany(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    updateMany: async () => {
+                        return new Promise((res, rej) => {
+                            setTimeout(() => rej(), 500);
+                        });
+                    },
+                },
                 resources: [{ name: "posts" }],
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "optimistic",
-            ids: ["1", "2"],
-            values: { id: "1", title: "test" },
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertList(useListResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
+
+        await assertList(useManyResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "optimistic",
+                ids: ["1", "2"],
+                values: { title: updatedTitle },
+            });
         });
+
+        await assertList(useListResult, "title", [updatedTitle, updatedTitle]);
+
+        await assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            expect(result.current.isError).toBeTruthy();
         });
 
-        const { isSuccess } = result.current;
+        await assertList(useListResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
 
-        expect(isSuccess).toBeTruthy();
+        await assertList(useManyResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
     });
 
-    it("should works with undoable update", async () => {
+    it("should work with undoable update", async () => {
+        const initialTitle1 =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const initialTitle2 = "Recusandae consectetur aut atque est.";
+
+        const updatedTitle = "optimistic test";
+
         const { result } = renderHook(() => useUpdateMany(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -85,21 +136,35 @@ describe("useUpdateMany Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            ids: ["1", "2"],
-            resource: "posts",
-            mutationMode: "undoable",
-            undoableTimeout: 0,
-            values: { id: "1", title: "test" },
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertList(useListResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
+
+        await assertList(useManyResult, "title", [
+            initialTitle1,
+            initialTitle2,
+        ]);
+
+        act(() => {
+            result.current.mutate({
+                ids: ["1", "2"],
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+                values: { id: "1", title: updatedTitle },
+            });
         });
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+        await assertList(useListResult, "title", [updatedTitle, updatedTitle]);
 
-        const { isSuccess } = result.current;
+        await assertList(useManyResult, "title", [updatedTitle, updatedTitle]);
 
-        expect(isSuccess).toBeTruthy();
+        await assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

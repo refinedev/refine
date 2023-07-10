@@ -3,7 +3,7 @@ import {
     useCan,
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useResource,
     useRouterContext,
     useRouterType,
@@ -21,7 +21,7 @@ import { IconList } from "@tabler/icons";
 import { ListButtonProps } from "../types";
 
 /**
- * `<ListButton>` is using uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
+ * `<ListButton>` is using uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
@@ -51,6 +51,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     const routerType = useRouterType();
     const Link = useLink();
     const { Link: LegacyLink } = useRouterContext();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
@@ -103,7 +104,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     variant="outline"
                     aria-label={translate(
                         `${identifier}.titles.list`,
-                        userFriendlyResourceName(
+                        getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.label ??
                                 identifier ??
@@ -136,7 +137,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                                 resourceNameFromProps ??
                                 resourceNameOrRouteName
                             }.titles.list`,
-                            userFriendlyResourceName(
+                            getUserFriendlyName(
                                 resource?.meta?.label ??
                                     resource?.label ??
                                     identifier ??

@@ -131,7 +131,7 @@ export const useForm = <
             const errors = error?.errors;
 
             for (const key in errors) {
-                // when the key is not in the variables, react-hook-form not working
+                // when the key is not registered in the form, react-hook-form not working
                 const isKeyInVariables = Object.keys(_variables).includes(
                     key.split(".")[0],
                 );
@@ -180,6 +180,7 @@ export const useForm = <
         if (!data) return;
 
         const registeredFields = Object.keys(getValues());
+
         Object.entries(data).forEach(([key, value]) => {
             const name = key as Path<TVariables>;
 

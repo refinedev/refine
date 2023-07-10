@@ -83,8 +83,8 @@ export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
                         "rounded-lg",
                         "z-[1]",
                     )}
-                    src={data.cover}
-                    srcSet={data.cover2x}
+                    src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${data.cover}`}
+                    srcSet={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${data.cover2x}`}
                     alt={data.coverAlt}
                 />
             </div>
@@ -199,8 +199,8 @@ export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
                                         "rounded-[4px]",
                                         { "opacity-50": !item?.link },
                                     )}
-                                    src={item.image}
-                                    srcSet={item.image2x}
+                                    src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${item.image}`}
+                                    srcSet={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${item.image2x}`}
                                     alt={item.title}
                                 />
                             </div>

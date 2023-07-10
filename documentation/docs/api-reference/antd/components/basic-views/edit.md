@@ -126,7 +126,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ### `title`
 
-It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
+`title` allows you to add a title inside the `<Edit>` component. If you don't pass title props, it uses the "Edit" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -177,11 +177,7 @@ render(
 
 ### `saveButtonProps`
 
-The `<Edit>` component has a save button by default. If you want to customize this button you can use the `saveButtonProps` property like the code below.
-
-Clicking on the save button will submit your form.
-
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/save.md)
+The `<Edit>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -218,13 +214,13 @@ render(
 );
 ```
 
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/antd/components/buttons/save.md)
+
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows you to add a delete button inside the `<Edit>` component. This button uses the `useDelete` method provided by the `dataProvider`
 
-When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
-
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/delete.md)
+If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { EditButton } = RefineAntd;
@@ -320,11 +316,13 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`<DeleteButton>` documentation &#8594](/api-reference/antd/components/buttons/delete.md)
+
+> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `resource`
 
-`<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop.
+The `<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
 setInitialRoutes(["/custom/2"]);
@@ -370,11 +368,11 @@ render(<App />);
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `recordItemId`
 
-The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
+The `<Edit>` component reads the `id` information from the route by default. When it cannot be read from the URL, which happens when it's used on a custom page, modal or drawer, `recordItemId` is used.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -428,8 +426,6 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 ### `mutationMode`
 
 Determines which mode mutation will have while executing `<DeleteButton>` .
-
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -544,9 +540,11 @@ render(
 );
 ```
 
+> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
+
 ### `dataProviderName`
 
-If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **refine** will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -578,7 +576,7 @@ export const App: React.FC = () => {
 
 ### `goBack`
 
-To customize the back button or to disable it, you can use the `goBack` property.
+To customize the back button or to disable it, you can use the `goBack` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { EditButton } = RefineAntd;
@@ -619,9 +617,35 @@ render(
 );
 ```
 
+:::caution
+
+If your route has no `:action` parameter or your action is `list`, the back button will not be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property:
+
+```tsx
+/* highlight-next-line */
+import { useBack } from "@refinedev/core";
+import { Edit } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostEdit: React.FC = () => {
+    /* highlight-next-line */
+    const back = useBack();
+    const BackButton = () => <Button>←</Button>;
+
+    return (
+        /* highlight-next-line */
+        <Edit goBack={<BackButton />} headerProps={{ onBack: back }}>
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+```
+
+:::
+
 ### `isLoading`
 
-To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.
+To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -660,13 +684,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
-
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
-
-:::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
-:::
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -715,9 +733,15 @@ render(
 );
 ```
 
+:::tip
+This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+:::
+
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
+
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+You can use the `wrapperProps` property if you want to customize the wrapper of the `<Edit/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -764,9 +788,7 @@ render(
 
 ### `headerProps`
 
-If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
-
-[Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
+You can use the `headerProps` property to customize the header of the `<Edit/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -812,11 +834,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`PageHeader` documentation &#8594](https://ant.design/components/page-header/)
+
 ### `contentProps`
 
-If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
-
-[Refer to the `Card` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/card/)
+You can use the `contentProps` property to customize the content of the `<Edit/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -861,6 +883,8 @@ render(
 );
 ```
 
+> For more information, refer to the [`Card` documentation &#8594](https://ant.design/components/card/)
+
 ### `headerButtons`
 
 By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
@@ -869,7 +893,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 :::caution
 
-If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+If the "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
 :::
 
@@ -974,9 +998,7 @@ render(
 
 ### `headerButtonProps`
 
-You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
-
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
+You can use the `headerButtonProps` proeprty to customize the wrapper element of the buttons at the header:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -1022,6 +1044,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
 
 ### `footerButtons`
 
@@ -1132,14 +1156,11 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
 
 // visible-block-start
 import { Edit } from "@refinedev/antd";
-import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -1182,13 +1203,15 @@ render(
 );
 ```
 
+> For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@refinedev/antd/Edit" 
+<PropsTable module="@refinedev/antd/Edit"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
-headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
+headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
@@ -1196,13 +1219,12 @@ saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/
 footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
-goBack-default="`<ArrowLeft />`" 
+goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
-[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
 [list-button]: /docs/api-reference/antd/components/buttons/list-button/
 [refresh-button]: /docs/api-reference/antd/components/buttons/refresh-button/
 [save-button]: /docs/api-reference/antd/components/buttons/save-button/

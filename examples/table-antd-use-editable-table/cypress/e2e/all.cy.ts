@@ -3,7 +3,7 @@
 
 describe("table-antd-use-update-many", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
     });
 
     it("should be view list page", () => {

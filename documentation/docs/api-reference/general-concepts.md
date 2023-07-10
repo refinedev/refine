@@ -7,7 +7,7 @@ title: General Concepts
 
 ## `resource`
 
-`resource` is a prop that gets passed to `dataProvider` as a paremeter by **refine**. It is usually used as an API endpoint path but it all depends on how you hanlde it in your `dataProvider`
+`resource` is a prop that gets passed to `dataProvider` as a paremeter by **refine**. It is usually used as an API endpoint path but it all depends on how you handle it in your `dataProvider`
 
 > For an example, refer to the [`Creating a data provider from scratch part of the tutorial`](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
 

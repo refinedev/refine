@@ -2,7 +2,7 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-material-ui-use-form", () => {
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "http://localhost:5173";
 
     const submitForm = () => {
         return cy.getSaveButton().click();
