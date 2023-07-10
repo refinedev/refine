@@ -152,7 +152,7 @@ export const useForm = <
             }[] = [];
 
             // reset antd errors before setting new errors
-            const fieldsValue = form.getFieldsValue() as object;
+            const fieldsValue = form.getFieldsValue() as unknown as object;
             const fields = Object.keys(fieldsValue);
             parsedErrors = fields.map((field) => {
                 return {
