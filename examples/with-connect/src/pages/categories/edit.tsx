@@ -8,7 +8,7 @@ import { Edit } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
-import { IProduct } from "interfaces";
+import { IProduct } from "../../interfaces";
 import { useConnectMutation } from "@refinedev/connect";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {

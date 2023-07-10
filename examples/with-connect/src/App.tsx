@@ -18,20 +18,20 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import {
     ProductList,
     ProductCreate,
     ProductEdit,
     ProductShow,
-} from "pages/products";
+} from "./pages/products";
 import {
     CategoryList,
     CategoryShow,
     CategoryCreate,
     CategoryEdit,
-} from "pages/categories";
-import { Login } from "pages/login";
+} from "./pages/categories";
+import { Login } from "./pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
