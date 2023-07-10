@@ -106,7 +106,7 @@ export const DataProvider = (
             return {
                 data,
             };
-        } catch (error: any) {
+        } catch (error) {
             const httpError = transformHttpError(error);
 
             throw httpError;
@@ -127,7 +127,7 @@ export const DataProvider = (
             return {
                 data,
             };
-        } catch (error: any) {
+        } catch (error) {
             const httpError = transformHttpError(error);
 
             throw httpError;
@@ -150,7 +150,7 @@ export const DataProvider = (
                 try {
                     const { data } = await httpClient.put(url, dataVariables);
                     return data;
-                } catch (error: any) {
+                } catch (error) {
                     const httpError = transformHttpError(error);
 
                     errors.push(httpError);
@@ -178,7 +178,7 @@ export const DataProvider = (
                         },
                     );
                     return data;
-                } catch (error: any) {
+                } catch (error) {
                     const httpError = transformHttpError(error);
 
                     errors.push(httpError);
