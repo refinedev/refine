@@ -43,8 +43,7 @@ const AuthorPage = (props) => {
                         "mx-auto",
                     )}
                 >
-                    <div className="border-b border-gray-200 dark:border-gray-700 mb-8" />
-                    <h1 className="text-4xl !mb-0">Posts</h1>
+                    <h1 className="text-4xl !mb-0 px-0 lg:px-4">Posts</h1>
                 </div>
                 <div className={clsx("px-4", "blog-md:px-7", "blog-2xl:px-0")}>
                     <BlogPostItems

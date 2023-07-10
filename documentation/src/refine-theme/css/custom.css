@@ -142,7 +142,7 @@
 }
 
 .refine-toc-item code {
-    @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded hover:!text-gray-900 dark:hover:!text-gray-0;
+    @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded !text-inherit dark:!text-inherit;
     font-size: 12px;
 }
 
@@ -159,15 +159,19 @@ p:has(> code) code {
 }
 
 .admonition.admonition-caution code {
-    @apply bg-refine-orange bg-opacity-20;
+    @apply bg-[#F2800D] dark:bg-refine-orange bg-opacity-[15%] dark:bg-opacity-[15%];
 }
 
 .admonition.admonition-caution a {
-    @apply text-refine-orange;
+    @apply text-[#CC6600] dark:text-refine-orange;
+}
+
+.admonition.admonition-caution li::marker {
+    @apply text-[#CC6600] dark:text-refine-orange text-opacity-50 dark:text-opacity-50;
 }
 
 .admonition.admonition-danger code {
-    @apply bg-refine-red bg-opacity-20;
+    @apply bg-refine-red bg-opacity-[15%];
 }
 
 .admonition.admonition-danger a {
@@ -175,27 +179,39 @@ p:has(> code) code {
 }
 
 .admonition.admonition-info code {
-    @apply bg-refine-blue bg-opacity-20;
+    @apply bg-refine-blue dark:bg-[#6EB3F7] bg-opacity-[15%] dark:bg-opacity-[15%];
 }
 
 .admonition.admonition-info a {
-    @apply text-refine-link-light dark:text-refine-link-dark;
+    @apply text-refine-blue dark:text-refine-link-dark;
+}
+
+.admonition.admonition-info li::marker {
+    @apply text-refine-blue dark:text-refine-link-dark text-opacity-50 dark:text-opacity-50;
 }
 
 .admonition.admonition-tip code {
-    @apply bg-refine-green bg-opacity-20;
+    @apply bg-refine-green bg-opacity-[15%];
 }
 
 .admonition.admonition-tip a {
     @apply text-refine-green;
 }
 
+.admonition.admonition-tip li::marker {
+    @apply text-refine-green text-opacity-50;
+}
+
 .admonition.admonition-note code {
-    @apply bg-refine-cyan bg-opacity-20;
+    @apply bg-refine-cyan bg-opacity-[15%];
 }
 
 .admonition.admonition-note a {
     @apply text-refine-cyan;
+}
+
+.admonition.admonition-note li::marker {
+    @apply text-refine-cyan text-opacity-50;
 }
 
 .admonition.admonition-additional code {

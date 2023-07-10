@@ -61,10 +61,17 @@ export const TOCItem = ({
                 level === 3 && "pl-7",
                 level === 4 && "pl-11",
                 "py-2 pr-3",
+                "dark:bg-gray-700 bg-gray-100",
+                "hover:bg-opacity-100 hover:dark:bg-opacity-100",
                 activeId === id &&
-                    `dark:text-gray-0 bg-gray-50  text-gray-900 hover:text-gray-900 dark:bg-gray-700/50`,
+                    `dark:text-gray-0 text-gray-900 hover:text-gray-900 
+                     bg-opacity-50 dark:bg-opacity-50
+                    `,
                 activeId !== id &&
-                    `dark:hover:text-gray-0 text-gray-500 hover:text-gray-900 dark:text-gray-500`,
+                    `dark:hover:text-gray-0 text-gray-500 hover:text-gray-900 dark:text-gray-500
+                    bg-opacity-0 dark:bg-opacity-0
+                    `,
+                "hover:!text-gray-900 dark:hover:!text-gray-0",
                 "rounded-lg",
                 "transition-colors duration-200 ease-in-out",
                 "block",
@@ -91,7 +98,7 @@ export const DocTOC = () => {
                 "sticky right-0 top-[67px]",
                 "max-w-[280px]",
                 "overflow-auto",
-                "h-[calc(100vh-100px)]",
+                "h-[calc(100vh-67px)]",
                 "pl-3",
                 "pr-3",
                 "py-12",

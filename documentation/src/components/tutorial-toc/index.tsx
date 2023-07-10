@@ -239,7 +239,7 @@ export const TutorialTOC = () => {
                     <LinkWithId
                         id={doc.id}
                         isCurrent={doc.current}
-                        className={clsx("leading-[22px]", {
+                        className={clsx("leading-[22px]", "no-underline", {
                             "text-gray-900 dark:text-white":
                                 currentDocId === doc.id,
                             "hover:cursor-default hover:no-underline hover:text-gray-900":
@@ -294,7 +294,12 @@ export const TutorialTOC = () => {
                     "font-semibold",
                 )}
             >
-                <UnitCircle unit={unit.unit} width="32px" height="32px" />
+                <UnitCircle
+                    unit={unit.unit}
+                    width="32px"
+                    height="32px"
+                    isSelected={unit.unit === selectedUnit}
+                />
             </button>
         );
     };

@@ -34,7 +34,7 @@ export const TutorialCircle: React.FC<Props> = ({
     const r = 45;
     const cx = 50;
     const cy = 50;
-    const strokeWidth = 8;
+    const strokeWidth = 6;
     const standardOffsetLength = 20;
     const emptyColor = "#6C7793";
     const completedColor = "#48bb78";
@@ -95,10 +95,7 @@ export const TutorialCircle: React.FC<Props> = ({
                     dominantBaseline="middle"
                     textAnchor="middle"
                     fill="currentColor"
-                    style={{
-                        fontSize: "42px",
-                    }}
-                    className={clsx("font-bold", {
+                    className={clsx("text-[2.5rem]", {
                         "text-gray-500": !isCurrent,
                         "text-gray-900 dark:text-white": isCurrent,
                     })}

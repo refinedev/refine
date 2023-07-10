@@ -117,7 +117,7 @@ const SidebarCategory = ({
                     "relative",
                     !isHeader && "group",
                     "transition-colors duration-200 ease-in-out",
-                    !isHeader && "hover:dark:text-gray-0",
+                    !isHeader && "hover:dark:text-gray-0 hover:text-gray-900",
                     !isHeader && "no-underline",
                 )}
             >
@@ -126,8 +126,8 @@ const SidebarCategory = ({
                         "absolute",
                         "opacity-0",
                         "rounded-lg",
-                        "group-hover:opacity-50",
-                        "bg-gray-50 dark:bg-gray-700 bg-opacity-50",
+                        "group-hover:opacity-100",
+                        "bg-gray-100 dark:bg-gray-700",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "top-0",
@@ -157,15 +157,10 @@ const SidebarCategory = ({
                 <div
                     className={clsx(
                         "absolute",
-                        !isHeader && isActive && isSame
-                            ? "opacity-100"
-                            : "opacity-0",
+                        isActive && isSame ? "opacity-50" : "opacity-0",
                         "rounded-lg",
-                        !isHeader &&
-                            !isActive &&
-                            !isSame &&
-                            "group-hover:opacity-50",
-                        "bg-gray-50 dark:bg-gray-700 bg-opacity-50",
+                        "group-hover:opacity-100",
+                        "bg-gray-100 dark:bg-gray-700 ",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "top-0",
@@ -268,8 +263,8 @@ const SidebarLink = ({
                     "absolute",
                     isActive && isSame ? "opacity-50" : "opacity-0",
                     "rounded-lg",
-                    !isActive && !isSame && "group-hover:opacity-50",
-                    "bg-gray-50 dark:bg-gray-700",
+                    "group-hover:opacity-100",
+                    "bg-gray-100 dark:bg-gray-700 ",
                     "transition-opacity",
                     "duration-200 ease-in-out",
                     {

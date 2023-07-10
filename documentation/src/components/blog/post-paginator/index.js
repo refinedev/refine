@@ -12,21 +12,17 @@ export const PostPaginator = ({ posts, title }) => {
     return (
         <div
             className={clsx(
+                "w-full mx-auto",
                 "py-10",
                 "blog-sm:py-12",
                 "blog-md:py-16",
-                "px-4",
-                "blog-md:px-8",
-                "w-full",
-                "mx-auto",
-                "blog-2xl:max-w-none",
-                "blog-lg:px-0",
-                "blog-sm:max-w-screen-blog-sm",
                 "max-w-[512px]",
+                "blog-sm:max-w-screen-blog-sm",
+                "blog-lg:max-w-screen-content-2xl",
             )}
         >
-            <div className="w-full blog-sm:px-6 blog-2xl:px-8">
-                <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4">
+            <div className="w-full px-4 blog-sm:px-6">
+                <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4 pl-4">
                     {title}
                 </h2>
                 <div className="flex flex-col">

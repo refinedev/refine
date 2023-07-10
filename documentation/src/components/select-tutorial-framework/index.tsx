@@ -49,9 +49,8 @@ const Card = ({ name, title, selected, onClick }: CardProps) => {
             {title && (
                 <span
                     className={clsx(
-                        "text-gray-500",
-                        "dark:text-gray-600",
                         selected && "text-gray-900 dark:text-gray-0",
+                        !selected && "text-gray-500 dark:text-gray-600",
                     )}
                 >
                     {title}

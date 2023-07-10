@@ -36,6 +36,7 @@ export default function BlogPostItems({
                         className={clsx(
                             "flex flex-col blog-md:flex-row items-start justify-between",
                             "mb-2 lg:mb-8",
+                            "px-0 blog-sm:px-6",
                         )}
                     >
                         <h2
