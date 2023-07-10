@@ -403,7 +403,7 @@ const PricingHeader = () => {
                 >
                     power it up
                 </span>{" "}
-                with our enterprise support!
+                with our enterprise edition!
             </div>
         </div>
     );
