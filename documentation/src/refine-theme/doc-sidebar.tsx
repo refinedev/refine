@@ -87,7 +87,7 @@ const SidebarCategory = ({
                 !line && "pl-0",
                 line && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 dark:border-l-gray-700 border-l-gray-100",
+                line && "border-l-2 dark:border-l-gray-600 border-l-gray-200",
             )}
         >
             <Comp
@@ -126,12 +126,13 @@ const SidebarCategory = ({
                         "absolute",
                         "opacity-0",
                         "rounded-lg",
-                        "group-hover:opacity-100",
-                        "bg-gray-100 dark:bg-gray-700",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "top-0",
+                        "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
                         {
+                            "bg-gray-100/50 dark:bg-gray-700/50":
+                                isActive && isSame,
                             "right-0": variant === "desktop",
                             "-right-2": variant === "mobile",
                             "w-[calc(280px-24px)]": variant === "desktop",
@@ -157,14 +158,14 @@ const SidebarCategory = ({
                 <div
                     className={clsx(
                         "absolute",
-                        isActive && isSame ? "opacity-50" : "opacity-0",
                         "rounded-lg",
-                        "group-hover:opacity-100",
-                        "bg-gray-100 dark:bg-gray-700 ",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "top-0",
+                        "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
                         {
+                            "bg-gray-100/50 dark:bg-gray-700/50":
+                                isActive && isSame,
                             "right-0": variant === "desktop",
                             "-right-2": variant === "mobile",
                             "w-[calc(280px-24px)]": variant === "desktop",
@@ -249,7 +250,7 @@ const SidebarLink = ({
                 line && !dashed && "pl-5",
                 line && dashed && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 dark:border-l-gray-700 border-l-gray-100",
+                line && "border-l-2 dark:border-l-gray-600 border-l-gray-200",
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "hover:dark:text-gray-0 hover:text-gray-900",
@@ -261,13 +262,13 @@ const SidebarLink = ({
             <div
                 className={clsx(
                     "absolute",
-                    isActive && isSame ? "opacity-50" : "opacity-0",
                     "rounded-lg",
-                    "group-hover:opacity-100",
-                    "bg-gray-100 dark:bg-gray-700 ",
                     "transition-opacity",
                     "duration-200 ease-in-out",
+                    "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
                     {
+                        "bg-gray-100/50 dark:bg-gray-700/50":
+                            isActive && isSame,
                         "right-0": variant === "desktop",
                         "-right-2": variant === "mobile",
                         "w-[calc(280px-24px)]": variant === "desktop",

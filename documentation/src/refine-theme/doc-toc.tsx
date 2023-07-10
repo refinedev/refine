@@ -61,15 +61,14 @@ export const TOCItem = ({
                 level === 3 && "pl-7",
                 level === 4 && "pl-11",
                 "py-2 pr-3",
-                "dark:bg-gray-700 bg-gray-100",
-                "hover:bg-opacity-100 hover:dark:bg-opacity-100",
+                "hover:bg-gray-200/40 dark:hover:bg-gray-700/80",
                 activeId === id &&
                     `dark:text-gray-0 text-gray-900 hover:text-gray-900 
-                     bg-opacity-50 dark:bg-opacity-50
+                    bg-gray-100/50 dark:bg-gray-700/50
                     `,
                 activeId !== id &&
                     `dark:hover:text-gray-0 text-gray-500 hover:text-gray-900 dark:text-gray-500
-                    bg-opacity-0 dark:bg-opacity-0
+                      bg-opacity-0 dark:bg-opacity-0
                     `,
                 "hover:!text-gray-900 dark:hover:!text-gray-0",
                 "rounded-lg",
