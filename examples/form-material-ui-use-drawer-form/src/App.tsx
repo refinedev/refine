@@ -17,7 +17,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { PostList } from "pages/posts";
+import { PostList } from "../src/pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

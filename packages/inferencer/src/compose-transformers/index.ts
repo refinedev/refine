@@ -13,9 +13,10 @@ export const composeTransformers = (
         resource,
         record,
         infer,
+        type,
     ) => {
         return transformers.reduce((acc, transformer) => {
-            return transformer(acc, resources, resource, record, infer);
+            return transformer(acc, resources, resource, record, infer, type);
         }, fields);
     };
 

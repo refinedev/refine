@@ -1,5 +1,69 @@
 # @pankod/refine-mantine
 
+## 2.22.2
+
+### Patch Changes
+
+-   [#4629](https://github.com/refinedev/refine/pull/4629) [`58cc48b7b8f`](https://github.com/refinedev/refine/commit/58cc48b7b8fafc46145a28ca686ce1527a737da4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `description` prop does not show up in Mantine notification.
+    With this fix, you can now use `description` prop to show a description in the notification.
+
+    ```tsx
+    import { useNotification } from "@refinedev/core";
+
+    const { open } = useNotification();
+
+    open?.({
+        description: "This is a description",
+        message: "This is a message",
+        type: "progress",
+    });
+    ```
+
+## 2.22.1
+
+### Patch Changes
+
+-   [#4629](https://github.com/refinedev/refine/pull/4629) [`58cc48b7b8f`](https://github.com/refinedev/refine/commit/58cc48b7b8fafc46145a28ca686ce1527a737da4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `description` prop does not show up in Mantine notification.
+    With this fix, you can now use `description` prop to show a description in the notification.
+
+    ```tsx
+    import { useNotification } from "@refinedev/core";
+
+    const { open } = useNotification();
+
+    open?.({
+        description: "This is a description",
+        message: "This is a message",
+        type: "progress",
+    });
+    ```
+
+## 2.22.0
+
+### Minor Changes
+
+-   [#4502](https://github.com/refinedev/refine/pull/4502) [`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38) Thanks [@Mr0nline](https://github.com/Mr0nline)! - feat: ability to tweak active sider items navigation
+
+    Visiting active sider items triggers page reloads due to them being links. We can now provide activeItemDisabled prop to disable such reloads.
+
+### Patch Changes
+
+-   Updated dependencies [[`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38)]:
+    -   @refinedev/ui-types@1.18.0
+
+## 2.21.0
+
+### Minor Changes
+
+-   [#4502](https://github.com/refinedev/refine/pull/4502) [`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38) Thanks [@Mr0nline](https://github.com/Mr0nline)! - feat: ability to tweak active sider items navigation
+
+    Visiting active sider items triggers page reloads due to them being links. We can now provide activeItemDisabled prop to disable such reloads.
+
+### Patch Changes
+
+-   Updated dependencies [[`c7872ca621f`](https://github.com/refinedev/refine/commit/c7872ca621fdc6c0edd7ee113520bd898901ed38)]:
+    -   @refinedev/ui-types@1.17.0
+
 ## 2.20.0
 
 ### Minor Changes

@@ -6,7 +6,7 @@ swizzle: true
 
 `<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
-We'll show what `<Create>` does using properties with examples.
+We will show what `<Create>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/create
 interface ICategory {
@@ -117,7 +117,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ### `title`
 
-It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
+`title` allows you to add a title inside the `<Create>` component. If you don't pass the title props, it uses the "Create" prefix and the singular resource name by default. For example, for the `/posts/create` resource, it would be "Create post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
@@ -156,9 +156,7 @@ render(
 
 ### `saveButtonProps`
 
-`<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
-
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/save.md)
+The `<Create>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
@@ -195,9 +193,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/antd/components/buttons/save.md)
+
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
@@ -245,18 +245,18 @@ render(<App />);
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `goBack`
 
-To customize the back button or to disable it, you can use the `goBack` property.
+To customize the back button or to disable it, you can use the `goBack` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
-import { Button } from "antd";
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     const BackButton = () => <Button>←</Button>;
@@ -288,9 +288,35 @@ render(
 );
 ```
 
+:::caution
+
+If your route has no `:action` parameter or your action is `list`, the back button will _not_ be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property:
+
+```tsx
+/* highlight-next-line */
+import { useBack } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostCreate: React.FC = () => {
+    /* highlight-next-line */
+    const back = useBack();
+    const BackButton = () => <Button>←</Button>;
+
+    return (
+        /* highlight-next-line */
+        <Create goBack={<BackButton />} headerProps={{ onBack: back }}>
+            <p>Rest of your page here</p>
+        </Create>
+    );
+};
+```
+
+:::
+
 ### `isLoading`
 
-To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property.
+To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -329,13 +355,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
-
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
-
-:::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
-:::
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -384,9 +404,15 @@ render(
 );
 ```
 
+:::tip
+This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+:::
+
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
+
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+You can use the `wrapperProps` property if you want to customize the wrapper of the `<Create/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -433,9 +459,7 @@ render(
 
 ### `headerProps`
 
-If you want to customize the header of the `<Create/>` component, you can use the `headerProps` property.
-
-[Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
+You can use the `headerProps` property to customize the header of the `<Create/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -481,11 +505,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`PageHeader` documentation &#8594](https://ant.design/components/page-header/)
+
 ### `contentProps`
 
-If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
-
-[Refer to the `Card` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/card/)
+You can use the `contentProps` property to customize the content of the `<Create/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -529,6 +553,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`Card` documentation &#8594](https://ant.design/components/card/)
 
 ### `headerButtons`
 
@@ -580,9 +606,7 @@ render(
 
 ### `headerButtonProps`
 
-You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
-
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
+You can use the `headerButtonProps` proeprty to customize the wrapper element of the buttons at the header:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -629,9 +653,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
+
 ### `footerButtons`
 
-By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the header.
+By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the footer.
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
@@ -733,8 +759,6 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
 
@@ -783,11 +807,12 @@ render(
 );
 ```
 
+> For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
+
 ## API Reference
 
-### Props
+### Properties
 
 <PropsTable module="@refinedev/antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
 
-[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
 [save-button]: /docs/api-reference/antd/components/buttons/save-button/

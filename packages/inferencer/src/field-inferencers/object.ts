@@ -3,7 +3,13 @@ import { FieldInferencer } from "../types";
 
 const idPropertyRegexp = /id$/i;
 
-export const objectInfer: FieldInferencer = (key, value, record, infer) => {
+export const objectInfer: FieldInferencer = (
+    key,
+    value,
+    record,
+    infer,
+    type,
+) => {
     const isNotNull = value !== null;
     const isNotArray = !Array.isArray(value);
     const isObject = typeof value === "object";
@@ -12,6 +18,8 @@ export const objectInfer: FieldInferencer = (key, value, record, infer) => {
         const onlyHasId =
             Object.keys(value).length === 1 &&
             idPropertyRegexp.test(Object.keys(value)[0]);
+
+        const hasId = Object.keys(value).some((k) => idPropertyRegexp.test(k));
 
         if (onlyHasId) {
             return {
@@ -43,6 +51,7 @@ export const objectInfer: FieldInferencer = (key, value, record, infer) => {
                 (value as Record<string, unknown>)[innerFieldKey],
                 value as Record<string, unknown>,
                 infer,
+                type,
             );
 
             if (innerFieldType) {
@@ -63,6 +72,20 @@ export const objectInfer: FieldInferencer = (key, value, record, infer) => {
                         ? `${fieldableKeys}.${innerFieldType.accessor[0]}`
                         : `${fieldableKeys}.${innerFieldType.accessor}`
                     : fieldableKeys;
+
+                if (
+                    innerFieldType?.type === "text" &&
+                    (type === "create" || type === "edit") &&
+                    hasId
+                ) {
+                    return {
+                        key,
+                        type: "relation",
+                        relation: true,
+                        accessor: "id",
+                        priority: 1,
+                    };
+                }
 
                 return {
                     ...innerFieldType,

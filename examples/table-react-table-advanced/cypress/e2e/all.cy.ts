@@ -8,7 +8,7 @@ describe("table-react-table-advanced", () => {
         cy.interceptPATCHPost();
         cy.interceptGETCategories();
 
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
     });
 
     it("the row should be expandable", () => {

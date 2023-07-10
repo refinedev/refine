@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<ImageField>` with the example in the edit page.
+Let's see how we can use `<ImageField>` with the example in the edit page:
 
 ```tsx live
 // visible-block-start

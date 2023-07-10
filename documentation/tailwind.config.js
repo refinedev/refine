@@ -77,6 +77,15 @@ module.exports = {
                 startTiles: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
             },
+            backgroundColor: {
+                "landing-header-bg": "rgba(10, 10, 41, 0.70)",
+                "landing-header-border": "rgba(48, 52, 80, 0.70)",
+                "common-header-bg-dark": "rgba(29, 30, 48, 0.70)",
+                "common-header-bg-light": "rgba(244, 248, 251, 0.85)",
+            },
+            backdropBlur: {
+                "header-blur": "12px",
+            },
             backgroundImage: {
                 "walkthrough-button-shadow":
                     "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",

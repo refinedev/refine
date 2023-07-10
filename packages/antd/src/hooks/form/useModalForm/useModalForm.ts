@@ -9,7 +9,7 @@ import {
     BaseRecord,
     LiveModeProps,
     BaseKey,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useResource,
     FormWithSyncWithLocationParams,
     useParsed,
@@ -151,6 +151,7 @@ export const useModalForm = <
 
     const parsed = useParsed();
     const go = useGo();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const action = rest.action ?? actionFromParams ?? "";
 
@@ -321,7 +322,7 @@ export const useModalForm = <
             okButtonProps: saveButtonPropsSF,
             title: translate(
                 `${identifier}.titles.${rest.action}`,
-                `${userFriendlyResourceName(
+                `${getUserFriendlyName(
                     `${rest.action} ${
                         resource?.meta?.label ??
                         resource?.options?.label ??

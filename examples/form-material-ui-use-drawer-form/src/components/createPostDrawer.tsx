@@ -9,7 +9,7 @@ import { Controller } from "react-hook-form";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 import { HttpError } from "@refinedev/core";
 
-import { ICategory, IPost, IStatus, Nullable } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "../interfaces";
 
 export const CreatePostDrawer: React.FC<
     UseModalFormReturnType<IPost, HttpError, Nullable<IPost>>

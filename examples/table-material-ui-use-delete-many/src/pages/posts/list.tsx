@@ -9,7 +9,7 @@ import {
     GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
