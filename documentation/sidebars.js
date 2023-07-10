@@ -762,6 +762,7 @@ module.exports = {
                                         "examples/form/antd/useForm",
                                         "examples/form/antd/useModalForm",
                                         "examples/form/antd/useStepsForm",
+                                        "examples/form/antd/serverSideFormValidation",
                                     ],
                                 },
                                 {
