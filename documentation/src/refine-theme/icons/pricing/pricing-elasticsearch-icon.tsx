@@ -17,10 +17,11 @@ const SvgPricingElasticsearchIcon = (props: SVGProps<SVGSVGElement>) => (
                 fill="#343741"
             />
             <path
+                className="text-[#343741] dark:text-gray-0"
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M0.75 12.001C0.75 13.039 0.8955 14.0402 1.143 15.001H15.75C17.4068 15.001 18.75 13.6577 18.75 12.001C18.75 10.3435 17.4068 9.00098 15.75 9.00098H1.143C0.8955 9.96098 0.75 10.963 0.75 12.001Z"
-                fill="white"
+                fill="currentColor"
             />
             <mask
                 id="mask0_2460_26758"
