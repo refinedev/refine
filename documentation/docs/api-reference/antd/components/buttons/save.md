@@ -13,7 +13,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
+Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook:
 
 ```tsx live url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -70,13 +70,13 @@ render(
 );
 ```
 
-The [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
+The [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
 ## Properties
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
@@ -112,5 +112,5 @@ render(
 <PropsTable module="@refinedev/antd/SaveButton" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+`<SaveButton>` also accepts all props of Ant Design's [Button](https://ant.design/components/button/#API) component.
 :::

@@ -69,5 +69,5 @@ render(
 <PropsTable module="@refinedev/antd/TagField" value-description="Tag content" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Tag](https://ant.design/components/tag/#API).
+This field also accepts all props of Ant Design's [Tag](https://ant.design/components/tag/#API) component.
 :::

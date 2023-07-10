@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-`<NumberField>` uses Intl.NumberFormat() if available, passing the locales and options props as arguments. This allows a perfect display of decimals, currencies, percentages, etc. See [Intl.NumberFormat documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) for the options prop syntax.
+`<NumberField>` uses `Intl.NumberFormat()` if available, passing the locales and options props as arguments. This allows a perfect display of decimals, currencies, percentages, etc. See the [Intl.NumberFormat documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) for the options prop syntax.
 
 If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the locales and options props).
 
@@ -81,5 +81,5 @@ render(
 <PropsTable module="@refinedev/antd/NumberField" value-description="Number value" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
+This field also accepts all props of Ant Design's [Text](https://ant.design/components/typography/#Typography.Text) component.
 :::
