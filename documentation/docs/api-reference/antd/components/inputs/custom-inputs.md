@@ -16,7 +16,7 @@ Custom components may be useful when working with markdown (with markdown editor
 We will demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms:
 
 ```tsx title="/src/pages/posts/edit.tsx"
-import React from "react";
+import React, { useState } from "react";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 

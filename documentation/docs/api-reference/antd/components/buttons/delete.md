@@ -166,6 +166,7 @@ For example, let's `console.log` after deletion:
 
 ```tsx live url=http://localhost:3000 previewHeight=150px disableScroll
 setInitialRoutes(["/"]);
+import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -223,7 +224,7 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 > For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
-import { DeleteButton, List, useTable } from "@refinedev/antd";
+import { List, DeleteButton, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 export const PostList: React.FC = () => {

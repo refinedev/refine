@@ -327,6 +327,7 @@ The `<Edit>` component reads the `resource` information from the route by defaul
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
 setInitialRoutes(["/custom/2"]);
 
+import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
@@ -378,7 +379,7 @@ const { EditButton } = RefineAntd;
 
 // visible-block-start
 import { Edit, useModalForm } from "@refinedev/antd";
-import { Button, Modal } from "antd";
+import { Modal, Button } from "antd";
 
 const PostEdit: React.FC = () => {
     const { modalProps, id, show } = useModalForm({
@@ -622,8 +623,8 @@ If your route has no `:action` parameter or your action is `list`, the back butt
 
 ```tsx
 /* highlight-next-line */
-import { Edit } from "@refinedev/antd";
 import { useBack } from "@refinedev/core";
+import { Edit } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostEdit: React.FC = () => {

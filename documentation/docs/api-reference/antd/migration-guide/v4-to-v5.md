@@ -5,7 +5,7 @@ title: Migration Guide
 
 Ant Design released a new major version as a v5. This document will help you upgrade from antd 4.x version to antd 5.x version.
 
-Ant Design removed `less` and adopted `CSS-in-JS` for better support of dynamic themes. The bottom layer uses [`@ant-design/cssinjs`](https://github.com/ant-design/cssinjs) as a solution.
+Ant Design removed `less` and adopted `CSS-in-JS` for better support of dynamic themes. So now, the bottom layer uses [`@ant-design/cssinjs`](https://github.com/ant-design/cssinjs) instead of `less` as a solution.
 
 Some components are removed or renamed, and some APIs are changed.
 

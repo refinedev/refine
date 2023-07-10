@@ -135,6 +135,7 @@ The `<List>` component reads the `resource` information from the route by defaul
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 setInitialRoutes(["/custom"]);
 
+import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 // visible-block-start

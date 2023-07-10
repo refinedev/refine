@@ -653,11 +653,10 @@ const MyLoginPage = () => {
 The `rememberMe` property is only available for type `login`.
 :::
 
-The `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
+The `rememberMe` property defines to render your custom `<RememberMe>` component or you can pass `false` to don't render it.
 
 :::info
-You have to wrap your remember me component with the `Form.Item` component from **Ant Design** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
-:::
+You have to wrap your custom `<RememberMe>` component with the `Form.Item` component from **Ant Design** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -854,7 +853,7 @@ By default, `AuthPage` uses text with icon on top of page. You can use this prop
 -   Default icon is: refine Logo
 
 ```tsx
-import { AuthPage } from "@refinedev/antd";
+import { AuthPage, ThemedTitle} from "@refinedev/antd";
 
 const MyLoginPage = () => {
     return <AuthPage type="login" title={<h1>My Title</h1>} />;
