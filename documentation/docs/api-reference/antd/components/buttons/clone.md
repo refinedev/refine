@@ -4,7 +4,8 @@ title: Clone
 swizzle: true
 ---
 
-`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `clone` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
@@ -102,12 +103,12 @@ render(
 Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 :::note
-**`<CloneButton>`** component reads the id information from the route by default.
+The **`<CloneButton>`** component reads the id information from the route by default.
 :::
 
 ### `resource`
 
-It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
+`resource` is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -147,11 +148,11 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `meta`
 
-It is used to pass additional parameters to the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, the existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
 
@@ -222,7 +223,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+> The`resourceNameOrRouteName` prop is deprecated. Use the `resource` prop instead.
 
 It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
 
