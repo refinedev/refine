@@ -144,15 +144,26 @@ export const useForm = <
         onMutationSuccess: onMutationSuccessProp
             ? onMutationSuccessProp
             : undefined,
-        onMutationError: (error, _variables, _context) => {
-            const errors = error?.errors;
-
+        onMutationError: async (error, _variables, _context) => {
             // antd form expects error object to be in a specific format.
-            const parsedErrors: {
+            let parsedErrors: {
                 name: string | number | (string | number)[];
-                errors?: string[];
+                errors?: string[] | undefined;
             }[] = [];
 
+            // reset antd errors before setting new errors
+            const fieldsValue = form.getFieldsValue() as object;
+            const fields = Object.keys(fieldsValue);
+            parsedErrors = fields.map((field) => {
+                return {
+                    name: field,
+                    errors: undefined,
+                };
+            });
+            form.setFields(parsedErrors);
+
+            const errors = error?.errors;
+            // parse errors to antd form errors
             for (const key in errors) {
                 const fieldError = errors[key];
 
@@ -195,7 +206,7 @@ export const useForm = <
                 });
             }
 
-            form.setFields(parsedErrors);
+            form.setFields([...parsedErrors]);
 
             onMutationErrorProp?.(error, _variables, _context);
         },
