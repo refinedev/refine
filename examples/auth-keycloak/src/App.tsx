@@ -24,8 +24,8 @@ import axios from "axios";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { Login } from "pages/login";
+import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
+import { Login } from "../src/pages/login";
 import { useKeycloak } from "@react-keycloak/web";
 
 const API_URL = "https://api.fake-rest.refine.dev";

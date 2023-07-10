@@ -5,6 +5,7 @@ swizzle: true
 ---
 
 `<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
+
 It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. It wraps a [`<Button>`][button] component with an [`<Upload>`][upload] component and accepts properties for [`<Button>`][button] and [`<Upload>`][upload] components separately.
 
 :::info-tip Swizzle
@@ -72,7 +73,7 @@ render(
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;

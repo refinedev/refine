@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
 import { useLogin } from "@refinedev/core";
-import { Layout, Space, Typography } from "antd";
-import { ThemedTitle } from "@refinedev/antd";
+import { useEffect, useRef } from "react";
 
-const clientId =
-    "1041339102270-jlljcjl19jo1hkgf695em3ibr7q2m734.apps.googleusercontent.com";
+import { ThemedTitleV2 } from "@refinedev/antd";
+import { Layout, Space, Typography } from "antd";
+
+// Todo: Update your Google Client ID here
+const GOOGLE_CLIENT_ID =
+    "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin<CredentialResponse>();
@@ -24,8 +26,8 @@ export const Login: React.FC = () => {
             try {
                 window.google.accounts.id.initialize({
                     ux_mode: "popup",
-                    client_id: clientId,
-                    callback: async (res) => {
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: async (res: CredentialResponse) => {
                         if (res.credential) {
                             login(res);
                         }
@@ -39,7 +41,7 @@ export const Login: React.FC = () => {
             } catch (error) {
                 console.log(error);
             }
-        }, [clientId, window.google, divRef.current]);
+        }, [GOOGLE_CLIENT_ID, window.google, divRef.current]);
 
         return <div ref={divRef} id="login-with-google-button" />;
     };
@@ -53,7 +55,7 @@ export const Login: React.FC = () => {
             }}
         >
             <Space direction="vertical" align="center" size="large">
-                <ThemedTitle
+                <ThemedTitleV2
                     collapsed={false}
                     wrapperStyles={{
                         fontSize: "22px",

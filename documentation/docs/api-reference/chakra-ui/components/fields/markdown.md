@@ -34,7 +34,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
-setInitialRoutes(["/posts/show/123"]);
+setInitialRoutes(["/samples", "/samples/show/123"]);
 import { Refine } from "@refinedev/core";
 import { ShowButton } from "@refinedev/chakra-ui";
 
@@ -47,7 +47,7 @@ import {
 } from "@refinedev/chakra-ui";
 import { Heading, Text } from "@chakra-ui/react";
 
-const PostShow: React.FC = () => {
+const SampleShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -61,7 +61,7 @@ const PostShow: React.FC = () => {
             <Heading as="h5" size="sm" mt={4}>
                 Content
             </Heading>
-            // highlight-next-line
+            {/* highlight-next-line */}
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -79,17 +79,17 @@ const App = () => {
             notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
-                    name: "posts",
-                    show: PostShow,
+                    name: "samples",
+                    show: SampleShow,
                     list: () => (
-                        <RefineChakra.VStack alignItems="flex-start">
-                            <RefineChakra.Text>
+                        <ChakraUI.VStack alignItems="flex-start">
+                            <ChakraUI.Text>
                                 This page is empty.
-                            </RefineChakra.Text>
-                            <ShowButton colorScheme="black" recordItemId="123">
+                            </ChakraUI.Text>
+                            <RefineChakra.ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
-                            </ShowButton>
-                        </RefineChakra.VStack>
+                            </RefineChakra.ShowButton>
+                        </ChakraUI.VStack>
                     ),
                 },
             ]}

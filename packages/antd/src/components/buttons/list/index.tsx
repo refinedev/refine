@@ -5,7 +5,7 @@ import {
     useCan,
     useNavigation,
     useTranslate,
-    userFriendlyResourceName,
+    useUserFriendlyName,
     useResource,
     useRouterContext,
     useRouterType,
@@ -51,6 +51,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     const routerType = useRouterType();
     const Link = useLink();
     const { Link: LegacyLink } = useRouterContext();
+    const getUserFriendlyName = useUserFriendlyName();
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
@@ -118,7 +119,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                                 resourceNameFromProps ??
                                 propResourceNameOrRouteName
                             }.titles.list`,
-                            userFriendlyResourceName(
+                            getUserFriendlyName(
                                 resource?.meta?.label ??
                                     resource?.label ??
                                     identifier ??

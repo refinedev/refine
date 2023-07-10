@@ -3,7 +3,7 @@ import { useTable } from "@refinedev/react-table";
 
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(

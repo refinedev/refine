@@ -1,12 +1,20 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useDeleteMany } from "./useDeleteMany";
 import * as UseInvalidate from "../invalidate/index";
+import { useList } from "./useList";
+import { useMany } from "./useMany";
+import {
+    assertListLength,
+    assertMutationSuccess,
+    renderUseList,
+    renderUseMany,
+} from "@test/mutation-helpers";
 
 describe("useDeleteMany Hook", () => {
-    it("should works with pessimistic update", async () => {
+    it("should work with pessimistic update", async () => {
         const { result } = renderHook(() => useDeleteMany(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -28,30 +36,51 @@ describe("useDeleteMany Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should works with optimistic update", async () => {
+    it("should work with optimistic update", async () => {
         const { result } = renderHook(() => useDeleteMany(), {
             wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    deleteMany: () => {
+                        return new Promise((res, rej) => {
+                            setTimeout(() => rej(), 1000);
+                        });
+                    },
+                },
                 resources: [{ name: "posts" }],
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "optimistic",
-            ids: ["1"],
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertListLength(useListResult, 2);
+
+        await assertListLength(useManyResult, 2);
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "optimistic",
+                ids: ["1", "2"],
+            });
         });
+
+        await assertListLength(useListResult, 0);
+
+        await assertListLength(useManyResult, 0);
 
         await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
+            expect(result.current.isError).toBeTruthy();
         });
 
-        const { isSuccess } = result.current;
+        await assertListLength(useListResult, 2);
 
-        expect(isSuccess).toBeTruthy();
+        await assertListLength(useManyResult, 2);
     });
 
-    it("should works with undoable update", async () => {
+    it("should work with undoable update", async () => {
         const { result } = renderHook(() => useDeleteMany(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -59,20 +88,28 @@ describe("useDeleteMany Hook", () => {
             }),
         });
 
-        result.current.mutate({
-            resource: "posts",
-            mutationMode: "undoable",
-            undoableTimeout: 0,
-            ids: ["1"],
+        const useListResult = renderUseList();
+
+        const useManyResult = renderUseMany();
+
+        await assertListLength(useListResult, 2);
+
+        await assertListLength(useManyResult, 2);
+
+        act(() => {
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 1000,
+                ids: ["1", "2"],
+            });
         });
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+        await assertListLength(useListResult, 0);
 
-        const { isSuccess } = result.current;
+        await assertListLength(useManyResult, 0);
 
-        expect(isSuccess).toBeTruthy();
+        await assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {

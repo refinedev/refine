@@ -9,6 +9,7 @@ import {
     LayoutProps,
     LiveModeProps,
     RedirectAction,
+    TextTransformers,
 } from "../../interfaces";
 import { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
 
@@ -30,6 +31,7 @@ export interface IRefineOptions {
         devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
     };
     overtime?: UseLoadingOvertimeRefineContext;
+    textTransformers?: TextTransformers;
 }
 
 export interface IRefineContextOptions {
@@ -45,6 +47,7 @@ export interface IRefineContextOptions {
         afterEdit: RedirectAction;
     };
     overtime: UseLoadingOvertimeRefineContext;
+    textTransformers: Required<TextTransformers>;
 }
 
 export interface IRefineContext {

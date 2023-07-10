@@ -19,7 +19,6 @@ import {
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
-import pluralize from "pluralize";
 import {
     useResource,
     useMutationMode,
@@ -32,6 +31,7 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
+    useRefineContext,
 } from "@hooks";
 import {
     queryKeys,
@@ -59,7 +59,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      */
     mutationMode?: MutationMode;
     /**
-     * Duration to wait before executing the mutation when `mutationMode = "undoable"`
+     * Duration in ms to wait before executing the mutation when `mutationMode = "undoable"`
      */
     undoableTimeout?: number;
     /**
@@ -165,6 +165,9 @@ export const useUpdate = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -285,7 +288,7 @@ export const useUpdate = <
                     },
                 );
 
-                if (!(mutationModePropOrContext === "pessimistic")) {
+                if (mutationModePropOrContext !== "pessimistic") {
                     // Set the previous queries to the new ones:
                     queryClient.setQueriesData(
                         queryKey.list(),
@@ -401,7 +404,7 @@ export const useUpdate = <
             ) => {
                 const { resource, identifier } = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceSingular = textTransformers.singular(identifier);
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -487,7 +490,8 @@ export const useUpdate = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(identifier);
+                    const resourceSingular =
+                        textTransformers.singular(identifier);
 
                     const notificationConfig =
                         typeof errorNotification === "function"

@@ -17,7 +17,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { PostList } from "pages/posts";
+import { PostList } from "./pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

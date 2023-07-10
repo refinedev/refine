@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import warnOnce from "warn-once";
 
-import { useResource, useTranslate } from "@hooks";
+import { useRefineContext, useResource, useTranslate } from "@hooks";
 import { TranslationContext } from "@contexts/translation";
-import { humanizeString, pickNotDeprecated } from "@definitions";
+import { pickNotDeprecated } from "@definitions";
 
 import { IResourceItem } from "../../interfaces";
 import { useRouterType } from "@contexts/router-picker";
@@ -35,10 +35,11 @@ export const useBreadcrumb = ({
     const routerType = useRouterType();
     const { i18nProvider } = useContext(TranslationContext);
     const parsed = useParsed();
-
     const translate = useTranslate();
-
     const { resources, resource, action } = useResource();
+    const {
+        options: { textTransformers },
+    } = useRefineContext();
 
     const breadcrumbs: BreadcrumbsType[] = [];
 
@@ -93,7 +94,7 @@ export const useBreadcrumb = ({
                     ) ??
                     translate(
                         `${parentResource.name}.${parentResource.name}`,
-                        humanizeString(parentResource.name),
+                        textTransformers.humanize(parentResource.name),
                     ),
                 href: href,
                 icon: pickNotDeprecated(
@@ -116,11 +117,14 @@ export const useBreadcrumb = ({
                 `[useBreadcrumb]: Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file.\nFor more information, see https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/#i18n-support`,
             );
             breadcrumbs.push({
-                label: translate(`buttons.${action}`, humanizeString(action)),
+                label: translate(
+                    `buttons.${action}`,
+                    textTransformers.humanize(action),
+                ),
             });
         } else {
             breadcrumbs.push({
-                label: translate(key, humanizeString(action)),
+                label: translate(key, textTransformers.humanize(action)),
             });
         }
     }

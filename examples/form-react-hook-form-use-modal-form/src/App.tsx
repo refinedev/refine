@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./styles.css";
 
-import { PostList } from "pages/posts";
+import { PostList } from "./pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
