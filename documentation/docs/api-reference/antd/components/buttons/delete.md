@@ -104,7 +104,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "post" and whose id is "123" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
 
 :::note
 The **`<DeleteButton>`** component reads the id information from the route by default.
