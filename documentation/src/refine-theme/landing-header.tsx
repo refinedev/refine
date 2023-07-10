@@ -40,7 +40,7 @@ export const LandingHeader = () => {
         <>
             <TopAnnouncement />
             <div
-                className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
+                className={clsx("h-2 header-sm:h-4 blog-lg:h-6", "w-full", {
                     "bg-landing-header-bg": offset,
                     "backdrop-blur-header-blur": offset,
                 })}
@@ -52,7 +52,7 @@ export const LandingHeader = () => {
                         "bg-landing-header-bg": offset,
                         "backdrop-blur-header-blur": offset,
                     },
-                    "px-4 header-md:px-8",
+                    "px-4 blog-lg:px-8",
                     "py-4",
                     "sticky top-0 z-10",
                 )}
@@ -64,13 +64,11 @@ export const LandingHeader = () => {
                                 <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
                             </Link>
                         </div>
-                        <div className="flex items-center justify-end landing-xl:justify-between grow">
-                            <div
-                                className={clsx("hidden header-md:flex gap-8")}
-                            >
+                        <div className="flex items-center justify-end blog-lg:justify-between grow">
+                            <div className={clsx("hidden blog-lg:flex gap-8")}>
                                 <Menu isPermanentDark />
                             </div>
-                            <div className="hidden header-md:flex items-center justify-end gap-8">
+                            <div className="hidden blog-lg:flex items-center justify-end gap-8">
                                 <SearchBar
                                     CustomButton={LandingDocSearchButton}
                                 />
@@ -88,7 +86,7 @@ export const LandingHeader = () => {
                             </div>
                             <button
                                 type="button"
-                                className="block landing-xl:hidden text-gray-0"
+                                className="block blog-lg:hidden text-gray-0"
                                 onClick={() => setIsModalOpen(true)}
                             >
                                 <HamburgerIcon />
@@ -115,7 +113,7 @@ export const LandingHeader = () => {
                 </div>
             )}
             <div
-                className={clsx("h-2 header-sm:h-4 header-md:h-6", "w-full", {
+                className={clsx("h-2 header-sm:h-4 blog-lg:h-6", "w-full", {
                     "bg-landing-header-bg": offset,
                     "backdrop-blur-header-blur": offset,
                 })}
