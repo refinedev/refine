@@ -17,6 +17,8 @@ export const PricingRainbowButton = ({ children, href, onClick }: Props) => {
         <Comp
             {...(href ? { href, to: href } : {})}
             {...(onClick ? { onClick } : {})}
+            target="_blank"
+            rel="noopener noreferrer"
             className={clsx(
                 "z-[1]",
                 "appearance-none",
@@ -64,7 +66,7 @@ export const PricingRainbowButton = ({ children, href, onClick }: Props) => {
                     "pricing-content-sm:w-auto",
                     "rounded-lg",
                     "py-1 px-3",
-                    "pricing-contnet:px-6 pricing-content:py-2",
+                    "pricing-content:px-6 pricing-content:py-2",
                 )}
             >
                 <div
