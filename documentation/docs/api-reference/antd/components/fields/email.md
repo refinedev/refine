@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<EmailField>` with the example in the user list.
+Let's see how we can use `<EmailField>` with the example in the user list:
 
 ```tsx live
 // visible-block-start
@@ -71,7 +71,7 @@ render(
 <PropsTable module="@refinedev/antd/EmailField" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).
+This field also accepts all props of Ant Design's [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router) component.
 :::
 
-[Refer to the documentation for the rest of Link properties. &#8594](https://ant.design/components/typography/#API)
+> For more information, refer to the [documentation for the rest of Link properties &#8594](https://ant.design/components/typography/#API)

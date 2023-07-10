@@ -106,5 +106,5 @@ Table columns already render their data as text by default. If the rendered data
 <PropsTable module="@refinedev/antd/TextField" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
+This field also accepts all props of Ant Design's [Text](https://ant.design/components/typography/#Typography.Text) component.
 :::
