@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<BooleanField>` with the example in the post list.
+Let's see how we can use `<BooleanField>` with the example in the post list:
 
 ```tsx live
 // visible-block-start
@@ -81,13 +81,13 @@ render(
 
 ### Properties
 
-<PropsTable module="@refinedev/antd/BooleanField" 
-title-description="The text shown in the tooltip" 
-title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
+<PropsTable module="@refinedev/antd/BooleanField"
+title-description="The text shown in the tooltip"
+title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`"
 trueIcon-default="[`<CheckOutlined />`](https://ant.design/components/icon/)"
 falseIcon-default="[`<CloseOutlined />`](https://ant.design/components/icon/)"
 />
 
 :::tip External Props
-It also accepts all props of Ant Design [Tooltip](https://ant.design/components/tooltip/#API).
+This field also accepts all props of Ant Design's [Tooltip](https://ant.design/components/tooltip/#API) component.
 :::
