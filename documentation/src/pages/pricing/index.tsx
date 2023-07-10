@@ -344,7 +344,7 @@ const PricingTableTabs = ({ activeTab, setActiveTab }) => {
                             "pricing-content-sm:my-0",
                         )}
                     >
-                        <PricingRainbowButton href="https://form.typeform.com/to/IzorqxeI" />
+                        <PricingRainbowButton href="https://s.refine.dev/enterprise" />
                     </div>
                 </div>
             </div>
