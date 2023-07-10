@@ -9,6 +9,7 @@ const SvgPricingSupabaseIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <path
             d="M13.903 23.5872C13.2794 24.3865 12.015 23.9486 12 22.928L12 8H21.8615C23.6476 8 24.6438 10.0999 23.5332 11.5237L13.903 23.5872Z"
             fill="url(#paint0_linear_2460_26732)"

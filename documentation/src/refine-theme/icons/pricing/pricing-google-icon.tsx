@@ -9,6 +9,7 @@ const SvgPricingGoogleIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <path
             d="M12.2402 9.81836V14.4657H18.6983C18.4147 15.9603 17.5637 17.2258 16.2874 18.0767L20.1819 21.0986C22.4509 19.0041 23.76 15.9277 23.76 12.2731C23.76 11.4222 23.6837 10.6039 23.5418 9.81849L12.2402 9.81836Z"
             fill="#4285F4"

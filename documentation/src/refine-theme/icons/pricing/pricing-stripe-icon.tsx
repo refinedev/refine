@@ -9,6 +9,7 @@ const SvgPricingStripeIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <rect width={24} height={24} rx={4} fill="#635BFF" />
         <path
             fillRule="evenodd"

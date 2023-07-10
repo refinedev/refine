@@ -9,6 +9,7 @@ const SvgPricingMantineIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <path
             d="M24 12C24 5.37261 18.6274 0 12.0001 0C5.37255 0 0 5.37261 0 12C0 18.6272 5.37255 24 12 24C18.6274 24 24 18.6272 24 12Z"
             fill="#339AF0"

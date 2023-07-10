@@ -10,6 +10,7 @@ const SvgPricingScimIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlnsXlink="http://www.w3.org/1999/xlink"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <mask
             id="mask0_2460_26949"
             style={{

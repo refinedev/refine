@@ -9,6 +9,7 @@ const SvgPricingOktaIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <path
             fillRule="evenodd"
             clipRule="evenodd"

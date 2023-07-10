@@ -531,7 +531,7 @@ const pricingData = [
                 ),
             },
             {
-                description: "Seal",
+                description: "Code Review by Core Team",
                 community: <PricingCross />,
                 enterprise: <PricingCheck />,
             },
@@ -549,20 +549,20 @@ const pricingData = [
                 description: "Data Source Integrations",
                 community: (
                     <div className="flex items-center justify-center flex-wrap gap-4">
-                        <PricingRestIcon />
-                        <PricingGraphqlIcon />
-                        <PricingAirtableIcon />
-                        <PricingHasuraIcon />
-                        <PricingSupabaseIcon />
+                        <PricingRestIcon name="REST" />
+                        <PricingGraphqlIcon name="GraphQL" />
+                        <PricingAirtableIcon name="Airtable" />
+                        <PricingHasuraIcon name="Hasura" />
+                        <PricingSupabaseIcon name="Supabase" />
                         <PricingBadge>+10</PricingBadge>
                     </div>
                 ),
                 enterprise: (
                     <div className="flex items-center justify-center flex-wrap gap-4">
-                        <PricingPostgresIcon />
-                        <PricingMongoIcon />
-                        <PricingSheetsIcon />
-                        <PricingElasticsearchIcon />
+                        <PricingPostgresIcon name="Postgres" />
+                        <PricingMongoIcon name="MongoDB" />
+                        <PricingSheetsIcon name="Google Sheets" />
+                        <PricingElasticsearchIcon name="ElasticSearch" />
                         <PricingBadge>+21</PricingBadge>
                     </div>
                 ),
@@ -572,11 +572,17 @@ const pricingData = [
                 community: <PricingCross />,
                 enterprise: (
                     <div className="flex items-center justify-center flex-wrap gap-4">
-                        <PricingCloudIcon />
-                        <PricingStripeIcon />
-                        <PricingTwilioIcon />
-                        <PricingOpenaiIcon className="text-gray-1000 dark:text-gray-0" />
-                        <PricingAwsIcon className="text-gray-1000 dark:text-gray-0" />
+                        <PricingCloudIcon name="Salesforce" />
+                        <PricingStripeIcon name="Stripe" />
+                        <PricingTwilioIcon name="Twilio" />
+                        <PricingOpenaiIcon
+                            name="OpenAI"
+                            className="text-gray-1000 dark:text-gray-0"
+                        />
+                        <PricingAwsIcon
+                            name="Amazon Web Services"
+                            className="text-gray-1000 dark:text-gray-0"
+                        />
                         <PricingBadge>+15</PricingBadge>
                     </div>
                 ),
@@ -617,18 +623,18 @@ const pricingData = [
                 description: "Component Library Support",
                 community: (
                     <div className="flex items-center justify-center flex-wrap gap-4">
-                        <PricingMaterialUiIcon />
-                        <PricingAntdIcon />
-                        <PricingChakraUiIcon />
-                        <PricingMantineIcon />
+                        <PricingMaterialUiIcon name="Material UI" />
+                        <PricingAntdIcon name="Ant Design" />
+                        <PricingChakraUiIcon name="Chakra UI" />
+                        <PricingMantineIcon name="Mantine" />
                     </div>
                 ),
                 enterprise: (
                     <div className="flex items-center justify-center flex-wrap gap-4">
-                        <PricingMaterialUiIcon />
-                        <PricingAntdIcon />
-                        <PricingChakraUiIcon />
-                        <PricingMantineIcon />
+                        <PricingMaterialUiIcon name="Material UI" />
+                        <PricingAntdIcon name="Ant Design" />
+                        <PricingChakraUiIcon name="Chakra UI" />
+                        <PricingMantineIcon name="Mantine" />
                     </div>
                 ),
             },
@@ -682,12 +688,18 @@ const pricingData = [
                 community: <PricingCross />,
                 enterprise: (
                     <div className="flex items-center justify-center flex-wrap gap-4">
-                        <PricingAuth0Icon />
-                        <PricingOktaIcon className="text-gray-1000 dark:text-gray-0" />
-                        <PricingAzureIcon />
-                        <PricingGoogleIcon />
-                        <PricingScimIcon className="text-gray-1000 dark:text-gray-0" />
-                        <PricingBambooHrIcon />
+                        <PricingAuth0Icon name="Auth0" />
+                        <PricingOktaIcon
+                            name="Okta"
+                            className="text-gray-1000 dark:text-gray-0"
+                        />
+                        <PricingAzureIcon name="Azure" />
+                        <PricingGoogleIcon name="Google" />
+                        <PricingScimIcon
+                            name="SCIM"
+                            className="text-gray-1000 dark:text-gray-0"
+                        />
+                        <PricingBambooHrIcon name="BambooHR" />
                         <PricingBadge>+30</PricingBadge>
                     </div>
                 ),
@@ -781,11 +793,6 @@ function Pricing() {
         <>
             <Head>
                 <html data-active-page="index" />
-                <link
-                    rel="preload"
-                    href="https://refine.new/embed-form"
-                    as="document"
-                />
             </Head>
             <CommonLayout
                 title={`refine | Build your React-based CRUD applications, without constraints!`}

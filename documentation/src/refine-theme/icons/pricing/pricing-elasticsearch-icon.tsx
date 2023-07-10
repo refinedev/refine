@@ -9,6 +9,7 @@ const SvgPricingElasticsearchIcon = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
+        {props.name && <title>{props.name}</title>}
         <g clipPath="url(#clip0_2460_26758)">
             <path
                 fillRule="evenodd"
