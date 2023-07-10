@@ -333,7 +333,7 @@ render(
 ```
 
 :::note
-The <Show>`component needs the`id`information for`<RefreshButton>` to work properly.
+The `<Show>` component needs the `id` information for `<RefreshButton>` to work properly.
 :::
 
 ### `dataProviderName`

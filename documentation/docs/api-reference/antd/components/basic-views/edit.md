@@ -372,7 +372,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `recordItemId`
 
-The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
+The `<Edit>` component reads the `id` information from the route by default. When it cannot be read from the URL, which happens when it's used on a custom page, modal or drawer, `recordItemId` is used.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
