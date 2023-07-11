@@ -12,7 +12,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 export default {
     title: "Hooks / Steps Form",
