@@ -328,7 +328,7 @@ Before we get started, let's look at which parts are going to be translated:
     },
     "autoSave": {
         "success": "saved",
-        "error": "auto save error",
+        "error": "auto save failure",
         "loading": "saving...",
         "idle": "waiting for changes"
     }
@@ -508,7 +508,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
     },
     "autoSave": {
         "success": "saved",
-        "error": "auto save error",
+        "error": "auto save failure",
         "loading": "saving...",
         "idle": "waiting for changes"
     }

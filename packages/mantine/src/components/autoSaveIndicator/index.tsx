@@ -21,7 +21,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             icon = <IconCircleCheck size="18px" />;
             break;
         case "error":
-            message = translate("autoSave.error", "auto save error");
+            message = translate("autoSave.error", "auto save failure");
             icon = <IconExclamationCircle size="18px" />;
             break;
         case "loading":

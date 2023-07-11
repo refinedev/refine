@@ -515,7 +515,7 @@ describe("Edit", () => {
             });
 
             // check saved message
-            expect(getByText("auto save error")).toBeTruthy();
+            expect(getByText("auto save failure")).toBeTruthy();
         });
     });
 });
