@@ -67,7 +67,7 @@ The IMAGE parameter is specified right after 'docker run' in the command(if opti
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image1.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image1.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -76,7 +76,7 @@ The IMAGE parameter is specified right after 'docker run' in the command(if opti
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image2.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image2.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -95,7 +95,7 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image3.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image3.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -110,7 +110,7 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image4.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image4.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -127,7 +127,7 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image5.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image5.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -138,7 +138,7 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image6.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image6.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -157,7 +157,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image7.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image7.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -176,7 +176,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image8.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image8.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -187,7 +187,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image9.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image9.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -210,7 +210,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image10.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image10.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -227,7 +227,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image11.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image11.png"  alt="docker run command" />
 </div>
 
 <br/>
@@ -242,7 +242,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image12.png"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image12.png"  alt="docker run command" />
 </div>
 
 <br/>
