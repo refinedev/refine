@@ -32,7 +32,7 @@ const authProvider = {
 };
 ```
 
-`<ThemedLayoutV2>` component that uses the [`<Layout>`][antd-layout] and [`<Sider>`][antd-sider] components from the Antd Design library to define the layout and structure of a web page. It includes customizable components for the header, sidebar, title, footer, and off-layout area, which can be replaced or customized as needed.
+`<ThemedLayoutV2>` component uses the [`<Layout>`][antd-layout] and [`<Sider>`][antd-sider] components from the Antd Design library to define the layout and structure of a web page. It includes customizable components for the header, sidebar, title, footer, and off-layout area, which can be replaced or customized as needed.
 
 By using `<ThemedLayoutV2>`, developers can create a consistent look and feel across multiple pages or sections of a website, while also improving code maintainability and reusability. The customizable sections of `<ThemedLayoutV2>` include:
 
@@ -282,7 +282,7 @@ const App: React.FC = () => {
 };
 ```
 
-You can also make it sticky using the `sticky` property, which is optional and defaults to `false`. An example of its usage is shown below:
+You can also make it sticky using the `sticky` property:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -579,7 +579,7 @@ const App: React.FC = () => {
 
 ## Customizing with swizzle
 
-> 🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
+> 🚨 This feature can be used with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
 
 `<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
@@ -823,7 +823,7 @@ render(<App />);
 
 You can use [`initialSiderCollapsed`](#initialsidercollapsed) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
-For example, you can get `initialSiderCollapsed`'s value from `localStorage` or `cookie` for persistence between sessions.
+For example, you can get `initialSiderCollapsed`'s value from `localStorage` or `cookie` for persistence between sessions:
 
 <Tabs
 defaultValue="react-router"

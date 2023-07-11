@@ -4,7 +4,9 @@ title: Show
 swizzle: true
 ---
 
-`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the`show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+
+It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -112,7 +114,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 ### `resource`
 
-Redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
+The redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -182,7 +184,7 @@ const MyComponent = () => {
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -220,7 +222,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with its `hideIfUnauthorized` property. However, this only works when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { ShowButton } from "@refinedev/antd";
@@ -241,9 +243,9 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+> The `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
-Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+The redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -291,7 +293,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/123`.
 
 ## API Reference
 
@@ -300,5 +302,5 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 <PropsTable module="@refinedev/antd/ShowButton" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+`<ShowButton>` also accepts all props of Ant Design's [Button](https://ant.design/components/button/#API) component.
 :::
