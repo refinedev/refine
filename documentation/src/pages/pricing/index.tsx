@@ -357,30 +357,6 @@ const PricingHeader = () => {
         <div className={clsx("flex", "flex-col", "gap-4")}>
             <div
                 className={clsx(
-                    "text-base",
-                    "pricing-content-sm:text-xl",
-                    "pricing-content:text-2xl",
-                    "font-normal",
-                    "text-gray-700",
-                    "dark:text-gray-200",
-                    "text-center",
-                )}
-            >
-                Open-source{" "}
-                <span
-                    className={clsx(
-                        "font-semibold",
-                        "text-transparent",
-                        "bg-pricing-text-bg-green",
-                        "bg-clip-text",
-                    )}
-                >
-                    refine core
-                </span>{" "}
-                is always by your side.
-            </div>
-            <div
-                className={clsx(
                     "text-[32px]",
                     "leading-[40px]",
                     "pricing-content-sm:text-[36px]",
@@ -393,7 +369,7 @@ const PricingHeader = () => {
                     "text-center",
                 )}
             >
-                Now it’s time to{" "}
+                Supercharge react with{" "}
                 <span
                     className={clsx(
                         "text-transparent",
@@ -401,9 +377,9 @@ const PricingHeader = () => {
                         "bg-clip-text",
                     )}
                 >
-                    power it up
+                    enterprise-level
                 </span>{" "}
-                with our enterprise edition!
+                capabilites
             </div>
         </div>
     );
