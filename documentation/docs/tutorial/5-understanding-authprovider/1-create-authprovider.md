@@ -38,7 +38,7 @@ import authProvider from "./authProvider";
 ```
 
 :::note
-`authProvider` isn't required for the `<Refine/>` to work but your app won't have any authentication and incidentally, you wo'nt be able to use the auth hooks.
+`authProvider` isn't required for the `<Refine/>` to work but your app won't have any authentication and incidentally, you won't be able to use the auth hooks.
 :::
 
 Our mock auth provider is now up and running with all the required methods, but they don't do anything yet. We will now add logic to these methods.
@@ -694,7 +694,7 @@ const authProvider: AuthBindings = {
 `register` method is used to register a new user. It is similar to the `login` method. It expects to return a resolved promise with the following type:
 
 ```ts
-type RegisterResponse = {
+type AuthActionResponse = {
     success: boolean;
     redirectTo?: string;
     error?: Error;
