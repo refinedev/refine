@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "refine dev",
-    "build": "tsc && refine build",
+    "build": "refine build",
     "preview": "refine start",
     "refine": "refine"
   },
