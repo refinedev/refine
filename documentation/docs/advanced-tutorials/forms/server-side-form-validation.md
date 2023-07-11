@@ -50,6 +50,47 @@ const error: HttpError = {
 
 When the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the `errors` returned from the `dataProvider`.
 
+### How to disable it?
+
+To disable server-side validation, you have two options:
+
+-   disable it globally from the [**refine** options.](/docs/api-reference/core/components/refine-config/#disableserversidevalidation)
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            // ...
+            // highlight-start
+            options={{
+                disableServerSideValidation: true,
+            }}
+            // highlight-end
+        >
+            // ...
+        </Refine>
+    );
+};
+```
+
+-   disable it for a specific form from the `useForm` hook.
+
+```tsx
+import { useForm } from "@refinedev/mantine";
+OR;
+import { useForm } from "@refinedev/react-hook-form";
+OR;
+import { useForm } from "@refinedev/antd";
+
+useForm({
+    // highlight-start
+    disableServerSideValidation: true,
+    // highlight-end
+});
+```
+
 ## Examples
 
 In the following examples, we will use this mock `dataProvider` to demonstrate how to handle server-side validation.

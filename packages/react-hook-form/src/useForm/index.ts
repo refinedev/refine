@@ -15,6 +15,7 @@ import {
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
     useTranslate,
+    useRefineContext,
 } from "@refinedev/core";
 
 export type UseFormReturnType<
@@ -66,6 +67,12 @@ export type UseFormProps<
      * @default `false*`
      */
     warnWhenUnsavedChanges?: boolean;
+    /**
+     * Disables server-side validation
+     * @default false
+     * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+     */
+    disableServerSideValidation?: boolean;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -79,6 +86,7 @@ export const useForm = <
 >({
     refineCoreProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    disableServerSideValidation: disableServerSideValidationProp = false,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -97,6 +105,10 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const { options } = useRefineContext();
+    const disableServerSideValidation =
+        options?.disableServerSideValidation || disableServerSideValidationProp;
+
     const translate = useTranslate();
 
     const {
@@ -128,6 +140,11 @@ export const useForm = <
     >({
         ...refineCoreProps,
         onMutationError: (error, _variables, _context) => {
+            if (disableServerSideValidation) {
+                refineCoreProps?.onMutationError?.(error, _variables, _context);
+                return;
+            }
+
             const errors = error?.errors;
 
             for (const key in errors) {

@@ -7,13 +7,16 @@ import { useSelect } from "@hooks/useSelect";
 import { Edit } from "@components/crud";
 import { HttpError } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
+import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 const renderForm = ({
-    action,
     refineCoreProps,
+    refineOptions,
+    useFormProps,
 }: {
-    action: "edit" | "create";
+    useFormProps?: any;
     refineCoreProps?: any;
+    refineOptions?: IRefineOptions;
 }) => {
     const EditPage = () => {
         const {
@@ -21,11 +24,12 @@ const renderForm = ({
             getInputProps,
             refineCore: { queryResult, formLoading },
         } = useForm({
+            ...useFormProps,
             refineCoreProps: {
-                resource: "posts",
-                id: action === "edit" ? "1" : undefined,
-                action: action,
                 ...refineCoreProps,
+                resource: "posts",
+                id: refineCoreProps.action === "edit" ? "1" : undefined,
+                action: refineCoreProps.action,
             },
             initialValues: {
                 title: "",
@@ -90,6 +94,7 @@ const renderForm = ({
         </Routes>,
         {
             wrapper: TestWrapper({
+                options: refineOptions,
                 i18nProvider: {
                     changeLocale: () => Promise.resolve(),
                     getLocale: () => "en",
@@ -156,101 +161,102 @@ const renderForm = ({
 };
 
 describe("useForm hook", () => {
-    it("should edit form render formErrros from data provider", async () => {
-        const { getByTestId, getByText } = renderForm({ action: "edit" });
+    it.each(["edit", "create"] as const)(
+        "should set %s-form errors from data provider",
+        async (action) => {
+            const onMutationErrorMock = jest.fn();
 
-        await act(() => Promise.resolve());
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        await act(() => {
-            getByTestId("refine-save-button").click();
-            return Promise.resolve();
-        });
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        expect(getByText("Title is required")).toBeInTheDocument();
-        expect(getByText("Category is required")).toBeInTheDocument();
-        expect(getByText("Translated content error")).toBeInTheDocument();
-        expect(getByText("Tag 0 is required")).toBeInTheDocument();
-        expect(getByText("Tag 1 is required")).toBeInTheDocument();
-    });
-
-    it("should create form render formErrros from data provider", async () => {
-        const { getByTestId, getByText } = renderForm({ action: "create" });
-
-        await act(() => Promise.resolve());
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        await act(() => {
-            getByTestId("refine-save-button").click();
-            return Promise.resolve();
-        });
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        expect(getByText("Title is required")).toBeInTheDocument();
-        expect(getByText("Category is required")).toBeInTheDocument();
-        expect(getByText("Translated content error")).toBeInTheDocument();
-        expect(getByText("Tag 0 is required")).toBeInTheDocument();
-        expect(getByText("Tag 1 is required")).toBeInTheDocument();
-    });
-
-    it("should onMutationError called after field errors set ", async () => {
-        const onMutationError = jest.fn();
-        const { getByTestId, getByText } = renderForm({
-            action: "create",
-            refineCoreProps: { onMutationError },
-        });
-
-        await act(() => Promise.resolve());
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        await act(() => {
-            getByTestId("refine-save-button").click();
-            return Promise.resolve();
-        });
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        expect(onMutationError).toBeCalledWith(
-            {
-                message: "Update is not supported in this example.",
-                statusCode: 400,
-                errors: {
-                    "category.id": ["Category is required"],
-                    content: {
-                        key: "form.error.content",
-                        message: "Content is required",
-                    },
-                    "tags.0": ["Tag 0 is required"],
-                    "tags.1": ["Tag 1 is required"],
-                    title: ["Title is required"],
+            const { getByTestId, getByText } = renderForm({
+                refineCoreProps: {
+                    action: action,
+                    onMutationError: onMutationErrorMock,
                 },
-            },
-            { category: { id: "" }, content: "", tags: [], title: "" },
-            undefined,
-        );
+            });
 
-        expect(getByText("Title is required")).toBeInTheDocument();
-        expect(getByText("Category is required")).toBeInTheDocument();
-        expect(getByText("Translated content error")).toBeInTheDocument();
-        expect(getByText("Tag 0 is required")).toBeInTheDocument();
-        expect(getByText("Tag 1 is required")).toBeInTheDocument();
+            await act(() => Promise.resolve());
+
+            await waitFor(() => {
+                expect(document.body).not.toHaveTextContent("loading");
+            });
+
+            await act(() => {
+                getByTestId("refine-save-button").click();
+                return Promise.resolve();
+            });
+
+            await waitFor(() => {
+                expect(document.body).not.toHaveTextContent("loading");
+                expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
+            });
+
+            expect(getByText("Title is required")).toBeInTheDocument();
+            expect(getByText("Category is required")).toBeInTheDocument();
+            expect(getByText("Translated content error")).toBeInTheDocument();
+            expect(getByText("Tag 0 is required")).toBeInTheDocument();
+            expect(getByText("Tag 1 is required")).toBeInTheDocument();
+        },
+    );
+
+    it.each([
+        {
+            action: "edit",
+            disableFromRefineOption: false,
+            disableFromHook: true,
+        },
+        {
+            action: "edit",
+            disableFromRefineOption: true,
+            disableFromHook: false,
+        },
+        {
+            action: "create",
+            disableFromRefineOption: false,
+            disableFromHook: true,
+        },
+        {
+            action: "create",
+            disableFromRefineOption: true,
+            disableFromHook: false,
+        },
+    ] as const)("should disable server-side validation", async (testCase) => {
+        const onMutationErrorMock = jest.fn();
+
+        const { getByTestId, queryByText } = renderForm({
+            refineOptions: {
+                disableServerSideValidation: testCase.disableFromRefineOption,
+            },
+            useFormProps: {
+                disableServerSideValidation: testCase.disableFromHook,
+            },
+            refineCoreProps: {
+                action: testCase.action,
+                onMutationError: onMutationErrorMock,
+            },
+        });
+
+        await act(() => Promise.resolve());
+
+        await waitFor(() => {
+            expect(document.body).not.toHaveTextContent("loading");
+        });
+
+        await act(() => {
+            getByTestId("refine-save-button").click();
+            return Promise.resolve();
+        });
+
+        await waitFor(() => {
+            expect(document.body).not.toHaveTextContent("loading");
+            expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
+        });
+
+        await waitFor(() => {
+            expect(queryByText("Title is required")).not.toBeInTheDocument();
+            expect(queryByText("Category is required")).not.toBeInTheDocument();
+            expect(
+                queryByText("Translated content error"),
+            ).not.toBeInTheDocument();
+            expect(queryByText("Field is not valid.")).not.toBeInTheDocument();
+        });
     });
 });

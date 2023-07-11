@@ -4,6 +4,7 @@ import { useForm } from ".";
 import { HttpError } from "@refinedev/core";
 import { MockJSONServer, TestWrapper, act, render, waitFor } from "../../test";
 import { Route, Routes } from "react-router-dom";
+import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 interface IPost {
     title: string;
@@ -13,7 +14,15 @@ interface IPost {
     tags: string[];
 }
 
-const renderForm = ({ refineCoreProps }: { refineCoreProps?: any }) => {
+const renderForm = ({
+    refineCoreProps,
+    refineOptions,
+    useFormProps,
+}: {
+    useFormProps?: any;
+    refineCoreProps?: any;
+    refineOptions?: IRefineOptions;
+}) => {
     const EditPage = () => {
         const {
             refineCore: { formLoading },
@@ -21,6 +30,7 @@ const renderForm = ({ refineCoreProps }: { refineCoreProps?: any }) => {
             register,
             formState: { errors },
         } = useForm<IPost, HttpError, IPost>({
+            ...useFormProps,
             refineCoreProps: {
                 resource: "posts",
                 ...refineCoreProps,
@@ -81,6 +91,7 @@ const renderForm = ({ refineCoreProps }: { refineCoreProps?: any }) => {
         </Routes>,
         {
             wrapper: TestWrapper({
+                options: refineOptions,
                 i18nProvider: {
                     changeLocale: () => Promise.resolve(),
                     getLocale: () => "en",
@@ -136,11 +147,78 @@ const renderForm = ({ refineCoreProps }: { refineCoreProps?: any }) => {
 };
 
 describe("useForm hook", () => {
-    it("should set edit errors from data provider", async () => {
-        const onMutationError = jest.fn();
+    it(["edit", "create"] as const)(
+        "should set %s-form errors from data provider",
+        async (action) => {
+            const onMutationError = jest.fn();
 
-        const { getByText, getByTestId } = renderForm({
-            refineCoreProps: { onMutationError, action: "edit", id: "1" },
+            const { getByText, getByTestId } = renderForm({
+                refineCoreProps: {
+                    onMutationError,
+                    action: action,
+                    id: action === "edit" ? "1" : undefined,
+                },
+            });
+
+            await waitFor(() => {
+                expect(document.body).not.toHaveTextContent("loading");
+            });
+
+            await act(() => {
+                getByTestId("refine-save-button").click();
+                return Promise.resolve();
+            });
+
+            await waitFor(() => {
+                expect(document.body).not.toHaveTextContent("loading");
+            });
+
+            expect(onMutationError).toBeCalledTimes(1);
+
+            expect(getByText("Title is required")).toBeInTheDocument();
+            expect(getByText("Category is required")).toBeInTheDocument();
+            expect(getByText("Translated content error")).toBeInTheDocument();
+            expect(getByText("Field is not valid.")).toBeInTheDocument();
+        },
+    );
+
+    it.each([
+        {
+            action: "edit",
+            disableFromRefineOption: false,
+            disableFromHook: true,
+        },
+        {
+            action: "edit",
+            disableFromRefineOption: true,
+            disableFromHook: false,
+        },
+        {
+            action: "create",
+            disableFromRefineOption: false,
+            disableFromHook: true,
+        },
+        {
+            action: "create",
+            disableFromRefineOption: true,
+            disableFromHook: false,
+        },
+    ] as const)("should disable server-side validation", async (testCase) => {
+        const onMutationErrorMock = jest.fn();
+
+        const { getByTestId, queryByText } = renderForm({
+            refineOptions: {
+                disableServerSideValidation: testCase.disableFromRefineOption,
+            },
+            useFormProps: {
+                disableServerSideValidation: testCase.disableFromHook,
+            },
+
+            refineCoreProps: {
+                action: testCase.action,
+                onMutationError: onMutationErrorMock,
+                id: testCase.action === "edit" ? "1" : undefined,
+            },
         });
 
         await waitFor(() => {
@@ -154,41 +232,16 @@ describe("useForm hook", () => {
 
         await waitFor(() => {
             expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        expect(onMutationError).toBeCalledTimes(1);
-
-        expect(getByText("Title is required")).toBeInTheDocument();
-        expect(getByText("Category is required")).toBeInTheDocument();
-        expect(getByText("Translated content error")).toBeInTheDocument();
-        expect(getByText("Field is not valid.")).toBeInTheDocument();
-    });
-
-    it("should set create errors from data provider", async () => {
-        const onMutationError = jest.fn();
-
-        const { getByText, getByTestId } = renderForm({
-            refineCoreProps: { onMutationError, action: "create" },
+            expect(onMutationErrorMock).toBeCalledTimes(1);
         });
 
         await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
+            expect(queryByText("Title is required")).not.toBeInTheDocument();
+            expect(queryByText("Category is required")).not.toBeInTheDocument();
+            expect(
+                queryByText("Translated content error"),
+            ).not.toBeInTheDocument();
+            expect(queryByText("Field is not valid.")).not.toBeInTheDocument();
         });
-
-        await act(() => {
-            getByTestId("refine-save-button").click();
-            return Promise.resolve();
-        });
-
-        await waitFor(() => {
-            expect(document.body).not.toHaveTextContent("loading");
-        });
-
-        expect(onMutationError).toBeCalledTimes(1);
-
-        expect(getByText("Title is required")).toBeInTheDocument();
-        expect(getByText("Category is required")).toBeInTheDocument();
-        expect(getByText("Translated content error")).toBeInTheDocument();
-        expect(getByText("Field is not valid.")).toBeInTheDocument();
     });
 });

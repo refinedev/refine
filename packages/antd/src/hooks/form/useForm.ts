@@ -14,6 +14,7 @@ import {
     UpdateResponse,
     pickNotDeprecated,
     useTranslate,
+    useRefineContext,
 } from "@refinedev/core";
 
 export type UseFormProps<
@@ -36,6 +37,12 @@ export type UseFormProps<
      * Shows notification when unsaved changes exist
      */
     warnWhenUnsavedChanges?: boolean;
+    /**
+     * Disables server-side validation
+     * @default false
+     * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+     */
+    disableServerSideValidation?: boolean;
 };
 
 export type UseFormReturnType<
@@ -110,6 +117,7 @@ export const useForm = <
     updateMutationOptions,
     id: idFromProps,
     overtimeOptions,
+    disableServerSideValidation: disableServerSideValidationProp = false,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -125,6 +133,10 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const { options } = useRefineContext();
+    const disableServerSideValidation =
+        options?.disableServerSideValidation || disableServerSideValidationProp;
+
     const translate = useTranslate();
 
     const [formAnt] = Form.useForm();
@@ -145,6 +157,11 @@ export const useForm = <
             ? onMutationSuccessProp
             : undefined,
         onMutationError: async (error, _variables, _context) => {
+            if (disableServerSideValidation) {
+                onMutationErrorProp?.(error, _variables, _context);
+                return;
+            }
+
             // antd form expects error object to be in a specific format.
             let parsedErrors: {
                 name: string | number | (string | number)[];

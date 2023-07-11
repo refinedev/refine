@@ -32,6 +32,12 @@ export interface IRefineOptions {
     };
     overtime?: UseLoadingOvertimeRefineContext;
     textTransformers?: TextTransformers;
+    /**
+     * Disables server-side validation globally for the useForm hook
+     * @default false
+     * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+     */
+    disableServerSideValidation?: boolean;
 }
 
 export interface IRefineContextOptions {
@@ -48,6 +54,7 @@ export interface IRefineContextOptions {
     };
     overtime: UseLoadingOvertimeRefineContext;
     textTransformers: Required<TextTransformers>;
+    disableServerSideValidation: boolean;
 }
 
 export interface IRefineContext {

@@ -15,6 +15,7 @@ import {
 } from "@refinedev/core";
 
 import { mockRouterBindings, MockJSONServer } from "@test";
+import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 const List = () => {
     return <div>hede</div>;
@@ -31,6 +32,7 @@ export interface ITestWrapperProps {
     i18nProvider?: I18nProvider;
     routerInitialEntries?: string[];
     DashboardPage?: React.FC;
+    options?: IRefineOptions;
 }
 
 export const TestWrapper: (
@@ -47,6 +49,7 @@ export const TestWrapper: (
     routerInitialEntries,
     DashboardPage,
     i18nProvider,
+    options,
 }) => {
     // Previously, MemoryRouter was used in this wrapper. However, the
     // recommendation by react-router developers (see
@@ -78,6 +81,7 @@ export const TestWrapper: (
                     accessControlProvider={accessControlProvider}
                     DashboardPage={DashboardPage ?? undefined}
                     options={{
+                        ...options,
                         disableTelemetry: true,
                         reactQuery: {
                             clientConfig: {
