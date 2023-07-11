@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslate, useResource, useParsed, useRouterContext } from "..";
-import { userFriendlyResourceName, pickNotDeprecated } from "@definitions";
+import { useUserFriendlyName, pickNotDeprecated } from "@definitions";
 import { useRouterType } from "../../contexts/router-picker";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
 import { useGetToPath } from "../router/use-get-to-path/index";
@@ -56,6 +56,7 @@ export const useMenu = (
     const { pathname } = useParsed();
     const { useLocation } = useRouterContext();
     const { pathname: legacyPath } = useLocation();
+    const getFriendlyName = useUserFriendlyName();
 
     const cleanPathname =
         routerType === "legacy"
@@ -117,7 +118,7 @@ export const useMenu = (
                     ) ??
                     translate(
                         `${item.name}.${item.name}`,
-                        userFriendlyResourceName(item.name, "plural"),
+                        getFriendlyName(item.name, "plural"),
                     ),
             };
         },

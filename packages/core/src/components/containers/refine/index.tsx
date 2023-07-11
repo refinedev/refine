@@ -1,50 +1,51 @@
-import React from "react";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from "react";
 
+import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
+import { Telemetry } from "@components/telemetry";
+import { AccessControlContextProvider } from "@contexts/accessControl";
+import { AuditLogContextProvider } from "@contexts/auditLog";
 import {
     AuthBindingsContextProvider,
     LegacyAuthContextProvider,
 } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
+import { LegacyRouterContextProvider } from "@contexts/legacy-router";
 import { LiveContextProvider } from "@contexts/live";
-import { TranslationContextProvider } from "@contexts/translation";
-import { ResourceContextProvider } from "@contexts/resource";
+import { NotificationContextProvider } from "@contexts/notification";
 import { RefineContextProvider } from "@contexts/refine";
+import { ResourceContextProvider } from "@contexts/resource";
+import { TranslationContextProvider } from "@contexts/translation";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
-import { LegacyRouterContextProvider } from "@contexts/legacy-router";
-import { AccessControlContextProvider } from "@contexts/accessControl";
-import { NotificationContextProvider } from "@contexts/notification";
-import { AuditLogContextProvider } from "@contexts/auditLog";
-import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { handleRefineOptions } from "@definitions";
-import { Telemetry } from "@components/telemetry";
 import { useDeepMemo } from "@hooks/deepMemo";
 import { RouterBindings } from "src/interfaces/bindings";
 
+import { RouterPickerProvider } from "@contexts/router-picker";
+import warnOnce from "warn-once";
+import { RouterBindingsProvider } from "../../../contexts/router";
+import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
-    IDataContextProvider,
-    I18nProvider,
-    LayoutProps,
-    TitleProps,
-    IRouterProvider,
-    ILiveContext,
-    LiveModeProps,
-    IDataMultipleContextProvider,
-    LegacyAuthProvider,
-    NotificationProvider,
     AccessControlProvider,
     AuditLogProvider,
-    DashboardPageProps,
-    IRefineOptions,
-    INotificationContext,
     AuthBindings,
+    DashboardPageProps,
+    I18nProvider,
+    IDataContextProvider,
+    IDataMultipleContextProvider,
+    ILiveContext,
+    INotificationContext,
+    IRefineOptions,
+    IRouterProvider,
+    LayoutProps,
+    LegacyAuthProvider,
+    LiveModeProps,
+    NotificationProvider,
+    TitleProps,
 } from "../../../interfaces";
-import { RouterBindingsProvider } from "../../../contexts/router";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
-import { RouterPickerProvider } from "@contexts/router-picker";
-import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
 export interface RefineProps {
     children?: React.ReactNode;
@@ -280,6 +281,25 @@ export const Refine: React.FC<RefineProps> = ({
         ? legacyRouterProvider ?? {}
         : {};
     /** */
+
+    if (
+        typeof window !== "undefined" &&
+        window?.location?.hostname === "localhost"
+    ) {
+        warnOnce(
+            true,
+            `%c
+✅ Zero-trust security model
+✅ User/role management
+✅ Granular access control
+✅ Directory sync
+✅ VPN-less secure deployments
+✅ Direct connection to DBs
+
+Interested in any of the new backend features of refine? Join now and get early access -> https://s.refine.dev/go-enterprise`,
+            "color: green; background: yellow; font-size: 17px",
+        );
+    }
 
     return (
         <QueryClientProvider client={queryClient}>

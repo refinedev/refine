@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<FileField>` with the example in the edit page.
+Let's see how we can use `<FileField>` with the example in the edit page:
 
 ```tsx live
 // visible-block-start
@@ -80,5 +80,5 @@ If you don't use `title` prop it will use `src` as `title`
 <PropsTable module="@refinedev/antd/FileField" />
 
 :::tip External Props
-It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).
+This field also accepts all props of Ant Design's [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router) component.
 :::

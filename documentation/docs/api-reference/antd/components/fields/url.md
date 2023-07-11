@@ -78,5 +78,5 @@ render(
 <PropsTable module="@refinedev/antd/UrlField" value-description="URL for link to reference to"/>
 
 :::tip External Props
-It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).
+This field also accepts all props of Ant Design's [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router) component.
 :::

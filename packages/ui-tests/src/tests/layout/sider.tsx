@@ -1,8 +1,9 @@
 import React from "react";
-import { RefineLayoutSiderProps } from "@refinedev/ui-types";
+import { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
 
-import { act, render, TestWrapper, waitFor } from "@test";
+import { act, mockRouterBindings, render, TestWrapper, waitFor } from "@test";
 import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
+import { Route, Router, Routes } from "react-router-dom";
 
 const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
     login: () => Promise.resolve(),
@@ -23,7 +24,7 @@ const mockAuthProvider: AuthBindings = {
 };
 
 export const layoutSiderTests = function (
-    SiderElement: React.ComponentType<RefineLayoutSiderProps>,
+    SiderElement: React.ComponentType<RefineThemedLayoutV2SiderProps>,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
         it("should render successful", async () => {
@@ -170,6 +171,81 @@ export const layoutSiderTests = function (
             expect(
                 queryAllByText("custom-element").length,
             ).toBeGreaterThanOrEqual(1);
+        });
+
+        it("should item disabled when activeItemDisabled:true (legacyRouterProvider)", async () => {
+            const { getAllByText, getAllByRole } = render(
+                <SiderElement activeItemDisabled={true} />,
+                {
+                    wrapper: TestWrapper({
+                        routerInitialEntries: ["/posts"],
+                        resources: [
+                            {
+                                name: "posts",
+                                list: "/posts",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                return expect(
+                    getAllByText("Posts").length,
+                ).toBeGreaterThanOrEqual(1);
+            });
+
+            await waitFor(() => {
+                const allLinks = getAllByRole("link");
+                const postLink = allLinks.find((link) => {
+                    return link.getAttribute("href") === "/posts";
+                });
+                return expect(postLink).toHaveStyle("pointer-events: none");
+            });
+        });
+
+        it("should item disabled when activeItemDisabled:true", async () => {
+            const { getAllByText, getAllByRole } = render(
+                <SiderElement activeItemDisabled={true} />,
+                {
+                    wrapper: TestWrapper({
+                        routerInitialEntries: ["/posts"],
+                        routerProvider: mockRouterBindings({
+                            pathname: "/posts",
+                            action: "list",
+                            resource: {
+                                name: "posts",
+                                list: "/posts",
+                            },
+                        }),
+                        resources: [
+                            {
+                                name: "posts",
+                                list: "/posts",
+                            },
+                            {
+                                name: "users",
+                                list: "/users",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                return expect(
+                    getAllByText("Posts").length,
+                ).toBeGreaterThanOrEqual(1);
+            });
+
+            await waitFor(() => {
+                const allLinks = getAllByRole("link");
+                const postLink = allLinks.find((link) => {
+                    return link.getAttribute("href") === "/posts";
+                });
+
+                return expect(postLink).toHaveStyle("pointer-events: none");
+            });
         });
     });
 };

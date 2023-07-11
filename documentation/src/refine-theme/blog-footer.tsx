@@ -187,8 +187,8 @@ export const BlogFooter = () => {
                             "text-gray-500 dark:text-gray-400",
                         )}
                     >
-                        © 2023, refine from Delaware to wherever you&apos;re
-                        with{" "}
+                        © 2023, refine from San Francisco to wherever
+                        you&apos;re with{" "}
                         <HeartOutlinedIcon className="text-refine-red inline ml-2 leading-6" />
                     </div>
                     <div

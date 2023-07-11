@@ -5,7 +5,7 @@ describe("table-material-ui-advanced", () => {
     beforeEach(() => {
         cy.interceptGETPosts();
         cy.interceptGETCategories();
-        cy.visit("http://localhost:3000/posts/data-grid");
+        cy.visit("http://localhost:5173/posts/data-grid");
     });
 
     it("should work with filter", () => {

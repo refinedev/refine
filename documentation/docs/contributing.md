@@ -227,6 +227,8 @@ To render the live preview you should call the `render` function with your compo
 
 ````ts
 ```tsx live hideCode url=http://localhost:3000/posts/create
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 // You can use object destructuring to import the necessary functions and components which you don't want to show in the code block.
 // highlight-start
 const { CreateButton } = RefineAntd;
@@ -326,6 +328,7 @@ setInitialRoutes(["/posts/create"]);
 render(
     <ReactRouterDom.BrowserRouter>
         <Refine
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -360,6 +363,8 @@ render(
 
 ```tsx live hideCode disableScroll url=http://localhost:3000/posts/create
 // You can use object destructuring to import the necessary functions and components which you don't want to show in the code block.
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 // highlight-start
 const { CreateButton } = RefineAntd;
 // highlight-end
@@ -458,6 +463,7 @@ setInitialRoutes(["/posts/create"]);
 render(
     <ReactRouterDom.BrowserRouter>
         <Refine
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",

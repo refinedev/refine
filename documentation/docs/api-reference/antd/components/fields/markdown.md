@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<MarkdownField>` in a show page.
+Let's see how we can use `<MarkdownField>` in a show page:
 
 ```tsx live
 import { useShow } from "@refinedev/core";
@@ -25,7 +25,7 @@ import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
-const PostShow: React.FC = () => {
+const SampleShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -52,16 +52,19 @@ interface IPost {
 
 render(
     <RefineAntdDemo
-        initialRoutes={["/posts/show/123"]}
+        initialRoutes={["/samples", "/samples/show/123"]}
         resources={[
             {
-                name: "posts",
-                list: () => (
-                    <RefineAntd.List>
-                        <p>List page here...</p>
-                    </RefineAntd.List>
+                name: "samples",
+                 list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineAntd.ShowButton recordItemId="123">
+                            Show Item 123
+                        </RefineAntd.ShowButton>
+                    </div>
                 ),
-                show: PostShow,
+                show: SampleShow,
             },
         ]}
     />,

@@ -33,7 +33,7 @@ import { Controller } from "react-hook-form";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const {

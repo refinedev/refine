@@ -304,3 +304,6 @@ const Page = () => {
 [mantine-use-form]: /docs/api-reference/mantine/hooks/form/useForm/
 [http-error]: /docs/api-reference/core/interfaceReferences/#httperror
 [react-hook-form-use-form]: /docs/packages/documentation/react-hook-form/useForm/
+[core-use-form]: /docs/api-reference/core/hooks/useForm/
+[mantine-use-form]: /docs/api-reference/mantine/hooks/form/useForm/
+[http-error]: /docs/api-reference/core/interfaceReferences/#httperror
