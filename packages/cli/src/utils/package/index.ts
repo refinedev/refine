@@ -202,3 +202,13 @@ export const parsePackageNameAndVersion = (
         version: str.slice(versionStartIndex + 1),
     };
 };
+
+export const getRefineProjectId = () => {
+    const packageJson = getPackageJson();
+
+    return packageJson.refine?.projectId;
+};
+
+export const addProjectIdToPackageJson = (projectId: string) => {
+    execa.sync("npm", ["pkg", "set", "refine.projectId", "=", projectId]);
+};
