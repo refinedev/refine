@@ -147,7 +147,7 @@ const renderForm = ({
 };
 
 describe("useForm hook", () => {
-    it(["edit", "create"] as const)(
+    it.each(["edit", "create"] as const)(
         "should set %s-form errors from data provider",
         async (action) => {
             const onMutationError = jest.fn();
