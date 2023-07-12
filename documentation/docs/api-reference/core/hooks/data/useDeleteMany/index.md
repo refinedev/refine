@@ -178,13 +178,13 @@ By defining `onCancel`, undoable notification will not be shown automatically. T
 
 ```tsx
 import { useRef } from "react";
-import { useDelete } from "@refinedev/core";
+import { useDeleteMany } from "@refinedev/core";
 
 const MyComponent = () => {
-    const { mutate } = useDelete();
+    const { mutate } = useDeleteMany();
     const cancelRef = useRef<(() => void) | null>(null);
 
-    const deleteItem = () => {
+    const deleteItems = () => {
         mutate({
             //...
             mutationMode: "undoable",
@@ -200,7 +200,7 @@ const MyComponent = () => {
 
     return (
         <>
-            <button onClick={deleteItem}>Delete</button>
+            <button onClick={deleteItems}>Delete</button>
             <button onClick={cancelDelete}>Cancel</button>
         </>
     );

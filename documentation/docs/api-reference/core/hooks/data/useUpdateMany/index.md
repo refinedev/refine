@@ -113,7 +113,9 @@ const { overtime } = useUpdateMany({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ## Mutation Parameters
@@ -197,13 +199,13 @@ By defining `onCancel`, undoable notification will not be shown automatically. T
 
 ```tsx
 import { useRef } from "react";
-import { useDelete } from "@refinedev/core";
+import { useUpdateMany } from "@refinedev/core";
 
 const MyComponent = () => {
-    const { mutate } = useDelete();
+    const { mutate } = useUpdateMany();
     const cancelRef = useRef<(() => void) | null>(null);
 
-    const deleteItem = () => {
+    const updateItems = () => {
         mutate({
             //...
             mutationMode: "undoable",
@@ -213,14 +215,14 @@ const MyComponent = () => {
         });
     };
 
-    const cancelDelete = () => {
+    const cancelUpdate = () => {
         cancelRef.current?.();
     };
 
     return (
         <>
-            <button onClick={deleteItem}>Delete</button>
-            <button onClick={cancelDelete}>Cancel</button>
+            <button onClick={updateItems}>Update</button>
+            <button onClick={cancelUpdate}>Cancel</button>
         </>
     );
 };
