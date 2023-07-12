@@ -2,28 +2,37 @@ import { ENV } from "@utils/env";
 import { addProjectIdToPackageJson, getRefineProjectId } from "@utils/package";
 import inquirer from "inquirer";
 import fetch from "node-fetch";
+import os from "os";
+import path from "path";
+import { outputFileSync, existsSync } from "fs-extra";
 
 export const projectPrompt = async () => {
     if (isProjectPromptDisabled()) {
         return;
     }
 
-    const response = await inquirer.prompt({
-        type: "input",
-        name: "email",
-        message: "Do you want to share your work email?",
-    });
+    try {
+        const response = await inquirer.prompt({
+            type: "input",
+            name: "email",
+            message: "Do you want to share your work email?",
+        });
 
-    if (response.email) {
-        let projectId = getRefineProjectId();
+        if (response.email) {
+            let projectId = getRefineProjectId();
 
-        if (projectId) {
-            await updateProject(projectId, response.email);
-        } else {
-            projectId = await createNewProject(response.email);
+            if (projectId) {
+                await updateProject(projectId, response.email);
+            } else {
+                projectId = await createNewProject(response.email);
 
-            addProjectIdToPackageJson(projectId);
+                addProjectIdToPackageJson(projectId);
+            }
+
+            createSkipPromptFile();
         }
+    } catch (e) {
+        createSkipPromptFile();
     }
 };
 
@@ -51,6 +60,33 @@ const updateProject = async (projectId: string, email: string) => {
     });
 };
 
+const getConfigDir = () => {
+    return (
+        process.env["CONFIG_DIR"] ||
+        process.env["XDG_CONFIG_HOME"] ||
+        (os.platform() === "win32" && process.env["LOCALAPPDATA"]) ||
+        path.join(os.homedir(), ".config")
+    );
+};
+
+const createSkipPromptFile = () => {
+    const configDir = getConfigDir();
+    const skipPromptFilePath = path.join(configDir, "refine", "skip-prompt");
+
+    outputFileSync(skipPromptFilePath, "");
+};
+
+const isSkipPromptFileExists = () => {
+    const configDir = getConfigDir();
+    const skipPromptFilePath = path.join(configDir, "refine", "skip-prompt");
+
+    return existsSync(skipPromptFilePath);
+};
+
 export const isProjectPromptDisabled = () => {
-    return ENV.REFINE_PROJECT_PROMPT_DISABLED || ENV.NODE_ENV !== "development";
+    return (
+        ENV.REFINE_PROJECT_PROMPT_DISABLED ||
+        ENV.NODE_ENV !== "development" ||
+        isSkipPromptFileExists()
+    );
 };
