@@ -28,6 +28,7 @@ import {
     RefreshButtonProps,
     DeleteButtonProps,
     SaveButtonProps,
+    AutoSaveIndicator,
 } from "@components";
 import { EditProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
@@ -53,6 +54,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         goBack: goBackFromProps,
         breadcrumb: breadcrumbFromProps,
         title,
+        autoSaveProps,
     } = props;
     const translate = useTranslate();
     const { options: { breadcrumb: globalBreadcrumb } = {} } =
@@ -131,10 +133,11 @@ export const Edit: React.FC<EditProps> = (props) => {
     };
 
     const defaultHeaderButtons = (
-        <>
+        <Box display="flex" flexDirection="row" alignItems="center" gap="2">
+            {autoSaveProps && <AutoSaveIndicator {...autoSaveProps} />}
             {hasList && <ListButton {...listButtonProps} />}
             <RefreshButton {...refreshButtonProps} />
-        </>
+        </Box>
     );
 
     const defaultFooterButtons = (

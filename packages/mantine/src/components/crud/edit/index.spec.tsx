@@ -2,7 +2,15 @@ import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@refinedev/core";
 
-import { ITestWrapperProps, render, TestWrapper, waitFor } from "@test";
+import {
+    act,
+    fireEvent,
+    ITestWrapperProps,
+    MockJSONServer,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 import { Edit } from "./";
 import { crudEditTests } from "@refinedev/ui-tests";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
@@ -12,6 +20,8 @@ import {
     RefreshButton,
     SaveButton,
 } from "@components/buttons";
+import { useForm } from "@hooks/form";
+import { TextInput } from "@mantine/core";
 
 const renderEdit = (
     edit: ReactNode,
@@ -419,5 +429,146 @@ describe("list button", () => {
         await waitFor(() =>
             expect(queryByTestId(RefineButtonTestIds.ListButton)).toBeNull(),
         );
+    });
+});
+
+describe("auto save", () => {
+    const EditPageWithAutoSave = () => {
+        const {
+            refineCore: { formLoading, autoSaveProps },
+            getInputProps,
+        } = useForm({
+            initialValues: {
+                title: "",
+            },
+            refineCoreProps: {
+                action: "edit",
+                autoSave: {
+                    enabled: true,
+                },
+            },
+        });
+
+        return (
+            <Edit autoSaveProps={autoSaveProps}>
+                {formLoading && <div>loading...</div>}
+                <TextInput
+                    mt={8}
+                    id="title"
+                    data-testid="title"
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                ;
+            </Edit>
+        );
+    };
+
+    it("check idle,loading,success statuses", async () => {
+        jest.useFakeTimers();
+
+        const { getByText, getByTestId } = render(
+            <Routes>
+                <Route
+                    path="/:resource/edit/:id"
+                    element={<EditPageWithAutoSave />}
+                ></Route>
+            </Routes>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts", canDelete: false }],
+                    routerInitialEntries: ["/posts/edit/1"],
+                    dataProvider: {
+                        ...MockJSONServer,
+                        update: () => {
+                            return new Promise((res) => {
+                                setTimeout(
+                                    () =>
+                                        res({
+                                            data: {
+                                                id: "1",
+                                                title: "ok",
+                                            } as any,
+                                        }),
+                                    1000,
+                                );
+                            });
+                        },
+                    },
+                }),
+            },
+        );
+
+        getByText("Edit Post");
+        getByText("waiting for changes");
+
+        // update title and wait
+        await act(async () => {
+            fireEvent.change(getByTestId("title"), {
+                target: { value: "test" },
+            });
+
+            jest.advanceTimersByTime(1100);
+        });
+
+        // check saving message
+        expect(getByText("saving...")).toBeTruthy();
+
+        await act(async () => {
+            jest.advanceTimersByTime(1000);
+        });
+
+        // check saved message
+        expect(getByText("saved")).toBeTruthy();
+    });
+
+    it("check error status", async () => {
+        jest.useFakeTimers();
+
+        const { getByText, getByTestId } = render(
+            <Routes>
+                <Route
+                    path="/:resource/edit/:id"
+                    element={<EditPageWithAutoSave />}
+                ></Route>
+            </Routes>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts", canDelete: false }],
+                    routerInitialEntries: ["/posts/edit/1"],
+                    dataProvider: {
+                        ...MockJSONServer,
+                        update: () => {
+                            return new Promise((res, rej) => {
+                                setTimeout(() => rej("error"), 1000);
+                            });
+                        },
+                    },
+                }),
+            },
+        );
+
+        getByText("Edit Post");
+        getByText("waiting for changes");
+
+        // update title and wait
+        await act(async () => {
+            fireEvent.change(getByTestId("title"), {
+                target: { value: "test" },
+            });
+
+            jest.advanceTimersByTime(1100);
+        });
+
+        // check saving message
+        expect(getByText("saving...")).toBeTruthy();
+
+        await act(async () => {
+            jest.advanceTimersByTime(1000);
+        });
+
+        // check saved message
+        expect(getByText("auto save failure")).toBeTruthy();
     });
 });
