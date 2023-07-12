@@ -159,5 +159,11 @@
   },
   "table": {
     "actions": "Aktionen"
+  },
+  "autoSave": {
+    "success": "gespeichert",
+    "error": "fehler beim automatischen speichern",
+    "loading": "speichern...",
+    "idle": "warten auf anderungen"
   }
 }

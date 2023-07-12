@@ -325,6 +325,12 @@ Before we get started, let's look at which parts are going to be translated:
             "create": "Create new Post | refine",
             "clone": "#{{id}} Clone Post | refine"
         }
+    },
+    "autoSave": {
+        "success": "saved",
+        "error": "auto save failure",
+        "loading": "saving...",
+        "idle": "waiting for changes"
     }
 }
 ```
@@ -499,6 +505,12 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "create": "Create new Post | refine",
             "clone": "#{{id}} Clone Post | refine"
         }
+    },
+    "autoSave": {
+        "success": "saved",
+        "error": "auto save failure",
+        "loading": "saving...",
+        "idle": "waiting for changes"
     }
 }
 ```
@@ -657,6 +669,12 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "create": "Neuen Beitrag erstellen | refine",
             "clone" : "#{{id}} Beitrag klonen | refine"
         }
+    },
+    "autoSave": {
+        "success": "gespeichert",
+        "error": "fehler beim automatischen speichern",
+        "loading": "speichern...",
+        "idle": "warten auf anderungen"
     }
 }
 ```

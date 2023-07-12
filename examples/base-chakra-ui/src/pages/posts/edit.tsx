@@ -15,12 +15,18 @@ import { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
     const {
-        refineCore: { formLoading, queryResult },
+        refineCore: { formLoading, queryResult, autoSaveProps },
         saveButtonProps,
         register,
         formState: { errors },
         setValue,
-    } = useForm<IPost>();
+    } = useForm<IPost>({
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+            },
+        },
+    });
 
     const { options } = useSelect({
         resource: "categories",
@@ -34,7 +40,11 @@ export const PostEdit = () => {
     }, [options]);
 
     return (
-        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+        <Edit
+            isLoading={formLoading}
+            saveButtonProps={saveButtonProps}
+            autoSaveProps={autoSaveProps}
+        >
             <FormControl mb="3" isInvalid={!!errors?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input
