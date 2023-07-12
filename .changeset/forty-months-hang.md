@@ -2,7 +2,7 @@
 "@refinedev/core": patch
 ---
 
-chore: add tsdoc to properties on following hooks:
+chore: fix tsdoc description of `onCancel` property on following hooks:
 
 -   `useUpdate`
 -   `useUpdateMany`
