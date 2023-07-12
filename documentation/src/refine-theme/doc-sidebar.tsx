@@ -87,7 +87,7 @@ const SidebarCategory = ({
                 !line && "pl-0",
                 line && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 dark:border-l-gray-600 border-l-gray-200",
+                line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
             )}
         >
             <Comp
@@ -144,12 +144,12 @@ const SidebarCategory = ({
                 {!isHeader && (
                     <ChevronDownIcon
                         className={clsx(
-                            "w-6 h-6",
+                            "h-6 w-6",
                             "flex-shrink-0",
                             "z-[1]",
                             "transition-transform duration-200 ease-in-out",
                             {
-                                "transform -rotate-90": collapsed,
+                                "-rotate-90 transform": collapsed,
                             },
                         )}
                     />
@@ -179,9 +179,9 @@ const SidebarCategory = ({
                 className={clsx(
                     collapsed && "max-h-0 opacity-0",
                     collapsed && "overflow-hidden",
-                    !collapsed && "max-h-[2000px] opacity-100",
+                    !collapsed && "opacity-100",
                     !collapsed && !settled && "max-h-screen",
-                    !collapsed && settled && "max-h-[2500px]",
+                    !collapsed && settled && "max-h-max",
                 )}
             >
                 {
@@ -242,22 +242,22 @@ const SidebarLink = ({
                 "min-h-[40px]",
                 isActive
                     ? "dark:text-gray-0 text-gray-900"
-                    : "dark:text-gray-400 text-gray-500",
-                "text-sm leading-6 font-normal",
+                    : "text-gray-500 dark:text-gray-400",
+                "text-sm font-normal leading-6",
                 "flex items-start justify-start",
                 "p-2",
                 dashed && !line && "pl-0",
                 line && !dashed && "pl-5",
                 line && dashed && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 dark:border-l-gray-600 border-l-gray-200",
+                line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "hover:dark:text-gray-0 hover:text-gray-900",
                 "no-underline",
             )}
         >
-            {dashed && <DashIcon className="w-6 h-6 flex-shrink-0 z-[1]" />}
+            {dashed && <DashIcon className="z-[1] h-6 w-6 flex-shrink-0" />}
             <span className="z-[1]">{item.label}</span>
             <div
                 className={clsx(
@@ -391,7 +391,7 @@ export const DocSidebar = () => {
                     "pl-5",
                     "pr-3",
                     "py-12",
-                    "border-r dark:border-r-gray-700 border-r-gray-200",
+                    "border-r border-r-gray-200 dark:border-r-gray-700",
                 )}
             >
                 {renderItems({
