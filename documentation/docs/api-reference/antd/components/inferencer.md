@@ -4,7 +4,7 @@ title: Inferencer
 sidebar_label: Inferencer
 ---
 
-You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` and `AntdInferencer` (which combines all in one place) components.
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` components and finally the `AntdInferencer` component, which combines all in one place.
 
 ## Usage
 
@@ -85,15 +85,13 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-:::info
-To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
-:::
+> For more information, refer to the [Inferencer documentation](/docs/packages/documentation/inferencer)
 
 ## Views
 
 ### `List`
 
-Generates a sample list view for your resources according to the API response. It uses `List` and `Table` components with `useTable` hook from `@refinedev/antd`.
+Generates a sample list view for your resources according to the API response. It uses the `List` and `Table` components with the `useTable` hook from `@refinedev/antd`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/samples"]);
@@ -155,7 +153,7 @@ render(<App />);
 
 ### `Show`
 
-Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@refinedev/antd` with `useShow` hook from `@refinedev/core`.
+Generates a sample show view for your resources according to the API response. It uses the `Show` and field components from `@refinedev/antd` with the `useShow` hook from `@refinedev/core`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/show/123
 setInitialRoutes(["/samples/show/123"]);
@@ -217,7 +215,7 @@ render(<App />);
 
 ### `Create`
 
-Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component and `useForm` hook from `@refinedev/antd`.
+Generates a sample create view for your resources according to the first record in list API response. It uses the `Create` component and the `useForm` hook from `@refinedev/antd`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/create
 setInitialRoutes(["/samples/create"]);
@@ -279,7 +277,7 @@ render(<App />);
 
 ### `Edit`
 
-Generates a sample edit view for your resources according to the API response. It uses `Edit` component and `useForm` hook from `@refinedev/antd`.
+Generates a sample edit view for your resources according to the API response. It uses the `Edit` component and the `useForm` hook from `@refinedev/antd`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/edit/123
 setInitialRoutes(["/samples/edit/123"]);
@@ -341,6 +339,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@refinedev/inferencer/antd` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup **refine** app with the `@refinedev/inferencer/antd` components.
 
 <CodeSandboxExample path="inferencer-antd" />

@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<MarkdownField>` in a show page.
+Let's see how we can use `<MarkdownField>` in a show page:
 
 ```tsx live
 import { useShow } from "@refinedev/core";
