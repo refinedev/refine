@@ -168,7 +168,7 @@ export const useForm = <
                 }
 
                 if (typeof fieldError === "boolean") {
-                    newError = "Something went wrong.";
+                    newError = "Field is not valid.";
                 }
 
                 if (typeof fieldError === "object" && "key" in fieldError) {
