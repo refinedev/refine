@@ -17,8 +17,8 @@ import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 import "./index.css";
 
-import { PostList } from "pages/posts";
-import { CustomSider } from "components";
+import { PostList } from "./pages/posts";
+import { CustomSider } from "./components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

@@ -65,7 +65,7 @@ export function ChartView({ revenue, orders, customers }: IProps) {
 
     return (
         <Card>
-            <div className="md:flex justify-between">
+            <div className="justify-between md:flex">
                 <div>
                     <Flex
                         justifyContent="start"
@@ -102,7 +102,7 @@ export function ChartView({ revenue, orders, customers }: IProps) {
                 showLegend={true}
                 valueFormatter={formatters[selectedKpi]}
                 yAxisWidth={56}
-                className="h-96 mt-8"
+                className="mt-8 h-96"
             />
         </Card>
     );

@@ -4,7 +4,7 @@ import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
 
 import { Typography } from "antd";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

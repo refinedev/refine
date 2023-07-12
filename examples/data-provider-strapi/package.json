@@ -12,24 +12,27 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "axios": "^0.26.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@uiw/react-md-editor": "^3.19.5",
-    "react-scripts": "^5.0.0",
-    "cross-env": "^7.0.3",
-    "typescript": "^4.7.4",
     "antd": "^5.0.5"
   },
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^4.7.4",
+    "vite": "^4.3.1",
+    "@babel/core": "^7.13.14",
+    "http-proxy-middleware": "^2.0.6"
+  },
   "scripts": {
-    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "browserslist": {
@@ -43,9 +46,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.14",
-    "http-proxy-middleware": "^2.0.6"
   }
 }
