@@ -118,12 +118,36 @@ const App = (props: React.PropsWithChildren) => {
                 error: new Error(error),
             };
         },
-        forgotPassword: async (params) => {
-            console.log("params", params);
-            // TODO: Request API with params and send reset password email
+        updatePassword: async (params) => {
+            if (params.password === "demodemo") {
+                //we can update password here
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            }
             return {
-                success: true,
-                redirectTo: "/login",
+                success: false,
+                error: {
+                    message: "Update password failed",
+                    name: "Invalid password",
+                },
+            };
+        },
+        forgotPassword: async (params) => {
+            if (params.email === "demo@refine.dev") {
+                //we can send email with reset password link here
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            }
+            return {
+                success: false,
+                error: {
+                    message: "Forgot password failed",
+                    name: "Invalid email",
+                },
             };
         },
         logout: async () => {
