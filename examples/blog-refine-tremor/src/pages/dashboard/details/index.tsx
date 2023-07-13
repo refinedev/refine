@@ -299,7 +299,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
                 <TextInput
                     type="text"
                     placeholder="Enter Page"
-                    className="max-w-xs w-1/8"
+                    className="w-1/8 max-w-xs"
                     defaultValue={`${getState().pagination.pageIndex + 1}`}
                     onChange={(e) => {
                         const { value } = e.target;

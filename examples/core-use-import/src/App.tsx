@@ -7,7 +7,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
-import { DummyList } from "pages/posts";
+import { DummyList } from "./pages/posts";
 
 const App: React.FC = () => {
     return (

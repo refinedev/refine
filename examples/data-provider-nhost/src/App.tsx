@@ -23,9 +23,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { nhost } from "utility";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+import { nhost } from "./utility";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 import { ConfigProvider } from "antd";
 
 const authProvider: AuthBindings = {

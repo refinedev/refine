@@ -15,8 +15,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 import { ConfigProvider } from "antd";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";

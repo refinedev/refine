@@ -26,10 +26,10 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { appwriteClient, account } from "utility";
+import { appwriteClient, account } from "./utility";
 
-import { PostCreate, PostList, PostEdit, PostShow } from "pages/posts";
-import { Login } from "pages/login";
+import { PostCreate, PostList, PostEdit, PostShow } from "./pages/posts";
+import { Login } from "./pages/login";
 
 const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
