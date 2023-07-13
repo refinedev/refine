@@ -18,7 +18,7 @@ RUN npm run build -- --scope finefoods-material-ui
 
 FROM node:18-alpine
 
-COPY --from=0 /opt/app/examples/finefoods-material-ui/build /opt/app
+COPY --from=0 /opt/app/examples/finefoods-material-ui/dist /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
