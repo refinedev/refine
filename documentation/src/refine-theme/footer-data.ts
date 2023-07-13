@@ -29,10 +29,10 @@ export const menuItems = [
                 label: "Examples",
                 href: "/docs/examples",
             },
-            // {
-            //     label: "Integrations",
-            //     href: "/integrations",
-            // },
+            {
+                label: "Integrations",
+                href: "/integrations",
+            },
             // {
             //     label: "Become an Expert",
             //     href: "/become-an-expert",
