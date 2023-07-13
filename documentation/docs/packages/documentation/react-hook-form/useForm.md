@@ -629,12 +629,13 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
     refineCoreProps: {
-        onMutationSuccess: (data, variables, context) => {
-            console.log({ data, variables, context });
+        onMutationSuccess: (data, variables, context, isAutoSave) => {
+            console.log({ data, variables, context, isAutoSave });
         },
     },
 });
@@ -649,12 +650,13 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
     refineCoreProps: {
-        onMutationError: (data, variables, context) => {
-            console.log({ data, variables, context });
+        onMutationError: (data, variables, context, isAutoSave) => {
+            console.log({ data, variables, context, isAutoSave });
         },
     },
 });
@@ -926,6 +928,67 @@ useForm({
 
 Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
 
+### `autoSave`
+
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
+
+It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+#### `enabled`
+
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+
+```tsx
+useForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+        },
+    }
+})
+```
+
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            debounce: 2000,
+        },
+    }
+})
+```
+#### `onFinish`
+
+If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
+
+```tsx
+useForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-start
+            onFinish: (values) => {
+                return {
+                    foo: "bar",
+                    ...values,
+                };
+            },
+            // highlight-end
+        },
+    },
+})
+```
 ## Return Values
 
 ### `queryResult`
@@ -1008,6 +1071,10 @@ It contains all the props needed by the "submit" button within the form (disable
 ### `formLoading`
 
 Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
+
+### `autoSaveProps`
+
+If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
 
@@ -1129,9 +1196,11 @@ const {
 } = useForm({ ... });
 ```
 
-| Property        | Description               | Type                                                                     |
-| --------------- | ------------------------- | ------------------------------------------------------------------------ |
-| saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.BaseSyntheticEvent) => void; }` |
+| Property        | Description               | Type                                                                                                                                    |
+| --------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.BaseSyntheticEvent) => void; }`                                                                |
+| autoSaveProps   | Auto save props           | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
+
 
 ### Type Parameters
 

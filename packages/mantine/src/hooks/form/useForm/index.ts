@@ -135,6 +135,7 @@ export const useForm = <
         isDirty,
         resetDirty,
         setFieldError,
+        values,
     } = useMantineFormResult;
 
     const useFormCoreResult = useFormCore<
@@ -186,7 +187,8 @@ export const useForm = <
         },
     });
 
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
+    const { queryResult, formLoading, onFinish, onFinishAutoSave } =
+        useFormCoreResult;
 
     useEffect(() => {
         if (typeof queryResult?.data !== "undefined") {
@@ -211,6 +213,18 @@ export const useForm = <
             setWarnWhen(isValuesChanged);
         }
     }, [isValuesChanged]);
+
+    useEffect(() => {
+        if (isValuesChanged && refineCoreProps?.autoSave && values) {
+            setWarnWhen(false);
+
+            const transformedValues = rest.transformValues
+                ? rest.transformValues(values)
+                : (values as unknown as TTransformed);
+
+            onFinishAutoSave(transformedValues);
+        }
+    }, [values]);
 
     const onSubmit: (typeof useMantineFormResult)["onSubmit"] =
         (handleSubmit, handleValidationFailure) => async (e) => {

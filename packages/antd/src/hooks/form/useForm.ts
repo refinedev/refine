@@ -1,7 +1,7 @@
 import React from "react";
-import { FormInstance, FormProps, Form } from "antd";
+import { FormInstance, FormProps, Form, ButtonProps } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
-import { ButtonProps } from "antd";
+import { AutoSaveProps } from "@refinedev/core";
 
 import {
     HttpError,
@@ -43,7 +43,7 @@ export type UseFormProps<
      * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
      */
     disableServerSideValidation?: boolean;
-};
+} & AutoSaveProps<TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -96,6 +96,7 @@ export const useForm = <
     resource,
     onMutationSuccess: onMutationSuccessProp,
     onMutationError: onMutationErrorProp,
+    autoSave,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect,
@@ -250,7 +251,8 @@ export const useForm = <
         overtimeOptions,
     });
 
-    const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
+    const { formLoading, onFinish, queryResult, id, onFinishAutoSave } =
+        useFormCoreResult;
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -269,10 +271,20 @@ export const useForm = <
         }
     };
 
-    const onValuesChange = (changeValues: object) => {
+    const onValuesChange = (changeValues: object, allValues: any) => {
         if (changeValues && warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+
+        if (autoSave?.enabled) {
+            setWarnWhen(false);
+
+            const onFinishFromProps =
+                autoSave?.onFinish ?? ((values) => values);
+
+            return onFinishAutoSave(onFinishFromProps(allValues));
+        }
+
         return changeValues;
     };
 

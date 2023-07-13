@@ -9,9 +9,13 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        warnWhenUnsavedChanges: true,
-    });
+    const { formProps, saveButtonProps, queryResult, autoSaveProps } =
+        useForm<IPost>({
+            warnWhenUnsavedChanges: true,
+            autoSave: {
+                enabled: true,
+            },
+        });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -20,7 +24,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps} autoSaveProps={autoSaveProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

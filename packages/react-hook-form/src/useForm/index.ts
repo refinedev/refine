@@ -190,7 +190,8 @@ export const useForm = <
         },
     });
 
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
+    const { queryResult, onFinish, formLoading, onFinishAutoSave } =
+        useFormCoreResult;
 
     useEffect(() => {
         const data = queryResult?.data?.data;
@@ -216,10 +217,23 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
-    const onValuesChange = (changeValues: Record<string, any>) => {
+    const onValuesChange = (changeValues: TVariables) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+
+        if (refineCoreProps?.autoSave) {
+            setWarnWhen(false);
+
+            const onFinishProps = refineCoreProps.autoSave?.onFinish;
+
+            if (onFinishProps) {
+                return onFinishAutoSave(onFinishProps(changeValues));
+            }
+
+            return onFinishAutoSave(changeValues);
+        }
+
         return changeValues;
     };
 

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { BaseKey, MutationMode } from "@refinedev/core";
+import { AutoSaveIndicatorProps, BaseKey, MutationMode } from "@refinedev/core";
 
 export type ActionButtonRenderer<
     TExtraProps extends {} = Record<keyof any, unknown>,
@@ -263,6 +263,10 @@ export type RefineCrudEditProps<
      *  The record id for `<RefreshButton>`
      */
     recordItemId?: BaseKey;
+    /**
+     * Show <AutoSaveIndicator /> component on header buttons
+     */
+    autoSaveProps?: AutoSaveIndicatorProps;
 }> &
     TExtraProps;
 

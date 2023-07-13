@@ -69,12 +69,82 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
         <div
           class="css-i08qke"
         >
-          <a
-            href="/posts"
+          <div
+            class="css-oquf3a"
           >
+            <a
+              href="/posts"
+            >
+              <button
+                class="chakra-button refine-list-button css-4xx2wk"
+                title=""
+                type="button"
+              >
+                <span
+                  class="chakra-button__icon css-1wh2kri"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon icon-tabler icon-tabler-list"
+                    fill="none"
+                    focusable="false"
+                    height="20"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                      stroke="none"
+                    />
+                    <line
+                      x1="9"
+                      x2="20"
+                      y1="6"
+                      y2="6"
+                    />
+                    <line
+                      x1="9"
+                      x2="20"
+                      y1="12"
+                      y2="12"
+                    />
+                    <line
+                      x1="9"
+                      x2="20"
+                      y1="18"
+                      y2="18"
+                    />
+                    <line
+                      x1="5"
+                      x2="5"
+                      y1="6"
+                      y2="6.01"
+                    />
+                    <line
+                      x1="5"
+                      x2="5"
+                      y1="12"
+                      y2="12.01"
+                    />
+                    <line
+                      x1="5"
+                      x2="5"
+                      y1="18"
+                      y2="18.01"
+                    />
+                  </svg>
+                </span>
+                Posts
+              </button>
+            </a>
             <button
-              class="chakra-button refine-list-button css-4xx2wk"
-              title=""
+              class="chakra-button refine-refresh-button css-4xx2wk"
               type="button"
             >
               <span
@@ -82,7 +152,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="icon icon-tabler icon-tabler-list"
+                  class="icon icon-tabler icon-tabler-refresh"
                   fill="none"
                   focusable="false"
                   height="20"
@@ -99,83 +169,17 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                     fill="none"
                     stroke="none"
                   />
-                  <line
-                    x1="9"
-                    x2="20"
-                    y1="6"
-                    y2="6"
+                  <path
+                    d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
                   />
-                  <line
-                    x1="9"
-                    x2="20"
-                    y1="12"
-                    y2="12"
-                  />
-                  <line
-                    x1="9"
-                    x2="20"
-                    y1="18"
-                    y2="18"
-                  />
-                  <line
-                    x1="5"
-                    x2="5"
-                    y1="6"
-                    y2="6.01"
-                  />
-                  <line
-                    x1="5"
-                    x2="5"
-                    y1="12"
-                    y2="12.01"
-                  />
-                  <line
-                    x1="5"
-                    x2="5"
-                    y1="18"
-                    y2="18.01"
+                  <path
+                    d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
                   />
                 </svg>
               </span>
-              Posts
+              Refresh
             </button>
-          </a>
-          <button
-            class="chakra-button refine-refresh-button css-4xx2wk"
-            type="button"
-          >
-            <span
-              class="chakra-button__icon css-1wh2kri"
-            >
-              <svg
-                aria-hidden="true"
-                class="icon icon-tabler icon-tabler-refresh"
-                fill="none"
-                focusable="false"
-                height="20"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
-                />
-                <path
-                  d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
-                />
-                <path
-                  d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
-                />
-              </svg>
-            </span>
-            Refresh
-          </button>
+          </div>
         </div>
       </div>
       <div
