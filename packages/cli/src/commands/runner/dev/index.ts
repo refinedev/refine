@@ -4,6 +4,7 @@ import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { updateNotifier } from "src/update-notifier";
 import { getRunnerDescription } from "../utils";
+import { projectPrompt } from "src/project-prompt";
 
 const dev = (program: Command) => {
     return program
@@ -22,6 +23,8 @@ const action = async (args: string[]) => {
     const command = [...script, ...args];
 
     await updateNotifier();
+
+    await projectPrompt();
 
     runScript(binPath, command);
 };
