@@ -40,7 +40,8 @@ export const authOptions = {
                     JSON.stringify(credentials, null, 2),
                 );
 
-                // Invoked when a user tries to sign in.
+                // check credentials
+                // if not valid return null
                 if (credentials?.["email"] !== "demo@refine.dev") {
                     return null;
                 }
