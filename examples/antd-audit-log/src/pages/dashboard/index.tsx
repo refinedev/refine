@@ -9,7 +9,7 @@ import {
     Typography,
 } from "antd";
 
-import refineSDK from "utils/refine-sdk";
+import refineSDK from "../../utils/refine-sdk";
 import { useLogList } from "@refinedev/core";
 
 const { Title } = Typography;

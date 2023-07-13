@@ -16,16 +16,16 @@ import { newEnforcer } from "casbin";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { model, adapter } from "accessControl";
-import { Header } from "components/header";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
+import { model, adapter } from "./accessControl";
+import { Header } from "./components/header";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { UserList, UserCreate, UserEdit, UserShow } from "./pages/users";
 import {
     CategoryList,
     CategoryCreate,
     CategoryEdit,
     CategoryShow,
-} from "pages/categories";
+} from "./pages/categories";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

@@ -15,11 +15,11 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 
 import "@refinedev/antd/dist/reset.css";
 
-import Header from "components/Header";
+import Header from "./components/Header";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
