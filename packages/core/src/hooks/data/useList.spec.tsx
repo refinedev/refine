@@ -517,6 +517,33 @@ describe("useList Hook", () => {
             });
         });
 
+        it("should not call `open` from notification provider on return `false`", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        successNotification: () => false,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        notificationProvider: {
+                            open: openNotificationMock,
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledTimes(0);
+        });
+
         it("should call `open` from notification provider on error with custom notification params", async () => {
             const getListMock = jest.fn().mockRejectedValue(new Error("Error"));
             const openNotificationMock = jest.fn();

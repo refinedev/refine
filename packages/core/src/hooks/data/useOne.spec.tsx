@@ -306,6 +306,34 @@ describe("useOne Hook", () => {
                 });
             });
 
+            it("should call `open` from notification provider on success with custom notification params", async () => {
+                const openNotificationMock = jest.fn();
+
+                const { result } = renderHook(
+                    () =>
+                        useOne({
+                            resource: "posts",
+                            id: "1",
+                            successNotification: () => false,
+                        }),
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            notificationProvider: {
+                                open: openNotificationMock,
+                            },
+                            resources: [{ name: "posts" }],
+                        }),
+                    },
+                );
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(openNotificationMock).toBeCalledTimes(0);
+            });
+
             it("should call `open` from notification provider on error with custom notification params", async () => {
                 const getOneMock = jest
                     .fn()
