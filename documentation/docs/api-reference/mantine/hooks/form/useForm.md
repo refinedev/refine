@@ -1086,8 +1086,6 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
-> > > > > > > next
-
 ## FAQ
 
 ### How can Invalidate other resources?

@@ -489,6 +489,7 @@ describe("auto save", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", canDelete: false }],
                     routerInitialEntries: ["/posts/edit/1"],
+                    legacyRouterProvider: MockLegacyRouterProvider,
                     dataProvider: {
                         ...MockJSONServer,
                         update: () => {
@@ -547,6 +548,7 @@ describe("auto save", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", canDelete: false }],
                     routerInitialEntries: ["/posts/edit/1"],
+                    legacyRouterProvider: MockLegacyRouterProvider,
                     dataProvider: {
                         ...MockJSONServer,
                         update: () => {
