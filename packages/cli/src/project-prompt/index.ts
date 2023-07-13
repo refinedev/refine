@@ -16,6 +16,13 @@ export const projectPrompt = async () => {
             type: "input",
             name: "email",
             message: "Do you want to share your work email?",
+            validate: (input) => {
+                if (!input) {
+                    return "Please enter your email";
+                }
+
+                return true;
+            },
         });
 
         if (response.email) {
