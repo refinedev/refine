@@ -56,6 +56,12 @@ export const useTelemetryData = (): ITelemetryData => {
 
     const accessControl = !!accessControlContext.can;
 
+    const projectId =
+        (import.meta as any)?.env?.VITE_REFINE_PROJECT_ID ??
+        typeof process !== "undefined"
+            ? process.env.NEXT_PUBLIC_REFINE_PROJECT_ID
+            : undefined;
+
     return {
         providers: {
             auth,
@@ -69,5 +75,6 @@ export const useTelemetryData = (): ITelemetryData => {
         },
         version: REFINE_VERSION,
         resourceCount: resources.length,
+        projectId,
     };
 };

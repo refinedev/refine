@@ -1,4 +1,5 @@
 import { ProjectTypes } from "@definitions/projectTypes";
+import { getPackageJson } from "@utils/package";
 import execa from "execa";
 
 export const runScript = async (binPath: string, args: string[]) => {
@@ -14,12 +15,16 @@ export const runScript = async (binPath: string, args: string[]) => {
         return;
     }
 
+    const packageJson = getPackageJson();
+
     const execution = execa(binPath, args, {
         stdio: "pipe",
         windowsHide: false,
         env: {
             FORCE_COLOR: "true",
             ...process.env,
+            VITE_REFINE_PROJECT_ID: packageJson?.refine?.projectId,
+            NEXT_PUBLIC_REFINE_PROJECT_ID: packageJson?.refine?.projectId,
         },
     });
 
