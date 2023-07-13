@@ -18,10 +18,10 @@ import { DashboardOutlined } from "@ant-design/icons";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { authProvider } from "authProvider";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { Login } from "pages/login";
-import { DashboardPage } from "pages/dashboard";
+import { authProvider } from "./authProvider";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { Login } from "./pages/login";
+import { DashboardPage } from "./pages/dashboard";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

@@ -3,7 +3,6 @@ import { IResourceComponentsProps, useShow, useOne } from "@refinedev/core";
 import {
     Show,
     NumberField,
-    TagField,
     TextField,
     MarkdownField,
     DateField,

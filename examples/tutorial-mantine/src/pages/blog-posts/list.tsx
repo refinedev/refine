@@ -15,8 +15,8 @@ import {
     MarkdownField,
     DateField,
 } from "@refinedev/mantine";
-import { ColumnSorter } from "components/table/ColumnSorter";
-import { ColumnFilter } from "components/table/ColumnFilter";
+import { ColumnSorter } from "../../components/table/ColumnSorter";
+import { ColumnFilter } from "../../components/table/ColumnFilter";
 
 export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(

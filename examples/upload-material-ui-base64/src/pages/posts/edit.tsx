@@ -11,7 +11,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory, IPost, IStatus, Nullable } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
 import { HttpError } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {

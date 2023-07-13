@@ -16,10 +16,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { BlogPostList } from "pages/blog-posts/list";
-import { BlogPostCreate } from "pages/blog-posts/create";
-import { BlogPostShow } from "pages/blog-posts/show";
-import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostList } from "./pages/blog-posts/list";
+import { BlogPostCreate } from "./pages/blog-posts/create";
+import { BlogPostShow } from "./pages/blog-posts/show";
+import { BlogPostEdit } from "./pages/blog-posts/edit";
 
 function App() {
     return (
