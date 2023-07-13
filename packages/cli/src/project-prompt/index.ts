@@ -15,7 +15,8 @@ export const projectPrompt = async () => {
         const response = await inquirer.prompt({
             type: "input",
             name: "email",
-            message: "Do you want to share your work email?",
+            message:
+                "You can enter your company email to get exclusive updates and early access to new features.",
             validate: (input) => {
                 if (!input) {
                     return "Please enter your email";
