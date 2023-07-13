@@ -210,5 +210,5 @@ export const getRefineProjectId = () => {
 };
 
 export const addProjectIdToPackageJson = (projectId: string) => {
-    execa.sync("npm", ["pkg", "set", "refine.projectId", "=", projectId]);
+    execa.sync("npm", ["pkg", "set", `refine.projectId=${projectId}`]);
 };
