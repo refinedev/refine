@@ -16,8 +16,9 @@ Client-side validation offers a responsive user experience by providing immediat
 
 ## Server-Side Validation with **refine**
 
-**refine** supports server-side validation out of the box for all supported UI frameworks (Ant Design, Material UI, Mantine, Chakra UI).
-It requires that the `dataProvider` returning rejected promise with the following shape:
+**refine** supports server-side validation out-of-the-box for all supported UI frameworks (Ant Design, Material UI, Mantine, Chakra UI).
+
+To handle server-side validation `errors`, you need to return a rejected promise with the following shape from the `dataProvider`:
 
 ```ts
 import { HttpError } from "@refinedev/core";
