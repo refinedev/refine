@@ -16,7 +16,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
+import { UserList, UserCreate, UserEdit, UserShow } from "./pages/users";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

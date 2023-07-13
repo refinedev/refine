@@ -9,7 +9,7 @@ import { Create, useForm, getValueFromEvent } from "@refinedev/antd";
 
 import { Form, Input, Upload } from "antd";
 
-import { IUser, IUserVariable } from "interfaces";
+import { IUser, IUserVariable } from "../../interfaces";
 
 export const UserCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<
