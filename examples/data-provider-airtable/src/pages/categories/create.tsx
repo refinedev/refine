@@ -4,7 +4,7 @@ import { Create, useForm } from "@refinedev/antd";
 
 import { Checkbox, Form, Input } from "antd";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();

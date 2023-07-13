@@ -22,8 +22,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { Login } from "pages/login";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { Login } from "./pages/login";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 
 const API_URL = "https://api.strapi.refine.dev/graphql";
 

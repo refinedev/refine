@@ -23,16 +23,16 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import {
     CategoryList,
     CategoryCreate,
     CategoryEdit,
     CategoryShow,
-} from "pages/categories";
-import { DashboardPage } from "pages/dashboard";
-import { ILoginDto } from "interfaces";
-import refineSDK from "utils/refine-sdk";
+} from "./pages/categories";
+import { DashboardPage } from "./pages/dashboard";
+import { ILoginDto } from "./interfaces";
+import refineSDK from "./utils/refine-sdk";
 import { ConfigProvider } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";

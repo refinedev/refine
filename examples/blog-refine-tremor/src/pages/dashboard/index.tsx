@@ -67,7 +67,7 @@ export const DashboardPage: React.FC = () => {
                         <Grid
                             numItemsMd={2}
                             numItemsLg={3}
-                            className="gap-6 mt-6"
+                            className="mt-6 gap-6"
                         >
                             <KpiCard
                                 title="Weekly Revenue"
