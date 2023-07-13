@@ -31,12 +31,12 @@ export const authOptions = {
             },
         }),
         CredentialsProvider({
-            name: "Credentials",
+            id: "CredentialsSignIn",
             credentials: {},
             async authorize(credentials: any) {
                 // TODO: Request your API to check credentials
                 console.log(
-                    "credentials",
+                    "CredentialsSignIn",
                     JSON.stringify(credentials, null, 2),
                 );
 
@@ -45,6 +45,26 @@ export const authOptions = {
                     return null;
                 }
 
+                const user: Awaitable<User> = {
+                    id: "1",
+                    name: "John Doe",
+                    email: "demo@refine.dev",
+                    image: "https://i.pravatar.cc/300",
+                };
+                return user;
+            },
+        }),
+        CredentialsProvider({
+            id: "CredentialsSignUp",
+            credentials: {},
+            async authorize(credentials: any) {
+                // TODO: Request your API to create new user
+                console.log(
+                    "CredentialsSignUp",
+                    JSON.stringify(credentials, null, 2),
+                );
+
+                // return mocked user
                 const user: Awaitable<User> = {
                     id: "1",
                     name: "John Doe",

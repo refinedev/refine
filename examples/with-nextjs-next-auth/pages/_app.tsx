@@ -52,7 +52,7 @@ const App = (props: React.PropsWithChildren) => {
                 };
             }
 
-            const signInResponse = await signIn("credentials", {
+            const signInResponse = await signIn("CredentialsSignIn", {
                 email,
                 password,
                 callbackUrl: to ? to.toString() : "/",
@@ -66,6 +66,45 @@ const App = (props: React.PropsWithChildren) => {
             }
 
             const { ok, error } = signInResponse;
+
+            if (ok) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+
+            return {
+                success: false,
+                error: new Error(error),
+            };
+        },
+        register: async ({ providerName, email, password }) => {
+            if (providerName) {
+                signIn(providerName, {
+                    callbackUrl: to ? to.toString() : "/",
+                    redirect: true,
+                });
+
+                return {
+                    success: true,
+                };
+            }
+
+            const signUpResponse = await signIn("CredentialsSignUp", {
+                email,
+                password,
+                callbackUrl: to ? to.toString() : "/",
+                redirect: false,
+            });
+
+            if (!signUpResponse) {
+                return {
+                    success: false,
+                };
+            }
+
+            const { ok, error } = signUpResponse;
 
             if (ok) {
                 return {
