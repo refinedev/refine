@@ -6,16 +6,14 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 
-import { Layout } from "components/layout";
-import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
-import { AuthPage } from "pages/auth";
-
-import { supabaseClient } from "utility";
+import { Layout } from "./components/layout";
+import { CanvasFeaturedList, CanvasList, CanvasShow } from "./pages/canvases";
+import { AuthPage } from "./pages/auth";
+import { supabaseClient } from "./utility";
 import { authProvider, auditLogProvider } from "./providers";
 
 import "@refinedev/antd/dist/reset.css";
-
-import "styles/style.css";
+import "./styles/style.css";
 
 function App() {
     return (

@@ -50,7 +50,7 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
 
 const MapWrapper: FC<PropsWithChildren<MapProps>> = (props) => {
     return (
-        <Wrapper apiKey={process.env.REACT_APP_MAP_ID}>
+        <Wrapper apiKey={import.meta.env.VITE_APP_MAP_ID}>
             <MapComponent {...props} />
         </Wrapper>
     );

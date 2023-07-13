@@ -21,7 +21,7 @@ import {
     DashboardOutlined,
 } from "@ant-design/icons";
 import jsonServerDataProvider from "@refinedev/simple-rest";
-import { authProvider } from "authProvider";
+import { authProvider } from "./authProvider";
 
 import "dayjs/locale/de";
 
@@ -40,9 +40,9 @@ import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
-import { Header, Title, OffLayoutArea } from "components";
-import { BikeWhiteIcon, PizzaIcon } from "components/icons";
-import { ConfigProvider } from "context";
+import { Header, Title, OffLayoutArea } from "./components";
+import { BikeWhiteIcon, PizzaIcon } from "./components/icons";
+import { ConfigProvider } from "./context";
 
 import "@refinedev/antd/dist/reset.css";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-
 import InputMask from "react-input-mask";
 import {
     IResourceComponentsProps,
@@ -9,6 +8,8 @@ import {
     HttpError,
 } from "@refinedev/core";
 import { Create, SaveButton, useAutocomplete } from "@refinedev/mui";
+import { useStepsForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -27,9 +28,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Input from "@mui/material/Input";
 import type { TextFieldProps } from "@mui/material/TextField";
 
-import { useStepsForm } from "@refinedev/react-hook-form";
-import { Controller } from "react-hook-form";
-import { ICourier, IFile, IStore, Nullable } from "interfaces";
+import { ICourier, IFile, IStore, Nullable } from "../../interfaces";
 
 export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

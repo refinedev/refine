@@ -1,13 +1,9 @@
 import React from "react";
 import axios from "axios";
-
 import { useTranslate, useApiUrl, HttpError } from "@refinedev/core";
-
-import { UseModalFormReturnType } from "@refinedev/react-hook-form";
-
-import { Controller } from "react-hook-form";
-
 import { useAutocomplete, Edit } from "@refinedev/mui";
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 
 import Drawer from "@mui/material/Drawer";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -29,7 +25,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import { ICategory, IFile, IProduct, Nullable } from "interfaces";
+import { ICategory, IFile, IProduct, Nullable } from "../../interfaces";
 
 export const EditProduct: React.FC<
     UseModalFormReturnType<IProduct, HttpError, Nullable<IProduct>>

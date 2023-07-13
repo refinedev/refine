@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import { IOrder } from "interfaces";
+import { IOrder } from "../../../interfaces";
 
 export const TrendingMenu: React.FC = () => {
     const { data } = useList<IOrder>({

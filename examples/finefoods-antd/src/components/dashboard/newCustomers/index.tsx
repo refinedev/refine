@@ -4,9 +4,9 @@ import { ConfigProvider, theme, Typography } from "antd";
 import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/plots/lib/components/column";
 
-import { IncreaseIcon, DecreaseIcon } from "components/icons";
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
 
-import { ISalesChart } from "interfaces";
+import { ISalesChart } from "../../../interfaces";
 import { Header, HeaderNumbers, NewCustomersWrapper } from "./styled";
 
 export const NewCustomers: React.FC = () => {

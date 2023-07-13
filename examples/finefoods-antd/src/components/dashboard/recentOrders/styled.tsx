@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { NumberField } from "@refinedev/antd";
 import { Table, Typography } from "antd";
-import { IOrder } from "interfaces";
+
+import { IOrder } from "../../../interfaces";
 
 export const RecentOrdersColumn = styled(Table.Column<IOrder>)`
     vertical-align: top;

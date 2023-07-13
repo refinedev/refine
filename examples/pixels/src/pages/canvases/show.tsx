@@ -12,12 +12,12 @@ import { useModal } from "@refinedev/antd";
 import { LeftOutlined } from "@ant-design/icons";
 import { Button, Typography, Spin, Modal } from "antd";
 
-import { CanvasItem, DisplayCanvas } from "components/canvas";
-import { ColorSelect } from "components/color-select";
-import { AvatarPanel } from "components/avatar";
-import { colors } from "utility";
-import { Canvas } from "types";
-import { LogList } from "components/logs";
+import { CanvasItem, DisplayCanvas } from "../../components/canvas";
+import { ColorSelect } from "../../components/color-select";
+import { AvatarPanel } from "../../components/avatar";
+import { colors } from "../../utility";
+import { Canvas } from "../../types";
+import { LogList } from "../../components/logs";
 
 const { Title } = Typography;
 

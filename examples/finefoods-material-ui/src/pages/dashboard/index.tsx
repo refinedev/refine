@@ -12,7 +12,7 @@ import {
     OrderTimeline,
     RecentOrders,
     TrendingMenu,
-} from "components/dashboard";
+} from "../../components/dashboard";
 
 export const DashboardPage: React.FC = () => {
     const t = useTranslate();

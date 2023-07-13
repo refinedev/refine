@@ -1,5 +1,5 @@
+import { useRef, useState } from "react";
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -9,11 +9,9 @@ import {
     FilterDropdown,
     useSelect,
 } from "@refinedev/antd";
-
 import { Table, Space, Select, SelectProps } from "antd";
 
-import { IPost, ICategory } from "interfaces";
-import { useRef, useState } from "react";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslate, BaseKey } from "@refinedev/core";
+
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Box from "@mui/material/Box";
@@ -15,7 +16,7 @@ import TextField from "@mui/material/TextField";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 
-import { IProduct } from "interfaces";
+import { IProduct } from "../../interfaces";
 
 type PropductItem = {
     updateStock?: (changedValue: number, clickedProduct: IProduct) => void;

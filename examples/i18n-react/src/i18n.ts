@@ -11,6 +11,7 @@ i18n.use(Backend)
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json",
         },
+        ns: ["common"],
         defaultNS: "common",
         fallbackLng: ["en", "de"],
     });

@@ -1,15 +1,34 @@
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
-import * as Icons from "@ant-design/icons";
+import routerBindings, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+    DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { DataProvider } from "@refinedev/strapi-v4";
 import {
     AuthPage,
     ErrorComponent,
     notificationProvider,
     ThemedLayoutV2,
-    ThemedTitle,
+    ThemedTitleV2,
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
+
+import * as Icons from "@ant-design/icons";
+
+import { authProvider, axiosInstance } from "./authProvider";
+import { Header } from "./components/header";
+import { API_URL } from "./constants";
+import { ColorModeContextProvider } from "./contexts/color-mode";
+
+import { ClientList } from "./pages/clients";
+import { CompanyList } from "./pages/companies";
+import { ContactList, EditContact } from "./pages/contacts";
+import { CreateInvoice, EditInvoice, InvoiceList } from "./pages/invoices";
+import { MissionList } from "./pages/missions";
 
 const {
     UserAddOutlined,
@@ -18,24 +37,6 @@ const {
     SlidersOutlined,
     FileAddOutlined,
 } = Icons;
-
-import routerBindings, {
-    CatchAllNavigate,
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { DataProvider } from "@refinedev/strapi-v4";
-import { ClientList } from "pages/clients";
-import { CompanyList } from "pages/companies";
-import { ContactList, EditContact } from "pages/contacts";
-import { CreateInvoice, EditInvoice, InvoiceList } from "pages/invoices";
-import { MissionList } from "pages/missions";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { authProvider, axiosInstance } from "./authProvider";
-import { Header } from "./components/header";
-import { API_URL } from "./constants";
-import { ColorModeContextProvider } from "./contexts/color-mode";
 
 function App() {
     return (
@@ -97,7 +98,7 @@ function App() {
                                         <ThemedLayoutV2
                                             Header={Header}
                                             Title={({ collapsed }: any) => (
-                                                <ThemedTitle
+                                                <ThemedTitleV2
                                                     collapsed={collapsed}
                                                     text="refine Invoicer"
                                                 />
@@ -155,7 +156,7 @@ function App() {
                                         <AuthPage
                                             type="login"
                                             title={
-                                                <ThemedTitle
+                                                <ThemedTitleV2
                                                     collapsed={false}
                                                     text="refine Invoicer"
                                                 />
@@ -178,7 +179,7 @@ function App() {
                                         <ThemedLayoutV2
                                             Header={Header}
                                             Title={({ collapsed }: any) => (
-                                                <ThemedTitle
+                                                <ThemedTitleV2
                                                     collapsed={collapsed}
                                                     text="refine Invoicer"
                                                 />

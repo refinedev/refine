@@ -12,8 +12,8 @@ import {
     Button,
 } from "antd";
 
-import { IContact } from "interfaces";
-import { CreateContact } from "components/contact";
+import { IContact } from "../../interfaces";
+import { CreateContact } from "../../components/contact";
 
 type CreateClientProps = {
     drawerProps: DrawerProps;

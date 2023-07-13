@@ -6,9 +6,9 @@ import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/plots/lib/components/line";
 import dayjs, { Dayjs } from "dayjs";
 
-import { IncreaseIcon, DecreaseIcon } from "components/icons";
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
 
-import { ISalesChart } from "interfaces";
+import { ISalesChart } from "../../../interfaces";
 import {
     DailyRevenueWrapper,
     TitleAreNumber,

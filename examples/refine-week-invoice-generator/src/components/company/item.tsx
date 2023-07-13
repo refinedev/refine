@@ -6,7 +6,7 @@ import {
 } from "@refinedev/antd";
 import { Card, Typography } from "antd";
 
-import { ICompany } from "interfaces";
+import { ICompany } from "../../interfaces";
 import { API_URL } from "../../constants";
 
 const { Title, Text } = Typography;
