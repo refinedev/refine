@@ -107,7 +107,8 @@ const renderForm = ({
                     ...MockJSONServer,
                     update: async () => {
                         const error: HttpError = {
-                            message: "Update is not supported in this example.",
+                            message:
+                                "An error occurred while updating the record.",
                             statusCode: 400,
                             errors: {
                                 title: ["Title is required"],
@@ -124,7 +125,8 @@ const renderForm = ({
                     },
                     create: async () => {
                         const error: HttpError = {
-                            message: "Update is not supported in this example.",
+                            message:
+                                "An error occurred while creating the record.",
                             statusCode: 400,
                             slug: true,
                             errors: {

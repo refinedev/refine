@@ -4,7 +4,7 @@ title: Server-Side Form Validation
 example-tags: [form, antd]
 ---
 
-You can make server-side form validation out-of-the-box with [Ant Design useForm][antd-use-form].
+You can handle server-side form validation errors out-of-the-box with [Ant Design useForm][antd-use-form].
 
 When `dataProvider` returns rejected promise with `errors` field, [`useForm`][antd-use-form] automatically display the error messages in the form with the corresponding fields.
 

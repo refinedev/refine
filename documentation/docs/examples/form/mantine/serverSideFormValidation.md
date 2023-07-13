@@ -4,7 +4,7 @@ title: Server-Side Form Validation
 example-tags: [form, mantine]
 ---
 
-You can make server-side form validation out-of-the-box with [Mantine useForm][mantine-use-form].
+You can handle server-side form validation errors out-of-the-box with [Mantine useForm][mantine-use-form].
 
 When `dataProvider` returns rejected promise with `errors` field, [`useForm`][mantine-use-form] automatically display the error messages in the form with the corresponding fields.
 

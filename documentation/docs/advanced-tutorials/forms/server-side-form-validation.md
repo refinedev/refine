@@ -23,7 +23,7 @@ It requires that the `dataProvider` returning rejected promise with the followin
 import { HttpError } from "@refinedev/core";
 
 const error: HttpError = {
-    message: "Update is not supported in this example.",
+    message: "An error occurred while updating the record.",
     statusCode: 400,
     // the errors field is required for server-side validation.
     // when the errors field is set, useForm will automatically display the error messages in the form with the corresponding fields.
@@ -48,7 +48,7 @@ const error: HttpError = {
 
 ### How does it work?
 
-When the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the `errors` returned from the `dataProvider`.
+When the `dataProvider` returns a rejected promise with [`errors`][http-error] field, `useForm` hook will assign [`errors`][http-error] to the respective form fields.
 
 ### How to disable it?
 
@@ -110,7 +110,7 @@ const App = () => {
                 // this is demonstration of how you can handle errors from API
                 update: async () => {
                     const error: HttpError = {
-                        message: "Update is not supported in this example.",
+                        message: "An error occurred while updating the record.",
                         statusCode: 400,
                         errors: {
                             title: ["Title is required."],
@@ -129,7 +129,7 @@ const App = () => {
                 create: async () => {
                     // this is demonstration of how you can handle errors from API
                     const error: HttpError = {
-                        message: "Update is not supported in this example.",
+                        message: "An error occurred while creating the record.",
                         statusCode: 400,
                         errors: {
                             title: ["Title is required."],

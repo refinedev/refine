@@ -30,7 +30,7 @@ const App: React.FC = () => {
                         update: async () => {
                             const error: HttpError = {
                                 message:
-                                    "Update is not supported in this example.",
+                                    "An error occurred while updating the record.",
                                 statusCode: 400,
                                 errors: {
                                     title: [
@@ -53,7 +53,7 @@ const App: React.FC = () => {
                             // this is demonstration of how you can handle errors from API
                             const error: HttpError = {
                                 message:
-                                    "Update is not supported in this example.",
+                                    "An error occurred while creating the record.",
                                 statusCode: 400,
                                 errors: {
                                     title: ["Title is required."],

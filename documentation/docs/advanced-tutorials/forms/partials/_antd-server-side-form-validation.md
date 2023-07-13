@@ -35,7 +35,7 @@ setRefineProps({
         ...dataProvider("https://api.fake-rest.refine.dev"),
         update: async (resource: string, params: any) => {
             return Promise.reject({
-                message: "Update is not supported in this example.",
+                message: "An error occurred while updating the record.",
                 statusCode: 400,
                 errors: {
                     title: ["Title is required"],
