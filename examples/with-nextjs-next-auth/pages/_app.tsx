@@ -118,6 +118,14 @@ const App = (props: React.PropsWithChildren) => {
                 error: new Error(error),
             };
         },
+        forgotPassword: async (params) => {
+            console.log("params", params);
+            // TODO: Request API with params and send reset password email
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
+        },
         logout: async () => {
             signOut({
                 redirect: true,

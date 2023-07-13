@@ -1,5 +1,4 @@
 import { AuthPage } from "@refinedev/antd";
-
 import { ExtendedNextPage } from "./_app";
 
 const Register: ExtendedNextPage = () => {
