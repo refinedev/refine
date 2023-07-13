@@ -52,15 +52,31 @@ const App = (props: React.PropsWithChildren) => {
                 };
             }
 
-            signIn("credentials", {
+            const signInResponse = await signIn("credentials", {
                 email,
                 password,
                 callbackUrl: to ? to.toString() : "/",
-                redirect: true,
+                redirect: false,
             });
 
+            if (!signInResponse) {
+                return {
+                    success: false,
+                };
+            }
+
+            const { ok, error } = signInResponse;
+
+            if (ok) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+
             return {
-                success: true,
+                success: false,
+                error: new Error(error),
             };
         },
         logout: async () => {

@@ -33,12 +33,18 @@ export const authOptions = {
         CredentialsProvider({
             name: "Credentials",
             credentials: {},
-            async authorize(credentials, req) {
+            async authorize(credentials: any) {
                 // TODO: Request your API to check credentials
                 console.log(
                     "credentials",
                     JSON.stringify(credentials, null, 2),
                 );
+
+                // Invoked when a user tries to sign in.
+                if (credentials?.["email"] !== "demo@refine.dev") {
+                    return null;
+                }
+
                 const user: Awaitable<User> = {
                     id: "1",
                     name: "John Doe",
