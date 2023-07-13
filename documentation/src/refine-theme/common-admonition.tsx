@@ -49,12 +49,12 @@ const colorTextClasses = {
 const colorWrapperClasses = {
     danger: "bg-refine-red bg-opacity-10 border-l-refine-red",
     caution:
-        "bg-[#F2800D] dark:bg-refine-orange dark:bg-opacity-10 bg-opacity-10 border-l-refine-orange",
+        "bg-[#F2800D]/10 dark:bg-refine-orange/10 dark:bg-opacity-10 bg-opacity-10 border-l-refine-orange",
     "command-line": "bg-refine-purple bg-opacity-10 border-l-refine-purple",
     sourcecode: "bg-refine-pink bg-opacity-10 border-l-refine-pink",
-    info: "bg-refine-blue dark:bg-[#6EB3F7] bg-opacity-10  dark:bg-opacity-10 border-l-refine-blue",
+    info: "bg-refine-blue/10 dark:bg-[#6EB3F7]/10 bg-opacity-10  dark:bg-opacity-10 border-l-refine-blue",
     "info-tip":
-        "bg-refine-blue dark:bg-[#6EB3F7] bg-opacity-10  dark:bg-opacity-10 border-l-refine-blue",
+        "bg-refine-blue/10 dark:bg-[#6EB3F7]/10 bg-opacity-10  dark:bg-opacity-10 border-l-refine-blue",
     tip: "bg-refine-green bg-opacity-10 border-l-refine-green",
     note: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
     additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",

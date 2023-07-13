@@ -351,33 +351,6 @@ This is the default behavior of `useForm`. You can customize it by passing your 
 
 :::
 
-:::caution
-`useForm` does not manage any state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
-
--   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
--   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
--   [Mantine Form](https://mantine.dev/form/use-form) (for Mantine users) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
-
-:::
-
-:::tip
-`useForm` does not manage any state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
-
--   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
--   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
--   [Mantine Form](https://mantine.dev/form/use-form) (for Mantine users) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
-
-:::
-
-:::note
-`useForm` does not manage any state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
-
--   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
--   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
--   [Mantine Form](https://mantine.dev/form/use-form) (for Mantine users) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
-
-:::
-
 <GeneralConceptsLink />
 
 ## Basic Usage
@@ -975,7 +948,7 @@ useForm({
 ### `errorNotification`
 
 :::caution
-`NotificationProvider`][notification-provider] is required for this prop to work.
+[`NotificationProvider`][notification-provider] is required for this prop to work.
 :::
 
 After form is submit is failed, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.

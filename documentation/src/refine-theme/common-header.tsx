@@ -35,7 +35,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
             <TopAnnouncement />
             <div
                 className={clsx(
-                    "h-2 header-sm:h-4 blog-lg:h-6",
+                    "header-sm:h-4 blog-lg:h-6 h-2",
                     "w-full",
                     "bg-common-header-bg-light",
                     "dark:bg-common-header-bg-dark",
@@ -47,7 +47,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                     "bg-common-header-bg-light",
                     "dark:bg-common-header-bg-dark",
                     "backdrop-blur-header-blur",
-                    "px-4 blog-lg:px-8",
+                    "blog-lg:px-8 px-4",
                     "py-3",
                     hasSticky && "sticky top-0 z-10",
                 )}
@@ -59,11 +59,11 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                                 <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
                             </Link>
                         </div>
-                        <div className="flex items-center justify-end blog-lg:justify-between grow">
-                            <div className="hidden blog-lg:flex gap-8">
+                        <div className="blog-lg:justify-between flex grow items-center justify-end">
+                            <div className="blog-lg:flex hidden gap-8">
                                 <Menu />
                             </div>
-                            <div className="hidden blog-lg:flex items-center justify-end gap-8">
+                            <div className="blog-lg:flex hidden items-center justify-end gap-8">
                                 <SearchBar
                                     CustomButton={CommonDocSearchButton}
                                 />
@@ -82,7 +82,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                             </div>
                             <button
                                 type="button"
-                                className="block blog-lg:hidden"
+                                className="blog-lg:hidden block"
                                 onClick={() => setIsModalOpen(true)}
                             >
                                 <HamburgerIcon className="text-gray-500 dark:text-gray-400" />
@@ -97,7 +97,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
             </div>
             <div
                 className={clsx(
-                    "h-2 header-sm:h-4 blog-lg:h-6",
+                    "header-sm:h-4 blog-lg:h-6 h-2",
                     "w-full",
                     "bg-common-header-bg-light",
                     "dark:bg-common-header-bg-dark",
@@ -110,7 +110,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                     hasSticky && [
                         "z-[2]",
                         "sticky",
-                        "top-[56px] blog-lg:top-[64px]",
+                        "blog-lg:top-[64px] top-[56px]",
                     ],
                 )}
             >
