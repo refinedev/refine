@@ -25,6 +25,7 @@ import {
     RefreshButtonProps,
     DeleteButtonProps,
     SaveButtonProps,
+    AutoSaveIndicator,
 } from "@components";
 import { EditProps } from "../types";
 
@@ -54,6 +55,7 @@ export const Edit: React.FC<EditProps> = ({
     footerButtonProps,
     footerButtons,
     goBack: goBackFromProps,
+    autoSaveProps,
 }) => {
     const translate = useTranslate();
     const { options: { breadcrumb: globalBreadcrumb } = {} } =
@@ -133,6 +135,7 @@ export const Edit: React.FC<EditProps> = ({
 
     const defaultHeaderButtons = (
         <>
+            {autoSaveProps && <AutoSaveIndicator {...autoSaveProps} />}
             {hasList && <ListButton {...listButtonProps} />}
             <RefreshButton {...refreshButtonProps} />
         </>

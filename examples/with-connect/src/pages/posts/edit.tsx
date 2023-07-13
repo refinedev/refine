@@ -9,8 +9,8 @@ import { LogList } from "@refinedev/antd-audit-log";
 import { useSdk } from "@refinedev/connect";
 import MDEditor from "@uiw/react-md-editor";
 
-import { normalizeFile } from "utility/normalize";
-import { IPost, ICategory } from "interfaces";
+import { normalizeFile } from "../../utility/normalize";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { sdk } = useSdk();

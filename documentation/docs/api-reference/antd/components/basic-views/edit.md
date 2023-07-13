@@ -1205,6 +1205,134 @@ render(
 
 > For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
 
+### `autoSaveProps`
+
+You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
+
+```tsx live url=http://localhost:3000/posts/edit/123
+const { EditButton } = RefineAntd;
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select } from "antd";
+
+// visible-block-start
+const PostEdit: React.FC = () => {
+    const { 
+        formProps, 
+        saveButtonProps, 
+        queryResult, 
+        // highlight-next-line
+        autoSaveProps 
+    } = useForm<IPost>({
+        warnWhenUnsavedChanges: true,
+        // highlight-start
+        autoSave: {
+            enabled: true,
+        },
+        // highlight-end
+    });
+
+    const postData = queryResult?.data?.data;
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category.id,
+    });
+
+    return (
+        <Edit 
+            saveButtonProps={saveButtonProps} 
+            // highlight-next-line
+            autoSaveProps={autoSaveProps}
+        >
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/edit/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <EditButton recordItemId="123">
+                            Edit Item 123
+                        </EditButton>
+                    </div>
+                ),
+                edit: PostEdit,
+            },
+        ]}
+    />,
+);
+```
+
 ## API Reference
 
 ### Properties

@@ -12,9 +12,9 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
-import { githubDataProvider } from "github-data-provider";
-import { PostList } from "pages/posts/list";
-import { CommitList } from "pages/commits/list";
+import { githubDataProvider } from "./github-data-provider";
+import { PostList } from "./pages/posts/list";
+import { CommitList } from "./pages/commits/list";
 
 import "./App.css";
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
@@ -18,10 +19,9 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { useState } from "react";
-import { authProvider } from "utils/authProvider";
-import ThemeSettings from "components/theme-settings";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { authProvider } from "./utils/authProvider";
+import ThemeSettings from "./components/theme-settings";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -73,6 +73,13 @@ const App: React.FC = () => {
                                 </Authenticated>
                             }
                         >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            ;
                             <Route path="/posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />

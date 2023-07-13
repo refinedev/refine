@@ -5,7 +5,6 @@ export const BlogPostCreate = () => {
     const {
         getInputProps,
         saveButtonProps,
-        setFieldValue,
         refineCore: { formLoading },
     } = useForm({
         initialValues: {

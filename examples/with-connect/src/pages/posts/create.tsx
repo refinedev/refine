@@ -9,8 +9,8 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { useSdk } from "@refinedev/connect";
 
-import { normalizeFile } from "utility/normalize";
-import { IPost, ICategory } from "interfaces";
+import { normalizeFile } from "../../utility/normalize";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();

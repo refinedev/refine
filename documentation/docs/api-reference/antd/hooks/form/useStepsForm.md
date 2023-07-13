@@ -1075,6 +1075,62 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 // You can use it like this:
 {elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
+### `autoSave`
+
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
+
+It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+#### `enabled`
+
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+
+```tsx
+useStepsForm({
+    autoSave: {
+        enabled: true,
+    },
+})
+```
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useStepsForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        debounce: 2000,
+    },
+})
+```
+#### `onFinish`
+
+If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
+
+```tsx
+useStepsForm({
+    autoSave: {
+        enabled: true,
+        // highlight-start
+        onFinish: (values) => {
+            return {
+                foo: "bar",
+                ...values,
+            };
+        },
+        // highlight-end
+    },
+})
+```
+
 ## Return Values
 
 :::tip
@@ -1119,6 +1175,9 @@ const { overtime } = useStepsForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+### `autoSaveProps`
+
+If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
 
@@ -1178,16 +1237,17 @@ const {
 
 ### Return Values
 
-| Key                      | Description                                                  | Type                                                                           |
-| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                       |
-| current                  | Current step, counting from 0.                               | `number`                                                                       |
-| gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                       |
-| formProps                | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#formprops)          |
-| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
-| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                      |
-| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
-| overtime                 | Overtime loading props                                       | `{ elapsedTime?: number }`                                                     |
+| Key                      | Description                                                  | Type                                                                                                                                    |
+| ------------------------ | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                                                                                |
+| current                  | Current step, counting from 0.                               | `number`                                                                                                                                |
+| gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                                                                                |
+| formProps                | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#formprops)                                                                   |
+| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                          |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                               |
+| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                            |
+| overtime                 | Overtime loading props                                       | `{ elapsedTime?: number }`                                                                                                              |
+| autoSaveProps            | Auto save props                                              | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
 
 ## Example
 

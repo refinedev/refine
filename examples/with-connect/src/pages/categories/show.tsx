@@ -4,7 +4,7 @@ import { Show } from "@refinedev/antd";
 import { Typography } from "antd";
 import { useConnectMutation } from "@refinedev/connect";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

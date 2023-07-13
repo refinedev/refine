@@ -3,7 +3,7 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { useNavigation } from "@refinedev/core";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { edit, create } = useNavigation();

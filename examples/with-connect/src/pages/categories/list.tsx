@@ -6,7 +6,7 @@ import { useTable } from "@refinedev/antd";
 
 import { useConnectMutation } from "@refinedev/connect";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { mutate, data, isLoading } = useConnectMutation<ICategory[]>();
