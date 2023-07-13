@@ -12,7 +12,7 @@ import "./App.css";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
 const queryClient = new QueryClient({
     defaultOptions: {

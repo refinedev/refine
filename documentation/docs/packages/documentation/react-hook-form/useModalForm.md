@@ -696,6 +696,68 @@ const modalForm = useModalForm({
 });
 ```
 
+### `autoSave`
+
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
+
+It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+#### `enabled`
+
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+        },
+    }
+})
+```
+
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            debounce: 2000,
+        },
+    }
+})
+```
+#### `onFinish`
+
+If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-start
+            onFinish: (values) => {
+                return {
+                    foo: "bar",
+                    ...values,
+                };
+            },
+            // highlight-end
+        },
+    },
+})
+```
 ## Return Values
 
 :::tip

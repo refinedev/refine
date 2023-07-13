@@ -38,10 +38,11 @@ export const ThemeSettings: FC<Props> = ({ currentTheme, onThemeClick }) => {
         <>
             <div
                 style={{
-                    position: "absolute",
+                    position: "fixed",
                     bottom: "16px",
                     left: "50%",
                     transform: "translateX(-50%)",
+                    zIndex: 100,
                 }}
             >
                 <Button type="primary" onClick={show}>

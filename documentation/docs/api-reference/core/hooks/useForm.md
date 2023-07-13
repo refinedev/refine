@@ -880,11 +880,12 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    onMutationSuccess: (data, variables, context) => {
-        console.log({ data, variables, context });
+    onMutationSuccess: (data, variables, context, isAutoSave) => {
+        console.log({ data, variables, context, isAutoSave });
     },
 });
 ```
@@ -898,11 +899,12 @@ It receives the following parameters:
 -   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
+-   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    onMutationError: (data, variables, context) => {
-        console.log({ data, variables, context });
+    onMutationError: (data, variables, context, isAutoSave) => {
+        console.log({ data, variables, context, isAutoSave });
     },
 });
 ```
@@ -1171,6 +1173,44 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
+### `autoSave`
+
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
+
+It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+#### `enabled`
+
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+
+```tsx
+useForm({
+    autoSave: {
+        enabled: true,
+    },
+});
+```
+
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        debounce: 2000,
+    },
+});
+```
+
 ## Return Values
 
 ### `queryResult`
@@ -1251,6 +1291,10 @@ const { overtime } = useForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
+### `autoSaveProps`
+
+If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
 
@@ -1352,6 +1396,7 @@ These props have default values in `RefineContext` and can also be set on **<[Re
 | setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                               |
 | redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
 | overtime       | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                     |
+| autoSaveProps  | Auto save props                                        | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                        |
 
 ## Example
 

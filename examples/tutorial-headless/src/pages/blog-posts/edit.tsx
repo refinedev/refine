@@ -6,7 +6,7 @@ export const BlogPostEdit = () => {
     const { list } = useNavigation();
 
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, queryResult },
         register,
         handleSubmit,
         resetField,

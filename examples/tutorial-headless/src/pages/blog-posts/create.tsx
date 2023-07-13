@@ -6,10 +6,9 @@ export const BlogPostCreate = () => {
     const { list } = useNavigation();
 
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { onFinish },
         register,
         handleSubmit,
-        resetField,
         formState: { errors },
     } = useForm();
 

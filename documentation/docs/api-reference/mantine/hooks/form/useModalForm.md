@@ -885,6 +885,46 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 // You can use it like this:
 {elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
+### `autoSave`
+
+If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
+
+It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
+
+:::caution
+Works only in `action: "edit"` mode.
+:::
+
+`onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
+#### `enabled`
+
+To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+        },
+    }
+})
+```
+#### `debounce`
+
+Set the debounce time for the `autoSave` prop. Default value is `1000`.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            debounce: 2000,
+        },
+    }
+})
+```
 ## Return Values
 
 :::tip
@@ -1044,6 +1084,10 @@ const { overtime } = useModalForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+### `autoSaveProps`
+
+If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
+
 ## FAQ
 ### How can I change the form data before submitting it to the API?
 
@@ -1136,12 +1180,13 @@ const UserCreate: React.FC = () => {
 
 ### Return values
 
-| Property                                  | Description                                                     | Type                                                                        |
-| ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                                   |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
-| `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |                                                                             |
-| overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                  |
+| Property                                  | Description                                                     | Type                                                                                                                                    |
+| ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                                                                                               |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values)                                                             |
+| `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |                                                                                                                                         |
+| overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                                                                              |
+| autoSaveProps                             | Auto save props                                                 | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
 
 <br />
 

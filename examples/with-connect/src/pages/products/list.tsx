@@ -6,7 +6,7 @@ import { useTable } from "@refinedev/antd";
 
 import { useConnectMutation } from "@refinedev/connect";
 
-import { IProduct } from "interfaces";
+import { IProduct } from "../../interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { mutate, data, isLoading } = useConnectMutation<IProduct[]>();

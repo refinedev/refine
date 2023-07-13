@@ -16,7 +16,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList } from "pages/posts";
+import { PostList } from "./pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
