@@ -63,7 +63,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      */
     undoableTimeout?: number;
     /**
-     * Callback that runs when undo button is clicked on `mutationMode = "undoable"`
+     * Provides a function to cancel the mutation when `mutationMode = "undoable"`
      */
     onCancel?: (cancelMutation: () => void) => void;
     /**
