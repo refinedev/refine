@@ -6,7 +6,7 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("server-side-form-validation-material-ui", () => {
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "http://localhost:5173";
 
     beforeEach(() => {
         cy.clearAllCookies();
