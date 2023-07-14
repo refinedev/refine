@@ -7,7 +7,8 @@ import {
     Text,
     PDFViewer,
 } from "@react-pdf/renderer";
-import { IInvoice } from "interfaces";
+
+import { IInvoice } from "../../interfaces";
 import { API_URL } from "../../constants";
 
 type PdfProps = {

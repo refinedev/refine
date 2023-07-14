@@ -1,3 +1,4 @@
+import React from "react";
 import {
     HttpError,
     IResourceComponentsProps,
@@ -5,14 +6,9 @@ import {
     useShow,
     useTranslate,
 } from "@refinedev/core";
-import React from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { List, useDataGrid } from "@refinedev/mui";
 
-import AccountBalanceOutlined from "@mui/icons-material/AccountBalanceOutlined";
-import DirectionsCarFilledOutlined from "@mui/icons-material/DirectionsCarFilledOutlined";
-import EmailOutlined from "@mui/icons-material/EmailOutlined";
-import LocalPhoneOutlined from "@mui/icons-material/LocalPhoneOutlined";
-import MapOutlined from "@mui/icons-material/MapOutlined";
-import StoreOutlined from "@mui/icons-material/StoreOutlined";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -21,10 +17,15 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { List, useDataGrid } from "@refinedev/mui";
 
-import { ICourier, IReview } from "interfaces";
+import AccountBalanceOutlined from "@mui/icons-material/AccountBalanceOutlined";
+import DirectionsCarFilledOutlined from "@mui/icons-material/DirectionsCarFilledOutlined";
+import EmailOutlined from "@mui/icons-material/EmailOutlined";
+import LocalPhoneOutlined from "@mui/icons-material/LocalPhoneOutlined";
+import MapOutlined from "@mui/icons-material/MapOutlined";
+import StoreOutlined from "@mui/icons-material/StoreOutlined";
+
+import { ICourier, IReview } from "../../interfaces";
 
 type CourierInfoTextProps = {
     icon: React.ReactNode;

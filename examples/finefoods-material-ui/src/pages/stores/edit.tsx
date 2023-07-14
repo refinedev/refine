@@ -6,6 +6,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { Edit } from "@refinedev/mui";
+import InputMask from "react-input-mask";
 
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -20,9 +21,7 @@ import Typography from "@mui/material/Typography";
 import FormHelperText from "@mui/material/FormHelperText";
 import type { TextFieldProps } from "@mui/material/TextField";
 
-import InputMask from "react-input-mask";
-
-import { IStore } from "interfaces";
+import { IStore } from "../../interfaces";
 
 export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

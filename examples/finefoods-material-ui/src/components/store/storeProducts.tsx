@@ -22,8 +22,8 @@ import {
     ProductItem,
     CreateProduct,
     EditProduct,
-} from "components";
-import { IStore, IProduct, Nullable } from "interfaces";
+} from "../../components";
+import { IStore, IProduct, Nullable } from "../../interfaces";
 
 type StoreProductsProps = {
     record: IStore;

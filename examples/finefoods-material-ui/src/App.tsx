@@ -25,24 +25,24 @@ import LocalPizzaOutlined from "@mui/icons-material/LocalPizzaOutlined";
 import PeopleOutlineOutlined from "@mui/icons-material/PeopleOutlineOutlined";
 import Dashboard from "@mui/icons-material/Dashboard";
 
-import { authProvider } from "authProvider";
-import { DashboardPage } from "pages/dashboard";
-import { OrderList, OrderShow } from "pages/orders";
-import { UserList, UserShow } from "pages/users";
-import { ReviewsList } from "pages/reviews";
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+import { OrderList, OrderShow } from "./pages/orders";
+import { UserList, UserShow } from "./pages/users";
+import { ReviewsList } from "./pages/reviews";
 import {
     CourierList,
     CourierShow,
     CourierCreate,
     CourierEdit,
-} from "pages/couriers";
-import { AuthPage } from "pages/auth";
-import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
-import { ProductList } from "pages/products";
-import { CategoryList } from "pages/categories";
-import { ColorModeContextProvider } from "contexts";
-import { Header, Title, OffLayoutArea } from "components";
-import { BikeWhiteIcon } from "components/icons/bike-white";
+} from "./pages/couriers";
+import { AuthPage } from "./pages/auth";
+import { StoreList, StoreEdit, StoreCreate } from "./pages/stores";
+import { ProductList } from "./pages/products";
+import { CategoryList } from "./pages/categories";
+import { ColorModeContextProvider } from "./contexts";
+import { Header, Title, OffLayoutArea } from "./components";
+import { BikeWhiteIcon } from "./components/icons/bike-white";
 
 const API_URL = "https://api.finefoods.refine.dev";
 

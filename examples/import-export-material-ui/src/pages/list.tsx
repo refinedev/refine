@@ -1,36 +1,28 @@
-import { useExport, useImport, useNotification, useOne } from "@refinedev/core";
-
+import React from "react";
+import {
+    useExport,
+    useImport,
+    useMany,
+    useNotification,
+} from "@refinedev/core";
 import { ExportButton, ImportButton, List, useDataGrid } from "@refinedev/mui";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import Stack from "@mui/material/Stack";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../interfaces";
 
-const columns: GridColDef[] = [
-    {
-        field: "id",
-        headerName: "ID",
-        type: "number",
-    },
-    { field: "title", headerName: "Title", flex: 1.5, minWidth: 350 },
-    {
-        field: "category.id",
-        headerName: "Category",
-        flex: 1,
-        valueGetter: ({ row }) => {
-            const { data } = useOne<ICategory>({
-                resource: "categories",
-                id: row.category.id,
-            });
-            return data?.data.title;
-        },
-    },
-    { field: "status", headerName: "Status", flex: 1 },
-];
-
 export const ImportList: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        useMany<ICategory>({
+            resource: "categories",
+            ids: dataGridProps?.rows?.map((item) => item?.category?.id) ?? [],
+            queryOptions: {
+                enabled: !!dataGridProps?.rows,
+            },
+        });
 
     const { open } = useNotification();
 
@@ -54,6 +46,37 @@ export const ImportList: React.FC = () => {
         },
         maxItemCount: 50,
     });
+
+    const columns = React.useMemo<GridColDef<any>[]>(
+        () => [
+            {
+                field: "id",
+                headerName: "ID",
+                type: "number",
+            },
+            { field: "title", headerName: "Title", flex: 1.5, minWidth: 350 },
+            {
+                field: "category",
+                headerName: "Category",
+                valueGetter: ({ row }) => {
+                    const value = row?.category?.id;
+
+                    return value;
+                },
+                minWidth: 300,
+                renderCell: function render({ value }) {
+                    return categoryIsLoading ? (
+                        <>Loading...</>
+                    ) : (
+                        categoryData?.data?.find((item) => item.id === value)
+                            ?.title
+                    );
+                },
+            },
+            { field: "status", headerName: "Status", flex: 1 },
+        ],
+        [categoryData?.data],
+    );
 
     return (
         <List

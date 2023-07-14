@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     Edit,
     ListButton,
@@ -8,12 +7,10 @@ import {
     useForm,
     useSelect,
 } from "@refinedev/antd";
-
 import { Alert, Form, Input, Select } from "antd";
-
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [deprecated, setDeprecated] = useState<

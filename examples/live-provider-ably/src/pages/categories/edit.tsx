@@ -1,10 +1,8 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm } from "@refinedev/antd";
-
 import { Form, Input } from "antd";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();

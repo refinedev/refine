@@ -1,13 +1,13 @@
 import { HttpError } from "@refinedev/core";
 import { useAutocomplete, Create } from "@refinedev/mui";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
+
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useForm } from "@refinedev/react-hook-form";
 
-import { Controller } from "react-hook-form";
-
-import { ICategory, IPost, IStatus, ITag, Nullable } from "interfaces";
+import { ICategory, IPost, IStatus, ITag, Nullable } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
     const {

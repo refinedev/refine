@@ -21,18 +21,18 @@ import {
     BlogPostCreate,
     BlogPostEdit,
     BlogPostShow,
-} from "pages/blog-posts";
+} from "./pages/blog-posts";
 import {
     CategoryList,
     CategoryCreate,
     CategoryEdit,
     CategoryShow,
-} from "pages/categories";
+} from "./pages/categories";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 import { Header } from "./components/header";
-import { Login } from "pages/login";
-import { Register } from "pages/register";
-import { ForgotPassword } from "pages/forgotPassword";
+import { Login } from "./pages/login";
+import { Register } from "./pages/register";
+import { ForgotPassword } from "./pages/forgotPassword";
 import { authProvider } from "./authProvider";
 
 function App() {

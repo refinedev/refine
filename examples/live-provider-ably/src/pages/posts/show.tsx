@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
-
 import {
     Show,
     MarkdownField,
@@ -8,11 +8,9 @@ import {
     EditButton,
     RefreshButton,
 } from "@refinedev/antd";
-
 import { Typography, Alert } from "antd";
 
-import { IPost, ICategory } from "interfaces";
-import { useState } from "react";
+import { IPost, ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

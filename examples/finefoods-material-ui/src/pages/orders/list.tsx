@@ -1,3 +1,4 @@
+import React from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -17,7 +18,9 @@ import {
     useAutocomplete,
     useDataGrid,
 } from "@refinedev/mui";
-import React from "react";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
@@ -32,12 +35,9 @@ import Typography from "@mui/material/Typography";
 
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
-import { useForm } from "@refinedev/react-hook-form";
-import { Controller } from "react-hook-form";
 
-import { CustomTooltip, OrderStatus } from "components";
-import { IOrder, IOrderFilterVariables } from "interfaces";
+import { CustomTooltip, OrderStatus } from "../../components";
+import { IOrder, IOrderFilterVariables } from "../../interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

@@ -1,4 +1,4 @@
-import { Pixel } from "types/pixel";
+import { Pixel } from "../types/pixel";
 
 export const getUserQueryIds = (pixels: Pixel[] | undefined): string[] => {
     const ids: string[] | undefined = pixels?.map(

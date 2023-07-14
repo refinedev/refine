@@ -2,7 +2,7 @@ import { DeleteButton } from "@refinedev/antd";
 import { EditOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 
-import { IProduct } from "interfaces";
+import { IProduct } from "../../interfaces";
 import { API_URL } from "../../constants";
 
 type ProductItemProps = {

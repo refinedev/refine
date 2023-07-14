@@ -1,7 +1,7 @@
 import React from "react";
 
-import { TPixel, TCanvas } from "types";
-import { DEFAULT_SCALE, PIXEL_SIZE } from "utility/constants";
+import { TPixel, TCanvas } from "../../types";
+import { DEFAULT_SCALE, PIXEL_SIZE } from "../../utility/constants";
 
 type CanvasItemProps = {
     canvas: TCanvas;

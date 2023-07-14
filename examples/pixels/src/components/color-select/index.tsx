@@ -1,5 +1,6 @@
 import React from "react";
-import { colors } from "utility";
+
+import { colors } from "../../utility";
 
 export const ColorSelect: React.FC<{
     selected: (typeof colors)[number];
