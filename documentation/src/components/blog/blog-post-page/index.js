@@ -40,17 +40,14 @@ export const BlogPostPageView = ({ children }) => {
         <BlogPostItemContainer
             className={clsx(
                 "py-10",
+                "px-4 sm:px-0",
                 "blog-sm:py-12",
                 "blog-md:py-16",
-                "px-4",
-                "blog-md:px-8",
                 "w-full",
                 "mx-auto",
-                "blog-2xl:max-w-none",
-                "blog-xl:px-0",
-                "blog-2xl:px-8",
-                "blog-sm:max-w-screen-blog-sm",
                 "max-w-[512px]",
+                "blog-sm:max-w-screen-blog-sm",
+                "blog-lg:max-w-screen-content-2xl",
             )}
         >
             <div

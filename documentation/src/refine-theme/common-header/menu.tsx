@@ -35,7 +35,7 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                             "grid grid-cols-2 gap-4",
                                             "p-4",
                                             "w-[672px]",
-                                            " bg-white",
+                                            "bg-white",
                                         )}
                                     >
                                         {item.items.map((subItem) => (

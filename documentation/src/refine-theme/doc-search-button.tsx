@@ -65,13 +65,12 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                         <span className="opacity-75">
                             {placeholder ?? "Search in documentation"}
                         </span>
-                        <kbd
+                        <div
                             className={clsx(
                                 "py-1 px-2",
                                 "rounded",
                                 "border dark:border-gray-600 border-gray-200",
                                 "dark:bg-gray-900 bg-gray-100",
-                                "text-sm leading-4",
                                 "dark:text-gray-400 text-gray-500",
                                 isPermanentDark &&
                                     "!text-gray-400 !bg-gray-900 !border-gray-600",
@@ -79,7 +78,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                             )}
                         >
                             ⌘K
-                        </kbd>
+                        </div>
                     </div>
                 )}
             </button>

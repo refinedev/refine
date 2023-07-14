@@ -68,7 +68,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                     {...attributes}
                     className={clsx(
                         "m-0 mt-0",
-                        "py-3 px-1",
+                        "py-3 px-2",
                         "flex items-center justify-center",
                         "border-b border-b-transparent",
                         "-mb-px",

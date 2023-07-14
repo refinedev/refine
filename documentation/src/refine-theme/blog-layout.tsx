@@ -21,16 +21,6 @@ export const RefineBlogLayout = (props: any) => {
                     "w-full",
                 )}
             >
-                {/* if there's TOC, we need to replicate the same width in the left side to center the content */}
-                {toc && (
-                    <div
-                        className={clsx(
-                            "w-[280px]",
-                            "hidden blog-lg:block",
-                            "flex-shrink-0",
-                        )}
-                    />
-                )}
                 <div className={clsx("refine-prose", "flex-1", "min-w-0")}>
                     {children}
                 </div>

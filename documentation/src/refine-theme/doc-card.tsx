@@ -17,7 +17,7 @@ function CardContainer({ href, children }) {
                 "dark:bg-gray-800 bg-gray-50",
                 "p-4",
                 "flex flex-col",
-                "gap-4",
+                "gap-2 sm:gap-4 2xl:gap-6",
                 "hover:no-underline",
             )}
         >
@@ -32,7 +32,7 @@ function CardLayout({ href, icon, title, description }) {
             <h2
                 className={clsx(
                     "line-clamp-1",
-                    "text-base",
+                    "text-xs sm:text-base 2xl:text-xl",
                     "dark:text-gray-200 text-gray-900",
                     "font-semibold",
                     "m-0",
@@ -47,7 +47,7 @@ function CardLayout({ href, icon, title, description }) {
                     className={clsx(
                         "line-clamp-3",
                         "m-0",
-                        "text-sm leading-6",
+                        "text-xs sm:text-sm 2xl:text-lg",
                         "dark:text-gray-400 text-gray-700",
                         "font-normal",
                         "refine-prose",

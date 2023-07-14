@@ -6,18 +6,18 @@ import clsx from "clsx";
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
+        width={8}
+        height={6}
         fill="none"
-        stroke="currentColor"
-        strokeWidth={4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="feather feather-check"
         {...props}
     >
-        <path d="M20 6 9 17l-5-5" />
+        <path
+            stroke="#fff"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="m1 3 2 2 4-4"
+        />
     </svg>
 );
 
@@ -43,25 +43,28 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
             className={clsx(
                 "mt-4",
                 "flex",
-                "items-start",
+                "items-center justify-start",
                 "flex-nowrap",
                 "gap-2",
                 "cursor-pointer",
             )}
         >
-            <div className="flex-shrink-0 w-5 h-5 mt-[4px]">
+            <div className="flex-shrink-0">
                 <button
                     type="button"
                     onClick={handleToggle}
-                    className="checklist-item__button"
-                >
-                    {checked && (
-                        <CheckIcon
-                            width={16}
-                            height={16}
-                            className="checklist-item__icon"
-                        />
+                    className={clsx(
+                        "appearance-none",
+                        "flex items-center justify-center",
+                        "w-4 h-4",
+                        "rounded",
+                        "border border-gray-400 dark:border-gray-500",
+                        {
+                            "bg-refine-blue": checked,
+                        },
                     )}
+                >
+                    {checked && <CheckIcon />}
                 </button>
             </div>
             <div
