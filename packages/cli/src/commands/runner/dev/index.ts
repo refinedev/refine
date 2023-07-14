@@ -5,6 +5,7 @@ import { runScript } from "../runScript";
 import { updateNotifier } from "src/update-notifier";
 import { getRunnerDescription } from "../utils";
 import { projectPrompt } from "src/project-prompt";
+import NotifyCloud from "src/cloud-notifier";
 
 const dev = (program: Command) => {
     return program
@@ -23,6 +24,8 @@ const action = async (args: string[]) => {
     const command = [...script, ...args];
 
     await updateNotifier();
+
+    NotifyCloud();
 
     await projectPrompt();
 
