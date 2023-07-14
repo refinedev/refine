@@ -17,13 +17,6 @@ export const projectPrompt = async () => {
             name: "email",
             message:
                 "You can enter your company email to get exclusive updates and early access to new features.",
-            validate: (input) => {
-                if (!input) {
-                    return "Please enter your email";
-                }
-
-                return true;
-            },
         });
 
         if (response.email) {
@@ -37,6 +30,8 @@ export const projectPrompt = async () => {
                 addProjectIdToPackageJson(projectId);
             }
 
+            createSkipPromptFile();
+        } else {
             createSkipPromptFile();
         }
     } catch (e) {
