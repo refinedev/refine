@@ -9,9 +9,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "../../interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>({
-        // warnWhenUnsavedChanges: true,
-    });
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",

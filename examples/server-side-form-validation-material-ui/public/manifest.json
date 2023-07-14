@@ -1,6 +1,6 @@
 {
-  "short_name": "Server-side form validation Material UI",
-  "name": "Server-side form validation Material UI",
+  "short_name": "Server-side form validation Material UI example",
+  "name": "Server-side form validation Material UI example",
   "icons": [
     {
       "src": "favicon.ico",

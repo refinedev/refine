@@ -13,9 +13,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         IPost,
         HttpError,
         IPost
-    >({
-        warnWhenUnsavedChanges: true,
-    });
+    >();
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
