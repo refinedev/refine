@@ -226,7 +226,7 @@ li a:has(> code) code {
     @apply text-refine-cyan;
 }
 
-.admonition.admonition-tip a code {
+.admonition.admonition-note a code {
     @apply !text-refine-cyan;
 }
 
