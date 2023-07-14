@@ -948,7 +948,7 @@ useForm({
 ### `errorNotification`
 
 :::caution
-`NotificationProvider`][notification-provider] is required for this prop to work.
+[`NotificationProvider`][notification-provider] is required for this prop to work.
 :::
 
 After form is submit is failed, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -1123,7 +1123,7 @@ Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provi
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -1135,13 +1135,15 @@ const { overtime } = useForm({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ### `autoSave`
@@ -1149,7 +1151,6 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
-
 
 :::caution
 Works only in `action: "edit"` mode.
@@ -1164,10 +1165,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 ```tsx
 useForm({
     autoSave: {
-        enabled: true
+        enabled: true,
     },
-})
+});
 ```
+
 #### `debounce`
 
 Set the debounce time for the `autoSave` prop. Default value is `1000`.
@@ -1179,7 +1181,7 @@ useForm({
         // highlight-next-line
         debounce: 2000,
     },
-})
+});
 ```
 
 ## Return Values

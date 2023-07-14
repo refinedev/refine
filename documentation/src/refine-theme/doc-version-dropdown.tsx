@@ -1,10 +1,27 @@
 import clsx from "clsx";
-import React from "react";
+import React, { SVGProps } from "react";
 import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
 import { useActiveDocContext } from "@docusaurus/plugin-content-docs/client";
 import { Menu, Transition } from "@headlessui/react";
 import Link from "@docusaurus/Link";
 import useVersionLinks from "../hooks/use-version-links";
+
+const Triangle = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={20}
+        height={12}
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M10 0a1 1 0 0 1 .78.375l3.1 3.874A2 2 0 0 0 15.442 5H19a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3.558a2 2 0 0 0 1.562-.75L9.22.374A1 1 0 0 1 10 0Z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
 
 type Props = {
     className?: string;
@@ -63,10 +80,16 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                         >
+                            <Triangle
+                                className={clsx(
+                                    "absolute right-[2px] top-[-6px] origin-bottom-right",
+                                    "text-gray-700 dark:text-white",
+                                )}
+                            />
                             <Menu.Items
                                 static
                                 className={clsx(
-                                    "absolute right-0 top-[20px] origin-bottom-right",
+                                    "absolute right-[-14px] top-[-2px] origin-bottom-right",
                                     "flex flex-col gap-2",
                                     "w-[112px]",
                                     "p-2",

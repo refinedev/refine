@@ -1,6 +1,13 @@
 import React from "react";
 // @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
+import {
+    Antd,
+    Chakra,
+    Headless,
+    Mantine,
+    Mui,
+} from "@site/src/assets/integration-icons";
 
 export type PreferredUIPackage =
     | "headless"
@@ -16,6 +23,14 @@ export const availableUIPackages = [
     "mantine",
     "mui",
 ] as const;
+
+export const UIPackageIcons = {
+    headless: (props: typeof Chakra) => <Headless {...props} />,
+    antd: (props: typeof Antd) => <Antd {...props} />,
+    "chakra-ui": (props: typeof Chakra) => <Chakra {...props} />,
+    mantine: (props: typeof Mantine) => <Mantine {...props} />,
+    mui: (props: typeof Mui) => <Mui {...props} />,
+};
 
 const validate = (value?: string | undefined) => {
     if (availableUIPackages.includes(value as any)) {

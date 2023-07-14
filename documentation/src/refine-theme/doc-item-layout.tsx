@@ -70,6 +70,7 @@ export const DocItemLayout = ({ children }) => {
             {tutorial?.isTutorial ? (
                 <div
                     className={clsx(
+                        "mt-16",
                         "hidden xl:block",
                         "sticky top-[120px]",
                         "w-[280px]",
