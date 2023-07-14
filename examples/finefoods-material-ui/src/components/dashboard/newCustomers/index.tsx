@@ -7,7 +7,7 @@ import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 
 import { ChartTooltip } from "../chartTooltip";
-import { ISalesChart } from "interfaces";
+import { ISalesChart } from "../../../interfaces";
 
 export const NewCustomers: React.FC = () => {
     const t = useTranslate();

@@ -1,7 +1,5 @@
 import { useTranslate, useApiUrl, BaseKey } from "@refinedev/core";
-
 import { Edit, getValueFromEvent, useSelect } from "@refinedev/antd";
-
 import {
     Drawer,
     DrawerProps,
@@ -19,9 +17,9 @@ import {
     Grid,
 } from "antd";
 
-const { Text } = Typography;
+import { ICategory } from "../../interfaces";
 
-import { ICategory } from "interfaces";
+const { Text } = Typography;
 
 type EditProductProps = {
     drawerProps: DrawerProps;

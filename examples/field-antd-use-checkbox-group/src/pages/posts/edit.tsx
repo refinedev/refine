@@ -7,7 +7,7 @@ import { Form, Input, Checkbox } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ITag } from "interfaces";
+import { IPost, ITag } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();

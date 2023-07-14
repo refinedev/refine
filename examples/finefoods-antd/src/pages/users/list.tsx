@@ -4,7 +4,6 @@ import {
     CrudFilters,
     HttpError,
 } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -12,9 +11,7 @@ import {
     BooleanField,
     ShowButton,
 } from "@refinedev/antd";
-
 import { SearchOutlined } from "@ant-design/icons";
-
 import {
     Table,
     Avatar,
@@ -29,7 +26,7 @@ import {
     Col,
 } from "antd";
 
-import { IUser, IUserFilterVariables } from "interfaces";
+import { IUser, IUserFilterVariables } from "../../interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, searchFormProps } = useTable<

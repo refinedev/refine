@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
     useTranslate,
     IResourceComponentsProps,
@@ -18,9 +19,7 @@ import {
     useSelect,
     ExportButton,
 } from "@refinedev/antd";
-
 import { SearchOutlined } from "@ant-design/icons";
-
 import {
     Table,
     Popover,
@@ -34,19 +33,16 @@ import {
     Row,
     Col,
 } from "antd";
-
 import dayjs from "dayjs";
 
-import { OrderStatus, OrderActions } from "components";
-
+import { OrderStatus, OrderActions } from "../../components";
 import {
     IOrder,
     IStore,
     IOrderFilterVariables,
     IOrderStatus,
     IUser,
-} from "interfaces";
-import { useMemo } from "react";
+} from "../../interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, searchFormProps, filters } = useTable<

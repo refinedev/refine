@@ -3,7 +3,6 @@ import {
     useMany,
     useTranslate,
 } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -11,10 +10,9 @@ import {
     EditButton,
     ShowButton,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();

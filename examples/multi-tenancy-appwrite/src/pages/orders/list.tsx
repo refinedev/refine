@@ -10,7 +10,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-import { IOrder, IProduct } from "interfaces";
+import { IOrder, IProduct } from "../../interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();

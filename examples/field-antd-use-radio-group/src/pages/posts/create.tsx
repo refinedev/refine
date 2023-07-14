@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 
 import { Create, useForm, useRadioGroup } from "@refinedev/antd";
@@ -7,7 +6,7 @@ import { Form, Input, Radio } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ILanguage } from "interfaces";
+import { IPost, ILanguage } from "../../interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();

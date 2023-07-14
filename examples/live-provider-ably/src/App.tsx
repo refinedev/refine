@@ -12,15 +12,15 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { ablyClient } from "utility";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { ablyClient } from "./utility";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import {
     CategoryList,
     CategoryCreate,
     CategoryEdit,
     CategoryShow,
-} from "pages/categories";
-import { CustomSider } from "components";
+} from "./pages/categories";
+import { CustomSider } from "./components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

@@ -7,8 +7,8 @@ import {
 } from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
-import { IClient } from "interfaces";
-import { ClientItem, CreateClient, EditClient } from "components/client";
+import { IClient } from "../../interfaces";
+import { ClientItem, CreateClient, EditClient } from "../../components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
     const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "./index";
-import { Contributors } from "components/avatar";
-import { Canvas } from "types";
+import { Contributors } from "../../components/avatar";
+import { Canvas } from "../../types";
 
 type CanvasTileProps = {
     canvas: Canvas;

@@ -1,7 +1,7 @@
 import { AppwriteException } from "@refinedev/appwrite";
 import { AuthBindings } from "@refinedev/core";
 
-import { account } from "utility";
+import { account } from "./utility";
 
 export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {

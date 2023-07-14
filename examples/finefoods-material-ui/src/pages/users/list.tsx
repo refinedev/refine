@@ -1,3 +1,4 @@
+import React from "react";
 import {
     CrudFilters,
     getDefaultFilter,
@@ -12,7 +13,9 @@ import {
     ShowButton,
     useDataGrid,
 } from "@refinedev/mui";
-import React from "react";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -29,11 +32,8 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useForm } from "@refinedev/react-hook-form";
-import { Controller } from "react-hook-form";
 
-import { IUser, IUserFilterVariables, Nullable } from "interfaces";
+import { IUser, IUserFilterVariables } from "../../interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

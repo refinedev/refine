@@ -18,8 +18,8 @@ import { useTranslation } from "react-i18next";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { Header } from "components";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { Header } from "./components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

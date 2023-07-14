@@ -10,7 +10,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-import { IOrder } from "interfaces";
+import { IOrder } from "../../interfaces";
 import { API_URL } from "../../constants";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {

@@ -18,7 +18,7 @@ RUN npm run build -- --scope finefoods-antd
 
 FROM node:18-alpine
 
-COPY --from=0 /opt/app/examples/finefoods-antd/build /opt/app
+COPY --from=0 /opt/app/examples/finefoods-antd/dist /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production

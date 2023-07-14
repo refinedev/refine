@@ -2,7 +2,7 @@ import { useTable, List } from "@refinedev/antd";
 import { Table, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-import { TUser } from "types/user";
+import { TUser } from "../../types/user";
 
 export const UserList = () => {
     const { tableProps } = useTable<TUser>();

@@ -4,9 +4,7 @@ import {
     useUpdate,
     HttpError,
 } from "@refinedev/core";
-
 import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
-
 import { SearchOutlined } from "@ant-design/icons";
 import {
     Typography,
@@ -19,16 +17,16 @@ import {
     ModalProps,
 } from "antd";
 
-const { Text } = Typography;
-
-import { IStore, IProduct } from "interfaces";
 import {
     CreateProduct,
     EditProduct,
     ProductItem,
     ProductCategoryFilter,
-} from "components/product";
+} from "../../components/product";
+import { IStore, IProduct } from "../../interfaces";
 import { StyledStoreProducts } from "./styled";
+
+const { Text } = Typography;
 
 type StoreProductsProps = {
     record: IStore;

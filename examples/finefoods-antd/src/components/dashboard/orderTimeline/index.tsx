@@ -10,7 +10,7 @@ import {
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import { IOrder } from "interfaces";
+import { IOrder } from "../../../interfaces";
 import {
     TimelineContent,
     CreatedAt,

@@ -9,7 +9,7 @@ import {
     OrderTimeline,
     RecentOrders,
     TrendingMenu,
-} from "components";
+} from "../../components";
 
 const { Text } = Typography;
 

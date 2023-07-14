@@ -8,6 +8,7 @@ import {
 } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 import { CreateButton } from "@refinedev/mui";
+
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -22,8 +23,8 @@ import {
     ProductItem,
     CreateProduct,
     EditProduct,
-} from "components";
-import { IProduct, Nullable } from "interfaces";
+} from "../../components";
+import { IProduct, Nullable } from "../../interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
