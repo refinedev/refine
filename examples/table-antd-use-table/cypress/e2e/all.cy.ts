@@ -104,6 +104,16 @@ describe("table-antd-use-table", () => {
     it("should work with pagination", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
+        //clear category filters
+        cy.getAntdFilterTrigger(1).click();
+        cy.contains("Clear").click();
+        cy.contains("Filter").click();
+
+        //clear status filters
+        cy.getAntdFilterTrigger(2).click();
+        cy.get(".ant-btn-dangerous").eq(1).click();
+        cy.get(".ant-btn-primary").eq(1).click();
+
         cy.intercept(
             {
                 url: "/posts*",
@@ -146,13 +156,23 @@ describe("table-antd-use-table", () => {
     it("should set current `1` when filter changed", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
+        //clear category filters
+        cy.getAntdFilterTrigger(1).click();
+        cy.contains("Clear").click();
+        cy.contains("Filter").click();
+
+        //clear status filters
+        cy.getAntdFilterTrigger(2).click();
+        cy.get(".ant-btn-dangerous").eq(1).click();
+        cy.get(".ant-btn-primary").eq(1).click();
+
         cy.getAntdPaginationItem(2).click();
 
         cy.getAntdFilterTrigger(0).click();
 
         cy.get(".ant-input").type("lorem");
 
-        cy.get(".ant-btn-primary").click();
+        cy.get(".ant-btn-primary").eq(2).click();
 
         cy.url().should("include", "current=1");
     });
