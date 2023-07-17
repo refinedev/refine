@@ -80,7 +80,7 @@ export const LandingFooter = () => {
                             {menuItems.map((menu) => (
                                 <div
                                     className={clsx(
-                                        "flex max-w-[304px] flex-col gap-4",
+                                        "flex min-w-[144px] max-w-[304px] flex-col gap-4",
                                     )}
                                     key={menu.label}
                                 >
@@ -109,7 +109,7 @@ export const LandingFooter = () => {
                             ))}
                             <div
                                 className={clsx(
-                                    "landing-md:col-span-3 landing-lg:col-span-2 max-w-[304px]",
+                                    "landing-md:col-span-3 landing-lg:col-span-2 w-full landing-content:max-w-[304px]",
                                 )}
                             >
                                 <div className={clsx("flex flex-col gap-4")}>
