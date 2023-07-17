@@ -269,8 +269,9 @@ The best way to customize your theme is by changing the configuration variables.
 
 ```tsx title="src/App.tsx"
 import { RefineThemes } from "@refinedev/mui";
+import { createTheme } from "@mui/material/styles";
 
-const overridedLightTheme = {
+const overridedLightTheme = createTheme({
     ...RefineThemes.Blue,
     // highlight-start
     palette: {
@@ -283,7 +284,7 @@ const overridedLightTheme = {
         },
     },
     // highlight-end
-};
+});
 ```
 
 :::tip
@@ -372,10 +373,8 @@ You can also change the Default Font Family.
 
 ```tsx title="src/App.tsx"
 import { RefineThemes } from "@refinedev/mui";
-// highlight-next-line
-import { TypographyVariantsOptions } from "@mui/material";
+import { TypographyVariantsOptions, createTheme } from "@mui/material/styles";
 
-// highlight-start
 const typography: TypographyVariantsOptions = {
     fontFamily: [
         "Montserrat",
@@ -391,14 +390,13 @@ const typography: TypographyVariantsOptions = {
         '"Segoe UI Symbol"',
     ].join(","),
 };
-// highlight-end
 
-const overridedLightTheme = {
+const overridedLightTheme = createTheme({
     ...RefineThemes.Blue,
-    // highlight-start
-    ...typography,
-    // highlight-end
-};
+    typography: {
+        ...typographyOptions,
+    },
+});
 ```
 
 [Refer to the Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
@@ -1336,7 +1334,9 @@ const SampleEdit = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -1428,7 +1428,9 @@ const SampleCreate = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
