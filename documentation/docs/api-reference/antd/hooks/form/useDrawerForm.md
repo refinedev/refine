@@ -4,15 +4,15 @@ title: useDrawerForm
 sidebar_label: useDrawerForm
 ---
 
-`useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
+The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns the Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
 :::info
-`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
+The`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook with it.
 :::
 
 ## Basic Usage
 
-We'll show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
+We will show two examples, one for creating a post and one for editing it. Let's see how `useDrwaerForm` is used in them.
 
 <Tabs
 defaultValue="create"
@@ -23,7 +23,7 @@ values={[
 
 <TabItem value="create">
 
-In this example, we will show you how to `"create"` a record with `useDrawerForm`.
+In this example, we will show you how to `"create"` a record with `useDrawerForm`:
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -137,7 +137,7 @@ render(<RefineAntdDemo />);
 
 <TabItem value="edit">
 
-In this example, we will show you how to `"edit"` a record with `useDrawerForm`.
+In this example, we will show you how to `"edit"` a record with `useDrawerForm`:
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -272,9 +272,9 @@ render(<RefineAntdDemo />);
 ```
 
 :::caution
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicked.
+**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Drawer>` when clicked.
 
-So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
+So, we have to put the `<EditButton/>` on our list manually. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
 
 ```tsx
 <Table.Column<IPost>
@@ -298,14 +298,12 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 ## Properties
 
 :::tip
-All [`useForm`][antd-use-form] props also available in `useDrawerForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+All [`useForm`][antd-use-form] props are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) documentation.
 :::
 
 ### `syncWithLocation`
 
-> Default: `false`
-
-When `true`, the drawers visibility state and the `id` of the record will be synced with the URL.
+When `syncWithLocation` is `true`, the drawers visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
 This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
 
@@ -318,7 +316,7 @@ const drawerForm = useDrawerForm({
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -330,7 +328,7 @@ const { overtime } = useDrawerForm({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
@@ -360,7 +358,7 @@ useDrawerForm({
     autoSave: {
         enabled: true,
     },
-})
+});
 ```
 
 #### `debounce`
@@ -374,7 +372,7 @@ useDrawerForm({
         // highlight-next-line
         debounce: 2000,
     },
-})
+});
 ```
 
 #### `onFinish`
@@ -394,7 +392,7 @@ useDrawerForm({
         },
         // highlight-end
     },
-})
+});
 ```
 
 ## Return values
@@ -461,6 +459,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### `autoSaveProps`
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
+
 ## FAQ
 
 ### How can I change the form data before submitting it to the API?
