@@ -369,7 +369,7 @@ const PricingHeader = () => {
                     "text-center",
                 )}
             >
-                Supercharge react with{" "}
+                Supercharge refine with{" "}
                 <span
                     className={clsx(
                         "text-transparent",
