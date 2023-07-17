@@ -359,37 +359,50 @@ const About: React.FC = () => {
                                 )}
                             </div>
                         ))}
-                        <div className="flex flex-col justify-between text-center lg:justify-start">
+                        <div
+                            className={clsx(
+                                "flex flex-col justify-between text-center lg:justify-start",
+                            )}
+                        >
                             <div className="w-full not-prose m-0">
                                 <JoinUsIcon
-                                    className="m-0 w-full lg:mb-6"
+                                    className={clsx(
+                                        "m-0 w-full lg:mb-6",
+                                        "lg:h-[240px]",
+                                        "md:h-[220px]",
+                                        "h-[180px]",
+                                    )}
                                     isDark={colorMode === "dark"}
                                 />
                             </div>
-                            <a
-                                target="_blank"
-                                href="https://www.linkedin.com/company/refine-dev"
-                                className={clsx(
-                                    "text-xs leading-4",
-                                    "lg:text-base lg:leading-6",
-                                    "no-underline hover:no-underline text-refine-link-light dark:text-refine-link-dark font-semibold mb-0",
-                                )}
-                                rel="noreferrer"
-                            >
-                                Join our team!
-                            </a>
-                            <a
-                                target="_blank"
-                                href="https://www.linkedin.com/company/refine-dev"
-                                className={clsx(
-                                    "text-xs leading-4",
-                                    "lg:text-base lg:leading-6",
-                                    "no-underline hover:no-underline text-refine-link-light dark:text-refine-link-dark m-0",
-                                )}
-                                rel="noreferrer"
-                            >
-                                See open positions
-                            </a>
+                            <div className="flex flex-col items-center justify-center">
+                                <a
+                                    target="_blank"
+                                    href="https://www.linkedin.com/company/refine-dev"
+                                    className={clsx(
+                                        "block",
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "no-underline hover:no-underline text-refine-link-light dark:text-refine-link-dark font-semibold mb-0",
+                                    )}
+                                    rel="noreferrer"
+                                >
+                                    Join our team!
+                                </a>
+                                <a
+                                    target="_blank"
+                                    href="https://www.linkedin.com/company/refine-dev"
+                                    className={clsx(
+                                        "block",
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "no-underline hover:no-underline text-refine-link-light dark:text-refine-link-dark m-0",
+                                    )}
+                                    rel="noreferrer"
+                                >
+                                    See open positions
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
