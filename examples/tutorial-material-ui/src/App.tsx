@@ -17,10 +17,10 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { BlogPostList } from "pages/blog-posts/list";
-import { BlogPostEdit } from "pages/blog-posts/edit";
-import { BlogPostCreate } from "pages/blog-posts/create";
-import { BlogPostShow } from "pages/blog-posts/show";
+import { BlogPostList } from "./pages/blog-posts/list";
+import { BlogPostEdit } from "./pages/blog-posts/edit";
+import { BlogPostCreate } from "./pages/blog-posts/create";
+import { BlogPostShow } from "./pages/blog-posts/show";
 
 function App() {
     return (

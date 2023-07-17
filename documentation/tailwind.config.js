@@ -289,6 +289,7 @@ module.exports = {
             "landing-lg": "960px",
             "landing-xl": "1200px",
             "landing-2xl": "1440px",
+            "landing-footer": "1264px",
             "pricing-content-sm": "640px",
             "pricing-content": "960px",
             "blog-sm": "688px",

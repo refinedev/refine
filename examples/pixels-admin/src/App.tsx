@@ -18,18 +18,17 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { Title } from "./components/layout";
-import { supabaseClient } from "utility";
-
 import "@refinedev/antd/dist/reset.css";
 
+import { Title } from "./components/layout";
+import { supabaseClient } from "./utility";
 import {
     auditLogProvider,
     authProvider,
     accessControlProvider,
-} from "providers";
-import { CanvasList, UserList } from "pages";
-import { AuthPage } from "pages/auth";
+} from "./providers";
+import { CanvasList, UserList } from "./pages";
+import { AuthPage } from "./pages/auth";
 
 function App() {
     return (

@@ -4,7 +4,6 @@ import {
     useNavigation,
     useShow,
 } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -12,12 +11,11 @@ import {
     BooleanField,
     useModal,
 } from "@refinedev/antd";
-
 import { FormOutlined, MoreOutlined } from "@ant-design/icons";
 import { Table, Dropdown, Menu, Avatar } from "antd";
 
-import { IStore } from "interfaces";
-import { StoreProducts } from "components/store";
+import { StoreProducts } from "../../components/store";
+import { IStore } from "../../interfaces";
 
 export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IStore>();

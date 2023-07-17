@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CanAccess, useUpdate } from "@refinedev/core";
+import { useUpdate } from "@refinedev/core";
 import {
     List,
     useEditableTable,
@@ -8,9 +8,9 @@ import {
 } from "@refinedev/antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 
-import { TCanvas } from "types/canvas";
-import { LogList } from "components/logs";
-import { CanvasItem } from "components/canvas";
+import { TCanvas } from "../../types/canvas";
+import { LogList } from "../../components/logs";
+import { CanvasItem } from "../../components/canvas";
 
 type TCanvasPromoteResult = {
     id: number;

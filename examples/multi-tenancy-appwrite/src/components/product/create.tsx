@@ -3,7 +3,7 @@ import { Permission, Role } from "@refinedev/appwrite";
 import { useParsed } from "@refinedev/core";
 import { RcFile } from "antd/lib/upload/interface";
 
-import { normalizeFile, storage } from "utility";
+import { normalizeFile, storage } from "../../utility";
 
 type CreateProductProps = {
     modalProps: ModalProps;

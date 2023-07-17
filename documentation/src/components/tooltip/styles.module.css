@@ -1,3 +1,7 @@
+[data-theme="light"] {
+    --ifm-background-color: #fff;
+}
+
 .tooltip {
     z-index: var(--ifm-z-index-overlay);
     @apply relative flex flex-col items-center;

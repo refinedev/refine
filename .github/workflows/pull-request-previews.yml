@@ -42,7 +42,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./examples/finefoods-antd/build"
+          publish-dir: "./examples/finefoods-antd/dist"
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-antd-${{ github.event.number }}
@@ -82,7 +82,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./examples/finefoods-material-ui/build"
+          publish-dir: "./examples/finefoods-material-ui/dist"
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-mui-${{ github.event.number }}

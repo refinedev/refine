@@ -114,7 +114,8 @@ export const useForm = <
         ...refineCoreProps,
     });
 
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
+    const { queryResult, onFinish, formLoading, onFinishAutoSave } =
+        useFormCoreResult;
 
     const useHookFormResult = useHookForm<TVariables, TContext>({
         ...rest,
@@ -150,10 +151,23 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
-    const onValuesChange = (changeValues: Record<string, any>) => {
+    const onValuesChange = (changeValues: TVariables) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+
+        if (refineCoreProps?.autoSave) {
+            setWarnWhen(false);
+
+            const onFinishProps = refineCoreProps.autoSave?.onFinish;
+
+            if (onFinishProps) {
+                return onFinishAutoSave(onFinishProps(changeValues));
+            }
+
+            return onFinishAutoSave(changeValues);
+        }
+
         return changeValues;
     };
 

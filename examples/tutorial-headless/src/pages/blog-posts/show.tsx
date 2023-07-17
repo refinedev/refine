@@ -5,7 +5,7 @@ export const BlogPostShow = () => {
     const { edit, list } = useNavigation();
     const { id } = useResource();
     const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+    const { data } = queryResult;
 
     const record = data?.data;
 

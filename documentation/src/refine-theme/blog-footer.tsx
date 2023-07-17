@@ -1,10 +1,14 @@
 import clsx from "clsx";
 import React from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
+import { ProductHuntLogo } from "./product-hunt-logo";
 
 export const BlogFooter = () => {
+    const { colorMode } = useColorMode();
+
     return (
         <>
             <div
@@ -25,7 +29,7 @@ export const BlogFooter = () => {
             >
                 <div
                     className={clsx(
-                        "max-w-screen-landing-2xl",
+                        "max-w-screen-landing-footer",
                         "w-full",
                         "flex flex-col",
                         "gap-6",
@@ -34,8 +38,9 @@ export const BlogFooter = () => {
                         "mx-auto",
                     )}
                 >
-                    <div className={clsx()}>
-                        <RefineLogoIcon className="text-gray-900 dark:text-gray-0" />
+                    <div className={clsx("flex items-center justify-between")}>
+                        <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                        <ProductHuntLogo className="landing-md:block hidden" />
                     </div>
                     <div
                         className={clsx(
@@ -54,7 +59,7 @@ export const BlogFooter = () => {
                                 "landing-lg:opacity-100",
                                 "landing-lg:text-base",
                                 "text-gray-500 dark:text-gray-500",
-                                "landing-xl:max-w-[300px]",
+                                "landing-md:max-w-[304px] w-full",
                                 "w-full",
                                 "flex-shrink-0",
                                 "mb-6",
@@ -62,39 +67,29 @@ export const BlogFooter = () => {
                             )}
                         >
                             {footerDescription}
-                            <div className="mt-4 w-fit mx-auto landing-xl:mx-0">
-                                <a
-                                    href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <img
-                                        src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=dark&period=daily"
-                                        alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
-                                        style={{
-                                            width: "200px",
-                                            height: "42px",
-                                        }}
-                                        width="250"
-                                        height="54"
-                                    />
-                                </a>
-                            </div>
                         </div>
+                        <ProductHuntLogo
+                            className={clsx(
+                                "landing-md:hidden block",
+                                "mx-auto mb-10",
+                            )}
+                        />
                         <div
                             className={clsx(
                                 "w-full",
                                 "landing-lg:w-auto",
-                                "grid grid-cols-2 landing-md:grid-cols-3 landing-lg:grid-cols-5",
-                                "gap-4",
+                                "landing-md:grid-cols-3 landing-lg:grid-cols-5 grid grid-cols-2",
+                                "landing-md:gap-4 gap-10",
                             )}
                         >
                             {menuItems.map((menu) => (
                                 <div
-                                    className={clsx("flex flex-col gap-4")}
+                                    className={clsx(
+                                        "flex max-w-[304px] flex-col gap-4",
+                                    )}
                                     key={menu.label}
                                 >
-                                    <div className="text-base font-semibold text-gray-900 dark:text-gray-0">
+                                    <div className="dark:text-gray-0 text-base font-semibold text-gray-900">
                                         {menu.label}
                                     </div>
                                     <div className="flex flex-col gap-2">
@@ -118,11 +113,11 @@ export const BlogFooter = () => {
                             ))}
                             <div
                                 className={clsx(
-                                    "landing-md:col-span-3 landing-lg:col-span-2",
+                                    "landing-md:col-span-3 landing-lg:col-span-2 max-w-[304px]",
                                 )}
                             >
                                 <div className={clsx("flex flex-col gap-4")}>
-                                    <div className="text-base font-semibold text-gray-900 dark:text-gray-0">
+                                    <div className="dark:text-gray-0 text-base font-semibold text-gray-900">
                                         Contact
                                     </div>
                                     <div
@@ -174,11 +169,11 @@ export const BlogFooter = () => {
                 <div
                     className={clsx(
                         "mx-auto",
-                        "max-w-screen-landing-2xl",
+                        "max-w-screen-landing-footer",
                         "w-full",
-                        "gap-6 landing-lg:gap-2",
+                        "landing-lg:gap-2 gap-6",
                         "flex items-center justify-between",
-                        "flex-col-reverse landing-lg:flex-row",
+                        "landing-lg:flex-row flex-col-reverse",
                     )}
                 >
                     <div
@@ -189,20 +184,20 @@ export const BlogFooter = () => {
                     >
                         © 2023, refine from San Francisco to wherever
                         you&apos;re with{" "}
-                        <HeartOutlinedIcon className="text-refine-red inline ml-2 leading-6" />
+                        <HeartOutlinedIcon className="text-refine-red ml-2 inline leading-6" />
                     </div>
                     <div
                         className={clsx(
                             "flex items-center",
                             "gap-4",
-                            "flex-col landing-lg:flex-row",
-                            "max-w-[382px] landing-lg:max-w-none",
+                            "landing-lg:flex-row flex-col",
+                            "landing-lg:max-w-none max-w-[382px]",
                         )}
                     >
                         <span
                             className={clsx(
                                 "text-gray-500 dark:text-gray-400",
-                                "opacity-75 text-center landing-lg:text-left",
+                                "landing-lg:text-left text-center opacity-75",
                             )}
                         >
                             Join us on
@@ -226,10 +221,10 @@ export const BlogFooter = () => {
                                         "text-gray-500 dark:text-gray-400",
                                         "opacity-75",
                                         "no-underline",
-                                        "hover:no-underline hover:text-gray-500 hover:dark:text-gray-400",
+                                        "hover:text-gray-500 hover:no-underline hover:dark:text-gray-400",
                                     )}
                                 >
-                                    <Icon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                                    <Icon className="landing-lg:w-6 landing-lg:h-6 h-9 w-9" />
                                 </a>
                             ))}
                         </div>

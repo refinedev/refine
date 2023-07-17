@@ -52,15 +52,102 @@ const App = (props: React.PropsWithChildren) => {
                 };
             }
 
-            signIn("credentials", {
+            const signInResponse = await signIn("CredentialsSignIn", {
                 email,
                 password,
                 callbackUrl: to ? to.toString() : "/",
-                redirect: true,
+                redirect: false,
             });
 
+            if (!signInResponse) {
+                return {
+                    success: false,
+                };
+            }
+
+            const { ok, error } = signInResponse;
+
+            if (ok) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+
             return {
-                success: true,
+                success: false,
+                error: new Error(error),
+            };
+        },
+        register: async ({ providerName, email, password }) => {
+            if (providerName) {
+                signIn(providerName, {
+                    callbackUrl: to ? to.toString() : "/",
+                    redirect: true,
+                });
+
+                return {
+                    success: true,
+                };
+            }
+
+            const signUpResponse = await signIn("CredentialsSignUp", {
+                email,
+                password,
+                callbackUrl: to ? to.toString() : "/",
+                redirect: false,
+            });
+
+            if (!signUpResponse) {
+                return {
+                    success: false,
+                };
+            }
+
+            const { ok, error } = signUpResponse;
+
+            if (ok) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+
+            return {
+                success: false,
+                error: new Error(error),
+            };
+        },
+        updatePassword: async (params) => {
+            if (params.password === "demodemo") {
+                //we can update password here
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            }
+            return {
+                success: false,
+                error: {
+                    message: "Update password failed",
+                    name: "Invalid password",
+                },
+            };
+        },
+        forgotPassword: async (params) => {
+            if (params.email === "demo@refine.dev") {
+                //we can send email with reset password link here
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            }
+            return {
+                success: false,
+                error: {
+                    message: "Forgot password failed",
+                    name: "Invalid email",
+                },
             };
         },
         logout: async () => {

@@ -5,22 +5,19 @@ import {
     HttpError,
     getDefaultFilter,
 } from "@refinedev/core";
-
 import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
-
 import { SearchOutlined } from "@ant-design/icons";
 import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
-
-const { Text } = Typography;
 
 import {
     ProductItem,
     ProductCategoryFilter,
     CreateProduct,
     EditProduct,
-} from "components/product";
+} from "../../components/product";
+import { IProduct } from "../../interfaces";
 
-import { IProduct } from "interfaces";
+const { Text } = Typography;
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

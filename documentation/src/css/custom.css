@@ -1005,19 +1005,9 @@ html[data-theme="dark"]:not([data-customized="true"])
     color: var(--ifm-color-primary);
 }
 
-.checklist-item__button {
-    @apply w-5 h-5 p-0 appearance-none border border-solid rounded flex justify-center items-center;
-    border-color: var(--browser-window-bezel-color-accent);
-    background-color: var(--color-bg-white);
-}
-
 [data-theme="dark"] .checklist-item__button {
     border-color: var(--browser-window-bezel-color-accent);
     background-color: #3a3e4a;
-}
-
-.checklist-item__icon {
-    color: var(--ifm-color-primary);
 }
 
 .tutorial--framework-select--wrapper {

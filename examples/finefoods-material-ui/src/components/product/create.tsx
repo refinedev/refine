@@ -25,7 +25,7 @@ import TextField from "@mui/material/TextField";
 
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-import { ICategory, IFile, IProduct, Nullable } from "interfaces";
+import { ICategory, IFile, IProduct, Nullable } from "../../interfaces";
 
 export const CreateProduct: React.FC<
     UseModalFormReturnType<IProduct, HttpError, Nullable<IProduct>>

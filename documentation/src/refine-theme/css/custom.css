@@ -22,7 +22,7 @@
 
 .refine-prose {
     max-width: 100% !important;
-    @apply font-normal prose prose-invert;
+    @apply prose prose-invert font-normal;
     @apply prose-strong:dark:text-gray-300 prose-strong:text-gray-700;
     @apply prose-a:text-refine-link-light prose-a:dark:text-refine-link-dark  prose-a:font-normal;
 
@@ -65,7 +65,7 @@
     @apply prose-blockquote:bg-gray-50 prose-blockquote:text-gray-700 prose-blockquote:border-l-gray-400;
     @apply prose-blockquote:dark:bg-gray-800 prose-blockquote:dark:text-gray-0 prose-blockquote:dark:border-l-gray-600;
 
-    @apply prose-code:text-[0.625rem] prose-code:leading-[0.75rem] sm:prose-code:text-[0.75rem]  sm:prose-code:leading-[1rem] 2xl:prose-code:text-[1rem] 2xl:prose-code:leading-[1.5rem];
+    @apply prose-code:text-[0.625rem] prose-code:leading-[0.75rem] sm:prose-code:text-[0.75rem] sm:prose-code:leading-[1rem] 2xl:prose-code:text-[1rem] 2xl:prose-code:leading-[1.5rem];
     @apply prose-code:text-gray-700 prose-code:bg-gray-200;
     @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-700;
     @apply prose-code:px-1.5 prose-code:pt-[2px] prose-code:pb-[3px] prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
@@ -89,7 +89,7 @@
 
 .refine-prose blockquote,
 .refine-prose blockquote p {
-    @apply after:content-none before:content-none;
+    @apply before:content-none after:content-none;
 }
 
 .refine-prose table {
@@ -102,12 +102,12 @@
 
 .refine-prose table th,
 .refine-prose table td {
-    @apply px-2 dark:border-gray-700 border-gray-200 border py-2 text-gray-900 dark:text-gray-100;
+    @apply border border-gray-200 px-2 py-2 text-gray-900 dark:border-gray-700 dark:text-gray-100;
     @apply text-sm 2xl:text-lg;
 }
 
 .refine-prose table th {
-    @apply dark:text-gray-200 text-gray-900 font-semibold;
+    @apply font-semibold text-gray-900 dark:text-gray-200;
     @apply text-sm 2xl:text-lg;
 }
 
@@ -121,11 +121,11 @@
 }
 
 .refine-prose table tbody tr:nth-child(even) {
-    @apply dark:bg-gray-900 bg-gray-50;
+    @apply bg-gray-50 dark:bg-gray-900;
 }
 
 .refine-prose table thead {
-    @apply dark:bg-gray-900 bg-gray-50;
+    @apply bg-gray-50 dark:bg-gray-900;
 }
 
 .refine-prose table thead tr {
@@ -142,7 +142,7 @@
 }
 
 .refine-toc-item code {
-    @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded;
+    @apply rounded !border-none py-0.5 px-1 !align-bottom font-mono !text-inherit dark:bg-gray-600 dark:bg-opacity-30 dark:!text-inherit;
     font-size: 12px;
 }
 
@@ -151,47 +151,87 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-    @apply !text-refine-link-light dark:!text-refine-link-dark;
+    @apply !text-refine-link-light dark:!text-refine-link-dark !align-bottom;
+}
+
+p:has(> code) code {
+    @apply mx-0.5 !align-text-bottom;
+}
+
+li a:has(> code) code {
+    @apply !mx-0 !align-text-bottom;
 }
 
 .admonition.admonition-caution code {
-    @apply bg-refine-orange bg-opacity-20;
+    @apply dark:bg-refine-orange/10 bg-[#F2800D] bg-opacity-[15%] dark:bg-opacity-[15%];
 }
 
 .admonition.admonition-caution a {
-    @apply text-refine-orange;
+    @apply dark:text-refine-orange text-[#CC6600];
+}
+
+.admonition.admonition-caution a code {
+    @apply dark:!text-refine-orange !text-[#CC6600];
+}
+
+.admonition.admonition-caution li::marker {
+    @apply dark:text-refine-orange text-[#CC6600] text-opacity-50 dark:text-opacity-50;
 }
 
 .admonition.admonition-danger code {
-    @apply bg-refine-red bg-opacity-20;
+    @apply bg-refine-red bg-opacity-[15%];
 }
 
 .admonition.admonition-danger a {
     @apply text-refine-red;
 }
 
+.admonition.admonition-danger a code {
+    @apply !text-refine-red;
+}
+
 .admonition.admonition-info code {
-    @apply bg-refine-blue bg-opacity-20;
+    @apply bg-refine-blue/10 bg-opacity-[15%] dark:bg-[#6EB3F7]/10 dark:bg-opacity-[15%];
 }
 
 .admonition.admonition-info a {
-    @apply text-refine-blue;
+    @apply text-refine-blue dark:text-refine-link-dark;
+}
+
+.admonition.admonition-info li::marker {
+    @apply text-refine-blue dark:text-refine-link-dark text-opacity-50 dark:text-opacity-50;
 }
 
 .admonition.admonition-tip code {
-    @apply bg-refine-green bg-opacity-20;
+    @apply bg-refine-green bg-opacity-[15%];
 }
 
 .admonition.admonition-tip a {
     @apply text-refine-green;
 }
 
+.admonition.admonition-tip a code {
+    @apply !text-refine-green;
+}
+
+.admonition.admonition-tip li::marker {
+    @apply text-refine-green text-opacity-50;
+}
+
 .admonition.admonition-note code {
-    @apply bg-refine-cyan bg-opacity-20;
+    @apply bg-refine-cyan bg-opacity-[15%];
 }
 
 .admonition.admonition-note a {
     @apply text-refine-cyan;
+}
+
+.admonition.admonition-note a code {
+    @apply !text-refine-cyan;
+}
+
+.admonition.admonition-note li::marker {
+    @apply text-refine-cyan text-opacity-50;
 }
 
 .admonition.admonition-additional code {
@@ -215,7 +255,7 @@ a:has(> code) code {
 }
 
 .refine-details > summary + div > div {
-    @apply border-t-0 mt-0 pt-0;
+    @apply mt-0 border-t-0 pt-0;
 }
 
 .refine-details-content {

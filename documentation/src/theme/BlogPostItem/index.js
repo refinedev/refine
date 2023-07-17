@@ -22,7 +22,7 @@ export default function BlogPostItem({ className }) {
 
     return (
         <BlogPostItemContainer className={className}>
-            <div className="mb-3">
+            <div>
                 <Link itemProp="url" to={permalink}>
                     <div className="relative m-0 h-40 hover:brightness-90">
                         <img
@@ -37,8 +37,8 @@ export default function BlogPostItem({ className }) {
                     </div>
                 </Link>
             </div>
-            <div className="p-3">
-                <div className="flex gap-1 mb-2">
+            <div className="p-4">
+                <div className="mb-2 flex gap-1 md:mb-4">
                     {tags.map((tag) => (
                         <Link
                             className={clsx(
@@ -47,7 +47,7 @@ export default function BlogPostItem({ className }) {
                                 "text-gray-600 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-400",
                                 "no-underline",
                                 "rounded",
-                                "p-1",
+                                "px-2 py-1",
                             )}
                             href={tag.permalink}
                             key={tag.permalink}
@@ -56,7 +56,7 @@ export default function BlogPostItem({ className }) {
                         </Link>
                     ))}
                 </div>
-                <div className="mb-3">
+                <div className="mb-2 md:mb-4">
                     <Link
                         itemProp="url"
                         to={permalink}
@@ -65,8 +65,8 @@ export default function BlogPostItem({ className }) {
                     >
                         <div
                             className={clsx(
-                                "text-color-base",
-                                "text-base",
+                                "text-xs sm:text-sm md:text-2xl lg:text-base 2xl:text-xl",
+                                "text-gray-700 dark:text-gray-200",
                                 "font-lg",
                                 "font-bold",
                                 "leading-6",
@@ -75,7 +75,13 @@ export default function BlogPostItem({ className }) {
                             {title}
                         </div>
                     </Link>
-                    <div className="text-color-base line-clamp-3 mt-1 text-sm leading-6">
+                    <div
+                        className={clsx(
+                            "text-xs md:text-base lg:text-sm 2xl:text-lg",
+                            "mt-2 md:mt-4",
+                            "line-clamp-3 text-gray-700 dark:text-gray-300",
+                        )}
+                    >
                         {description}
                     </div>
                 </div>
@@ -95,7 +101,7 @@ export default function BlogPostItem({ className }) {
                     </Link>
                     <span
                         className={clsx(
-                            "w-[4px] h-[4px] rounded-full",
+                            "h-[4px] w-[4px] rounded-full",
                             "bg-gray-600 dark:bg-gray-500",
                         )}
                     ></span>

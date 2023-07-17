@@ -162,10 +162,20 @@ ButtonProps
 
 ## SuccessErrorNotification
 
-| Key                 | Type                                                                                                                                                                          |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| successNotification | `(data?: TData, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false`   |
-| errorNotification   | `(error?: TError, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
+| Key                 | Type                                                                                                                                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| successNotification | [OpenNotificationParams](#opennotificationparams) \| `false` \| `(data?: TData, values?: TVariables, resource?: string) => `[OpenNotificationParams](#opennotificationparams) \| `false` |
+| errorNotification   | [OpenNotificationParams](#opennotificationparams) \| `false` \| `(data?: TData, values?: TVariables, resource?: string) => `[OpenNotificationParams](#opennotificationparams) \| `false` |
+
+## OpenNotificationParams
+
+| Key              | Type                                     |
+| ---------------- | ---------------------------------------- |
+| key?             | `string`                                 |
+| type             | `"success"` \| `"error"` \| `"progress"` |
+| description?     | `string`                                 |
+| cancelMutation?  | `() => void`                             |
+| undoableTimeout? | `number`                                 |
 
 ## MetaDataQuery
 

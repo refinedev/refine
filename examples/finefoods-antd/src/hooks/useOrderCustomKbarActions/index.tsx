@@ -8,7 +8,7 @@ import {
 } from "@refinedev/kbar";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-import { IOrder } from "interfaces";
+import { IOrder } from "../../interfaces";
 
 export const useOrderCustomKbarActions = (order?: IOrder): void => {
     const t = useTranslate();

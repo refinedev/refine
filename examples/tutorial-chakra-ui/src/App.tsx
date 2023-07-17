@@ -14,10 +14,10 @@ import {
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { BlogPostList } from "pages/blog-posts/list";
-import { BlogPostCreate } from "pages/blog-posts/create";
-import { BlogPostEdit } from "pages/blog-posts/edit";
-import { BlogPostShow } from "pages/blog-posts/show";
+import { BlogPostList } from "./pages/blog-posts/list";
+import { BlogPostCreate } from "./pages/blog-posts/create";
+import { BlogPostEdit } from "./pages/blog-posts/edit";
+import { BlogPostShow } from "./pages/blog-posts/show";
 
 function App() {
     return (

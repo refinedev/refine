@@ -7,7 +7,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
-import { Layout } from "components/layout";
+import { Layout } from "./components/layout";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

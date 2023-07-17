@@ -1220,6 +1220,141 @@ render(
 );
 ```
 
+### `autoSaveProps`
+
+You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
+
+```tsx live url=http://localhost:3000/posts/edit/123
+import React from "react";
+import { Edit, useAutocomplete } from "@refinedev/mui";
+import { TextField, Autocomplete, Box } from "@mui/material";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
+
+// visible-block-start
+const SampleEdit = () => {
+    const {
+        saveButtonProps,
+        refineCore: { 
+            queryResult,
+            // highlight-next-line
+            autoSaveProps
+        },
+        register,
+        control,
+        formState: { errors },
+    } = useForm({
+        // highlight-start
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+            },
+        },
+        // highlight-end
+    });
+
+    const samplesData = queryResult?.data?.data;
+
+    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+        resource: "categories",
+        defaultValue: samplesData?.category?.id,
+    });
+
+    return (
+        <Edit
+            saveButtonProps={saveButtonProps}
+            // highlight-next-line
+            autoSaveProps={autoSaveProps}
+        >
+            <Box
+                component="form"
+                sx={{ display: "flex", flexDirection: "column" }}
+                autoComplete="off"
+            >
+                <TextField
+                    {...register("id", {
+                        required: "This field is required",
+                    })}
+                    error={!!(errors as any)?.id}
+                    helperText={(errors as any)?.id?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="number"
+                    label="Id"
+                    name="id"
+                    disabled
+                />
+                <TextField
+                    {...register("title", {
+                        required: "This field is required",
+                    })}
+                    error={!!(errors as any)?.title}
+                    helperText={(errors as any)?.title?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="text"
+                    label="Title"
+                    name="title"
+                />
+                <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "This field is required" }}
+                    // eslint-disable-next-line
+                    defaultValue={null as any}
+                    render={({ field }) => (
+                        <Autocomplete
+                            {...categoryAutocompleteProps}
+                            {...field}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            getOptionLabel={(item) => {
+                                return (
+                                    categoryAutocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.title ?? ""
+                                );
+                            }}
+                            isOptionEqualToValue={(option, value) =>
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Category"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!(errors as any)?.category?.id}
+                                    helperText={
+                                        (errors as any)?.category?.id?.message
+                                    }
+                                    required
+                                />
+                            )}
+                        />
+                    )}
+                />
+            </Box>
+        </Edit>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples/edit/123"]}
+        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
+    />,
+);
+```
+
 ## API Reference
 
 ### Properties

@@ -2,7 +2,7 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Select, Input } from "antd";
 
-import { IContact } from "interfaces";
+import { IContact } from "../../interfaces";
 
 export const EditContact: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IContact>({

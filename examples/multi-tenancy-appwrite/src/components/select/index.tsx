@@ -2,7 +2,7 @@ import { useSelect } from "@refinedev/antd";
 import { useGetToPath, useGo, useParsed } from "@refinedev/core";
 import { Select } from "antd";
 
-import { IStore } from "interfaces";
+import { IStore } from "../../interfaces";
 
 export const StoreSelect: React.FC = () => {
     const getToPath = useGetToPath();

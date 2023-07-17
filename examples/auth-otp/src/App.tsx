@@ -22,8 +22,8 @@ import { ConfigProvider } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { Login } from "pages/login";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { Login } from "./pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

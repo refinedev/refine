@@ -67,7 +67,6 @@ const Desktop = () => {
                             )}
                         />
                     </div>
-                    <Divider />
                     <DocVersionDropdown />
                     <Divider />
                     <CommonGithubStarButton />

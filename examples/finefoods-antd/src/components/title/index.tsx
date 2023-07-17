@@ -1,7 +1,8 @@
 import { useLink } from "@refinedev/core";
-import { Logo } from "./styled";
-import { BikeWhiteIcon, FineFoodsIcon } from "components";
 import { theme } from "antd";
+
+import { BikeWhiteIcon, FineFoodsIcon } from "../../components";
+import { Logo } from "./styled";
 
 const { useToken } = theme;
 

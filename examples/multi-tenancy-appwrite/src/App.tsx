@@ -23,13 +23,13 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { appwriteClient } from "utility";
+import { appwriteClient } from "./utility";
 import { authProvider } from "./authProvider";
 
-import { ProductList } from "pages/products";
-import { OrderCreate, OrderList, OrderEdit } from "pages/orders";
-import { ProductShow } from "components/product";
-import { Header } from "components/header";
+import { ProductList } from "./pages/products";
+import { OrderCreate, OrderList, OrderEdit } from "./pages/orders";
+import { ProductShow } from "./components/product";
+import { Header } from "./components/header";
 
 function App() {
     // inital tenant

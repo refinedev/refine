@@ -1,7 +1,5 @@
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
-
 import { Create, useForm } from "@refinedev/antd";
-
 import {
     Form,
     Input,
@@ -13,12 +11,11 @@ import {
     Radio,
     InputProps,
 } from "antd";
-
 import InputMask from "react-input-mask";
 
-const { Text } = Typography;
+import { IStore } from "../../interfaces";
 
-import { IStore } from "interfaces";
+const { Text } = Typography;
 
 export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

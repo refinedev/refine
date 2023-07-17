@@ -9,7 +9,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 import { ConfigProvider } from "antd";
-import { CalendarPage } from "pages/calendar";
+import { CalendarPage } from "./pages/calendar";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

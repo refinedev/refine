@@ -242,8 +242,7 @@ export const integrations: IntegrationsType = {
         {
             name: "kbar interface",
             icon: Kbar,
-            description:
-                "<strong>kbar</strong> integration. Add command/crtrl+k interfaces to your project.",
+            description: "Add command / crtrl+k interfaces to your project.",
             url: "https://www.npmjs.com/package/@refinedev/kbar",
             status: "stable",
         },

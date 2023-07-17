@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
-    "@types/google.maps": "^3.50.4",
     "@refinedev/core": "^4.26.4",
     "@refinedev/cli": "^2.7.2",
     "@refinedev/mui": "^5.7.0",
@@ -19,9 +18,6 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
     "@mui/x-data-grid": "^6.6.0",
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "axios": "^0.26.1",
     "dayjs": "^1.10.7",
     "google-map-react": "^2.1.10",
@@ -34,19 +30,23 @@
     "react-i18next": "^11.8.11",
     "react-input-mask": "^2.0.4",
     "@uiw/react-md-editor": "^3.19.5",
-    "react-scripts": "^5.0.0",
     "recharts": "^2.1.9",
-    "typescript": "^4.7.4",
-    "cross-env": "^7.0.3",
     "react-hook-form": "^7.30.0"
   },
   "devDependencies": {
-    "@types/react-input-mask": "^3.0.1"
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@types/react-input-mask": "^3.0.1",
+    "@types/google.maps": "^3.50.4",
+    "typescript": "^4.7.4",
+    "vite": "^4.3.1"
   },
   "scripts": {
-    "start": "cross-env FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "browserslist": {

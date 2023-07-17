@@ -12,20 +12,20 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@uiw/react-md-editor": "^3.19.5",
-    "antd": "^5.0.5",
-    "cross-env": "^7.0.3",
-    "react-scripts": "^5.0.0"
+    "antd": "^5.0.5"
   },
   "devDependencies": {
     "typescript": "^4.7.4",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0"
+    "@types/react-dom": "^18.0.0",
+    "vite": "^4.3.1",
+    "@vitejs/plugin-react": "^4.0.0"
   },
   "scripts": {
-    "start": "cross-env FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "browserslist": {

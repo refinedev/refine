@@ -19,7 +19,7 @@ import dayjs from "dayjs";
 const { RangePicker } = DatePicker;
 const { Text } = Typography;
 
-import { IPost, ICategory, IPostFilterVariables } from "interfaces";
+import { IPost, ICategory, IPostFilterVariables } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { listProps, searchFormProps, filters } = useSimpleList<

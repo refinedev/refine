@@ -61,10 +61,16 @@ export const TOCItem = ({
                 level === 3 && "pl-7",
                 level === 4 && "pl-11",
                 "py-2 pr-3",
+                "hover:bg-gray-200/40 dark:hover:bg-gray-700/80",
                 activeId === id &&
-                    `text-gray-900 dark:bg-gray-700 dark:text-gray-0 bg-gray-50 hover:text-gray-900`,
+                    `dark:text-gray-0 text-gray-900 hover:text-gray-900 
+                    bg-gray-100/50 dark:bg-gray-700/50
+                    `,
                 activeId !== id &&
-                    `dark:text-gray-500 hover:text-gray-900 text-gray-500`,
+                    `dark:hover:text-gray-0 text-gray-500 hover:text-gray-900 dark:text-gray-500
+                      bg-opacity-0 dark:bg-opacity-0
+                    `,
+                "hover:!text-gray-900 dark:hover:!text-gray-0",
                 "rounded-lg",
                 "transition-colors duration-200 ease-in-out",
                 "block",
@@ -88,14 +94,14 @@ export const DocTOC = () => {
             className={clsx(
                 "hidden xl:block",
                 "w-full",
-                "sticky right-0 top-[80px]",
+                "sticky right-0 top-[67px]",
                 "max-w-[280px]",
                 "overflow-auto",
-                "h-[calc(100vh-100px)]",
+                "h-[calc(100vh-67px)]",
                 "pl-3",
                 "pr-3",
                 "py-12",
-                "border-l dark:border-l-gray-700 border-l-gray-100",
+                "border-l border-l-gray-100 dark:border-l-gray-700",
                 !hasTOC && "invisible",
             )}
         >

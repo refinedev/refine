@@ -95,7 +95,7 @@ mutate(
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -107,14 +107,17 @@ const { overtime } = useUpdateMany({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Mutation Parameters
 
 ### `resource` <PropTag required />
@@ -190,18 +193,39 @@ mutate({
 
 ### `onCancel`
 
-When `mutationMode` is set to `undoable`, `onCancel` is used to determine what to do when the user cancels the mutation.
+The `onCancel` property can be utilized when the `mutationMode` is set to `"undoable"`. It provides a function that can be used to cancel the ongoing mutation.
+
+By defining `onCancel`, undoable notification will not be shown automatically. This gives you the flexibility to handle the cancellation process in your own way, such as showing a custom notification or implementing any other desired behavior to allow users to cancel the mutation.
 
 ```tsx
-const { mutate } = useUpdateMany();
+import { useRef } from "react";
+import { useUpdateMany } from "@refinedev/core";
 
-mutate({
-    mutationMode: "undoable",
-    onCancel: (cancelMutation) => {
-        cancelMutation();
-        // you can do something else here
-    },
-});
+const MyComponent = () => {
+    const { mutate } = useUpdateMany();
+    const cancelRef = useRef<(() => void) | null>(null);
+
+    const updateItems = () => {
+        mutate({
+            //...
+            mutationMode: "undoable",
+            onCancel: (cancelMutation) => {
+                cancelRef.current = cancelMutation;
+            },
+        });
+    };
+
+    const cancelUpdate = () => {
+        cancelRef.current?.();
+    };
+
+    return (
+        <>
+            <button onClick={updateItems}>Update</button>
+            <button onClick={cancelUpdate}>Cancel</button>
+        </>
+    );
+};
 ```
 
 ### `successNotification`
@@ -331,6 +355,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -340,6 +365,7 @@ const { overtime } = useUpdateMany();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ## API
 
 ### Mutation Parameters
@@ -351,7 +377,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables`                                                                             | {}                                                           |
 | mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                         | `"pessimistic"`\*                                            |
 | undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                                 | `5000ms`\*                                                   |
-| onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`                      | `(cancelMutation: () => void) => void`                                                   |                                                              |
+| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                   |                                                              |
 | successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Successfully updated `resource`"                            |
 | errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
 | meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                                           |

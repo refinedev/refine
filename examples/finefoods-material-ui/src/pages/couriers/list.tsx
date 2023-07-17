@@ -1,9 +1,5 @@
-import Close from "@mui/icons-material/Close";
-import Edit from "@mui/icons-material/Edit";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
+import React from "react";
+
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import {
     IResourceComponentsProps,
@@ -12,9 +8,15 @@ import {
     useTranslate,
 } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
-import React from "react";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 
-import { ICourier } from "interfaces";
+import Close from "@mui/icons-material/Close";
+import Edit from "@mui/icons-material/Edit";
+
+import { ICourier } from "../../interfaces";
 
 export const CourierList: React.FC<IResourceComponentsProps> = () => {
     const { show, edit } = useNavigation();

@@ -47,18 +47,46 @@ import {
 } from "../useLoadingOvertime";
 
 export type DeleteManyParams<TData, TError, TVariables> = {
+    /**
+     * ids for mutation function
+     */
     ids: BaseKey[];
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+     */
     mutationMode?: MutationMode;
+    /**
+     * Duration in ms to wait before executing the mutation when `mutationMode = "undoable"`
+     */
     undoableTimeout?: number;
+    /**
+     * Provides a function to cancel the mutation when `mutationMode = "undoable"`
+     */
     onCancel?: (cancelMutation: () => void) => void;
+    /**
+     * Metadata query for dataProvider
+     */
     meta?: MetaQuery;
     /**
      * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
      */
     metaData?: MetaQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default "default"
+     */
     dataProviderName?: string;
+    /**
+     *  You can use it to manage the invalidations that will occur at the end of the mutation.
+     */
     invalidates?: Array<keyof IQueryKeys>;
+    /**
+     * Values for mutation function
+     */
     values?: TVariables;
 } & SuccessErrorNotification<DeleteManyResponse<TData>, TError, BaseKey[]>;
 

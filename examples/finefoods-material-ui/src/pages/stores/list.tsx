@@ -1,6 +1,4 @@
-import EditOutlined from "@mui/icons-material/EditOutlined";
-import Avatar from "@mui/material/Avatar";
-import Paper from "@mui/material/Paper";
+import React from "react";
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import {
     IResourceComponentsProps,
@@ -16,10 +14,13 @@ import {
     TextFieldComponent,
     useDataGrid,
 } from "@refinedev/mui";
-import React from "react";
 
-import { StoreProducts } from "components/store";
-import { IStore } from "interfaces";
+import Avatar from "@mui/material/Avatar";
+import Paper from "@mui/material/Paper";
+import EditOutlined from "@mui/icons-material/EditOutlined";
+
+import { StoreProducts } from "../../components/store";
+import { IStore } from "../../interfaces";
 
 export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

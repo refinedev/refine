@@ -135,7 +135,6 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
         nextPage,
         previousPage,
         setPageSize,
-        getColumn,
     } = useTable({
         columns,
     });

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import LoadingButton from "@mui/lab/LoadingButton";
 import {
     CrudFilters,
     getDefaultFilter,
     useList,
     useTranslate,
 } from "@refinedev/core";
+import LoadingButton from "@mui/lab/LoadingButton";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
 type ProductItemProps = {
     setFilters: (filters: CrudFilters) => void;

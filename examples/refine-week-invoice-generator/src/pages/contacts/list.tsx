@@ -7,11 +7,10 @@ import {
     useModalForm,
     EmailField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
-import { IContact } from "interfaces";
-import { CreateContact } from "components/contact";
+import { IContact } from "../../interfaces";
+import { CreateContact } from "../../components/contact";
 
 export const ContactList: React.FC = () => {
     const { tableProps } = useTable<IContact>({

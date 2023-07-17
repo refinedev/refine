@@ -5,9 +5,7 @@ import {
     useNavigation,
     HttpError,
 } from "@refinedev/core";
-
 import { List, useTable } from "@refinedev/antd";
-
 import {
     EnvironmentOutlined,
     PhoneOutlined,
@@ -30,7 +28,7 @@ import {
     Avatar,
 } from "antd";
 
-import { ICourier, IOrder, IOrderFilterVariables } from "interfaces";
+import { ICourier, IOrder, IOrderFilterVariables } from "../../interfaces";
 
 const { useBreakpoint } = Grid;
 

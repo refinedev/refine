@@ -1,6 +1,7 @@
-import { useForm } from "@refinedev/core";
-import { IPost } from "interfaces";
 import { useEffect, useState } from "react";
+import { useForm } from "@refinedev/core";
+
+import { IPost } from "../../interfaces";
 
 type FormValues = Omit<IPost, "id">;
 

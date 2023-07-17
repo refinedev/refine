@@ -7,8 +7,8 @@ import {
 } from "@refinedev/antd";
 import { Table } from "antd";
 
-import { IMission } from "interfaces";
-import { CreateMission, EditMission } from "components/mission";
+import { IMission } from "../../interfaces";
+import { CreateMission, EditMission } from "../../components/mission";
 
 export const MissionList: React.FC = () => {
     const { tableProps } = useTable<IMission>();

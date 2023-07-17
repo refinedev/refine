@@ -9,7 +9,7 @@ import {
 import CheckOutlined from "@mui/icons-material/CheckOutlined";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-import { IOrder } from "interfaces";
+import { IOrder } from "../../interfaces";
 
 export const useOrderCustomKbarActions = (order?: IOrder): void => {
     const t = useTranslate();

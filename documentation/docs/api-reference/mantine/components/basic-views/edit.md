@@ -1411,6 +1411,128 @@ render(
 );
 ```
 
+### `autoSaveProps`
+
+You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px
+setInitialRoutes(["/posts/edit/123"]);
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
+import { Select, TextInput } from "@mantine/core";
+
+// visible-block-start
+const PostEdit: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        refineCore: { 
+            queryResult,
+            // highlight-next-line
+            autoSaveProps,
+        },
+    } = useForm<IPost>({
+        initialValues: {
+            title: "",
+            status: "",
+            category: {
+                id: "",
+            },
+        },
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+            category: {
+                id: (value) =>
+                    value.length <= 0 ? "Category is required" : null,
+            },
+        },
+        // highlight-start
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+            },
+        },
+        // highlight-end
+    });
+
+    const postData = queryResult?.data?.data;
+    const { selectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category.id,
+    });
+
+    return (
+        <Edit 
+            saveButtonProps={saveButtonProps}
+            // highlight-next-line
+            autoSaveProps={autoSaveProps}
+        >
+            <form>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Select
+                    mt={8}
+                    label="Status"
+                    placeholder="Pick one"
+                    {...getInputProps("status")}
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                />
+                <Select
+                    mt={8}
+                    label="Category"
+                    placeholder="Pick one"
+                    {...getInputProps("category.id")}
+                    {...selectProps}
+                />
+            </form>
+        </Edit>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            legacyRouterProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    edit: PostEdit,
+                    list: () => (
+                        <div>
+                            <p>This page is empty.</p>
+                            <EditButton recordItemId="123">
+                                Edit Item 123
+                            </EditButton>
+                        </div>
+                    ),
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
 ## API Reference
 
 ### Props

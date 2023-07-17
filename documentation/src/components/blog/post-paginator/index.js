@@ -12,21 +12,17 @@ export const PostPaginator = ({ posts, title }) => {
     return (
         <div
             className={clsx(
+                "mx-auto w-full",
                 "py-10",
                 "blog-sm:py-12",
                 "blog-md:py-16",
-                "px-4",
-                "blog-md:px-8",
-                "w-full",
-                "mx-auto",
-                "blog-2xl:max-w-none",
-                "blog-lg:px-0",
-                "blog-sm:max-w-screen-blog-sm",
                 "max-w-[512px]",
+                "blog-sm:max-w-screen-blog-sm",
+                "blog-lg:max-w-screen-content-2xl",
             )}
         >
-            <div className="w-full blog-sm:px-6 blog-2xl:px-8">
-                <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4">
+            <div className="blog-sm:px-6 w-full px-4">
+                <h2 className="m-0 mb-4 p-0 pl-4 text-2xl font-semibold text-gray-900 dark:text-gray-200">
                     {title}
                 </h2>
                 <div className="flex flex-col">
@@ -49,7 +45,7 @@ export const PostPaginator = ({ posts, title }) => {
                                     "font-bold",
                                     "text-gray-800 dark:text-gray-200",
                                     "no-underline",
-                                    "hover:no-underline hover:text-gray-800",
+                                    "hover:text-gray-800 hover:no-underline dark:hover:text-gray-200",
                                     "mb-2",
                                 )}
                             >
@@ -67,17 +63,17 @@ export const PostPaginator = ({ posts, title }) => {
 
                             <div
                                 id="post-info"
-                                className="text-gray-600 dark:text-gray-400 text-sm flex gap-2 items-center"
+                                className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
                             >
                                 <Link
                                     to={`/blog/author/${post.authors[0]?.key}`}
                                     itemProp="url"
                                     id="author-name"
-                                    className="text-gray-600 dark:text-gray-400 no-underline hover:no-underline hover:text-gray-600"
+                                    className="text-gray-600 no-underline hover:text-gray-600 hover:no-underline dark:text-gray-400"
                                 >
                                     {post.authors[0]?.name}
                                 </Link>
-                                <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                                <span className="h-[4px] w-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
                                 <Date
                                     date={post.date}
                                     formattedDate={post.formattedDate}

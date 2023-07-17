@@ -6,14 +6,12 @@ import {
     useUpdate,
 } from "@refinedev/core";
 import { List } from "@refinedev/antd";
-
 import {
     CheckCircleOutlined,
     CloseCircleOutlined,
     LoadingOutlined,
     MobileOutlined,
 } from "@ant-design/icons";
-
 import {
     Row,
     Col,
@@ -27,13 +25,12 @@ import {
     Table,
     Skeleton,
 } from "antd";
-
 import dayjs from "dayjs";
 
-import { Map, MapMarker } from "components";
-import { BikeWhiteIcon } from "components/icons";
-import { useOrderCustomKbarActions } from "hooks";
-import { IEvent, IOrder, IProduct } from "interfaces";
+import { Map, MapMarker } from "../../components";
+import { BikeWhiteIcon } from "../../components/icons";
+import { useOrderCustomKbarActions } from "../../hooks";
+import { IEvent, IOrder, IProduct } from "../../interfaces";
 
 import {
     Courier,
