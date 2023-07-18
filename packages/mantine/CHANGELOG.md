@@ -1,5 +1,62 @@
 # @pankod/refine-mantine
 
+## 2.24.0
+
+### Minor Changes
+
+-   [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: when the `dataProvider` returns rejected promise with `errors` field, `useForm` will automatically update the error state with the rejected `errors` field.
+
+    [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/)
+
+-   [#4591](https://github.com/refinedev/refine/pull/4591) [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `autoSave` feature for [`Edit`](https://refine.dev/docs/api-reference/mantine/components/basic-views/edit/#autosaveprops).
+    [useForm](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#autosave), [useDrawerForm](https://refine.dev/docs/api-reference/mantine/hooks/form/useDrawerForm/#autosave), [useModalForm](https://refine.dev/docs/api-reference/mantine/hooks/form/useModalForm/#autosave), [useStepsForm](https://refine.dev/docs/api-reference/mantine/hooks/form/useStepsForm/#autosave) hooks now accept `autoSave` object. `enabled` is a boolean value and `debounce` is a number value in milliseconds. `debounce` is optional and default value is `1000`.
+
+    ```
+    const { autoSaveProps } = useForm({
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+                debounce: 2000, // not required, default is 1000
+            },
+        }
+    });
+
+    return (
+        <Edit
+            saveButtonProps={saveButtonProps}
+            // pass autoSaveProps to Edit component
+            autoSaveProps={autoSaveProps}
+        >
+            // form fields
+        </Edit>
+    );
+    ```
+
+    feat: Add [`<AutoSaveIndicator>`](https://refine.dev/docs/api-reference/mantine/components/mantine-auto-save-indicator/) component. It comes automatically when `autoSaveProps` is given to the `Edit` page. However, this component can be used to position it in a different place.
+
+    ```
+    import { AutoSaveIndicator } from "@refinedev/mantine";
+    const { autoSaveProps } = useForm({
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+                debounce: 2000, // not required, default is 1000
+            },
+        }
+    });
+
+    return (
+        <div>
+            <AutoSaveIndicator {...autoSaveProps}>
+        </div>
+    );
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be)]:
+    -   @refinedev/ui-types@1.20.0
+
 ## 2.23.0
 
 ### Minor Changes
