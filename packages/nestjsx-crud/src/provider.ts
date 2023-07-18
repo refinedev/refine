@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { RequestQueryBuilder, CondOperator } from "@nestjsx/crud-request";
-import { DataProvider } from "@refinedev/core";
+import { DataProvider, HttpError } from "@refinedev/core";
 import { stringify } from "query-string";
 import {
     handleFilter,
@@ -8,6 +8,7 @@ import {
     handleSort,
     handleJoin,
     axiosInstance,
+    transformHttpError,
 } from "./utils";
 
 export const dataProvider = (
@@ -62,33 +63,57 @@ export const dataProvider = (
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, variables);
+        try {
+            const { data } = await httpClient.post(url, variables);
 
-        return {
-            data,
-        };
+            return {
+                data,
+            };
+        } catch (error) {
+            const httpError = transformHttpError(error);
+
+            throw httpError;
+        }
     },
 
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, variables);
+        try {
+            const { data } = await httpClient.patch(url, variables);
 
-        return {
-            data,
-        };
+            return {
+                data,
+            };
+        } catch (error) {
+            const httpError = transformHttpError(error);
+
+            throw httpError;
+        }
     },
 
     updateMany: async ({ resource, ids, variables }) => {
+        const errors: HttpError[] = [];
+
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await httpClient.patch(
-                    `${apiUrl}/${resource}/${id}`,
-                    variables,
-                );
-                return data;
+                try {
+                    const { data } = await httpClient.patch(
+                        `${apiUrl}/${resource}/${id}`,
+                        variables,
+                    );
+                    return data;
+                } catch (error) {
+                    const httpError = transformHttpError(error);
+
+                    errors.push(httpError);
+                }
             }),
         );
+
+        if (errors.length > 0) {
+            throw errors;
+        }
 
         return { data: response };
     },
@@ -96,11 +121,17 @@ export const dataProvider = (
     createMany: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}/bulk`;
 
-        const { data } = await httpClient.post(url, { bulk: variables });
+        try {
+            const { data } = await httpClient.post(url, { bulk: variables });
 
-        return {
-            data,
-        };
+            return {
+                data,
+            };
+        } catch (error) {
+            const httpError = transformHttpError(error);
+
+            throw httpError;
+        }
     },
 
     getOne: async ({ resource, id }) => {

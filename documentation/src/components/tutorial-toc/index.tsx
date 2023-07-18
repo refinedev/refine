@@ -20,7 +20,7 @@ const uiNames: Record<PreferredUIPackage, string> = {
     "chakra-ui": "Chakra UI",
 };
 const baseIconUrl =
-    "https://refine.ams3.digitaloceanspaces.com/website/static/icons/colored/ui-framework-";
+    "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/colored/ui-framework-";
 
 type LinkWithIdProps = HTMLAttributes<HTMLAnchorElement> & {
     id: string;

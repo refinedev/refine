@@ -1,5 +1,59 @@
 # @pankod/refine-mui
 
+## 5.8.0
+
+### Minor Changes
+
+-   [#4591](https://github.com/refinedev/refine/pull/4591) [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `autoSave` feature for [`Edit`](https://refine.dev/docs/api-reference/mui/components/basic-views/edit/#autosaveprops).
+    [useForm](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/#autosave), [useDrawerForm](https://refine.dev/docs/api-reference/antd/hooks/form/useDrawerForm/#autosave), [useModalForm](https://refine.dev/docs/packages/documentation/react-hook-form/useModalForm/#autosave), [useStepsForm](https://refine.dev/docs/packages/documentation/react-hook-form/useStepsForm/#autosave) hooks now accept `autoSave` object. `enabled` is a boolean value and `debounce` is a number value in milliseconds. `debounce` is optional and default value is `1000`.
+
+    ```
+    const { autoSaveProps } = useForm({
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+                debounce: 2000, // not required, default is 1000
+            },
+        }
+    });
+
+    return (
+        <Edit
+            saveButtonProps={saveButtonProps}
+            // pass autoSaveProps to Edit component
+            autoSaveProps={autoSaveProps}
+        >
+            // form fields
+        </Edit>
+    );
+    ```
+
+    feat: Add [`<AutoSaveIndicator>`](https://refine.dev/docs/api-reference/mui/components/mui-auto-save-indicator/) component. It comes automatically when `autoSaveProps` is given to the `Edit` page. However, this component can be used to position it in a different place.
+
+    ```
+    import { AutoSaveIndicator } from "@refinedev/mui";
+    const { autoSaveProps } = useForm({
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+                debounce: 2000, // not required, default is 1000
+            },
+        }
+    });
+
+    return (
+        <div>
+            <AutoSaveIndicator {...autoSaveProps}>
+        </div>
+    );
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411), [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be)]:
+    -   @refinedev/react-hook-form@4.5.0
+    -   @refinedev/ui-types@1.19.0
+
 ## 5.7.0
 
 ### Minor Changes
