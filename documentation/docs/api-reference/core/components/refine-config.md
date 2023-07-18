@@ -415,6 +415,33 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 `options` is used to configure the app.
 
+### `disableServerSideValidation`
+
+When the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the `errors` returned from the `dataProvider`.
+
+[Refer to server-side validation documentation for detailed information. &#8594](/docs/advanced-tutorials/forms/server-side-form-validation)
+
+To disable this behavior, you can set the `disableServerSideValidation` option to `true`.
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            // ...
+            // highlight-start
+            options={{
+                disableServerSideValidation: true,
+            }}
+            // highlight-end
+        >
+            // ...
+        </Refine>
+    );
+};
+```
+
 ### `breadcrumb`
 
 Customize or disable the breadcrumb. By default it uses the Breadcrumb component from respective package.
@@ -1048,3 +1075,4 @@ const App: React.FC = () => (
 <PropsTable module="@refinedev/core/Refine"/>
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
+[http-error]: /docs/api-reference/core/interfaceReferences/#httperror

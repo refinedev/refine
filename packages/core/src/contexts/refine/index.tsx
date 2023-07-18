@@ -30,6 +30,7 @@ export const defaultRefineOptions: IRefineContextOptions = {
         plural: pluralize.plural,
         singular: pluralize.singular,
     },
+    disableServerSideValidation: false,
 };
 
 export const RefineContext = React.createContext<IRefineContext>({
