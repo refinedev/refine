@@ -1,5 +1,29 @@
 # @pankod/refine-ui-tests
 
+## 1.11.0
+
+### Minor Changes
+
+-   [#4591](https://github.com/refinedev/refine/pull/4591) [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `autoSaveIndicatorTests` for `AutoSaveIndicator` component.
+
+### Patch Changes
+
+-   Updated dependencies [[`3af99896101`](https://github.com/refinedev/refine/commit/3af99896101bd41a4d2878c4a9f671ca1da36a6f), [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411), [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411), [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be), [`3442f4bd00a`](https://github.com/refinedev/refine/commit/3442f4bd00ad4dbb17dcba08931fdeed3c2b1cb0), [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be)]:
+    -   @refinedev/core@4.28.0
+    -   @refinedev/ui-types@1.20.0
+
+## 1.10.0
+
+### Minor Changes
+
+-   [#4591](https://github.com/refinedev/refine/pull/4591) [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `autoSaveIndicatorTests` for `AutoSaveIndicator` component.
+
+### Patch Changes
+
+-   Updated dependencies [[`3af99896101`](https://github.com/refinedev/refine/commit/3af99896101bd41a4d2878c4a9f671ca1da36a6f), [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411), [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411), [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be), [`3442f4bd00a`](https://github.com/refinedev/refine/commit/3442f4bd00ad4dbb17dcba08931fdeed3c2b1cb0), [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be)]:
+    -   @refinedev/core@4.27.0
+    -   @refinedev/ui-types@1.19.0
+
 ## 1.9.0
 
 ### Minor Changes

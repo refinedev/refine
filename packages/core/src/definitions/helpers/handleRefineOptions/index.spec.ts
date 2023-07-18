@@ -58,6 +58,7 @@ describe("handleRefineOptions", () => {
                 plural: expect.any(Function),
                 singular: expect.any(Function),
             },
+            disableServerSideValidation: false,
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -123,6 +124,7 @@ describe("handleRefineOptions", () => {
                 plural: expect.any(Function),
                 singular: expect.any(Function),
             },
+            disableServerSideValidation: false,
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -172,6 +174,7 @@ describe("handleRefineOptions", () => {
                 plural: expect.any(Function),
                 singular: expect.any(Function),
             },
+            disableServerSideValidation: false,
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({

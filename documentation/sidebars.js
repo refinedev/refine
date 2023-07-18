@@ -766,6 +766,7 @@ module.exports = {
                                         "examples/form/antd/useForm",
                                         "examples/form/antd/useModalForm",
                                         "examples/form/antd/useStepsForm",
+                                        "examples/form/antd/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -784,6 +785,7 @@ module.exports = {
                                         "examples/form/mantine/useForm",
                                         "examples/form/mantine/useModalForm",
                                         "examples/form/mantine/useStepsForm",
+                                        "examples/form/mantine/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -794,6 +796,17 @@ module.exports = {
                                         "examples/form/mui/useForm",
                                         "examples/form/mui/useModalForm",
                                         "examples/form/mui/useStepsForm",
+                                        "examples/form/mui/serverSideFormValidation",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Chakra UI",
+                                    items: [
+                                        "examples/form/chakra-ui/useDrawerForm",
+                                        "examples/form/chakra-ui/useForm",
+                                        "examples/form/chakra-ui/useModalForm",
+                                        "examples/form/chakra-ui/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -1032,6 +1045,7 @@ module.exports = {
                             label: "Form",
                             items: [
                                 "advanced-tutorials/forms/custom-form-validation",
+                                "advanced-tutorials/forms/server-side-form-validation",
                                 "advanced-tutorials/forms/save-and-continue",
                             ],
                         },

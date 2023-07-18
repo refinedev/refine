@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@refinedev/core";
 
 import {
+    MockLegacyRouterProvider,
     act,
     fireEvent,
     ITestWrapperProps,
@@ -34,6 +35,7 @@ const renderEdit = (
         </Routes>,
         {
             wrapper: TestWrapper({
+                legacyRouterProvider: MockLegacyRouterProvider,
                 routerInitialEntries: ["/posts/edit/1"],
                 accessControlProvider,
                 ...wrapperOptions,
@@ -61,6 +63,7 @@ describe("Edit", () => {
             </Routes>,
             {
                 wrapper: TestWrapper({
+                    legacyRouterProvider: MockLegacyRouterProvider,
                     routerInitialEntries: ["/custom"],
                 }),
             },
@@ -90,6 +93,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -123,6 +127,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -156,6 +161,7 @@ describe("Edit", () => {
 
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -186,6 +192,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -207,6 +214,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -308,6 +316,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts" }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -326,6 +335,7 @@ describe("Edit", () => {
                 </Routes>,
                 {
                     wrapper: TestWrapper({
+                        legacyRouterProvider: MockLegacyRouterProvider,
                         resources: [{ name: "posts" }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
@@ -479,6 +489,7 @@ describe("auto save", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", canDelete: false }],
                     routerInitialEntries: ["/posts/edit/1"],
+                    legacyRouterProvider: MockLegacyRouterProvider,
                     dataProvider: {
                         ...MockJSONServer,
                         update: () => {
@@ -537,6 +548,7 @@ describe("auto save", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", canDelete: false }],
                     routerInitialEntries: ["/posts/edit/1"],
+                    legacyRouterProvider: MockLegacyRouterProvider,
                     dataProvider: {
                         ...MockJSONServer,
                         update: () => {

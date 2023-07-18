@@ -997,6 +997,22 @@ export const PostEdit: React.FC = () => {
 </TabItem>
 </Tabs>
 
+## Server-side form validation
+
+Strapi provides a way to add validation rules to your models. So if you send a request to the server with invalid data, Strapi will return errors for each field that has a validation error.
+
+[Refer to the Strapi documentation for more information &#8594 ](https://docs.strapi.io/dev-docs/backend-customization/models#validations)
+
+By default, `@refinedev/strapi-v4` transforms the error response from Strapi into a [`HttpError`](/docs/api-reference/core/interfaceReferences/#httperror) object. This object contains the following properties:
+
+-   `statusCode` - The status code of the response.
+-   `message` - The error message.
+-   `errors` - An object containing the validation errors for each field.
+
+Thus, `useForm` will automatically set the error message for each field that has a validation error.
+
+[Refer to the server-side form validation documentation for more information &#8594 ](/docs/advanced-tutorials/forms/server-side-form-validation).
+
 ## Example
 
 :::note Demo Credentials
