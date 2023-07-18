@@ -4,19 +4,9 @@ description: We'll build a React admin tutorial app with refine
 slug: react-admin-tutorial
 authors: peter_osah
 tags: [refine, react, strapi, tutorial, chakra-ui]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2FGroup%20818%20(1).png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/Group%20818%20(1).png
 hide_table_of_contents: false
 ---
-
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code example in this post have been updated to version 4.x.x.
-
-:::
 
 ## Introduction
 
@@ -53,29 +43,51 @@ The [`<Refine/>`](https://refine.dev/docs/api-reference/core/components/refine-c
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
-import { PostList } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
                     name: "posts",
-                    list: PostList,
+                    list: "/posts",
+                    create: "/posts/create",
+                    edit: "/posts/edit/:id",
+                    show: "/posts/show/:id",
+                    meta: {
+                        canDelete: true,
+                    },
                 },
             ]}
-        />
+        >
+            <Routes>
+                <Route
+                    index
+                    element={<NavigateToResource resource="posts" />}
+                />
+
+                <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    <Route path="create" element={<PostCreate />} />
+                    <Route path="edit/:id" element={<PostEdit />} />
+                    <Route path="show/:id" element={<PostShow />} />
+                </Route>
+            </Routes>
+        </Refine>
     );
 };
 
 export default App;
 ```
 
-There are a variety of configurations that can be passed into a refine application. they are:
+There are a variety of configurations that can be passed into a refine application. They are:
 
 -   **DataProvider**: a data provider enables a refine application connect to an external API or service. A dataProvider sends HTTP requests and receives responses via predefined methods.
 
@@ -83,16 +95,19 @@ Here is a sample on how to adding a dataProvider to the refine component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
+// highlight-start
 import { authProvider, axiosInstance } from "./authProvider";
 import { DataProvider } from "@refinedev/strapi-v4";
+// highlight-end
 
 function App() {
- return (
-   <Refine
-     ...
-     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
-   />
- );
+    return (
+        <Refine
+            // highlight-next-line
+            dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+            //...
+        />
+    );
 }
 
 export default App;
@@ -111,17 +126,29 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            ...
+            //...
             resources={[
                 {
                     name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
+                    list: "/posts",
+                    create: "/posts/create",
+                    edit: "/posts/edit/:id",
+                    show: "/posts/show/:id",
+                    meta: {
+                        canDelete: true,
+                    },
                 },
             ]}
-        />
+        >
+            <Routes>
+                <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    <Route path="create" element={<PostCreate />} />
+                    <Route path="edit/:id" element={<PostEdit />} />
+                    <Route path="show/:id" element={<PostShow />} />
+                </Route>
+            </Routes>
+        </Refine>
     );
 };
 
@@ -142,11 +169,15 @@ npm create refine-app@latest <name of your application>
 
 You will be directed to the CLI wizard after running the command. To complete the CLI wizard, select the following options:
 
-<div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fcli.png"  alt="react admin tutorial" />
-</div>
-
-<br/>
+```
+✔ Choose a project template · refine(Vite)
+✔ What would you like to name your project?: · blog-ra-chakra-tutorial
+✔ Choose your backend service to connect: · Strapi V4
+✔ Do you want to use a UI Framework?: · Chakra UI
+✔ Do you want to add example pages?: · No
+✔ Do you need i18n (Internationalization) support?: · No
+✔ Choose a package manager: · npm
+```
 
 When these options are selected, the CLI will bootstrap a refine application with the Strapi-v4 provider.
 
@@ -156,11 +187,9 @@ Following installation, we will execute the following command:
 npm run dev
 ```
 
-The refine application should be up and running after you run the command. To access it, go to http://localhost:3000.
+The refine application should be up and running after you run the command. To access it, go to `http://localhost:5173`.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fwelcome.jpeg"  alt="react admin tutorial" />
-
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg"  alt="react admin tutorial" />
 
 ## Utilizing the Strapi v4 Provider in refine
 
@@ -242,19 +271,9 @@ Next, we create a new folder named `pages` under the `src` folder. Under that fo
 
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
-import {
-    IResourceComponentsProps,
-    GetManyResponse,
-    useMany,
-} from "@refinedev/core";
-import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
-import {
-    List,
-    ShowButton,
-    EditButton,
-    DeleteButton,
-    DateField,
-} from "@refinedev/chakra-ui";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+import { List, ShowButton, EditButton, DateField } from "@refinedev/chakra-ui";
 import {
     Table,
     Thead,
@@ -264,11 +283,9 @@ import {
     Td,
     TableContainer,
     HStack,
-    Text,
-    Select,
 } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { IPost } from "interfaces";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -287,7 +304,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 id: "createdAt",
                 accessorKey: "createdAt",
                 header: "Created At",
-                cell: function render({ getValue, table }) {
+                cell: function render({ getValue }) {
                     return (
                         <DateField value={getValue() as string} format="LLL" />
                     );
@@ -316,17 +333,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
+    const { getHeaderGroups, getRowModel, setOptions } = useTable({
         columns,
     });
 
@@ -385,39 +392,129 @@ In the code above, we use the [`useTable()`](https://refine.dev/docs/api-referen
 After this, we can now add the component `<PostList/>` in the `list.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
-import React from "react";
-import { Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
 import {
-    notificationProvider,
-    refineTheme,
-    ReadyPage,
-    ErrorComponent,
-    Layout,
     AuthPage,
+    ErrorComponent,
+    notificationProvider,
+    RefineThemes,
+    ThemedLayoutV2,
 } from "@refinedev/chakra-ui";
+
 import { ChakraProvider } from "@chakra-ui/react";
+import routerBindings, {
+    CatchAllNavigate,
+    DocumentTitleHandler,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
-import { PostList } from "./pages/posts";
+
+import { PostList } from "./pages/posts/list";
 
 function App() {
     return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                ...
-                // highlight-start
-                LoginPage={AuthPage}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                    },
-                    // highlight-end
-                ]}
-            />
-        </ChakraProvider>
+        <BrowserRouter>
+            <GitHubBanner />
+            <RefineKbarProvider>
+                {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
+                <ChakraProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        authProvider={authProvider}
+                        dataProvider={DataProvider(
+                            API_URL + `/api`,
+                            axiosInstance,
+                        )}
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerBindings}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                        // highlight-start
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                            },
+                        ]}
+                        // highlight-end
+                    >
+                        <Routes>
+                            {/* highlight-start */}
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                </Route>
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="posts" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            formProps={{
+                                                defaultValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    }
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                            {/* highlight-end */}
+                        </Routes>
+                        <RefineKbar />
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </ChakraProvider>
+            </RefineKbarProvider>
+        </BrowserRouter>
     );
 }
 
@@ -444,133 +541,61 @@ We will populate records with a `category id` field from the `/posts` endpoint w
 We'll use the populate parameter to specify which fields should be filled in. we will assign an array to the populate parameter which will contain the map the values from the `/categories` endpoint to the records with a `category id` on the `/posts` endpoint. The `populate` parameter will be a property of the `metaData` property which is subsequently a property of the `refineCoreProps` object.
 
 ```tsx title="src/pages/posts/list.tsx"
-const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
-    refineCore: {
-        setCurrent,
-        pageCount,
-        current,
-        tableQueryResult: { data: tableData },
-    },
-} = useTable({
+const { getHeaderGroups, getRowModel, setOptions } = useTable({
     columns,
+    // highlight-start
     refineCoreProps: {
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     },
+    // highlight-end
 });
 ```
 
-To show category field in table, we need to add new column to the PostList component.
+To show category field in table, we need to add new column to the `PostList` component.
 
 ```tsx title="src/pages/posts/list.tsx"
 const columns = React.useMemo<GridColumns<IPost>>(
     () => [
-        ...
+        // ...
         {
             id: "category",
             accessorKey: "category.title",
             header: "Category",
-            cell: function render({ getValue, table }) {
-                   return getValue();
-                 }
+            cell: function render({ getValue }) {
+                return getValue();
+            },
         },
-        ...
-          ],
-        [],
-    );
+        // ...
+    ],
+    [],
+);
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fhandling-relationships.png"  alt="react admin tutorial" />
-
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/handling-relationships.jpg" className="border border-gray-100" alt="react admin tutorial" />
 
 #### Pagination Of Listed Records
 
-Next, we will add Pagination to our application. in order to achieve this, the `usePagination` hook provides certain functions that handle pagination. They are:
+Next, we will add Pagination to our application. in order to achieve this, the `usePagination` hook provides certain functions that handle pagination.
 
-We will go to update the `<PostList/>` component with the code below:
+Create a new file called `pagination.tsx` under the `components` folder. This file will contain the code for the pagination component.
+
+-   `current`: This property holds the current page number obtained from the `useTable()` hook,
+-   `pageCount`: This property holds the total amount of pages present from the `useTable()` hook,
+-   `setCurrent()`: This property sets the current page number to an value. it handles the navigation to either the next page or the previous page.
 
 <details>
 <summary>Show code </summary>
 <p>
 
-```tsx title="src/pages/posts/list.tsx"
-import React from "react";
-import {
-    IResourceComponentsProps,
-    GetManyResponse,
-    useMany,
-} from "@refinedev/core";
-import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
-import {
-    List,
-    usePagination,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    DateField,
-} from "@refinedev/chakra-ui";
-import {
-    TableContainer,
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-    HStack,
-    Button,
-    IconButton,
-    Box,
-} from "@chakra-ui/react";
+```tsx title="src/components/pagination/index.tsx"
+import { FC } from "react";
+import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { IPost } from "interfaces";
+import { usePagination } from "@refinedev/chakra-ui";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            ...
-        ],
-        [],
-    );
-
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
-        columns,
-    });
-
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
-        },
-    }));
-
-    return (
-        <List>
-            ...
-            <Pagination
-                current={current}
-                pageCount={pageCount}
-                setCurrent={setCurrent}
-            />
-        </List>
-    );
-};
+import { IconButton } from "@chakra-ui/react";
 
 type PaginationProps = {
     current: number;
@@ -578,7 +603,7 @@ type PaginationProps = {
     setCurrent: (page: number) => void;
 };
 
-const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: FC<PaginationProps> = ({
     current,
     pageCount,
     setCurrent,
@@ -634,11 +659,49 @@ const Pagination: React.FC<PaginationProps> = ({
 </p>
 </details>
 
-In the code above, we create a `<Pagination/>` components which accepts properties:
+We will go to update the `<PostList/>` component with the code below:
 
--   `current`: This property holds the current page number obtained from the `useTable()` hook,
--   `pageCount`: This property holds the total amount of pages present from the `useTable()` hook,
--   `setCurrent()`: This property sets the current page number to an value. it handles the navigation to either the next page or the previous page.
+<details>
+<summary>Show code </summary>
+<p>
+
+```tsx title="src/pages/posts/list.tsx"
+import { Pagination } from "../../components/pagination";
+
+export const PostList: React.FC<IResourceComponentsProps> = () => {
+    //...
+    const {
+        getHeaderGroups,
+        getRowModel,
+        setOptions,
+        // highlight-next-line
+        refineCore: { current, pageCount, setCurrent },
+    } = useTable({
+        columns,
+        refineCoreProps: {
+            meta: {
+                populate: ["category"],
+            },
+        },
+    });
+
+    return (
+        <List>
+            ...
+            {/* highlight-start */}
+            <Pagination
+                current={current}
+                pageCount={pageCount}
+                setCurrent={setCurrent}
+            />
+            {/* highlight-end */}
+        </List>
+    );
+};
+```
+
+</p>
+</details>
 
 ### Viewing a record
 
@@ -653,7 +716,7 @@ We'll add a `show.tsx` file in the `posts` folder under the `pages` folder next,
 
 ```tsx title="src/pages/posts/show.tsx"
 import { useOne, useShow } from "@refinedev/core";
-import { Show, NumberField, TextField } from "@refinedev/chakra-ui";
+import { Show, NumberField, TextField, DateField } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
@@ -726,43 +789,66 @@ export const PostShow = () => {
 After this, we can now add the component `<PostShow/>` in the `show.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
-...
+//...
 import {
     PostList,
-    //highlight-next-line
-    PostShow
-} from './pages/posts';
+    // highlight-next-line
+    PostShow,
+} from "./pages/posts";
 
 function App() {
-  return (
-    <ChakraProvider theme={refineTheme}>
-      <Refine
-         ...
-          {
-            name: "posts",
-            list: PostList,
-            //highlight-next-line
-            show: PostShow,
-          }
-        ]}
-      />
-    </ChakraProvider>
-  );
+    return (
+        <BrowserRouter>
+            <GitHubBanner />
+            <RefineKbarProvider>
+                <ChakraProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        //...
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                // highlight-next-line
+                                show: "/posts/show/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            //...
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                {/* highlight-start */}
+                                <Route
+                                    path="/posts/show/:id"
+                                    element={<PostShow />}
+                                />
+                                {/* highlight-end */}
+                            </Route>
+                            //...
+                        </Routes>
+                    </Refine>
+                </ChakraProvider>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fviewing.png"  alt="react admin tutorial" />
+Now, the `Show` page look like this:
 
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100"  alt="react admin tutorial" />
 
 ---
 
-
 <PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
-
-
 
 ---
 
@@ -881,39 +967,68 @@ These properties handles the submission of the form action, button loading, and 
 After this, we can now add the component `<PostCreate/>` in the `create.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
-...
+//...
 import {
-     //highlight-next-line
-     PostCreate
-} from './pages/posts';
+    PostList,
+    PostShow,
+    // highlight-next-line
+    PostCreate,
+} from "./pages/posts";
 
 function App() {
-  return (
-    <ChakraProvider theme={refineTheme}>
-      <Refine
-        ...
-        resources={[
-          {
-            name: "posts",
-            list: PostList,
-            show: PostShow,
-            //highlight-next-line
-            create: PostCreate,
-          }
-        ]}
-      />
-    </ChakraProvider>
-  );
+    return (
+        <BrowserRouter>
+            <GitHubBanner />
+            <RefineKbarProvider>
+                <ChakraProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        //...
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                show: "/posts/show/:id",
+                                // highlight-next-line
+                                create: "/posts/create",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            //...
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route
+                                    path="/posts/show/:id"
+                                    element={<PostShow />}
+                                />
+                                {/* highlight-start */}
+                                <Route
+                                    path="/posts/create"
+                                    element={<PostCreate />}
+                                />
+                                {/* highlight-end */}
+                            </Route>
+                            //...
+                        </Routes>
+                    </Refine>
+                </ChakraProvider>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fcreating-record-min.gif"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
 
-<br />
-
-### Modifying/Editing records.
+### Modifying/Editing records
 
 For editing a record, we will add an `edit.tsx` file In the `posts` folder under the pages folder and add the code below to the file:
 
@@ -1087,39 +1202,72 @@ The hooks also provide an object like `saveButtonProps` which handles the submis
 After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
+//...
 import {
-     ...
-     // highlight-next-line
-     PostEdit
+    PostList,
+    PostShow,
+    PostCreate,
+    // highlight-next-line
+    PostEdit,
 } from "./pages/posts";
 
-
 function App() {
-  return (
-    <ChakraProvider theme={refineTheme}>
-      <Refine
-        ...
-        resources={[
-          {
-            name: "posts",
-            list: PostList,
-            show: PostShow,
-            create: PostCreate,
-            // highlight-next-line
-            edit: PostEdit,
-          }
-        ]}
-      />
-    </ChakraProvider>
-  );
+    return (
+        <BrowserRouter>
+            <GitHubBanner />
+            <RefineKbarProvider>
+                <ChakraProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        //...
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                show: "/posts/show/:id",
+                                create: "/posts/create",
+                                // highlight-next-line
+                                edit: "/posts/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            //...
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route
+                                    path="/posts/show/:id"
+                                    element={<PostShow />}
+                                />
+                                <Route
+                                    path="/posts/create"
+                                    element={<PostCreate />}
+                                />
+                                {/* highlight-start */}
+                                <Route
+                                    path="/posts/edit/:id"
+                                    element={<PostEdit />}
+                                />
+                                {/* highlight-end */}
+                            </Route>
+                            //...
+                        </Routes>
+                    </Refine>
+                </ChakraProvider>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fediting-record-min.gif"  alt="react admin tutorial" />
-
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
 
 ### Deleting post record
 
@@ -1127,63 +1275,76 @@ To delete a record, We'll add a **Delete** button so we'll need to update our `<
 
 ```tsx title="src/pages/posts/list.tsx"
 ...
-export const PostList: React.FC = () => {
- const { show, edit, create } = useNavigation();
- const { mutate } = useDelete();
+import {
+    ShowButton,
+    EditButton,
+    // highlight-next-line
+    DeleteButton,
+} from "@refinedev/chakra-ui";
 
- const columns = React.useMemo<ColumnDef<IPost>[]>(
-   () => [
-	...,
-    // highlight-start
-      {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
+    //...
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
+        () => [
+            //...
+            {
                 id: "actions",
                 accessorKey: "id",
                 header: "Actions",
                 cell: function render({ getValue }) {
-                    return (
-                        <HStack>
-                            ...
-                             <DeleteButton
-                                hideText
-                                recordItemId={getValue() as string}
-                            />
-                        </HStack>
+                return (
+                    <HStack>
+                        <ShowButton hideText recordItemId={getValue() as string} />
+                        <EditButton hideText recordItemId={getValue() as string} />
+                        { /* highlight-next-line */ }
+                        <DeleteButton hideText recordItemId={getValue() as string} />
+                    </HStack>
                     );
                 },
-        },
-    // highlight-end
-   [],
- );
+            },
+        ],
+    []
+  );
+  //...
 };
 ```
 
 Another way to include a delete button on the `<PostEdit>` page. To display the delete button on the edit page and the view page, the `canDelete` prop must be passed to the resource object.
 
 ```tsx title="src/App.tsx"
-...
+//...
 function App() {
-  return (
-    <ChakraProvider theme={refineTheme}>
-      <Refine
-        ...
-        resources={[
-          {
-            ...
-            // highlight-next-line
-            canDelete: true,
-          }
-        ]}
-      />
-    </ChakraProvider>
-  );
+    return (
+        <BrowserRouter>
+            <GitHubBanner />
+            <RefineKbarProvider>
+                <ChakraProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        //...
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                show: "/posts/show/:id",
+                                create: "/posts/create",
+                                // highlight-start
+                                meta: {
+                                    canDelete: true,
+                                },
+                                // highlight-end
+                            },
+                        ]}
+                    />
+                </ChakraProvider>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fdeleting-post-record.png"  alt="react admin tutorial" />
-
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
 
 ### Implement sorting of listed records
 
@@ -1206,16 +1367,33 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
 
     const sorted = column.getIsSorted();
 
+    const Icon = () => {
+        if (!sorted) {
+            return <IconSelector size={18} />;
+        }
+
+        if (sorted === "asc") {
+            return <IconChevronDown size={18} />;
+        }
+
+        if (sorted === "desc") {
+            return <IconChevronUp size={18} />;
+        }
+
+        return null;
+    };
+
     return (
         <IconButton
             aria-label="Sort"
             size="xs"
             onClick={column.getToggleSortingHandler()}
-        >
-            {!sorted && <IconSelector size={18} />}
-            {sorted === "asc" && <IconChevronDown size={18} />}
-            {sorted === "desc" && <IconChevronUp size={18} />}
-        </IconButton>
+            style={{
+                transition: "transform 0.25s",
+                transform: `rotate(${sorted === "asc" ? "180" : "0"}deg)`,
+            }}
+            icon={<Icon />}
+        />
     );
 };
 ```
@@ -1231,25 +1409,29 @@ Next, we import the `<ColumnSorter/>` component to the list.tsx file located at 
 
 ```tsx title="src/pages/posts/list.tsx"
 ...
-import { ColumnSorter } from "components/ColumnSorter";
+import { ColumnSorter } from "../../components/column-sorter";
 
-<Thead>
-{getHeaderGroups().map((headerGroup) => (
-    <Tr key={headerGroup.id}>
-        {headerGroup.headers.map((header) => (
-            <Th key={header.id}>
-                {
-            !header.isPlaceholder
-            && flexRender(header.column.columnDef.header,
-                                                 header.getContext(),
-        )}
-            <ColumnSorter column={header.column} />
-
-            </Th>
+//...
+<Table variant="simple">
+    <Thead>
+        {getHeaderGroups().map((headerGroup) => (
+            <Tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                    <Th key={header.id}>
+                        {!header.isPlaceholder &&
+                            flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                            )}
+                        { /* highlight-next-line */}
+                        <ColumnSorter column={header.column} />
+                    </Th>
+                ))}
+            </Tr>
         ))}
-    </Tr>
-    ))}
-</Thead>
+    </Thead>
+    //...
+</Table>
 ```
 
 You can set the `enableSorting` property of the column to false in the column definition to disable sorting for the `**actions** column, as shown below:
@@ -1259,10 +1441,13 @@ You can set the `enableSorting` property of the column to false in the column de
     id: "actions",
     accessorKey: "id",
     header: "Actions",
+    // highlight-next-line
     enableSorting: false,
     ...
 },
 ```
+
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
 
 ### Implement filters on listed records
 
@@ -1387,27 +1572,33 @@ In the code above, `<ColumnFilter/>` is a button. on clicking the button, a menu
 Next, we Import the `<ColumnFilter/>` component to the list.tsx file located at the `src/pages/posts/` directory and add the component to the `<Th/>` of the table just like we did the `<ColumnSorter/>` component.
 
 ```tsx title="src/pages/posts/list.tsx"
-import { ColumnFilter } from "components/ColumnFilter";
+...
+import { ColumnSorter } from "../../components/column-sorter";
+// highlight-next-line
+import { ColumnFilter } from "../../components/column-filter";
 
-....
-
-<Thead>
-{getHeaderGroups().map((headerGroup) => (
-    <Tr key={headerGroup.id}>
-        {headerGroup.headers.map((header) => (
-            <Th key={header.id}>
-                {
-            !header.isPlaceholder
-            && flexRender(header.column.columnDef.header,
-                                                 header.getContext(),
-        )}
-            <ColumnSorter column={header.column} />
-            <ColumnFilter column={header.column} />
-            </Th>
+//...
+<Table variant="simple">
+    <Thead>
+        {getHeaderGroups().map((headerGroup) => (
+            <Tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                    <Th key={header.id}>
+                        {!header.isPlaceholder &&
+                            flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                            )}
+                        <ColumnSorter column={header.column} />
+                        { /* highlight-next-line */}
+                        <ColumnFilter column={header.column} />
+                    </Th>
+                ))}
+            </Tr>
         ))}
-    </Tr>
-    ))}
-</Thead>
+    </Thead>
+    //...
+</Table>
 ```
 
 We can change the `filter` operator for columns to "`contains`". The filterOperator is set to `"eq"` by default. As a result, we changed the filterOperator for specific columns to "`contains`" as shown below:
@@ -1417,25 +1608,31 @@ We can change the `filter` operator for columns to "`contains`". The filterOpera
     id: "id",
     accessorKey: "id",
     header: "Id",
+    // highlight-start
     meta: {
-        filterOperator: "contains",
+        filterOperator: "eq",
     },
+    // highlight-end
 },
 {
     id: "title",
     accessorKey: "title",
     header: "Title",
+    // highlight-start
     meta: {
         filterOperator: "contains",
     },
+    // highlight-end
 },
 {
     id: "category",
     accessorKey: "category.title",
     header: "Category",
+    // highlight-start
     meta: {
         filterOperator: "contains",
     },
+    // highlight-end
     ...
 },
 {
@@ -1453,14 +1650,13 @@ We can also disable filtering for the `actions` column by setting the column's e
     id: "actions",
     accessorKey: "id",
     header: "Actions",
+    // highlight-next-line
     enableColumnFilter: false,
     ...
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Ffiltering-min.gif"  alt="react admin tutorial" />
-
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.gif" className="border border-gray-100" alt="react admin tutorial" />
 
 ### Implementing mutation mode.
 
@@ -1480,20 +1676,21 @@ To enable mutation mode, we will set the `mutationMode` property in the Refine c
 ...
 function App() {
   return (
-    <ChakraProvider theme={refineTheme}>
-      <Refine
-        ...
-        options={{ mutationMode: "undoable" }}
-      />
-    </ChakraProvider>
-  );
+        <Refine
+            //...
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+              // highlight-next-line
+              mutationMode: "undoable"
+            }}
+        />
+    );
 }
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fmutationmode-min.gif"  alt="react admin tutorial" />
-
-<br />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.gif" className="border border-gray-100"  alt="react admin tutorial" />
 
 ## Conclusion
 
