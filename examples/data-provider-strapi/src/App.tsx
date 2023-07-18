@@ -23,8 +23,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+import { PostList, PostCreate, PostEdit } from "./pages/posts";
+import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 
 import { TOKEN_KEY, API_URL } from "./constants";
 import { ConfigProvider } from "antd";

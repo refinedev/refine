@@ -52,9 +52,7 @@
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 12px;
+    @apply flex items-center flex-wrap gap-4 2xl:gap-8;
 }
 
 .cardsSmall {

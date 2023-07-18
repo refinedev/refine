@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import {
     HttpError,
     IResourceComponentsProps,
@@ -15,8 +16,6 @@ import {
 import { useForm, useModalForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
-import React, { useCallback } from "react";
-
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 
 import Avatar from "@mui/material/Avatar";
@@ -38,8 +37,8 @@ import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
 import Edit from "@mui/icons-material/Edit";
 import RemoveCircleOutline from "@mui/icons-material/RemoveCircleOutline";
 
-import { EditProduct } from "components";
-import { ICategory, IProduct, Nullable } from "interfaces";
+import { EditProduct } from "../../components";
+import { ICategory, IProduct, Nullable } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {

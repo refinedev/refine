@@ -1,14 +1,11 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { DatePicker, Form, Input, Select } from "antd";
-
 import MDEditor from "@uiw/react-md-editor";
-
-import { IPost, ICategory } from "interfaces";
 import dayjs from "dayjs";
+
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();

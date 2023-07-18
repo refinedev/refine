@@ -14,7 +14,7 @@ import {
 import { Table, Space, Select, Radio } from "antd";
 import { LogButton } from "@refinedev/antd-audit-log";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps, filters } = useTable<IPost>({

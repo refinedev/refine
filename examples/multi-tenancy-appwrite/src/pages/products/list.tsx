@@ -12,8 +12,12 @@ import {
 } from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
-import { IProduct } from "interfaces";
-import { ProductItem, EditProduct, CreateProduct } from "components/product";
+import {
+    ProductItem,
+    EditProduct,
+    CreateProduct,
+} from "../../components/product";
+import { IProduct } from "../../interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();

@@ -348,6 +348,7 @@ module.exports = {
                                         "api-reference/antd/components/inputs/custom-inputs",
                                     ],
                                 },
+                                "api-reference/antd/components/antd-auto-save-indicator",
                             ],
                         },
                         "api-reference/antd/theming",
@@ -413,6 +414,7 @@ module.exports = {
                                         "api-reference/chakra-ui/components/fields/url",
                                     ],
                                 },
+                                "api-reference/chakra-ui/components/chakra-ui-auto-save-indicator",
                             ],
                         },
                         "api-reference/chakra-ui/theming",
@@ -494,6 +496,7 @@ module.exports = {
                                         "api-reference/mantine/components/fields/url",
                                     ],
                                 },
+                                "api-reference/mantine/components/mantine-auto-save-indicator",
                             ],
                         },
                         "api-reference/mantine/theming",
@@ -566,6 +569,7 @@ module.exports = {
                                         "api-reference/mui/components/fields/url",
                                     ],
                                 },
+                                "api-reference/mui/components/mui-auto-save-indicator",
                             ],
                         },
                         "api-reference/mui/theming",
@@ -762,6 +766,7 @@ module.exports = {
                                         "examples/form/antd/useForm",
                                         "examples/form/antd/useModalForm",
                                         "examples/form/antd/useStepsForm",
+                                        "examples/form/antd/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -780,6 +785,7 @@ module.exports = {
                                         "examples/form/mantine/useForm",
                                         "examples/form/mantine/useModalForm",
                                         "examples/form/mantine/useStepsForm",
+                                        "examples/form/mantine/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -790,6 +796,17 @@ module.exports = {
                                         "examples/form/mui/useForm",
                                         "examples/form/mui/useModalForm",
                                         "examples/form/mui/useStepsForm",
+                                        "examples/form/mui/serverSideFormValidation",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Chakra UI",
+                                    items: [
+                                        "examples/form/chakra-ui/useDrawerForm",
+                                        "examples/form/chakra-ui/useForm",
+                                        "examples/form/chakra-ui/useModalForm",
+                                        "examples/form/chakra-ui/serverSideFormValidation",
                                     ],
                                 },
                                 {
@@ -1028,6 +1045,7 @@ module.exports = {
                             label: "Form",
                             items: [
                                 "advanced-tutorials/forms/custom-form-validation",
+                                "advanced-tutorials/forms/server-side-form-validation",
                                 "advanced-tutorials/forms/save-and-continue",
                             ],
                         },

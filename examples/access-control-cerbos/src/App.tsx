@@ -18,15 +18,15 @@ import { HTTP as Cerbos } from "@cerbos/http";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { Header } from "components/header";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
+import { Header } from "./components/header";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { UserList, UserCreate, UserEdit, UserShow } from "./pages/users";
 import {
     CategoryList,
     CategoryCreate,
     CategoryEdit,
     CategoryShow,
-} from "pages/categories";
+} from "./pages/categories";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

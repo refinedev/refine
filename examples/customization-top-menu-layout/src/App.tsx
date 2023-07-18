@@ -16,8 +16,8 @@ import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList } from "pages/posts";
-import { CustomSider } from "components";
+import { PostList } from "./pages/posts";
+import { CustomSider } from "./components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

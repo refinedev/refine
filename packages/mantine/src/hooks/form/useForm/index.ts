@@ -11,6 +11,8 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
+    useTranslate,
+    useRefineContext,
 } from "@refinedev/core";
 
 type FormVariableType<TVariables, TTransformed> = ReturnType<
@@ -67,7 +69,14 @@ export type UseFormProps<
     > & {
         warnWhenUnsavedChanges?: boolean;
     };
-} & UseFormInput<TVariables, (values: TVariables) => TTransformed>;
+} & UseFormInput<TVariables, (values: TVariables) => TTransformed> & {
+        /**
+         * Disables server-side validation
+         * @default false
+         * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+         */
+        disableServerSideValidation?: boolean;
+    };
 
 export const useForm = <
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -79,6 +88,7 @@ export const useForm = <
     TResponseError extends HttpError = TError,
 >({
     refineCoreProps,
+    disableServerSideValidation: disableServerSideValidationProp = false,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -97,6 +107,12 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const { options } = useRefineContext();
+    const disableServerSideValidation =
+        options?.disableServerSideValidation || disableServerSideValidationProp;
+
+    const translate = useTranslate();
+
     const warnWhenUnsavedChangesProp = refineCoreProps?.warnWhenUnsavedChanges;
 
     const {
@@ -105,19 +121,6 @@ export const useForm = <
     } = useWarnAboutChange();
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
-
-    const useFormCoreResult = useFormCore<
-        TQueryFnData,
-        TError,
-        FormVariableType<TVariables, TTransformed>,
-        TData,
-        TResponse,
-        TResponseError
-    >({
-        ...refineCoreProps,
-    });
-
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     const useMantineFormResult = useMantineForm<
         TVariables,
@@ -131,7 +134,61 @@ export const useForm = <
         onSubmit: onMantineSubmit,
         isDirty,
         resetDirty,
+        setFieldError,
+        values,
     } = useMantineFormResult;
+
+    const useFormCoreResult = useFormCore<
+        TQueryFnData,
+        TError,
+        FormVariableType<TVariables, TTransformed>,
+        TData,
+        TResponse,
+        TResponseError
+    >({
+        ...refineCoreProps,
+        onMutationError: (error, _variables, _context) => {
+            if (disableServerSideValidation) {
+                refineCoreProps?.onMutationError?.(error, _variables, _context);
+                return;
+            }
+
+            const errors = error?.errors;
+
+            for (const key in errors) {
+                const fieldError = errors[key];
+
+                let newError = "";
+
+                if (Array.isArray(fieldError)) {
+                    newError = fieldError.join(" ");
+                }
+
+                if (typeof fieldError === "string") {
+                    newError = fieldError;
+                }
+
+                if (typeof fieldError === "boolean") {
+                    newError = "Field is not valid.";
+                }
+
+                if (typeof fieldError === "object" && "key" in fieldError) {
+                    const translatedMessage = translate(
+                        fieldError.key,
+                        fieldError.message,
+                    );
+
+                    newError = translatedMessage;
+                }
+                setFieldError(key, newError);
+            }
+
+            refineCoreProps?.onMutationError?.(error, _variables, _context);
+        },
+    });
+
+    const { queryResult, formLoading, onFinish, onFinishAutoSave } =
+        useFormCoreResult;
 
     useEffect(() => {
         if (typeof queryResult?.data !== "undefined") {
@@ -157,6 +214,18 @@ export const useForm = <
         }
     }, [isValuesChanged]);
 
+    useEffect(() => {
+        if (isValuesChanged && refineCoreProps?.autoSave && values) {
+            setWarnWhen(false);
+
+            const transformedValues = rest.transformValues
+                ? rest.transformValues(values)
+                : (values as unknown as TTransformed);
+
+            onFinishAutoSave(transformedValues);
+        }
+    }, [values]);
+
     const onSubmit: (typeof useMantineFormResult)["onSubmit"] =
         (handleSubmit, handleValidationFailure) => async (e) => {
             setWarnWhen(false);
@@ -174,6 +243,8 @@ export const useForm = <
             onSubmit(onFinish, () => false)(e);
         },
     };
+
+    console.log(useFormCoreResult.autoSaveProps);
 
     return {
         ...useMantineFormResult,

@@ -1,7 +1,7 @@
 import React from "react";
-import { FormInstance, FormProps, Form } from "antd";
+import { FormInstance, FormProps, Form, ButtonProps } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
-import { ButtonProps } from "antd";
+import { AutoSaveProps } from "@refinedev/core";
 
 import {
     HttpError,
@@ -13,6 +13,8 @@ import {
     CreateResponse,
     UpdateResponse,
     pickNotDeprecated,
+    useTranslate,
+    useRefineContext,
 } from "@refinedev/core";
 
 export type UseFormProps<
@@ -35,7 +37,13 @@ export type UseFormProps<
      * Shows notification when unsaved changes exist
      */
     warnWhenUnsavedChanges?: boolean;
-};
+    /**
+     * Disables server-side validation
+     * @default false
+     * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+     */
+    disableServerSideValidation?: boolean;
+} & AutoSaveProps<TVariables>;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -87,7 +95,8 @@ export const useForm = <
     action,
     resource,
     onMutationSuccess: onMutationSuccessProp,
-    onMutationError,
+    onMutationError: onMutationErrorProp,
+    autoSave,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect,
@@ -109,6 +118,7 @@ export const useForm = <
     updateMutationOptions,
     id: idFromProps,
     overtimeOptions,
+    disableServerSideValidation: disableServerSideValidationProp = false,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -124,6 +134,12 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const { options } = useRefineContext();
+    const disableServerSideValidation =
+        options?.disableServerSideValidation || disableServerSideValidationProp;
+
+    const translate = useTranslate();
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TResponse, TVariables>({
         form: formAnt,
@@ -141,7 +157,77 @@ export const useForm = <
         onMutationSuccess: onMutationSuccessProp
             ? onMutationSuccessProp
             : undefined,
-        onMutationError,
+        onMutationError: async (error, _variables, _context) => {
+            if (disableServerSideValidation) {
+                onMutationErrorProp?.(error, _variables, _context);
+                return;
+            }
+
+            // antd form expects error object to be in a specific format.
+            let parsedErrors: {
+                name: string | number | (string | number)[];
+                errors?: string[] | undefined;
+            }[] = [];
+
+            // reset antd errors before setting new errors
+            const fieldsValue = form.getFieldsValue() as unknown as object;
+            const fields = Object.keys(fieldsValue);
+            parsedErrors = fields.map((field) => {
+                return {
+                    name: field,
+                    errors: undefined,
+                };
+            });
+            form.setFields(parsedErrors);
+
+            const errors = error?.errors;
+            // parse errors to antd form errors
+            for (const key in errors) {
+                const fieldError = errors[key];
+
+                let newError: string[] = [];
+
+                if (Array.isArray(fieldError)) {
+                    newError = fieldError;
+                }
+
+                if (typeof fieldError === "string") {
+                    newError = [fieldError];
+                }
+
+                if (typeof fieldError === "boolean" && fieldError) {
+                    newError = ["Field is not valid."];
+                }
+
+                if (typeof fieldError === "object" && "key" in fieldError) {
+                    const translatedMessage = translate(
+                        fieldError.key,
+                        fieldError.message,
+                    );
+
+                    newError = [translatedMessage];
+                }
+
+                // antd form expects the key to be an array.
+                // if the key is a number, it will be parsed to a number because.
+                const newKey = key.split(".").map((item) => {
+                    // check if item is a number
+                    if (!isNaN(Number(item))) {
+                        return Number(item);
+                    }
+                    return item;
+                });
+
+                parsedErrors.push({
+                    name: newKey,
+                    errors: newError,
+                });
+            }
+
+            form.setFields([...parsedErrors]);
+
+            onMutationErrorProp?.(error, _variables, _context);
+        },
         redirect,
         action,
         resource,
@@ -165,7 +251,8 @@ export const useForm = <
         overtimeOptions,
     });
 
-    const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
+    const { formLoading, onFinish, queryResult, id, onFinishAutoSave } =
+        useFormCoreResult;
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -184,10 +271,20 @@ export const useForm = <
         }
     };
 
-    const onValuesChange = (changeValues: object) => {
+    const onValuesChange = (changeValues: object, allValues: any) => {
         if (changeValues && warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+
+        if (autoSave?.enabled) {
+            setWarnWhen(false);
+
+            const onFinishFromProps =
+                autoSave?.onFinish ?? ((values) => values);
+
+            return onFinishAutoSave(onFinishFromProps(allValues));
+        }
+
         return changeValues;
     };
 

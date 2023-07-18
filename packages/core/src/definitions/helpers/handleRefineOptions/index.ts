@@ -86,6 +86,9 @@ export const handleRefineOptions = ({
                 options?.textTransformers?.singular ??
                 defaultRefineOptions.textTransformers.singular,
         },
+        disableServerSideValidation:
+            options?.disableServerSideValidation ??
+            defaultRefineOptions.disableServerSideValidation,
     };
 
     const disableTelemetryWithDefault =

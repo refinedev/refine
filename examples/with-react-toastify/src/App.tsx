@@ -11,8 +11,8 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import { notificationProvider } from "providers/notificationProvider";
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { notificationProvider } from "./providers/notificationProvider";
+import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

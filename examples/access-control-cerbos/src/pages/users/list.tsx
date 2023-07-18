@@ -11,7 +11,7 @@ import {
 
 import { Table, Space } from "antd";
 
-import { IUser } from "interfaces";
+import { IUser } from "../../interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IUser>();

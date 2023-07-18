@@ -6,7 +6,7 @@ import {
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
-import { IOrder, IProduct } from "interfaces";
+import { IOrder, IProduct } from "../../interfaces";
 
 export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();

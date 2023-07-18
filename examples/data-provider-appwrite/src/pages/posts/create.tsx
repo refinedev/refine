@@ -7,8 +7,8 @@ import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, IPostVariables, ICategory } from "interfaces";
-import { normalizeFile, storage } from "utility";
+import { IPost, IPostVariables, ICategory } from "../../interfaces";
+import { normalizeFile, storage } from "../../utility";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<

@@ -18,9 +18,9 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { OrderCreate, OrderEdit, OrderList } from "pages/order";
-import { ProductList } from "pages/product";
-import { Header } from "components/header";
+import { OrderCreate, OrderEdit, OrderList } from "./pages/order";
+import { ProductList } from "./pages/product";
+import { Header } from "./components/header";
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
 

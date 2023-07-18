@@ -1,13 +1,11 @@
 import { useDelete } from "@refinedev/core";
 import { TagField } from "@refinedev/antd";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
 import * as Icons from "@ant-design/icons";
 
 import { Card, Typography, Dropdown, Menu } from "antd";
 
-import { IClient } from "interfaces";
+import { IClient } from "../../interfaces";
 
 const { FormOutlined, DeleteOutlined } = Icons;
 const { Title, Text } = Typography;

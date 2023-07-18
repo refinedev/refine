@@ -28,15 +28,15 @@ import {
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
+import { useConfigProvider } from "../../context";
+import { IconMoon, IconSun } from "../../components/icons";
+import { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
+import { HeaderTitle } from "./styled";
+
 const { Header: AntdHeader } = AntdLayout;
 const { useToken } = theme;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
-
-import { IOrder, IStore, ICourier, IIdentity } from "interfaces";
-import { HeaderTitle } from "./styled";
-import { useConfigProvider } from "context";
-import { IconMoon, IconSun } from "components/icons";
 
 interface IOptionGroup {
     value: string;

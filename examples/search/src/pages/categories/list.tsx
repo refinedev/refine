@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -7,10 +6,9 @@ import {
     ShowButton,
     BooleanField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<ICategory>();

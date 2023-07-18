@@ -3,7 +3,6 @@ import {
     useTranslate,
     useApiUrl,
 } from "@refinedev/core";
-
 import {
     Create,
     SaveButton,
@@ -11,7 +10,6 @@ import {
     useStepsForm,
     useSelect,
 } from "@refinedev/antd";
-
 import {
     Form,
     Select,
@@ -26,12 +24,11 @@ import {
     Col,
     InputProps,
 } from "antd";
-
 import InputMask from "react-input-mask";
 
-const { Text } = Typography;
+import { ICourier, IStore } from "../../interfaces";
 
-import { ICourier, IStore } from "interfaces";
+const { Text } = Typography;
 
 export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

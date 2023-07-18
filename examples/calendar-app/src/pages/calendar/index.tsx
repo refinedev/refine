@@ -5,7 +5,7 @@ import { Badge, BadgeProps, Calendar } from "antd";
 import { CalendarMode } from "antd/lib/calendar/generateCalendar";
 import dayjs from "dayjs";
 
-import { IEvent } from "interfaces";
+import { IEvent } from "../../interfaces";
 
 import "./index.css";
 

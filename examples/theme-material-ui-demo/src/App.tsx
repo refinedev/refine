@@ -22,9 +22,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
-import { authProvider } from "authProvider";
-import { ThemeSettings, RememeberMe } from "components";
+import { PostList, PostCreate, PostEdit } from "./pages/posts";
+import { authProvider } from "./authProvider";
+import { ThemeSettings, RememeberMe } from "./components";
 
 const App: React.FC = () => {
     const [customTheme, setCustomTheme] = useState(RefineThemes.MagentaDark);

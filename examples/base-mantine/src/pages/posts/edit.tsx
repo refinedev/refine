@@ -9,7 +9,7 @@ export const PostEdit: React.FC = () => {
         saveButtonProps,
         getInputProps,
         errors,
-        refineCore: { queryResult },
+        refineCore: { queryResult, autoSaveProps },
     } = useForm({
         initialValues: {
             title: "",
@@ -31,6 +31,11 @@ export const PostEdit: React.FC = () => {
             content: (value) =>
                 value.length < 10 ? "Too short content" : null,
         },
+        refineCoreProps: {
+            autoSave: {
+                enabled: true,
+            },
+        },
     });
 
     const defaultTags = queryResult?.data?.data?.tags || [];
@@ -46,7 +51,7 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps} autoSaveProps={autoSaveProps}>
             <form>
                 <TextInput
                     mt={8}

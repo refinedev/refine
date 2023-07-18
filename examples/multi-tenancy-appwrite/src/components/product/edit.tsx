@@ -1,8 +1,8 @@
+import { useParsed } from "@refinedev/core";
 import { RcFile } from "antd/lib/upload/interface";
 import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 
-import { normalizeFile, storage } from "utility";
-import { useParsed } from "@refinedev/core";
+import { normalizeFile, storage } from "../../utility";
 
 type EditProductProps = {
     modalProps: ModalProps;

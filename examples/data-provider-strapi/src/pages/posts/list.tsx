@@ -13,7 +13,7 @@ import {
 
 import { Table, Select, Space } from "antd";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, filters } = useTable<IPost>({

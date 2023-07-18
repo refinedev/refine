@@ -14,6 +14,8 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
+    useTranslate,
+    useRefineContext,
 } from "@refinedev/core";
 
 export type UseFormReturnType<
@@ -65,6 +67,12 @@ export type UseFormProps<
      * @default `false*`
      */
     warnWhenUnsavedChanges?: boolean;
+    /**
+     * Disables server-side validation
+     * @default false
+     * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+     */
+    disableServerSideValidation?: boolean;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -78,6 +86,7 @@ export const useForm = <
 >({
     refineCoreProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    disableServerSideValidation: disableServerSideValidationProp = false,
     ...rest
 }: UseFormProps<
     TQueryFnData,
@@ -96,25 +105,18 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const { options } = useRefineContext();
+    const disableServerSideValidation =
+        options?.disableServerSideValidation || disableServerSideValidationProp;
+
+    const translate = useTranslate();
+
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
         setWarnWhen,
     } = useWarnAboutChange();
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
-
-    const useFormCoreResult = useFormCore<
-        TQueryFnData,
-        TError,
-        TVariables,
-        TData,
-        TResponse,
-        TResponseError
-    >({
-        ...refineCoreProps,
-    });
-
-    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     const useHookFormResult = useHookForm<TVariables, TContext>({
         ...rest,
@@ -125,13 +127,78 @@ export const useForm = <
         setValue,
         getValues,
         handleSubmit: handleSubmitReactHookForm,
+        setError,
     } = useHookFormResult;
+
+    const useFormCoreResult = useFormCore<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
+        ...refineCoreProps,
+        onMutationError: (error, _variables, _context) => {
+            if (disableServerSideValidation) {
+                refineCoreProps?.onMutationError?.(error, _variables, _context);
+                return;
+            }
+
+            const errors = error?.errors;
+
+            for (const key in errors) {
+                // when the key is not registered in the form, react-hook-form not working
+                const isKeyInVariables = Object.keys(_variables).includes(
+                    key.split(".")[0],
+                );
+                if (!isKeyInVariables) {
+                    continue;
+                }
+
+                const fieldError = errors[key];
+
+                let newError = "";
+
+                if (Array.isArray(fieldError)) {
+                    newError = fieldError.join(" ");
+                }
+
+                if (typeof fieldError === "string") {
+                    newError = fieldError;
+                }
+
+                if (typeof fieldError === "boolean" && fieldError) {
+                    newError = "Field is not valid.";
+                }
+
+                if (typeof fieldError === "object" && "key" in fieldError) {
+                    const translatedMessage = translate(
+                        fieldError.key,
+                        fieldError.message,
+                    );
+
+                    newError = translatedMessage;
+                }
+
+                setError(key as Path<TVariables>, {
+                    message: newError,
+                });
+            }
+
+            refineCoreProps?.onMutationError?.(error, _variables, _context);
+        },
+    });
+
+    const { queryResult, onFinish, formLoading, onFinishAutoSave } =
+        useFormCoreResult;
 
     useEffect(() => {
         const data = queryResult?.data?.data;
         if (!data) return;
 
         const registeredFields = Object.keys(getValues());
+
         Object.entries(data).forEach(([key, value]) => {
             const name = key as Path<TVariables>;
 
@@ -150,10 +217,23 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
-    const onValuesChange = (changeValues: Record<string, any>) => {
+    const onValuesChange = (changeValues: TVariables) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
+
+        if (refineCoreProps?.autoSave) {
+            setWarnWhen(false);
+
+            const onFinishProps = refineCoreProps.autoSave?.onFinish;
+
+            if (onFinishProps) {
+                return onFinishAutoSave(onFinishProps(changeValues));
+            }
+
+            return onFinishAutoSave(changeValues);
+        }
+
         return changeValues;
     };
 

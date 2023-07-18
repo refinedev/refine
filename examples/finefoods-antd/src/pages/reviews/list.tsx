@@ -5,9 +5,7 @@ import {
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
-
 import { List, useTable } from "@refinedev/antd";
-
 import {
     CheckCircleOutlined,
     CloseCircleOutlined,
@@ -25,7 +23,7 @@ import {
     Menu,
 } from "antd";
 
-import { IReview } from "interfaces";
+import { IReview } from "../../interfaces";
 
 export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(

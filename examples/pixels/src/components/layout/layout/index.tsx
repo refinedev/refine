@@ -2,7 +2,7 @@ import React from "react";
 import { LayoutProps } from "@refinedev/core";
 import { Layout as AntdLayout } from "antd";
 
-import { Header } from "components/layout";
+import { Header } from "../../../components/layout";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (

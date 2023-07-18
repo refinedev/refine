@@ -1,7 +1,5 @@
 import { useTranslate, BaseKey } from "@refinedev/core";
-
 import { NumberField } from "@refinedev/antd";
-
 import {
     CloseCircleOutlined,
     FormOutlined,
@@ -17,9 +15,9 @@ import {
     Typography,
 } from "antd";
 
-const { Text, Paragraph } = Typography;
+import { IProduct } from "../../interfaces";
 
-import { IProduct } from "interfaces";
+const { Text, Paragraph } = Typography;
 
 type ProductItemProps = {
     item: IProduct;

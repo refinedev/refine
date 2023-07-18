@@ -460,7 +460,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 :::caution
 
-If the "create" resource is not defined or if [`canCrate`](#cancreate-and-createbuttonprops) is false, the [`<CreateButton>`][create-button] will not render and `createButtonProps`will be `undefined`.
+If the "create" resource is not defined or if [`canCreate`](#cancreate-and-createbuttonprops) is false, the [`<CreateButton>`][create-button] will not render and `createButtonProps`will be `undefined`.
 
 :::
 

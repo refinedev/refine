@@ -25,8 +25,8 @@ import {
     Grid,
 } from "antd";
 
-import { ICategory, IProduct } from "interfaces";
-import { EditProduct } from "components/product";
+import { ICategory, IProduct } from "../../interfaces";
+import { EditProduct } from "../../components/product";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {

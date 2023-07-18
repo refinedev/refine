@@ -4,7 +4,6 @@ import {
     IResourceComponentsProps,
     useTranslate,
 } from "@refinedev/core";
-
 import {
     useTable,
     List,
@@ -32,9 +31,8 @@ import {
     Popover,
 } from "antd";
 
-import { OrderStatus } from "components";
-
-import { IUser, IOrder, IOrderFilterVariables } from "interfaces";
+import { OrderStatus } from "../../components";
+import { IUser, IOrder, IOrderFilterVariables } from "../../interfaces";
 
 const { useBreakpoint } = Grid;
 

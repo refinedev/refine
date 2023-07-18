@@ -9,7 +9,6 @@
     "@refinedev/kbar": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.0",
     "react-router-dom": "^6.8.1",
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/antd": "^5.9.0",
@@ -21,12 +20,14 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/node": "^18.16.2",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.3.1"
   },
   "scripts": {
-    "dev": "refine start",
-    "build": "refine build",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "browserslist": {

@@ -1,9 +1,8 @@
 import { ShowButton } from "@refinedev/antd";
-
 import { EditOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 
-import { IProduct } from "interfaces";
+import { IProduct } from "../../interfaces";
 
 type ProductItemProps = {
     item: IProduct;

@@ -16,8 +16,8 @@ import {
 } from "@ant-design/icons";
 import { Button, Image, Space } from "antd";
 
-import { CreateCanvas } from "components/canvas";
-import { Canvas } from "types";
+import { CreateCanvas } from "../../../components/canvas";
+import { Canvas } from "../../../types";
 
 export const Header: React.FC = () => {
     const { data } = useIsAuthenticated();

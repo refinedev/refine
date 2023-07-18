@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/material/styles";
+import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import {
     IResourceComponentsProps,
@@ -8,8 +8,9 @@ import {
     useUpdate,
 } from "@refinedev/core";
 import { List } from "@refinedev/mui";
-import React from "react";
+import dayjs from "dayjs";
 
+import { useTheme } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -25,18 +26,15 @@ import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import dayjs from "dayjs";
-
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MopedIcon from "@mui/icons-material/Moped";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 
-import { CourierInfoBox, Map, MapMarker } from "components";
-
-import { useOrderCustomKbarActions } from "hooks";
-import { IEvent, IOrder, IProduct } from "interfaces";
+import { CourierInfoBox, Map, MapMarker } from "../../components";
+import { useOrderCustomKbarActions } from "../../hooks";
+import { IEvent, IOrder, IProduct } from "../../interfaces";
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();

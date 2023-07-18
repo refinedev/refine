@@ -2,7 +2,7 @@ import { IResourceComponentsProps, useParsed } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
-import { IOrder, IProduct } from "interfaces";
+import { IOrder, IProduct } from "../../interfaces";
 
 export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();
