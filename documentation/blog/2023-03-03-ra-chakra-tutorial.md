@@ -113,7 +113,7 @@ function App() {
 export default App;
 ```
 
--   **Resources** A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
+-   **Resources**: A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
 -   To create a resource; define our resources and their action paths, this will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 
