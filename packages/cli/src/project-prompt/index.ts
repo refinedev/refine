@@ -26,7 +26,6 @@ export const projectPrompt = async () => {
 
         if (response.email) {
             let projectId = getRefineProjectId();
-            await addProjectIdToRefineComponent(projectId);
 
             if (projectId) {
                 await updateProject(projectId, response.email);
@@ -34,9 +33,9 @@ export const projectPrompt = async () => {
                 projectId = await createNewProject(response.email);
 
                 addProjectIdToPackageJson(projectId);
-            }
 
-            await addProjectIdToRefineComponent(projectId);
+                await addProjectIdToRefineComponent(projectId);
+            }
 
             createSkipPromptFile();
         } else {
