@@ -535,9 +535,9 @@ Let's briefly discuss what's going on:
 
 **1. `refine-antd` and `antd` Components**
 
-We will use the **Ant Design** [`<List />`](<(https://ant.design/components/list#list)>) component to show the list of canvases.
+We will use the **Ant Design** [`<List />`](https://ant.design/components/list#list/) component to show the list of canvases.
 
-[`<List />`](<(https://ant.design/components/list#list)>) component takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component. For detailed info on the `<List />` component,
+[`<List />`](https://ant.design/components/list#list) component takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component. For detailed info on the `<List />` component,
 
 [Refer to Antd Design documentation for more information About <List />.](https://refine.dev/docs/tutorial/introduction/select-framework/)
 
@@ -869,7 +869,8 @@ In the `<Header />` component above, we are invoking the `useModalForm()` hook w
 
 There are loads of things happening here. So I recommend going through the [`useModalForm()` documentation](https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm/).
 
-It is also important that we understand how the **Ant Design** `<Modal />` component accepts the `modalProps` props from [this page](https://ant.design/components/modal#api) and how the `<Form />` works with `formProps` from [here](https://ant.design/components/form#api).
+It is also important that we understand how the **Ant Design**
+`<Modal />` component accepts the `modalProps` props from [this page](https://ant.design/components/modal#api) and how the `<Form />` works with `formProps` from [here](https://ant.design/components/form#api).
 
 We are using the `<Modal />` and `<Form />` inside the `<CreateCanvas />` component that receives the `modalProps` and `formProps` and relays them to these descendents:
 
