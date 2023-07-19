@@ -89,7 +89,7 @@ export default App;
 
 There are a variety of configurations that can be passed into a refine application. They are:
 
--   **DataProvider**: a data provider enables a refine application connect to an external API or service. A dataProvider sends HTTP requests and receives responses via predefined methods.
+-   **DataProvider**: Data provider enables a refine application to connect to an external API or service. A `dataProvider` sends HTTP requests and receives responses via predefined methods.
 
 Here is a sample on how to adding a dataProvider to the refine component.
 
