@@ -115,7 +115,7 @@ export default App;
 
 -   **Resources**: A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
--   To create a resource; define our resources and their action paths, this will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
+-   To create a resource; define our resources and their action paths, this will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action. The `<Route>` corresponding to the created actions is defined. Should not forget that the path in the resource definition and the `path` in the route definition must be the same.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -141,39 +141,6 @@ const App: React.FC = () => {
                 },
             ]}
             // highlight-end
-        >
-            //...
-        </Refine>
-    );
-};
-
-export default App;
-```
-
--   Now let's define the `<Route>` corresponding to the actions we have created. We should not forget that the path in the resource definition and the path in the route definition must be the same.
-
-```tsx title="src/App.tsx"
-import { Refine } from "@refinedev/core";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const App: React.FC = () => {
-    return (
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    edit: "/posts/edit/:id",
-                    show: "/posts/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-            ]}
         >
             {/* highlight-start */}
             <Routes>
@@ -227,16 +194,6 @@ npm run dev
 The refine application should be up and running after you run the command. To access it, go to `http://localhost:5173`.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg" className="rounded" alt="react admin tutorial" />
-
-## Utilizing the Strapi v4 Provider in refine
-
-On installation, since we selected the strapi-v4 data provider, refine adds a fake strapi API url to the data provider of the refine application
-
-```
-https://automatic-sweltering-dog.strapiapp.com
-```
-
-In this React admin tutorial, we will be using refine's `fake strapi-v4 API url` for demo purposes. If you have a strapi-v4 API url you wish to integrate into the application, you can always replace the fake strapi API with that.
 
 ### Setting AuthProvider
 
