@@ -1,8 +1,6 @@
-export const transformRefineOptions = (
-    j: any,
-    root: any,
-    projectId: string,
-) => {
+export const parser = "tsx";
+
+const transformRefineOptions = (j: any, root: any, projectId: string) => {
     root.findJSXElements("Refine").forEach((path: any) => {
         const props = path.node.openingElement.attributes;
 
@@ -56,3 +54,12 @@ export const transformRefineOptions = (
 
     return root;
 };
+
+export default function transformer(file: any, api: any, options: any) {
+    const j = api.jscodeshift;
+    const source = j(file.source);
+
+    transformRefineOptions(j, source, options.__projectId);
+
+    return source.toSource();
+}

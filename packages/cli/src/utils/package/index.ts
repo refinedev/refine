@@ -1,13 +1,9 @@
 import { readFileSync, existsSync, readJSON, pathExists } from "fs-extra";
-import jscodeshift from "jscodeshift";
-import parser from "jscodeshift/parser/tsx";
 import execa from "execa";
 import globby from "globby";
 import path from "path";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
-import fs from "fs";
-import { transformRefineOptions } from "./transform";
 
 // TODO: Add package.json type
 export const getPackageJson = (): any => {
@@ -218,16 +214,33 @@ export const addProjectIdToPackageJson = (projectId: string) => {
 };
 
 export const addProjectIdToRefineComponent = async (projectId: string) => {
-    const sourceFile = path.join("src", "App.tsx");
-    const sourceCode = fs.readFileSync(sourceFile, "utf8");
-
     try {
-        const source = jscodeshift(sourceCode, { parser: parser() });
+        const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
 
-        const result = transformRefineOptions(jscodeshift, source, projectId);
+        const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
+            "./",
+            "--extensions=ts,tsx,js,jsx",
+            "--parser=tsx",
+            `--transform=${path.resolve(
+                path.join(
+                    __dirname,
+                    "..",
+                    "src",
+                    "utils",
+                    "package",
+                    "transform.ts",
+                ),
+            )}`,
+            `--ignore-pattern=**/.cache/**`,
+            `--ignore-pattern=**/node_modules/**`,
+            `--ignore-pattern=**/build/**`,
+            `--ignore-pattern=**/.next/**`,
+            `--__projectId=${projectId}`,
+        ]);
 
-        fs.writeFileSync(sourceFile, result.toSource());
-        console.log(result.toSource());
+        if (stderr) {
+            console.error(stderr);
+        }
     } catch (error) {
         console.error(error);
     }

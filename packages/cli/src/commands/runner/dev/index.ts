@@ -23,8 +23,6 @@ const action = async (args: string[]) => {
     const script = projectScripts[projectType].dev;
     const command = [...script, ...args];
 
-    await updateNotifier();
-
     await projectPrompt();
 
     runScript(binPath, command);
