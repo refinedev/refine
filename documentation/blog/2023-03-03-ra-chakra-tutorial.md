@@ -581,7 +581,7 @@ const columns = React.useMemo<GridColumns<IPost>>(
 
 #### Pagination Of Listed Records
 
-Next, we will add Pagination to our application. in order to achieve this, the `usePagination` hook provides certain functions that handle pagination.
+Next, we will add Pagination to our application. In order to achieve this, the `usePagination` hook provides certain functions that handle pagination.
 
 Create a new file called `pagination.tsx` under the `components` folder. This file will contain the code for the pagination component.
 
