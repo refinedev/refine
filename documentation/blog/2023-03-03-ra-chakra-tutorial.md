@@ -281,7 +281,7 @@ To manage authenticated routes the [`<Authenticated>`](https://refine.dev/docs/p
 
 To achieve protected routes, the `<Outlet>` component from `react-router-dom` is utilized, ensuring routes are only accessible when the user is authenticated.
 
-To handle scenarios where the user is not authenticated, a `/login` route is created, employing the [`<AuthPage>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-auth-page/) component from **refine** UI packages with the `type="login"` prop to render the login page.
+To handle scenarios where a user is not authenticated, we've established a `/login` route. This utilizes the [`<AuthPage>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-auth-page/) component found in refine UI packages, with the 'type' prop set to "login". This configuration effectively renders the login page.
 
 ```tsx title="src/App.tsx"
 import { Authenticated, Refine } from "@refinedev/core";
