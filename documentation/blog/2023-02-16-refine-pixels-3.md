@@ -8,26 +8,21 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pix
 hide_table_of_contents: false
 ---
 
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code examples in this post have been updated to version 4.x.x.
-
-:::
-
-
 In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) and [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) props of [`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) and `routerProvider` props as well.
 
-CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine/) series.
+CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine-supabase/) series.
 
 This is Day Three and **refineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
 ### refineWeek series
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
-- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+
+-   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+-   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+-   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+-   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+-   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+-   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+-   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -53,16 +48,13 @@ After signing up and logging in to a developer account, we have to complete the 
 
 Below, we go over these steps one by one.
 
-
 ### 1. Creating a PostgreSQL Server with Supabase
-Creating a database server is quite intutive in **Supabase**. Just go over to your organization's dashboard and start doing something. For me, I have initialized a server with the name `refine-pixels` under a free tier. If you need a quick hand, please follow [this quickstart guide](https://supabase.com/docs/guides/with-react#create-a-project).
 
+Creating a database server is quite intutive in **Supabase**. Just go over to your organization's dashboard and start doing something. For me, I have initialized a server with the name `refine-pixels` under a free tier. If you need a quick hand, please follow [this quickstart guide](https://supabase.com/docs/guides/with-react#create-a-project).
 
 ### 2. Adding Tables to a Supabase Database
 
 For our app, we have four tables: `auth.users`, `public.users`, `canvases` and `pixels`. The entity relational diagram for our database looks like this:
-
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="react crud app" />
@@ -87,9 +79,6 @@ The `auth.users` table is concerned with authentication in our app. It is create
 
 **Supabase** doesn't allow a client to query the `auth.users` table for security reasons. So, we need to create a shadow of the `auth.users` table in `public.users` with additional columns. We need this shadow table to be able to query `user` information, such as `avatar_url` and `roles` from this table.
 
-
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/sql_editor.png"  alt="react crud app" />
 </div>
@@ -98,10 +87,7 @@ The `auth.users` table is concerned with authentication in our app. It is create
 
 <br />
 
-
 So, in order to create the `pubic.users` table, go ahead and run this SQL script in the SQL Editor of your **Supabase** project dashboard:
-
-
 
 ```sql
 -- Create a table for public users
@@ -159,8 +145,8 @@ create table canvases (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 ```
-<br />
 
+<br />
 
 **2.4 `pixels` Table**
 
@@ -201,13 +187,13 @@ For simplicity, we'll disable Row Level Security:
 
 <br/>
 
-
 ### 3. Set Up `supabaseClient` for `<Refine />` Providers
+
 Now it's time to use the **Supabase** hosted database server inside our **refine** app.
 
 First, we need to get the access credentials for our server from the **Supabase** dashboard. We can avail them by following [this section](https://supabase.com/docs/guides/with-react#get-the-api-keys) in the **Supabase** quickstart guide.
 
-I recommend storing these credentials in a `.env` file:
+I recommend storing these credentials in a [`.env` file](https://vitejs.dev/guide/env-and-mode.html):
 
 ```bash title=".env"
 SUPABASE_URL=YOUR_SUPABASE_URL
@@ -219,8 +205,8 @@ Doing so will let us use these credentials to update the `supabaseClient.ts` fil
 ```tsx title="supabaseClient.ts"
 import { createClient } from "@refinedev/supabase";
 
-const SUPABASE_URL = process.env.SUPABASE_URL ?? "";
-const SUPABASE_KEY = process.env.SUPABASE_KEY ?? "";
+const SUPABASE_URL = import.meta.env.SUPABASE_URL ?? "";
+const SUPABASE_KEY = import.meta.env.SUPABASE_KEY ?? "";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 ```
@@ -229,81 +215,64 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 With this set up, now we can introduce `canvases` resource and start implementing CRUD operations for our app so that we can perform queries on the `canvases` table.
 
-
 ## `<Refine />`'s `resources` Prop
 
 If we look at our initial `App.tsx` component, it looks like this:
 
 ```tsx title="App.tsx"
-import React from "react";
-import { Refine } from "@refinedev/core";
-import {
-  AuthPage,
-  notificationProvider,
-  ReadyPage,
-  ErrorComponent,
-} from "@refinedev/antd";
+import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
+import { notificationProvider } from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
+
+import routerBindings, {
+    DocumentTitleHandler,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6";
-import { supabaseClient } from "utility";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
+import { supabaseClient } from "./utility";
 
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider(supabaseClient)}
-      liveProvider={liveProvider(supabaseClient)}
-      authProvider={authProvider}
-      routerProvider={{
-        ...routerProvider,
-        routes: [
-          {
-            path: "/register",
-            element: <AuthPage type="register" />,
-          },
-          {
-            path: "/forgot-password",
-            element: <AuthPage type="forgotPassword" />,
-          },
-          {
-            path: "/update-password",
-            element: <AuthPage type="updatePassword" />,
-          },
-        ],
-      }}
-      LoginPage={() => (
-        <AuthPage
-          type="login"
-          providers={[
-            {
-              name: "google",
-              label: "Sign in with Google",
-            },
-          ]}
-        />
-      )}
-      notificationProvider={notificationProvider}
-      ReadyPage={ReadyPage}
-      catchAll={<ErrorComponent />}
-      Layout={Layout}
-    />
-  );
+    return (
+        <BrowserRouter>
+            <GitHubBanner />
+            <RefineKbarProvider>
+                <Refine
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+                    </Routes>
+                    <RefineKbar />
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
 ```
 
-Focusing on the top, in order to add a resource to our app, we have to introduce the  [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) prop to [`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
+Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) prop to [`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
 
-```tsx title="Typical resource object inside resources array"
+```json title="Typical resource object inside resources array"
 {
-  name: "canvases",
-  options: {
-    label: "Canvases",
-  },
-  list: CanvasList,
-  show: CanvasShow,
+    "name": "canvases",
+    "list": "/canvases",
+    "show": "/canvases/show/:id"
 }
 ```
 
@@ -313,10 +282,9 @@ We can have as many resource items inside our `resources` array as the number of
 
 For the above `canvases` resource, the `name` property denotes the name of the resource. Behind the scenes, **refine** auto-magically adds RESTful routes for the actions defined on a resource `name` to the `routerProvider` object - i.e. for us here along the `/canvases` path.
 
-We'll ignore the `options` object for now, but `list` and `show` properties represent the CRUD actions we want. And their values are the components we want to render when we navigate to their respective RESTful routes, such as `/canvases` and `/canvases/show/a-canvas-slug`. Once again, **refine** generates these routes, places them into the `routerProvider` object. It then matches them to their corresponding components when these routes are visited.
+`list` and `show` properties represent the CRUD actions we want. And their values are the components we want to render when we navigate to their respective RESTful routes, such as `/canvases` and `/canvases/show/a-canvas-slug`.
 
 We will use a modal form for the `create` action, so we don't need `/canvases/create` route. Therefore, we won't assign `create` property for `canvases` resource.
-
 
 ### Adding `resources` to `<Refine />`
 
@@ -324,19 +292,16 @@ For our app, we'll configure our `resources` object with actions for `canvases`.
 
 ```tsx title="App.tsx"
 <Refine
-   ...
-  //highlight-start
-  resources={[
-    {
-      name: "canvases",
-      option: {
-        label: "Canvases",
-      },
-      list: CanvasList,
-      show: CanvasShow,
-    },
-  ]};
-  //highlight-end
+    // ...
+    //highlight-start
+    resources={[
+        {
+            name: "canvases",
+            list: "/canvases",
+            show: "/canvases/show/:id",
+        },
+    ]}
+    //highlight-end
 />
 ```
 
@@ -344,108 +309,159 @@ We will consider these two actions with their respective components in the comin
 
 In our case, we'll house `canvases` related components in the `src/pages/canvases/` folder.
 
-
 **`index` Files**
 
 We are also using `index.ts` files to export contents from our folders, so that the components are easily found by the compiler in the global namespace.
 
-
 ### Adding required files
 
-Here is the finalized version of what we'll be building in this article: 
+Here is the finalized version of what we'll be building in this article:
 https://github.com/refinedev/refine/tree/master/examples/pixels
 
-Before we move on, you need to add required page and components to the project if you want build the app by following the article. Please add the following components and files into `src` folder in the project:
+Before we move on, you need to add required page and components to the project if you want build the app by following the article. Please add the following components and files into the project:
 
-- pages: https://github.com/refinedev/refine/tree/master/examples/pixels/src/pages
-- components: https://github.com/refinedev/refine/tree/master/examples/pixels/src/components
-- utility: https://github.com/refinedev/refine/tree/master/examples/pixels/src/utility
-- types: https://github.com/refinedev/refine/tree/master/examples/pixels/src/types
-- styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
+-   pages: https://github.com/refinedev/refine/tree/master/examples/pixels/src/pages
+-   components: https://github.com/refinedev/refine/tree/master/examples/pixels/src/components
+-   utility: https://github.com/refinedev/refine/tree/master/examples/pixels/src/utility
+-   types: https://github.com/refinedev/refine/tree/master/examples/pixels/src/types
+-   styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
+-   assets: https://github.com/refinedev/refine/tree/master/examples/pixels/public
 
+After creating files above you need to add some imports and [routes](/docs/packages/documentation/routers/react-router-v6/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
-After creating files above you need to add some imports to `App.tsx`, simply add replace  your `App.tsx` with following.
+:::note
+After creating files above you can remove `src/authProvider` and `src/components/header` that comes with `create refine-app`.
+
+We move this files to `src/providers/authProvider.ts` and `src/components/layout/header` for better folder structure.
+:::
 
 <details>
 <summary>Show App.tsx code</summary>
 <p>
 
 ```tsx title="App.tsx"
-import React from 'react';
-import { Refine } from '@refinedev/core';
-import {
-    AuthPage,
-    notificationProvider,
-    ReadyPage,
-    ErrorComponent,
-    Icons
-} from '@refinedev/antd';
-import '@refinedev/antd/dist/reset.css';
-import { dataProvider, liveProvider } from '@refinedev/supabase';
-import routerProvider from '@refinedev/react-router-v6';
+import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
+import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ConfigProvider } from "antd";
+import { GithubOutlined } from "@ant-design/icons";
 
-import { supabaseClient } from 'utility';
-import authProvider from './authProvider';
-import { Layout } from 'components/layout';
-import { CanvasFeaturedList, CanvasList, CanvasShow } from 'pages/canvases';
-import 'styles/style.css';
+import { Layout } from "./components/layout";
+import { CanvasFeaturedList, CanvasList, CanvasShow } from "./pages/canvases";
+import { AuthPage } from "./pages/auth";
+import { supabaseClient } from "./utility";
+import { authProvider, auditLogProvider } from "./providers";
 
-const { GithubOutlined } = Icons;
+import "@refinedev/antd/dist/reset.css";
+import "./styles/style.css";
 
 function App() {
     return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            liveProvider={liveProvider(supabaseClient)}
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: '/register',
-                        element: <AuthPage type="register" />,
+        <BrowserRouter>
+            <GitHubBanner />
+            <ConfigProvider
+                theme={{
+                    token: {
+                        colorPrimary: "#3ecf8e",
+                        colorText: "#80808a",
+                        colorError: "#fa541c",
+                        colorBgLayout: "#f0f2f5",
+                        colorLink: "#3ecf8e",
+                        colorLinkActive: "#3ecf8e",
+                        colorLinkHover: "#3ecf8e",
                     },
-                    {
-                        path: '/forgot-password',
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: '/update-password',
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            LoginPage={() => (
-                <AuthPage
-                    type="login"
-                    providers={[
+                }}
+            >
+                <Refine
+                    authProvider={authProvider}
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    auditLogProvider={auditLogProvider}
+                    routerProvider={routerBindings}
+                    resources={[
                         {
-                            name: 'github',
-                            icon: (
-                                    <GithubOutlined
-                                      style={{ fontSize: "18px" }}
-                                    />
-                                    ),
-                            label: 'Sign in with GitHub',
+                            name: "canvases",
+                            list: "/canvases",
+                            show: "/canvases/show/:id",
                         },
                     ]}
-                />
-            )}
-            resources={[
-                {
-                    name: 'canvases',
-                    options: {
-                        label: 'Canvases',
-                    },
-                    list: CanvasList,
-                    show: CanvasShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            Layout={Layout}
-        />
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route index element={<CanvasFeaturedList />} />
+
+                            <Route path="/canvases">
+                                <Route index element={<CanvasList />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<CanvasShow />}
+                                />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        providers={[
+                                            {
+                                                name: "github",
+                                                icon: (
+                                                    <GithubOutlined
+                                                        style={{
+                                                            fontSize: "18px",
+                                                        }}
+                                                    />
+                                                ),
+                                                label: "Sign in with GitHub",
+                                            },
+                                        ]}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
     );
 }
 
@@ -464,11 +480,12 @@ The `list` action represents a `GET` request sent to the `canvases` table in our
 The contents of our `<CanvasList />` component look like this:
 
 ```tsx title="src/pages/canvases/list.tsx"
-import { AntdList, Skeleton, useSimpleList } from "@refinedev/antd";
+import { useSimpleList } from "@refinedev/antd";
+import { List, Skeleton } from "antd";
 
-import { CanvasTile } from "components/canvas";
-import { SponsorsBanner } from "components/banners";
-import { Canvas } from "types";
+import { CanvasTile } from "../../components/canvas";
+import { SponsorsBanner } from "../../components/banners";
+import { Canvas } from "../../types";
 
 export const CanvasList: React.FC = () => {
     const { listProps, queryResult } = useSimpleList<Canvas>({
@@ -483,7 +500,7 @@ export const CanvasList: React.FC = () => {
                     order: "desc",
                 },
             ],
-        }
+        },
     });
 
     const { isLoading } = queryResult;
@@ -498,7 +515,7 @@ export const CanvasList: React.FC = () => {
                         ))}
                     </div>
                 ) : (
-                    <AntdList
+                    <List
                         {...listProps}
                         className="canvas-list"
                         split={false}
@@ -516,98 +533,194 @@ There are a few of things to note here: the first being the use of **Ant Design*
 
 Let's briefly discuss what's going on:
 
-**1. `refine-antd` Components**
+**1. `refine-antd` and `antd` Components**
 
-**refine** makes all **Ant Design** components available to us via the `@refinedev/antd` package. They can be used with their same name in **Ant Design**. However, **Ant Design**'s `<List />` component is renamed as `<AntdList />`, which we are using above.
+We will use the **Ant Design** [`<List />`](<(https://ant.design/components/list#list)>) component to show the list of canvases.
 
-It takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component. For detailed info on the `<List />` component, please visit [this **Ant Design** reference.](https://ant.design/components/list#list)
+[`<List />`](<(https://ant.design/components/list#list)>) component takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component. For detailed info on the `<List />` component,
+
+[Refer to Antd Design documentation for more information About <List />.](https://refine.dev/docs/tutorial/introduction/select-framework/)
 
 [Refer to complete refine CRUD app with Ant Design tutorial here.](https://refine.dev/docs/tutorial/introduction/select-framework/)
 
 **2. `useSimpleList()` Hook**
 
-The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component. 
+The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
 
-In our `<CanvasList />` component, we are passing the `listProps` props to `<AntdList />` in order to show a list of canvases.
+In our `<CanvasList />` component, we are passing the `listProps` props to `<List />` in order to show a list of canvases.
 
 Please feel free to go through the [`useSimpleList` documentation here](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/) for as much as information as you need. It makes life a lot easier while creating a dashboard or list of items.
 
 **3. Sorting**
 If you are already looking at the [`useSimpleList()` argument object's properties](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/#properties), notice that we are able to pass options for `pagination` and `sorters.initial` for the API call and get the response accordingly.
 
-With this set up - and connected to the Internet - if we run the dev server with `yarn dev` and navigate to `http://localhost:3000`, we are faced with a login screen:
+With this set up - and connected to the Internet - if we run the dev server with `npm run dev` and navigate to `http://localhost:5173`, we are faced with a `<CanvasFeaturedList/>` as a home page.
 
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/login.png"  alt="react crud app supabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="react crud app supabase" />
 
 <br />
 
-Well... That's mean!
+This is because we have configured our routes as public. Furthermore, we have set up our `<AuthPage/>` component as a route accessible to unauthenticated users. This means that if a user is not authenticated, they can access the `<AuthPage/>` component. However, if a user is authenticated, they will not be able to access the `<AuthPage/>` component.
 
-Okay, this is because we have `authProvider` prop activated in the boilerplate `<App />` component. Additionally, the `LoginPage` prop was also set to **refine**'s special `<AuthPage />` component. Because of this, we are being presented with the `<AuthPage />` component's login `type` variant which basically wants us to authenticate before we move forward.  
+In this project, our goal is to allow unauthenticated users to view created canvases. However, they will not have the ability to create, update, or delete canvases.
 
-Also you can inspect the `pages/auth/index.tsx` component to see how we customized the default Auth Page component.
-
-However, we want our gallery at `/canvases` to be public. So we need to bypass authentication for this path. And we can do that by tweaking the `authProvider.checkAuth()` method.
-
-Let's look at its current implementation and discussn the whats and hows before we come up with the changes.
+We already did this implementation when we created required files before starting the this section. In the next section, we will explain how redirect unauthenticated users to the login page if they attempt to perform create, update, or delete actions on canvases.
 
 ### Public Routes in refine
 
-If we revisit the `authProvider` object, we can see that the `checkAuth()` method only allows logged in users into the root route. All other attempts are rejected:
+If we revisit the `authProvider` object, we can see that the `check()` method only allows logged in users. All other attempts are rejected. We will use this logic to compose our routes.
 
 ```tsx title="src/authProvider.ts"
-checkAuth: async () => {
-  const session = supabaseClient.auth.session();
-  const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
+check: async () => {
+    try {
+            // sign in with oauth
+            if (providerName) {
+                const { data, error } =
+                    await supabaseClient.auth.signInWithOAuth({
+                        provider: providerName,
+                    });
 
-  if (session || sessionFromURL?.data?.user) {
-    return Promise.resolve();
-  }
+                if (error) {
+                    return {
+                        success: false,
+                        error,
+                    };
+                }
 
-  return Promise.reject();
+                if (data?.url) {
+                    return {
+                        success: true,
+                    };
+                }
+            }
+
+            // sign in with email and password
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password,
+                });
+
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data?.user) {
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
+        }
+
+        return {
+            success: false,
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
+        };
 },
 ```
 
-We'll change this to be the opposite. To check for the session from the current `url` and allow all users to `/`:
+**refine** provides [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component.
 
-```tsx title="src/authProvider.ts"
-checkAuth: async () => {
-  await supabaseClient.auth.getSessionFromUrl();
-  return Promise.resolve();
-},
+Let's look at the routes implementation:
+
+ <details>
+<summary>Show Routes implementation component code</summary>
+<p>
+
+```tsx title="src/components/layout/header/index.tsx"
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { GithubOutlined } from "@ant-design/icons";
+import { AuthPage } from "./pages/auth";
+
+const App = () => {
+    return (
+        <Refine
+            // ...
+            routerProvider={routerBindings}
+        >
+            <Routes>
+                <Route
+                    element={
+                        <Layout>
+                            <Outlet />
+                        </Layout>
+                    }
+                >
+                    <Route index element={<CanvasFeaturedList />} />
+
+                    <Route path="/canvases">
+                        <Route index element={<CanvasList />} />
+                        <Route path="show/:id" element={<CanvasShow />} />
+                    </Route>
+                </Route>
+                <Route
+                    element={
+                        <Authenticated fallback={<Outlet />}>
+                            <NavigateToResource />
+                        </Authenticated>
+                    }
+                >
+                    <Route
+                        path="/login"
+                        element={
+                            <AuthPage
+                                type="login"
+                                providers={[
+                                    {
+                                        name: "github",
+                                        icon: (
+                                            <GithubOutlined
+                                                style={{
+                                                    fontSize: "18px",
+                                                }}
+                                            />
+                                        ),
+                                        label: "Sign in with GitHub",
+                                    },
+                                ]}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/register"
+                        element={<AuthPage type="register" />}
+                    />
+                    <Route
+                        path="/forgot-password"
+                        element={<AuthPage type="forgotPassword" />}
+                    />
+                    <Route
+                        path="/update-password"
+                        element={<AuthPage type="updatePassword" />}
+                    />
+                </Route>
+            </Routes>
+        </Refine>
+    );
+};
 ```
 
-We'll modify the `getUserIdentity()` method as well, because we are using it in the `<Header />` component which houses a button for creating a canvas:
+</p>
+</details>
 
-```tsx title="src/authProvider.ts"
-getUserIdentity: async () => {
-  const user = supabaseClient.auth.user();
+In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component. This means that we can access the `canvases` resource routes without being authenticated.
 
-  if (user) {
-    return Promise.resolve({
-      ...user,
-      name: user.email,
-    });
-  }
+However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component. This means that we can not access these routes if we are authenticated.
 
-  return Promise.reject();
-},
-```
-
-
-Now, if we refresh our browser at `/`, we see it redirected to `/canvases`. This is because when the `resources` object is set, **refine** configures the root route to be the `list` action of the **first** resource item in the `resources` array. Since we only have `canvases` as our resource, it leads to `/canvases`.
-
-At the moment, we don't have any `canvas` created in our app yet, so at `/canvases` we don't see the gallery:
-
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/empty_canvas.png"  alt="react crud app supabase" />
-
-<br />
-
-The change in `checkAuth` brings caveats, as removing the `return Promise.reject()` disables the `LoginPage` prop of `<Refine />`, so with this change we will get a `404` error when we visit `/login`. We'll come back to this in the section related to Authentication.
-
-But, let's now go ahead and implement how to create canvases.
+[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 
 ### `<Refine />` `create` Action
 
@@ -621,30 +734,34 @@ The `<Header />` component looks like this:
 <summary>Show Header component code</summary>
 <p>
 
-
 ```tsx title="src/components/layout/header/index.tsx"
 import React from "react";
 import {
-    useGetIdentity,
+    useIsAuthenticated,
     useLogout,
     useMenu,
     useNavigation,
-    useRouterContext,
+    useParsed,
 } from "@refinedev/core";
-import { Button, Image, Space, Icons, useModalForm } from "@refinedev/antd";
+import { Link } from "react-router-dom";
+import { useModalForm } from "@refinedev/antd";
 
-import { CreateCanvas } from "components/canvas";
-import { Canvas } from "types";
+import {
+    PlusSquareOutlined,
+    LogoutOutlined,
+    LoginOutlined,
+} from "@ant-design/icons";
+import { Button, Image, Space } from "antd";
 
-const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
+import { CreateCanvas } from "../../../components/canvas";
+import { Canvas } from "../../../types";
 
 export const Header: React.FC = () => {
-    const { Link, useLocation } = useRouterContext();
-    const { isError } = useGetIdentity();
+    const { data } = useIsAuthenticated();
     const { mutate: mutateLogout } = useLogout();
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
-    const { pathname } = useLocation();
+    const { pathname } = useParsed();
 
     const { modalProps, formProps, show } = useModalForm<Canvas>({
         resource: "canvases",
@@ -652,11 +769,15 @@ export const Header: React.FC = () => {
         redirect: "show",
     });
 
-    const isLogin = !isError;
+    const isAuthenticated = data?.authenticated;
 
     const handleRedirect = () => {
+        if (!pathname) {
+            return push("/login");
+        }
+
         if (pathname === "/") {
-            push("/login");
+            return push("/login");
         }
 
         push(`/login?to=${encodeURIComponent(pathname)}`);
@@ -697,7 +818,7 @@ export const Header: React.FC = () => {
                     <Button
                         icon={<PlusSquareOutlined />}
                         onClick={() => {
-                            if (isLogin) {
+                            if (isAuthenticated) {
                                 show();
                             } else {
                                 handleRedirect();
@@ -707,7 +828,7 @@ export const Header: React.FC = () => {
                     >
                         Create
                     </Button>
-                    {isLogin ? (
+                    {isAuthenticated ? (
                         <Button
                             type="primary"
                             danger
@@ -736,15 +857,15 @@ export const Header: React.FC = () => {
     );
 };
 ```
+
 </p>
 </details>
 
-Our `create` action involves the `useModalForm()` hook which manages UI, state, error and data fetching for the `refine-antd` `<Modal />` and `<Form />` components. Let's zoom in on what exactly it is doing.
-
+Our `create` action involves the `useModalForm()` hook which manages UI, state, error and data fetching for the `antd` `<Modal />` and `<Form />` components. Let's zoom in on what exactly it is doing.
 
 **The `useModalForm()` Hook**
 
-In the `<Header />` component above, we are invoking the `useModalForm()` hook with its argument object containing `resource`, `action` and `redirect` properties. We are getting the `modalProps` and `formProps` properties that it prepares for us from the response data.  
+In the `<Header />` component above, we are invoking the `useModalForm()` hook with its argument object containing `resource`, `action` and `redirect` properties. We are getting the `modalProps` and `formProps` properties that it prepares for us from the response data.
 
 There are loads of things happening here. So I recommend going through the [`useModalForm()` documentation](https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm/).
 
@@ -759,16 +880,10 @@ We are using the `<Modal />` and `<Form />` inside the `<CreateCanvas />` compon
 ```tsx title="src/components/canvas/create.tsx"
 import React, { useState } from "react";
 import { useGetIdentity } from "@refinedev/core";
-import {
-    Form,
-    FormProps,
-    Input,
-    Modal,
-    ModalProps,
-    Radio,
-} from "@refinedev/antd";
+import { Form, FormProps, Input, Modal, ModalProps, Radio } from "antd";
 
-import { getRandomName, DEFAULT_CANVAS_SIZE } from "utility";
+import { getRandomName, DEFAULT_CANVAS_SIZE } from "../../utility";
+import { User } from "../../types";
 
 type CreateCanvasProps = {
     modalProps: ModalProps;
@@ -779,7 +894,7 @@ export const CreateCanvas: React.FC<CreateCanvasProps> = ({
     modalProps,
     formProps,
 }) => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<User | null>();
 
     const [values, setValues] = useState(() => {
         const name = getRandomName();
@@ -868,39 +983,19 @@ This is because for the `onClick` event on the `Create` canvas button inside the
 
 ```tsx title="src/components/layout/header/index.tsx"
 <Button
-  icon={<PlusSquareOutlined />}
-  onClick={() => {
-    if (isLogin) {
-      show();
-    } else {
-      handleRedirect();
-    }
-  }}
-  title="Create a new canvas"
+    icon={<PlusSquareOutlined />}
+    onClick={() => {
+        if (isLogin) {
+            show();
+        } else {
+            handleRedirect();
+        }
+    }}
+    title="Create a new canvas"
 >
-  Create
+    Create
 </Button>
 ```
-
-And because of the change we made in `authProvider.checkAuth()`, we get a `404` error. Let's just bypass authentication by disabling the `authProvider` prop on `<Refine />` by commenting it out:
-
-```tsx title="src/App.tsx"
-<Refine
-  ...
-  // authProvider={authProvider}
-/>
-```
-
-Now if we click on the `Create` canvas button on the navbar, we should be presented with a modal with the form inside:
-
-
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/create_canvas.png"  alt="react crud app supabase" />
-
-<br />
-
-So, we are able to see the form for canvas `create` action, but can't really create a canvas because we don't have a `user_id` as we have authentication disabled at this point. We'll start creating canvases after we have our `show` page ready and once we have authentication fully implemented and reactivated.
-
 
 ## `<Refine />` `show` Action
 
@@ -921,22 +1016,32 @@ import {
     useGetIdentity,
     useNavigation,
     useShow,
+    useParsed,
+    useIsAuthenticated,
 } from "@refinedev/core";
-import { Button, Typography, Icons, Spin } from "@refinedev/antd";
+import { useModal } from "@refinedev/antd";
 
-import { CanvasItem, DisplayCanvas } from "components/canvas";
-import { ColorSelect } from "components/color-select";
-import { AvatarPanel } from "components/avatar";
-import { colors } from "utility";
-import { Canvas } from "types";
+import { LeftOutlined } from "@ant-design/icons";
+import { Button, Typography, Spin, Modal } from "antd";
 
-const { LeftOutlined } = Icons;
+import { CanvasItem, DisplayCanvas } from "../../components/canvas";
+import { ColorSelect } from "../../components/color-select";
+import { AvatarPanel } from "../../components/avatar";
+import { colors } from "../../utility";
+import { Canvas } from "../../types";
+import { LogList } from "../../components/logs";
+
 const { Title } = Typography;
 
-export const CanvasShow: React.FC = () => {
-    const [color, setColor] = useState<typeof colors[number]>("black");
+type Colors = typeof colors;
 
-    const { data: identity } = useGetIdentity();
+export const CanvasShow: React.FC = () => {
+    const { pathname } = useParsed();
+    const [color, setColor] = useState<Colors[number]>("black");
+    const { modalProps, show, close } = useModal();
+    const { data: identity } = useGetIdentity<any>();
+    const { data: { authenticated } = {} } = useIsAuthenticated();
+
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
@@ -944,8 +1049,12 @@ export const CanvasShow: React.FC = () => {
     const { list, push } = useNavigation();
 
     const onSubmit = (x: number, y: number) => {
-        if (!identity) {
-            return push("/login");
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
+            }
+
+            return push(`/login`);
         }
 
         if (typeof x === "number" && typeof y === "number" && canvas?.id) {
@@ -957,6 +1066,9 @@ export const CanvasShow: React.FC = () => {
                     color,
                     canvas_id: canvas?.id,
                     user_id: identity.id,
+                },
+                meta: {
+                    canvas,
                 },
                 successNotification: false,
             });
@@ -976,11 +1088,27 @@ export const CanvasShow: React.FC = () => {
                         Back
                     </Button>
                     <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
-                    <Button type="text" style={{ visibility: "hidden" }}>
-                        <LeftOutlined />
-                        Back
+                    <Button type="primary" onClick={show}>
+                        View Changes
                     </Button>
                 </div>
+                <Modal
+                    title="Canvas Changes"
+                    {...modalProps}
+                    centered
+                    destroyOnClose
+                    onOk={close}
+                    onCancel={() => {
+                        close();
+                    }}
+                    footer={[
+                        <Button type="primary" key="close" onClick={close}>
+                            Close
+                        </Button>,
+                    ]}
+                >
+                    <LogList currentCanvas={canvas} />
+                </Modal>
 
                 {canvas ? (
                     <DisplayCanvas canvas={canvas}>
@@ -1033,9 +1161,9 @@ export const CanvasShow: React.FC = () => {
 
 In the code above, we have two instances of data hooks in action. First, with the `useShow()` hook, we are getting the created `canvas` data to display it in the grid:
 
-```tsx  title="src/pages/canvases/show.tsx"
+```tsx title="src/pages/canvases/show.tsx"
 const {
-  queryResult: { data: { data: canvas } = {} },
+    queryResult: { data: { data: canvas } = {} },
 } = useShow<Canvas>();
 ```
 
@@ -1045,12 +1173,12 @@ Additionally, we are letting another `mutation` to create a `pixel` in our `pixe
 const { mutate } = useCreate();
 
 const onSubmit = (x: number, y: number) => {
-  if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-    mutate({
-      resource: "pixels",
-      values: { x, y, color, canvas_id: canvas?.id },
-    });
-  }
+    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+        mutate({
+            resource: "pixels",
+            values: { x, y, color, canvas_id: canvas?.id },
+        });
+    }
 };
 ```
 
@@ -1058,16 +1186,16 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ## Supabase Authentication with Refine
 
-Let's re-activate authentication by uncommenting `authProvider={authProvider}`:
+[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 
 ```tsx title="src/App.tsx"
 <Refine
-  ...
-  authProvider={authProvider}
+    // ...
+    authProvider={authProvider}
 />
 ```
 
-And if we click on the `Create` canvas button, we are redirected to `/login` route that leads to the `404` error.
+If we click on the `Create` canvas button, we are redirected to `/login` route.
 
 ### Email Authentication with Supabase in Refine
 
@@ -1078,107 +1206,34 @@ For implementing authentication, we look back at the `App.tsx` file.
 Namely, authentication related routing has been added:
 
 ```tsx title="src/App.tsx"
-<Refine
-  ...
-  routerProvider={{
-    ...routerProvider,
-    // auth routes start
-    routes: [
-      {
-        path: "/register",
-        element: <AuthPage type="register" />,
-      },
-      {
-        path: "/forgot-password",
-        element: <AuthPage type="forgotPassword" />,
-      },
-      {
-        path: "/update-password",
-        element: <AuthPage type="updatePassword" />,
-      },
-    ],
-  // auth routes end
-  }}
-/>
-```
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { GithubOutlined } from "@ant-design/icons";
+import { AuthPage } from "./pages/auth";
+import { authProvider } from "./providers";
 
-The `LoginPage` prop was also added:
-
-```tsx title="src/App.tsx"
-<Refine
-  LoginPage={() => (
-    <AuthPage
-      type="login"
-      providers={[
-        {
-          name: "github",
-          label: "Sign in with GitHub",
-        },
-      ]}
-    />
-/>
-```
-
-However, we changed the `authProvider.checkAuth()` method earlier in order to accommodate our public gallery. Because of this change, the `LoginPage` prop gets deactivated. So, in the following section we are moving the login page to the `routes` prop.
-
-**Custom Login**
-
-In order to add a custom login route, we add a new entry to the `routes` prop of `<Refine />`. You can replace your App.tx with the following:
-
-<details>
-<summary>Show `App.tsx` code</summary>
-<p>
-
-```tsx title="src/App.tsx"
-import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    ReadyPage,
-    ErrorComponent,
-    Icons,
-    ConfigProvider,
-} from "@refinedev/antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6";
-
-import { Layout } from "components/layout";
-import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
-import { AuthPage } from "pages/auth";
-
-import { supabaseClient } from "utility";
-import authProvider from './authProvider';
-
-import "@refinedev/antd/dist/reset.css";
-
-import "styles/style.css";
-
-const { GithubOutlined } = Icons;
-
-function App() {
+const App = () => {
     return (
-        <ConfigProvider
-            theme={{
-                token: {
-                    colorPrimary: "#3ecf8e",
-                    colorText: "#80808a",
-                    colorError: "#fa541c",
-                    colorBgLayout: "#f0f2f5",
-                    colorLink: "#3ecf8e",
-                    colorLinkActive: "#3ecf8e",
-                    colorLinkHover: "#3ecf8e",
-                },
-            }}
-        >
+        <BrowserRouter>
             <Refine
-                dataProvider={dataProvider(supabaseClient)}
-                liveProvider={liveProvider(supabaseClient)}
+                // ...
                 authProvider={authProvider}
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [
-                        {
-                            path: "/login",
-                            element: (
+                routerProvider={routerBindings}
+            >
+                <Routes>
+                    {/* ... */}
+                    {/* highlight-start */}
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={
                                 <AuthPage
                                     type="login"
                                     providers={[
@@ -1186,49 +1241,195 @@ function App() {
                                             name: "github",
                                             icon: (
                                                 <GithubOutlined
-                                                    style={{ fontSize: "18px" }}
+                                                    style={{
+                                                        fontSize: "18px",
+                                                    }}
                                                 />
                                             ),
                                             label: "Sign in with GitHub",
                                         },
                                     ]}
-                                    formProps={{
-                                        initialValues: {
-                                            email: "info@refine.dev",
-                                            password: "refine-supabase",
-                                        },
-                                    }}
                                 />
-                            ),
-                        },
-                        {
-                            path: "/register",
-                            element: <AuthPage type="register" />,
-                        },
-                        {
-                            path: "/forgot-password",
-                            element: <AuthPage type="forgotPassword" />,
-                        },
-                        {
-                            path: "/update-password",
-                            element: <AuthPage type="updatePassword" />,
-                        },
-                    ],
-                }}
-                DashboardPage={() => <CanvasFeaturedList />}
-                resources={[
-                    {
-                        name: "canvases",
-                        list: CanvasList,
-                        show: CanvasShow,
+                            }
+                        />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
+
+The `LoginPage` route was also added:
+
+```tsx title="src/App.tsx"
+<Route
+    path="/login"
+    element={
+        <AuthPage
+            type="login"
+            providers={[
+                {
+                    name: "github",
+                    icon: (
+                        <GithubOutlined
+                            style={{
+                                fontSize: "18px",
+                            }}
+                        />
+                    ),
+                    label: "Sign in with GitHub",
+                },
+            ]}
+        />
+    }
+/>
+```
+
+**Custom Login**
+
+In order to add a custom login route, we add a new `<Route/>` as children to the `<Routes/>` component. You can replace your App.tx with the following:
+
+<details>
+<summary>Show `App.tsx` code</summary>
+<p>
+
+```tsx title="src/App.tsx"
+import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
+import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ConfigProvider } from "antd";
+import { GithubOutlined } from "@ant-design/icons";
+
+import { Layout } from "./components/layout";
+import { CanvasFeaturedList, CanvasList, CanvasShow } from "./pages/canvases";
+import { AuthPage } from "./pages/auth";
+import { supabaseClient } from "./utility";
+import { authProvider, auditLogProvider } from "./providers";
+
+import "@refinedev/antd/dist/reset.css";
+import "./styles/style.css";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <GitHubBanner />
+            <ConfigProvider
+                theme={{
+                    token: {
+                        colorPrimary: "#3ecf8e",
+                        colorText: "#80808a",
+                        colorError: "#fa541c",
+                        colorBgLayout: "#f0f2f5",
+                        colorLink: "#3ecf8e",
+                        colorLinkActive: "#3ecf8e",
+                        colorLinkHover: "#3ecf8e",
                     },
-                ]}
-                notificationProvider={notificationProvider}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                Layout={Layout}
-            />
-        </ConfigProvider>
+                }}
+            >
+                <Refine
+                    authProvider={authProvider}
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    auditLogProvider={auditLogProvider}
+                    routerProvider={routerBindings}
+                    resources={[
+                        {
+                            name: "canvases",
+                            list: "/canvases",
+                            show: "/canvases/show/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route index element={<CanvasFeaturedList />} />
+
+                            <Route path="/canvases">
+                                <Route index element={<CanvasList />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<CanvasShow />}
+                                />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        providers={[
+                                            {
+                                                name: "github",
+                                                icon: (
+                                                    <GithubOutlined
+                                                        style={{
+                                                            fontSize: "18px",
+                                                        }}
+                                                    />
+                                                ),
+                                                label: "Sign in with GitHub",
+                                            },
+                                        ]}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
     );
 }
 
@@ -1253,9 +1454,7 @@ After registration, the user is automatically signed in and the browser redirect
 
 And now, since we are logged in, we should be able to create a canvas. After successful creation of a canvas, we should be redirected to `/canvases/:id`:
 
-
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/registering.png"  alt="react crud app supabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="react crud app supabase" />
 
 <br />
 
@@ -1263,8 +1462,7 @@ Feel free to create a few more canvases and draw on them so that the gallery get
 
 With the main features functioning now, let's focus on adding and activating third party authentication.
 
-We have a `providers` prop on `<AuthPage />`.  We want to add GitHub authentication as well.
-
+We have a `providers` prop on `<AuthPage />`. We want to add GitHub authentication as well.
 
 ### GitHub Authentication with Supabase in Refine
 
@@ -1284,28 +1482,52 @@ In our **Supabase** backend, we have to configure and enable GitHub authenticati
 
 And now we should be able to sign in to our app with GitHub as well.
 
+## Implementing a Public Home Page with refine
 
-## Implementing a Public Dashboard with Refine
-
-Now it's time to focus on the `DashboardPage` prop. We put the `<CanvasFeaturedList />` in this page:
+Now it's time to focus on the Home page of our application. We put the `<CanvasFeaturedList />` in this page:
 
 ```tsx title="App.tsx"
-<Refine
-  Dashboard={() => <CanvasFeaturedList />}
-/>
-```
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { GithubOutlined } from "@ant-design/icons";
+import { AuthPage } from "./pages/auth";
 
-The `DashboardPage` prop places its component at the `/` route and it precedence over the first item in the `resources` prop.
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                // ...
+                routerProvider={routerBindings}
+            >
+                <Routes>
+                    {/* ... */}
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        {/* highlight-start */}
+                        <Route index element={<CanvasFeaturedList />} />
+                        {/* highlight-end */}
+                        {/* ... */}
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
 
 So, now if we visit the root route we can see the `<CanvasFeaturedList />` component, and not the `<CanvasList />` component.
 
-There will not be any item in the dashboard page because `is_featured` is set to `false` for a canvas by default. At this stage, in order to get a list of featured canvases, we have to set `is_featured: true` from **Supabase** dashboard for some of the canvases created.
+There will not be any item in the home page because `is_featured` is set to `false` for a canvas by default. At this stage, in order to get a list of featured canvases, we have to set `is_featured: true` from **Supabase** dashboard for some of the canvases created.
 
 I've done that and the featured canvases are listed in the `Home` route:
 
-
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/public_last.png"  alt="react crud app supabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="react crud app supabase" />
 
 <br />
 
@@ -1316,3 +1538,5 @@ In this post, we added `canvases` resource to our `<Refine />` component. We imp
 We also saw how **refine** handles a simple email/password based authentication out-of-the-box. We then went ahead implemented social login using `GitHub` authentication provider.
 
 In the next article, we'll move things to the next level by adding live collaboration features using **refine**'s **Supabase** `liveProvider`.
+
+[Click here to read "Adding Realtime Collaboration" article. &#8594](https://refine.dev/blog/refine-pixels-4/)

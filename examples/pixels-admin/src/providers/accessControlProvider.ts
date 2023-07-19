@@ -12,7 +12,7 @@ export const accessControlProvider = {
         const can = await enforcer.enforce(role, resource, action);
 
         return Promise.resolve({
-            can,
+            can: true,
         });
     },
 };
