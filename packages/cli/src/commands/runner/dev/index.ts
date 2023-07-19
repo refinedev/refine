@@ -25,8 +25,6 @@ const action = async (args: string[]) => {
 
     await updateNotifier();
 
-    NotifyCloud();
-
     await projectPrompt();
 
     runScript(binPath, command);
