@@ -277,7 +277,7 @@ export const authProvider: AuthProvider = {
 
 ### Using `<Authentication>` Component
 
-To manage authenticated routes the [`<Authenticated>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#basic-usage) component is employed, utilizing the [`useIsAuthenticated`](https://refine.dev/docs/api-reference/core/hooks/authentication/useIsAuthenticated/) hook to determine the user's authentication status. It handles redirection and rendering specific elements based on this status through children and `fallback` props.
+The [`<Authenticated>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#basic-usage) component is used to manage authenticated routes. This component leverages the [`useIsAuthenticated`](https://refine.dev/docs/api-reference/core/hooks/authentication/useIsAuthenticated/) hook to determine the authentication status of the user. It handles redirection and rendering specific elements based on this status through children and `fallback` props.
 
 To achieve protected routes, the `<Outlet>` component from `react-router-dom` is utilized, ensuring routes are only accessible when the user is authenticated.
 
