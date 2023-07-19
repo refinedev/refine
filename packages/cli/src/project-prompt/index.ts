@@ -1,5 +1,9 @@
 import { ENV } from "@utils/env";
-import { addProjectIdToPackageJson, getRefineProjectId } from "@utils/package";
+import {
+    addProjectIdToPackageJson,
+    addProjectIdToRefineComponent,
+    getRefineProjectId,
+} from "@utils/package";
 import inquirer from "inquirer";
 import fetch from "node-fetch";
 import os from "os";
@@ -16,11 +20,13 @@ export const projectPrompt = async () => {
             type: "input",
             name: "email",
             message:
-                "You can enter your company email to get exclusive updates and early access to new features.",
+                "You can enter your company email to get exclusive updates and early access to new features: ",
+            default: "name@company.com",
         });
 
         if (response.email) {
             let projectId = getRefineProjectId();
+            await addProjectIdToRefineComponent(projectId);
 
             if (projectId) {
                 await updateProject(projectId, response.email);
@@ -30,12 +36,14 @@ export const projectPrompt = async () => {
                 addProjectIdToPackageJson(projectId);
             }
 
+            await addProjectIdToRefineComponent(projectId);
+
             createSkipPromptFile();
         } else {
             createSkipPromptFile();
         }
     } catch (e) {
-        createSkipPromptFile();
+        // report error
     }
 };
 
@@ -80,10 +88,18 @@ const createSkipPromptFile = () => {
 };
 
 const isSkipPromptFileExists = () => {
-    const configDir = getConfigDir();
-    const skipPromptFilePath = path.join(configDir, "refine", "skip-prompt");
+    try {
+        const configDir = getConfigDir();
+        const skipPromptFilePath = path.join(
+            configDir,
+            "refine",
+            "skip-prompt",
+        );
 
-    return existsSync(skipPromptFilePath);
+        return existsSync(skipPromptFilePath);
+    } catch (e) {
+        return true;
+    }
 };
 
 export const isProjectPromptDisabled = () => {
