@@ -36,7 +36,12 @@ export const FeaturedBlogPostItem = () => {
                 </div>
             </Link>
             <div className="px-4 py-4 md:px-6  md:py-6">
-                <div className="mb-2 flex gap-1 md:mb-4 2xl:mb-6">
+                <div
+                    className={clsx(
+                        "mb-2 gap-1 md:mb-4 2xl:mb-6",
+                        "flex items-center flex-wrap",
+                    )}
+                >
                     {tags.map((tag) => (
                         <Link
                             className={clsx(
