@@ -16,5 +16,9 @@ export const getLinkRel = (URL?: string): string => {
         rel = "noopener dofollow";
     }
 
+    if (isInternalURL || URL?.includes("reactadminpanel.com")) {
+        rel = "noopener dofollow";
+    }
+
     return rel;
 };
