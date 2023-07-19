@@ -11,7 +11,7 @@ import { AccessControlContext } from "@contexts/accessControl";
 import { useResource } from "@hooks/resource";
 
 import { ITelemetryData } from "../../interfaces/telementry";
-import { useIsExistAuthentication } from "..";
+import { useIsExistAuthentication, useRefineContext } from "..";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";
@@ -26,6 +26,7 @@ export const useTelemetryData = (): ITelemetryData => {
     const notificationContext = useContext(NotificationContext);
     const accessControlContext = useContext(AccessControlContext);
     const { resources } = useResource();
+    const refineOptions = useRefineContext();
 
     const auditLog =
         !!auditLogContext.create ||
@@ -56,11 +57,7 @@ export const useTelemetryData = (): ITelemetryData => {
 
     const accessControl = !!accessControlContext.can;
 
-    const projectId =
-        (import.meta as any)?.env?.VITE_REFINE_PROJECT_ID ??
-        typeof process !== "undefined"
-            ? process.env.NEXT_PUBLIC_REFINE_PROJECT_ID
-            : undefined;
+    const projectId = refineOptions?.options?.projectId;
 
     return {
         providers: {

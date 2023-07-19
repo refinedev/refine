@@ -1,9 +1,13 @@
 import { readFileSync, existsSync, readJSON, pathExists } from "fs-extra";
+import jscodeshift from "jscodeshift";
+import parser from "jscodeshift/parser/tsx";
 import execa from "execa";
 import globby from "globby";
 import path from "path";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
+import fs from "fs";
+import { transformRefineOptions } from "./transform";
 
 // TODO: Add package.json type
 export const getPackageJson = (): any => {
@@ -211,4 +215,20 @@ export const getRefineProjectId = () => {
 
 export const addProjectIdToPackageJson = (projectId: string) => {
     execa.sync("npm", ["pkg", "set", `refine.projectId=${projectId}`]);
+};
+
+export const addProjectIdToRefineComponent = async (projectId: string) => {
+    const sourceFile = path.join("src", "App.tsx");
+    const sourceCode = fs.readFileSync(sourceFile, "utf8");
+
+    try {
+        const source = jscodeshift(sourceCode, { parser: parser() });
+
+        const result = transformRefineOptions(jscodeshift, source, projectId);
+
+        fs.writeFileSync(sourceFile, result.toSource());
+        console.log(result.toSource());
+    } catch (error) {
+        console.error(error);
+    }
 };
