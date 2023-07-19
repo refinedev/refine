@@ -38,20 +38,6 @@ export const PostEdit = () => {
 
     return (
         <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.id}>
-                <FormLabel>Id</FormLabel>
-                <Input
-                    disabled
-                    type="number"
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
             <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input
@@ -94,59 +80,6 @@ export const PostEdit = () => {
                 </Select>
                 <FormErrorMessage>
                     {(errors as any)?.category?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
-                <FormLabel>Created At</FormLabel>
-                <Input
-                    disabled
-                    {...register("createdAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.createdAt?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!(errors as any)?.updatedAt}>
-                <FormLabel>Updated At</FormLabel>
-                <Input
-                    disabled
-                    {...register("updatedAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.updatedAt?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!(errors as any)?.publishedAt}>
-                <FormLabel>Published At</FormLabel>
-                <Input
-                    disabled
-                    {...register("publishedAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.publishedAt?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!(errors as any)?.locale}>
-                <FormLabel>Locale</FormLabel>
-                <Input
-                    disabled
-                    type="text"
-                    {...register("locale", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.locale?.message as string}
                 </FormErrorMessage>
             </FormControl>
         </Edit>
