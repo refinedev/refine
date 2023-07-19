@@ -663,7 +663,7 @@ export const Pagination: FC<PaginationProps> = ({
 </p>
 </details>
 
-We will go to update the `<PostList/>` component with the code below:
+We'll update the `<PostList/>` component with the code below:
 
 <details>
 <summary>Show code </summary>
