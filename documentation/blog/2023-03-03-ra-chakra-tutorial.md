@@ -115,7 +115,42 @@ export default App;
 
 -   **Resources** A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
--   In order to create a resource, we have to pass the resources property which will be an **array** of **objects** with each object specifying the pages route name and the basic operations the pages under that route name can perform which are the list(displaying records from an API or service), create(add or creating a record to an API or service), edit(modifying an existing record from an API or service), show(display a specific record from an API or service) operations. to the `<Refine />` component.
+-   To create a resource; define our resources and their action paths, this will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            //...
+            // highlight-start
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    create: "/posts/create",
+                    edit: "/posts/edit/:id",
+                    show: "/posts/show/:id",
+                    meta: {
+                        canDelete: true,
+                    },
+                },
+            ]}
+            // highlight-end
+        >
+            //...
+        </Refine>
+    );
+};
+
+export default App;
+```
+
+-   Now let's define the `<Route>` corresponding to the actions we have created. We should not forget that the path in the resource definition and the path in the route definition must be the same.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -140,6 +175,7 @@ const App: React.FC = () => {
                 },
             ]}
         >
+            {/* highlight-start */}
             <Routes>
                 <Route path="/posts">
                     <Route index element={<PostList />} />
@@ -148,6 +184,7 @@ const App: React.FC = () => {
                     <Route path="show/:id" element={<PostShow />} />
                 </Route>
             </Routes>
+            {/* highlight-end */}
         </Refine>
     );
 };
@@ -171,12 +208,12 @@ You will be directed to the CLI wizard after running the command. To complete th
 
 ```
 ✔ Choose a project template · refine(Vite)
-✔ What would you like to name your project?: · blog-ra-chakra-tutorial
-✔ Choose your backend service to connect: · Strapi V4
-✔ Do you want to use a UI Framework?: · Chakra UI
-✔ Do you want to add example pages?: · No
-✔ Do you need i18n (Internationalization) support?: · No
-✔ Choose a package manager: · npm
+✔ What would you like to name your project? · blog-ra-chakra-tutorial
+✔ Choose your backend service to connect · Strapi V4
+✔ Do you want to use a UI Framework? · Chakra UI
+✔ Do you want to add example pages? · No
+✔ Do you need i18n (Internationalization) support? · No
+✔ Choose a package manager · npm
 ```
 
 When these options are selected, the CLI will bootstrap a refine application with the Strapi-v4 provider.
@@ -189,7 +226,7 @@ npm run dev
 
 The refine application should be up and running after you run the command. To access it, go to `http://localhost:5173`.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg" className="rounded" alt="react admin tutorial" />
 
 ## Utilizing the Strapi v4 Provider in refine
 
@@ -237,6 +274,66 @@ export const authProvider: AuthProvider = {
     ...
 };
 ```
+
+### Using `<Authentication>` Component
+
+To manage authenticated routes the [`<Authenticated>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#basic-usage) component is employed, utilizing the [`useIsAuthenticated`](https://refine.dev/docs/api-reference/core/hooks/authentication/useIsAuthenticated/) hook to determine the user's authentication status. It handles redirection and rendering specific elements based on this status through children and `fallback` props.
+
+To achieve protected routes, the `<Outlet>` component from `react-router-dom` is utilized, ensuring routes are only accessible when the user is authenticated.
+
+To handle scenarios where the user is not authenticated, a `/login` route is created, employing the [`<AuthPage>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-auth-page/) component from **refine** UI packages with the `type="login"` prop to render the login page.
+
+```tsx title="src/App.tsx"
+import { Authenticated, Refine } from "@refinedev/core";
+import { AuthPage } from "@refinedev/chakra-ui";
+import { Outlet, Route, Routes } from "react-router-dom";
+
+function App() {
+    return (
+        <Refine
+        //...
+        >
+            <Routes>
+                {/* highlight-start */}
+                <Route
+                    element={
+                        <Authenticated
+                            fallback={<CatchAllNavigate to="/login" />}
+                        >
+                            <ThemedLayoutV2>
+                                <Outlet />
+                            </ThemedLayoutV2>
+                        </Authenticated>
+                    }
+                >
+                    {/* We will define `resource` routes here. */}
+                </Route>
+                <Route
+                    element={
+                        <Authenticated fallback={<Outlet />}>
+                            <NavigateToResource resource="posts" />
+                        </Authenticated>
+                    }
+                >
+                    <Route path="/login" element={<AuthPage type="login" />} />
+                </Route>
+                {/* highlight-end */}
+                //...
+            </Routes>
+            //...
+        </Refine>
+    );
+}
+
+export default App;
+```
+
+:::tip
+
+[`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/remix/#navigatetoresource) is a basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
+
+[`<ThemedLayoutV2>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/) is a layout component that provides a sidebar and a header. It is useful when you want to have a sidebar and a header in your app.
+:::
 
 ## Implementing CRUD operations on React admin panel
 
@@ -392,129 +489,36 @@ In the code above, we use the [`useTable()`](https://refine.dev/docs/api-referen
 After this, we can now add the component `<PostList/>` in the `list.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
-import {
-    AuthPage,
-    ErrorComponent,
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-} from "@refinedev/chakra-ui";
-
-import { ChakraProvider } from "@chakra-ui/react";
-import routerBindings, {
-    CatchAllNavigate,
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { DataProvider } from "@refinedev/strapi-v4";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { authProvider, axiosInstance } from "./authProvider";
-import { API_URL } from "./constants";
-
+// highlight-next-line
 import { PostList } from "./pages/posts/list";
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
-                <ChakraProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        authProvider={authProvider}
-                        dataProvider={DataProvider(
-                            API_URL + `/api`,
-                            axiosInstance,
-                        )}
-                        notificationProvider={notificationProvider}
-                        routerProvider={routerBindings}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                        // highlight-start
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                            },
-                        ]}
-                        // highlight-end
-                    >
-                        <Routes>
-                            {/* highlight-start */}
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
-
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                </Route>
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <AuthPage
-                                            type="login"
-                                            formProps={{
-                                                defaultValues: {
-                                                    email: "demo@refine.dev",
-                                                    password: "demodemo",
-                                                },
-                                            }}
-                                        />
-                                    }
-                                />
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated>
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                            {/* highlight-end */}
-                        </Routes>
-                        <RefineKbar />
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </ChakraProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
+        <Refine
+            //...
+            // highlight-start
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                },
+            ]}
+            // highlight-end
+        >
+            <Routes>
+                //...
+                {/* highlight-start */}
+                <Route
+                    index
+                    element={<NavigateToResource resource="posts" />}
+                />
+                <Route path="/posts">
+                    <Route index element={<PostList />} />
+                </Route>
+                {/* highlight-end */}
+                //...
+            </Routes>
+        </Refine>
     );
 }
 
@@ -573,7 +577,7 @@ const columns = React.useMemo<GridColumns<IPost>>(
 );
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/handling-relationships.jpg" className="border border-gray-100" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/handling-relationships.jpg" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 #### Pagination Of Listed Records
 
@@ -798,44 +802,32 @@ import {
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <ChakraProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        //...
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                // highlight-next-line
-                                show: "/posts/show/:id",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            //...
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                {/* highlight-start */}
-                                <Route
-                                    path="/posts/show/:id"
-                                    element={<PostShow />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
-                            //...
-                        </Routes>
-                    </Refine>
-                </ChakraProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
+        <Refine
+            //...
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    // highlight-next-line
+                    show: "/posts/show/:id",
+                },
+            ]}
+        >
+            <Routes>
+                //...
+                <Route
+                    index
+                    element={<NavigateToResource resource="posts" />}
+                />
+                <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    {/* highlight-start */}
+                    <Route path="/posts/show/:id" element={<PostShow />} />
+                    {/* highlight-end */}
+                </Route>
+                //...
+            </Routes>
+        </Refine>
     );
 }
 
@@ -844,7 +836,7 @@ export default App;
 
 Now, the `Show` page look like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100 rounded"  alt="react admin tutorial" />
 
 ---
 
@@ -857,7 +849,7 @@ Now, the `Show` page look like this:
 To create a record, we will use the `@refinedev/react-hook-form` package.
 It provides the [`useForm()`](https://refine.dev/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
 
-Next, in the `posts` folder under the `pages` folder, we'll include a `create`.tsx file with the following code:
+Next, in the `posts` folder under the `pages` folder, we'll include a `create.tsx` file with the following code:
 
 <details>
 <summary>Show code</summary>
@@ -977,56 +969,41 @@ import {
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <ChakraProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        //...
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                show: "/posts/show/:id",
-                                // highlight-next-line
-                                create: "/posts/create",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            //...
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route
-                                    path="/posts/show/:id"
-                                    element={<PostShow />}
-                                />
-                                {/* highlight-start */}
-                                <Route
-                                    path="/posts/create"
-                                    element={<PostCreate />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
-                            //...
-                        </Routes>
-                    </Refine>
-                </ChakraProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
+        <Refine
+            //...
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    show: "/posts/show/:id",
+                    // highlight-next-line
+                    create: "/posts/create",
+                },
+            ]}
+        >
+            <Routes>
+                //...
+                <Route
+                    index
+                    element={<NavigateToResource resource="posts" />}
+                />
+                <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    <Route path="/posts/show/:id" element={<PostShow />} />
+                    {/* highlight-start */}
+                    <Route path="/posts/create" element={<PostCreate />} />
+                    {/* highlight-end */}
+                </Route>
+                //...
+            </Routes>
+        </Refine>
     );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Modifying/Editing records
 
@@ -1213,61 +1190,43 @@ import {
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <ChakraProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        //...
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                show: "/posts/show/:id",
-                                create: "/posts/create",
-                                // highlight-next-line
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            //...
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route
-                                    path="/posts/show/:id"
-                                    element={<PostShow />}
-                                />
-                                <Route
-                                    path="/posts/create"
-                                    element={<PostCreate />}
-                                />
-                                {/* highlight-start */}
-                                <Route
-                                    path="/posts/edit/:id"
-                                    element={<PostEdit />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
-                            //...
-                        </Routes>
-                    </Refine>
-                </ChakraProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
+        <Refine
+            //...
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    show: "/posts/show/:id",
+                    create: "/posts/create",
+                    // highlight-next-line
+                    edit: "/posts/edit/:id",
+                },
+            ]}
+        >
+            <Routes>
+                //...
+                <Route
+                    index
+                    element={<NavigateToResource resource="posts" />}
+                />
+                <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    <Route path="/posts/show/:id" element={<PostShow />} />
+                    <Route path="/posts/create" element={<PostCreate />} />
+                    {/* highlight-start */}
+                    <Route path="/posts/edit/:id" element={<PostEdit />} />
+                    {/* highlight-end */}
+                </Route>
+                //...
+            </Routes>
+        </Refine>
     );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Deleting post record
 
@@ -1315,36 +1274,29 @@ Another way to include a delete button on the `<PostEdit>` page. To display the 
 //...
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <ChakraProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        //...
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                show: "/posts/show/:id",
-                                create: "/posts/create",
-                                // highlight-start
-                                meta: {
-                                    canDelete: true,
-                                },
-                                // highlight-end
-                            },
-                        ]}
-                    />
-                </ChakraProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
+        <Refine
+            //...
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    show: "/posts/show/:id",
+                    create: "/posts/create",
+                    // highlight-start
+                    meta: {
+                        canDelete: true,
+                    },
+                    // highlight-end
+                },
+            ]}
+        />
     );
 }
 
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Implement sorting of listed records
 
@@ -1352,6 +1304,10 @@ Since the `@refinedev/react-table package` is based on the `Tanstack` Table pack
 
 Let's make a `<ColumnSorter/>` component for our table header. This component will be in charge of changing the table's sorting state.
 we create a new folder named `components` under the `src` folder. Under that folder, add a `ColumnSorter.tsx` file with the following code:
+
+<details>
+<summary>Show code </summary>
+<p>
 
 ```tsx title="src/components/ColumnSorter.tsx"
 import { IconButton } from "@chakra-ui/react";
@@ -1397,6 +1353,8 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
     );
 };
 ```
+</p>
+</details>
 
 In the code above, the `<ColumnSorter/>` is a simple component that displays a button.
 The `column.getToggleSortingHandler()` method is called when the user clicks on the button. This method will alter the table's sorting state.
@@ -1447,7 +1405,7 @@ You can set the `enableSorting` property of the column to false in the column de
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.gif" className="border border-gray-100" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Implement filters on listed records
 
@@ -1656,7 +1614,7 @@ We can also disable filtering for the `actions` column by setting the column's e
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.gif" className="border border-gray-100" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Implementing mutation mode.
 
@@ -1690,7 +1648,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.gif" className="border border-gray-100"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.gif" className="border border-gray-100 rounded"  alt="react admin tutorial" />
 
 ## Conclusion
 
