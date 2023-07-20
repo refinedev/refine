@@ -89,7 +89,8 @@ export default App;
 
 There are a variety of configurations that can be passed into a refine application. They are:
 
--   **DataProvider**: Data provider enables a refine application to connect to an external API or service. A `dataProvider` sends HTTP requests and receives responses via predefined methods.
+#### Data Provider
+Data provider enables a refine application to connect to an external API or service. A `dataProvider` sends HTTP requests and receives responses via predefined methods.
 
 Here is a sample on how to adding a dataProvider to the refine component.
 
@@ -113,13 +114,15 @@ function App() {
 export default App;
 ```
 
--   **Resources**: A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
+#### Resource
+A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
--   To create a resource; define our resources and their action paths. This will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action. 
+To create a resource; define our resources and their action paths. This will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action. 
 In accordance with the path definitions in a resource object, we have to assign a `<Route />` for each path and an element to display at that path.
+
 The `<Route>` corresponding to the created actions is defined. It is important to remember that the path specified in the resource definition should match the `path` specified in the route definition.
 
-[Refer to Router docs for more information](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#usage).
+[Refer to React Router docs for more information](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#usage).
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -447,12 +450,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
 In the code above, we use the [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from the `@refinedev/react-table` package to fetch records from Strapi. the `useTable()` maps the records into rows based on the `columns` variable definition.
 
-After this, we can now add the component `<PostList/>` in the `list.tsx` file to our resource present in the `App.tsx` file
+After this, we need to add a path (`/posts`) for the `list` action to our `resources` in the `App.tsx` file.
 
 ```tsx title="src/App.tsx"
-// highlight-next-line
-import { PostList } from "./pages/posts/list";
-
 function App() {
     return (
         <Refine
@@ -465,6 +465,25 @@ function App() {
                 },
             ]}
             // highlight-end
+        />
+    );
+}
+
+export default App;
+```
+
+For this, we need to create a `<Route>` with the same path. To do this, we should create a `<Route>` with the same path and provide the `<PostList>` component to the `element` prop.
+
+```tsx title="src/App.tsx"
+// highlight-start
+import { NavigateToResource, Route, Routes } from "@refinedev/react-router-v6";
+import { PostList } from "./pages/posts/list";
+// highlight-end
+
+function App() {
+    return (
+        <Refine
+            //...
         >
             <Routes>
                 //...
@@ -486,7 +505,7 @@ function App() {
 export default App;
 ```
 
-After adding the rescource, the application will now redirect to the URL specified by the name property.
+To avoid encountering an empty screen when going to the homepage, we use the [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) component to redirect to the `posts` resource.
 
 It will prompt you to log in to the app. Since we are using refine's `fake strapi-v4 API`, Try these credentials:
 
