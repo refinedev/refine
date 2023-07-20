@@ -34,7 +34,7 @@ const transformRefineOptions = (j: any, root: any, projectId: string) => {
 
         // for options has already projectId
         const hasProjectId = optionsProp.value.expression.properties.find(
-            (p) => {
+            (p: any) => {
                 if (p.type === "ObjectProperty") {
                     return p.key.name === "projectId";
                 }
