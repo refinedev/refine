@@ -225,8 +225,7 @@ Whenever a part of the app checks for access control, refine passes `resource`, 
 
 Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on the sidebar menu. Also in the list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since they are not included in the policy.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/simple-access.png" alt="Simple Access Control" />
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/simple-access.jpg" className="border border-gray-200 rounded" alt="Simple Access Control" />
 
 ## Adding Different Roles
 
@@ -349,8 +348,7 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
 
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/dynamic-role.gif" alt="Dynamic Role" />
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/dynamic-role-min.gif" className="border border-gray-200 rounded" alt="Dynamic Role" />
 
 ## Handling access with params
 
@@ -589,8 +587,7 @@ export const PostList: React.FC = () => {
 [`<CanAccess />`](/docs/api-reference/core/components/accessControl/can-access) can be used too to check access control in custom places in your app.
 :::
 
-<br/>
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/access-control.gif" alt="Full Example Sample" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/dynamic-role-min.gif" className="border border-gray-200 rounded" alt="Full Example Sample" />
 
 ## Example
 
