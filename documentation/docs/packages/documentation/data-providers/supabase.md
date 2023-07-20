@@ -7,6 +7,61 @@ sidebar_label: Supabase
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+```tsx live  shared
+const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
+    RefineCore;
+const {
+    Typography: { Title: SharedTitle },
+    Button,
+} = AntdCore;
+
+window.__refineAuthStatus = false;
+
+const authProvider = {
+    login: () => {
+        window.__refineAuthStatus = true;
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
+        window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    check: async () => {
+        return {
+            authenticated: window.__refineAuthStatus ? true : false,
+            redirectTo: window.__refineAuthStatus ? undefined : "/login",
+        };
+    },
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => null,
+};
+```
+
 ## Introduction
 
 [Supabase](https://supabase.com/) is an open-source Firebase alternative that provides backend features. This tutorial steps will focus specifically on database and authentication features. We'll see how to use Supabase as a data provider and implement authentication to refine app.
@@ -436,11 +491,39 @@ export default App;
 
 Also, we'll see the `Auth provider` methods in action when using `LoginPage` in the next sections.
 
-At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
+uth methods.
 
 If you head over to `localhost:3000`, you'll see a welcome page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.jpg" className="rounded" alt="welcome" />
+```tsx live previewOnly previewHeight=800px url=http://localhost:3000
+setInitialRoutes(["/"]);
+
+import { notificationProvider, WelcomePage } from "@refinedev/antd";
+import { Refine } from "@refinedev/core";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 Now it's time to add some resources to our app.
 
@@ -984,7 +1067,40 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 After adding the resources, the app will look like:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/login.jpg" className="rounded" alt="login" />
+```tsx live previewOnly url=http://localhost:3000/login previewHeight=600px
+setInitialRoutes(["/login"]);
+
+// visible-block-start
+import { Refine } from "@refinedev/core";
+import { AuthPage, RefineThemes } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { ConfigProvider } from "antd";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { authProvider } from "./authProvider";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+// visible-block-end
+render(<App />);
+```
 
 Normally, refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
 
@@ -1074,7 +1190,7 @@ The `AuthPage` component returns ready-to-use authentication pages for login, re
 
 Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword` functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.jpg" className="border border-gray-200 rounded" alt="list" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.jpg" className="border border-gray-200 rounded" alt="flow" />
 
 **By defining the routes array in the `routerProvider` property, we can access the `<AuthPage>` authentication pages by navigating to `/register`, `/forgot-password`, and `/update-password` endpoints.**
 
@@ -1089,13 +1205,192 @@ Sign in the app with followings credentials:
 
 We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.jpg" className="border border-gray-200 rounded" alt="list" />
+```tsx live previewOnly url=http://localhost:3000/posts
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
+// visible-block-start
+import { useMany } from "@refinedev/core";
+
+import { List, TextField, TagField, useTable } from "@refinedev/antd";
+import { Table } from "antd";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>({
+        syncWithLocation: true,
+    });
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value: string) => <TagField value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts"]}
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+            },
+        ]}
+    />,
+);
+```
 
 Now click on the `Create` button to create a new post. The app will navigate to the `post/create` endpoint, and `CreatePage` will render.
 
 Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.jpg" className="border border-gray-200 rounded" alt="create" />
+```tsx live previewOnly url=http://localhost:3000/posts/create
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
+// visible-block-start
+import { Create, useForm, useSelect, CreateButton } from "@refinedev/antd";
+import { Form, Input, Select } from "antd";
+
+const PostCreate: React.FC = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/create"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <CreateButton />
+                    </div>
+                ),
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
+```
 
 ### Social Logins
 
