@@ -440,11 +440,9 @@ Also, we'll see the `Auth provider` methods in action when using `LoginPage` in 
 
 At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
-If you head over to localhost:3000, you'll see a welcome page.
+If you head over to `localhost:3000`, you'll see a welcome page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.png" alt="welcome" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.jpg" className="rounded" alt="welcome" />
 
 Now it's time to add some resources to our app.
 
@@ -988,16 +986,7 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 After adding the resources, the app will look like:
 
-<div  style={{display:"flex", flexDirection:"column"}}>
-    <div class="window" style={{alignSelf:"center", width:"700px"}} >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img style={{alignSelf:"center", width:"700px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/login-screen.png" alt="login" />
-</div>
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/login.jpg" className="rounded" alt="login" />
 
 Normally, refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
 
@@ -1109,7 +1098,7 @@ Sign in the app with followings credentials:
 
 We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.png" alt="list" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.jpg" className="border border-gray-200 rounded" alt="list" />
 
 <br/>
 <br/>
@@ -1118,7 +1107,7 @@ Now click on the `Create` button to create a new post. The app will navigate to 
 
 Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.png" alt="create" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.jpg" className="border border-gray-200 rounded" alt="create" />
 
 <br/>
 
@@ -1164,17 +1153,11 @@ You will find the Google Auth option in the Auth providers section; enable it an
 
 [Refer to Supabase docs for more information about Credentials &#8594](https://supabase.com/docs/guides/auth/auth-google#create-your-google-credentials)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" alt="supabaseConfig" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" className="rounded" alt="supabaseConfig" />
 
 Here is the result:
 
-<br/>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login.gif" alt="socialLogin" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login-min.gif" className="border border-gray-200 rounded" alt="socialLogin" />
 
 ## Let's recap what we have done so far
 
@@ -1231,15 +1214,9 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
 :::
 
-<br/>
-
 ### Let see how real-time feature works in the app
 
-<br/>
-
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time.gif" alt="realTime" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time-min.gif" className="border border-gray-200 rounded" alt="realTime" />
 
 :::tip
 **refine** offers out-of-the-box live provider support:
