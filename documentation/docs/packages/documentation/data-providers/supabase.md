@@ -410,8 +410,6 @@ export default authProvider;
 Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/authentication/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
-<br/>
-
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
 
 ```tsx title="App.tsx"
@@ -1076,14 +1074,7 @@ The `AuthPage` component returns ready-to-use authentication pages for login, re
 
 Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword` functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
 
-<br/>
-
-<div style={{display:"flex", flexDirection:"column"}}>
-     <img style={{alignSelf:"center", width:"800px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.png" alt="flow" />
-</div>
-
-<br/>
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.jpg" className="border border-gray-200 rounded" alt="list" />
 
 **By defining the routes array in the `routerProvider` property, we can access the `<AuthPage>` authentication pages by navigating to `/register`, `/forgot-password`, and `/update-password` endpoints.**
 
@@ -1100,16 +1091,11 @@ We have successfully logged in to the app and `ListPage` renders table of data a
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.jpg" className="border border-gray-200 rounded" alt="list" />
 
-<br/>
-<br/>
-
 Now click on the `Create` button to create a new post. The app will navigate to the `post/create` endpoint, and `CreatePage` will render.
 
 Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.jpg" className="border border-gray-200 rounded" alt="create" />
-
-<br/>
 
 ### Social Logins
 
