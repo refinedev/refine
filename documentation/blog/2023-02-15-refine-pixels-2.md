@@ -151,7 +151,7 @@ We will be using them in our **Pixels** app. Some provider objects like the `rou
 
 :::caution
 
-[`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/api-reference/antd/theming/#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, we will be replace the `ColorModeContextProvider` with the `ConfigProvider`.
+[`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/api-reference/antd/theming/#theme-customization) out-of-the-box. However, we will not be using it in this series. So, we will be replace the `ColorModeContextProvider` with the `ConfigProvider`.
 
 Also You can remove `src/context/color-mode` that comes with `create refine-app`.
 
@@ -186,7 +186,14 @@ function App() {
 If we look closely, our `dataProvider` prop derives a value from a call to `dataProvider(supabaseClient)`:
 
 ```tsx title="src/App.tsx"
-dataProvider={dataProvider(supabaseClient)}
+import { Refine } from "@refinedev/core";
+import { dataProvider } from "@refinedev/supabase";
+
+import { supabaseClient } from "./utility";
+
+function App() {
+    return <Refine dataProvider={dataProvider(supabaseClient)} />;
+}
 ```
 
 The returned object, also called the **`dataProvider`** object, has the following signature:
@@ -197,32 +204,18 @@ The returned object, also called the **`dataProvider`** object, has the followin
 
 ```tsx
 const dataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
-    getList: ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        metaData,
-    }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
-    custom: ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        metaData,
-    }) => Promise,
+    create: ({ resource, variables, meta }) => Promise,
+    createMany: ({ resource, variables, meta }) => Promise,
+    deleteOne: ({ resource, id, variables, meta }) => Promise,
+    deleteMany: ({ resource, ids, variables, meta }) => Promise,
+    getList: ({ resource, pagination, hasPagination, sort, filters, meta }) =>
+        Promise,
+    getMany: ({ resource, ids, meta }) => Promise,
+    getOne: ({ resource, id, meta }) => Promise,
+    update: ({ resource, id, variables, meta }) => Promise,
+    updateMany: ({ resource, ids, variables, meta }) => Promise,
+    custom: ({ url, method, sort, filters, payload, query, headers, meta }) =>
+        Promise,
     getApiUrl: () => "",
 };
 ```
@@ -241,14 +234,324 @@ Normally, for our own backend API, we have to define each method we need for sen
 <p>
 
 ```tsx title="@refinedev/supabase/src/index.ts"
-import { AuthBindings } from "@refinedev/core";
+import { DataProvider } from "@refinedev/core";
+import { SupabaseClient } from "@supabase/supabase-js";
+import { generateFilter, handleError } from "../utils";
+
+export const dataProvider = (
+    supabaseClient: SupabaseClient,
+): Required<DataProvider> => {
+    return {
+        getList: async ({ resource, pagination, filters, sorters, meta }) => {
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
+
+            const query = supabaseClient
+                .from(resource)
+                .select(meta?.select ?? "*", {
+                    count: "exact",
+                });
+
+            if (mode === "server") {
+                query.range((current - 1) * pageSize, current * pageSize - 1);
+            }
+
+            sorters?.map((item) => {
+                const [foreignTable, field] = item.field.split(/\.(.*)/);
+
+                if (foreignTable && field) {
+                    query
+                        .select(meta?.select ?? `*, ${foreignTable}(${field})`)
+                        .order(field, {
+                            ascending: item.order === "asc",
+                            foreignTable: foreignTable,
+                        });
+                } else {
+                    query.order(item.field, {
+                        ascending: item.order === "asc",
+                    });
+                }
+            });
+
+            filters?.map((item) => {
+                generateFilter(item, query);
+            });
+
+            const { data, count, error } = await query;
+
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: data || [],
+                total: count || 0,
+            } as any;
+        },
+
+        getMany: async ({ resource, ids, meta }) => {
+            const query = supabaseClient
+                .from(resource)
+                .select(meta?.select ?? "*");
+
+            if (meta?.idColumnName) {
+                query.in(meta.idColumnName, ids);
+            } else {
+                query.in("id", ids);
+            }
+
+            const { data, error } = await query;
+
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: data || [],
+            } as any;
+        },
+
+        create: async ({ resource, variables, meta }) => {
+            const query = supabaseClient.from(resource).insert(variables);
+
+            if (meta?.select) {
+                query.select(meta.select);
+            }
+
+            const { data, error } = await query;
+
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
+
+        createMany: async ({ resource, variables, meta }) => {
+            const query = supabaseClient.from(resource).insert(variables);
+
+            if (meta?.select) {
+                query.select(meta.select);
+            }
+
+            const { data, error } = await query;
+
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: data as any,
+            };
+        },
+
+        update: async ({ resource, id, variables, meta }) => {
+            const query = supabaseClient.from(resource).update(variables);
+
+            if (meta?.idColumnName) {
+                query.eq(meta.idColumnName, id);
+            } else {
+                query.match({ id });
+            }
+
+            if (meta?.select) {
+                query.select(meta.select);
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
+
+        updateMany: async ({ resource, ids, variables, meta }) => {
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const query = supabaseClient
+                        .from(resource)
+                        .update(variables);
+
+                    if (meta?.idColumnName) {
+                        query.eq(meta.idColumnName, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    if (meta?.select) {
+                        query.select(meta.select);
+                    }
+
+                    const { data, error } = await query;
+                    if (error) {
+                        return handleError(error);
+                    }
+
+                    return (data || [])[0] as any;
+                }),
+            );
+
+            return {
+                data: response,
+            };
+        },
+
+        getOne: async ({ resource, id, meta }) => {
+            const query = supabaseClient
+                .from(resource)
+                .select(meta?.select ?? "*");
+
+            if (meta?.idColumnName) {
+                query.eq(meta.idColumnName, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
+
+        deleteOne: async ({ resource, id, meta }) => {
+            const query = supabaseClient.from(resource).delete();
+
+            if (meta?.idColumnName) {
+                query.eq(meta.idColumnName, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
+
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
+
+        deleteMany: async ({ resource, ids, meta }) => {
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const query = supabaseClient.from(resource).delete();
+
+                    if (meta?.idColumnName) {
+                        query.eq(meta.idColumnName, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
+                    if (error) {
+                        return handleError(error);
+                    }
+
+                    return (data || [])[0] as any;
+                }),
+            );
+
+            return {
+                data: response,
+            };
+        },
+
+        getApiUrl: () => {
+            throw Error("Not implemented on refine-supabase data provider.");
+        },
+
+        custom: () => {
+            throw Error("Not implemented on refine-supabase data provider.");
+        },
+    };
+};
+```
+
+</p>
+</details>
+
+We don't have to get into the mind of the people at **refine** yet, but if we skim over closely, the `dataProvider` object above has pretty much every method we need to perform all CRUD operations against a **Supabase** database. Notable methods we are going to use in our app are: `create()`, `getOne()`, `getList()` and `update()`.
+
+For the details of how these methods work, please take your time to scan through the [`dataProvider` API reference](https://refine.dev/docs/api-reference/core/providers/data-provider/).
+
+In order to get the **Supabase** `dataProvider` object to deliver, first a `supabaseClient` has to be set up.
+
+### **refine**'s `supabaseClient`
+
+If we look inside `src/utility/`, we have a `supabaseClient.ts` file containing the credentials of a client that provides us access to a **Supabase** backend:
+
+```tsx title="src/utility/supabaseClient.ts"
+import { createClient } from "@refinedev/supabase";
+
+const SUPABASE_URL = "https://ifbdnkfqbypnkmwcfdes.supabase.co";
+const SUPABASE_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmYmRua2ZxYnlwbmttd2NmZGVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA5MTgzOTEsImV4cCI6MTk4NjQ5NDM5MX0.ThQ40H-xay-Hi5cf7H9mKccMCvAX3iCvYVJDe0KiHtw";
+
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    db: {
+        schema: "public",
+    },
+    auth: {
+        persistSession: true,
+    },
+});
+```
+
+This file was also generated for us by `create refine-app` using **refine**'s **Supabase** package.
+
+Inside `<Refine />` component, we are getting the value of the `dataProvider` prop by passing in `supabaseClient` to the `dataProvider()` function imported from this package:
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+import { dataProvider } from "@refinedev/supabase";
 
 import { supabaseClient } from "./utility";
 
-const authProvider: AuthBindings = {
+function App() {
+    return <Refine dataProvider={dataProvider(supabaseClient)} />;
+}
+```
+
+We need to tweak the `supabaseClient.ts` file with our own credentials, which we will do when we add `resources` to our app.
+
+If we inspect further, setting up **Supabase** with **refine** helps us enable not only the `dataProvider` prop, but also the `authProvider` and `liveProvider` props inside `<Refine />`. This is because they all depend on `supabaseClient` to send `http` requests. We'll explore the `liveProvider` prop on Day 4, but let's also look at the `authProvider` here to enhance our understanding.
+
+### `<Refine />`'s `authProvider` Prop
+
+We can clearly see in our `<Refine />` component that `create refine-app` already enabled the `authProvider` prop by passing in the corresponding object for us:
+
+```tsx title="App.tsx"
+authProvider = { authProvider };
+```
+
+Earlier on, the `authProvider` object was already created by `create refine-app` inside the `authProvider.ts` file:
+
+<details>
+<summary>Show refine supabase auth provider source code</summary>
+<p>
+
+```tsx title="src/authProvider.ts"
+import { AuthBindings } from "@refinedev/core";
+
+import { supabaseClient } from "../utility";
+
+export const authProvider: AuthBindings = {
     login: async ({ email, password, providerName }) => {
-        // sign in with oauth
         try {
+            // sign in with oauth
             if (providerName) {
                 const { data, error } =
                     await supabaseClient.auth.signInWithOAuth({
@@ -265,7 +568,6 @@ const authProvider: AuthBindings = {
                 if (data?.url) {
                     return {
                         success: true,
-                        redirectTo: "/",
                     };
                 }
             }
@@ -287,7 +589,6 @@ const authProvider: AuthBindings = {
             if (data?.user) {
                 return {
                     success: true,
-                    redirectTo: "/",
                 };
             }
         } catch (error: any) {
@@ -322,7 +623,6 @@ const authProvider: AuthBindings = {
             if (data) {
                 return {
                     success: true,
-                    redirectTo: "/",
                 };
             }
         } catch (error: any) {
@@ -399,6 +699,7 @@ const authProvider: AuthBindings = {
                 error,
             };
         }
+
         return {
             success: false,
             error: {
@@ -422,10 +723,7 @@ const authProvider: AuthBindings = {
             redirectTo: "/",
         };
     },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
+    onError: async (_error: any) => ({}),
     check: async () => {
         try {
             const { data } = await supabaseClient.auth.getSession();
@@ -439,18 +737,13 @@ const authProvider: AuthBindings = {
                         name: "Session not found",
                     },
                     logout: true,
-                    redirectTo: "/login",
                 };
             }
         } catch (error: any) {
             return {
                 authenticated: false,
-                error: error || {
-                    message: "Check failed",
-                    name: "Not authenticated",
-                },
+                error: error,
                 logout: true,
-                redirectTo: "/login",
             };
         }
 
@@ -459,201 +752,34 @@ const authProvider: AuthBindings = {
         };
     },
     getPermissions: async () => {
-        const user = await supabaseClient.auth.getUser();
+        try {
+            const user = await supabaseClient.auth.getUser();
 
-        if (user) {
-            return user.data.user?.role;
+            if (user) {
+                return user.data.user?.role;
+            }
+        } catch (error) {
+            console.error(error);
+            return;
         }
-
-        return null;
     },
     getIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
+        try {
+            const { data } = await supabaseClient.auth.getUser();
 
-        if (data?.user) {
-            return {
-                ...data.user,
-                name: data.user.email,
-            };
-        }
-
-        return null;
-    },
-};
-
-export default authProvider;
-```
-
-</p>
-</details>
-
-We don't have to get into the mind of the people at **refine** yet, but if we skim over closely, the `dataProvider` object above has pretty much every method we need to perform all CRUD operations against a **Supabase** database. Notable methods we are going to use in our app are: `create()`, `getOne()`, `getList()` and `update()`.
-
-For the details of how these methods work, please take your time to scan through the [`dataProvider` API reference](https://refine.dev/docs/api-reference/core/providers/data-provider/).
-
-In order to get the **Supabase** `dataProvider` object to deliver, first a `supabaseClient` has to be set up.
-
-### **refine**'s `supabaseClient`
-
-If we look inside `src/utility/`, we have a `supabaseClient.ts` file containing the credentials of a client that provides us access to a **Supabase** backend:
-
-```tsx title="src/utility/supabaseClient.ts"
-import { createClient } from "@refinedev/supabase";
-
-const SUPABASE_URL = "https://ifbdnkfqbypnkmwcfdes.supabase.co";
-const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmYmRua2ZxYnlwbmttd2NmZGVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA5MTgzOTEsImV4cCI6MTk4NjQ5NDM5MX0.ThQ40H-xay-Hi5cf7H9mKccMCvAX3iCvYVJDe0KiHtw";
-
-export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
-    db: {
-        schema: "public",
-    },
-    auth: {
-        persistSession: true,
-    },
-});
-```
-
-This file was also generated for us by `create refine-app` using **refine**'s **Supabase** package.
-
-Inside `<Refine />` component, we are getting the value of the `dataProvider` prop by passing in `supabaseClient` to the `dataProvider()` function imported from this package:
-
-```tsx title="App.tsx"
-dataProvider={dataProvider(supabaseClient)}
-```
-
-We need to tweak the `supabaseClient.ts` file with our own credentials, which we will do when we add `resources` to our app.
-
-If we inspect further, setting up **Supabase** with **refine** helps us enable not only the `dataProvider` prop, but also the `authProvider` and `liveProvider` props inside `<Refine />`. This is because they all depend on `supabaseClient` to send `http` requests. We'll explore the `liveProvider` prop on Day 4, but let's also look at the `authProvider` here to enhance our understanding.
-
-### `<Refine />`'s `authProvider` Prop
-
-We can clearly see in our `<Refine />` component that `create refine-app` already enabled the `authProvider` prop by passing in the corresponding object for us:
-
-```tsx title="App.tsx"
-authProvider = { authProvider };
-```
-
-Earlier on, the `authProvider` object was already created by `create refine-app` inside the `authProvider.ts` file:
-
-<details>
-<summary>Show refine supabase auth provider source code</summary>
-<p>
-
-```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@refinedev/core";
-import { supabaseClient } from "utility";
-
-export const authProvider: AuthProvider = {
-    login: async ({ email, password, providerName }) => {
-        // sign in with oauth
-        if (providerName) {
-            const { data, error } = await supabaseClient.auth.signInWithOAuth({
-                provider: providerName,
-            });
-
-            if (error) {
-                return Promise.reject(error);
+            if (data?.user) {
+                return {
+                    ...data.user,
+                    name: data.user.email,
+                };
             }
 
-            if (data?.url) {
-                return Promise.resolve(false);
-            }
+            return null;
+        } catch (error: any) {
+            console.error(error);
+
+            return null;
         }
-
-        // sign in with email and password
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data?.user) {
-            return Promise.resolve();
-        }
-
-        return Promise.resolve();
-    },
-    register: async ({ email, password }) => {
-        const { data, error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-        });
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data) {
-            return Promise.resolve();
-        }
-    },
-    forgotPassword: async ({ email }) => {
-        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            {
-                redirectTo: `${window.location.origin}/update-password`,
-            },
-        );
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data) {
-            return Promise.resolve();
-        }
-    },
-    updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.updateUser({
-            password,
-        });
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data) {
-            return Promise.resolve("/");
-        }
-    },
-    logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        return Promise.resolve("/");
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        await supabaseClient.auth.getSession();
-        return Promise.resolve();
-    },
-    getPermissions: async () => {
-        const { data } = await supabaseClient.auth.getUser();
-        const { user } = data;
-
-        if (user) {
-            return Promise.resolve(user.role);
-        }
-    },
-    getUserIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
-        const { user } = data;
-
-        if (user) {
-            return Promise.resolve({
-                ...user,
-                name: user.email,
-            });
-        }
-
-        return Promise.reject();
     },
 };
 ```

@@ -99,14 +99,8 @@ const dataProvider = {
     deleteOne: ({ resource, id, variables, metaData }) => Promise,
     deleteMany: ({ resource, ids, variables, metaData }) => Promise,
     //highlight-start
-    getList: ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        metaData,
-    }) => Promise,
+    getList: ({ resource, pagination, pagination, sort, filters, meta }) =>
+        Promise,
     //highlight-end
     getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
@@ -160,7 +154,7 @@ The hooks, in turn, leverage [**React Query**](https://react-query-v3.tanstack.c
 const queryResponse = useQuery<GetListResponse<TData>, TError>(
     queryKey.list(config),
     ({ queryKey, pagination, signal }) => {
-        const { hasPagination, meta, ...restConfig } = config || {};
+        const { pagination, meta, ...restConfig } = config || {};
         return getList<TData>({
             resource,
             ...restConfig,

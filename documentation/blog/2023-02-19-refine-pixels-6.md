@@ -61,9 +61,65 @@ If you are not familiar with **Casbin**, please feel free to go through [how it 
 
 If / when you are familiar, lovely yay! Be with me, go ahead and install **Casbin**:
 
+### Casbin Installation
+
 ```bash
 npm install casbin
 ```
+
+#### Browser Fallbacks for Casbin
+
+We need to configure polyfills for `vite` to work in a browser environment.
+
+Let's first install required packages:
+
+```node
+npm install -D rollup-plugin-polyfill-node @esbuild-plugins/node-modules-polyfill @esbuild-plugins/node-globals-polyfill
+```
+
+After that we need to add the following to the `vite.config.ts` file:
+
+```tsx title="vite.config.ts"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
+import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
+import rollupNodePolyFill from "rollup-plugin-polyfill-node";
+
+export default defineConfig({
+    plugins: [react()],
+    optimizeDeps: {
+        esbuildOptions: {
+            // Node.js global to browser globalThis
+            define: {
+                global: "globalThis",
+            },
+            // Enable esbuild polyfill plugins
+            plugins: [
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                NodeGlobalsPolyfillPlugin({
+                    buffer: true,
+                    process: true,
+                }),
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                NodeModulesPolyfillPlugin(),
+            ],
+        },
+    },
+    build: {
+        rollupOptions: {
+            plugins: [rollupNodePolyFill()],
+        },
+    },
+});
+```
+
+Without these overrides, `casbin` versions `>5` is known to throw errors.
+
+With this out of the way and the **Casbin** model policies ready, it's time for us to define the `accessControlProvider`.
 
 ### Casbin Model and Policies
 
@@ -111,56 +167,6 @@ The `adapter` holds our instances of policies produced from `p`. The policies ab
 -   an `editor` to `list` users.
 -   an `editor` to `list` and `edit` canvases.
 
-### Browser Fallbacks for Casbin
-
-We need to configure polyfills for `vite` to work in a browser environment.
-
-Let's first install required packages:
-
-```node
-npm install -D rollup-plugin-polyfill-node @esbuild-plugins/node-modules-polyfill @esbuild-plugins/node-globals-polyfill
-```
-
-After that we need to add the following to the `vite.config.ts` file:
-
-```tsx title="vite.config.ts"
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
-import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
-import rollupNodePolyFill from "rollup-plugin-polyfill-node";
-
-export default defineConfig({
-    plugins: [react()],
-    optimizeDeps: {
-        esbuildOptions: {
-            // Node.js global to browser globalThis
-            define: {
-                global: "globalThis",
-            },
-            // Enable esbuild polyfill plugins
-            plugins: [
-                NodeGlobalsPolyfillPlugin({
-                    buffer: true,
-                    process: true,
-                }),
-                NodeModulesPolyfillPlugin(),
-            ],
-        },
-    },
-    build: {
-        rollupOptions: {
-            plugins: [rollupNodePolyFill()],
-        },
-    },
-});
-```
-
-Without these overrides, `casbin` versions `>5` is known to throw errors.
-
-With this out of the way and the **Casbin** model policies ready, it's time for us to define the `accessControlProvider`.
-
 ## `<Refine />`'s `accessControlProvider`
 
 `<Refine />`'s `accessControlProvider` is responsible for enforcing authorization on every request sent from the app. If we look at the `<App />` component, we can see that it comes passed to the `<Refine />` component with the boilerplate code:
@@ -189,7 +195,11 @@ type CanParams = {
 };
 ```
 
-Let's now work on the `can` method. We can see from the type definition that `resource` and `action` are compulsory. Initially we define our `can` method like this:
+Let's now work on the `can` method. We can see from the type definition that `resource` and `action` are compulsory.
+
+Basic implementation of `can` method looks like this:
+
+[Refer to the Access Control Provider documentation for more information. → ](/docs/api-reference/core/providers/accessControl-provider/)
 
 ```tsx title="src/providers/accessControlProvider.ts"
 import { newEnforcer } from "casbin";
@@ -244,19 +254,23 @@ So, let's look how to get the roles from our **Supabase** database next.
 
 ## User Permissions with Supabase in Refine
 
-In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`. Right now, it looks like this:
+In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`.
+
+When you bootstraped **refine** app with CLI, the default `getPermissions` method in `authProvider` looks like below:
 
 ```tsx title="src/providers/authProvider.ts"
 getPermissions: async () => {
-	const user = supabaseClient.auth.user();
+    const user = await supabaseClient.auth.getUser();
 
-	if (user) {
-		return Promise.resolve(user.role);
-	}
-},
+    if (user) {
+        return user.data.user?.role;
+    }
+
+    return null;
+};
 ```
 
-However, **Supabase** in itself does not support **setting** user roles to `user`s in the `auth.users` table. So, it is not possible to set `editor` and `admin` roles we need for our designated users. And only two role options are available to the front end app: `authenticated` and `anon`.
+However, **Supabase** in itself does not support **setting** user roles to `users` in the `auth.users` table. So, it is not possible to set `editor` and `admin` roles we need for our designated users. And only two role options are available to the front end app: `authenticated` and `anon`.
 
 So, before we can use the `getPermissions()` method, we have to set up custom user roles. One way to implement this is with [**Supabase Custom Claims**](https://github.com/supabase-community/supabase-custom-claims).
 

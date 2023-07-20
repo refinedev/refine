@@ -69,7 +69,7 @@ Prior to that, let's just navigate to the project folder and run the dev server:
 npm run dev
 ```
 
-And prepare ourselves to the call-to-action at `http://localhost/5173`:
+And prepare ourselves to the call-to-action at `http://localhost:5173`:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="react supabase CRUD App" />
 
@@ -156,53 +156,170 @@ Before we move on, you need to add required page and components to the project i
 
 -   pages: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/pages
 -   components: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/components
+-   providers: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/providers
 -   utility: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/utility
+-   casbin: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/casbin
 -   types: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/types
+-   assets: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/public
 
-:::caution
+:::danger Important
 
-[`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/api-reference/antd/theming/#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, we will be replace the `ColorModeContextProvider` with the `ConfigProvider`.
+In order to run the app without warnings you need to follow [Casbin RBAC system installation step(Browser Fallbacks for Casbin).](/blog/refine-pixels-6/#casbin-installation)
 
-Also You can remove `src/context/color-mode` that comes with `create refine-app`.
+:::
 
-```diff title="src/App.tsx"
-// ...
+After creating files above you need to add some imports and [routes](/docs/packages/documentation/routers/react-router-v6/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
-- import { ColorModeContextProvider } from "./contexts/color-mode";
-+ import { ConfigProvider } from "antd";
+<details>
+<summary>Show App.tsx code</summary>
+<p>
+
+```tsx title="App.tsx"
+import {
+    Authenticated,
+    CanAccess,
+    GitHubBanner,
+    Refine,
+} from "@refinedev/core";
+import {
+    ErrorComponent,
+    ThemedLayoutV2,
+    notificationProvider,
+} from "@refinedev/antd";
+import { ConfigProvider } from "antd";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+    DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
+
+import { Title } from "./components/layout";
+import { supabaseClient } from "./utility";
+import {
+    auditLogProvider,
+    authProvider,
+    accessControlProvider,
+} from "./providers";
+import { CanvasList, UserList } from "./pages";
+import { AuthPage } from "./pages/auth";
 
 function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <RefineKbarProvider>
--                <ColorModeContextProvider>
-+                <ConfigProvider>
-                    <Refine
-                        dataProvider={dataProvider(supabaseClient)}
-                        liveProvider={liveProvider(supabaseClient)}
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        notificationProvider={notificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route index element={<WelcomePage />} />
-                        </Routes>
-                        <RefineKbar />
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
--                </ColorModeContextProvider>
-+                </ConfigProvider>
-            </RefineKbarProvider>
+            <ConfigProvider
+                theme={{
+                    token: {
+                        colorPrimary: "#3ecf8e",
+                        colorText: "#80808a",
+                        colorError: "#fa541c",
+                        colorBgLayout: "#f0f2f5",
+                        colorLink: "#3ecf8e",
+                        colorLinkActive: "#3ecf8e",
+                        colorLinkHover: "#3ecf8e",
+                    },
+                }}
+            >
+                <Refine
+                    auditLogProvider={auditLogProvider}
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    authProvider={authProvider}
+                    accessControlProvider={accessControlProvider}
+                    routerProvider={routerBindings}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "users",
+                            list: "/users",
+                        },
+                        {
+                            name: "canvases",
+                            list: "/canvases",
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayoutV2 Title={Title}>
+                                        <CanAccess>
+                                            <Outlet />
+                                        </CanAccess>
+                                    </ThemedLayoutV2>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<NavigateToResource />} />
+                            <Route path="/users" element={<UserList />} />
+                            <Route path="/canvases" element={<CanvasList />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="users" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        registerLink={false}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }
+
+export default App;
 ```
+
+</p>
+</details>
+
+:::note
+
+[`<Refine />`](/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/api-reference/antd/theming/#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
+
+Also, you can remove `src/context/color-mode` that comes with `create refine-app`.
 
 :::
 
@@ -418,7 +535,7 @@ return (
 
 After adding resources we need to create routes for them. For the routes, we'll use the `<UserList/>` and `<CanvasList/>` components we created earlier.
 
-[Refer to the Crud Pages tutorial for more information. →](/docs/tutorial/adding-crud-pages/antd/index)
+[Refer to the CRUD Pages tutorial for more information. →](/docs/tutorial/adding-crud-pages/antd/index)
 
 ```tsx title="App.tsx"
 // ...
@@ -503,7 +620,7 @@ export default App;
 
 At this point, it is helpful that we customize our **Ant Design** theme, the content of the `<AuthPage />` and implement GitHub authentication. We won't cover these here, as they are relatively straight forward and were covered on [Day 3](https://refine.dev/blog/refine-pixels-3/).
 
-Simply you change your `App.tsx` code like this:
+Remember, we've already replaced `App.tx` code with the following:
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -659,6 +776,21 @@ Since `authProvider` prop is already passed in by default, after we added the ab
 From the `/login` route, logging in should work perfectly with an account already created with the **Pixels** client app. If we log in, we should be directed to `/users` - the default root route of the admin app.
 
 The `name: "users"` property in our first resource is used to define the `/users` route, and `list: UserList` property specifies that `<UserList />` component should be rendered at `/users`.
+
+:::note
+
+Since we are using our example Supabase backend, we will see the following users list.
+
+If you wish to use our example Supabase backend, you can do so by using the provided [Supabase credentials](https://github.com/refinedev/refine/blob/master/examples/pixels-admin/src/utility/supabaseClient.ts).
+
+You can log into the application with the following account:
+
+```
+email: demo@refine.dev
+password: demodemo
+```
+
+:::
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="react supabase CRUD App" />
 

@@ -278,7 +278,7 @@ Focusing on the top, in order to add a resource to our app, we have to introduce
 
 We can have as many resource items inside our `resources` array as the number of entities we have in our app.
 
-**refine** simplifies CRUD actions and routing related to all items in the `resources` array. It's worth spending a few minutes exploring the possible properties of a resource item from [the `resources` docs here](https://refine.dev/docs/api-reference/core/components/refine-config/#resources).
+**refine** simplifies CRUD actions and acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API. It's worth spending a few minutes exploring the possible properties of a resource item from the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) docs here.
 
 For the above `canvases` resource, the `name` property denotes the name of the resource. Behind the scenes, **refine** auto-magically adds RESTful routes for the actions defined on a resource `name` to the `routerProvider` object - i.e. for us here along the `/canvases` path.
 
@@ -305,11 +305,11 @@ For our app, we'll configure our `resources` object with actions for `canvases`.
 />
 ```
 
-We will consider these two actions with their respective components in the coming sections. We should have the `CanvasList` and `CanvasShow` components premade. In a **refine** app, CRUD action related components are typically placed in a directory that has a structure like this: `src/pages/resource_name/`.
+We will consider these two actions with their respective components and routes in the coming sections.
+
+We should have the `CanvasList` and `CanvasShow` components premade. In a **refine** app, CRUD action related components are typically placed in a directory that has a structure like this: `src/pages/resource_name/`.
 
 In our case, we'll house `canvases` related components in the `src/pages/canvases/` folder.
-
-**`index` Files**
 
 We are also using `index.ts` files to export contents from our folders, so that the components are easily found by the compiler in the global namespace.
 
@@ -329,12 +329,6 @@ Before we move on, you need to add required page and components to the project i
 -   assets: https://github.com/refinedev/refine/tree/master/examples/pixels/public
 
 After creating files above you need to add some imports and [routes](/docs/packages/documentation/routers/react-router-v6/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
-
-:::note
-After creating files above you can remove `src/authProvider` and `src/components/header` that comes with `create refine-app`.
-
-We move this files to `src/providers/authProvider.ts` and `src/components/layout/header` for better folder structure.
-:::
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -472,6 +466,12 @@ export default App;
 </p>
 </details>
 
+:::note
+After creating files above you can remove `src/authProvider` and `src/components/header` that comes with `create refine-app`.
+
+We move this files to `src/providers/authProvider.ts` and `src/components/layout/header` for better folder structure.
+:::
+
 ### `<Refine />` `list` Action
 
 The `list` action represents a `GET` request sent to the `canvases` table in our **Supabase** db. It is done through the `dataProvider.getList` method that [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) gave us. From the consumer `<CanvasList />` component, it can be accessed via the `useList()` hook.
@@ -571,6 +571,10 @@ We already did this implementation when we created required files before startin
 
 If we revisit the `authProvider` object, we can see that the `check()` method only allows logged in users. All other attempts are rejected. We will use this logic to compose our routes.
 
+<details>
+<summary>Show `authProvider` code</summary>
+<p>
+
 ```tsx title="src/authProvider.ts"
 check: async () => {
     try {
@@ -610,7 +614,7 @@ check: async () => {
             }
 
             if (data?.user) {
-                return {
+                return {``
                     success: true,
                 };
             }
@@ -631,6 +635,9 @@ check: async () => {
 },
 ```
 
+</p>
+</details>
+
 **refine** provides [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component.
 
 Let's look at the routes implementation:
@@ -648,68 +655,70 @@ import { AuthPage } from "./pages/auth";
 
 const App = () => {
     return (
-        <Refine
-            // ...
-            routerProvider={routerBindings}
-        >
-            <Routes>
-                <Route
-                    element={
-                        <Layout>
-                            <Outlet />
-                        </Layout>
-                    }
-                >
-                    <Route index element={<CanvasFeaturedList />} />
-
-                    <Route path="/canvases">
-                        <Route index element={<CanvasList />} />
-                        <Route path="show/:id" element={<CanvasShow />} />
-                    </Route>
-                </Route>
-                <Route
-                    element={
-                        <Authenticated fallback={<Outlet />}>
-                            <NavigateToResource />
-                        </Authenticated>
-                    }
-                >
+        <BrowserRouter>
+            <Refine
+                // ...
+                routerProvider={routerBindings}
+            >
+                <Routes>
                     <Route
-                        path="/login"
                         element={
-                            <AuthPage
-                                type="login"
-                                providers={[
-                                    {
-                                        name: "github",
-                                        icon: (
-                                            <GithubOutlined
-                                                style={{
-                                                    fontSize: "18px",
-                                                }}
-                                            />
-                                        ),
-                                        label: "Sign in with GitHub",
-                                    },
-                                ]}
-                            />
+                            <Layout>
+                                <Outlet />
+                            </Layout>
                         }
-                    />
+                    >
+                        <Route index element={<CanvasFeaturedList />} />
+
+                        <Route path="/canvases">
+                            <Route index element={<CanvasList />} />
+                            <Route path="show/:id" element={<CanvasShow />} />
+                        </Route>
+                    </Route>
                     <Route
-                        path="/register"
-                        element={<AuthPage type="register" />}
-                    />
-                    <Route
-                        path="/forgot-password"
-                        element={<AuthPage type="forgotPassword" />}
-                    />
-                    <Route
-                        path="/update-password"
-                        element={<AuthPage type="updatePassword" />}
-                    />
-                </Route>
-            </Routes>
-        </Refine>
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={
+                                <AuthPage
+                                    type="login"
+                                    providers={[
+                                        {
+                                            name: "github",
+                                            icon: (
+                                                <GithubOutlined
+                                                    style={{
+                                                        fontSize: "18px",
+                                                    }}
+                                                />
+                                            ),
+                                            label: "Sign in with GitHub",
+                                        },
+                                    ]}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -1303,7 +1312,9 @@ The `LoginPage` route was also added:
 
 **Custom Login**
 
-In order to add a custom login route, we add a new `<Route/>` as children to the `<Routes/>` component. You can replace your App.tx with the following:
+In order to add a custom login route, we add a new `<Route/>` as children to the `<Routes/>` component.
+
+Remember, we've already replaced `App.tx` code with the following:
 
 <details>
 <summary>Show `App.tsx` code</summary>
@@ -1443,7 +1454,7 @@ export default App;
 
 We are also using a customized version of the [`<AuthPage />`](https://refine.dev/docs/api-reference/antd/components/antd-auth-page/) component now. We will not discuss about customizing the `<AuthPage />` component since it is pretty straight forward. But you can find the updated `<AuthPage />` component in the `src/pages/auth` directory.
 
-If you haven't already, it is definitely worth spending time to go over the `<AuthPage />` customization details [here](https://refine.dev/docs/api-reference/antd/components/antd-auth-page/#properties).
+If you haven't already, it is definitely worth spending time to go over the `<AuthPage />` customization details [here](https://refine.dev/docs/api-reference/antd/components/antd-auth-page).
 <br />
 
 **Registering an Account**
@@ -1489,11 +1500,11 @@ And now we should be able to sign in to our app with GitHub as well.
 Now it's time to focus on the Home page of our application. We put the `<CanvasFeaturedList />` in this page:
 
 ```tsx title="App.tsx"
-import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerBindings from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { GithubOutlined } from "@ant-design/icons";
-import { AuthPage } from "./pages/auth";
+import { Layout } from "./components/layout";
+import { CanvasFeaturedList } from "./pages/canvases";
 
 const App = () => {
     return (

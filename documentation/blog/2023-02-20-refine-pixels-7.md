@@ -494,8 +494,8 @@ We mentioned earlier that each successful mutation emits a log event and sends a
 
 The log `params` object is sent to the `auditLogProvider.create()` method from inside the `log` object returned from the `useLog()` hook:
 
-```tsx title="@refinedev/core/src/hooks/useLog/index.ts/useLog/log"
-// v3.90.6
+```tsx title="@refinedev/core/src/hooks/auditLog/useLog/index.ts"
+// v4.5.8
 const log = useMutation<TLogData, Error, LogParams, unknown>(async (params) => {
     const resource = resources.find((p) => p.name === params.resource);
     const logPermissions = resource?.options?.auditLog?.permissions;
@@ -527,7 +527,7 @@ Prior to that, the `log` object here utilizes `react-query`'s `useMutation()` ho
 Inside mutation hooks, the `useLog()` hook is used to create a log automatically after a successful resource mutation. For example, the `useCreate()` data hook implements it with the `mutate` method on `log` object returned from `useLog()`:
 
 ```tsx title="@refinedev/core/src/hooks/data/useCreate.ts"
-// v3.90.6
+// v4.5.8
 
 log?.mutate({
     action: "create",

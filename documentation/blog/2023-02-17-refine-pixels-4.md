@@ -67,10 +67,18 @@ Now, it's time to move our attention back to the `<Refine />` component in our a
 We already have the `liveProvider` prop passed in with the `liveProvider()` function from `@refinedev/supabase`:
 
 ```tsx title="App.tsx"
-<Refine
-    // ...
-    liveProvider={liveProvider(supabaseClient)}
-/>
+import { Refine } from "@refinedev/core";
+import { liveProvider } from "@refinedev/supabase";
+import { supabaseClient } from "./utility";
+
+function App() {
+    return (
+        <Refine
+            // ...
+            liveProvider={liveProvider(supabaseClient)}
+        />
+    );
+}
 ```
 
 And that's it! The channel for `pixels` resource that was specified above in **Supabase** will broadcast all mutations on the `pixels` table. And any subscriber will be able to receive real time updates about the changes.
@@ -81,7 +89,7 @@ Now, let's try opening the app in two browsers, one with Google account and one 
 
 <br />
 
-This is obnoxious, because we don't know how this is happening. And very pleasant because `create refine-app` already generated the code that handles the PubSub logic for **Supabase** **PostregSQL CDC**. Let's have a look to see what's happening in the **Supabase** `liveProvider` object.
+This looks like a magic, because we don't know how this is happening. And very pleasant because `create refine-app` already generated the code that handles the PubSub logic for **Supabase** **PostregSQL CDC**. Let's have a look to see what's happening in the **Supabase** `liveProvider` object.
 
 ### refine's Supabase `liveProvider` Object
 
@@ -95,9 +103,15 @@ const liveProvider = {
 };
 ```
 
-In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) `version 5.0.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
+In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/liveProvider/index.ts) `version 5.0.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
 
-```tsx title="Supabase data provider"
+Let's have a look.
+
+<details>
+<summary>Show `liveProvider` code</summary>
+<p>
+
+```tsx title="@refinedev/supabase liveProvider"
 import { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
 import {
     RealtimeChannel,
@@ -184,9 +198,10 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 };
 ```
 
-Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the `useCreate()` hook we invoke to create a pixel.
+</p>
+</details>
 
-Let's have a look.
+Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/api-reference/core/hooks/data/useCreate/) hook we invoke to create a pixel.
 
 ## Broadcasting
 
@@ -258,33 +273,42 @@ The most relevant thing to look in the component above is the `onPixelClick` cli
 We'd like to focus on this `onSubmit` event handler, because it is what facilitates the creation of a `pixel`:
 
 ```tsx title="src/pages/canvases/show.tsx"
-const { mutate } = useCreate();
+import { useCreate, useNavigation } from "@refinedev/core";
 
-const onSubmit = (x: number, y: number) => {
-    if (!authenticated) {
-        if (pathname) {
-            return push(`/login?to=${encodeURIComponent(pathname)}`);
+export const CanvasShow: React.FC = () => {
+    // ...
+
+    const { push } = useNavigation();
+    const { mutate } = useCreate();
+
+    const onSubmit = (x: number, y: number) => {
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
+            }
+
+            return push(`/login`);
         }
 
-        return push(`/login`);
-    }
+        if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+            mutate({
+                resource: "pixels",
+                values: {
+                    x,
+                    y,
+                    color,
+                    canvas_id: canvas?.id,
+                    user_id: identity.id,
+                },
+                meta: {
+                    canvas,
+                },
+                successNotification: false,
+            });
+        }
+    };
 
-    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-        mutate({
-            resource: "pixels",
-            values: {
-                x,
-                y,
-                color,
-                canvas_id: canvas?.id,
-                user_id: identity.id,
-            },
-            meta: {
-                canvas,
-            },
-            successNotification: false,
-        });
-    }
+    return /* ... */;
 };
 ```
 
@@ -322,29 +346,49 @@ The changes to the `pixels` table can be subscribed by consumer components with 
 The `useList()` hook inside `<DisplayCanvas />` looks like this:
 
 ```tsx title="src/components/canvas/display.tsx"
-const { data } = useList<Pixel>({
-    resource: "pixels",
-    liveMode: "auto",
-    meta: {
-        select: "*, users(id, full_name, avatar_url)",
-    },
-    filters: [
-        {
-            field: "canvas_id",
-            operator: "eq",
-            value: id,
+import React, { ReactElement } from "react";
+import { useList } from "@refinedev/core";
+
+import { Canvas } from "../../types/canvas";
+import { Pixel } from "../../types/pixel";
+
+type DisplayCanvasProps = {
+    canvas: Canvas;
+    children: (pixels: Pixel[] | undefined) => ReactElement;
+};
+
+export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
+    canvas: { id },
+    children,
+}) => {
+    const { data } = useList<Pixel>({
+        resource: "pixels",
+        liveMode: "auto",
+        meta: {
+            select: "*, users(id, full_name, avatar_url)",
         },
-    ],
-    sorters: [
-        {
-            field: "created_at",
-            order: "desc",
+        filters: [
+            {
+                field: "canvas_id",
+                operator: "eq",
+                value: id,
+            },
+        ],
+        sorters: [
+            {
+                field: "created_at",
+                order: "desc",
+            },
+        ],
+        pagination: {
+            mode: "off",
         },
-    ],
-    pagination: {
-        mode: "off",
-    },
-});
+    });
+
+    const pixels = data?.data;
+
+    return <>{children(pixels)}</>;
+};
 ```
 
 Among the loads of arguments and options passed to the `useList()` hook, we have used the `liveMode: auto` property which allows us to subscribe to the **Realtime** channel for the `pixels` resource.
