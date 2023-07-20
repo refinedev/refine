@@ -320,13 +320,13 @@ const About: React.FC = () => {
                         {team.map(({ name, avatar, role1, role2 }) => (
                             <div
                                 key={name}
-                                className="flex justify-start flex-col text-center"
+                                className="flex justify-start flex-col text-center not-prose"
                             >
                                 <img
                                     srcSet={`${avatar} 1500w`}
                                     src={avatar}
                                     alt={name}
-                                    className="w-full not-prose m-0 mb-6"
+                                    className="w-full m-0 mb-6"
                                 />
                                 <span
                                     className={clsx(
@@ -361,7 +361,10 @@ const About: React.FC = () => {
                         ))}
                         <div
                             className={clsx(
-                                "flex flex-col justify-between text-center lg:justify-start",
+                                "flex",
+                                "flex-col",
+                                "justify-between lg:justify-start",
+                                "text-center",
                             )}
                         >
                             <div className="w-full not-prose m-0">
