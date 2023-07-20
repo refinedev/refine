@@ -322,6 +322,7 @@ Before we move on, you need to add required page and components to the project i
 
 -   pages: https://github.com/refinedev/refine/tree/master/examples/pixels/src/pages
 -   components: https://github.com/refinedev/refine/tree/master/examples/pixels/src/components
+-   providers: https://github.com/refinedev/refine/tree/master/examples/pixels/src/providers
 -   utility: https://github.com/refinedev/refine/tree/master/examples/pixels/src/utility
 -   types: https://github.com/refinedev/refine/tree/master/examples/pixels/src/types
 -   styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
