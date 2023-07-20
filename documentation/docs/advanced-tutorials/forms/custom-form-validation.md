@@ -121,11 +121,7 @@ interface PostUniqueCheckRequestQuery {
 }
 ```
 
-<>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/examples/form/custom-form-validation.gif" alt="custom form validation" />
-<br/>
-</>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/examples/form/custom-form-validation-min.gif" className="border border-gray-200 rounded" alt="custom form validation" />
 
 :::danger important
 Value must be kept in the state.
