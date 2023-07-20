@@ -287,7 +287,7 @@ export default App;
 
 :::tip
 
-The [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/remix/#navigatetoresource) is a basic component to navigate to a resource page. It is useful when you want to navigate to a resource page from the index route of your app.
+The [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) is a basic component to navigate to a resource page. It is useful when you want to navigate to a resource page from the index route of your app.
 
 The [`<ThemedLayoutV2>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/)component offers a convenient way to integrate both a sidebar and a header into your application. This is a helpful feature if you aim to include these elements in your app's layout.
 :::
