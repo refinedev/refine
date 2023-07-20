@@ -23,8 +23,6 @@ export const runScript = async (binPath: string, args: string[]) => {
         env: {
             FORCE_COLOR: "true",
             ...process.env,
-            VITE_REFINE_PROJECT_ID: packageJson?.refine?.projectId,
-            NEXT_PUBLIC_REFINE_PROJECT_ID: packageJson?.refine?.projectId,
         },
     });
 
