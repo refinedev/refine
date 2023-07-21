@@ -16,9 +16,7 @@
 
 <br/>
 
----
 
-<br/>
 
 We're back with another exciting event for the open-source community - the 2nd refine Open Source Hackathon! 
 
