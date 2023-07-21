@@ -39,20 +39,34 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 }
 ```
 
-```tsx
-import { useState } from "react";
-// highlight-start
-import { useApiUrl, useCustom, HttpError } from "@refinedev/core";
-import { useForm, Create } from "@refinedev/antd";
+```tsx live hideCode url=http://localhost:3000/posts/create
+// visible-block-start
+import { useForm, Create, CreateButton } from "@refinedev/antd";
 import { Form, Input } from "antd";
-//highlight-end
+// highlight-next-line
+import { useApiUrl, useCustom, HttpError } from "@refinedev/core";
 
-export const PostCreate = () => {
+// highlight-start
+interface IPost {
+    title: string;
+}
+
+interface PostUniqueCheckResponse {
+    isAvailable: boolean;
+}
+
+interface PostUniqueCheckRequestQuery {
+    title: string;
+}
+// highlight-end
+
+const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-start
+    // highlight-next-line
     const [title, setTitle] = useState("");
 
+    // highlight-start
     const apiUrl = useApiUrl();
     const url = `${apiUrl}/posts-unique-check`;
     const { refetch } = useCustom<
@@ -99,33 +113,36 @@ export const PostCreate = () => {
                     ]}
                     // highlight-end
                 >
-                    // highlight-next-line
-                    <Input onChange={(event) => setTitle(event.target.value)} />
+                    <Input 
+                        defaultValue="Test"
+                        // highlight-next-line
+                        onChange={(event) => setTitle(event.target.value)} 
+                    />
                 </Form.Item>
-                ...
             </Form>
         </Create>
     );
 };
+// visible-block-end
 
-interface IPost {
-    title: string;
-}
-
-interface PostUniqueCheckResponse {
-    isAvailable: boolean;
-}
-
-interface PostUniqueCheckRequestQuery {
-    title: string;
-}
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/create"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <CreateButton />
+                    </div>
+                ),
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
 ```
-
-<>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/examples/form/custom-form-validation.gif" alt="custom form validation" />
-<br/>
-</>
 
 :::danger important
 Value must be kept in the state.
@@ -133,5 +150,4 @@ Value must be kept in the state.
 ```tsx
 <Input onChange={(event) => setTitle(event.target.value)} />
 ```
-
 :::
