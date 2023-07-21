@@ -14,9 +14,9 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import PostCreate from "pages/PostCreate";
-import PostEdit from "pages/PostEdit";
-import PostList from "pages/PostList";
+import PostCreate from "./pages/PostCreate";
+import PostEdit from "./pages/PostEdit";
+import PostList from "./pages/PostList";
 
 function App() {
     return (
@@ -32,9 +32,9 @@ function App() {
                     resources={[
                         {
                             name: "users",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
+                            list: "/users",
+                            create: "/users/create",
+                            edit: "/users/edit/:id",
                         },
                     ]}
                 >
@@ -49,10 +49,10 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="users" />
                                 }
                             />
-                            <Route path="posts">
+                            <Route path="users">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />

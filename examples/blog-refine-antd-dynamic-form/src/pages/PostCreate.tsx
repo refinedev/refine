@@ -10,7 +10,7 @@ interface IFormValue {
     skills: string;
 }
 
-export default function PostCreate(Props: any) {
+export default function PostCreate() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
     return (
         <Create saveButtonProps={saveButtonProps}>

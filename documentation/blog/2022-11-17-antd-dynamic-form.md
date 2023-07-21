@@ -4,19 +4,9 @@ description: Easy way to creating dynamic forms in React CRUD apps with Ant Desi
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
 tags: [react, refine, tutorial, ant-design]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.jpg
 hide_table_of_contents: false
 ---
-
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code example in this post have been updated to version 4.x.x.
-
-:::
 
 ## Introduction
 
@@ -30,18 +20,20 @@ This guide will teach us how to create a dynamic form using Ant design and refin
 
 Steps we'll cover:
 
--   [What is a dynamic form?](#what-is-a-dynamic-form)
--   [What is refine?](#what-is-refine)
--   [Project setup](#project-setup)
--   [Building the List page](#building-the-list-page)
--   [Creating a form](#creating-a-form)
--   [Adding form items](#adding-form-items)
--   [Adding form list](#adding-form-list)
--   [Using form actions](#using-form-actions)
--   [Adding icons](#adding-icons)
--   [Validation](#validation)
--   [Building the edit page](#building-the-edit-page)
--   [Live StackBlitz Example](#live-stackblitz-example)
+- [Introduction](#introduction)
+- [What is a dynamic form?](#what-is-a-dynamic-form)
+- [What is refine?](#what-is-refine)
+- [Project setup](#project-setup)
+- [Building the List page](#building-the-list-page)
+- [Creating a form](#creating-a-form)
+- [Adding form items](#adding-form-items)
+- [Adding form list](#adding-form-list)
+- [Using form actions](#using-form-actions)
+- [Adding icons](#adding-icons)
+- [Validation](#validation)
+- [Building the edit page](#building-the-edit-page)
+- [Conclusion](#conclusion)
+- [Example](#example)
 
 **Prerequisite**
 
@@ -88,16 +80,23 @@ Superplate is a CLI tool for quickly bootstrapping a refine project. The tool pr
 As a first step, run the following command on your command line tool:
 
 ```
-npm create refine-app@latest dynamic-form -- -p refine-react -b v3
+npm create refine-app@latest dynamic-form
 ```
 
 The command will prompt you to choose your preferences for the project.
 
 Select the following options to proceed:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-cli.png"  alt="dynamic form antd" />
-
-<br />
+```bash
+✔ Choose a project template · refine(Vite)
+✔ What would you like to name your project?: · dynamic-form
+✔ Choose your backend service to connect: · Rest API
+✔ Do you want to use a UI Framework?: · Ant Design
+✔ Do you want to add example pages?: · no
+✔ Do you need any Authentication logic?: · none
+✔ Do you need i18n (Internationalization) support?: · no
+✔ Choose a package manager: · npm
+```
 
 Once the installation is complete, run the commands below to cd into the project folder and start the development server:
 
@@ -108,7 +107,7 @@ npm run dev
 
 After running the command, the development server will automatically preview our app in the default browser. If it doesn't, open the browser manually and navigate to [http://localhost:3000](http://localhost:3000).
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.png"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.jpg"  alt="dynamic form antd" />
 
 <br />
 
@@ -125,7 +124,7 @@ To begin with, create a `pages` folder inside the `src` folder and add a `PostCr
 <br />
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-folder.png"  alt="dynamic form antd" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-folder.jpg"  alt="dynamic form antd" />
 </div>
 
 <br />
@@ -135,7 +134,7 @@ To prevent Typescript from throwing an error, you can add a placeholder code in 
 ```tsx title="src/pages/PostCreate.tsx"
 import React from "react";
 
-function PostCreate(Props: any) {
+function PostCreate() {
     return <div>PostCreate</div>;
 }
 
@@ -145,46 +144,86 @@ export default PostCreate;
 Next, open the `App.tsx` file and import all three files at the top of the component:
 
 ```tsx title="src/App.tsx"
-import PostCreate from "pages/PostCreate";
-import PostList from "pages/PostList";
-import PostEdit from "pages/PostEdit";
+import PostCreate from "./pages/PostCreate";
+import PostEdit from "./pages/PostEdit";
+import PostList from "./pages/PostList";
 ```
 
-Then, create a `resources` prop on the `<Refine>` component and add the pages imports as the `create`, `list`, and `edit` property's values, respectively:
+Then, set up the `<Refine>` component by defining the `resources` prop and assigning the values for `create`, `list`, and `edit` properties. Then, include the corresponding page imports using `<Route/>` elements.
+
+[Refer to complete refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/tutorial/adding-crud-pages/antd/index/)
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
-    ReadyPage,
+    ThemedLayoutV2,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+    DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ConfigProvider } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import PostCreate from "pages/PostCreate";
-import PostList from "pages/PostList";
-import PostEdit from "pages/PostEdit";
+import PostCreate from "./pages/PostCreate";
+import PostEdit from "./pages/PostEdit";
+import PostList from "./pages/PostList";
 
 function App() {
     return (
-        <Refine
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "users",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    notificationProvider={notificationProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    // highlight-start
+                    resources={[
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                            edit: "/users/edit/:id",
+                        },
+                    ]}
+                    // highlight-end
+                >
+                    {/* highlight-start */}
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    {/* highlight-end */}
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
     );
 }
 
@@ -207,7 +246,8 @@ Moving on, navigate to the `PostList.tsx` file and add the following code:
 
 ```tsx title="src/pages/PostList.tsx"
 import React from "react";
-import { List, Table, useTable, Space, EditButton } from "@refinedev/antd";
+import { List, useTable } from "@refinedev/antd";
+import { Table } from "antd";
 
 interface IFormValue {
     name: string;
@@ -252,28 +292,23 @@ On the other hand, the `dataIndex` property is used to map the component to a ma
 
 That's it for the list page, save your progress and go back to the browser. You should see a nicely rendered table with pagination and routing implemented automatically.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-list-page.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-list-page.jpg"  alt="dynamic form antd" />
 
 <br />
 
-As you can see, the create button routes us to the `Create` page when clicked. Right now, it just renders the placeholder text we set earlier. Next, we will set up our **dynamic form** inside the `PostCreate` page.
+The create button routes us to the `Create` page when clicked. Right now, it just renders the placeholder text we set earlier. Next, we will set up our **dynamic form** inside the `PostCreate` page.
 
 ## Creating a form
 
 Ant design also provides a form component that ships with various functionalities such as data collection, styling, and data scope management out of the box. The component streamlines the process of quickly building a form in React.
 
-To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@refinedev/antd`:
+To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@refinedev/antd` and `antd`:
 
 ```tsx title="src/pages/PostCreate.tsx"
-import {
-    Create,
-    Button,
-    Form,
-    Input,
-    Space,
-    Icons,
-    useForm,
-} from "@refinedev/antd";
+import React from "react";
+import { useForm, Create } from "@refinedev/antd";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Space } from "antd";
 ```
 
 These are all the UI components and hooks we'll use for the entirety of the **PostCreate** page setup.
@@ -282,15 +317,9 @@ Next, add the following code to the component to render the form:
 
 ```tsx title="src/pages/PostCreate.tsx"
 import React from "react";
-import {
-    Create,
-    Button,
-    Form,
-    Input,
-    Space,
-    Icons,
-    useForm,
-} from "@refinedev/antd";
+import { useForm, Create } from "@refinedev/antd";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Space } from "antd";
 
 interface IFormValue {
     name: string;
@@ -298,12 +327,12 @@ interface IFormValue {
     skills: string;
 }
 
-export default function PostCreate(Props: any) {
+export default function PostCreate() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <Form size={"large"} {...formProps}>
+            <Form {...formProps}>
                 <Input placeholder="e.g John" />
                 <Input placeholder="e.g john@email.com" />
             </Form>
@@ -322,10 +351,9 @@ The `saveButtonProps` property handles the submission functionality of the form 
 
 If you save your progress at this point and go back to the browser, you'll notice that our form still lacks the basic functionalities of a form and looks desolate.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-create.png"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-create.jpg"  alt="dynamic form antd" />
 
 <br />
-
 
 ## Adding form items
 
@@ -341,19 +369,19 @@ Since it is a sub-component of the `<Form>` component, we don't have to import a
 
 ```tsx title="src/pages/PostCreate.tsx"
 <Create saveButtonProps={saveButtonProps}>
-    <Form {...formProps} layout="vertical" size={"large"}>
+    <Form {...formProps} layout="vertical">
         <Form.Item
             name={"firstName"}
             label="First Name"
-            style={{ maxWidth: "600px" }}
+            style={{ maxWidth: "893px" }}
+            rules={[{ required: true }]}
         >
             <Input placeholder="e.g John" />
         </Form.Item>
-        <Form.Item name={"email"} label="Email" style={{ maxWidth: "600px" }}>
+        <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }}>
             <Input placeholder="e.g developer" />
         </Form.Item>
     </Form>
-    ;
 </Create>
 ```
 
@@ -361,7 +389,7 @@ Here, we're using the `name` and `label` props to assign each input field a uniq
 
 We also gave the `<Form>` component a `layout` prop with a `vertical` value. This will let the labels display on a block layout rather than the default inline layout.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items.png"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items.jpg"  alt="dynamic form antd" />
 
 <br />
 
@@ -371,15 +399,24 @@ We can also add a basic validation to both fields by passing an array of objects
 <Form.Item
     name={"firstName"}
     label="First Name"
-    style={{ maxWidth: "600px" }}
+      style={{ maxWidth: "893px" }}
     // highlight-next-line
     rules={[{ required: true }]}
 >
     <Input placeholder="e.g John" />
 </Form.Item>
+<Form.Item
+    name={"email"}
+    label="Email"
+      style={{ maxWidth: "893px" }}
+    // highlight-next-line
+    rules={[{ required: true }]}
+>
+    <Input placeholder="e.g developer" />
+</Form.Item>
 ```
 
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items-2.png"  alt="dynamic form antd" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items-2.jpg"  alt="dynamic form antd" />
 
 <br />
 
@@ -387,10 +424,7 @@ In the subsequent sections, we'll learn how to add a more complex validation to 
 
 ---
 
-
 <PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
-
-
 
 ---
 
@@ -425,7 +459,7 @@ To add a list to the form, first, declare the `<Form.list>` component and add th
                     );
                 })}
                 <Form.Item>
-                    <Button type=" dashed" block>
+                    <Button type="dashed" block>
                         Add a skill
                     </Button>
                 </Form.Item>
@@ -450,36 +484,36 @@ The `operator` parameter exposes two function properties, `add()` and `remove()`
 What we can do first is destructure the `add()` and `remove()` functions from the `operator` parameter and add an `onClick` handler, with the `add()` function passed in, to the `Add a skill` button:
 
 ```tsx title="src/pages/PostCreate.tsx"
-<Form.List  name={"skills"}>
-	{(fields, { add, remove }) => {
-		return (
-			<>
-				{fields.map((field, index) => {
-					return (
-					<div  key={field.key}>
-						<Form.Item
-							name={field.name}
-							label={`skill - ${index  +  1}`}
-							style={{ width:  "400px" }}
-						>
-							<Input  placeholder= "e.g javascript"/>
-						</Form.Item>
-					</div>
-					);
-				})}
-				<Form.Item>
-					<Button
-						type= "dashed"
-						block
-						onClick={() =>  add()}
-						style={{ maxWidth:  "600px" }
-					>
-						Add a skill
-					</Button>
-				</Form.Item>
-			</>
-		);
-	}}
+<Form.List name={"skills"}>
+    {(fields, { add, remove }) => {
+        return (
+            <>
+                {fields.map((field, index) => {
+                    return (
+                        <div key={field.key}>
+                            <Form.Item
+                                name={field.name}
+                                label={`skill - ${index + 1}`}
+                                style={{ width: "400px" }}
+                            >
+                                <Input placeholder="e.g javascript" />
+                            </Form.Item>
+                        </div>
+                    );
+                })}
+                <Form.Item>
+                    <Button
+                        type="dashed"
+                        block
+                        onClick={() => add()}
+                        style={{ maxWidth: "893px" }}
+                    >
+                        Add a skill
+                    </Button>
+                </Form.Item>
+            </>
+        );
+    }}
 </Form.List>
 ```
 
@@ -495,15 +529,15 @@ To do so, create a button below the `<Form.item>` component inside the map callb
 
 ```tsx title="src/pages/PostCreate.tsx"
 <Create saveButtonProps={saveButtonProps}>
-    <Form {...formprops} layout="vertical" size={"large"}>
+    <Form {...formProps} layout="vertical">
         <Form.Item
             name={"firstName"}
             label="First Name"
-            style={{ maxWidth: "600px" }}
+            style={{ maxWidth: "893px" }}
         >
             <Input placeholder="e.g John" />
         </Form.Item>
-        <Form.Item name={"email"} label="Email" style={{ maxWidth: "600px" }}>
+        <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }}>
             <Input placeholder="e.g john@email.com" />
         </Form.Item>
         <Form.List name={"skills"}>
@@ -533,7 +567,7 @@ To do so, create a button below the `<Form.item>` component inside the map callb
                             <Button
                                 type="dashed"
                                 block
-                                style={{ maxWidth: "600px" }}
+                                style={{ maxWidth: "893px" }}
                                 onClick={() => add()}
                             >
                                 Add a skill
@@ -577,8 +611,8 @@ All we have to do is append an icon name to the `<Icons>` component we imported 
     <Button
         danger
         onClick={() => remove(field.name)}
-        style={{ position: "absolute", top: "47px" }}
-        icon={<Icons.DeleteOutlined />}
+        style={{ marginTop: "5px" }}
+        icon={<DeleteOutlined />}
     />
 </div>
 ```
@@ -588,7 +622,14 @@ You can find the list of icon names on Ant design's [official documentation](htt
 To place the icon on the same line with the Input field, replace the `div` wrapping the `<Form.item>` with a `<Space>` component and give it a `direction` prop with a `horizontal` value.
 
 ```tsx title="src/pages/PostCreate.tsx"
-<Space key={field.key} direction="horizontal" style={{ position: "relative" }}>
+<Space
+    key={field.key}
+    direction="horizontal"
+    style={{
+        position: "relative",
+        marginRight: "13px",
+    }}
+>
     <Form.Item
         name={field.name}
         label={`skill - ${index + 1}`}
@@ -599,25 +640,31 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
     <Button
         danger
         onClick={() => remove(field.name)}
-        style={{ position: "absolute", top: "47px" }}
-        icon={<Icons.DeleteOutlined />}
+        style={{ marginTop: "5px" }}
+        icon={<DeleteOutlined />}
     />
 </Space>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon.png"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon.jpg"  alt="dynamic form antd" />
 
 <br />
 
 Using the same process, we can also add icons to the `Add a skill` button.
 
 ```tsx title="src/pages/PostCreate.tsx"
-<Button block onClick={() => add()} icon={<Icons.PlusOutlined />}>
+<Button
+    type="dashed"
+    block
+    style={{ maxWidth: "893px" }}
+    icon={<PlusOutlined />}
+    onClick={() => add()}
+>
     Add a skill
 </Button>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon-2.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon-2.jpg"  alt="dynamic form antd" />
 
 <br />
 
@@ -645,103 +692,88 @@ We added the `required` property to the `rule` props in the previous sections. N
 <p>
 
 ```tsx title="src/pages/PostCreate.tsx"
-<Create saveButtonProps={saveButtonProps}>
-    <Form {...formprops} layout="vertical" size={"large"}>
-        <Form.Item
-            name={"firstName"}
-            label="First Name"
-            style={{ maxWidth: "600px" }}
-            rules={[
-                { required: true, message: "please enter your first name" },
-                { whitespace: true },
-                {
-                    min: 3,
-                    message: "field must be at least 3 characters",
-                },
-            ]}
-        >
-            <Input placeholder="e.g John" />
-        </Form.Item>
-        <Form.Item
-            name={"email"}
-            label="Email"
-            style={{ maxWidth: "600px" }}
-            rules={[
-                {
-                    required: true,
-                    message: "please enter your email: e.g john@email.com",
-                },
-                { whitespace: true },
-                {
-                    min: 3,
-                    message: "field must be at least 3 characters",
-                },
-            ]}
-        >
-            <Input placeholder="e.g john@email.com" />
-        </Form.Item>
-        <Form.List name={"skills"}>
-            {(_fields_, { _add_, _remove_ }) => {
-                return (
-                    <>
-                        {_fields_.map((_field_, _index_) => {
-                            return (
-                                <Space
-                                    key={_field_.key}
-                                    direction="horizontal"
-                                    style={{
-                                        display: "flex",
-                                        position: "relative",
-                                    }}
-                                >
-                                    <Form.Item
-                                        name={_field_.name}
-                                        label={`skill - ${_index_ + 1}`}
-                                        style={{ width: "400px" }}
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: "please enter a skill",
-                                            },
-                                            { whitespace: true },
-                                            {
-                                                min: 3,
-                                                message:
-                                                    "field must be at least 3 characters",
-                                            },
-                                        ]}
-                                    >
-                                        <Input placeholder="e.g javascript" />
-                                    </Form.Item>
+import React from "react";
+import { useForm, Create } from "@refinedev/antd";
+
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Space } from "antd";
+
+interface IFormValue {
+    name: string;
+    email: string;
+    skills: string;
+}
+
+export default function PostCreate() {
+    const { formProps, saveButtonProps } = useForm<IFormValue>();
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    name={"firstName"}
+                    label="First Name"
+                    style={{ maxWidth: "893px" }}
+                >
+                    <Input placeholder="e.g John" />
+                </Form.Item>
+                <Form.Item
+                    name={"email"}
+                    label="Email"
+                    style={{ maxWidth: "893px" }}
+                >
+                    <Input placeholder="e.g john@email.com" />
+                </Form.Item>
+                <Form.List name={"skills"}>
+                    {(fields, { add, remove }) => {
+                        return (
+                            <>
+                                {fields.map((field, index) => {
+                                    return (
+                                        <Space
+                                            key={field.key}
+                                            direction="horizontal"
+                                            style={{
+                                                position: "relative",
+                                                marginRight: "13px",
+                                            }}
+                                        >
+                                            <Form.Item
+                                                name={field.name}
+                                                label={`skill - ${index + 1}`}
+                                                style={{ width: "400px" }}
+                                            >
+                                                <Input placeholder="e.g javascript" />
+                                            </Form.Item>
+                                            <Button
+                                                danger
+                                                onClick={() =>
+                                                    remove(field.name)
+                                                }
+                                                style={{ marginTop: "5px" }}
+                                                icon={<DeleteOutlined />}
+                                            />
+                                        </Space>
+                                    );
+                                })}
+                                <Form.Item>
                                     <Button
-                                        danger
-                                        onClick={() => remove(_field_.name)}
-                                        style={{
-                                            position: "absolute",
-                                            top: "47px",
-                                        }}
-                                        icon={<Icons.DeleteOutlined />}
-                                    ></Button>
-                                </Space>
-                            );
-                        })}
-                        <Form.Item>
-                            <Button
-                                icon={<Icons.PlusOutlined />}
-                                type="dashed"
-                                block
-                                style={{ maxWidth: "600px" }}
-                                onClick={() => add()}
-                            >
-                                Add a skill
-                            </Button>
-                        </Form.Item>
-                    </>
-                );
-            }}
-        </Form.List>
-    </Form>
-</Create>
+                                        type="dashed"
+                                        block
+                                        style={{ maxWidth: "893px" }}
+                                        icon={<PlusOutlined />}
+                                        onClick={() => add()}
+                                    >
+                                        Add a skill
+                                    </Button>
+                                </Form.Item>
+                            </>
+                        );
+                    }}
+                </Form.List>
+            </Form>
+        </Create>
+    );
+}
 ```
 
    </p>
@@ -753,9 +785,9 @@ All we need to do is add a `hasFeedback` prop to each `<Form.item>` like so:
 
 ```tsx title="src/pages/PostCreate.tsx"
 <Form.Item
-    name={"first Name"}
-    label="Full Name"
-    style={{ maxWidth: "600px" }}
+    name={"firstName"}
+    label="First Name"
+    style={{ maxWidth: "893px" }}
     rules={[
         { required: true, message: "please enter your name" },
         { whitespace: true },
@@ -787,7 +819,7 @@ What's left for us now is setting up the edit page to update fetched records fro
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.jpg" alt="discord banner" />
 </a>
 </div>
 
@@ -799,7 +831,8 @@ To do this, go back to the `<PostList>` file, import the `<EditButton>` componen
 
 ```tsx title="src/pages/PostList.tsx"
 import React from "react";
-import { List, Table, useTable, Space, EditButton } from "@refinedev/antd";
+import { EditButton, List, useTable } from "@refinedev/antd";
+import { Space, Table } from "antd";
 
 interface IFormValue {
     name: string;
@@ -854,15 +887,10 @@ Next, navigate back to the `PostEdit` file and replace the placeholder with the 
 
 ```tsx title="src/pages/PostEdit.tsx"
 import React from "react";
-import {
-    useForm,
-    Form,
-    Input,
-    Edit,
-    Icons,
-    Button,
-    Space,
-} from "@refinedev/antd";
+import { useForm, Edit } from "@refinedev/antd";
+
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Space } from "antd";
 
 interface IFormValue {
     name: string;
@@ -870,7 +898,7 @@ interface IFormValue {
     skills: string;
 }
 
-export default function PostEdit(Props: any) {
+export default function PostEdit() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -964,14 +992,14 @@ export default function PostEdit(Props: any) {
                                                     position: "absolute",
                                                     top: "47px",
                                                 }}
-                                                icon={<Icons.DeleteOutlined />}
+                                                icon={<DeleteOutlined />}
                                             ></Button>
                                         </Space>
                                     );
                                 })}
                                 <Form.Item>
                                     <Button
-                                        icon={<Icons.PlusOutlined />}
+                                        icon={<PlusOutlined />}
                                         type="dashed"
                                         block
                                         style={{ maxWidth: "600px" }}
