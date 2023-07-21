@@ -5,7 +5,6 @@ import {
     JSXExpressionContainer,
     ArrayExpression,
 } from "jscodeshift";
-import { uppercaseFirstChar } from "../utils/text";
 
 export const parser = "tsx";
 
@@ -27,10 +26,6 @@ export default function transformer(file: FileInfo, api: API, options: any) {
 
     // prepare actions
     const actions = options.__actions.split(",");
-
-    const getComponentName = (resource: string, action: string) => {
-        return `${resource}${uppercaseFirstChar(action)}`;
-    };
 
     const getPath = (resourceName: string, action: string) => {
         if (action === "list") {
@@ -70,28 +65,6 @@ export default function transformer(file: FileInfo, api: API, options: any) {
         );
     });
 
-    const lines = [
-        `* `,
-        ` *`,
-        ` * Resource is default with default paths, you need to add the components to the paths accordingly.`,
-        ` * You can also add custom paths to the resource.`,
-        ` * `,
-    ];
-
-    actions.map((item: string) => {
-        lines.push(
-            ` * Use \`<${getComponentName(
-                options.__resource,
-                item,
-            )}/>\` component at \`${getPath(
-                options.__resourceName,
-                item,
-            )}\` path.`,
-        );
-    });
-
-    lines.push(` *`, ` *`);
-
     rootElement.replaceWith((path) => {
         const attributes = path.node.openingElement.attributes;
         if (!attributes) {
@@ -104,14 +77,6 @@ export default function transformer(file: FileInfo, api: API, options: any) {
         );
 
         const resourceObjectExpression = j.objectExpression(resourceProperty);
-
-        resourceObjectExpression.properties[0].comments = [
-            {
-                type: "Block",
-                value: `${lines.join("\n")}`,
-                leading: true,
-            },
-        ];
 
         // if no resources prop, add it
         if (resourcePropIndex === -1) {
