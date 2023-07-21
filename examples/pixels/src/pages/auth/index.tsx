@@ -19,7 +19,7 @@ const contentProps = {
         borderRadius: "16px",
         boxShadow: "4px 8px 16px rgba(42, 42, 66, 0.25)",
         width: "384px",
-        padding: "0",
+        padding: "16px",
     },
 };
 
