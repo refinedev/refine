@@ -206,42 +206,5 @@ export const parsePackageNameAndVersion = (
 export const getRefineProjectId = () => {
     const packageJson = getPackageJson();
 
-    return packageJson.refine?.projectId;
-};
-
-export const addProjectIdToPackageJson = (projectId: string) => {
-    execa.sync("npm", ["pkg", "set", `refine.projectId=${projectId}`]);
-};
-
-export const addProjectIdToRefineComponent = async (projectId: string) => {
-    try {
-        const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-
-        const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
-            "./",
-            "--extensions=ts,tsx,js,jsx",
-            "--parser=tsx",
-            `--transform=${path.resolve(
-                path.join(
-                    __dirname,
-                    "..",
-                    "src",
-                    "utils",
-                    "package",
-                    "transform.ts",
-                ),
-            )}`,
-            `--ignore-pattern=**/.cache/**`,
-            `--ignore-pattern=**/node_modules/**`,
-            `--ignore-pattern=**/build/**`,
-            `--ignore-pattern=**/.next/**`,
-            `--__projectId=${projectId}`,
-        ]);
-
-        if (stderr) {
-            console.error(stderr);
-        }
-    } catch (error) {
-        console.error(error);
-    }
+    return packageJson?.refine?.projectId;
 };

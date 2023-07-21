@@ -2,10 +2,8 @@ import { Command } from "commander";
 import { getProjectType } from "@utils/project";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
-import { updateNotifier } from "src/update-notifier";
 import { getRunnerDescription } from "../utils";
-import { projectPrompt } from "src/project-prompt";
-import NotifyCloud from "src/cloud-notifier";
+import { updateNotifier } from "src/update-notifier";
 
 const dev = (program: Command) => {
     return program
@@ -23,7 +21,7 @@ const action = async (args: string[]) => {
     const script = projectScripts[projectType].dev;
     const command = [...script, ...args];
 
-    await projectPrompt();
+    await updateNotifier();
 
     runScript(binPath, command);
 };
