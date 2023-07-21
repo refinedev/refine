@@ -14,7 +14,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
-    "@mui/material": "^5.8.6",
+    "@mui/material": "5.14.0",
     "@mui/x-data-grid": "^6.6.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
