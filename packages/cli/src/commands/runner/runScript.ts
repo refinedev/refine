@@ -1,5 +1,4 @@
 import { ProjectTypes } from "@definitions/projectTypes";
-import { getPackageJson } from "@utils/package";
 import execa from "execa";
 
 export const runScript = async (binPath: string, args: string[]) => {
