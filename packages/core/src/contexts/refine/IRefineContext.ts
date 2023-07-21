@@ -39,7 +39,7 @@ export interface IRefineOptions {
      */
     disableServerSideValidation?: boolean;
     /**
-     * The project id of your refine project.
+     * The project id of your refine project. Will be set automatically. Don't modify.
      */
     projectId?: string;
 }

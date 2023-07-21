@@ -1,6 +1,5 @@
 import { useContext } from "react";
 
-import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
 import { LiveContext } from "@contexts/live";
 import { RouterContext } from "@contexts/legacy-router";
@@ -10,7 +9,7 @@ import { NotificationContext } from "@contexts/notification";
 import { AccessControlContext } from "@contexts/accessControl";
 import { useResource } from "@hooks/resource";
 
-import { ITelemetryData } from "../../interfaces/telementry";
+import { ITelemetryData } from "../../interfaces/telemetry";
 import { useIsExistAuthentication, useRefineContext } from "..";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
