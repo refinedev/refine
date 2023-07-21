@@ -491,7 +491,7 @@ export default App;
 
 Also, we'll see the `Auth provider` methods in action when using `LoginPage` in the next sections.
 
-uth methods.
+At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
 If you head over to `localhost:3000`, you'll see a welcome page.
 
