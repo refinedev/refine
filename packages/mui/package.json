@@ -20,7 +20,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
-    "@mui/material": "^5.8.6",
+    "@mui/material": "5.14.0",
     "@mui/x-data-grid": "^6.6.0",
     "@refinedev/react-hook-form": "^4.0.0",
     "react-hook-form": "^7.30.0"
@@ -56,7 +56,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.3",
     "@mui/lab": "^5.0.0-alpha.85",
-    "@mui/material": "^5.8.6",
+    "@mui/material": "5.14.0",
     "@mui/x-data-grid": "^6.6.0",
     "@refinedev/react-hook-form": "^4.6.0",
     "react-hook-form": "^7.30.0",

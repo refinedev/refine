@@ -1,5 +1,5 @@
 import { useLogList } from "@refinedev/core";
-import { Avatar, List as AntdList, Typography } from "antd";
+import { Avatar, List, Typography } from "antd";
 
 import { formattedDate, timeFromNow } from "../../utility/time";
 
@@ -16,12 +16,12 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
     });
 
     return (
-        <AntdList
+        <List
             size="small"
             dataSource={data}
             renderItem={(item: any) => (
-                <AntdList.Item>
-                    <AntdList.Item.Meta
+                <List.Item>
+                    <List.Item.Meta
                         avatar={
                             <Avatar
                                 src={item?.author?.user_metadata?.avatar_url}
@@ -39,7 +39,7 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
                             )}`}
                         </span>
                     </Typography.Text>
-                </AntdList.Item>
+                </List.Item>
             )}
         />
     );

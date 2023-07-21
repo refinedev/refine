@@ -2,7 +2,7 @@ import { NODE_ENV } from "@definitions/node";
 import { ProjectTypes } from "@definitions/projectTypes";
 import { ENV } from "@utils/env";
 import { getOS } from "@utils/os";
-import { getInstalledRefinePackages } from "@utils/package";
+import { getInstalledRefinePackages, getRefineProjectId } from "@utils/package";
 import { getProjectType } from "@utils/project";
 import fetch from "node-fetch";
 
@@ -30,6 +30,7 @@ export const getTelemetryData = async (): Promise<TelemetryData> => {
         command: process.argv[2],
         packages: (await getInstalledRefinePackages()) || [],
         projectFramework: getProjectType(),
+        projectId: getRefineProjectId(),
     };
 
     return data;
