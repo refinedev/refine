@@ -10,7 +10,7 @@ interface IFormValue {
     id: number;
 }
 
-export default function PostList() {
+export default function UserList() {
     const { tableProps } = useTable<IFormValue>();
     return (
         <List>

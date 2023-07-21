@@ -111,15 +111,15 @@ After running the command, the development server will automatically preview our
 
 <br />
 
-To finish setting up, we'll create a `PostCreate`, `PostList`, and `PostEdit` pages and pass them as values to the `create`, `list`, and `edit` properties of the `resources` prop in the `<Refine>` component, which you can find inside the `App.tsx` file.
+To finish setting up, we'll create a `UserCreate`, `UserList`, and `UserEdit` pages and pass them as values to the `create`, `list`, and `edit` properties of the `resources` prop in the `<Refine>` component, which you can find inside the `App.tsx` file.
 
-We'll use the `PostList` page to display a list of data from a fake API endpoint, to which we'll also post the submitted data from our form.
+We'll use the `UserList` page to display a list of data from a fake API endpoint, to which we'll also post the submitted data from our form.
 
-The `PostCreate` page is where we'll create our **dynamic form** for posting new records to the API.
+The `UserCreate` page is where we'll create our **dynamic form** for posting new records to the API.
 
-The `PostEdit` page will house a copy of the **dynamic form** for editing and updating records.
+The `UserEdit` page will house a copy of the **dynamic form** for editing and updating records.
 
-To begin with, create a `pages` folder inside the `src` folder and add a `PostCreate.tsx`, `PostList.tsx`, and `PostEdit.tsx` files, as shown below.
+To begin with, create a `pages` folder inside the `src` folder and add a `UserCreate.tsx`, `UserList.tsx`, and `UserEdit.tsx` files, as shown below.
 
 <br />
 
@@ -131,22 +131,22 @@ To begin with, create a `pages` folder inside the `src` folder and add a `PostCr
 
 To prevent Typescript from throwing an error, you can add a placeholder code in each file like so:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 import React from "react";
 
-function PostCreate() {
-    return <div>PostCreate</div>;
+function UserCreate() {
+    return <div>UserCreate</div>;
 }
 
-export default PostCreate;
+export default UserCreate;
 ```
 
 Next, open the `App.tsx` file and import all three files at the top of the component:
 
 ```tsx title="src/App.tsx"
-import PostCreate from "./pages/PostCreate";
-import PostEdit from "./pages/PostEdit";
-import PostList from "./pages/PostList";
+import UserCreate from "./pages/UserCreate";
+import UserEdit from "./pages/UserEdit";
+import UserList from "./pages/UserList";
 ```
 
 Then, set up the `<Refine>` component by defining the `resources` prop and assigning the values for `create`, `list`, and `edit` properties. Then, include the corresponding page imports using `<Route/>` elements.
@@ -170,9 +170,9 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import PostCreate from "./pages/PostCreate";
-import PostEdit from "./pages/PostEdit";
-import PostList from "./pages/PostList";
+import UserCreate from "./pages/UserCreate";
+import UserEdit from "./pages/UserEdit";
+import UserList from "./pages/UserList";
 
 function App() {
     return (
@@ -207,13 +207,13 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="users" />
                                 }
                             />
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                                <Route path="edit/:id" element={<UserEdit />} />
                             </Route>
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
@@ -242,9 +242,9 @@ To create our list, we will use Ant design's `<Table>` component to render the d
 
 The `<Table>` component will simplify our workflow, and fortunately for us, it integrates well with refine. Functionalities such as pagination and routing are implemented out of the box.
 
-Moving on, navigate to the `PostList.tsx` file and add the following code:
+Moving on, navigate to the `UserList.tsx` file and add the following code:
 
-```tsx title="src/pages/PostList.tsx"
+```tsx title="src/pages/UserList.tsx"
 import React from "react";
 import { List, useTable } from "@refinedev/antd";
 import { Table } from "antd";
@@ -256,7 +256,7 @@ interface IFormValue {
     id: number;
 }
 
-export default function PostList() {
+export default function UserList() {
     const { tableProps } = useTable<IFormValue>();
 
     return (
@@ -296,26 +296,26 @@ That's it for the list page, save your progress and go back to the browser. You 
 
 <br />
 
-The create button routes us to the `Create` page when clicked. Right now, it just renders the placeholder text we set earlier. Next, we will set up our **dynamic form** inside the `PostCreate` page.
+The create button routes us to the `Create` page when clicked. Right now, it just renders the placeholder text we set earlier. Next, we will set up our **dynamic form** inside the `UserCreate` page.
 
 ## Creating a form
 
 Ant design also provides a form component that ships with various functionalities such as data collection, styling, and data scope management out of the box. The component streamlines the process of quickly building a form in React.
 
-To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@refinedev/antd` and `antd`:
+To create the form, first, navigate to the `UserCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@refinedev/antd` and `antd`:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 import React from "react";
 import { useForm, Create } from "@refinedev/antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space } from "antd";
 ```
 
-These are all the UI components and hooks we'll use for the entirety of the **PostCreate** page setup.
+These are all the UI components and hooks we'll use for the entirety of the **UserCreate** page setup.
 
 Next, add the following code to the component to render the form:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 import React from "react";
 import { useForm, Create } from "@refinedev/antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
@@ -327,7 +327,7 @@ interface IFormValue {
     skills: string;
 }
 
-export default function PostCreate() {
+export default function UserCreate() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
 
     return (
@@ -345,7 +345,7 @@ export default function PostCreate() {
 
 In the code above, we destructured the **formProps** and `saveButtonProps` properties from the `useForm` hook, then we passed them to the `<Create>` and `<Form>` components, respectively.
 
-The `formProps` property contains all the necessary properties for the form to handle the Post request for its data automatically.
+The `formProps` property contains all the necessary properties for the form to handle the POST request for its data automatically.
 
 The `saveButtonProps` property handles the submission functionality of the form via the save button.
 
@@ -367,7 +367,7 @@ Here's a list of some of its props:
 
 Since it is a sub-component of the `<Form>` component, we don't have to import any other components to use it. All we have to do is wrap it around our form's input fields like so:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Create saveButtonProps={saveButtonProps}>
     <Form {...formProps} layout="vertical">
         <Form.Item
@@ -395,7 +395,7 @@ We also gave the `<Form>` component a `layout` prop with a `vertical` value. Thi
 
 We can also add a basic validation to both fields by passing an array of objects with a `required` property to the `rules` prop on the form item component:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Form.Item
     name={"firstName"}
     label="First Name"
@@ -440,7 +440,7 @@ The component accepts a child function with three parameters:
 
 To add a list to the form, first, declare the `<Form.list>` component and add the following code within it.
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Form.List name={"skills"}>
     {(fields, operator) => {
         return (
@@ -483,7 +483,7 @@ The `operator` parameter exposes two function properties, `add()` and `remove()`
 
 What we can do first is destructure the `add()` and `remove()` functions from the `operator` parameter and add an `onClick` handler, with the `add()` function passed in, to the `Add a skill` button:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Form.List name={"skills"}>
     {(fields, { add, remove }) => {
         return (
@@ -527,7 +527,7 @@ Next, we'll create a button for deleting unwanted fields using the `remove()` ac
 
 To do so, create a button below the `<Form.item>` component inside the map callback function, then add an `onClick` handler with the `remove()` function, just as we did for the `add()` function in the previous example:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Create saveButtonProps={saveButtonProps}>
     <Form {...formProps} layout="vertical">
         <Form.Item
@@ -599,7 +599,7 @@ Fortunately for us, refine comes bundled with both the base package and the icon
 
 All we have to do is append an icon name to the `<Icons>` component we imported earlier and pass it to the `icon` prop on the delete `<Button>` component like so:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <div key={field.key}>
     <Form.Item
         name={field.name}
@@ -621,7 +621,7 @@ You can find the list of icon names on Ant design's [official documentation](htt
 
 To place the icon on the same line with the Input field, replace the `div` wrapping the `<Form.item>` with a `<Space>` component and give it a `direction` prop with a `horizontal` value.
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Space
     key={field.key}
     direction="horizontal"
@@ -652,7 +652,7 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
 
 Using the same process, we can also add icons to the `Add a skill` button.
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Button
     type="dashed"
     block
@@ -688,10 +688,10 @@ Some of these properties include;
 
 We added the `required` property to the `rule` props in the previous sections. Now, we'll add other properties accompanied by the `message` property for displaying personalized error messages.
 
-<details><summary>Show PostCreate.tsx code</summary>
+<details><summary>Show UserCreate.tsx code</summary>
 <p>
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 import React from "react";
 import { useForm, Create } from "@refinedev/antd";
 
@@ -704,7 +704,7 @@ interface IFormValue {
     skills: string;
 }
 
-export default function PostCreate() {
+export default function UserCreate() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -783,7 +783,7 @@ To spice things up, we can add feedback icons that display according to the stat
 
 All we need to do is add a `hasFeedback` prop to each `<Form.item>` like so:
 
-```tsx title="src/pages/PostCreate.tsx"
+```tsx title="src/pages/UserCreate.tsx"
 <Form.Item
     name={"firstName"}
     label="First Name"
@@ -827,9 +827,9 @@ What's left for us now is setting up the edit page to update fetched records fro
 
 As you might have noticed earlier, refine didn't automatically add an edit button to the table on the List page. So before we set up the edit page, we must first add an edit button that will route users to the edit page when clicked.
 
-To do this, go back to the `<PostList>` file, import the `<EditButton>` component, and add a new `<Table.Column>` component with the following props:
+To do this, go back to the `<UserList>` file, import the `<EditButton>` component, and add a new `<Table.Column>` component with the following props:
 
-```tsx title="src/pages/PostList.tsx"
+```tsx title="src/pages/UserList.tsx"
 import React from "react";
 import { EditButton, List, useTable } from "@refinedev/antd";
 import { Space, Table } from "antd";
@@ -841,7 +841,7 @@ interface IFormValue {
     id: number;
 }
 
-export default function PostList() {
+export default function UserList() {
     const { tableProps } = useTable<IFormValue>();
     return (
         <List>
@@ -880,12 +880,12 @@ In the example above, we're using the `render` prop to choose the appropriate re
 
 <br />
 
-Next, navigate back to the `PostEdit` file and replace the placeholder with the following code:
+Next, navigate back to the `UserEdit` file and replace the placeholder with the following code:
 
-<details><summary>Show PostEdit code</summary>
+<details><summary>Show UserEdit code</summary>
 <p>
 
-```tsx title="src/pages/PostEdit.tsx"
+```tsx title="src/pages/UserEdit.tsx"
 import React from "react";
 import { useForm, Edit } from "@refinedev/antd";
 
@@ -898,7 +898,7 @@ interface IFormValue {
     skills: string;
 }
 
-export default function PostEdit() {
+export default function UserEdit() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -1021,7 +1021,7 @@ export default function PostEdit() {
  </p>
 </details>
 
-This is a duplicate of the form component we created inside the `PostCreate` page earlier, with the exception of the `<Edit>` component we're using to wrap the form instead of the former - `<Create>` component.
+This is a duplicate of the form component we created inside the `UserCreate` page earlier, with the exception of the `<Edit>` component we're using to wrap the form instead of the former - `<Create>` component.
 
 `<Edit>` is a refine component for wrapping form components that are meant for editing and updating data responses. The `<Edit>` component provides actions such as `save`, `delete`, and `refresh` buttons that can be used in a form.
 
