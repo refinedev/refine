@@ -11,4 +11,5 @@ export type ITelemetryData = {
     };
     version: string;
     resourceCount: number;
+    projectId?: string;
 };
