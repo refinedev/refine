@@ -11,6 +11,15 @@ is_featured: true
 
 
 
+### 🏁 The hackathon has come to a close - thank you to all participants! [Stay tuned](https://twitter.com/refine_dev), we will announce the results in the first week of August.
+
+<br/>
+
+![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon-ended.png)
+
+
+<br/>
+
 
 
 

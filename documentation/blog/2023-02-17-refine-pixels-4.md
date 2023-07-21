@@ -1,22 +1,12 @@
 ---
 title: Adding Realtime Collaboration
-description: We'll implement realtime broadcast and subscription of pixels updates in Pixels app. 
+description: We'll implement realtime broadcast and subscription of pixels updates in Pixels app.
 slug: refine-pixels-4
 authors: abdullah_numan
 tags: [refine-week, refine, supabase]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Fsocial.png
 hide_table_of_contents: false
 ---
-
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code examples in this post have been updated to version 4.x.x.
-
-:::
 
 In this post, we implement realtime broadcast and subscription of `pixels` updates in our **refine** based **Pixels** app. We do this with the [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) prop on `<Refine />` and [**Supabase**'s **Realtime servers**](https://supabase.com/docs/guides/realtime). Applying a PubSub feature allows us to receive instant updates in one part of our app for database changes triggered from another part or by a different client.
 
@@ -27,12 +17,16 @@ Here's a quick rundown of the features we'll work on:
 
 This is Day 4 in the series titled [**refineWeek**](https://refine.dev/week-of-refine/). **refineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
-
 ### refineWeek series
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
-- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
-- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
-  
+
+-   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+-   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+-   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+-   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+-   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+-   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+-   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+
 ## Overview
 
 On Day Three, we implemented CRUD operations using **Supabase** `dataProvider` methods and the `resources` prop, which leveraged RESTful routes in the [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) object under the hood.
@@ -54,13 +48,11 @@ In order to make drawing collaborative between our users, we have to run [**Supa
 
 We can do this from the **Supabase** dashboard for the database we created. If you haven't already, please go ahead and select `Enable Realtime` for the `pixels` table from its editor:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Frealtime.png"  alt="supabase realtime" />
 </div>
 
 <br/>
-
 
 Behind the scenes, **Supabase** spins up globally distributed **Realtime** servers that facilitate low latency communication between our app and **Supabase** database tables. **Supabase**'s **Realtime** feature spares a **channel** for each resource to be broadcasted. Any change in the resource is published in the channel, and clients that subscribe to the channel receive updates as soon as the change is made.
 
@@ -75,24 +67,29 @@ Now, it's time to move our attention back to the `<Refine />` component in our a
 We already have the `liveProvider` prop passed in with the `liveProvider()` function from `@refinedev/supabase`:
 
 ```tsx title="App.tsx"
-<Refine
-  ...
-  liveProvider={liveProvider(supabaseClient)}
-/>
+import { Refine } from "@refinedev/core";
+import { liveProvider } from "@refinedev/supabase";
+import { supabaseClient } from "./utility";
+
+function App() {
+    return (
+        <Refine
+            // ...
+            liveProvider={liveProvider(supabaseClient)}
+        />
+    );
+}
 ```
 
 And that's it! The channel for `pixels` resource that was specified above in **Supabase** will broadcast all mutations on the `pixels` table. And any subscriber will be able to receive real time updates about the changes.
 
 Now, let's try opening the app in two browsers, one with Google account and one with GitHub. Navigate to a canvas page, the same one in both and try adding some `pixels` from each. We'll see that `pixel`s created in one are displayed in the other in real time:
 
-
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Fliveprovider-prop-min.gif"  alt="supabase realtime" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/live-provider.gif"  alt="supabase realtime" />
 
 <br />
 
-This is obnoxious, because we don't know how this is happening. And very pleasant because `create refine-app` already generated the code that handles the PubSub logic for **Supabase** **PostregSQL CDC**. Let's have a look to see what's happening in the **Supabase** `liveProvider` object.
-
+This looks like a magic, because we don't know how this is happening. And very pleasant because `create refine-app` already generated the code that handles the PubSub logic for **Supabase** **PostregSQL CDC**. Let's have a look to see what's happening in the **Supabase** `liveProvider` object.
 
 ### refine's Supabase `liveProvider` Object
 
@@ -106,73 +103,105 @@ const liveProvider = {
 };
 ```
 
-In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) `version 3.35.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
+In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/liveProvider/index.ts) `version 5.0.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
 
-```tsx title="Supabase data provider"
-const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
-  return {
-    subscribe: ({
-      channel,
-      types,
-      params,
-      callback,object
-    }): RealtimeSubscription => {
-      const resource = channel.replace("resources/", "");
+Let's have a look.
 
-        const listener = (payload: SupabaseRealtimePayload<any>) => {
-          if (
-            types.includes("*") ||
-            types.includes(liveTypes[payload.eventType])
-          ) {
-            if (
-              liveTypes[payload.eventType] !== "created" &&
-              params?.ids !== undefined &&
-              payload.new?.id !== undefined
-            ) {
+<details>
+<summary>Show `liveProvider` code</summary>
+<p>
+
+```tsx title="@refinedev/supabase liveProvider"
+import { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
+import {
+    RealtimeChannel,
+    RealtimePostgresChangesPayload,
+    SupabaseClient,
+} from "@supabase/supabase-js";
+import { liveTypes, supabaseTypes } from "../types";
+import { mapOperator } from "../utils";
+
+export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
+    return {
+        subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
+            const resource = channel.replace("resources/", "");
+
+            const listener = (payload: RealtimePostgresChangesPayload<any>) => {
                 if (
-                  params.ids
-                    .map(String)
-                    .includes(payload.new.id.toString())
+                    types.includes("*") ||
+                    types.includes(liveTypes[payload.eventType])
                 ) {
-                  callback({
-                    channel,
-                    type: liveTypes[payload.eventType],
-                    date: new Date(payload.commit_timestamp),
-                    payload: payload.new,
-                  });
+                    if (
+                        liveTypes[payload.eventType] !== "created" &&
+                        params?.ids !== undefined &&
+                        payload.new?.id !== undefined
+                    ) {
+                        if (
+                            params.ids
+                                .map(String)
+                                .includes(payload.new.id.toString())
+                        ) {
+                            callback({
+                                channel,
+                                type: liveTypes[payload.eventType],
+                                date: new Date(payload.commit_timestamp),
+                                payload: payload.new,
+                            });
+                        }
+                    } else {
+                        callback({
+                            channel,
+                            type: liveTypes[payload.eventType],
+                            date: new Date(payload.commit_timestamp),
+                            payload: payload.new,
+                        });
+                    }
                 }
-            } else {
-              callback({
-                channel,
-                type: liveTypes[payload.eventType],
-                date: new Date(payload.commit_timestamp),
-                payload: payload.new,
-              });
-            }
-          }
-        };
+            };
 
-        const client = supabaseClient
-          .from(resource)
-          .on(supabaseTypes[types[0]], listener);
+            const mapFilter = (filters?: CrudFilters): string | undefined => {
+                if (!filters || filters?.length === 0) {
+                    return;
+                }
 
-        types
-          .slice(1)
-          .map((item) => client.on(supabaseTypes[item], listener));
+                return filters
+                    .map((filter: CrudFilter): string | undefined => {
+                        if ("field" in filter) {
+                            return `${filter.field}=${mapOperator(
+                                filter.operator,
+                            )}.${filter.value}`;
+                        }
+                        return;
+                    })
+                    .filter(Boolean)
+                    .join(",");
+            };
 
-        return client.subscribe();
-    },
+            const client = supabaseClient.channel("any").on(
+                "postgres_changes",
+                {
+                    event: supabaseTypes[types[0]] as any,
+                    schema: "public",
+                    table: resource,
+                    filter: mapFilter(params?.filters),
+                },
+                listener,
+            );
 
-    unsubscribe: async (subscription: RealtimeSubscription) => {
-      supabaseClient.removeSubscription(subscription);
-    },
-  };
+            return client.subscribe();
+        },
+
+        unsubscribe: async (channel: RealtimeChannel) => {
+            supabaseClient.removeChannel(channel);
+        },
+    };
 };
 ```
 
-Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the `useCreate()` hook we invoke to create a pixel.
+</p>
+</details>
 
-Let's have a look.
+Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/api-reference/core/hooks/data/useCreate/) hook we invoke to create a pixel.
 
 ## Broadcasting
 
@@ -180,16 +209,16 @@ If we look inside our `<CanvasShow />` component that is rendered at `/canvases/
 
 ```tsx title="src/pages/components/canvas/item.tsx"
 import React from "react";
-import { Typography } from "@refinedev/antd";
+import { Typography } from "antd";
 
-import { Pixel, Canvas } from "types";
-import { DEFAULT_SCALE, PIXEL_SIZE } from "utility/constants";
+import { Pixel, Canvas } from "../../types";
+import { DEFAULT_SCALE, PIXEL_SIZE } from "../../utility/constants";
 
 const { Text } = Typography;
 
 type CanvasItemProps = {
     canvas: Canvas;
-    pixels: Pixel[];
+    pixels: Pixel[] | undefined;
     scale?: number;
     border?: boolean;
     active?: boolean;
@@ -224,7 +253,7 @@ export const CanvasItem: React.FC<CanvasItemProps> = ({
                                         ? "0.5px solid rgba(0,0,0,0.05)"
                                         : undefined,
                                     background:
-                                        pixels.find(
+                                        pixels?.find(
                                             (el) => el.x === j && el.y === i,
                                         )?.color ?? "transparent",
                                 }}
@@ -244,26 +273,42 @@ The most relevant thing to look in the component above is the `onPixelClick` cli
 We'd like to focus on this `onSubmit` event handler, because it is what facilitates the creation of a `pixel`:
 
 ```tsx title="src/pages/canvases/show.tsx"
-const { mutate } = useCreate();
+import { useCreate, useNavigation } from "@refinedev/core";
 
-const onSubmit = (x: number, y: number) => {
-	if (!identity) {
-		return push("/login");
-	}
+export const CanvasShow: React.FC = () => {
+    // ...
 
-	if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-		mutate({
-			resource: "pixels",
-			values: {
-				x,
-				y,
-				color,
-				canvas_id: canvas?.id,
-				user_id: identity.id,
-			},
-			successNotification: false,
-		});
-	}
+    const { push } = useNavigation();
+    const { mutate } = useCreate();
+
+    const onSubmit = (x: number, y: number) => {
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
+            }
+
+            return push(`/login`);
+        }
+
+        if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+            mutate({
+                resource: "pixels",
+                values: {
+                    x,
+                    y,
+                    color,
+                    canvas_id: canvas?.id,
+                    user_id: identity.id,
+                },
+                meta: {
+                    canvas,
+                },
+                successNotification: false,
+            });
+        }
+    };
+
+    return /* ... */;
 };
 ```
 
@@ -294,7 +339,6 @@ The published event for `pixels` `create` action produces an object with the fol
 
 Feel free to go through the [live hooks docs](https://refine.dev/docs/api-reference/core/providers/live-provider/#publish-events-from-hooks) for details about how live publishing is supported by `useCreate()` and other mutation hooks.
 
-
 ## Subscription
 
 The changes to the `pixels` table can be subscribed by consumer components with the `useList()` hook. We are showing the `pixels` inside the `<CanvasShow />` component itself, but they are fetched inside the `<DisplayCanvas />` render-props component.
@@ -302,30 +346,49 @@ The changes to the `pixels` table can be subscribed by consumer components with 
 The `useList()` hook inside `<DisplayCanvas />` looks like this:
 
 ```tsx title="src/components/canvas/display.tsx"
-const { data } = useList<Pixel>
-  {
-    resource: "pixels",
-    liveMode: "auto",
-    config: {
-      filters: [
-        {
-          field: "canvas_id",
-          operator: "eq",
-          value: id,
+import React, { ReactElement } from "react";
+import { useList } from "@refinedev/core";
+
+import { Canvas } from "../../types/canvas";
+import { Pixel } from "../../types/pixel";
+
+type DisplayCanvasProps = {
+    canvas: Canvas;
+    children: (pixels: Pixel[] | undefined) => ReactElement;
+};
+
+export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
+    canvas: { id },
+    children,
+}) => {
+    const { data } = useList<Pixel>({
+        resource: "pixels",
+        liveMode: "auto",
+        meta: {
+            select: "*, users(id, full_name, avatar_url)",
         },
-      ],
-      sort: [
-        {
-          field: "created_at",
-          order: "desc",
+        filters: [
+            {
+                field: "canvas_id",
+                operator: "eq",
+                value: id,
+            },
+        ],
+        sorters: [
+            {
+                field: "created_at",
+                order: "desc",
+            },
+        ],
+        pagination: {
+            mode: "off",
         },
-      ],
-      hasPagination: false,
-    },
-    metaData: {
-      select: "*, users(id, full_name, avatar_url)",
-    },
-  };
+    });
+
+    const pixels = data?.data;
+
+    return <>{children(pixels)}</>;
+};
 ```
 
 Among the loads of arguments and options passed to the `useList()` hook, we have used the `liveMode: auto` property which allows us to subscribe to the **Realtime** channel for the `pixels` resource.
@@ -334,7 +397,6 @@ With `liveProvider` disabled in the `<Refine />` component, `useList()` acts as 
 
 With `liveProvider` activated, under the hood, `useList()` banks on **refine**'s `useResourceSubscription()` live hook to communicate with the `pixels` channel.
 
-
 ### refine `useResourceSubscription()` Hook
 
 The actual subscription is done by the `liveProvider.subscribe()` method.
@@ -342,7 +404,6 @@ The actual subscription is done by the `liveProvider.subscribe()` method.
 The `subscribe()` method is called from inside the `useResourceSubscription()` hook in order to subsribe to the `pixels` channel.
 
 If you want to dive into the details, please feel free to do so in the [`liveProvider` docs here](https://refine.dev/docs/api-reference/core/providers/live-provider/).
-
 
 ## Summary
 
@@ -355,3 +416,5 @@ Broadcasting, in turn, is initiated by the `usePublish()` hook called from a sup
 We implemented real time collaboration very effortlessly due to the out-of-box solutions provided by **refine**'s `@refinedev/supabase` package.
 
 With this now, we have enabled multiple users to draw on a canvas at the same time and receive updates instantly.
+
+[Click here to read "Creating an Admin Dashboard with refine" article. &#8594](https://refine.dev/blog/refine-pixels-5/)

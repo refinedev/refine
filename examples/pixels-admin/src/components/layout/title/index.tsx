@@ -12,7 +12,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => (
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    padding: "12px 24px",
+                    height: "40px",
                 }}
             />
         ) : (
@@ -20,8 +20,8 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => (
                 src={"/pixels-admin.svg"}
                 alt="Pixels Admin"
                 style={{
-                    width: "200px",
-                    padding: "12px 24px",
+                    width: "100%",
+                    height: "40px",
                 }}
             />
         )}
