@@ -44,6 +44,4 @@ export const ENV = {
     REFINE_PROXY_PORT: process.env.REFINE_PROXY_PORT || "7313",
     REFINE_PROXY_REWRITE_URL:
         process.env.REFINE_REWRITE_URL || "http://localhost:7313",
-    REFINE_PROJECT_PROMPT_DISABLED:
-        process.env.REFINE_PROJECT_PROMPT_DISABLED || false,
 };

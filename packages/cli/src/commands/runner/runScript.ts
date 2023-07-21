@@ -15,8 +15,6 @@ export const runScript = async (binPath: string, args: string[]) => {
         return;
     }
 
-    const packageJson = getPackageJson();
-
     const execution = execa(binPath, args, {
         stdio: "pipe",
         windowsHide: false,

@@ -2,8 +2,9 @@ import { Command } from "commander";
 import { getProjectType } from "@utils/project";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
-import { getRunnerDescription } from "../utils";
 import { updateNotifier } from "src/update-notifier";
+import { getRunnerDescription } from "../utils";
+import NotifyCloud from "src/cloud-notifier";
 
 const dev = (program: Command) => {
     return program

@@ -49,6 +49,10 @@ const bootstrap = () => {
     whoami(program);
     proxy(program);
 
+    program.hook("preAction", (thisCommand) => {
+        NotifyCloud();
+    });
+
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];
 
