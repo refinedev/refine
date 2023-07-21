@@ -169,22 +169,21 @@ Let's head over to `App.tsx` file where all magic happens. This is the entry poi
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-...
  // highlight-start
 import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 // highlight-end
 
 function App() {
-  return (
-    <Refine
-      // highlight-next-line
-      dataProvider={dataProvider(supabaseClient)}
-      /* ... */
-    >
-        {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            // highlight-next-line
+            dataProvider={dataProvider(supabaseClient)}
+            //...
+        >
+            {/* ... */}
+        </Refine>
+    );
 }
 
 export default App;
@@ -469,33 +468,30 @@ Auth provider needed to be registered in `<Refine>` component to activate auth f
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-...
  // highlight-start
 import authProvider from './authProvider';
 // highlight-end
 
 function App() {
-  return (
-    <Refine
-      // highlight-next-line
-      authProvider={authProvider}
-      /* ... */
-    >
-        {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            // highlight-next-line
+            authProvider={authProvider}
+            //...
+        />
+    );
 }
 
 export default App;
 ```
 
-Also, we'll see the `Auth provider` methods in action when using `LoginPage` in the next sections.
+Also, we'll see the `Auth provider` methods in action when using `AuthPage` in the next sections.
 
 At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
-If you head over to `localhost:3000`, you'll see a welcome page.
+If you head over to `localhost:5173`, you'll see a welcome page.
 
-```tsx live previewOnly previewHeight=800px url=http://localhost:3000
+```tsx live previewOnly previewHeight=800px url=http://localhost:5173
 setInitialRoutes(["/"]);
 
 import { notificationProvider, WelcomePage } from "@refinedev/antd";
@@ -1038,11 +1034,13 @@ function App() {
                 ]}
                 //highlight-end
             >
+                {/* highlight-start */}
                 <Routes>
                     <Route path="/posts" element={<PostList />} />
                     <Route path="/posts/create" element={<PostCreate />} />
                     <Route path="/posts/edit/:id" element={<PostEdit />} />
                 </Routes>
+                {/* highlight-end */}
             </Refine>
         </BrowserRouter>
     );
@@ -1067,7 +1065,7 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 After adding the resources, the app will look like:
 
-```tsx live previewOnly url=http://localhost:3000/login previewHeight=600px
+```tsx live previewOnly url=http://localhost:5173/login previewHeight=600px
 setInitialRoutes(["/login"]);
 
 // visible-block-start
@@ -1104,9 +1102,9 @@ render(<App />);
 
 Normally, refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
 
-#### This premade and ready to use Login screen consist `LoginPage` and `authProvider` concepts behind the scenes:
+#### This premade and ready to use Login screen consist `AuthPage` and `authProvider` concepts behind the scenes:
 
-Let's check out the `LoginPage` property:
+Let's check out the `Authentication` property:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -1119,22 +1117,18 @@ import routerProvider, {
 //highlight-end
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
 import { ConfigProvider } from "antd";
-
 import authProvider from "./authProvider";
-
-/* ... */
 
 function App() {
     return (
         <BrowserRouter>
             <ConfigProvider theme={RefineThemes.Blue}>
                 <Refine
-                    /* ... */
-                    //highlight-next-line
+                    // highlight-next-line
                     routerProvider={routerProvider}
                     authProvider={authProvider}
+                    //...
                 >
                     <Routes>
                         <Route
@@ -1153,6 +1147,7 @@ function App() {
                                 element={<div>dummy list page</div>}
                             />
                         </Route>
+                        {/* highlight-start */}
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
@@ -1160,7 +1155,6 @@ function App() {
                                 </Authenticated>
                             }
                         >
-                            {/* highlight-start */}
                             <Route path="/login" element={<AuthPage />} />
                             <Route
                                 path="/register"
@@ -1174,8 +1168,8 @@ function App() {
                                 path="/update-password"
                                 element={<AuthPage type="updatePassword" />}
                             />
-                            {/* highlight-end */}
                         </Route>
+                        {/* highlight-end */}
                     </Routes>
                 </Refine>
             </ConfigProvider>
@@ -1192,8 +1186,6 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.jpg" className="border border-gray-200 rounded" alt="flow" />
 
-**By defining the routes array in the `routerProvider` property, we can access the `<AuthPage>` authentication pages by navigating to `/register`, `/forgot-password`, and `/update-password` endpoints.**
-
 We'll show how to implement third party logins in the next sections.
 
 [Refer to AuthPage docs for more information &#8594](/docs/api-reference/antd/components/auth-page.md)
@@ -1203,9 +1195,9 @@ Sign in the app with followings credentials:
 -   email: info@refine.dev
 -   password: refine-supabase
 
-We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
+We have successfully logged in to the app. After then `ListPage` and `CreatePage` pages created. When the `Create` button is clicked, the `CreatePage` component will render.
 
-```tsx live previewOnly url=http://localhost:3000/posts
+```tsx live previewOnly url=http://localhost:5173/posts
 interface ICategory {
     id: number;
     title: string;
@@ -1219,95 +1211,18 @@ interface IPost {
     category: { id: number };
 }
 
-// visible-block-start
 import { useMany } from "@refinedev/core";
-
-import { List, TextField, TagField, useTable } from "@refinedev/antd";
-import { Table } from "antd";
-
-const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>({
-        syncWithLocation: true,
-    });
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value: string) => <TagField value={value} />}
-                />
-            </Table>
-        </List>
-    );
-};
-// visible-block-end
-
-render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
-);
-```
-
-Now click on the `Create` button to create a new post. The app will navigate to the `post/create` endpoint, and `CreatePage` will render.
-
-Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
-
-```tsx live previewOnly url=http://localhost:3000/posts/create
-interface ICategory {
-    id: number;
-    title: string;
-}
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-}
-
-// visible-block-start
-import { Create, useForm, useSelect, CreateButton } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
+import {
+    List,
+    TextField,
+    TagField,
+    useTable,
+    Create,
+    useForm,
+    useSelect,
+    CreateButton,
+} from "@refinedev/antd";
+import { Table, Form, Input, Select } from "antd";
 
 const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -1371,26 +1286,70 @@ const PostCreate: React.FC = () => {
         </Create>
     );
 };
-// visible-block-end
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>({
+        syncWithLocation: true,
+    });
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value: string) => <TagField value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
 
 render(
     <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
+        initialRoutes={["/posts"]}
         resources={[
             {
                 name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
+                list: PostList,
                 create: PostCreate,
             },
         ]}
     />,
 );
 ```
+
+Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
 
 ### Social Logins
 
@@ -1404,24 +1363,41 @@ import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined } from "@ant-design/icons";
 //highlight-end
 
-const MyLoginPage = () => {
+const App: React.FC = () => {
     return (
-        <AuthPage
-            type="login"
-            providers={[
-                {
-                    name: "google",
-                    label: "Sign in with Google",
-                    icon: (
-                        <GoogleOutlined
-                            style={{ fontSize: 18, lineHeight: 0 }}
+        <Refine>
+            <Routes>
+                <Route
+                    path="/login"
+                    element={
+                        <AuthPage
+                            type="login"
+                            {/* highlight-start */}
+                            providers={[
+                                {
+                                    name: "google",
+                                    label: "Sign in with Google",
+                                    icon: 
+                                        <GoogleOutlined
+                                            style={{
+                                                fontSize: 18,
+                                                lineHeight: 0,
+                                            }}
+                                        />
+                                    ),
+                                },
+                            ]}
+                            {/* highlight-end */}
                         />
-                    ),
-                },
-            ]}
-        />
+                    }
+                />
+            </Routes>
+            {/* ... */}
+        </Refine>
     );
 };
+
+export default App;
 ```
 
 This will add a new Google login button to the login page. After the user successfully logs in, the app will redirect back to the app.
@@ -1447,8 +1423,8 @@ So far, we have implemented the followings:
 -   We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
 -   We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
 -   We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
--   We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
--   We have seen how authorization handling in **refine** app by understanding the logic behind of `LoginPage` property, `authProvider`, and `<AuthPage>` component.
+-   We have seen how the [`Authentication`](/docs/packages/documentation/routers/react-router-v6/#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+-   We have seen how authorization handling in **refine** app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
 **refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
