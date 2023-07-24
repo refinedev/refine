@@ -149,9 +149,8 @@ export const CanvasList = () => {
                                 <Button
                                     size="small"
                                     style={{ width: "100px" }}
-                                    type={
-                                        record.is_featured ? "ghost" : "primary"
-                                    }
+                                    ghost={!!record.is_featured}
+                                    type="primary"
                                     onClick={() =>
                                         mutate({
                                             resource: "canvases",
