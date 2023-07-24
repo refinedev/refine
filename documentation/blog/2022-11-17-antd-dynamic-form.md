@@ -149,9 +149,106 @@ import UserEdit from "./pages/UserEdit";
 import UserList from "./pages/UserList";
 ```
 
-Then, set up the `<Refine>` component by defining the `resources` prop and assigning the values for `create`, `list`, and `edit` properties. Then, include the corresponding page imports using `<Route/>` elements.
+Then, set up the `<Refine>` component by defining the `resources` prop and assigning the values for `create`, `list`, and `edit` properties.
 
-[Refer to complete refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/tutorial/adding-crud-pages/antd/index/)
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+
+function App() {
+    return (
+        <Refine
+            // ...
+            // highlight-start
+            resources={[
+                {
+                    name: "users",
+                    list: "/users",
+                    create: "/users/create",
+                    edit: "/users/edit/:id",
+                },
+            ]}
+            // highlight-end
+        >
+            {/* ... */}
+        </Refine>
+    );
+}
+
+export default App;
+```
+
+The resource definitions don't create any CRUD pages. It just defines the `resources` and the paths for the CRUD pages. The defined resources are used by **refine** hooks and components to infer the paths and parameters.
+
+You can think `resources` are bridge between the `dataProvider` and `routes`.
+
+After that, we need to define the routes for each page and `resource`. To do so, we'll use the `<Routes>` and `<Route>` components from the `react-router-dom` package.
+
+> You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and adding routes in the [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6).
+
+You can simply copy and paste the code below into the `App.tsx` file:
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, ErrorComponent } from "@refinedev/antd";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+    DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import UserCreate from "./pages/UserCreate";
+import UserEdit from "./pages/UserEdit";
+import UserList from "./pages/UserList";
+
+function App() {
+    return (
+        // highlight-next-line
+        <BrowserRouter>
+            <Refine
+                // ...
+                resources={[
+                    {
+                        name: "users",
+                        list: "/users",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
+                    },
+                ]}
+            >
+                {/* highlight-start */}
+                <Routes>
+                    <Route
+                        element={
+                            <ThemedLayoutV2>
+                                <Outlet />
+                            </ThemedLayoutV2>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="users" />}
+                        />
+                        <Route path="users">
+                            <Route index element={<UserList />} />
+                            <Route path="create" element={<UserCreate />} />
+                            <Route path="edit/:id" element={<UserEdit />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                {/* highlight-end */}
+            </Refine>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+```
+
+<details>
+<summary>Show `src/App.tsx` Code</summary>
+<p>
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -229,6 +326,9 @@ function App() {
 
 export default App;
 ```
+
+</p>
+</details>
 
 Notice that we're passing a URL to the `dataProvider` prop. This is our fake API URL; refine will fetch and post data records from and to the API using this URL.
 
@@ -860,7 +960,9 @@ All we need to do is add a `hasFeedback` prop to each `<Form.Item>` like so:
     style={{ maxWidth: "893px" }}
     rules={[
         { required: true, message: "please enter your name" },
-        { whitespace: true },
+        {
+            whitespace: true,
+        },
         {
             min: 3,
             message: "field must be at least 3 characters",
