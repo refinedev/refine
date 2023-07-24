@@ -4,7 +4,7 @@ description: Easy way to creating dynamic forms in React CRUD apps with Ant Desi
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
 tags: [react, refine, tutorial, ant-design]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.png
 hide_table_of_contents: false
 ---
 
@@ -105,7 +105,7 @@ cd dynamic-form
 npm run dev
 ```
 
-After running the command, the development server will automatically preview our app in the default browser. If it doesn't, open the browser manually and navigate to [http://localhost:3000](http://localhost:3000).
+After running the command, the development server will automatically preview our app in the default browser. If it doesn't, open the browser manually and navigate to [http://localhost:5173](http://localhost:5173).
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.jpg"  alt="dynamic form antd" />
 
@@ -230,7 +230,7 @@ function App() {
 export default App;
 ```
 
-Notice that we're passing a URL to the dataProvider prop. This is our fake API URL; refine will fetch and post data records from and to the API using this URL.
+Notice that we're passing a URL to the `dataProvider` prop. This is our fake API URL; refine will fetch and post data records from and to the API using this URL.
 
 The `name` prop in the `<Refine>` component is what we're using to specify which endpoint we want to work with in the API. In our case, we're working with the `users` endpoint.
 
@@ -271,9 +271,9 @@ export default function UserList() {
 }
 ```
 
-`useTable` in the code above is a refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
+[`useTable`](/docs/api-reference/antd/hooks/table/useTable/) in the code above is a refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
 
-In the code above, we're using the `useTable` hook to fetch data from our endpoint and pass its value to the Table component via the `tableprops` property. Then we set unique keys for each record from the API using the `rowkey` prop.
+In the code above, we're using the `useTable` hook to fetch data from our endpoint and pass its value to the Table component via the `tableProps` property. Then we set unique keys for each record from the API using the `rowkey` prop.
 
 :::note
 refine handles every fetch request under the hood. The `useTable` hook is one of many hooks it uses to distribute API responses and manage functionalities across its components.
@@ -341,7 +341,7 @@ export default function UserCreate() {
 }
 ```
 
-`useForm` is a refine hook for handling form data. It offers adapters that let refine integrate with Ant design's `<Form>` component.
+[`useForm`](/docs/api-reference/antd/hooks/form/useForm/) is a refine hook for handling form data. It offers adapters that let refine integrate with Ant design's `<Form>` component.
 
 In the code above, we destructured the **formProps** and `saveButtonProps` properties from the `useForm` hook, then we passed them to the `<Create>` and `<Form>` components, respectively.
 
@@ -357,7 +357,7 @@ If you save your progress at this point and go back to the browser, you'll notic
 
 ## Adding form items
 
-The `<Form.item>` component is a sub-component of the `<Form>` component. It accepts several props for configuring and adding basic or custom validation to input fields.
+The `<Form.Item>` component is a sub-component of the `<Form>` component. It accepts several props for configuring and adding basic or custom validation to input fields.
 
 Here's a list of some of its props:
 
@@ -374,7 +374,6 @@ Since it is a sub-component of the `<Form>` component, we don't have to import a
             name={"firstName"}
             label="First Name"
             style={{ maxWidth: "893px" }}
-            rules={[{ required: true }]}
         >
             <Input placeholder="e.g John" />
         </Form.Item>
@@ -399,7 +398,7 @@ We can also add a basic validation to both fields by passing an array of objects
 <Form.Item
     name={"firstName"}
     label="First Name"
-      style={{ maxWidth: "893px" }}
+    style={{ maxWidth: "893px" }}
     // highlight-next-line
     rules={[{ required: true }]}
 >
@@ -408,7 +407,7 @@ We can also add a basic validation to both fields by passing an array of objects
 <Form.Item
     name={"email"}
     label="Email"
-      style={{ maxWidth: "893px" }}
+    style={{ maxWidth: "893px" }}
     // highlight-next-line
     rules={[{ required: true }]}
 >
@@ -430,7 +429,7 @@ In the subsequent sections, we'll learn how to add a more complex validation to 
 
 ## Adding form list
 
-Much like the `<Form.item>` component, Ant design also provides a `<Form.list>` sub-component that lets us create dynamic fields that can be added and removed on command.
+Much like the `<Form.Item>` component, Ant design also provides a `<Form.List>` sub-component that lets us create dynamic fields that can be added and removed on command.
 
 The component accepts a child function with three parameters:
 
@@ -438,7 +437,7 @@ The component accepts a child function with three parameters:
 -   `operations`: The operations parameter is an object with two action functions for adding and removing fields on the list.
 -   `errors`: This parameter does what its name implies - it is used to handle errors for validation.
 
-To add a list to the form, first, declare the `<Form.list>` component and add the following code within it.
+To add a list to the form, first, declare the `<Form.List>` component and add the following code within it.
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Form.List name={"skills"}>
@@ -469,7 +468,7 @@ To add a list to the form, first, declare the `<Form.list>` component and add th
 </Form.List>
 ```
 
-In the code above, we declared a function and a `Add a skill` button within the `<Form.list>` component. We passed the `fields` and `operator` parameters to the function, and then we returned an iteration of the `fields` parameter using a `map` method. Inside the map callback function, we're returning a `<Form.item>` and a nested ` <Input>` component for every dynamic field.
+In the code above, we declared a function and a `Add a skill` button within the `<Form.List>` component. We passed the `fields` and `operator` parameters to the function, and then we returned an iteration of the `fields` parameter using a `map` method. Inside the map callback function, we're returning a `<Form.Item>` and a nested ` <Input>` component for every dynamic field.
 
 That's all we need for the dynamic fields.
 
@@ -495,6 +494,7 @@ What we can do first is destructure the `add()` and `remove()` functions from th
                                 name={field.name}
                                 label={`skill - ${index + 1}`}
                                 style={{ width: "400px" }}
+                                rules={[{ required: true }]}
                             >
                                 <Input placeholder="e.g javascript" />
                             </Form.Item>
@@ -525,60 +525,94 @@ Now, the `Add a skill` button is functional. If you save your progress and test 
 
 Next, we'll create a button for deleting unwanted fields using the `remove()` action.
 
-To do so, create a button below the `<Form.item>` component inside the map callback function, then add an `onClick` handler with the `remove()` function, just as we did for the `add()` function in the previous example:
+To do so, create a button below the `<Form.Item>` component inside the map callback function, then add an `onClick` handler with the `remove()` function, just as we did for the `add()` function in the previous example:
 
 ```tsx title="src/pages/UserCreate.tsx"
-<Create saveButtonProps={saveButtonProps}>
-    <Form {...formProps} layout="vertical">
-        <Form.Item
-            name={"firstName"}
-            label="First Name"
-            style={{ maxWidth: "893px" }}
-        >
-            <Input placeholder="e.g John" />
-        </Form.Item>
-        <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }}>
-            <Input placeholder="e.g john@email.com" />
-        </Form.Item>
-        <Form.List name={"skills"}>
-            {(fields, { add, remove }) => {
-                return (
-                    <>
-                        {fields.map((field, index) => {
-                            return (
-                                <div key={field.key}>
-                                    <Form.Item
-                                        name={field.name}
-                                        label={`skill - ${index + 1}`}
-                                        style={{ width: "400px" }}
-                                    >
-                                        <Input placeholder="e.g javascript" />
-                                    </Form.Item>
+import React from "react";
+import { useForm, Create } from "@refinedev/antd";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Space } from "antd";
+
+interface IFormValue {
+    name: string;
+    email: string;
+    skills: string;
+}
+
+export default function UserCreate() {
+    const { formProps, saveButtonProps } = useForm<IFormValue>();
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    name={"firstName"}
+                    label="First Name"
+                    style={{ maxWidth: "893px" }}
+                    rules={[{ required: true }]}
+                >
+                    <Input placeholder="e.g John" />
+                </Form.Item>
+                <Form.Item
+                    name={"email"}
+                    label="Email"
+                    style={{ maxWidth: "893px" }}
+                    rules={[{ required: true }]}
+                >
+                    <Input placeholder="e.g john@email.com" />
+                </Form.Item>
+                <Form.List name={"skills"}>
+                    {(fields, { add, remove }) => {
+                        return (
+                            <>
+                                {fields.map((field, index) => {
+                                    return (
+                                        <Space
+                                            key={field.key}
+                                            direction="horizontal"
+                                            style={{
+                                                position: "relative",
+                                                marginRight: "13px",
+                                            }}
+                                        >
+                                            <Form.Item
+                                                name={field.name}
+                                                label={`skill - ${index + 1}`}
+                                                style={{ width: "400px" }}
+                                                rules={[{ required: true }]}
+                                            >
+                                                <Input placeholder="e.g javascript" />
+                                            </Form.Item>
+                                            <Button
+                                                danger
+                                                onClick={() =>
+                                                    remove(field.name)
+                                                }
+                                                style={{ marginTop: "5px" }}
+                                                icon={<DeleteOutlined />}
+                                            />
+                                        </Space>
+                                    );
+                                })}
+                                <Form.Item>
                                     <Button
-                                        danger
-                                        onClick={() => remove(field.name)}
+                                        type="dashed"
+                                        block
+                                        style={{ maxWidth: "893px" }}
+                                        icon={<PlusOutlined />}
+                                        onClick={() => add()}
                                     >
-                                        delete
+                                        Add a skill
                                     </Button>
-                                </div>
-                            );
-                        })}
-                        <Form.Item>
-                            <Button
-                                type="dashed"
-                                block
-                                style={{ maxWidth: "893px" }}
-                                onClick={() => add()}
-                            >
-                                Add a skill
-                            </Button>
-                        </Form.Item>
-                    </>
-                );
-            }}
-        </Form.List>
-    </Form>
-</Create>
+                                </Form.Item>
+                            </>
+                        );
+                    }}
+                </Form.List>
+            </Form>
+        </Create>
+    );
+}
 ```
 
 Unlike the former, we're passing the field name as an argument to the `remove()` function. Since each name is unique to its respective component, the function will only delete the field whose button is clicked.
@@ -605,6 +639,7 @@ All we have to do is append an icon name to the `<Icons>` component we imported 
         name={field.name}
         label={`skill - ${index + 1}`}
         style={{ width: "400px" }}
+        rules={[{ required: true }]}
     >
         <Input placeholder="e.g javascript" />
     </Form.Item>
@@ -619,7 +654,7 @@ All we have to do is append an icon name to the `<Icons>` component we imported 
 
 You can find the list of icon names on Ant design's [official documentation](https://ant.design/components/icon/).
 
-To place the icon on the same line with the Input field, replace the `div` wrapping the `<Form.item>` with a `<Space>` component and give it a `direction` prop with a `horizontal` value.
+To place the icon on the same line with the Input field, replace the `div` wrapping the `<Form.Item>` with a `<Space>` component and give it a `direction` prop with a `horizontal` value.
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Space
@@ -634,6 +669,7 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
         name={field.name}
         label={`skill - ${index + 1}`}
         style={{ width: "400px" }}
+        rules={[{ required: true }]}
     >
         <Input placeholder="e.g javascript" />
     </Form.Item>
@@ -694,7 +730,6 @@ We added the `required` property to the `rule` props in the previous sections. N
 ```tsx title="src/pages/UserCreate.tsx"
 import React from "react";
 import { useForm, Create } from "@refinedev/antd";
-
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space } from "antd";
 
@@ -706,6 +741,7 @@ interface IFormValue {
 
 export default function UserCreate() {
     const { formProps, saveButtonProps } = useForm<IFormValue>();
+
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -713,6 +749,17 @@ export default function UserCreate() {
                     name={"firstName"}
                     label="First Name"
                     style={{ maxWidth: "893px" }}
+                    rules={[
+                        { required: true, message: "please enter your name" },
+                        {
+                            whitespace: true,
+                        },
+                        {
+                            min: 3,
+                            message: "field must be at least 3 characters",
+                        },
+                    ]}
+                    hasFeedback
                 >
                     <Input placeholder="e.g John" />
                 </Form.Item>
@@ -720,6 +767,15 @@ export default function UserCreate() {
                     name={"email"}
                     label="Email"
                     style={{ maxWidth: "893px" }}
+                    rules={[
+                        { required: true, message: "please enter your email" },
+                        { whitespace: true },
+                        {
+                            min: 3,
+                            message: "field must be at least 3 characters",
+                        },
+                    ]}
+                    hasFeedback
                 >
                     <Input placeholder="e.g john@email.com" />
                 </Form.Item>
@@ -741,6 +797,20 @@ export default function UserCreate() {
                                                 name={field.name}
                                                 label={`skill - ${index + 1}`}
                                                 style={{ width: "400px" }}
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message:
+                                                            "please enter your skill",
+                                                    },
+                                                    { whitespace: true },
+                                                    {
+                                                        min: 3,
+                                                        message:
+                                                            "field must be at least 3 characters",
+                                                    },
+                                                ]}
+                                                hasFeedback
                                             >
                                                 <Input placeholder="e.g javascript" />
                                             </Form.Item>
@@ -781,7 +851,7 @@ export default function UserCreate() {
 
 To spice things up, we can add feedback icons that display according to the state of the input fields: a red crossed circle when there's an error and a green checkmark when there's none.
 
-All we need to do is add a `hasFeedback` prop to each `<Form.item>` like so:
+All we need to do is add a `hasFeedback` prop to each `<Form.Item>` like so:
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Form.Item
@@ -819,7 +889,7 @@ What's left for us now is setting up the edit page to update fetched records fro
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.jpg" alt="discord banner" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 
@@ -849,6 +919,7 @@ export default function UserList() {
                 <Table.Column dataIndex="firstName" title="First Name" />
                 <Table.Column dataIndex="email" title="Email" />
                 <Table.Column dataIndex="skills" title="Skills" />
+                {/* highlight-start */}
                 <Table.Column<IFormValue>
                     title="Actions"
                     dataIndex="actions"
@@ -864,6 +935,7 @@ export default function UserList() {
                         );
                     }}
                 />
+                {/* highlight-end */}
             </Table>
         </List>
     );
