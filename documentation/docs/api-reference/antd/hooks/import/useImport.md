@@ -3,14 +3,14 @@ id: useImport
 title: useImport
 ---
 
-`useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.
+The `useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.
 
 Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
-It will return properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
+It will return properties that are compatible with Ant Design's [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
 
 :::info
-`useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
+The `useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
 :::
 
 ## Basic Usage
@@ -18,7 +18,7 @@ It will return properties that are compatible with Ant Design [`<Upload>`](https
 Here is a basic usage example of `useImport` hook:
 
 ```tsx
-import { useImport, ImportButton } from "@refinedev/antd";
+import { ImportButton, useImport } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
     const importProps = useImport();
@@ -27,7 +27,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<ImportButton>` interface for more information &#8594](/docs/api-reference/antd/components/buttons/import-button/)
+> For more information, refer to the [`<ImportButton>` interface &#8594](/docs/api-reference/antd/components/buttons/import-button/)
 
 Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
 
@@ -50,9 +50,7 @@ export const PostList: React.FC = () => {
 
 ### `resource`
 
-> Default: It reads the `resource` value from the current URL.
-
-Determines which resource is passed to the `create` or `createMany` method of your data provider.
+`resource` determines which resource is passed to the `create` or `createMany` method of your data provider. It reads from the URL by default.
 
 ```ts
 useImport({
@@ -62,7 +60,7 @@ useImport({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation #8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `mapData`
 
@@ -93,9 +91,7 @@ useImport({
 
 ### `batchSize`
 
-> Default: [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
-
-If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch.
+If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch. By default, it is [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
 
 ```ts
 useImport({
@@ -170,7 +166,7 @@ Use `resource` instead.
 
 ### `buttonProps`
 
-Button properties that are compatible with Ant Design [`<Button>`](https://ant.design/components/button/) component.
+`buttonProps` are button properties that are compatible with Ant Design [`<Button>`](https://ant.design/components/button/) component.
 
 ```tsx
 import { useImport } from "@refinedev/antd";
@@ -189,7 +185,7 @@ It is set to `default` by default.
 
 #### `loading`
 
-If the import is in progress, it sets the loading state of the button.
+`loading` sets the loading state of the button if the import is in progress.
 
 ### `uploadProps`
 
@@ -245,9 +241,9 @@ For example, the `CSV` file is as follows:
 "dummy title 3","cummy content 3","published","41","10"
 ```
 
-Since the user and category are relational fields, we store only their id fields in the exported file as userId and categoryId respectively. To create resources from this file, we need to map the data back to the required format of the backend API. To do this, we use the mapData option in useImport. Here's an example:
+Since the user and category are relational fields, we store only their id fields in the exported file as userId and categoryId, respectively. To create resources from this file, we need to map the data back to the required format of the backend API. To do this, we use the mapData option in useImport. Here's an example:
 
-When creating these resources back, we should map it back to our backend API's required format. `mapData` option allows us to do this. Here is an example:
+When creating these resources back, we should map them back to our backend API's required format. The `mapData` option allows us to do this. Here is an example:
 
 ```ts
 useImport<IPostFile>({
@@ -301,16 +297,9 @@ With this code, the parsed data will be mapped to conform to the API requirement
 | TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[button]: https://ant.design/components/button/
-[upload]: https://ant.design/components/upload/
-[importbutton]: /api-reference/antd/components/buttons/import.md
-[usecreate]: /docs/api-reference/core/hooks/data/useCreate/
-[usecreatemany]: /docs/api-reference/core/hooks/data/useCreateMany/
-[dataprovider]: /api-reference/core/providers/data-provider.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[successerrornotification]: /api-reference/core/interfaces.md#successerrornotification
 [use-import-core]: /docs/api-reference/core/hooks/import-export/useImport/

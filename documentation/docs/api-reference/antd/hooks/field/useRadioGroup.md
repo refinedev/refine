@@ -60,7 +60,9 @@ interface ILanguage {
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
-`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](/docs/api-reference/core/hooks/data/useList)
+`useRadioGroup` uses the `useList` hook for fetching data.
+
+> For more information, refer to the [Ant Design's `useList` hook documentation &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 
@@ -76,9 +78,9 @@ const { radioGroupProps } = useRadioGroup({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
-[Refer to the Ant Design's `Radio.Group` component documentation for detailed info on `options`. &#8594](https://ant.design/components/radio)
+> For more information, refer to the [Ant Design's `Radio.Group` component documentation &#8594](https://ant.design/components/radio)
 
 ### `defaultValue`
 
@@ -124,6 +126,8 @@ const { options } = useSelect({
 
 ### `filters`
 
+`filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to "German":
+
 ```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
@@ -139,9 +143,9 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-`filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to `"German"` records.
-
 ### `sorters`
+
+`sorters` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending:
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -157,9 +161,9 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-`sorters` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
-
 ### `fetchSize`
+
+`fetchSize` is the amount of records to fetch in checkboxes.
 
 ```tsx
 const { selectProps } = useRadioGroup({
@@ -169,9 +173,9 @@ const { selectProps } = useRadioGroup({
 });
 ```
 
-Amount of records to fetch in radio group buttons.
-
 ### `queryOptions`
+
+Passing the `queryOptions` property allows us to set the [useQuery](https://react-query.tanstack.com/reference/useQuery) options
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -186,13 +190,11 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
-
 ### `pagination`
 
-Allows us to set page and items per page values.
+`pagination` allows us to set page and items per page values.
 
-For example imagine that we have 1000 post records:
+For example, lets say that we have 1000 post records:
 
 ```ts
 const { selectProps } = useSelect({
@@ -202,7 +204,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-> Listing will start from page 3 showing 8 records.
+The listing will start from page 3, showing 8 records per page.
 
 ### ~~`sort`~~
 
