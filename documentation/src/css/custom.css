@@ -885,7 +885,7 @@ html[data-theme="dark"]:not([data-customized="true"])
 }
 
 .props-table .props-table__type-cell code {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .props-table {
@@ -911,11 +911,11 @@ html[data-theme="dark"]:not([data-customized="true"])
 .props-table__type-cell p,
 .props-table__description-cell p,
 .props-table__default-value-cell p {
-    @apply text-sm 2xl:text-lg;
+    @apply text-sm;
 }
 
 .props-table__type-cell code p {
-    @apply text-xs 2xl:text-base;
+    @apply text-sm;
 }
 
 .docs-wrapper table {

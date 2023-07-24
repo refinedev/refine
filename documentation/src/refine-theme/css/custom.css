@@ -58,7 +58,7 @@
     @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-5 prose-p:mt-0;
     @apply prose-p:text-base sm:prose-p:leading-7;
 
-    @apply prose-li:text-xs sm:prose-li:text-base 2xl:prose-li:text-xl;
+    @apply prose-li:text-sm sm:prose-li:text-base;
     @apply prose-ul:pl-8 prose-ul:ml-0 prose-ul:dark:text-gray-300 prose-ul:text-gray-700;
     @apply prose-ol:pl-8 prose-ol:ml-0 prose-ol:dark:text-gray-300 prose-ol:text-gray-700;
 
@@ -105,16 +105,16 @@
 .refine-prose table th,
 .refine-prose table td {
     @apply border border-gray-200 px-2 py-2 text-gray-900 dark:border-gray-700 dark:text-gray-100;
-    @apply text-sm 2xl:text-lg;
+    @apply text-sm;
 }
 
 .refine-prose table th {
     @apply font-semibold text-gray-900 dark:text-gray-200;
-    @apply text-sm 2xl:text-lg;
+    @apply text-sm;
 }
 
 .refine-prose table th code {
-    @apply text-xs 2xl:text-base;
+    @apply text-sm;
 }
 
 .refine-prose table tbody tr:nth-child(odd) {
