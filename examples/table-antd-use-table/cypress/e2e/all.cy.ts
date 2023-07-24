@@ -102,6 +102,9 @@ describe("table-antd-use-table", () => {
     });
 
     it("should work with pagination", () => {
+        cy.interceptGETPosts();
+        cy.wait("@getPosts");
+
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.intercept(
@@ -144,6 +147,9 @@ describe("table-antd-use-table", () => {
     });
 
     it("should set current `1` when filter changed", () => {
+        cy.interceptGETPosts();
+        cy.wait("@getPosts");
+
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.getAntdPaginationItem(2).click();

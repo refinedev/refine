@@ -1,5 +1,13 @@
 # @pankod/refine-cli
 
+## 2.7.3
+
+### Patch Changes
+
+-   [#4696](https://github.com/refinedev/refine/pull/4696) [`35a2c695a74`](https://github.com/refinedev/refine/commit/35a2c695a7465492e7aa59c50f3bb80a56aff19b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: CLI will try to read `projectId` from package.json if exists and send it to the telemetry server.
+
+    Also removed redundant comment lines on resource generation.
+
 ## 2.7.2
 
 ### Patch Changes

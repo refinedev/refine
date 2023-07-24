@@ -8,51 +8,50 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pix
 hide_table_of_contents: false
 ---
 
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code examples in this post have been updated to version 4.x.x.
-
-:::
-
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="refine banner" />
 
-  <br/>
-  <br/>
+### refineWeek series
 
+-   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+-   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+-   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+-   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+-   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+-   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+-   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+
+<br/>
+<br/>
 
 This post provides an introduction to [**refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
-It also presents the [refineWeek](https://refine.dev/week-of-refine/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
+It also presents the [refineWeek](https://refine.dev/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
 
-At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **refine** and **Supabase**. 
+At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **refine** and **Supabase**.
 
 [The live version of the app is be available here.](https://pixels.refine.dev/)
 
 The final apps source codes are available on GitHub:
- ### Pixels Client
-  [Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels)  
 
-  To get completed client source code simply run:
-   ```
-    npm create refine-app@latest -- --example pixels
-   ```
+### Pixels Client
 
-  ### Pixels Admin
+[Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels)
 
-  [Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)  
+To get completed client source code simply run:
 
-  To get completed admin source code simply run: 
-   
-   ```
-    npm create refine-app@latest -- --example pixels-admin
-   ```
+```
+ npm create refine-app@latest -- --example pixels
+```
 
+### Pixels Admin
 
+[Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
 
+To get completed admin source code simply run:
+
+```
+ npm create refine-app@latest -- --example pixels-admin
+```
 
 ## What is **refine** ?
 
@@ -61,8 +60,6 @@ The final apps source codes are available on GitHub:
 **refine**'s (intentionally decapitalized) core is strongly opinionated about RESTful conventions, HTTPS networking, state management, authentication and authorization. It is, however, unopinionated about the UI and render logic. This makes it customizable according to one's choice of UI library and frameworks.
 
 In a nutshell, you can build rock-solid CRUD apps easily using refine✨.
-
-
 
 ## refine Architecture
 
@@ -85,7 +82,7 @@ import authProvider from "./authProvider";
 />;
 ```
 
-The above snippet lists a few of the props and their objects.  
+The above snippet lists a few of the props and their objects.
 
 However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](http://localhost:3000/docs/api-reference/core/providers/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](http://localhost:3000/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](http://localhost:3000/docs/api-reference/core/providers/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
 
@@ -95,7 +92,6 @@ For example, a `dataProvider` object has the following signature to which any de
 <summary>Show data provider code</summary>
 <p>
 
-
 ```tsx title="dataProvider.ts"
 const dataProvider = {
     create: ({ resource, variables, metaData }) => Promise,
@@ -103,14 +99,8 @@ const dataProvider = {
     deleteOne: ({ resource, id, variables, metaData }) => Promise,
     deleteMany: ({ resource, ids, variables, metaData }) => Promise,
     //highlight-start
-    getList: ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        metaData,
-    }) => Promise,
+    getList: ({ resource, pagination, pagination, sort, filters, meta }) =>
+        Promise,
     //highlight-end
     getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
@@ -140,14 +130,16 @@ An example hook usage looks like this:
 ```tsx title="Inside a UI component"
 const { data } = useList<Canvas>({
     resource: "canvases",
-    config: {
-      hasPagination: false,
-      sort: [
-        {
-          field: "created_at",
-          order: "desc",
-        },
-      ],
+    pagination: {
+        mode: "off",
+    },
+    sorters: {
+        initial: [
+            {
+                field: "created_at",
+                order: "desc",
+            },
+        ],
     },
 });
 ```
@@ -160,62 +152,59 @@ The hooks, in turn, leverage [**React Query**](https://react-query-v3.tanstack.c
 
 ```tsx
 const queryResponse = useQuery<GetListResponse<TData>, TError>(
-  queryKey.list(config),
-  ({ queryKey, pageParam, signal }) => {
-    const { hasPagination, ...restConfig } = config || {};
-    return getList<TData>({
-      resource,
-      ...restConfig,
-      hasPagination,
-      metaData: {
-        ...metaData,
-        queryContext: {
-          queryKey,
-          pageParam,
-          signal,
+    queryKey.list(config),
+    ({ queryKey, pagination, signal }) => {
+        const { pagination, meta, ...restConfig } = config || {};
+        return getList<TData>({
+            resource,
+            ...restConfig,
+            pagination,
+            meta: {
+                ...meta,
+                queryContext: {
+                    queryKey,
+                    pageParam,
+                    signal,
+                },
+            },
+        });
+    },
+    {
+        ...queryOptions,
+        onSuccess: (data) => {
+            queryOptions?.onSuccess?.(data);
+
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(data, { metaData, config }, resource)
+                    : successNotification;
+
+            handleNotification(notificationConfig);
         },
-      },
-    });
-  },
-  {
-    ...queryOptions,
-    onSuccess: (data) => {
-        queryOptions?.onSuccess?.(data);
+        onError: (err: TError) => {
+            checkError(err);
+            queryOptions?.onError?.(err);
 
-      const notificationConfig =
-        typeof successNotification === "function"
-          ? successNotification(
-              data,
-              { metaData, config },
-              resource,
-            )
-          : successNotification;
+            const notificationConfig =
+                typeof errorNotification === "function"
+                    ? errorNotification(err, { metaData, config }, resource)
+                    : errorNotification;
 
-      handleNotification(notificationConfig);
+            handleNotification(notificationConfig, {
+                key: `${resource}-useList-notification`,
+                message: translate(
+                    "common:notifications.error",
+                    { statusCode: err.statusCode },
+                    `Error (status code: ${err.statusCode})`,
+                ),
+                description: err.message,
+                type: "error",
+            });
+        },
     },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
-
-      const notificationConfig =
-        typeof errorNotification === "function"
-          ? errorNotification(err, { metaData, config }, resource)
-          : errorNotification;
-
-      handleNotification(notificationConfig, {
-        key: `${resource}-useList-notification`,
-        message: translate(
-          "common:notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
-        ),
-        description: err.message,
-        type: "error",
-      });
-    },
-  },
 );
 ```
+
 </p>
 </details>
 
@@ -223,12 +212,9 @@ We'll be visiting code like this often, but if you examine closely you can see t
 
 The following diagram illustrates the interactions:
 
-
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine-flow.png" alt="refine banner" />
 
-
 <br />
-
 
 ## Providers and Hooks
 
@@ -236,18 +222,16 @@ The following diagram illustrates the interactions:
 
 Common providers include:
 
-- [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
-- [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/) - for CRUD operations.
-- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
-- [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
-- [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
-- [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
+-   [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
+-   [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/) - for CRUD operations.
+-   [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
+-   [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
+-   [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
+-   [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
 
 For an exhaustive list of providers, please visit the **refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
 
 Each method in these providers comes with its corresponding hook to be used from inside UI components and pages. For more details, please refer to the **refine** hooks documentation starting [here](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
-
-
 
 ## Support Packages
 
@@ -257,12 +241,11 @@ For a complete list of all these modules, check out [this page](https://refine.d
 
 ## What is Supabase?
 
-[**Supabase**](https://supabase.com/) is an open source alternative to Firebase. It is a hosted backend that provides a realtime database, authentication, storage, and API services. 
+[**Supabase**](https://supabase.com/) is an open source alternative to Firebase. It is a hosted backend that provides a realtime database, authentication, storage, and API services.
 
 refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/docs/packages/documentation/data-providers/supabase/).
 
 We'll be using **Supabase** to build our backend for **Pixels** app.
-
 
 ## A week of refine ft. Supabase
 
@@ -270,7 +253,6 @@ We'll be using **Supabase** to build our backend for **Pixels** app.
 
   <br/>
   <br/>
-
 
 In this tutorial series, we will be going through most of the core features of [**refine**](https://github.com/refinedev/refine) by building two apps related to drawing pixels on a canvas. This section is intended to provide an overview.
 
@@ -284,20 +266,15 @@ As far as our features and functionalities go, we will cover most of the provide
 
 <br />
 
-
 Here are the detailed outlines split per day:
 
 ### Day One - On refineWeek
 
 This post. Hello! :wave: :wave: **refine** welcomes you! We are here :smile: :smile:
 
-
-
 ### Day Two - Setting Up the Client App
 
-We  start with setting up the **Pixels** client app using `create refine-app`. We choose **refine**'s optional **Ant Design** and **Supabase** modules as our support packages. After initialization, we explore the boilerplate code created by `create refine-app` and look into the details of the `dataProvider` and `authProvider` objects and briefly discuss their mechanisms.
-
-
+We start with setting up the **Pixels** client app using `create refine-app`. We choose **refine**'s optional **Ant Design** and **Supabase** modules as our support packages. After initialization, we explore the boilerplate code created by `create refine-app` and look into the details of the `dataProvider` and `authProvider` objects and briefly discuss their mechanisms.
 
 ### Day Three - Adding CRUD Actions & Authentication
 
@@ -315,12 +292,11 @@ Here is a quick sum up of spcifications we cover on Day Three:
 8. A user can sign up to the app using email, Google and GitHub.
 9. A user can log in to the app using email, Google and GitHub.
 
-
 ### Day Four - Adding Realtime Collaboration
+
 On Day Four, we add **real time** features to our app using the `liveProvider` prop on `<Refine />`. Real time updates on a canvas will facilitate multiple users to collaborate on it at the same time.
 
 We are going to use **Supabase**'s **Realtime** [PostgreSQL CDC](https://supabase.com/docs/guides/realtime/postgres-cdc) in order to perform row level updates on the PostgreSQL database in real time.
-
 
 ### Day Five - Initialize and Build Pixels Admin App
 
@@ -334,7 +310,6 @@ Here are the requirements for **Pixels Admin**:
 4. The dashboard shows a list of all users at `/users` endpoint.
 5. The dashboard shows a list of all canvases at `/canvases` endpoint.
 
-
 ### Day Six - Add Role Based Authorization
 
 On Day Six, we implement user role based authorization to our admin app. While doing so, we analyze the `authProvider.getPermissions()` method from the standpoint of implementing authorization and customize according to our needs. We use **Casbin** for implementing a Role Based Access Control model and use it to define the `can` method of the `accessControlProvider` provider.
@@ -345,7 +320,6 @@ Here are the features we implement on Day Six:
 2. An editor is able to promote a canvas to "featured" status and demote it back.
 3. An admin is able to promote a canvas to "featured" status and demote it back.
 4. An admin is able to delete a canvas.
-
 
 ### Day Seven - Add Audit Log to Client App and Admin App
 
@@ -360,3 +334,5 @@ In this post, we introduced the **refine** framework and the [refineWeek](https:
 We layed out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 
 Tomorrow, on [Day Two](https://refine.dev/blog/refine-pixels-2/), we are ready to start "Setting Up the Client App". See you soon!
+
+[Click here to read "Setting Up the Client App" article. &#8594](https://refine.dev/blog/refine-pixels-2/)

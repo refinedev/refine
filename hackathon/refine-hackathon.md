@@ -1,10 +1,22 @@
 
 
-
 ![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)
 
 
+
 # The refine Open Source Hackathon #2
+
+
+## 🏁 The hackathon has come to a close - thank you to all participants! [Stay tuned](https://twitter.com/refine_dev), we will announce the results in the first week of August.
+
+<br/>
+
+![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon-ended.png)
+
+
+<br/>
+
+
 
 We're back with another exciting event for the open-source community - the 2nd refine Open Source Hackathon! 
 

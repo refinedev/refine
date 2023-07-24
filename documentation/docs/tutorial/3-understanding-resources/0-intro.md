@@ -521,7 +521,7 @@ Additional parameters can also be defined in the path. For example, if we want t
 
 These additional parameters, except for the `id` parameter, can be passed to the components or hooks using `meta` properties. The existing parameters in the URL will be used by default when handling the navigation.
 
-For example, let’s say that we have a `create` action for the `blog_posts` resource as `/:userId/blog-posts/create` and the user is currently on the `/:userID/blog-posts` page.
+For example, let’s say that we have a `create` action for the `blog_posts` resource as `/:userId/blog-posts/create` and the user is currently on the `/:userId/blog-posts` page.
 
 When the user clicks on the `create` button, they will be redirected to `/:userId/blog-posts/create` because the `userId` parameter has been inferred from the current path.
 

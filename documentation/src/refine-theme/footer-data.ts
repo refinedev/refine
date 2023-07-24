@@ -20,6 +20,10 @@ export const menuItems = [
                 label: "Blog",
                 href: "/blog",
             },
+            {
+                label: "React Admin Panel",
+                href: "https://reactadminpanel.com",
+            },
         ],
     },
     {

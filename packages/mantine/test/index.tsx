@@ -10,14 +10,19 @@ import {
     NotificationProvider,
     IResourceItem,
     AuthBindings,
+    IRouterProvider,
+    RouterBindings,
 } from "@refinedev/core";
 
-import { MockRouterProvider, MockJSONServer } from "@test";
+import { mockRouterBindings, MockJSONServer } from "@test";
+import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 const List = () => {
     return <div>hede</div>;
 };
 export interface ITestWrapperProps {
+    routerProvider?: RouterBindings;
+    legacyRouterProvider?: IRouterProvider;
     dataProvider?: DataProvider;
     authProvider?: AuthBindings;
     legacyAuthProvider?: LegacyAuthProvider;
@@ -27,11 +32,14 @@ export interface ITestWrapperProps {
     i18nProvider?: I18nProvider;
     routerInitialEntries?: string[];
     DashboardPage?: React.FC;
+    options?: IRefineOptions;
 }
 
 export const TestWrapper: (
     props: ITestWrapperProps,
 ) => React.FC<{ children?: React.ReactNode }> = ({
+    routerProvider = mockRouterBindings(),
+    legacyRouterProvider,
     dataProvider,
     authProvider,
     legacyAuthProvider,
@@ -41,6 +49,7 @@ export const TestWrapper: (
     routerInitialEntries,
     DashboardPage,
     i18nProvider,
+    options,
 }) => {
     // Previously, MemoryRouter was used in this wrapper. However, the
     // recommendation by react-router developers (see
@@ -61,7 +70,10 @@ export const TestWrapper: (
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
-                    legacyRouterProvider={MockRouterProvider}
+                    routerProvider={
+                        legacyRouterProvider ? undefined : routerProvider
+                    }
+                    legacyRouterProvider={legacyRouterProvider}
                     authProvider={authProvider}
                     legacyAuthProvider={legacyAuthProvider}
                     notificationProvider={notificationProvider}
@@ -69,6 +81,7 @@ export const TestWrapper: (
                     accessControlProvider={accessControlProvider}
                     DashboardPage={DashboardPage ?? undefined}
                     options={{
+                        ...options,
                         disableTelemetry: true,
                         reactQuery: {
                             clientConfig: {
@@ -90,8 +103,9 @@ export const TestWrapper: (
     };
 };
 export {
+    mockRouterBindings,
     MockJSONServer,
-    MockRouterProvider,
+    MockLegacyRouterProvider,
     MockAccessControlProvider,
     MockLiveProvider,
     MockAuthProvider,

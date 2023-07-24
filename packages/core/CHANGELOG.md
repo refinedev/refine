@@ -1,5 +1,267 @@
 # @pankod/refine-core
 
+## 4.28.1
+
+### Patch Changes
+
+-   [#4696](https://github.com/refinedev/refine/pull/4696) [`35a2c695a74`](https://github.com/refinedev/refine/commit/35a2c695a7465492e7aa59c50f3bb80a56aff19b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: add optional projectId field to <Refine /> component options prop. Project ID will be sent with telemetry data if it exists.
+
+## 4.28.0
+
+### Minor Changes
+
+-   [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `errros` field to `HttpError` type.
+    From now on, you can pass `errors` field to `HttpError`. This field will be used to update the `useForm`'s error state.
+
+    ```ts
+    export interface ValidationErrors {
+        [field: string]:
+            | string
+            | string[]
+            | boolean
+            | { key: string; message: string };
+    }
+
+    export interface HttpError extends Record<string, any> {
+        message: string;
+        statusCode: number;
+        errors?: ValidationErrors;
+    }
+    ```
+
+    Usage example:
+
+    ```tsx
+    import { HttpError } from "@refinedev/core";
+
+    const App = () => {
+        return (
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={{
+                    // ...
+                    update: async () => {
+                        // assume that the server returns the following error
+                        const error: HttpError = {
+                            message:
+                                "An error occurred while updating the record.",
+                            statusCode: 400,
+                            //This field will be used to update the `useForm`'s error state
+                            errors: {
+                                title: [
+                                    "Title is required.",
+                                    "Title should have at least 5 characters.",
+                                ],
+                                "category.id": ["Category is required."],
+                                status: true,
+                                content: {
+                                    key: "form.error.content",
+                                    message: "Content is required.",
+                                },
+                            },
+                        };
+
+                        return Promise.reject(error);
+                    },
+                }}
+            >
+                {/* ... */}
+            </Refine>
+        );
+    };
+    ```
+
+    [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/)
+
+-   [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `disableServerSideValidation` to the refine options for globally disabling server-side validation.
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+
+    <Refine
+        options={{
+            disableServerSideValidation: true,
+        }}
+    >
+        // ...
+    </Refine>;
+    ```
+
+-   [#4591](https://github.com/refinedev/refine/pull/4591) [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `autoSave` feature for [useForm](https://refine.dev/docs/api-reference/core/hooks/useForm/#autosave) hook now accept `autoSave` object. `enabled` is a boolean value and `debounce` is a number value in milliseconds. `debounce` is optional and default value is `1000`.
+    `autoSaveProps` is an object that contains `data`, `error` and `status` values. `data` is the saved data, `error` is the error object and `status` is the status of the request. `status` can be `loading`, `error`, `idle` and `success`.
+
+    ```
+    const { autoSaveProps } = useForm({
+        autoSave: {
+            enabled: true,
+            debounce: 2000, // not required, default is 1000
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#4659](https://github.com/refinedev/refine/pull/4659) [`3af99896101`](https://github.com/refinedev/refine/commit/3af99896101bd41a4d2878c4a9f671ca1da36a6f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: fix tsdoc description of `onCancel` property on following hooks:
+
+    -   `useUpdate`
+    -   `useUpdateMany`
+    -   `useDelete`
+    -   `useDeleteMany`
+
+-   [#4665](https://github.com/refinedev/refine/pull/4665) [`3442f4bd00a`](https://github.com/refinedev/refine/commit/3442f4bd00ad4dbb17dcba08931fdeed3c2b1cb0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `false` return type on `SuccessErrorNotification`
+
+    This issue has been fixed in this PR, where the `successNotification` and `errorNotification` methods can now return `false` when a callback function is given. This allows the conditional notification to be displayed.
+
+    ```
+    const { mutate } = useCreate<IPost>({});
+
+    mutate({
+        resource: "posts",
+        values: {
+            title: "Hello World",
+            status: "published",
+        },
+        successNotification: (data) => {
+            if (data?.data.status === "published") {
+                return {
+                    type: "success",
+                    message: "Post published",
+                };
+            }
+
+            return false;
+        },
+    });
+    ```
+
+## 4.27.0
+
+### Minor Changes
+
+-   [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `errros` field to `HttpError` type.
+    From now on, you can pass `errors` field to `HttpError`. This field will be used to update the `useForm`'s error state.
+
+    ```ts
+    export interface ValidationErrors {
+        [field: string]:
+            | string
+            | string[]
+            | boolean
+            | { key: string; message: string };
+    }
+
+    export interface HttpError extends Record<string, any> {
+        message: string;
+        statusCode: number;
+        errors?: ValidationErrors;
+    }
+    ```
+
+    Usage example:
+
+    ```tsx
+    import { HttpError } from "@refinedev/core";
+
+    const App = () => {
+        return (
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={{
+                    // ...
+                    update: async () => {
+                        // assume that the server returns the following error
+                        const error: HttpError = {
+                            message:
+                                "An error occurred while updating the record.",
+                            statusCode: 400,
+                            //This field will be used to update the `useForm`'s error state
+                            errors: {
+                                title: [
+                                    "Title is required.",
+                                    "Title should have at least 5 characters.",
+                                ],
+                                "category.id": ["Category is required."],
+                                status: true,
+                                content: {
+                                    key: "form.error.content",
+                                    message: "Content is required.",
+                                },
+                            },
+                        };
+
+                        return Promise.reject(error);
+                    },
+                }}
+            >
+                {/* ... */}
+            </Refine>
+        );
+    };
+    ```
+
+    [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/)
+
+-   [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `disableServerSideValidation` to the refine options for globally disabling server-side validation.
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+
+    <Refine
+        options={{
+            disableServerSideValidation: true,
+        }}
+    >
+        // ...
+    </Refine>;
+    ```
+
+-   [#4591](https://github.com/refinedev/refine/pull/4591) [`f8891ead2bd`](https://github.com/refinedev/refine/commit/f8891ead2bdb5f6743bbe9979230aa73ef3e69be) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `autoSave` feature for [useForm](https://refine.dev/docs/api-reference/core/hooks/useForm/#autosave) hook now accept `autoSave` object. `enabled` is a boolean value and `debounce` is a number value in milliseconds. `debounce` is optional and default value is `1000`.
+    `autoSaveProps` is an object that contains `data`, `error` and `status` values. `data` is the saved data, `error` is the error object and `status` is the status of the request. `status` can be `loading`, `error`, `idle` and `success`.
+
+    ```
+    const { autoSaveProps } = useForm({
+        autoSave: {
+            enabled: true,
+            debounce: 2000, // not required, default is 1000
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#4659](https://github.com/refinedev/refine/pull/4659) [`3af99896101`](https://github.com/refinedev/refine/commit/3af99896101bd41a4d2878c4a9f671ca1da36a6f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: fix tsdoc description of `onCancel` property on following hooks:
+
+    -   `useUpdate`
+    -   `useUpdateMany`
+    -   `useDelete`
+    -   `useDeleteMany`
+
+-   [#4665](https://github.com/refinedev/refine/pull/4665) [`3442f4bd00a`](https://github.com/refinedev/refine/commit/3442f4bd00ad4dbb17dcba08931fdeed3c2b1cb0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `false` return type on `SuccessErrorNotification`
+
+    This issue has been fixed in this PR, where the `successNotification` and `errorNotification` methods can now return `false` when a callback function is given. This allows the conditional notification to be displayed.
+
+    ```
+    const { mutate } = useCreate<IPost>({});
+
+    mutate({
+        resource: "posts",
+        values: {
+            title: "Hello World",
+            status: "published",
+        },
+        successNotification: (data) => {
+            if (data?.data.status === "published") {
+                return {
+                    type: "success",
+                    message: "Post published",
+                };
+            }
+
+            return false;
+        },
+    });
+    ```
+
 ## 4.26.4
 
 ### Patch Changes
