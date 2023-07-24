@@ -27,39 +27,36 @@
 .refine-prose {
     max-width: 100% !important;
     @apply prose prose-invert font-normal;
+    @apply 2xl:prose-base;
     @apply prose-strong:dark:text-gray-300 prose-strong:text-gray-700;
     @apply prose-a:text-refine-link-light prose-a:dark:text-refine-link-dark  prose-a:font-normal;
 
     @apply prose-h1:font-semibold;
     @apply prose-h1:text-gray-900 prose-h1:dark:text-gray-0;
     @apply prose-h1:text-[1.25rem] prose-h1:leading-[1.75rem];
-    @apply sm:prose-h1:text-[2.5rem] sm:prose-h1:leading-[3.5rem];
-    @apply 2xl:prose-h1:text-[3rem] 2xl:prose-h1:leading-[3.5rem];
-    @apply prose-h1:mb-4 sm:prose-h1:mb-8 2xl:prose-h1:mb-10;
+    @apply sm:prose-h1:text-[2.5rem] sm:prose-h1:leading-[3rem];
+    @apply prose-h1:mb-4 sm:prose-h1:mb-8;
 
     @apply prose-h2:font-semibold;
     @apply prose-h2:text-gray-800 prose-h2:dark:text-gray-100;
     @apply prose-h2:text-[1rem] prose-h2:leading-[1.5rem];
     @apply sm:prose-h2:text-[2rem] sm:prose-h2:leading-[2.5rem];
-    @apply 2xl:prose-h2:text-[2.5rem] 2xl:prose-h2:leading-[3rem];
-    @apply prose-h2:mb-4 sm:prose-h2:mb-6 2xl:prose-h2:mb-8;
+    @apply prose-h2:mb-4 sm:prose-h2:mb-6;
 
     @apply prose-h3:font-semibold;
     @apply prose-h3:text-gray-700 prose-h3:dark:text-gray-200;
     @apply prose-h3:text-[0.875rem] prose-h3:leading-[2.5rem];
     @apply sm:prose-h3:text-[1.5rem] sm:prose-h3:leading-[2rem];
-    @apply 2xl:prose-h3:text-[2rem] 2xl:prose-h3:leading-[2.5rem];
-    @apply prose-h3:mb-4 sm:prose-h3:mb-6 2xl:prose-h3:mb-8;
+    @apply prose-h3:mb-4 sm:prose-h3:mb-6;
 
     @apply prose-h4:font-semibold;
     @apply prose-h4:text-gray-600 prose-h4:dark:text-gray-300;
     @apply prose-h4:text-[0.75rem] prose-h4:leading-[1rem];
-    @apply sm:prose-h4:text-[1rem] sm:prose-h4:leading-[1.5rem];
-    @apply 2xl:prose-h4:text-[1.5rem] 2xl:prose-h4:leading-[2rem];
-    @apply prose-h4:mb-4 sm:prose-h4:mb-6 2xl:prose-h4:mb-8;
+    @apply sm:prose-h4:text-[1rem] sm:prose-h4:leading-[1.75rem];
+    @apply prose-h4:mb-4 sm:prose-h4:mb-6;
 
-    @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-4 prose-p:mt-0;
-    @apply prose-p:text-base 2xl:prose-p:text-xl;
+    @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-5 prose-p:mt-0;
+    @apply prose-p:text-base sm:prose-p:leading-7;
 
     @apply prose-li:text-xs sm:prose-li:text-base 2xl:prose-li:text-xl;
     @apply prose-ul:pl-8 prose-ul:ml-0 prose-ul:dark:text-gray-300 prose-ul:text-gray-700;
@@ -69,7 +66,7 @@
     @apply prose-blockquote:bg-gray-50 prose-blockquote:text-gray-700 prose-blockquote:border-l-gray-400;
     @apply prose-blockquote:dark:bg-gray-800 prose-blockquote:dark:text-gray-0 prose-blockquote:dark:border-l-gray-600;
 
-    @apply prose-code:text-[0.625rem] prose-code:leading-[0.75rem] sm:prose-code:text-[0.75rem] sm:prose-code:leading-[1rem] 2xl:prose-code:text-[1rem] 2xl:prose-code:leading-[1.5rem];
+    @apply prose-code:text-[0.625rem] prose-code:leading-[0.75rem] sm:prose-code:text-[0.75rem] sm:prose-code:leading-[1.0625rem] lg:prose-code:text-[0.875rem] lg:prose-code:leading-[1.125rem];
     @apply prose-code:text-gray-700 prose-code:bg-gray-200;
     @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-700;
     @apply prose-code:px-1.5 prose-code:pt-[2px] prose-code:pb-[3px] prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
@@ -89,6 +86,7 @@
 .refine-prose h3 code {
     font-size: inherit;
     line-height: inherit;
+    vertical-align: bottom;
 }
 
 .refine-prose blockquote,
@@ -155,7 +153,7 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-    @apply !text-refine-link-light dark:!text-refine-link-dark !align-bottom;
+    @apply !text-refine-link-light dark:!text-refine-link-dark !align-text-bottom;
 }
 
 p:has(> code) code {
