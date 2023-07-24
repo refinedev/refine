@@ -66,7 +66,10 @@ module.exports = {
                 },
             },
             fontFamily: {
-                sans: ["Outfit", ...defaultTheme.fontFamily.sans],
+                sans: [
+                    "var(--primary-font-sans)",
+                    ...defaultTheme.fontFamily.sans,
+                ],
                 mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
