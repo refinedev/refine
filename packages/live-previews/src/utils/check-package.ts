@@ -45,6 +45,7 @@ export const checkPackage = (code = "") => {
         code.includes("@refinedev/inferencer/headless") ||
         code.includes("RefineHeadlessInferencer");
 
+    const hasCasbin = code.includes("casbin");
     const hasI18n = code.includes("react-i18next") || code.includes("i18next");
     const hasTablerIcons = code.includes("@tabler/icons");
     const hasKbar = code.includes("@refinedev/kbar");
@@ -148,6 +149,10 @@ export const checkPackage = (code = "") => {
 
     if (hasHeadlessInferencer) {
         set.add("headless-inferencer");
+    }
+
+    if (hasCasbin) {
+        set.add("casbin");
     }
 
     return set;

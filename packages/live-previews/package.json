@@ -60,7 +60,8 @@
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-router-dom": "^6.8.1",
-        "@aliemir/react-live": "^4.0.0"
+        "@aliemir/react-live": "^4.0.0",
+        "casbin": "^5.15.2"
     },
     "devDependencies": {
         "@types/jest": "^29.2.4",
