@@ -4,7 +4,7 @@ title: useModalForm
 sidebar_label: useModalForm
 ---
 
-`useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
+The `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
 :::info
 `useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@refinedev/antd`][@refinedev/antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
@@ -255,7 +255,7 @@ render(<RefineAntdDemo />);
 ```
 
 :::caution
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -420,14 +420,12 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 ## Properties
 
 :::tip
-All [`useForm`][antd-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+All [`useForm`][antd-use-form] props are also available in `useModalForm`. You can find descriptions on the [`useForm` documentation](/docs/api-reference/antd/hooks/form/useForm/#properties).
 :::
 
 ### `syncWithLocation`
 
-> Default: `false`
-
-When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+When `syncWithLocation` is `true`, the drawers visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
 This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
 
@@ -439,7 +437,9 @@ const modalForm = useModalForm({
 
 ### `defaultFormValues`
 
-> Only available in `"create"` form.
+:::caution
+`defaultFormValues` is only available in `"create"` form.
+:::
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
@@ -453,9 +453,7 @@ const modalForm = useModalForm({
 
 ### `defaultVisible`
 
-> Default: `false`
-
-When `true`, modal will be visible by default.
+When `defaultVisible` is `true`, the modal will be visible by default. It is `false` by default.
 
 ```tsx
 const modalForm = useModalForm({
@@ -465,9 +463,7 @@ const modalForm = useModalForm({
 
 ### `autoSubmitClose`
 
-> Default: `true`
-
-When `true`, modal will be closed after successful submit.
+`autoSubmitClose` will make the modal close after a successful submit. It is `true` by default.
 
 ```tsx
 const modalForm = useModalForm({
@@ -477,9 +473,7 @@ const modalForm = useModalForm({
 
 ### `autoResetForm`
 
-> Default: `true`
-
-When `true`, form will be reset after successful submit.
+`autoResetForm` will reset the form after a successful submit. It is `true` by default.
 
 ```tsx
 const modalForm = useModalForm({
@@ -489,9 +483,7 @@ const modalForm = useModalForm({
 
 ### `warnWhenUnsavedChanges`
 
-> Default: `false`
-
-When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
+When set to true, `warnWhenUnsavedChanges` shows a warning when the user tries to leave the page with unsaved changes. It is used to prevent the user from accidentally leaving the page. It is `false` by default
 
 You can also set this value in [`<Refine>`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges) component.
 
@@ -504,7 +496,7 @@ const modalForm = useModalForm({
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -516,7 +508,7 @@ const { overtime } = useModalForm({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
@@ -586,7 +578,7 @@ useModalForm({
 
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
 
-It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/api-reference/antd/hooks/form/useForm/#return-values)
+It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) components such as [`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc.](/docs/api-reference/antd/hooks/form/useForm/#return-values)
 
 ### `modalProps`
 
@@ -600,31 +592,23 @@ Title of the modal. Value is based on resource and action values.
 
 #### `okText`
 
-> Default: `"Save"`
-
-Text of the `"submit"` button within the modal.
+`okText` is the text of the `"submit"` button within the modal. It is "Save" by default.
 
 #### `cancelText`
 
-> Default: `"Cancel"`
-
-Text of the `"cancel"` button within the modal.
+`cancelText` is the text of the `"cancel"` button within the modal. It is "Cancel" by default.
 
 #### `width`
 
-> Default: `1000px`
-
-Width of the `<Modal>`
+Width of the `<Modal>`. It is `1000px` by default.
 
 #### `forceRender`
 
-> Default: `true`
-
-It renders `<Modal>` instead of lazy rendering it.
+`forceRender` renders the `<Modal>` instead of lazy rendering it. It is `true` by default.
 
 #### `okButtonProps`
 
-It contains all the props needed by the `"submit"` button within the modal (disabled,loading etc.). When `okButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
+`okButtonProps` contains all the props needed by the `"submit"` button within the modal (disabled,loading etc.). When `okButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
 
 #### `onOk`
 
@@ -636,9 +620,9 @@ A function that can submit the `<Form>` inside `<Modal>`. It's useful when you w
 
 A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
 
-#### `visible`
+#### ~~`visible`~~ <PropTag deprecated />
 
-> @deprecated. Please use `open` instead.
+> This prop is deprecated. Please use `open` instead.
 
 Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
 
@@ -650,7 +634,7 @@ Current visible state of `<Modal>`. Default value depends on `defaultVisible` pr
 
 > Same as `onCancel`
 
-A function that can close the modal. It's useful when you want to close the modal manually.
+A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
 
 ```tsx
 const { close, modalProps, formProps, onFinish } = useModalForm();
@@ -675,7 +659,7 @@ return (
 
 ### `submit`
 
-A function that can submit the form. It's useful when you want to submit the form manually.
+`submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
 ```tsx
 const { modalProps, formProps, submit } = useModalForm();
@@ -702,7 +686,7 @@ return (
 
 ### `show`
 
-A function that can show the modal.
+`show` is a function that can show the modal.
 
 ```tsx
 const { modalProps, formProps, show } = useModalForm();
@@ -757,6 +741,7 @@ return (
     </Modal>
 );
 ```
+
 ### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -774,9 +759,9 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 
 ### How can I change the form data before submitting it to the API?
 
-You may need to modify the form data before it is sent to the API.
+Here is an example where we modify the form data before submit:
 
-For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+We need to send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
