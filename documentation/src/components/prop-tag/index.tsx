@@ -30,6 +30,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "rounded",
                     "bg-refine-orange",
                     "tracking-wide",
+                    "align-middle",
                 )}
                 title={alt}
             >
@@ -49,6 +50,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "bg-refine-red",
                     "ml-1",
                     "w-4 h-4",
+                    "align-middle",
                 )}
                 title={alt}
             >
@@ -70,6 +72,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "rounded",
                     "bg-refine-red",
                     "tracking-wide",
+                    "align-middle",
                 )}
                 title={alt}
             >
@@ -91,6 +94,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "rounded",
                     "bg-refine-green",
                     "tracking-wide",
+                    "align-middle",
                 )}
                 title={alt}
             >
@@ -112,6 +116,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "rounded",
                     "bg-gray-800",
                     "tracking-wide",
+                    "align-middle",
                 )}
                 title={alt}
             >
