@@ -13,16 +13,11 @@ export default defineConfig({
             define: {
                 global: "globalThis",
             },
-            // Enable esbuild polyfill plugins
             plugins: [
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 NodeGlobalsPolyfillPlugin({
                     buffer: true,
                     process: true,
                 }),
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 NodeModulesPolyfillPlugin(),
             ],
         },
