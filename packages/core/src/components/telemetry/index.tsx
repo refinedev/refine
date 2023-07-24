@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useTelemetryData } from "@hooks/useTelemetryData";
 
-import { ITelemetryData } from "../../interfaces/telementry";
+import { ITelemetryData } from "../../interfaces/telemetry";
 
 const encode = (payload: ITelemetryData): string => {
     const stringifyedPayload = JSON.stringify(payload || {});

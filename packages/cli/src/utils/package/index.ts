@@ -202,3 +202,9 @@ export const parsePackageNameAndVersion = (
         version: str.slice(versionStartIndex + 1),
     };
 };
+
+export const getRefineProjectId = () => {
+    const packageJson = getPackageJson();
+
+    return packageJson?.refine?.projectId;
+};

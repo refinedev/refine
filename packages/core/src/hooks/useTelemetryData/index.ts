@@ -1,6 +1,5 @@
 import { useContext } from "react";
 
-import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
 import { LiveContext } from "@contexts/live";
 import { RouterContext } from "@contexts/legacy-router";
@@ -10,8 +9,8 @@ import { NotificationContext } from "@contexts/notification";
 import { AccessControlContext } from "@contexts/accessControl";
 import { useResource } from "@hooks/resource";
 
-import { ITelemetryData } from "../../interfaces/telementry";
-import { useIsExistAuthentication } from "..";
+import { ITelemetryData } from "../../interfaces/telemetry";
+import { useIsExistAuthentication, useRefineContext } from "..";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";
@@ -26,6 +25,7 @@ export const useTelemetryData = (): ITelemetryData => {
     const notificationContext = useContext(NotificationContext);
     const accessControlContext = useContext(AccessControlContext);
     const { resources } = useResource();
+    const refineOptions = useRefineContext();
 
     const auditLog =
         !!auditLogContext.create ||
@@ -56,6 +56,8 @@ export const useTelemetryData = (): ITelemetryData => {
 
     const accessControl = !!accessControlContext.can;
 
+    const projectId = refineOptions?.options?.projectId;
+
     return {
         providers: {
             auth,
@@ -69,5 +71,6 @@ export const useTelemetryData = (): ITelemetryData => {
         },
         version: REFINE_VERSION,
         resourceCount: resources.length,
+        projectId,
     };
 };
