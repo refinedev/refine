@@ -125,7 +125,13 @@ useSelect({
 
 ### `defaultValue`
 
-`defaultValue` allows you to have some options selected by default. Adds extra options to `<select>` component. In some cases like there are many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A seperate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
+The `defaultValue` is a property that can be used to not only set default options for a `<select>` component but also add extra options.
+
+However, issues may arise when the `<select>` component has many entries and    pagination is required. In such cases, the `defaultValue` might not be visible among the currently displayed options, which could cause the `<select>` component to malfunction.
+
+To prevent this, a separate `useMany` query is sent to the backend carrying the `defaultValue` and added to the options of the `<select>` component, ensuring that the default values are always present in the current array of options.
+
+Since the `useMany` query is used to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
 
 ```tsx
 useSelect({

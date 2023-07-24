@@ -183,7 +183,7 @@ interface IPost {
 
 `formProps` includes all necessary values to manage Ant Design [Form](https://ant.design/components/form/) components.
 
-In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
+In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See the `action` section below on how `useForm` determines this is an editing context.
 
 Since this is an edit form it will fill the form with the data of the post with the id of `1234` and then the form will be ready to edit further and submit the changes.
 
@@ -572,8 +572,7 @@ useForm({
 
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
-It is useful when you want to use a different `dataProvider` for a specific resource.
+If there is more than one `dataProvider`, you should pass the name of the `dataProvider` you are going to use to `dataProviderName`.
 
 :::tip
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
