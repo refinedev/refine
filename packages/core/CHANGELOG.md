@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.28.2
+
+### Patch Changes
+
+-   [#4696](https://github.com/refinedev/refine/pull/4696) [`35a2c695a74`](https://github.com/refinedev/refine/commit/35a2c695a7465492e7aa59c50f3bb80a56aff19b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: add optional projectId field to <Refine /> component options prop. Project ID will be sent with telemetry data if it exists.
+
 ## 4.28.1
 
 ### Patch Changes
