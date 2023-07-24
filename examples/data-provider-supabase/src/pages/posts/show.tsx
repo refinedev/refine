@@ -67,7 +67,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                         <Button
                             onClick={handleRefresh}
                             size="small"
-                            type="ghost"
+                            type="dashed"
                         >
                             Refresh
                         </Button>
