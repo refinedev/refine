@@ -58,9 +58,11 @@ interface ITag {
 <br/>
 
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
-`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/docs/api-reference/core/hooks/data/useList)
+`useCheckboxGroup` uses the `useList` hook for fetching data.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
+
+> For more information, refer to the [`useList` documentation &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 
@@ -72,13 +74,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-`resource` property determines which? API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for checkboxes.
+`resource` property determines which API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for checkboxes.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
-[Refer to Ant Design Checkbox.Group component documentation for detailed info for `options`. &#8594](https://ant.design/components/checkbox)
+> For more information, refer to the [Ant Design's Checkbox.Group component documentation &#8594](https://ant.design/components/checkbox)
 
 ### `defaultValue`
 
@@ -90,7 +92,7 @@ const { selectProps } = useCheckboxGroup({
 });
 ```
 
-The easiest way to selecting a default values for checkbox fields is by passing in `defaultValue`.
+The easiest way to select default values for checkbox fields is by passing in `defaultValue`.
 
 ### `optionLabel` and `optionValue`
 
@@ -124,6 +126,8 @@ const { options } = useSelect({
 
 ### `filters`
 
+`filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to "Driver Deposit":
+
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
@@ -139,9 +143,9 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-It allows us to add some filters while fetching the data. For example, if you want to list only the `titles` that are equal to `"Driver Deposit"` records.
-
 ### `sorters`
+
+`sorters` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending:
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
@@ -157,9 +161,9 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
-
 ### `fetchSize`
+
+`fetchSize` is the amount of records to fetch in checkboxes.
 
 ```tsx
 const { selectProps } = useCheckboxGroup({
@@ -169,9 +173,9 @@ const { selectProps } = useCheckboxGroup({
 });
 ```
 
-Amount of records to fetch in checkboxes.
-
 ### `queryOptions`
+
+Passing the `queryOptions` property allows us to set the [useQuery](https://react-query.tanstack.com/reference/useQuery) options
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
@@ -186,13 +190,11 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
-
 ### `pagination`
 
-Allows us to set page and items per page values.
+`pagination` allows us to set page and items per page values.
 
-For example imagine that we have 1000 post records:
+For example, lets say that we have 1000 post records:
 
 ```ts
 const { selectProps } = useSelect({
@@ -202,7 +204,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-> Listing will start from page 3 showing 8 records.
+The listing will start from page 3, showing 8 records per page.
 
 ### ~~`sort`~~
 
