@@ -1,5 +1,11 @@
 # create-refine-app
 
+## 1.11.2
+
+### Patch Changes
+
+-   [#4707](https://github.com/refinedev/refine/pull/4707) [`a5860a2c687`](https://github.com/refinedev/refine/commit/a5860a2c68704f1d7015cf3cab93603b7696c5c3) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: bump superplate version to 1.17.2
+
 ## 1.11.1
 
 ### Patch Changes
