@@ -249,6 +249,7 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
     </div>
   </div>
   <div
+    class="refine-inferencer--code-viewer"
     style="position: sticky; bottom: 24px; padding-top: 24px; left: 0px; right: 0px; width: 100%; z-index: 10; display: flex; justify-content: center; transition: all 0.2s ease; opacity: 1; transform: translateY(0);"
   >
     <div
@@ -326,6 +327,7 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
     </div>
   </div>
   <div
+    class="refine-inferencer--code-viewer-modal"
     style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 9999; background-color: rgba(0, 0, 0, 0.5); transition: all 0.2s ease; opacity: 0; pointer-events: none; display: flex; justify-content: center; align-items: center;"
   >
     <div
