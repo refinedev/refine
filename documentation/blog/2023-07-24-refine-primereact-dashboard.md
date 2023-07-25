@@ -53,7 +53,7 @@ For this tutorial, we'll be select the following options:
 **Backend**: REST API  
 **Authentication Provider**: No Auth
 
-<img alt="React admin panel" src="/assets/create-refine-project.gif" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif" className="border border-gray-200 rounded" />
 
 Once you've completed the steps, you'll have the ability to download your project. From there, proceed to the project directory and run your app with:
 
@@ -98,7 +98,7 @@ In this blog, we won't be using the generated pages. Instead, we'll build our ad
 
 After you've created your project, you should see the following page:
 
-<img alt="React admin panel" src="/assets/fresh-project.jpg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.jpg" className="border border-gray-200 rounded" />
 
 ## What is PrimeReact?
 
@@ -117,7 +117,7 @@ Now that we've covered the basics of **refine** and PrimeReact, let's build a Re
 At the end of this tutorial, we'll have a project structure like below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="/assets/project-structure.png" className="border border-gray-200 rounded" />
+    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/project-structure.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 We'll use the [fake restaurant API](https://api.finefoods.refine.dev) for our data. It's a REST API that provides data for products, categories, orders, and specific endpoints for the dashboard.
@@ -550,7 +550,7 @@ We used the `useCustom` hook to fetch the data for the KPI cards. It makes a req
 
 After fetching the data, we passed the necessary props to the `KpiCard` component to render the cards. After these changes, our dashboard looks like below:
 
-<img alt="React admin panel" src="/assets/kpi-cards.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/kpi-cards.jpeg" className="border border-gray-200 rounded" />
 
 ### Create `ChartView` component
 
@@ -766,7 +766,7 @@ export const Dashboard: React.FC = () => {
 
 After these changes, our dashboard looks like below:
 
-<img alt="React admin panel" src="/assets/charts.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/charts.gif" className="border border-gray-200 rounded" />
 
 ### Create `RecentSales` component
 
@@ -1004,7 +1004,7 @@ export const Dashboard: React.FC = () => {
 
 After these changes, the final version of the dashboard looks like below:
 
-<img alt="React admin panel" src="/assets/recent-sales.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/recent-sales.jpeg" className="border border-gray-200 rounded" />
 
 ## Create Product CRUD Pages
 
@@ -1415,7 +1415,7 @@ export default App;
 
 After these changes, when you navigate to the `/products` path, you should see the product list page as below:
 
-<img alt="React admin panel" src="/assets/product-list.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-list.jpeg" className="border border-gray-200 rounded" />
 
 ### Create Page
 
@@ -1664,7 +1664,7 @@ export default App;
 
 After these changes, when we navigate to the `/products/create` path, you should see the product create page as below:
 
-<img alt="React admin panel" src="/assets/product-create.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-create.jpeg" className="border border-gray-200 rounded" />
 
 ### Edit Page
 
@@ -1914,7 +1914,7 @@ export default App;
 
 After these changes, when we navigate to the `/products/edit/:id` path, you should see the product edit page as below:
 
-<img alt="React admin panel" src="/assets/product-edit.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-edit.jpeg" className="border border-gray-200 rounded" />
 
 ### Show Page
 
@@ -2045,7 +2045,7 @@ export default App;
 
 After these changes, when we navigate to the `/products/show/:id` path, you should see the product show page as below:
 
-<img alt="React admin panel" src="/assets/product-show.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-show.jpeg" className="border border-gray-200 rounded" />
 
 ## Create Category CRUD Pages
 
@@ -2697,7 +2697,7 @@ export default App;
 
 After these changes, you should be able to navigate to the category CRUD pages as the below:
 
-<img alt="React admin panel" src="/assets/category-pages.gif" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/category-pages.gif" className="border border-gray-200 rounded" />
 
 ## Update the Layout
 
@@ -2988,7 +2988,7 @@ export const Breadcrumb = () => {
 
 After these changes, you can see the final result as below. Also, you can interact with the admin panel on [CodeSandbox](#live-codesandbox-example).
 
-<img alt="React admin panel" src="/assets/final-result.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/final-result.jpeg" className="border border-gray-200 rounded" />
 
 ## Conclusion
 
