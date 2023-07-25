@@ -136,7 +136,16 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 // visible-block-start
 // src/pages/posts/list.tsx
 
-import { List, EditButton, ShowButton, DeleteButton, useTable, useSelect, getDefaultSortOrder, FilterDropdown } from "@refinedev/antd";
+import {
+    List,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+    useTable,
+    useSelect,
+    getDefaultSortOrder,
+    FilterDropdown,
+} from "@refinedev/antd";
 import { Table, Space, Select } from "antd";
 
 const PostList = () => {
