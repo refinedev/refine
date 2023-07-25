@@ -72,7 +72,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                         "flex items-center justify-center",
                         "border-b border-b-transparent",
                         "-mb-px",
-                        "text-xs md:text-base 2xl:text-xl",
+                        "text-xs md:text-base 2xl:text-base 2xl:text-leading-7",
                         "min-w-[60px]",
                         "cursor-pointer",
                         "transition-all duration-200 ease-in-out",
