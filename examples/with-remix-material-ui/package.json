@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "nookies": "^2.5.2",
-    "@refinedev/inferencer": "^4.3.2",
+    "@refinedev/inferencer": "^4.3.3",
     "@refinedev/kbar": "^1.1.2",
     "@remix-run/node": "^1.6.7",
     "@remix-run/react": "^1.6.7",
