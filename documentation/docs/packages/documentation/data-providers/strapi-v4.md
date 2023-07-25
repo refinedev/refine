@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 ```tsx live shared
 import axios from "axios";
 const axiosInstance = axios.create();
-axiosInstance.defaults.headers.common["Authorization"] = `Bearer 6ae3cf664d558bc67d21ddabd0cf5ba0716367cd74c2ceaedf86f0efa09b3fe1605c90ab051fd4961ba03db961273bb2b48b9213ae267013317977f737b4ac8765a2e0bc64e9f275791ccb881117553f589675f5e6ce84d3859511fa124d477209cf1cbbd4fd7f6ddacc77eb4520753e3636446f807629de911eac7afbf60fd4`;
+axiosInstance.defaults.headers.common[
+    "Authorization"
+] = `Bearer 6ae3cf664d558bc67d21ddabd0cf5ba0716367cd74c2ceaedf86f0efa09b3fe1605c90ab051fd4961ba03db961273bb2b48b9213ae267013317977f737b4ac8765a2e0bc64e9f275791ccb881117553f589675f5e6ce84d3859511fa124d477209cf1cbbd4fd7f6ddacc77eb4520753e3636446f807629de911eac7afbf60fd4`;
 ```
 
 **refine** supports the features that come with [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
@@ -213,7 +215,7 @@ const PostList = () => {
 };
 // visible-block-end
 
-const App: React.FC = () => {    
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <ConfigProvider theme={RefineThemes.Blue}>
@@ -305,20 +307,21 @@ const API_URL = "https://api.strapi-v4.refine.dev";
 // visible-block-start
 // src/pages/posts/list.tsx
 
-import { 
-    List, 
-    EditButton, 
-    ShowButton, 
+import {
+    List,
+    EditButton,
+    ShowButton,
     // highlight-start
-    useSelect, 
-    FilterDropdown, 
+    useSelect,
+    FilterDropdown,
     // highlight-end
-    useTable } from "@refinedev/antd";
+    useTable,
+} from "@refinedev/antd";
 import {
     Table,
     // highlight-next-line
     Select,
-    Space 
+    Space,
 } from "antd";
 
 const PostList = () => {
@@ -383,7 +386,7 @@ const PostList = () => {
 };
 // visible-block-end
 
-const App: React.FC = () => {    
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <ConfigProvider theme={RefineThemes.Blue}>
@@ -468,11 +471,18 @@ const API_URL = "https://api.strapi-v4.refine.dev";
 // visible-block-start
 // src/pages/posts/list.tsx
 
-import { List, EditButton, ShowButton, useSelect, FilterDropdown, useTable } from "@refinedev/antd";
-import { 
-    Table, 
-    Space, 
-    Select, 
+import {
+    List,
+    EditButton,
+    ShowButton,
+    useSelect,
+    FilterDropdown,
+    useTable,
+} from "@refinedev/antd";
+import {
+    Table,
+    Space,
+    Select,
     // highlight-start
     Form,
     Radio,
@@ -492,7 +502,7 @@ const PostList = () => {
         },
     });
 
-     const { selectProps } = useSelect({
+    const { selectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
@@ -502,7 +512,7 @@ const PostList = () => {
         <List>
             {/* highlight-start */}
             <Form
-                style={{ 
+                style={{
                     marginBottom: 16,
                     display: "flex",
                     justifyContent: "center",
@@ -579,7 +589,7 @@ const PostList = () => {
 };
 // visible-block-end
 
-const App: React.FC = () => {    
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <ConfigProvider theme={RefineThemes.Blue}>
@@ -742,10 +752,7 @@ export const PostList: React.FC = () => {
                     )}
                 />
                 {/* highlight-start */}
-                <Table.Column
-                    dataIndex="locale"
-                    title="Locale"
-                />
+                <Table.Column dataIndex="locale" title="Locale" />
                 {/* highlight-end */}
                 <Table.Column
                     dataIndex="publishedAt"
@@ -794,7 +801,14 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 // visible-block-start
 // src/pages/posts/list.tsx
 
-import { List, EditButton, ShowButton, useSelect, FilterDropdown, useTable } from "@refinedev/antd";
+import {
+    List,
+    EditButton,
+    ShowButton,
+    useSelect,
+    FilterDropdown,
+    useTable,
+} from "@refinedev/antd";
 import { Table, Space, Select, Form, Radio, Tag } from "antd";
 
 const PostList = () => {
@@ -810,7 +824,7 @@ const PostList = () => {
         },
     });
 
-     const { selectProps } = useSelect({
+    const { selectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
@@ -818,11 +832,10 @@ const PostList = () => {
         meta: { locale },
     });
 
-
     return (
         <List>
             <Form
-                style={{ 
+                style={{
                     marginBottom: 16,
                     display: "flex",
                     justifyContent: "center",
@@ -883,10 +896,7 @@ const PostList = () => {
                     }}
                 />
                 {/* highlight-start */}
-                <Table.Column
-                    dataIndex="locale"
-                    title="Locale"
-                />
+                <Table.Column dataIndex="locale" title="Locale" />
                 {/* highlight-end */}
                 <Table.Column
                     title="Actions"
@@ -912,7 +922,7 @@ const PostList = () => {
 };
 // visible-block-end
 
-const App: React.FC = () => {    
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <ConfigProvider theme={RefineThemes.Blue}>
