@@ -13,11 +13,11 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-In this blog, we'll show you how to create a React admin panel using **refine** and PrimeReact.
+In this blog, we'll show you how to create a React admin panel using [**refine**](https://github.com/refinedev/refine) and [PrimeReact](https://github.com/primefaces/primereact).
 
 First, we'll explain what **refine** is and how it helps build admin panels easily.
 
-Next, we'll guide you step-by-step on creating a new **refine** application and installing PrimeReact. You'll learn how to combine these technologies to make a fully functional admin panel.
+Next, we'll guide you step-by-step on creating a new **refine** application and installing PrimeReact. You'll learn how to combine these technologies to make a fully functional React admin panel.
 
 Throughout this post, we'll also cover the basics of PrimeReact, including its components and how to use them in your app.
 
@@ -27,11 +27,11 @@ Let's get started and explore the power of **refine** and PrimeReact together!
 
 ## What is refine?
 
-**refine** is a powerful framework for building web applications, specifically focused on creating admin panels. It provides hooks and components that simplify the development process, making it faster and more efficient.
+**refine** is a powerful framework for building web applications, specifically focused on creating admin panels, internal tools, and dashboards. It provides hooks and components that simplify the development process, making it faster and more efficient.
 
 Instead of building everything from scratch, **refine** comes with ready-made features like data handling, authentication, access control, and more. You can also customize these features to suit your needs. This way, you can focus on building your app's core functionality instead of worrying about the infrastructure.
 
-Moreover, **refine** is designed to be "headless" which gives you the freedom to style it exactly as you want. Additionally, it supports out-of-the-box UI libraries like Ant Design and Material UI.
+Moreover, **refine** is designed to be "headless" which gives you the freedom to style it exactly as you want. So, you can use any UI library like PrimeReact to build your app's user interface. Additionally, it supports out-of-the-box [UI libraries](https://refine.dev/integrations/).
 
 You can learn more about **refine** from the [documentation](https://refine.dev/docs/).
 
@@ -53,7 +53,7 @@ For this tutorial, we'll be select the following options:
 **Backend**: REST API  
 **Authentication Provider**: No Auth
 
-<img src="/assets/create-refine-project.gif" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/create-refine-project.gif" className="border border-gray-200 rounded" />
 
 Once you've completed the steps, you'll have the ability to download your project. From there, proceed to the project directory and run your app with:
 
@@ -92,19 +92,17 @@ npm run dev
   </TabItem>
 </Tabs>
 
-Your project created according to the options we selected. It includes CRUD pages for the `products` and `categories` resources with a simple layout. The CRUD pages are generated using inferencer, which is a powerful tool that allows you to create CRUD pages automatically based on your API. Most of time, it's great point to start building your admin panel.
-
-You can learn more about inferencer from the [documentation](https://refine.dev/docs/packages/documentation/inferencer/#how-the-fields-are-inferred).
+Your project created according to the options we selected. It includes CRUD pages for the `products` and `categories` resources with a simple layout. The CRUD pages are generated using [inferencer](https://refine.dev/docs/packages/documentation/inferencer/#how-the-fields-are-inferred), which is a powerful tool that allows you to create CRUD pages automatically based on your API. Most of time, it's great point to start building your admin panel.
 
 In this blog, we won't be using the generated pages. Instead, we'll build our admin panel from scratch to show you everything from the ground up. However, you can play around with the generated pages to get a feel for how inferencer works.
 
 After you've created your project, you should see the following page:
 
-<img src="/assets/fresh-project.jpg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/fresh-project.jpg" className="border border-gray-200 rounded" />
 
 ## What is PrimeReact?
 
-PrimeReact is a free and open source UI library specifically designed for React. It provides a rich set of components that you can use to build your app's user interface.
+[PrimeReact](https://github.com/primefaces/primereact) is a free and open source UI library specifically designed for React. It provides a rich set of components that you can use to build your app's user interface.
 
 One of the standout features of PrimeReact is its theme designer, which allows you to customize the look and feel of your applications effortlessly. Additionally, you have the option to choose from various theme alternatives, such as Material, Bootstrap, and Tailwind, giving you the flexibility to match your project's design to your preferences.
 
@@ -112,27 +110,21 @@ PrimeReact also includes premium templates to further enhance the appearance and
 
 Check out the [PrimeReact website](https://primereact.org/) to learn more.
 
-## Build a React Admin Panel with refine and PrimeReact
+## Overview
 
-Now that we've covered the basics of **refine** and PrimeReact, let's build a simple admin panel using these technologies.
+Now that we've covered the basics of **refine** and PrimeReact, let's build a React admin panel using these technologies.
 
-Our admin panel will have the following pages:
+At the end of this tutorial, we'll have a project structure like below:
 
--   **_/_** — Dashboard
--   **_/products_** — Products List
-    -   **_/products/create_** — Create Product
-    -   **_/products/edit/:id_** — Edit Product
-    -   **_/products/show/:id_** — Show Product
--   **_/categories_** — Categories List
-    -   **_/categories/create_** — Create Category
-    -   **_/categories/edit/:id_** — Edit Category
-    -   **_/categories/show/:id_** — Show Category
+<div className="flex justify-center">
+    <img alt="React admin panel" src="/assets/project-structure.png" className="border border-gray-200 rounded" />
+</div>
 
 We'll use the [fake restaurant API](https://api.finefoods.refine.dev) for our data. It's a REST API that provides data for products, categories, orders, and specific endpoints for the dashboard.
 
-### Housekeeping to start
+## Housekeeping to start
 
-Previously, we mentioned that the scaffolded project includes CRUD pages and basic styling. We'll remove these to start with a clean state.
+Previously, we mentioned that the scaffolded project includes auto-generated CRUD pages and basic styling. We'll remove these to start with a clean state.
 
 1.  Replace the `App.css` with the following:
 
@@ -148,7 +140,7 @@ Previously, we mentioned that the scaffolded project includes CRUD pages and bas
     }
     ```
 
-2.  Remove the generated CRUD pages from `src/pages` directory.
+2.  Since we won't be using the generated CRUD pages for this example app, we'll remove the `src/pages` directory.
 
 3.  Replace the `src/App.tsx` with the following:
 
@@ -197,7 +189,7 @@ After these changes, we ready to start building our admin panel step-by-step. In
 
 If you don't have any experience with **refine**, we recommend you to check out the [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about the framework.
 
-### Install PrimeReact
+## Install PrimeReact
 
 Let's install PrimeReact and its dependencies using the following command:
 
@@ -214,7 +206,7 @@ import "primeflex/primeflex.css";
 import "primeicons/primeicons.css";
 ```
 
-### Building the Dashboard
+## Building the Dashboard
 
 We'll start by creating a dashboard page. It will be the first page that users see when they open our admin panel. The dashboard will display KPI cards, charts and recent orders to give users a quick overview of the business.
 
@@ -309,7 +301,7 @@ export default App;
 
 Now, if you navigate to the "/" path, you should see the created `Dashboard` component.
 
-#### Create `KpiCard` component
+### Create `KpiCard` component
 
 Let's start enhancing the dashboard by adding KPI cards to display the weekly revenue, weekly orders, and new customers. For this, we'll create a `KpiCard` component in `src/components/dashboard/kpiCard/index.tsx` directory with the following code:
 
@@ -404,6 +396,10 @@ npm i dayjs
 
 After the installation is complete, update the `Dashboard` component as follows:
 
+<details>
+
+<summary>Show `Dashboard` component</summary>
+
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
 import { useApiUrl, useCustom } from "@refinedev/core";
@@ -480,11 +476,15 @@ export const Dashboard: React.FC = () => {
 };
 ```
 
+</details>
+
+<br />
+
+**In next sections, we'll assume that you have the following interfaces in `src/interfaces/index.d.ts` file.**
+
 <details>
 
 <summary>You can find all interfaces in the following code snippet.</summary>
-
-In next sections, we'll assume that you have the following interfaces in `src/interfaces/index.d.ts` file.
 
 ```tsx title="src/interfaces/index.d.ts"
 export interface IOrder {
@@ -550,9 +550,9 @@ We used the `useCustom` hook to fetch the data for the KPI cards. It makes a req
 
 After fetching the data, we passed the necessary props to the `KpiCard` component to render the cards. After these changes, our dashboard looks like below:
 
-<img src="/assets/kpi-cards.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/kpi-cards.jpeg" className="border border-gray-200 rounded" />
 
-#### Create `ChartView` component
+### Create `ChartView` component
 
 Next, we'll add charts to the dashboard to display the KPI data visually. We'll use the `ChartView` component to render the charts. It will display the daily revenue, daily orders, and new customers charts. For this, let's create a `ChartView` component in `src/components/dashboard/chartView/index.tsx` directory.
 
@@ -691,11 +691,15 @@ export const ChartView = ({ revenue, orders, customers }: ChartViewProps) => {
 
 </details>
 
-In the code above, we created a `ChartView` component that renders a tab view with three charts. It uses the `Chart` component from PrimeReact to render the charts.
-
-Refer to the [PrimeReact Chart](https://primereact.org/chart/) documentation to learn more.
+In the code above, we created a `ChartView` component that renders a tab view with three charts. It uses the [`Chart`](https://primereact.org/chart/) component from PrimeReact to render the charts.
 
 Let's import the `ChartView` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the charts. At this point, we'll use same endpoints that we used for the KPI cards. So there is no need to fetch the data again. We'll pass the data that we fetched previously to the `ChartView` component.
+
+You can simply copy the highlighted code below and paste it into the `src/pages/dashboard/index.tsx` file.
+
+<details>
+
+<summary>Show `Dashboard` component</summary>
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
@@ -742,34 +746,8 @@ export const Dashboard: React.FC = () => {
 
     return (
         <div className="grid">
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="Weekly Revenue"
-                    color="blue-300"
-                    total={dailyRevenue?.data.total ?? 0}
-                    trend={dailyRevenue?.data.trend ?? 0}
-                    formatTotal={(value) => `$ ${value}`}
-                    icon="pi-dollar"
-                />
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="Weekly Orders"
-                    color="orange-300"
-                    total={dailyOrders?.data.total ?? 0}
-                    trend={dailyOrders?.data.trend ?? 0}
-                    icon="pi-shopping-cart"
-                />
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="New Customers"
-                    color="green-500"
-                    total={newCustomers?.data.total ?? 0}
-                    trend={newCustomers?.data.trend ?? 0}
-                    icon="pi-users"
-                />
-            </div>
+            {/* ... */}
+
             {/*highlight-start*/}
             <div className="col-12">
                 <ChartView
@@ -784,11 +762,13 @@ export const Dashboard: React.FC = () => {
 };
 ```
 
+</details>
+
 After these changes, our dashboard looks like below:
 
-<img src="/assets/charts.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/charts.jpeg" className="border border-gray-200 rounded" />
 
-#### Create `RecentSales` component
+### Create `RecentSales` component
 
 Lastly, we'll add a table to display the recent sales. We'll use the `RecentSales` component to render the table. It will display the recent sales with the order id, amount, ordered by, status, and date.
 
@@ -995,93 +975,23 @@ export const RecentSales = () => {
 
 </details>
 
-In the code above, we used the `DataTable` component from PrimeReact for UI and the `useTable` hook from **refine** for data fetching, pagination, sorting, and filtering.
-
-Refer to the [PrimeReact DataTable](https://primereact.org/datatable/) and [useTable](https://refine.dev/docs/api-reference/core/hooks/useTable/) documentation to learn more.
+In the code above, we used the [`DataTable`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** for data fetching, pagination, sorting, and filtering.
 
 Let's import the `RecentSales` component in `src/pages/dashboard/index.tsx` and render it below the charts.
 
+You can simply copy the highlighted code below and paste it into the `src/pages/dashboard/index.tsx` file.
+
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { useApiUrl, useCustom } from "@refinedev/core";
-import dayjs from "dayjs";
-
-import { KpiCard } from "../../components/dashboard/kpiCard";
-import { ChartView } from "../../components/dashboard/chartView";
+/* ... */
 //highlight-next-line
 import { RecentSales } from "../../components/dashboard/recentSales";
 
-import { IChart } from "../../interfaces";
-
-const query = {
-    start: dayjs().subtract(7, "days").startOf("day"),
-    end: dayjs().startOf("day"),
-};
-
 export const Dashboard: React.FC = () => {
-    const API_URL = useApiUrl();
-
-    const { data: dailyRevenue } = useCustom<IChart>({
-        url: `${API_URL}/dailyRevenue`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
-
-    const { data: dailyOrders } = useCustom<IChart>({
-        url: `${API_URL}/dailyOrders`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
-
-    const { data: newCustomers } = useCustom<IChart>({
-        url: `${API_URL}/newCustomers`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
-
+    /* ... */
     return (
         <div className="grid">
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="Weekly Revenue"
-                    color="blue-300"
-                    total={dailyRevenue?.data.total ?? 0}
-                    trend={dailyRevenue?.data.trend ?? 0}
-                    formatTotal={(value) => `$ ${value}`}
-                    icon="pi-dollar"
-                />
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="Weekly Orders"
-                    color="orange-300"
-                    total={dailyOrders?.data.total ?? 0}
-                    trend={dailyOrders?.data.trend ?? 0}
-                    icon="pi-shopping-cart"
-                />
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="New Customers"
-                    color="green-500"
-                    total={newCustomers?.data.total ?? 0}
-                    trend={newCustomers?.data.trend ?? 0}
-                    icon="pi-users"
-                />
-            </div>
-            <div className="col-12">
-                <ChartView
-                    revenue={dailyRevenue?.data.data ?? []}
-                    orders={dailyOrders?.data.data ?? []}
-                    customers={newCustomers?.data.data ?? []}
-                />
-            </div>
+            {/* ... */}
             {/*highlight-start*/}
             <div className="col-12">
                 <RecentSales />
@@ -1094,11 +1004,15 @@ export const Dashboard: React.FC = () => {
 
 After these changes, the final version of the dashboard looks like below:
 
-<img src="/assets/recent-sales.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/recent-sales.jpeg" className="border border-gray-200 rounded" />
 
-### Create Product CRUD Pages
+## Create Product CRUD Pages
 
-Now that we have the dashboard, let's create the product CRUD pages. Before that, we should define the product resource in `src/App.tsx` as follows:
+Now that we have the dashboard, let's create the product CRUD pages. Before that, we should define the "product" resource in `src/App.tsx` as follows:
+
+<details>
+
+<summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
@@ -1167,13 +1081,17 @@ function App() {
 export default App;
 ```
 
-The resource definition above don't create any CRUD pages. It just defines the resource and the paths for the CRUD pages. The defined resources are used by **refine** hooks and components to infer the paths and parameters.
+</details>
+
+The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
+
+You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) on the **refine** documentation.
 
 Let's create the product CRUD pages step by step and add routes for rendering them.
 
-#### List Page
+### List Page
 
-Product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the `useTable` hook from **refine** and the `DataTable` component from PrimeReact.
+Product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** and the [`DataTable`](https://primereact.org/datatable/) component from PrimeReact.
 
 Let's create a `ProductList` component in `src/pages/products/list.tsx` directory with the following code:
 
@@ -1400,15 +1318,9 @@ export const ProductList = () => {
 
 We used the `useTable` hook to fetch the data for the table. It makes a request to the `/products` endpoint with the `query` parameters. The `query` parameters are used to filter, sort, and paginate the products. Since we defined the `products` resource in `src/App.tsx`, the `useTable` hook knows which endpoint to use for fetching the data.
 
-You can learn more about the `useTable` hook from the [useTable](https://refine.dev/docs/api-reference/core/hooks/useTable/) documentation.
-
 After fetching the data, we passed the necessary props to the `DataTable` component to render the table.
 
-You can learn more about the `DataTable` component from the [PrimeReact DataTable](https://primereact.org/datatable/) documentation.
-
-Additionally, we used the `useDelete` hook and `confirmDialog` method from PrimeReact to delete the products. To open the delete confirmation dialog, we should to render `ConfirmDialog` component in the root of the application. So we'll also add it in `src/App.tsx`.
-
-You can learn more about the `ConfirmDialog` component from the [PrimeReact ConfirmDialog](https://primereact.org/confirmdialog/) documentation.
+Additionally, we used the [`useDelete`](https://refine.dev/docs/api-reference/core/hooks/data/useDelete/) hook and [`confirmDialog`](https://primereact.org/confirmdialog/) method from PrimeReact to delete the products. To open the delete confirmation dialog, we should to render [`ConfirmDialog`](https://primereact.org/confirmdialog/) component in the root of the application. So we'll also add it in `src/App.tsx`.
 
 To export the product CRUD pages, let's create an `index.ts` file in `src/pages/products` directory with the following code:
 
@@ -1503,11 +1415,11 @@ export default App;
 
 After these changes, when you navigate to the `/products` path, you should see the product list page as below:
 
-<img src="/assets/product-list.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/product-list.jpeg" className="border border-gray-200 rounded" />
 
-#### Create Page
+### Create Page
 
-Product create page will display a form to create a new product. It will allow users to create a new product by filling the form. For this, we'll use the `useForm` hook from `@refinedev/react-hook-form` and the input components from PrimeReact.
+Product create page will display a form to create a new product. It will allow users to create a new product by filling the form. For this, we'll use the [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook from `@refinedev/react-hook-form` and the input components from PrimeReact.
 
 Before continuing, let's install `react-hook-form` to use unexported components from `@refinedev/react-hook-form`.
 
@@ -1689,13 +1601,9 @@ export const ProductCreate = () => {
 
 </details>
 
-In the code above, we used the `useForm` hook to manage the form state. It also makes a request to the `/products` endpoint with the `POST` method when the form is submitted.
+In the code above, we used the [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook to manage the form state. It also makes a request to the `/products` endpoint with the `POST` method when the form is submitted.
 
-Refer to the [useForm](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) documentation to learn more information.
-
-Additionally, we used the `useSelect` hook to fetch the categories for the dropdown. It makes a request to the `/categories` endpoint with the `GET` method to fetch the categories.
-
-Refer to the [useSelect](https://refine.dev/docs/packages/documentation/core/hooks/useSelect/) documentation to learn more information.
+Additionally, we used the [`useSelect`](https://refine.dev/docs/packages/documentation/core/hooks/useSelect/) hook to fetch the categories for the dropdown. It makes a request to the `/categories` endpoint with the `GET` method to fetch the categories.
 
 To render the form, we used the PrimeReact input components and we used the React Hook Form as recommended by the PrimeReact documentation.
 
@@ -1708,60 +1616,25 @@ export * from "./create";
 //highlight-end
 ```
 
-Next, import the `ProductCreate` component in `src/App.tsx` and add a route for rendering it.
+Next, import the `ProductCreate` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
 
 <details>
 
 <summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ConfirmDialog } from "primereact/confirmdialog";
+//...
 
-import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
 import { ProductList, ProductCreate } from "./pages/products";
 
-import "primereact/resources/themes/saga-blue/theme.css";
-import "primereact/resources/primereact.css";
-import "primeflex/primeflex.css";
-import "primeicons/primeicons.css";
-
-import "./App.css";
 
 function App() {
     return (
         <BrowserRouter>
             <RefineKbarProvider>
                 <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
+                    {/* ... */}
                 >
                     <Routes>
                         <Route path="/">
@@ -1777,10 +1650,7 @@ function App() {
 
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    <ConfirmDialog />
+                    {/* ... */}
                 </Refine>
             </RefineKbarProvider>
         </BrowserRouter>
@@ -1794,11 +1664,11 @@ export default App;
 
 After these changes, when we navigate to the `/products/create` path, you should see the product create page as below:
 
-<img src="/assets/product-create.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/product-create.jpeg" className="border border-gray-200 rounded" />
 
-#### Edit Page
+### Edit Page
 
-Product edit page will display a form to edit an existing product. It will allow users to edit an existing product by filling the form. For this, we'll use again the `useForm` hook from `@refinedev/react-hook-form` and the input components from PrimeReact.
+Product edit page will display a form to edit an existing product. It will allow users to edit an existing product by filling the form. For this, we'll use again the [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook from `@refinedev/react-hook-form` and the input components from PrimeReact.
 
 Let's create a `ProductEdit` component in `src/pages/products/edit.tsx` directory with the following code:
 
@@ -1982,11 +1852,9 @@ export const ProductEdit = () => {
 
 </details>
 
-In the code above, we used the `useForm` hook to manage the form state. It also makes a request to the `/products/:id` endpoint with the `GET` method when the hook is mounted. It fetches the product with the given `id` and fills the form with the fetched data. When the form is submitted, it makes a request to the `/products/:id` endpoint with the `PATCH` method.
+In the code above, we used the [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook to manage the form state. It also makes a request to the `/products/:id` endpoint with the `GET` method when the hook is mounted. It fetches the product with the given `id` and fills the form with the fetched data. When the form is submitted, it makes a request to the `/products/:id` endpoint with the `PATCH` method.
 
 `useForm` hook can distinguish between the create and edit operations by checking the resource definition. If the resource definition has an `edit` path, it assumes that the form is used for editing an existing record. Otherwise, it assumes that the form is used for creating a new record.
-
-Refer to the [useForm](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) documentation to learn more information.
 
 First, let's export the product edit page on `src/pages/products/index.tsx` file as follows:
 
@@ -1998,60 +1866,24 @@ export * from "./edit";
 //highlight-end
 ```
 
-Next, import the `ProductEdit` component in `src/App.tsx` and add a route for rendering it.
+Next, import the `ProductEdit` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
 
 <details>
 
 <summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ConfirmDialog } from "primereact/confirmdialog";
+//...
 
-import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
 import { ProductList, ProductCreate, ProductEdit } from "./pages/products";
-
-import "primereact/resources/themes/saga-blue/theme.css";
-import "primereact/resources/primereact.css";
-import "primeflex/primeflex.css";
-import "primeicons/primeicons.css";
-
-import "./App.css";
 
 function App() {
     return (
         <BrowserRouter>
             <RefineKbarProvider>
                 <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
+                    {/* ... */}
                 >
                     <Routes>
                         <Route path="/">
@@ -2068,10 +1900,7 @@ function App() {
 
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    <ConfirmDialog />
+                    {/* ... */}
                 </Refine>
             </RefineKbarProvider>
         </BrowserRouter>
@@ -2085,11 +1914,11 @@ export default App;
 
 After these changes, when we navigate to the `/products/edit/:id` path, you should see the product edit page as below:
 
-<img src="/assets/product-edit.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/product-edit.jpeg" className="border border-gray-200 rounded" />
 
-#### Show Page
+### Show Page
 
-Product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the `useShow` hook from **refine**.
+Product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook from **refine**.
 
 Let's create a `ProductShow` component in `src/pages/products/show.tsx` directory with the following code:
 
@@ -2150,9 +1979,7 @@ export const ProductShow = () => {
 
 </details>
 
-In the code above, we used the `useShow` hook to fetch the product details. It makes a request to the `/products/:id` endpoint to fetch the product details. After fetching the data, we used the `useOne` hook to fetch the category details related to the product.
-
-Refer to the [useShow](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) and [useOne](https://refine.dev/docs/api-reference/core/hooks/data/useOne/) documentation to learn more information.
+In the code above, we used the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook to fetch the product details. It makes a request to the `/products/:id` endpoint to fetch the product details. After fetching the data, we used the [`useOne`](https://refine.dev/docs/api-reference/core/hooks/data/useOne/) hook to fetch the category details related to the product.
 
 First, let's export the product show page on `src/pages/products/index.tsx` file as follows:
 
@@ -2165,24 +1992,14 @@ export * from "./show";
 //highlight-end
 ```
 
-Next, import the `ProductShow` component in `src/App.tsx` and add a route for rendering it.
+Next, import the `ProductShow` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
 
 <details>
 
 <summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ConfirmDialog } from "primereact/confirmdialog";
-
-import { Dashboard } from "./pages/dashboard";
+//...
 import {
     ProductList,
     ProductCreate,
@@ -2191,39 +2008,12 @@ import {
     ProductShow,
 } from "./pages/products";
 
-import "primereact/resources/themes/saga-blue/theme.css";
-import "primereact/resources/primereact.css";
-import "primeflex/primeflex.css";
-import "primeicons/primeicons.css";
-
-import "./App.css";
-
 function App() {
     return (
         <BrowserRouter>
             <RefineKbarProvider>
                 <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
+                    {/* ... */}
                 >
                     <Routes>
                         <Route path="/">
@@ -2241,10 +2031,7 @@ function App() {
 
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    <ConfirmDialog />
+                    {/* ... */}
                 </Refine>
             </RefineKbarProvider>
         </BrowserRouter>
@@ -2258,13 +2045,13 @@ export default App;
 
 After these changes, when we navigate to the `/products/show/:id` path, you should see the product show page as below:
 
-<img src="/assets/product-show.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/product-show.jpeg" className="border border-gray-200 rounded" />
 
-### Create Category CRUD Pages
+## Create Category CRUD Pages
 
-In the previous sections, we learned how to build CRUD pages for the product resource. Now, we'll apply a similar approach to create CRUD pages for the category resource. The process will be very similar to what we did for products, so we won't repeat the explanations for the common parts. If you require more details, you can refer back to the previous sections for reference.
+In the previous sections, we learned how to build CRUD pages for the "product" resource. Now, we'll apply a similar approach to create CRUD pages for the "category" resource. The process will be very similar to what we did for products, so we won't repeat the explanations for the common parts. If you require more details, you can refer back to the previous sections for reference.
 
-Let's start by defining the category resource in `src/App.tsx` file as follows:
+Let's start by defining the "category" resource in `src/App.tsx` file as follows:
 
 <details>
 
@@ -2361,7 +2148,7 @@ export default App;
 
 </details>
 
-After defining the category resource, let's create the category CRUD pages in `src/pages/categories` directory step by step.
+After defining the "category" resource, let's create the category CRUD pages in `src/pages/categories` directory step by step.
 
 First, let's create a `list.tsx` file in `src/pages/categories` directory with the following code:
 
@@ -2787,7 +2574,7 @@ export const CategoryShow = () => {
 
 </details>
 
-After creating the CRUD pages for the category resource, let's export them on `src/pages/categories/index.ts` file as follows:
+After creating the CRUD pages for the "category" resource, let's export them on `src/pages/categories/index.ts` file as follows:
 
 ```tsx title="src/pages/categories/index.ts"
 export * from "./list";
@@ -2910,13 +2697,13 @@ export default App;
 
 After these changes, you should be able to navigate to the category CRUD pages as the below:
 
-<img src="/assets/category-pages.gif" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/category-pages.gif" className="border border-gray-200 rounded" />
 
-### Update the Layout
+## Update the Layout
 
-In this section, we'll update the `Layout` component. By default, the `Layout` component is created when you create a new project with **refine** scaffold.
+In this section, we'll update the `Layout` component that is created by default when we created the project with **refine** scaffold.
 
-It renders the `Menu` and `Breadcrumb` components with simple HTML elements. We'll update the it to render the `Menu` and `Breadcrumb` components with the `PrimeReact` components.
+It renders the `Menu` and `Breadcrumb` components with simple HTML elements. We'll update them to use the components from the PrimeReact library.
 
 Before updating the `Layout` component, let's update the `src/App.tsx` file to render the default `Layout` as wrapper for all the pages.
 
@@ -3099,11 +2886,9 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 };
 ```
 
-#### Update the Menu
+### Update the Menu
 
-To provide navigation between the resources, we'll update the `Menu` component to render the `TabMenu` component from `PrimeReact`.
-
-Refer to the [TabMenu](https://primereact.org/tabmenu/) documentation to learn more information.
+To provide navigation between the resources, we'll update the `Menu` component to render the [`TabMenu`](https://primereact.org/tabmenu/) component from PrimeReact.
 
 ```tsx title="src/components/menu/index.tsx"
 import { useMenu } from "@refinedev/core";
@@ -3146,15 +2931,11 @@ export const Menu = () => {
 };
 ```
 
-`useMenu` hook returns the menu items according to the resources defined in the `Refine` component.
+[`useMenu`](https://refine.dev/docs/api-reference/core/hooks/ui/useMenu/) hook returns the menu items according to the resources defined in the `Refine` component.
 
-Refer to the [useMenu](https://refine.dev/docs/api-reference/core/hooks/ui/useMenu/) documentation to learn more information.
+### Update the Breadcrumb
 
-#### Update the Breadcrumb
-
-Breadcrumb component is used to display the current page location within a navigational hierarchy. We'll update the `Breadcrumb` component to render the `Breadcrumb` component from `PrimeReact`.
-
-Refer to the [Breadcrumb](https://primereact.org/breadcrumb/) documentation to learn more information.
+Breadcrumb component is used to display the current page location within a navigational hierarchy. We'll update it to render the [`Breadcrumb`](https://primereact.org/breadcrumb/) component from PrimeReact.
 
 ```tsx title="src/components/breadcrumb/index.tsx"
 import { useBreadcrumb } from "@refinedev/core";
@@ -3201,15 +2982,13 @@ export const Breadcrumb = () => {
 };
 ```
 
-`useBreadcrumb` hook returns the breadcrumb items according to the resources defined in the `<Refine/>` component. If there is only one breadcrumb item, we won't render the `Breadcrumb` component. Because there is no need to display the breadcrumb if there is only one item.
-
-Refer to the [useBreadcrumb](https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/) documentation to learn more information.
+[`useBreadcrumb`](https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/) hook returns the breadcrumb items according to the resources defined in the `Refine` component. If there is only one breadcrumb item, we won't render the `Breadcrumb` component. Because there is no need to display the breadcrumb if there is only one item.
 
 <br />
 
 After these changes, you can see the final result as below. Also, you can interact with the admin panel on [CodeSandbox](#live-codesandbox-example).
 
-<img src="/assets/final-result.jpeg" className="border border-gray-200 rounded" />
+<img alt="React admin panel" src="/assets/final-result.jpeg" className="border border-gray-200 rounded" />
 
 ## Conclusion
 
