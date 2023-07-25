@@ -47,6 +47,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
             aria-orientation="horizontal"
             className={clsx(
                 className,
+                "!my-0",
                 "list-none",
                 "m-0 mb-0 mt-0",
                 "px-4",
@@ -67,6 +68,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                     onClick={handleTabChange}
                     {...attributes}
                     className={clsx(
+                        "!my-0",
                         "m-0 mt-0",
                         "py-3 px-2",
                         "flex items-center justify-center",
