@@ -1,4 +1,4 @@
-import { ErrorComponent, Refine } from "@refinedev/core";
+import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
     DocumentTitleHandler,
@@ -34,6 +34,7 @@ import "./App.css";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <RefineKbarProvider>
                 <Refine
                     dataProvider={dataProvider(
