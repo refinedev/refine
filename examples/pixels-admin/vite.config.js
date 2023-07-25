@@ -13,7 +13,6 @@ export default defineConfig({
             define: {
                 global: "globalThis",
             },
-            // Enable esbuild polyfill plugins
             plugins: [
                 NodeGlobalsPolyfillPlugin({
                     buffer: true,
