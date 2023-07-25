@@ -479,8 +479,6 @@ mutation ($input: updatePostInput) {
 </TabItem>
 </Tabs>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-edit.png" alt="GraphQL edit page" />
-
 ## Show Page
 
 `<Show>` component includes the [`<RefreshButton>`](/docs/api-reference/antd/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
