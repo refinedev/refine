@@ -1,10 +1,10 @@
 ---
-title: Building a React Admin Dashboard with PrimeReact and refine
-description: We'll build a simple React admin dashboard using refine and PrimeReact.
-slug: building-react-admin-dashboard-with-primereact-and-refine
+title: Building a React Admin Panel with PrimeReact and refine
+description: We'll build a simple React admin Panel using refine and PrimeReact.
+slug: building-react-admin-panel-with-primereact-and-refine
 authors: salih
 tags: [refine, tutorial, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg
 hide_table_of_contents: false
 ---
 
