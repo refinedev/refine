@@ -46,7 +46,7 @@ import DatePicker from 'react-datepicker'
 You also need to import CSS styles to display elements in all their beauty.
 
 ```tsx
-import 'react-datepicker/dist/react-datepicker.css’
+import 'react-datepicker/dist/react-datepicker.css'
 ```
 
 ### Create a basic date picker
