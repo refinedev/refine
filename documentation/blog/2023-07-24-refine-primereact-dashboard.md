@@ -214,7 +214,7 @@ import "primeicons/primeicons.css";
 
 We'll start by creating a dashboard page. It will be the first page that users see when they open our admin panel. The dashboard will display KPI cards, charts and recent orders to give users a quick overview of the business.
 
-First, let's create a `<Dashboard/>` component in `src/pages/dashboard/index.tsx` directory with the following code:
+First, let's create a `<Dashboard />` component in `src/pages/dashboard/index.tsx` directory with the following code:
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import { Button } from "primereact/Button";
@@ -230,7 +230,7 @@ export const Dashboard = () => {
 
 In the code above, we just created a simple component that renders a button. We'll update it later.
 
-Now that we have the `<Dashboard/>` component, let's import it in `src/App.tsx` and add a route for rendering on "/" path as follows:
+Now that we have the `<Dashboard />` component, let's import it in `src/App.tsx` and add a route for rendering on "/" path as follows:
 
 <details>
 
@@ -303,11 +303,11 @@ export default App;
 
 > You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and adding routes in the [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6).
 
-Now, if you navigate to the "/" path, you should see the created `<Dashboard/>` component.
+Now, if you navigate to the "/" path, you should see the created `<Dashboard />` component.
 
 ### Create `KpiCard` component
 
-Let's start enhancing the dashboard by adding KPI cards to display the weekly revenue, weekly orders, and new customers. For this, we'll create a `<KpiCard/>` component in `src/components/dashboard/kpiCard/index.tsx` directory with the following code:
+Let's start enhancing the dashboard by adding KPI cards to display the weekly revenue, weekly orders, and new customers. For this, we'll create a `<KpiCard />` component in `src/components/dashboard/kpiCard/index.tsx` directory with the following code:
 
 <details>
 
@@ -386,9 +386,9 @@ export const KpiCard = ({
 
 This component is built using PrimeReact and PrimeFlex libraries. If you want to dive deeper into the code, you can explore [PrimeFlex](https://primeflex.org/) and [PrimeReact Card](https://primereact.org/card/) for a better understanding.
 
-In the code above, we created a `<KpiCard/>` component that renders a card with the given props. It displays the title, total, trend, and icon. The `formatTotal` prop allows you to format the total value as you wish.
+In the code above, we created a `<KpiCard />` component that renders a card with the given props. It displays the title, total, trend, and icon. The `formatTotal` prop allows you to format the total value as you wish.
 
-Let's import the `<KpiCard/>` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/) hook from **refine** and `dayjs` to arrange query parameters.
+Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/) hook from **refine** and `dayjs` to arrange query parameters.
 
 `useCustom` allows us to make specific requests to the API. It should be used on non-resource endpoints which means that it doesn't have a CRUD operation. In our case, we'll use it to fetch the data for the KPI cards and charts.
 
@@ -398,7 +398,7 @@ Before continuing, let's install `dayjs` using the following command:
 npm i dayjs
 ```
 
-After the installation is complete, update the `<Dashboard/>` component as follows:
+After the installation is complete, update the `<Dashboard />` component as follows:
 
 <details>
 
@@ -552,7 +552,7 @@ export interface ICategory {
 
 We used the `useCustom` hook to fetch the data for the KPI cards. It makes a request to the `/dailyRevenue`, `/dailyOrders`, and `/newCustomers` endpoints with the `query` parameters. The `query` parameters are used to get the data for the last 7 days.
 
-After fetching the data, we passed the necessary props to the `<KpiCard/>` component to render the cards. After these changes, our dashboard looks like below:
+After fetching the data, we passed the necessary props to the `<KpiCard />` component to render the cards. After these changes, our dashboard looks like below:
 
 <div className="flex justify-center">
     <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/kpi-cards.jpeg" className="border border-gray-200 rounded" />
@@ -560,7 +560,7 @@ After fetching the data, we passed the necessary props to the `<KpiCard/>` compo
 
 ### Create `ChartView` component
 
-Next, we'll add charts to the dashboard to display the KPI data visually. We'll use the `<ChartView/>` component to render the charts. It will display the daily revenue, daily orders, and new customers charts. For this, let's create a `<ChartView/>` component in `src/components/dashboard/chartView/index.tsx` directory.
+Next, we'll add charts to the dashboard to display the KPI data visually. We'll use the `<ChartView />` component to render the charts. It will display the daily revenue, daily orders, and new customers charts. For this, let's create a `<ChartView />` component in `src/components/dashboard/chartView/index.tsx` directory.
 
 <details>
 
@@ -697,9 +697,9 @@ export const ChartView = ({ revenue, orders, customers }: ChartViewProps) => {
 
 </details>
 
-In the code above, we created a `<ChartView/>` component that renders a tab view with three charts. It uses the [`<Chart/>`](https://primereact.org/chart/) component from PrimeReact to render the charts.
+In the code above, we created a `<ChartView />` component that renders a tab view with three charts. It uses the [`<Chart />`](https://primereact.org/chart/) component from PrimeReact to render the charts.
 
-Let's import the `<ChartView/>` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the charts. At this point, we'll use same endpoints that we used for the KPI cards. So there is no need to fetch the data again. We'll pass the data that we fetched previously to the `<ChartView/>` component.
+Let's import the `<ChartView />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the charts. At this point, we'll use same endpoints that we used for the KPI cards. So there is no need to fetch the data again. We'll pass the data that we fetched previously to the `<ChartView />` component.
 
 You can simply copy-paste the highlighted code below into the `src/pages/dashboard/index.tsx` file.
 
@@ -778,9 +778,9 @@ After these changes, our dashboard looks like below:
 
 ### Create `RecentSales` component
 
-Lastly, we'll add a table to display the recent sales. We'll use the `<RecentSales/>` component to render the table. It will display the recent sales with the order id, amount, ordered by, status, and date.
+Lastly, we'll add a table to display the recent sales. We'll use the `<RecentSales />` component to render the table. It will display the recent sales with the order id, amount, ordered by, status, and date.
 
-Let's create a `<RecentSales/>` component in `src/components/dashboard/recentSales/index.tsx` directory with the following code:
+Let's create a `<RecentSales />` component in `src/components/dashboard/recentSales/index.tsx` directory with the following code:
 
 <details>
 
@@ -983,9 +983,9 @@ export const RecentSales = () => {
 
 </details>
 
-In the code above, we used the [`<DataTable/>`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** for data fetching, pagination, sorting, and filtering.
+In the code above, we used the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** for data fetching, pagination, sorting, and filtering.
 
-Let's import the `<RecentSales/>` component in `src/pages/dashboard/index.tsx` and render it below the charts.
+Let's import the `<RecentSales />` component in `src/pages/dashboard/index.tsx` and render it below the charts.
 
 You can simply copy the highlighted code below and paste it into the `src/pages/dashboard/index.tsx` file.
 
@@ -1101,9 +1101,9 @@ Let's create the product CRUD pages step by step and add routes for rendering th
 
 ### List Page
 
-The product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** and the [`<DataTable/>`](https://primereact.org/datatable/) component from PrimeReact.
+The product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** and the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact.
 
-Let's create a `<ProductList/>` component in `src/pages/products/list.tsx` directory with the following code:
+Let's create a `<ProductList />` component in `src/pages/products/list.tsx` directory with the following code:
 
 <details>
 
@@ -1328,9 +1328,9 @@ export const ProductList = () => {
 
 We used the `useTable` hook to fetch the data for the table. It makes a request to the `/products` endpoint with the `query` parameters. The `query` parameters are used to filter, sort, and paginate the products. Since we defined the `products` resource in `src/App.tsx`, the `useTable` hook knows which endpoint to use for fetching the data.
 
-After fetching the data, we passed the necessary props to the `<DataTable/>` component to render the table.
+After fetching the data, we passed the necessary props to the `<DataTable />` component to render the table.
 
-Additionally, we used the [`useDelete`](https://refine.dev/docs/api-reference/core/hooks/data/useDelete/) hook and [`confirmDialog`](https://primereact.org/confirmdialog/) method from PrimeReact to delete the products. To open the delete confirmation dialog, we should to render [`<ConfirmDialog/>`](https://primereact.org/confirmdialog/) component in the root of the application. So we'll also add it in `src/App.tsx`.
+Additionally, we used the [`useDelete`](https://refine.dev/docs/api-reference/core/hooks/data/useDelete/) hook and [`confirmDialog`](https://primereact.org/confirmdialog/) method from PrimeReact to delete the products. To open the delete confirmation dialog, we should to render [`<ConfirmDialog />`](https://primereact.org/confirmdialog/) component in the root of the application. So we'll also add it in `src/App.tsx`.
 
 To export the product CRUD pages, let's create an `index.ts` file in `src/pages/products` directory with the following code:
 
@@ -1338,7 +1338,7 @@ To export the product CRUD pages, let's create an `index.ts` file in `src/pages/
 export * from "./list";
 ```
 
-Next, import the `<ProductList/>` component in `src/App.tsx` and add a route for rendering it.
+Next, import the `<ProductList />` component in `src/App.tsx` and add a route for rendering it.
 
 <details>
 
@@ -1439,7 +1439,7 @@ Before continuing, let's install `react-hook-form` to use unexported components 
 npm i react-hook-form
 ```
 
-After the installation is complete, let's create a `<ProductCreate/>` component in `src/pages/products/create.tsx` directory with the following code:
+After the installation is complete, let's create a `<ProductCreate />` component in `src/pages/products/create.tsx` directory with the following code:
 
 <details>
 
@@ -1628,7 +1628,7 @@ export * from "./create";
 //highlight-end
 ```
 
-Next, import the `<ProductCreate/>` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
+Next, import the `<ProductCreate />` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
 
 <details>
 
@@ -1682,7 +1682,7 @@ After these changes, when we navigate to the `/products/create` path, you should
 
 The product edit page will display a form to edit an existing product. It will allow users to edit an existing product by filling the form. For this, we'll use again the [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook from `@refinedev/react-hook-form` and the input components from PrimeReact.
 
-Let's create a `<ProductEdit/>` component in `src/pages/products/edit.tsx` directory with the following code:
+Let's create a `<ProductEdit />` component in `src/pages/products/edit.tsx` directory with the following code:
 
 <details>
 
@@ -1878,7 +1878,7 @@ export * from "./edit";
 //highlight-end
 ```
 
-Next, import the `<ProductEdit/>` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
+Next, import the `<ProductEdit />` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
 
 <details>
 
@@ -1934,7 +1934,7 @@ After these changes, when we navigate to the `/products/edit/:id` path, you shou
 
 The product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook from **refine**.
 
-Let's create a `<ProductShow/>` component in `src/pages/products/show.tsx` directory with the following code:
+Let's create a `<ProductShow />` component in `src/pages/products/show.tsx` directory with the following code:
 
 <details>
 
@@ -2006,7 +2006,7 @@ export * from "./show";
 //highlight-end
 ```
 
-Next, import the `<ProductShow/>` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
+Next, import the `<ProductShow />` to add a route for rendering it. For this, you can simply copy the highlighted code below and paste it into the `src/App.tsx` file.
 
 <details>
 
@@ -2719,11 +2719,11 @@ After these changes, you should be able to navigate to the category CRUD pages a
 
 ## Update the Layout
 
-In this section, we'll update the `<Layout/>` component that is created by default when we created the project with **refine** scaffold.
+In this section, we'll update the `<Layout />` component that is created by default when we created the project with **refine** scaffold.
 
-It renders the `<Menu/>` and `<Breadcrumb/>` components with simple HTML elements. We'll update them to use the components from the PrimeReact library.
+It renders the `<Menu />` and `<Breadcrumb />` components with simple HTML elements. We'll update them to use the components from the PrimeReact library.
 
-Before updating the `<Layout/>` component, let's update the `src/App.tsx` file to render the default `<Layout/>` as wrapper for all the pages.
+Before updating the `<Layout />` component, let's update the `src/App.tsx` file to render the default `<Layout />` as wrapper for all the pages.
 
 Additionally, we'll add `meta` property to the resources to render icons in the menu and breadcrumb components.
 
@@ -2883,7 +2883,7 @@ export default App;
 
 </details>
 
-Let's update the `<Layout/>` component in `src/components/layout/index.tsx` file to render the `<Menu/>` and `<Breadcrumb/>` components which we'll create in the next sections.
+Let's update the `<Layout />` component in `src/components/layout/index.tsx` file to render the `<Menu />` and `<Breadcrumb />` components which we'll create in the next sections.
 
 ```tsx title="src/components/layout/index.tsx"
 import { PropsWithChildren } from "react";
@@ -2906,7 +2906,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 
 ### Update the Menu
 
-To provide navigation between the resources, we'll update the `<Menu/>` component to render the [`<TabMenu/>`](https://primereact.org/tabmenu/) component from PrimeReact.
+To provide navigation between the resources, we'll update the `<Menu />` component to render the [`<TabMenu />`](https://primereact.org/tabmenu/) component from PrimeReact.
 
 ```tsx title="src/components/menu/index.tsx"
 import { useMenu } from "@refinedev/core";
@@ -2949,11 +2949,11 @@ export const Menu = () => {
 };
 ```
 
-[`useMenu`](https://refine.dev/docs/api-reference/core/hooks/ui/useMenu/) hook returns the menu items according to the resources defined in the `<Refine/>` component.
+[`useMenu`](https://refine.dev/docs/api-reference/core/hooks/ui/useMenu/) hook returns the menu items according to the resources defined in the `<Refine />` component.
 
 ### Update the Breadcrumb
 
-Breadcrumb component is used to display the current page location within a navigational hierarchy. We'll update it to render the [`<Breadcrumb/>`](https://primereact.org/breadcrumb/) component from PrimeReact.
+Breadcrumb component is used to display the current page location within a navigational hierarchy. We'll update it to render the [`<Breadcrumb />`](https://primereact.org/breadcrumb/) component from PrimeReact.
 
 ```tsx title="src/components/breadcrumb/index.tsx"
 import { useBreadcrumb } from "@refinedev/core";
@@ -3000,7 +3000,7 @@ export const Breadcrumb = () => {
 };
 ```
 
-[`useBreadcrumb`](https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/) hook returns the breadcrumb items according to the resources defined in the `<Refine/>` component. If there is only one breadcrumb item, we won't render the `<Breadcrumb/>` component. Because there is no need to display the breadcrumb if there is only one item.
+[`useBreadcrumb`](https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/) hook returns the breadcrumb items according to the resources defined in the `<Refine />` component. If there is only one breadcrumb item, we won't render the `<Breadcrumb />` component. Because there is no need to display the breadcrumb if there is only one item.
 
 <br />
 
