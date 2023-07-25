@@ -119,6 +119,10 @@ const Preview: NextPage = () => {
                     usedPackages.has("keycloak")
                         ? (await import("../src/scope/keycloak")).default
                         : {},
+                async () =>
+                    usedPackages.has("casbin")
+                        ? (await import("../src/scope/casbin")).default
+                        : {},
             ];
 
             if (code.includes("React.createElement(GoogleButton,")) {

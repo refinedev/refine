@@ -4,6 +4,272 @@ title: Access Control
 sidebar_label: Access Control
 ---
 
+```tsx live shared
+import { newModel as CasbinNewModel, StringAdapter as CasbinStringAdapter, newEnforcer as CasbinNewEnforcer } from "casbin";
+
+const model = CasbinNewModel(`
+[request_definition]
+r = sub, obj, act
+
+[policy_definition]
+p = sub, obj, act, eft
+
+[role_definition]
+g = _, _
+
+[policy_effect]
+e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
+
+[matchers]
+m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
+`);
+
+import {
+    Create as AntdCreate,
+    List as AntdList,
+    useForm as useAntdForm,
+    useTable as useAntdTable,
+    EditButton as AntdEditButton,
+    ShowButton as AntdShowButton,
+    EmailField as AntdEmailField,
+    NumberField as AntdNumberField,
+} from "@refinedev/antd";
+import {
+    Table as AntdTable,
+    Edit as AntdEdit,
+    Form as AntdForm,
+    Input as AntdInput,
+    Space as AntdSpace,
+    Layout as AntdLayout,
+    Radio as AntdRadio,
+} from "antd";
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+}
+
+const PostList = () => {
+    const { tableProps } = useAntdTable();
+
+    return (
+        <AntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column dataIndex="id" title="ID" />
+                <AntdTable.Column dataIndex="title" title="Title" />
+                <AntdTable.Column dataIndex="status" title="Status" />
+                <AntdTable.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <AntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <AntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </AntdList>
+    );
+};
+
+const PostCreate = () => {
+    const { formProps, saveButtonProps } = useAntdForm();
+
+    return (
+        <AntdCreate saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput.TextArea />
+                </AntdForm.Item>
+            </AntdForm>
+        </AntdCreate>
+    );
+};
+
+const CategoryList = () => {
+    const { tableProps } = useAntdTable();
+
+    return (
+        <AntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column dataIndex="id" title="ID" />
+                <AntdTable.Column dataIndex="title" title="Title" />
+                <AntdTable.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <AntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <AntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </AntdList>
+    );
+};
+
+const CategoryCreate = () => {
+    const { formProps, saveButtonProps } = useAntdForm();
+
+    return (
+        <AntdCreate saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+            </AntdForm>
+        </AntdCreate>
+    );
+};
+
+const UserList = () => {
+    const { tableProps } = useAntdTable();
+
+    return (
+        <AntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column dataIndex="firstName" title="First Name" />
+                <AntdTable.Column dataIndex="lastName" title="Last Name" />
+                <AntdTable.Column
+                    dataIndex="email"
+                    title="Email"
+                    render={(value) => <AntdEmailField value={value} />}
+                />
+                <AntdTable.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <AntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <AntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </AntdList>
+    );
+};
+
+const UserCreate = () => {
+    const { formProps, saveButtonProps } = useAntdForm();
+
+    return (
+        <AntdCreate saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="First Name"
+                    name="firstName"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Last Name"
+                    name="lastName"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+            </AntdForm>
+        </AntdCreate>
+    );
+};
+
+const Header = ({ role }) => {
+    return (
+        <AntdLayout.Header
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "48px",
+                backgroundColor: "#FFF",
+            }}
+        >
+            <AntdRadio.Group
+                value={role}
+            >
+                <AntdRadio.Button value="admin">Admin</AntdRadio.Button>
+                <AntdRadio.Button value="editor">Editor</AntdRadio.Button>
+            </AntdRadio.Group>       
+        </AntdLayout.Header>
+    );
+};
+```
+
 ## Introduction
 
 Access control is a broad topic where there are lots of advanced solutions that provide a different sets of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
@@ -52,15 +318,6 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
-import {
-    CategoryList,
-    CategoryCreate,
-    CategoryEdit,
-    CategoryShow,
-} from "pages/categories";
-
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
@@ -70,7 +327,6 @@ const App: React.FC = () => {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
-                    notificationProvider={notificationProvider}
                     resources={[
                         {
                             name: "posts",
@@ -210,7 +466,7 @@ const App: React.FC = () => {
                     },
                 }}
                 // highlight-end
-                /* ... */
+                //...
             >
                 {/* ... */}
             </Refine>
@@ -225,8 +481,40 @@ Whenever a part of the app checks for access control, refine passes `resource`, 
 
 Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on the sidebar menu. Also in the list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since they are not included in the policy.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/simple-access.png" alt="Simple Access Control" />
-<br/>
+```tsx live previewOnly url=http://localhost:5173/posts previewHeight=420px
+setInitialRoutes(["/posts"]);
+import React from "react";
+import { Create, useForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
+
+const adapter = new CasbinStringAdapter(`
+p, editor, posts, list
+`);
+
+setRefineProps({
+    accessControlProvider: {
+        can: async ({ resource, action }) => {
+            const enforcer = await CasbinNewEnforcer(model, adapter);
+            const can = await enforcer.enforce(
+                "editor",
+                resource,
+                action,
+            );
+
+            return { can };
+        },
+    },
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+        },
+    ],
+});
+
+render(<RefineAntdDemo />);
+```
 
 ## Adding Different Roles
 
@@ -251,13 +539,14 @@ p, editor, categories, list
 We can demonstrate the effect of different roles by changing the `role` dynamically. Let's implement a switch in the header for selecting either **admin** or **editor** role to see the effect on the app.
 
 ```tsx title="src/App.tsx"
-// ...
 // highlight-next-line
 import { Header } from "components/header";
 
 const App: React.FC = () => {
-    // highlight-next-line
-    const [role, setRole] = useState("admin");
+    // highlight-start
+    import { CanAccess } from "@refinedev/core";
+    const role = localStorage.getItem("role") ?? "admin";
+    // highlight-end
 
     return (
         <BrowserRouter>
@@ -279,34 +568,28 @@ const App: React.FC = () => {
                     },
                 }}
                 // highlight-end
-                /* ... */
+                //...
             >
+                <Routes>
+                    <Route
+                        element={
+                            // highlight-start
+                            <ThemedLayoutV2
+                                Header={() => <Header role={role} />}
+                            >
+                                <CanAccess>
+                                    <Outlet />
+                                </CanAccess>
+                            </ThemedLayoutV2>
+                            // highlight-end
+                        }
+                    >
+                    {/* ... */}
+                    </Route>
+                </Routes>
                 {/* ... */}
             </Refine>
         </BrowserRouter>
-    );
-
-    return (
-        <Refine
-            accessControlProvider={{
-                can: async ({ resource, action }) => {
-                    const enforcer = await newEnforcer(model, adapter);
-
-                    // highlight-next-line
-                    const can = await enforcer.enforce(role, resource, action);
-
-                    return {
-                        can,
-                    };
-                },
-            }}
-            /* ... */
-        >
-            {/* highlight-start */}
-            <Header role={role} setRole={setRole} />
-            {/* highlight-end */}
-            {/* ... */}
-        </Refine>
     );
 };
 
@@ -321,10 +604,9 @@ import { Layout, Radio } from "antd";
 
 interface HeaderProps {
     role: string;
-    setRole: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
+export const Header: React.FC<HeaderProps> = ({ role }) => {
     return (
         <Layout.Header
             style={{
@@ -337,7 +619,10 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
         >
             <Radio.Group
                 value={role}
-                onChange={(event) => setRole(event.target.value)}
+                onChange={(event) => {
+                    localStorage.setItem("role", event.target.value);
+                    location.reload();
+                }}
             >
                 <Radio.Button value="admin">Admin</Radio.Button>
                 <Radio.Button value="editor">Editor</Radio.Button>
@@ -348,9 +633,209 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
 ```
 
 </details>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/dynamic-role.gif" alt="Dynamic Role" />
+ 
 <br/>
+
+Now, let's see how the application will appear when logging in as an `admin` or `editor`.
+
+
+<Tabs
+    defaultValue="admin"
+    values={[ {label: 'admin', value: 'admin'}, {label: 'editor', value: 'editor'} ]}
+>
+
+<TabItem value="admin">
+
+```tsx live previewOnly url=http://localhost:5173 previewHeight=660px
+setInitialRoutes(["/posts"]);
+import { useState } from "react";
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const adapter = new CasbinStringAdapter(`
+p, admin, posts, (list)|(create)
+p, admin, users, (list)|(create)
+p, admin, categories, (list)|(create)
+
+p, editor, posts, (list)|(create)
+p, editor, categories, list
+`);
+
+const App: React.FC = () => {
+    const role = "admin";
+
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                        },
+                    ]}
+                    accessControlProvider={{
+                        can: async ({ resource, action }) => {
+                            const enforcer = await CasbinNewEnforcer(model, adapter);
+                            const can = await enforcer.enforce(
+                                role,
+                                resource,
+                                action,
+                            );
+
+                            return { can };
+                        },
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2
+                                    // Header={() => <Header role={role} />}
+                                >
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                            </Route>
+                            <Route path="categories">
+                                <Route index element={<CategoryList />} />
+                                <Route path="create" element={<CategoryCreate />} />
+                            </Route>
+                            <Route path="users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
+</TabItem>
+
+<TabItem value="editor">
+
+```tsx live previewOnly url=http://localhost:5173 previewHeight=660px
+setInitialRoutes(["/posts"]);
+import { useState } from "react";
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const adapter = new CasbinStringAdapter(`
+p, admin, posts, (list)|(create)
+p, admin, users, (list)|(create)
+p, admin, categories, (list)|(create)
+
+p, editor, posts, (list)|(create)
+p, editor, categories, list
+`);
+
+const App: React.FC = () => {
+    const role = "editor";
+
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                        },
+                    ]}
+                    accessControlProvider={{
+                        can: async ({ resource, action }) => {
+                            const enforcer = await CasbinNewEnforcer(model, adapter);
+                            const can = await enforcer.enforce(
+                                role,
+                                resource,
+                                action,
+                            );
+
+                            return { can };
+                        },
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2
+                                    // Header={() => <Header role={role} />}
+                                >
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                            </Route>
+                            <Route path="categories">
+                                <Route index element={<CategoryList />} />
+                                <Route path="create" element={<CategoryCreate />} />
+                            </Route>
+                            <Route path="users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
+</TabItem>
+</Tabs>
 
 ## Handling access with params
 
@@ -397,14 +882,10 @@ p, editor, posts/5, delete
 We must handle id based access controls in the `can` method. **id** parameter will be accessible in `params`.
 
 ```tsx title="src/App.tsx"
-/* ... */
-
 const App: React.FC = () => {
-    /* ... */
-
     return (
         <Refine
-            /* ... */
+            //...
             accessControlProvider={{
                 // highlight-start
                 can: async ({ resource, action, params }) => {
@@ -492,14 +973,10 @@ p, editor, categories, list
 Then we must handle the **field** action in the `can` method:
 
 ```tsx title="src/App.tsx"
-/* ... */
-
 const App: React.FC = () => {
-    /* ... */
-
     return (
         <Refine
-            /* ... */
+            //...
             accessControlProvider={{
                 can: async ({ resource, action, params }) => {
                     const enforcer = await newEnforcer(model, adapter);
@@ -552,8 +1029,6 @@ import {
 } from "@refinedev/core";
 
 export const PostList: React.FC = () => {
-    // ...
-
     // highlight-start
     const { data: canAccess } = useCan({
         resource: "posts",
@@ -565,7 +1040,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                // ... // highlight-start
+                // highlight-start
                 {canAccess?.can && (
                     <Table.Column
                         dataIndex="hit"
@@ -578,7 +1053,7 @@ export const PostList: React.FC = () => {
                         )}
                     />
                 )}
-                // highlight-end // ...
+                // highlight-end
             </Table>
         </List>
     );
@@ -588,9 +1063,360 @@ export const PostList: React.FC = () => {
 :::tip
 [`<CanAccess />`](/docs/api-reference/core/components/accessControl/can-access) can be used too to check access control in custom places in your app.
 :::
-
+ 
 <br/>
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/access-control.gif" alt="Full Example Sample" />
+
+Now, let's see how the application will appear when logging in as an `admin` or `editor`.
+
+
+<Tabs
+defaultValue="admin"
+values={[ {label: 'admin', value: 'admin'}, {label: 'editor', value: 'editor'} ]}>
+
+<TabItem value="admin">
+
+
+```tsx live previewOnly url=http://localhost:5173 previewHeight=660px
+setInitialRoutes(["/posts"]);
+import { useState } from "react";
+import { Refine, useCan } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const adapter = new CasbinStringAdapter(`
+p, admin, posts, (list)|(create)
+p, admin, posts/*, (edit)|(show)|(delete)
+p, admin, posts/*, field
+
+p, admin, users, (list)|(create)
+p, admin, users/*, (edit)|(show)|(delete)
+
+p, admin, categories, (list)|(create)
+p, admin, categories/*, (edit)|(show)|(delete)
+
+p, editor, posts, (list)|(create)
+p, editor, posts/*, (edit)|(show)
+p, editor, posts/hit, field, deny
+
+p, editor, categories, list
+`);
+
+const PostListWithHit = () => {
+    const { tableProps } = useAntdTable();
+    const { data: canAccess } = useCan({
+        resource: "posts",
+        action: "field",
+        params: { field: "hit" },
+    });
+
+    return (
+        <AntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column dataIndex="id" title="ID" />
+                <AntdTable.Column dataIndex="title" title="Title" />
+                <AntdTable.Column dataIndex="status" title="Status" />
+                {canAccess?.can && (
+                    <AntdTable.Column
+                        dataIndex="hit"
+                        title="Hit"
+                        render={(value: number) => (
+                            <AntdNumberField
+                                value={value}
+                                options={{ notation: "compact" }}
+                            />
+                        )}
+                    />
+                )}
+                <AntdTable.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <AntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <AntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </AntdList>
+    );
+};
+
+const App: React.FC = () => {
+    const role = "admin";
+
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                        },
+                    ]}
+                    accessControlProvider={{
+                        can: async ({ resource, action, params }) => {
+                            const enforcer = await CasbinNewEnforcer(model, adapter);
+
+                            if (
+                                action === "delete" ||
+                                action === "edit" ||
+                                action === "show"
+                            ) {
+                                const can = await enforcer.enforce(
+                                    role,
+                                    `${resource}/${params?.id}`,
+                                    action,
+                                );
+
+                                return { can };
+                            }
+
+                            if (action === "field") {
+                                const can = await enforcer.enforce(
+                                    role,
+                                    `${resource}/${params?.field}`,
+                                    action,
+                                );
+                                return { can };
+                            }
+
+                            const can = await enforcer.enforce(role, resource, action);
+
+                            return { can };
+                        },
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2
+                                    // Header={() => <Header role={role} />}
+                                >
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostListWithHit />} />
+                                <Route path="create" element={<PostCreate />} />
+                            </Route>
+                            <Route path="categories">
+                                <Route index element={<CategoryList />} />
+                                <Route path="create" element={<CategoryCreate />} />
+                            </Route>
+                            <Route path="users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
+
+</TabItem>
+
+<TabItem value="editor">
+
+```tsx live previewOnly url=http://localhost:5173 previewHeight=660px
+setInitialRoutes(["/posts"]);
+import { useState } from "react";
+import { Refine, useCan } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const adapter = new CasbinStringAdapter(`
+p, admin, posts, (list)|(create)
+p, admin, users, (list)|(create)
+p, admin, categories, (list)|(create)
+
+p, editor, posts, (list)|(create)
+p, editor, categories, list
+`);
+
+const PostListWithHit = () => {
+    const { tableProps } = useAntdTable();
+    const { data: canAccess } = useCan({
+        resource: "posts",
+        action: "field",
+        params: { field: "hit" },
+    });
+
+    return (
+        <AntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column dataIndex="id" title="ID" />
+                <AntdTable.Column dataIndex="title" title="Title" />
+                <AntdTable.Column dataIndex="status" title="Status" />
+                {canAccess?.can && (
+                    <AntdTable.Column
+                        dataIndex="hit"
+                        title="Hit"
+                        render={(value: number) => (
+                            <AntdNumberField
+                                value={value}
+                                options={{ notation: "compact" }}
+                            />
+                        )}
+                    />
+                )}
+                <AntdTable.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <AntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <AntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </AntdList>
+    );
+};
+
+const App: React.FC = () => {
+    const role = "editor";
+
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                        },
+                    ]}
+                    accessControlProvider={{
+                        can: async ({ resource, action, params }) => {
+                            const enforcer = await CasbinNewEnforcer(model, adapter);
+
+                            if (
+                                action === "delete" ||
+                                action === "edit" ||
+                                action === "show"
+                            ) {
+                                const can = await enforcer.enforce(
+                                    role,
+                                    `${resource}/${params?.id}`,
+                                    action,
+                                );
+
+                                return { can };
+                            }
+
+                            if (action === "field") {
+                                const can = await enforcer.enforce(
+                                    role,
+                                    `${resource}/${params?.field}`,
+                                    action,
+                                );
+                                return { can };
+                            }
+
+                            const can = await enforcer.enforce(role, resource, action);
+
+                            return { can };
+                        },
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2
+                                    // Header={() => <Header role={role} />}
+                                >
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostListWithHit />} />
+                                <Route path="create" element={<PostCreate />} />
+                            </Route>
+                            <Route path="categories">
+                                <Route index element={<CategoryList />} />
+                                <Route path="create" element={<CategoryCreate />} />
+                            </Route>
+                            <Route path="users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
+
+</TabItem>
+
+</Tabs>
+
 
 ## Example
 

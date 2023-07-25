@@ -7,6 +7,61 @@ sidebar_label: Supabase
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+```tsx live  shared
+const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
+    RefineCore;
+const {
+    Typography: { Title: SharedTitle },
+    Button,
+} = AntdCore;
+
+window.__refineAuthStatus = false;
+
+const authProvider = {
+    login: () => {
+        window.__refineAuthStatus = true;
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
+        window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    check: async () => {
+        return {
+            authenticated: window.__refineAuthStatus ? true : false,
+            redirectTo: window.__refineAuthStatus ? undefined : "/login",
+        };
+    },
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => null,
+};
+```
+
 ## Introduction
 
 [Supabase](https://supabase.com/) is an open-source Firebase alternative that provides backend features. This tutorial steps will focus specifically on database and authentication features. We'll see how to use Supabase as a data provider and implement authentication to refine app.
@@ -114,22 +169,21 @@ Let's head over to `App.tsx` file where all magic happens. This is the entry poi
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-...
  // highlight-start
 import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 // highlight-end
 
 function App() {
-  return (
-    <Refine
-      // highlight-next-line
-      dataProvider={dataProvider(supabaseClient)}
-      /* ... */
-    >
-        {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            // highlight-next-line
+            dataProvider={dataProvider(supabaseClient)}
+            //...
+        >
+            {/* ... */}
+        </Refine>
+    );
 }
 
 export default App;
@@ -410,41 +464,62 @@ export default authProvider;
 Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/authentication/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
-<br/>
-
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-...
  // highlight-start
 import authProvider from './authProvider';
 // highlight-end
 
 function App() {
-  return (
-    <Refine
-      // highlight-next-line
-      authProvider={authProvider}
-      /* ... */
-    >
-        {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            // highlight-next-line
+            authProvider={authProvider}
+            //...
+        />
+    );
 }
 
 export default App;
 ```
 
-Also, we'll see the `Auth provider` methods in action when using `LoginPage` in the next sections.
+Also, we'll see the `Auth provider` methods in action when using `AuthPage` in the next sections.
 
 At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
-If you head over to localhost:3000, you'll see a welcome page.
+If you head over to `localhost:5173`, you'll see a welcome page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.png" alt="welcome" />
+```tsx live previewOnly previewHeight=800px url=http://localhost:5173
+setInitialRoutes(["/"]);
 
-<br/>
+import { notificationProvider, WelcomePage } from "@refinedev/antd";
+import { Refine } from "@refinedev/core";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 Now it's time to add some resources to our app.
 
@@ -959,11 +1034,13 @@ function App() {
                 ]}
                 //highlight-end
             >
+                {/* highlight-start */}
                 <Routes>
                     <Route path="/posts" element={<PostList />} />
                     <Route path="/posts/create" element={<PostCreate />} />
                     <Route path="/posts/edit/:id" element={<PostEdit />} />
                 </Routes>
+                {/* highlight-end */}
             </Refine>
         </BrowserRouter>
     );
@@ -988,22 +1065,46 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 After adding the resources, the app will look like:
 
-<div  style={{display:"flex", flexDirection:"column"}}>
-    <div class="window" style={{alignSelf:"center", width:"700px"}} >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img style={{alignSelf:"center", width:"700px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/login-screen.png" alt="login" />
-</div>
+```tsx live previewOnly url=http://localhost:5173/login previewHeight=600px
+setInitialRoutes(["/login"]);
 
-<br/>
+// visible-block-start
+import { Refine } from "@refinedev/core";
+import { AuthPage, RefineThemes } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { ConfigProvider } from "antd";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { authProvider } from "./authProvider";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+// visible-block-end
+render(<App />);
+```
 
 Normally, refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
 
-#### This premade and ready to use Login screen consist `LoginPage` and `authProvider` concepts behind the scenes:
+#### This premade and ready to use Login screen consist `AuthPage` and `authProvider` concepts behind the scenes:
 
-Let's check out the `LoginPage` property:
+Let's check out the `Authentication` property:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -1016,22 +1117,18 @@ import routerProvider, {
 //highlight-end
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
 import { ConfigProvider } from "antd";
-
 import authProvider from "./authProvider";
-
-/* ... */
 
 function App() {
     return (
         <BrowserRouter>
             <ConfigProvider theme={RefineThemes.Blue}>
                 <Refine
-                    /* ... */
-                    //highlight-next-line
+                    // highlight-next-line
                     routerProvider={routerProvider}
                     authProvider={authProvider}
+                    //...
                 >
                     <Routes>
                         <Route
@@ -1050,6 +1147,7 @@ function App() {
                                 element={<div>dummy list page</div>}
                             />
                         </Route>
+                        {/* highlight-start */}
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
@@ -1057,7 +1155,6 @@ function App() {
                                 </Authenticated>
                             }
                         >
-                            {/* highlight-start */}
                             <Route path="/login" element={<AuthPage />} />
                             <Route
                                 path="/register"
@@ -1071,8 +1168,8 @@ function App() {
                                 path="/update-password"
                                 element={<AuthPage type="updatePassword" />}
                             />
-                            {/* highlight-end */}
                         </Route>
+                        {/* highlight-end */}
                     </Routes>
                 </Refine>
             </ConfigProvider>
@@ -1087,16 +1184,7 @@ The `AuthPage` component returns ready-to-use authentication pages for login, re
 
 Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword` functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
 
-<br/>
-
-<div style={{display:"flex", flexDirection:"column"}}>
-     <img style={{alignSelf:"center", width:"800px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.png" alt="flow" />
-</div>
-
-<br/>
-<br/>
-
-**By defining the routes array in the `routerProvider` property, we can access the `<AuthPage>` authentication pages by navigating to `/register`, `/forgot-password`, and `/update-password` endpoints.**
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.jpg" className="rounded" alt="flow" />
 
 We'll show how to implement third party logins in the next sections.
 
@@ -1107,20 +1195,161 @@ Sign in the app with followings credentials:
 -   email: info@refine.dev
 -   password: refine-supabase
 
-We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
+We have successfully logged in to the app. After then `ListPage` and `CreatePage` pages created. When the `Create` button is clicked, the `CreatePage` component will render.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.png" alt="list" />
+```tsx live previewOnly url=http://localhost:5173/posts
+interface ICategory {
+    id: number;
+    title: string;
+}
 
-<br/>
-<br/>
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
 
-Now click on the `Create` button to create a new post. The app will navigate to the `post/create` endpoint, and `CreatePage` will render.
+import { useMany } from "@refinedev/core";
+import {
+    List,
+    TextField,
+    TagField,
+    useTable,
+    Create,
+    useForm,
+    useSelect,
+    CreateButton,
+} from "@refinedev/antd";
+import { Table, Form, Input, Select } from "antd";
+
+const PostCreate: React.FC = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>({
+        syncWithLocation: true,
+    });
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value: string) => <TagField value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts"]}
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
+```
 
 Thanks to `refine-supabase` data provider, we can now start creating new records for the Supabase Database by just filling the form.
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.png" alt="create" />
-
-<br/>
 
 ### Social Logins
 
@@ -1134,24 +1363,41 @@ import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined } from "@ant-design/icons";
 //highlight-end
 
-const MyLoginPage = () => {
+const App: React.FC = () => {
     return (
-        <AuthPage
-            type="login"
-            providers={[
-                {
-                    name: "google",
-                    label: "Sign in with Google",
-                    icon: (
-                        <GoogleOutlined
-                            style={{ fontSize: 18, lineHeight: 0 }}
+        <Refine>
+            <Routes>
+                <Route
+                    path="/login"
+                    element={
+                        <AuthPage
+                            type="login"
+                            {/* highlight-start */}
+                            providers={[
+                                {
+                                    name: "google",
+                                    label: "Sign in with Google",
+                                    icon: 
+                                        <GoogleOutlined
+                                            style={{
+                                                fontSize: 18,
+                                                lineHeight: 0,
+                                            }}
+                                        />
+                                    ),
+                                },
+                            ]}
+                            {/* highlight-end */}
                         />
-                    ),
-                },
-            ]}
-        />
+                    }
+                />
+            </Routes>
+            {/* ... */}
+        </Refine>
     );
 };
+
+export default App;
 ```
 
 This will add a new Google login button to the login page. After the user successfully logs in, the app will redirect back to the app.
@@ -1164,17 +1410,11 @@ You will find the Google Auth option in the Auth providers section; enable it an
 
 [Refer to Supabase docs for more information about Credentials &#8594](https://supabase.com/docs/guides/auth/auth-google#create-your-google-credentials)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" alt="supabaseConfig" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" className="rounded" alt="supabaseConfig" />
 
 Here is the result:
 
-<br/>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login.gif" alt="socialLogin" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login-min.gif" className="border border-gray-200 rounded" alt="socialLogin" />
 
 ## Let's recap what we have done so far
 
@@ -1183,8 +1423,8 @@ So far, we have implemented the followings:
 -   We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
 -   We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
 -   We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
--   We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
--   We have seen how authorization handling in **refine** app by understanding the logic behind of `LoginPage` property, `authProvider`, and `<AuthPage>` component.
+-   We have seen how the [`Authentication`](/docs/packages/documentation/routers/react-router-v6/#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+-   We have seen how authorization handling in **refine** app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
 **refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
@@ -1231,15 +1471,9 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
 :::
 
-<br/>
-
 ### Let see how real-time feature works in the app
 
-<br/>
-
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time.gif" alt="realTime" />
-
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time-min.gif" className="border border-gray-200 rounded" alt="realTime" />
 
 :::tip
 **refine** offers out-of-the-box live provider support:

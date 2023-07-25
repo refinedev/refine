@@ -1,10 +1,10 @@
 import { useOne, useShow } from "@refinedev/core";
-import { Show, NumberField, TextField } from "@refinedev/chakra-ui";
+import { Show, NumberField, TextField, DateField } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
     const { queryResult } = useShow({
-        meta: {
+        metaData: {
             populate: ["category"],
         },
     });
@@ -46,6 +46,21 @@ export const PostShow = () => {
                 Content
             </Heading>
             <TextField value={record?.content} />
+
+            <Heading as="h5" size="sm" mt={4}>
+                Created At
+            </Heading>
+            <DateField value={record?.createdAt} />
+
+            <Heading as="h5" size="sm" mt={4}>
+                Published At
+            </Heading>
+            <DateField value={record?.publishedAt} />
+
+            <Heading as="h5" size="sm" mt={4}>
+                Locale
+            </Heading>
+            <TextField value={record?.locale} />
         </Show>
     );
 };

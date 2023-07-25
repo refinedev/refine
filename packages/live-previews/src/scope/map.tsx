@@ -49,6 +49,7 @@ export const packageMap: Record<string, string> = {
     i18next: "I18Next",
     "i18next-browser-languagedetector": "I18NextBrowserLanguageDetector",
     "i18next-xhr-backend": "I18NextXhrBackend",
+    casbin: "Casbin",
 };
 
 export const packageScopeMap: Record<string, RegExp> = {
