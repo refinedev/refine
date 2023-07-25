@@ -54,6 +54,7 @@ export const checkPackage = (code = "") => {
     const hasHasura = code.includes("@refinedev/hasura");
     const hasNestjsxCrud = code.includes("@refinedev/nestjsx-crud");
     const hasStrapiV4 = code.includes("@refinedev/strapi-v4");
+    const hasStrapiGraphql = code.includes("@refinedev/strapi-graphql");
     const hasSupabase = code.includes("@refinedev/supabase");
     const hasAxios = code.includes("axios");
     const hasAuth0 = code.includes("@auth0/auth0-react");
@@ -101,6 +102,10 @@ export const checkPackage = (code = "") => {
 
     if (hasStrapiV4) {
         set.add("strapi-v4");
+    }
+
+    if (hasStrapiGraphql) {
+        set.add("strapi-graphql");
     }
 
     if (hasSupabase) {

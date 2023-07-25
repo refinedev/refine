@@ -29,6 +29,7 @@
         "@refinedev/hasura": "^6.0.0",
         "@refinedev/nestjsx-crud": "^4.1.0",
         "@refinedev/strapi-v4": "^5.0.0",
+        "@refinedev/strapi-graphql": "^6.0.1",
         "@refinedev/supabase": "^5.1.0",
         "react-i18next": "^11.8.11",
         "i18next": "^20.1.0",
