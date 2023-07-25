@@ -8,16 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-sup
 hide_table_of_contents: false
 ---
 
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code example in this post have been updated to version 4.x.x.
-
-:::
-
 ## Introduction
 
 Passwords are one of the most popular ways to authenticate a user. However, passwords have disadvantages, such as being subject to brute force attacks and data breaches.
@@ -26,22 +16,22 @@ Another significant problem with password-based login is that keeping track of d
 
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
-You can see the example app we'll build in the article from [here](https://github.com/refinedev/refine/tree/master/examples/refine-supabase-auth)
+You can see the example app we'll build in the article from [here](https://github.com/refinedev/refine/tree/master/examples/blog-refine-supabase-auth)
 
 Steps we'll cover:
 
--   [Introduction](#introduction)
--   [What is Supabase?](#what-is-supabase)
--   [What is refine?](#what-is-refine)
--   [Prerequisites](#prerequisites)
--   [Getting Started](#getting-started)
--   [Installing Tailwind CSS for refine project](#installing-tailwind-css-for-refine-project)
--   [Set up the Supabase Project](#set-up-the-supabase-project)
--   [Create the Login Page](#create-the-login-page)
--   [Data Provider](#data-provider)
--   [Auth Provider](#auth-provider)
--   [Conclusion](#conclusion)
--   [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+- [Introduction](#introduction)
+- [What is Supabase?](#what-is-supabase)
+- [What is refine?](#what-is-refine)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Installing Tailwind CSS for refine project](#installing-tailwind-css-for-refine-project)
+- [Set up the Supabase Project](#set-up-the-supabase-project)
+- [Create the Login Page](#create-the-login-page)
+- [Data Provider](#data-provider)
+- [Auth Provider](#auth-provider)
+- [Conclusion](#conclusion)
+- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 ## What is Supabase?
 
@@ -66,12 +56,19 @@ To follow this guide, you must install the latest Node.js version on your system
 Start by creating the refine app using the [superplate](https://github.com/pankod/superplate) CLI.
 
 ```
-npm create refine-app@latest refine-supabase-auth -- -p refine-react -b v3
+npm create refine-app@latest refine-supabase-auth
 ```
 
-<div class="img-container" align-items="center" >
-   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/terminal.png"  alt="terminal" />
-</div>
+```bash
+✔ Downloaded remote source successfully.
+✔ Choose a project template · refine-vite
+✔ What would you like to name your project?: · refine-supabase-auth
+✔ Choose your backend service to connect: · data-provider-supabase
+✔ Do you want to use a UI Framework?: · no
+✔ Do you want to add example pages?: · no
+✔ Do you need i18n (Internationalization) support?: · no
+✔ Choose a package manager: · npm
+```
 
 <br/>
 
@@ -84,11 +81,11 @@ Here is the source code of [refine supabase data provider](https://github.com/re
 Next, navigate to your project directory and install the following packages.
 
 ```
-yarn add -D tailwindcss
+npm install -D tailwindcss postcss autoprefixer
 ```
 
 ```
-yarn add daisyui react-daisyui
+npm install daisyui react-daisyui
 ```
 
 Daisy UI adds attractive component classes to Tailwind, which are customizable and comes with modular React components like `Button`, `Card`, etc., out-of-the-box.
@@ -102,7 +99,8 @@ npx tailwindcss init
 Update the recently added `tailwind.config.js` file to add some theming to the refine app.
 
 ```tsx title="tailwind.config.js"
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
     content: [
         "node_modules/daisyui/dist/**/*.js",
         "node_modules/react-daisyui/dist/**/*.js",
@@ -131,6 +129,18 @@ module.exports = {
 };
 ```
 
+Create postcss.config.js:
+
+```tsx title="postcss.config.js"
+/** @type {import('tailwindcss').Config} */
+export default {
+    plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+    },
+};
+```
+
 Now, create the `App.css` file and add the following content.
 
 ```tsx title="src/App.css"
@@ -141,13 +151,13 @@ Now, create the `App.css` file and add the following content.
 
 In the `App.tsx` file, import the `App.css` file to add the styling.
 
-Run the `yarn dev` command to start the refine development server.
+Run the `npm run dev` command to start the refine development server.
 
 ```
-yarn dev
+npm run dev
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.png" alt="dashboard" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="Supabase authentication with Twillo" />
 
 <br/>
 
@@ -155,7 +165,7 @@ yarn dev
 
 Head over to app.supabase.com and sign in to your Supabase account. Next, create a new project by clicking on the "New Project" button.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="setupSupabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="Supabase authentication with Twillo" />
 
 <br/>
 
@@ -163,10 +173,10 @@ Add the name of the project and the database password, and wait for Supabase to 
 
 Once the project is created, go to Authentication -> Settings to configure the Auth providers.
 
-<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="supabase2" />
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="Supabase authentication with Twillo" />
 
 <br/>
-<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.png" alt="supabase3" />
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="Supabase authentication with Twillo" />
 
 <br/>
 
@@ -180,7 +190,7 @@ You will find the Phone Auth option in the Auth providers section; enable it and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="supabase4" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="Supabase authentication with Twillo" />
 </div>
 
 <br/>
@@ -194,7 +204,7 @@ The backend setup is now complete. In the next section, you will start building 
 <br/>
 <div>
 <a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="Supabase authentication with Twillo" />
 </a>
 </div>
 
@@ -206,8 +216,10 @@ On the login page, you need to create a two-step form.
 In the first step, the user will enter the mobile number to receive the OTP message, and in the second step, the user will enter the OTP token to log in. Display an error if the OTP token is invalid or expired.
 
 ```tsx title="src/pages/Login.tsx"
+import { useLogin } from "@refinedev/core";
 import { useRef, useState } from "react";
 import { Alert, Button, Card, Input } from "react-daisyui";
+import { supabaseClient } from "../utility";
 
 export const LoginPage = () => {
     const mobileNoRef = useRef<string>();
@@ -217,8 +229,13 @@ export const LoginPage = () => {
         "SEND_OTP",
     );
 
-    const onSendOtp = () => {
-        setFormState("LOGIN");
+    const { mutate: login } = useLogin();
+
+    const onLogin = () => {
+        login(
+            { mobileNo: mobileNoRef.current, otp: otpRef.current },
+            { onError: (error) => setError(error.message) },
+        );
     };
 
     const mobileFormRender = () => (
@@ -256,6 +273,23 @@ export const LoginPage = () => {
         </>
     );
 
+    const onSendOtp = async () => {
+        const mobileNo = mobileNoRef.current || "";
+        if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
+            setError("Please enter a valid mobile number");
+            return;
+        }
+
+        const { error } = await supabaseClient.auth.signInWithOtp({
+            phone: mobileNo,
+        });
+        if (error) {
+            setError(error.message);
+            return;
+        }
+        setFormState("LOGIN");
+    };
+
     return (
         <div className="bg-primary flex min-h-screen items-center justify-center">
             <Card className="w-1/2 bg-white shadow-lg " bordered={false}>
@@ -279,32 +313,90 @@ export const LoginPage = () => {
 
 In the above code, we set a `formState` state variable to define whether to render the mobile input or the OTP input on the screen. If there's any error, set the `error` variable and display it using the `Alert` component.
 
-Import the `LoginPage` component in the `App.tsx` file and pass it as a prop to the `<Refine/>` component to override the Login page.
+Import the `LoginPage` component in the `App.tsx` file and create a route for it.
+
+To create a route, import the `Route` component from `react-router-dom` and pass the `<LoginPage/>` component as the `children`. We also use `<Authenticated/>`, `<Outlet />` and `<NavigateToResource/>` components
+to redirect the user to the home page if they are already logged in.
+
+[Refer to the Auth Provider documentation to learn more about these components. → ](/docs/api-reference/core/providers/auth-provider/)
 
 ```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import { dataProvider } from "@refinedev/supabase";
-import { supabaseClient } from "utility";
+// highlight-next-line
+import { Authenticated, Refine, WelcomePage } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
+// highlight-start
+import routerBindings, {
+    CatchAllNavigate,
+    DocumentTitleHandler,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import {
+    BrowserRouter,
+    Navigate,
+    Outlet,
+    Route,
+    Routes,
+} from "react-router-dom";
+// highlight-end
+
 import authProvider from "./authProvider";
-import { Countries } from "pages/Countries";
-import { Layout } from "pages/Layout";
+import { supabaseClient } from "./utility";
+
+// highlight-next-line
+import { LoginPage } from "./pages/Login";
+
 import "./App.css";
-//highlight-next-line
-import { LoginPage } from "pages/Login";
 
 function App() {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(supabaseClient)}
-            resources={[{ name: "countries" }]}
-            authProvider={authProvider}
-            //highlight-next-line
-            LoginPage={LoginPage}
-        />
+        <BrowserRouter>
+            <RefineKbarProvider>
+                <Refine
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    {/* highlight-start */}
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Outlet />
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<WelcomePage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <Navigate to="/" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<LoginPage />} />
+                        </Route>
+                    </Routes>
+                    {/* highlight-end */}
+                    <RefineKbar />
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </RefineKbarProvider>
+        </BrowserRouter>
     );
 }
+
+export default App;
 ```
 
 Also, notice that superplate CLI has already imported the `authProvider` and `dataProvider` for you.
@@ -319,11 +411,9 @@ In this case, we pass the supabaseClient as the data provider. Supabase is suppo
 
 [You can learn more about data provider in the Refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
-
 ---
 
 <PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
-
 
 ---
 
@@ -331,7 +421,7 @@ In this case, we pass the supabaseClient as the data provider. Supabase is suppo
 
 The `authProvider` is an object that refine uses to authenticate and authorize the users. The auth provider must have methods like `login()`, `register()`, etc., to manage authentication in your app. These methods should return a Promise and are accessible via hooks.
 
-The superplate CLI autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
+``**refine** create app` autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
 
 [You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
@@ -340,93 +430,103 @@ Alright, now coming back to the `LoginPage` component. When the user requests fo
 We'll use the input field in this guide for brevity.
 
 ```tsx title="src/pages/Login.tsx"
-import { supabaseClient } from "utility";
+import { supabaseClient } from "../utility";
 
-...
+// ...
 
 const onSendOtp = async () => {
-  const mobileNo = mobileNoRef.current || "";
-  if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
-    setError("Please enter a valid mobile number");
-    return;
-  }
-  const { error } = await supabaseClient.auth.signIn({
-    phone: mobileNo,
-  });
-  if (error) {
-    setError(error.message);
-    return;
-  }
-  setFormState("LOGIN");
-};
+    const mobileNo = mobileNoRef.current || "";
+    if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
+        setError("Please enter a valid mobile number");
+        return;
+    }
 
-...
-```
-
-To send the OTP message to the user, use the `supabase.auth.signIn()` method and pass the mobile number in the `phone` property as shown above.
-
-<div class="img-container" >
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="login" />
-</div>
-
-<br/>
-<div class="img-container" >
-    <div class="window" >
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="loginInvalid" />
-</div>
-
-<br/>
-
-Update the `login` property in `authProvider` to accept the mobile number and OTP as input and call the `supabase.auth.verifyOTP()` method for verifying the OTP entered by the user and enabling access to the dashboard page of the app.
-
-```tsx title="src/authProvider.ts"
-...
-
-const authProvider: AuthBindings = {
-  login: async ({ mobileNo, otp }) => {
-    const { user, error } = await supabaseClient.auth.verifyOTP({
-      phone: mobileNo,
-      token: otp,
+    const { error } = await supabaseClient.auth.signInWithOtp({
+        phone: mobileNo,
     });
     if (error) {
-      return ({
-        success: false,
-        error,
-      });
+        setError(error.message);
+        return;
     }
-    if (user) {
-      return ({
-        success: true,
-        redirectTo: "/",
-      });
-    }
-  },
-  ...
-}
+    setFormState("LOGIN");
+};
+
+// ...
+```
+
+To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` method and pass the mobile number in the `phone` property as shown above.
+
+<div class="img-container" >
+    <div class="window" >
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="Supabase authentication with Twillo" />
+</div>
+
+<br/>
+<div class="img-container" >
+    <div class="window" >
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="Supabase authentication with Twillo" />
+</div>
+
+<br/>
+
+Update the `login` property in `authProvider` to accept the mobile number and OTP as input and call the `supabase.auth.verifyOtp()` method for verifying the OTP entered by the user and enabling access to the dashboard page of the app.
+
+```tsx title="src/authProvider.ts"
+// ...
+
+const authProvider: AuthBindings = {
+    login: async ({ mobileNo, otp }) => {
+        const { data, error } = await supabaseClient.auth.verifyOtp({
+            type: "sms",
+            phone: mobileNo,
+            token: otp,
+        });
+
+        if (error) {
+            return {
+                success: false,
+                error,
+            };
+        }
+        if (data?.user) {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
+
+        return {
+            success: false,
+            error: {
+                message: "Login failed",
+                name: "Invalid mobile number or otp",
+            },
+        };
+    },
+    // ...
+};
 ```
 
 In the `onLogin()` function of the `<LoginPage/>` component, pass the mobile number and OTP to the `login()` acquired from the `useLogin` hook.
 
 ```tsx title="src/pages/Login.tsx"
-
-...
+// ...
 
 const { mutate: login } = useLogin();
 
 const onLogin = () => {
-  login(
-    { mobileNo: mobileNoRef.current, otp: otpRef.current },
-    { onError: (error) => setError(error.message) }
-  );
+    login(
+        { mobileNo: mobileNoRef.current, otp: otpRef.current },
+        { onError: (error) => setError(error.message) },
+    );
 };
 ```
 
@@ -438,7 +538,7 @@ If the OTP is invalid, the error message will be displayed as shown below.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="loginToken" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="Supabase authentication with Twillo" />
 </div>
 
 <br/>
@@ -453,7 +553,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="supabaseDB" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="Supabase authentication with Twillo" />
 </div>
 
 <br/>
@@ -463,7 +563,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="supabaseDB2" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="Supabase authentication with Twillo" />
 </div>
 
 <br/>
@@ -546,31 +646,92 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-Import the Countries and the Layout component in the App.tsx fle to finish up the application.
+Import the `<Countries/>` and the `<Layout/>` component in the `App.tsx` file to finish up the application.
 
 ```tsx title="App.tsx"
-...
-//highlight-start
-import { Countries } from "pages/Countries";
-import { Layout } from "components/Layout";
-//highlight-end
+import { Authenticated, Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
+import routerBindings, {
+    CatchAllNavigate,
+    DocumentTitleHandler,
+    // highlight-next-line
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+
+import { LoginPage } from "./pages/Login";
+// highlight-start
+import { Countries } from "./pages/Countries";
+import { Layout } from "./pages/Layout";
+// highlight-end
+
+import authProvider from "./authProvider";
+import { supabaseClient } from "./utility";
+
+import "./App.css";
 
 function App() {
-  return (
-    <Refine
-      routerProvider={{
-        ...routerProvider,
-      }}
-      dataProvider={dataProvider(supabaseClient)}
-      authProvider={authProvider}
-      LoginPage={LoginPage}
-      //highlight-start
-      resources={[{ name: "countries", list: Countries }]}
-      Layout={Layout}
-      //highlight-end
-    />
-  );
+    return (
+        <BrowserRouter>
+            <RefineKbarProvider>
+                <Refine
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                    // highlight-next-line
+                    resources={[{ name: "countries", list: "/countries" }]}
+                >
+                    {/* highlight-start */}
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="countries" />
+                                }
+                            />
+                            <Route path="/countries" element={<Countries />} />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="countries" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<LoginPage />} />
+                        </Route>
+                    </Routes>
+                    {/* highlight-end */}
+                    <RefineKbar />
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
 }
+
+export default App;
 ```
 
 <div class="img-container" >
@@ -579,7 +740,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="final" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="Supabase authentication with Twillo" />
 </div>
 
 <br/>
@@ -593,7 +754,7 @@ Following this article's steps, you should now have a refine application with OT
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="Supabase authentication with Twillo discord banner" />
 </a>
 </div>
 
@@ -607,7 +768,7 @@ Check out [refine](https://github.com/refinedev/refine),if you are interested in
 
 <div>
 <a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="refine blog logo" />
+    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="Supabase authentication with Twillo blog logo" />
 </a>
 </div>
 

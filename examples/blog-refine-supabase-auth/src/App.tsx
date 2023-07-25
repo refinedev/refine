@@ -12,12 +12,12 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider } from "@refinedev/supabase";
-import { supabaseClient } from "utility";
+import { supabaseClient } from "./utility";
 import authProvider from "./authProvider";
-import { Countries } from "pages/Countries";
-import { Layout } from "pages/Layout";
+import { Countries } from "./pages/Countries";
+import { Layout } from "./pages/Layout";
 import "./App.css";
-import { LoginPage } from "pages/Login";
+import { LoginPage } from "./pages/Login";
 
 function App() {
     return (
@@ -57,7 +57,7 @@ function App() {
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
+                                <NavigateToResource resource="countries" />
                             </Authenticated>
                         }
                     >
