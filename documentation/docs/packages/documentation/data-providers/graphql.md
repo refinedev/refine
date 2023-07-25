@@ -7,6 +7,13 @@ sidebar_label: GraphQL
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+```tsx live shared
+import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
+const API_URL = "https://api.strapi.refine.dev/graphql";
+const client = new GraphQLClient(API_URL);
+const gqlDataProvider = dataProvider(client);
+```
+
 **refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implementation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
 
 ## GraphQL Query Builder
@@ -118,8 +125,21 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx
-export const PostList: React.FC = () => {
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts"]);
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+// visible-block-start
+// src/pages/posts/list.tsx
+
+import { List, EditButton, ShowButton, DeleteButton, useTable, useSelect, getDefaultSortOrder, FilterDropdown } from "@refinedev/antd";
+import { Table, Space, Select } from "antd";
+
+const PostList = () => {
     const { tableProps, sorter } = useTable<IPost>({
         sorters: {
             initial: [
@@ -179,7 +199,13 @@ export const PostList: React.FC = () => {
                             />
                         </FilterDropdown>
                     )}
-                    render={(_, record) => record.category.title}
+                    render={(_, record) => {
+                        if (record.category) {
+                            return record.category.title;
+                        }
+
+                        return "-";
+                    }}
                 />
                 <Table.Column<IPost>
                     title="Actions"
@@ -208,6 +234,42 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={gqlDataProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
 ```
 
 </TabItem>
@@ -229,8 +291,6 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 </TabItem>
 </Tabs>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-list.png" alt="GraphQL list page" />
-
 ## Edit Page
 
 On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `meta` to determine which fields will come in this request.
@@ -243,8 +303,34 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx
-export const PostEdit: React.FC = () => {
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts/edit/2020"]);
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+// visible-block-start
+// src/pages/posts/edit.tsx
+
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Select, Form, Input } from "antd";
+import { HttpError } from "@refinedev/core";
+
+interface IPost {
+    id: string;
+    title: string;
+    content: string;
+    category: ICategory;
+}
+
+interface ICategory {
+    id: string;
+    title: string;
+}
+
+const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
@@ -274,6 +360,8 @@ export const PostEdit: React.FC = () => {
         },
         // highlight-end
     });
+
+    const { TextArea } = Input;
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -318,12 +406,48 @@ export const PostEdit: React.FC = () => {
                         },
                     ]}
                 >
-                    <MDEditor data-color-mode="light" />
+                    <TextArea />
                 </Form.Item>
             </Form>
         </Edit>
     );
 };
+// visible-block-end
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={gqlDataProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            edit: "/posts/edit/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
 ```
 
 :::info
@@ -360,8 +484,24 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx
-export const PostShow: React.FC = () => {
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts/show/2020"]);
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+// visible-block-start
+// src/pages/posts/edit.tsx
+
+import { Show, RefreshButton } from "@refinedev/antd";
+import { Select, Form, Input, Typography } from "antd";
+import { useShow } from "@refinedev/core";
+
+const PostShow: React.FC = () => {
+    const { Title, Text } = Typography;
+
     const { queryResult } = useShow<IPost>({
         resource: "posts",
         // highlight-start
@@ -398,10 +538,46 @@ export const PostShow: React.FC = () => {
             <Text>{record?.category.title}</Text>
 
             <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content} />
+            <Text value={record?.content} />
         </Show>
     );
 };
+// visible-block-end
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={gqlDataProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            show: "/posts/show/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
 ```
 
 </TabItem>
@@ -419,8 +595,6 @@ mutation ($input: updatePostInput) {
 
 </TabItem>
 </Tabs>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-show.png" alt="GraphQL show page" />
 
 ## Usage with Inferencer
 
