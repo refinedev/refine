@@ -23,14 +23,14 @@ export const FeaturedBlogPostItem = () => {
     return (
         <BlogPostItemContainer>
             <Link itemProp="url" to={permalink}>
-                <div className="relative m-0 h-40 md:h-64 hover:brightness-90">
+                <div className="not-prose relative m-0 h-40 hover:brightness-90 md:h-64">
                     <img
                         src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                             "https://refine.ams3.cdn.digitaloceanspaces.com",
                             "",
                         )}?h=256`}
                         alt={title}
-                        className="absolute inset-0 h-full w-full rounded-[10px] object-cover mt-0"
+                        className="absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover"
                         loading="lazy"
                     />
                 </div>
@@ -39,7 +39,7 @@ export const FeaturedBlogPostItem = () => {
                 <div
                     className={clsx(
                         "mb-2 gap-1 md:mb-4 2xl:mb-6",
-                        "flex items-center flex-wrap",
+                        "flex flex-wrap items-center",
                     )}
                 >
                     {tags.map((tag) => (
@@ -104,7 +104,7 @@ export const FeaturedBlogPostItem = () => {
                     </Link>
                     <span
                         className={clsx(
-                            "w-[4px] h-[4px] rounded-full",
+                            "h-[4px] w-[4px] rounded-full",
                             "bg-gray-600 dark:bg-gray-500",
                         )}
                     ></span>

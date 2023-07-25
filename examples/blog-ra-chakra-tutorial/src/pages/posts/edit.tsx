@@ -15,7 +15,7 @@ export const PostEdit = () => {
         refineCore: { formLoading, queryResult },
         saveButtonProps,
         register,
-        resetField,
+        setValue,
         formState: { errors },
     } = useForm({
         refineCoreProps: {
@@ -32,28 +32,12 @@ export const PostEdit = () => {
         defaultValue: postsData?.category?.id,
     });
 
-    console.log(categoryOptions);
-
     React.useEffect(() => {
-        resetField("category.id");
+        setValue("category.id", queryResult?.data?.data?.category?.id || 1);
     }, [categoryOptions]);
 
     return (
         <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.id}>
-                <FormLabel>Id</FormLabel>
-                <Input
-                    disabled
-                    type="number"
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
             <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input
@@ -96,19 +80,6 @@ export const PostEdit = () => {
                 </Select>
                 <FormErrorMessage>
                     {(errors as any)?.category?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
-                <FormLabel>Created At</FormLabel>
-                <Input
-                    disabled
-                    {...register("createdAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.createdAt?.message as string}
                 </FormErrorMessage>
             </FormControl>
         </Edit>
