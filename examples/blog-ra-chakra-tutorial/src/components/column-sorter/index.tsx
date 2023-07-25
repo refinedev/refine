@@ -11,15 +11,32 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
 
     const sorted = column.getIsSorted();
 
+    const Icon = () => {
+        if (!sorted) {
+            return <IconSelector size={18} />;
+        }
+
+        if (sorted === "asc") {
+            return <IconChevronDown size={18} />;
+        }
+
+        if (sorted === "desc") {
+            return <IconChevronUp size={18} />;
+        }
+
+        return null;
+    };
+
     return (
         <IconButton
             aria-label="Sort"
             size="xs"
             onClick={column.getToggleSortingHandler()}
-        >
-            {!sorted && <IconSelector size={18} />}
-            {sorted === "asc" && <IconChevronDown size={18} />}
-            {sorted === "desc" && <IconChevronUp size={18} />}
-        </IconButton>
+            style={{
+                transition: "transform 0.25s",
+                transform: `rotate(${sorted === "asc" ? "180" : "0"}deg)`,
+            }}
+            icon={<Icon />}
+        />
     );
 };
