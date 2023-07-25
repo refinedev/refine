@@ -7,6 +7,12 @@ sidebar_label: Strapi-v4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+```tsx live shared
+import axios from "axios";
+const axiosInstance = axios.create();
+axiosInstance.defaults.headers.common["Authorization"] = `Bearer 6ae3cf664d558bc67d21ddabd0cf5ba0716367cd74c2ceaedf86f0efa09b3fe1605c90ab051fd4961ba03db961273bb2b48b9213ae267013317977f737b4ac8765a2e0bc64e9f275791ccb881117553f589675f5e6ce84d3859511fa124d477209cf1cbbd4fd7f6ddacc77eb4520753e3636446f807629de911eac7afbf60fd4`;
+```
+
 **refine** supports the features that come with [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
 
 A few of the Strapi-v4 API features are as follows:
@@ -153,24 +159,23 @@ const { tableProps } = useTable<IPost>({
 
 When sending the request, we can specify which fields will come, so we send `fields` in `meta` to hooks that we will fetch data from. In this way, you can perform the queries of only the fields you want.
 
-```tsx title="PostList.tsx"
-import { useState } from "react";
-import {
-    List,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    useSelect,
-    EditButton,
-    DeleteButton,
-} from "@refinedev/antd";
-import { Table, Select, Space } from "antd";
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts"]);
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi-v4";
+const API_URL = "https://api.strapi-v4.refine.dev";
 
-import { IPost } from "interfaces";
+// visible-block-start
+// src/pages/posts/list.tsx
 
-import { API_URL } from "../../constants";
+import { List, EditButton, ShowButton, useTable } from "@refinedev/antd";
+import { Table, Space } from "antd";
 
-export const PostList: React.FC = () => {
+const PostList = () => {
     const { tableProps, sorter } = useTable<IPost>({
         meta: {
             // highlight-start
@@ -181,29 +186,12 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
-
-                <Table.Column<{ id: string }>
                     title="Actions"
+                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -211,7 +199,7 @@ export const PostList: React.FC = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
-                            <DeleteButton
+                            <ShowButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
@@ -223,9 +211,43 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
+// visible-block-end
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/selection.png" alt="Fields Selection Metadata" />
+const App: React.FC = () => {    
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 ### Relations Population
 
@@ -270,29 +292,41 @@ const { tableProps } = useTable<IPost>({
 
 In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `meta` `populate` parameter.
 
-```tsx title="PostList.tsx"
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts"]);
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi-v4";
+const API_URL = "https://api.strapi-v4.refine.dev";
+
+// visible-block-start
+// src/pages/posts/list.tsx
+
+import { 
+    List, 
+    EditButton, 
+    ShowButton, 
+    // highlight-start
+    useSelect, 
+    FilterDropdown, 
+    // highlight-end
+    useTable } from "@refinedev/antd";
 import {
-    List,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    useSelect,
-    EditButton,
-    DeleteButton,
-} from "@refinedev/antd";
-import { Table, Select, Space } from "antd";
+    Table,
+    // highlight-next-line
+    Select,
+    Space 
+} from "antd";
 
-import { IPost } from "interfaces";
-
-import { API_URL } from "../../constants";
-
-export const PostList: React.FC = () => {
+const PostList = () => {
     const { tableProps, sorter } = useTable<IPost>({
         meta: {
             fields: ["id", "title"],
-            // highlight-start
+            // highlight-next-line
             populate: ["category"],
-            // highlight-end
         },
     });
 
@@ -306,27 +340,10 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
-                //highlight-start
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                {/* highlight-start */}
                 <Table.Column
                     dataIndex={["category", "title"]}
                     title="Category"
@@ -341,9 +358,10 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
-                //highlight-end
-                <Table.Column<{ id: string }>
+                {/* highlight-end */}
+                <Table.Column
                     title="Actions"
+                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -351,7 +369,7 @@ export const PostList: React.FC = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
-                            <DeleteButton
+                            <ShowButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
@@ -363,9 +381,43 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-```
+// visible-block-end
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/category.png" alt="category" />
+const App: React.FC = () => {    
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 ##### Relations Population for `/me` request
 
@@ -403,51 +455,44 @@ const { tableProps } = useTable<IPost>({
 
 We can list the posts separately according to the `published` or `draft` information.
 
-```tsx title="PostList"
-// highlight-next-line
-import { useState } from "react";
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts"]);
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, Layout } from "antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi-v4";
+const API_URL = "https://api.strapi-v4.refine.dev";
 
-import {
-    List,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    useSelect,
-    DateField,
-    EditButton,
-    DeleteButton,
-} from "@refinedev/antd";
-import {
-    Table,
-    Select,
-    Space,
+// visible-block-start
+// src/pages/posts/list.tsx
+
+import { List, EditButton, ShowButton, useSelect, FilterDropdown, useTable } from "@refinedev/antd";
+import { 
+    Table, 
+    Space, 
+    Select, 
     // highlight-start
-    Form,
-    Radio,
-    Tag,
+    Form, 
+    Radio, 
+    Tag 
     // highlight-end
 } from "antd";
 
-import { IPost } from "interfaces";
-
-import { API_URL } from "../../constants";
-
-export const PostList: React.FC = () => {
-    // highlight-start
-    const [publicationState, setPublicationState] = useState("live");
-    // highlight-end
+const PostList = () => {
+    // highlight-next-line
+    const [publicationState, setPublicationState] = React.useState("live");
 
     const { tableProps, sorter } = useTable<IPost>({
         meta: {
-            fields: ["id", "title"],
+            fields: ["id", "title", "publishedAt"],
             populate: ["category"],
-            // highlight-start
             publicationState,
-            // highlight-end
         },
     });
 
-    const { selectProps } = useSelect({
+     const { selectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
@@ -455,8 +500,14 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            //highlight-start
+            {/* highlight-start */}
             <Form
+                style={{ 
+                    marginBottom: 16,
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "16px",
+                }}
                 layout="inline"
                 initialValues={{
                     publicationState,
@@ -473,28 +524,10 @@ export const PostList: React.FC = () => {
                     </Radio.Group>
                 </Form.Item>
             </Form>
-            //highlight-end
-            <br />
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
+            {/* highlight-end */}
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
                     dataIndex={["category", "title"]}
                     title="Category"
@@ -509,7 +542,7 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
-                //highlight-start
+                {/* highlight-start */}
                 <Table.Column
                     dataIndex="publishedAt"
                     title="Status"
@@ -521,9 +554,10 @@ export const PostList: React.FC = () => {
                         );
                     }}
                 />
-                //highlight-end
-                <Table.Column<{ id: string }>
+                {/* highlight-end */}
+                <Table.Column
                     title="Actions"
+                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -531,7 +565,7 @@ export const PostList: React.FC = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
-                            <DeleteButton
+                            <ShowButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
@@ -543,11 +577,43 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
+
+const App: React.FC = () => {    
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
 ```
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/publication.gif" alt="publication" />
-
-<br/>
 
 ### Locale
 
@@ -675,6 +741,12 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
+                {/* highlight-start */}
+                <Table.Column
+                    dataIndex="locale"
+                    title="Locale"
+                />
+                {/* highlight-end */}
                 <Table.Column
                     dataIndex="publishedAt"
                     title="Status"
@@ -709,8 +781,172 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/locale.gif" alt="locale" />
-<br/>
+```tsx live url=http://localhost:5173 previewHeight=450px
+setInitialRoutes(["/posts"]);
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi-v4";
+const API_URL = "https://api.strapi-v4.refine.dev";
+import { ConfigProvider, Layout } from "antd";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+
+// visible-block-start
+// src/pages/posts/list.tsx
+
+import { List, EditButton, ShowButton, useSelect, FilterDropdown, useTable } from "@refinedev/antd";
+import { Table, Space, Select, Form, Radio, Tag } from "antd";
+
+const PostList = () => {
+    // highlight-next-line
+    const [locale, setLocale] = React.useState("en");
+    const [publicationState, setPublicationState] = React.useState("live");
+    const { tableProps, sorter } = useTable<IPost>({
+        meta: {
+            fields: ["id", "title", "publishedAt", "locale"],
+            populate: ["category"],
+            locale,
+            publicationState,
+        },
+    });
+
+     const { selectProps } = useSelect({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+        // highlight-next-line
+        meta: { locale },
+    });
+
+
+    return (
+        <List>
+            <Form
+                style={{ 
+                    marginBottom: 16,
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "16px",
+                }}
+                layout="inline"
+                initialValues={{
+                    // highlight-next-line
+                    locale,
+                    publicationState,
+                }}
+            >
+                {/* highlight-start */}
+                <Form.Item label="Locale" name="locale">
+                    <Radio.Group onChange={(e) => setLocale(e.target.value)}>
+                        <Radio.Button value="en">English</Radio.Button>
+                        <Radio.Button value="de">Deutsch</Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
+                {/* highlight-end */}
+                <Form.Item label="Publication State" name="publicationState">
+                    <Radio.Group
+                        onChange={(e) => setPublicationState(e.target.value)}
+                    >
+                        <Radio.Button value="live">Published</Radio.Button>
+                        <Radio.Button value="preview">
+                            Draft and Published
+                        </Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
+            </Form>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex={["category", "title"]}
+                    title="Category"
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...selectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column
+                    dataIndex="publishedAt"
+                    title="Status"
+                    render={(value) => {
+                        return (
+                            <Tag color={value ? "green" : "blue"}>
+                                {value ? "Published" : "Draft"}
+                            </Tag>
+                        );
+                    }}
+                />
+                {/* highlight-start */}
+                <Table.Column
+                    dataIndex="locale"
+                    title="Locale"
+                />
+                {/* highlight-end */}
+                <Table.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <Space>
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
+    );
+};
+// visible-block-end
+
+const App: React.FC = () => {    
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 ## `meta` Usages
 
