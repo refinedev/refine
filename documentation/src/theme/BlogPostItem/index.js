@@ -24,14 +24,14 @@ export default function BlogPostItem({ className }) {
         <BlogPostItemContainer className={className}>
             <div>
                 <Link itemProp="url" to={permalink}>
-                    <div className="relative m-0 h-40 hover:brightness-90">
+                    <div className="not-prose relative m-0 h-40 hover:brightness-90">
                         <img
                             src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                                 "https://refine.ams3.cdn.digitaloceanspaces.com",
                                 "",
                             )}?h=160`}
                             alt={title}
-                            className="absolute inset-0 h-full w-full rounded-[10px] object-cover transition duration-150 mt-0"
+                            className="absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover transition duration-150"
                             loading="lazy"
                         />
                     </div>
@@ -41,7 +41,7 @@ export default function BlogPostItem({ className }) {
                 <div
                     className={clsx(
                         "mb-2 flex gap-1 md:mb-4",
-                        "flex items-center flex-wrap",
+                        "flex flex-wrap items-center",
                     )}
                 >
                     {tags.map((tag) => (

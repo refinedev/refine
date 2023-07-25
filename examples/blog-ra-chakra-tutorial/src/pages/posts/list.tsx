@@ -1,34 +1,28 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
-    usePagination,
-    EditButton,
     ShowButton,
-    DeleteButton,
+    EditButton,
     DateField,
+    DeleteButton,
 } from "@refinedev/chakra-ui";
-
 import {
-    TableContainer,
     Table,
     Thead,
+    Tbody,
     Tr,
     Th,
-    Tbody,
     Td,
+    TableContainer,
     HStack,
-    Button,
-    IconButton,
-    Box,
 } from "@chakra-ui/react";
-
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { IPost } from "interfaces";
-import { ColumnSorter } from "components/ColumnSorter";
-import { ColumnFilter } from "components/ColumnFilter";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { Pagination } from "../../components/pagination";
+import { ColumnSorter } from "../../components/column-sorter";
+import { ColumnFilter } from "../../components/column-filter";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -38,7 +32,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 accessorKey: "id",
                 header: "Id",
                 meta: {
-                    filterOperator: "contains",
+                    filterOperator: "eq",
                 },
             },
             {
@@ -53,18 +47,18 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 id: "category",
                 accessorKey: "category.title",
                 header: "Category",
+                cell: function render({ getValue }) {
+                    return getValue();
+                },
                 meta: {
                     filterOperator: "contains",
-                },
-                cell: function render({ getValue, table }) {
-                    return getValue();
                 },
             },
             {
                 id: "createdAt",
                 accessorKey: "createdAt",
                 header: "Created At",
-                cell: function render({ getValue, table }) {
+                cell: function render({ getValue }) {
                     return (
                         <DateField value={getValue() as string} format="LLL" />
                     );
@@ -103,17 +97,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         getHeaderGroups,
         getRowModel,
         setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
+        refineCore: { current, pageCount, setCurrent },
     } = useTable({
         columns,
-
         refineCoreProps: {
-            metaData: {
+            meta: {
                 populate: ["category"],
             },
         },
@@ -169,63 +157,5 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 setCurrent={setCurrent}
             />
         </List>
-    );
-};
-
-type PaginationProps = {
-    current: number;
-    pageCount: number;
-    setCurrent: (page: number) => void;
-};
-
-const Pagination: React.FC<PaginationProps> = ({
-    current,
-    pageCount,
-    setCurrent,
-}) => {
-    const pagination = usePagination({
-        current,
-        pageCount,
-    });
-
-    return (
-        <Box display="flex" justifyContent="flex-end">
-            <HStack my="3" spacing="1">
-                {pagination?.prev && (
-                    <IconButton
-                        aria-label="previous page"
-                        onClick={() => setCurrent(current - 1)}
-                        disabled={!pagination?.prev}
-                        variant="outline"
-                    >
-                        <IconChevronLeft size="18" />
-                    </IconButton>
-                )}
-
-                {pagination?.items.map((page) => {
-                    if (typeof page === "string")
-                        return <span key={page}>...</span>;
-
-                    return (
-                        <Button
-                            key={page}
-                            onClick={() => setCurrent(page)}
-                            variant={page === current ? "solid" : "outline"}
-                        >
-                            {page}
-                        </Button>
-                    );
-                })}
-                {pagination?.next && (
-                    <IconButton
-                        aria-label="next page"
-                        onClick={() => setCurrent(current + 1)}
-                        variant="outline"
-                    >
-                        <IconChevronRight size="18" />
-                    </IconButton>
-                )}
-            </HStack>
-        </Box>
     );
 };

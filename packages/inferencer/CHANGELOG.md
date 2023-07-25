@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 4.3.4
+
+### Patch Changes
+
+-   [#4717](https://github.com/refinedev/refine/pull/4717) [`c1c10e5d7bd`](https://github.com/refinedev/refine/commit/c1c10e5d7bdd492ebb3a9ed969961e8f0db94206) Thanks [@aliemir](https://github.com/aliemir)! - Added a classname to the inferencer's code viewer component to determine a simple selector for the code viewer.
+
+## 4.3.3
+
+### Patch Changes
+
+-   [#4717](https://github.com/refinedev/refine/pull/4717) [`c1c10e5d7bd`](https://github.com/refinedev/refine/commit/c1c10e5d7bdd492ebb3a9ed969961e8f0db94206) Thanks [@aliemir](https://github.com/aliemir)! - Added a classname to the inferencer's code viewer component to determine a simple selector for the code viewer.
+
 ## 4.3.2
 
 ### Patch Changes
