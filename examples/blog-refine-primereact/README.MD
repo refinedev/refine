@@ -62,6 +62,6 @@ Your application will be accessible at http://localhost:5173
 
 ### Resources
 
-You can find step-by-step explanations of this example in [here](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/)
+Refer to blog post tutorial of this app [here](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/)
 
-Also, you can follow the [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about refine.
+Refer to complete CRUD app [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about refine.
