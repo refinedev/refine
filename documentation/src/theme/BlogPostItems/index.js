@@ -37,6 +37,7 @@ export default function BlogPostItems({
                             "flex flex-col blog-md:flex-row items-start justify-between",
                             "mb-2 lg:mb-8",
                             "px-0 blog-sm:px-6",
+                            "not-prose",
                         )}
                     >
                         <h2
@@ -45,6 +46,7 @@ export default function BlogPostItems({
                                 "blog-lg:mb-12 blog-md:mb-8 mb-8",
                                 "text-xl blog-sm:text-4xl blog-lg:text-5xl",
                                 "text-gray-900 dark:text-gray-0",
+                                "font-semibold",
                             )}
                         >
                             All Posts
