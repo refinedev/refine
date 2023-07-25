@@ -316,7 +316,7 @@ import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ConfigProvider } from "antd";
-// import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -327,7 +327,6 @@ const App: React.FC = () => {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
-        
                     resources={[
                         {
                             name: "posts",
@@ -634,6 +633,11 @@ export const Header: React.FC<HeaderProps> = ({ role }) => {
 ```
 
 </details>
+ 
+<br/>
+
+Now, let's see how the application will appear when logging in as an `admin` or `editor`.
+
 
 <Tabs
     defaultValue="admin"
@@ -1059,6 +1063,10 @@ export const PostList: React.FC = () => {
 :::tip
 [`<CanAccess />`](/docs/api-reference/core/components/accessControl/can-access) can be used too to check access control in custom places in your app.
 :::
+ 
+<br/>
+
+Now, let's see how the application will appear when logging in as an `admin` or `editor`.
 
 
 <Tabs
