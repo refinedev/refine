@@ -22,6 +22,7 @@ export const packageMap: Record<string, string> = {
     "@refinedev/hasura": "RefineHasura",
     "@refinedev/nestjsx-crud": "RefineNestjsxCrud",
     "@refinedev/strapi-v4": "RefineStrapiV4",
+    "@refinedev/strapi-graphql": "RefineStrapiGraphql",
     "@refinedev/supabase": "RefineSupabase",
     axios: "AxiosScope",
     "@auth0/auth0-react": "Auth0ReactScope",
