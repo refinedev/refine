@@ -1013,3 +1013,11 @@ You can use the [`useGetLocale`][use-getlocale] hook to call `getLocale` method.
 [use-translate]: /docs/api-reference/core/hooks/translate/useTranslate/
 [use-getlocale]: /docs/api-reference/core/hooks/translate/useGetLocale/
 [use-setlocale]: /docs/api-reference/core/hooks/translate/useSetLocale/
+
+## FAQ
+
+### How can I create translation files for other languages in an automated way?
+
+You can use the following community example project as a starting point for incorporating automated translations. The project adds deepl-translate-github-action which uses DeepL, an AI translation service to translate your locales json.
+
+- [refine-i18n-react](https://github.com/lyqht/refine-i18n-react)
