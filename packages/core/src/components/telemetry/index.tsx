@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 
 import { useTelemetryData } from "@hooks/useTelemetryData";
 
@@ -38,8 +38,12 @@ const transport = (src: string) => {
 
 export const Telemetry: React.FC<{}> = () => {
     const payload = useTelemetryData();
+    const sent = React.useRef(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
+        if (sent.current) {
+            return;
+        }
         const encoded = encode(payload);
 
         if (!encoded) {
@@ -47,6 +51,7 @@ export const Telemetry: React.FC<{}> = () => {
         }
 
         transport(`https://telemetry.refine.dev/telemetry?payload=${encoded}`);
+        sent.current = true;
     }, []);
 
     return null;
