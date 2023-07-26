@@ -20,7 +20,7 @@ Steps we’ll cover:
 
 -   [Introduction](#introduction)
 -   [Prerequisites](#prerequisites)
--   [Setting up a `refine` application](#create-a-new-refine-app)
+-   [Create a new `refine` app](#create-a-new-refine-app)
 -   [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 -   [Material UI DataGrid component](#material-ui-datagrid-component)
 -   [Adding styled-components](#adding-styled-components)
