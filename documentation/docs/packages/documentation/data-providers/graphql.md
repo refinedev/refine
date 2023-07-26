@@ -118,12 +118,12 @@ You can see the fields of the collections we created as below.
 When sending the request, we must specify which fields will come, so we send `fields` in `meta` to hooks that we will fetch data from.
 
 <Tabs
-defaultValue="usage"
+defaultValue="implementation"
 values={[
-{label: 'usage', value: 'usage'},
-{label: 'output', value: 'output'}
+{label: 'Implementation', value: 'implementation'},
+{label: 'Output', value: 'output'}
 ]}>
-<TabItem value="usage">
+<TabItem value="implementation">
 
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts"]);
@@ -284,6 +284,8 @@ render(<App />);
 </TabItem>
 <TabItem value="output">
 
+This will be the result GraphQL query:
+
 ```ts
 
 query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
@@ -305,12 +307,12 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `meta` to determine which fields will come in this request.
 
 <Tabs
-defaultValue="usage"
+defaultValue="implementation"
 values={[
-{label: 'usage', value: 'usage'},
-{label: 'output', value: 'output'}
+{label: 'Implementation', value: 'implementation'},
+{label: 'Output', value: 'output'}
 ]}>
-<TabItem value="usage">
+<TabItem value="implementation">
 
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts/edit/2020"]);
@@ -466,6 +468,8 @@ The create page is largely the same as the edit page, there is no need to pass `
 </TabItem>
 <TabItem value="output">
 
+This will be the result GraphQL query:
+
 ```ts
 mutation ($input: updatePostInput) {
     updatePost (input: $input) {
@@ -484,12 +488,12 @@ mutation ($input: updatePostInput) {
 `<Show>` component includes the [`<RefreshButton>`](/docs/api-reference/antd/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
-defaultValue="usage"
+defaultValue="implementation"
 values={[
-{label: 'usage', value: 'usage'},
-{label: 'output', value: 'output'}
+{label: 'Implementation', value: 'implementation'},
+{label: 'Output', value: 'output'}
 ]}>
-<TabItem value="usage">
+<TabItem value="implementation">
 
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts/show/2020"]);
@@ -589,6 +593,8 @@ render(<App />);
 
 </TabItem>
 <TabItem value="output">
+
+This will be the result GraphQL query:
 
 ```ts
 mutation ($input: updatePostInput) {
