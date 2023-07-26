@@ -85,7 +85,7 @@ npm install -D tailwindcss postcss autoprefixer
 npm install daisyui react-daisyui
 ```
 
-[Daisy UI](https://daisyui.com/) adds attractive component classes to Tailwind, which are customizable and comes with modular React components like `Button`, `Card`, etc., out-of-the-box.
+[Daisy UI](https://daisyui.com/) adds attractive component classes to Tailwind, which are customizable and comes with modular React components like `<Button />`, `<Card />`, etc., out-of-the-box.
 
 Run the following command to initialize Tailwind in your project.
 
@@ -308,11 +308,11 @@ export const LoginPage = () => {
 };
 ```
 
-In the above code, we set a `formState` state variable to define whether to render the mobile input or the OTP input on the screen. If there's any error, set the `error` variable and display it using the `Alert` component.
+In the above code, we set a `formState` state variable to define whether to render the mobile input or the OTP input on the screen. If there's any error, set the `error` variable and display it using the `<Alert />` component.
 
-Import the `<LoginPage/>` component in the `App.tsx` file and create a route for it.
+Import the `<LoginPage />` component in the `App.tsx` file and create a route for it.
 
-To create a route, import the `Route` component from `react-router-dom` and pass the `<LoginPage/>` component as the `children`. We also use `<Authenticated/>`, `<Outlet />` and `<NavigateToResource/>` components
+To create a route, import the `<Route />` component from `react-router-dom` and pass the `<LoginPage />` component as the `children`. We also use `<Authenticated />`, `<Outlet />` and `<NavigateToResource />` components
 to redirect the user to the home page if they are already logged in.
 
 [Refer to the Auth Provider documentation to learn more about authentication. → ](/docs/api-reference/core/providers/auth-provider/)
@@ -431,7 +431,7 @@ The `authProvider` is an object that refine uses to authenticate and authorize t
 
 [You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
-Allright, now coming back to the `LoginPage` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
+Allright, now coming back to the `<LoginPage />` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
 
 We'll use the input field in this guide for brevity.
 
@@ -521,7 +521,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-In the `onLogin()` function of the `<LoginPage/>` component, pass the mobile number and OTP to the `login()` acquired from the `useLogin` hook.
+In the `onLogin()` function of the `<LoginPage />` component, pass the mobile number and OTP to the `login()` acquired from the `useLogin` hook.
 
 ```tsx title="src/pages/Login.tsx"
 // ...
@@ -576,7 +576,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
 
 The SQL snippet will create a countries table and dump the country list and other columns like country code and continent.
 
-In the `Countries` component, get the data from Supabase using the `useList` hook and render the data using the `Table` component.
+In the `<Countries />` component, get the data from Supabase using the `useList` hook and render the data using the `<Table />` component.
 
 ```tsx title="src/pages/Countries.tsx"
 import { useList } from "@refinedev/core";
@@ -652,7 +652,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-Import the `<Countries/>` and the `<Layout/>` component in the `App.tsx` file to finish up the application.
+Import the `<Countries />` and the `<Layout />` component in the `App.tsx` file to finish up the application.
 
 <details>
 <summary>Show `App.tsx` Code</summary>
@@ -770,5 +770,3 @@ Following this article's steps, you should now have a **refine** application wit
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="React Supabase OTP authentication discord banner" />
 </a>
 </div>
-
-
