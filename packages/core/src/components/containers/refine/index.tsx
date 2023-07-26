@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
 
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
@@ -420,13 +419,6 @@ Interested in any of the new backend features of refine? Join now and get early 
                     </AuthBindingsContextProvider>
                 </LegacyAuthContextProvider>
             </NotificationContextProvider>
-            {reactQueryWithDefaults.devtoolConfig === false ? null : (
-                <ReactQueryDevtools
-                    initialIsOpen={false}
-                    position="bottom-right"
-                    {...reactQueryWithDefaults.devtoolConfig}
-                />
-            )}
         </QueryClientProvider>
     );
 };
