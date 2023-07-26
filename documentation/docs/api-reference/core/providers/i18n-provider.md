@@ -1016,7 +1016,7 @@ You can use the [`useGetLocale`][use-getlocale] hook to call `getLocale` method.
 
 ## FAQ
 
-### How can I do automated translation?
+### How can I create translation files for other languages in an automated way?
 
 You can use the following community example project as a starting point for incorporating automated translations. The project adds deepl-translate-github-action which uses DeepL, an AI translation service to translate your locales json.
 
