@@ -2,7 +2,7 @@ import React from "react";
 import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import CheckBox from "@mui/material/Checkbox";
+import Checkbox from "@mui/material/Checkbox";
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps, setFilters } = useDataGrid();
@@ -61,7 +61,7 @@ const EmployeeList: React.FC = () => {
         <List>
             <FormControlLabel
                 label="Filter Employees with Recruiter Role"
-                control={<CheckBox onChange={handleFilter} />}
+                control={<Checkbox onChange={handleFilter} />}
             />
             <DataGrid
                 {...dataGridProps}

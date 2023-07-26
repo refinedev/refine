@@ -648,7 +648,7 @@ import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 //highlight-start
 import FormControlLabel from "@mui/material/FormControlLabel";
-import CheckBox from "@mui/material/Checkbox";
+import Checkbox from "@mui/material/Checkbox";
 //highlight-end
 
 const EmployeeList: React.FC = () => {
@@ -712,7 +712,7 @@ const EmployeeList: React.FC = () => {
             //highlight-start
             <FormControlLabel
                 label="Filter Employees with Recruiter Role"
-                control={<CheckBox onChange={handleFilter} />}
+                control={<Checkbox onChange={handleFilter} />}
             />
             //highlight-end
             <DataGrid
