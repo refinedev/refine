@@ -3,11 +3,11 @@ id: v4-to-v5
 title: Migration Guide
 ---
 
-Ant Design released a new major version as a v5. This document will help you upgrade from antd 4.x version to antd 5.x version.
+Ant Design released a new major version, v5. This document will help you upgrade from antd 4.x version to antd 5.x version.
 
 Ant Design removed `less` and adopted `CSS-in-JS` for better support of dynamic themes. So now, the bottom layer uses [`@ant-design/cssinjs`](https://github.com/ant-design/cssinjs) instead of `less` as a solution.
 
-Some components are removed or renamed, and some APIs are changed.
+Some components were removed or renamed, and some APIs are changed.
 
 Some of the changes are:
 
@@ -16,7 +16,7 @@ Some of the changes are:
 -   `moment.js` is replaced with `day.js`.
 -   `less` is removed from `antd` package.
 
-> For more information, please refer to [Ant Design Migration Guide](https://ant.design/docs/react/migration-v5).
+> For more information, please refer to [Ant Design's own migration guide](https://ant.design/docs/react/migration-v5).
 
 :::info A little more clarification
 
@@ -40,7 +40,7 @@ values={[
 
 <TabItem value="refine-cli">
 
-⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
+⚡️ You can easily update **refine** packages with the **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
 
 ```bash
 npm run refine update

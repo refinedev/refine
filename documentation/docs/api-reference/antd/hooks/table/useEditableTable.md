@@ -6,15 +6,15 @@ source: packages/antd/src/hooks/table/useTable
 
 import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
-`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease. Return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
 :::info
-`useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
+`useEditeableTable` hook is extended from the [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
 :::
 
 ## Basic Usage
 
-Here is an example of how to use `useEditableTable` hook. We will explain in detail the usage of the hook in the following sections:
+Here is an example of how to use `useEditableTable` hook. We will explain the details of this example and hooks usage in the following sections.
 
 <LivePreview/>
 
@@ -232,7 +232,8 @@ With this, when a user clicks on the edit button, `isEditing(lineId)` will turn 
 
 :::tip
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
-Refer to [`<Table.Column>`][table.column] documentation for more information.
+
+For more information, refer to the [`<Table.Column>` documentation &#8594][table.column]
 :::
 
 ### Editing by clicking to row
@@ -298,23 +299,20 @@ export const PostList: React.FC = () => {
 ## Properties
 
 :::tip
-
 All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
+:::
 
 ### `autoSubmitClose`
 
-> Default: `true`
+`autoSubmitClose` makes the table's row close after a succecful submit. It is `true` by default.
 
-When `true`, table's row will be closed after successful submit.
-To do that, `useEditableTable` automatically calls `setId` function with `undefined` after successful submit.
+For this effect, `useEditableTable` automatically calls the `setId` function with `undefined` after successful submit.
 
 ```tsx
 const editableTable = useEditableTable({
     autoSubmitClose: false,
 });
 ```
-
-:::
 
 ## Return Values
 
@@ -326,9 +324,9 @@ All `useForm` and [`useTable`][usetable] return values are available in `useEdit
 
 ### `cancelButtonProps`
 
-Returns the props for needed by the `<EditButton>`.
+`cancelButtonProps` returns the props for needed by the `<EditButton>`.
 
-By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with `undefined`.
+By default, the `onClick` function is overridden by `useEditableTable`. Which will call `useForm's` `setId` function with `undefined` when called.
 
 ```tsx
 cancelButtonProps: () => ButtonProps;
@@ -336,15 +334,15 @@ cancelButtonProps: () => ButtonProps;
 
 ### `editButtonProps`
 
-Takes `id` as a parameter and returns the props needed by the `<EditButton>`.
+`editButtonProps` takes `id` as a parameter and returns the props needed by the `<EditButton>`.
 
-By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with the given `id`.
+By default, the `onClick` function is overridden by `useEditableTable`. Which will call `useForm's` `setId` function with the given `id` when called.
 
 ```tsx
 editButtonProps: (id: BaseKey) => ButtonProps;
 ```
 
-Returns a function that takes an `id` as a parameter and returns the props for the edit button.
+It also returns a function that takes an `id` as a parameter and returns the props for the edit button.
 
 ### `isEditing`
 

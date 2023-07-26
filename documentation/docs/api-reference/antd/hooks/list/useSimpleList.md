@@ -9,15 +9,15 @@ import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 import SearchLivePreview from "./search-live-preview.md";
 
-By using `useSimpleList`, you can get properties that are compatible with Ant Design [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useTable`](/docs/api-reference/core/hooks/useTable/) for the fetch.
+By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/docs/api-reference/core/hooks/useTable/) under the hood for the fetch.
 
-For all the other features, you can refer to the Ant Design [`<List>`](https://ant.design/components/list/) documentation.
+For all the other features, you can refer to the Ant Design's [`<List>`](https://ant.design/components/list/) documentation.
 
 ## Basic Usage
 
 In the following example, we will show how to use `useSimpleList` to list the products.
 
-It returns `listProps` which is compatible with Ant Design `<List>` component. By default, it reads [`resource`](#resource) from the current URL.
+It returns `listProps` which is compatible with the Ant Design's `<List>` component. By default, it reads the [`resource`](#resource) from the current URL.
 
 <BasicUsageLivePreview />
 
@@ -28,6 +28,7 @@ This feature comes out of the box with the `listProps.pagination`. It generates 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 If you want to make a change in the pagination of the `<List>`. You should pass the pagination object of the `listProps` to the pagination property of the `<List>` as below. You can override the values of the pagination object as your need.
+
 
 ```tsx
 // ...
@@ -51,7 +52,7 @@ return (
 ```
 
 :::info
-By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
+By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". You can also disable the pagination by setting it to "off".
 :::
 
 ## Sorting
@@ -72,23 +73,27 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 
 ## Search
 
-We can use [`onSearch`](#onsearch) property and [`searchFormProps`](#searchformprops) return value to make a custom filter form. `onSearch` is a function that is called when the form is submitted. `searchFormProps` is a property that is passed to the [`<Form>`](https://ant.design/components/form) component.
+We can use the [`onSearch`](#onsearch) property and the [`searchFormProps`](#searchformprops) return value to make a custom filter form. `onSearch` is a function that is called when the form is submitted. `searchFormProps` is a property that is passed to the [`<Form>`](https://ant.design/components/form) component.
 
 <SearchLivePreview />
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
 When the `useSimpleList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
 ### `resource`
 
-The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how resources are handled.
+The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`. 
+
+Refer to the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) documentation for an example of how resources are handled.
 
 The `resource` value is inferred from the current route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
@@ -144,9 +149,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `pagination.current`
 
-> Default: `1`
-
-Sets the initial value of the page index.
+Sets the initial value of the page index. It is `1` by default. 
 
 ```tsx
 useSimpleList({
@@ -158,9 +161,7 @@ useSimpleList({
 
 ### `pagination.pageSize`
 
-> Default: `10`
-
-Sets the initial value of the page size.
+Sets the initial value of the page size. It is `10` by default.
 
 ```tsx
 useSimpleList({
@@ -172,9 +173,7 @@ useSimpleList({
 
 ### `pagination.mode`
 
-> Default: `"server"`
-
-It can be `"off"`, `"server"` or `"client"`.
+It can be `"off"`, `"server"` or `"client"`. It is `"server"` by default.
 
 -   **"off":** Pagination is disabled. All records will be fetched.
 -   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
@@ -192,7 +191,7 @@ useSimpleList({
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -211,7 +210,7 @@ useSimpleList({
 
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -230,7 +229,7 @@ useSimpleList({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -250,7 +249,7 @@ useSimpleList({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -268,9 +267,7 @@ useSimpleList({
 
 ### `filters.defaultBehavior`
 
-> Default: `merge`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`. It is `merge` by default.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -288,9 +285,7 @@ useSimpleList({
 
 ### `syncWithLocation`
 
-> Default: `false`
-
-When you use the syncWithLocation feature, the `useSimpleList`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useSimpleList` state is automatically updated to match. This makes it easy to share list states across different routes or pages and allows users to bookmark or share links to specific table views.
+When you use the syncWithLocation feature, the `useSimpleList`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useSimpleList` state is automatically updated to match. This makes it easy to share list states across different routes or pages and allows users to bookmark or share links to specific table views. `syncWithLocation` is set to `false` by default.
 
 Also, you can set this value globally on the [`<Refine>`][refine swl] component.
 
@@ -302,7 +297,7 @@ useSimpleList({
 
 ### `queryOptions`
 
-`useSimpleList` uses [`useTable`](/docs/api-reference/core/hooks/useTable/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useSimpleList` uses the [`useTable`](/docs/api-reference/core/hooks/useTable/) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useSimpleList({
@@ -319,7 +314,7 @@ useSimpleList({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -362,7 +357,7 @@ const myDataProvider = {
 
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. This is useful when you have a different data provider for different resources.
 
 ```tsx
 useSimpleList({
@@ -372,7 +367,9 @@ useSimpleList({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data is fetched successfully, `useSimpleList` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -390,7 +387,9 @@ useSimpleList({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data fetching is failed, `useSimpleList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -408,10 +407,13 @@ useSimpleList({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
-Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+Determines whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/api-reference/core/providers/live-provider/#livemode)
 
 ```tsx
 useSimpleList({
@@ -421,7 +423,9 @@ useSimpleList({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -435,7 +439,9 @@ useSimpleList({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
@@ -443,7 +449,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` function is called with the values of the form. The `onSearch` function should return [`CrudFilters | Promise<CrudFilters>`][crudfilters]. When the `onSearch` function is called, the current page will be set to 1.
 
-It's useful when you want to filter the data with multiple fields by using the `<Form>` component.
+`onSearch` is useful when you want to filter the data with multiple fields by using the `<Form>` component.
 
 ```tsx
 // ...
@@ -491,9 +497,7 @@ return (
 Use `pagination.current` instead.
 :::
 
-> Default: `1`
-
-Sets the initial value of the page index.
+Sets the initial value of the page index. It is set to `1` by default.
 
 ```tsx
 useSimpleList({
@@ -507,9 +511,7 @@ useSimpleList({
 Use `pagination.pageSize` instead.
 :::
 
-> Default: `10`
-
-Sets the initial value of the page size.
+Sets the initial value of the page size. It is set to `10` by default.
 
 ```tsx
 useSimpleList({
@@ -523,9 +525,7 @@ useSimpleList({
 Use `pagination.mode` instead.
 :::
 
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
+Determines whether to use server-side pagination or not. It is set to `true` by default.
 
 ```tsx
 useSimpleList({
@@ -541,7 +541,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -562,7 +562,7 @@ Use `sorters.permanent` instead.
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -583,7 +583,7 @@ Use `filters.initial` instead.
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -605,7 +605,7 @@ Use `filters.permanent` instead.
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -625,9 +625,7 @@ useSimpleList({
 Use `filters.defaultBehavior` instead.
 :::
 
-> Default: `merge`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`. It is set to `merge` by default.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -643,8 +641,8 @@ useSimpleList({
 
 ### `overtimeOptions`
 
-If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+If you want the loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful if you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -668,11 +666,11 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `queryResult`
 
-Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+`queryResult` is the returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
 ### `searchFormProps`
 
-It returns [`<Form>`](https://ant.design/components/form/) instance of Ant Design. When `searchFormProps.onFinish` is called, it will trigger [`onSearch`](#onsearch) function.
+`searchFormProps` returns the [`<Form>`](https://ant.design/components/form/) instance of Ant Design. When `searchFormProps.onFinish` is called, it will trigger [`onSearch`](#onsearch) function.
 You can also use `searchFormProps.form.submit` to submit the form manually.
 
 It's useful when you want to create a filter form for your `<List>`.
@@ -723,23 +721,23 @@ return (
 
 #### `dataSource`
 
-Contains the data to be displayed in the list. Values fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
 #### `loading`
 
-Indicates whether the data is being fetched.
+`loading` indicates whether the data is being fetched or not.
 
 #### `pagination`
 
-Returns pagination configuration values(pageSize, current, position, etc.).
+`pagination` returns the pagination configuration values(pageSize, current, position, etc.).
 
 ### `sorters`
 
-Current [sorters state][crudsorting].
+`sorters` is the current [sorters state][crudsorting].
 
 ### `setSorters`
 
-A function to set current [sorters state][crudsorting].
+`setSorters` is a function to set the current[sorters state][crudsorting].
 
 ```tsx
  (sorters: CrudSorting) => void;
@@ -747,7 +745,7 @@ A function to set current [sorters state][crudsorting].
 
 ### `filters`
 
-Current [filters state][crudfilters].
+`filters` is the current [filters state][crudfilters].
 
 ### `setFilters`
 
@@ -755,11 +753,11 @@ Current [filters state][crudfilters].
 ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) & ((setter: (prevFilters: CrudFilters) => CrudFilters) => void)
 ```
 
-A function to set current [filters state][crudfilters].
+`setFilters` is a function to set the current [filters state][crudfilters].
 
 ### `current`
 
-Current page index state. If pagination is disabled, it will be `undefined`.
+`current` is the current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `setCurrent`
 
@@ -767,11 +765,11 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
-A function to set the current page index state. If pagination is disabled, it will be `undefined`.
+`setCurrent` is a function to set the current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `pageSize`
 
-Current page size state. If pagination is disabled, it will be `undefined`.
+`pageSize` is the current page size state. If pagination is disabled, it will be `undefined`.
 
 ### `setPageSize`
 
@@ -779,11 +777,11 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
-A function to set the current page size state. If pagination is disabled, it will be `undefined`.
+`setPageSize` is a function to set the current page size state. If pagination is disabled, it will be `undefined`.
 
 ### `pageCount`
 
-Total page count state. If pagination is disabled, it will be `undefined`.
+`pageCount` is the total page count state. If pagination is disabled, it will be `undefined`.
 
 ### `createLinkForSyncWithLocation`
 
@@ -791,7 +789,7 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 (params: SyncWithLocationParams) => string;
 ```
 
-A function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+`createLinkForSyncWithLocation` is a function that creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
 ### `overtime`
 
@@ -808,7 +806,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 Use `sorters` instead.
 :::
 
-Current [sorters state][crudsorting].
+`sorter` is the current [sorters state][crudsorting].
 
 ### ~~`setSorter`~~
 
@@ -816,7 +814,7 @@ Current [sorters state][crudsorting].
 Use `setSorters` instead.
 :::
 
-A function to set current [sorters state][crudsorting].
+`setSorter` is a function to set current [sorters state][crudsorting].
 
 ```tsx
  (sorters: CrudSorting) => void;
