@@ -16,11 +16,10 @@ Another significant problem with password-based login is that keeping track of d
 
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
-You can see the example app we'll build in the article from [here](https://github.com/refinedev/refine/tree/master/examples/blog-refine-supabase-auth)
+You can access the example app we'll be building in the article by following this [link.](https://github.com/refinedev/refine/tree/master/examples/blog-refine-supabase-auth)
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
 - [What is Supabase?](#what-is-supabase)
 - [What is refine?](#what-is-refine)
 - [Prerequisites](#prerequisites)
@@ -30,20 +29,18 @@ Steps we'll cover:
 - [Create the Login Page](#create-the-login-page)
 - [Data Provider](#data-provider)
 - [Auth Provider](#auth-provider)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 ## What is Supabase?
 
-Supabase is an open-source Firebase alternative. It provides a real-time database, authentication, and media buckets in one platform. You can use Supabase with any frontend tool, such as React, Angular, or Vue.js.
+[Supabase](https://supabase.com/) is an open-source Firebase alternative. It provides a real-time database, authentication, and media buckets in one platform. You can use Supabase with any frontend tool, such as React, Angular, or Vue.js.
 
 One of the great features of Supabase is its Auth service. Supabase Auth allows you to easily add OTP-based authentication to your app with just a few lines of code.
 
-In this guide, you will implement OTP-based login in Refine using the Supabase library.
+In this guide, you will implement OTP-based login in **refine** using the Supabase library.
 
 ## What is refine?
 
-[refine](https://refine.dev) is a React-based open-source frameworks for building admin panels, dashboards, internal tools and storefront apps rapidly. It helps developers to avoid from repetitive tasks demanded by CRUD operations and provides solutions for like authentication, access control, routing, networking, state management.
+[refine](https://github.com/refinedev/refine) is a React-based open-source frameworks for building admin panels, dashboards, internal tools and storefront apps rapidly. It helps developers to avoid from repetitive tasks demanded by CRUD operations and provides solutions for like authentication, access control, routing, networking, state management.
 
 One of the great features of refine is its out-of-the-box data providers integrations. refine has a built-in data provider for supabase and we'll see how to use it propery.
 
@@ -53,7 +50,7 @@ To follow this guide, you must install the latest Node.js version on your system
 
 ## Getting Started
 
-Start by creating the refine app using the [superplate](https://github.com/pankod/superplate) CLI.
+Start by creating the refine app using the [create refine-app](https://refine.dev/docs/getting-started/quickstart/) CLI tool.
 
 ```
 npm create refine-app@latest refine-supabase-auth
@@ -61,9 +58,9 @@ npm create refine-app@latest refine-supabase-auth
 
 ```bash
 ✔ Downloaded remote source successfully.
-✔ Choose a project template · refine-vite
+✔ Choose a project template · refine(Vite)
 ✔ What would you like to name your project?: · refine-supabase-auth
-✔ Choose your backend service to connect: · data-provider-supabase
+✔ Choose your backend service to connect: · Supabase
 ✔ Do you want to use a UI Framework?: · no
 ✔ Do you want to add example pages?: · no
 ✔ Do you need i18n (Internationalization) support?: · no
@@ -88,7 +85,7 @@ npm install -D tailwindcss postcss autoprefixer
 npm install daisyui react-daisyui
 ```
 
-Daisy UI adds attractive component classes to Tailwind, which are customizable and comes with modular React components like `Button`, `Card`, etc., out-of-the-box.
+[Daisy UI](https://daisyui.com/) adds attractive component classes to Tailwind, which are customizable and comes with modular React components like `Button`, `Card`, etc., out-of-the-box.
 
 Run the following command to initialize Tailwind in your project.
 
@@ -129,7 +126,7 @@ export default {
 };
 ```
 
-Create postcss.config.js:
+Create `postcss.config.js`:
 
 ```tsx title="postcss.config.js"
 /** @type {import('tailwindcss').Config} */
@@ -157,7 +154,7 @@ Run the `npm run dev` command to start the refine development server.
 npm run dev
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="Supabase authentication with Twillo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="React Supabase OTP authentication" />
 
 <br/>
 
@@ -165,7 +162,7 @@ npm run dev
 
 Head over to app.supabase.com and sign in to your Supabase account. Next, create a new project by clicking on the "New Project" button.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="Supabase authentication with Twillo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="React Supabase OTP authentication" />
 
 <br/>
 
@@ -173,10 +170,10 @@ Add the name of the project and the database password, and wait for Supabase to 
 
 Once the project is created, go to Authentication -> Settings to configure the Auth providers.
 
-<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="Supabase authentication with Twillo" />
-
-<br/>
-<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="Supabase authentication with Twillo" />
+<div style={{display:"flex"}}>
+<img style={{alignSelf:"center", width:"50%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="React Supabase OTP authentication" />
+<img style={{alignSelf:"center", width:"50%", marginLeft:"8px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="React Supabase OTP authentication" />
+</div>
 
 <br/>
 
@@ -184,13 +181,13 @@ You will find the Phone Auth option in the Auth providers section; enable it and
 
 <br/>
 
-<div class="img-container" >
+<div class="img-container">
     <div class="window" >
         <div class="control red"></div>
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
@@ -203,8 +200,8 @@ The backend setup is now complete. In the next section, you will start building 
 
 <br/>
 <div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="Supabase authentication with Twillo" />
+<a href="https://s.refine.dev/hackathon2">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" alt="React Supabase OTP authentication" />
 </a>
 </div>
 
@@ -313,12 +310,18 @@ export const LoginPage = () => {
 
 In the above code, we set a `formState` state variable to define whether to render the mobile input or the OTP input on the screen. If there's any error, set the `error` variable and display it using the `Alert` component.
 
-Import the `LoginPage` component in the `App.tsx` file and create a route for it.
+Import the `<LoginPage/>` component in the `App.tsx` file and create a route for it.
 
 To create a route, import the `Route` component from `react-router-dom` and pass the `<LoginPage/>` component as the `children`. We also use `<Authenticated/>`, `<Outlet />` and `<NavigateToResource/>` components
 to redirect the user to the home page if they are already logged in.
 
-[Refer to the Auth Provider documentation to learn more about these components. → ](/docs/api-reference/core/providers/auth-provider/)
+[Refer to the Auth Provider documentation to learn more about authentication. → ](/docs/api-reference/core/providers/auth-provider/)
+
+[Refer to the documentation to learn more routing in **refine** → ](/docs/packages/documentation/routers/react-router-v6/)
+
+<details>
+<summary>Show `App.tsx` Code</summary>
+<p>
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -399,17 +402,20 @@ function App() {
 export default App;
 ```
 
-Also, notice that superplate CLI has already imported the `authProvider` and `dataProvider` for you.
+</p>
+</details>
+
+Also, notice that `create refine-app` has already imported the `authProvider` and `dataProvider` for you.
 
 ## Data Provider
 
-The `dataProvider` acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. It requests and returns the data using predefined methods like `create()`, `getMany()`, etc. Refine consumes these methods via data hooks.
+The `dataProvider` acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. It requests and returns the data using predefined methods like `create()`, `getMany()`, etc. **refine** consumes these methods via data hooks.
 
-For example, when you use the `useList` hook, Refine internally calls the `getList()` method of the data provider.
+For example, when you use the `useList` hook, **refine** internally calls the `getList()` method of the data provider.
 
-In this case, we pass the supabaseClient as the data provider. Supabase is supported out-of-the-box as a data provider by Refine. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
+In this case, we pass the `supabaseClient` as the data provider. Supabase is supported out-of-the-box as a data provider by **refine**. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
 
-[You can learn more about data provider in the Refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+[You can learn more about data provider in the refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
 ---
 
@@ -421,11 +427,11 @@ In this case, we pass the supabaseClient as the data provider. Supabase is suppo
 
 The `authProvider` is an object that refine uses to authenticate and authorize the users. The auth provider must have methods like `login()`, `register()`, etc., to manage authentication in your app. These methods should return a Promise and are accessible via hooks.
 
-``**refine** create app` autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
+`create refine-app` autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
 
 [You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
-Alright, now coming back to the `LoginPage` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
+Allright, now coming back to the `LoginPage` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
 
 We'll use the input field in this guide for brevity.
 
@@ -462,7 +468,7 @@ To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` met
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
@@ -472,7 +478,7 @@ To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` met
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
@@ -538,7 +544,7 @@ If the OTP is invalid, the error message will be displayed as shown below.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
@@ -553,7 +559,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
@@ -563,7 +569,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
@@ -647,6 +653,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 ```
 
 Import the `<Countries/>` and the `<Layout/>` component in the `App.tsx` file to finish up the application.
+
+<details>
+<summary>Show `App.tsx` Code</summary>
+<p>
 
 ```tsx title="App.tsx"
 import { Authenticated, Refine } from "@refinedev/core";
@@ -734,49 +744,31 @@ function App() {
 export default App;
 ```
 
+</p>
+</details>
+
 <div class="img-container" >
     <div class="window" >
         <div class="control red"></div>
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="Supabase authentication with Twillo" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="React Supabase OTP authentication" />
 </div>
 
 <br/>
 
 ## Conclusion
 
-OTP authentication adds an extra layer of security to your application and helps ensure that only authorized users can access it. In this article, we've gone over how to add OTP-based authentication in refine using Supabase Auth. We've also looked at how to set up the phone auth provider in Supabase using Twilio so that users can receive their OTP tokens.
+OTP authentication adds an extra layer of security to your application and helps ensure that only authorized users can access it. In this article, we've gone over how to add OTP-based authentication in **refine** using Supabase Auth. We've also looked at how to set up the phone auth provider in Supabase using Twilio so that users can receive their OTP tokens.
 
-Following this article's steps, you should now have a refine application with OTP-based authentication enabled.
+Following this article's steps, you should now have a **refine** application with OTP-based authentication enabled.
 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="Supabase authentication with Twillo discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="React Supabase OTP authentication discord banner" />
 </a>
 </div>
 
----
 
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="Supabase authentication with Twillo blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
