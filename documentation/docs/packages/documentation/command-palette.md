@@ -4,6 +4,242 @@ title: Command Palette
 sidebar_label: Command Palette
 ---
 
+```tsx live shared
+import {
+    useMany as CoreUseMany,
+    useShow as RefineCoreUseShow,
+    useOne as RefineCoreUseOne,
+} from "@refinedev/core";
+import {
+    List as RefineAntdList,
+    TextField as RefineAntdTextField,
+    TagField as RefineAntdTagField,
+    useTable as RefineAntdUseTable,
+    EditButton as RefineAntdEditButton,
+    ShowButton as RefineAntdShowButton,
+    getDefaultSortOrder as RefineAntdGetDefaultSortOrder,
+    useForm as RefineAntdUseForm,
+    useSelect as RefineAntdUseSelect,
+    Create as RefineAntdCreate,
+    Show as RefineAntdShow,
+} from "@refinedev/antd";
+import {
+    Table as AntdTable,
+    Space as AntdSpace,
+    Form as AntdForm,
+    Select as AntdSelect,
+    Input as AntdInput,
+    Typography as AntdTypography,
+} from "antd";
+
+const PostList: React.FC = () => {
+    const { tableProps, sorter } = RefineAntdUseTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+    const { data, isLoading } = CoreUseMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    return (
+        <RefineAntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column dataIndex="id" title="ID" />
+                <AntdTable.Column dataIndex="title" title="Title" />
+                <AntdTable.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <RefineAntdTextField value="Loading..." />;
+                        }
+
+                        return (
+                            <RefineAntdTextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+                <AntdTable.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value: string) => (
+                        <RefineAntdTagField value={value} />
+                    )}
+                />
+                <AntdTable.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <RefineAntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <RefineAntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </RefineAntdList>
+    );
+};
+
+const PostCreate: React.FC = () => {
+    const { formProps, saveButtonProps } = RefineAntdUseForm<IPost>();
+
+    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>(
+        {
+            resource: "61bc4afa9ee2c",
+            optionLabel: "title",
+            optionValue: "id",
+        },
+    );
+
+    return (
+        <RefineAntdCreate saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Category"
+                    name="categoryId"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdSelect {...categorySelectProps} />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput.TextArea />
+                </AntdForm.Item>
+            </AntdForm>
+        </RefineAntdCreate>
+    );
+};
+
+const PostEdit: React.FC = () => {
+    const { formProps, saveButtonProps, queryResult } =
+        RefineAntdUseForm<IPost>();
+
+    const postData = queryResult?.data?.data;
+    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>(
+        {
+            defaultValue: postData?.categoryId,
+            resource: "61c43adc284ac",
+            optionLabel: "title",
+            optionValue: "id",
+        },
+    );
+
+    return (
+        <RefineAntdCreate saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Category"
+                    name="categoryId"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdSelect {...categorySelectProps} />
+                </AntdForm.Item>
+                <AntdForm.Item
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput.TextArea />
+                </AntdForm.Item>
+            </AntdForm>
+        </RefineAntdCreate>
+    );
+};
+
+const PostShow: React.FC = () => {
+    const { queryResult } = RefineCoreUseShow<IPost>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        RefineCoreUseOne<ICategory>({
+            resource: "categories",
+            id: record?.category?.id || "",
+            queryOptions: {
+                enabled: !!record,
+            },
+        });
+
+    return (
+        <RefineAntdShow isLoading={isLoading}>
+            <AntdTypography.Title level={5}>Id</AntdTypography.Title>
+            <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+
+            <AntdTypography.Title level={5}>
+                AntdTypography.Title
+            </AntdTypography.Title>
+            <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+
+            <AntdTypography.Title level={5}>Category</AntdTypography.Title>
+            <AntdTypography.Text>
+                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+            </AntdTypography.Text>
+
+            <AntdTypography.Title level={5}>Content</AntdTypography.Title>
+            <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+        </RefineAntdShow>
+    );
+};
+```
 
 **refine** supports the command palette feature and use the
 [**kbar**][kbar]. **kbar** is a fully extensible `cmd` + `k`(MacOS) or `ctrl` + `k`(Linux/Windows) interface for your site.
@@ -15,6 +251,7 @@ Install the [@refinedev/kbar][refine-kbar] library.
 ```bash
 npm i @refinedev/kbar
 ```
+
 ## Basic Usage
 
 First of all, you need to import the `@refinedev/kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
@@ -22,72 +259,117 @@ First of all, you need to import the `@refinedev/kbar` library and we will use `
 After that, we should mount the `RefineKbar` component inside the `<Refine>` component.
 
 ```tsx tile="src/App.tsx"
-import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { RefineKbarProvider } from "@refinedev/kbar";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import {
-    CategoriesList,
-    CategoriesCreate,
-    CategoriesEdit,
-} from "pages/categories";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            // highlight-next-line
             <RefineKbarProvider>
                 <Refine
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                icon: <Icons.StarOutlined />,
-                                canDelete: true,
-                            }
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            meta: {
-                                canDelete: true,
-                            }
-                        },
-                    ]}
+                    //...
                 >
+                    {/*...*/}
                     {/* highlight-next-line */}
                     <RefineKbar />
-                    <Routes>
-                        <Route path="categories">
-                            <Route index element={<CategoriesList />} />
-                            <Route path="create" element={<CategoriesCreate />} />
-                            <Route path="edit/:id" element={<CategoriesEdit />} />
-                        </Route>
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-                    </Routes>
                 </Refine>
+            // highlight-next-line
             </RefineKbarProvider>
         </BrowserRouter>
     );
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/command-palette/kbar/refine-kbar-example.gif" alt="Refine Kbar Example" />
+You can click on the live preview area and test how it works with `cmd` + `k`(MacOS) or `ctrl` + `k`(Linux/Windows).
 
-<br/>
+```tsx live previewOnly url=http://localhost:5173 previewHeight=650px
+setInitialRoutes(["/posts"]);
+import { Refine, Authenticated } from "@refinedev/core";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import dataProvider from "@refinedev/simple-rest";
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    notificationProvider,
+    List,
+    EditButton,
+    ShowButton,
+    useTable,
+    AuthPage,
+    ErrorComponent,
+} from "@refinedev/antd";
+import { ConfigProvider, Layout, Table, Space } from "antd";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <RefineKbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
+                            },
+                        ]}
+                        notificationProvider={notificationProvider}
+                        options={{
+                            liveMode: "auto",
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                }
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
+                                </Route>
+                            </Route>
+                        </Routes>
+                        <RefineKbar />
+                    </Refine>
+                </RefineKbarProvider>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+render(<App />);
+```
 
 ## Access Control
 
