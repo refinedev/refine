@@ -1,16 +1,15 @@
-import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
-
-import Checkbox from "@mui/material/Checkbox";
+import { useDataGrid, List } from "@refinedev/mui";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
+import CheckBox from "@mui/material/Checkbox";
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps, setFilters } = useDataGrid();
 
     const columns = React.useMemo<GridColDef[]>(
         () => [
-            { field: "id", headerName: "ID", Width: 30 },
+            { field: "id", headerName: "ID", minWidth: 30 },
             {
                 field: "full_name",
                 headerName: "Full Name",
@@ -39,17 +38,11 @@ const EmployeeList: React.FC = () => {
             {
                 field: "level",
                 headerName: "Level",
-                Width: 30,
+                minWidth: 110,
             },
         ],
         [],
     );
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
 
     const handleFilter = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -68,19 +61,15 @@ const EmployeeList: React.FC = () => {
         <List>
             <FormControlLabel
                 label="Filter Employees with Recruiter Role"
-                control={<Checkbox onChange={handleFilter} />}
+                control={<CheckBox onChange={handleFilter} />}
             />
             <DataGrid
-                {...restDataGridProps}
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
+                {...dataGridProps}
                 columns={columns}
-                components={{ Toolbar: GridToolbar }}
+                slots={{ toolbar: GridToolbar }}
                 autoHeight
             />
         </List>
     );
 };
-
 export default EmployeeList;
