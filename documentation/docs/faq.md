@@ -763,6 +763,24 @@ Here are a couple of examples of reported errors and their corresponding fix:
 
 By following these steps and updating to the latest module versions, you should be able to resolve the "not exported" error.
 
+## How to use React Query DevTools with refine?
+
+Until `@refinedev/core`'s version `4.28.2`, refine had the `@tanstack/react-query-devtools` package available by default. However, this package has been removed from the core package and is no longer available by default. If you want to use the dev tools, you can install the package (`@tanstack/react-query-devtools`) and use it in your app directly.
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const App = () => {
+    return (
+        <Refine>
+            ...
+            <ReactQueryDevtools />
+        </Refine>
+    );
+};
+```
+
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [use-form-antd]: /docs/api-reference/antd/hooks/form/useForm/
