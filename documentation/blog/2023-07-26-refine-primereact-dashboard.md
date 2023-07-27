@@ -6,6 +6,7 @@ authors: salih
 tags: [refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg
 hide_table_of_contents: false
+is_featured: true
 ---
 
 import Tabs from '@theme/Tabs';

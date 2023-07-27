@@ -679,7 +679,13 @@ const App: React.FC = () => (
 
 > For more information, refer to the [QueryClient documentation &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
-#### `devtoolConfig`
+#### ~~`devtoolConfig`~~
+
+:::caution Deprecated
+
+React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with refine?](/docs/faq/#how-to-use-react-query-devtools-with-refine)
+
+:::
 
 Config for customizing the React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
 

@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import {
@@ -18,9 +17,7 @@ type HandleRefineOptionsProps = {
     liveMode?: LiveModeProps["liveMode"];
     disableTelemetry?: boolean;
     reactQueryClientConfig?: QueryClientConfig;
-    reactQueryDevtoolConfig?:
-        | React.ComponentProps<typeof ReactQueryDevtools>
-        | false;
+    reactQueryDevtoolConfig?: any | false;
 };
 
 type HandleRefineOptionsReturnValues = {
@@ -28,7 +25,7 @@ type HandleRefineOptionsReturnValues = {
     disableTelemetryWithDefault: boolean;
     reactQueryWithDefaults: {
         clientConfig: QueryClientConfig | InstanceType<typeof QueryClient>;
-        devtoolConfig: false | React.ComponentProps<typeof ReactQueryDevtools>;
+        devtoolConfig: false | any;
     };
 };
 

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@refinedev/cli": "^2.7.4",
-    "@refinedev/core": "^4.28.2",
+    "@refinedev/core": "^4.30.0",
     "@refinedev/kbar": "^1.1.2",
     "@refinedev/strapi-v4": "^5.2.0",
     "@refinedev/chakra-ui": "^2.22.0",
