@@ -3,6 +3,244 @@ id: multipart-upload
 title: Multipart Upload
 ---
 
+```tsx live shared
+import { Refine } from "@refinedev/core";
+import { AuthPage, RefineThemes, ThemedLayoutV2, ErrorComponent, notificationProvider } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { ConfigProvider } from "antd";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+import {
+    useMany as CoreUseMany,
+    useShow as RefineCoreUseShow,
+    useOne as RefineCoreUseOne,
+    useApiUrl as RefineCoreUseApiUrl,
+} from "@refinedev/core";
+import {
+    List as RefineAntdList,
+    TextField as RefineAntdTextField,
+    useTable as RefineAntdUseTable,
+    EditButton as RefineAntdEditButton,
+    ShowButton as RefineAntdShowButton,
+    useForm as RefineAntdUseForm,
+    useSelect as RefineAntdUseSelect,
+    Create as RefineAntdCreate,
+    Edit as RefineAntdEdit,
+    Show as RefineAntdShow,
+    getValueFromEvent as RefineAntdGetValueFromEvent,
+} from "@refinedev/antd";
+import {
+    Table as AntdTable,
+    Space as AntdSpace,
+    Form as AntdForm,
+    Select as AntdSelect,
+    Input as AntdInput,
+    Typography as AntdTypography,
+    Upload as AntdUpload,
+} from "antd";
+
+const PostList: React.FC = () => {
+    const { tableProps, sorter } = RefineAntdUseTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = CoreUseMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    return (
+        <RefineAntdList>
+            <AntdTable {...tableProps} rowKey="id">
+                <AntdTable.Column
+                    dataIndex="id"
+                    title="ID"
+                />
+                <AntdTable.Column dataIndex="title" title="Title" />
+                <AntdTable.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <RefineAntdTextField value="Loading..." />;
+                        }
+
+                        return (
+                            <RefineAntdTextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+                <AntdTable.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <AntdSpace>
+                            <RefineAntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <RefineAntdShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </AntdSpace>
+                    )}
+                />
+            </AntdTable>
+        </RefineAntdList>
+    );
+};
+
+const PostCreate: React.FC = () => {
+    const { formProps, saveButtonProps } = RefineAntdUseForm<IPost>();
+
+    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>(
+        {
+            resource: "categories",
+        },
+    );
+
+    const apiUrl = RefineCoreUseApiUrl();
+
+    return (
+        <RefineAntdCreate saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item label="Image">
+                    <AntdForm.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={RefineAntdGetValueFromEvent}
+                        noStyle
+                    >
+                        <AntdUpload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </AntdUpload.Dragger>
+                    </AntdForm.Item>
+                </AntdForm.Item>
+            </AntdForm>
+        </RefineAntdCreate>
+    );
+};
+
+const PostEdit: React.FC = () => {
+    const { formProps, saveButtonProps, queryResult } =
+        RefineAntdUseForm<IPost>();
+
+    const postData = queryResult?.data?.data;
+    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category.id,
+    });
+
+    const apiUrl = RefineCoreUseApiUrl();
+
+    return (
+        <RefineAntdEdit saveButtonProps={saveButtonProps}>
+            <AntdForm {...formProps} layout="vertical">
+                <AntdForm.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <AntdInput />
+                </AntdForm.Item>
+                <AntdForm.Item label="Image">
+                    <AntdForm.Item
+                        name="image"
+                        valuePropName="fileList"
+                        getValueFromEvent={RefineAntdGetValueFromEvent}
+                        noStyle
+                    >
+                        <AntdUpload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            listType="picture"
+                            maxCount={5}
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </AntdUpload.Dragger>
+                    </AntdForm.Item>
+                </Form.Item>
+            </AntdForm>
+        </RefineAntdEdit>
+    );
+};
+
+const PostShow: React.FC = () => {
+    const { queryResult } = RefineCoreUseShow<IPost>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        RefineCoreUseOne<ICategory>({
+            resource: "categories",
+            id: record?.category?.id || "",
+            queryOptions: {
+                enabled: !!record,
+            },
+        });
+
+    return (
+        <RefineAntdShow isLoading={isLoading}>
+            <AntdTypography.Title level={5}>Id</AntdTypography.Title>
+            <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+
+            <AntdTypography.Title level={5}>
+                AntdTypography.Title
+            </AntdTypography.Title>
+            <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+
+            <AntdTypography.Title level={5}>Category</AntdTypography.Title>
+            <AntdTypography.Text>
+                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+            </AntdTypography.Text>
+
+            <AntdTypography.Title level={5}>Content</AntdTypography.Title>
+            <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+        </RefineAntdShow>
+    );
+};
+```
+
 We will show you how to multipart upload with **refine**.
 
 Let's start with the `creation form` first.
@@ -101,9 +339,55 @@ We can reach the API URL by using the `useApiUrl` hook.
 
 It will look like this.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/create.png" alt="multipart upload in a create page" />
+```tsx live previewOnly url=http://localhost:5173 previewHeight=600px
+setInitialRoutes(["/posts/create"]);
 
-<br/>
+const App = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            show: "/posts/show/:id",
+                            edit: "/posts/edit/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route index element={<NavigateToResource />} />
+
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 What we need now is an upload end-point that accepts multipart uploads. We write this address in the `action` property of the `Upload` component.
 
@@ -124,9 +408,6 @@ This end-point should respond similarly.
     "url": "https://example.com/uploaded-file.jpeg"
 }
 ```
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/uploaded.png" alt="multipart upload uploaded item" />
-<br/>
 
 :::caution
 We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
@@ -235,8 +516,55 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/edit.png" alt="multipart upload in edit page" />
-<br/>
+```tsx live previewOnly url=http://localhost:5173 previewHeight=600px
+setInitialRoutes(["/posts/edit/111"]);
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            show: "/posts/show/:id",
+                            edit: "/posts/edit/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayoutV2>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            <Route index element={<NavigateToResource />} />
+
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
 
 A request, like the one below, is sent for edit form.
 
