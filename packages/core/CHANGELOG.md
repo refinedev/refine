@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 4.29.0
+
+### Minor Changes
+
+-   [#4742](https://github.com/refinedev/refine/pull/4742) [`61950c8fe18`](https://github.com/refinedev/refine/commit/61950c8fe18ec0dc428aeda1a045c76cd67026a6) Thanks [@aliemir](https://github.com/aliemir)! - Removed `@tanstack/react-query-devtools` package and its usage from refine's core. This means that you will no longer see the dev tools icon in the bottom right corner of your app by default. If you want to use the dev tools, you can install the package (`@tanstack/react-query-devtools`) and use it in your app.
+
+    `options.reactQuery.devtoolConfig` property has been removed from the `<Refine>` components props. This option will no longer be functional and will be removed in the next major release. If you have any configuration for the dev tools, you can pass it to the `ReactQueryDevtools` component directly.
+
+### Patch Changes
+
+-   [#4740](https://github.com/refinedev/refine/pull/4740) [`41018fde9ff`](https://github.com/refinedev/refine/commit/41018fde9ff94407216d82516ad83e1610ce73d0) Thanks [@aliemir](https://github.com/aliemir)! - Use `fetch` for telemetry calls as a fallback for `Image` when it's not available. This fixes an issue where telemetry calls would fail in some environments.
+
 ## 4.28.2
 
 ### Patch Changes
