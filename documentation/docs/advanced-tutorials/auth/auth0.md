@@ -55,7 +55,9 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
-import { Layout, Button } from "antd";
+import { Layout, Button, Space, Typography } from "antd";
+import { ThemedTitleV2 } from "@refinedev/antd";
+// highlight-next-line
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
@@ -65,26 +67,31 @@ export const Login: React.FC = () => {
     return (
         <Layout
             style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <div style={{ marginBottom: "28px" }}>
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <Button
-                        type="primary"
-                        size="large"
-                        block
-                        //highlight-next-line
-                        onClick={() => loginWithRedirect()}
-                    >
-                        Sign in
-                    </Button>
-                </div>
-            </div>
+            <Space direction="vertical" align="center" size="large">
+                <ThemedTitleV2
+                    collapsed={false}
+                    wrapperStyles={{
+                        fontSize: "22px",
+                    }}
+                />
+                <Button
+                    type="primary"
+                    size="middle"
+                    // highlight-next-line
+                    onClick={() => loginWithRedirect()}
+                    style={{ width: "240px" }}
+                >
+                    Sign in
+                </Button>
+                <Typography.Text type="secondary">
+                    Powered by Auth0
+                </Typography.Text>
+            </Space>
         </Layout>
     );
 };
@@ -92,8 +99,7 @@ export const Login: React.FC = () => {
 
 After clicking the `Login` button, you will be directed to the auth0 login screen.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/auth0/auth0-login.gif" alt="auth0-login" />
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/auth0/auth0-login-min.gif" className="border border-gray-200 rounded" alt="auth0-login" />
 
 ## Auth Provider
 
