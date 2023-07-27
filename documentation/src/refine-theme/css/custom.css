@@ -1,4 +1,5 @@
-.docs-wrapper:root {
+.docs-wrapper:root,
+.blog-wrapper:root {
     --primary-font-sans: "Inter";
 }
 
