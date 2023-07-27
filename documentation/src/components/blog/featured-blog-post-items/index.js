@@ -17,6 +17,7 @@ export const FeaturedBlogPostItems = ({ items }) => {
                 "blog-2xl:max-w-screen-blog-md",
                 "w-full",
                 "mx-auto",
+                "not-prose",
             )}
         >
             <h2
@@ -26,6 +27,7 @@ export const FeaturedBlogPostItems = ({ items }) => {
                     "text-xl blog-sm:text-4xl blog-lg:text-5xl",
                     "text-gray-900 dark:text-gray-0",
                     "px-0 blog-sm:px-6",
+                    "font-semibold",
                 )}
             >
                 Featured Posts
