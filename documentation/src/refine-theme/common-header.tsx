@@ -54,7 +54,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
             >
                 <div className={clsx("max-w-[1264px]", "mx-auto")}>
                     <div className="flex items-center">
-                        <div className={clsx("flex items-center", "w-[240px]")}>
+                        <div className={clsx("flex items-center", "w-[220px]")}>
                             <Link to="/">
                                 <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
                             </Link>

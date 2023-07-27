@@ -1,7 +1,6 @@
 import { RefineProps } from "@components/containers";
 import React, { ReactNode } from "react";
 import { QueryClientConfig, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import {
     MutationMode,
@@ -28,7 +27,10 @@ export interface IRefineOptions {
     };
     reactQuery?: {
         clientConfig?: QueryClientConfig | InstanceType<typeof QueryClient>;
-        devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
+        /**
+         * @deprecated `@tanstack/react-query`'s devtools are removed from the core. Please use the `@tanstack/react-query-devtools` package manually in your project. This option will be removed in the next major version and has no effect on the `@tanstack/react-query-devtools` package usage.
+         */
+        devtoolConfig?: any | false;
     };
     overtime?: UseLoadingOvertimeRefineContext;
     textTransformers?: TextTransformers;
