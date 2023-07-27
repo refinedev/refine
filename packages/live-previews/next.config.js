@@ -8,6 +8,11 @@ const nextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
+    webpack: (config) => {
+        config.resolve.fallback = { fs: false };
+
+        return config;
+    },
 };
 
 module.exports = nextConfig;

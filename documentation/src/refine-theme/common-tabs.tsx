@@ -52,8 +52,8 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                 "m-0 mb-0 mt-0",
                 "px-4",
                 "flex items-end gap-4",
-                "border-b dark:border-b-gray-700 border-b-gray-200",
-                "dark:bg-gray-800 bg-gray-50",
+                "border-b border-b-gray-200 dark:border-b-gray-700",
+                "bg-gray-50 dark:bg-gray-800",
                 "rounded-tl-lg rounded-tr-lg",
             )}
         >
@@ -70,16 +70,16 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                     className={clsx(
                         "!my-0",
                         "m-0 mt-0",
-                        "py-3 px-2",
+                        "px-2 py-3",
                         "flex items-center justify-center",
                         "border-b border-b-transparent",
                         "-mb-px",
-                        "text-xs md:text-base 2xl:text-base 2xl:text-leading-7",
+                        "2xl:text-leading-7 text-xs md:text-base 2xl:text-base",
                         "min-w-[60px]",
                         "cursor-pointer",
                         "transition-all duration-200 ease-in-out",
                         selectedValue !== value &&
-                            "dark:text-gray-500 text-gray-500",
+                            "text-gray-500 dark:text-gray-500",
                         selectedValue === value && "border-b-refine-blue",
                         selectedValue === value &&
                             "dark:text-gray-0 text-gray-900",
@@ -134,7 +134,7 @@ function TabsComponent(props) {
                 "tabs-container",
                 "rounded-lg",
                 "border",
-                "dark:border-gray-700 border-gray-200",
+                "border-gray-200 dark:border-gray-700",
                 "mb-6",
             )}
         >

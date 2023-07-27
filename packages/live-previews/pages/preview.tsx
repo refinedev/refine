@@ -104,6 +104,10 @@ const Preview: NextPage = () => {
                         ? (await import("../src/scope/strapi-v4")).default
                         : {},
                 async () =>
+                    usedPackages.has("strapi-graphql")
+                        ? (await import("../src/scope/strapi-graphql")).default
+                        : {},
+                async () =>
                     usedPackages.has("supabase")
                         ? (await import("../src/scope/supabase")).default
                         : {},
@@ -118,6 +122,10 @@ const Preview: NextPage = () => {
                 async () =>
                     usedPackages.has("keycloak")
                         ? (await import("../src/scope/keycloak")).default
+                        : {},
+                async () =>
+                    usedPackages.has("casbin")
+                        ? (await import("../src/scope/casbin")).default
                         : {},
             ];
 
