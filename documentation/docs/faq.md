@@ -769,12 +769,14 @@ Until `@refinedev/core`'s version `4.28.2`, refine had the `@tanstack/react-quer
 
 ```tsx
 import { Refine } from "@refinedev/core";
+// highlight-next-line
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const App = () => {
     return (
         <Refine>
             ...
+            // highlight-next-line
             <ReactQueryDevtools />
         </Refine>
     );
