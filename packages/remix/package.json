@@ -4,6 +4,7 @@
   "version": "2.1.0",
   "license": "MIT",
   "private": false,
+  "sideEffects": false,
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "module": "dist/esm/index.js",

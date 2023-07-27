@@ -4,10 +4,6 @@ import { Typography } from "antd";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
-dayjs.extend(LocalizedFormat);
-
-const defaultLocale = dayjs.locale();
-
 import { DateFieldProps } from "../types";
 
 /**
@@ -21,6 +17,10 @@ export const DateField: React.FC<DateFieldProps> = ({
     format: dateFormat = "L",
     ...rest
 }) => {
+    dayjs.extend(LocalizedFormat);
+
+    const defaultLocale = dayjs.locale();
+
     const { Text } = Typography;
 
     return (
