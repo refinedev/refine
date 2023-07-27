@@ -373,7 +373,8 @@ render(<App />);
 
 ## Access Control
 
-`refine-kbar` respects the access control settings of your App. To learn more about access control, please refer to the [Access Control Provider][access-contol] section of the documentation. Also, we can use the `canDelete` in the `resources` to check the delete accessibility of the command palette.<br />
+`refine-kbar` respects the access control settings of your App. To learn more about access control, please refer to the [Access Control Provider][access-contol] section of the documentation. Also, we can use the `canDelete` in the `resources` to check the delete accessibility of the command palette.  
+
 For more information check out the source code of [`refine-kbar`][refine-kbar] package
 
 ## Actions
@@ -383,7 +384,9 @@ For more information check out the source code of [`refine-kbar`][refine-kbar] p
 ## Custom Actions
 
 If we want to add custom actions to the command palette, we can use the `createAction` and `useRegisterActions` of the `refine-kbar`.
-check the [`refine-finefoods`][refine-finefoods] example. Also you can find more information about actions in the [`kbar`][kbar-actions] package.
+check the [`refine-finefoods`][refine-finefoods] example.  
+
+Also you can find more information about actions in the [`kbar`][kbar-actions] package.
 
 You can use the `createAction` to create a new action and use the `useRegisterActions` to register the action to the command palette.
 
@@ -403,7 +406,7 @@ useRegisterActions(customAction);
 ```
 
 :::tip
-`refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar). You can use all [`kbar`](https://github.com/timc1/kbar) features.
+Since `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar), you use all of its features
 :::
 
 ## Example
