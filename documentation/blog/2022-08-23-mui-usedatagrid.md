@@ -18,8 +18,6 @@ Material UI is a React UI component library with a rich set of components and to
 
 Steps we’ll cover:
 
--   [Introduction](#introduction)
--   [Prerequisites](#prerequisites)
 -   [Create a new `refine` app](#create-a-new-refine-app)
 -   [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 -   [Material UI DataGrid component](#material-ui-datagrid-component)
@@ -33,7 +31,6 @@ Steps we’ll cover:
         -   [Controlled sorting](#controlled-sorting)
     -   [Filtering](#filtering)
         -   [Controlled filtering](#controlled-filtering)
--   [Conclusion](#conclusion)
 -   [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## Prerequisites
