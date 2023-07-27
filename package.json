@@ -31,7 +31,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint -c ./.eslintrc --quiet --fix --cache packages examples"
+      "eslint -c ./.eslintrc --quiet --fix --cache"
     ]
   },
   "devDependencies": {
