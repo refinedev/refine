@@ -140,7 +140,7 @@ export const CodeBlockString = ({
                                         classNames={clsx(
                                             lineClassNames[i],
                                             "px-4",
-                                            "text-xs sm:text-sm 2xl:text-base",
+                                            "text-xs sm:text-sm 2xl:text-sm",
                                         )}
                                         showLineNumbers={showLineNumbers}
                                     />
