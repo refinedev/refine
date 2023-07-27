@@ -1,4 +1,4 @@
-# strapi-mantine-project-demo
+# blog-refine-mantine-strapi
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
@@ -7,7 +7,7 @@
 </div>
 <br/>
 
-This [refine](https://github.com/pankod/refine) project was generated with [superplate](https://github.com/pankod/refine).
+This [refine](https://github.com/refinedev/refine) project was generated with [superplate](https://github.com/pankod/superplate).
 
 ## Getting Started
 

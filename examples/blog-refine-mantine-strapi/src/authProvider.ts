@@ -15,9 +15,9 @@ export const authProvider: AuthBindings = {
             localStorage.setItem(TOKEN_KEY, data.jwt);
 
             // set header axios instance
-            axiosInstance.defaults.headers.common = {
-                Authorization: `Bearer ${data.jwt}`,
-            };
+            axiosInstance.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${data.jwt}`;
 
             return {
                 success: true,
@@ -46,9 +46,9 @@ export const authProvider: AuthBindings = {
     check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            axiosInstance.defaults.headers.common = {
-                Authorization: `Bearer ${token}`,
-            };
+            axiosInstance.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${token}`;
             return {
                 authenticated: true,
             };
@@ -56,11 +56,11 @@ export const authProvider: AuthBindings = {
 
         return {
             authenticated: false,
-            logout: true,
             error: {
                 message: "Check failed",
                 name: "Token not found",
             },
+            logout: true,
             redirectTo: "/login",
         };
     },
@@ -76,7 +76,7 @@ export const authProvider: AuthBindings = {
             const { id, username, email } = data;
             return {
                 id,
-                username,
+                name: username,
                 email,
             };
         }
