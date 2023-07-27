@@ -431,11 +431,11 @@ We defined the `resources` property of the `<Refine />` component. It just defin
 
 You can refer to the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component documentation for more information on the available props.
 
+We'll use [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6/) for routing in our application. refine provides router bindings and utilities for React Router v6. It is built on top of the `react-router-dom` and it provides easy integration between refine and `react-router-dom`.
+
 We used to `<Route />` components to define the routes for rendering the CRUD pages and authentication pages. For protected routes, we used the [`<Authenticated />`](https://refine.dev/docs/api-reference/core/components/authenticated/) component. The `<Authenticated />` component will redirect the user to the login page if they are not logged in.
 
 Finally, we used the [`<ThemedLayoutV2 />`](https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/) component to wrap protected routes.
-
-<br />
 
 After modifying your code, let's update the `src/constants.ts` to use the fake Strapi API. You can copy and paste the code below into it.
 
@@ -450,11 +450,11 @@ export const TOKEN_KEY = "strapi-jwt-token";
 
 ---
 
-### Setting AuthProvider
+### Understanding the `authProvider` concept
 
 Similarly, `npm create refine-app` bootstraps a refine application with default `authProvider`. You should have the `src/authProvider.ts` file if you created the application using `npm create refine-app` while following the steps above.
 
-Of particular interest is the `login` method of the `authProvider`. We will use email and password to log into our application. Be sure the `login`` method has the code below.
+Of particular interest is the `login` method of the `authProvider`. We will use email and password to log into our application. Be sure the `login` method has the code below.
 
 ```ts title="src/authProvider.ts"
 import type { AuthBindings } from "@refinedev/core";
@@ -491,7 +491,7 @@ After these changes, you should be able to log into your application. Open the b
 
 For this demonstration, use the credentials below to log into an existing account. It is a fake Strapi instance set up for development. Be sure to use it responsibly.
 
-> Email: demo@refine.dev
+> Email: demo@refine.dev  
 > Password: demodemo
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/login-page.jpeg"  alt="react admin panel" className="border border-gray-200 rounded" />
@@ -878,18 +878,13 @@ You can use two methods to delete records in a collection. These methods are:
 
 #### How to add delete action button on each table row
 
-Add the following import statement at the top of the `list.tsx` file in the `src/pages/posts` directory.
-
-```tsx title="src/pages/posts/list.tsx"
-import { DeleteButton } from "@refinedev/mantine";
-```
-
 We will add the `<DeleteButton />` we imported above to every row in our table under the `Actions` column. The columns array we declared while creating the table in one of the sections above contains an object with the id `actions`. That object defines our `Actions` column. We will add the `<DeleteButton />` to it.
 
 The cell method of the `Actions` column object returns the `<Group />` Mantine UI component. Add the `<DeleteButton />` so that it is a child of the `<Group />` component like so:
 
 ```tsx title="src/pages/posts/list.tsx"
 //...
+//highlight-next-line
 import { EditButton, DeleteButton } from "@refinedev/mantine";
 import { Group } from "@mantine/core";
 
@@ -911,12 +906,14 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
                             recordItemId={getValue() as number}
                             variant="subtle"
                         />
+                        //highlight-start
                         <DeleteButton
                             hideText
                             size="xs"
                             recordItemId={getValue() as number}
                             variant="subtle"
                         />
+                        //highlight-end
                     </Group>
                 );
             },
@@ -1040,13 +1037,13 @@ function App() {
 export default App;
 ```
 
-## Using the refine Mantine inferencer
+## Using the refine Mantine Inferencer
 
 In the previous sections, we performed CRUD operations by building components from scratch. The refine ecosystem has the [Inferencer](https://refine.dev/docs/api-reference/mantine/components/inferencer/) package for generating CRUD pages based on the responses from your API.
 
 The sole purpose of the Inferencer is to set you off by generating CRUD pages. You can then customize the components to suit your needs. Depending on your design system or component library, import Inferencer from the `@refinedev/inferencer` package.
 
-Since we are using Mantine as our components library, import and add `<MantineInferencer />` to the `resources` prop of the `Refine` component like so:
+Since we are using Mantine as our components library, import and add `<MantineInferencer />` to the `resources` prop of the `<Refine />` component like so:
 
 <details>
 
@@ -1054,6 +1051,7 @@ Since we are using Mantine as our components library, import and add `<MantineIn
 
 ```tsx title="src/App.tsx"
 // ...
+//highlight-start
 import {
     MantineListInferencer,
     MantineCreateInferencer,
@@ -1061,7 +1059,9 @@ import {
     MantineShowInferencer,
     InferField,
 } from "@refinedev/inferencer/mantine";
+//highlight-end
 
+//highlight-start
 const fieldTransformer = (field: InferField) => {
     if (["locale", "updatedAt", "publishedAt"].includes(field.key)) {
         return false;
@@ -1069,6 +1069,7 @@ const fieldTransformer = (field: InferField) => {
 
     return field;
 };
+//highlight-end
 
 function App() {
     //...
@@ -1087,6 +1088,7 @@ function App() {
                         canDelete: true,
                     },
                 },
+                //highlight-start
                 {
                     name: "categories",
                     list: "/categories",
@@ -1097,6 +1099,7 @@ function App() {
                         canDelete: true,
                     },
                 },
+                //highlight-end
             ]}
         >
             <Routes>
@@ -1106,7 +1109,7 @@ function App() {
                     <Route path="create" element={<PostCreate />} />
                     <Route path="edit/:id" element={<PostEdit />} />
                 </Route>
-
+                //highlight-start
                 <Route path="/categories">
                     <Route
                         index
@@ -1141,6 +1144,7 @@ function App() {
                         }
                     />
                 </Route>
+                //highlight-end
                 {/*...*/}
             </Routes>
             {/*...*/}
