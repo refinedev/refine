@@ -16,7 +16,6 @@ Before the existence of **refine**, building CRUD applications and data-intensiv
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
 - [Why Use refine?](#why-use-refine)
 - [What is Airtable?](#what-is-airtable)
   - [Setup Airtable](#setup-airtable)
@@ -30,8 +29,6 @@ Steps we'll cover:
   - [Editing post record](#editing-post-record)
   - [Deleting post record](#deleting-post-record)
   - [Adding Pagination](#adding-pagination)
-- [Conclusion](#conclusion)
-- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## Why Use refine?
 
