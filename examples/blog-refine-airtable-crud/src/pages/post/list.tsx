@@ -106,7 +106,8 @@ export const PostList: React.FC = () => {
         setPageSize,
     } = useTable<IPost>({ columns });
 
-    const categoryIds = tableData?.data?.map((item) => item.category[0]) ?? [];
+    const categoryIds =
+        tableData?.data?.map((item) => item.category?.[0]) ?? [];
 
     const { data: categoriesData } = useMany<ICategory>({
         resource: "category",
