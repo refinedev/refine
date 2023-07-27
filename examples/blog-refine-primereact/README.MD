@@ -38,6 +38,9 @@ PrimeReact is a collection of rich UI components. It offers a wide range of comp
 
 On the other hand, refine is a React-based framework for building internal tooling such as admin panel, dashboards, and CRUD apps. It comes with ready-made features like data handling, authentication, access control, and more. Most importantly, it's highly customizable and extensible. In this example, you'll have the opportunity to understand how refine works.
 
+
+Refer to complete tutorial of this app[here](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/)
+
 ## Quick Start
 
 Run the following command to download the project:
@@ -62,6 +65,8 @@ Your application will be accessible at http://localhost:5173
 
 ### Resources
 
-Refer to blog post tutorial of this app [here](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/)
+
+
+Refer to [PrimeReact docs](https://primereact.org/) for more information.
 
 Refer to complete CRUD app [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about refine.
