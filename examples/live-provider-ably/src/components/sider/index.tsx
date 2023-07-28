@@ -1,29 +1,39 @@
 import React, { useState } from "react";
 import {
-    useSubscription,
-    CanAccess,
     ITreeMenu,
+    CanAccess,
+    useIsExistAuthentication,
+    useTranslate,
+    useLogout,
     useMenu,
+    useWarnAboutChange,
+    useSubscription,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
+import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
 import {
+    LogoutOutlined,
     UnorderedListOutlined,
-    LeftOutlined,
     RightOutlined,
+    LeftOutlined,
 } from "@ant-design/icons";
-import { Layout as AntdLayout, Menu, Grid, Badge, theme, Button } from "antd";
+
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-import { ThemedTitle } from "@refinedev/antd";
 
 const { useToken } = theme;
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: typeof Sider = ({ render }) => {
     const { token } = useToken();
-    const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const isExistAuthentication = useIsExistAuthentication();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
+    const { mutate: mutateLogout } = useLogout();
+    const translate = useTranslate();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const { SubMenu } = Menu;
+    const [subscriptionCount, setSubscriptionCount] = useState(0);
 
-    const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
@@ -35,15 +45,14 @@ export const CustomSider: React.FC = () => {
         onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
     });
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
             const { name, children, meta, key, list } = item;
 
             const icon = meta?.icon;
             const label = meta?.label ?? name;
             const parent = meta?.parent;
-            const route = key;
-            const to =
+            const route =
                 typeof list === "string"
                     ? list
                     : typeof list !== "function"
@@ -53,7 +62,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={route}
+                        key={key}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -65,25 +74,29 @@ export const CustomSider: React.FC = () => {
             const isRoute = !(parent !== undefined && children.length === 0);
             return (
                 <CanAccess
-                    key={route}
+                    key={key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{ resource: item }}
                 >
                     <Menu.Item
                         key={route}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                         style={{
                             textTransform: "capitalize",
                         }}
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={to || "/"}>{label}</Link>
-                        {label === "Posts" && (
-                            <Badge
-                                size="small"
-                                count={subscriptionCount}
-                                offset={[2, -15]}
-                            />
+                        {route ? <Link to={route || "/"}>{label}</Link> : label}
+                        {route && (
+                            <>
+                                {label.toLowerCase() === "posts" && (
+                                    <Badge
+                                        size="small"
+                                        count={subscriptionCount}
+                                        offset={[2, -15]}
+                                    />
+                                )}
+                            </>
                         )}
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
@@ -92,6 +105,53 @@ export const CustomSider: React.FC = () => {
                 </CanAccess>
             );
         });
+    };
+
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
+    const logout = isExistAuthentication && (
+        <Menu.Item
+            key="logout"
+            onClick={handleLogout}
+            icon={<LogoutOutlined />}
+        >
+            {translate("buttons.logout", "Logout")}
+        </Menu.Item>
+    );
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard: null,
+                items,
+                logout,
+                collapsed,
+            });
+        }
+        return (
+            <>
+                {items}
+                {logout}
+            </>
+        );
     };
 
     const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
@@ -148,10 +208,10 @@ export const CustomSider: React.FC = () => {
                     fontSize: "14px",
                 }}
             >
-                <ThemedTitle collapsed={collapsed} />
+                <ThemedTitleV2 collapsed={collapsed} />
             </div>
-
             <Menu
+                defaultOpenKeys={defaultOpenKeys}
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 style={{
@@ -168,7 +228,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                {renderTreeView(menuItems, selectedKey)}
+                {renderSider()}
             </Menu>
         </AntdLayout.Sider>
     );

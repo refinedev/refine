@@ -9,7 +9,7 @@ import {
     useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
-import { Sider, ThemedTitle } from "@refinedev/antd";
+import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
 import {
     LogoutOutlined,
@@ -188,7 +188,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
                     fontSize: "14px",
                 }}
             >
-                <ThemedTitle collapsed={collapsed} />
+                <ThemedTitleV2 collapsed={collapsed} />
             </div>
             <Menu
                 defaultOpenKeys={defaultOpenKeys}

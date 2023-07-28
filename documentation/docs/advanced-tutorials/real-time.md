@@ -4,7 +4,7 @@ title: Live / Realtime
 sidebar_label: Live / Realtime
 ---
 
-**refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine>`](/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine />`](/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md)
 
@@ -225,32 +225,65 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 <details>
 <summary>Custom Sider Menu</summary>
 
+<p>
+
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { TreeMenuItem, CanAccess, useMenu } from "@refinedev/core";
-import { Layout, Menu, Grid } from "antd";
-import { UnorderedListOutlined } from "@ant-design/icons";
-
+import {
+    ITreeMenu,
+    CanAccess,
+    useIsExistAuthentication,
+    useTranslate,
+    useLogout,
+    useMenu,
+    useWarnAboutChange,
+} from "@refinedev/core";
 import { Link } from "react-router-dom";
-
+import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
+import {
+    LogoutOutlined,
+    UnorderedListOutlined,
+    RightOutlined,
+    LeftOutlined,
+} from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-export const CustomSider: React.FC = ({ Title }) => {
+const { useToken } = theme;
+
+export const CustomSider: typeof Sider = ({ render }) => {
+    const { token } = useToken();
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { menuItems, selectedKey } = useMenu();
+    const isExistAuthentication = useIsExistAuthentication();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
+    const { mutate: mutateLogout } = useLogout();
+    const translate = useTranslate();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { SubMenu } = Menu;
+
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
-        return tree.map((item: TreeMenuItem) => {
-            const { icon, label, route, key, name, children, meta } = item;
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { name, children, meta, key, list } = item;
+
+            const icon = meta?.icon;
+            const label = meta?.label ?? name;
+            const parent = meta?.parent;
+            const route =
+                typeof list === "string"
+                    ? list
+                    : typeof list !== "function"
+                    ? list?.path
+                    : key;
 
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={key}
+                        key={route}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -258,184 +291,406 @@ export const CustomSider: React.FC = ({ Title }) => {
                     </SubMenu>
                 );
             }
-            const isSelected = key === selectedKey;
-            const isRoute = !(
-                meta?.parent !== undefined && children.length === 0
-            );
-
+            const isSelected = route === selectedKey;
+            const isRoute = !(parent !== undefined && children.length === 0);
             return (
                 <CanAccess
-                    key={key}
+                    key={route}
                     resource={name.toLowerCase()}
                     action="list"
+                    params={{ resource: item }}
                 >
                     <Menu.Item
-                        key={key}
+                        key={route}
                         style={{
-                            fontWeight: isSelected ? "bold" : "normal",
+                            textTransform: "capitalize",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
-                        {!collapsed && isSelected && <UnorderedListOutlined />}
+                        {route ? <Link to={route || "/"}>{label}</Link> : label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
                     </Menu.Item>
                 </CanAccess>
             );
         });
     };
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
+    const logout = isExistAuthentication && (
+        <Menu.Item
+            key="logout"
+            onClick={handleLogout}
+            icon={<LogoutOutlined />}
+        >
+            {translate("buttons.logout", "Logout")}
+        </Menu.Item>
+    );
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard: null,
+                items,
+                logout,
+                collapsed,
+            });
+        }
+        return (
+            <>
+                {items}
+                {logout}
+            </>
+        );
+    };
+
+    const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
+
     return (
-        <Layout.Sider
+        <AntdLayout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
             breakpoint="lg"
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+            style={{
+                ...siderStyle,
+                backgroundColor: token.colorBgContainer,
+                borderRight: `1px solid ${token.colorBgElevated}`,
+            }}
+            trigger={
+                !isMobile && (
+                    <Button
+                        type="text"
+                        style={{
+                            borderRadius: 0,
+                            height: "100%",
+                            width: "100%",
+                            backgroundColor: token.colorBgElevated,
+                        }}
+                    >
+                        {collapsed ? (
+                            <RightOutlined
+                                style={{
+                                    color: token.colorPrimary,
+                                }}
+                            />
+                        ) : (
+                            <LeftOutlined
+                                style={{
+                                    color: token.colorPrimary,
+                                }}
+                            />
+                        )}
+                    </Button>
+                )
+            }
         >
-            <Title collapsed={collapsed} />
-            <Menu
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                onClick={({ key }) => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
+            <div
+                style={{
+                    width: collapsed ? "80px" : "200px",
+                    padding: collapsed ? "0" : "0 16px",
+                    display: "flex",
+                    justifyContent: collapsed ? "center" : "flex-start",
+                    alignItems: "center",
+                    height: "64px",
+                    backgroundColor: token.colorBgElevated,
+                    fontSize: "14px",
                 }}
             >
-                {renderTreeView(menuItems, selectedKey)}
-            </Menu>
-        </Layout.Sider>
-    );
-};
-```
-
-</details>
-
-Now, let's add a badge for the number of create and update events for **_posts_** menu items.
-
-```tsx
-import React, { useState } from "react";
-import {
-    TreeMenuItem,
-    CanAccess,
-    useMenu,
-    //highlight-start
-    useSubscription,
-    //highlight-end
-} from "@refinedev/core";
-import {
-    Layout,
-    Menu,
-    Grid,
-    //highlight-start
-    Badge,
-    //highlight-end
-} from "antd";
-import { UnorderedListOutlined } from "@ant-design/icons";
-
-import { Link } from "react-router-dom";
-
-import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-
-export const CustomSider: React.FC = ({ Title }) => {
-    const [subscriptionCount, setSubscriptionCount] = useState(0);
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { menuItems, selectedKey } = useMenu();
-    const breakpoint = Grid.useBreakpoint();
-
-    const isMobile =
-        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
-
-    //highlight-start
-    useSubscription({
-        channel: "resources/posts",
-        type: ["created", "updated"],
-        onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
-    });
-    //highlight-end
-
-    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
-        return tree.map((item: TreeMenuItem) => {
-            const { icon, label, route, key, name, children, meta } = item;
-
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={key}
-                        icon={icon ?? <UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
-            }
-            const isSelected = key === selectedKey;
-            const isRoute = !(
-                meta?.parent !== undefined && children.length === 0
-            );
-            return (
-                <CanAccess
-                    key={key}
-                    resource={name.toLowerCase()}
-                    action="list"
-                >
-                    <Menu.Item
-                        key={key}
-                        style={{
-                            fontWeight: isSelected ? "bold" : "normal",
-                        }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-                    >
-                        //highlight-start
-                        <div>
-                            <Link to={route}>{label}</Link>
-                            {label === "Posts" && (
-                                <Badge
-                                    size="small"
-                                    count={subscriptionCount}
-                                    offset={[2, -15]}
-                                />
-                            )}
-                        </div>
-                        //highlight-end
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
-    };
-
-    return (
-        <Layout.Sider
-            collapsible
-            collapsedWidth={isMobile ? 0 : 80}
-            collapsed={collapsed}
-            breakpoint="lg"
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-        >
-            <Title collapsed={collapsed} />
+                <ThemedTitleV2 collapsed={collapsed} />
+            </div>
             <Menu
+                defaultOpenKeys={defaultOpenKeys}
                 selectedKeys={[selectedKey]}
                 mode="inline"
+                style={{
+                    marginTop: "8px",
+                    border: "none",
+                }}
                 onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
-
-                    //highlight-start
-                    if (key === "/posts") {
-                        setSubscriptionCount(0);
-                    }
-                    //highlight-end
                 }}
             >
-                {renderTreeView(menuItems, selectedKey)}
+                {renderSider()}
             </Menu>
-        </Layout.Sider>
+        </AntdLayout.Sider>
     );
 };
 ```
+
+</p>
+</details>
+
+Now, let's add a badge for the number of create and update events for **_posts_** menu items.
+
+<details>
+<summary>Show Custom Sider Menu with subscription bagde code</summary>
+
+<p>
+
+```tsx
+import React, { useState } from "react";
+import {
+    ITreeMenu,
+    CanAccess,
+    useIsExistAuthentication,
+    useTranslate,
+    useLogout,
+    useMenu,
+    useWarnAboutChange,
+    useSubscription,
+} from "@refinedev/core";
+import { Link } from "react-router-dom";
+import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
+import {
+    LogoutOutlined,
+    UnorderedListOutlined,
+    RightOutlined,
+    LeftOutlined,
+} from "@ant-design/icons";
+
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+
+const { useToken } = theme;
+
+export const CustomSider: typeof Sider = ({ render }) => {
+    const { token } = useToken();
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const isExistAuthentication = useIsExistAuthentication();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
+    const { mutate: mutateLogout } = useLogout();
+    const translate = useTranslate();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { SubMenu } = Menu;
+    const [subscriptionCount, setSubscriptionCount] = useState(0);
+
+    const breakpoint = Grid.useBreakpoint();
+
+    const isMobile =
+        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
+
+    useSubscription({
+        channel: "resources/posts",
+        types: ["created", "updated"],
+        onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
+    });
+
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { name, children, meta, key, list } = item;
+
+            const icon = meta?.icon;
+            const label = meta?.label ?? name;
+            const parent = meta?.parent;
+            const route =
+                typeof list === "string"
+                    ? list
+                    : typeof list !== "function"
+                    ? list?.path
+                    : key;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={key}
+                        icon={icon ?? <UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(parent !== undefined && children.length === 0);
+            return (
+                <CanAccess
+                    key={key}
+                    resource={name.toLowerCase()}
+                    action="list"
+                    params={{ resource: item }}
+                >
+                    <Menu.Item
+                        key={route}
+                        style={{
+                            textTransform: "capitalize",
+                        }}
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                    >
+                        {route ? <Link to={route || "/"}>{label}</Link> : label}
+                        {route && (
+                            <>
+                                {label.toLowerCase() === "posts" && (
+                                    <Badge
+                                        size="small"
+                                        count={subscriptionCount}
+                                        offset={[2, -15]}
+                                    />
+                                )}
+                            </>
+                        )}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
+
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
+    const logout = isExistAuthentication && (
+        <Menu.Item
+            key="logout"
+            onClick={handleLogout}
+            icon={<LogoutOutlined />}
+        >
+            {translate("buttons.logout", "Logout")}
+        </Menu.Item>
+    );
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard: null,
+                items,
+                logout,
+                collapsed,
+            });
+        }
+        return (
+            <>
+                {items}
+                {logout}
+            </>
+        );
+    };
+
+    const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
+
+    return (
+        <AntdLayout.Sider
+            collapsible
+            collapsedWidth={isMobile ? 0 : 80}
+            collapsed={collapsed}
+            breakpoint="lg"
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={{
+                ...siderStyle,
+                backgroundColor: token.colorBgContainer,
+                borderRight: `1px solid ${token.colorBgElevated}`,
+            }}
+            trigger={
+                !isMobile && (
+                    <Button
+                        type="text"
+                        style={{
+                            borderRadius: 0,
+                            height: "100%",
+                            width: "100%",
+                            backgroundColor: token.colorBgElevated,
+                        }}
+                    >
+                        {collapsed ? (
+                            <RightOutlined
+                                style={{
+                                    color: token.colorPrimary,
+                                }}
+                            />
+                        ) : (
+                            <LeftOutlined
+                                style={{
+                                    color: token.colorPrimary,
+                                }}
+                            />
+                        )}
+                    </Button>
+                )
+            }
+        >
+            <div
+                style={{
+                    width: collapsed ? "80px" : "200px",
+                    padding: collapsed ? "0" : "0 16px",
+                    display: "flex",
+                    justifyContent: collapsed ? "center" : "flex-start",
+                    alignItems: "center",
+                    height: "64px",
+                    backgroundColor: token.colorBgElevated,
+                    fontSize: "14px",
+                }}
+            >
+                <ThemedTitleV2 collapsed={collapsed} />
+            </div>
+            <Menu
+                defaultOpenKeys={defaultOpenKeys}
+                selectedKeys={[selectedKey]}
+                mode="inline"
+                style={{
+                    marginTop: "8px",
+                    border: "none",
+                }}
+                onClick={({ key }) => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
+                    if (key === "/posts") {
+                        setSubscriptionCount(0);
+                    }
+                }}
+            >
+                {renderSider()}
+            </Menu>
+        </AntdLayout.Sider>
+    );
+};
+```
+
+</p>
+</details>
 
 :::tip
 
