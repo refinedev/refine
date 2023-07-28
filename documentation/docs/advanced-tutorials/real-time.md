@@ -26,7 +26,7 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with [CRUD pages(list, create, edit, and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
+The app will have one resource: **posts** with CRUD pages(list, create, edit, and show) similar to [base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
 
 [You can also refer to CodeSandbox to see the final state of the app &#8594](#example)
 
