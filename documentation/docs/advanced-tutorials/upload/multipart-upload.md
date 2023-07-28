@@ -241,7 +241,7 @@ const PostShow: React.FC = () => {
 };
 ```
 
-We will show you how to multipart upload with **refine**.
+We will demonstrate how to perform a multipart upload with **refine**.
 
 Let's start with the `creation form` first.
 
@@ -566,7 +566,7 @@ const App = () => {
 render(<App />);
 ```
 
-A request, like the one below, is sent for edit form.
+The request, like the one below, is sent for the edit form.
 
 ```json title="[GET] https://api.fake-rest.refine.dev/posts/1"
 {
