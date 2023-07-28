@@ -389,7 +389,7 @@ const App = () => {
 render(<App />);
 ```
 
-What we need now is an upload end-point that accepts multipart uploads. We write this address in the `action` property of the `Upload` component.
+We currently require an upload endpoint that accepts multipart uploads. This address should be passed into the `action` property of the `Upload` component.
 
 ```json title="[POST] https://api.fake-rest.refine.dev/media/upload"
 {
