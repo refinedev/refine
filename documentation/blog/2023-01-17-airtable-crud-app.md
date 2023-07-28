@@ -34,7 +34,7 @@ Steps we'll cover:
 
 [refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, refine decouples UI from frontend application logic to give developers complete styling and customization control.
 
-refine's can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
+**refine**'s can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
 
 It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, Material UI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
 
@@ -82,11 +82,6 @@ We will also populate the tables with contents.
 
 ## Bootstrapping the refine Application
 
-Create or customize a refine application, there are various ways to do so:
-
--   By using the `create refine-app`.
--   By installing a create-react-app(CRA) and installing refine, its hooks and providers as dependencies of the application.
-
 For this article, we will be using the `create refine-app`. to create our refine application. In other to use this, Run the following command below:
 
 ```
@@ -119,13 +114,13 @@ After installation, we will run the following command:
 npm run dev
 ```
 
-After Running the command, the Refine application should be up and running. Visit http://localhost:5173 to access it.
+After running the command, the **refine** application should be up and running. Visit http://localhost:5173 to access it.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.jpg"  alt="react crud app airtable" />
 
 <br />
 
--   **The `<Refine />` component**: This component is the entry point of a refine app. This is where we add the configurations the application needs.
+-   **The `<Refine  />` component**: This component is the entry point of a refine app. This is where we add the configurations the application needs.
 
 -   **DataProvider**: A [DataProvider](https://refine.dev/docs/api-reference/core/providers/data-provider/) in refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the refine core package which enables a refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
 
@@ -145,7 +140,7 @@ const App: React.FC = () => {
 
 -   **resources**: A Resource can be referred to as the building block of a refine application. A resource connects the Data/API layer with the document/page Layer by acting as a bridge between them. A resource allows the pages of the application interact with the API.
 
-In order to activate a resource, we have to pass the `resources` property to the `<Refine />` component.
+In order to activate a resource, we have to pass the `resources` property to the `<Refine  />` component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -176,11 +171,11 @@ export default App;
 
 the `resources` property accepts an array of objects with each object specifying the pages route `name` and the basic operations the pages under that route name can perform which are the `list`(displaying records from an API or service), `create`(add or creating a record to an API or service), `edit`(modifying an existing record from an API or service), `show`(display a specific record from an API or service) operations.
 
-[Refer to the `resources` documentation for more information. → ](https://refine.dev/docs/api-reference/core/components/refine-config/#resources).
+[Refer to the `resources` documentation for more information. → ](https://refine.dev/docs/api-reference/core/components/refine-config/#resources)
 
 -   **Routing**: We will use React Router v6 for routing in our application. **refine** provides router bindings and utilities for React Router v6. It is built on top of the react-router-dom package. This package will provide easy integration between refine and react-router-dom.
 
-[Refer to the `React Router v6` documentation for more information. → ](https://refine.dev/docs/packages/documentation/routers/react-router-v6/).
+[Refer to the `React Router v6` documentation for more information. → ](https://refine.dev/docs/packages/documentation/routers/react-router-v6/)
 
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
@@ -238,7 +233,7 @@ const App = () => {
 After obtaining more insight on the constitutents of a **refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
 
 <details>
-<summary>Show `App.tsx` Code</summary>
+<summary>Show App.tsx Code</summary>
 <p>
 
 ```tsx title="src/App.tsx"
@@ -313,7 +308,7 @@ export const PostList: React.FC = () => {
 Folder structure looks like this:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/folder-structure.png"  alt="react crud app airtable" />
+   <img style={{alignSelf:"center", width:"300px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/folder-structure.png"  alt="react crud app airtable" />
 </div>
 
 In the `App.tsx` file, we are going to include the "posts" `resource` and set up a route for it.
@@ -321,7 +316,7 @@ In the `App.tsx` file, we are going to include the "posts" `resource` and set up
 After that, create `components/Layout.tsx` file and add the following code:
 
 <details>
-<summary>Show `Layout.tsx` Code</summary>
+<summary>Show Layout.tsx Code</summary>
 <p>
 
 ```tsx title="src/components/Layout.tsx"
@@ -373,13 +368,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 </p>
 </details>
 
-Now, we need to import created `<Layout />` and page components to `App.tsx` file.
+Now, we need to import created `<Layout  />` and page components to `App.tsx` file.
 
 You can simply copy and paste the code below into the `App.tsx` file:
 
 <details>
 
-<summary>Show `App.tsx` Code</summary>
+<summary>Show App.tsx Code</summary>
 <p>
 
 ```tsx title="src/App.tsx"
@@ -452,13 +447,7 @@ export default App;
 </p>    
 </details>
 
-Preview of the `/posts` route in the **refine** application
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/page-no-exist.png"  alt="react crud app airtable" />
-
-<br />
-
-From the picture above, we can see our placeholder page. We will build page components that will retrieve posts, view a post and create a post and present them in a table format and pass these components to our resource as list props.
+When you navigate to `/posts` route, you can see our placeholder page. We will build page components that will retrieve `posts`, view a post and create a post and present them in a table format and pass these components to our resource as list props.
 
 ### Listing posts records
 
@@ -487,7 +476,7 @@ As shown above, we added the `id`, `name`, `title`, `content`, `category`, `stat
 Next, we update the `list.tsx` file under the `pages/post` folder with the following code:
 
 <details>
-<summary>Show `pages/post/list.tsx` code</summary>
+<summary>Show pages/post/list.tsx` code</summary>
 <p>
 
 ```tsx title="src/pages/post/list.tsx"
@@ -639,29 +628,23 @@ We also use the [`useNavigation()`](https://refine.dev/docs/api-references/hooks
 Remember the records from our **posts** base on Airtable has a category field, we will map the category fields to their corresponding titles on the **category** base we created on airtable. But first, we will add a category type to the `post.d.ts` file under `interfaces` under the `src` folder in the root directory of our application.
 
 ```tsx title="src/interfaces/post.d.ts"
-export interface IPost {
-    id: string;
-    name: string;
-    title: string;
-    content: string;
-    category: string;
-    Status: "published" | "draft" | "rejected";
-    createdAt: string;
-}
+// ...
 
+// highlight-start
 export interface ICategory {
     id: string;
     name: string;
     posts: string;
 }
+// highlight-end
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) refine hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **refine** hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
 To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useMany/).
 
-Update the `<PostList/>` component with the highlighted code below:
+Update the `<PostList />` component with the highlighted code below:
 
 <details>
 <summary>Show Code</summary>
@@ -823,10 +806,16 @@ We also update the category row on the table to display the category record assi
 
 ### Viewing a single post record
 
-For Viewing a record in our React CRUD app, we will use the `useShow()` hook which is present in the `@refinedev/core` package.
+For viewing a record in our React CRUD app, we will use the `useShow()` hook which is present in the `@refinedev/core` package.
 
 We will add a `show.tsx` file In the `post` under the `pages` folder.
 Next, with the following code:
+
+<details>
+
+<summary>Click show.tsx code</summary>
+
+<p>
 
 ```tsx title="src/pages/post/show.tsx"
 import { useSelect, useShow } from "@refinedev/core";
@@ -839,7 +828,7 @@ export const PostShow: React.FC = () => {
 
     const { options } = useSelect({
         resource: "category",
-        defaultValue: queryResult?.data?.data.category[0],
+        defaultValue: queryResult?.data?.data?.category?.[0],
         optionLabel: "name",
         optionValue: "id",
     });
@@ -925,14 +914,17 @@ export const PostShow: React.FC = () => {
 };
 ```
 
-In the code above, we used the `useShow()` hook to obtain a record. The `useShow()` hook enables you to retrieve the desired record. It uses the `getOne` method as the query function from the dataProvider passed to `<Refine/>`. More information about the `useShow()` hook can be obtained [here](https://refine.dev/docs/api-reference/core/hooks/show/useShow/).
+</p>
+</details>
+
+In the code above, we used the `useShow()` hook to obtain a record. The `useShow()` hook enables you to retrieve the desired record. It uses the `getOne` method as the query function from the dataProvider passed to `<Refine />`. More information about the `useShow()` hook can be obtained [here](https://refine.dev/docs/api-reference/core/hooks/show/useShow/).
 
 We also used the `useSelect()` hook to map the category fields on the record to the category base in order to get the category value and label from the base.
 
 ```ts
 const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data.category[0],
+    defaultValue: queryResult?.data?.data?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
 });
@@ -942,7 +934,7 @@ The hook accepts an object with properties `resource` which directs the hook to 
 
 To get more information on the `useSelect()` hook, take a look at the documentation [here](https://refine.dev/docs/api-reference/core/hooks/useSelect/).
 
-We'll add a View button to each row, so we'll need to update our `<PostList>` component to include one for each record. update the `<PostList/>` component with the code below:
+We'll add a View button to each row, so we'll need to update our `<PostList />` component to include one for each record. update the `<PostList />` component with the code below:
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
@@ -1000,7 +992,7 @@ npm i @refinedev/react-hook-form
 Next, In the `post` under the `pages` folder we will add a `create.tsx` file with the following code:
 
 <details>
-<summary>Show `pages/post/create.tsx` Code</summary>
+<summary>Show pages/post/create.tsx Code</summary>
 <p>
 
 ```tsx title="src/pages/post/create.tsx"
@@ -1165,7 +1157,7 @@ In the code above, we used the `useForm()` hook to create records. This hook com
 
 We use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into airtable. The hooks also provide methods like `handleSubmit()` and `onFinish()` methods which handle the submission of the contents from the form to Airtable.
 
-We'll also add a create post button to the `<PostList>` component. Update the `<PostList/>` component with the code below:
+We'll also add a create post button to the `<PostList />` component. Update the `<PostList />` component with the code below:
 
 ```tsx title="src/pages/post/list.tsx
 import React from "react";
@@ -1376,13 +1368,13 @@ export const PostEdit: React.FC = () => {
 </p>
 </details>
 
-Similar to that of the `<PostEdit/>` component, we use methods provided by the `useForm()` hook like `register()` to validate the new post we will be adding into airtable.
+Similar to that of the `<PostEdit />` component, we use methods provided by the `useForm()` hook like `register()` to validate the new post we will be adding into airtable.
 
 Additionally, we created a function `onSubmit()` which modifies the category data before passing it to the `onFinish()` function. This is because, when editing the category field, we will pass the modified category as an array of strings to airtable because of the link/relationship of the field to the category base on Airtable.
 
 After this, we then add the `onSubmit()` function as a parameter to the `handleSubmit()` method which then handle the update of the contents from the form to Airtable.
 
-We'll add an **Edit** button to each row, so we'll need to update our `<PostList>` component to include one for each record. update the `<PostList/>` component with the code below:
+We'll add an **Edit** button to each row, so we'll need to update our `<PostList />` component to include one for each record. update the `<PostList />` component with the code below:
 
 ```tsx title="src/pages/post/list.tsx"
 
@@ -1425,7 +1417,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `App.tsx` file.
+After this, we can now add the component `<PostEdit />` in the `edit.tsx` file to our resource present in the `App.tsx` file.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/edit.gif"  alt="react crud app airtable" />
 
@@ -1433,9 +1425,9 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
 
 ### Deleting post record
 
-For Deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our refine application.
+For deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our refine application.
 
-We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList>` component to include one for each record. Add the highlighted lines below to the existing list component.
+We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList />` component to include one for each record. Add the highlighted lines below to the existing list component.
 
 ```tsx title="src/pages/post/list.tsx"
 
@@ -1500,10 +1492,10 @@ Next, we will add Pagination to our application. in order to achieve this, the u
 -   `previousPage`: This function handles navigation to the previous page.
 -   `setPageSize()`: This is a function that handles setting the content to be shown on a page (page size).
 
-We will go to update the `<PostList/>` component with the highlighted code below:
+We will go to update the `<PostList />` component with the highlighted code below:
 
 <details>
-<summary>Show `pages/post/list.tsx` code</summary>
+<summary>Show pages/post/list.tsx` code</summary>
 <p>
 
 ```tsx title="src/pages/post/list.tsx"
@@ -1769,12 +1761,8 @@ export const PostList: React.FC = () => {
 
 ## Conclusion
 
-In this article, we covered how to create a headless refine application using the refine CLI as well as creating a **React CRUD** application using refine. There is no limit to what can be achieved using refine as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
+In this article, we covered how to create a headless **refine** application using the `create refine-app` as well as creating a **React CRUD** application using **refine**. There is no limit to what can be achieved using **refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
 
 ## Live CodeSandbox Example
 
 <CodeSandboxExample path="blog-refine-airtable-crud" />
-
----
-
-"

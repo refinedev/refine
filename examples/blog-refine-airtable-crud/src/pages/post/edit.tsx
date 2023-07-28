@@ -27,7 +27,7 @@ export const PostEdit: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto">
+        <div className="max-w-md">
             <br />
             <form onSubmit={handleSubmit(handleSubmitHandler)}>
                 <div className="mb-6">

@@ -22,7 +22,6 @@ function App() {
 
     return (
         <BrowserRouter>
-            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_TOKEN, BASE_ID)}
                 routerProvider={routerBindings}
