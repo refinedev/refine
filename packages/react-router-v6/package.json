@@ -3,6 +3,7 @@
   "description": "refine react-router router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "4.3.2",
   "private": false,
+  "sideEffects": false,
   "author": "refine",
   "license": "MIT",
   "files": [
