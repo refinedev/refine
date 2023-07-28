@@ -13,7 +13,7 @@ We will show you how to log in to your Metamask wallet with **refine**.
 
 ## Installation
 
-We will need [web3](https://github.com/ChainSafe/web3.js) and [web3-modal](https://github.com/web3modal/web3modal) packages in our project. Let's start by downloading these packages
+We will need [web3](https://github.com/ChainSafe/web3.js) and [web3-modal](https://github.com/web3modal/web3modal) packages in our project. Let's start by downloading these packages.
 
 ```bash
 npm install web3
@@ -24,7 +24,7 @@ npm install --save web3modal
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
-## Configure Refine Authprovider
+## Configure refine Auth provider
 
 First, we need to define a web3modal and create a provider. We can get information about the wallet by connecting this provider that we have created to web3.
 
@@ -123,7 +123,7 @@ export const authProvider: AuthBindings = {
 </p>
 </details>
 
-We use web3's `getBalance()` function to find out the ethereum amount of the account logged in
+We use web3's `getBalance()` function to find out the ethereum amount of the account logged in. 
 
 ```ts title="src/utility.ts"
 const web3 = new Web3(window.ethereum);
@@ -263,9 +263,9 @@ export const DashboardPage: React.FC = () => {
 
 Now lets customize **refine** dashboard. Send your test ethereum via **refine** dashboard and Metamask.
 
-## Send Test Ethereum with Refine Dashboard
+## Send Test Ethereum with refine Dashboard
 
-Here we use the `sendTransaction` function to send ethereum with your browser enabled web3 wallet.
+Here we use the `sendTransaction` function to send ethereum with your browser-enabled web3 wallet.
 
 ```tsx title="src/utility.ts"
 export const sendEthereum = async (
