@@ -8,7 +8,7 @@ export const PostShow: React.FC = () => {
     const record = data?.data;
 
     return (
-        <div className="container mx-auto">
+        <div className="max-w-md">
             <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">Id</label>
                 <input

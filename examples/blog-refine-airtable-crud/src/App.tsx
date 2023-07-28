@@ -2,19 +2,19 @@ import React from "react";
 import "./index.css";
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerProvider, {
+import routerBindings, {
     NavigateToResource,
     UnsavedChangesNotifier,
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { Layout } from "components/Layout";
+import { Layout } from "./components/Layout";
 
-import { PostList } from "pages/post/list";
-import { PostShow } from "pages/post/show";
-import { PostCreate } from "pages/post/create";
-import { PostEdit } from "pages/post/edit";
+import { PostList } from "./pages/post/list";
+import { PostShow } from "./pages/post/show";
+import { PostCreate } from "./pages/post/create";
+import { PostEdit } from "./pages/post/edit";
 
 function App() {
     const API_TOKEN = "key0uWArSH56JHNJV";
@@ -22,10 +22,9 @@ function App() {
 
     return (
         <BrowserRouter>
-            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-                routerProvider={routerProvider}
+                routerProvider={routerBindings}
                 resources={[
                     {
                         name: "posts",
