@@ -1,25 +1,41 @@
 <div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"  align="center" />
-    </a>
-</div>
-<br/>
-<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building internal tools, rapidly. ✨  It's is a a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
-<br/>
+<a href="https://refine.dev/">
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:350px;" align="center" />
+</a>
+<br />
+<br />
 
 <div align="center">
-  <sub>Created by <a href="https://refine.dev">refine</a></sub>
+    <a href="https://refine.dev">Home Page</a> |
+    <a href="https://discord.gg/refine">Discord</a> |
+    <a href="https://refine.dev/examples/">Examples</a> | 
+    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/docs/">Documentation</a>
+</div>
 </div>
 
-## About 
+<br />
 
-The [refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
 
-  refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/)
+<br />
+<br />
 
-[Refer to documentation for more info about refine&#8594](https://refine.dev/docs/)
-[Step up to refine tutorials &#8594](https://refine.dev/docs/tutorial/introduction/index/)
+[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-## Blog Post
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-For more blog and example, refer to the [refine blog posts](https://refine.dev/blog/).
+</div>
+
+## Try it out on your local
+
+```bash
+npm create refine-app@latest -- --example blog-material-ui-datagrid
+```
+
+## Try it out on CodeSandbox
+
+<br/>
+
+[![Open blog-material-ui-datagrid example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/blog-material-ui-datagrid?view=preview&theme=dark&codemirror=1)
