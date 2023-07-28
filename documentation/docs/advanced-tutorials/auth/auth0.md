@@ -105,6 +105,10 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
+<details>
+<summary>Show Code</summary>
+<p>
+
 ```tsx title="App.tsx"
 import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
@@ -267,6 +271,8 @@ const App = () => {
 
 export default App;
 ```
+</p>
+</details>
 
 ### Methods
 
