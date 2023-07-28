@@ -2,6 +2,8 @@ import React from "react";
 import { LayoutProps } from "@refinedev/core";
 import styled from "styled-components";
 
+import { Header } from "../header";
+
 const Wrapper = styled.div`
     width: 80%;
     margin: 50px auto;
@@ -11,6 +13,7 @@ const Wrapper = styled.div`
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
+            <Header />
             <Wrapper>{children}</Wrapper>
         </>
     );
