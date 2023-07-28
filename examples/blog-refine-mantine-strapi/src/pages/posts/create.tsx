@@ -1,26 +1,20 @@
-import { Edit, useForm, useSelect } from "@refinedev/mantine";
-
+import { Create, useForm, useSelect } from "@refinedev/mantine";
 import { TextInput, Select } from "@mantine/core";
 
-import { ICategory } from "interfaces";
+import { ICategory } from "../../interfaces";
 
-export const PostEdit = () => {
+export const PostCreate = () => {
     const {
         getInputProps,
         saveButtonProps,
-        refineCore: { queryResult },
+        refineCore: { formLoading },
     } = useForm({
         initialValues: {
-            id: "",
             title: "",
             category: {
                 id: "",
             },
-        },
-        refineCoreProps: {
-            metaData: {
-                populate: ["category"],
-            },
+            status: "",
         },
         validate: {
             title: (value) =>
@@ -30,32 +24,43 @@ export const PostEdit = () => {
             category: {
                 id: (value) => (value.length <= 0 ? "Title is required" : null),
             },
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
         },
     });
 
-    const postData = queryResult?.data?.data;
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-        defaultValue: postData?.category?.id,
     });
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <TextInput mt="sm" disabled label="Id" {...getInputProps("id")} />
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <TextInput
                 mt="sm"
-                required
+                required={true}
                 label="Title"
                 {...getInputProps("title")}
             />
             <Select
                 mt={8}
-                label="Category"
-                required
-                placeholder="Select category"
-                {...selectProps}
-                {...getInputProps("category.id")}
+                label="Status"
+                required={true}
+                placeholder="Pick one"
+                {...getInputProps("status")}
+                data={[
+                    { label: "Published", value: "published" },
+                    { label: "Draft", value: "draft" },
+                    { label: "Rejected", value: "rejected" },
+                ]}
             />
-        </Edit>
+            <Select
+                mt={8}
+                label="Category"
+                required={true}
+                placeholder="Select category"
+                {...getInputProps("category.id")}
+                {...selectProps}
+            />
+        </Create>
     );
 };

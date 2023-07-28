@@ -1,13 +1,13 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { List, DateField, EditButton, DeleteButton } from "@refinedev/mantine";
-
 import { Table, Pagination, Group } from "@mantine/core";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const columns = React.useMemo<ColumnDef<any>[]>(
+import { IPost } from "../../interfaces";
+
+export const PostList: React.FC = () => {
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
@@ -18,9 +18,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 id: "title",
                 accessorKey: "title",
                 header: "Title",
-                cell: function ({ getValue }) {
-                    return getValue();
-                },
             },
 
             {
@@ -28,7 +25,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 accessorKey: "createdAt",
                 header: "Created At",
                 cell: function render({ getValue }) {
-                    return <DateField format="LL" value={getValue<any>()} />;
+                    return <DateField format="LL" value={getValue<string>()} />;
                 },
             },
             {
@@ -68,29 +65,15 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
+        refineCore: { setCurrent, pageCount, current },
     } = useTable({
         columns,
-
         refineCoreProps: {
-            metaData: {
+            meta: {
                 populate: ["category"],
             },
         },
     });
-
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
-        },
-    }));
 
     return (
         <List>
