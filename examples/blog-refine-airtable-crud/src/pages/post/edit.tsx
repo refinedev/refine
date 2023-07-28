@@ -1,18 +1,35 @@
+import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import React from "react";
+import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
+        resetField,
         formState: { errors },
     } = useForm();
 
+    const { options } = useSelect({
+        resource: "category",
+        defaultValue: queryResult?.data?.data?.category?.id,
+        optionLabel: "name",
+        optionValue: "id",
+    });
+
+    useEffect(() => {
+        resetField("category.id");
+    }, [options, resetField]);
+
+    const handleSubmitHandler = (data: any) => {
+        onFinish({ ...data, category: [data.category] });
+    };
+
     return (
-        <div className="container mx-auto">
+        <div className="max-w-md">
             <br />
-            <form onSubmit={handleSubmit(onFinish)}>
+            <form onSubmit={handleSubmit(handleSubmitHandler)}>
                 <div className="mb-6">
                     <label
                         htmlFor="Name"
@@ -118,12 +135,19 @@ export const PostEdit: React.FC = () => {
                         Status
                     </label>
                     <select
-                        {...register("Status")}
+                        defaultValue={""}
+                        {...register("category", { required: true })}
                         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
                     >
-                        <option value="published">published</option>
-                        <option value="draft">draft</option>
-                        <option value="rejected">rejected</option>
+                        <option value={""} disabled>
+                            Please select
+                        </option>
+
+                        {options?.map((category) => (
+                            <option key={category.value} value={category.value}>
+                                {category.label}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
