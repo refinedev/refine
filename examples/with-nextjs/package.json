@@ -11,10 +11,10 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.30.0",
-    "@refinedev/core": "^4.30.0",
+    "@refinedev/antd": "^5.31.0",
+    "@refinedev/core": "^4.31.0",
     "@refinedev/cli": "^2.7.4",
-    "@refinedev/nextjs-router": "^5.3.2",
+    "@refinedev/nextjs-router": "^5.4.0",
     "@refinedev/simple-rest": "^4.5.0",
     "cross-env": "^7.0.3",
     "next": "13.0.6",
