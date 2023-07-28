@@ -334,7 +334,7 @@ interface IPost {
 <br />
 
 :::tip
-We can reach the API URL by using the `useApiUrl` hook.
+We can reach the API URL by using the [`useApiUrl`](/docs/api-reference/core/hooks/data/useApiUrl/) hook.
 :::
 
 It will look like this.
@@ -398,7 +398,7 @@ What we need now is an upload end-point that accepts multipart uploads. We write
 ```
 
 :::caution
-This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`?.
+This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`.
 :::
 
 This end-point should respond similarly.
@@ -433,7 +433,7 @@ This data is sent to the API when the form is submitted.
 ```
 
 :::caution
-The following data are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
+The following datas are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
 :::
 
 | Property | Description                              |
