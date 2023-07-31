@@ -88,6 +88,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
+                    defaultFilteredValue={getDefaultFilter("status", filters)}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
