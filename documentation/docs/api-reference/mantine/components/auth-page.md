@@ -9,10 +9,10 @@ source: packages/mantine/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from **refine** for **Mantine** contains authentication pages that can be used to login, register, forgot password, and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) CCC to customize it.
 :::
 
 ```tsx live shared
@@ -429,7 +429,7 @@ const authProvider: AuthBindings = {
 
 ### ForgotPassword
 
-The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
+The `forgotPassword` type is a page that allows users to reset their passwords.
 
 ```tsx live hideCode url=http://localhost:3000/forgot-password previewHeight=600px
 setInitialRoutes(["/forgot-password"]);
@@ -690,7 +690,7 @@ const MyLoginPage = () => (
 `rememberMe` property is only available for type `login`.
 :::
 
-`rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
+`rememberMe` property defines to render your own remember me component or you can pass `false` to not render it.
 
 ```tsx
 const MyLoginPage = () => {
@@ -790,7 +790,7 @@ const MyLoginPage = () => {
 
 ### `wrapperProps`
 
-`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
+`wrapperProps` is used for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
 ```tsx
 const MyLoginPage = () => {
@@ -815,7 +815,7 @@ const MyLoginPage = () => {
 
 ### `contentProps`
 
-`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
+`contentProps` is used for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -834,7 +834,7 @@ const MyLoginPage = () => {
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onSubmit` function is changed.
+`formProps` is used for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onSubmit` function is changed.
 
 ```tsx
 const MyLoginPage = () => {
@@ -978,6 +978,3 @@ interface FormPropsType extends UseFormProps {
 [register]: /docs/api-reference/core/providers/auth-provider/#register
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
-[get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
-[logout]: /docs/api-reference/core/providers/auth-provider/#logout-

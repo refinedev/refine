@@ -44,7 +44,7 @@ interface IPost {
 }
 ```
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button.
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a refresh button.
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -152,14 +152,14 @@ render(
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Properties
 
 ### `title`
 
-It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
+`title` allows the addition of titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -213,11 +213,7 @@ render(
 
 ### `saveButtonProps`
 
-The `<Edit>` component has a save button by default. If you want to customize this button you can use the `saveButtonProps` property like the code below.
-
-Clicking on the save button will submit your form.
-
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md)
+`saveButtonProps` can be used to customize the default button of the `<Edit>` component that submits the form:
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -268,13 +264,13 @@ render(
 );
 ```
 
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mantine/components/buttons/save.md)
+
 ### `canDelete` and `deleteButtonProps`
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
-
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/delete.md)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -389,7 +385,7 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the documentations [`<DeleteButton>` &#8594](/api-reference/mantine/components/buttons/delete.md) and [`usePermission` &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `resource`
 
@@ -445,11 +441,11 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `recordItemId`
 
-The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
+The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL, such as when it is used on a custom page, modal or drawer.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=350px
 setInitialRoutes(["/posts/edit/123"]);
@@ -528,8 +524,6 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
-
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
@@ -601,9 +595,11 @@ render(
 );
 ```
 
+> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
+
 ### `dataProviderName`
 
-If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -632,6 +628,8 @@ export const App: React.FC = () => {
     );
 };
 ```
+
+
 
 ### `goBack`
 
@@ -743,8 +741,6 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
-
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
@@ -810,11 +806,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mantine/components/breadcrumb.md)
+
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@refinedev/mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
-
-[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -873,11 +869,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Card` documentation from Mantine &#8594](https://mantine.dev/core/card/)
+
 ### `headerProps`
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
-
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -936,11 +932,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group/)
+
 ### `contentProps`
 
 If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
-
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -998,6 +994,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box/)
 
 ### `headerButtons`
 
@@ -1146,8 +1144,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
-
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
@@ -1210,6 +1206,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group/)
 
 ### `footerButtons`
 
@@ -1348,8 +1346,6 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
-
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
@@ -1410,6 +1406,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group/)
 
 ### `autoSaveProps`
 

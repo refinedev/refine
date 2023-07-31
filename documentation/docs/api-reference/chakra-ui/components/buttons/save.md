@@ -32,7 +32,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](packages/documentation/react-hook-form/useForm.md) hook.
+For example, lets add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](packages/documentation/react-hook-form/useForm.md) hook.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
@@ -172,7 +172,7 @@ interface IPost {
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);

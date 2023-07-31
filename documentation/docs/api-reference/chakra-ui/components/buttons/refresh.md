@@ -192,7 +192,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetch the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -204,7 +204,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);

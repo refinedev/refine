@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field lets you embed a link. It uses Chakra UI [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
+This field lets you embed a link. It uses Chakra UI's [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -163,5 +163,5 @@ render(
 <PropsTable module="@refinedev/chakra-ui/UrlField" value-description="URL for link to reference to"/>
 
 :::tip External Props
-It also accepts all props of Chakra UI [Link](https://chakra-ui.com/docs/components/link/usage).
+It also accepts all props of Chakra UI's [Link](https://chakra-ui.com/docs/components/link/usage) component.
 :::

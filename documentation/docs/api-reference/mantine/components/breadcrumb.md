@@ -23,7 +23,7 @@ In earlier versions, the home icon in the `Breadcrumb` was created by the `Dashb
 
 ### `breadcrumbProps`
 
-`<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
+The `<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx
 import { Show, Breadcrumb } from "@refinedev/mantine";
@@ -104,4 +104,3 @@ const PostShow: React.FC = () => {
 <PropsTable module="@refinedev/mantine/Breadcrumb" />
 
 [mantine-breadcrumb]: https://mantine.dev/core/breadcrumbs/
-[source-code]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/breadcrumb/index.tsx

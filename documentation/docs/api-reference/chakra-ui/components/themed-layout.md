@@ -42,7 +42,9 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 -   `<Footer>`: displayed at the bottom of the page.
 -   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
-> `Footer` and `OffLayoutArea` do not have any default components.
+:::note
+`Footer` and `OffLayoutArea` do not have any default components.
+:::
 
 ## Usage
 
@@ -108,15 +110,9 @@ const App = () => {
 render(<App />);
 ```
 
-:::note
-
-`<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][chakra-ui-drawer]. On larger screens, it will use fixed open [`<Drawer>`][chakra-ui-drawer].
-
-:::
-
 :::info
 
-Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
+Example above shows how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
 
 -   [React Router v6](https://github.com/refinedev/refine/blob/next/examples/auth-chakra-ui/src/App.tsx#L171)
 -   [Next.js](https://github.com/refinedev/refine/blob/next/examples/with-nextjs-auth/pages/_app.tsx#L31)
@@ -126,11 +122,17 @@ Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](
 
 :::
 
+:::note
+
+`<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][chakra-ui-drawer]. On larger screens, it will use fixed open [`<Drawer>`][chakra-ui-drawer].
+
+:::
+
 ## Props
 
 ### `Sider`
 
-In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSider>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSider>`][themed-sider] component by passing a custom component to the `Sider` prop.
+In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSider>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in the [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSider>`][themed-sider] component by passing a custom component to the `Sider` prop.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -232,7 +234,7 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 
 ### `Header`
 
-In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/authentication/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses the [`useGetIdentity`](/docs/api-reference/core/hooks/authentication/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
 
 Here is an example of how to replace the default [`<ThemedHeader>`][themed-header] component:
 
@@ -259,7 +261,7 @@ const App: React.FC = () => {
 };
 ```
 
-You can also make it sticky using the `sticky` property, which is optional and defaults to `false`. An example of its usage is shown below:
+You can also make it sticky using the `sticky` property, which is optional and defaults to `false`:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -434,7 +436,7 @@ const App: React.FC = () => {
 
 ### `OffLayoutArea`
 
-Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
+off-layout area component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
 
 Here is an example of how to display a custom off-layout area:
 
@@ -553,9 +555,11 @@ const App: React.FC = () => {
 
 ## Customizing with swizzle
 
-> 🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
+:::note
+🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
+:::
 
-`<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
+`<ThemedLayoutV2>` component source code can be ejected using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
 ### Usage
 
@@ -989,5 +993,4 @@ export default function BaseLayout() {
 [themed-title]: https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/api-reference/core/hooks/ui/useMenu/
 [refine-component]: /docs/api-reference/core/components/refine-config/
-[refine-themes]: /docs/api-reference/chakra-ui/theming/#refine-themes
 [chakra-ui-drawer]: https://chakra-ui.com/docs/components/drawer

@@ -4,8 +4,7 @@ title: Inferencer
 sidebar_label: Inferencer
 ---
 
-You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` and `ChakraUIInferencer` (which combines all in one place) components.
-
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` components and finally the `ChakraUIInferencer` component, which combines all in one place.
 ## Usage
 
 Inferencer components can be imported from `@refinedev/inferencer/chakra-ui`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
@@ -94,14 +93,14 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@refinedev/inferencer` package, please check out its [documentation](/docs/packages/documentation/inferencer)
 :::
 
 ## Views
 
 ### `List`
 
-Generates a sample list view for your resources according to the API response. It uses `List` component from `@refinedev/chakra-ui` and `useTable` hook from `@refinedev/react-table`.
+Generates a sample list view for your resources according to the API response. It uses the `List` component from `@refinedev/chakra-ui` and `useTable` hook from `@refinedev/react-table`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/samples"]);
@@ -162,7 +161,7 @@ render(<App />);
 
 ### `Show`
 
-Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@refinedev/chakra-ui` with `useShow` hook from `@refinedev/core`.
+Generates a sample show view for your resources according to the API response. It uses the `Show` and `field` components from `@refinedev/chakra-ui` with the `useShow` hook from `@refinedev/core`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/show/123
 setInitialRoutes(["/samples/show/123"]);
@@ -223,7 +222,7 @@ render(<App />);
 
 ### `Create`
 
-Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component from `@refinedev/chakra-ui` and `useForm` hook from `@refinedev/react-hook-form`.
+Generates a sample create view for your resources according to the first record in list API response. It uses the `Create` component from `@refinedev/chakra-ui` and the `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/create
 setInitialRoutes(["/samples/create"]);
@@ -284,7 +283,7 @@ render(<App />);
 
 ### `Edit`
 
-Generates a sample edit view for your resources according to the API response. It uses `Edit` component from `@refinedev/chakra-ui` and `useForm` hook from `@refinedev/react-hook-form`.
+Generates a sample edit view for your resources according to the API response. It uses the `Edit` component from `@refinedev/chakra-ui` and the `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/edit/123
 setInitialRoutes(["/samples/edit/123"]);
@@ -345,6 +344,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@refinedev/inferencer/chakra-ui` components.
+Below, you will find a Live CodeSandbox Example displaying a fully setup `Refine` app with the `@refinedev/inferencer/chakra-ui` components.
 
 <CodeSandboxExample path="inferencer-chakra-ui" />

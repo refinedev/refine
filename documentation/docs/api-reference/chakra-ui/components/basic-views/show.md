@@ -43,7 +43,7 @@ interface IPost {
 }
 ```
 
-`<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
+`<Show>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a refresh button or giving title to the page.
 
 We will show what `<Show>` does using properties with examples.
 
@@ -128,14 +128,14 @@ render(
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Properties
 
 ### `title`
 
-It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
+`title` allows the addition of titles inside the `<Show>` component. If you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
@@ -232,7 +232,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `canDelete` and `canEdit`
 
@@ -342,7 +342,7 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `recordItemId`
 
@@ -424,7 +424,7 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 
 ### `dataProviderName`
 
-If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -548,8 +548,6 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
-
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
@@ -606,11 +604,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
+
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Card>` can get.
-
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -660,11 +658,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Chakra UI #8594](https://chakra-ui.com/docs/components/box/usage)
+
 ### `headerProps`
 
 If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
-
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -713,11 +711,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+
 ### `contentProps`
 
 If you want to customize the content of the `<Show/>` component, you can use the `contentProps` property.
-
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -767,15 +765,17 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+
 ### `headerButtons`
 
-By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
+By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and a[`<RefreshButton>`][refresh-button] at the header.
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 :::caution
 
-If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+If the "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
 If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
 
@@ -919,8 +919,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
-
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@refinedev/core";
@@ -974,6 +972,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ### `footerButtons`
 
@@ -1039,8 +1039,6 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
-
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@refinedev/core";
@@ -1093,6 +1091,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ## API Reference
 

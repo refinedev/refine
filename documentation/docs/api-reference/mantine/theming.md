@@ -152,11 +152,11 @@ interface IPost {
 
 Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. Theme provides a way to your app's design to meet them.
 
-[Refer to the Mantine documentation for more information about theme object. &#8594](https://mantine.dev/theming/theme-object/)
+> For more information, refer to the [Mantine documentation &#8594](https://mantine.dev/theming/theme-object/)
 
 ## Predefined Themes
 
-[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts#L186) has predefined themes for you. You can use them by importing them from `@refinedev/mantine` package. It is not required if you decide to use the default Mantine theme.
+If you don't want to use the default Mantine theme, [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts#L186) has predefined themes for you. You can import predefined themes from the `@refinedev/mantine` package.
 
 ```ts
 const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
@@ -270,11 +270,11 @@ const App = () => {
 render(<App />);
 ```
 
-[Refer to the `<MantineProvider/>` documentation for more information. &#8594](https://mantine.dev/theming/mantine-provider/)
+> For more information, refer to the [`<MantineProvider/>` documentation &#8594](https://mantine.dev/theming/mantine-provider/)
 
 ### Overriding the refine themes
 
-You can override or extend the default refine themes. You can also create your own theme. Let's see how to do this.
+You can override or extend the default refine themes. You can also create your own theme. Let's see how you can do this:
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -376,8 +376,7 @@ const App = () => {
 // visible-block-end
 render(<App />);
 ```
-
-[Refer to the Mantine colors documentation for more information. &#8594](https://mantine.dev/theming/colors/)
+> For more information, refer to the [Mantine colors documentation &#8594](https://mantine.dev/theming/colors/)
 
 ## Theme switching
 
@@ -526,7 +525,7 @@ const App = () => {
 render(<App />);
 ```
 
-[Refer to the Mantine dark theme documentation for more information. &#8594](https://mantine.dev/guides/dark-theme)
+> For more information, refer to the [Mantine dark theme documentation &#8594](https://mantine.dev/guides/dark-theme)
 
 :::tip
 

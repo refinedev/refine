@@ -12,7 +12,7 @@ sidebar_label: useModalForm
 
 ## Basic Usage
 
-We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
+We will show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
 <Tabs
 defaultValue="create"
@@ -24,7 +24,7 @@ values={[
 
 <TabItem value="create">
 
-In this example, we will show you how to `"create"` a record with `useModalForm`.
+In this example, we will show you how to `"create"` a record with `useModalForm`:
 
 ```tsx live url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);
@@ -234,7 +234,7 @@ render(<RefineMantineDemo />);
 
 <TabItem value="edit">
 
-In this example, we will show you how to `"edit"` a record with `useModalForm`.
+In this example, we will show you how to `"edit"` a record with `useModalForm`:
 
 ```tsx live url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);
@@ -461,7 +461,7 @@ render(<RefineMantineDemo />);
 :::caution
 **refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
 
-So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Modal>` can fetch data by the record `id`.
+So, we have to put the `<EditButton/>` on our list for `"edit"` form in `<Modal>` to be able to fetch data by the record `id`.
 
 ```tsx
 const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -734,7 +734,7 @@ render(<RefineMantineDemo />);
 :::caution
 **refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
 
-So, we have to put the `<CloneButton/>` on our list. In that way, `"clone"` form in `<Modal>` can fetch data by the record `id`.
+So, we have to put the `<CloneButton/>` on our list for `"clone"` form in `<Modal>` to be able to fetch data by the record `id`.
 
 ```tsx
 const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -780,7 +780,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ### `refineCoreProps`
 
-All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties are also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) documentation.
 
 ```tsx
 const modalForm = useModalForm({
@@ -794,7 +794,9 @@ const modalForm = useModalForm({
 
 ### `initialValues`
 
-> Only available in `"create"` form.
+:::caution
+Only available in `"create"` form.
+:::
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
@@ -808,9 +810,7 @@ const modalForm = useModalForm({
 
 ### `defaultVisible`
 
-> Default: `false`
-
-When `true`, modal will be visible by default.
+When `true`, modal will be visible by default. It is `false` by default.
 
 ```tsx
 const modalForm = useModalForm({
@@ -822,9 +822,7 @@ const modalForm = useModalForm({
 
 ### `autoSubmitClose`
 
-> Default: `true`
-
-When `true`, modal will be closed after successful submit.
+When `true`, modal will be closed after successful submit. It is `true` by default.
 
 ```tsx
 const modalForm = useModalForm({
@@ -836,9 +834,7 @@ const modalForm = useModalForm({
 
 ### `autoResetForm`
 
-> Default: `true`
-
-When `true`, form will be reset after successful submit.
+When `true`, form will be reset after successful submit. It is `true` by default.
 
 ```tsx
 const modalForm = useModalForm({
@@ -850,9 +846,7 @@ const modalForm = useModalForm({
 
 ### `syncWithLocation`
 
-> Default: `false`
-
-When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+When `true`, the modals visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
 This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
 
@@ -865,7 +859,7 @@ const modalForm = useModalForm({
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -990,7 +984,7 @@ return (
 
 ### `submit`
 
-A function that can submit the form. It's useful when you want to submit the form manually.
+`submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
 ```tsx
 const {
@@ -1016,7 +1010,7 @@ return (
 
 ### `show`
 
-A function that can show the modal.
+`show` is a function that can show the modal.
 
 ```tsx
 const {
@@ -1049,7 +1043,7 @@ return (
 
 ### `saveButtonProps`
 
-It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
+`saveButtonProps` contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
 
 ```tsx
 const { getInputProps, modal, saveButtonProps } = useModalForm();
@@ -1084,16 +1078,18 @@ const { overtime } = useModalForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### `autoSaveProps`
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
+
 ### How can I change the form data before submitting it to the API?
 
 You may need to modify the form data before it is sent to the API.
 
-For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+For example, let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";

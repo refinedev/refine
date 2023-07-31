@@ -32,11 +32,11 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<DeleteButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
+`<DeleteButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button/) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -295,7 +295,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `onSuccess`
 
-`onSuccess` can be used if you want to do anything on the result returned after the delete request.
+`onSuccess` can be used if you want to do anything based on the result returned after the delete request.
 
 For example, let's `console.log` after deletion:
 
@@ -360,7 +360,7 @@ render(
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
+> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -413,7 +413,7 @@ render(
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -466,7 +466,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+`accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { DeleteButton } from "@refinedev/mantine";
@@ -549,7 +549,7 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 
 ## How to override confirm texts?
 
-You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
+You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what 'ok' and 'cancel' buttons text look like with the `confirmOkText` and `confirmCancelText` props.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
