@@ -13,7 +13,7 @@ We will show you how to log in to your Metamask wallet with **refine**.
 
 ## Installation
 
-We will need [web3](https://github.com/ChainSafe/web3.js) and [web3-modal](https://github.com/web3modal/web3modal) packages in our project. Let's start by downloading these packages
+We will need [web3](https://github.com/ChainSafe/web3.js) and [web3-modal](https://github.com/web3modal/web3modal) packages in our project. Let's start by downloading these packages.
 
 ```bash
 npm install web3
@@ -24,13 +24,17 @@ npm install --save web3modal
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
-## Configure Refine Authprovider
+## Configure refine Auth provider
 
 First, we need to define a web3modal and create a provider. We can get information about the wallet by connecting this provider that we have created to web3.
 
 :::note
 In this example, we will show the login with Metamask Wallet. If you want, you can connect to other wallets using web3modal's providers.
 :::
+
+<details>
+<summary>Show Code</summary>
+<p>
 
 ```tsx title="/src/authprovider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -116,8 +120,10 @@ export const authProvider: AuthBindings = {
     },
 };
 ```
+</p>
+</details>
 
-We use web3's `getBalance()` function to find out the ethereum amount of the account logged in
+We use web3's `getBalance()` function to find out the ethereum amount of the account logged in. 
 
 ```ts title="src/utility.ts"
 const web3 = new Web3(window.ethereum);
@@ -139,74 +145,66 @@ export const getBalance = async (account: string): Promise<string> => {
 
 We need to override the refine login page. In this way, we will redirect it to the Metamask Wallet login page. We create a `login.tsx` file in the /pages folder.
 
+<details>
+<summary>Show Code</summary>
+<p>
+
 ```tsx title="/src/page/login.tsx"
+import { Layout, Button, Space, Typography } from "antd";
+import { ThemedTitleV2 } from "@refinedev/antd";
+// highlight-next-line
 import { useLogin } from "@refinedev/core";
-import { Layout, Button, Row, Col } from "antd";
-import Icon from "@ant-design/icons";
 
 export const Login: React.FC = () => {
+    // highlight-next-line
     const { mutate: login, isLoading } = useLogin();
 
     return (
         <Layout
             style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
-                }}
-            >
-                <Col xs={22}>
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            marginBottom: "28px",
-                        }}
-                    >
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                        <Button
-                            type="primary"
-                            size="large"
-                            icon={
-                                <Icon
-                                    component={() => (
-                                        <img
-                                            alt={"ethereum.png"}
-                                            src="./ethereum.png"
-                                        />
-                                    )}
-                                />
-                            }
-                            loading={isLoading}
-                            onClick={() => login({})}
-                        >
-                            SIGN-IN WITH ETHEREUM
-                        </Button>
-                    </div>
-                </Col>
-            </Row>
+            <Space direction="vertical" align="center" size="large">
+                <ThemedTitleV2
+                    collapsed={false}
+                    wrapperStyles={{
+                        fontSize: "22px",
+                    }}
+                />
+                <Button
+                    type="primary"
+                    size="middle"
+                    loading={isLoading}
+                    onClick={() => login({})}
+                >
+                    Sign in with Ethereum
+                </Button>
+                <Typography.Text type="secondary">
+                    Powered by Auth0
+                </Typography.Text>
+            </Space>
         </Layout>
     );
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login.gif" alt="ethereum-login" />
-<br/>
+</p>
+</details>
+
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login-min.gif" alt="ethereum-login" className="border border-gray-200 rounded" />
 
 ## Create Dashboard
 
 After connecting with our account, we can now retrieve account information. We will display this information on the dashboard of the **refine**.
 
-```tsx title="src/pages/dashboard"
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="src/pages/dashboard.tsx"
 import React from "react";
 import { useGetIdentity } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
@@ -258,15 +256,16 @@ export const DashboardPage: React.FC = () => {
     );
 };
 ```
+</p>
+</details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.png" alt="refine-dashboard" />
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.jpg" alt="refine-dashboard" className="border border-gray-200 rounded" />
 
 Now lets customize **refine** dashboard. Send your test ethereum via **refine** dashboard and Metamask.
 
-## Send Test Ethereum with Refine Dashboard
+## Send Test Ethereum with refine Dashboard
 
-Here we use the `sendTransaction` function to send ethereum with your browser enabled web3 wallet.
+Here we use the `sendTransaction` function to send ethereum with your browser-enabled web3 wallet.
 
 ```tsx title="src/utility.ts"
 export const sendEthereum = async (
@@ -288,8 +287,11 @@ export const sendEthereum = async (
     }
 };
 ```
+<details>
+<summary>Show Code</summary>
+<p>
 
-```tsx title"src/pages/dashboard.tsx"
+```tsx title="src/pages/dashboard.tsx"
 import React, { useState } from "react";
 import { useGetIdentity } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
@@ -408,14 +410,14 @@ export const DashboardPage: React.FC = () => {
     );
 };
 ```
+</p>
+</details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.png" alt="refine-customize" />
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.jpg" alt="refine-customize" className="border border-gray-200 rounded" />
 
 We can now request to send ethereum through our **refine** dashboard and also view your account details on [Etherscan Ropsten Test Network](https://ropsten.etherscan.io/)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview.gif" alt="refine-overview" />
-<br/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview-min.gif" alt="refine-overview" className="border border-gray-200 rounded" />
 
 ## Example
 
