@@ -118,7 +118,7 @@ useList({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `pagination`
 

@@ -598,7 +598,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 Here we only make requests for queries that are necessary. As you can see, all you have to do is specify the field you want to select with `meta`.
 
-[Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/guides-and-concepts/data-provider/graphql/)
+[Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/packages/documentation/data-providers/graphql)
 
 ### Refine Avaible Providers
 

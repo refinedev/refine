@@ -136,7 +136,7 @@ refine includes many router providers to use in your projects like:
 -   Next.js Router
 :::
 
-[To take a look at how other router providers are defined and working](https://refine.dev/docs/api-references/providers/router-provider/)
+[To take a look at how other router providers are defined and working](https://refine.dev/docs/packages/documentation/routers/)
 
 To activate router provider in **refine**, we have to pass the routerProvider to the `<Refine />` component.
 
@@ -377,7 +377,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 Here we only make requests for queries that are necessary. As you can see, all you have to do is specify the field you want to select with `meta`.
 
-[Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/guides-and-concepts/data-provider/graphql/)
+[Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/packages/documentation/data-providers/graphql/)
 
 ### Refine Avaible Providers
 

@@ -522,7 +522,7 @@ render(
 
 If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
 
-[Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
+[Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://procomponents.ant.design/en-US/components/page-header)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton } = RefineAntd;

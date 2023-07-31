@@ -575,7 +575,7 @@ useForm({
 If there is more than one `dataProvider`, you should pass the name of the `dataProvider` you are going to use to `dataProviderName`.
 
 :::tip
-If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
 :::
 
 ```tsx

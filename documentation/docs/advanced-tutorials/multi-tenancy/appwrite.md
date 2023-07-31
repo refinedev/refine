@@ -74,7 +74,7 @@ const App: React.FC = () => {
 We need three collections for our Cake House application. Let's create these collections in the appwrite database.
 
 :::info
-[Check out how you can create collections with refine Appwrite guide →](https://refine.dev/docs/guides-and-concepts/data-provider/appwrite/#create-collections)
+[Check out how you can create collections with refine Appwrite guide →](/docs/packages/documentation/data-providers/appwrite/#create-collections)
 :::
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/collections.png" alt="Collections" />

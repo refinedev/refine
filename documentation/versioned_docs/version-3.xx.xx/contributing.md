@@ -483,7 +483,7 @@ Make sure you use `setInitialRoutes` function before rendering the `<Refine/>` c
 
 [lerna]: https://github.com/lerna/lerna
 [lerna bootstrap]: https://lerna.js.org/#command-bootstrap
-[lerna filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob
+[lerna filter]: https://lerna.js.org/docs/api-reference/commands#--scope-glob
 [package.json]: https://github.com/refinedev/refine/blob/master/package.json
 [docusaurus]: https://docusaurus.io/
 [issues]: https://github.com/refinedev/refine/issues

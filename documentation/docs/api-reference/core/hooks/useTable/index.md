@@ -193,7 +193,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface&#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface&#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `sorters.permanent`
 
@@ -212,7 +212,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `filters.mode`
 
@@ -524,7 +524,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useTable({
@@ -556,7 +556,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### ~~`initialFilter`~~
 
