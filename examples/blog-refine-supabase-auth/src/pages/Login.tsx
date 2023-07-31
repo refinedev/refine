@@ -1,7 +1,7 @@
 import { useLogin } from "@refinedev/core";
 import { useRef, useState } from "react";
 import { Alert, Button, Card, Input } from "react-daisyui";
-import { supabaseClient } from "utility";
+import { supabaseClient } from "../utility";
 
 export const LoginPage = () => {
     const mobileNoRef = useRef<string>();

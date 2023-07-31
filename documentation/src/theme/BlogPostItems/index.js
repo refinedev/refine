@@ -34,9 +34,10 @@ export default function BlogPostItems({
                 <>
                     <div
                         className={clsx(
-                            "flex flex-col blog-md:flex-row items-start justify-between",
-                            "mb-2 lg:mb-8",
+                            "flex flex-col blog-md:flex-row items-start lg:items-center justify-between",
+                            "mb-4 lg:mb-8",
                             "px-0 blog-sm:px-6",
+                            "not-prose",
                         )}
                     >
                         <h2
@@ -45,6 +46,7 @@ export default function BlogPostItems({
                                 "blog-lg:mb-12 blog-md:mb-8 mb-8",
                                 "text-xl blog-sm:text-4xl blog-lg:text-5xl",
                                 "text-gray-900 dark:text-gray-0",
+                                "font-semibold",
                             )}
                         >
                             All Posts
@@ -54,6 +56,7 @@ export default function BlogPostItems({
                                 "text-sm blog-md:text-base blog-lg:text-xl",
                                 "blog-md:max-w-[624px]",
                                 "mt-6 lg:mt-0",
+                                "text-gray-500 dark:text-gray-400",
                             )}
                         >
                             <b>refine technical blog</b> - a resource for

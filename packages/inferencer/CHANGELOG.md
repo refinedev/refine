@@ -1,5 +1,28 @@
 # @pankod/refine-mantine
 
+## 4.4.0
+
+### Minor Changes
+
+-   [#4741](https://github.com/refinedev/refine/pull/4741) [`026ccf34356`](https://github.com/refinedev/refine/commit/026ccf34356bc621183894c0ee4518a6645369d1) Thanks [@aliemir](https://github.com/aliemir)! - Added `sideEffects: false` to `package.json` to help bundlers tree-shake unused code.
+
+### Patch Changes
+
+-   Updated dependencies [[`026ccf34356`](https://github.com/refinedev/refine/commit/026ccf34356bc621183894c0ee4518a6645369d1)]:
+    -   @refinedev/core@4.31.0
+
+## 4.3.4
+
+### Patch Changes
+
+-   [#4717](https://github.com/refinedev/refine/pull/4717) [`c1c10e5d7bd`](https://github.com/refinedev/refine/commit/c1c10e5d7bdd492ebb3a9ed969961e8f0db94206) Thanks [@aliemir](https://github.com/aliemir)! - Added a classname to the inferencer's code viewer component to determine a simple selector for the code viewer.
+
+## 4.3.3
+
+### Patch Changes
+
+-   [#4717](https://github.com/refinedev/refine/pull/4717) [`c1c10e5d7bd`](https://github.com/refinedev/refine/commit/c1c10e5d7bdd492ebb3a9ed969961e8f0db94206) Thanks [@aliemir](https://github.com/aliemir)! - Added a classname to the inferencer's code viewer component to determine a simple selector for the code viewer.
+
 ## 4.3.2
 
 ### Patch Changes

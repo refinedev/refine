@@ -22,6 +22,7 @@ export const packageMap: Record<string, string> = {
     "@refinedev/hasura": "RefineHasura",
     "@refinedev/nestjsx-crud": "RefineNestjsxCrud",
     "@refinedev/strapi-v4": "RefineStrapiV4",
+    "@refinedev/strapi-graphql": "RefineStrapiGraphql",
     "@refinedev/supabase": "RefineSupabase",
     axios: "AxiosScope",
     "@auth0/auth0-react": "Auth0ReactScope",
@@ -49,6 +50,7 @@ export const packageMap: Record<string, string> = {
     i18next: "I18Next",
     "i18next-browser-languagedetector": "I18NextBrowserLanguageDetector",
     "i18next-xhr-backend": "I18NextXhrBackend",
+    casbin: "Casbin",
 };
 
 export const packageScopeMap: Record<string, RegExp> = {

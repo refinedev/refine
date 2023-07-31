@@ -1,9 +1,10 @@
 {
-  "version": "5.4.0",
+  "version": "5.5.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "private": false,
+  "sideEffects": false,
   "files": [
     "dist",
     "src"
@@ -28,7 +29,7 @@
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@refinedev/core": "^4.12.0",
+    "@refinedev/core": "^4.31.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",

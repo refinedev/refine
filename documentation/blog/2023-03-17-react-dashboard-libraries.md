@@ -60,7 +60,7 @@ npm create refine-app#latest my-project
 ```
 
 ### Stats
-- GitHub stars: 8.5k
+- GitHub stars: 13+k
 - License: MIT
 - Links: [Demo](https://example.admin.refine.dev/) | [Documentation](https://refine.dev/docs/tutorial/introduction/index/) | [GitHub](https://github.com/refinedev/refine/tree/next/examples/finefoods-antd)
 

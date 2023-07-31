@@ -40,6 +40,8 @@ We can't wait to see what unique projects the participants will build projects u
 
 ##   Get your hackathon participation ticket 🎟️
 
+📣  **We'll announce the raffle winners on the first week of August.**
+
 We are organizing a raffle for those who create a ticket and share it on Twitter. As a gift, we are giving away a refine [cap](https://store.refine.dev/product/refine-cap) and a [coaster](https://store.refine.dev/product/coaster) set valued at $60.
 
 ###  🔗 [Generate participation ticket](https://hackathon.refine.dev)

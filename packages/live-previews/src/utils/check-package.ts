@@ -45,6 +45,7 @@ export const checkPackage = (code = "") => {
         code.includes("@refinedev/inferencer/headless") ||
         code.includes("RefineHeadlessInferencer");
 
+    const hasCasbin = code.includes("casbin");
     const hasI18n = code.includes("react-i18next") || code.includes("i18next");
     const hasTablerIcons = code.includes("@tabler/icons");
     const hasKbar = code.includes("@refinedev/kbar");
@@ -53,6 +54,7 @@ export const checkPackage = (code = "") => {
     const hasHasura = code.includes("@refinedev/hasura");
     const hasNestjsxCrud = code.includes("@refinedev/nestjsx-crud");
     const hasStrapiV4 = code.includes("@refinedev/strapi-v4");
+    const hasStrapiGraphql = code.includes("@refinedev/strapi-graphql");
     const hasSupabase = code.includes("@refinedev/supabase");
     const hasAxios = code.includes("axios");
     const hasAuth0 = code.includes("@auth0/auth0-react");
@@ -102,6 +104,10 @@ export const checkPackage = (code = "") => {
         set.add("strapi-v4");
     }
 
+    if (hasStrapiGraphql) {
+        set.add("strapi-graphql");
+    }
+
     if (hasSupabase) {
         set.add("supabase");
     }
@@ -148,6 +154,10 @@ export const checkPackage = (code = "") => {
 
     if (hasHeadlessInferencer) {
         set.add("headless-inferencer");
+    }
+
+    if (hasCasbin) {
+        set.add("casbin");
     }
 
     return set;

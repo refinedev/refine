@@ -72,12 +72,16 @@ export const PostList: React.FC = () => {
 
                             <button
                                 className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
-                                onClick={() =>
-                                    mutate({
+                                onClick={() => {
+                                    const reuslt = window.confirm(
+                                        "Are you sure you want to delete this record?",
+                                    );
+                                    if (!reuslt) return;
+                                    return mutate({
                                         id: getValue() as number,
                                         resource: "posts",
-                                    })
-                                }
+                                    });
+                                }}
                             >
                                 Delete
                             </button>
@@ -106,7 +110,8 @@ export const PostList: React.FC = () => {
         setPageSize,
     } = useTable<IPost>({ columns });
 
-    const categoryIds = tableData?.data?.map((item) => item.category[0]) ?? [];
+    const categoryIds =
+        tableData?.data?.map((item) => item.category?.[0]) ?? [];
 
     const { data: categoriesData } = useMany<ICategory>({
         resource: "category",
@@ -125,7 +130,7 @@ export const PostList: React.FC = () => {
     }));
 
     return (
-        <div className="mx-auto pb-4">
+        <div className="w-full overflow-hidden">
             <div className="mb-3 mt-1 flex items-center justify-end">
                 <button
                     className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
@@ -135,92 +140,96 @@ export const PostList: React.FC = () => {
                 </button>
             </div>
 
-            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
-                <thead className="bg-gray-100">
-                    {getHeaderGroups().map((headerGroup, idx) => (
-                        <tr key={idx}>
-                            {headerGroup.headers.map((header, idx) => (
-                                <th
-                                    key={idx}
-                                    colSpan={header.colSpan}
-                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
-                                >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext(),
-                                    )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                    {getRowModel().rows.map((row, idx) => {
-                        return (
-                            <tr
-                                key={idx}
-                                className="transition hover:bg-gray-100"
-                            >
-                                {row.getVisibleCells().map((cell, idx) => {
-                                    return (
-                                        <td
-                                            key={idx}
-                                            className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900"
-                                        >
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </td>
-                                    );
-                                })}
+            <div className="w-full overflow-scroll">
+                <table className="w-full overflow-scroll divide-gray-200 border">
+                    <thead className="bg-gray-100">
+                        {getHeaderGroups().map((headerGroup, idx) => (
+                            <tr key={idx}>
+                                {headerGroup.headers.map((header, idx) => (
+                                    <th
+                                        key={idx}
+                                        colSpan={header.colSpan}
+                                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                    >
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                    </th>
+                                ))}
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                        ))}
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                        {getRowModel().rows.map((row, idx) => {
+                            return (
+                                <tr
+                                    key={idx}
+                                    className="transition hover:bg-gray-100"
+                                >
+                                    {row.getVisibleCells().map((cell, idx) => {
+                                        return (
+                                            <td
+                                                key={idx}
+                                                className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900"
+                                            >
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
 
-            <div className="mx-auto mt-12 flex items-center justify-between">
-                <div className="mx-auto flex items-center justify-between md:w-7/12">
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => setPageIndex(0)}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<<"}
-                    </button>
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => previousPage()}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<"}
-                    </button>
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => nextPage()}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">"}
-                    </button>
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => setPageIndex(getPageCount() - 1)}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">>"}
-                    </button>
-                    <div className="w-[40%] px-5">
-                        Page
-                        <strong>
-                            &nbsp; {getState().pagination.pageIndex + 1} of{" "}
-                            {getPageCount()}
-                        </strong>
+            <div className="mx-auto mt-2 flex items-center justify-end flex-wrap">
+                <div className="flex items-center flex-wrap gap-4">
+                    <div className="flex items-center">
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => setPageIndex(0)}
+                            disabled={!getCanPreviousPage()}
+                        >
+                            {"<<"}
+                        </button>
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => previousPage()}
+                            disabled={!getCanPreviousPage()}
+                        >
+                            {"<"}
+                        </button>
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => nextPage()}
+                            disabled={!getCanNextPage()}
+                        >
+                            {">"}
+                        </button>
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => setPageIndex(getPageCount() - 1)}
+                            disabled={!getCanNextPage()}
+                        >
+                            {">>"}
+                        </button>
+                        <div className="ml-1 whitespace-nowrap">
+                            Page
+                            <strong>
+                                &nbsp; {getState().pagination.pageIndex + 1} of{" "}
+                                {getPageCount()}
+                            </strong>
+                        </div>
                     </div>
-                    <div className="px-5">
+                    <div className="flex items-center gap-2 whitespace-nowrap">
                         Go to page:
                         <input
-                            className="block rounded-[8px] border p-2"
+                            className="block border p-2 h-8"
                             type="number"
                             defaultValue={getState().pagination.pageIndex + 1}
                             onChange={(e) => {
@@ -230,9 +239,9 @@ export const PostList: React.FC = () => {
                                 setPageIndex(page);
                             }}
                         />
-                    </div>{" "}
+                    </div>
                     <select
-                        className="w-[50%] border px-5"
+                        className="border px-5 h-8"
                         value={getState().pagination.pageSize}
                         onChange={(e) => {
                             setPageSize(Number(e.target.value));

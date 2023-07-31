@@ -94,6 +94,7 @@ export const SharedCodeViewer: CreateInferencerConfig["codeViewerComponent"] =
                 <>
                     {isVisible && (
                         <div
+                            className="refine-inferencer--code-viewer"
                             style={{
                                 position: "sticky",
                                 bottom: "24px",
@@ -497,6 +498,7 @@ const CodeModal = ({
 
     return (
         <div
+            className="refine-inferencer--code-viewer-modal"
             style={{
                 position: "fixed",
                 top: 0,
