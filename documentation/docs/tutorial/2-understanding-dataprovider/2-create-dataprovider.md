@@ -43,7 +43,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Error Handling
 
-When the API returns an error, you need to extend **refine** from [HttpError](https://github.com/refinedev/refine/blob/next/packages/core/src/interfaces/HttpError.ts) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
+When the API returns an error, you need to extend **refine** from [HttpError](/docs/api-reference/core/interfaceReferences/#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
 
 To do this, create an `axiosInstance` in a `utility` file, define an `interceptor` to handle errors, and then export it.
 

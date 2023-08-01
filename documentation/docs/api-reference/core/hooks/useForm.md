@@ -903,7 +903,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
-If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
 :::
 
 ```tsx

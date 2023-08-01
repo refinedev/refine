@@ -118,7 +118,7 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 ```
 
 
-[Refer to refine docs for more detailed information about refine Strapi V4 support&#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
+[Refer to refine docs for more detailed information about refine Strapi V4 support&#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
 
 [Refer to refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
 
@@ -333,7 +333,7 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 ### Handling relational data
 Relations are not populated when fetching entries. We'll use `meta` option to use relational population for Strapi v4 API.
 
-The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population) feature of Strapi v4. 
+The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population) feature of Strapi v4. 
 
 We'll set `populate` parameter to define which fields will be populated.
 
@@ -378,7 +378,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
  [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/tutorial/adding-crud-pages/mui/index/#handling-relationships)
 :::
 
-[Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population)
+[Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 
 
@@ -934,7 +934,7 @@ We'll implement `undoable` mutation mode. The mutation is applied locally, redir
 
 During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
-[Refer to refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
+[Refer to refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
 
 
 

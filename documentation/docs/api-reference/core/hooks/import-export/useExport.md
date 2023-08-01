@@ -78,7 +78,7 @@ useExport<IPost>({
 
 If you want to sort the data before exporting it, you can use the `sorters` property. It will be passed to the `getList` method of your data provider.
 
-> For more information, refer to the [`CrudSorting` interface&#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface&#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```ts
 useExport({

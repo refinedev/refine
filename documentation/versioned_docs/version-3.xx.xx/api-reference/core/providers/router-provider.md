@@ -947,8 +947,8 @@ Since Next.js and Remix has a folder base route structure, it is used by exporti
 &#8594 [Refer to the React Router V6's `<RouterComponent>` for detailed usage information.][routercomponent-v6]  
 &#8594 [Refer to the React Router V5's `<RouterComponent>` for detailed usage information.][routercomponent]  
 &#8594 [Refer to the React Location's `<RouterComponent>` for detailed usage information.][react-location-routercomponent]  
-&#8594 [Refer to the Next.js Router's `<NextRouteComponent>` for detailed usage information.](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/src/nextRouteComponent.tsx)
-&#8594 [Refer to the Next.js Router's `<RemixRouteComponent>` for detailed usage information.](https://github.com/refinedev/refine/blob/master/packages/remix/src/routeComponent.tsx)
+&#8594 [Refer to the Next.js Router's `<NextRouteComponent>` for detailed usage information.](https://github.com/refinedev/refine/blob/v3/packages/nextjs-router/src/pages/route-component.tsx)
+&#8594 [Refer to the Next.js Router's `<RemixRouteComponent>` for detailed usage information.](https://github.com/refinedev/refine/blob/v3/packages/remix/src/routeComponent.tsx)
 
 ## Serving the application from a subdirectory
 
@@ -1302,9 +1302,9 @@ Splat routes in Remix, does not catch the `index` route. So if you want to redir
 </TabItem>
 </Tabs>
 
-[browserrouter]: https://github.com/refinedev/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
+[browserrouter]: https://github.com/refinedev/refine/blob/v3/packages/react-router-v6/src/routerComponent.tsx
 [router]: https://react-location.tanstack.com/docs/api#router
-[routercomponent-v6]: https://github.com/refinedev/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
+[routercomponent-v6]: https://github.com/refinedev/refine/blob/v3/packages/react-router-v6/src/routerComponent.tsx
 [routercomponent]: https://github.com/refinedev/refine/blob/master/packages/react-router/src/routerComponent.tsx
 [react-location-routercomponent]: https://github.com/refinedev/refine/blob/master/packages/react-location/src/routerComponent.tsx
 [react-router-v5]: https://github.com/refinedev/refine/tree/master/packages/react-router

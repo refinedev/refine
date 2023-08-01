@@ -31,7 +31,7 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
 
 When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
@@ -81,7 +81,7 @@ const { options } = useSelect({
 
 It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSelect({

@@ -30,7 +30,7 @@ We try to answer the question **how many users are actively using the refine fra
 <Tabs>
     <TabItem value="refine-core" label="refine core" default>
 
-The tracking happens when a refine application is loaded on the user's browser. On application init, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev">https://telemetry.refine.dev</a>. The request body is encoded with Base64 to be decoded on refine servers.
+The tracking happens when a refine application is loaded on the user's browser. On application init, a single HTTP request is sent to "https://telemetry.refine.dev". The request body is encoded with Base64 to be decoded on refine servers.
 
 There are no consequent requests for that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
 
@@ -74,7 +74,7 @@ You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<R
 
 <TabItem value="refine-cli" label="refine CLI">
 
-After running a command with the `refine` CLI, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev/cli">https://telemetry.refine.dev/cli</a>.
+After running a command with the `refine` CLI, a single HTTP request is sent to "https://telemetry.refine.dev/cli".
 
 ## What is collected?
 

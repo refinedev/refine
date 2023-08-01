@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/useSelect/index.ts
+source: packages/core/src/hooks/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -34,7 +34,7 @@ Here is a basic example of how to use `useSelect` hook.
 ## Realtime Updates
 
 :::caution
-This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
 :::
 
 When `useSelect` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
@@ -103,7 +103,7 @@ useSelect({
 
 <SortLivePreview />
 
-> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `filters`
 
