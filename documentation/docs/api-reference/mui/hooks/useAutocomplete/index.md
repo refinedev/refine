@@ -10,7 +10,7 @@ import CrudLivePreview from "./crud-live-preview.md";
 import SortLivePreview from "./sort-live-preview.md";
 import OnSearchLivePreview from "./on-search-live-preview.md";
 
-`useAutocomplete` hook allows you to manage Material UI [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
+`useAutocomplete` hook allows you to manage Material UI's [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
 
 This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/api-reference/core/hooks/data/useList/)
 
@@ -31,12 +31,14 @@ Here is a basic example of how to use `useAutocomplete` hook.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+:::caution
+This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+:::
 
 When `useAutocomplete` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -52,13 +54,13 @@ useAutocomplete({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `sorters`
 
 It allows to show the options in the desired order. `sorters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send `sorters` query parameters to the API.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useAutocomplete({
@@ -75,9 +77,10 @@ useAutocomplete({
 
 ### `filters`
 
-It is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
+`filters` is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 
 ```tsx
 useAutocomplete({
@@ -101,7 +104,7 @@ useAutocomplete({
 });
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useMany/)
+> For more information, refer to the [`useMany` documentation &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 ### `debounce`
 
@@ -117,7 +120,7 @@ useAutocomplete({
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ```tsx
 useAutocomplete({
@@ -186,7 +189,7 @@ useAutocomplete({
 
 It allows us to `AutoComplete` the `options`.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 <OnSearchLivePreview />
 
@@ -244,7 +247,7 @@ const filterOptions = createFilterOptions({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -294,7 +297,9 @@ useAutocomplete({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data is fetched successfully, `useAutocomplete` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -312,7 +317,9 @@ useAutocomplete({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data fetching is failed, `useAutocomplete` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -330,10 +337,13 @@ useAutocomplete({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+> For more information, please refer to the [Live / Realtime documentation](/docs/api-reference/core/providers/live-provider/#livemode)
 
 ```tsx
 useAutocomplete({
@@ -343,7 +353,9 @@ useAutocomplete({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -357,14 +369,16 @@ useAutocomplete({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. 
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -396,9 +410,7 @@ Use `sorters` instead.
 Use `pagination.mode` instead.
 :::
 
-> Default: `false`
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not. It is `false` by default.
 
 ```tsx
 useAutocomplete({

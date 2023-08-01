@@ -6,10 +6,10 @@ swizzle: true
 
 `<ExportButton>` is a Material UI [`<LoadingButton>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
-[Refer to the for more detailed information about `useExport`. &#8594][useexport]
+> For more information, refer to the [useExport documentation &#8594][useexport]
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -72,7 +72,7 @@ render(
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show or hide text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;

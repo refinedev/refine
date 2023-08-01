@@ -12,7 +12,9 @@ By using `useDataGrid`, you can get properties that are compatible with MUI X [`
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
-> 💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
+:::caution
+💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
+:::
 
 :::info
 This hook is extended from [`useTable`][use-table-core] from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
@@ -247,11 +249,13 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -276,7 +280,7 @@ useDataGrid({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `dataProviderName`
 
@@ -304,9 +308,7 @@ useDataGrid({
 
 ### `pagination.pageSize`
 
-> Default: `25`
-
-Sets the initial value of the page size.
+Sets the initial value of the page size. It is `25` by default.
 
 ```tsx
 useDataGrid({
@@ -318,9 +320,7 @@ useDataGrid({
 
 ### `pagination.mode`
 
-> Default: `"server"`
-
-It can be `"off"`, `"server"` or `"client"`.
+It can be `"off"`, `"server"` or `"client"`. It is `"server"` by default.
 
 -   **"off":** Pagination is disabled. All records will be fetched.
 -   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
@@ -336,9 +336,9 @@ useDataGrid({
 
 ### `sorters.initial`
 
-Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
+`sorters.initial` sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -355,9 +355,9 @@ useDataGrid({
 
 ### `sorters.permanent`
 
-Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
+`sorters.permanent` sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -374,9 +374,7 @@ useDataGrid({
 
 ### `sorters.mode`
 
-> Default: `"server"`
-
-It can be `"off"`, or `"server"`.
+It can be `"off"`, or `"server"`. It is `"server"` by default.
 
 -   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
 -   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
@@ -393,7 +391,7 @@ useDataGrid({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -413,7 +411,7 @@ useDataGrid({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -431,9 +429,7 @@ useDataGrid({
 
 ### `filters.defaultBehavior`
 
-> Default: `merge`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`. It is `"merge"` by default.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -451,9 +447,7 @@ useDataGrid({
 
 ### `filters.mode`
 
-> Default: `"server"`
-
-It can be `"off"` or `"server"`.
+It can be `"off"` or `"server"`. It is `"server"` by default.
 
 -   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
 -   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
@@ -468,9 +462,7 @@ useDataGrid({
 
 ### `syncWithLocation`
 
-> Default: `false`
-
-When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table states across different routes or pages and allows users to bookmark or share links to specific table views.
+When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table states across different routes or pages and allows users to bookmark or share links to specific table views. It is `false` by default.
 
 Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
@@ -499,7 +491,7 @@ useDataGrid({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -540,7 +532,9 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`][notification-provider] is required for this prop to work.
+:::caution
+[`NotificationProvider`][notification-provider] is required for this prop to work.
+:::
 
 After data is fetched successfully, `useDataGrid` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -558,7 +552,9 @@ useDataGrid({
 
 ### `errorNotification`
 
-> [`NotificationProvider`][notification-provider] is required for this prop to work.
+:::caution
+[`NotificationProvider`][notification-provider] is required for this prop to work.
+:::
 
 After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -576,10 +572,13 @@ useDataGrid({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+For more information, please refer to the [Live / Realtime documentation](/docs/api-reference/core/providers/live-provider/#livemode)
 
 ```tsx
 useDataGrid({
@@ -589,7 +588,9 @@ useDataGrid({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -603,14 +604,16 @@ useDataGrid({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. 
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -636,9 +639,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 Use `pagination.current` instead.
 :::
 
-> Default: `1`
-
-Sets the initial value of the page index.
+Sets the initial value of the page index. It is `1` by default.
 
 ```tsx
 useDataGrid({
@@ -652,9 +653,7 @@ useDataGrid({
 Use `pagination.pageSize` instead.
 :::
 
-> Default: `25`
-
-Sets the initial value of the page size.
+Sets the initial value of the page size. It is `25` by default.
 
 ```tsx
 useDataGrid({
@@ -668,9 +667,7 @@ useDataGrid({
 Use `pagination.mode` instead.
 :::
 
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
+Determines whether to use server-side pagination or not. It is `true` by default.
 
 ```tsx
 useDataGrid({
@@ -686,7 +683,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -707,7 +704,7 @@ Use `sorters.permanent` instead.
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -728,7 +725,7 @@ Use `filters.initial` instead.
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -750,7 +747,7 @@ Use `filters.permanent` instead.
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -770,9 +767,7 @@ useDataGrid({
 Use `filters.defaultBehavior` instead.
 :::
 
-> Default: `merge`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`. It is `merge` by default.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -794,9 +789,7 @@ The props needed by the [`<DataGrid>`][data-grid] component.
 
 #### `sortingMode`
 
-> Default: `server`
-
-Determines whether to use server-side sorting or not.
+Determines whether to use server-side sorting or not. It is `server` by default.
 
 #### `sortModel`
 
@@ -806,7 +799,9 @@ Current `GridSortModel` compatible with [`<DataGrid>`][data-grid] component.
 
 When the user sorts a column, this function is called with the new sort model.
 
-🚨 `dataGridProps.onSortModelChange` automatically transform `GridSortModel` to [`CrudSorting`][crudsorting] and call `setSorter` function. If you want to override it, you can use like this:
+:::caution
+`dataGridProps.onSortModelChange` automatically transform `GridSortModel` to [`CrudSorting`][crudsorting] and call `setSorter` function. If you want to override it, you can use like this:
+:::
 
 ```tsx
 <DataGrid
@@ -822,9 +817,7 @@ When the user sorts a column, this function is called with the new sort model.
 
 #### `filterMode`
 
-> Default: `server`
-
-Determines whether to use server-side filtering or not.
+Determines whether to use server-side filtering or not. It is `server` by default.
 
 #### `filterModel`
 
@@ -834,7 +827,9 @@ Current `GridFilterModel` compatible with [`<DataGrid>`][data-grid] component.
 
 When the user filters a column, this function is called with the new filter model.
 
-🚨 `dataGridProps.onFilterModelChange` automatically transform `GridFilterModel` to [`CrudFilters`][crudfilters] and call `setFilters` function. If you want to override it, you can use like this:
+:::caution
+`dataGridProps.onFilterModelChange` automatically transform `GridFilterModel` to [`CrudFilters`][crudfilters] and call `setFilters` function. If you want to override it, you can use like this:
+:::
 
 ```tsx
 <DataGrid
@@ -852,7 +847,9 @@ When the user filters a column, this function is called with the new filter mode
 
 When the user sorts or filters a column, this function is called with the new state.
 
-🚨 The onStateChange callback is used internally by the useDataGrid hook. If you want to override it, you can use like this:
+:::caution
+The `onStateChange` callback is used internally by the `useDataGrid` hook. If you want to override it, you can use like this:
+:::
 
 ```tsx
 <DataGrid
@@ -1063,7 +1060,6 @@ useDataGrid({
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
 [use-table-core]: /docs/api-reference/core/hooks/useTable
-[source-code]: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters
@@ -1071,7 +1067,5 @@ useDataGrid({
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
-[table search]: /advanced-tutorials/search/table-search.md
 [data-grid]: https://mui.com/x/react-data-grid/
-[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [notification-provider]: /api-reference/core/providers/notification-provider.md

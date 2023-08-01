@@ -4,7 +4,7 @@ title: Inferencer
 sidebar_label: Inferencer
 ---
 
-You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` and `MuiInferencer` (which combines all in one place) components.
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` components and finally the `MuiInferencer` component, which combines all in one place.
 
 ## Usage
 
@@ -121,7 +121,7 @@ To learn more about `@refinedev/inferencer` package, please check out [Docs](/do
 
 ### `List`
 
-Generates a sample list view for your resources according to the API response. It uses `List` component and `useDatagrid` hook from `@refinedev/mui`.
+Generates a sample list view for your resources according to the API response. It uses the `List` component and `useDatagrid` hook from `@refinedev/mui`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/samples"]);
@@ -269,7 +269,7 @@ render(<App />);
 
 ### `Create`
 
-Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component from `@refinedev/mui` and `useForm` hook from `@refinedev/react-hook-form`.
+Generates a sample create view for your resources according to the first record in list API response. It uses the `Create` component from `@refinedev/mui` and `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/create
 setInitialRoutes(["/samples/create"]);

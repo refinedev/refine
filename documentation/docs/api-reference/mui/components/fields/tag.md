@@ -4,7 +4,7 @@ title: Tag
 swizzle: true
 ---
 
-This field lets you display a value in a tag. It uses Material UI [`<Chip>`](https://mui.com/material-ui/react-chip/#main-content) component.
+This field lets you display a value in a tag. It uses Material UI's [`<Chip>`](https://mui.com/material-ui/react-chip/#main-content) component.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)

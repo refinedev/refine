@@ -9,10 +9,10 @@ source: packages/mui/src/components/pages/auth/index.tsx hideCode
 
 `<AuthPage>` component from **refine** for **Material UI** contains authentication pages that can be used to login, register, forgot password, and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ```tsx live shared
@@ -469,7 +469,7 @@ const authProvider: AuthBindings = {
 
 ### ForgotPassword
 
-The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
+The `forgotPassword` type is a page that allows users to reset their passwords.
 
 ```tsx hideCode live url=http://localhost:3000/forgot-password previewHeight=600px
 setInitialRoutes(["/forgot-password"]);
@@ -841,7 +841,7 @@ const MyLoginPage = () => {
 `forgotPasswordLink` property is only available for type `login`.
 :::
 
-`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
+`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node for it to render. The default value is `"/forgot-password"`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -1040,6 +1040,3 @@ interface FormPropsType extends UseFormProps {
 [register]: /docs/api-reference/core/providers/auth-provider/#register
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
-[get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
-[logout]: /docs/api-reference/core/providers/auth-provider/#logout-

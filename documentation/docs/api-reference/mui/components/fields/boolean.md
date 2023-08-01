@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<BooleanField>` with the example in the post list.
+Let's see how we can use `<BooleanField>` with the example in the post list:
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start

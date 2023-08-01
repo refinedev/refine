@@ -13,11 +13,11 @@ You can also check out the [Introducing MUI X v6.0.0](https://mui.com/blog/mui-x
 
 :::
 
-The changes in the `DataGrid` API are included in the `@refinedev/mui`'s latest version (`v5`). With this release, we've updated the peer dependency of `@mui/x-data-grid` to `^6.6.0`. 
+The changes in the `DataGrid` API are included in the `@refinedev/mui`'s latest version (`v5`). With this release, we've updated the peer dependency of `@mui/x-data-grid` to `^6.6.0`.
 
 ## Required Changes
 
-The changes listed below are required to use `@mui/x-data-grid` with refine. It doesn't cover all the changes in the `DataGrid` API. To see all the changes, please follow the [official migration guide for MUI X](https://mui.com/x/migration/migration-data-grid-v5/).
+The changes listed below are required to use `@mui/x-data-grid` with **refine**. It doesn't cover all the changes in the `DataGrid` API. To see all the changes, please follow the [official migration guide for MUI X](https://mui.com/x/migration/migration-data-grid-v5/).
 
 ### Updating the packages
 

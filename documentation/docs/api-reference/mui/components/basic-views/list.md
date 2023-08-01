@@ -5,7 +5,7 @@ sidebar_label: List
 swizzle: true
 ---
 
-`<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving the page titles.
+`<List>` provides us a layout to display the page. It does not contain any logic and just adds extra functionalities like a create button or giving the page titles.
 
 We will show what `<List>` does using properties with examples.
 
@@ -87,14 +87,14 @@ render(
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Properties
 
 ### `title`
 
-It allows adding title inside the `<List>` component. if you don't pass title props it uses the plural resource name by default. For example, for the `/posts` resource, it will be "Posts".
+`title` allows the addition of titles inside the `<List>` component. If you don't pass title props it uses the plural resource name by default. For example, for the `/posts` resource, it will be "Posts".
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -181,7 +181,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `canCreate` and `createButtonProps`
 
@@ -268,13 +268,11 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `breadcrumb`
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
-
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
@@ -327,11 +325,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property.
-
-[Refer to the `Card` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card/)
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -369,11 +367,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
+
 ### `headerProps`
 
 If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
-
-[Refer to the `CardHeader` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-header/)
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -411,11 +409,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
+
 ### `contentProps`
 
 If you want to customize the content of the `<List/>` component, you can use the `contentProps` property.
-
-[Refer to the `CardContent` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-content/)
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -452,6 +450,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
 ### `headerButtons`
 
@@ -552,8 +552,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/box/)
-
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List } from "@refinedev/mui";
@@ -596,6 +594,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Material UI &#8594](https://mui.com/material-ui/api/box/)
 
 ## API Reference
 

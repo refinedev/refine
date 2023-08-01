@@ -4,9 +4,9 @@ title: Create
 swizzle: true
 ---
 
-`<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
+`<Create>` provides us a layout to display the page. It does not contain any logic and just adds extra functionalities like action buttons and giving titles to the page.
 
-We'll show what `<Create>` does using properties with examples.
+We will show what `<Create>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/create
 // visible-block-start
@@ -122,14 +122,14 @@ render(
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Properties
 
 ### `title`
 
-It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
+`title` allows the addition of titles inside the `<Create>` component. If you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it would be "Create post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -222,13 +222,11 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `saveButtonProps`
 
-`<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
-
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mui/components/buttons/save.md)
+The `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -262,6 +260,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mui/components/buttons/save.md)
 
 ### `goBack`
 
@@ -374,8 +374,6 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
-
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
@@ -425,11 +423,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property.
-
-[Refer to the `Card` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -473,11 +471,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
+
 ### `headerProps`
 
 If you want to customize the header of the `<Create/>` component, you can use the `headerProps` property.
-
-[Refer to the `CardHeader` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-header/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -521,11 +519,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
+
 ### `contentProps`
 
 If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
-
-[Refer to the `CardContent` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-content/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -568,6 +566,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
 ### `headerButtons`
 
@@ -621,8 +621,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/box/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
 import { Create } from "@refinedev/mui";
@@ -671,6 +669,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Material UI &#8594](https://mui.com/material-ui/api/box/)
 
 ### `footerButtons`
 
@@ -778,8 +778,6 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `CardActions` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-actions/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
 import { Create } from "@refinedev/mui";
@@ -828,6 +826,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`CardActions` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-actions/)
 
 ## API Reference
 
