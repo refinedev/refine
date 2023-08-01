@@ -73,7 +73,6 @@ const renderForm = ({
                 <button
                     {...saveButtonProps}
                     onClick={(e) => {
-                        console.log("clicked");
                         saveButtonProps?.onClick(e);
                     }}
                     data-testid="refine-save-button"
