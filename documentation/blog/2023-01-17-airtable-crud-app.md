@@ -615,7 +615,7 @@ export const PostList: React.FC = () => {
 
 In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
 
-We also use the [`useNavigation()`](https://refine.dev/docs/api-references/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
+We also use the [`useNavigation()`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
 ---
 

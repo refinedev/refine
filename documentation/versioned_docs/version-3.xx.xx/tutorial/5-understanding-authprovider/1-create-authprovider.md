@@ -519,7 +519,7 @@ if (data?.includes("admin")) {
 :::info
 `usePermissions` hook can be used for simply authorization purposes. If you need more complex authorization logic, we recommend using the access control provider to handle the authorization logic.
 
-[Refer to the `accessControlProvider` documentation for more information &#8594](docs/api-reference/core/providers/accessControl-provider/)
+[Refer to the `accessControlProvider` documentation for more information &#8594](/docs/api-reference/core/providers/accessControl-provider/)
 :::
 
 ### getUserIdentity

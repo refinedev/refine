@@ -4,7 +4,7 @@ title: <AuthPage>
 sidebar_label: <AuthPage>
 description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
-source: packages/mui/src/components/pages/auth/index.tsx hideCode
+source: packages/mui/src/components/pages/auth/index.tsx
 ---
 
 `<AuthPage>` component from **refine** for **Material UI** contains authentication pages that can be used to login, register, forgot password, and update password.

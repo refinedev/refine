@@ -34,7 +34,7 @@ Here is a basic example that uses the `useSelect` hook.
 ## Realtime Updates
 
 :::caution
-This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
 :::
 
 When the `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider` that allow you to subscribe to live updates.
@@ -103,7 +103,7 @@ useSelect({
 
 <SortLivePreview />
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `filters`
 

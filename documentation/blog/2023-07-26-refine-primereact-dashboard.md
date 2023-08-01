@@ -1616,7 +1616,7 @@ export const ProductCreate = () => {
 
 In the code above, we used the [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook to manage the form state. It also makes a request to the `/products` endpoint with the `POST` method when the form is submitted.
 
-Additionally, we used the [`useSelect`](https://refine.dev/docs/packages/documentation/core/hooks/useSelect/) hook to fetch the categories for the dropdown. It makes a request to the `/categories` endpoint with the `GET` method to fetch the categories.
+Additionally, we used the [`useSelect`](https://refine.dev/docs/api-reference/core/hooks/useSelect/) hook to fetch the categories for the dropdown. It makes a request to the `/categories` endpoint with the `GET` method to fetch the categories.
 
 To render the form, we used the PrimeReact input components and we used the React Hook Form as recommended by the PrimeReact documentation.
 

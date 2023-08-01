@@ -23,7 +23,7 @@ We try to answer the question **how many users are actively using the Refine fra
 
 <Tabs>
     <TabItem value="refine-core" label="refine core" default>
-The tracking happens when a Refine application is loaded on the user's browser. On application init, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev">https://telemetry.refine.dev</a>. The request body is encoded with Base64 to be decoded on Refine servers.
+The tracking happens when a Refine application is loaded on the user's browser. On application init, a single HTTP request is sent to "https://telemetry.refine.dev". The request body is encoded with Base64 to be decoded on Refine servers.
 
 There are no consequent requests for that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
 
@@ -32,7 +32,7 @@ There are no consequent requests for that session, as we do NOT collect any beha
 The HTTP call has a JSON payload having the following application-specific attributes:
 
 | Value         | Type        | Description                                                                                                     |
-| ------------- | ---------   | --------------------------------------------------------------------------------------------------------------- |
+| ------------- | ----------- | --------------------------------------------------------------------------------------------------------------- |
 | providers     | `boolean[]` | List of providers used in the project (auth, data, router, live, notification, auditLog, i18n or accessControl) |
 | version       | `string`    | Version of the refine package.                                                                                  |
 | resourceCount | `number`    | Number of total resources.                                                                                      |
@@ -54,19 +54,19 @@ You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<R
 
 <TabItem value="refine-cli" label="refine CLI">
 
-After running a command with the `refine` CLI, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev/cli">https://telemetry.refine.dev/cli</a>.
+After running a command with the `refine` CLI, a single HTTP request is sent to "https://telemetry.refine.dev/cli"
 
 ## What is collected?
 
-| Value            | Type                                            | Description                                                   |
-| ---------------- | -------------------------------------------     | ------------------------------------------------------------  |
-| nodeEnv          | `string`                                        | Specifies the environment in which an application is running. |
-| nodeVersion      | `string`                                        | Installed Node.js version.                                    |
-| os               | `string`                                        | Operating system name.                                        |
-| osVersion        | `string`                                        | Operating system version.                                     |
-| command          | `string`                                        | Running script name.                                          |
-| packages         | `{ "name": "string", "version": "string" }[]`   | Installed `refine` packages.                                  |
-| projectFramework | `string`                                        | Installed `react` framework.                                  |
+| Value            | Type                                          | Description                                                   |
+| ---------------- | --------------------------------------------- | ------------------------------------------------------------- |
+| nodeEnv          | `string`                                      | Specifies the environment in which an application is running. |
+| nodeVersion      | `string`                                      | Installed Node.js version.                                    |
+| os               | `string`                                      | Operating system name.                                        |
+| osVersion        | `string`                                      | Operating system version.                                     |
+| command          | `string`                                      | Running script name.                                          |
+| packages         | `{ "name": "string", "version": "string" }[]` | Installed `refine` packages.                                  |
+| projectFramework | `string`                                      | Installed `react` framework.                                  |
 
 Additionally, the following information is extracted and collected from the HTTP header:
 

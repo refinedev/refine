@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 5.5.0
+
+### Minor Changes
+
+-   [#4741](https://github.com/refinedev/refine/pull/4741) [`026ccf34356`](https://github.com/refinedev/refine/commit/026ccf34356bc621183894c0ee4518a6645369d1) Thanks [@aliemir](https://github.com/aliemir)! - Added `sideEffects: false` to `package.json` to help bundlers tree-shake unused code.
+
 ## 5.4.0
 
 ### Minor Changes
