@@ -411,7 +411,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`PageHeader` documentation &#8594](https://ant.design/components/page-header/)
+> For more information, refer to the [`PageHeader` documentation &#8594](https://procomponents.ant.design/en-US/components/page-header)
 
 ### `contentProps`
 

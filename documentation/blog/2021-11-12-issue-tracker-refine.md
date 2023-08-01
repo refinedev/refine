@@ -511,7 +511,7 @@ export default App;
 
 ```
 
-Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/api-references/providers/router-provider/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
+Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/packages/documentation/routers/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
 <br />

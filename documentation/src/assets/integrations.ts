@@ -266,8 +266,8 @@ export const integrations: IntegrationsType = {
             status: "stable",
             contributors: [
                 {
-                    name: "miyavsu",
-                    url: "https://github.com/miyavsu-limited",
+                    name: "umutzd",
+                    url: "https://github.com/umutzd",
                 },
             ],
         },

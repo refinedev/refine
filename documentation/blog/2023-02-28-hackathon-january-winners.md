@@ -76,5 +76,5 @@ We will be giving away the refine swag kit to projects that we did not award, bu
 Here are the refine swag kit winners:
 
 -   [SnipSnap](https://github.com/drishtipeshwani/SnipSnap) - A one-stop platform for users to save all their important coding snippets at one place so that they can refer to them later. It is integrated with overall CRUD functionality.
--   [Dashed Streaks](https://github.com/triplelog/dashed-streaks) - Dashed Streaks tracks your progress as you try to spell out the desired phrase and keeps you informed of the upcoming schedule.
+-   Dashed Streaks - Dashed Streaks tracks your progress as you try to spell out the desired phrase and keeps you informed of the upcoming schedule.
 -   [refine-sunday](https://github.com/ZhuXinAI/RefineSunday) - A tool that allows users to place built-in or custom components within a grid design meant for websites they want to create

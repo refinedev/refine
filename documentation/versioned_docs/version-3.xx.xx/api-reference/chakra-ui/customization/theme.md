@@ -227,7 +227,7 @@ render(<App />);
 
 :::info
 
-[Refer to the `refineTheme` object in the source code to see the default theme values.. &#8594](https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/types/theme.ts)
+[Refer to the `refineTheme` object in the source code to see the default theme values.. &#8594](https://github.com/refinedev/refine/blob/v3/packages/chakra-ui/src/theme/index.ts)
 
 :::
 

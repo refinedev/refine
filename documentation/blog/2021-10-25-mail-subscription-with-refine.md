@@ -276,7 +276,7 @@ export interface IMail {
 
 In this component:
 
-We used refine's [list](https://refine.dev/docs/examples/list/useSimpleList) and [table](https://refine.dev/docs/api-references/hooks/table/useTable/) to show our subscribers and messages.
+We used refine's [list](https://refine.dev/docs/examples/list/useSimpleList) and [table](https://refine.dev/docs/api-reference/core/hooks/useTable/) to show our subscribers and messages.
 
 Now let's see how our subscriber panel looks like:
 

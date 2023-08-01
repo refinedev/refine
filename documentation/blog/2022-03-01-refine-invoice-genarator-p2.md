@@ -290,7 +290,7 @@ Our next step is to create invoices according to these tasks and clients. Let's 
 
 Let's put the `Invoice Collections` fields that we created with Strapi into our Table by fetch the refine-antd useTable. Our Invoice collection has a relation with the client, company and missions collections.
 
-Thanks to the [refine-strapi-v4 dataProvider](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population), we can use the data of collections that are related to each other.
+Thanks to the [refine-strapi-v4 dataProvider](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population), we can use the data of collections that are related to each other.
 
 In order to use the fields of the collections that are related to each other, we must populate the collections in `meta`.
 

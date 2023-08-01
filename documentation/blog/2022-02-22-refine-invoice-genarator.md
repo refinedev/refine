@@ -56,7 +56,7 @@ npm create refine-app@latest refine-invoice-genarator -- -p refine-react -b v3
 ✔ i18n - Internationalization: · No
 ```
 
-superplate will quickly create our refine project according to the features we choose. Let's continue by install the [refine Strapi-v4 Data Provider](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/) that we will use later.
+superplate will quickly create our refine project according to the features we choose. Let's continue by install the [refine Strapi-v4 Data Provider](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4) that we will use later.
 
 ```bash
 npm i @refinedev/strapi-v4

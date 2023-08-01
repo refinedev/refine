@@ -125,7 +125,7 @@ fetch("https://dummyjson.com/myProduct/1")
     .then((json) => console.log(json));
 ```
 
-[https://dummyjson.com/myProduct/1](https://dummyjson.com/myProduct/1) that has been used as our API is an endpoint that I made up, so it is not a valid API endpoint and as you know parsing it will be you trying to parse something that isn't JSON, as it is not a formatted JSON.
+"https://dummyjson.com/myProduct/1" that has been used as our API is an endpoint that I made up, so it is not a valid API endpoint and as you know parsing it will be you trying to parse something that isn't JSON, as it is not a formatted JSON.
 
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-3.png"  alt="json error" />
