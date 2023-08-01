@@ -947,7 +947,7 @@ render(<App />);
 We use the [`notistack`](https://iamhosseindhv.com/notistack) library for notifications in our Material UI package provides an elegant way to engage with your users.
 The main motivation for us to use the Notistack was that while the Notistack provider ( `<SnackbarProvider>` ) is a child of our ThemeProvider, it works in harmony with the theme.
 
-We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap **refine** with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
+We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap `<Refine>` with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
 
 ```tsx live
 setInitialRoutes(["/samples"]);
