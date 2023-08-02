@@ -8,7 +8,7 @@ import {
     AwesomeIcon,
     // UseCasesIcon,
     ContributeIcon,
-    // RefineWeekIcon,
+    RefineWeekIcon,
     HackathonsIcon,
     AboutUsIcon,
     StoreIcon,
@@ -99,12 +99,12 @@ export const MENU_ITEMS: MenuItemType[] = [
                 link: "/docs/contributing/",
                 icon: ContributeIcon,
             },
-            // {
-            //     label: "refineweeks",
-            //     description: "Weekly projects to practice refine.",
-            //     link: "/week-of-refine",
-            //     icon: RefineWeekIcon,
-            // },
+            {
+                label: "refineWeek",
+                description: "Weekly projects to practice refine.",
+                link: "/week-of-refine",
+                icon: RefineWeekIcon,
+            },
             {
                 label: "Hackathons",
                 description: "Compete in hackathons and earn prizes!",
