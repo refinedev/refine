@@ -29,7 +29,7 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
                     flexDirection="column"
                     flex={1}
                     minH="100vh"
-                    overflow="auto"
+                    overflow="clip"
                 >
                     <HeaderToRender />
                     <Box p={[2, 4]}>{children}</Box>
