@@ -17,6 +17,8 @@ import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
 
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
@@ -45,6 +47,7 @@ const App: React.FC = () => {
                         warnWhenUnsavedChanges: true,
                     }}
                 >
+                    <ReactQueryDevtools />
                     <Routes>
                         <Route
                             element={
