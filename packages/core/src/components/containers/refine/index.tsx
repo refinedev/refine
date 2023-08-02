@@ -278,6 +278,7 @@ export const Refine: React.FC<RefineProps> = ({
     const { RouterComponent = React.Fragment } = !routerProvider
         ? legacyRouterProvider ?? {}
         : {};
+    /** */
 
     return (
         <QueryClientProvider client={queryClient}>
