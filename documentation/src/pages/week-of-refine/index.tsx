@@ -73,7 +73,7 @@ const RefineWeek = () => {
     return (
         <CommonLayout>
             <div className="not-prose">
-                <Head title="Week of refine | refine">
+                <Head title="refineWeek | refine">
                     <html data-page="week-of-refine" data-customized="true" />
                 </Head>
 
