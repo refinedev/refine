@@ -177,6 +177,14 @@ module.exports = {
                     "linear-gradient(90deg, #0FBDBD 40.72%, #26D97F 51.09%)",
                 "pricing-text-bg-enterprise":
                     "linear-gradient(90deg, #FF9933 37.5%, #FF4C4D 73.48%)",
+                "week-of-refine-strapi-card":
+                    "linear-gradient(207deg, rgba(73, 69, 255, 0.25) 0%, rgba(73, 69, 255, 0.00) 100%)",
+                "week-of-refine-supabase-card":
+                    "linear-gradient(207deg, rgba(62, 207, 142, 0.25) 0%, rgba(62, 207, 142, 0.00) 100%)",
+                "week-of-refine-strapi-card-light":
+                    "linear-gradient(207deg, rgba(73, 69, 255, 0.15) 0%, rgba(73, 69, 255, 0.00) 100%)",
+                "week-of-refine-supabase-card-light":
+                    "linear-gradient(207deg, rgba(62, 207, 142, 0.15) 0%, rgba(62, 207, 142, 0.00) 100%)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
