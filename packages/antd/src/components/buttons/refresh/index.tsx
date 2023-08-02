@@ -2,10 +2,11 @@ import React from "react";
 import { Button } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
 import {
-    useOne,
     useTranslate,
     useResource,
-    pickNotDeprecated,
+    useInvalidate,
+    queryKeys,
+    pickDataProvider,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -13,6 +14,7 @@ import {
 } from "@refinedev/ui-types";
 
 import { RefreshButtonProps } from "../types";
+import { useQueryClient } from "@tanstack/react-query";
 
 /**
  * `<RefreshButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component
@@ -25,8 +27,6 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
-    meta,
-    metaData,
     dataProviderName,
     children,
     onClick,
@@ -34,27 +34,37 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { identifier, id } = useResource(
+    const queryClient = useQueryClient();
+    const invalidates = useInvalidate();
+
+    const { resources, identifier, id } = useResource(
         resourceNameFromProps ?? propResourceNameOrRouteName,
     );
 
-    const { refetch, isFetching } = useOne({
-        resource: identifier,
-        id: recordItemId ?? id,
-        queryOptions: {
-            enabled: false,
-        },
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
-        liveMode: "off",
-        dataProviderName,
+    const isInvalidating = queryClient.isFetching({
+        queryKey: queryKeys(
+            identifier,
+            pickDataProvider(identifier, dataProviderName, resources),
+        ).detail(recordItemId ?? id),
     });
+
+    const handleInvalidate = () => {
+        invalidates({
+            id: recordItemId ?? id,
+            invalidates: ["detail"],
+            dataProviderName,
+            resource: identifier,
+        });
+    };
 
     return (
         <Button
             // TODO: fix any type
-            onClick={(e) => (onClick ? onClick(e as any) : refetch())}
-            icon={<RedoOutlined spin={isFetching} />}
+            onClick={(e) => {
+                onClick?.(e);
+                handleInvalidate();
+            }}
+            icon={<RedoOutlined spin={!!isInvalidating} />}
             data-testid={RefineButtonTestIds.RefreshButton}
             className={RefineButtonClassNames.RefreshButton}
             {...rest}
