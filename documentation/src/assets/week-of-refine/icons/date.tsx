@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-export const SvgDateIcon = (props: SVGProps<SVGSVGElement>) => {
+export const DateIcon = (props: SVGProps<SVGSVGElement>) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

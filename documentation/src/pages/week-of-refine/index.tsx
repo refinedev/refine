@@ -3,12 +3,14 @@ import Head from "@docusaurus/Head";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 
-import { RefineWeekLogoXL } from "@site/src/assets/refine-week-logo-xl";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { BlogFooter } from "@site/src/refine-theme/blog-footer";
-import { weekOfRefineCards } from "./constants";
-import { SvgDateIcon } from "./icons";
+import { weekOfRefineCards } from "@site/src/assets/week-of-refine/constants";
+import {
+    DateIcon,
+    RefineWeekLogoXL,
+} from "@site/src/assets/week-of-refine/icons";
 
 export type CardProps = {
     title: string;
@@ -47,7 +49,7 @@ const Card = ({
                 </div>
                 <div className={clsx("flex flex-col gap-4", "p-6")}>
                     <div className="flex items-center gap-3">
-                        <SvgDateIcon />
+                        <DateIcon />
                         <span className="text-gray-500 dark:text-gray-400">
                             {dateRange}
                         </span>
