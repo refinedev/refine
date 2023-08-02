@@ -100,7 +100,7 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: ContributeIcon,
             },
             {
-                label: "refineweeks",
+                label: "refineWeek",
                 description: "Weekly projects to practice refine.",
                 link: "/week-of-refine",
                 icon: RefineWeekIcon,
