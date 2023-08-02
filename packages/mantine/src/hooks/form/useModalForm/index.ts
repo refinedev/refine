@@ -151,7 +151,15 @@ export const useModalForm = <
         TResponse,
         TResponseError
     >({
-        refineCoreProps,
+        refineCoreProps: {
+            ...refineCoreProps,
+            meta: {
+                ...(syncWithLocationKey
+                    ? { [syncWithLocationKey]: undefined }
+                    : {}),
+                ...refineCoreProps?.meta,
+            },
+        },
         ...rest,
     });
 
