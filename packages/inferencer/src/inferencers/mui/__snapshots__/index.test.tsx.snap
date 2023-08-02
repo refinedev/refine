@@ -41257,7 +41257,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             Image
           </p>
           <div
-            class="MuiStack-root css-1aehucs-MuiStack-root"
+            class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <img
               src="http://loremflickr.com/640/480/abstract"
@@ -41270,7 +41270,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             Tags
           </p>
           <div
-            class="MuiStack-root css-1aehucs-MuiStack-root"
+            class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <div
               class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
