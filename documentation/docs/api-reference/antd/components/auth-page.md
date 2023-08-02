@@ -657,6 +657,7 @@ The `rememberMe` property defines to render your custom `<RememberMe>` component
 
 :::info
 You have to wrap your custom `<RememberMe>` component with the `Form.Item` component from **Ant Design** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
+:::
 
 ```tsx
 const MyLoginPage = () => {
