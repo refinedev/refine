@@ -265,4 +265,39 @@ describe("useDrawerForm Hook", () => {
             expect(result.current.drawerProps.open).toBe(false);
         },
     );
+
+    it("should `meta[syncWithLocationKey]` overrided by default", async () => {
+        const mockGetOne = jest.fn();
+        const mockUpdate = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useDrawerForm({
+                    syncWithLocation: true,
+                    id: 5,
+                    action: "edit",
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer,
+                        getOne: mockGetOne,
+                        update: mockUpdate,
+                    },
+                }),
+            },
+        );
+
+        await act(async () => {
+            result.current.show();
+        });
+
+        await waitFor(() => expect(result.current.drawerProps.open).toBe(true));
+
+        await waitFor(() => expect(mockGetOne.mock.calls.length).toBe(1));
+        expect(mockGetOne.mock.calls[0][0].meta?.["drawer-posts-edit"]).toBe(
+            undefined,
+        );
+    });
 });

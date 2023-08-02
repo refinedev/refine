@@ -130,19 +130,6 @@ export const useModalForm = <
 > => {
     const [initiallySynced, setInitiallySynced] = React.useState(false);
 
-    const useFormProps = useForm<
-        TQueryFnData,
-        TError,
-        TVariables,
-        TData,
-        TResponse,
-        TResponseError
-    >({
-        ...rest,
-    });
-
-    const { form, formProps, id, setId, formLoading, onFinish } = useFormProps;
-
     const {
         resource,
         action: actionFromParams,
@@ -166,6 +153,25 @@ export const useModalForm = <
             : resource && action && syncWithLocation
             ? `modal-${identifier}-${action}`
             : undefined;
+
+    const useFormProps = useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
+        meta: {
+            ...(syncWithLocationKey
+                ? { [syncWithLocationKey]: undefined }
+                : {}),
+            ...rest.meta,
+        },
+        ...rest,
+    });
+
+    const { form, formProps, id, setId, formLoading, onFinish } = useFormProps;
 
     const translate = useTranslate();
 

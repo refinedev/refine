@@ -120,22 +120,11 @@ export const useDrawerForm = <
     TResponse,
     TResponseError
 > => {
+    const [initiallySynced, setInitiallySynced] = React.useState(false);
+
     const { visible, show, close } = useModal({
         defaultVisible,
     });
-
-    const useFormProps = useForm<
-        TQueryFnData,
-        TError,
-        TVariables,
-        TData,
-        TResponse,
-        TResponseError
-    >({
-        ...rest,
-    });
-    const [initiallySynced, setInitiallySynced] = React.useState(false);
-    const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
 
@@ -155,6 +144,25 @@ export const useDrawerForm = <
             : resource && action && syncWithLocation
             ? `drawer-${resource?.identifier ?? resource?.name}-${action}`
             : undefined;
+
+    const useFormProps = useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
+        meta: {
+            ...(syncWithLocationKey
+                ? { [syncWithLocationKey]: undefined }
+                : {}),
+            ...rest.meta,
+        },
+        ...rest,
+    });
+
+    const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
 
     React.useEffect(() => {
         if (initiallySynced === false && syncWithLocationKey) {
