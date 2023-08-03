@@ -3,14 +3,11 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/icons-material/Menu";
 
-import type { ExtendButtonBase } from "@mui/material/ButtonBase";
-import type { IconButtonTypeMap } from "@mui/material/IconButton";
+import type { IconButtonProps } from "@mui/material/IconButton";
 
 import { useThemedLayoutContext } from "@hooks";
 
-const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
-    props: React.PropsWithChildren,
-) => (
+const HamburgerIcon = (props: IconButtonProps) => (
     <IconButton
         color="inherit"
         aria-label="open drawer"
