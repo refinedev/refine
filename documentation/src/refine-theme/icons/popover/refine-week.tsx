@@ -9,7 +9,13 @@ export const RefineWeekIcon = (props: React.SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <rect width="40" height="40" rx="20" fill="white" />
+        <rect
+            width="40"
+            height="40"
+            rx="20"
+            fill="currentColor"
+            className="text-white dark:text-refine-blue/20"
+        />
         <rect width="40" height="40" rx="20" fill="#3333FF" fillOpacity="0.1" />
         <path
             d="M16.4 20.8C17.0627 20.8 17.6 20.2627 17.6 19.6C17.6 18.9373 17.0627 18.4 16.4 18.4C15.7373 18.4 15.2 18.9373 15.2 19.6C15.2 20.2627 15.7373 20.8 16.4 20.8Z"
