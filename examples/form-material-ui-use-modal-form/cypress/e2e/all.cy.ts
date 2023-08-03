@@ -87,7 +87,6 @@ describe("form-material-ui-use-modal-form", () => {
 
         // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.wait("@getPost");
         cy.getSaveButton().should("not.be.disabled");
 
         fillForm();
