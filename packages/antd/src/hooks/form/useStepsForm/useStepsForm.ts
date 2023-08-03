@@ -118,7 +118,10 @@ export const useStepsForm = <
     });
     const { form, formProps } = useFormProps;
 
-    const stepsPropsSunflower = useStepsFormSF<TResponse, TVariables>({
+    const { gotoStep, current, ...stepsPropsSunflower } = useStepsFormSF<
+        TResponse,
+        TVariables
+    >({
         isBackValidate: false,
         form: form,
         submit: (values: any) => {
@@ -127,9 +130,25 @@ export const useStepsForm = <
         ...props,
     });
 
+    const errorHandledGotoStep = async (step: number) => {
+        if (step < current && !props.isBackValidate) {
+            gotoStep(step);
+            return;
+        }
+
+        try {
+            await form.validateFields();
+            gotoStep(step);
+        } catch (error) {
+            return;
+        }
+    };
+
     return {
         ...useFormProps,
         ...stepsPropsSunflower,
+        current,
+        gotoStep: errorHandledGotoStep,
         formLoading: useFormProps.formLoading,
         formProps: {
             ...stepsPropsSunflower.formProps,
