@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, ComponentWithAs, IconButtonProps } from "@chakra-ui/react";
+import { IconButtonProps, IconButton } from "@chakra-ui/react";
 import {
     IconLayoutSidebarLeftCollapse,
     IconLayoutSidebarLeftExpand,
@@ -8,18 +8,8 @@ import {
 
 import { useThemedLayoutContext } from "@hooks";
 
-const HamburgerIcon: ComponentWithAs<"button", IconButtonProps> = (
-    props: React.PropsWithChildren,
-) => (
-    <Icon
-        backgroundColor="transparent"
-        aria-label="sidebar-toggle"
-        boxSize={"24px"}
-        display="inline-block"
-        {...props}
-    >
-        {props.children}
-    </Icon>
+const HamburgerIcon = (props: IconButtonProps) => (
+    <IconButton variant="ghost" size="sm" {...props} />
 );
 
 export const HamburgerMenu: React.FC = () => {
@@ -33,19 +23,21 @@ export const HamburgerMenu: React.FC = () => {
     return (
         <>
             <HamburgerIcon
-                display={{ base: "none", md: "inline-block" }}
+                display={{ base: "none", md: "flex" }}
                 aria-label="drawer-sidebar-toggle"
-                as={
-                    siderCollapsed
-                        ? IconLayoutSidebarLeftExpand
-                        : IconLayoutSidebarLeftCollapse
+                icon={
+                    siderCollapsed ? (
+                        <IconLayoutSidebarLeftExpand />
+                    ) : (
+                        <IconLayoutSidebarLeftCollapse />
+                    )
                 }
                 onClick={() => setSiderCollapsed(!siderCollapsed)}
             />
             <HamburgerIcon
-                display={{ base: "inline-block", md: "none" }}
+                display={{ base: "flex", md: "none" }}
                 aria-label="sidebar-toggle"
-                as={IconMenu2}
+                icon={<IconMenu2 />}
                 onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
             />
         </>
