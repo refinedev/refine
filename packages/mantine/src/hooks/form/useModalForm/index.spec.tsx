@@ -33,9 +33,15 @@ describe("useModalForm hook", () => {
 
         await waitFor(() => expect(result.current.modal.visible).toBe(true));
 
-        await waitFor(() => expect(mockGetOne.mock.calls.length).toBe(1));
-        expect(mockGetOne.mock.calls[0][0].meta?.["modal-posts-edit"]).toBe(
-            undefined,
-        );
+        await waitFor(() => {
+            expect(mockGetOne).toBeCalledTimes(1);
+            expect(mockGetOne).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        "modal-posts-edit": undefined,
+                    }),
+                }),
+            );
+        });
     });
 });
