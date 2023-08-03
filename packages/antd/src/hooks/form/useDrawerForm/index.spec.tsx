@@ -295,9 +295,15 @@ describe("useDrawerForm Hook", () => {
 
         await waitFor(() => expect(result.current.drawerProps.open).toBe(true));
 
-        await waitFor(() => expect(mockGetOne.mock.calls.length).toBe(1));
-        expect(mockGetOne.mock.calls[0][0].meta?.["drawer-posts-edit"]).toBe(
-            undefined,
-        );
+        await waitFor(() => {
+            expect(mockGetOne).toBeCalledTimes(1);
+            expect(mockGetOne).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        "drawer-posts-edit": undefined,
+                    }),
+                }),
+            );
+        });
     });
 });
