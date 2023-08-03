@@ -24,7 +24,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<RefreshButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -143,7 +143,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "123".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "123".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -192,7 +192,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -284,7 +284,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -295,3 +295,5 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 ### Properties
 
 <PropsTable module="@refinedev/chakra-ui/RefreshButton" />
+
+[use-invalidate]: /docs/api-reference/core/hooks/invalidate/useInvalidate

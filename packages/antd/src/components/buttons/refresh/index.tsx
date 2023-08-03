@@ -14,11 +14,12 @@ import {
 } from "@refinedev/ui-types";
 
 import { RefreshButtonProps } from "../types";
+
 import { useQueryClient } from "@tanstack/react-query";
 
 /**
  * `<RefreshButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component
- * to update the data shown on the page via the {@link https://refine.dev/docs/api-reference/core/hooks/data/useOne `useOne`} method provided by your dataProvider.
+ * to update the data shown on the page via the {@link /docs/api-reference/core/hooks/invalidate/useInvalidate `useInvalidate`} hook.
  *
  * @see {@link https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button} for more details.
  */
@@ -30,6 +31,8 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     dataProviderName,
     children,
     onClick,
+    meta: _meta,
+    metaData: _metaData,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -41,7 +44,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         resourceNameFromProps ?? propResourceNameOrRouteName,
     );
 
-    const isInvalidating = queryClient.isFetching({
+    const isInvalidating = !!queryClient.isFetching({
         queryKey: queryKeys(
             identifier,
             pickDataProvider(identifier, dataProviderName, resources),
@@ -59,12 +62,11 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     return (
         <Button
-            // TODO: fix any type
             onClick={(e) => {
                 onClick?.(e);
                 handleInvalidate();
             }}
-            icon={<RedoOutlined spin={!!isInvalidating} />}
+            icon={<RedoOutlined spin={isInvalidating} />}
             data-testid={RefineButtonTestIds.RefreshButton}
             className={RefineButtonClassNames.RefreshButton}
             {...rest}

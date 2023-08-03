@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) omponent to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -123,7 +123,7 @@ import { Refine } from "@refinedev/core";
 import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
-    return <RefreshButton recordItemId="123" />;
+    return <RefreshButton recordItemId="1" />;
 };
 // visible-block-end
 
@@ -147,7 +147,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "123".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "1".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -167,7 +167,11 @@ import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
     return (
-        <RefreshButton resource="categories" recordItemId="2" />
+        <RefreshButton // highlight-next-line
+            resource="categories"
+            // highlight-next-line
+            recordItemId="2"
+        />
     );
 };
 // visible-block-end
@@ -192,7 +196,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -255,7 +259,12 @@ import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
     return (
-        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <RefreshButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+            // highlight-next-line
+            recordItemId="2"
+        />
     );
 };
 // visible-block-end
@@ -280,7 +289,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -291,3 +300,5 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 ### Properties
 
 <PropsTable module="@refinedev/mantine/RefreshButton" />
+
+[use-invalidate]: /docs/api-reference/core/hooks/invalidate/useInvalidate

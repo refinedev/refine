@@ -195,11 +195,12 @@ export type RefineRefreshButtonProps<
     TComponentProps &
     TExtraProps & {
         /**
+         * `meta` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
          * @deprecated `meta` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
          */
         meta?: MetaQuery;
         /**
-         * Additional meta data to pass to the `useOne` from the data provider
+         * `metaData` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
          * @deprecated `metaData` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
          */
         metaData?: MetaQuery;
