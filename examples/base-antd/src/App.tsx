@@ -12,12 +12,11 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
-
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -47,7 +46,6 @@ const App: React.FC = () => {
                         warnWhenUnsavedChanges: true,
                     }}
                 >
-                    <ReactQueryDevtools />
                     <Routes>
                         <Route
                             element={
@@ -70,6 +68,7 @@ const App: React.FC = () => {
                     </Routes>
                     <UnsavedChangesNotifier />
                     <DocumentTitleHandler />
+                    <ReactQueryDevtools />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

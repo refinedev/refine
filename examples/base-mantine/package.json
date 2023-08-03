@@ -26,7 +26,8 @@
     "@mantine/notifications": "^5.10.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "@tanstack/react-query-devtools": "^4.32.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

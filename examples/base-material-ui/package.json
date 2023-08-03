@@ -18,7 +18,8 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@uiw/react-md-editor": "^3.19.5",
-    "react-hook-form": "^7.30.0"
+    "react-hook-form": "^7.30.0",
+    "@tanstack/react-query-devtools": "^4.32.1"
   },
   "scripts": {
     "start": "refine dev",
