@@ -20,7 +20,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 /**
  * `<RefreshButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
- * to update the data shown on the page via the {@link /docs/api-reference/core/hooks/invalidate/useInvalidate `useInvalidate`} hook.
+ * to update the data shown on the page via the {@link https://refine.dev/docs/api-reference/core/hooks/invalidate/useInvalidate `useInvalidate`} hook.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/refresh-button} for more details.
  */
