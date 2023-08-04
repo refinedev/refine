@@ -19,4 +19,5 @@ export type RefinePackageInstalledVersionData = {
     current: string;
     wanted: string;
     latest: string;
+    changelog?: string;
 };
