@@ -47,7 +47,7 @@
         "@mantine/notifications": "^5.10.4",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "5.14.0",
+        "@mui/material": "^5.14.2",
         "@mui/x-data-grid": "^6.6.0",
         "@mui/icons-material": "^5.8.3",
         "@tabler/icons": "^1.1.0",

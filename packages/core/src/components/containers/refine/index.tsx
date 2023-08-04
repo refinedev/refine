@@ -23,7 +23,6 @@ import { useDeepMemo } from "@hooks/deepMemo";
 import { RouterBindings } from "src/interfaces/bindings";
 
 import { RouterPickerProvider } from "@contexts/router-picker";
-import warnOnce from "warn-once";
 import { RouterBindingsProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
@@ -280,25 +279,6 @@ export const Refine: React.FC<RefineProps> = ({
         ? legacyRouterProvider ?? {}
         : {};
     /** */
-
-    if (
-        typeof window !== "undefined" &&
-        window?.location?.hostname === "localhost"
-    ) {
-        warnOnce(
-            true,
-            `%c
-✅ Zero-trust security model
-✅ User/role management
-✅ Granular access control
-✅ Directory sync
-✅ VPN-less secure deployments
-✅ Direct connection to DBs
-
-Interested in any of the new backend features of refine? Join now and get early access -> https://s.refine.dev/go-enterprise`,
-            "color: green; background: yellow; font-size: 17px",
-        );
-    }
 
     return (
         <QueryClientProvider client={queryClient}>
