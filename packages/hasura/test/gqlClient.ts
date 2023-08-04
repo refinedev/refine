@@ -1,17 +1,23 @@
 import { GraphQLClient } from "graphql-request";
+const ApiUrlHasuraDefault = "https://flowing-mammal-24.hasura.app/v1/graphql";
+const ApiUrlGrpahqlDefault = "https://ruling-redbird-23.hasura.app/v1/graphql";
 
 const createClient = (namingConvention: string) => {
-    let API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
-
-    if (namingConvention === "graphql-default") {
-        API_URL = "https://ruling-redbird-23.hasura.app/v1/graphql";
-    }
-
-    const client = new GraphQLClient(API_URL);
+    const client = new GraphQLClient(
+        namingConvention === "hasura-default"
+            ? ApiUrlHasuraDefault
+            : ApiUrlGrpahqlDefault,
+    );
 
     client.setHeader("x-hasura-role", "public");
 
     return client;
 };
 
-export { createClient };
+const getApiUrl = (namingConvention: string) => {
+    return namingConvention === "hasura-default"
+        ? ApiUrlHasuraDefault
+        : ApiUrlGrpahqlDefault;
+};
+
+export { createClient, getApiUrl };
