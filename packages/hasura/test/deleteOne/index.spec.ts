@@ -7,6 +7,7 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "deleteOne with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         let withMetaId = "56c5a2cd-3b4d-4465-9d41-67f7991d833c";
         let withoutMetaId = "312b993d-9648-4a15-aa92-11e7b77e0071";
         if (namingConvention === "graphql-default") {
@@ -15,12 +16,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         }
 
         it("correct response with meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).deleteOne({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteOne({
                 resource: "posts",
                 id: withMetaId,
                 meta: {
@@ -32,13 +30,10 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct response with meta and Int idType", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                    idType: "Int",
-                },
-            ).deleteOne({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+                idType: "Int",
+            }).deleteOne({
                 resource: "users",
                 id: 1,
                 meta: {
@@ -50,12 +45,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct response without metaData", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).deleteOne({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteOne({
                 resource: "posts",
                 id: withoutMetaId,
             });

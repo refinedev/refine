@@ -5,18 +5,16 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "getList with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         const categoryFieldName =
             namingConvention === "hasura-default"
                 ? "category_id"
                 : "categoryId";
 
         it(`correct response`, async () => {
-            const { data, total } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getList({
+            const { data, total } = await dataProvider(client, {
+                namingConvention,
+            }).getList({
                 resource: "posts",
                 meta: {
                     fields: ["id", "title"],
@@ -31,12 +29,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct sorting response", async () => {
-            const { data, total } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getList({
+            const { data, total } = await dataProvider(client, {
+                namingConvention,
+            }).getList({
                 resource: "posts",
                 sorters: [
                     {
@@ -55,12 +50,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct filter response", async () => {
-            const { data, total } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getList({
+            const { data, total } = await dataProvider(client, {
+                namingConvention,
+            }).getList({
                 resource: "posts",
                 filters: [
                     {
@@ -80,12 +72,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct nested filter response", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getList({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).getList({
                 resource: "posts",
                 filters: [
                     {
@@ -103,12 +92,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct filter and sort response", async () => {
-            const { data, total } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getList({
+            const { data, total } = await dataProvider(client, {
+                namingConvention,
+            }).getList({
                 resource: "posts",
                 filters: [
                     {

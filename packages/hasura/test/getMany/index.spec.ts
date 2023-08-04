@@ -5,6 +5,7 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "updateMany with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         let posts = [
             {
                 id: "6379bbda-0857-40f2-a277-b401ea6134d7",
@@ -48,12 +49,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         }
 
         it("correct response with meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getMany!({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).getMany!({
                 resource: "posts",
                 ids,
                 meta: {

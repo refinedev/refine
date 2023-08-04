@@ -5,13 +5,11 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "updateOne with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         it("correct response with meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).getOne({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).getOne({
                 resource: "posts",
                 id: "6379bbda-0857-40f2-a277-b401ea6134d7",
                 meta: {
@@ -32,13 +30,10 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct response with meta and custom idType", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                    idType: "Int",
-                },
-            ).getOne({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+                idType: "Int",
+            }).getOne({
                 resource: "users",
                 id: 1,
                 meta: {
@@ -56,7 +51,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
                 users: "Int",
                 posts: "uuid",
             };
-            const cDataProvider = dataProvider(createClient(namingConvention), {
+            const cDataProvider = dataProvider(client, {
                 namingConvention,
                 idType: (resource) => idTypeMap[resource] ?? "uuid",
             });

@@ -5,18 +5,16 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "create with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         const categoryFieldName =
             namingConvention === "hasura-default"
                 ? "category_id"
                 : "categoryId";
 
         it("correct response with meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).create({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).create({
                 resource: "posts",
                 variables: {
                     content: "Lorem ipsum dolor sit amet.",

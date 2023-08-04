@@ -5,6 +5,7 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "updateMany with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         let postsWithMeta = [
             {
                 id: "cf43a199-e791-4b81-a1fd-3ccf8e7f6166",
@@ -50,12 +51,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         }
 
         it("correct response with meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).updateMany!({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).updateMany!({
                 resource: "posts",
                 ids: postsWithMeta.map((post) => post.id),
                 variables: {
@@ -76,12 +74,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct response without meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).updateMany!({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).updateMany!({
                 resource: "posts",
                 ids: postsWithoutMeta.map((post) => post.id),
                 variables: {

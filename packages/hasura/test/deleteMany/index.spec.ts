@@ -5,6 +5,7 @@ import "./index.mock";
 describe.each(["hasura-default", "graphql-default"] as const)(
     "deleteMany with %s naming convention",
     (namingConvention) => {
+        const client = createClient(namingConvention);
         let withMetaIds = [
             "9848cac2-80d7-4846-9a73-2f312459929a",
             "a5bbd909-9bc5-486d-be07-ece9c17523f9",
@@ -26,12 +27,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         }
 
         it("correct response with meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).deleteMany!({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteMany!({
                 resource: "posts",
                 ids: withMetaIds,
                 meta: {
@@ -44,12 +42,9 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         });
 
         it("correct response without meta", async () => {
-            const { data } = await dataProvider(
-                createClient(namingConvention),
-                {
-                    namingConvention,
-                },
-            ).deleteMany!({
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteMany!({
                 resource: "posts",
                 ids: withoutMetaIds,
             });
