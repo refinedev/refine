@@ -63,8 +63,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     return (
         <Button
             onClick={(e) => {
-                onClick?.(e);
-                handleInvalidate();
+                onClick ? onClick(e) : handleInvalidate();
             }}
             icon={<RedoOutlined spin={isInvalidating} />}
             data-testid={RefineButtonTestIds.RefreshButton}

@@ -70,8 +70,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             loading={isInvalidating}
             loadingPosition={hideText ? "center" : "start"}
             onClick={(e) => {
-                onClick?.(e);
-                handleInvalidate();
+                onClick ? onClick(e) : handleInvalidate();
             }}
             sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.RefreshButton}

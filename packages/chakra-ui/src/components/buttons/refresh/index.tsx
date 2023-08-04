@@ -66,8 +66,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             variant="outline"
             aria-label={translate("buttons.refresh", "Refresh")}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-                onClick?.(e);
-                handleInvalidate();
+                onClick ? onClick(e) : handleInvalidate();
             }}
             loading={isInvalidating}
             data-testid={RefineButtonTestIds.RefreshButton}
@@ -82,8 +81,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             leftIcon={<IconRefresh size={20} {...svgIconProps} />}
             loading={isInvalidating}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-                onClick?.(e);
-                handleInvalidate();
+                onClick ? onClick(e) : handleInvalidate();
             }}
             data-testid={RefineButtonTestIds.RefreshButton}
             className={RefineButtonClassNames.RefreshButton}

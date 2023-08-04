@@ -83,8 +83,6 @@ export const buttonRefreshTests = function (
         });
 
         it("should invalidates when button is clicked", async () => {
-            const onClickMock = jest.fn();
-
             jest.resetAllMocks();
             jest.restoreAllMocks();
 
@@ -94,7 +92,6 @@ export const buttonRefreshTests = function (
                         path="/posts/show/:id"
                         element={
                             <RefreshButton
-                                onClick={() => onClickMock()}
                                 dataProviderName="default"
                                 resource="posts"
                             />
@@ -128,6 +125,49 @@ export const buttonRefreshTests = function (
                     dataProviderName: "default",
                     resource: "posts",
                 });
+            });
+        });
+
+        it("should when onClick is not passed, NOT invalidates when button is clicked", async () => {
+            jest.resetAllMocks();
+            jest.restoreAllMocks();
+
+            const onClickMock = jest.fn();
+
+            const { getByText } = render(
+                <Routes>
+                    <Route
+                        path="/posts/show/:id"
+                        element={
+                            <RefreshButton
+                                onClick={onClickMock}
+                                dataProviderName="default"
+                                resource="posts"
+                            />
+                        }
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        routerInitialEntries: ["/posts/show/1"],
+                        resources: [
+                            {
+                                name: "posts",
+                                show: "/posts/show/:id",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            const button = getByText("Refresh");
+
+            await act(async () => {
+                fireEvent.click(button);
+            });
+
+            await waitFor(() => {
+                expect(invalidateMock).toHaveBeenCalledTimes(0);
                 expect(onClickMock).toHaveBeenCalledTimes(1);
             });
         });
