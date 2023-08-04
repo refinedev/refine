@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@refinedev/antd": "^5.32.0",
-    "@refinedev/core": "^4.32.0",
+    "@refinedev/core": "^4.32.1",
     "@refinedev/cli": "^2.7.4",
     "@refinedev/nextjs-router": "^5.5.0",
     "@refinedev/simple-rest": "^4.5.0",
-    "@refinedev/inferencer": "^4.5.0",
+    "@refinedev/inferencer": "^4.5.1",
     "cross-env": "^7.0.3",
     "next": "13.0.6",
     "next-auth": "^4.20.1",
