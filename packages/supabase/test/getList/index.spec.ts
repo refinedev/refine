@@ -27,6 +27,19 @@ describe("getList", () => {
         expect(total).toBe(71);
     });
 
+    it("correct response with metadata count", async () => {
+        const { data, total } = await dataProvider(supabaseClient).getList({
+            resource: "posts",
+            meta: {
+                count: "estimated",
+            },
+        });
+
+        expect(data[0]["id"]).toBe(2);
+        expect(data[0]["title"]).toBe("test title");
+        expect(total).toBe(2);
+    });
+
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
