@@ -1,5 +1,14 @@
 # @pankod/refine-chakra-ui
 
+## 2.24.1
+
+### Patch Changes
+
+-   [#4764](https://github.com/refinedev/refine/pull/4764) [`6aba21bfde0`](https://github.com/refinedev/refine/commit/6aba21bfde09e6efacff324bd29c37c046afb52e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fixed a bug where the `<ThemedLayoutv2>` component was not worked with sticky header.
+
+-   Updated dependencies [[`c757355da60`](https://github.com/refinedev/refine/commit/c757355da6089d0e18609a1bb2d316d928412b16)]:
+    -   @refinedev/react-hook-form@4.8.1
+
 ## 2.24.0
 
 ### Minor Changes

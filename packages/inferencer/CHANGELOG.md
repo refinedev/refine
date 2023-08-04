@@ -1,5 +1,14 @@
 # @pankod/refine-mantine
 
+## 4.5.1
+
+### Patch Changes
+
+-   [#4774](https://github.com/refinedev/refine/pull/4774) [`030a9dda75a`](https://github.com/refinedev/refine/commit/030a9dda75a7903e3c9ce3233e3b570b7cbe2dab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: unlock and upgrade `@mui/material` to `^5.14.2`
+
+-   Updated dependencies [[`e3e38de4114`](https://github.com/refinedev/refine/commit/e3e38de4114209fe43fe35ac3622d44e355694bd)]:
+    -   @refinedev/core@4.32.1
+
 ## 4.5.0
 
 ### Minor Changes
