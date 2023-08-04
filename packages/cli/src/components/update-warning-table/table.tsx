@@ -8,9 +8,10 @@ const columIndex = {
     current: 2,
     wanted: 3,
     latest: 4,
+    changelog: 5,
 };
 
-const LAST_COLUMN_INDEX = 4;
+const LAST_COLUMN_INDEX = 5;
 
 const getVersions = (text: string) => {
     const versions = text.split(".");
