@@ -72,7 +72,7 @@ describe("form-antd-mutation-mode", () => {
     it("should edit record when mutation mode is pessimistic", () => {
         waitForListPageLoading();
 
-        cy.get("input[value=pessimistic]").check();
+        cy.get("input[value=pessimistic]").check({ force: true });
         cy.getEditButton().first().should("not.be.disabled");
         cy.getEditButton().first().click();
         // wait loading state and render to be finished
@@ -94,7 +94,7 @@ describe("form-antd-mutation-mode", () => {
 
     it("should edit a record when mutation mode is undoable", () => {
         waitForListPageLoading();
-        cy.get("input[value=undoable]").check();
+        cy.get("input[value=undoable]").check({ force: true });
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -125,7 +125,7 @@ describe("form-antd-mutation-mode", () => {
     it("should undo editing when mutation mode is undoable", () => {
         waitForListPageLoading();
 
-        cy.get("input[value=undoable]").check();
+        cy.get("input[value=undoable]").check({ force: true });
         cy.getEditButton().first().click();
 
         waitForEditPageLoading();
@@ -143,7 +143,7 @@ describe("form-antd-mutation-mode", () => {
     it("should create a record when mutation mode is optimistic", () => {
         waitForListPageLoading();
 
-        cy.get("input[value=optimistic]").check();
+        cy.get("input[value=optimistic]").check({ force: true });
         cy.getCreateButton().click();
 
         cy.wait("@getCategories");
@@ -166,7 +166,7 @@ describe("form-antd-mutation-mode", () => {
     it("should edit a record when mutation mode is optimistic", () => {
         waitForListPageLoading();
 
-        cy.get("input[value=optimistic]").check();
+        cy.get("input[value=optimistic]").check({ force: true });
         cy.getEditButton().first().click();
 
         waitForEditPageLoading();
@@ -188,7 +188,7 @@ describe("form-antd-mutation-mode", () => {
     it("should delete record when mutation mode is pessimistic", () => {
         waitForListPageLoading();
 
-        cy.get("input[value=pessimistic]").check();
+        cy.get("input[value=pessimistic]").check({ force: true });
         cy.getEditButton().first().click();
 
         waitForEditPageLoading();
@@ -210,7 +210,7 @@ describe("form-antd-mutation-mode", () => {
     it("should delete a record when mutation mode is undoable", () => {
         waitForListPageLoading();
 
-        cy.get("input[value=undoable]").check();
+        cy.get("input[value=undoable]").check({ force: true });
         cy.getEditButton().first().click();
 
         waitForEditPageLoading();
