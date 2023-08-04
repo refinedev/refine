@@ -16,7 +16,7 @@ export const dataProvider = (
             const query = supabaseClient
                 .from(resource)
                 .select(meta?.select ?? "*", {
-                    count: "exact",
+                    count: meta?.count ?? "exact",
                 });
 
             if (mode === "server") {
