@@ -1621,6 +1621,26 @@ const { tableProps, sorter } = useTable({
 If you filter based on a table from an inner join, you will need to use `.select('*, mytable!inner(*)')` within Supabase.
 :::
 
+### `getList` - performance
+
+By default, the data provider `getList` method returns the exact count of rows. Depending on the table size, this can slow down the request. You can request estimations of the total count by passing the `count` property in the `meta` as shown below:
+
+```tsx
+useList({
+    resource: "posts",
+    //highlight-start
+    meta: {
+        count: "estimated",
+    },
+    // highlight-end
+});
+```
+
+By default the `exact` count is used.
+
+[Refer to the PostgREST docs for more information about the count property &#8594](https://postgrest.org/en/stable/references/api/tables_views.html#exact-count)
+
+
 ## Example
 
 <CodeSandboxExample path="data-provider-supabase" />
