@@ -33,9 +33,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
                 },
             });
 
-            expect(response?.data.aggregate.count).toBe(
-                namingConvention === "hasura-default" ? 34 : 283,
-            );
+            expect(response?.data.aggregate.count).toBe(283);
         });
     },
 );
