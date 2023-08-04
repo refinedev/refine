@@ -16,7 +16,6 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
 
@@ -89,7 +88,6 @@ const App: React.FC = () => {
                         </Routes>
                         <UnsavedChangesNotifier />
                         <DocumentTitleHandler />
-                        <ReactQueryDevtools />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

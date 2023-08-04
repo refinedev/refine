@@ -12,7 +12,6 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
@@ -68,7 +67,6 @@ const App: React.FC = () => {
                     </Routes>
                     <UnsavedChangesNotifier />
                     <DocumentTitleHandler />
-                    <ReactQueryDevtools />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>
