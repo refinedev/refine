@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 5.11.1
+
+### Patch Changes
+
+-   [#4774](https://github.com/refinedev/refine/pull/4774) [`030a9dda75a`](https://github.com/refinedev/refine/commit/030a9dda75a7903e3c9ce3233e3b570b7cbe2dab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: unlock and upgrade `@mui/material` to `^5.14.2`
+
+-   Updated dependencies [[`c757355da60`](https://github.com/refinedev/refine/commit/c757355da6089d0e18609a1bb2d316d928412b16)]:
+    -   @refinedev/react-hook-form@4.8.1
+
 ## 5.11.0
 
 ### Minor Changes
