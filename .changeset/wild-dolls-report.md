@@ -2,4 +2,4 @@
 "@refinedev/antd": patch
 ---
 
-fix: fixed the shown console error when going to the next step in the wizard
+fix: fixed the `goToStep` of `useStepsForm` hook return type
