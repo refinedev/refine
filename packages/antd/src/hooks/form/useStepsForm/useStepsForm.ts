@@ -131,14 +131,8 @@ export const useStepsForm = <
     });
 
     const errorHandledGotoStep = async (step: number) => {
-        if (step < current && !props.isBackValidate) {
-            gotoStep(step);
-            return;
-        }
-
         try {
-            await form.validateFields();
-            gotoStep(step);
+            await gotoStep(step);
         } catch (error) {
             return;
         }
