@@ -14,7 +14,7 @@ import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
 export type UseStepsFormFromSFReturnType<TResponse, TVariables> = {
     current: number;
-    gotoStep: (step: number) => void;
+    gotoStep: (step: number) => Promise<TVariables> | true;
     stepsProps: {
         current: number;
         onChange: (currentStep: number) => void;
@@ -118,10 +118,7 @@ export const useStepsForm = <
     });
     const { form, formProps } = useFormProps;
 
-    const { gotoStep, current, ...stepsPropsSunflower } = useStepsFormSF<
-        TResponse,
-        TVariables
-    >({
+    const stepsPropsSunflower = useStepsFormSF<TResponse, TVariables>({
         isBackValidate: false,
         form: form,
         submit: (values: any) => {
@@ -130,19 +127,9 @@ export const useStepsForm = <
         ...props,
     });
 
-    const errorHandledGotoStep = async (step: number) => {
-        try {
-            await gotoStep(step);
-        } catch (error) {
-            return;
-        }
-    };
-
     return {
         ...useFormProps,
         ...stepsPropsSunflower,
-        current,
-        gotoStep: errorHandledGotoStep,
         formLoading: useFormProps.formLoading,
         formProps: {
             ...stepsPropsSunflower.formProps,
