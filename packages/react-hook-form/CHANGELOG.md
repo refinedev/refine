@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 4.8.1
+
+### Patch Changes
+
+-   [#4767](https://github.com/refinedev/refine/pull/4767) [`c757355da60`](https://github.com/refinedev/refine/commit/c757355da6089d0e18609a1bb2d316d928412b16) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `useModalForm` sends request twice when `syncWithLocation` is true
+
 ## 4.8.0
 
 ### Minor Changes
