@@ -53,7 +53,10 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                         justifyContent="center"
                     >
                         {user?.name && (
-                            <Typography variant="subtitle2">
+                            <Typography
+                                variant="subtitle2"
+                                data-testid="header-user-name"
+                            >
                                 {user?.name}
                             </Typography>
                         )}

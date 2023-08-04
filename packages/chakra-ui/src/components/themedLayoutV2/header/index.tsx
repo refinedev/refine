@@ -60,7 +60,11 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 <HamburgerMenu />
                 <HStack>
                     {user?.name && (
-                        <Text size="sm" fontWeight="bold">
+                        <Text
+                            size="sm"
+                            fontWeight="bold"
+                            data-testid="header-user-name"
+                        >
                             {user.name}
                         </Text>
                     )}

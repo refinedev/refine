@@ -61,7 +61,11 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             >
                 <HamburgerMenu />
                 <Flex align="center" gap="sm">
-                    {user?.name && <Title order={6}>{user?.name}</Title>}
+                    {user?.name && (
+                        <Title order={6} data-testid="header-user-name">
+                            {user?.name}
+                        </Title>
+                    )}
                     {user?.avatar && (
                         <Avatar
                             src={user?.avatar}
