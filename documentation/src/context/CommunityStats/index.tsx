@@ -9,6 +9,7 @@ import React, {
 
 interface ICommunityStatsContext {
     githubStarCount: number;
+    githubStarCountText: string;
     githubCommitCount: number;
     discordMemberCount: number;
     loading: boolean;
@@ -55,6 +56,7 @@ export const CommunityStatsProvider: FC = ({ children }) => {
 
     const value = {
         githubStarCount,
+        githubStarCountText: `${(githubStarCount / 1000).toFixed(1)}k`,
         githubCommitCount,
         discordMemberCount,
         loading,
