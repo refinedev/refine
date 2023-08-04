@@ -116,8 +116,10 @@ const renderForm = ({
                 </Form>
                 {current > 0 && (
                     <Button
-                        onClick={() => {
-                            gotoStep(current - 1);
+                        onClick={async () => {
+                            try {
+                                await gotoStep(current - 1);
+                            } catch (e) {}
                         }}
                         data-testid="previous-button"
                     >
@@ -126,8 +128,10 @@ const renderForm = ({
                 )}
                 {current < formList.length - 1 && (
                     <Button
-                        onClick={() => {
-                            gotoStep(current + 1);
+                        onClick={async () => {
+                            try {
+                                await gotoStep(current + 1);
+                            } catch (e) {}
                         }}
                         data-testid="next-button"
                     >
