@@ -1,9 +1,5 @@
 import nock from "nock";
 
-/**
- * Hasura default 'snake_case' naming convention
- */
-
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "mutation ($object: posts_insert_input!) {\n      insert_posts_one (object: $object) {\n    id, title, content, category { id }\n  }\n    }",
@@ -11,18 +7,18 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             object: {
                 content: "Lorem ipsum dolor sit amet.",
                 title: "Lorem ipsum dolore",
-                category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                category_id: "ef49aebd-abcc-4bac-b064-a63b31f2e8ce",
             },
         },
     })
     .reply(
         200,
         [
-            "1f8b08000000000004036d4d4b0ec22010bd0a99b5189a029d7a06efd08c3035242d34655c98c6bb8b2e5cf956ef9b77402421b81c9072e55da6ad54a953c9fcf5225cc00463acf541233aa76dd7198dde053d52b444683bf4039c40922c6d04d7b2f3aad2561fab8a6569aa85a164e12cff625593285a59ce9f1e09dfcbfefc9df7dd10981ceb99e75e5b74a8d1d8c6ece8d9856176748357c31b337f058bc9000000",
+            "1f8b08000000000000036c8d410ac3201000bf227b8ec52412346fe81fc2aa6b11120dba3d94e0df4b7be8a9d79981b9202023ac17a4dca8f27696c66d2b99be2cc00a7e192785c6ca60c7516aa38cb4da45498a627466f6e8220cc089778215eea5d221d2d99e8708652f9560005f3253e67f5ab4c4020fe2dba743a647a9afdf9ca2b6482e4874de4bedd04ba7162d7199dd3cc6898c27e8bdf737000000ffff0300ddcef1ebc9000000",
         ],
         [
             "Date",
-            "Wed, 30 Nov 2022 11:46:47 GMT",
+            "Fri, 04 Aug 2023 07:32:44 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -30,9 +26,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "adcdc620a8682f56fbcf3734dffe8ab5",
-            "Content-Encoding",
-            "gzip",
+            "ae7fa9b6bcd80753256272f8f67e155a",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -50,33 +44,31 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7723582dfc039090-FRA",
+            "7f151baa5d0392cf-IST",
+            "Content-Encoding",
+            "gzip",
         ],
     );
 
-/**
- * Graphql default 'camelCase' naming convention
- */
-
-nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "mutation ($object: PostsInsertInput!) {\n      insertPostsOne (object: $object) {\n    id, title, content, category { id }\n  }\n    }",
         variables: {
             object: {
                 content: "Lorem ipsum dolor sit amet.",
                 title: "Lorem ipsum dolore",
-                categoryId: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                categoryId: "ef49aebd-abcc-4bac-b064-a63b31f2e8ce",
             },
         },
     })
     .reply(
         200,
         [
-            "1f8b08000000000000136d4d4b0ec22010bd4a336b31900e94f60c267a8511a686a40553c68569bcbbe8c2956ff5be793b4412826987942b6f722955ea39f3d78930810e5a23baa0bcb756a1315a7967831a29229147e3dd000790244b1bc1a96cbc76e95e1f6b17cbd2540b43c9c259fec55d4dd2d1ca72fcf448f856b6e7efbc374360b2ac669e7b85de7ae5353686a3631b86d9d2155e0d6ff01950dec7000000",
+            "1f8b08000000000000036c8d4b0ac2301040af1266dd486cd2ef1904bdc24c329540db48322ea4e4eea20b576edf7bf00e082808f301712f9ce5968a94ebce5f1260066bce6e0abdd13e70ab9de551e340adeea81bed128c271aa00189b232cc70499937151fe5b9a990d694191af06917dee59f56258ac28de5f4e950f89ef2eb37e7c54dc8143492f7da117a4da6771a7b4bf6bcb43c7a865a6b7d030000ffff03003d0f627cc7000000",
         ],
         [
             "Date",
-            "Wed, 30 Nov 2022 11:46:47 GMT",
+            "Fri, 04 Aug 2023 07:32:44 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -84,9 +76,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "adcdc620a8682f56fbcf3734dffe8ab5",
-            "Content-Encoding",
-            "gzip",
+            "3717565044823507629ad789cd729018",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -104,6 +94,8 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7723582dfc039090-FRA",
+            "7f151baf8a165488-IST",
+            "Content-Encoding",
+            "gzip",
         ],
     );
