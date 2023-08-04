@@ -3,7 +3,7 @@ import { createClient } from "../gqlClient";
 import "./index.mock";
 
 describe.each(["hasura-default", "graphql-default"] as const)(
-    "custom with %s naming convention",
+    "updateOne with %s naming convention",
     (namingConvention) => {
         it("correct response with meta", async () => {
             const { data } = await dataProvider(

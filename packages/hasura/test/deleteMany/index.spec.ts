@@ -3,7 +3,7 @@ import { createClient } from "../gqlClient";
 import "./index.mock";
 
 describe.each(["hasura-default", "graphql-default"] as const)(
-    "custom with %s naming convention",
+    "deleteMany with %s naming convention",
     (namingConvention) => {
         let withMetaIds = [
             "9848cac2-80d7-4846-9a73-2f312459929a",

@@ -5,7 +5,7 @@ import "./index.mock";
 // nock.recorder.rec();
 
 describe.each(["hasura-default", "graphql-default"] as const)(
-    "custom with %s naming convention",
+    "deleteOne with %s naming convention",
     (namingConvention) => {
         let withMetaId = "56c5a2cd-3b4d-4465-9d41-67f7991d833c";
         let withoutMetaId = "312b993d-9648-4a15-aa92-11e7b77e0071";
