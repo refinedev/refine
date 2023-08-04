@@ -21,11 +21,11 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b0800000000000003a48fb14ec33010407fe5e4b9468e9ba471b60efc020b42e8ec5ce024c749ed330255f977d48a0166c627bde1bdab9a50508d57c5a95096d76d2d526e9c496a4e9cde148cf07c553ca95151b066b2c1e8a60dbd6e7b336b37e1a42d5117d00e9371461d94b04452a33a53224c50a3640e4c05d29a20b2a7bc4261015c4860a3182909954b257550614d4249d4a89ea808fb1aeb021f356e5550080a6e4c093087fa70b351e86dcd5ff7837ba13d355d1f8eda3937e8f6d8ceda4f9dd7d69bd36087e33cdb5eedfb017e7c33f45dd7d8936ee6bed1ad73413bc456a32737b76670cd31fc3a7a14c6058453e0a92601fa842a8035c89a61c61ad8d7f2e7e21cf9527181c4fe1d28a3fc27fb65dff76f000000ffff03000371ce87b3010000",
+            "1f8b0800000000000003a48fbb4ec43010007f65b5f5195dde71ba2bf8051a84d0dad91c2b39ce9dbd46a053fe1d1da2809a72a429666e3893124e37949839e9eb65cb9aef9c584b8a12cf08133cdf50669cb0ebadb7553518769e4ccbb637b6e3c18c7674d671d337e3820754d1c038e18923538412348917ce10b708411ca70db228d0ca0a170e81a372be16c603fa2d2a47c5099f38abb812ca0aef255c8a923264ba0847a0e4cbc3dd26e5f3963ebf0fee855c0f55d7fbc6586b47d336ed62dcdc3953bbe330d663b32c758ffb7e801fdf7755d5f6cdd15877f4a66d9d3396e6ce3403d3dcd9aea2defd3a7a54a11554a297b94405fe80a240c5eb9660a1e2c595fce7e214e45a688528ee0d3891fe27fb65dff72f000000ffff03006eefabf5b3010000",
         ],
         [
             "Date",
-            "Fri, 04 Aug 2023 08:30:06 GMT",
+            "Fri, 04 Aug 2023 12:15:26 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -33,7 +33,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "63f35619295a75e475df598517709b16",
+            "eb47a844c2d283f88a588d8f1c7129ef",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -51,7 +51,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f156fb14a4f5487-IST",
+            "7f16b9c7dca7548d-IST",
             "Content-Encoding",
             "gzip",
         ],
@@ -59,7 +59,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id }\n  }\n    }",
+        query: "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id, title }\n  }\n    }",
         variables: {
             objects: [
                 {
@@ -78,11 +78,11 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b08000000000000032cca410ac3201000c0afc89ebb1037ba6abe524ad135295e6c31e624febd147a1c980139f608db8052cfbdf5e7e77df6f3e7b6f7abd5525fa036751f50326ce0c87b71da2249ca68567618d8310a332f41534e44306feadf69612d490e349e04cd2116c31a32061b858df35a4782f998737e010000ffff0300e614462188000000",
+            "1f8b08000000000000034ccd4b6a03310c00d0ab08ad637062cf309e5d173d4529c51fa5081c4d6acb50187cf752e8a2cbb77a2796a811f713593a35fd781e5dfbaf1be968c2f289b0c3db895c70c714b35b722826932bc65b0a26dc72318bbbba6db1217b4b784165ad843bbe90501418551b67a60e7208544ed40ee8ac101fa4f0a45a4994fad7209c17f8ab56bb96e4d3d594e083f1c991d9b6cd99c5c598576f6ff65efe55afcaf101ca92b90c51a06f180a71643d1adce3c89c46c7f93ee7fc010000ffff030035378e38f4000000",
         ],
         [
             "Date",
-            "Fri, 04 Aug 2023 08:30:07 GMT",
+            "Fri, 04 Aug 2023 12:15:27 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -90,7 +90,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "816988dab1551ac5622bcef75d67dbdd",
+            "ee0512a4bc7d5909589e2d36e813ee07",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -108,7 +108,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f156fba9c2d92d2-IST",
+            "7f16b9d018df5488-IST",
             "Content-Encoding",
             "gzip",
         ],
@@ -135,11 +135,11 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b0800000000000003a48fb16ec32014007fe5893954310e9878cbd0bd5397aac3031e2912c6093caa5691ffbd4ad5a19d3b9e74c3dd4d046414f34da4d2a8f2d3dab8ddb112f75a52390b98e1e5265210b318e2e0c31047e9bd37f2a07192d6062ba38b63a0a8291a2b7682136712b33851212cd033d7e41335286b819c1cd5155a62c085182e943315a676ed2476c2af85a9b098c533354eaee7bec07bcf97cec8040d2f890a60f5fde16e23d379ad9fdf03f74252d3a08d1fe5f178b4f2301ea274413ba9dc7eb2ca8e312a23b66d073ffeb41fbc098412550cf230692d9d1d4769266d9452c644d2bf8e1e39e1029c8a4fa11706fa80ce80ddf35a2162f7c9f5f6e7e294d3b5e30225b937a08afc9fecd76ddbbe000000ffff03008549d574b2010000",
+            "1f8b0800000000000003a48f3d4fc3301040ffcae9e61a35df71b60eec4c2c88e16c5fca4989d3da6704aaf2df511103cc8c4f7ac37b370ca484d30d25664efab465cd774cac2545896784095e6e280127ecfc7c742ed4a6b2159bd6d7c1d0406442cf55e8471a4368f0802aba304e78e2c814a12c9ac40b67885b84451ca70db228d0ca0a175e168ecaf95a180fe8b7a81c15277ce6ace2ca5256782fcba5282943a68b70044abe3cdc6d523e6fe9f37be05ec8f55075bd6f8cb576346dd3cec685ce99da1d87b11e9b79ae7bdcf703fcf89eb8b1f5d1193b56d6b4be77c6ce4363daa3efc6dece8179f875f4a8422ba8442fa14405fe80a240c5eb9660a6e2c595fce7e2b4c8b5d00a51dc1b7022fd4ff6ebbeef5f000000ffff030068593c32b2010000",
         ],
         [
             "Date",
-            "Fri, 04 Aug 2023 08:30:09 GMT",
+            "Fri, 04 Aug 2023 12:15:28 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -147,7 +147,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "e10ffa38999b2f39563f4e1b3b76bcd6",
+            "2eae16760eeea7cf4422782316e250e6",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -165,7 +165,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f156fc3ee3c92dd-IST",
+            "7f16b9d47d0f548d-IST",
             "Content-Encoding",
             "gzip",
         ],
@@ -173,7 +173,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [PostsInsertInput!]!) {\n      insertPosts (objects: $objects) {\n    returning { id }\n  }\n    }",
+        query: "mutation ($objects: [PostsInsertInput!]!) {\n      insertPosts (objects: $objects) {\n    returning { id, title }\n  }\n    }",
         variables: {
             objects: [
                 {
@@ -192,11 +192,11 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b08000000000000032cca310a03211000c0af1c5b6741ef76d5f315e9430a75bd6063404d25fe3d04520ecc040923809f506acf6ddcdf7df41f5b1e9f564b7dc1e6b7c78422e0418c0e6cc5a2b6bb42127da03b1d23b17349384a3227acdbf6ef2c142ea284ca0823e52363208a98385ca2a2b16937b09e6bad2f000000ffff030034ad03d387000000",
+            "1f8b08000000000000034ccdb16ac4300c00d05f119acfe0e49238c9d6a17bf7d241b6e522f039575b8642c8bf9742878e6f7a274652c2fd44298dabbe1d4ddb2f2b6baf45ca27c20eef274ac41da794c266793296039b292ec9908bab218a6e1eee6eb333e10d553433eef8c285a940cf5a2508372847812c9eeb014d14e8c10a4fce998b72fbea8cd70dfe2a3fc461f263303c4636931f935987b09899ad5d5c0ceebeadffaa57157a804a09127b51e06fe80ad4831e1512f520be37bc3eaeebfa010000ffff0300b802a3e8f3000000",
         ],
         [
             "Date",
-            "Fri, 04 Aug 2023 08:30:10 GMT",
+            "Fri, 04 Aug 2023 12:15:28 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -204,7 +204,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "694684b42f30ed5824ffae488824f1b0",
+            "2e940da4e2477a5bdb8d3e811965ebc5",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -222,7 +222,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f156fcdf94392d5-IST",
+            "7f16b9d99e0b92dd-IST",
             "Content-Encoding",
             "gzip",
         ],
