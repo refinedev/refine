@@ -24,20 +24,10 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
-    const shouldRenderUserInfo = user && (user.name || user.avatar);
-
     const prefferedSticky = pickNotDeprecated(sticky, isSticky) ?? true;
 
     return (
-        <AppBar
-            position={prefferedSticky ? "sticky" : "relative"}
-            sx={{
-                display: {
-                    xs: "block",
-                    md: shouldRenderUserInfo ? "block" : "none",
-                },
-            }}
-        >
+        <AppBar position={prefferedSticky ? "sticky" : "relative"}>
             <Toolbar>
                 <HamburgerMenu />
                 <Stack
