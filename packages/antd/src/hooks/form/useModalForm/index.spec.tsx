@@ -261,4 +261,43 @@ describe("useModalForm Hook", () => {
             expect(result.current.modalProps.open).toBe(false);
         },
     );
+
+    it("should `meta[syncWithLocationKey]` overrided by default", async () => {
+        const mockGetOne = jest.fn();
+        const mockUpdate = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useModalForm({
+                    syncWithLocation: true,
+                    id: 5,
+                    action: "edit",
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer,
+                        getOne: mockGetOne,
+                        update: mockUpdate,
+                    },
+                }),
+            },
+        );
+
+        await act(async () => {
+            result.current.show();
+        });
+
+        await waitFor(() => {
+            expect(mockGetOne).toBeCalledTimes(1);
+            expect(mockGetOne).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        "modal-posts-edit": undefined,
+                    }),
+                }),
+            );
+        });
+    });
 });

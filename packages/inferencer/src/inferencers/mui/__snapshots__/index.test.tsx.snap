@@ -47,6 +47,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
           >
             <div
               class="MuiDataGrid-columnHeaders MuiDataGrid-withBorderColor css-1iyq7zh-MuiDataGrid-columnHeaders"
+              role="presentation"
               style="min-height: 56px; max-height: 56px; line-height: 56px;"
             >
               <div
@@ -72,9 +73,11 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -174,9 +177,11 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -276,9 +281,11 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -370,14 +377,17 @@ exports[`MuiInferencer should match the snapshot 1`] = `
             </div>
             <div
               class="MuiDataGrid-virtualScroller css-axafay-MuiDataGrid-virtualScroller"
+              role="presentation"
               style="overflow-x: hidden; overflow-y: hidden;"
             >
               <div
                 class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
+                role="presentation"
                 style="width: auto; height: 104px; min-height: auto;"
               >
                 <div
                   class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
+                  role="rowgroup"
                   style="transform: translate3d(0px, 0px, 0px);"
                 >
                   <div
@@ -401,6 +411,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="11"
                       >
                         11
@@ -418,6 +429,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="Nobis exercitationem officia quia est."
                       >
                         Nobis exercitationem officia quia est.
@@ -435,6 +447,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="provident-culpa-facere"
                       >
                         provident-culpa-facere
@@ -462,6 +475,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="21"
                       >
                         21
@@ -479,6 +493,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="Eaque in nesciunt."
                       >
                         Eaque in nesciunt.
@@ -496,6 +511,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="quod-quos-commodi"
                       >
                         quod-quos-commodi

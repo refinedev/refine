@@ -244,8 +244,6 @@ export const useForm = <
         },
     };
 
-    console.log(useFormCoreResult.autoSaveProps);
-
     return {
         ...useMantineFormResult,
         onSubmit,

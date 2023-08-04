@@ -80,11 +80,24 @@ describe("form-antd-use-drawer-form", () => {
     it("should edit a record", () => {
         cy.getEditButton().first().click();
 
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        isDrawerVisible();
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getAntdLoadingOverlay().should("not.exist");
+        // assert response values are equal to the form values
+        cy.wait("@getPost").then((interception) => {
+            const response = interception?.response;
+            const body = response?.body;
+
+            // wait loading state and render to be finished
+            isDrawerVisible();
+            cy.getSaveButton().should("not.be.disabled");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.get("#title.ant-input").eq(1).should("have.value", body?.title);
+            cy.get("input#status")
+                .get(".ant-select-selection-item")
+                .should(
+                    "contain",
+                    body?.status[0].toUpperCase() + body?.status.slice(1),
+                );
+        });
 
         cy.get("#title.ant-input").eq(1).clear();
         cy.get("#title.ant-input").eq(1).type(mockPost.title);
