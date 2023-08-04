@@ -25,7 +25,7 @@ import { useQueryClient } from "@tanstack/react-query";
  */
 export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resource: resourceNameFromProps,
-    resourceNameOrRouteName: propResourceNameOrRouteName,
+    resourceNameOrRouteName,
     recordItemId,
     hideText = false,
     dataProviderName,
@@ -42,7 +42,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     const invalidates = useInvalidate();
 
     const { resources, identifier, id } = useResource(
-        resourceNameFromProps ?? propResourceNameOrRouteName,
+        resourceNameFromProps ?? resourceNameOrRouteName,
     );
 
     const isInvalidating = !!queryClient.isFetching({
