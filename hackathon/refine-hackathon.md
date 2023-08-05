@@ -8,7 +8,7 @@
 
 ## 🏆 Hackathon Winners
 
-🎉 Congratulations to all the participants of [refine Open Source Hackathon #2](https://refine.dev/blog/refine-hackathon-2/)!   
+🎉 Congratulations to all the participants. 
 
 The hackathon has officially wrapped up, and we're seriously blown away by the incredible results you've achieved. Picking the winners from all the outstanding submissions was quite a challenge!
 
