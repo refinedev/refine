@@ -4,7 +4,7 @@ title: Refresh
 swizzle: true
 ---
 
-`<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -100,7 +100,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "1".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "1".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -118,9 +118,10 @@ import { RefreshButton } from "@refinedev/mui";
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            recordItemId="1"
             // highlight-next-line
-            resource="posts"
+            resource="categories"
+            // highlight-next-line
+            recordItemId="2"
         />
     );
 };
@@ -139,7 +140,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -197,9 +198,10 @@ import { RefreshButton } from "@refinedev/mui";
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            recordItemId="1"
             // highlight-next-line
-            resourceNameOrRouteName="posts"
+            resourceNameOrRouteName="categories"
+            // highlight-next-line
+            recordItemId="2"
         />
     );
 };
@@ -218,7 +220,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -233,3 +235,5 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
 :::
+
+[use-invalidate]: /docs/api-reference/core/hooks/invalidate/useInvalidate
