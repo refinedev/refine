@@ -1,9 +1,10 @@
 import React from "react";
 import {
-    useOne,
     useTranslate,
     useResource,
-    pickNotDeprecated,
+    useInvalidate,
+    queryKeys,
+    pickDataProvider,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -14,9 +15,11 @@ import { IconRefresh } from "@tabler/icons";
 
 import { RefreshButtonProps } from "../types";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 /**
  * `<RefreshButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
- * to update the data shown on the page via the {@link https://refine.dev/docs/api-reference/core/hooks/data/useOne `useOne`} method provided by your dataProvider.
+ * to update the data shown on the page via the {@link https://refine.dev/docs/api-reference/core/hooks/invalidate/useInvalidate `useInvalidate`} hook.
  *
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/refresh-button} for more details.
  */
@@ -25,40 +28,47 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
-    meta,
-    metaData,
     dataProviderName,
     svgIconProps,
     children,
     onClick,
+    meta: _meta,
+    metaData: _metaData,
     ...rest
 }) => {
-    const { identifier, id } = useResource(
+    const translate = useTranslate();
+
+    const queryClient = useQueryClient();
+    const invalidates = useInvalidate();
+
+    const { resources, identifier, id } = useResource(
         resourceNameFromProps ?? resourceNameOrRouteName,
     );
 
-    const translate = useTranslate();
-
-    const { refetch, isFetching } = useOne({
-        resource: identifier,
-        id: recordItemId ?? id ?? "",
-        queryOptions: {
-            enabled: false,
-        },
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
-        liveMode: "off",
-        dataProviderName,
+    const isInvalidating = !!queryClient.isFetching({
+        queryKey: queryKeys(
+            identifier,
+            pickDataProvider(identifier, dataProviderName, resources),
+        ).detail(recordItemId ?? id),
     });
+
+    const handleInvalidate = () => {
+        invalidates({
+            id: recordItemId ?? id,
+            invalidates: ["detail"],
+            dataProviderName,
+            resource: identifier,
+        });
+    };
 
     return hideText ? (
         <IconButton
             variant="outline"
             aria-label={translate("buttons.refresh", "Refresh")}
-            onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
-                onClick ? onClick(e) : refetch()
-            }
-            isDisabled={isFetching}
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+                onClick ? onClick(e) : handleInvalidate();
+            }}
+            loading={isInvalidating}
             data-testid={RefineButtonTestIds.RefreshButton}
             className={RefineButtonClassNames.RefreshButton}
             {...rest}
@@ -69,10 +79,10 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         <Button
             variant="outline"
             leftIcon={<IconRefresh size={20} {...svgIconProps} />}
-            isLoading={isFetching}
-            onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
-                onClick ? onClick(e) : refetch()
-            }
+            loading={isInvalidating}
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+                onClick ? onClick(e) : handleInvalidate();
+            }}
             data-testid={RefineButtonTestIds.RefreshButton}
             className={RefineButtonClassNames.RefreshButton}
             {...rest}

@@ -117,6 +117,8 @@ export {
     matchResourceFromRoute,
     useActiveAuthProvider,
     useUserFriendlyName,
+    queryKeys,
+    pickDataProvider,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
 export { generateDefaultDocumentTitle } from "./definitions";

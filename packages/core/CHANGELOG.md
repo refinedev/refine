@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.32.2
+
+### Patch Changes
+
+-   [#4765](https://github.com/refinedev/refine/pull/4765) [`e3e38de4114`](https://github.com/refinedev/refine/commit/e3e38de4114209fe43fe35ac3622d44e355694bd) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - chore: remove `refine cloud` early access message
+
 ## 4.32.1
 
 ### Patch Changes

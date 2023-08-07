@@ -4,7 +4,18 @@ import {
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper } from "@test";
+import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import { Route, Routes } from "react-router-dom";
+import "@refinedev/core";
+
+const invalidateMock = jest.fn();
+jest.mock("@refinedev/core", () => ({
+    __esModule: true,
+    ...jest.requireActual("@refinedev/core"),
+    useInvalidate: () => {
+        return invalidateMock;
+    },
+}));
 
 export const buttonRefreshTests = function (
     RefreshButton: React.ComponentType<RefineRefreshButtonProps<any, any>>,
@@ -69,6 +80,96 @@ export const buttonRefreshTests = function (
             });
 
             expect(refresh).toHaveBeenCalledTimes(1);
+        });
+
+        it("should invalidates when button is clicked", async () => {
+            jest.resetAllMocks();
+            jest.restoreAllMocks();
+
+            const { getByText } = render(
+                <Routes>
+                    <Route
+                        path="/posts/show/:id"
+                        element={
+                            <RefreshButton
+                                dataProviderName="default"
+                                resource="posts"
+                            />
+                        }
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        routerInitialEntries: ["/posts/show/1"],
+                        resources: [
+                            {
+                                name: "posts",
+                                show: "/posts/show/:id",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            const button = getByText("Refresh");
+
+            await act(async () => {
+                fireEvent.click(button);
+            });
+
+            await waitFor(() => {
+                expect(invalidateMock).toHaveBeenCalledTimes(1);
+                expect(invalidateMock).toHaveBeenCalledWith({
+                    id: "1",
+                    invalidates: ["detail"],
+                    dataProviderName: "default",
+                    resource: "posts",
+                });
+            });
+        });
+
+        it("should when onClick is not passed, NOT invalidates when button is clicked", async () => {
+            jest.resetAllMocks();
+            jest.restoreAllMocks();
+
+            const onClickMock = jest.fn();
+
+            const { getByText } = render(
+                <Routes>
+                    <Route
+                        path="/posts/show/:id"
+                        element={
+                            <RefreshButton
+                                onClick={onClickMock}
+                                dataProviderName="default"
+                                resource="posts"
+                            />
+                        }
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        routerInitialEntries: ["/posts/show/1"],
+                        resources: [
+                            {
+                                name: "posts",
+                                show: "/posts/show/:id",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            const button = getByText("Refresh");
+
+            await act(async () => {
+                fireEvent.click(button);
+            });
+
+            await waitFor(() => {
+                expect(invalidateMock).toHaveBeenCalledTimes(0);
+                expect(onClickMock).toHaveBeenCalledTimes(1);
+            });
         });
     });
 };

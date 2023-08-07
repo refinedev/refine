@@ -25,7 +25,13 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                         }}
                     />
                 ) : (
-                    <FineFoodsIcon style={{ color: token.colorTextHeading }} />
+                    <FineFoodsIcon
+                        style={{
+                            color: token.colorTextHeading,
+                            width: "100%",
+                            height: "auto",
+                        }}
+                    />
                 )}
             </Link>
         </Logo>
