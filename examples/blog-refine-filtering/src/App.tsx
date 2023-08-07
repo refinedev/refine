@@ -7,7 +7,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
-import { Posts } from "components/Posts";
+import { Posts } from "./components/Posts";
 
 function App() {
     return (
