@@ -6,18 +6,18 @@
     align-items: center;
     border-radius: 10px;
     transition: transform 0.2s;
-  }
-  
-  .wrapper:hover {
+}
+
+.wrapper:hover {
     cursor: pointer;
     transform: scale(1.05);
-  }
-  
-  .title {
+}
+
+.title {
     text-align: left;
-  }
-  
-  .circle {
+}
+
+.circle {
     display: flex;
     width: 20px;
     height: 20px;
@@ -25,4 +25,4 @@
     border-radius: 50%;
     border-style: solid;
     border-width: 5px;
-  }
+}
