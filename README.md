@@ -62,15 +62,6 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## 🔥 Try refine online in just 10 seconds
-
-<br/>
-
-<a  href="https://s.refine.dev/refine-new-github">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine.new.png">
-</a>
-<br/>
-<br/>
-
 [refine.new](https://s.refine.dev/refine-new-github) is a powerful open-source browser tool that lets you create refine apps.
 
 You can preview, modify, and download your project immediately, thereby streamlining the development process.
