@@ -220,4 +220,14 @@ describe("handleRefineOptions", () => {
             devtoolConfig: false,
         });
     });
+
+    it("it should return projectId", () => {
+        const options: IRefineOptions = {
+            projectId: "test",
+        };
+
+        const { optionsWithDefaults } = handleRefineOptions({ options });
+
+        expect(optionsWithDefaults.projectId).toEqual("test");
+    });
 });
