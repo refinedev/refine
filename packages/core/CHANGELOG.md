@@ -1,5 +1,15 @@
 # @pankod/refine-core
 
+## 4.33.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `queryKeys` and `pickDataProvider` functions are exported.
+
+    `pickDataProvider`: returns the data provider name based on the provided name or fallbacks to resource definition, or `default`.
+
+    `queryKeys`: returns the query keys used by the data hooks based on the `resource` definition
+
 ## 4.32.2
 
 ### Patch Changes
