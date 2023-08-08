@@ -1,5 +1,16 @@
 # @pankod/refine-ui-types
 
+## 1.22.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `meta` is deprecated from `RefineRefreshButtonProps`. `<RefreshButton />` will use `useInvalidates` instead of `useOne`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/core@4.34.0
+
 ## 1.21.0
 
 ### Minor Changes
