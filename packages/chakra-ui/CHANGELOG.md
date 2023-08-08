@@ -1,5 +1,38 @@
 # @pankod/refine-chakra-ui
 
+## 2.26.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.22.0
+
+## 2.25.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.21.0
+
+## 2.24.2
+
+### Patch Changes
+
+-   [#4764](https://github.com/refinedev/refine/pull/4764) [`6aba21bfde0`](https://github.com/refinedev/refine/commit/6aba21bfde09e6efacff324bd29c37c046afb52e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fixed a bug where the `<ThemedLayoutv2>` component was not worked with sticky header.
+
+-   Updated dependencies [[`c757355da60`](https://github.com/refinedev/refine/commit/c757355da6089d0e18609a1bb2d316d928412b16)]:
+    -   @refinedev/react-hook-form@4.8.2
+
 ## 2.24.1
 
 ### Patch Changes
