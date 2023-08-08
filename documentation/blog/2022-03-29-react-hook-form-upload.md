@@ -134,7 +134,7 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 <br/>
 
 
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design, Material UI and Mantine UI**.
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
@@ -239,7 +239,7 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
-🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 Enterprise UI : Works seamlessly with Ant Design. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
