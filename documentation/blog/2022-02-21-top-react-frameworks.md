@@ -31,11 +31,13 @@ React has a number of frameworks that are competing to be the best framework in 
 
 Table of Contents
 
-1. [Create React App](#cra)
-2. [Material UI](#material-ui)
-3. [Ant Design](#antd)
-4. [React Bootstrap](#react-bootstrap)
-5. [Refine](#refine)
+- [Best UI Frameworks for React.js](#best-ui-frameworks-for-reactjs)
+  - [What is React?](#what-is-react)
+  - [1. Create React App ](#1-create-react-app-)
+  - [2. Material UI ](#2-material-ui-)
+  - [3. Ant Design ](#3-ant-design-)
+  - [4. React Bootstrap ](#4-react-bootstrap-)
+  - [5. refine ](#5-refine-)
 
 
 ### 1. Create React App <a name="cra"></a>
@@ -131,7 +133,7 @@ If you're looking for a framework that will let your data- intensive application
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🐜 **Enterprise UI** : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Enterprise UI** : Works seamlessly with Ant Design. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
