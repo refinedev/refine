@@ -1,5 +1,21 @@
 # @pankod/refine-antd
 
+## 5.33.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   [#4772](https://github.com/refinedev/refine/pull/4772) [`c9cc4398e99`](https://github.com/refinedev/refine/commit/c9cc4398e9996a49f7ee9c4c5656661a66b591ad) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd `useModalForm` and `useDrawerForm` sends request twice when `syncWithLocation` is true
+
+-   [#4778](https://github.com/refinedev/refine/pull/4778) [`82909db10b4`](https://github.com/refinedev/refine/commit/82909db10b4ac1705e1354bff0c0d95951497725) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fixed the `goToStep` of `useStepsForm` hook return type
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.21.0
+
 ## 5.32.0
 
 ### Minor Changes
