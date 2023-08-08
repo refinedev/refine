@@ -4,6 +4,7 @@ import React, {
     useCallback,
     useContext,
     useEffect,
+    useMemo,
     useState,
 } from "react";
 
@@ -54,9 +55,27 @@ export const CommunityStatsProvider: FC = ({ children }) => {
         fetchGithubCount();
     }, [fetchGithubCount]);
 
+    const githubStarCountText = useMemo(() => {
+        const hasIntlSupport =
+            typeof Intl == "object" &&
+            Intl &&
+            typeof Intl.NumberFormat == "function";
+
+        if (!hasIntlSupport) {
+            return `${(githubStarCount / 1000).toFixed(1)}k`;
+        }
+
+        const formatter = new Intl.NumberFormat("en-US", {
+            notation: "compact",
+            compactDisplay: "short",
+            maximumSignificantDigits: 3,
+        });
+        return formatter.format(githubStarCount);
+    }, [githubStarCount]);
+
     const value = {
         githubStarCount,
-        githubStarCountText: `${(githubStarCount / 1000).toFixed(1)}k`,
+        githubStarCountText,
         githubCommitCount,
         discordMemberCount,
         loading,
