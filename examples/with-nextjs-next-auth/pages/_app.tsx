@@ -76,7 +76,7 @@ const App = (props: React.PropsWithChildren) => {
 
             return {
                 success: false,
-                error: new Error(error),
+                error: new Error(error?.toString()),
             };
         },
         register: async ({ providerName, email, password }) => {
@@ -115,7 +115,7 @@ const App = (props: React.PropsWithChildren) => {
 
             return {
                 success: false,
-                error: new Error(error),
+                error: new Error(error?.toString()),
             };
         },
         updatePassword: async (params) => {
