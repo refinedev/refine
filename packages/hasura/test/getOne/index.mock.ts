@@ -1,23 +1,18 @@
 import nock from "nock";
 
-/**
- * Hasura default 'snake_case' naming convention
- */
-
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($id: uuid!) { posts_by_pk (id: $id) { id, title, content, category { id } } }",
-        variables: { id: "cddd4ced-651d-4039-abe0-2a9dffbc8c82" },
+        variables: { id: "6379bbda-0857-40f2-a277-b401ea6134d7" },
     })
-    .twice()
     .reply(
         200,
         [
-            "1f8b08000000000004033d8ec18e022110447f857016333aa08c1fb0d9eb663fc034dd8d121998cc340763f6df172fd6a9aaf22aa9972610d097975eea26db353cafcbe31d13e98b4622b2c8644eee40c60ee36420f0608e30518c013dfaa3de694992b9e35f15dba66e6b6d8bfa6e3314f59b991f9dc05a848b74e6a7255025dd535654735d79532c0ab02fa1486ab3ca107aadb8cdfbf712846f757d7e3e8d873332383691e368ac77def8c17667a7133b3c470741ff75fd03c1841520db000000",
+            "1f8b08000000000000033cce318ec3201040d1aba0a9c3ca066c6c777b896dadc18c231402c40c91a2c8778fd26cf9a557fc37786484e50d2557aeab7bade5f6cde0618151dbd9398fb29b062b4db72b89ca5ae94cd7138ebd36dec20538702458e0971261122df211b64055a49c440c8e8e2c6a608177625128464a4cf5d1082eb0e5c4941816f8a3cac1b5d8eee2d962698c4ca2620994041e5bfbf96a64bae6e3f57f48caf6c3b86939cff3248d36bb747e7052b9ce4e6ad2fbae4638cff3fc000000ffff0300d3bd6b9ee9000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 11:51:35 GMT",
+            "Fri, 04 Aug 2023 11:34:58 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -25,38 +20,43 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "598d691875f78d7b7ee7e7d059082e3b",
-            "Content-Encoding",
-            "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
+            "1ead1aa1cc0eb61cd866c57ffb2a3930",
             "CF-Cache-Status",
             "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a09cb95fa2b5493-IST",
+            "7f167e872c3f5488-IST",
+            "Content-Encoding",
+            "gzip",
         ],
     );
 
-// mock when id is Int
-// returning '{"data":{"users_by_pk":{"id":1,"name":"Refine User","email":"dev@refine.com"}}}'
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($id: Int!) { users_by_pk (id: $id) { id, name, email } }",
         variables: { id: 1 },
     })
-    .twice()
     .reply(
         200,
         [
-            "1f8b080019b6066402ffab564a492c4954b2aa562a2d4e2d2a8e4faa8c2fc80671335394ac0c7594f212735395ac948252d332f3521542816a947494527313337380a229a9650e456019bde4fc5ca5dada5a00ab4e01a54f000000",
+            "1f8b0800000000000003aa564a492c4954b2aa562a2d4e2d2a8e4faa8c2fc80671335394ac0c7594f212735395ac948252d332f352957494527313337394ac944094431158542f25b54ca9b6b616000000ffff0300b4eb714f4b000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 11:51:35 GMT",
+            "Fri, 04 Aug 2023 11:34:59 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -64,39 +64,43 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "598d691875f78d7b7ee7e7d059082e3b",
-            "Content-Encoding",
-            "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
+            "960d4bbdf6c8e67b69edd13cad0d6ee2",
             "CF-Cache-Status",
             "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a09cb95fa2b5493-IST",
+            "7f167e89d9d592dd-IST",
+            "Content-Encoding",
+            "gzip",
         ],
     );
 
-/**
- * Graphql default 'camelCase' naming convention
- */
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "query ($id: uuid!) { postsByPk (id: $id) { id, title, content, category { id } } }",
-        variables: { id: "cddd4ced-651d-4039-abe0-2a9dffbc8c82" },
+        query: "query ($id: Int!) { users_by_pk (id: $id) { id, name, email } }",
+        variables: { id: 1 },
     })
-    .twice()
     .reply(
         200,
         [
-            "1f8b08000000000000133d8eb16ec3300c447f85d05c154e2c2572c60e45c706fd029aa45221b214d8d41004f9f72a4b6fba3bbc03ee611815cde9616e75d3ede3fe7d7d85c4e66488991d09db83dfb175c338599c65b07b9c38c6990285bd79339a344bc73f2bb50d2e6b6d37f86a0b16f8c922d74e502d2a453b736e09a1a4df94816baeab6c200a487d8945535b20e3dc6b90b6bcbf96a872a9ebfdffd3b83b92a0171b258ed6051f6c185c776e3a88a763f4389b67d71ff388a446d9000000",
+            "1f8b0800000000000003aa564a492c4954b2aa562a2d4e2d2a8e4faa8c2fc80671335394ac0c7594f212735395ac948252d332f352957494527313337394ac944094431158542f25b54ca9b6b616000000ffff0300b4eb714f4b000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 11:51:35 GMT",
+            "Fri, 04 Aug 2023 11:34:59 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -104,38 +108,131 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "598d691875f78d7b7ee7e7d059082e3b",
-            "Content-Encoding",
-            "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
+            "7322fdc9bb7d7cc6f29b7092471a1261",
             "CF-Cache-Status",
             "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a09cb95fa2b5493-IST",
+            "7f167e8b5d5792d5-IST",
+            "Content-Encoding",
+            "gzip",
         ],
     );
 
-// mock when id is Int
-// returning '{"data":{"usersByPk":{"id":1,"name":"Refine User","email":"dev@refine.com"}}}'
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($id: uuid!) { posts_by_pk (id: $id) { id, title, content, category { id } } }",
+        variables: { id: "6379bbda-0857-40f2-a277-b401ea6134d7" },
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000033cce318ec3201040d1aba0a9c3ca066c6c777b896dadc18c231402c40c91a2c8778fd26cf9a557fc37786484e50d2557aeab7bade5f6cde0618151dbd9398fb29b062b4db72b89ca5ae94cd7138ebd36dec20538702458e0971261122df211b64055a49c440c8e8e2c6a608177625128464a4cf5d1082eb0e5c4941816f8a3cac1b5d8eee2d962698c4ca2620994041e5bfbf96a64bae6e3f57f48caf6c3b86939cff3248d36bb747e7052b9ce4e6ad2fbae4638cff3fc000000ffff0300d3bd6b9ee9000000",
+        ],
+        [
+            "Date",
+            "Fri, 04 Aug 2023 11:34:59 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "8d69391a2ee044fd92097754c580c6b6",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f167e8cbc4892d8-IST",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($id: uuid!) { postsByPk (id: $id) { id, title, content, category { id } } }",
+        variables: { id: "6379bbda-0857-40f2-a277-b401ea6134d7" },
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000033cceb16ec3201080e15739dd1c2a1bb0b1bdb54f90a9fb61ce152a01c71c91a2c8ef5e65e9f84bdff0bf3090102e2fdc4b95faf5bcfebe23065c70346ef63e90eaa6c129db6d5a91764e79dbf54c636f6c70784189921817fce4cc94a12539e21ab9422e1952f47c14a851806e2cb0734a9c85ebbd315e702d59380b2ef8cd55a26fa9dde0d1d2de8484a1d21e39031d6bfb786b12fe29c7f3ff90b5eb8771356a9ee749596337e5c3e095f69d9bf464b64d8f789ee7f9070000ffff0300c1cd4319e7000000",
+        ],
+        [
+            "Date",
+            "Fri, 04 Aug 2023 11:35:00 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "3c46ed29e0bdcd659766352aec64590d",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f167e8e2c8b5488-IST",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($id: Int!) { usersByPk (id: $id) { id, name, email } }",
         variables: { id: 1 },
     })
-    .twice()
     .reply(
         200,
         [
-            "1f8b0800000000000013ab564a492c4954b2aa562a2d4e2d2a76aa0cc80671325394ac0c7594f212735395ac948252d332f3521542812a947494527313337380a229a9650e456019bde4fc5ca5dada5a00cd35e6aa4d000000",
+            "1f8b0800000000000003aa564a492c4954b2aa562a2d4e2d2a76aa0cc80671325394ac0c7594f212735395ac948252d332f352957494527313337394ac944094431158542f25b54ca9b6b616000000ffff0300450073ea49000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 11:51:35 GMT",
+            "Fri, 04 Aug 2023 11:35:00 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -143,18 +240,114 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "598d691875f78d7b7ee7e7d059082e3b",
-            "Content-Encoding",
-            "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
+            "d07368aa9b4ac4f1f0551c1b099d98a3",
             "CF-Cache-Status",
             "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a09cb95fa2b5493-IST",
+            "7f167e931c1a92cf-IST",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($id: Int!) { usersByPk (id: $id) { id, name, email } }",
+        variables: { id: 1 },
+    })
+    .reply(
+        200,
+        [
+            "1f8b0800000000000003aa564a492c4954b2aa562a2d4e2d2a76aa0cc80671325394ac0c7594f212735395ac948252d332f352957494527313337394ac944094431158542f25b54ca9b6b616000000ffff0300450073ea49000000",
+        ],
+        [
+            "Date",
+            "Fri, 04 Aug 2023 11:35:00 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "cb85b1f923bf09c0ab478b3be6978cc9",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f167e953d545481-IST",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($id: uuid!) { postsByPk (id: $id) { id, title, content, category { id } } }",
+        variables: { id: "6379bbda-0857-40f2-a277-b401ea6134d7" },
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000033cceb16ec3201080e15739dd1c2a1bb0b1bdb54f90a9fb61ce152a01c71c91a2c8ef5e65e9f84bdff0bf3090102e2fdc4b95faf5bcfebe23065c70346ef63e90eaa6c129db6d5a91764e79dbf54c636f6c70784189921817fce4cc94a12539e21ab9422e1952f47c14a851806e2cb0734a9c85ebbd315e702d59380b2ef8cd55a26fa9dde0d1d2de8484a1d21e39031d6bfb786b12fe29c7f3ff90b5eb8771356a9ee749596337e5c3e095f69d9bf464b64d8f789ee7f9070000ffff0300c1cd4319e7000000",
+        ],
+        [
+            "Date",
+            "Fri, 04 Aug 2023 11:35:01 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "3f47087bee74c4e30fef8324d52ce1f2",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f167e98397a92dd-IST",
+            "Content-Encoding",
+            "gzip",
         ],
     );

@@ -1,75 +1,56 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import { createClient } from "../gqlClient";
 import "./index.mock";
 
-describe("deleteMany", () => {
-    it("correct response with meta", async () => {
-        const { data } = await dataProvider(client).deleteMany!({
-            resource: "posts",
-            ids: [
-                "cddd4ced-651d-4039-abe0-2a9dffbc8c82",
-                "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
-            ],
-            meta: {
-                fields: ["id", "title"],
-            },
+describe.each(["hasura-default", "graphql-default"] as const)(
+    "deleteMany with %s naming convention",
+    (namingConvention) => {
+        const client = createClient(namingConvention);
+        let withMetaIds = [
+            "9848cac2-80d7-4846-9a73-2f312459929a",
+            "a5bbd909-9bc5-486d-be07-ece9c17523f9",
+        ];
+        let withoutMetaIds = [
+            "54d9f65c-592a-4a0a-9743-4b6761030853",
+            "b97c56d0-83b1-483f-bbcc-45305c6340a4",
+        ];
+
+        if (namingConvention === "graphql-default") {
+            withMetaIds = [
+                "b8e8c884-d169-44ce-9fb1-118256a64181",
+                "522d566a-a25d-4339-952d-bd95a3fe9f80",
+            ];
+            withoutMetaIds = [
+                "f79a1033-62f3-4551-b9b4-4bd40ba4b51b",
+                "bc86c10a-d807-4196-9fc3-af5619e4228a",
+            ];
+        }
+
+        it("correct response with meta", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteMany!({
+                resource: "posts",
+                ids: withMetaIds,
+                meta: {
+                    fields: ["id", "title"],
+                },
+            });
+
+            expect(data[0].id).toEqual(withMetaIds[0]);
+            expect(data[1].id).toEqual(withMetaIds[1]);
         });
 
-        expect(data[0].id).toEqual("cddd4ced-651d-4039-abe0-2a9dffbc8c82");
-        expect(data[0].title).toEqual("Focus group Human Sleek");
+        it("correct response without meta", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteMany!({
+                resource: "posts",
+                ids: withoutMetaIds,
+            });
 
-        expect(data[1].id).toEqual("c82c71c5-0f0b-4042-b9a3-db977fe28a83");
-        expect(data[1].title).toEqual("E-business alarm Bedfordshire");
-    });
-
-    it("correct response without meta", async () => {
-        const { data } = await dataProvider(client).deleteMany!({
-            resource: "posts",
-            ids: [
-                "ecd7aa21-19f4-46c9-bc3e-227dcd0807fd",
-                "88a479ec-296d-48a4-9c57-7b48048a8067",
-            ],
+            expect(data[0].id).toEqual(withoutMetaIds[0]);
+            expect(data[1].id).toEqual(withoutMetaIds[1]);
         });
-
-        expect(data[0].id).toEqual("ecd7aa21-19f4-46c9-bc3e-227dcd0807fd");
-        expect(data[1].id).toEqual("88a479ec-296d-48a4-9c57-7b48048a8067");
-    });
-});
-
-describe("deleteMany with graphql naming convention", () => {
-    it("correct response with meta", async () => {
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).deleteMany!({
-            resource: "posts",
-            ids: [
-                "cddd4ced-651d-4039-abe0-2a9dffbc8c82",
-                "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
-            ],
-            meta: {
-                fields: ["id", "title"],
-            },
-        });
-
-        expect(data[0].id).toEqual("cddd4ced-651d-4039-abe0-2a9dffbc8c82");
-        expect(data[0].title).toEqual("Focus group Human Sleek");
-
-        expect(data[1].id).toEqual("c82c71c5-0f0b-4042-b9a3-db977fe28a83");
-        expect(data[1].title).toEqual("E-business alarm Bedfordshire");
-    });
-
-    it("correct response without meta", async () => {
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).deleteMany!({
-            resource: "posts",
-            ids: [
-                "ecd7aa21-19f4-46c9-bc3e-227dcd0807fd",
-                "88a479ec-296d-48a4-9c57-7b48048a8067",
-            ],
-        });
-
-        expect(data[0].id).toEqual("ecd7aa21-19f4-46c9-bc3e-227dcd0807fd");
-        expect(data[1].id).toEqual("88a479ec-296d-48a4-9c57-7b48048a8067");
-    });
-});
+    },
+);
