@@ -7,11 +7,43 @@ slug: /
 ## What is refine?
 
 
-**refine** is a highly versatile **React** framework that enables the rapid development of a wide range of web applications. From **internal tools**, **admin panels**, **B2B apps** and **dashboards**, it serves as a comprehensive solution for building any type of **CRUD** applications. 
+**refine** is a highly versatile **React** framework that enables the rapid development of a wide range of web applications. From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
 
-It significantly **simplifies the development process** and **eliminates the repetitive tasks** by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
+refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
 
-**refine** is _headless by design_ and offers unlimited styling and customization possibilities, empowering developers to create tailored and fully functional applications that meet specific project requirements.
+
+
+
+Here's an overview of the refine structure:
+
+```tsx title="App.tsx"
+const App = () => (
+    <Refine
+        dataProvider={dataProvider}
+        resources={[
+            {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+            },
+        ]}
+    >
+      /* ... */
+    </Refine>
+);
+```
+
+ <div  >
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/tutorial-generic-app.png" alt="tutorial antd" />
+</div>
+
+<br/>
+
+⚡ **refine** is _headless by design_ and offers unlimited styling and customization possibilities, empowering developers to create tailored and fully functional applications that meet specific project requirements.
+
+Utilizing integrated technologies you  can efforlessly develop industry-standard CRUD applications with **refine**.
 
 
 ## What do you mean by "headless" ?
@@ -38,7 +70,9 @@ This means you can use refine seamlessly in different platforms like React Nativ
 
 ## Use cases
 
-**refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_. Thanks to the built-in **SSR support**, **refine** can also power _customer-facing_ applications like _storefronts_.
+**refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_.  
+
+Thanks to the built-in **SSR support**, **refine** can also power _customer-facing_ applications like _storefronts_.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine diagram" />
 
