@@ -21,7 +21,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         initialSorter: [
             {
                 field: "id",
-                order: "asc",
+                order: "desc",
             },
         ],
         metaData: {
