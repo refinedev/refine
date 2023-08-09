@@ -1,4 +1,4 @@
-# @pankod/refine-react-location
+# @refinedev/react-location
 
 ## 3.36.2
 
