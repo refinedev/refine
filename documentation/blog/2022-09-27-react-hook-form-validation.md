@@ -18,8 +18,6 @@ In this guide, we’ll introduce [React Hook Form](https://www.react-hook-form.c
 
 Steps we'll cover:
 
--   [Introduction](#introduction)
--   [Prerequisite](#prerequisite)
 -   [What is React Hook Form?](#what-is-react-hook-form)
 -   [What is refine?](#what-is-refine)
 -   [Project setup](#project-setup)
@@ -30,7 +28,6 @@ Steps we'll cover:
 -   [How to conditionally render input fields](#how-to-conditionally-render-input-fields)
 -   [Form submission](#form-submission)
 -   [Conclusion](#conclusion)
--   [Example](#example)
 
 ## Prerequisite
 
