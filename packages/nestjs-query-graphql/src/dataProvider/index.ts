@@ -392,6 +392,15 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 gqlClient = new GraphQLClient(url, { headers });
             }
 
+            if (meta?.graphql) {
+                const response = await client.request(
+                    meta.graphql.query,
+                    meta.graphql.variables,
+                );
+
+                return { data: response };
+            }
+
             if (meta) {
                 if (meta.operation) {
                     if (method === "get") {

@@ -22,6 +22,49 @@ describe("custom", () => {
         expect(response.data[2].count.status).toBeDefined();
     });
 
+    it("custom graphql query", async () => {
+        const response = await dataProvider(client).custom<any>({
+            url: "",
+            method: "get",
+            meta: {
+                graphql: {
+                    query: `
+                    query GetAllBlogPosts(
+                        $sorting: [BlogPostSort!]
+                        $filter: BlogPostFilter!
+                        $paging: OffsetPaging!
+                      ) {
+                        sorted: blogPosts(sorting: $sorting, paging: $paging) {
+                          nodes {
+                            id
+                            title
+                            createdAt
+                          }
+                        }
+                        filtered: blogPosts(filter: $filter) {
+                          nodes {
+                            id
+                          }
+                        }
+                      }
+                `,
+                    variables: {
+                        sorting: [{ field: "id", direction: "ASC" }],
+                        filter: { id: { eq: 1 } },
+                        paging: { limit: 2, offset: 0 },
+                    },
+                },
+            },
+        });
+
+        expect(response.data.sorted).toBeDefined();
+        expect(response.data.filtered).toBeDefined();
+        expect(+response.data.sorted.nodes[1].id).toBeGreaterThan(
+            +response.data.sorted.nodes[0].id,
+        );
+        expect(response.data.filtered.nodes).toHaveLength(1);
+    });
+
     it("correct get mutation response", async () => {
         const response = await dataProvider(client).custom?.({
             url: "",
