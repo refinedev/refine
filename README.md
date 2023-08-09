@@ -61,17 +61,11 @@ refine's internal hooks and components  simplifies the development process and e
 
 ## What do you mean by "headless" ?
 
-
-refine's headless architecture is all about giving you the freedom to create.
-
-### Headless in UI
-
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your _UI_ _components_ and _business logic_, so they never keep you from customizing your _UI_ or coding your own flow.
+Instead of being limited to a set of pre-styled components, **refine** provides collections of helper `hooks`, `components` and `providers` and more. Since business logic and UI are completely decoupled, you can customize UI without constraints.
 
  It means, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-refine also ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience. 
-
+refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/)to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
 
 
 ### Headless in Routing
