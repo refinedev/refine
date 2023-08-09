@@ -45,12 +45,14 @@
 
 <br/>
 
-[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/readme/how-refine-works.jpeg)](https://refine.dev)
+[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png)](https://refine.dev)
 
 
 ## What is refine?
 
-**refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications. From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
+**refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications.  
+
+From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
 
 
 refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
@@ -81,7 +83,11 @@ This means you can use refine seamlessly in different platforms like React Nativ
 ## 🔥 Try refine 
 refine's [Browser-based app scaffolder](https://refine.dev/#playground) lets you create refine app by making step-by-step selections directly in your browser
 
-You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.This allows you yo preview, modify, and download project immediately, thereby streamlining the development process.
+You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.  
+
+This allows you yo preview, modify, and download project immediately, thereby streamlining the development process.
+
+<br/>
 
 <div align="center">
 <a href="https://refine.dev/#playground" target="_blank">
