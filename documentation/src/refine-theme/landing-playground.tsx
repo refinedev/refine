@@ -1,13 +1,14 @@
-import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 import React from "react";
+import { useLocation } from "@docusaurus/router";
 import { PlayOutlinedIcon } from "./icons/play-outlined";
 import { LandingPlaygroundModal } from "./landing-playground-modal";
 import { LandingRainbowButton } from "./landing-rainbow-button";
 
 export const LandingPlayground = () => {
-    const { search } = useLocation();
-    const { replace } = useHistory();
+    const { search, hash } = useLocation();
+
+    const [playgroundVisible, setPlaygroundVisible] = React.useState(false);
 
     const [params, setParams] = React.useState<Record<string, string>>({});
 
@@ -23,24 +24,28 @@ export const LandingPlayground = () => {
         setParams(paramsObj);
     }, [search]);
 
-    React.useEffect(() => {
-        if (params.playground) {
-            const playgroundElement = document.getElementById("playground");
-            if (playgroundElement) {
-                playgroundElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "nearest",
-                });
-            }
+    const scrollToItem = React.useCallback(() => {
+        const playgroundElement = document.getElementById("playground");
+        if (playgroundElement) {
+            playgroundElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+            });
         }
-    }, [params.playground]);
-
-    const openPlayground = React.useCallback(() => {
-        replace({
-            search: "?playground=true",
-        });
     }, []);
+
+    React.useEffect(() => {
+        if (params.playground || hash === "#playground") {
+            scrollToItem();
+        }
+    }, [params.playground, hash]);
+
+    React.useEffect(() => {
+        if (playgroundVisible) {
+            scrollToItem();
+        }
+    }, [playgroundVisible]);
 
     return (
         <>
@@ -76,6 +81,9 @@ export const LandingPlayground = () => {
                             "gap-6",
                             "landing-lg:gap-12",
                         )}
+                        style={{
+                            scrollMarginTop: "4rem",
+                        }}
                     >
                         <div
                             className={clsx(
@@ -152,10 +160,10 @@ export const LandingPlayground = () => {
                                         "delay-200 transition-transform duration-200 ease-in-out",
                                     )}
                                     style={{
-                                        pointerEvents: params.playground
+                                        pointerEvents: playgroundVisible
                                             ? "initial"
                                             : "none",
-                                        transform: params.playground
+                                        transform: playgroundVisible
                                             ? "scale(1)"
                                             : "scale(0)",
                                     }}
@@ -244,7 +252,11 @@ export const LandingPlayground = () => {
                                                 )}
                                             >
                                                 <LandingRainbowButton
-                                                    onClick={openPlayground}
+                                                    onClick={() =>
+                                                        setPlaygroundVisible(
+                                                            true,
+                                                        )
+                                                    }
                                                 >
                                                     <PlayOutlinedIcon />
                                                     <span className="text-base font-semibold">
@@ -444,7 +456,10 @@ export const LandingPlayground = () => {
                     />
                 </div>
             </div>
-            <LandingPlaygroundModal />
+            <LandingPlaygroundModal
+                visible={playgroundVisible}
+                close={() => setPlaygroundVisible(false)}
+            />
         </>
     );
 };
