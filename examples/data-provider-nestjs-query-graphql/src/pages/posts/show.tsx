@@ -13,6 +13,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         fields: [
             "id",
             "title",
+            "status",
             {
                 category: ["title"],
             },
@@ -45,6 +46,9 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
 
             <Title level={5}>Title</Title>
             <Text>{record?.title}</Text>
+
+            <Title level={5}>Status</Title>
+            <Text>{record?.status}</Text>
 
             <Title level={5}>Category</Title>
             <Text>{record?.category.title}</Text>

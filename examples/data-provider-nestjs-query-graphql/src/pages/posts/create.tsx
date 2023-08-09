@@ -34,8 +34,25 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            { label: "Draft", value: "DRAFT" },
+                            { label: "Published", value: "PUBLISHED" },
+                            { label: "Rejected", value: "REJECTED" },
+                        ]}
+                    />
+                </Form.Item>
+                <Form.Item
                     label="Category"
-                    name="category_id"
+                    name="categoryId"
                     rules={[
                         {
                             required: true,
