@@ -119,6 +119,7 @@ const ExampleList: React.FC = () => {
         return str
             .replace("antd", "Ant Design")
             .replace("mui", "Material UI")
+            .replace("chakra-ui", "Chakra UI")
             .replace("next.js", "Next.js")
             .replace("next-js", "Next.js")
             .split("-")
