@@ -41,6 +41,9 @@ In this article, we'll look at what refine is and demonstrate how to use it to b
 <!--truncate-->
 
 Steps we'll cover:
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [What is refine?](#what-is-refine)
 - [What is a PWA?](#what-is-a-pwa)
 - [Project Setup](#project-setup)
 - [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
@@ -54,6 +57,8 @@ Steps we'll cover:
   - [Using the useTable hook](#using-the-usetable-hook)
 - [Generating PWA manifest](#generating-pwa-manifest)
 - [Configuring PWA](#configuring-pwa)
+- [Conclusion](#conclusion)
+- [Project source code](#project-source-code)
 
 ## Prerequisites
 refine templates are shipped with Typescript by default. This is because Typescript is the recommended language for writing refine applications. 
@@ -730,7 +735,7 @@ Try [refine](https://github.com/refinedev/refine) to rapidly build your next **C
 <br/>
 
 
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design, Material UI and Mantine UI**.
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 

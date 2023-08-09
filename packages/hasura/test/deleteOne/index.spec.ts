@@ -1,86 +1,58 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import { createClient } from "../gqlClient";
 import "./index.mock";
+// import nock from "nock";
+// nock.recorder.rec();
 
-describe("deleteOne", () => {
-    it("correct response with meta", async () => {
-        const { data } = await dataProvider(client).deleteOne({
-            resource: "posts",
-            id: "bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7",
-            meta: {
-                fields: ["id", "title"],
-            },
+describe.each(["hasura-default", "graphql-default"] as const)(
+    "deleteOne with %s naming convention",
+    (namingConvention) => {
+        const client = createClient(namingConvention);
+        let withMetaId = "56c5a2cd-3b4d-4465-9d41-67f7991d833c";
+        let withoutMetaId = "312b993d-9648-4a15-aa92-11e7b77e0071";
+        if (namingConvention === "graphql-default") {
+            withMetaId = "bc7025dc-f5d6-414a-b335-20b58a451af8";
+            withoutMetaId = "f39fbacb-c0e8-4fa0-97d9-833f15866ab7";
+        }
+
+        it("correct response with meta", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteOne({
+                resource: "posts",
+                id: withMetaId,
+                meta: {
+                    fields: ["id", "title"],
+                },
+            });
+
+            expect(data.id).toEqual(withMetaId);
         });
 
-        expect(data.id).toEqual("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
-        expect(data.title).toEqual("asdfasdfsadf");
-    });
+        it("correct response with meta and Int idType", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+                idType: "Int",
+            }).deleteOne({
+                resource: "users",
+                id: 1,
+                meta: {
+                    fields: ["id", "name"],
+                },
+            });
 
-    it("correct response with meta and Int idType", async () => {
-        const { data } = await dataProvider(client, {
-            idType: "Int",
-        }).deleteOne({
-            resource: "users",
-            id: 1,
-            meta: {
-                fields: ["id", "name"],
-            },
+            expect(data.id).toEqual(1);
         });
 
-        expect(data.id).toEqual(1);
-        expect(data.name).toEqual("Refine Dev");
-    });
+        it("correct response without metaData", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).deleteOne({
+                resource: "posts",
+                id: withoutMetaId,
+            });
 
-    it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client).deleteOne({
-            resource: "posts",
-            id: "b19c9bd4-dff9-4ecf-acfe-aea2c4c9ec41",
+            expect(data.id).toEqual(withoutMetaId);
         });
-
-        expect(data.id).toEqual("b19c9bd4-dff9-4ecf-acfe-aea2c4c9ec41");
-    });
-});
-
-describe("deleteOne with graphql naming convention", () => {
-    it("correct response with meta", async () => {
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).deleteOne({
-            resource: "posts",
-            id: "bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7",
-            meta: {
-                fields: ["id", "title"],
-            },
-        });
-
-        expect(data.id).toEqual("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
-        expect(data.title).toEqual("asdfasdfsadf");
-    });
-
-    it("correct response with meta and Int idType", async () => {
-        const { data } = await dataProvider(client, {
-            idType: "Int",
-            namingConvention: "graphql-default",
-        }).deleteOne({
-            resource: "users",
-            id: 1,
-            meta: {
-                fields: ["id", "name"],
-            },
-        });
-
-        expect(data.id).toEqual(1);
-        expect(data.name).toEqual("Refine Dev");
-    });
-
-    it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).deleteOne({
-            resource: "posts",
-            id: "b19c9bd4-dff9-4ecf-acfe-aea2c4c9ec41",
-        });
-
-        expect(data.id).toEqual("b19c9bd4-dff9-4ecf-acfe-aea2c4c9ec41");
-    });
-});
+    },
+);

@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
 import clsx from "clsx";
 import { Dialog, Transition } from "@headlessui/react";
-import { useLocation, useHistory } from "@docusaurus/router";
+import { useLocation } from "@docusaurus/router";
 
 import { CloseIcon } from "./icons/close";
 
-export const LandingPlaygroundModal = () => {
-    const { search } = useLocation();
-    const { replace } = useHistory();
+export const LandingPlaygroundModal = ({ visible, close }) => {
+    const { search, hash } = useLocation();
 
     const [isActive, setIsActive] = React.useState(false);
 
@@ -29,6 +28,17 @@ export const LandingPlaygroundModal = () => {
 
     const [params, setParams] = React.useState<Record<string, string>>({});
 
+    const scrollToItem = React.useCallback(() => {
+        const playgroundElement = document.getElementById("playground");
+        if (playgroundElement) {
+            playgroundElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+            });
+        }
+    }, []);
+
     React.useEffect(() => {
         const _params = new URLSearchParams(search);
         const paramsObj: Record<string, string> = {};
@@ -42,29 +52,36 @@ export const LandingPlaygroundModal = () => {
     }, [search]);
 
     React.useEffect(() => {
-        if (params.playground) {
-            // scroll to element with id=playground
-            const playgroundElement = document.getElementById("playground");
-            if (playgroundElement) {
-                playgroundElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "nearest",
-                });
-            }
+        if (params.playground || hash === "#playground") {
+            scrollToItem();
         }
-    }, [params.playground]);
+    }, [params.playground, hash]);
 
     const closePlayground = React.useCallback(() => {
-        replace({
-            search: "",
-        });
+        close();
     }, []);
+
+    React.useEffect(() => {
+        if (isActive && visible) {
+            if (typeof document !== "undefined" && document.documentElement) {
+                document.documentElement.style.scrollBehavior = "unset";
+            }
+        } else {
+            setTimeout(() => {
+                if (
+                    typeof document !== "undefined" &&
+                    document.documentElement
+                ) {
+                    document.documentElement.style.scrollBehavior = "smooth";
+                }
+            }, 300);
+        }
+    }, [isActive, visible]);
 
     if (!isActive) return null;
 
     return (
-        <Transition appear show={!!params.playground} as={Fragment}>
+        <Transition appear show={!!visible} as={Fragment}>
             <Dialog
                 as="div"
                 className="relative z-10 bg-gray-100 h-full w-full"

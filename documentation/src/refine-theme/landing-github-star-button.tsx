@@ -5,9 +5,7 @@ import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
 export const LandingGithubStarButton = () => {
-    const { loading, githubStarCount } = useCommunityStatsContext();
-
-    const short = `${((githubStarCount ?? 11500) / 1000).toFixed(1)}k`;
+    const { loading, githubStarCountText } = useCommunityStatsContext();
 
     return (
         <a
@@ -26,7 +24,7 @@ export const LandingGithubStarButton = () => {
             )}
         >
             <GithubIcon className={clsx("w-4 h-4")} />
-            <div className={clsx("flex items-center", "min-w-8 h-6")}>
+            <div className={clsx("flex items-center", "w-10 h-6")}>
                 {loading ? (
                     <Spinner
                         className={clsx("w-5 h-5")}
@@ -35,7 +33,9 @@ export const LandingGithubStarButton = () => {
                         }}
                     />
                 ) : (
-                    <span>{short}</span>
+                    <span className={clsx("tabular-nums")}>
+                        {githubStarCountText}
+                    </span>
                 )}
             </div>
         </a>

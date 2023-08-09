@@ -129,7 +129,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                             </div>
                             <div className={clsx("hidden", "landing-md:block")}>
                                 <NumberField
-                                    number={githubStarCount ?? 11500}
+                                    number={githubStarCount ?? 12500}
                                     label="GitHub Stars"
                                 />
                             </div>

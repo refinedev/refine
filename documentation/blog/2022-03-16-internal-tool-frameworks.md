@@ -78,7 +78,7 @@ npm install -g blitz
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 
-🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 Enterprise UI : Works seamlessly with Ant Design. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 

@@ -62,7 +62,7 @@ export const LandingHeroTop = () => {
                     "landing-lg:gap-10",
                 )}
             >
-                <LandingRainbowButton href="/?playground=true" />
+                <LandingRainbowButton href="/#playground" />
                 <LandingGhostButton />
             </div>
         </div>
