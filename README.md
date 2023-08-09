@@ -59,18 +59,9 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from _UI components_ and _business logic_, so that they never keep you from customizing your _UI_ or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## 🔥 Try refine online in just 10 seconds
-
-<br/>
-
-<a  href="https://s.refine.dev/refine-new-github">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine.new.png">
-</a>
-<br/>
-<br/>
-
 [refine.new](https://s.refine.dev/refine-new-github) is a powerful open-source browser tool that lets you create refine apps.
 
 You can preview, modify, and download your project immediately, thereby streamlining the development process.
@@ -152,7 +143,7 @@ You can choose the libraries and frameworks you want to work with, and the tool 
 
 ### Using `create refine-app`
 
-Run the following command to create a new **refine** project configured with [Ant Design System](https://ant.design/) as the default UI framework:
+Run the following command to create a new **refine** project configured with [Ant Design](https://ant.design/) as the default UI framework:
 
 ```
 npm create refine-app@latest -- -o refine-antd
