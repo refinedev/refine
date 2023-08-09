@@ -1,4 +1,4 @@
-# @pankod/refine-altogic
+# @refinedev/refine-altogic
 
 ## 4.1.0
 

@@ -1,4 +1,4 @@
-# @pankod/refine-codemod
+# @refinedev/refine-codemod
 
 ## 4.1.6
 

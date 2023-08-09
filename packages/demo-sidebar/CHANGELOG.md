@@ -1,4 +1,4 @@
-# @pankod/refine-demo-sidebar
+# @refinedev/refine-demo-sidebar
 
 ## 5.1.0
 

@@ -1,4 +1,4 @@
-# @pankod/refine-react-table
+# @refinedev/refine-react-table
 
 ## 5.6.0
 

@@ -1,4 +1,4 @@
-# @pankod/refine-supabase
+# @refinedev/refine-supabase
 
 ## 5.7.0
 

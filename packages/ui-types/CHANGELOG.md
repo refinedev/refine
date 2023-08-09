@@ -1,4 +1,4 @@
-# @pankod/refine-ui-types
+# @refinedev/refine-ui-types
 
 ## 1.22.0
 

@@ -1,4 +1,4 @@
-# @pankod/refine-antd-audit-log
+# @refinedev/refine-antd-audit-log
 
 ## 4.1.0
 

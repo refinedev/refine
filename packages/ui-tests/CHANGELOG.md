@@ -1,4 +1,4 @@
-# @pankod/refine-ui-tests
+# @refinedev/refine-ui-tests
 
 ## 1.13.0
 

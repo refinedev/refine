@@ -1,4 +1,4 @@
-# @pankod/refine-chakra-ui
+# @refinedev/refine-chakra-ui
 
 ## 2.26.0
 

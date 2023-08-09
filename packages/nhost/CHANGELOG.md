@@ -1,4 +1,4 @@
-# @pankod/refine-nhost
+# @refinedev/refine-nhost
 
 ## 4.1.0
 

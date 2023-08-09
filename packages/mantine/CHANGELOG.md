@@ -1,4 +1,4 @@
-# @pankod/refine-mantine
+# @refinedev/refine-mantine
 
 ## 2.28.0
 

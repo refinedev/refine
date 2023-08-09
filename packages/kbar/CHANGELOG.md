@@ -1,4 +1,4 @@
-# @pankod/refine-kbar
+# @refinedev/refine-kbar
 
 ## 1.3.0
 

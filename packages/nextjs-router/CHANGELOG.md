@@ -1,4 +1,4 @@
-# @pankod/refine-nextjs-router
+# @refinedev/refine-nextjs-router
 
 ## 5.5.0
 

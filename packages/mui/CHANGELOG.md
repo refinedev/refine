@@ -1,4 +1,4 @@
-# @pankod/refine-mui
+# @refinedev/refine-mui
 
 ## 5.13.0
 

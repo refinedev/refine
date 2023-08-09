@@ -1,4 +1,4 @@
-# @pankod/refine-hasura
+# @refinedev/refine-hasura
 
 ## 6.4.4
 

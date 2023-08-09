@@ -1,4 +1,4 @@
-# @pankod/refine-mantine
+# @refinedev/refine-mantine
 
 ## 4.5.2
 

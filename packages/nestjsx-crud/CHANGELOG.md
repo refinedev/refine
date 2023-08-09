@@ -1,4 +1,4 @@
-# @pankod/refine-nestjsx-crud
+# @refinedev/refine-nestjsx-crud
 
 ## 4.5.0
 

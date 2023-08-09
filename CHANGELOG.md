@@ -1,4 +1,4 @@
-# @pankod/refine-core
+# @refinedev/refine-core
 
 ## v3.97.0
 

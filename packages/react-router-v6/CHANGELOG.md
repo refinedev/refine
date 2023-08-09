@@ -1,4 +1,4 @@
-# @pankod/refine-react-router-v6
+# @refinedev/refine-react-router-v6
 
 ## 4.5.0
 

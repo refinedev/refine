@@ -1,4 +1,4 @@
-# @pankod/refine-sdk
+# @refinedev/refine-sdk
 
 ## 1.1.0
 

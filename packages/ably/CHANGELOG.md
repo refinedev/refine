@@ -1,4 +1,4 @@
-# @pankod/refine-ably
+# @refinedev/refine-ably
 
 ## 4.1.0
 

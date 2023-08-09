@@ -1,4 +1,4 @@
-# @pankod/refine-antd
+# @refinedev/refine-antd
 
 ## 5.34.0
 

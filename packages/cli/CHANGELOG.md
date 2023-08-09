@@ -1,4 +1,4 @@
-# @pankod/refine-cli
+# @refinedev/refine-cli
 
 ## 2.7.6
 

@@ -1,4 +1,4 @@
-# @pankod/refine-graphql
+# @refinedev/refine-graphql
 
 ## 6.4.4
 

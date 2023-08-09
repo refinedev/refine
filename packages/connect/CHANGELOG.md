@@ -1,4 +1,4 @@
-# @pankod/refine-connect
+# @refinedev/refine-connect
 
 ## 1.0.2
 

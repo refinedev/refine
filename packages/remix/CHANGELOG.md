@@ -1,4 +1,4 @@
-# @pankod/refine-remix-router
+# @refinedev/refine-remix-router
 
 ## 2.3.0
 

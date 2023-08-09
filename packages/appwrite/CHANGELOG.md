@@ -1,4 +1,4 @@
-# @pankod/refine-appwrite
+# @refinedev/refine-appwrite
 
 ## 6.4.2
 
