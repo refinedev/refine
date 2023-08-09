@@ -31,11 +31,10 @@ You can take a look at the similar app that we'll be constructing in this tutori
 
 -   Setting up your development environment.
 -   Creating your first **refine** app.
--   Understanding [`dataProvider`](/docs/api-reference/core/providers/data-provider/) concept.
+-   Communicate with your API through [`dataProvider`](/docs/api-reference/core/providers/data-provider/).
 -   The concept of the [`resources`](docs/api-reference/core/components/refine-config.md#resources) property.
 -   Adding CRUD pages to your project.
--  Understanding the `authProvider` concept.
-
+-   Handle authentication with [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/)
 
 
 You will learn all the necessary steps to get started with **refine**, from setting up your development environment to launching your app. 🚀

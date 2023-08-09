@@ -7,7 +7,7 @@ slug: /
 ## What is refine?
 
 
-**refine** is a highly versatile **React** framework that enables the rapid development of a wide range of web applications. From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
+**refine** is a versatile **React** framework that enables the rapid development of a wide range of web applications. From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
 
 refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
 
@@ -49,15 +49,13 @@ Utilizing integrated technologies you  can efforlessly develop industry-standard
 ## What do you mean by "headless" ?
 
 
-refine's headless architecture is all about giving you the freedom to create.
 
-### Headless in UI
-
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your _UI_ _components_ and _business logic_, so they never keep you from customizing your _UI_ or coding your own flow.
+Instead of being limited to a set of pre-styled components, **refine** provides collections of helper `hooks`, `components` and `providers` and more. Since business logic and UI are completely decoupled, you can customize UI without constraints.
 
  It means, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-refine also ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience. 
+refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/)to get you started quickly. These libraries are set of components which are nicely integrated with headless @refinedev/core package.
+
 
 
 
@@ -72,7 +70,6 @@ This means you can use refine seamlessly in different platforms like React Nativ
 
 **refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_.  
 
-Thanks to the built-in **SSR support**, **refine** can also power _customer-facing_ applications like _storefronts_.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine diagram" />
 

@@ -103,10 +103,11 @@ You can take a look at some live examples that can be built using **refine** fro
 
 
 - [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
-- [Medium Clone](https://s.refine.dev/readme-medium-clone)
-- [Storefront](https://s.refine.dev/readme-ssr-storefront)
+- [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
+- [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
 - [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
-- [Win95 Style Admin panel:)](https://win95.refine.dev/)
+- [Storefront](https://s.refine.dev/readme-ssr-storefront)
+
 
 
 [👉 Refer to most popular real use case examples](https://refine.dev/docs/examples/)
