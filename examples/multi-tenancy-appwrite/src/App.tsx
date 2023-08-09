@@ -33,7 +33,7 @@ import { Header } from "./components/header";
 
 function App() {
     // inital tenant
-    const tenant = "refine";
+    const tenant = "61cdb05132609";
 
     return (
         <BrowserRouter>
@@ -42,10 +42,10 @@ function App() {
                 <Refine
                     routerProvider={routerProvider}
                     liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "multi-tenancy",
+                        databaseId: "default",
                     })}
                     dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "multi-tenancy",
+                        databaseId: "default",
                     })}
                     authProvider={authProvider}
                     options={{
@@ -55,19 +55,21 @@ function App() {
                     }}
                     resources={[
                         {
-                            name: "products",
+                            name: "61cb01b17ef57",
                             list: "/:tenant/products",
                             show: "/:tenant/products/show/:id",
                             meta: {
+                                label: "Products",
                                 tenant,
                             },
                         },
                         {
-                            name: "orders",
+                            name: "61cb019fdbd11",
                             list: "/:tenant/orders",
                             create: "/:tenant/orders/create",
                             edit: "/:tenant/orders/edit/:id",
                             meta: {
+                                label: "Orders",
                                 tenant,
                             },
                         },
@@ -89,7 +91,7 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="products" />
+                                    <NavigateToResource resource="61cb01b17ef57" />
                                 }
                             />
 
@@ -119,7 +121,7 @@ function App() {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="products" />
+                                    <NavigateToResource resource="61cb01b17ef57" />
                                 </Authenticated>
                             }
                         >

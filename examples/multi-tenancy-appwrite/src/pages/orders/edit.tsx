@@ -10,7 +10,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
 
     const postData = queryResult?.data?.data;
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "products",
+        resource: "61cb01b17ef57",
         defaultValue: postData?.productId,
         optionLabel: "title",
         optionValue: "id",

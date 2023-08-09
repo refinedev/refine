@@ -13,7 +13,7 @@ export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IOrder, HttpError, IOrder>();
 
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "products",
+        resource: "61cb01b17ef57",
         optionLabel: "title",
         optionValue: "id",
         filters: [{ field: "storeId", operator: "eq", value: params?.tenant }],

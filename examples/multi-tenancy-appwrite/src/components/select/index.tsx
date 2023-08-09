@@ -10,7 +10,7 @@ export const StoreSelect: React.FC = () => {
     const { resource, action, params } = useParsed<{ tenant: string }>();
 
     const { selectProps: storeSelectProps } = useSelect<IStore>({
-        resource: "stores",
+        resource: "61cd62db95f92",
         optionLabel: "title",
         optionValue: "id",
         meta: {

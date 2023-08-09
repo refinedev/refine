@@ -38,7 +38,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         formProps: createFormProps,
         show: createShow,
     } = useModalForm<IProduct, HttpError, IProduct>({
-        resource: "products",
+        resource: "61cb01b17ef57",
         action: "create",
         redirect: false,
     });

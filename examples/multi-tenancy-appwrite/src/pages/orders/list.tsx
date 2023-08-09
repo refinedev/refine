@@ -30,7 +30,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         tableProps?.dataSource?.map((item) => item.productId) ?? [];
 
     const { data: productData, isLoading } = useMany<IProduct>({
-        resource: "products",
+        resource: "61cb01b17ef57",
         ids: productIds,
     });
 
