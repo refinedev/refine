@@ -1,4 +1,4 @@
-# @refinedev/refine-react-router
+# @refinedev/react-router
 
 ## 3.22.2
 

@@ -1,4 +1,4 @@
-# @refinedev/refine-altogic
+# @refinedev/altogic
 
 ## 4.1.0
 

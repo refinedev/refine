@@ -1,4 +1,4 @@
-# @refinedev/refine-hasura
+# @refinedev/hasura
 
 ## 6.4.4
 

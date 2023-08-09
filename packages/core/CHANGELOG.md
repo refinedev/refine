@@ -1,4 +1,4 @@
-# @refinedev/refine-core
+# @refinedev/core
 
 ## 4.34.0
 

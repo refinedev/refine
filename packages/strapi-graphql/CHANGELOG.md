@@ -1,4 +1,4 @@
-# @refinedev/refine-strapi-graphql
+# @refinedev/strapi-graphql
 
 ## 6.0.1
 

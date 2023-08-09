@@ -1,4 +1,4 @@
-# @refinedev/refine-cli
+# @refinedev/cli
 
 ## 2.7.6
 

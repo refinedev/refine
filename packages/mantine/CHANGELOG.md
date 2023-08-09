@@ -1,4 +1,4 @@
-# @refinedev/refine-mantine
+# @refinedev/mantine
 
 ## 2.28.0
 

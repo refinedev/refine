@@ -1,4 +1,4 @@
-# @refinedev/refine-nextjs-router
+# @refinedev/nextjs-router
 
 ## 5.5.0
 

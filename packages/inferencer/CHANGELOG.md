@@ -1,4 +1,4 @@
-# @refinedev/refine-mantine
+# @refinedev/mantine
 
 ## 4.5.2
 

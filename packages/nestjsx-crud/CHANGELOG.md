@@ -1,4 +1,4 @@
-# @refinedev/refine-nestjsx-crud
+# @refinedev/nestjsx-crud
 
 ## 4.5.0
 

@@ -1,4 +1,4 @@
-# @refinedev/refine-nhost
+# @refinedev/nhost
 
 ## 4.1.0
 

@@ -1,4 +1,4 @@
-# @refinedev/refine-simple-rest
+# @refinedev/simple-rest
 
 ## 4.5.0
 

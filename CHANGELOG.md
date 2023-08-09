@@ -1,4 +1,4 @@
-# @refinedev/refine-core
+# @refinedev/core
 
 ## v3.97.0
 

@@ -1,4 +1,4 @@
-# @refinedev/refine-graphql
+# @refinedev/graphql
 
 ## 6.4.4
 

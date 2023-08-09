@@ -1,4 +1,4 @@
-# @refinedev/refine-remix-router
+# @refinedev/remix-router
 
 ## 2.3.0
 

@@ -1,4 +1,4 @@
-# @refinedev/refine-chakra-ui
+# @refinedev/chakra-ui
 
 ## 2.26.0
 

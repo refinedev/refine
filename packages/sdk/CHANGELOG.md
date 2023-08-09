@@ -1,4 +1,4 @@
-# @refinedev/refine-sdk
+# @refinedev/sdk
 
 ## 1.1.0
 

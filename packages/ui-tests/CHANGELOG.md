@@ -1,4 +1,4 @@
-# @refinedev/refine-ui-tests
+# @refinedev/ui-tests
 
 ## 1.13.0
 

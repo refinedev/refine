@@ -1,4 +1,4 @@
-# @refinedev/refine-demo-sidebar
+# @refinedev/demo-sidebar
 
 ## 5.1.0
 

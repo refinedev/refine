@@ -1,4 +1,4 @@
-# @refinedev/refine-airtable
+# @refinedev/airtable
 
 ## 4.4.2
 
