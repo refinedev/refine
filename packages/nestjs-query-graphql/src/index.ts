@@ -25,3 +25,4 @@ export type {
 } from "graphql-request";
 export * as graphqlWS from "graphql-ws";
 export * from "./dataProvider";
+export * from "./liveProvider";

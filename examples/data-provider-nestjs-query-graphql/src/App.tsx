@@ -5,13 +5,17 @@ import {
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
-import dataProvider, { GraphQLClient } from "@refinedev/nestjs-query-graphql";
+import dataProvider, {
+    GraphQLClient,
+    liveProvider,
+} from "@refinedev/nestjs-query-graphql";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { createClient } from "graphql-ws";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -20,6 +24,7 @@ import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 import { ConfigProvider } from "antd";
 
 const API_URL = "http://localhost:3003/graphql";
+const WS_URL = "ws://localhost:3003/graphql";
 
 /*
 ## Refine supports GraphQL subscriptions out-of-the-box. For more detailed information, please visit here: https://refine.dev/docs/core/providers/live-provider/
@@ -43,9 +48,7 @@ const App: React.FC = () => {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={gqlDataProvider}
-                    // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
-                    //liveProvider={liveProvider(gqlWebSocketClient)}
-                    //options={{ liveMode: "auto" }}
+                    liveProvider={liveProvider(createClient({ url: WS_URL }))}
                     resources={[
                         {
                             name: "blog_posts",
@@ -63,6 +66,7 @@ const App: React.FC = () => {
                     ]}
                     notificationProvider={notificationProvider}
                     options={{
+                        liveMode: "auto",
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
                     }}

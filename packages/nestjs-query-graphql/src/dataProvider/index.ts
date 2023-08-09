@@ -1,99 +1,17 @@
 import {
     BaseKey,
     BaseRecord,
-    CrudOperators,
-    CrudSorting,
     DataProvider,
     GetManyResponse,
     LogicalFilter,
     MetaQuery,
-    Pagination,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
 import { GraphQLClient } from "graphql-request";
 import { singular } from "pluralize";
-
-const operatorMap: { [key: string]: string } = {
-    eq: "eq",
-    ne: "neq",
-    lt: "lt",
-    gt: "gt",
-    lte: "lte",
-    gte: "gte",
-    in: "in",
-    nin: "notIn",
-};
-
-const operatorMapper = (
-    operator: CrudOperators,
-    value: any,
-): { [key: string]: any } => {
-    if (operator === "contains") {
-        return { iLike: `%${value}%` };
-    }
-
-    if (operator === "ncontains") {
-        return { notILike: `%${value}%` };
-    }
-
-    if (operator === "startswith") {
-        return { iLike: `${value}%` };
-    }
-
-    if (operator === "nstartswith") {
-        return { notILike: `${value}%` };
-    }
-
-    if (operator === "endswith") {
-        return { iLike: `%${value}` };
-    }
-
-    if (operator === "nendswith") {
-        return { notILike: `%${value}` };
-    }
-
-    if (operator === "null") {
-        return { is: "null" };
-    }
-
-    if (operator === "nnull") {
-        return { isNot: "null" };
-    }
-
-    return { [operatorMap[operator]]: value };
-};
-
-const generateFilters = (filters: LogicalFilter[]) => {
-    const result: { [key: string]: { [key: string]: string | number } } = {};
-
-    filters.map((filter: LogicalFilter) => {
-        result[filter.field] = operatorMapper(filter.operator, filter.value);
-    });
-
-    return result;
-};
-
-const generateSorting = (sorters: CrudSorting) => {
-    return sorters.map((sorter) => {
-        return {
-            field: sorter.field,
-            direction: sorter.order.toUpperCase(),
-        };
-    });
-};
-
-const generatePaging = (pagination: Pagination) => {
-    if (pagination.mode !== "server") return undefined;
-
-    if (!pagination.current || !pagination.pageSize) return undefined;
-
-    return {
-        limit: pagination.pageSize,
-        offset: (pagination.current - 1) * pagination.pageSize,
-    };
-};
+import { generatePaging, generateFilters, generateSorting } from "../utils";
 
 const handleGetMany = async <TData>(
     client: GraphQLClient,
