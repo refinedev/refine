@@ -23,7 +23,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { appwriteClient } from "./utility";
+import { appwriteClient, resources } from "./utility";
 import { authProvider } from "./authProvider";
 
 import { ProductList } from "./pages/products";
@@ -33,7 +33,7 @@ import { Header } from "./components/header";
 
 function App() {
     // inital tenant
-    const tenant = "61cdb05132609";
+    const tenant = resources.tenant;
 
     return (
         <BrowserRouter>
@@ -42,10 +42,10 @@ function App() {
                 <Refine
                     routerProvider={routerProvider}
                     liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "default",
+                        databaseId: resources.databaseId,
                     })}
                     dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "default",
+                        databaseId: resources.databaseId,
                     })}
                     authProvider={authProvider}
                     options={{
@@ -55,7 +55,7 @@ function App() {
                     }}
                     resources={[
                         {
-                            name: "61cb01b17ef57",
+                            name: resources.products,
                             list: "/:tenant/products",
                             show: "/:tenant/products/show/:id",
                             meta: {
@@ -64,7 +64,7 @@ function App() {
                             },
                         },
                         {
-                            name: "61cb019fdbd11",
+                            name: resources.orders,
                             list: "/:tenant/orders",
                             create: "/:tenant/orders/create",
                             edit: "/:tenant/orders/edit/:id",
@@ -91,7 +91,9 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="61cb01b17ef57" />
+                                    <NavigateToResource
+                                        resource={resources.products}
+                                    />
                                 }
                             />
 
@@ -121,7 +123,9 @@ function App() {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="61cb01b17ef57" />
+                                    <NavigateToResource
+                                        resource={resources.products}
+                                    />
                                 </Authenticated>
                             }
                         >

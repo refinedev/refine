@@ -3,6 +3,7 @@ import { useGetToPath, useGo, useParsed } from "@refinedev/core";
 import { Select } from "antd";
 
 import { IStore } from "../../interfaces";
+import { resources } from "../../utility/appwriteClient";
 
 export const StoreSelect: React.FC = () => {
     const getToPath = useGetToPath();
@@ -10,7 +11,7 @@ export const StoreSelect: React.FC = () => {
     const { resource, action, params } = useParsed<{ tenant: string }>();
 
     const { selectProps: storeSelectProps } = useSelect<IStore>({
-        resource: "61cd62db95f92",
+        resource: resources.stores,
         optionLabel: "title",
         optionValue: "id",
         meta: {
