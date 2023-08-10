@@ -3,69 +3,69 @@ title: We are going back to 1995! The perfect harmony of Modern stack and Win95
 description: With the refine being headless, we may use any UI we choose for our Admin Panel. In this tutorial, we'll create a Nostalgic-style admin panel using refine and React95 UI.
 slug: awesome-react-windows95-ui-with-refine
 authors: melih
-tags:
-    [refine, react, supabase, tutorial]
+tags: [refine, react, supabase, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---
 
-:::caution
-
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
-
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
-
-Just be aware that the source code example in this post have been updated to version 4.x.x.
-
-:::
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Overview" />
-<br />
-
-With **refine**'s **headless** feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility. To build a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we'll use the **refine** headless feature.
+**refine** allows you to include any UI in your project and take full advantage of all its features without worrying about compatibility. To create a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we can use the **refine** because it is **headless**.
 
 ## Introduction
 
-In this tutorial, we will use [Supabase](https://supabase.com/) Database in the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **refine** **headless** and [**refine** Supabase Data Provider](/docs/examples/data-provider/supabase/) features.
+In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **refine** and [Supabase Data Provider](/docs/examples/data-provider/supabase/) features.
 
-## Project Setup
+## Create a new refine app
 
-Let's start by creating our **refine** project. You can use the superplate to create a refine project. superplate will quickly create our **refine** project according to the features we choose.
+Let's start by creating our **refine** project. We'll use the `npm create refine-app` command to interactively initialize the project.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_setup.gif" alt="Refine Project Setup" />
-<br />
+```bash
+npm create refine-app@latest refine-with-react95
+```
 
-That's it! After the installation process is finished, our **refine** project is ready. In addition, Supabase Data Provider features will also come ready. As we mentioned above, since we are using the headless feature of **refine**, we will manage the UI processes ourselves. In this project, we will use `React95` for the UI. Let's continue by installing the necessary packages in our **refine** Project directory.
+Select the following options when prompted:
+
+```bash
+✔ Choose a project template · refine-vite
+✔ What would you like to name your project?: · refine-with-react95
+✔ Choose your backend service to connect: · Supabase
+✔ Do you want to use a UI Framework?: · Headless
+✔ Do you want to add example pages?: · No
+✔ Do you need i18n (Internationalization) support?: · No
+✔ Choose a package manager: · npm
+```
+
+That's it! After the installation process is finished, our **refine** project is ready. Before we start editing our project, we need to install the `react95` and `styled-components` packages.
 
 ```bash
 npm i react95 styled-components
 ```
 
-### Manually Project Setup
+Also, we need to install the types for typescript support.
 
 ```bash
-npm install @refinedev/core @refinedev/supabase
-
-npm install react95 styled-components
+npm i -D @types/styled-components
 ```
 
-Let's begin editing our project now that it's ready to use.
+Once the installation is complete, we can start editing our project.
 
-## Usage
+## Overview of the created project
 
-**refine**, automatically creates `supabaseClient` and `AuthProvider` for you. All you have to do is define your Database URL and Secret_Key. You can see how to use it in detail below.
+**refine** provides us with a ready-to-use project according to the options we choose during the installation process. Let's take a look at the files and folders created by **refine**.
 
 ### Supabase Client
 
+By default, **refine** creates a `supabaseClient` for you in the `src/utility/supabaseClient.ts` file. You can see the default code below.
+
 <details>
-<summary>Show Code</summary>
-<p>
+<summary>src/utility/supabaseClient.ts</summary>
 
 ```tsx title="src/utility/supabaseClient.ts"
 import { createClient } from "@refinedev/supabase";
 
-const SUPABASE_URL = "YOUR_DATABASE_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_KEY";
+// use env variables in production
+const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
+const SUPABASE_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
     db: {
@@ -77,14 +77,18 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 });
 ```
 
-</p>
 </details>
+
+The `supabaseClient` will be used by the `@refinedev/supabase` package to create a `dataProvider` for us.
+
+You can learn more about the it in the [Data Provider](/docs/api-reference/core/providers/data-provider) section.
 
 ### AuthProvider
 
+By default, **refine** also creates an `authProvider` for you in the `src/authProvider.ts` file. You can see the default code below.
+
 <details>
-<summary>Show Code</summary>
-<p>
+<summary>src/authProvider.ts</summary>
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -92,29 +96,165 @@ import { AuthBindings } from "@refinedev/core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthBindings = {
-    login: async ({ username, password }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
-            email: username,
-            password,
-        });
+    login: async ({ email, password, providerName }) => {
+        // sign in with oauth
+        try {
+            if (providerName) {
+                const { data, error } =
+                    await supabaseClient.auth.signInWithOAuth({
+                        provider: providerName,
+                    });
 
-        if (error) {
+                if (error) {
+                    return {
+                        success: false,
+                        error,
+                    };
+                }
+
+                if (data?.url) {
+                    return {
+                        success: true,
+                        redirectTo: "/",
+                    };
+                }
+            }
+
+            // sign in with email and password
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password,
+                });
+
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data?.user) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+        } catch (error: any) {
             return {
                 success: false,
-                error: error || new Error("Invalid email or password"),
-            };
-        }
-
-        if (data?.user) {
-            return {
-                success: true,
-                redirectTo: "/",
+                error,
             };
         }
 
         return {
             success: false,
-            error: error || new Error("Invalid email or password"),
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
+        };
+    },
+    register: async ({ email, password }) => {
+        try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password,
+            });
+
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
+        }
+
+        return {
+            success: false,
+            error: {
+                message: "Register failed",
+                name: "Invalid email or password",
+            },
+        };
+    },
+    forgotPassword: async ({ email }) => {
+        try {
+            const { data, error } =
+                await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: `${window.location.origin}/update-password`,
+                });
+
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data) {
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
+        }
+
+        return {
+            success: false,
+            error: {
+                message: "Forgot password failed",
+                name: "Invalid email",
+            },
+        };
+    },
+    updatePassword: async ({ password }) => {
+        try {
+            const { data, error } = await supabaseClient.auth.updateUser({
+                password,
+            });
+
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
+        }
+        return {
+            success: false,
+            error: {
+                message: "Update password failed",
+                name: "Invalid password",
+            },
         };
     },
     logout: async () => {
@@ -123,13 +263,13 @@ const authProvider: AuthBindings = {
         if (error) {
             return {
                 success: false,
-                error: error || new Error("Invalid email or password"),
+                error,
             };
         }
 
         return {
             success: true,
-            redirectTo: "/login",
+            redirectTo: "/",
         };
     },
     onError: async (error) => {
@@ -137,14 +277,30 @@ const authProvider: AuthBindings = {
         return { error };
     },
     check: async () => {
-        const { data, error } = await supabaseClient.auth.getSession();
-        const { session } = data;
+        try {
+            const { data } = await supabaseClient.auth.getSession();
+            const { session } = data;
 
-        if (!session) {
+            if (!session) {
+                return {
+                    authenticated: false,
+                    error: {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
+                    logout: true,
+                    redirectTo: "/login",
+                };
+            }
+        } catch (error: any) {
             return {
                 authenticated: false,
-                error: error || new Error("Session not found"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Not authenticated",
+                },
                 logout: true,
+                redirectTo: "/login",
             };
         }
 
@@ -153,21 +309,21 @@ const authProvider: AuthBindings = {
         };
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return user.role;
+            return user.data.user?.role;
         }
 
         return null;
     },
-    getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+    getIdentity: async () => {
+        const { data } = await supabaseClient.auth.getUser();
 
-        if (user) {
+        if (data?.user) {
             return {
-                ...user,
-                name: user.email,
+                ...data.user,
+                name: data.user.email,
             };
         }
 
@@ -178,46 +334,78 @@ const authProvider: AuthBindings = {
 export default authProvider;
 ```
 
-</p>
 </details>
 
-### Configure Refine for Supabase
+The `authProvider` is a simple object that contains all the functions that are used to handle authentication.
+
+You can learn more about the it in the [Auth Provider](/docs/api-reference/core/providers/auth-provider/) section.
+
+### Root component: `App.tsx`
+
+Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/docs/api-reference/core/components/refine-config/) component. This component is the main component of **refine**. It is used to configure the application and to provide the context to all the other components.
+
+<details>
+
+<summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, WelcomePage } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerBindings, {
+    UnsavedChangesNotifier,
+    DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-//highlight-start
-import { dataProvider } from "@refinedev/supabase";
+import { supabaseClient } from "./utility";
 import authProvider from "./authProvider";
-import { supabaseClient } from "utility";
-//highlight-end
+
+import "./App.css";
 
 function App() {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            //highlight-start
-            dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
-            //highlight-end
-        />
+        <BrowserRouter>
+            <RefineKbarProvider>
+                <Refine
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+                    </Routes>
+                    <RefineKbar />
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </RefineKbarProvider>
+        </BrowserRouter>
     );
 }
 
 export default App;
 ```
 
-We've completed our project structure. Now we can easily access our Supabase Database and utilize our data in our user interface. To begin, let's define the React95 library and create a Login page to access our Supabase data.
+</details>
 
-### React95 Setup
+In this component, **refine** provides ready-to-use features with which you can easily create a CRUD application. You can find detailed information about all of them in [**refine**](https://refine.dev/) documentation.
+
+## React95 Setup
+
+Now that we have our application ready, let's start setting up the React95 theme.
+
+<details>
+
+<summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import { dataProvider } from "@refinedev/supabase";
-import authProvider from "./authProvider";
-import { supabaseClient } from "utility";
+//...
 
 //highlight-start
 import original from "react95/dist/themes/original";
@@ -226,53 +414,59 @@ import { ThemeProvider } from "styled-components";
 
 function App() {
     return (
-        //highlight-start
-        <ThemeProvider theme={original}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(supabaseClient)}
-                authProvider={authProvider}
-            />
-        </ThemeProvider>
-        //highlight-end
+        <BrowserRouter>
+            <RefineKbarProvider>
+                {/*highlight-next-line*/}
+                <ThemeProvider theme={original}>
+                    <Refine
+                    // ...
+                    >
+                        {/* ... */}
+                    </Refine>
+                </ThemeProvider>
+                {/*highlight-next-line*/}
+            </RefineKbarProvider>
+        </BrowserRouter>
     );
 }
 
 export default App;
 ```
 
-In this step, we imported and defined the React95 library in our Refine project. We can now use React95 components and Refine features together in harmony. Let's design a Windows95-style Login page!
+</details>
 
-## Refine Login Page
+We import the `original` theme from the `react95` package and wrap our application with the `ThemeProvider` component from `styled-components` to provide the theme to all the components.
+
+## Login Page
+
+We will create a simple login page to demonstrate the authentication flow. We will use the [`useLogin`](https://refine.dev/docs/api-reference/core/hooks/authentication/useLogin/) hook to handle the login process. This hook will call the `login` function that is defined in the `authProvider`.
+
+Let's create a `<LoginPage />` component in the `src/pages/login/index.tsx` directory with the following code:
 
 <details>
-<summary>Show Code</summary>
-<p>
+<summary>Login Page</summary>
 
-```tsx title="src/pages/login/LoginPage.tsx"
+```tsx title="src/pages/login/index.tsx"
 import { useState } from "react";
-//highlight-start
 import { useLogin } from "@refinedev/core";
 
 import {
     Window,
     WindowHeader,
     WindowContent,
-    TextField,
+    TextInput,
     Button,
 } from "react95";
-//highlight-end
 
 interface ILoginForm {
-    username: string;
+    email: string;
     password: string;
 }
 
 export const LoginPage = () => {
-    const [username, setUsername] = useState("info@refine.dev");
+    const [email, setemail] = useState("info@refine.dev");
     const [password, setPassword] = useState("refine-supabase");
 
-    //highlight-next-line
     const { mutate: login } = useLogin<ILoginForm>();
 
     return (
@@ -287,43 +481,42 @@ export const LoginPage = () => {
                 backgroundColor: "rgb(0, 128, 128)",
             }}
         >
-            //highlight-start
             <Window>
                 <WindowHeader active={true} className="window-header">
                     <span> Refine Login</span>
                 </WindowHeader>
                 <div style={{ marginTop: 8 }}>
-                    <img src="./refine.png" alt="refine-logo" width={100} />
+                    <img
+                        src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+                        alt="refine-logo"
+                        width={100}
+                    />
                 </div>
                 <WindowContent>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            login({ username, password });
+                            login({ email, password });
                         }}
                     >
                         <div style={{ width: 500 }}>
                             <div style={{ display: "flex" }}>
-                                <TextField
+                                <TextInput
                                     placeholder="User Name"
                                     fullWidth
-                                    value={username}
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>,
-                                    ) => {
-                                        setUsername(e.target.value);
+                                    value={email}
+                                    onChange={(e) => {
+                                        setemail(e.target.value);
                                     }}
                                 />
                             </div>
                             <br />
-                            <TextField
+                            <TextInput
                                 placeholder="Password"
                                 fullWidth
                                 type="password"
                                 value={password}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>,
-                                ) => {
+                                onChange={(e) => {
                                     setPassword(e.target.value);
                                 }}
                             />
@@ -335,580 +528,78 @@ export const LoginPage = () => {
                     </form>
                 </WindowContent>
             </Window>
-            //highlight-end
         </div>
     );
 };
 ```
 
-</p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_login.png" alt="Refine Login Page" />
-<br />
-
-We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/api-reference/core/providers/auth-provider/) [`<useLogin>`](/docs/api-reference/core/hooks/authentication/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
-
-## Refine Post Page
-
-After our login process, we'll get the posts from our Supabase Database and display them in the table. We will use React95 components for the UI portion of our table, as well as `@refinedev/react-table` package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter. On this page, we will use this adapter of **refine** to manage the table.
-
-In this step, we'll show how to use the `@refinedev/react-table` package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our `@refinedev/react-table` package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
-
-[Refer to the **refine** TanStack Table packages documentation for detailed information. →](/docs/packages/documentation/react-table/)
+Now that we've created our Login page, but we need to add it as a route to our application. Let's add it in the `src/App.tsx` file.
 
 <details>
-<summary>Show Part I Code</summary>
-<p>
 
-```tsx title="src/pages/post/PostList.tsx"
-import { useMemo } from "react";
-import { useOne } from "@refinedev/core";
-import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
+<summary>src/App.tsx</summary>
 
-import { IPost, ICategory } from "interfaces";
-import {
-    Table,
-    TableBody,
-    TableHead,
-    TableRow,
-    TableHeadCell,
-    TableDataCell,
-    Window,
-    WindowHeader,
-    WindowContent,
-} from "react95";
+```tsx title="src/App.tsx"
+// ...
 
-export const PostList = () => {
-    //highlight-start
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "categoryId",
-                header: "Category",
-                accessorKey: "categoryId",
-                cell: function render({ getValue }) {
-                    const { data, isLoading } = useOne<ICategory>({
-                        resource: "categories",
-                        id: getValue() as number,
-                    });
+import { Refine, Authenticated } from "@refinedev/core";
+import { NavigateToResource } from "@refinedev/react-router-v6";
+import { Outlet, Route, Routes } from "react-router-dom";
 
-                    if (isLoading) {
-                        return <p>loading..</p>;
-                    }
+//highlight-next-line
+import { LoginPage } from "./pages/login";
 
-                    return data?.data.title ?? "Not Found";
-                },
-            },
-        ],
-        [],
-    );
-    //highlight-end
-
-    //highlight-start
-    const { getHeaderGroups, getRowModel } = useTable<IPost>({ columns });
-    //highlight-end
-
+function App() {
     return (
-        <>
-            //highlight-start
-            <Window style={{ width: "100%" }}>
-                <WindowHeader>Posts</WindowHeader>
-                <WindowContent>
-                    <Table>
-                        <TableHead>
-                            {getHeaderGroups().map((headerGroup) => (
-                                <TableRow
-                                    key={headerGroup.id}
-                                    style={{ overflowX: "auto" }}
-                                >
-                                    {headerGroup.headers.map((header) => (
-                                        <TableHeadCell
-                                            key={header.id}
-                                            colSpan={header.colSpan}
-                                        >
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                        </TableHeadCell>
-                                    ))}
-                                </TableRow>
-                            ))}
-                        </TableHead>
-                        <TableBody {...getTableBodyProps()}>
-                            {rows.map((row, i) => {
-                                prepareRow(row);
-                                return (
-                                    <TableRow {...row.getRowProps()}>
-                                        {row.cells.map((cell) => {
-                                            return (
-                                                <TableDataCell
-                                                    {...cell.getCellProps()}
-                                                >
-                                                    {cell.render("Cell")}
-                                                </TableDataCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </WindowContent>
-            </Window>
-            //highlight-end
-        </>
-    );
-};
-```
-
-</p>
-</details>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/table.png" alt="Refine Table" />
-<br />
-
-As you can see, our first step is complete. Thanks to the `@refinedev/react-table` adapter, we fetch our Supabase data and process as table data. Then we placed this data in React95 components. Now let's move on to the second step.
-
-<details>
-<summary>Show Part II Code</summary>
-<p>
-
-```tsx title="src/pages/post/PostList.tsx"
-import { useMemo, useRef, useState } from "react";
-import { useOne, useNavigation, useDelete } from "@refinedev/core";
-import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
-
-import { IPost, ICategory } from "interfaces";
-import {
-    Table,
-    TableBody,
-    TableHead,
-    TableRow,
-    TableHeadCell,
-    TableDataCell,
-    Window,
-    WindowHeader,
-    WindowContent,
-    Button,
-    Select,
-    NumberField,
-    Progress,
-} from "react95";
-
-export const PostList = () => {
-    const { edit, create } = useNavigation();
-    const { mutate } = useDelete();
-
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "categoryId",
-                header: "Category",
-                accessorKey: "categoryId",
-                cell: function render({ getValue }) {
-                    const { data, isLoading } = useOne<ICategory>({
-                        resource: "categories",
-                        id: getValue() as number,
-                    });
-
-                    if (isLoading) {
-                        return <p>loading..</p>;
+        {/* ... */}
+        <Refine
+        // ...
+        >
+            <Routes>
+                {/*highlight-start*/}
+                <Route
+                    element={
+                        <Authenticated fallback={<Outlet />}>
+                            <NavigateToResource />
+                        </Authenticated>
                     }
-
-                    return data?.data.title ?? "Not Found";
-                },
-            },
-            //highlight-start
-            {
-                id: "action",
-                header: "Action",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        <Button
-                            onClick={() => edit("posts", getValue() as number)}
-                        >
-                            Edit
-                        </Button>
-                    );
-                },
-            },
-            //highlight-end
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        //highlight-start
-        options: { pageCount },
-        getState,
-        setPageIndex,
-        setPageSize,
-        //highlight-end
-    } = useTable<IPost>({ columns });
-
-    return (
-        <>
-            <Window style={{ width: "100%" }}>
-                <WindowHeader>Posts</WindowHeader>
-                <WindowContent>
-                    <Table {...getTableProps()}>
-                        <TableHead>
-                            {getHeaderGroups().map((headerGroup) => (
-                                <TableRow
-                                    key={headerGroup.id}
-                                    style={{ overflowX: "auto" }}
-                                >
-                                    {headerGroup.headers.map((header) => (
-                                        <TableHeadCell
-                                            key={header.id}
-                                            colSpan={header.colSpan}
-                                            //highlight-next-line
-                                            onClick={header.column.getToggleSortingHandler()}
-                                        >
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                        </TableHeadCell>
-                                    ))}
-                                </TableRow>
-                            ))}
-                        </TableHead>
-                        <TableBody {...getTableBodyProps()}>
-                            {rows.map((row, i) => {
-                                prepareRow(row);
-                                return (
-                                    <TableRow {...row.getRowProps()}>
-                                        {row.cells.map((cell) => {
-                                            return (
-                                                <TableDataCell
-                                                    {...cell.getCellProps()}
-                                                >
-                                                    {cell.render("Cell")}
-                                                </TableDataCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </WindowContent>
-                //highlight-start
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        marginBottom: 8,
-                        marginTop: 8,
-                        alignItems: "flex-end",
-                    }}
                 >
-                    <Select
-                        style={{ marginLeft: 8 }}
-                        value={getState().pagination.pageSize}
-                        onChange={(_: any, selection: any) => {
-                            setPageSize(selection.value);
-                        }}
-                        options={opt}
-                        defaultValue={"10"}
-                    ></Select>
-                    <span style={{ marginLeft: 8 }}>
-                        Page{" "}
-                        <strong>
-                            {getState().pagination.pageIndex + 1} of {pageCount}
-                        </strong>
-                        <span style={{ marginLeft: 8 }}>
-                            Go to page:
-                            <NumberField
-                                style={{ marginLeft: 8 }}
-                                min={1}
-                                defaultValue={
-                                    getState().pagination.pageIndex + 1
-                                }
-                                width={130}
-                                onChange={(value: any) => {
-                                    const page = value ? Number(value) - 1 : 0;
-                                    setPageIndex(page);
-                                }}
-                            />
-                        </span>
-                    </span>
-                </div>
-                //highlight-end
-            </Window>
-        </>
+                    <Route path="/login" element={<LoginPage />} />
+                </Route>
+                {/*highlight-end*/}
+            </Routes>
+            {/* ... */}
+        </Refine>
+        {/* ... */}
     );
-};
+}
 
-export const opt = [
-    { value: 10, label: "10" },
-    { value: 20, label: "20" },
-    { value: 30, label: "30" },
-    { value: 40, label: "40" },
-];
+export default App;
 ```
 
-</p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/advanced_table.gif" alt="Refine Table" />
-<br />
+We added the `/login` route to our application. If the user is not logged in, we will show the `LoginPage` component. Otherwise, the `<NavigateToResource />` component will redirect the user to the first resource' `list` path in the `resources` array. Currently, we don't have any resources, so we will add them in the next steps.
 
-You may quickly handle sorting and paging operations by simply adding a few lines thanks to **refine**'s out-of-the-box features. We have completed our Post page by adding the pagination and sorting features provided by the Refine `useTable` hook to our table.
+Now, we can access our Login page at `/login` path and log in to our Supabase database.
 
-## Refine Create and Edit Page
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/login-page.jpeg" alt="Refine Login Page" className="border border-gray-200 rounded" />
 
-We have created our post page. Now we will create pages where we can create and edit posts. **refine** provides a [`refine-react-hook-form`](/docs/packages/documentation/react-hook-form/useForm/) adapter that you can use with the headless feature. All the features of [React Hook Form](https://react-hook-form.com/) work in harmony with **refine** and the form you will create.
+## Adding a Layout
 
--   `Create Page`
+Before we start adding resources which means adding CRUD pages, we will create a layout to wrap these pages. We will create a simple layout with a header and a footer.
 
-<details>
-<summary>Show Code</summary>
-<p>
-
-```tsx title="src/pages/posts/Create.tsx"
-import { Controller, useForm } from "@refinedev/react-hook-form";
-import { useSelect, useNavigation } from "@refinedev/core";
-import {
-    Select,
-    Fieldset,
-    Button,
-    TextField,
-    Window,
-    WindowHeader,
-    WindowContent,
-    ListItem,
-} from "react95";
-
-export const PostCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm();
-
-    const { goBack } = useNavigation();
-
-    const { options } = useSelect({
-        resource: "categories",
-    });
-
-    return (
-        <>
-            <Window style={{ width: "100%", height: "100%" }}>
-                <WindowHeader active={true} className="window-header">
-                    <span>Create Post</span>
-                </WindowHeader>
-                <form onSubmit={handleSubmit(onFinish)}>
-                    <WindowContent>
-                        <label>Title: </label>
-                        <br />
-                        <br />
-                        <TextField
-                            {...register("title", { required: true })}
-                            placeholder="Type here..."
-                        />
-                        {errors.title && <span>This field is required</span>}
-                        <br />
-                        <br />
-
-                        <Controller
-                            {...register("categoryId", { required: true })}
-                            control={control}
-                            render={({ field: { onChange, value } }) => (
-                                <Fieldset label={"Category"}>
-                                    <Select
-                                        options={options}
-                                        menuMaxHeight={160}
-                                        width={160}
-                                        variant="flat"
-                                        onChange={onChange}
-                                        value={value}
-                                    />
-                                </Fieldset>
-                            )}
-                        />
-                        {errors.category && <span>This field is required</span>}
-                        <br />
-                        <label>Content: </label>
-                        <br />
-                        <TextField
-                            {...register("content", { required: true })}
-                            multiline
-                            rows={10}
-                            cols={50}
-                        />
-
-                        {errors.content && <span>This field is required</span>}
-                        <br />
-                        <Button type="submit" value="Submit">
-                            Submit
-                        </Button>
-                        {formLoading && <p>Loading</p>}
-                    </WindowContent>
-                </form>
-            </Window>
-        </>
-    );
-};
-```
-
-</p>
-</details>
-
--   `Edit Page`
+First, let's create a `<Footer />` component in `src/components/footer/index.tsx` directory with the following code:
 
 <details>
-<summary>Show Code</summary>
-<p>
+<summary>Footer component</summary>
 
-```tsx title="src/pages/posts/Edit.tsx"
-import { useEffect } from "react";
-import { Controller, useForm } from "@refinedev/react-hook-form";
-import { useSelect, useNavigation } from "@refinedev/core";
-import {
-    Select,
-    Fieldset,
-    Button,
-    TextField,
-    WindowContent,
-    Window,
-    WindowHeader,
-    ListItem,
-} from "react95";
-
-export const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        resetField,
-        control,
-        formState: { errors },
-    } = useForm();
-
-    const { goBack } = useNavigation();
-
-    const { options } = useSelect({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.categoryId,
-    });
-
-    useEffect(() => {
-        resetField("categoryId");
-    }, [options]);
-
-    return (
-        <>
-            <Window style={{ width: "100%", height: "100%" }}>
-                <form onSubmit={handleSubmit(onFinish)}>
-                    <WindowHeader active={true} className="window-header">
-                        <span>Edit Post</span>
-                    </WindowHeader>
-                    <WindowContent>
-                        <label>Title: </label>
-                        <br />
-                        <TextField
-                            {...register("title", { required: true })}
-                            placeholder="Type here..."
-                        />
-                        {errors.title && <span>This field is required</span>}
-                        <br />
-                        <br />
-
-                        <Controller
-                            {...register("categoryId", { required: true })}
-                            control={control}
-                            render={({ field: { onChange, value } }) => (
-                                <Fieldset label={"Category"}>
-                                    <Select
-                                        options={options}
-                                        menuMaxHeight={160}
-                                        width={160}
-                                        variant="flat"
-                                        onChange={onChange}
-                                        value={value}
-                                    />
-                                </Fieldset>
-                            )}
-                        />
-                        {errors.category && <span>This field is required</span>}
-                        <br />
-                        <label>Content: </label>
-                        <br />
-                        <TextField
-                            {...register("content", { required: true })}
-                            multiline
-                            rows={10}
-                            cols={50}
-                        />
-
-                        {errors.content && <span>This field is required</span>}
-                        <br />
-                        <Button type="submit" value="Submit">
-                            Submit
-                        </Button>
-                        {formLoading && <p>Loading</p>}
-                    </WindowContent>
-                </form>
-            </Window>
-        </>
-    );
-};
-```
-
-</p>
-</details>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create_edit.gif" alt="Refine Create and Edit Page" />
-<br />
-
-We can manage our forms and generate Posts thanks to the `refine-react-hook-form` adapter, and we may save the Post that we created with the **refine** `onFinish` method directly to Supabase.
-
-## Customize Refine Layout
-
-Our app is almost ready. As a final step, let's edit our Layout to make our application more like Window95. Let's create a footer component first and then define it as a **refine** Layout.
-
-[Refer to the refine Custom Layout docs for detailed usage. →](/docs/advanced-tutorials/custom-layout/)
-
--   `Footer`
-
-<details>
-<summary>Show Code</summary>
-<p>
-
-```tsx title="components/Footer.tsx"
+```tsx title="src/components/footer/index.tsx"
 import React, { useState } from "react";
 import { useLogout, useNavigation } from "@refinedev/core";
-import { AppBar, Toolbar, Button, List, ListItem } from "react95";
+import { AppBar, Toolbar, Button, MenuList, MenuListItem } from "react95";
 
 export const Footer: React.FC = () => {
     const [open, setOpen] = useState(false);
@@ -926,13 +617,13 @@ export const Footer: React.FC = () => {
                         style={{ fontWeight: "bold" }}
                     >
                         <img
-                            src={"./refine.png"}
+                            src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
                             alt="refine logo"
                             style={{ height: "20px", marginRight: 4 }}
                         />
                     </Button>
                     {open && (
-                        <List
+                        <MenuList
                             style={{
                                 position: "absolute",
                                 left: "0",
@@ -940,21 +631,14 @@ export const Footer: React.FC = () => {
                             }}
                             onClick={() => setOpen(false)}
                         >
-                            <ListItem
+                            <MenuListItem
                                 onClick={() => {
                                     push("posts");
                                 }}
                             >
                                 Posts
-                            </ListItem>
-                            <ListItem
-                                onClick={() => {
-                                    push("categories");
-                                }}
-                            >
-                                Categories
-                            </ListItem>
-                            <ListItem
+                            </MenuListItem>
+                            <MenuListItem
                                 onClick={() => {
                                     logout();
                                 }}
@@ -963,8 +647,8 @@ export const Footer: React.FC = () => {
                                     🔙
                                 </span>
                                 Logout
-                            </ListItem>
-                        </List>
+                            </MenuListItem>
+                        </MenuList>
                     )}
                 </div>
             </Toolbar>
@@ -973,84 +657,23 @@ export const Footer: React.FC = () => {
 };
 ```
 
-</p>
 </details>
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import { dataProvider } from "@refinedev/supabase";
-import authProvider from "./authProvider";
-import { supabaseClient } from "utility";
-
-import original from "react95/dist/themes/original";
-import { ThemeProvider } from "styled-components";
-
-import { PostList, PostEdit, PostCreate } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
-import { LoginPage } from "pages/login";
-//highlight-next-line
-import { Footer } from "./components/footer";
-
-import "./app.css";
-
-function App() {
-    return (
-        <ThemeProvider theme={original}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(supabaseClient)}
-                authProvider={authProvider}
-                LoginPage={LoginPage}
-                //highlight-start
-                Layout={({ children }) => {
-                    return (
-                        <div className="main">
-                            <div className="layout">{children}</div>
-                            <div>
-                                <Footer />
-                            </div>
-                        </div>
-                    );
-                }}
-                //highlight-end
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                    },
-                ]}
-            />
-        </ThemeProvider>
-    );
-}
-
-export default App;
-```
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/menu.gif" alt="Refine95 Menu" />
-<br />
-
-Now we'll make a top menu component that's specific to the Windows 95 design.
-
--   Top Menu
+Next, we will create a `<Header />` component in `src/components/header/index.tsx` directory with the following code:
 
 <details>
-<summary>Show Code</summary>
-<p>
 
-```tsx title="components/bar/TopMenu"
-import React, { useState } from "react";
-import { AppBar, Toolbar, Button, List } from "react95";
+<summary>Header component</summary>
 
-type TopMenuProps = {
-    children: React.ReactNode[] | React.ReactNode;
-};
+```tsx title="src/components/header/index.tsx"
+import { useState } from "react";
+import { useNavigation, useParsed } from "@refinedev/core";
+import { AppBar, Toolbar, Button, MenuList, MenuListItem } from "react95";
 
-export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
+export const Header = () => {
     const [open, setOpen] = useState(false);
+    const { goBack, create } = useNavigation();
+    const { action, resource } = useParsed();
 
     return (
         <AppBar style={{ zIndex: 1 }}>
@@ -1084,7 +707,7 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
                     Help
                 </Button>
                 {open && (
-                    <List
+                    <MenuList
                         style={{
                             position: "absolute",
                             left: "0",
@@ -1092,8 +715,25 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
                         }}
                         onClick={() => setOpen(false)}
                     >
-                        {children}
-                    </List>
+                        {action !== "list" && (
+                            <MenuListItem
+                                onClick={() => {
+                                    goBack();
+                                }}
+                            >
+                                Back to {resource?.name}
+                            </MenuListItem>
+                        )}
+                        {action === "list" && (
+                            <MenuListItem
+                                onClick={() => {
+                                    create(resource?.name ?? ""));
+                                }}
+                            >
+                                Create {resource?.name}
+                            </MenuListItem>
+                        )}
+                    </MenuList>
                 )}
             </Toolbar>
         </AppBar>
@@ -1101,16 +741,677 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
 };
 ```
 
-</p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/top_menu.gif" alt="Refine Top Menu" />
-<br />
+Now, we can create a `<Layout />` component using the `<Header />` and `<Footer />` components we created above. Update a `src/components/layout/index.tsx` file with the following code:
+
+<details>
+
+<summary>Layout component</summary>
+
+```tsx title="src/components/layout/index.tsx"
+import { PropsWithChildren } from "react";
+
+import { Footer } from "../footer";
+import { Header } from "../header";
+
+export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
+    return (
+        <div>
+            <Header />
+            <div
+                style={{
+                    padding: "72px 24px 24px 24px",
+                    backgroundColor: "rgb(0, 128, 128)",
+                    minHeight: "calc(100vh - 48px - 72px - 24px)",
+                }}
+            >
+                {children}
+            </div>
+            <Footer />
+        </div>
+    );
+};
+```
+
+</details>
+
+Finally, we can use the `<Layout />` component when we add routes to our application.
+
+Let's create dummy CRUD pages for our `posts` resource. Create a `src/pages/posts` directory and create the following files:
+
+<details>
+
+<summary>src/pages/posts/list.tsx</summary>
+
+```tsx title="src/pages/posts/list.tsx"
+post;
+```
+
+</details>
+
+<details>
+
+<summary>src/pages/posts/create.tsx</summary>
+
+```tsx title="src/pages/posts/create.tsx"
+import { Window, WindowHeader, WindowContent } from "react95";
+
+export const PostCreate = () => {
+    return (
+        <Window style={{ width: "100%" }}>
+            <WindowHeader>Posts</WindowHeader>
+            <WindowContent>Create Page</WindowContent>
+        </Window>
+    );
+};
+```
+
+</details>
+
+<details>
+
+<summary>src/pages/posts/edit.tsx</summary>
+
+```tsx title="src/pages/posts/edit.tsx"
+import { Window, WindowHeader, WindowContent } from "react95";
+
+export const PostEdit = () => {
+    return (
+        <Window style={{ width: "100%" }}>
+            <WindowHeader>Posts</WindowHeader>
+            <WindowContent>Edit Page</WindowContent>
+        </Window>
+    );
+};
+```
+
+</details>
+
+And finally, we can add these pages to our application. Update the `src/App.tsx` file with the following code:
+
+<details>
+
+<summary>src/App.tsx</summary>
+
+```tsx title="src/App.tsx"
+//...
+// highlight-next-line
+import { Layout } from "./components/layout";
+
+import { LoginPage } from "./pages/login";
+// highlight-start
+import { PostList } from "./pages/posts/list";
+import { PostCreate } from "./pages/posts/create";
+import { PostEdit } from "./pages/posts/edit";
+// highlight-end
+
+function App() {
+    return (
+        <BrowserRouter>
+            <RefineKbarProvider>
+                <ThemeProvider theme={original}>
+                    <Refine
+                        // ...
+                        // highlight-start
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                            },
+                        ]}
+                        // highlight-end
+                    >
+                        <Routes>
+                            {/* highlight-start */}
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                </Route>
+                            </Route>
+                            {/* highlight-end */}
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<LoginPage />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </ThemeProvider>
+            </RefineKbarProvider>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+```
+
+</details>
+
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/layout-with-dummy-pages.gif" alt="Refine95 Menu" className="border border-gray-200 rounded"/>
+
+## Create Post CRUD Pages
+
+### List Page
+
+After our login process, we'll get the posts from our supabase and display them in the table. We will use React95 components for the UI portion of our table, as well as [`@refinedev/react-table`](/docs/packages/documentation/react-table/) package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter.
+
+So, let's install the `@refinedev/react-table` and dependencies.
+
+```bash
+npm i @refinedev/react-table @tanstack/react-table
+```
+
+**In next steps, we'll assume that you have the following interfaces in `src/interfaces/index.d.ts` file.**
+
+<details>
+
+<summary>You can find all interfaces in the following code snippet.</summary>
+
+```tsx title="src/interfaces/index.d.ts"
+export interface IPost {
+    id: string;
+    title: string;
+    categories: ICategory[];
+}
+
+export interface ICategory {
+    id: string;
+    title: string;
+}
+
+export interface ICsvPost {
+    title: string;
+    content: string;
+    categoryId: string;
+}
+```
+
+</details>
+
+Let's update a `<PostList />` component in `src/pages/posts/list.tsx` directory with the following code:
+
+<details>
+<summary>Show PostList component</summary>
+
+```tsx title="src/pages/posts/list.tsx"
+import React from "react";
+import { useTable } from "@refinedev/react-table";
+import { useDelete, useNavigation } from "@refinedev/core";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import {
+    Table,
+    TableBody,
+    TableHead,
+    TableRow,
+    TableHeadCell,
+    TableDataCell,
+    Window,
+    WindowHeader,
+    WindowContent,
+    Button,
+    Select,
+    NumberInput,
+    Hourglass,
+    ScrollView,
+} from "react95";
+
+import { IPost } from "../../interfaces";
+
+export const PostList = () => {
+    const { edit } = useNavigation();
+
+    const { mutate: deletePost } = useDelete<IPost>();
+
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
+        () => [
+            {
+                id: "id",
+                header: "ID",
+                accessorKey: "id",
+            },
+            {
+                id: "title",
+                header: "Title",
+                accessorKey: "title",
+            },
+            {
+                id: "categoryId",
+                header: "Category",
+                accessorKey: "categories.title",
+            },
+            {
+                id: "action",
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                gap: 16,
+                            }}
+                        >
+                            <Button
+                                size="sm"
+                                onClick={() =>
+                                    edit("posts", getValue() as number)
+                                }
+                            >
+                                Edit
+                            </Button>
+                            <Button
+                                size="sm"
+                                onClick={() => {
+                                    const id = getValue() as number;
+
+                                    const result = window.confirm(
+                                        "Are you sure you want to delete this post?",
+                                    );
+
+                                    if (result) {
+                                        deletePost({
+                                            resource: "posts",
+                                            id,
+                                        });
+                                    }
+                                }}
+                            >
+                                Delete
+                            </Button>
+                        </div>
+                    );
+                },
+            },
+        ],
+        [],
+    );
+
+    const {
+        getHeaderGroups,
+        getRowModel,
+        options: { pageCount },
+        getState,
+        setPageIndex,
+        setPageSize,
+        refineCore: {
+            tableQueryResult: { isLoading },
+        },
+    } = useTable<IPost>({
+        columns,
+        refineCoreProps: {
+            meta: {
+                select: "*, categories(*)",
+            },
+        },
+    });
+
+    return (
+        <>
+            <Window style={{ width: "100%" }}>
+                <WindowHeader>Posts</WindowHeader>
+                <WindowContent>
+                    <ScrollView style={{ width: "100%", height: "410px" }}>
+                        <Table>
+                            <TableHead>
+                                {getHeaderGroups().map((headerGroup) => (
+                                    <TableRow key={headerGroup.id}>
+                                        {headerGroup.headers.map((header) => (
+                                            <TableHeadCell
+                                                key={header.id}
+                                                colSpan={header.colSpan}
+                                                onClick={header.column.getToggleSortingHandler()}
+                                            >
+                                                {flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                            </TableHeadCell>
+                                        ))}
+                                    </TableRow>
+                                ))}
+                            </TableHead>
+                            <TableBody>
+                                {getRowModel().rows.map((row) => {
+                                    return (
+                                        <TableRow key={row.id}>
+                                            {row
+                                                .getVisibleCells()
+                                                .map((cell) => {
+                                                    return (
+                                                        <TableDataCell
+                                                            key={cell.id}
+                                                        >
+                                                            {flexRender(
+                                                                cell.column
+                                                                    .columnDef
+                                                                    .cell,
+                                                                cell.getContext(),
+                                                            )}
+                                                        </TableDataCell>
+                                                    );
+                                                })}
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                        {isLoading && (
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "350px",
+                                }}
+                            >
+                                <Hourglass size={32} />
+                            </div>
+                        )}
+                    </ScrollView>
+                </WindowContent>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginBottom: 8,
+                        marginTop: 8,
+                        alignItems: "flex-end",
+                    }}
+                >
+                    <Select<number>
+                        style={{ marginLeft: 8 }}
+                        value={getState().pagination.pageSize}
+                        onChange={(option) => {
+                            setPageSize(option.value);
+                        }}
+                        options={pageSizeOptions}
+                        defaultValue={10}
+                    ></Select>
+                    <span style={{ marginLeft: 8 }}>
+                        Page{" "}
+                        <strong>
+                            {getState().pagination.pageIndex + 1} of {pageCount}
+                        </strong>
+                        <span style={{ marginLeft: 8 }}>
+                            Go to page:
+                            <NumberInput
+                                style={{ marginLeft: 8 }}
+                                min={1}
+                                defaultValue={
+                                    getState().pagination.pageIndex + 1
+                                }
+                                width={130}
+                                onChange={(value) => {
+                                    const page = value ? Number(value) - 1 : 0;
+                                    setPageIndex(page);
+                                }}
+                            />
+                        </span>
+                    </span>
+                </div>
+            </Window>
+        </>
+    );
+};
+
+const pageSizeOptions = [
+    { value: 10, label: "10" },
+    { value: 20, label: "20" },
+    { value: 30, label: "30" },
+    { value: 40, label: "40" },
+];
+```
+
+</details>
+
+We used the `useTable` hook to fetch the data for the table. It makes a request to the `/posts` endpoint with the query parameters. The query parameters are used to filter, sort, and paginate the posts. Since we defined the posts resource in `src/App.tsx`, the `useTable` hook knows which endpoint to use for fetching the data.
+
+After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
+
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/list-page.gif" alt="Refine List Page" className="border border-gray-200 rounded" />
+
+### Create Page and Edit Page
+
+We have created our post list page. Now we will create page where we can create posts. **refine** provides a [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm/) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **refine**. We will use this to manage our form state.
+
+So, let's install the `@refinedev/react-hook-form` and dependencies.
+
+```bash
+npm i @refinedev/react-hook-form react-hook-form
+```
+
+Let's update a `<PostCreate />` component in `src/pages/posts/create.tsx` directory with the following code:
+
+<details>
+<summary>Show PostCreate component</summary>
+
+```tsx title="src/pages/posts/create.tsx"
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect } from "@refinedev/core";
+import {
+    Select,
+    GroupBox,
+    Button,
+    TextInput,
+    Window,
+    WindowHeader,
+    WindowContent,
+} from "react95";
+import { Controller } from "react-hook-form";
+
+export const PostCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    return (
+        <Window style={{ width: "100%", height: "100%" }}>
+            <WindowHeader>
+                <span>Create Post</span>
+            </WindowHeader>
+            <WindowContent>
+                <form onSubmit={handleSubmit(onFinish)}>
+                    <label>Title: </label>
+                    <br />
+                    <br />
+                    <TextInput
+                        {...register("title", { required: true })}
+                        placeholder="Type here..."
+                    />
+                    {errors.title && <span>This field is required</span>}
+                    <br />
+                    <br />
+
+                    <Controller
+                        name="categoryId"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <GroupBox label={"Category"}>
+                                <Select
+                                    options={options}
+                                    menuMaxHeight={160}
+                                    width={160}
+                                    variant="flat"
+                                    onChange={(option) =>
+                                        onChange(option.value)
+                                    }
+                                    value={value}
+                                />
+                            </GroupBox>
+                        )}
+                    />
+                    {errors.category && <span>This field is required</span>}
+                    <br />
+                    <label>Content: </label>
+                    <br />
+                    <TextInput
+                        {...register("content", { required: true })}
+                        multiline
+                        rows={10}
+                        cols={50}
+                    />
+
+                    {errors.content && <span>This field is required</span>}
+                    <br />
+                    <Button type="submit" value="Submit">
+                        Submit
+                    </Button>
+                    {formLoading && <p>Loading</p>}
+                </form>
+            </WindowContent>
+        </Window>
+    );
+};
+```
+
+</details>
+
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create-page.gif" alt="Refine Create Page" className="border border-gray-200 rounded"/>
+
+Now, let's update a `<PostEdit />` component in `src/pages/posts/edit.tsx` directory with the following code:
+
+<details>
+<summary>Show PostEdit Component</summary>
+
+```tsx title="src/pages/posts/edit.tsx"
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect } from "@refinedev/core";
+import {
+    Select,
+    GroupBox,
+    Button,
+    TextInput,
+    Window,
+    WindowHeader,
+    WindowContent,
+} from "react95";
+import { Controller } from "react-hook-form";
+
+export const PostEdit: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    return (
+        <Window style={{ width: "100%", height: "100%" }}>
+            <WindowHeader active={true} className="window-header">
+                <span>Edit Post</span>
+            </WindowHeader>
+            <WindowContent>
+                <form onSubmit={handleSubmit(onFinish)}>
+                    <label>Title: </label>
+                    <br />
+                    <TextInput
+                        {...register("title", { required: true })}
+                        placeholder="Type here..."
+                    />
+                    {errors.title && <span>This field is required</span>}
+                    <br />
+                    <br />
+
+                    <Controller
+                        name="categoryId"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <GroupBox label={"Category"}>
+                                <Select
+                                    options={options}
+                                    menuMaxHeight={160}
+                                    width={160}
+                                    variant="flat"
+                                    onChange={(option) =>
+                                        onChange(option.value)
+                                    }
+                                    value={value}
+                                />
+                            </GroupBox>
+                        )}
+                    />
+                    {errors.category && <span>This field is required</span>}
+                    <br />
+                    <label>Content: </label>
+                    <br />
+                    <TextInput
+                        {...register("content", { required: true })}
+                        multiline
+                        rows={10}
+                        cols={50}
+                    />
+
+                    {errors.content && <span>This field is required</span>}
+                    <br />
+                    <Button type="submit" value="Submit">
+                        Submit
+                    </Button>
+                    {formLoading && <p>Loading</p>}
+                </form>
+            </WindowContent>
+        </Window>
+    );
+};
+```
+
+</details>
+
+Edit and create pages almost look the same. We can use the same form for both pages. [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) hook knows which action we are performing. For example, if we are on the edit page, it will automatically fetch the post data and fill the form with it.
+
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/edit-page.gif" alt="Refine Edit Page" className="border border-gray-200 rounded"/>
 
 ## Project Overview
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Project Overview" />
-<br />
 
 ## Live CodeSandbox Example
 
