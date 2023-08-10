@@ -221,68 +221,67 @@ To do so, open the `App.tsx` file and import the `create.tsx` file, then add it 
 <p>
 
 ```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { Refine } from '@refinedev/core'
+import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import { notificationProvider, RefineSnackbarProvider, ThemedLayoutV2 } from '@refinedev/mui'
 
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ColorModeContextProvider } from "./contexts/color-mode";
-// highlight-next-line
-import Create from "./pages/create";
+import CssBaseline from '@mui/material/CssBaseline'
+import GlobalStyles from '@mui/material/GlobalStyles'
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from '@refinedev/react-router-v6'
+import dataProvider from '@refinedev/simple-rest'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import { ColorModeContextProvider } from './contexts/color-mode'
+import Create from './pages/create'
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <ColorModeContextProvider>
-                    <CssBaseline />
-                    <GlobalStyles
-                        styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                    />
-                    <RefineSnackbarProvider>
-                        <Refine
-                            dataProvider={dataProvider(
-                                "https://api.fake-rest.refine.dev",
-                            )}
-                            notificationProvider={notificationProvider}
-                            // highlight-start
-                            resources={[
-                                {
-                                    name: "posts",
-                                    list: "/",
-                                },
-                            ]}
-                            // highlight-end
-                            routerProvider={routerBindings}
-                            options={{
-                                syncWithLocation: true,
-                                warnWhenUnsavedChanges: true,
-                            }}
-                        >
-                            <Routes>
-                                {/* highlight-next-line */}
-                                <Route index element={<Create />} />
-                            </Routes>
-                            <RefineKbar />
-                            <UnsavedChangesNotifier />
-                            <DocumentTitleHandler />
-                        </Refine>
-                    </RefineSnackbarProvider>
-                </ColorModeContextProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <ColorModeContextProvider>
+          <CssBaseline />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
+          <RefineSnackbarProvider>
+            <Refine
+              dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
+              notificationProvider={notificationProvider}
+              // highlight-start
+              resources={[
+                {
+                  name: 'posts',
+                  list: '/',
+                },
+              ]}
+              // highlight-end
+              routerProvider={routerBindings}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}>
+              <Routes>
+                {/* highlight-start */}
+                <Route
+                  element={
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  }>
+                  <Route index element={<Create />} />
+                </Route>
+                {/* highlight-end */}
+              </Routes>
+              <RefineKbar />
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
+          </RefineSnackbarProvider>
+        </ColorModeContextProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
 ```
 
 </p>
