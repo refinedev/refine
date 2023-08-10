@@ -28,7 +28,7 @@ export const HamburgerMenu: React.FC = () => {
                     size="lg"
                     onClick={() => setSiderCollapsed(!siderCollapsed)}
                 >
-                    {mobileSiderOpen ? (
+                    {siderCollapsed ? (
                         <IconIndentIncrease size={20} />
                     ) : (
                         <IconIndentDecrease size={20} />

@@ -3,6 +3,7 @@ import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "../../interfaces";
+import { resources } from "../../utility/appwriteClient";
 
 export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();
@@ -10,7 +11,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
 
     const postData = queryResult?.data?.data;
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "products",
+        resource: resources.products,
         defaultValue: postData?.productId,
         optionLabel: "title",
         optionValue: "id",

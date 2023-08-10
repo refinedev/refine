@@ -1,4 +1,4 @@
-# @pankod/refine-medusa
+# @refinedev/medusa
 
 ## 2.4.2
 

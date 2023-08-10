@@ -11,6 +11,7 @@ import {
 import { Table, Space } from "antd";
 
 import { IOrder, IProduct } from "../../interfaces";
+import { resources } from "../../utility/appwriteClient";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();
@@ -30,7 +31,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         tableProps?.dataSource?.map((item) => item.productId) ?? [];
 
     const { data: productData, isLoading } = useMany<IProduct>({
-        resource: "products",
+        resource: resources.products,
         ids: productIds,
     });
 

@@ -7,13 +7,14 @@ import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "../../interfaces";
+import { resources } from "../../utility/appwriteClient";
 
 export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();
     const { formProps, saveButtonProps } = useForm<IOrder, HttpError, IOrder>();
 
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "products",
+        resource: resources.products,
         optionLabel: "title",
         optionValue: "id",
         filters: [{ field: "storeId", operator: "eq", value: params?.tenant }],

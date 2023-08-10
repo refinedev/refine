@@ -18,6 +18,7 @@ import {
     CreateProduct,
 } from "../../components/product";
 import { IProduct } from "../../interfaces";
+import { resources } from "../../utility/appwriteClient";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { params } = useParsed<{ tenant?: string }>();
@@ -38,7 +39,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         formProps: createFormProps,
         show: createShow,
     } = useModalForm<IProduct, HttpError, IProduct>({
-        resource: "products",
+        resource: resources.products,
         action: "create",
         redirect: false,
     });

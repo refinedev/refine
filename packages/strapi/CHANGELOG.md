@@ -1,4 +1,4 @@
-# @pankod/refine-strapi
+# @refinedev/strapi
 
 ## 4.1.0
 

@@ -42,15 +42,17 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <Typography
-                            sx={{
-                                display: { xs: "none", md: "block" },
-                            }}
-                            variant="subtitle2"
-                        >
-                            {user?.name}
-                        </Typography>
-                        <Avatar src={user?.avatar} alt={user?.name} />
+                        {user?.name && (
+                            <Typography
+                                variant="subtitle2"
+                                data-testid="header-user-name"
+                            >
+                                {user?.name}
+                            </Typography>
+                        )}
+                        {user?.avatar && (
+                            <Avatar src={user?.avatar} alt={user?.name} />
+                        )}
                     </Stack>
                 </Stack>
             </Toolbar>
