@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
     return (
         <BrowserRouter>
-            {/* <GitHubBanner /> */}
+            <GitHubBanner />
             <RefineKbarProvider>
                 <Refine
                     dataProvider={dataProvider(
