@@ -22,7 +22,7 @@ import { CategoryEdit } from "./pages/categories/edit";
 import { CategoryList } from "./pages/categories/list";
 import { Layout } from "./components/layout";
 
-import "./App.css";
+import "./app.css";
 
 function App() {
     return (
