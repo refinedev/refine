@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { useLogin } from "@refinedev/core";
+
 import {
     Window,
     WindowHeader,
     WindowContent,
-    TextField,
+    TextInput,
     Button,
 } from "react95";
 
 interface ILoginForm {
-    username: string;
+    email: string;
     password: string;
 }
 
 export const LoginPage = () => {
-    const [username, setUsername] = useState("info@refine.dev");
+    const [email, setemail] = useState("info@refine.dev");
     const [password, setPassword] = useState("refine-supabase");
 
     const { mutate: login } = useLogin<ILoginForm>();
@@ -32,41 +33,41 @@ export const LoginPage = () => {
             }}
         >
             <Window>
-                <WindowHeader active={true} className="window-header">
-                    <span> Refine Login</span>
+                <WindowHeader>
+                    <span>Refine Login</span>
                 </WindowHeader>
                 <div style={{ marginTop: 8 }}>
-                    <img src="./refine.png" alt="refine-logo" width={100} />
+                    <img
+                        src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+                        alt="refine-logo"
+                        width={100}
+                    />
                 </div>
                 <WindowContent>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            login({ username, password });
+                            login({ email, password });
                         }}
                     >
-                        <div style={{ width: 300 }}>
+                        <div style={{ width: 500 }}>
                             <div style={{ display: "flex" }}>
-                                <TextField
+                                <TextInput
                                     placeholder="User Name"
                                     fullWidth
-                                    value={username}
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>,
-                                    ) => {
-                                        setUsername(e.target.value);
+                                    value={email}
+                                    onChange={(e) => {
+                                        setemail(e.target.value);
                                     }}
                                 />
                             </div>
                             <br />
-                            <TextField
+                            <TextInput
                                 placeholder="Password"
                                 fullWidth
                                 type="password"
                                 value={password}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>,
-                                ) => {
+                                onChange={(e) => {
                                     setPassword(e.target.value);
                                 }}
                             />
