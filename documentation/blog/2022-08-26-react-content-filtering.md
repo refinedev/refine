@@ -173,11 +173,11 @@ We began by importing the style sheet file.
 
 Next, we created a capitalize function that capitalizes the filter name used in the button.
 
-We used the isActive prop to determine if the filter is active and assigned the background color accordingly using JavaScript template syntax.
+We used the `isActive` prop to determine if the filter is active and assigned the background color accordingly using JavaScript template syntax.
 
 Additionally, we used the title prop to assign the filter type and give it a specific color tag. The title prop is also used for the name of the filter.
 
-Finally, we used the onClick prop to control the behavior when the filter button is pressed. We will pass it in during the later phase of the tutorial when implementing the main logic.
+Finally, we used the `onClick` prop to control the behavior when the filter button is pressed. We will pass it in during the later phase of the tutorial when implementing the main logic.
 
 To style the component, we will add the following code to the `src/components/filter/index.module.css` file:
 
@@ -581,9 +581,11 @@ Now type in some search queries in the search bar.
 
 Search results are fully dynamic, meaning the filtering is updated each time you add a new character to the query.
 
-Finally, let's test the app on different screen sizes.
+Finally, let's test the app on mobile screen sizes.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/responsive.jpeg" alt="mobile" className="border border-gray-200 rounded" height="480px" width="390px" />
+<div className="flex justify-center">
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/responsive.jpeg" alt="mobile" className="border border-gray-200 rounded" style={{ height: "400px" }} />
+</div>
 
 ## Conclusion
 
