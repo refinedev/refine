@@ -27,8 +27,7 @@ describe("custom", () => {
             url: "",
             method: "get",
             meta: {
-                graphql: {
-                    query: `
+                rawQuery: `
                     query GetAllBlogPosts(
                         $sorting: [BlogPostSort!]
                         $filter: BlogPostFilter!
@@ -48,11 +47,10 @@ describe("custom", () => {
                         }
                       }
                 `,
-                    variables: {
-                        sorting: [{ field: "id", direction: "ASC" }],
-                        filter: { id: { eq: 1 } },
-                        paging: { limit: 2, offset: 0 },
-                    },
+                variables: {
+                    sorting: [{ field: "id", direction: "ASC" }],
+                    filter: { id: { eq: 1 } },
+                    paging: { limit: 2, offset: 0 },
                 },
             },
         });

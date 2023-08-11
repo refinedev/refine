@@ -1,40 +1,49 @@
-import { LiveProvider, LogicalFilter } from "@refinedev/core";
-import camelcase from "camelcase";
-import VariableOptions from "gql-query-builder/build/VariableOptions";
-import * as gql from "gql-query-builder";
+import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
-import { singular } from "pluralize";
-import { generateFilters } from "../utils";
+import {
+    generateCreatedSubscription,
+    generateDeletedSubscription,
+    generateUpdatedSubscription,
+} from "../utils";
 
-const generateListSubscription = ({ resource, filters, meta }: any) => {
-    const operation = `created${camelcase(singular(resource), {
-        pascalCase: true,
-    })}`;
+const generateSubscription = (
+    client: Client,
+    { callback, params }: any,
+    type: string,
+) => {
+    const generatorMap: any = {
+        created: generateCreatedSubscription,
+        updated: generateUpdatedSubscription,
+        deleted: generateDeletedSubscription,
+    };
 
-    const queryVariables: VariableOptions = {};
+    const { resource, meta, filters, subscriptionType, id, ids } = params ?? {};
 
-    if (filters) {
-        queryVariables["input"] = {
-            type: camelcase(
-                `create_${singular(resource)}_subscription_filter_input`,
-                {
-                    pascalCase: true,
-                },
-            ),
-            required: true,
-            value: {
-                filter: generateFilters(filters as LogicalFilter[]),
-            },
-        };
-    }
+    const generator = generatorMap[type];
 
-    const { query, variables } = gql.subscription({
-        operation,
-        fields: meta.fields,
-        variables: queryVariables,
+    const { operation, query, variables } = generator({
+        ids,
+        id,
+        resource,
+        filters,
+        meta,
+        subscriptionType,
     });
 
-    return { query, variables, operation };
+    const onNext = (payload: any) => {
+        callback(payload.data[operation]);
+    };
+
+    const unsubscribe = client.subscribe(
+        { query, variables },
+        {
+            next: onNext,
+            error: console.error,
+            complete: () => null,
+        },
+    );
+
+    return unsubscribe;
 };
 
 export const liveProvider = (client: Client): LiveProvider => {
@@ -61,26 +70,45 @@ export const liveProvider = (client: Client): LiveProvider => {
                 );
             }
 
-            const { query, variables, operation } = generateListSubscription({
-                ids,
-                id,
-                resource,
-                filters,
-                meta,
-            });
+            const unsubscribes: any[] = [];
 
-            const onNext = (payload: any) => {
-                callback(payload.data[operation]);
+            if (params?.subscriptionType === "useList") {
+                const createdUnsubscribe = generateSubscription(
+                    client,
+                    { callback, params },
+                    "created",
+                );
+
+                const updatedUnsubscribe = generateSubscription(
+                    client,
+                    { callback, params },
+                    "updated",
+                );
+
+                const deletedUnsubscribe = generateSubscription(
+                    client,
+                    { callback, params },
+                    "deleted",
+                );
+
+                unsubscribes.push(createdUnsubscribe);
+                unsubscribes.push(updatedUnsubscribe);
+                unsubscribes.push(deletedUnsubscribe);
+            }
+
+            if (params?.subscriptionType === "useOne") {
+                const updatedUnsubscribe = generateSubscription(
+                    client,
+                    { callback, params },
+                    "updated",
+                );
+
+                unsubscribes.push(updatedUnsubscribe);
+            }
+
+            const unsubscribe = () => {
+                unsubscribes.forEach((unsubscribe) => unsubscribe());
             };
-
-            const unsubscribe = client.subscribe(
-                { query, variables },
-                {
-                    next: onNext,
-                    error: console.error,
-                    complete: () => null,
-                },
-            );
 
             return unsubscribe;
         },

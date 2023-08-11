@@ -310,10 +310,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 gqlClient = new GraphQLClient(url, { headers });
             }
 
-            if (meta?.graphql) {
+            if (meta?.rawQuery) {
                 const response = await client.request(
-                    meta.graphql.query,
-                    meta.graphql.variables,
+                    meta.rawQuery,
+                    meta.variables,
                 );
 
                 return { data: response };
