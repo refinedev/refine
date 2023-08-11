@@ -8,7 +8,7 @@
     "refine": "refine"
   },
   "dependencies": {
-    "@refinedev/chakra-ui": "^2.26.1",
+    "@refinedev/chakra-ui": "^2.26.2",
     "@tabler/icons": "^1.1.0",
     "@refinedev/core": "^4.34.0",
     "@refinedev/cli": "^2.7.6",
