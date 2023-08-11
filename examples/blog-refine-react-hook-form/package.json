@@ -12,8 +12,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
-    "react-scripts": "^5.0.0",
-    "cross-env": "^7.0.3",
     "web-vitals": "^1.1.1",
     "@refinedev/mui": "^5.13.0",
     "@refinedev/react-hook-form": "^4.8.2",
@@ -33,14 +31,14 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/node": "^18.16.2",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite": "^4.3.1",
+    "@vitejs/plugin-react": "^4.0.0"
   },
   "scripts": {
-    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "dev": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "browserslist": {
