@@ -1,4 +1,4 @@
-import styles from "./Filter.module.css";
+import styles from "./index.module.css";
 
 const capitalize = (str: string) =>
     str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();

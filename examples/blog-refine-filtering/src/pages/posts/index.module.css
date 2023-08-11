@@ -2,11 +2,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-  }
-  
-  @media only screen and (max-width: 650px) {
+}
+
+@media only screen and (max-width: 650px) {
     .filters {
-      grid-template-columns: 1fr;
-      gap: 0;
+        grid-template-columns: 1fr;
+        gap: 0;
     }
-  }
+}

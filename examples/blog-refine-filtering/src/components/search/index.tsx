@@ -1,4 +1,4 @@
-import styles from "./Search.module.css";
+import styles from "./index.module.css";
 
 export const Search = ({
     onChange,

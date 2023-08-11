@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useMany } from "@refinedev/core";
-
-import { Filter } from "./Filter";
-import { Search } from "./Search";
-import { Card } from "./Card";
-
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "./Posts.module.css";
+
+import { Filter } from "../../components/filter";
+import { Search } from "../../components/search";
+import { Card } from "../../components/card";
+
+import styles from "./index.module.css";
 
 export const Posts = () => {
     const [inputValue, setInputValue] = useState("");
