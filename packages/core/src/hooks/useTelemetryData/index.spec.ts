@@ -1,7 +1,9 @@
 import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
+import { defaultRefineOptions } from "@contexts/refine";
 import { useTelemetryData } from ".";
+import { IRefineContextProvider } from "src/interfaces";
 
 describe("useTelemetryData Hook", () => {
     describe("authProvider", () => {
@@ -290,6 +292,43 @@ describe("useTelemetryData Hook", () => {
 
             const { providers } = result.current;
             expect(providers.router).toBeTruthy();
+        });
+    });
+
+    describe("projectId", () => {
+        const mockRefineProvider: IRefineContextProvider = {
+            hasDashboard: false,
+            ...defaultRefineOptions,
+            options: defaultRefineOptions,
+        };
+
+        it("must be undefined", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            const { projectId } = result.current;
+            expect(projectId).toBeUndefined();
+        });
+
+        it("must be defined", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    refineProvider: {
+                        ...mockRefineProvider,
+                        options: {
+                            ...mockRefineProvider.options,
+                            projectId: "test",
+                        },
+                    },
+                }),
+            });
+
+            const { projectId } = result.current;
+            expect(projectId).toBe("test");
         });
     });
 });
