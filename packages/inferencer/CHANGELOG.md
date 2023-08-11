@@ -1,5 +1,24 @@
 # @refinedev/mantine
 
+## 4.5.3
+
+### Patch Changes
+
+-   [#4797](https://github.com/refinedev/refine/pull/4797) [`a680aea865b`](https://github.com/refinedev/refine/commit/a680aea865bff11c4b52f2aecbb2a51c769a1599) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: relation fields are not correctly inferred for `show` views
+
+    Shows `title` for `category` without using the `useOne` hook when showing the `category` key.
+
+    ```
+    {
+        "title": "My title",
+        "description": "My description",
+        "category": {
+            "id": 1,
+            "name": "My category"
+        }
+    }
+    ```
+
 ## 4.5.2
 
 ### Patch Changes
