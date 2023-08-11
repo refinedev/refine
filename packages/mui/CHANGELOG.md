@@ -1,5 +1,11 @@
 # @refinedev/mui
 
+## 5.13.1
+
+### Patch Changes
+
+-   [#4788](https://github.com/refinedev/refine/pull/4788) [`38680378c7a`](https://github.com/refinedev/refine/commit/38680378c7a7b0e5481ea4136f3958a00ac4ca92) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: render user avatar and name in `<HeaderV2 />` based on user data from `authProvider`.
+
 ## 5.13.0
 
 ### Minor Changes
