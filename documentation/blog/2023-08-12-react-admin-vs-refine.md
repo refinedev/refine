@@ -32,7 +32,7 @@ With the start of the refine project in 2021, it received significant interest f
 This traction from the open-source community led to the establishment of refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
 
 In 2023, refine also backed by YCombinator, solidifying its position as a promising venture. 
-With an impressive count of 13,500 GitHub stars and adoption by over 15,000 developers and **XXX**[TODO] companies within its year and a half journey, refine has made a significant impact among developers.
+With an impressive count of 13,500 GitHub stars and adoption by over 15,000 developers within its year and a half journey, refine has made a significant impact among developers.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
@@ -52,7 +52,7 @@ It is specifically tailored for data-intensive applications like admin panels, d
 
 ## Architecture
 
-refine is based on hooks and atomic components, which makes it highly customizable and extensible. It also provides a set of built-in components that can be used out of the box. It has a headless architecture, which means you're not limited to using the built-in UI integrations but it provides built-in UI integrations for the most popular libraries such as Material UI, Ant Design, Chakra UI and Mantine.
+refine is based on hooks and atomic components, which makes it highly customizable and extensible. It also provides a set of built-in components that can be used out of the box. It has a headless architecture, which means you're not limited to using the built-in UI integrations but it provides built-in UI integrations for the most popular libraries such as Material UI, Ant Design, Chakra UI, and Mantine.
 
 
 Refer to [section](https://hackmd.io/n6H-yTk4TwqUREz6RVyeQw?both#Differences-in-supported-UI-frameworks-between-refine-and-react-admin) for the differences in supported UI frameworks between refine and react-admin.
@@ -365,7 +365,7 @@ And you're done!
 
 ## Documentation and and Learning Resources
 
-When it comes to documentation, refine has more usefull resources.
+When it comes to documentation, refine has more useful resources.
 
 
 **Extensive Documentation**: refine's documentation is a treasure trove of information, providing comprehensive guidance for every aspect of the framework.
@@ -770,7 +770,7 @@ type HttpError = {
 
 This structure will let you show errors in the form fields with out of the box i18n support.
 
-**Tip**: If you want to handle the errors and the mapping yourself, you can always opt-out of the built-in error handling feature and override the error handling logic in the `useForm` hooks and in its extensions.
+**Tip**: If you want to handle the errors and the mapping yourself, you can always opt-out of the built-in error handling feature and override the error handling logic in the `useForm` hooks and extensions.
 
 React-admin also provides a similar feature but it does not have the i18n support out of the box.
 
