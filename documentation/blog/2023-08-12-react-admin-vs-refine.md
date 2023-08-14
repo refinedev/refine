@@ -5,6 +5,8 @@ slug: react-admin-vs-refine
 authors: ali_emir
 tags: [refine, comparison]
 hide_table_of_contents: false
+is_featured: true
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social.png
 ---
 
 
@@ -32,7 +34,8 @@ With the start of the refine project in 2021, it received significant interest f
 This traction from the open-source community led to the establishment of refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
 
 In 2023, refine also backed by YCombinator, solidifying its position as a promising venture. 
-With an impressive count of 13,500 GitHub stars and adoption by over 15,000 developers within its year and a half journey, refine has made a significant impact among developers.
+
+With over 15,000 developers actively using it and an impressive 13,500 GitHub stars garnered in just a year and a half, refine has significantly resonated within the developer community.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
@@ -42,7 +45,7 @@ Continuing to reinforce its commitment to open source, refine remains committed 
 
 
 refine community interaction has significaly higher pace than react-admin.
-## About React-admin
+## About react-admin
 
 React-admin is an open-source frontend framework developed by Marmelabs, an agency based in France, founded in 2010. The project started in 2016. React-admin offers an enterprise package for professional features and support.
 
