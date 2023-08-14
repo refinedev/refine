@@ -1,4 +1,48 @@
-# @pankod/refine-mantine
+# @refinedev/mantine
+
+## 2.28.2
+
+### Patch Changes
+
+-   [#4788](https://github.com/refinedev/refine/pull/4788) [`38680378c7a`](https://github.com/refinedev/refine/commit/38680378c7a7b0e5481ea4136f3958a00ac4ca92) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fix incorrect usage of collapse icon in `<HeaderV2 />`
+
+    fix: render user avatar and name in `<HeaderV2 />` based on user data from `authProvider`.
+
+## 2.28.1
+
+### Patch Changes
+
+-   [#4788](https://github.com/refinedev/refine/pull/4788) [`38680378c7a`](https://github.com/refinedev/refine/commit/38680378c7a7b0e5481ea4136f3958a00ac4ca92) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fix incorrect usage of collapse icon in `<HeaderV2 />`
+
+    fix: render user avatar and name in `<HeaderV2 />` based on user data from `authProvider`.
+
+## 2.28.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   [#4773](https://github.com/refinedev/refine/pull/4773) [`2af96197629`](https://github.com/refinedev/refine/commit/2af96197629cc387c555feef9e518a2a22c80d3d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd `useModalForm` sends request twice when `syncWithLocation` is true
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.22.0
+
+## 2.27.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   [#4773](https://github.com/refinedev/refine/pull/4773) [`2af96197629`](https://github.com/refinedev/refine/commit/2af96197629cc387c555feef9e518a2a22c80d3d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd `useModalForm` sends request twice when `syncWithLocation` is true
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.21.0
 
 ## 2.26.0
 

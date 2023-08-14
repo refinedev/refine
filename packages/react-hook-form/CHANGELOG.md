@@ -1,4 +1,4 @@
-# @pankod/refine-react-hook-form
+# @refinedev/react-hook-form
 
 ## 4.8.2
 

@@ -5,10 +5,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { HttpError } from "@refinedev/core";
 
 interface IFormValue {
     firstname: string;
@@ -16,10 +17,9 @@ interface IFormValue {
     address: string;
     number: number;
     work: string;
-    company: string;
-    role: string;
+    company: string | undefined;
+    role: string | undefined;
 }
-
 const defaultValues = {
     firstname: "",
     lastname: "",
@@ -40,17 +40,28 @@ const schema = Yup.object().shape({
     lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
     address: Yup.string().label("Address").trim().required().min(3),
     number: Yup.number().label("Number").required(),
-    work: Yup.string().label("Work").oneOf(["unemployed", "employed"]),
-    company: Yup.string().when("work", {
-        // eslint-disable-next-line
-        is: (val: any) => val === "employed",
-        then: Yup.string().label("Company").required().min(3).max(64),
-    }),
-    role: Yup.string().when("work", {
-        // eslint-disable-next-line
-        is: (val: any) => val === "employed",
-        then: Yup.string().label("Role").required().min(3).max(64),
-    }),
+    work: Yup.string()
+        .label("Work")
+        .required()
+        .oneOf(["unemployed", "employed"]),
+    company: Yup.string().when(
+        "work",
+        ([work]: string | string[], schema: Yup.AnySchema) => {
+            if (work === "employed") {
+                return schema.required().min(3).max(64);
+            }
+            return schema.notRequired();
+        },
+    ),
+    role: Yup.string().when(
+        "work",
+        ([work]: string | string[], schema: Yup.AnySchema) => {
+            if (work === "employed") {
+                return schema.required().min(3).max(64);
+            }
+            return schema.notRequired();
+        },
+    ),
 });
 
 const Create: React.FC = () => {
@@ -59,33 +70,32 @@ const Create: React.FC = () => {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm<IFormValue>({
+    } = useForm<IFormValue, HttpError, IFormValue>({
         mode: "onChange",
         defaultValues,
         resolver: yupResolver(schema),
     });
 
-    const type = watch("work");
+    const handleSubmission = (data: IFormValue) => console.log(data);
 
-    // eslint-disable-next-line
-    const handleSubmission = (data: any) => console.log(data);
+    const work = watch("work");
 
     return (
         <form
-            onSubmit={handleSubmit(handleSubmission)}
             style={{ display: "flex", flexDirection: "column" }}
+            onSubmit={handleSubmit(handleSubmission)}
         >
             <Controller
                 control={control}
                 name="firstname"
+                rules={{ required: true, minLength: 5 }}
                 render={({ field }) => (
                     <TextField
-                        fullWidth
                         {...field}
+                        fullWidth
                         sx={{ maxWidth: 600 }}
                         label="First Name"
                         margin="dense"
-                        required
                         error={!!errors.firstname}
                         helperText={
                             errors.firstname && `${errors.firstname.message}`
@@ -103,11 +113,6 @@ const Create: React.FC = () => {
                         sx={{ maxWidth: 600 }}
                         label="Last Name"
                         margin="dense"
-                        required
-                        error={!!errors.lastname}
-                        helperText={
-                            errors.lastname && `${errors.lastname.message}`
-                        }
                     />
                 )}
             />
@@ -121,11 +126,6 @@ const Create: React.FC = () => {
                         sx={{ maxWidth: 600 }}
                         label="Address"
                         margin="dense"
-                        required
-                        error={!!errors.address}
-                        helperText={
-                            errors.address && `${errors.address.message}`
-                        }
                     />
                 )}
             />
@@ -139,14 +139,11 @@ const Create: React.FC = () => {
                         sx={{ maxWidth: 600 }}
                         label="Number"
                         margin="dense"
-                        required
                         type="number"
-                        error={!!errors.number}
-                        helperText={errors.number && `${errors.number.message}`}
                     />
                 )}
             />
-            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }} required>
+            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
                 <InputLabel id="type-label">Work</InputLabel>
                 <Controller
                     control={control}
@@ -166,7 +163,7 @@ const Create: React.FC = () => {
                     )}
                 />
             </FormControl>
-            {type === "employed" && (
+            {work === "employed" && (
                 <>
                     <Controller
                         control={control}
@@ -178,7 +175,6 @@ const Create: React.FC = () => {
                                 sx={{ maxWidth: 600 }}
                                 label="Company"
                                 margin="dense"
-                                required
                                 error={!!errors.company}
                                 helperText={
                                     errors.company &&
@@ -197,7 +193,6 @@ const Create: React.FC = () => {
                                 sx={{ maxWidth: 600 }}
                                 label="Role"
                                 margin="dense"
-                                required
                                 error={!!errors.role}
                                 helperText={
                                     errors.role && `${errors.role.message}`

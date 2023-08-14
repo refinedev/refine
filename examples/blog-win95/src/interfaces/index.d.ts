@@ -1,6 +1,9 @@
 export interface IPost {
     id: string;
     title: string;
+    category: {
+        id: string;
+    };
 }
 
 export interface ICategory {

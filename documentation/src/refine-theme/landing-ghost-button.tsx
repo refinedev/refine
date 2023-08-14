@@ -50,9 +50,7 @@ export const LandingGhostButton = () => {
                     )}
                 >
                     <DocItemOutlined />
-                    <span className="text-base font-semibold">
-                        Learn refine
-                    </span>
+                    <span className="text-base font-semibold">Get started</span>
                 </div>
             </div>
         </Link>

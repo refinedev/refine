@@ -178,6 +178,25 @@ export const renderer = ({
                 </div>
                 `;
             }
+
+            if (field.fieldable) {
+                return jsx`
+                <div style={{ marginTop: "6px" }}>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
+                    <div>{${accessor(
+                        recordName,
+                        field.key,
+                        field.accessor,
+                    )}}</div>
+                </div>
+                `;
+            }
+
             return jsx`
                 <div style={{ marginTop: "6px" }}>
                     <h5>${translatePrettyString({

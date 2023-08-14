@@ -1,79 +1,55 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import { createClient } from "../gqlClient";
 import "./index.mock";
 
-describe("update", () => {
-    it("correct response with meta", async () => {
-        const { data } = await dataProvider(client).update({
-            resource: "posts",
-            id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
-            variables: {
-                title: "E-business alarm Bedfordshire",
-                content: "Updated Content",
-                category_id: "4653050e-f969-4d58-939b-ece4c17aa506",
-            },
-            meta: {
-                fields: ["id", "title", "content", { category: ["id"] }],
-            },
+describe.each(["hasura-default", "graphql-default"] as const)(
+    "updateOne with %s naming convention",
+    (namingConvention) => {
+        const client = createClient(namingConvention);
+        let id = `6379bbda-0857-40f2-a277-b401ea6134d7`;
+        let categoryFieldName = "category_id";
+
+        if (namingConvention === "graphql-default") {
+            id = `c7ba5e30-8c5f-46bb-862d-e2bcf6487749`;
+            categoryFieldName = "categoryId";
+        }
+
+        it("correct response with meta", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).update({
+                resource: "posts",
+                id,
+                variables: {
+                    title: "Updated Title",
+                    content: "Updated Content",
+                    [categoryFieldName]: "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                },
+                meta: {
+                    fields: ["id", "title", "content", { category: ["id"] }],
+                },
+            });
+
+            expect(data["id"]).toEqual(id);
+            expect(data["title"]).toEqual("Updated Title");
+            expect(data["content"]).toEqual("Updated Content");
+            expect(data["category"].id).toEqual(
+                "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+            );
         });
 
-        expect(data["id"]).toEqual("eb824b2e-986d-4d19-b6a9-98ca620df046");
-        expect(data["title"]).toEqual("E-business alarm Bedfordshire");
-        expect(data["content"]).toEqual("Updated Content");
-        expect(data["category"].id).toEqual(
-            "4653050e-f969-4d58-939b-ece4c17aa506",
-        );
-    });
+        it("correct response without meta", async () => {
+            const { data } = await dataProvider(client, {
+                namingConvention,
+            }).update({
+                resource: "posts",
+                id,
+                variables: {
+                    title: "E-business alarm",
+                },
+            });
 
-    it("correct response without meta", async () => {
-        const { data } = await dataProvider(client).update({
-            resource: "posts",
-            id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
-            variables: {
-                title: "E-business alarm",
-            },
+            expect(data["id"]).toEqual(id);
         });
-
-        expect(data["id"]).toEqual("eb824b2e-986d-4d19-b6a9-98ca620df046");
-    });
-});
-
-describe("update with graphql naming convention", () => {
-    it("correct response with meta", async () => {
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).update({
-            resource: "posts",
-            id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
-            variables: {
-                title: "E-business alarm Bedfordshire",
-                content: "Updated Content",
-                categoryId: "4653050e-f969-4d58-939b-ece4c17aa506",
-            },
-            meta: {
-                fields: ["id", "title", "content", { category: ["id"] }],
-            },
-        });
-
-        expect(data["id"]).toEqual("eb824b2e-986d-4d19-b6a9-98ca620df046");
-        expect(data["title"]).toEqual("E-business alarm Bedfordshire");
-        expect(data["content"]).toEqual("Updated Content");
-        expect(data["category"].id).toEqual(
-            "4653050e-f969-4d58-939b-ece4c17aa506",
-        );
-    });
-
-    it("correct response without meta", async () => {
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).update({
-            resource: "posts",
-            id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
-            variables: {
-                title: "E-business alarm",
-            },
-        });
-
-        expect(data["id"]).toEqual("eb824b2e-986d-4d19-b6a9-98ca620df046");
-    });
-});
+    },
+);

@@ -45,39 +45,47 @@
 
 <br/>
 
-[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/readme/how-refine-works.jpeg)](https://refine.dev)
+[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png)](https://refine.dev)
 
 
 ## What is refine?
 
-**refine** is a React-based framework for the rapid ✨ development of web applications.
-It eliminates repetitive tasks demanded by **CRUD** operations and provides industry-standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+**refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications.  
+
+From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
+
+
+refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
 
 **refine** is _headless by design_, thereby offering unlimited styling and customization options.
 
-## What do you mean by "headless"?
+## What do you mean by "headless" ?
 
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from _UI components_ and _business logic_, so that they never keep you from customizing your _UI_ or coding your own flow.
+Instead of being limited to a set of pre-styled components, **refine** provides collections of helper `hooks`, `components` and `providers` and more. Since business logic and UI are completely decoupled, you can customize UI without constraints.
 
-**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+ It means, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-## 🔥 Try refine online in just 10 seconds
+refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/)to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
+
+
+### Headless in Routing
+
+For the routing, refine's headless approach shines too. It doesn't tie you to a single routing method or library. Instead, it offers a simple routing interface with built-in integrations for popular libraries.
+
+This means you can use refine seamlessly in different platforms like React Native, Electron, Next.js, Remix etc. without any extra steps for the setup.
+
+## 🔥 Try refine 
+refine's [Browser-based app scaffolder](https://refine.dev/#playground) lets you create refine app by making step-by-step selections directly in your browser
+
+You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.  
+
+This allows you yo preview, modify, and download project immediately, thereby streamlining the development process.
 
 <br/>
-
-<a  href="https://s.refine.dev/refine-new-github">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine.new.png">
-</a>
-<br/>
-<br/>
-
-[refine.new](https://s.refine.dev/refine-new-github) is a powerful open-source browser tool that lets you create refine apps.
-
-You can preview, modify, and download your project immediately, thereby streamlining the development process.
 
 <div align="center">
-<a href="https://s.refine.dev/refine-new-github" target="_blank">
-<img src="https://user-images.githubusercontent.com/18739364/231501815-295deedd-cbee-4b90-80dc-12116ee53274.gif"    />
+<a href="https://refine.dev/#playground" target="_blank">
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif"    />
 </a>
 </div>
 
@@ -87,30 +95,18 @@ You can preview, modify, and download your project immediately, thereby streamli
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
-<div>
-<a href="https://s.refine.dev/readme-admin-panel" target="_blank">
- <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
-</a>
-</div>
 
-<div>
- <a href="https://s.refine.dev/readme-medium-clone" target="_blank">
-<img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
-</a>
-</div>
+- [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
+- [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
+- [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
+- [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
+- [Storefront](https://s.refine.dev/readme-ssr-storefront)
 
-<div>
- <a href="https://s.refine.dev/readme-ssr-storefront" target="_blank">
-<img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
-</a>
-</div>
 
-<br/>
-<br/>
 
-[👉 Refer to most popular real use case examples](https://refine.dev/examples/)
+[👉 Refer to most popular real use case examples](https://refine.dev/docs/examples/)
 
-[👉 More **refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples/)
+[👉 More **refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples#other-examples)
 
 ## Key Features
 
@@ -142,17 +138,10 @@ You can take a look at some live examples that can be built using **refine** fro
 
 ## Quick Start
 
-The fastest way to get started with **refine** is by using the `create refine-app` project starter tool or using [refine.new](https://s.refine.dev/refine-new-github) browser tool.
+The fastest way to get started with **refine** is by using the `create refine-app` CLI tool or using [browser-based app scaffolder](https://refine.dev/#playground).
 
-### Using refine.new browser tool
 
-[refine.new](https://s.refine.dev/refine-new-github) lets you create a new refine application by making step-by-step selections directly in your browser.
-
-You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
-
-### Using `create refine-app`
-
-Run the following command to create a new **refine** project configured with [Ant Design System](https://ant.design/) as the default UI framework:
+For this example we'll use CLI tool. Simply, run the following command to create a new **refine** project configured with [Ant Design](https://ant.design/) as the default UI framework:
 
 ```
 npm create refine-app@latest -- -o refine-antd
@@ -166,9 +155,9 @@ npm run dev
 
 <br/>
 
-Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
+Your **refine** application will be accessible at [http://localhost:5173](http://localhost:5173):
 
-<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fwelcome.png)</a>
+<a href="http://localhost:5173">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/welcome.png)</a>
 
 <br/>
 
@@ -258,7 +247,7 @@ export default App;
 
 Now, you should see the output as a table populated with `blog_posts` & `category` data:
 
-![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Freadme-quick-start-2.png)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/readme-quick-start-2.png)
 
 <br/>
 

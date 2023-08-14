@@ -2,9 +2,9 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    Layout,
     RefineThemes,
     ErrorComponent,
+    ThemedLayoutV2,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +16,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
-import Create from "pages/create";
+import Create from "./pages/create";
 
 function App() {
     return (
@@ -44,9 +44,9 @@ function App() {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route

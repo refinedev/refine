@@ -1,4 +1,28 @@
-# @pankod/refine-ui-tests
+# @refinedev/ui-tests
+
+## 1.13.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Added a new test, "should invalidates when button is clicked" to `buttonRefreshTests`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82), [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/core@4.34.0
+    -   @refinedev/ui-types@1.22.0
+
+## 1.12.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Added a new test, "should invalidates when button is clicked" to `buttonRefreshTests`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82), [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/core@4.33.0
+    -   @refinedev/ui-types@1.21.0
 
 ## 1.11.0
 
