@@ -15,7 +15,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-1anz4l6-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
