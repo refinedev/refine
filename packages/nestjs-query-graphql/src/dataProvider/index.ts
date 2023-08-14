@@ -311,7 +311,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             }
 
             if (meta?.rawQuery) {
-                const response = await client.request(
+                const response = await client.request<BaseRecord>(
                     meta.rawQuery,
                     meta.variables,
                 );
