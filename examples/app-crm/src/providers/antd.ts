@@ -6,6 +6,8 @@ export const themeConfig: ThemeConfig = {
         colorBgContainer: "#F7F8F9",
         colorBgLayout: "#F0F2F5",
         colorBorderBg: "#E8E9EA",
+        fontFamily:
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
     },
     components: {
         Card: {
