@@ -86,6 +86,7 @@ export const List: React.FC<ListProps> = ({
                     flexWrap: "wrap",
                     ".MuiCardHeader-action": {
                         margin: 0,
+                        alignSelf: "center",
                     },
                 }}
                 title={
