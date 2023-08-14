@@ -81,7 +81,13 @@ export const List: React.FC<ListProps> = ({
         <Card {...(wrapperProps ?? {})}>
             {breadcrumbComponent}
             <CardHeader
-                sx={{ display: "flex", flexWrap: "wrap" }}
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    ".MuiCardHeader-action": {
+                        margin: 0,
+                    },
+                }}
                 title={
                     title ?? (
                         <Typography
