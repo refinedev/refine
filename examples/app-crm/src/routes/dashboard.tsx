@@ -1,103 +1,91 @@
 import React from "react";
-import { Row, Col, Card, theme, Typography } from "antd";
-import {
-    RightCircleOutlined,
-    ProjectOutlined,
-    TeamOutlined,
-} from "@ant-design/icons";
-import { ListButton } from "@refinedev/antd";
+import { Row, Col } from "antd";
+import { ProjectOutlined, TeamOutlined } from "@ant-design/icons";
+import { useCustom } from "@refinedev/core";
 
 import { DashboardNumberCard } from "../components/dashboard-number-card";
-
-const { useToken } = theme;
+import { DashboardTasksChart } from "../components/dashboard-tasks-chart";
+import { DashboardDealsChart } from "../components/dashboard-deals-chart";
+import { DashboardTotalRevenueChart } from "../components/dashboard-total-revenue-chart";
 
 export const DashboardPage: React.FC = () => {
-    const { token } = useToken();
+    const { data, isLoading } = useCustom({
+        method: "post",
+        url: "/graphql",
+        meta: {
+            rawQuery: `query Dashboard {
+                companies {
+                  totalCount
+                }
+                contacts {
+                  totalCount
+                }
+                deals {
+                  totalCount
+                }
+                taskStages {
+                  title
+                  tasksAggregate {
+                    count {
+                      id
+                    }
+                  }
+                }
+              }`,
+        },
+    });
+
+    if (isLoading) {
+        // TODO: Should be a skeleton
+        return null;
+    }
 
     return (
         <>
+            <Row gutter={[32, 32]} style={{ marginBottom: 32 }}>
+                <Col span={24}>
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(1fr, 2fr)",
+                            gridTemplateRows: "repeat(3, 1fr)",
+                            gridColumnGap: "1.5rem",
+                            gridRowGap: "1.5rem",
+                        }}
+                    >
+                        <div style={{ gridArea: "1 / 1 / 2 / 2" }}>
+                            <DashboardNumberCard
+                                icon={<ProjectOutlined />}
+                                title="Number of companies"
+                                number={data?.data?.companies?.totalCount}
+                            />
+                        </div>
+                        <div style={{ gridArea: "2 / 1 / 3 / 2" }}>
+                            <DashboardNumberCard
+                                icon={<TeamOutlined />}
+                                title="Number of contacts"
+                                number={data?.data?.contacts?.totalCount}
+                            />
+                        </div>
+                        <div style={{ gridArea: "3 / 1 / 4 / 2" }}>
+                            <DashboardNumberCard
+                                icon={<ProjectOutlined />}
+                                title="Number of deals"
+                                number={data?.data?.deals?.totalCount}
+                            />
+                        </div>
+                        <div style={{ gridArea: "1 / 2 / 4 / 3" }}>
+                            <DashboardTasksChart />
+                        </div>
+                    </div>
+                </Col>
+            </Row>
             <Row gutter={[32, 32]}>
-                <Col span={24}>
-                    <Row gutter={[32, 32]}>
-                        <Col span={8}>
-                            <Row gutter={[32, 32]}>
-                                <Col span={24}>
-                                    <DashboardNumberCard
-                                        icon={<ProjectOutlined />}
-                                        title="Number of companies"
-                                        number={58}
-                                    />
-                                </Col>
-                                <Col span={24}>
-                                    <DashboardNumberCard
-                                        icon={<TeamOutlined />}
-                                        title="Number of contacts"
-                                        number={1286}
-                                    />
-                                </Col>
-                                <Col span={24}>
-                                    <DashboardNumberCard
-                                        icon={<ProjectOutlined />}
-                                        title="Number of deals"
-                                        number={34}
-                                    />
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col span={16}>
-                            <Card
-                                title={
-                                    <>
-                                        <ProjectOutlined
-                                            style={{
-                                                color: token.colorPrimary,
-                                            }}
-                                        />
-                                        <span style={{ marginLeft: "10px" }}>
-                                            Tasks
-                                        </span>
-                                    </>
-                                }
-                                extra={
-                                    <ListButton
-                                        resource="kanban"
-                                        type="default"
-                                        icon={<RightCircleOutlined />}
-                                    >
-                                        See kanban board
-                                    </ListButton>
-                                }
-                                style={{
-                                    height: "100%",
-                                }}
-                            >
-                                16
-                            </Card>
-                        </Col>
-                    </Row>
+                <Col span={16}>
+                    <DashboardDealsChart />
                 </Col>
-                <Col span={24}>
-                    <Row gutter={[32, 32]}>
-                        <Col span={16}>
-                            <Card>16</Card>
-                        </Col>
-                        <Col span={8}>
-                            <Card>8</Card>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col span={24}>
-                    <Row gutter={[32, 32]}>
-                        <Col span={8}>
-                            <Card>8</Card>
-                        </Col>
-                        <Col span={16}>
-                            <Card>16</Card>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col span={24}>
-                    <Card>24</Card>
+                <Col span={8}>
+                    <DashboardTotalRevenueChart />
                 </Col>
             </Row>
         </>

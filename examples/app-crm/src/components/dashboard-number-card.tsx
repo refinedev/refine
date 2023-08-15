@@ -11,7 +11,7 @@ export const DashboardNumberCard: React.FC<{
     const { token } = theme.useToken();
 
     return (
-        <Card>
+        <Card style={{ height: "100%" }}>
             <div
                 style={{
                     display: "flex",
