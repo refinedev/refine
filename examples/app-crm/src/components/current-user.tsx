@@ -3,7 +3,7 @@ import React from "react";
 import { Avatar, Popover } from "antd";
 import { useGetIdentity } from "@refinedev/core";
 
-import type { User } from "../interfaces/user";
+import type { User } from "../interfaces/graphql";
 
 export const CurrentUser = () => {
     const { data: user } = useGetIdentity<User>();

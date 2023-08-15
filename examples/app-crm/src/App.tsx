@@ -41,6 +41,7 @@ import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
 import "./styles/antd.css";
+import "./styles/index.css";
 
 const App: React.FC = () => {
     return (
