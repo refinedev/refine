@@ -24,7 +24,8 @@ import { UpdatePasswordPage } from "./routes/update-password";
 import { DashboardPage } from "./routes/dashboard";
 
 import { CalendarPageWrapper } from "./routes/calendar/wrapper";
-import { KanbanPage } from "./routes/scrumboard/kanban";
+import { KanbanPage } from "./routes/scrumboard/kanban/list";
+import { KanbanCreatePage } from "./routes/scrumboard/kanban/create";
 import { SalesPage } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
@@ -91,7 +92,13 @@ const App: React.FC = () => {
                                 />
                             </Route>
                             <Route path="/scrumboard" element={<Outlet />}>
-                                <Route path="kanban" element={<KanbanPage />} />
+                                <Route path="kanban">
+                                    <Route index element={<KanbanPage />} />
+                                    <Route
+                                        path="create"
+                                        element={<KanbanCreatePage />}
+                                    />
+                                </Route>
                                 <Route path="sales" element={<SalesPage />} />
                             </Route>
                             <Route path="/companies">
