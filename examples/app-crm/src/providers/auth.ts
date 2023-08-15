@@ -1,5 +1,6 @@
 import { AuthBindings } from "@refinedev/core";
 import { API_URL, client, dataProvider } from "./data";
+import type { User } from "../interfaces/graphql";
 
 export const demoCredentials = {
     email: "michael.scott@dundermifflin.com",
@@ -101,7 +102,7 @@ export const authProvider: AuthBindings = {
     },
     getIdentity: async () => {
         try {
-            const { data } = await dataProvider.custom({
+            const { data } = await dataProvider.custom<{ me: User }>({
                 url: API_URL,
                 method: "post",
                 headers: {},
