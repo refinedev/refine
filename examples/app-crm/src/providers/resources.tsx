@@ -42,6 +42,7 @@ export const resources: IResourceItem[] = [
         name: "tasks",
         list: "/scrumboard/kanban",
         create: "/scrumboard/kanban/create",
+        edit: "/scrumboard/kanban/edit/:id",
         meta: {
             label: "Project Kanban",
             parent: "scrumboard",

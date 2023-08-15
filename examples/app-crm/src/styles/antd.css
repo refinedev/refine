@@ -1,0 +1,31 @@
+.ant-modal .ant-modal-content {
+    padding: 0;
+}
+
+.ant-modal .ant-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 0px;
+}
+
+.ant-modal .ant-modal-close {
+    top: 21px;
+}
+
+.ant-modal .ant-modal-body {
+    padding: 20px 24px;
+}
+
+.ant-modal .ant-modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid #d9d9d9;
+    margin-top: 0px;
+}
+
+.ant-modal.kanban-update-modal .ant-modal-body {
+    padding: 0px;
+}
+
+.ant-modal.kanban-update-modal .ant-modal-footer {
+    border-top: none;
+}

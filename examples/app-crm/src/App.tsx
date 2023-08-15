@@ -26,6 +26,7 @@ import { DashboardPage } from "./routes/dashboard";
 import { CalendarPageWrapper } from "./routes/calendar/wrapper";
 import { KanbanPage } from "./routes/scrumboard/kanban/list";
 import { KanbanCreatePage } from "./routes/scrumboard/kanban/create";
+import { KanbanEditPage } from "./routes/scrumboard/kanban/edit";
 import { SalesPage } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
@@ -38,6 +39,8 @@ import { themeConfig } from "./providers/antd";
 import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
+
+import "./styles/antd.css";
 
 const App: React.FC = () => {
     return (
@@ -104,6 +107,10 @@ const App: React.FC = () => {
                                     <Route
                                         path="create"
                                         element={<KanbanCreatePage />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<KanbanEditPage />}
                                     />
                                 </Route>
                                 <Route path="sales" element={<SalesPage />} />

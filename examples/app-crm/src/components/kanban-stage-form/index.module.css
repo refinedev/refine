@@ -1,0 +1,9 @@
+.container {
+    padding: 12px 24px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+}
