@@ -1,9 +1,15 @@
-import { CreateButton } from "@refinedev/antd";
+import { CreateButton, EditButton } from "@refinedev/antd";
 
-export const KanbanPage = () => {
+type Props = React.PropsWithChildren<{}>;
+
+export const KanbanPage = ({ children }: Props) => {
     return (
-        <div>
+        <>
             <CreateButton type="default">Add new card</CreateButton>
-        </div>
+            <EditButton type="default" recordItemId={15}>
+                Edit Task
+            </EditButton>
+            {children}
+        </>
     );
 };

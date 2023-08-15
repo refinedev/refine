@@ -92,8 +92,15 @@ const App: React.FC = () => {
                                 />
                             </Route>
                             <Route path="/scrumboard" element={<Outlet />}>
-                                <Route path="kanban">
-                                    <Route index element={<KanbanPage />} />
+                                <Route
+                                    path="kanban"
+                                    element={
+                                        <KanbanPage>
+                                            <Outlet />
+                                        </KanbanPage>
+                                    }
+                                >
+                                    <Route index />
                                     <Route
                                         path="create"
                                         element={<KanbanCreatePage />}
