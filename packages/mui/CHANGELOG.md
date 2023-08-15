@@ -1,5 +1,11 @@
 # @refinedev/mui
 
+## 5.13.3
+
+### Patch Changes
+
+-   [#4823](https://github.com/refinedev/refine/pull/4823) [`68592b67357`](https://github.com/refinedev/refine/commit/68592b67357642ec28f7eff64a95374e3cd51083) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Material UI `<List />`, `<Show />`, `<Edit />`, `<Create />` component's header buttons not being aligned properly. [#4816](https://github.com/refinedev/refine/issues/4816)
+
 ## 5.13.2
 
 ### Patch Changes

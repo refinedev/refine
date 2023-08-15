@@ -15,7 +15,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
@@ -9936,7 +9936,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
@@ -24961,7 +24961,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
@@ -41091,7 +41091,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"

@@ -5,6 +5,8 @@ slug: react-admin-vs-refine
 authors: ali_emir
 tags: [refine, comparison]
 hide_table_of_contents: false
+is_featured: true
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social.png
 ---
 
 
@@ -32,7 +34,8 @@ With the start of the refine project in 2021, it received significant interest f
 This traction from the open-source community led to the establishment of refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
 
 In 2023, refine also backed by YCombinator, solidifying its position as a promising venture. 
-With an impressive count of 13,500 GitHub stars and adoption by over 15,000 developers within its year and a half journey, refine has made a significant impact among developers.
+
+With over 15K monthly active developers using it and an impressive 13,500 GitHub stars earned in just a year and a half, refine has gained significant popularity within the developer community.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
@@ -42,7 +45,7 @@ Continuing to reinforce its commitment to open source, refine remains committed 
 
 
 refine community interaction has significaly higher pace than react-admin.
-## About React-admin
+## About react-admin
 
 React-admin is an open-source frontend framework developed by Marmelabs, an agency based in France, founded in 2010. The project started in 2016. React-admin offers an enterprise package for professional features and support.
 
@@ -85,12 +88,12 @@ Even with the UI package, refine bundle size is still more than 50% smaller than
 
 **Measurements from Bundlephobia**
 
-- [`@refinedev/core`](#)
-- [`@refinedev/mui`](#)
-- [`@refinedev/antd`](#)
-- [`@refinedev/chakra-ui`](#)
-- [`@refinedev/mantine`](#)
-- [`react-admin`](#)
+- [`@refinedev/core`](https://bundlephobia.com/package/@refinedev/core@4.34.0)
+- [`@refinedev/mui`](https://bundlephobia.com/package/@refinedev/mui@5.10.0)
+- [`@refinedev/antd`](https://bundlephobia.com/package/@refinedev/antd@5.31.0)
+- [`@refinedev/chakra-ui`](https://bundlephobia.com/package/@refinedev/chakra-ui@2.23.0)
+- [`@refinedev/mantine`](https://bundlephobia.com/package/@refinedev/mantine@2.24.0)
+- [`react-admin`](https://bundlephobia.com/package/react-admin@4.12.2)
 
 ### Performance 
 
@@ -143,9 +146,9 @@ React-admin's way of Next.js integration is actually a workaround and it is not 
 
 Check out these basic examples from refine's documentation:
 
-- [refine + next.js](#)
-- [refine + remix](#)
-- [refine + next.js and the `/app` dir](#)
+- [refine + next.js](https://github.com/refinedev/refine/tree/next/examples/with-nextjs)
+- [refine + remix](https://github.com/refinedev/refine/tree/next/examples/with-remix-antd)
+- [refine + next.js and the `/app` dir](https://github.com/refinedev/refine/tree/next/examples/with-nextjs-appdir)
 - [refine + React Native](https://github.com/abdellah711/refinenative) (Community Package ❤️)
 
 ## Multitenancy
@@ -711,7 +714,7 @@ Check out the [CSV Import](https://refine.dev/docs/advanced-tutorials/import-exp
 
 Access control is a broad topic with lots of advanced solutions that provide different sets of features.
 
-refine provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](#), [CASL](#), [Cerbos](#) and [AccessControl.js](#).
+refine provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/) and [AccessControl.js](https://onury.io/accesscontrol/).
 
 **Tip**: refine comes with a built-in `CanAccess` component that can be used complementarily with the `accessControlProvider` to manage access control in your app with ease. Still, you can use the `useCan` hook for any custom use case you may have.
 
@@ -811,7 +814,7 @@ The `<AutoSaveIndicator>` components will give you a visual feedback about the a
 
 React-admin offers this feature in its enterprise package but it does not have the styling and modification options that refine provides. Furthermore, this feature is available for free in refine, while it requires the purchase of an enterprise package in React-admin.
 
-Check out the [Auto Save](#) // TODO documentation for more information about refine's auto save feature.
+Check out the [Auto Save](https://refine.dev/docs/api-reference/core/hooks/useForm/#autosave)
 
 
 
