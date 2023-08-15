@@ -3,10 +3,11 @@ import { Row, Col, Card, theme, Typography } from "antd";
 import {
     RightCircleOutlined,
     ProjectOutlined,
-    ShopOutlined,
     TeamOutlined,
 } from "@ant-design/icons";
 import { ListButton } from "@refinedev/antd";
+
+import { DashboardNumberCard } from "../components/dashboard-number-card";
 
 const { useToken } = theme;
 
@@ -21,85 +22,25 @@ export const DashboardPage: React.FC = () => {
                         <Col span={8}>
                             <Row gutter={[32, 32]}>
                                 <Col span={24}>
-                                    <Card>
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                            }}
-                                        >
-                                            <div>
-                                                <ShopOutlined
-                                                    style={{
-                                                        color: token.colorPrimary,
-                                                    }}
-                                                />{" "}
-                                                Number of companies
-                                            </div>
-                                            <div>
-                                                <Typography.Title
-                                                    level={2}
-                                                    style={{ marginBottom: 0 }}
-                                                >
-                                                    58
-                                                </Typography.Title>
-                                            </div>
-                                        </div>
-                                    </Card>
+                                    <DashboardNumberCard
+                                        icon={<ProjectOutlined />}
+                                        title="Number of companies"
+                                        number={58}
+                                    />
                                 </Col>
                                 <Col span={24}>
-                                    <Card>
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                            }}
-                                        >
-                                            <div>
-                                                <TeamOutlined
-                                                    style={{
-                                                        color: token.colorPrimary,
-                                                    }}
-                                                />{" "}
-                                                Number of contacts
-                                            </div>
-                                            <div>
-                                                <Typography.Title
-                                                    level={2}
-                                                    style={{ marginBottom: 0 }}
-                                                >
-                                                    1.286
-                                                </Typography.Title>
-                                            </div>
-                                        </div>
-                                    </Card>
+                                    <DashboardNumberCard
+                                        icon={<TeamOutlined />}
+                                        title="Number of contacts"
+                                        number={1286}
+                                    />
                                 </Col>
                                 <Col span={24}>
-                                    <Card>
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                            }}
-                                        >
-                                            <div>
-                                                <TeamOutlined
-                                                    style={{
-                                                        color: token.colorPrimary,
-                                                    }}
-                                                />{" "}
-                                                Total deals in pipeline
-                                            </div>
-                                            <div>
-                                                <Typography.Title
-                                                    level={2}
-                                                    style={{ marginBottom: 0 }}
-                                                >
-                                                    34
-                                                </Typography.Title>
-                                            </div>
-                                        </div>
-                                    </Card>
+                                    <DashboardNumberCard
+                                        icon={<ProjectOutlined />}
+                                        title="Number of deals"
+                                        number={34}
+                                    />
                                 </Col>
                             </Row>
                         </Col>
