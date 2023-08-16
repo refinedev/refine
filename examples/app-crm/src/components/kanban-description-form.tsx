@@ -1,6 +1,6 @@
 import { Button, Form, Space } from "antd";
 import MDEditor from "@uiw/react-md-editor";
-import { SaveButton, useForm } from "@refinedev/antd";
+import { useForm } from "@refinedev/antd";
 
 import { Task } from "../interfaces/graphql";
 
@@ -38,7 +38,9 @@ export const KanbanDescriptionForm = ({ initialValues, cancelForm }: Props) => {
                     <Button type="default" onClick={cancelForm}>
                         Cancel
                     </Button>
-                    <SaveButton {...saveButtonProps} />
+                    <Button {...saveButtonProps} type="primary">
+                        Save
+                    </Button>
                 </Space>
             </div>
         </>

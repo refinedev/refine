@@ -1,4 +1,4 @@
-import { SaveButton, useForm } from "@refinedev/antd";
+import { useForm } from "@refinedev/antd";
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
@@ -47,7 +47,9 @@ export const KanbanDueDateForm = ({ initialValues, cancelForm }: Props) => {
                 <Button type="default" onClick={cancelForm}>
                     Cancel
                 </Button>
-                <SaveButton {...saveButtonProps} />
+                <Button {...saveButtonProps} type="primary">
+                    Save
+                </Button>
             </Space>
         </div>
     );
