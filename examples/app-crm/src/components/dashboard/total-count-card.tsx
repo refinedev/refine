@@ -1,14 +1,37 @@
 import React from "react";
 import { Card, theme } from "antd";
+import { useCustom } from "@refinedev/core";
 
-import { Text } from "./text";
+import { Text } from "../text";
+import { API_URL } from "../../providers/data";
 
-export const DashboardNumberCard: React.FC<{
+export const DashboardTotalCountCard: React.FC<{
     icon: React.ReactNode;
     title: string;
-    number: number;
-}> = ({ icon, title, number }) => {
+    type: "companies" | "contacts" | "deals";
+}> = ({ icon, title, type }) => {
     const { token } = theme.useToken();
+    const { data, isLoading, isError } = useCustom({
+        method: "post",
+        url: API_URL,
+        meta: {
+            rawQuery: `query Dashboard {
+                ${type} {
+                  totalCount
+                }
+              }`,
+        },
+    });
+
+    if (isError) {
+        // TODO: handle error message
+        return null;
+    }
+
+    if (isLoading) {
+        // TODO: handle loading state (skeleton)
+        return null;
+    }
 
     return (
         <Card style={{ height: "100%" }}>
@@ -30,7 +53,7 @@ export const DashboardNumberCard: React.FC<{
                     </Text>
                 </div>
                 <Text size="xxxl" strong>
-                    {number}
+                    {data.data[type].totalCount}
                 </Text>
             </div>
         </Card>

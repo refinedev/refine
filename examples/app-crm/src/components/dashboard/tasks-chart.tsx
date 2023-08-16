@@ -2,13 +2,61 @@ import React from "react";
 import { Card, Button, theme } from "antd";
 import { PieChart, Pie, Cell } from "recharts";
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { useCustom } from "@refinedev/core";
 
-import { Text } from "./text";
+import { Text } from "../text";
 
-export const DashboardTasksChart: React.FC<{
-    data: { title: string; value: number }[];
-}> = ({ data = [] }) => {
+type TaskStagesResponse = {
+    taskStages: {
+        nodes: {
+            title: string;
+            tasksAggregate: {
+                count: {
+                    id: number;
+                };
+            }[];
+        }[];
+    };
+};
+
+export const DashboardTasksChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
+    const { data, isLoading, isError } = useCustom<TaskStagesResponse>({
+        method: "post",
+        url: "/graphql",
+        meta: {
+            rawQuery: `query {
+                taskStages {
+                  nodes {
+                    title
+                    tasksAggregate {
+                      count {
+                        id
+                      }
+                    }
+                  }
+                }
+              }              
+            `,
+        },
+    });
+
+    if (isError) {
+        // TODO: handle error message
+        return null;
+    }
+
+    if (isLoading) {
+        // TODO: handle loading state (skeleton)
+        return null;
+    }
+
+    const { taskStages } = data.data;
+    const tasksData = taskStages.nodes.map((stage) => ({
+        title: stage.title,
+        value: stage.tasksAggregate[0].count.id,
+    }));
+
     const COLORS = ["#BAE0FF", "#69B1FF", "#1677FF", "#0958D9", "#10239E"];
 
     return (
@@ -33,7 +81,7 @@ export const DashboardTasksChart: React.FC<{
             >
                 <PieChart width={272} height={248}>
                     <Pie
-                        data={data}
+                        data={tasksData}
                         cx={132}
                         cy={120}
                         innerRadius={60}
@@ -42,7 +90,7 @@ export const DashboardTasksChart: React.FC<{
                         paddingAngle={2}
                         dataKey="value"
                     >
-                        {data.map((entry, index) => (
+                        {tasksData.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
                                 fill={COLORS[index % COLORS.length]}
@@ -59,7 +107,7 @@ export const DashboardTasksChart: React.FC<{
                         paddingBottom: "2rem",
                     }}
                 >
-                    {data.map((item, index) => (
+                    {tasksData.map((item, index) => (
                         <div
                             key={index}
                             style={{
@@ -76,7 +124,7 @@ export const DashboardTasksChart: React.FC<{
                                     marginRight: ".5rem",
                                 }}
                             />
-                            <Text size="md">{item.name}</Text>
+                            <Text size="md">{item.title}</Text>
                         </div>
                     ))}
                 </div>

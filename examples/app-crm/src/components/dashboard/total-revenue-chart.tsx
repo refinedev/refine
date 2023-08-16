@@ -2,17 +2,97 @@ import React from "react";
 import { Card, theme } from "antd";
 import { PieChart, Pie, Cell, Label } from "recharts";
 import { DollarOutlined } from "@ant-design/icons";
+import { useCustom } from "@refinedev/core";
 
-import { Text } from "./text";
-import { currencyNumber } from "../utility/currency-number";
+import { Text } from "../text";
+import { currencyNumber } from "../../utility/currency-number";
+
+type DealRevenueResponse = {
+    realizationRevenueSum: {
+        nodes: {
+            title: string;
+            dealsAggregate: {
+                sum: {
+                    value: number;
+                };
+            }[];
+        }[];
+    };
+    expectedRevenueSum: {
+        nodes: {
+            title: string;
+            dealsAggregate: {
+                sum: {
+                    value: number;
+                };
+            }[];
+        }[];
+    };
+};
 
 export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
-    const data = [
-        { name: "Expected", value: 7498654 },
-        { name: "Realized", value: 5342041 },
-    ];
+    const { data, isLoading, isError } = useCustom<DealRevenueResponse>({
+        method: "post",
+        url: "/graphql",
+        meta: {
+            rawQuery: `query Dashboard {
+                expectedRevenueSum: dealStages(filter: { title: { eq: "WON" } }) {
+                    nodes {
+                    title
+                    dealsAggregate {
+                        sum {
+                            value
+                            }
+                        }
+                    }
+                }
+                realizationRevenueSum: dealStages(
+                    filter: { title: { notIn: ["WON", "LOST"] } }
+                ) {
+                    nodes {
+                    title
+                    dealsAggregate {
+                            sum {
+                                value
+                            }
+                        }
+                    }
+                }
+            }                         
+            `,
+        },
+    });
+
+    if (isError) {
+        // TODO: handle error message
+        return null;
+    }
+
+    if (isLoading) {
+        // TODO: handle loading state (skeleton)
+        return null;
+    }
+
     const COLORS = ["#CCCCCC", "#1677FF"];
+    const { realizationRevenueSum, expectedRevenueSum } = data.data;
+    const totalRealizationRevenue = realizationRevenueSum.nodes.map(
+        (item) => item.dealsAggregate[0].sum.value,
+    )[0];
+    const totalExpectedRevenue = expectedRevenueSum.nodes.map(
+        (item) => item.dealsAggregate[0].sum.value,
+    )[0];
+
+    const totalRevenue = [
+        {
+            name: "Expected",
+            value: totalExpectedRevenue,
+        },
+        {
+            name: "Realization",
+            value: totalRealizationRevenue,
+        },
+    ];
 
     return (
         <Card
@@ -37,7 +117,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
             >
                 <PieChart width={180} height={180}>
                     <Pie
-                        data={data}
+                        data={totalRevenue}
                         cx={90}
                         cy={90}
                         innerRadius={65}
@@ -72,11 +152,16 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                                         fontWeight: "400",
                                     }}
                                 >
-                                    71%
+                                    %
+                                    {Math.round(
+                                        (totalRealizationRevenue /
+                                            totalExpectedRevenue) *
+                                            100,
+                                    )}
                                 </text>
                             }
                         />
-                        {data.map((entry, index) => (
+                        {totalRevenue.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
                                 fill={COLORS[index % COLORS.length]}
@@ -92,7 +177,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                     justifyContent: "space-around",
                 }}
             >
-                {data.map((item, index) => (
+                {totalRevenue.map((item, index) => (
                     <div key={index}>
                         <div>
                             <span

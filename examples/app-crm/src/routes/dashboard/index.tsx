@@ -1,45 +1,13 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { ProjectOutlined, TeamOutlined } from "@ant-design/icons";
-import { useCustom } from "@refinedev/core";
 
-import { DashboardNumberCard } from "../components/dashboard-number-card";
-import { DashboardTasksChart } from "../components/dashboard-tasks-chart";
-import { DashboardDealsChart } from "../components/dashboard-deals-chart";
-import { DashboardTotalRevenueChart } from "../components/dashboard-total-revenue-chart";
+import { DashboardTotalCountCard } from "../../components/dashboard/total-count-card";
+import { DashboardTasksChart } from "../../components/dashboard/tasks-chart";
+import { DashboardDealsChart } from "../../components/dashboard/deals-chart";
+import { DashboardTotalRevenueChart } from "../../components/dashboard/total-revenue-chart";
 
 export const DashboardPage: React.FC = () => {
-    const { data, isLoading } = useCustom({
-        method: "post",
-        url: "/graphql",
-        meta: {
-            rawQuery: `query Dashboard {
-                companies {
-                  totalCount
-                }
-                contacts {
-                  totalCount
-                }
-                deals {
-                  totalCount
-                }
-                taskStages {
-                  title
-                  tasksAggregate {
-                    count {
-                      id
-                    }
-                  }
-                }
-              }`,
-        },
-    });
-
-    if (isLoading) {
-        // TODO: Should be a skeleton
-        return null;
-    }
-
     return (
         <>
             <Row gutter={[32, 32]} style={{ marginBottom: 32 }}>
@@ -54,24 +22,24 @@ export const DashboardPage: React.FC = () => {
                         }}
                     >
                         <div style={{ gridArea: "1 / 1 / 2 / 2" }}>
-                            <DashboardNumberCard
+                            <DashboardTotalCountCard
+                                type="companies"
                                 icon={<ProjectOutlined />}
                                 title="Number of companies"
-                                number={data?.data?.companies?.totalCount}
                             />
                         </div>
                         <div style={{ gridArea: "2 / 1 / 3 / 2" }}>
-                            <DashboardNumberCard
+                            <DashboardTotalCountCard
+                                type="contacts"
                                 icon={<TeamOutlined />}
                                 title="Number of contacts"
-                                number={data?.data?.contacts?.totalCount}
                             />
                         </div>
                         <div style={{ gridArea: "3 / 1 / 4 / 2" }}>
-                            <DashboardNumberCard
+                            <DashboardTotalCountCard
+                                type="deals"
                                 icon={<ProjectOutlined />}
                                 title="Number of deals"
-                                number={data?.data?.deals?.totalCount}
                             />
                         </div>
                         <div style={{ gridArea: "1 / 2 / 4 / 3" }}>

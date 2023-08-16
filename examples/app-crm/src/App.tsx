@@ -21,7 +21,7 @@ import { RegisterPage } from "./routes/register";
 import { ForgotPasswordPage } from "./routes/forgot-password";
 import { UpdatePasswordPage } from "./routes/update-password";
 
-import { DashboardPage } from "./routes/dashboard";
+import { DashboardPage } from "./routes/dashboard/index";
 
 import { CalendarPageWrapper } from "./routes/calendar/wrapper";
 import { KanbanPage } from "./routes/scrumboard/kanban";
