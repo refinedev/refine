@@ -11,7 +11,7 @@ import {
     ResponsiveContainer,
 } from "recharts";
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { useCustom } from "@refinedev/core";
+import { useCustom, useNavigation } from "@refinedev/core";
 import dayjs from "dayjs";
 
 import { Text } from "../text";
@@ -35,6 +35,7 @@ type YearlyDealGroupedResponse = {
 
 export const DashboardDealsChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
+    const { list } = useNavigation();
     const { data, isLoading, isError } = useCustom<YearlyDealGroupedResponse>({
         method: "post",
         url: "/graphql",
@@ -121,7 +122,10 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                 </span>
             }
             extra={
-                <Button icon={<RightCircleOutlined />}>
+                <Button
+                    onClick={() => list("sales")}
+                    icon={<RightCircleOutlined />}
+                >
                     See sales pipeline
                 </Button>
             }

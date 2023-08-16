@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button, theme } from "antd";
 import { PieChart, Pie, Cell } from "recharts";
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { useCustom } from "@refinedev/core";
+import { useCustom, useNavigation } from "@refinedev/core";
 
 import { Text } from "../text";
 
@@ -21,6 +21,7 @@ type TaskStagesResponse = {
 
 export const DashboardTasksChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
+    const { list } = useNavigation();
     const { data, isLoading, isError } = useCustom<TaskStagesResponse>({
         method: "post",
         url: "/graphql",
@@ -70,7 +71,12 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                 </span>
             }
             extra={
-                <Button icon={<RightCircleOutlined />}>See kanban board</Button>
+                <Button
+                    onClick={() => list("kanban")}
+                    icon={<RightCircleOutlined />}
+                >
+                    See kanban board
+                </Button>
             }
         >
             <div
