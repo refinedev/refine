@@ -32,4 +32,16 @@
     .ant-modal-footer {
         border-top: none;
     }
+
+    .ant-collapse {
+        .ant-collapse-header {
+            padding-left: 24px;
+        }
+
+        .ant-collapse-content {
+            .ant-collapse-content-box {
+                padding-left: 53px;
+            }
+        }
+    }
 }

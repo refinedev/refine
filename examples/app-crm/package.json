@@ -12,7 +12,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
-    "graphql-ws": "^5.9.1"
+    "graphql-ws": "^5.9.1",
+    "@uiw/react-md-editor": "^3.19.5"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
