@@ -3,16 +3,23 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "5.0.1",
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/modifiers": "^6.0.1",
+    "@dnd-kit/sortable": "^7.0.2",
     "@refinedev/antd": "^5.34.0",
-    "@refinedev/core": "^4.34.0",
     "@refinedev/cli": "^2.7.6",
-    "@refinedev/react-router-v6": "^4.5.0",
+    "@refinedev/core": "^4.34.0",
     "@refinedev/nestjs-query-graphql": "^0.0.1",
+    "@refinedev/react-router-v6": "^4.5.0",
+    "@tanstack/react-query-devtools": "^4.32.6",
     "antd": "^5.0.5",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.10.7",
+    "graphql-ws": "^5.9.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
-    "graphql-ws": "^5.9.1"
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
@@ -27,9 +34,9 @@
     "autoprefixer": "^10.4.1",
     "cypress": "^12.11.0",
     "eslint": "^8.24.0",
-    "prettier": "^2.7.1",
     "postcss": "^8.1.4",
     "postcss-nesting": "^12.0.1",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.4",
     "vite": "^4.3.1"
   },

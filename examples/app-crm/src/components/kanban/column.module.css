@@ -1,0 +1,59 @@
+.container {
+    width: 256px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 256px;
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #f0f2f5;
+}
+
+.titleContainer {
+    width: 168px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 0.5;
+}
+
+.count {
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.actionContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.childrenWrapper {
+    margin-top: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 2px dashed transparent;
+}
+
+.isOver {
+    border-radius: 4px;
+    border-color: rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.3);
+}

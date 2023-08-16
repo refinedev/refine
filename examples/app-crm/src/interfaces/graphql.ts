@@ -27,7 +27,6 @@ export type Scalars = {
     Boolean: { input: boolean; output: boolean };
     Int: { input: number; output: number };
     Float: { input: number; output: number };
-    ConnectionCursor: { input: any; output: any };
     DateTime: { input: any; output: any };
 };
 
@@ -69,10 +68,12 @@ export type AuditChange = {
 };
 
 export type AuditConnection = {
-    /** Array of edges. */
-    edges: Array<AuditEdge>;
+    /** Array of nodes. */
+    nodes: Array<Audit>;
     /** Paging information */
-    pageInfo: PageInfo;
+    pageInfo: OffsetPageInfo;
+    /** Fetch total count of records */
+    totalCount: Scalars["Int"]["output"];
 };
 
 export type AuditDeleteResponse = {
@@ -83,13 +84,6 @@ export type AuditDeleteResponse = {
     targetEntity?: Maybe<Scalars["String"]["output"]>;
     targetId?: Maybe<Scalars["Float"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
-};
-
-export type AuditEdge = {
-    /** Cursor for this node. */
-    cursor: Scalars["ConnectionCursor"]["output"];
-    /** The node containing the Audit */
-    node: Audit;
 };
 
 export type AuditFilter = {
@@ -1306,17 +1300,6 @@ export type CreateUserSubscriptionFilterInput = {
     filter: UserSubscriptionFilter;
 };
 
-export type CursorPaging = {
-    /** Paginate after opaque cursor */
-    after?: InputMaybe<Scalars["ConnectionCursor"]["input"]>;
-    /** Paginate before opaque cursor */
-    before?: InputMaybe<Scalars["ConnectionCursor"]["input"]>;
-    /** Paginate first */
-    first?: InputMaybe<Scalars["Int"]["input"]>;
-    /** Paginate last */
-    last?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
 export type DateFieldComparison = {
     between?: InputMaybe<DateFieldComparisonBetween>;
     eq?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -1565,6 +1548,15 @@ export type DealStageDealsArgs = {
 
 export type DealStageDealsAggregateArgs = {
     filter?: InputMaybe<DealAggregateFilter>;
+};
+
+export type DealStageConnection = {
+    /** Array of nodes. */
+    nodes: Array<DealStage>;
+    /** Paging information */
+    pageInfo: OffsetPageInfo;
+    /** Fetch total count of records */
+    totalCount: Scalars["Int"]["output"];
 };
 
 export type DealStageCreateInput = {
@@ -2671,17 +2663,6 @@ export type OffsetPaging = {
     offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
-export type PageInfo = {
-    /** The cursor of the last returned record. */
-    endCursor?: Maybe<Scalars["ConnectionCursor"]["output"]>;
-    /** true if paging forward and there are more records. */
-    hasNextPage?: Maybe<Scalars["Boolean"]["output"]>;
-    /** true if paging backwards and there are more records. */
-    hasPreviousPage?: Maybe<Scalars["Boolean"]["output"]>;
-    /** The cursor of the first returned record. */
-    startCursor?: Maybe<Scalars["ConnectionCursor"]["output"]>;
-};
-
 export type Query = {
     audit: Audit;
     audits: AuditConnection;
@@ -2697,7 +2678,7 @@ export type Query = {
     deal: Deal;
     dealAggregate: Array<DealAggregateResponse>;
     dealStage: DealStage;
-    dealStages: Array<DealStage>;
+    dealStages: DealStageConnection;
     deals: DealConnection;
     event: Event;
     eventCategories: EventCategoryConnection;
@@ -2712,7 +2693,7 @@ export type Query = {
     taskComments: TaskCommentConnection;
     taskStage: TaskStage;
     taskStageAggregate: Array<TaskStageAggregateResponse>;
-    taskStages: Array<TaskStage>;
+    taskStages: TaskStageConnection;
     tasks: TaskConnection;
     user: User;
     users: UserConnection;
@@ -2724,7 +2705,7 @@ export type QueryAuditArgs = {
 
 export type QueryAuditsArgs = {
     filter?: AuditFilter;
-    paging?: CursorPaging;
+    paging?: OffsetPaging;
     sorting?: Array<AuditSort>;
 };
 
@@ -2786,6 +2767,7 @@ export type QueryDealStageArgs = {
 
 export type QueryDealStagesArgs = {
     filter?: DealStageFilter;
+    paging?: OffsetPaging;
     sorting?: Array<DealStageSort>;
 };
 
@@ -2853,6 +2835,7 @@ export type QueryTaskStageAggregateArgs = {
 
 export type QueryTaskStagesArgs = {
     filter?: TaskStageFilter;
+    paging?: OffsetPaging;
     sorting?: Array<TaskStageSort>;
 };
 
@@ -3675,6 +3658,15 @@ export type TaskStageAggregateResponse = {
 
 export type TaskStageAvgAggregate = {
     id?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export type TaskStageConnection = {
+    /** Array of nodes. */
+    nodes: Array<TaskStage>;
+    /** Paging information */
+    pageInfo: OffsetPageInfo;
+    /** Fetch total count of records */
+    totalCount: Scalars["Int"]["output"];
 };
 
 export type TaskStageCountAggregate = {

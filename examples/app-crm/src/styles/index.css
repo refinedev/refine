@@ -1,1 +1,55 @@
-/*  */
+.anticon,
+.ant-text {
+    &.xs {
+        font-size: 0.75rem;
+        line-height: 1.66;
+    }
+    &.sm {
+        font-size: 0.875rem;
+        line-height: 1.42;
+    }
+    &.md {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    &.lg {
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+    &.xl {
+        font-size: 1.5rem;
+        line-height: 1.33;
+    }
+    &.xxl {
+        font-size: 1.875rem;
+        line-height: 1.26;
+    }
+    &.xxxl {
+        font-size: 2.375rem;
+        line-height: 1.21;
+    }
+    &.huge {
+        font-size: 2.875rem;
+        line-height: 1.17;
+    }
+    &.xhuge {
+        font-size: 3.5rem;
+        line-height: 1.14;
+    }
+    &.xxhuge {
+        font-size: 4rem;
+        line-height: 1.11;
+    }
+}
+
+.anticon {
+    &.primary {
+        color: rgba(0, 0, 0, 0.85);
+    }
+    &.secondary {
+        color: rgba(0, 0, 0, 0.65);
+    }
+    &.tertiary {
+        color: rgba(0, 0, 0, 0.45);
+    }
+}

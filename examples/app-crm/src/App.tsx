@@ -1,4 +1,5 @@
 import { Refine, Authenticated } from "@refinedev/core";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
 
 import routerProvider, {
@@ -144,6 +145,7 @@ const App: React.FC = () => {
                     </Routes>
                     <UnsavedChangesNotifier />
                     <DocumentTitleHandler />
+                    <ReactQueryDevtools />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>
