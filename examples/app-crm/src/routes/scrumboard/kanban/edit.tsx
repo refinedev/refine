@@ -13,6 +13,7 @@ import {
 import { KanbanStageForm } from "../../../components/kanban-stage-form";
 import { AccordionHeader } from "../../../components/kanban-accordion-header";
 import { KanbanDescriptionForm } from "../../../components/kanban-description-form";
+import { KanbanDueDateForm } from "../../../components/kanban-due-date-form";
 import { Task } from "../../../interfaces/graphql";
 
 const text = `
@@ -40,6 +41,7 @@ export const KanbanEditPage = () => {
                 "title",
                 "completed",
                 "description",
+                "dueDate",
                 { stage: ["id", "title"] },
             ],
         },
@@ -52,6 +54,10 @@ export const KanbanEditPage = () => {
 
     const descriptionInitialValues = {
         description: queryResult?.data?.data.description,
+    };
+
+    const dueDateInitialValues = {
+        dueDate: queryResult?.data?.data.dueDate,
     };
 
     const items: CollapseProps["items"] = [
@@ -93,7 +99,12 @@ export const KanbanEditPage = () => {
                     Due date
                 </AccordionHeader>
             ),
-            children: <p>{text}</p>,
+            children: (
+                <KanbanDueDateForm
+                    initialValues={dueDateInitialValues}
+                    cancelForm={() => setActiveKey(undefined)}
+                />
+            ),
             style: panelStyle,
             showArrow: false,
         },

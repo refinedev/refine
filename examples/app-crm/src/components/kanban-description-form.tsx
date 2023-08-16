@@ -18,6 +18,7 @@ export const KanbanDescriptionForm = ({ initialValues, cancelForm }: Props) => {
         },
         redirect: false,
     });
+
     return (
         <>
             <Form {...formProps} initialValues={initialValues}>
@@ -33,7 +34,7 @@ export const KanbanDescriptionForm = ({ initialValues, cancelForm }: Props) => {
                     marginTop: "12px",
                 }}
             >
-                <Space align="end">
+                <Space>
                     <Button type="default" onClick={cancelForm}>
                         Cancel
                     </Button>

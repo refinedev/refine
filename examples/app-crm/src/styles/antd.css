@@ -39,8 +39,12 @@
         }
 
         .ant-collapse-content {
+            background-color: white;
+            border-top: 0px;
+
             .ant-collapse-content-box {
                 padding-left: 53px;
+                padding-top: 0px;
             }
         }
     }
