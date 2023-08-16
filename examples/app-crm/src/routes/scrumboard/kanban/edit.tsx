@@ -15,13 +15,9 @@ import { AccordionHeader } from "../../../components/kanban-accordion-header";
 import { KanbanDescriptionForm } from "../../../components/kanban-description-form";
 import { KanbanDueDateForm } from "../../../components/kanban-due-date-form";
 import { KanbanUsersForm } from "../../../components/kanban-users-form";
-import { Task } from "../../../interfaces/graphql";
+import { KanbanCheckListForm } from "../../../components/kanban-checklist-form";
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+import { Task } from "../../../interfaces/graphql";
 
 const panelStyle: React.CSSProperties = {
     background: "#ffffff",
@@ -45,6 +41,7 @@ export const KanbanEditPage = () => {
                 "dueDate",
                 { stage: ["id", "title"] },
                 { users: ["id", "name"] },
+                { checklist: ["title", "checked"] },
             ],
         },
     });
@@ -67,6 +64,10 @@ export const KanbanEditPage = () => {
             label: user.name,
             value: user.id,
         })),
+    };
+
+    const checkListInitialValues = {
+        checklist: queryResult?.data?.data.checklist,
     };
 
     const items: CollapseProps["items"] = [
@@ -148,7 +149,9 @@ export const KanbanEditPage = () => {
                     Checklist
                 </AccordionHeader>
             ),
-            children: <p>{text}</p>,
+            children: (
+                <KanbanCheckListForm initialValues={checkListInitialValues} />
+            ),
             style: panelStyle,
             showArrow: false,
         },
