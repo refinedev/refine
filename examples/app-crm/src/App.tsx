@@ -1,5 +1,7 @@
 import { Refine, Authenticated } from "@refinedev/core";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 import routerProvider, {
     NavigateToResource,
@@ -39,6 +41,8 @@ import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
 import "./styles/index.css";
+
+dayjs.extend(utc);
 
 const App: React.FC = () => {
     return (

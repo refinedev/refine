@@ -6,6 +6,7 @@ import { DashboardTotalCountCard } from "../../components/dashboard/total-count-
 import { DashboardTasksChart } from "../../components/dashboard/tasks-chart";
 import { DashboardDealsChart } from "../../components/dashboard/deals-chart";
 import { DashboardTotalRevenueChart } from "../../components/dashboard/total-revenue-chart";
+import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
 
 export const DashboardPage: React.FC = () => {
     return (
@@ -48,12 +49,20 @@ export const DashboardPage: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-            <Row gutter={[32, 32]}>
+            <Row gutter={[32, 32]} style={{ marginBottom: 32 }}>
                 <Col span={16}>
                     <DashboardDealsChart />
                 </Col>
                 <Col span={8}>
                     <DashboardTotalRevenueChart />
+                </Col>
+            </Row>
+            <Row gutter={[32, 32]}>
+                <Col span={8}>
+                    <CalendarUpcomingEvents limit={5} />
+                </Col>
+                <Col span={16}>
+                    <CalendarUpcomingEvents limit={5} />
                 </Col>
             </Row>
         </>
