@@ -22,10 +22,6 @@ type Props = {
 
 export const KanbanStageForm = ({ initialValues }: Props) => {
     const { formProps } = useForm<Task, HttpError>({
-        //TODO: will be removed
-        meta: {
-            fields: ["title", "id", { stage: ["id", "title"] }, "completed"],
-        },
         queryOptions: {
             enabled: false,
         },
@@ -50,12 +46,7 @@ export const KanbanStageForm = ({ initialValues }: Props) => {
     });
 
     return (
-        <div
-            style={{
-                padding: "11px 24px",
-                borderBottom: "1px solid #d9d9d9",
-            }}
-        >
+        <div>
             <Form
                 layout="inline"
                 style={{

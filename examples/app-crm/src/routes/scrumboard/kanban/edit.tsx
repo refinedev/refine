@@ -56,6 +56,13 @@ export const KanbanEditPage = () => {
 
     const items: CollapseProps["items"] = [
         {
+            key: "0",
+            label: <KanbanStageForm initialValues={kanbanStageInitialValues} />,
+            style: panelStyle,
+            showArrow: false,
+            collapsible: "icon",
+        },
+        {
             key: "1",
             label: (
                 <AccordionHeader
@@ -146,7 +153,6 @@ export const KanbanEditPage = () => {
             title={queryResult?.data?.data.title}
             width={586}
         >
-            <KanbanStageForm initialValues={kanbanStageInitialValues} />
             <Collapse
                 accordion
                 items={items}
