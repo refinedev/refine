@@ -16,6 +16,8 @@ import { KanbanDescriptionForm } from "../../../components/kanban-description-fo
 import { KanbanDueDateForm } from "../../../components/kanban-due-date-form";
 import { KanbanUsersForm } from "../../../components/kanban-users-form";
 import { KanbanCheckListForm } from "../../../components/kanban-checklist-form";
+import { KanbanCommentForm } from "../../../components/kanban-comment-form";
+import { KanbanCommentList } from "../../../components/kanban-comment-list";
 
 import { Task } from "../../../interfaces/graphql";
 
@@ -180,6 +182,7 @@ export const KanbanEditPage = () => {
             }}
             title={queryResult?.data?.data.title}
             width={586}
+            footer={null}
         >
             <Collapse
                 accordion
@@ -188,6 +191,18 @@ export const KanbanEditPage = () => {
                 onChange={(key) => setActiveKey(key[0])}
                 style={{ border: "none", borderRadius: 0 }}
             />
+            <div
+                style={{
+                    backgroundColor: "#f0f2f5",
+                    padding: "24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "48px",
+                }}
+            >
+                <KanbanCommentForm />
+                <KanbanCommentList />
+            </div>
         </Modal>
     );
 };
