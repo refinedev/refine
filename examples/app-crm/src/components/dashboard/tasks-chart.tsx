@@ -96,13 +96,13 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                     justifyContent: "space-around",
                 }}
             >
-                <PieChart width={272} height={248}>
+                <PieChart width={272} height={231}>
                     <Pie
                         data={tasksData}
                         cx={132}
-                        cy={120}
-                        innerRadius={60}
-                        outerRadius={120}
+                        cy={110}
+                        innerRadius={55}
+                        outerRadius={110}
                         fill="#8884d8"
                         paddingAngle={2}
                         dataKey="value"
