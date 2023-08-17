@@ -13,9 +13,9 @@ import {
     EditOutlined,
     ClearOutlined,
 } from "@ant-design/icons";
-import { Kanban, KanbanColumn, KanbanItem } from "../../components/kanban";
+import { Kanban, KanbanColumnMemo, KanbanItem } from "../../components/kanban";
+import { FullScreenLoading, ProjectCardMemo, Text } from "../../components";
 import { Task, TaskStage } from "../../interfaces/graphql";
-import { ProjectCard, Text } from "../../components";
 
 const defaultContextMenuItems = {
     edit: {
@@ -63,47 +63,49 @@ const taskFragment = [
 ];
 
 export const KanbanPage = () => {
-    const { data: defaultStage } = useList<Task>({
-        resource: "stages",
-        pagination: {
-            current: 1,
-            pageSize: 999,
-        },
-        meta: {
-            operation: "tasks",
-            fields: [...taskFragment, { stage: ["id"] }],
-        },
-        queryOptions: {
-            select: (data) => {
-                const tasksWithoutStage = data.data.filter(
-                    (task) => task.stage === null,
-                );
-
-                return {
-                    data: tasksWithoutStage,
-                    total: tasksWithoutStage.length,
-                };
+    const { data: defaultStage, isLoading: isLoadingDefaultStage } =
+        useList<Task>({
+            resource: "stages",
+            pagination: {
+                current: 1,
+                pageSize: 999,
             },
-        },
-    });
+            meta: {
+                operation: "tasks",
+                fields: [...taskFragment, { stage: ["id"] }],
+            },
+            queryOptions: {
+                select: (data) => {
+                    const tasksWithoutStage = data.data.filter(
+                        (task) => task.stage === null,
+                    );
 
-    const { data: taskStages } = useList<TaskStage>({
-        resource: "stages",
-        pagination: {
-            current: 1,
-            pageSize: 999,
-        },
-        meta: {
-            operation: "taskStages",
-            fields: [
-                "id",
-                "title",
-                {
-                    tasks: taskFragment,
+                    return {
+                        data: tasksWithoutStage,
+                        total: tasksWithoutStage.length,
+                    };
                 },
-            ],
-        },
-    });
+            },
+        });
+
+    const { data: taskStages, isLoading: isLoadingTaskStages } =
+        useList<TaskStage>({
+            resource: "stages",
+            pagination: {
+                current: 1,
+                pageSize: 999,
+            },
+            meta: {
+                operation: "taskStages",
+                fields: [
+                    "id",
+                    "title",
+                    {
+                        tasks: taskFragment,
+                    },
+                ],
+            },
+        });
 
     const { mutate: updateTask } = useUpdate();
     const { mutate: updateManyTask } = useUpdateMany();
@@ -126,6 +128,34 @@ export const KanbanPage = () => {
             },
             successNotification: false,
         });
+    };
+
+    const getContextMenuItems = ({ column }: { column: TaskStage }) => {
+        const hasItems = column.tasks.length > 0;
+
+        const items = [
+            {
+                ...defaultContextMenuItems.edit,
+                onClick: () => handleEditStage({ stageId: column.id }),
+            },
+        ];
+        if (!hasItems) {
+            items.push({
+                ...defaultContextMenuItems.delete,
+                onClick: () => handleDeleteStage({ stageId: column.id }),
+            });
+        }
+        if (hasItems) {
+            items.push({
+                ...defaultContextMenuItems.clear,
+                onClick: () =>
+                    handleClearCards({
+                        taskIds: column.tasks.map((task) => task.id),
+                    }),
+            });
+        }
+
+        return items;
     };
 
     const handleAddStage = () => {
@@ -173,10 +203,16 @@ export const KanbanPage = () => {
         });
     };
 
+    const loading = isLoadingDefaultStage || isLoadingTaskStages;
+
+    if (loading) {
+        return <FullScreenLoading />;
+    }
+
     return (
         <Kanban onDragEnd={handleOnDragEnd}>
             {!!defaultStage?.data?.length && (
-                <KanbanColumn
+                <KanbanColumnMemo
                     id={"default"}
                     title={"default"}
                     count={defaultStage.data.length}
@@ -184,40 +220,18 @@ export const KanbanPage = () => {
                     {defaultStage.data.map((task) => {
                         return (
                             <KanbanItem key={task.id} id={task.id}>
-                                <ProjectCard {...task} />
+                                <ProjectCardMemo {...task} />
                             </KanbanItem>
                         );
                     })}
-                </KanbanColumn>
+                </KanbanColumnMemo>
             )}
 
             {taskStages?.data.map((column) => {
-                const hasItems = column.tasks.length > 0;
-
-                const contextMenuItems = [
-                    {
-                        ...defaultContextMenuItems.edit,
-                        onClick: () => handleEditStage({ stageId: column.id }),
-                    },
-                ];
-                if (!hasItems) {
-                    contextMenuItems.push({
-                        ...defaultContextMenuItems.clear,
-                        onClick: () =>
-                            handleClearCards({
-                                taskIds: column.tasks.map((task) => task.id),
-                            }),
-                    });
-
-                    contextMenuItems.push({
-                        ...defaultContextMenuItems.delete,
-                        onClick: () =>
-                            handleDeleteStage({ stageId: column.id }),
-                    });
-                }
+                const contextMenuItems = getContextMenuItems({ column });
 
                 return (
-                    <KanbanColumn
+                    <KanbanColumnMemo
                         key={column.id}
                         id={column.id}
                         title={column.title}
@@ -228,11 +242,11 @@ export const KanbanPage = () => {
                         {column.tasks.map((task) => {
                             return (
                                 <KanbanItem key={task.id} id={task.id}>
-                                    <ProjectCard {...task} />
+                                    <ProjectCardMemo {...task} />
                                 </KanbanItem>
                             );
                         })}
-                    </KanbanColumn>
+                    </KanbanColumnMemo>
                 );
             })}
             <Button

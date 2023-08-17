@@ -20,7 +20,7 @@ import {
 } from "@ant-design/icons";
 import { TextIcon } from "../icon";
 import { Text } from "../text";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { useDelete, useNavigation } from "@refinedev/core";
 import { getDateColor } from "../../utils";
 
@@ -278,3 +278,5 @@ export const ProjectCard = ({
         </ConfigProvider>
     );
 };
+
+export const ProjectCardMemo = memo(ProjectCard);
