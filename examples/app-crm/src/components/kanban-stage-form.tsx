@@ -5,14 +5,6 @@ import { FlagOutlined } from "@ant-design/icons";
 
 import { Task } from "../interfaces/graphql";
 
-//TODO: Add FormValues type to useForm
-type FormValues = {
-    completed: boolean;
-    stage: {
-        id: number;
-    };
-};
-
 type Props = {
     initialValues: {
         completed: Task["completed"];
@@ -61,8 +53,16 @@ export const KanbanStageForm = ({ initialValues }: Props) => {
                     <Form.Item noStyle name={["stage", "id"]}>
                         <Select
                             {...selectProps}
+                            popupMatchSelectWidth={false}
+                            options={selectProps.options?.concat([
+                                {
+                                    label: "Unassigned",
+                                    value: null,
+                                },
+                            ])}
                             bordered={false}
                             showSearch={false}
+                            placeholder="Select a stage"
                             onSearch={undefined}
                             size="small"
                         />
