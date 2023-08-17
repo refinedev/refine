@@ -13,13 +13,18 @@ import {
 import { KanbanStageForm } from "../../../components/kanban-stage-form";
 import { AccordionHeader } from "../../../components/kanban-accordion-header";
 import { KanbanDescriptionForm } from "../../../components/kanban-description-form";
-import { KanbanDueDateForm } from "../../../components/kanban-due-date-form";
+import { KanbanDescriptionHeader } from "../../../components/kanban-description-header";
+import { KanbanDueDateForm } from "../../../components/kanban-duedate-form";
+import { KanbanDueDateHeader } from "../../../components/kanban-duedate-header";
 import { KanbanUsersForm } from "../../../components/kanban-users-form";
+import { KanbanUsersHeader } from "../../../components/kanban-checklist-header";
 import { KanbanCheckListForm } from "../../../components/kanban-checklist-form";
+import { KanbanChecklistHeader } from "../../../components/kanban-user-header";
 import { KanbanCommentForm } from "../../../components/kanban-comment-form";
 import { KanbanCommentList } from "../../../components/kanban-comment-list";
 import { KanbanModalFooter } from "../../../components/kanban-modal-footer";
 
+import { Text } from "../../../components/text";
 import { Task } from "../../../interfaces/graphql";
 
 const panelStyle: React.CSSProperties = {
@@ -49,34 +54,17 @@ export const KanbanEditPage = () => {
         },
     });
 
-    const kanbanStageInitialValues = {
-        completed: queryResult?.data?.data.completed ?? false,
-        stage: queryResult?.data?.data.stage,
-    };
-
-    const descriptionInitialValues = {
-        description: queryResult?.data?.data.description,
-    };
-
-    const dueDateInitialValues = {
-        dueDate: queryResult?.data?.data.dueDate,
-    };
-
-    const usersInitialValues = {
-        userIds: queryResult?.data?.data.users.map((user) => ({
-            label: user.name,
-            value: user.id,
-        })),
-    };
-
-    const checkListInitialValues = {
-        checklist: queryResult?.data?.data.checklist,
-    };
+    const { description, completed, stage, dueDate, users, checklist } =
+        queryResult?.data?.data ?? {};
 
     const items: CollapseProps["items"] = [
         {
             key: "0",
-            label: <KanbanStageForm initialValues={kanbanStageInitialValues} />,
+            label: (
+                <KanbanStageForm
+                    initialValues={{ completed: completed ?? false, stage }}
+                />
+            ),
             style: panelStyle,
             showArrow: false,
             collapsible: "icon",
@@ -87,14 +75,16 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<AlignLeftOutlined />}
                     isActive={activeKey === "1"}
-                    fallback="Add card description"
+                    fallback={
+                        <KanbanDescriptionHeader description={description} />
+                    }
                 >
                     Description
                 </AccordionHeader>
             ),
             children: (
                 <KanbanDescriptionForm
-                    initialValues={descriptionInitialValues}
+                    initialValues={{ description }}
                     cancelForm={() => setActiveKey(undefined)}
                 />
             ),
@@ -107,14 +97,14 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<FieldTimeOutlined />}
                     isActive={activeKey === "2"}
-                    fallback="Add due date"
+                    fallback={<KanbanDueDateHeader dueData={dueDate} />}
                 >
                     Due date
                 </AccordionHeader>
             ),
             children: (
                 <KanbanDueDateForm
-                    initialValues={dueDateInitialValues}
+                    initialValues={{ dueDate }}
                     cancelForm={() => setActiveKey(undefined)}
                 />
             ),
@@ -127,14 +117,19 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<UsergroupAddOutlined />}
                     isActive={activeKey === "3"}
-                    fallback="Assign to users"
+                    fallback={<KanbanUsersHeader users={users} />}
                 >
                     Users
                 </AccordionHeader>
             ),
             children: (
                 <KanbanUsersForm
-                    initialValues={usersInitialValues}
+                    initialValues={{
+                        userIds: users?.map((user) => ({
+                            label: user.name,
+                            value: user.id,
+                        })),
+                    }}
                     cancelForm={() => setActiveKey(undefined)}
                 />
             ),
@@ -147,14 +142,12 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<CheckSquareOutlined />}
                     isActive={activeKey === "4"}
-                    fallback="Add checklist"
+                    fallback={<KanbanChecklistHeader checklist={checklist} />}
                 >
                     Checklist
                 </AccordionHeader>
             ),
-            children: (
-                <KanbanCheckListForm initialValues={checkListInitialValues} />
-            ),
+            children: <KanbanCheckListForm initialValues={{ checklist }} />,
             style: panelStyle,
             showArrow: false,
         },

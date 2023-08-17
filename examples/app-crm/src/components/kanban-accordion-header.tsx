@@ -1,12 +1,12 @@
 import { PropsWithChildren, ReactNode } from "react";
-import { Space, Typography } from "antd";
+import { Space } from "antd";
 
 import { Text } from "../components/text";
 
 type Props = PropsWithChildren<{
     icon: ReactNode;
     isActive: boolean;
-    fallback: string;
+    fallback: string | ReactNode;
 }>;
 
 export const AccordionHeader = ({
@@ -16,13 +16,9 @@ export const AccordionHeader = ({
     children,
 }: Props) => {
     return (
-        <Space size={15}>
+        <Space size={15} align="start">
             {icon}
-            {isActive ? (
-                <Text strong>{children}</Text>
-            ) : (
-                <Typography.Link>{fallback}</Typography.Link>
-            )}
+            {isActive ? <Text strong>{children}</Text> : fallback}
         </Space>
     );
 };
