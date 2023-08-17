@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { Text } from "../../../text";
 import { Event } from "../../../../interfaces/graphql";
 
-import styles from "./index.module.css";
+import styles from "../index.module.css";
 
 export const CalendarUpcomingEvent: React.FC<Event> = ({
     id,
@@ -44,7 +44,7 @@ export const CalendarUpcomingEvent: React.FC<Event> = ({
     };
 
     return (
-        <div key={id} className={styles.container}>
+        <div key={id} className={styles.item}>
             <div className={styles.date}>
                 <span
                     className={styles.icon}

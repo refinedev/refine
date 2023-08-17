@@ -2,11 +2,13 @@ import React from "react";
 import { Card, theme, CardProps } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
+import dayjs from "dayjs";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 
 import { Event } from "../../../interfaces/graphql";
+import styles from "./index.module.css";
 
 type CalendarUpcomingEventsProps = { limit?: number } & CardProps;
 
@@ -24,6 +26,13 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             {
                 field: "startDate",
                 order: "asc",
+            },
+        ],
+        filters: [
+            {
+                field: "startDate",
+                operator: "gte",
+                value: dayjs().format("YYYY-MM-DD"),
             },
         ],
         meta: {
@@ -57,9 +66,11 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             }}
             {...rest}
         >
-            {data.data.map((item) => (
-                <CalendarUpcomingEvent key={item.id} {...item} />
-            ))}
+            <div className={styles.container}>
+                {data.data.map((item) => (
+                    <CalendarUpcomingEvent key={item.id} {...item} />
+                ))}
+            </div>
         </Card>
     );
 };
