@@ -1,4 +1,60 @@
-# @pankod/refine-mantine
+# @refinedev/mantine
+
+## 4.5.4
+
+### Patch Changes
+
+-   [#4797](https://github.com/refinedev/refine/pull/4797) [`a680aea865b`](https://github.com/refinedev/refine/commit/a680aea865bff11c4b52f2aecbb2a51c769a1599) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: relation fields are not correctly inferred for `show` views
+
+    Shows `title` for `category` without using the `useOne` hook when showing the `category` key.
+
+    ```
+    {
+        "title": "My title",
+        "description": "My description",
+        "category": {
+            "id": 1,
+            "name": "My category"
+        }
+    }
+    ```
+
+## 4.5.3
+
+### Patch Changes
+
+-   [#4797](https://github.com/refinedev/refine/pull/4797) [`a680aea865b`](https://github.com/refinedev/refine/commit/a680aea865bff11c4b52f2aecbb2a51c769a1599) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: relation fields are not correctly inferred for `show` views
+
+    Shows `title` for `category` without using the `useOne` hook when showing the `category` key.
+
+    ```
+    {
+        "title": "My title",
+        "description": "My description",
+        "category": {
+            "id": 1,
+            "name": "My category"
+        }
+    }
+    ```
+
+## 4.5.2
+
+### Patch Changes
+
+-   [#4774](https://github.com/refinedev/refine/pull/4774) [`030a9dda75a`](https://github.com/refinedev/refine/commit/030a9dda75a7903e3c9ce3233e3b570b7cbe2dab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: unlock and upgrade `@mui/material` to `^5.14.2`
+
+-   Updated dependencies [[`e3e38de4114`](https://github.com/refinedev/refine/commit/e3e38de4114209fe43fe35ac3622d44e355694bd)]:
+    -   @refinedev/core@4.32.2
+
+## 4.5.1
+
+### Patch Changes
+
+-   [#4774](https://github.com/refinedev/refine/pull/4774) [`030a9dda75a`](https://github.com/refinedev/refine/commit/030a9dda75a7903e3c9ce3233e3b570b7cbe2dab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: unlock and upgrade `@mui/material` to `^5.14.2`
+
+-   Updated dependencies [[`e3e38de4114`](https://github.com/refinedev/refine/commit/e3e38de4114209fe43fe35ac3622d44e355694bd)]:
+    -   @refinedev/core@4.32.1
 
 ## 4.5.0
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useHistory } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
 import { Disclosure, Transition } from "@headlessui/react";
 /** @ts-expect-error Docusaurus and Typescript doesn't play well together. */
 import data from "@examples/examples-data.json";
@@ -78,8 +78,27 @@ const ExampleList: React.FC = () => {
         new Set(tags.map(({ name }) => name)),
     );
 
-    const { search } = useLocation();
+    const { search, hash } = useLocation();
     const { replace } = useHistory();
+
+    const scrollToItem = React.useCallback(() => {
+        const otherExamples = document.getElementById("other-examples");
+        if (otherExamples) {
+            otherExamples.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+            });
+        }
+    }, []);
+
+    React.useEffect(() => {
+        if (hash === "#other-examples") {
+            setTimeout(() => {
+                scrollToItem();
+            }, 200);
+        }
+    }, [hash]);
 
     React.useEffect(() => {
         // tags are stored in the query string as a comma separated list
@@ -119,6 +138,7 @@ const ExampleList: React.FC = () => {
         return str
             .replace("antd", "Ant Design")
             .replace("mui", "Material UI")
+            .replace("chakra-ui", "Chakra UI")
             .replace("next.js", "Next.js")
             .replace("next-js", "Next.js")
             .split("-")
@@ -461,16 +481,20 @@ const ExampleList: React.FC = () => {
     const renderFilters = () => {
         return (
             <div className="flex flex-col">
-                <div
+                <h2
+                    id="other-examples"
                     className={clsx(
                         "mb-0 mt-0",
                         "text-[32px] leading-[40px] 2xl:text-[40px] 2xl:leading-[48px]",
                         "text-gray-700 dark:text-gray-200",
                         "font-semibold",
                     )}
+                    style={{
+                        scrollMarginTop: "5rem",
+                    }}
                 >
                     Other Examples
-                </div>
+                </h2>
                 <div
                     className={clsx(
                         "flex items-center justify-between mt-8 2xl:mt-10 pb-4",

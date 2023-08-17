@@ -191,6 +191,23 @@ export const renderer = ({
                 )}
                 `;
             }
+
+            if (field.fieldable) {
+                return jsx`
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
+                <TextField value={${accessor(
+                    recordName,
+                    field.key,
+                    field.accessor,
+                )}} />
+                `;
+            }
+
             return jsx`
                 <Title my="xs" order={5}>${translatePrettyString({
                     resource,

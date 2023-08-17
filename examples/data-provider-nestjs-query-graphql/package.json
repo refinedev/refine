@@ -1,0 +1,45 @@
+{
+  "name": "data-provider-nestjs-query-graphql",
+  "version": "3.25.0",
+  "private": true,
+  "dependencies": {
+    "@refinedev/antd": "^5.34.0",
+    "@refinedev/cli": "^2.7.6",
+    "@refinedev/core": "^4.34.0",
+    "@refinedev/react-router-v6": "^4.5.0",
+    "@refinedev/nestjs-query-graphql": "^0.0.1",
+    "@uiw/react-md-editor": "^3.19.5",
+    "antd": "^5.0.5",
+    "graphql": "^15.6.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "graphql-ws": "^5.9.1",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^4.7.4",
+    "vite": "^4.3.1"
+  },
+  "scripts": {
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

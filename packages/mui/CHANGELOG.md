@@ -1,4 +1,70 @@
-# @pankod/refine-mui
+# @refinedev/mui
+
+## 5.13.4
+
+### Patch Changes
+
+-   [#4823](https://github.com/refinedev/refine/pull/4823) [`68592b67357`](https://github.com/refinedev/refine/commit/68592b67357642ec28f7eff64a95374e3cd51083) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Material UI `<List />`, `<Show />`, `<Edit />`, `<Create />` component's header buttons not being aligned properly. [#4816](https://github.com/refinedev/refine/issues/4816)
+
+## 5.13.3
+
+### Patch Changes
+
+-   [#4823](https://github.com/refinedev/refine/pull/4823) [`68592b67357`](https://github.com/refinedev/refine/commit/68592b67357642ec28f7eff64a95374e3cd51083) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Material UI `<List />`, `<Show />`, `<Edit />`, `<Create />` component's header buttons not being aligned properly. [#4816](https://github.com/refinedev/refine/issues/4816)
+
+## 5.13.2
+
+### Patch Changes
+
+-   [#4788](https://github.com/refinedev/refine/pull/4788) [`38680378c7a`](https://github.com/refinedev/refine/commit/38680378c7a7b0e5481ea4136f3958a00ac4ca92) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: render user avatar and name in `<HeaderV2 />` based on user data from `authProvider`.
+
+## 5.13.1
+
+### Patch Changes
+
+-   [#4788](https://github.com/refinedev/refine/pull/4788) [`38680378c7a`](https://github.com/refinedev/refine/commit/38680378c7a7b0e5481ea4136f3958a00ac4ca92) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: render user avatar and name in `<HeaderV2 />` based on user data from `authProvider`.
+
+## 5.13.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.22.0
+
+## 5.12.0
+
+### Minor Changes
+
+-   [#4775](https://github.com/refinedev/refine/pull/4775) [`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<RefreshButton />` does not refresh content #4618.
+    From now, `<RefreshButton />` uses `useInvalidate` hook to refresh data instead of `useOne`.
+
+### Patch Changes
+
+-   Updated dependencies [[`3052fb22449`](https://github.com/refinedev/refine/commit/3052fb22449c5e35c607e95c060c38ca48e00c82)]:
+    -   @refinedev/ui-types@1.21.0
+
+## 5.11.2
+
+### Patch Changes
+
+-   [#4774](https://github.com/refinedev/refine/pull/4774) [`030a9dda75a`](https://github.com/refinedev/refine/commit/030a9dda75a7903e3c9ce3233e3b570b7cbe2dab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: unlock and upgrade `@mui/material` to `^5.14.2`
+
+-   Updated dependencies [[`c757355da60`](https://github.com/refinedev/refine/commit/c757355da6089d0e18609a1bb2d316d928412b16)]:
+    -   @refinedev/react-hook-form@4.8.2
+
+## 5.11.1
+
+### Patch Changes
+
+-   [#4774](https://github.com/refinedev/refine/pull/4774) [`030a9dda75a`](https://github.com/refinedev/refine/commit/030a9dda75a7903e3c9ce3233e3b570b7cbe2dab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: unlock and upgrade `@mui/material` to `^5.14.2`
+
+-   Updated dependencies [[`c757355da60`](https://github.com/refinedev/refine/commit/c757355da6089d0e18609a1bb2d316d928412b16)]:
+    -   @refinedev/react-hook-form@4.8.1
 
 ## 5.11.0
 

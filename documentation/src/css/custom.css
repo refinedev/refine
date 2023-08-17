@@ -158,6 +158,10 @@
     ---tutorial-card-bg-hover: var(--ifm-card-background-color);
 }
 
+html[data-active-page="index"] {
+    scroll-behavior: smooth;
+}
+
 [data-theme="dark"] {
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;

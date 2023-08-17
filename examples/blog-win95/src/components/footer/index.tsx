@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useLogout, useNavigation } from "@refinedev/core";
-import { AppBar, Toolbar, Button, List, ListItem } from "react95";
+import { AppBar, Toolbar, Button, MenuList, MenuListItem } from "react95";
 
 export const Footer: React.FC = () => {
     const [open, setOpen] = useState(false);
 
     const { mutate: logout } = useLogout();
-    const { list } = useNavigation();
+    const { push } = useNavigation();
 
     return (
         <AppBar style={{ top: "unset", bottom: 0 }}>
-            <Toolbar>
+            <Toolbar style={{ justifyContent: "space-between" }}>
                 <div style={{ position: "relative", display: "inline-block" }}>
                     <Button
                         onClick={() => setOpen(!open)}
@@ -18,13 +18,13 @@ export const Footer: React.FC = () => {
                         style={{ fontWeight: "bold" }}
                     >
                         <img
-                            src={"./refine.png"}
+                            src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
                             alt="refine logo"
                             style={{ height: "20px", marginRight: 4 }}
                         />
                     </Button>
                     {open && (
-                        <List
+                        <MenuList
                             style={{
                                 position: "absolute",
                                 left: "0",
@@ -32,21 +32,21 @@ export const Footer: React.FC = () => {
                             }}
                             onClick={() => setOpen(false)}
                         >
-                            <ListItem
+                            <MenuListItem
                                 onClick={() => {
-                                    list("posts");
+                                    push("posts");
                                 }}
                             >
                                 Posts
-                            </ListItem>
-                            <ListItem
+                            </MenuListItem>
+                            <MenuListItem
                                 onClick={() => {
-                                    list("categories");
+                                    push("categories");
                                 }}
                             >
                                 Categories
-                            </ListItem>
-                            <ListItem
+                            </MenuListItem>
+                            <MenuListItem
                                 onClick={() => {
                                     logout();
                                 }}
@@ -55,8 +55,8 @@ export const Footer: React.FC = () => {
                                     🔙
                                 </span>
                                 Logout
-                            </ListItem>
-                        </List>
+                            </MenuListItem>
+                        </MenuList>
                     )}
                 </div>
             </Toolbar>

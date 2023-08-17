@@ -15,7 +15,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
@@ -47,6 +47,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
           >
             <div
               class="MuiDataGrid-columnHeaders MuiDataGrid-withBorderColor css-1iyq7zh-MuiDataGrid-columnHeaders"
+              role="presentation"
               style="min-height: 56px; max-height: 56px; line-height: 56px;"
             >
               <div
@@ -72,9 +73,11 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -174,9 +177,11 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -276,9 +281,11 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -370,14 +377,17 @@ exports[`MuiInferencer should match the snapshot 1`] = `
             </div>
             <div
               class="MuiDataGrid-virtualScroller css-axafay-MuiDataGrid-virtualScroller"
+              role="presentation"
               style="overflow-x: hidden; overflow-y: hidden;"
             >
               <div
                 class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
+                role="presentation"
                 style="width: auto; height: 104px; min-height: auto;"
               >
                 <div
                   class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
+                  role="rowgroup"
                   style="transform: translate3d(0px, 0px, 0px);"
                 >
                   <div
@@ -401,6 +411,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="11"
                       >
                         11
@@ -418,6 +429,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="Nobis exercitationem officia quia est."
                       >
                         Nobis exercitationem officia quia est.
@@ -435,6 +447,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="provident-culpa-facere"
                       >
                         provident-culpa-facere
@@ -462,6 +475,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="21"
                       >
                         21
@@ -479,6 +493,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="Eaque in nesciunt."
                       >
                         Eaque in nesciunt.
@@ -496,6 +511,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="quod-quos-commodi"
                       >
                         quod-quos-commodi
@@ -9920,7 +9936,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
@@ -24945,7 +24961,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
@@ -25584,7 +25600,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1gywuxd-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <div
-                  class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+                  class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-1mywu95-MuiButtonBase-root-MuiChip-root"
                   data-tag-index="0"
                   role="button"
                   tabindex="-1"
@@ -41075,7 +41091,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
         />
       </nav>
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
@@ -41257,7 +41273,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             Image
           </p>
           <div
-            class="MuiStack-root css-1aehucs-MuiStack-root"
+            class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <img
               src="http://loremflickr.com/640/480/abstract"
@@ -41270,10 +41286,10 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             Tags
           </p>
           <div
-            class="MuiStack-root css-1aehucs-MuiStack-root"
+            class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
             >
               <span
                 class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -41282,7 +41298,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               </span>
             </div>
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
             >
               <span
                 class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"

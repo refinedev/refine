@@ -7,7 +7,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
     >
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
@@ -41,6 +41,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
           >
             <div
               class="MuiDataGrid-columnHeaders MuiDataGrid-withBorderColor css-1iyq7zh-MuiDataGrid-columnHeaders"
+              role="presentation"
               style="min-height: 56px; max-height: 56px; line-height: 56px;"
             >
               <div
@@ -66,9 +67,11 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -168,9 +171,11 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -270,9 +275,11 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     <div
                       class="MuiDataGrid-columnHeaderDraggableContainer"
                       draggable="false"
+                      role="presentation"
                     >
                       <div
                         class="MuiDataGrid-columnHeaderTitleContainer"
+                        role="presentation"
                       >
                         <div
                           class="MuiDataGrid-columnHeaderTitleContainerContent"
@@ -364,14 +371,17 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
             </div>
             <div
               class="MuiDataGrid-virtualScroller css-axafay-MuiDataGrid-virtualScroller"
+              role="presentation"
               style="overflow-x: hidden; overflow-y: hidden;"
             >
               <div
                 class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
+                role="presentation"
                 style="width: auto; height: 104px; min-height: auto;"
               >
                 <div
                   class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
+                  role="rowgroup"
                   style="transform: translate3d(0px, 0px, 0px);"
                 >
                   <div
@@ -395,6 +405,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="11"
                       >
                         11
@@ -412,6 +423,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="Nobis exercitationem officia quia est."
                       >
                         Nobis exercitationem officia quia est.
@@ -429,6 +441,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="provident-culpa-facere"
                       >
                         provident-culpa-facere
@@ -456,6 +469,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="21"
                       >
                         21
@@ -473,6 +487,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="Eaque in nesciunt."
                       >
                         Eaque in nesciunt.
@@ -490,6 +505,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <div
                         class="MuiDataGrid-cellContent"
+                        role="presentation"
                         title="quod-quos-commodi"
                       >
                         quod-quos-commodi

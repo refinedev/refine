@@ -1,5 +1,5 @@
 import React from "react";
-import { render, TestWrapper } from "@test";
+import { render, TestWrapper, waitFor } from "@test";
 import { ThemedHeaderV2 } from "./index";
 import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
 
@@ -33,27 +33,106 @@ const mockAuthProvider: AuthBindings = {
 
 describe("Header", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
-        const { findByText, getByText } = render(<ThemedHeaderV2 />, {
+        const { getByTestId, getByRole } = render(<ThemedHeaderV2 />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
         });
 
-        await findByText("John Doe");
-        getByText("JD");
+        await waitFor(() => {
+            expect(getByTestId("header-user-name")).toHaveTextContent(
+                "John Doe",
+            );
+            expect(getByRole("img")).toHaveTextContent("JD");
+        });
+    });
+
+    it("should only render user name in header", async () => {
+        const { getByTestId, queryByRole } = render(<ThemedHeaderV2 />, {
+            wrapper: TestWrapper({
+                authProvider: {
+                    ...mockAuthProvider,
+                    getIdentity: () => Promise.resolve({ name: "John Doe" }),
+                },
+            }),
+        });
+
+        await waitFor(() => {
+            expect(getByTestId("header-user-name")).toHaveTextContent(
+                "John Doe",
+            );
+            expect(queryByRole("img")).not.toBeInTheDocument();
+        });
+    });
+
+    it("should only render user avatar in header", async () => {
+        const { queryByTestId, getByRole } = render(<ThemedHeaderV2 />, {
+            wrapper: TestWrapper({
+                authProvider: {
+                    ...mockAuthProvider,
+                    getIdentity: () =>
+                        Promise.resolve({ avatar: "localhost:3000" }),
+                },
+            }),
+        });
+
+        await waitFor(() => {
+            expect(getByRole("img")).toHaveTextContent("PP");
+            expect(queryByTestId("header-user-name")).not.toBeInTheDocument();
+        });
     });
 });
 
 // NOTE: Will be removed in the refine v5
 describe("Header with legacyAuthProvider", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
-        const { findByText, getByText } = render(<ThemedHeaderV2 />, {
+        const { getByTestId, getByRole } = render(<ThemedHeaderV2 />, {
             wrapper: TestWrapper({
                 legacyAuthProvider: mockLegacyAuthProvider,
             }),
         });
 
-        await findByText("John Doe");
-        getByText("JD");
+        await waitFor(() => {
+            expect(getByTestId("header-user-name")).toHaveTextContent(
+                "John Doe",
+            );
+            expect(getByRole("img")).toHaveTextContent("JD");
+        });
+    });
+
+    it("should only render user name in header", async () => {
+        const { getByTestId, queryByRole } = render(<ThemedHeaderV2 />, {
+            wrapper: TestWrapper({
+                legacyAuthProvider: {
+                    ...mockLegacyAuthProvider,
+                    getUserIdentity: () =>
+                        Promise.resolve({ name: "John Doe" }),
+                },
+            }),
+        });
+
+        await waitFor(() => {
+            expect(getByTestId("header-user-name")).toHaveTextContent(
+                "John Doe",
+            );
+            expect(queryByRole("img")).not.toBeInTheDocument();
+        });
+    });
+
+    it("should only render user avatar in header", async () => {
+        const { queryByTestId, getByRole } = render(<ThemedHeaderV2 />, {
+            wrapper: TestWrapper({
+                legacyAuthProvider: {
+                    ...mockLegacyAuthProvider,
+                    getUserIdentity: () =>
+                        Promise.resolve({ avatar: "localhost:3000" }),
+                },
+            }),
+        });
+
+        await waitFor(() => {
+            expect(getByRole("img")).toHaveTextContent("PP");
+            expect(queryByTestId("header-user-name")).not.toBeInTheDocument();
+        });
     });
 });

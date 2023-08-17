@@ -49,6 +49,7 @@ test("Get outdated refine packages", async () => {
                     current: "1.0.0",
                     wanted: "1.0.1",
                     latest: "2.0.0",
+                    changelog: "https://c.refine.dev/core",
                 },
             ],
         },

@@ -201,6 +201,24 @@ export const renderer = ({
                 `;
             }
 
+            if (field.fieldable) {
+                return jsx`
+                <Typography variant="body1" fontWeight="bold">
+                    ${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}
+                </Typography>
+                <TextField value={${accessor(
+                    recordName,
+                    field.key,
+                    field.accessor,
+                )}} />
+                `;
+            }
+
             return jsx`
                 <Typography variant="body1" fontWeight="bold">
                     ${translatePrettyString({

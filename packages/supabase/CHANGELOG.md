@@ -1,4 +1,16 @@
-# @pankod/refine-supabase
+# @refinedev/supabase
+
+## 5.7.0
+
+### Minor Changes
+
+-   [#4780](https://github.com/refinedev/refine/pull/4780) [`f73d1c0e057`](https://github.com/refinedev/refine/commit/f73d1c0e0571f12cd05f8e9840c6d6a27e78686e) Thanks [@kilimnik](https://github.com/kilimnik)! - feat: added `count` property to meta for `getList` method
+
+## 5.6.0
+
+### Minor Changes
+
+-   [#4780](https://github.com/refinedev/refine/pull/4780) [`f73d1c0e057`](https://github.com/refinedev/refine/commit/f73d1c0e0571f12cd05f8e9840c6d6a27e78686e) Thanks [@kilimnik](https://github.com/kilimnik)! - feat: added `count` property to meta for `getList` method
 
 ## 5.5.2
 

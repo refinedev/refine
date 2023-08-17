@@ -61,15 +61,18 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             >
                 <HamburgerMenu />
                 <Flex align="center" gap="sm">
-                    <Title
-                        order={6}
-                        sx={{
-                            cursor: "pointer",
-                        }}
-                    >
-                        {user?.name}
-                    </Title>
-                    <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
+                    {user?.name && (
+                        <Title order={6} data-testid="header-user-name">
+                            {user?.name}
+                        </Title>
+                    )}
+                    {user?.avatar && (
+                        <Avatar
+                            src={user?.avatar}
+                            alt={user?.name}
+                            radius="xl"
+                        />
+                    )}
                 </Flex>
             </Flex>
         </MantineHeader>

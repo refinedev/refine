@@ -1,120 +1,119 @@
-import {
-    Authenticated,
-    ErrorComponent,
-    GitHubBanner,
-    Refine,
-} from "@refinedev/core";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
+import { Refine, Authenticated } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerBindings, {
     UnsavedChangesNotifier,
     DocumentTitleHandler,
+    NavigateToResource,
+    CatchAllNavigate,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { dataProvider } from "@refinedev/supabase";
-import authProvider from "./authProvider";
-import { supabaseClient } from "utility";
-
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import original from "react95/dist/themes/original";
 import { ThemeProvider } from "styled-components";
 
-import { PostList, PostEdit, PostCreate } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
-import { LoginPage } from "pages/login";
-import Layout from "components/layout";
+import { supabaseClient } from "./utility";
+import authProvider from "./authProvider";
+import { LoginPage } from "./pages/login";
+import { PostList } from "./pages/posts/list";
+import { PostCreate } from "./pages/posts/create";
+import { PostEdit } from "./pages/posts/edit";
+import { CategoryCreate } from "./pages/categories/create";
+import { CategoryEdit } from "./pages/categories/edit";
+import { CategoryList } from "./pages/categories/list";
+import { Layout } from "./components/layout";
 
 import "./app.css";
 
 function App() {
     return (
         <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={original}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            edit: "/posts/edit/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            edit: "/categories/edit/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
+            <RefineKbarProvider>
+                <ThemeProvider theme={original}>
+                    <Refine
+                        dataProvider={dataProvider(supabaseClient)}
+                        liveProvider={liveProvider(supabaseClient)}
+                        authProvider={authProvider}
+                        routerProvider={routerBindings}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                edit: "/posts/edit/:id",
+                                create: "/posts/create",
+                            },
+                            {
+                                name: "categories",
+                                list: "/categories",
+                                create: "/categories/create",
+                                edit: "/categories/edit/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
                                 }
-                            />
-
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                            </Route>
-
-                            <Route path="categories">
-                                <Route index element={<CategoryList />} />
+                            >
                                 <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
                                 />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
+
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="/categories">
+                                    <Route index element={<CategoryList />} />
+                                    <Route
+                                        path="create"
+                                        element={<CategoryCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CategoryEdit />}
+                                    />
+                                </Route>
                             </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<LoginPage />} />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </ThemeProvider>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<LoginPage />} />
+                            </Route>
+                        </Routes>
+                        <RefineKbar />
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </ThemeProvider>
+            </RefineKbarProvider>
         </BrowserRouter>
     );
 }

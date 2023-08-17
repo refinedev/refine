@@ -1,4 +1,4 @@
-# @pankod/refine-live-previews
+# @refinedev/live-previews
 
 ## 0.3.3
 

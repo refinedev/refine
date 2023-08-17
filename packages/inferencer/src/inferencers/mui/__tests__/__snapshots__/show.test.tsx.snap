@@ -7,7 +7,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
     >
       <div
-        class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
           class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
@@ -220,7 +220,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             Image
           </p>
           <div
-            class="MuiStack-root css-1aehucs-MuiStack-root"
+            class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <img
               src="http://loremflickr.com/640/480/abstract"
@@ -233,10 +233,10 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             Tags
           </p>
           <div
-            class="MuiStack-root css-1aehucs-MuiStack-root"
+            class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
             >
               <span
                 class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -245,7 +245,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               </span>
             </div>
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
             >
               <span
                 class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"

@@ -38,18 +38,21 @@ export const LandingHeroTop = () => {
                             "font-semibold",
                         )}
                     >
-                        Open-source enterprise{" "}
+                        Open-source Retool for{" "}
                         <br className="inline landing-md:hidden" />
-                        application framework
+                        Enterprise
                     </span>
                     <span
                         className={clsx(
+                            "text-base sm:text-xl xl:text-2xl",
+                            "max-w-[328px] sm:max-w-[480px] xl:max-w-max",
                             "text-center",
                             "block bg-landing-text-bg bg-clip-text text-transparent",
                             "font-light",
                         )}
                     >
-                        for serious web developers.
+                        Build your internal tools, admin panels, dashboards, B2B
+                        apps with flexibility in mind.
                     </span>
                 </h1>
             </div>
@@ -62,7 +65,7 @@ export const LandingHeroTop = () => {
                     "landing-lg:gap-10",
                 )}
             >
-                <LandingRainbowButton href="/?playground=true" />
+                <LandingRainbowButton href="/#playground" />
                 <LandingGhostButton />
             </div>
         </div>

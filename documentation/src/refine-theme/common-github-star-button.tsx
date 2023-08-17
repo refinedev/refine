@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const CommonGithubStarButton = ({ className }: Props) => {
-    const { loading, githubStarCount } = useCommunityStatsContext();
+    const { githubStarCountText, loading } = useCommunityStatsContext();
 
     return (
         <a
@@ -28,7 +28,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
             )}
         >
             <GithubIcon className={clsx("w-6 h-6")} />
-            <div className={clsx("flex items-center", "min-w-[80px] h-6")}>
+            <div className={clsx("flex items-center", "w-[86px] h-6")}>
                 Star:&nbsp;
                 {loading ? (
                     <Spinner
@@ -38,8 +38,8 @@ export const CommonGithubStarButton = ({ className }: Props) => {
                         }}
                     />
                 ) : (
-                    <span className={clsx("min-w-10 font-semibold")}>
-                        {githubStarCount?.toLocaleString?.() ?? "11500"}
+                    <span className={clsx("tabular-nums font-semibold")}>
+                        {githubStarCountText}
                     </span>
                 )}
             </div>

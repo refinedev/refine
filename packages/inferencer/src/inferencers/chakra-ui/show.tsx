@@ -199,6 +199,23 @@ export const renderer = ({
                 // ))}
                 // `;
             }
+
+            if (field.fieldable) {
+                return jsx`
+                <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Heading>
+                <TextField value={${accessor(
+                    recordName,
+                    field.key,
+                    field.accessor,
+                )}} />
+                `;
+            }
+
             return jsx`
                 <Heading as="h5" size="sm" mt={4}>${translatePrettyString({
                     resource,

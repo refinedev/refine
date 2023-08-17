@@ -1,4 +1,16 @@
-# @pankod/refine-cli
+# @refinedev/cli
+
+## 2.7.6
+
+### Patch Changes
+
+-   [#4777](https://github.com/refinedev/refine/pull/4777) [`e33f22da1c3`](https://github.com/refinedev/refine/commit/e33f22da1c31e5e041914d41e677d48360bec8f1) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `changelog` link to version table generated with `check-updates` command
+
+## 2.7.5
+
+### Patch Changes
+
+-   [#4777](https://github.com/refinedev/refine/pull/4777) [`e33f22da1c3`](https://github.com/refinedev/refine/commit/e33f22da1c31e5e041914d41e677d48360bec8f1) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `changelog` link to version table generated with `check-updates` command
 
 ## 2.7.4
 

@@ -13,6 +13,8 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
@@ -24,6 +26,10 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
                 <SnackbarProvider>
                     <Refine
                         routerProvider={routerProvider}

@@ -43,16 +43,20 @@ export const getOutdatedRefinePackages = async () => {
     if (!packages) return [];
 
     const list: RefinePackageInstalledVersionData[] = [];
+    let changelog: string | undefined = undefined;
 
     Object.keys(packages).forEach((packageName) => {
         const dependency = packages[packageName];
 
         if (packageName.includes("@refinedev")) {
+            changelog = packageName.replace(/@refinedev\//, "https://c.refine.dev/");
+
             list.push({
                 name: packageName,
                 current: dependency.current,
                 wanted: dependency.wanted,
                 latest: dependency.latest,
+                changelog,
             });
         }
     });
