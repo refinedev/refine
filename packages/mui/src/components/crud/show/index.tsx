@@ -153,7 +153,14 @@ export const Show: React.FC<ShowProps> = ({
         <Card {...(wrapperProps ?? {})}>
             {breadcrumbComponent}
             <CardHeader
-                sx={{ display: "flex", flexWrap: "wrap" }}
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    ".MuiCardHeader-action": {
+                        margin: 0,
+                        alignSelf: "center",
+                    },
+                }}
                 title={
                     title ?? (
                         <Typography

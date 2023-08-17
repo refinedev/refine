@@ -15,8 +15,8 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import DashboardPage from "pages/dashBoardPage";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import DashboardPage from "./pages/dashBoardPage";
 
 function App() {
     return (
@@ -31,6 +31,10 @@ function App() {
                         notificationProvider={notificationProvider}
                         routerProvider={routerProvider}
                         resources={[
+                            {
+                                name: "dashboard",
+                                list: "/",
+                            },
                             {
                                 name: "posts",
                                 list: "/posts",

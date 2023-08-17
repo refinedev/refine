@@ -1,0 +1,25 @@
+.container {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+    .avatar {
+        margin-right: 1rem;
+    }
+
+    .action {
+        display: flex;
+        flex-direction: column;
+
+        .detail {
+            display: flex;
+            gap: 0.2rem;
+
+            .name {
+                font-weight: 500;
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}

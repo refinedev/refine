@@ -8,6 +8,7 @@ import camelcase from "camelcase";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
 import * as gql from "gql-query-builder";
 import { singular } from "pluralize";
+import set from "lodash/set";
 
 const operatorMap: { [key: string]: string } = {
     eq: "eq",
@@ -63,7 +64,11 @@ export const generateFilters = (filters: LogicalFilter[]) => {
     const result: { [key: string]: { [key: string]: string | number } } = {};
 
     filters.map((filter: LogicalFilter) => {
-        result[filter.field] = operatorMapper(filter.operator, filter.value);
+        set(
+            result,
+            filter.field,
+            operatorMapper(filter.operator, filter.value),
+        );
     });
 
     return result;
@@ -79,6 +84,9 @@ export const generateSorting = (sorters: CrudSorting) => {
 };
 
 export const generatePaging = (pagination: Pagination) => {
+    // maximum value of 32 bit signed integer
+    if (pagination.mode === "off") return { limit: 2147483647 };
+
     if (pagination.mode !== "server") return undefined;
 
     if (!pagination.current || !pagination.pageSize) return undefined;

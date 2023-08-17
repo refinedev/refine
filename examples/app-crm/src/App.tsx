@@ -1,5 +1,8 @@
 import { Refine, Authenticated } from "@refinedev/core";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import routerProvider, {
     NavigateToResource,
@@ -21,7 +24,7 @@ import { RegisterPage } from "./routes/register";
 import { ForgotPasswordPage } from "./routes/forgot-password";
 import { UpdatePasswordPage } from "./routes/update-password";
 
-import { DashboardPage } from "./routes/dashboard";
+import { DashboardPage } from "./routes/dashboard/index";
 
 import { CalendarPageWrapper } from "./routes/calendar/wrapper";
 import { KanbanPage } from "./routes/scrumboard/kanban/list";
@@ -42,6 +45,9 @@ import { CalendarCreatePage } from "./routes/calendar/create";
 
 import "./styles/antd.css";
 import "./styles/index.css";
+
+dayjs.extend(utc);
+dayjs.extend(relativeTime);
 
 const App: React.FC = () => {
     return (
