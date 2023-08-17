@@ -58,7 +58,18 @@ export const DashboardTasksChart: React.FC<{}> = () => {
         value: stage.tasksAggregate[0].count.id,
     }));
 
-    const COLORS = ["#BAE0FF", "#69B1FF", "#1677FF", "#0958D9", "#10239E"];
+    const COLORS = [
+        "#BAE0FF",
+        "#69B1FF",
+        "#1677FF",
+        "#0958D9",
+        "#10239E",
+        "#061178",
+        "#030852",
+        "#03052E",
+        "#000B0A",
+        "#000000",
+    ];
 
     return (
         <Card
