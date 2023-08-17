@@ -1,26 +1,38 @@
 .container {
-    width: 256px;
+    width: 288px;
     height: 100%;
     display: flex;
     flex-direction: column;
+    border-radius: 1rem;
+    padding: 0 16px 16px 16px;
+
+    &.solid {
+        background-color: #fff;
+    }
 }
 
 .header {
     width: 256px;
-    display: flex;
-    justify-content: space-between;
     flex-shrink: 0;
-    align-items: center;
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     padding: 12px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    background-color: #f0f2f5;
 }
 
 .titleContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.title {
     width: 168px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
     flex: 0.5;

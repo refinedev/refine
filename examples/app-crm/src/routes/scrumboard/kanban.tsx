@@ -6,16 +6,11 @@ import {
     useUpdateMany,
 } from "@refinedev/core";
 import { DragEndEvent } from "@dnd-kit/core";
-import { Button } from "antd";
-import {
-    PlusSquareOutlined,
-    DeleteOutlined,
-    EditOutlined,
-    ClearOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { Kanban, KanbanColumnMemo, KanbanItem } from "../../components/kanban";
-import { FullScreenLoading, ProjectCardMemo, Text } from "../../components";
+import { FullScreenLoading, ProjectCardMemo } from "../../components";
 import { Task, TaskStage } from "../../interfaces/graphql";
+import { Addbutton } from "../../components/kanban/add-button";
 
 const defaultContextMenuItems = {
     edit: {
@@ -70,21 +65,16 @@ export const KanbanPage = () => {
                 current: 1,
                 pageSize: 999,
             },
+            filters: [
+                {
+                    field: "stage.id",
+                    operator: "null",
+                    value: null,
+                },
+            ],
             meta: {
                 operation: "tasks",
-                fields: [...taskFragment, { stage: ["id"] }],
-            },
-            queryOptions: {
-                select: (data) => {
-                    const tasksWithoutStage = data.data.filter(
-                        (task) => task.stage === null,
-                    );
-
-                    return {
-                        data: tasksWithoutStage,
-                        total: tasksWithoutStage.length,
-                    };
-                },
+                fields: taskFragment,
             },
         });
 
@@ -249,20 +239,7 @@ export const KanbanPage = () => {
                     </KanbanColumnMemo>
                 );
             })}
-            <Button
-                type="dashed"
-                size="large"
-                icon={<PlusSquareOutlined className="secondary md" />}
-                style={{
-                    width: "128px",
-                    height: "56px",
-                }}
-                onClick={handleAddStage}
-            >
-                <Text size="md" type="secondary">
-                    Add stage
-                </Text>
-            </Button>
+            <Addbutton onClick={handleAddStage} />
         </Kanban>
     );
 };
