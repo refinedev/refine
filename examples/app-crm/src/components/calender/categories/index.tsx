@@ -8,14 +8,14 @@ import { Text } from "../../text";
 import { EventCategory } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
-type CalendarCategoriesProps = {} & CardProps;
+type CalendarCategoriesProps = {
+    onChange?: (e: any) => void;
+} & CardProps;
 
 export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
+    onChange,
     ...rest
 }) => {
-    const [selectedEventCategory, setSelectedEventCategory] = React.useState<
-        string[]
-    >([]);
     const { token } = theme.useToken();
     const { data, isError, isLoading } = useList<EventCategory>({
         resource: "eventCategories",
@@ -57,12 +57,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
                         <Checkbox
                             className={styles.checkbox}
                             value={item.id}
-                            onChange={() => {
-                                setSelectedEventCategory([
-                                    ...selectedEventCategory,
-                                    item.id,
-                                ]);
-                            }}
+                            onChange={onChange}
                         >
                             <Text>{item.title}</Text>
                         </Checkbox>

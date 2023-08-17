@@ -1,11 +1,5 @@
 import React from "react";
-import { Button, Card, Col, Row, App } from "antd";
-import {
-    CalendarOutlined,
-    FlagOutlined,
-    SettingOutlined,
-} from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+import { Col, Row, App } from "antd";
 import { CreateButton } from "@refinedev/antd";
 
 import { CalendarTypeSwitch } from "../../components/calendar-type-switch";
@@ -13,14 +7,18 @@ import { CalendarUpcomingEvents } from "../../components/calender/upcoming-event
 import { CalendarCategories } from "../../components/calender/categories";
 
 import { CalendarListPage } from "./list";
-import { CalendarMonthPage } from "./month";
+// import { CalendarMonthPage } from "./month";
 
 type Props = React.PropsWithChildren<{}>;
 
 export const CalendarPageWrapper = ({ children }: Props) => {
-    const { type } = useParams();
+    const [selectedEventCategory, setSelectedEventCategory] = React.useState<
+        string[]
+    >([]);
 
-    const Component = type === "list" ? CalendarListPage : CalendarMonthPage;
+    // const { type } = useParams();
+
+    // const Component = type === "list" ? CalendarListPage : CalendarMonthPage;
 
     return (
         <App>
@@ -39,11 +37,22 @@ export const CalendarPageWrapper = ({ children }: Props) => {
                         style={{ marginBottom: "1rem" }}
                     />
 
-                    <CalendarCategories />
+                    <CalendarCategories
+                        onChange={(event) => {
+                            setSelectedEventCategory((prev) => {
+                                if (prev.includes(event.target.value)) {
+                                    return prev.filter(
+                                        (item) => item !== event.target.value,
+                                    );
+                                }
+
+                                return [...prev, event.target.value];
+                            });
+                        }}
+                    />
                 </Col>
                 <Col span={18}>
-                    <CalendarTypeSwitch />
-                    <Component />
+                    <CalendarListPage />
                     {children}
                 </Col>
             </Row>
