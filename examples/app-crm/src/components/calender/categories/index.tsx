@@ -47,7 +47,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
             }
             extra={<Button shape="circle" icon={<SettingOutlined />} />}
             bodyStyle={{
-                padding: "0 0.5rem 0 1rem",
+                padding: "0.5rem 1rem",
             }}
             {...rest}
         >
