@@ -120,34 +120,6 @@ export const KanbanPage = () => {
         });
     };
 
-    const getContextMenuItems = ({ column }: { column: TaskStage }) => {
-        const hasItems = column.tasks.length > 0;
-
-        const items = [
-            {
-                ...defaultContextMenuItems.edit,
-                onClick: () => handleEditStage({ stageId: column.id }),
-            },
-        ];
-        if (!hasItems) {
-            items.push({
-                ...defaultContextMenuItems.delete,
-                onClick: () => handleDeleteStage({ stageId: column.id }),
-            });
-        }
-        if (hasItems) {
-            items.push({
-                ...defaultContextMenuItems.clear,
-                onClick: () =>
-                    handleClearCards({
-                        taskIds: column.tasks.map((task) => task.id),
-                    }),
-            });
-        }
-
-        return items;
-    };
-
     const handleAddStage = () => {
         const title = prompt("Enter stage title");
         createStage({
@@ -191,6 +163,34 @@ export const KanbanPage = () => {
             },
             successNotification: false,
         });
+    };
+
+    const getContextMenuItems = ({ column }: { column: TaskStage }) => {
+        const hasItems = column.tasks.length > 0;
+
+        const items = [
+            {
+                ...defaultContextMenuItems.edit,
+                onClick: () => handleEditStage({ stageId: column.id }),
+            },
+        ];
+        if (!hasItems) {
+            items.push({
+                ...defaultContextMenuItems.delete,
+                onClick: () => handleDeleteStage({ stageId: column.id }),
+            });
+        }
+        if (hasItems) {
+            items.push({
+                ...defaultContextMenuItems.clear,
+                onClick: () =>
+                    handleClearCards({
+                        taskIds: column.tasks.map((task) => task.id),
+                    }),
+            });
+        }
+
+        return items;
     };
 
     const loading = isLoadingDefaultStage || isLoadingTaskStages;
