@@ -204,7 +204,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);

@@ -4,10 +4,10 @@ title: Edit
 swizzle: true
 ---
 
-`<EditButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
+`<EditButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -165,7 +165,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `meta`
 
@@ -241,7 +241,7 @@ export const MyListComponent = () => {
 
 > `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
-It is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of resource object.
+`resourceNameOrRouteName` is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of resource object.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;

@@ -36,7 +36,7 @@ const Wrapper = ({ children }) => {
 
 `<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
 
-It uses Mantine [`<Button>`][button] component and native html [`<input>`][input] element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<Button>`][button] component and [`<input>`][input] element and accepts it's own properties for separately.
+It uses Mantine's [`<Button>`][button] component and native html [`<input>`][input] element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<Button>`][button] component and [`<input>`][input] element and accepts it's own properties for separately.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
@@ -175,7 +175,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);

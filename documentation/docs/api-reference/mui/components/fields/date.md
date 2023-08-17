@@ -7,12 +7,12 @@ swizzle: true
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
 
-Let's see how we can use `<DateField>` with the example in the post list.
+Let's see how we can use `<DateField>` with the example in the post list:
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start

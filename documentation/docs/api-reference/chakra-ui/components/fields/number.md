@@ -171,5 +171,5 @@ render(
 <PropsTable module="@refinedev/chakra-ui/NumberField" value-description="Number value" />
 
 :::tip External Props
-It also accepts all props of Chakra UI [Text](https://chakra-ui.com/docs/components/text/usage).
+It also accepts all props of Chakra UI's [Text](https://chakra-ui.com/docs/components/text/usage) component.
 :::

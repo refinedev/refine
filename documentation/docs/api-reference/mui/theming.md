@@ -6,11 +6,11 @@ sidebar_label: Theme
 
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from **refine**. Theme provides a way to your app's design to meet them.
 
-[Refer to the Material UI documentation for more information about Material UI Theming. &#8594](https://mui.com/material-ui/customization/theming/)
+> For more information, refer to the [Material UI documentation &#8594](https://mui.com/material-ui/customization/theming/)
 
 ## Predefined Themes
 
-[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can use them by importing them from `@refinedev/mui` package. It is not required if you decide to use the default Material UI theme.
+If you don't want to use the default Mantine theme, [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can import predefined themes from the `@refinedev/mui` package.
 
 ```ts
 // light themes
@@ -111,7 +111,7 @@ export default App;
 ```
 
 :::tip
-We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects. It configures the project according to your needs including SSR and Theme with Next.js.
+We recommend using [`create refine-app`][create-refine-app] to initialize your **refine** projects. It configures the project according to your needs including SSR and Theme with Next.js.
 :::
 
 ## Passing the Theme to ThemeProvider
@@ -399,7 +399,7 @@ const overridedLightTheme = createTheme({
 });
 ```
 
-[Refer to the Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
+> Refer to the [Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
 
 :::info
 
@@ -428,10 +428,11 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
 
 ## Create Custom Theme
 
-With the help of Refine's themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
+With the help of **refine**'s themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
 
 :::tip
-You can use the responsiveFontSizes() helper to make Typography font sizes in your theme automated.
+You can use the `responsiveFontSizes()` helper to make Typography font sizes in your theme automated.
+
 For more information, you can review [`responsiveFontSizes()`](https://mui.com/material-ui/customization/typography/#responsive-font-sizes) in the mui document.
 :::
 
@@ -826,7 +827,7 @@ export default App;
   </div>
 </details>
 
-[You can use this CodeSandbox link to access this example. &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
+[You can use this CodeSandbox link to access this example &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
 
 ```tsx live previewOnly previewHeight=450px disableScroll
 setInitialRoutes(["/samples"]);
@@ -946,7 +947,7 @@ render(<App />);
 We use the [`notistack`](https://iamhosseindhv.com/notistack) library for notifications in our Material UI package provides an elegant way to engage with your users.
 The main motivation for us to use the Notistack was that while the Notistack provider ( `<SnackbarProvider>` ) is a child of our ThemeProvider, it works in harmony with the theme.
 
-We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap Refine with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
+We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap `<Refine>` with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
 
 ```tsx live
 setInitialRoutes(["/samples"]);
@@ -1032,7 +1033,7 @@ render(<App />);
 ```
 
 :::tip
-If you want to use notistack snackbars with the default style, simply wrap Refine in `<SnackbarProvider>`.
+If you want to use `notistack` snackbars with the default style, simply wrap `<Refine>` in `<SnackbarProvider>`.
 :::
 
 :::tip
