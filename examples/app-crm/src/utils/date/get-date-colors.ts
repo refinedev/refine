@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-type DateColors = "error" | "warning" | "default ";
+type DateColors = "error" | "warning" | "default";
 
 export const getDateColor = (args: { date: string }): DateColors => {
     const date = dayjs(args.date);
@@ -14,5 +14,5 @@ export const getDateColor = (args: { date: string }): DateColors => {
         return "warning";
     }
 
-    return "default ";
+    return "default";
 };
