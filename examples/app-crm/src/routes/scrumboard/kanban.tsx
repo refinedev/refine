@@ -1,4 +1,5 @@
 import {
+    HttpError,
     useCreate,
     useDelete,
     useList,
@@ -7,10 +8,15 @@ import {
 } from "@refinedev/core";
 import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
-import { Kanban, KanbanColumnMemo, KanbanItem } from "../../components/kanban";
+import {
+    Kanban,
+    KanbanColumnMemo,
+    KanbanItem,
+    KanbanAddStageButton,
+    KanbanAddCardButton,
+} from "../../components/kanban";
 import { FullScreenLoading, ProjectCardMemo } from "../../components";
-import { Task, TaskStage } from "../../interfaces/graphql";
-import { Addbutton } from "../../components/kanban/add-button";
+import { Task, TaskStage, TaskUpdateInput } from "../../interfaces/graphql";
 
 const defaultContextMenuItems = {
     edit: {
@@ -97,7 +103,11 @@ export const KanbanPage = () => {
             },
         });
 
-    const { mutate: updateTask } = useUpdate();
+    const { mutate: updateTask } = useUpdate<
+        Task,
+        HttpError,
+        TaskUpdateInput
+    >();
     const { mutate: updateManyTask } = useUpdateMany();
     const { mutate: createStage } = useCreate();
     const { mutate: deleteStage } = useDelete();
@@ -216,7 +226,6 @@ export const KanbanPage = () => {
                     })}
                 </KanbanColumnMemo>
             )}
-
             {taskStages?.data.map((column) => {
                 const contextMenuItems = getContextMenuItems({ column });
 
@@ -236,10 +245,17 @@ export const KanbanPage = () => {
                                 </KanbanItem>
                             );
                         })}
+                        {column.tasks.length === 0 && (
+                            <KanbanAddCardButton
+                                onClick={() =>
+                                    handleAddCard({ stageId: column.id })
+                                }
+                            />
+                        )}
                     </KanbanColumnMemo>
                 );
             })}
-            <Addbutton onClick={handleAddStage} />
+            <KanbanAddStageButton onClick={handleAddStage} />
         </Kanban>
     );
 };

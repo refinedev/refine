@@ -1,18 +1,19 @@
 .container {
-    width: 288px;
     height: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    padding: 0 16px 16px 16px;
 
+    &.default {
+        width: 256px;
+    }
     &.solid {
+        width: 288px;
         background-color: #fff;
     }
 }
 
 .header {
-    width: 256px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
