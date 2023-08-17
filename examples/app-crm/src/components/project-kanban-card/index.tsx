@@ -22,6 +22,7 @@ import { TextIcon } from "../icon";
 import { Text } from "../text";
 import { useMemo } from "react";
 import { useDelete, useNavigation } from "@refinedev/core";
+import { getDateColor } from "../../utils/date/get-date-colors";
 
 type ProjectCardProps = {
     id: string;
@@ -82,24 +83,11 @@ export const ProjectCard = ({
         if (!dueDate) return null;
 
         const date = dayjs(dueDate);
-        const today = dayjs();
 
-        const defaulOptions = {
-            color: "default",
+        return {
+            color: getDateColor({ date: dueDate }) as string,
             text: date.format("MMM D"),
         };
-
-        if (date.isBefore(today)) {
-            defaulOptions.color = "error";
-            return defaulOptions;
-        }
-
-        if (date.isBefore(today.add(3, "day"))) {
-            defaulOptions.color = "warning";
-            return defaulOptions;
-        }
-
-        return defaulOptions;
     }, [dueDate]);
 
     const checkListCompletionCountOptions = useMemo(() => {
