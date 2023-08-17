@@ -23,8 +23,8 @@ import { KanbanChecklistHeader } from "../../../components/kanban-user-header";
 import { KanbanCommentForm } from "../../../components/kanban-comment-form";
 import { KanbanCommentList } from "../../../components/kanban-comment-list";
 import { KanbanModalFooter } from "../../../components/kanban-modal-footer";
+import { KanbanTitleForm } from "../../../components/kanban-title-form";
 
-import { Text } from "../../../components/text";
 import { Task } from "../../../interfaces/graphql";
 
 const panelStyle: React.CSSProperties = {
@@ -54,7 +54,7 @@ export const KanbanEditPage = () => {
         },
     });
 
-    const { description, completed, stage, dueDate, users, checklist } =
+    const { description, completed, stage, dueDate, users, checklist, title } =
         queryResult?.data?.data ?? {};
 
     const items: CollapseProps["items"] = [
@@ -174,7 +174,7 @@ export const KanbanEditPage = () => {
                     },
                 );
             }}
-            title={queryResult?.data?.data.title}
+            title={<KanbanTitleForm initialValues={{ title }} />}
             width={586}
             footer={<KanbanModalFooter />}
         >
