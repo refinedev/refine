@@ -22,7 +22,7 @@ import { TextIcon } from "../icon";
 import { Text } from "../text";
 import { useMemo } from "react";
 import { useDelete, useNavigation } from "@refinedev/core";
-import { getDateColor } from "../../utils/date/get-date-colors";
+import { getDateColor } from "../../utils";
 
 type ProjectCardProps = {
     id: string;
