@@ -1,18 +1,20 @@
 import React from "react";
-import { Card, Button, theme } from "antd";
-import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { useList, useNavigation } from "@refinedev/core";
+import { Card, theme, CardProps } from "antd";
+import { CalendarOutlined } from "@ant-design/icons";
+import { useList } from "@refinedev/core";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 
 import { Event } from "../../../interfaces/graphql";
 
-export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
+type CalendarUpcomingEventsProps = { limit?: number } & CardProps;
+
+export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
+    ...rest
 }) => {
     const { token } = theme.useToken();
-    const { list } = useNavigation();
     const { data, isLoading, isError } = useList<Event>({
         resource: "events",
         pagination: {
@@ -50,17 +52,10 @@ export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
                     </Text>
                 </span>
             }
-            extra={
-                <Button
-                    onClick={() => list("calendar")}
-                    icon={<RightCircleOutlined />}
-                >
-                    See calendar
-                </Button>
-            }
             bodyStyle={{
                 padding: "0 1rem",
             }}
+            {...rest}
         >
             {data.data.map((item) => (
                 <CalendarUpcomingEvent key={item.id} {...item} />
