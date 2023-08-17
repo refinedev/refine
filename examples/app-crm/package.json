@@ -15,11 +15,12 @@
     "@tanstack/react-query-devtools": "^4.32.6",
     "antd": "^5.0.5",
     "classnames": "^2.3.2",
-    "dayjs": "^1.10.7",
-    "graphql-ws": "^5.9.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "graphql-ws": "^5.9.1",
+    "recharts": "^2.7.3",
+    "dayjs": "^1.10.7"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",

@@ -40,6 +40,8 @@
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "pluralize": "^8.0.0",
     "graphql-ws": "^5.9.1"
   },
