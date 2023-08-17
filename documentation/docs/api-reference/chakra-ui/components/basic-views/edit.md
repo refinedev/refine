@@ -43,7 +43,7 @@ interface IPost {
 }
 ```
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button.
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a refresh button.
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -169,7 +169,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ### `title`
 
-It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
+`title` allows the addition of titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it would be "Edit post".
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -214,11 +214,7 @@ render(
 
 ### `saveButtonProps`
 
-The `<Edit>` component has a save button by default. If you want to customize this button you can use the `saveButtonProps` property like the code below.
-
-Clicking on the save button will submit your form.
-
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/buttons/save.md)
+`saveButtonProps` can be used to customize the default button of the `<Edit>` component that submits the form:
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -260,13 +256,13 @@ render(
 );
 ```
 
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/chakra-ui/components/buttons/save.md)
+
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows us to add the delete button inside the `<Edit>` component that executes the `useDelete` method provided by the `dataProvider` when clicked on.
 
-When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
-
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/buttons/delete.md)
+If the resource has the `canDelete` property, **refine** adds the delete button by default. If you want to customize this button, you can use the `deleteButtonProps` property like the code below.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -367,7 +363,7 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`<DeleteButton>` &#8594](/api-reference/chakra-ui/components/buttons/delete.md) and [`usePermission` &#8594](/api-reference/core/hooks/authentication/usePermissions.md) documentations
 
 ### `resource`
 
@@ -423,7 +419,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `recordItemId`
 
@@ -512,9 +508,7 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 
 ### `mutationMode`
 
-Determines which mode mutation will have while executing `<DeleteButton>`.
-
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
+`mutationMode` determines which mode the mutation will have while executing `<DeleteButton>`.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -588,7 +582,7 @@ render(
 
 ### `dataProviderName`
 
-If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -713,8 +707,6 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
-
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
@@ -768,11 +760,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
+
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
-
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -823,11 +815,12 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+
 ### `headerProps`
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -877,11 +870,12 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+
 ### `contentProps`
 
 If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -932,6 +926,8 @@ render(
 );
 ```
 
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+
 ### `headerButtons`
 
 By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
@@ -940,7 +936,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 :::caution
 
-If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+If the "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
 :::
 
@@ -1059,8 +1055,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
-
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
@@ -1115,6 +1109,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ### `footerButtons`
 
@@ -1251,8 +1247,6 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
-
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
@@ -1302,6 +1296,8 @@ render(
     </Wrapper>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ### `autoSaveProps`
 

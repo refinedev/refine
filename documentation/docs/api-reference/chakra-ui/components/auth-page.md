@@ -9,7 +9,7 @@ source: packages/chakra-ui/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from **refine** for **Chakra UI** contains authentication pages that can be used to login, register, forgot password and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -128,7 +128,7 @@ const GithubIcon = (
 
 ## Usage
 
-`<AuthPage>` component can be used like this:
+The `<AuthPage>` component can be used like this:
 
 ```tsx live url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
@@ -762,7 +762,7 @@ const MyLoginPage = () => {
 
 ### `wrapperProps`
 
-`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
+`wrapperProps` is used for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
 ```tsx
 const MyLoginPage = () => {
@@ -780,7 +780,7 @@ const MyLoginPage = () => {
 
 ### `contentProps`
 
-`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
+`contentProps` is used for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -798,7 +798,7 @@ const MyLoginPage = () => {
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onSubmit` function is changed.
+`formProps` is used for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onSubmit` function is changed.
 
 ```tsx
 const MyLoginPage = () => {
@@ -867,7 +867,7 @@ const MyLoginPage = () => {
 
 ### `renderContent`
 
-`renderContent` uses to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
+`renderContent` is used to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
 
 ```tsx
 import { Box, Heading } from "@chakra-ui/react";
@@ -945,6 +945,3 @@ interface FormPropsType extends UseFormProps {
 [register]: /docs/api-reference/core/providers/auth-provider/#register
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
-[get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
-[logout]: /docs/api-reference/core/providers/auth-provider/#logout-

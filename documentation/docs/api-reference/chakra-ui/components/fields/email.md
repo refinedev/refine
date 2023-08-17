@@ -172,4 +172,4 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/EmailField" />
 
-[Refer to the documentation for the rest of Anchor properties. &#8594](https://chakra-ui.com/docs/components/link/usage)
+> For the rest of Anchor properties, refer to the [Chakra UI documentation &#8594](https://chakra-ui.com/docs/components/link/usage)
