@@ -18,6 +18,7 @@ import { KanbanUsersForm } from "../../../components/kanban-users-form";
 import { KanbanCheckListForm } from "../../../components/kanban-checklist-form";
 import { KanbanCommentForm } from "../../../components/kanban-comment-form";
 import { KanbanCommentList } from "../../../components/kanban-comment-list";
+import { KanbanModalFooter } from "../../../components/kanban-modal-footer";
 
 import { Task } from "../../../interfaces/graphql";
 
@@ -182,7 +183,7 @@ export const KanbanEditPage = () => {
             }}
             title={queryResult?.data?.data.title}
             width={586}
-            footer={null}
+            footer={<KanbanModalFooter />}
         >
             <Collapse
                 accordion
@@ -198,6 +199,7 @@ export const KanbanEditPage = () => {
                     display: "flex",
                     flexDirection: "column",
                     gap: "48px",
+                    borderBottom: "1px solid #d9d9d9",
                 }}
             >
                 <KanbanCommentForm />

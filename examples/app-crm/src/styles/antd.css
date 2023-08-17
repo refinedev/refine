@@ -31,6 +31,7 @@
 
     .ant-modal-footer {
         border-top: none;
+        text-align: unset;
     }
 
     .ant-collapse {
