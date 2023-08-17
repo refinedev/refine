@@ -5,7 +5,7 @@ slug: react-websocket-tutorial-nodejs
 authors: frank_joseph
 tags: [react]
 hide_table_of_contents: false
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/social.png
 ---
 
 
@@ -57,7 +57,7 @@ WebSocket API is supported by most major browsers as shown in this [compatibilit
 **Why Developers should use WebSockets**
 Due to the inconsistencies associated with the HTTP methods; it is not advisable to build an application with a bidirectional communication functionality using traditional HTTP methods. WebSockets provide low-latency, bidirectional, real-time communication channels between client and server. While being a lightweight protocol, it is also scalable and supports full-duplex (two-way) communication. WebSockets are supported by most modern browsers.
 
-# **Unleashing the Power of WebSockets using Node.js and React**
+## Unleashing the Power of WebSockets using Node.js and React
 
 According to the Web Socket connection order discussed earlier, the WebSocket protocol starts by creating a handshake and then allows communication after confirming the request by sending data. The connection between the client and server must be established through the handshake. Real-time data communication between the client and server is possible when the handshake is complete.
 
@@ -345,5 +345,5 @@ When user closes the browser window or refreshes the page, application will disc
 </div>
 
 
-**Conclusion**
+## Conclusion
 Full-duplex bidirectional real-time communication is an important aspect of modern web development. WebSockets provides the relevant and most efficient means to achieve real-time communication. In this article, we explored the concept of WebSockets, its benefits, why it is superior to other traditional HTTP methods, and why developers should adopt WebSockets. Finally, we illustrated how to integrate WebSockets into React and Node.js applications.
