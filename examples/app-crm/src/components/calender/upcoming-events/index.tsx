@@ -8,13 +8,15 @@ import { CalendarUpcomingEvent } from "./event";
 
 import { Event } from "../../../interfaces/graphql";
 
-export const CalendarUpcomingEvents: React.FC<{ limit: number }> = () => {
+export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
+    limit = 5,
+}) => {
     const { token } = theme.useToken();
     const { list } = useNavigation();
     const { data, isLoading, isError } = useList<Event>({
         resource: "events",
         pagination: {
-            pageSize: 5,
+            pageSize: limit,
         },
         sorters: [
             {
@@ -23,6 +25,7 @@ export const CalendarUpcomingEvents: React.FC<{ limit: number }> = () => {
             },
         ],
         meta: {
+            operation: "events",
             fields: ["id", "title", "color", "startDate", "endDate"],
         },
     });

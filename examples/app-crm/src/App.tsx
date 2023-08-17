@@ -2,6 +2,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import routerProvider, {
     NavigateToResource,
@@ -43,6 +44,7 @@ import { CalendarCreatePage } from "./routes/calendar/create";
 import "./styles/index.css";
 
 dayjs.extend(utc);
+dayjs.extend(relativeTime);
 
 const App: React.FC = () => {
     return (

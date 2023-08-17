@@ -7,6 +7,7 @@ import { DashboardTasksChart } from "../../components/dashboard/tasks-chart";
 import { DashboardDealsChart } from "../../components/dashboard/deals-chart";
 import { DashboardTotalRevenueChart } from "../../components/dashboard/total-revenue-chart";
 import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
+import { DashboardLatestActivities } from "../../components/dashboard/latest-activities";
 
 export const DashboardPage: React.FC = () => {
     return (
@@ -62,7 +63,7 @@ export const DashboardPage: React.FC = () => {
                     <CalendarUpcomingEvents limit={5} />
                 </Col>
                 <Col span={16}>
-                    <CalendarUpcomingEvents limit={5} />
+                    <DashboardLatestActivities limit={5} />
                 </Col>
             </Row>
         </>
