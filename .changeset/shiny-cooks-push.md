@@ -2,4 +2,4 @@
 "@refinedev/cli": minor
 ---
 
-add "--platform" option to run, dev, and build to specify which project type to use for the commands
+add "--platform" option on cli to start, dev, and build to specify project type
