@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, Button, List as SimpleList, theme } from "antd";
+import { Card, Button, theme } from "antd";
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { useNavigation } from "@refinedev/core";
-import { useSimpleList } from "@refinedev/antd";
+import { useList, useNavigation } from "@refinedev/core";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
@@ -12,25 +11,31 @@ import { Event } from "../../../interfaces/graphql";
 export const CalendarUpcomingEvents: React.FC<{ limit: number }> = () => {
     const { token } = theme.useToken();
     const { list } = useNavigation();
-    const { listProps } = useSimpleList<Event>({
+    const { data, isLoading, isError } = useList<Event>({
         resource: "events",
-        syncWithLocation: false,
         pagination: {
-            // mode: "off",
             pageSize: 5,
         },
-        sorters: {
-            initial: [
-                {
-                    field: "startDate",
-                    order: "asc",
-                },
-            ],
-        },
+        sorters: [
+            {
+                field: "startDate",
+                order: "asc",
+            },
+        ],
         meta: {
             fields: ["id", "title", "color", "startDate", "endDate"],
         },
     });
+
+    if (isError) {
+        // TODO: handle error message
+        return null;
+    }
+
+    if (isLoading) {
+        // TODO: handle loading state (skeleton)
+        return null;
+    }
 
     return (
         <Card
@@ -51,15 +56,13 @@ export const CalendarUpcomingEvents: React.FC<{ limit: number }> = () => {
                 </Button>
             }
             bodyStyle={{
-                paddingTop: 0,
-                // paddingBottom: 0,
+                padding: "0 1rem",
+                // padding: "1rem 0.5rem",
             }}
         >
-            <SimpleList
-                {...listProps}
-                pagination={undefined}
-                renderItem={(item) => <CalendarUpcomingEvent {...item} />}
-            />
+            {data.data.map((item) => (
+                <CalendarUpcomingEvent key={item.id} {...item} />
+            ))}
         </Card>
     );
 };
