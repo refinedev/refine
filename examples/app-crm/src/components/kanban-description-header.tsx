@@ -1,6 +1,6 @@
 import { Typography } from "antd";
+import { MarkdownField } from "@refinedev/antd";
 
-import { Text } from "../components/text";
 import { Task } from "../interfaces/graphql";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export const KanbanDescriptionHeader = ({ description }: Props) => {
     if (description) {
-        return <Text>{description}</Text>;
+        return <MarkdownField value={description} />;
     }
 
     return <Typography.Link>Add task description</Typography.Link>;
