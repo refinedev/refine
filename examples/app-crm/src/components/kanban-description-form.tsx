@@ -23,7 +23,11 @@ export const KanbanDescriptionForm = ({ initialValues, cancelForm }: Props) => {
         <>
             <Form {...formProps} initialValues={initialValues}>
                 <Form.Item noStyle name="description">
-                    <MDEditor data-color-mode="light" />
+                    <MDEditor
+                        preview="edit"
+                        data-color-mode="light"
+                        height={250}
+                    />
                 </Form.Item>
             </Form>
             <div
