@@ -9,11 +9,15 @@ export const KanbanCommentForm = () => {
 
     const { formProps, onFinish, form } = useForm<TaskComment>({
         action: "create",
-        resource: "taskComment",
+        resource: "taskComments",
         queryOptions: {
             enabled: false,
         },
+        meta: {
+            operation: "taskCommnet",
+        },
         redirect: false,
+        mutationMode: "optimistic",
     });
 
     const handleOnFinish = async (values: any) => {
@@ -28,15 +32,20 @@ export const KanbanCommentForm = () => {
     };
 
     return (
-        <div style={{ display: "flex", gap: "12px" }}>
-            <Avatar />
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <Avatar style={{ flexShrink: 0 }} size={22}>
+                U
+            </Avatar>
             <Form
                 {...formProps}
                 style={{ width: "100%" }}
                 onFinish={handleOnFinish}
             >
                 <Form.Item name="comment" noStyle>
-                    <Input placeholder="Write a comment" />
+                    <Input
+                        placeholder="Write a comment"
+                        style={{ backgroundColor: "#fff" }}
+                    />
                 </Form.Item>
             </Form>
         </div>

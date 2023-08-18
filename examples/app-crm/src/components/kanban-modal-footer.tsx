@@ -1,5 +1,26 @@
+import { useNavigate } from "react-router-dom";
+import { useGetToPath } from "@refinedev/core";
 import { DeleteButton } from "@refinedev/antd";
 
 export const KanbanModalFooter = () => {
-    return <DeleteButton type="link">Delete card</DeleteButton>;
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
+
+    return (
+        <DeleteButton
+            type="link"
+            onSuccess={() => {
+                navigate(
+                    getToPath({
+                        action: "list",
+                    }) ?? "",
+                    {
+                        replace: true,
+                    },
+                );
+            }}
+        >
+            Delete card
+        </DeleteButton>
+    );
 };

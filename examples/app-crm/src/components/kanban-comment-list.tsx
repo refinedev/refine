@@ -1,21 +1,37 @@
-import { useParsed } from "@refinedev/core";
-import { useSimpleList } from "@refinedev/antd";
-import { Avatar, List, Space, Typography } from "antd";
+import { useGetIdentity, useParsed } from "@refinedev/core";
+import { DeleteButton, useForm, useSimpleList } from "@refinedev/antd";
+import { Avatar, Form, List, Space, Typography, Input, Button } from "antd";
+import dayjs from "dayjs";
 
 import { Text } from "../components/text";
 
-import { TaskComment } from "../interfaces/graphql";
+import { TaskComment, User } from "../interfaces/graphql";
 
 const CommentListItem = ({ item }: { item: TaskComment }) => {
+    const { formProps, setId, id, saveButtonProps } = useForm<TaskComment>({
+        resource: "taskComment",
+        action: "edit",
+        queryOptions: {
+            enabled: false,
+        },
+        onMutationSuccess: () => {
+            setId(undefined);
+        },
+    });
+    const { data: me } = useGetIdentity<User>();
+
+    const isMe = me?.id === item.createdBy.id;
+
     return (
         <div style={{ display: "flex", gap: "12px", marginBottom: "24px" }}>
-            <Avatar alt={item.createdBy.name} />
+            <Avatar style={{ flexShrink: 0 }} size={22}>
+                {item.createdBy.name.toString().charAt(0)}
+            </Avatar>
             <div
                 style={{
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px",
-                    marginTop: "5px",
                     width: "100%",
                 }}
             >
@@ -23,26 +39,80 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
+                        alignItems: "center",
                     }}
                 >
-                    <Text strong>{item.createdBy.name}</Text>
-                    <Text>{item.createdAt}</Text>
+                    <Text style={{ fontWeight: 500 }}>
+                        {item.createdBy.name}
+                    </Text>
+                    <Text size="xs" style={{ color: "#000000a6" }}>
+                        {dayjs(item.createdAt).format("MMMM D, YYYY - h:ma")}
+                    </Text>
                 </div>
 
-                <Text
-                    style={{
-                        background: "#fff",
-                        borderRadius: "6px",
-                        padding: "8px",
-                    }}
-                >
-                    {item.comment}
-                </Text>
+                {id ? (
+                    <Form
+                        {...formProps}
+                        initialValues={{ comment: item.comment }}
+                    >
+                        <Form.Item name="comment" noStyle>
+                            <Input.TextArea
+                                autoFocus
+                                style={{ backgroundColor: "#fff" }}
+                            />
+                        </Form.Item>
+                    </Form>
+                ) : (
+                    <Typography.Paragraph
+                        style={{
+                            background: "#fff",
+                            borderRadius: "6px",
+                            padding: "8px",
+                            marginBottom: 0,
+                        }}
+                        ellipsis={{ rows: 3, expandable: true }}
+                    >
+                        {item.comment}
+                    </Typography.Paragraph>
+                )}
 
-                <Space size={16}>
-                    <Typography.Link>Edit</Typography.Link>
-                    <Typography.Link>Delete</Typography.Link>
-                </Space>
+                {isMe && !id && (
+                    <Space size={16}>
+                        <Typography.Link
+                            style={{ color: "inherit", fontSize: "12px" }}
+                            onClick={() => setId(item.id)}
+                        >
+                            Edit
+                        </Typography.Link>
+                        <DeleteButton
+                            resource="taskComment"
+                            recordItemId={item.id}
+                            size="small"
+                            type="link"
+                            icon={null}
+                            style={{
+                                padding: 0,
+                                fontSize: "12px",
+                                color: "inherit",
+                            }}
+                        />
+                    </Space>
+                )}
+
+                {id && (
+                    <Space>
+                        <Button size="small" onClick={() => setId(undefined)}>
+                            Cancel
+                        </Button>
+                        <Button
+                            size="small"
+                            type="primary"
+                            {...saveButtonProps}
+                        >
+                            Save
+                        </Button>
+                    </Space>
+                )}
             </div>
         </div>
     );
@@ -53,18 +123,15 @@ export const KanbanCommentList = () => {
 
     const { listProps } = useSimpleList<TaskComment>({
         resource: "taskComments",
-        //TODO: nested filters not working
-        // filters: {
-        //     permanent: [{ field: "task.id", operator: "eq", value: taskId }],
-        // },
-        //TODO: sorters not working
-        // sorters: {
-        //     initial: [{ field: "createdAt", order: "desc" }],
-        // },
-        //TODO: pagination not working
-        // pagination: {
-        //     mode: "off",
-        // },
+        filters: {
+            permanent: [{ field: "task.id", operator: "eq", value: taskId }],
+        },
+        sorters: {
+            initial: [{ field: "createdAt", order: "desc" }],
+        },
+        pagination: {
+            mode: "off",
+        },
         meta: {
             fields: [
                 "id",
@@ -75,6 +142,8 @@ export const KanbanCommentList = () => {
         },
         syncWithLocation: false,
     });
+
+    if (listProps.dataSource?.length === 0) return null;
 
     return (
         <List
