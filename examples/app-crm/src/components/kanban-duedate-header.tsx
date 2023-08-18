@@ -1,6 +1,8 @@
-import { Typography } from "antd";
+import { Space, Tag, Typography } from "antd";
+import dayjs from "dayjs";
 
 import { Text } from "../components/text";
+import { getDateColor } from "../utilities/date";
 import { Task } from "../interfaces/graphql";
 
 type Props = {
@@ -9,7 +11,28 @@ type Props = {
 
 export const KanbanDueDateHeader = ({ dueData }: Props) => {
     if (dueData) {
-        return <Text>{dueData}</Text>;
+        const color = getDateColor({
+            date: dueData,
+            defaultColor: "processing",
+        });
+        const getTagText = () => {
+            switch (color) {
+                case "error":
+                    return "Overdue";
+                case "warning":
+                    return "Due soon";
+                default:
+                    return "Processing";
+            }
+        };
+
+        return (
+            <Space size={[0, 8]}>
+                <Tag color={color}>{getTagText()}</Tag>
+                <Text>{dayjs(dueData).format("MMMM D, YYYY - h:ma")}</Text>
+            </Space>
+        );
     }
+
     return <Typography.Link>Add due date</Typography.Link>;
 };

@@ -31,7 +31,10 @@ export const KanbanDueDateForm = ({ initialValues, cancelForm }: Props) => {
                 <Form.Item
                     noStyle
                     name="dueDate"
-                    getValueProps={(value) => ({ value: dayjs(value) })}
+                    getValueProps={(value) => {
+                        if (!value) return { value: undefined };
+                        return { value: dayjs(value) };
+                    }}
                 >
                     <DatePicker
                         format="YYYY-MM-DD HH:mm"

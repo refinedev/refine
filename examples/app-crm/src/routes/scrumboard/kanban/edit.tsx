@@ -104,7 +104,7 @@ export const KanbanEditPage = () => {
             ),
             children: (
                 <KanbanDueDateForm
-                    initialValues={{ dueDate }}
+                    initialValues={{ dueDate: dueDate ?? undefined }}
                     cancelForm={() => setActiveKey(undefined)}
                 />
             ),
