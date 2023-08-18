@@ -17,9 +17,9 @@ import { KanbanDescriptionHeader } from "../../../components/kanban-description-
 import { KanbanDueDateForm } from "../../../components/kanban-duedate-form";
 import { KanbanDueDateHeader } from "../../../components/kanban-duedate-header";
 import { KanbanUsersForm } from "../../../components/kanban-users-form";
-import { KanbanUsersHeader } from "../../../components/kanban-checklist-header";
+import { KanbanUsersHeader } from "../../../components/kanban-users-header";
+import { KanbanChecklistHeader } from "../../../components/kanban-checklist-header";
 import { KanbanCheckListForm } from "../../../components/kanban-checklist-form";
-import { KanbanChecklistHeader } from "../../../components/kanban-user-header";
 import { KanbanCommentForm } from "../../../components/kanban-comment-form";
 import { KanbanCommentList } from "../../../components/kanban-comment-list";
 import { KanbanModalFooter } from "../../../components/kanban-modal-footer";

@@ -33,12 +33,18 @@ export const KanbanUsersForm = ({ initialValues, cancelForm }: Props) => {
                 gap: "12px",
             }}
         >
-            <Form {...formProps} initialValues={initialValues}>
+            <Form
+                {...formProps}
+                style={{ width: "100%" }}
+                initialValues={initialValues}
+            >
                 <Form.Item noStyle name="userIds">
                     <Select
                         {...selectProps}
-                        mode="multiple"
+                        className="kanban-users-form-select"
+                        dropdownStyle={{ padding: "0px" }}
                         style={{ width: "100%" }}
+                        mode="multiple"
                     />
                 </Form.Item>
             </Form>

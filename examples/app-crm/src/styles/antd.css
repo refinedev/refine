@@ -50,3 +50,9 @@
         }
     }
 }
+
+.ant-select.kanban-users-form-select {
+    .ant-select-selector {
+        background-color: #fff;
+    }
+}
