@@ -148,14 +148,29 @@ export const SalesPage = () => {
 
     const handleAddStage = () => {
         const title = prompt("Enter stage title");
-        alert("not implemented [title]: " + title);
+        createStage({
+            resource: "stages",
+            meta: {
+                operation: "dealStage",
+            },
+            values: {
+                title,
+            },
+        });
     };
+
     const handleEditStage = (args: { stageId: string }) => {
         alert("not implemented [stageId]: " + args.stageId);
     };
 
     const handleDeleteStage = (args: { stageId: string }) => {
-        alert("not implemented [stageId]: " + args.stageId);
+        deleteStage({
+            resource: "stages",
+            meta: {
+                operation: "dealStage",
+            },
+            id: args.stageId,
+        });
     };
 
     const handleAddCard = (args: { stageId: string }) => {
