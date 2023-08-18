@@ -1,17 +1,3 @@
-.events {
-    .event {
-        display: block;
-
-        .badge {
-            width: 0.3rem;
-            height: 0.3rem;
-            display: inline-block;
-            border-radius: 50%;
-            margin: 0.25rem;
-        }
-    }
-}
-
 .calendar_header {
     display: flex;
     align-items: center;

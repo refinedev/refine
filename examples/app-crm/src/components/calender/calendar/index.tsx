@@ -1,6 +1,6 @@
 import React from "react";
 import { useList } from "@refinedev/core";
-import { Calendar as AntdCalendar, Card, Button } from "antd";
+import { Calendar as AntdCalendar, Card, Button, Badge } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Dayjs } from "dayjs";
 
@@ -66,23 +66,17 @@ export const Calendar: React.FC<CalendarProps> = ({
         }
 
         return (
-            <div className={styles.events}>
+            <div>
                 {data?.data.map((item) => (
-                    <div
-                        onClick={() => onClickEvent?.(item)}
-                        key={item.id}
-                        className={styles.event}
-                    >
+                    <div onClick={() => onClickEvent?.(item)} key={item.id}>
                         <Text
                             ellipsis={{
                                 tooltip: true,
                             }}
                         >
-                            <span
-                                className={styles.badge}
-                                style={{
-                                    backgroundColor: item.color,
-                                }}
+                            <Badge
+                                style={{ marginRight: "0.5rem" }}
+                                color={item.color}
                             />
                             {item.title}
                         </Text>

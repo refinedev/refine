@@ -1,5 +1,4 @@
-import React from "react";
-import { Drawer, Space } from "antd";
+import { Badge, Button, Drawer, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath, useResource, useShow } from "@refinedev/core";
 import {
@@ -7,6 +6,7 @@ import {
     FlagOutlined,
     TeamOutlined,
     InfoCircleOutlined,
+    EditOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 
@@ -55,12 +55,24 @@ export const CalendarShowPage = () => {
         return null;
     }
 
-    const { title, description, startDate, endDate, category, participants } =
-        data.data;
+    const {
+        color,
+        title,
+        description,
+        startDate,
+        endDate,
+        category,
+        participants,
+    } = data.data;
 
     return (
         <Drawer
-            title={title}
+            title={
+                <Space>
+                    <Badge color={color} />
+                    <Text>{title}</Text>
+                </Space>
+            }
             open
             onClose={() => {
                 navigate(
@@ -73,6 +85,7 @@ export const CalendarShowPage = () => {
                 );
             }}
             width={560}
+            extra={<Button icon={<EditOutlined />} />}
         >
             <Space direction="vertical" size="large">
                 <div>
@@ -106,7 +119,6 @@ export const CalendarShowPage = () => {
                     <Text>{description}</Text>
                 </div>
             </Space>
-            <Text></Text>
         </Drawer>
     );
 };

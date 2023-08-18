@@ -5,6 +5,7 @@ import { Text } from "../../../text";
 import { Event } from "../../../../interfaces/graphql";
 
 import styles from "../index.module.css";
+import { Badge } from "antd";
 
 export const CalendarUpcomingEvent: React.FC<Event> = ({
     id,
@@ -46,12 +47,7 @@ export const CalendarUpcomingEvent: React.FC<Event> = ({
     return (
         <div key={id} className={styles.item}>
             <div className={styles.date}>
-                <span
-                    className={styles.icon}
-                    style={{
-                        backgroundColor: color,
-                    }}
-                />
+                <Badge color={color} className={styles.badge} />
 
                 <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
             </div>
