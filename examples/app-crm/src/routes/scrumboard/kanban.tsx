@@ -17,34 +17,7 @@ import {
 } from "../../components/kanban";
 import { FullScreenLoading, ProjectCardMemo } from "../../components";
 import { Task, TaskStage, TaskUpdateInput } from "../../interfaces/graphql";
-
-const defaultContextMenuItems = {
-    edit: {
-        label: "Edit status",
-        key: "1",
-        icon: <EditOutlined />,
-        onClick: () => {
-            alert("not implemented");
-        },
-    },
-    clear: {
-        label: "Clear all cards",
-        key: "2",
-        icon: <ClearOutlined />,
-        onClick: () => {
-            alert("not implemented");
-        },
-    },
-    delete: {
-        danger: true,
-        label: "Delete status",
-        key: "3",
-        icon: <DeleteOutlined />,
-        onClick: () => {
-            alert("not implemented");
-        },
-    },
-};
+import { MenuProps } from "antd";
 
 const taskFragment = [
     "id",
@@ -64,7 +37,7 @@ const taskFragment = [
 ];
 
 export const KanbanPage = () => {
-    const { data: defaultStage, isLoading: isLoadingDefaultStage } =
+    const { data: unassignedStage, isLoading: isLoadingUnassignedStage } =
         useList<Task>({
             resource: "stages",
             pagination: {
@@ -112,8 +85,11 @@ export const KanbanPage = () => {
 
     const handleOnDragEnd = (event: DragEndEvent) => {
         const taskId = event.active.id as string;
-        const stageId = event.over?.id as string;
-        if (!stageId || !taskId) return;
+        let stageId = event.over?.id as undefined | string | null;
+
+        if (stageId === "unassigned") {
+            stageId = null;
+        }
 
         updateTask({
             resource: "stages",
@@ -122,7 +98,7 @@ export const KanbanPage = () => {
             },
             id: taskId,
             values: {
-                stageId: stageId === "default" ? null : stageId,
+                stageId: stageId,
             },
             successNotification: false,
         });
@@ -176,32 +152,37 @@ export const KanbanPage = () => {
     const getContextMenuItems = ({ column }: { column: TaskStage }) => {
         const hasItems = column.tasks.length > 0;
 
-        const items = [
+        const items: MenuProps["items"] = [
             {
-                ...defaultContextMenuItems.edit,
+                label: "Edit status",
+                key: "1",
+                icon: <EditOutlined />,
                 onClick: () => handleEditStage({ stageId: column.id }),
             },
-        ];
-        if (!hasItems) {
-            items.push({
-                ...defaultContextMenuItems.delete,
-                onClick: () => handleDeleteStage({ stageId: column.id }),
-            });
-        }
-        if (hasItems) {
-            items.push({
-                ...defaultContextMenuItems.clear,
+            {
+                label: "Clear all cards",
+                key: "2",
+                icon: <ClearOutlined />,
+                disabled: !hasItems,
                 onClick: () =>
                     handleClearCards({
                         taskIds: column.tasks.map((task) => task.id),
                     }),
-            });
-        }
+            },
+            {
+                danger: true,
+                label: "Delete status",
+                key: "3",
+                icon: <DeleteOutlined />,
+                disabled: hasItems,
+                onClick: () => handleDeleteStage({ stageId: column.id }),
+            },
+        ];
 
         return items;
     };
 
-    const loading = isLoadingDefaultStage || isLoadingTaskStages;
+    const loading = isLoadingUnassignedStage || isLoadingTaskStages;
 
     if (loading) {
         return <FullScreenLoading />;
@@ -210,21 +191,21 @@ export const KanbanPage = () => {
     return (
         <KanbanBoard onDragEnd={handleOnDragEnd}>
             <KanbanColumnMemo
-                id={"default"}
-                title={"default"}
-                count={defaultStage?.data?.length || 0}
-                onAddClick={() => handleAddCard({ stageId: "default" })}
+                id={"unassigned"}
+                title={"unassigned"}
+                count={unassignedStage?.data?.length || 0}
+                onAddClick={() => handleAddCard({ stageId: "unassigned" })}
             >
-                {defaultStage?.data.map((task) => {
+                {unassignedStage?.data.map((task) => {
                     return (
                         <KanbanItem key={task.id} id={task.id}>
                             <ProjectCardMemo {...task} />
                         </KanbanItem>
                     );
                 })}
-                {!defaultStage?.data?.length && (
+                {!unassignedStage?.data?.length && (
                     <KanbanAddCardButton
-                        onClick={() => handleAddCard({ stageId: "default" })}
+                        onClick={() => handleAddCard({ stageId: "unassigned" })}
                     />
                 )}
             </KanbanColumnMemo>

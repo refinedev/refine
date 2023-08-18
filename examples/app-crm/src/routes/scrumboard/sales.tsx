@@ -6,7 +6,7 @@ import {
     useUpdate,
     useUpdateMany,
 } from "@refinedev/core";
-import { DragEndEvent } from "@dnd-kit/core";
+import { DragEndEvent, UniqueIdentifier } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { Deal, DealStage } from "../../interfaces/graphql";
 import { DealKanbanCardMemo, FullScreenLoading, Text } from "../../components";
@@ -18,34 +18,8 @@ import {
     KanbanAddCardButton,
 } from "../../components/kanban";
 import { currencyNumber } from "../../utilities";
-
-const defaultContextMenuItems = {
-    edit: {
-        label: "Edit status",
-        key: "1",
-        icon: <EditOutlined />,
-        onClick: () => {
-            alert("not implemented");
-        },
-    },
-    clear: {
-        label: "Clear all cards",
-        key: "2",
-        icon: <ClearOutlined />,
-        onClick: () => {
-            alert("not implemented");
-        },
-    },
-    delete: {
-        danger: true,
-        label: "Delete status",
-        key: "3",
-        icon: <DeleteOutlined />,
-        onClick: () => {
-            alert("not implemented");
-        },
-    },
-};
+import { MenuProps } from "antd";
+import { DealKanbanWonLostDrop } from "../../components/deal-kanban-won-lost-drop";
 
 const dealsFragment = [
     "id",
@@ -61,7 +35,7 @@ const dealsFragment = [
 ];
 
 export const SalesPage = () => {
-    const { data: defaultStage, isLoading: isLoadingDefaultStage } =
+    const { data: unassignedStage, isLoading: isLoadingUnassignedStage } =
         useList<Deal>({
             resource: "stages",
             pagination: {
@@ -110,6 +84,18 @@ export const SalesPage = () => {
     const { mutate: createStage } = useCreate();
     const { mutate: deleteStage } = useDelete();
 
+    const { unassignedStageTotalValue } = useMemo(() => {
+        let unassignedStageTotalValue = 0;
+
+        unassignedStage?.data?.forEach((deal) => {
+            unassignedStageTotalValue += deal.value || 0;
+        });
+
+        return {
+            unassignedStageTotalValue,
+        };
+    }, [unassignedStage]);
+
     const { allStages, stageLost, stageWon } = useMemo(() => {
         if (!dealStages?.data) {
             return {
@@ -132,9 +118,20 @@ export const SalesPage = () => {
     }, [dealStages]);
 
     const handleOnDragEnd = (event: DragEndEvent) => {
-        const dealId = event.active.id as string;
-        const stageId = event.over?.id as string;
-        if (!stageId || !dealId) return;
+        const dealId = event.active.id;
+        let stageId = event.over?.id as undefined | string | null;
+
+        if (stageId === "won") {
+            stageId = stageWon?.id;
+        }
+
+        if (stageId === "lost") {
+            stageId = stageLost?.id;
+        }
+
+        if (stageId === "unassigned") {
+            stageId = null;
+        }
 
         updateDeal({
             resource: "stages",
@@ -143,7 +140,7 @@ export const SalesPage = () => {
             },
             id: dealId,
             values: {
-                stageId: stageId === "default" ? null : stageId,
+                stageId: stageId,
             },
             successNotification: false,
         });
@@ -166,55 +163,72 @@ export const SalesPage = () => {
     };
 
     const handleClearCards = (args: { dealsIds: string[] }) => {
-        alert("not implemented [stageId]: " + args.dealsIds);
+        updateManyDeal({
+            resource: "stages",
+            meta: {
+                operation: "deals",
+            },
+            ids: args.dealsIds,
+            values: {
+                stageId: null,
+            },
+            successNotification: false,
+        });
     };
 
     const getContextMenuItems = ({ column }: { column: DealStage }) => {
         const hasItems = column.deals.length > 0;
 
-        const items = [
+        const items: MenuProps["items"] = [
             {
-                ...defaultContextMenuItems.edit,
+                label: "Edit status",
+                key: "1",
+                icon: <EditOutlined />,
                 onClick: () => handleEditStage({ stageId: column.id }),
             },
-        ];
-        if (!hasItems) {
-            items.push({
-                ...defaultContextMenuItems.delete,
-                onClick: () => handleDeleteStage({ stageId: column.id }),
-            });
-        }
-        if (hasItems) {
-            items.push({
-                ...defaultContextMenuItems.clear,
+            {
+                label: "Clear all cards",
+                key: "2",
+                icon: <ClearOutlined />,
+                disabled: !hasItems,
                 onClick: () =>
                     handleClearCards({
                         dealsIds: column.deals.map((deal) => deal.id),
                     }),
-            });
-        }
+            },
+            {
+                danger: true,
+                label: "Delete status",
+                key: "3",
+                icon: <DeleteOutlined />,
+                disabled: hasItems,
+                onClick: () => handleDeleteStage({ stageId: column.id }),
+            },
+        ];
 
         return items;
     };
 
-    const loading = isLoadingDealStages || isLoadingDefaultStage;
+    const loading = isLoadingDealStages || isLoadingUnassignedStage;
 
     if (loading) {
         return <FullScreenLoading />;
     }
 
-    console.log(defaultStage);
-
     return (
         <KanbanBoard onDragEnd={handleOnDragEnd}>
             <KanbanColumnMemo
-                id={"default"}
-                title={"default"}
-                count={defaultStage?.data?.length || 0}
-                description={<Text size="md">{currencyNumber(0)}</Text>}
-                onAddClick={() => handleAddCard({ stageId: "default" })}
+                id={"unassigned"}
+                title={"unassigned"}
+                count={unassignedStage?.data?.length || 0}
+                description={
+                    <Text size="md" disabled={unassignedStageTotalValue === 0}>
+                        {currencyNumber(unassignedStageTotalValue)}
+                    </Text>
+                }
+                onAddClick={() => handleAddCard({ stageId: "unassigned" })}
             >
-                {defaultStage?.data?.map((deal) => {
+                {unassignedStage?.data?.map((deal) => {
                     return (
                         <KanbanItem key={deal.id} id={deal.id}>
                             <DealKanbanCardMemo
@@ -229,9 +243,9 @@ export const SalesPage = () => {
                         </KanbanItem>
                     );
                 })}
-                {!defaultStage?.data?.length && (
+                {!unassignedStage?.data?.length && (
                     <KanbanAddCardButton
-                        onClick={() => handleAddCard({ stageId: "default" })}
+                        onClick={() => handleAddCard({ stageId: "unassigned" })}
                     />
                 )}
             </KanbanColumnMemo>
@@ -355,6 +369,7 @@ export const SalesPage = () => {
                     })}
                 </KanbanColumnMemo>
             )}
+            <DealKanbanWonLostDrop />
         </KanbanBoard>
     );
 };
