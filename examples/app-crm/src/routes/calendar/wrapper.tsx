@@ -2,12 +2,9 @@ import React from "react";
 import { Col, Row, App } from "antd";
 import { CreateButton } from "@refinedev/antd";
 
-import { CalendarTypeSwitch } from "../../components/calendar-type-switch";
 import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
 import { CalendarCategories } from "../../components/calender/categories";
-
-import { CalendarListPage } from "./list";
-// import { CalendarMonthPage } from "./month";
+import { Calendar } from "../../components/calender/calendar";
 
 type Props = React.PropsWithChildren<{}>;
 
@@ -15,10 +12,6 @@ export const CalendarPageWrapper = ({ children }: Props) => {
     const [selectedEventCategory, setSelectedEventCategory] = React.useState<
         string[]
     >([]);
-
-    // const { type } = useParams();
-
-    // const Component = type === "list" ? CalendarListPage : CalendarMonthPage;
 
     return (
         <App>
@@ -52,7 +45,7 @@ export const CalendarPageWrapper = ({ children }: Props) => {
                     />
                 </Col>
                 <Col span={18}>
-                    <CalendarListPage />
+                    <Calendar categoryId={selectedEventCategory} />
                     {children}
                 </Col>
             </Row>

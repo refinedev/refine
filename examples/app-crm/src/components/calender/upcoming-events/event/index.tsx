@@ -55,7 +55,13 @@ export const CalendarUpcomingEvent: React.FC<Event> = ({
 
                 <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
             </div>
-            <Text strong className={styles.title}>
+            <Text
+                ellipsis={{
+                    tooltip: true,
+                }}
+                strong
+                className={styles.title}
+            >
                 {title}
             </Text>
         </div>
