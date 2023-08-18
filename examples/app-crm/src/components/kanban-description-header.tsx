@@ -9,7 +9,11 @@ type Props = {
 
 export const KanbanDescriptionHeader = ({ description }: Props) => {
     if (description) {
-        return <MarkdownField value={description} />;
+        return (
+            <Typography.Paragraph ellipsis={{ rows: 8 }}>
+                <MarkdownField value={description} />
+            </Typography.Paragraph>
+        );
     }
 
     return <Typography.Link>Add task description</Typography.Link>;
