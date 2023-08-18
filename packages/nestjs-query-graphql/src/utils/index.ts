@@ -84,6 +84,9 @@ export const generateSorting = (sorters: CrudSorting) => {
 };
 
 export const generatePaging = (pagination: Pagination) => {
+    // maximum value of 32 bit signed integer
+    if (pagination.mode === "off") return { limit: 2147483647 };
+
     if (pagination.mode !== "server") return undefined;
 
     if (!pagination.current || !pagination.pageSize) return undefined;
