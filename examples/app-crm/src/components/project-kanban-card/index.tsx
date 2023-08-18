@@ -1,5 +1,5 @@
 import { useDelete, useNavigation } from "@refinedev/core";
-import { memo, useMemo, useState } from "react";
+import { memo, useMemo } from "react";
 import dayjs from "dayjs";
 import {
     Avatar,
@@ -23,7 +23,11 @@ import {
 } from "@ant-design/icons";
 import { TextIcon } from "../icon";
 import { Text } from "../text";
-import { getDateColor, getRandomColorFromString } from "../../utilities";
+import {
+    getDateColor,
+    getNameInitials,
+    getRandomColorFromString,
+} from "../../utilities";
 
 type ProjectCardProps = {
     id: string;
@@ -275,8 +279,9 @@ export const ProjectCard = ({
                                                 textTransform: "uppercase",
                                             }}
                                         >
-                                            {user?.name?.[0]}
-                                            {user?.name?.[1]}
+                                            {getNameInitials({
+                                                name: user.name,
+                                            })}
                                         </Avatar>
                                     </Tooltip>
                                 );
