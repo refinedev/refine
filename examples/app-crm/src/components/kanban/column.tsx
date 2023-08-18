@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, memo } from "react";
+import { FC, PropsWithChildren, ReactNode, memo } from "react";
 import { UseDroppableArguments, useDroppable } from "@dnd-kit/core";
 import { Button, Dropdown, MenuProps } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
@@ -10,7 +10,7 @@ import styles from "./column.module.css";
 type Props = {
     id: string;
     title: string;
-    description?: string;
+    description?: ReactNode;
     count: number;
     data?: UseDroppableArguments["data"];
     variant?: "default" | "solid";
@@ -96,7 +96,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
                         />
                     </div>
                 </div>
-                {description && <Text size="md">{description}</Text>}
+                {description}
             </div>
             <div
                 className={cn(styles.childrenWrapper, {

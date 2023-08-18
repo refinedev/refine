@@ -68,8 +68,7 @@ export const KanbanPage = () => {
         useList<Task>({
             resource: "stages",
             pagination: {
-                current: 1,
-                pageSize: 999,
+                mode: "off",
             },
             filters: [
                 {
@@ -88,8 +87,7 @@ export const KanbanPage = () => {
         useList<TaskStage>({
             resource: "stages",
             pagination: {
-                current: 1,
-                pageSize: 999,
+                mode: "off",
             },
             meta: {
                 operation: "taskStages",
@@ -211,21 +209,25 @@ export const KanbanPage = () => {
 
     return (
         <Kanban onDragEnd={handleOnDragEnd}>
-            {!!defaultStage?.data?.length && (
-                <KanbanColumnMemo
-                    id={"default"}
-                    title={"default"}
-                    count={defaultStage.data.length}
-                >
-                    {defaultStage.data.map((task) => {
-                        return (
-                            <KanbanItem key={task.id} id={task.id}>
-                                <ProjectCardMemo {...task} />
-                            </KanbanItem>
-                        );
-                    })}
-                </KanbanColumnMemo>
-            )}
+            <KanbanColumnMemo
+                id={"default"}
+                title={"default"}
+                count={defaultStage?.data?.length || 0}
+                onAddClick={() => handleAddCard({ stageId: "default" })}
+            >
+                {defaultStage?.data.map((task) => {
+                    return (
+                        <KanbanItem key={task.id} id={task.id}>
+                            <ProjectCardMemo {...task} />
+                        </KanbanItem>
+                    );
+                })}
+                {!defaultStage?.data?.length && (
+                    <KanbanAddCardButton
+                        onClick={() => handleAddCard({ stageId: "default" })}
+                    />
+                )}
+            </KanbanColumnMemo>
             {taskStages?.data.map((column) => {
                 const contextMenuItems = getContextMenuItems({ column });
 
@@ -245,7 +247,7 @@ export const KanbanPage = () => {
                                 </KanbanItem>
                             );
                         })}
-                        {column.tasks.length === 0 && (
+                        {!column.tasks.length && (
                             <KanbanAddCardButton
                                 onClick={() =>
                                     handleAddCard({ stageId: column.id })

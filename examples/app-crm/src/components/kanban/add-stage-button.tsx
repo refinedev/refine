@@ -17,6 +17,7 @@ export const KanbanAddStageButton: FC<PropsWithChildren<Props>> = ({
             size="large"
             icon={<PlusSquareOutlined className="secondary md" />}
             style={{
+                marginTop: "16px",
                 height: "56px",
             }}
             onClick={onClick}

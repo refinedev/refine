@@ -1,3 +1,5 @@
+import { useDelete, useNavigation } from "@refinedev/core";
+import { memo, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import {
     Avatar,
@@ -20,9 +22,7 @@ import {
 } from "@ant-design/icons";
 import { TextIcon } from "../icon";
 import { Text } from "../text";
-import { memo, useMemo } from "react";
-import { useDelete, useNavigation } from "@refinedev/core";
-import { getDateColor } from "../../utilities";
+import { getDateColor, getRandomColor } from "../../utilities";
 
 type ProjectCardProps = {
     id: string;
@@ -48,8 +48,10 @@ export const ProjectCard = ({
     dueDate,
     users,
 }: ProjectCardProps) => {
-    const { push } = useNavigation();
+    const [randomColor] = useState(() => getRandomColor());
+
     const { token } = theme.useToken();
+    const { push } = useNavigation();
     const { mutate } = useDelete();
 
     const dropdownItems = useMemo(() => {
@@ -69,8 +71,11 @@ export const ProjectCard = ({
                 icon: <DeleteOutlined />,
                 onClick: () => {
                     mutate({
-                        resource: "task",
+                        resource: "stages",
                         id,
+                        meta: {
+                            operation: "task",
+                        },
                     });
                 },
             },
@@ -262,6 +267,7 @@ export const ProjectCard = ({
                                         size="small"
                                         src={user.avatar}
                                         style={{
+                                            backgroundColor: randomColor,
                                             objectFit: "contain",
                                             textTransform: "uppercase",
                                         }}

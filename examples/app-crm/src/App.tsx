@@ -1,9 +1,6 @@
 import { Refine, Authenticated } from "@refinedev/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import routerProvider, {
     NavigateToResource,
@@ -42,10 +39,9 @@ import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
-import "./styles/index.css";
+import "./lib/init-dayjs";
 
-dayjs.extend(utc);
-dayjs.extend(relativeTime);
+import "./styles/index.css";
 
 const App: React.FC = () => {
     return (
