@@ -7,15 +7,16 @@ describe("getDateColors function", () => {
         expect(getDateColor({ date: yesterday })).toBe("error");
     });
 
-    it("should return 'warning' if the date is before 3 days from today", () => {
-        const threeDaysAgo = dayjs().subtract(3, "day").format("YYYY-MM-DD");
-        expect(getDateColor({ date: threeDaysAgo })).toBe("warning");
-    });
+    it.each([1, 2, 3])(
+        "should return 'warning' if the date is %s days from today",
+        (day) => {
+            const date = dayjs().add(day, "day").format("YYYY-MM-DD");
+            expect(getDateColor({ date: date })).toBe("warning");
+        },
+    );
 
-    it("should return 'default' if the date is today or in the future", () => {
-        const today = dayjs().format("YYYY-MM-DD");
-        const tomorrow = dayjs().add(1, "day").format("YYYY-MM-DD");
-        expect(getDateColor({ date: today })).toBe("default");
-        expect(getDateColor({ date: tomorrow })).toBe("default");
+    it("should return 'default' if the date is more than 3 days from today", () => {
+        const date = dayjs().add(4, "day").format("YYYY-MM-DD");
+        expect(getDateColor({ date: date })).toBe("default");
     });
 });
