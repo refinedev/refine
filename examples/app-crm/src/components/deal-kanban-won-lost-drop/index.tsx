@@ -1,11 +1,22 @@
-import { FC } from "react";
-import { useDroppable } from "@dnd-kit/core";
+import { FC, useState } from "react";
+import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import cn from "classnames";
 import { Text } from "../../components";
 
 import styles from "./index.module.css";
 
 export const DealKanbanWonLostDrop: FC = () => {
+    const [show, setShow] = useState(false);
+
+    useDndMonitor({
+        onDragStart: () => setShow(true),
+        onDragEnd: () => setShow(false),
+    });
+
+    if (!show) {
+        return null;
+    }
+
     return (
         <div className={styles.container}>
             <WonArea />
