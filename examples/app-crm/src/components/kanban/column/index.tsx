@@ -3,9 +3,9 @@ import { UseDroppableArguments, useDroppable } from "@dnd-kit/core";
 import { Button, Dropdown, MenuProps } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
 import cn from "classnames";
-import { Text } from "../text";
+import { Text } from "../../text";
 
-import styles from "./column.module.css";
+import styles from "./index.module.css";
 
 type Props = {
     id: string;

@@ -12,7 +12,7 @@ import {
 import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text } from "../text";
-import { getDateHumanize, getRandomColor } from "../../utilities";
+import { getRandomColor } from "../../utilities";
 
 type Props = {
     id: string;
@@ -162,7 +162,7 @@ export const DealKanbanCard: FC<Props> = ({
                                 )}
                             >
                                 <Text size="xs" type="secondary">
-                                    {getDateHumanize(date)}
+                                    {dayjs(date).fromNow()}
                                 </Text>
                             </Tooltip>
                         </div>

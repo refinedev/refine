@@ -9,7 +9,7 @@ import {
 import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import {
-    Kanban,
+    KanbanBoard,
     KanbanColumnMemo,
     KanbanItem,
     KanbanAddStageButton,
@@ -208,7 +208,7 @@ export const KanbanPage = () => {
     }
 
     return (
-        <Kanban onDragEnd={handleOnDragEnd}>
+        <KanbanBoard onDragEnd={handleOnDragEnd}>
             <KanbanColumnMemo
                 id={"default"}
                 title={"default"}
@@ -258,6 +258,6 @@ export const KanbanPage = () => {
                 );
             })}
             <KanbanAddStageButton onClick={handleAddStage} />
-        </Kanban>
+        </KanbanBoard>
     );
 };

@@ -11,7 +11,7 @@ import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { Deal, DealStage } from "../../interfaces/graphql";
 import { DealKanbanCardMemo, FullScreenLoading, Text } from "../../components";
 import {
-    Kanban,
+    KanbanBoard,
     KanbanColumnMemo,
     KanbanItem,
     KanbanAddStageButton,
@@ -84,8 +84,7 @@ export const SalesPage = () => {
         useList<DealStage>({
             resource: "stages",
             pagination: {
-                current: 1,
-                pageSize: 999,
+                mode: "off",
             },
             meta: {
                 operation: "dealStages",
@@ -207,7 +206,7 @@ export const SalesPage = () => {
     console.log(defaultStage);
 
     return (
-        <Kanban onDragEnd={handleOnDragEnd}>
+        <KanbanBoard onDragEnd={handleOnDragEnd}>
             <KanbanColumnMemo
                 id={"default"}
                 title={"default"}
@@ -356,6 +355,6 @@ export const SalesPage = () => {
                     })}
                 </KanbanColumnMemo>
             )}
-        </Kanban>
+        </KanbanBoard>
     );
 };
