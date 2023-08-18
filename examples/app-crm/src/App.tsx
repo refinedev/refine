@@ -39,7 +39,7 @@ import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
-import "./lib/init-dayjs";
+import "./utilities/init-dayjs";
 
 import "./styles/index.css";
 

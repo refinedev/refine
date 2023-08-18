@@ -9,6 +9,7 @@ import {
     Dropdown,
     Space,
     Tag,
+    Tooltip,
     theme,
 } from "antd";
 import type { MenuProps } from "antd";
@@ -261,20 +262,22 @@ export const ProjectCard = ({
                         >
                             {users.map((user) => {
                                 return (
-                                    <Avatar
-                                        key={user.id}
-                                        alt={user.name}
-                                        size="small"
-                                        src={user.avatar}
-                                        style={{
-                                            backgroundColor: randomColor,
-                                            objectFit: "contain",
-                                            textTransform: "uppercase",
-                                        }}
-                                    >
-                                        {user?.name?.[0]}
-                                        {user?.name?.[1]}
-                                    </Avatar>
+                                    <Tooltip key={user.id} title={user.name}>
+                                        <Avatar
+                                            key={user.id}
+                                            alt={user.name}
+                                            size="small"
+                                            src={user.avatar}
+                                            style={{
+                                                backgroundColor: randomColor,
+                                                objectFit: "contain",
+                                                textTransform: "uppercase",
+                                            }}
+                                        >
+                                            {user?.name?.[0]}
+                                            {user?.name?.[1]}
+                                        </Avatar>
+                                    </Tooltip>
                                 );
                             })}
                         </Space>
