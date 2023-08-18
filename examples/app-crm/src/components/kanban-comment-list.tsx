@@ -1,5 +1,5 @@
-import { useGetIdentity, useParsed } from "@refinedev/core";
-import { DeleteButton, useForm, useSimpleList } from "@refinedev/antd";
+import { useGetIdentity, useList, useParsed } from "@refinedev/core";
+import { DeleteButton, useForm } from "@refinedev/antd";
 import { Avatar, Form, List, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
 
@@ -23,7 +23,7 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
     const isMe = me?.id === item.createdBy.id;
 
     return (
-        <div style={{ display: "flex", gap: "12px", marginBottom: "24px" }}>
+        <div style={{ display: "flex", gap: "12px" }}>
             <Avatar style={{ flexShrink: 0 }} size={22}>
                 {item.createdBy.name.toString().charAt(0)}
             </Avatar>
@@ -121,14 +121,10 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
 export const KanbanCommentList = () => {
     const { id: taskId } = useParsed();
 
-    const { listProps } = useSimpleList<TaskComment>({
+    const { data } = useList<TaskComment>({
         resource: "taskComments",
-        filters: {
-            permanent: [{ field: "task.id", operator: "eq", value: taskId }],
-        },
-        sorters: {
-            initial: [{ field: "createdAt", order: "desc" }],
-        },
+        filters: [{ field: "task.id", operator: "eq", value: taskId }],
+        sorters: [{ field: "createdAt", order: "desc" }],
         pagination: {
             mode: "off",
         },
@@ -140,16 +136,13 @@ export const KanbanCommentList = () => {
                 { createdBy: ["id", "name"] },
             ],
         },
-        syncWithLocation: false,
     });
 
-    if (listProps.dataSource?.length === 0) return null;
-
     return (
-        <List
-            {...listProps}
-            itemLayout="horizontal"
-            renderItem={(item) => <CommentListItem key={item.id} item={item} />}
-        />
+        <Space size={16} direction="vertical">
+            {data?.data?.map((item) => (
+                <CommentListItem key={item.id} item={item} />
+            ))}
+        </Space>
     );
 };
