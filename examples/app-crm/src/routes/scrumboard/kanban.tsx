@@ -84,8 +84,13 @@ export const KanbanPage = () => {
     const { mutate: deleteStage } = useDelete();
 
     const handleOnDragEnd = (event: DragEndEvent) => {
-        const taskId = event.active.id as string;
         let stageId = event.over?.id as undefined | string | null;
+        const taskId = event.active.id as string;
+        const taskStageId = event.active.data.current?.stageId;
+
+        if (taskStageId === stageId) {
+            return;
+        }
 
         if (stageId === "unassigned") {
             stageId = null;
@@ -198,7 +203,11 @@ export const KanbanPage = () => {
             >
                 {unassignedStage?.data.map((task) => {
                     return (
-                        <KanbanItem key={task.id} id={task.id}>
+                        <KanbanItem
+                            key={task.id}
+                            id={task.id}
+                            data={{ ...task, stageId: "unassigned" }}
+                        >
                             <ProjectCardMemo {...task} />
                         </KanbanItem>
                     );
@@ -223,7 +232,11 @@ export const KanbanPage = () => {
                     >
                         {column.tasks.map((task) => {
                             return (
-                                <KanbanItem key={task.id} id={task.id}>
+                                <KanbanItem
+                                    key={task.id}
+                                    id={task.id}
+                                    data={{ ...task, stageId: column.id }}
+                                >
                                     <ProjectCardMemo {...task} />
                                 </KanbanItem>
                             );

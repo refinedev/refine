@@ -6,7 +6,7 @@ import {
     useUpdate,
     useUpdateMany,
 } from "@refinedev/core";
-import { DragEndEvent, UniqueIdentifier } from "@dnd-kit/core";
+import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { Deal, DealStage } from "../../interfaces/graphql";
 import { DealKanbanCardMemo, FullScreenLoading, Text } from "../../components";
@@ -118,8 +118,13 @@ export const SalesPage = () => {
     }, [dealStages]);
 
     const handleOnDragEnd = (event: DragEndEvent) => {
-        const dealId = event.active.id;
         let stageId = event.over?.id as undefined | string | null;
+        const dealId = event.active.id;
+        const dealStageId = event.active.data.current?.stageId;
+
+        if (dealStageId === stageId) {
+            return;
+        }
 
         if (stageId === "won") {
             stageId = stageWon?.id;
@@ -245,7 +250,11 @@ export const SalesPage = () => {
             >
                 {unassignedStage?.data?.map((deal) => {
                     return (
-                        <KanbanItem key={deal.id} id={deal.id}>
+                        <KanbanItem
+                            key={deal.id}
+                            id={deal.id}
+                            data={{ ...deal, stageId: "unassigned" }}
+                        >
                             <DealKanbanCardMemo
                                 id={deal.id}
                                 key={deal.id}
@@ -284,7 +293,11 @@ export const SalesPage = () => {
                     >
                         {column.deals.map((deal) => {
                             return (
-                                <KanbanItem key={deal.id} id={deal.id}>
+                                <KanbanItem
+                                    key={deal.id}
+                                    id={deal.id}
+                                    data={{ ...deal, stageId: column.id }}
+                                >
                                     <DealKanbanCardMemo
                                         id={deal.id}
                                         key={deal.id}
@@ -330,7 +343,11 @@ export const SalesPage = () => {
                 >
                     {stageWon.deals.map((deal) => {
                         return (
-                            <KanbanItem key={deal.id} id={deal.id}>
+                            <KanbanItem
+                                key={deal.id}
+                                id={deal.id}
+                                data={{ ...deal, stageId: stageWon.id }}
+                            >
                                 <DealKanbanCardMemo
                                     id={deal.id}
                                     key={deal.id}
@@ -368,7 +385,11 @@ export const SalesPage = () => {
                 >
                     {stageLost.deals.map((deal) => {
                         return (
-                            <KanbanItem key={deal.id} id={deal.id}>
+                            <KanbanItem
+                                key={deal.id}
+                                id={deal.id}
+                                data={{ ...deal, stageId: stageLost.id }}
+                            >
                                 <DealKanbanCardMemo
                                     id={deal.id}
                                     key={deal.id}
