@@ -1,6 +1,6 @@
 import { HttpError } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
-import { Checkbox, Form, Select, Space } from "antd";
+import { Checkbox, Form, Select, Space, Skeleton } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
 import { Task } from "../interfaces/graphql";
@@ -10,9 +10,10 @@ type Props = {
         completed: Task["completed"];
         stage: Task["stage"];
     };
+    isLoading?: boolean;
 };
 
-export const KanbanStageForm = ({ initialValues }: Props) => {
+export const KanbanStageForm = ({ initialValues, isLoading }: Props) => {
     const { formProps } = useForm<Task, HttpError>({
         queryOptions: {
             enabled: false,
@@ -36,6 +37,15 @@ export const KanbanStageForm = ({ initialValues }: Props) => {
             fields: ["title", "id"],
         },
     });
+
+    if (isLoading) {
+        return (
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <Skeleton.Avatar size="small" shape="square" />
+                <Skeleton.Input size="small" block />
+            </div>
+        );
+    }
 
     return (
         <div>

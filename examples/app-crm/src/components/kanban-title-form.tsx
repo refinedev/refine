@@ -1,5 +1,5 @@
 import { useForm } from "@refinedev/antd";
-import { Form } from "antd";
+import { Form, Skeleton } from "antd";
 
 import { Text } from "../components/text";
 import { Task } from "../interfaces/graphql";
@@ -31,9 +31,10 @@ type Props = {
     initialValues: {
         title?: Task["title"];
     };
+    isLoading?: boolean;
 };
 
-export const KanbanTitleForm = ({ initialValues }: Props) => {
+export const KanbanTitleForm = ({ initialValues, isLoading }: Props) => {
     const { formProps } = useForm({
         queryOptions: {
             enabled: false,
@@ -45,6 +46,16 @@ export const KanbanTitleForm = ({ initialValues }: Props) => {
             debounce: 0,
         },
     });
+
+    if (isLoading) {
+        return (
+            <Skeleton.Input
+                size="small"
+                style={{ width: "95%", height: "22px" }}
+                block
+            />
+        );
+    }
 
     return (
         <Form {...formProps} initialValues={initialValues}>

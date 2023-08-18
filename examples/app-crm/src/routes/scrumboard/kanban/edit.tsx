@@ -56,6 +56,7 @@ export const KanbanEditPage = () => {
 
     const { description, completed, stage, dueDate, users, checklist, title } =
         queryResult?.data?.data ?? {};
+    const isLoading = queryResult?.isLoading ?? true;
 
     const items: CollapseProps["items"] = [
         {
@@ -63,6 +64,7 @@ export const KanbanEditPage = () => {
             label: (
                 <KanbanStageForm
                     initialValues={{ completed: completed ?? false, stage }}
+                    isLoading={isLoading}
                 />
             ),
             style: panelStyle,
@@ -78,6 +80,7 @@ export const KanbanEditPage = () => {
                     fallback={
                         <KanbanDescriptionHeader description={description} />
                     }
+                    isLoading={isLoading}
                 >
                     Description
                 </AccordionHeader>
@@ -98,6 +101,7 @@ export const KanbanEditPage = () => {
                     icon={<FieldTimeOutlined />}
                     isActive={activeKey === "2"}
                     fallback={<KanbanDueDateHeader dueData={dueDate} />}
+                    isLoading={isLoading}
                 >
                     Due date
                 </AccordionHeader>
@@ -118,6 +122,7 @@ export const KanbanEditPage = () => {
                     icon={<UsergroupAddOutlined />}
                     isActive={activeKey === "3"}
                     fallback={<KanbanUsersHeader users={users} />}
+                    isLoading={isLoading}
                 >
                     Users
                 </AccordionHeader>
@@ -143,6 +148,7 @@ export const KanbanEditPage = () => {
                     icon={<CheckSquareOutlined />}
                     isActive={activeKey === "4"}
                     fallback={<KanbanChecklistHeader checklist={checklist} />}
+                    isLoading={isLoading}
                 >
                     Checklist
                 </AccordionHeader>
@@ -152,11 +158,6 @@ export const KanbanEditPage = () => {
             showArrow: false,
         },
     ];
-
-    if (queryResult?.isLoading) {
-        //TODO: add skeleton inside the modal
-        return <div>Loading</div>;
-    }
 
     return (
         <Modal
@@ -174,7 +175,12 @@ export const KanbanEditPage = () => {
                     },
                 );
             }}
-            title={<KanbanTitleForm initialValues={{ title }} />}
+            title={
+                <KanbanTitleForm
+                    initialValues={{ title }}
+                    isLoading={isLoading}
+                />
+            }
             width={586}
             footer={<KanbanModalFooter />}
         >
