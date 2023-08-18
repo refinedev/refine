@@ -12,7 +12,7 @@ import {
 import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text } from "../text";
-import { getRandomColor } from "../../utilities";
+import { getRandomColorFromString } from "../../utilities";
 
 type Props = {
     id: string;
@@ -39,7 +39,12 @@ export const DealKanbanCard: FC<Props> = ({
     user,
     variant = "default",
 }) => {
-    const [randomColor] = useState(() => getRandomColor());
+    const [color] = useState(() => {
+        return {
+            user: getRandomColorFromString(user.name),
+            company: getRandomColorFromString(company.name),
+        };
+    });
 
     const { push } = useNavigation();
     const { mutate } = useDelete();
@@ -145,7 +150,7 @@ export const DealKanbanCard: FC<Props> = ({
                             <Tooltip title={user.name}>
                                 <Avatar
                                     style={{
-                                        backgroundColor: randomColor,
+                                        backgroundColor: color.user,
                                         objectFit: "cover",
                                     }}
                                     shape="circle"
@@ -174,7 +179,7 @@ export const DealKanbanCard: FC<Props> = ({
                     avatar={
                         <Avatar
                             style={{
-                                backgroundColor: randomColor,
+                                backgroundColor: color.company,
                                 width: "48px",
                                 height: "48px",
                                 display: "flex",

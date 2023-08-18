@@ -23,7 +23,7 @@ import {
 } from "@ant-design/icons";
 import { TextIcon } from "../icon";
 import { Text } from "../text";
-import { getDateColor, getRandomColor } from "../../utilities";
+import { getDateColor, getRandomColorFromString } from "../../utilities";
 
 type ProjectCardProps = {
     id: string;
@@ -32,7 +32,7 @@ type ProjectCardProps = {
     dueDate?: string;
     users?: {
         id: string;
-        name?: string;
+        name: string;
         avatar?: string;
     }[];
     checkList?: {
@@ -49,8 +49,6 @@ export const ProjectCard = ({
     dueDate,
     users,
 }: ProjectCardProps) => {
-    const [randomColor] = useState(() => getRandomColor());
-
     const { token } = theme.useToken();
     const { push } = useNavigation();
     const { mutate } = useDelete();
@@ -269,7 +267,10 @@ export const ProjectCard = ({
                                             size="small"
                                             src={user.avatar}
                                             style={{
-                                                backgroundColor: randomColor,
+                                                backgroundColor:
+                                                    getRandomColorFromString(
+                                                        user.name,
+                                                    ),
                                                 objectFit: "contain",
                                                 textTransform: "uppercase",
                                             }}
