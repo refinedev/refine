@@ -8,8 +8,14 @@ import { Text } from "../../text";
 import { Event } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
-export const Calendar: React.FC<{ categoryId?: string[] }> = ({
+type CalendarProps = {
+    categoryId?: string[];
+    onClickEvent?: (event: Event) => void;
+};
+
+export const Calendar: React.FC<CalendarProps> = ({
     categoryId,
+    onClickEvent,
 }) => {
     const dateCellRender = (value: Dayjs) => {
         const { data, isLoading, isError } = useList<Event>({
@@ -62,7 +68,11 @@ export const Calendar: React.FC<{ categoryId?: string[] }> = ({
         return (
             <div className={styles.events}>
                 {data?.data.map((item) => (
-                    <div key={item.id} className={styles.event}>
+                    <div
+                        onClick={() => onClickEvent?.(item)}
+                        key={item.id}
+                        className={styles.event}
+                    >
                         <Text
                             ellipsis={{
                                 tooltip: true,
