@@ -1,1 +1,11 @@
-/*  */
+.anticon {
+    &.primary {
+        color: rgba(0, 0, 0, 0.85);
+    }
+    &.secondary {
+        color: rgba(0, 0, 0, 0.65);
+    }
+    &.tertiary {
+        color: rgba(0, 0, 0, 0.45);
+    }
+}

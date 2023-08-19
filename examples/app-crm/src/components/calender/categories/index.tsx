@@ -4,9 +4,11 @@ import { useList } from "@refinedev/core";
 import { SettingOutlined, FlagOutlined } from "@ant-design/icons";
 
 import { Text } from "../../text";
+import { CalendarManageCategories } from "../manage-categories";
 
 import { EventCategory } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
+import { useModal } from "@refinedev/antd";
 
 type CalendarCategoriesProps = {
     onChange?: (e: any) => void;
@@ -17,6 +19,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
     ...rest
 }) => {
     const { token } = theme.useToken();
+    const { modalProps, show, close } = useModal();
     const { data, isError, isLoading } = useList<EventCategory>({
         resource: "eventCategories",
         meta: {
@@ -36,34 +39,47 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
     }
 
     return (
-        <Card
-            title={
-                <span>
-                    <FlagOutlined style={{ color: token.colorPrimary }} />
-                    <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                        Categories
-                    </Text>
-                </span>
-            }
-            extra={<Button shape="circle" icon={<SettingOutlined />} />}
-            bodyStyle={{
-                padding: "0.5rem 1rem",
-            }}
-            {...rest}
-        >
-            <div className={styles.container}>
-                {data.data.map((item) => (
-                    <div key={item.id} className={styles.category}>
-                        <Checkbox
-                            className={styles.checkbox}
-                            value={item.id}
-                            onChange={onChange}
-                        >
-                            <Text>{item.title}</Text>
-                        </Checkbox>
-                    </div>
-                ))}
-            </div>
-        </Card>
+        <>
+            <Card
+                title={
+                    <span>
+                        <FlagOutlined style={{ color: token.colorPrimary }} />
+                        <Text size="sm" style={{ marginLeft: ".5rem" }}>
+                            Categories
+                        </Text>
+                    </span>
+                }
+                extra={
+                    <Button
+                        shape="circle"
+                        onClick={() => show()}
+                        icon={<SettingOutlined />}
+                    />
+                }
+                bodyStyle={{
+                    padding: "0.5rem 1rem",
+                }}
+                {...rest}
+            >
+                <div className={styles.container}>
+                    {data.data.map((item) => (
+                        <div key={item.id} className={styles.category}>
+                            <Checkbox
+                                className={styles.checkbox}
+                                value={item.id}
+                                onChange={onChange}
+                            >
+                                <Text>{item.title}</Text>
+                            </Checkbox>
+                        </div>
+                    ))}
+                </div>
+            </Card>
+
+            <CalendarManageCategories
+                {...modalProps}
+                saveSuccces={() => close()}
+            />
+        </>
     );
 };
