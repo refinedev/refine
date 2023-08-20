@@ -20,23 +20,13 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
 }) => {
     const { token } = theme.useToken();
     const { modalProps, show, close } = useModal();
-    const { data, isError, isLoading } = useList<EventCategory>({
+    const { data } = useList<EventCategory>({
         resource: "eventCategories",
         meta: {
             operation: "eventCategories",
             fields: ["id", "title"],
         },
     });
-
-    if (isError) {
-        // TODO: handle error message
-        return null;
-    }
-
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
 
     return (
         <>
@@ -62,7 +52,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
                 {...rest}
             >
                 <div className={styles.container}>
-                    {data.data.map((item) => (
+                    {data?.data.map((item) => (
                         <div key={item.id} className={styles.category}>
                             <Checkbox
                                 className={styles.checkbox}

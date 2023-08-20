@@ -18,7 +18,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     onClickEvent,
 }) => {
     const dateCellRender = (value: Dayjs) => {
-        const { data, isLoading, isError } = useList<Event>({
+        const { data } = useList<Event>({
             resource: "events",
             filters: [
                 {
@@ -56,14 +56,6 @@ export const Calendar: React.FC<CalendarProps> = ({
                 ],
             },
         });
-
-        if (isError) {
-            console.error("Fetching events failed");
-        }
-
-        if (isLoading) {
-            return null;
-        }
 
         return (
             <div>

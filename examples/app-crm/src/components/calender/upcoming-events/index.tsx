@@ -17,7 +17,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     ...rest
 }) => {
     const { token } = theme.useToken();
-    const { data, isLoading, isError } = useList<Event>({
+    const { data } = useList<Event>({
         resource: "events",
         pagination: {
             pageSize: limit,
@@ -41,16 +41,6 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
         },
     });
 
-    if (isError) {
-        // TODO: handle error message
-        return null;
-    }
-
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
-
     return (
         <Card
             title={
@@ -67,7 +57,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             {...rest}
         >
             <div className={styles.container}>
-                {data.data.map((item) => (
+                {data?.data.map((item) => (
                     <CalendarUpcomingEvent key={item.id} {...item} />
                 ))}
             </div>

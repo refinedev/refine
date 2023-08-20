@@ -25,7 +25,7 @@ export const CalendarManageCategories: React.FC<
         },
     });
     const { mutate: deleteMutation } = useDelete();
-    const { data, isError, isLoading } = useList<EventCategory>({
+    const { data } = useList<EventCategory>({
         resource: "eventCategories",
         meta: {
             operation: "eventCategories",
@@ -33,22 +33,13 @@ export const CalendarManageCategories: React.FC<
         },
     });
 
-    if (isError) {
-        // TODO: handle error message
-        return null;
-    }
-
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
-
     return (
         <Modal
             {...rest}
             title="Manage Categories"
             okText="Save"
             destroyOnClose
+            bodyStyle={{ paddingTop: "1rem" }}
             okButtonProps={{
                 onClick: () => {
                     form.submit();
@@ -56,7 +47,7 @@ export const CalendarManageCategories: React.FC<
             }}
         >
             <div className={styles.container}>
-                {data.data.map((category) => (
+                {data?.data.map((category) => (
                     <div key={category.id} className={styles.category}>
                         <Text className={styles.title}>{category.title}</Text>
                         <Popconfirm
@@ -85,6 +76,13 @@ export const CalendarManageCategories: React.FC<
                 <Form
                     form={form}
                     onFinish={(formValues: { title: string[] }) => {
+                        if (
+                            !formValues?.title ||
+                            formValues.title.length === 0
+                        ) {
+                            return saveSuccces?.();
+                        }
+
                         const values = formValues.title.map((title) => ({
                             title,
                         }));
