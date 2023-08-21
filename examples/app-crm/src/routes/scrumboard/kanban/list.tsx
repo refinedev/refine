@@ -18,7 +18,7 @@ import {
 import { FullScreenLoading, ProjectCardMemo } from "../../../components";
 import { Task, TaskStage, TaskUpdateInput } from "../../../interfaces/graphql";
 import { MenuProps } from "antd";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const taskFragment = [
@@ -27,6 +27,7 @@ const taskFragment = [
     "description",
     "dueDate",
     "completed",
+    "stageId",
     {
         checklist: ["title", "checked"],
     },
@@ -41,41 +42,61 @@ const taskFragment = [
 export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     const navigate = useNavigate();
 
-    const { data: unassignedStage, isLoading: isLoadingUnassignedStage } =
-        useList<Task>({
-            resource: "tasks",
-            pagination: {
-                mode: "off",
-            },
-            filters: [
-                {
-                    field: "stage.id",
-                    operator: "null",
-                    value: null,
-                },
-            ],
-            meta: {
-                fields: taskFragment,
-            },
-        });
+    const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            operation: "taskStages",
+            fields: ["id", "title"],
+        },
+    });
 
-    const { data: taskStages, isLoading: isLoadingTaskStages } =
-        useList<TaskStage>({
-            resource: "tasks",
-            pagination: {
-                mode: "off",
+    const { data: tasks, isLoading: isLoadingTasks } = useList<Task>({
+        sorters: [
+            {
+                field: "dueDate",
+                order: "asc",
             },
-            meta: {
-                operation: "taskStages",
-                fields: [
-                    "id",
-                    "title",
-                    {
-                        tasks: taskFragment,
-                    },
-                ],
-            },
-        });
+        ],
+        queryOptions: {
+            enabled: !!stages,
+        },
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            operation: "tasks",
+            fields: taskFragment,
+        },
+    });
+
+    // its convert Task[] to TaskStage[] (group by stage) for kanban
+    // uses `stages` and `tasks` from useList hooks
+    const taskStages = useMemo(() => {
+        if (!tasks?.data || !stages?.data)
+            return {
+                unassignedStage: [],
+                stages: [],
+            };
+
+        const unassignedStage = tasks.data.filter(
+            (task) => task.stageId === null,
+        );
+
+        // prepare unassigned stage
+        const grouped: TaskStage[] = stages.data.map((stage) => ({
+            ...stage,
+            tasks: tasks.data.filter(
+                (task) => task.stageId?.toString() === stage.id,
+            ),
+        }));
+
+        return {
+            unassignedStage,
+            stages: grouped,
+        };
+    }, [tasks, stages]);
 
     const { mutate: updateTask } = useUpdate<
         Task,
@@ -105,6 +126,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                 stageId: stageId,
             },
             successNotification: false,
+            mutationMode: "optimistic",
         });
     };
 
@@ -185,7 +207,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         return items;
     };
 
-    const loading = isLoadingUnassignedStage || isLoadingTaskStages;
+    const loading = isLoadingTasks || isLoadingStages;
 
     if (loading) {
         return <FullScreenLoading />;
@@ -197,10 +219,10 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                 <KanbanColumnMemo
                     id={"unassigned"}
                     title={"unassigned"}
-                    count={unassignedStage?.data?.length || 0}
+                    count={taskStages?.unassignedStage?.length || 0}
                     onAddClick={() => handleAddCard({ stageId: "unassigned" })}
                 >
-                    {unassignedStage?.data.map((task) => {
+                    {taskStages.unassignedStage?.map((task) => {
                         return (
                             <KanbanItem
                                 key={task.id}
@@ -211,7 +233,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                             </KanbanItem>
                         );
                     })}
-                    {!unassignedStage?.data?.length && (
+                    {!taskStages.unassignedStage?.length && (
                         <KanbanAddCardButton
                             onClick={() =>
                                 handleAddCard({ stageId: "unassigned" })
@@ -219,7 +241,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                         />
                     )}
                 </KanbanColumnMemo>
-                {taskStages?.data.map((column) => {
+                {taskStages.stages?.map((column) => {
                     const contextMenuItems = getContextMenuItems({ column });
 
                     return (

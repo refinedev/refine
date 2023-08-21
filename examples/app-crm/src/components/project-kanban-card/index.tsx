@@ -76,7 +76,7 @@ export const ProjectCard = ({
                 icon: <DeleteOutlined />,
                 onClick: () => {
                     mutate({
-                        resource: "stages",
+                        resource: "tasks",
                         id,
                         meta: {
                             operation: "task",
