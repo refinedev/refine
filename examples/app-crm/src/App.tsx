@@ -30,6 +30,7 @@ import {
     KanbanCreatePage,
     KanbanEditPage,
     KanbanCreateStage,
+    KanbanEditStage,
 } from "./routes/scrumboard/kanban";
 import { SalesPage } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
@@ -44,11 +45,10 @@ import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
+import "./utilities/init-dayjs";
+
 import "./styles/antd.css";
 import "./styles/index.css";
-
-import "./utilities/init-dayjs";
-import { KanbanEditStage } from "./routes/scrumboard/kanban/edit-stage";
 
 const App: React.FC = () => {
     return (
