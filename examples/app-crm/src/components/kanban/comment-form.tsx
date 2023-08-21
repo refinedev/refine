@@ -1,13 +1,21 @@
-import { useParsed } from "@refinedev/core";
+import { BaseKey, HttpError, useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Avatar, Form, Input } from "antd";
 
 import { TaskComment } from "../../interfaces/graphql";
 
+type FormValues = TaskComment & {
+    taskId: BaseKey;
+};
+
 export const CommentForm = () => {
     const { id: taskId } = useParsed();
 
-    const { formProps, onFinish, form } = useForm<TaskComment>({
+    const { formProps, onFinish, form } = useForm<
+        TaskComment,
+        HttpError,
+        FormValues
+    >({
         action: "create",
         resource: "taskComments",
         queryOptions: {
@@ -20,7 +28,11 @@ export const CommentForm = () => {
         mutationMode: "optimistic",
     });
 
-    const handleOnFinish = async (values: any) => {
+    const handleOnFinish = async (values: TaskComment) => {
+        if (!taskId) {
+            return;
+        }
+
         try {
             await onFinish({
                 ...values,

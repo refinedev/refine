@@ -1,3 +1,4 @@
+import { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Button, Form } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -15,7 +16,7 @@ type Props = {
 };
 
 export const CheckListForm = ({ initialValues, isLoading }: Props) => {
-    const { formProps } = useForm({
+    const { formProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: false,
         },

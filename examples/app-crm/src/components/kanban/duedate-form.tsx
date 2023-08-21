@@ -1,3 +1,4 @@
+import { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export const DueDateForm = ({ initialValues, cancelForm }: Props) => {
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: false,
         },

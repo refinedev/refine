@@ -1,4 +1,4 @@
-import { useGetIdentity, useList, useParsed } from "@refinedev/core";
+import { HttpError, useGetIdentity, useList, useParsed } from "@refinedev/core";
 import { DeleteButton, useForm } from "@refinedev/antd";
 import { Avatar, Form, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
@@ -7,7 +7,11 @@ import { Text } from "../../components/text";
 import { TaskComment, User } from "../../interfaces/graphql";
 
 const CommentListItem = ({ item }: { item: TaskComment }) => {
-    const { formProps, setId, id, saveButtonProps } = useForm<TaskComment>({
+    const { formProps, setId, id, saveButtonProps } = useForm<
+        TaskComment,
+        HttpError,
+        TaskComment
+    >({
         resource: "taskComment",
         action: "edit",
         queryOptions: {

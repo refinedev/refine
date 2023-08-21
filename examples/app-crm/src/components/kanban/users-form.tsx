@@ -1,5 +1,8 @@
 import { useForm, useSelect } from "@refinedev/antd";
+import { HttpError } from "@refinedev/core";
 import { Button, Form, Select, Space } from "antd";
+
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     initialValues: {
@@ -9,7 +12,7 @@ type Props = {
 };
 
 export const UsersForm = ({ initialValues, cancelForm }: Props) => {
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: false,
         },

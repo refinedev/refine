@@ -1,6 +1,7 @@
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/antd";
 import { Button, Form, Space } from "antd";
 import MDEditor from "@uiw/react-md-editor";
-import { useForm } from "@refinedev/antd";
 
 import { Task } from "../../interfaces/graphql";
 
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: false,
         },

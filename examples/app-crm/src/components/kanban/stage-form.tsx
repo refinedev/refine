@@ -1,9 +1,9 @@
-import { HttpError } from "@refinedev/core";
+import { BaseKey, HttpError } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
 import { Checkbox, Form, Select, Space } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
-import { Task } from "../../interfaces/graphql";
+import { Task, TaskStage } from "../../interfaces/graphql";
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 
 type Props = {
@@ -14,19 +14,24 @@ type Props = {
     isLoading?: boolean;
 };
 
+type FormValues = Task & {
+    stage?: TaskStage;
+    stageId?: BaseKey;
+};
+
 export const StageForm = ({ initialValues, isLoading }: Props) => {
-    const { formProps } = useForm<Task, HttpError>({
+    const { formProps } = useForm<Task, HttpError, FormValues>({
         queryOptions: {
             enabled: false,
         },
         autoSave: {
             enabled: true,
             debounce: 0,
-            onFinish: (values: any) => {
+            onFinish: (values) => {
                 return {
                     ...values,
                     stage: undefined,
-                    stageId: values.stage.id,
+                    stageId: values.stage?.id,
                 };
             },
         },

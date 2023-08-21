@@ -1,3 +1,4 @@
+import { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Form, Skeleton } from "antd";
 
@@ -35,7 +36,7 @@ type Props = {
 };
 
 export const TitleForm = ({ initialValues, isLoading }: Props) => {
-    const { formProps } = useForm({
+    const { formProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: false,
         },
