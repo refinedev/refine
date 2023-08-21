@@ -7,7 +7,6 @@ import {
     AlignLeftOutlined,
     FieldTimeOutlined,
     UsergroupAddOutlined,
-    CheckSquareOutlined,
 } from "@ant-design/icons";
 
 import { KanbanStageForm } from "../../../components/kanban-stage-form";
@@ -144,18 +143,17 @@ export const KanbanEditPage = () => {
         {
             key: "4",
             label: (
-                <AccordionHeader
-                    icon={<CheckSquareOutlined />}
-                    isActive={activeKey === "4"}
-                    fallback={<KanbanChecklistHeader checklist={checklist} />}
-                    isLoading={isLoading}
-                >
-                    Checklist
-                </AccordionHeader>
+                <>
+                    <KanbanChecklistHeader checklist={checklist} />
+                    <KanbanCheckListForm
+                        isLoading={isLoading}
+                        initialValues={{ checklist }}
+                    />
+                </>
             ),
-            children: <KanbanCheckListForm initialValues={{ checklist }} />,
             style: panelStyle,
             showArrow: false,
+            collapsible: "icon",
         },
     ];
 

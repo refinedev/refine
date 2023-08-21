@@ -1,4 +1,4 @@
-import { Checkbox, Input, Space } from "antd";
+import { Checkbox, Input } from "antd";
 
 import { CheckListItem } from "../interfaces/graphql";
 
@@ -28,7 +28,12 @@ export const CheckListInput = ({
     };
 
     return (
-        <Space direction="horizontal" size={0}>
+        <div
+            style={{
+                display: "flex",
+                flex: 1,
+            }}
+        >
             <Checkbox
                 checked={value?.checked}
                 onChange={(e) => {
@@ -41,8 +46,12 @@ export const CheckListInput = ({
                 bordered={false}
                 value={value?.title}
                 onChange={onTitleChange}
-                style={{ backgroundColor: "#fff" }}
+                placeholder="Please enter item title"
+                style={{
+                    backgroundColor: "#fff",
+                    textDecoration: value.checked ? "line-through" : "none",
+                }}
             />
-        </Space>
+        </div>
     );
 };
