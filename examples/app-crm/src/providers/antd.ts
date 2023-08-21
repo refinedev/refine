@@ -2,6 +2,9 @@ import type { ThemeConfig } from "antd";
 
 export const themeConfig: ThemeConfig = {
     token: {
+        colorPrimaryText: "rgba(0, 0, 0, 0.85)",
+        colorTextSecondary: "rgba(0, 0, 0, 0.65)",
+        colorTextTertiary: "rgba(0, 0, 0, 0.45)",
         colorPrimary: "#1677FF",
         colorBgContainer: "#F7F8F9",
         colorBgLayout: "#F0F2F5",
@@ -10,6 +13,11 @@ export const themeConfig: ThemeConfig = {
             "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
     },
     components: {
+        Typography: {
+            colorText: "rgba(0, 0, 0, 0.85)",
+            colorTextDescription: "rgba(0, 0, 0, 0.65)",
+            colorTextDisabled: "rgba(0, 0, 0, 0.45)",
+        },
         Card: {
             colorBgContainer: "#FFFFFF",
             headerBg: "#FAFAFA",

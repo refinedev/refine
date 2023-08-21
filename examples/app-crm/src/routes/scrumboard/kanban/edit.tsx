@@ -55,7 +55,7 @@ export const KanbanEditPage = () => {
 
     const { description, completed, stage, dueDate, users, checklist, title } =
         queryResult?.data?.data ?? {};
-    const isLoading = queryResult?.isLoading ?? true;
+    const isLoading = queryResult?.isFetching ?? true;
 
     const items: CollapseProps["items"] = [
         {

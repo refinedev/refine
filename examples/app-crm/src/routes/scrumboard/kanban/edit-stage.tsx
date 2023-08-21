@@ -1,15 +1,22 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGetToPath, useParsed } from "@refinedev/core";
+import { useNavigate } from "react-router-dom";
+import { useGetToPath, useInvalidate } from "@refinedev/core";
 import { useModalForm } from "@refinedev/antd";
 import { Form, Input, Modal } from "antd";
 
-export const KanbanCreatePage = () => {
-    const [searchParams] = useSearchParams();
+export const KanbanEditStage = () => {
+    const invalidate = useInvalidate();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
     const { formProps, modalProps, close } = useModalForm({
-        action: "create",
+        action: "edit",
         defaultVisible: true,
+        meta: {
+            operation: "taskStage",
+            fields: ["id", "title"],
+        },
+        onMutationSuccess: () => {
+            invalidate({ invalidates: ["list"], resource: "tasks" });
+        },
     });
 
     return (
@@ -26,22 +33,10 @@ export const KanbanCreatePage = () => {
                     },
                 );
             }}
-            title="Add new card"
+            title="Edit stage"
             width={512}
         >
-            <Form
-                {...formProps}
-                layout="vertical"
-                onFinish={(values) => {
-                    formProps?.onFinish?.({
-                        ...values,
-                        stageId: searchParams.get("stageId")
-                            ? Number(searchParams.get("stageId"))
-                            : null,
-                        userIds: [],
-                    });
-                }}
-            >
+            <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"

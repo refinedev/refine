@@ -1,4 +1,4 @@
-import { BaseKey, HttpError, useParsed } from "@refinedev/core";
+import { BaseKey, HttpError, useInvalidate, useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Avatar, Form, Input } from "antd";
 
@@ -9,6 +9,7 @@ type FormValues = TaskComment & {
 };
 
 export const CommentForm = () => {
+    const invalidates = useInvalidate();
     const { id: taskId } = useParsed();
 
     const { formProps, onFinish, form } = useForm<
@@ -22,10 +23,17 @@ export const CommentForm = () => {
             enabled: false,
         },
         meta: {
-            operation: "taskCommnet",
+            operation: "taskComment",
         },
         redirect: false,
         mutationMode: "optimistic",
+        onMutationSuccess: () => {
+            invalidates({
+                invalidates: ["list", "detail"],
+                resource: "tasks",
+                id: taskId,
+            });
+        },
     });
 
     const handleOnFinish = async (values: TaskComment) => {

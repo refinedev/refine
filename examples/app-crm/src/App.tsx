@@ -1,8 +1,6 @@
 import { Refine, Authenticated } from "@refinedev/core";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import routerProvider, {
     NavigateToResource,
@@ -27,9 +25,12 @@ import { UpdatePasswordPage } from "./routes/update-password";
 import { DashboardPage } from "./routes/dashboard/index";
 
 import { CalendarPageWrapper } from "./routes/calendar/wrapper";
-import { KanbanPage } from "./routes/scrumboard/kanban/list";
-import { KanbanCreatePage } from "./routes/scrumboard/kanban/create";
-import { KanbanEditPage } from "./routes/scrumboard/kanban/edit";
+import {
+    KanbanPage,
+    KanbanCreatePage,
+    KanbanEditPage,
+    KanbanCreateStage,
+} from "./routes/scrumboard/kanban";
 import { SalesPage } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
@@ -46,8 +47,8 @@ import { CalendarCreatePage } from "./routes/calendar/create";
 import "./styles/antd.css";
 import "./styles/index.css";
 
-dayjs.extend(utc);
-dayjs.extend(relativeTime);
+import "./utilities/init-dayjs";
+import { KanbanEditStage } from "./routes/scrumboard/kanban/edit-stage";
 
 const App: React.FC = () => {
     return (
@@ -110,7 +111,6 @@ const App: React.FC = () => {
                                         </KanbanPage>
                                     }
                                 >
-                                    <Route index />
                                     <Route
                                         path="create"
                                         element={<KanbanCreatePage />}
@@ -119,9 +119,18 @@ const App: React.FC = () => {
                                         path="edit/:id"
                                         element={<KanbanEditPage />}
                                     />
+                                    <Route
+                                        path="stages/create"
+                                        element={<KanbanCreateStage />}
+                                    />
+                                    <Route
+                                        path="stages/edit/:id"
+                                        element={<KanbanEditStage />}
+                                    />
                                 </Route>
                                 <Route path="sales" element={<SalesPage />} />
                             </Route>
+
                             <Route path="/companies">
                                 <Route index element={<CompaniesPage />} />
                                 <Route
@@ -170,6 +179,7 @@ const App: React.FC = () => {
                     </Routes>
                     <UnsavedChangesNotifier />
                     <DocumentTitleHandler />
+                    <ReactQueryDevtools />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

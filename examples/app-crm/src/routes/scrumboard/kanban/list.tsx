@@ -1,14 +1,261 @@
-import { CreateButton, EditButton } from "@refinedev/antd";
+import {
+    HttpError,
+    useCreate,
+    useDelete,
+    useList,
+    useUpdate,
+    useUpdateMany,
+} from "@refinedev/core";
+import { DragEndEvent } from "@dnd-kit/core";
+import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
+import {
+    KanbanBoard,
+    KanbanColumnMemo,
+    KanbanItem,
+    KanbanAddStageButton,
+    KanbanAddCardButton,
+} from "../../../components/kanban";
+import { FullScreenLoading, ProjectCardMemo } from "../../../components";
+import { Task, TaskStage, TaskUpdateInput } from "../../../interfaces/graphql";
+import { MenuProps } from "antd";
+import { FC, PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 
-type Props = React.PropsWithChildren<{}>;
+const taskFragment = [
+    "id",
+    "title",
+    "description",
+    "dueDate",
+    "completed",
+    {
+        checklist: ["title", "checked"],
+    },
+    {
+        users: ["id", "name"],
+    },
+    {
+        comments: ["totalCount"],
+    },
+];
 
-export const KanbanPage = ({ children }: Props) => {
+export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
+    const navigate = useNavigate();
+
+    const { data: unassignedStage, isLoading: isLoadingUnassignedStage } =
+        useList<Task>({
+            resource: "tasks",
+            pagination: {
+                mode: "off",
+            },
+            filters: [
+                {
+                    field: "stage.id",
+                    operator: "null",
+                    value: null,
+                },
+            ],
+            meta: {
+                fields: taskFragment,
+            },
+        });
+
+    const { data: taskStages, isLoading: isLoadingTaskStages } =
+        useList<TaskStage>({
+            resource: "tasks",
+            pagination: {
+                mode: "off",
+            },
+            meta: {
+                operation: "taskStages",
+                fields: [
+                    "id",
+                    "title",
+                    {
+                        tasks: taskFragment,
+                    },
+                ],
+            },
+        });
+
+    const { mutate: updateTask } = useUpdate<
+        Task,
+        HttpError,
+        TaskUpdateInput
+    >();
+    const { mutate: updateManyTask } = useUpdateMany();
+    const { mutate: deleteStage } = useDelete();
+
+    const handleOnDragEnd = (event: DragEndEvent) => {
+        let stageId = event.over?.id as undefined | string | null;
+        const taskId = event.active.id as string;
+        const taskStageId = event.active.data.current?.stageId;
+
+        if (taskStageId === stageId) {
+            return;
+        }
+
+        if (stageId === "unassigned") {
+            stageId = null;
+        }
+
+        updateTask({
+            resource: "tasks",
+            id: taskId,
+            values: {
+                stageId: stageId,
+            },
+            successNotification: false,
+        });
+    };
+
+    const handleAddStage = () => {
+        navigate("/scrumboard/kanban/stages/create", {
+            replace: true,
+        });
+    };
+
+    const handleEditStage = (args: { stageId: string }) => {
+        const path = `/scrumboard/kanban/stages/edit/${args.stageId}`;
+        navigate(path, {
+            replace: true,
+        });
+    };
+
+    const handleDeleteStage = (args: { stageId: string }) => {
+        deleteStage({
+            resource: "tasks",
+            meta: {
+                operation: "taskStage",
+            },
+            id: args.stageId,
+        });
+    };
+
+    const handleAddCard = (args: { stageId: string }) => {
+        const path =
+            args.stageId === "unassigned"
+                ? "create"
+                : `create?stageId=${args.stageId}`;
+        navigate(path, {
+            replace: true,
+        });
+    };
+
+    const handleClearCards = (args: { taskIds: string[] }) => {
+        updateManyTask({
+            resource: "tasks",
+            ids: args.taskIds,
+            values: {
+                stageId: null,
+            },
+            successNotification: false,
+        });
+    };
+
+    const getContextMenuItems = ({ column }: { column: TaskStage }) => {
+        const hasItems = column.tasks.length > 0;
+
+        const items: MenuProps["items"] = [
+            {
+                label: "Edit status",
+                key: "1",
+                icon: <EditOutlined />,
+                onClick: () => handleEditStage({ stageId: column.id }),
+            },
+            {
+                label: "Clear all cards",
+                key: "2",
+                icon: <ClearOutlined />,
+                disabled: !hasItems,
+                onClick: () =>
+                    handleClearCards({
+                        taskIds: column.tasks.map((task) => task.id),
+                    }),
+            },
+            {
+                danger: true,
+                label: "Delete status",
+                key: "3",
+                icon: <DeleteOutlined />,
+                disabled: hasItems,
+                onClick: () => handleDeleteStage({ stageId: column.id }),
+            },
+        ];
+
+        return items;
+    };
+
+    const loading = isLoadingUnassignedStage || isLoadingTaskStages;
+
+    if (loading) {
+        return <FullScreenLoading />;
+    }
+
     return (
         <>
-            <CreateButton type="default">Add new card</CreateButton>
-            <EditButton type="default" recordItemId={15}>
-                Edit Task
-            </EditButton>
+            <KanbanBoard onDragEnd={handleOnDragEnd}>
+                <KanbanColumnMemo
+                    id={"unassigned"}
+                    title={"unassigned"}
+                    count={unassignedStage?.data?.length || 0}
+                    onAddClick={() => handleAddCard({ stageId: "unassigned" })}
+                >
+                    {unassignedStage?.data.map((task) => {
+                        return (
+                            <KanbanItem
+                                key={task.id}
+                                id={task.id}
+                                data={{ ...task, stageId: "unassigned" }}
+                            >
+                                <ProjectCardMemo {...task} />
+                            </KanbanItem>
+                        );
+                    })}
+                    {!unassignedStage?.data?.length && (
+                        <KanbanAddCardButton
+                            onClick={() =>
+                                handleAddCard({ stageId: "unassigned" })
+                            }
+                        />
+                    )}
+                </KanbanColumnMemo>
+                {taskStages?.data.map((column) => {
+                    const contextMenuItems = getContextMenuItems({ column });
+
+                    return (
+                        <KanbanColumnMemo
+                            key={column.id}
+                            id={column.id}
+                            title={column.title}
+                            count={column.tasks.length}
+                            contextMenuItems={contextMenuItems}
+                            onAddClick={() =>
+                                handleAddCard({ stageId: column.id })
+                            }
+                        >
+                            {column.tasks.map((task) => {
+                                return (
+                                    <KanbanItem
+                                        key={task.id}
+                                        id={task.id}
+                                        data={{ ...task, stageId: column.id }}
+                                    >
+                                        <ProjectCardMemo {...task} />
+                                    </KanbanItem>
+                                );
+                            })}
+                            {!column.tasks.length && (
+                                <KanbanAddCardButton
+                                    onClick={() =>
+                                        handleAddCard({ stageId: column.id })
+                                    }
+                                />
+                            )}
+                        </KanbanColumnMemo>
+                    );
+                })}
+                <KanbanAddStageButton onClick={handleAddStage} />
+            </KanbanBoard>
             {children}
         </>
     );

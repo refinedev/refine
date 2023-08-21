@@ -4,6 +4,7 @@ import { Form, Skeleton } from "antd";
 
 import { Text } from "../../components/text";
 import { Task } from "../../interfaces/graphql";
+import { useEffect } from "react";
 
 const TitleInput = ({
     value,
@@ -44,9 +45,12 @@ export const TitleForm = ({ initialValues, isLoading }: Props) => {
         warnWhenUnsavedChanges: false,
         autoSave: {
             enabled: true,
-            debounce: 0,
         },
     });
+
+    useEffect(() => {
+        formProps.form?.setFieldsValue(initialValues);
+    }, [initialValues.title]);
 
     if (isLoading) {
         return (
