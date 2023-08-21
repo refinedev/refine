@@ -15,7 +15,6 @@ export const KanbanCreatePage = () => {
         <Modal
             {...modalProps}
             onCancel={() => {
-                //TODO: modalProps.onCancel expect an event so, I used close. Actually both of them are same.
                 close();
                 navigate(
                     getToPath({
@@ -33,7 +32,6 @@ export const KanbanCreatePage = () => {
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    //TODO: It would not be undefined
                     formProps?.onFinish?.({
                         ...values,
                         stageId: 1,

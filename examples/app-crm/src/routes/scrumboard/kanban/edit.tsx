@@ -157,7 +157,6 @@ export const KanbanEditPage = () => {
             {...modalProps}
             className="kanban-update-modal"
             onCancel={() => {
-                //TODO: modalProps.onCancel expect an event so, I used close. Actually both of them are same.
                 close();
                 navigate(
                     getToPath({
