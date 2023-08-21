@@ -98,14 +98,12 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
                 </div>
                 {description}
             </div>
-            <div className={styles.columnScrollableContainer}>
-                <div
-                    className={cn(styles.childrenWrapper, {
-                        [styles.isOver]: isOver,
-                    })}
-                >
-                    {children}
-                </div>
+            <div
+                className={cn(styles.childrenWrapper, {
+                    [styles.isOver]: isOver,
+                })}
+            >
+                {children}
             </div>
         </div>
     );

@@ -16,10 +16,8 @@ export const KanbanBoard: FC<PropsWithChildren<Props>> = ({
     };
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <DndContext onDragEnd={handleDragEnd}>{children}</DndContext>
-            </div>
+        <div className={styles.container}>
+            <DndContext onDragEnd={handleDragEnd}>{children}</DndContext>
         </div>
     );
 };

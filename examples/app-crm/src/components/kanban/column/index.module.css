@@ -14,8 +14,6 @@
         padding-left: 16px;
         padding-right: 16px;
         background-color: #fff;
-        margin-top: 16px;
-        padding-top: 0;
     }
 }
 
@@ -62,15 +60,9 @@
     gap: 12px;
 }
 
-.columnScrollableContainer {
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 24px;
-}
-
 .childrenWrapper {
     margin-top: 12px;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
