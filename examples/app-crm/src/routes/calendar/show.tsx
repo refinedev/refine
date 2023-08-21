@@ -65,6 +65,12 @@ export const CalendarShowPage = () => {
         participants,
     } = data.data;
 
+    let dateFormat = "dddd, MMMM D, YYYY [at] h:mm A";
+    // if startDate grand than endDate of one day
+    if (dayjs(endDate).diff(dayjs(startDate), "day") > 0) {
+        dateFormat = "dddd, MMMM D, YYYY";
+    }
+
     return (
         <Drawer
             title={
@@ -90,19 +96,11 @@ export const CalendarShowPage = () => {
             <Space direction="vertical" size="large">
                 <div>
                     <CalendarOutlined style={{ marginRight: ".5rem" }} />
-                    <Text>
-                        {dayjs(startDate).format(
-                            "dddd, MMMM D, YYYY [at] h:mm A",
-                        )}
-                    </Text>
+                    <Text>{dayjs(startDate).format(dateFormat)}</Text>
                 </div>
                 <div>
                     <CalendarOutlined style={{ marginRight: ".5rem" }} />
-                    <Text>
-                        {dayjs(endDate).format(
-                            "dddd, MMMM D, YYYY [at] h:mm A",
-                        )}
-                    </Text>
+                    <Text>{dayjs(endDate).format(dateFormat)}</Text>
                 </div>
                 <div>
                     <FlagOutlined style={{ marginRight: ".5rem" }} />
