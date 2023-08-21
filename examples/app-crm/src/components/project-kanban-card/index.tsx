@@ -189,7 +189,14 @@ export const ProjectCard = ({
                         }}
                     />
                     {!!comments?.totalCount && (
-                        <Space size={4}>
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "4px",
+                            }}
+                        >
                             <MessageOutlined
                                 style={{
                                     color: token.colorTextSecondary,
@@ -199,7 +206,7 @@ export const ProjectCard = ({
                             <Text size="xs" type="secondary">
                                 {comments.totalCount}
                             </Text>
-                        </Space>
+                        </div>
                     )}
                     {dueDateOptions && (
                         <Tag
