@@ -1,7 +1,8 @@
 import React from "react";
 import { Col, Row, App } from "antd";
 import { CreateButton } from "@refinedev/antd";
-import { useNavigation } from "@refinedev/core";
+import { useNavigate } from "react-router-dom";
+import { useGetToPath } from "@refinedev/core";
 
 import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
 import { CalendarCategories } from "../../components/calender/categories";
@@ -10,7 +11,8 @@ import { Calendar } from "../../components/calender/calendar";
 type Props = React.PropsWithChildren<{}>;
 
 export const CalendarPageWrapper = ({ children }: Props) => {
-    const { show } = useNavigation();
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
     const [selectedEventCategory, setSelectedEventCategory] = React.useState<
         string[]
     >([]);
@@ -48,7 +50,19 @@ export const CalendarPageWrapper = ({ children }: Props) => {
                 </Col>
                 <Col span={18}>
                     <Calendar
-                        onClickEvent={({ id }) => show("calendar", id)}
+                        onClickEvent={({ id }) => {
+                            navigate(
+                                getToPath({
+                                    action: "show",
+                                    meta: {
+                                        id,
+                                    },
+                                }) ?? "",
+                                {
+                                    replace: true,
+                                },
+                            );
+                        }}
                         categoryId={selectedEventCategory}
                     />
                     {children}

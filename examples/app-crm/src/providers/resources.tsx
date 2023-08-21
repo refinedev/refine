@@ -20,7 +20,7 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "calendar",
+        name: "events",
         list: "/calendar",
         create: "/calendar/create",
         edit: "/calendar/edit/:id",

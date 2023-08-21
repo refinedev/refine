@@ -1,5 +1,5 @@
-import { Badge, Button, Drawer, Space } from "antd";
-import { useNavigation, useResource, useShow } from "@refinedev/core";
+import { Badge, Drawer, Space } from "antd";
+import { useGetToPath, useResource, useShow } from "@refinedev/core";
 import {
     CalendarOutlined,
     FlagOutlined,
@@ -8,15 +8,17 @@ import {
     EditOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
+import { EditButton } from "@refinedev/antd";
+import { useNavigate } from "react-router-dom";
 
 import { Text } from "../../components/text";
 import { Event } from "../../interfaces/graphql";
 
 export const CalendarShowPage = () => {
     const { id } = useResource();
-    const { list, edit } = useNavigation();
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
     const { queryResult } = useShow<Event>({
-        resource: "events",
         id,
         meta: {
             operation: "getOneEvent",
@@ -54,7 +56,6 @@ export const CalendarShowPage = () => {
     }
 
     const {
-        id: eventId,
         color,
         title,
         description,
@@ -74,17 +75,17 @@ export const CalendarShowPage = () => {
             }
             open
             onClose={() => {
-                list("calendar");
+                navigate(
+                    getToPath({
+                        action: "list",
+                    }) ?? "",
+                    {
+                        replace: true,
+                    },
+                );
             }}
             width={560}
-            extra={
-                <Button
-                    onClick={() => {
-                        edit("calendar", eventId);
-                    }}
-                    icon={<EditOutlined />}
-                />
-            }
+            extra={<EditButton icon={<EditOutlined />} hideText />}
         >
             <Space direction="vertical" size="large">
                 <div>

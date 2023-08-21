@@ -44,6 +44,7 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
             fields: ["id", "name"],
         },
     });
+
     return (
         <Form layout="vertical" form={form} {...formProps}>
             <Form.Item

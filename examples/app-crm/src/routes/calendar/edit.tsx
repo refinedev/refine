@@ -17,18 +17,12 @@ export const CalendarEditPage = () => {
 
     const { formProps, saveButtonProps, form, onFinish, queryResult } =
         useForm<Event>({
-            resource: "events",
             action: "edit",
             id,
             queryOptions: {
                 enabled: true,
             },
-            mutationMeta: {
-                operation: "updateOneEvent",
-                fields: ["id"],
-            },
             queryMeta: {
-                operation: "event",
                 fields: [
                     "id",
                     "title",
@@ -48,6 +42,7 @@ export const CalendarEditPage = () => {
                     },
                 ],
             },
+            redirect: "list",
         });
 
     React.useEffect(() => {

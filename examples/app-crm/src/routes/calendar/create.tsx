@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath, useNavigation } from "@refinedev/core";
+import { useGetToPath } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import dayjs from "dayjs";
 
@@ -12,27 +12,12 @@ export const CalendarCreatePage = () => {
     const [isAllDayEvent, setIsAllDayEvent] = React.useState(false);
     const navigate = useNavigate();
     const getToPath = useGetToPath();
-    const { list } = useNavigation();
 
     const { formProps, saveButtonProps, form, onFinish } = useForm<Event>({
-        resource: "events",
         queryOptions: {
             enabled: false,
         },
-        mutationMeta: {
-            operation: "createOneEvent",
-        },
-        onMutationSuccess: () => {
-            navigate(
-                getToPath({
-                    action: "list",
-                }) ?? "",
-                {
-                    replace: true,
-                },
-            );
-            list("calendar", "push");
-        },
+        redirect: "list",
     });
 
     const handleOnFinish = async (values: any) => {
