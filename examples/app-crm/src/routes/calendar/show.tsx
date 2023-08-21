@@ -65,8 +65,8 @@ export const CalendarShowPage = () => {
         participants,
     } = data.data;
 
+    // if the event is more than one day, don't show the time
     let dateFormat = "dddd, MMMM D, YYYY [at] h:mm A";
-    // if startDate grand than endDate of one day
     if (dayjs(endDate).diff(dayjs(startDate), "day") > 0) {
         dateFormat = "dddd, MMMM D, YYYY";
     }
