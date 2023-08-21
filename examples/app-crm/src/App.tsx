@@ -31,7 +31,10 @@ import { KanbanPage } from "./routes/scrumboard/kanban";
 import { SalesPage } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
-import { ContactsPage } from "./routes/contacts";
+import { ContactsPageWrapper } from "./routes/contacts/wrapper";
+import { ContactCreatePage } from "./routes/contacts/create";
+import { ContactEditPage } from "./routes/contacts/edit";
+import { ContactShowPage } from "./routes/contacts/show";
 import { QuotesPage } from "./routes/quotes";
 import { SettingsPage } from "./routes/administration/settings";
 import { AuditLogPage } from "./routes/administration/audit-log";
@@ -109,10 +112,30 @@ const App: React.FC = () => {
                                     element={<CompanyShowPage />}
                                 />
                             </Route>
+
                             <Route
                                 path="/contacts"
-                                element={<ContactsPage />}
-                            />
+                                element={
+                                    <ContactsPageWrapper>
+                                        <Outlet />
+                                    </ContactsPageWrapper>
+                                }
+                            >
+                                <Route index />
+                                <Route
+                                    path="show/:id"
+                                    element={<ContactShowPage />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ContactEditPage />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ContactCreatePage />}
+                                />
+                            </Route>
+
                             <Route path="/quotes" element={<QuotesPage />} />
                             <Route path="/administration" element={<Outlet />}>
                                 <Route

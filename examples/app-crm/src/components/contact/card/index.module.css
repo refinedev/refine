@@ -4,6 +4,14 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
+    border-radius: 8px;
+    position: relative;
+
+    .dropdown {
+        position: absolute;
+        top: .75rem;
+        right: .75rem;
+    }
 
     .personal {
         padding: .75rem;

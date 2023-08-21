@@ -23,16 +23,22 @@ import {
     AppstoreOutlined,
     PlusSquareOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { useGetToPath } from "@refinedev/core";
 
-import { ContactStatusTag } from "../../components/contact/status-tag";
-import { ContactStatus } from "../../enums/contact-status";
-import { ContactCard } from "../../components/contact/card";
+import { ContactStatusTag } from "../../../components/contact/status-tag";
+import { ContactStatus } from "../../../enums/contact-status";
+import { ContactCard } from "../../../components/contact/card";
 
-import { Contact } from "../../interfaces/graphql";
+import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
-export const ContactsPage = () => {
+type Props = React.PropsWithChildren<{}>;
+
+export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
     const [type, setType] = React.useState("table");
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
     const {
         tableProps,
         searchFormProps,
@@ -215,10 +221,27 @@ export const ContactsPage = () => {
 
         return (
             <div style={{ marginTop: "1rem" }}>
-                <Row gutter={[16, 16]}>
+                <Row gutter={[32, 32]}>
                     {data?.data.map((contact) => (
                         <Col key={contact.id} span="6">
-                            <ContactCard contact={contact} />
+                            <ContactCard
+                                onClick={({ key }) => {
+                                    if (key === "show") {
+                                        navigate(
+                                            getToPath({
+                                                action: "show",
+                                                meta: {
+                                                    id: contact.id,
+                                                },
+                                            }) ?? "",
+                                            {
+                                                replace: true,
+                                            },
+                                        );
+                                    }
+                                }}
+                                contact={contact}
+                            />
                         </Col>
                     ))}
                 </Row>
@@ -244,7 +267,7 @@ export const ContactsPage = () => {
                 <div className={styles.search}>
                     <Form {...searchFormProps} layout="inline">
                         <Form.Item name="name">
-                            <Input placeholder="Search by name" />
+                            <Input size="large" placeholder="Search by name" />
                         </Form.Item>
                         <SaveButton
                             hidden
@@ -252,6 +275,7 @@ export const ContactsPage = () => {
                         />
                     </Form>
                     <Radio.Group
+                        size="large"
                         value={type}
                         onChange={(e) => setType(e.target.value)}
                     >
@@ -266,6 +290,7 @@ export const ContactsPage = () => {
             </div>
 
             {renderContent()}
+            {children}
         </div>
     );
 };

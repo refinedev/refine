@@ -1,5 +1,7 @@
 import React from "react";
-import { Avatar, Card } from "antd";
+import { Avatar, Button, Dropdown, MenuProps } from "antd";
+import { EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
+import { MenuInfo } from "rc-menu/lib/interface";
 
 import { Text } from "../../text";
 import { ContactStatusTag } from "../status-tag";
@@ -9,12 +11,35 @@ import styles from "./index.module.css";
 
 type ContactCardProps = {
     contact: Contact;
+    onClick?: (menu: MenuInfo) => void;
 };
 
-export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
+const items: MenuProps["items"] = [
+    {
+        label: "Show",
+        key: "show",
+        icon: <EyeOutlined />,
+    },
+];
+
+export const ContactCard: React.FC<ContactCardProps> = ({
+    contact,
+    onClick,
+}) => {
     const { name, email, status, jobTitle, company } = contact;
     return (
         <div className={styles.container}>
+            <Dropdown
+                className={styles.dropdown}
+                menu={{
+                    items,
+                    onClick: (e) => onClick?.(e),
+                }}
+                trigger={["click"]}
+            >
+                <Button type="text" icon={<EllipsisOutlined />} />
+            </Dropdown>
+
             <div className={styles.personal}>
                 <Avatar className={styles.avatar} size={64}>
                     {name[0]}
