@@ -192,6 +192,20 @@ export const integrations: IntegrationsType = {
             ],
         },
         {
+            name: "Elide GraphQL Data Provider",
+            icon: Elide,
+            description:
+                "Connector for GraphQL backends created with <strong>Elide</strong>",
+            url: "https://github.com/chirdeeptomar/refine-elide-graphql",
+            status: "stable",
+            contributors: [
+                {
+                    name: "chirdeeptomar",
+                    url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
+        {
             name: "useGenerated Data Provider",
             icon: UseGenerated,
             description:
