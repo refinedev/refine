@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
 
-type DateColors = "error" | "warning" | "default";
+type DateColors = "success" | "processing" | "error" | "default" | "warning";
 
-export const getDateColor = (args: { date: string }): DateColors => {
+export const getDateColor = (args: {
+    date: string;
+    defaultColor?: DateColors;
+}): DateColors => {
     const date = dayjs(args.date);
     const today = dayjs();
 
@@ -14,5 +17,5 @@ export const getDateColor = (args: { date: string }): DateColors => {
         return "warning";
     }
 
-    return "default";
+    return args.defaultColor ?? "default";
 };

@@ -32,7 +32,9 @@ import {
 type ProjectCardProps = {
     id: string;
     title: string;
-    commentsCount?: number;
+    comments: {
+        totalCount: number;
+    };
     dueDate?: string;
     users?: {
         id: string;
@@ -49,12 +51,12 @@ export const ProjectCard = ({
     id,
     title,
     checkList,
-    commentsCount,
+    comments,
     dueDate,
     users,
 }: ProjectCardProps) => {
     const { token } = theme.useToken();
-    const { push } = useNavigation();
+    const { edit } = useNavigation();
     const { mutate } = useDelete();
 
     const dropdownItems = useMemo(() => {
@@ -64,7 +66,7 @@ export const ProjectCard = ({
                 key: "1",
                 icon: <EyeOutlined />,
                 onClick: () => {
-                    push(`${id}`);
+                    edit("tasks", id, "replace");
                 },
             },
             {
@@ -186,7 +188,7 @@ export const ProjectCard = ({
                             marginRight: "4px",
                         }}
                     />
-                    {commentsCount && (
+                    {!!comments?.totalCount && (
                         <Space size={4}>
                             <MessageOutlined
                                 style={{
@@ -195,7 +197,7 @@ export const ProjectCard = ({
                                 }}
                             />
                             <Text size="xs" type="secondary">
-                                {commentsCount}
+                                {comments.totalCount}
                             </Text>
                         </Space>
                     )}
