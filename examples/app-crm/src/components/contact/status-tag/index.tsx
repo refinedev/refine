@@ -7,7 +7,7 @@ import {
     MinusCircleOutlined,
 } from "@ant-design/icons";
 
-import { ContactStatus } from "../../../enums/contact-status";
+import { ContactStatus } from "../../../interfaces/graphql";
 
 export const ContactStatusTag: React.FC<{ status: ContactStatus }> = ({
     status,
@@ -16,30 +16,30 @@ export const ContactStatusTag: React.FC<{ status: ContactStatus }> = ({
     let color: TagProps["color"] = undefined;
 
     switch (status) {
-        case ContactStatus.NEW:
-        case ContactStatus.CONTACTED:
-        case ContactStatus.INTERESTED:
+        case "NEW":
+        case "CONTACTED":
+        case "INTERESTED":
             icon = <PlayCircleOutlined />;
             color = "cyan";
             break;
-        case ContactStatus.UNQUALIFIED:
+        case "UNQUALIFIED":
             icon = <PlayCircleOutlined />;
             color = "red";
             break;
-        case ContactStatus.QUALIFIED:
-        case ContactStatus.NEGOTIATION:
+        case "QUALIFIED":
+        case "NEGOTIATION":
             icon = <PlayCircleFilled />;
             color = "green";
             break;
-        case ContactStatus.LOST:
+        case "LOST":
             icon = <PlayCircleFilled />;
             color = "red";
             break;
-        case ContactStatus.WON:
+        case "WON":
             icon = <CheckCircleOutlined />;
             color = "green";
             break;
-        case ContactStatus.CHURNED:
+        case "CHURNED":
             icon = <MinusCircleOutlined />;
             color = "red";
             break;
