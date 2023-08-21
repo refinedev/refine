@@ -70,7 +70,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
                         tooltip: true,
                     }}
                 >
-                    {jobTitle}
+                    {jobTitle || "-"}
                 </Text>
                 <div className={styles.companyName}>
                     <Text
