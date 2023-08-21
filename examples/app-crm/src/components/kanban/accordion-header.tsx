@@ -1,7 +1,8 @@
 import { PropsWithChildren, ReactNode } from "react";
-import { Skeleton, Space } from "antd";
+import { Space } from "antd";
 
 import { Text } from "../../components/text";
+import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 
 type Props = PropsWithChildren<{
     icon: ReactNode;
@@ -18,12 +19,7 @@ export const AccordionHeader = ({
     children,
 }: Props) => {
     if (isLoading) {
-        return (
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <Skeleton.Avatar size="small" shape="square" />
-                <Skeleton.Input size="small" block style={{ height: "22px" }} />
-            </div>
-        );
+        return <AccordionHeaderSkeleton />;
     }
 
     return (

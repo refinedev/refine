@@ -141,13 +141,10 @@ export const KanbanEditPage = () => {
         {
             key: "4",
             label: (
-                <>
-                    <ChecklistHeader checklist={checklist} />
-                    <CheckListForm
-                        isLoading={isLoading}
-                        initialValues={{ checklist }}
-                    />
-                </>
+                <CheckListForm
+                    isLoading={isLoading}
+                    initialValues={{ checklist }}
+                />
             ),
             style: panelStyle,
             showArrow: false,

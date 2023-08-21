@@ -1,9 +1,10 @@
 import { HttpError } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
-import { Checkbox, Form, Select, Space, Skeleton } from "antd";
+import { Checkbox, Form, Select, Space } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
 import { Task } from "../../interfaces/graphql";
+import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 
 type Props = {
     initialValues: {
@@ -39,12 +40,7 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
     });
 
     if (isLoading) {
-        return (
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <Skeleton.Avatar size="small" shape="square" />
-                <Skeleton.Input size="small" block />
-            </div>
-        );
+        return <AccordionHeaderSkeleton />;
     }
 
     return (
