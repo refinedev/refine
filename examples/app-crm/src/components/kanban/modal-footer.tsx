@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 import { DeleteButton } from "@refinedev/antd";
 
-export const KanbanModalFooter = () => {
+export const ModalFooter = () => {
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 

@@ -9,20 +9,20 @@ import {
     UsergroupAddOutlined,
 } from "@ant-design/icons";
 
-import { KanbanStageForm } from "../../../components/kanban-stage-form";
-import { AccordionHeader } from "../../../components/kanban-accordion-header";
-import { KanbanDescriptionForm } from "../../../components/kanban-description-form";
-import { KanbanDescriptionHeader } from "../../../components/kanban-description-header";
-import { KanbanDueDateForm } from "../../../components/kanban-duedate-form";
-import { KanbanDueDateHeader } from "../../../components/kanban-duedate-header";
-import { KanbanUsersForm } from "../../../components/kanban-users-form";
-import { KanbanUsersHeader } from "../../../components/kanban-users-header";
-import { KanbanChecklistHeader } from "../../../components/kanban-checklist-header";
-import { KanbanCheckListForm } from "../../../components/kanban-checklist-form";
-import { KanbanCommentForm } from "../../../components/kanban-comment-form";
-import { KanbanCommentList } from "../../../components/kanban-comment-list";
-import { KanbanModalFooter } from "../../../components/kanban-modal-footer";
-import { KanbanTitleForm } from "../../../components/kanban-title-form";
+import { StageForm } from "../../../components/kanban/stage-form";
+import { AccordionHeader } from "../../../components/kanban/accordion-header";
+import { DescriptionForm } from "../../../components/kanban/description-form";
+import { DescriptionHeader } from "../../../components/kanban/description-header";
+import { DueDateForm } from "../../../components/kanban/duedate-form";
+import { DueDateHeader } from "../../../components/kanban/duedate-header";
+import { UsersForm } from "../../../components/kanban/users-form";
+import { UsersHeader } from "../../../components/kanban/users-header";
+import { ChecklistHeader } from "../../../components/kanban/checklist-header";
+import { CheckListForm } from "../../../components/kanban/checklist-form";
+import { CommentForm } from "../../../components/kanban/comment-form";
+import { CommentList } from "../../../components/kanban/comment-list";
+import { ModalFooter } from "../../../components/kanban/modal-footer";
+import { TitleForm } from "../../../components/kanban/title-form";
 
 import { Task } from "../../../interfaces/graphql";
 
@@ -61,7 +61,7 @@ export const KanbanEditPage = () => {
         {
             key: "0",
             label: (
-                <KanbanStageForm
+                <StageForm
                     initialValues={{ completed: completed ?? false, stage }}
                     isLoading={isLoading}
                 />
@@ -76,16 +76,14 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<AlignLeftOutlined />}
                     isActive={activeKey === "1"}
-                    fallback={
-                        <KanbanDescriptionHeader description={description} />
-                    }
+                    fallback={<DescriptionHeader description={description} />}
                     isLoading={isLoading}
                 >
                     Description
                 </AccordionHeader>
             ),
             children: (
-                <KanbanDescriptionForm
+                <DescriptionForm
                     initialValues={{ description }}
                     cancelForm={() => setActiveKey(undefined)}
                 />
@@ -99,14 +97,14 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<FieldTimeOutlined />}
                     isActive={activeKey === "2"}
-                    fallback={<KanbanDueDateHeader dueData={dueDate} />}
+                    fallback={<DueDateHeader dueData={dueDate} />}
                     isLoading={isLoading}
                 >
                     Due date
                 </AccordionHeader>
             ),
             children: (
-                <KanbanDueDateForm
+                <DueDateForm
                     initialValues={{ dueDate: dueDate ?? undefined }}
                     cancelForm={() => setActiveKey(undefined)}
                 />
@@ -120,14 +118,14 @@ export const KanbanEditPage = () => {
                 <AccordionHeader
                     icon={<UsergroupAddOutlined />}
                     isActive={activeKey === "3"}
-                    fallback={<KanbanUsersHeader users={users} />}
+                    fallback={<UsersHeader users={users} />}
                     isLoading={isLoading}
                 >
                     Users
                 </AccordionHeader>
             ),
             children: (
-                <KanbanUsersForm
+                <UsersForm
                     initialValues={{
                         userIds: users?.map((user) => ({
                             label: user.name,
@@ -144,8 +142,8 @@ export const KanbanEditPage = () => {
             key: "4",
             label: (
                 <>
-                    <KanbanChecklistHeader checklist={checklist} />
-                    <KanbanCheckListForm
+                    <ChecklistHeader checklist={checklist} />
+                    <CheckListForm
                         isLoading={isLoading}
                         initialValues={{ checklist }}
                     />
@@ -174,13 +172,10 @@ export const KanbanEditPage = () => {
                 );
             }}
             title={
-                <KanbanTitleForm
-                    initialValues={{ title }}
-                    isLoading={isLoading}
-                />
+                <TitleForm initialValues={{ title }} isLoading={isLoading} />
             }
             width={586}
-            footer={<KanbanModalFooter />}
+            footer={<ModalFooter />}
         >
             <Collapse
                 accordion
@@ -199,8 +194,8 @@ export const KanbanEditPage = () => {
                     borderBottom: "1px solid #d9d9d9",
                 }}
             >
-                <KanbanCommentForm />
-                <KanbanCommentList />
+                <CommentForm />
+                <CommentList />
             </div>
         </Modal>
     );

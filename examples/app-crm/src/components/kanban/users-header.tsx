@@ -1,13 +1,13 @@
 import { Space, Typography } from "antd";
 
-import { Task } from "../interfaces/graphql";
-import { UserTag } from "./user-tag";
+import { Task } from "../../interfaces/graphql";
+import { UserTag } from "../user-tag";
 
 type Props = {
     users?: Task["users"];
 };
 
-export const KanbanUsersHeader = ({ users = [] }: Props) => {
+export const UsersHeader = ({ users = [] }: Props) => {
     if (users.length > 0) {
         return (
             <Space size={[0, 8]} wrap>

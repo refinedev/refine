@@ -2,7 +2,7 @@ import { useForm } from "@refinedev/antd";
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
-import { Task } from "../interfaces/graphql";
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     initialValues: {
@@ -11,7 +11,7 @@ type Props = {
     cancelForm: () => void;
 };
 
-export const KanbanDueDateForm = ({ initialValues, cancelForm }: Props) => {
+export const DueDateForm = ({ initialValues, cancelForm }: Props) => {
     const { formProps, saveButtonProps } = useForm({
         queryOptions: {
             enabled: false,

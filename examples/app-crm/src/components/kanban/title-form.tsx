@@ -1,10 +1,10 @@
 import { useForm } from "@refinedev/antd";
 import { Form, Skeleton } from "antd";
 
-import { Text } from "../components/text";
-import { Task } from "../interfaces/graphql";
+import { Text } from "../../components/text";
+import { Task } from "../../interfaces/graphql";
 
-const KanbanTitleInput = ({
+const TitleInput = ({
     value,
     onChange,
 }: {
@@ -34,7 +34,7 @@ type Props = {
     isLoading?: boolean;
 };
 
-export const KanbanTitleForm = ({ initialValues, isLoading }: Props) => {
+export const TitleForm = ({ initialValues, isLoading }: Props) => {
     const { formProps } = useForm({
         queryOptions: {
             enabled: false,
@@ -60,7 +60,7 @@ export const KanbanTitleForm = ({ initialValues, isLoading }: Props) => {
     return (
         <Form {...formProps} initialValues={initialValues}>
             <Form.Item noStyle name="title">
-                <KanbanTitleInput />
+                <TitleInput />
             </Form.Item>
         </Form>
     );

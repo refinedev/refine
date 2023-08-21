@@ -3,7 +3,7 @@ import { useForm, useSelect } from "@refinedev/antd";
 import { Checkbox, Form, Select, Space, Skeleton } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
-import { Task } from "../interfaces/graphql";
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     initialValues: {
@@ -13,7 +13,7 @@ type Props = {
     isLoading?: boolean;
 };
 
-export const KanbanStageForm = ({ initialValues, isLoading }: Props) => {
+export const StageForm = ({ initialValues, isLoading }: Props) => {
     const { formProps } = useForm<Task, HttpError>({
         queryOptions: {
             enabled: false,

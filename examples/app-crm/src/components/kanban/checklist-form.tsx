@@ -3,7 +3,7 @@ import { Button, Form, Skeleton } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import { CheckListInput } from "./checklist-input";
-import { Task } from "../interfaces/graphql";
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     initialValues: {
@@ -12,7 +12,7 @@ type Props = {
     isLoading?: boolean;
 };
 
-export const KanbanCheckListForm = ({ initialValues, isLoading }: Props) => {
+export const CheckListForm = ({ initialValues, isLoading }: Props) => {
     const { formProps } = useForm({
         queryOptions: {
             enabled: false,

@@ -1,15 +1,15 @@
 import { Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "../components/text";
-import { getDateColor } from "../utilities/date";
-import { Task } from "../interfaces/graphql";
+import { Text } from "../../components/text";
+import { getDateColor } from "../../utilities/date";
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     dueData?: Task["dueDate"];
 };
 
-export const KanbanDueDateHeader = ({ dueData }: Props) => {
+export const DueDateHeader = ({ dueData }: Props) => {
     if (dueData) {
         const color = getDateColor({
             date: dueData,

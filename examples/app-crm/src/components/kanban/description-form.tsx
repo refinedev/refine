@@ -2,7 +2,7 @@ import { Button, Form, Space } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 import { useForm } from "@refinedev/antd";
 
-import { Task } from "../interfaces/graphql";
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     initialValues: {
@@ -11,7 +11,7 @@ type Props = {
     cancelForm: () => void;
 };
 
-export const KanbanDescriptionForm = ({ initialValues, cancelForm }: Props) => {
+export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
     const { formProps, saveButtonProps } = useForm({
         queryOptions: {
             enabled: false,

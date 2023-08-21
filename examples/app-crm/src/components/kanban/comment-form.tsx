@@ -2,9 +2,9 @@ import { useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Avatar, Form, Input } from "antd";
 
-import { TaskComment } from "../interfaces/graphql";
+import { TaskComment } from "../../interfaces/graphql";
 
-export const KanbanCommentForm = () => {
+export const CommentForm = () => {
     const { id: taskId } = useParsed();
 
     const { formProps, onFinish, form } = useForm<TaskComment>({

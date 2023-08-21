@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { Skeleton, Space } from "antd";
 
-import { Text } from "../components/text";
+import { Text } from "../../components/text";
 
 type Props = PropsWithChildren<{
     icon: ReactNode;

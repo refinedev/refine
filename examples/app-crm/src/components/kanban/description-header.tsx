@@ -1,13 +1,13 @@
 import { Typography } from "antd";
 import { MarkdownField } from "@refinedev/antd";
 
-import { Task } from "../interfaces/graphql";
+import { Task } from "../../interfaces/graphql";
 
 type Props = {
     description?: Task["description"];
 };
 
-export const KanbanDescriptionHeader = ({ description }: Props) => {
+export const DescriptionHeader = ({ description }: Props) => {
     if (description) {
         return (
             <Typography.Paragraph ellipsis={{ rows: 8 }}>

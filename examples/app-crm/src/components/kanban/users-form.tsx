@@ -8,7 +8,7 @@ type Props = {
     cancelForm: () => void;
 };
 
-export const KanbanUsersForm = ({ initialValues, cancelForm }: Props) => {
+export const UsersForm = ({ initialValues, cancelForm }: Props) => {
     const { formProps, saveButtonProps } = useForm({
         queryOptions: {
             enabled: false,
