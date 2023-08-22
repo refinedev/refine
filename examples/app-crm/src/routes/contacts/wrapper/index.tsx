@@ -17,6 +17,7 @@ import {
     Pagination,
     Row,
     Col,
+    TableProps,
 } from "antd";
 import {
     UnorderedListOutlined,
@@ -35,18 +36,167 @@ import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
 type Props = React.PropsWithChildren<{}>;
+type ViewProps = TableProps<Contact>;
+
+const TableView: React.FC<ViewProps> = (...rest) => {
+    return (
+        <Table {...rest} rowKey="id">
+            <Table.Column dataIndex="id" title="ID" />
+            <Table.Column
+                dataIndex="name"
+                title="Name"
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Input placeholder="Search Name" />
+                    </FilterDropdown>
+                )}
+            />
+            <Table.Column
+                dataIndex="email"
+                title="Email"
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Input placeholder="Search Email" />
+                    </FilterDropdown>
+                )}
+            />
+            <Table.Column
+                dataIndex={["company", "name"]}
+                title="Company"
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Input placeholder="Search Company" />
+                    </FilterDropdown>
+                )}
+            />
+            <Table.Column
+                dataIndex="jobTitle"
+                title="Title"
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Input placeholder="Search Title" />
+                    </FilterDropdown>
+                )}
+            />
+            <Table.Column
+                dataIndex="status"
+                title="Status"
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Select
+                            style={{ width: "200px" }}
+                            defaultValue={null}
+                            mode="multiple"
+                            options={[
+                                {
+                                    label: "New",
+                                    value: ContactStatus.NEW,
+                                },
+                                {
+                                    label: "Contacted",
+                                    value: ContactStatus.CONTACTED,
+                                },
+                                {
+                                    label: "Interested",
+                                    value: ContactStatus.INTERESTED,
+                                },
+                                {
+                                    label: "Unqualified",
+                                    value: ContactStatus.UNQUALIFIED,
+                                },
+                                {
+                                    label: "Qualified",
+                                    value: ContactStatus.QUALIFIED,
+                                },
+                                {
+                                    label: "Negotiation",
+                                    value: ContactStatus.NEGOTIATION,
+                                },
+                                {
+                                    label: "Lost",
+                                    value: ContactStatus.LOST,
+                                },
+                                {
+                                    label: "Won",
+                                    value: ContactStatus.WON,
+                                },
+                                {
+                                    label: "Churned",
+                                    value: ContactStatus.CHURNED,
+                                },
+                            ]}
+                        ></Select>
+                    </FilterDropdown>
+                )}
+                render={(value: ContactStatus) => (
+                    <ContactStatusTag status={value} />
+                )}
+            />
+            <Table.Column<Contact>
+                title="Actions"
+                dataIndex="actions"
+                render={(_, record) => (
+                    <Space>
+                        <ShowButton
+                            hideText
+                            size="small"
+                            recordItemId={record.id}
+                        />
+                        <DeleteButton
+                            hideText
+                            size="small"
+                            recordItemId={record.id}
+                        />
+                    </Space>
+                )}
+            />
+        </Table>
+    );
+};
+
+const CardView: React.FC<ViewProps> = ({ dataSource, pagination }) => {
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
+
+    return (
+        <div style={{ marginTop: "1rem" }}>
+            <Row gutter={[32, 32]}>
+                {dataSource?.map((contact) => (
+                    <Col key={contact.id} span="6">
+                        <ContactCard
+                            onClick={({ key }) => {
+                                if (key === "show") {
+                                    navigate(
+                                        getToPath({
+                                            action: "show",
+                                            meta: {
+                                                id: contact.id,
+                                            },
+                                        }) ?? "",
+                                        {
+                                            replace: true,
+                                        },
+                                    );
+                                }
+                            }}
+                            contact={contact}
+                        />
+                    </Col>
+                ))}
+            </Row>
+
+            <Pagination
+                style={{ textAlign: "end", marginTop: "1rem" }}
+                {...pagination}
+            />
+        </div>
+    );
+};
 
 export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
     const [type, setType] = React.useState("table");
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
-    const {
-        tableProps,
-        searchFormProps,
-        tableQueryResult,
-        setCurrent,
-        setPageSize,
-    } = useTable<Contact>({
+
+    const { tableProps, searchFormProps } = useTable<Contact>({
         filters: {
             initial: [
                 {
@@ -99,164 +249,6 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         },
     });
 
-    const renderContent = () => {
-        if (type === "table") {
-            return (
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column
-                        dataIndex="name"
-                        title="Name"
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Input placeholder="Search Name" />
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="email"
-                        title="Email"
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Input placeholder="Search Email" />
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex={["company", "name"]}
-                        title="Company"
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Input placeholder="Search Company" />
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="jobTitle"
-                        title="Title"
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Input placeholder="Search Title" />
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="status"
-                        title="Status"
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Select
-                                    style={{ width: "200px" }}
-                                    defaultValue={null}
-                                    mode="multiple"
-                                    options={[
-                                        {
-                                            label: "New",
-                                            value: ContactStatus.NEW,
-                                        },
-                                        {
-                                            label: "Contacted",
-                                            value: ContactStatus.CONTACTED,
-                                        },
-                                        {
-                                            label: "Interested",
-                                            value: ContactStatus.INTERESTED,
-                                        },
-                                        {
-                                            label: "Unqualified",
-                                            value: ContactStatus.UNQUALIFIED,
-                                        },
-                                        {
-                                            label: "Qualified",
-                                            value: ContactStatus.QUALIFIED,
-                                        },
-                                        {
-                                            label: "Negotiation",
-                                            value: ContactStatus.NEGOTIATION,
-                                        },
-                                        {
-                                            label: "Lost",
-                                            value: ContactStatus.LOST,
-                                        },
-                                        {
-                                            label: "Won",
-                                            value: ContactStatus.WON,
-                                        },
-                                        {
-                                            label: "Churned",
-                                            value: ContactStatus.CHURNED,
-                                        },
-                                    ]}
-                                ></Select>
-                            </FilterDropdown>
-                        )}
-                        render={(value: ContactStatus) => (
-                            <ContactStatusTag status={value} />
-                        )}
-                    />
-                    <Table.Column<Contact>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_, record) => (
-                            <Space>
-                                <ShowButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <DeleteButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </Space>
-                        )}
-                    />
-                </Table>
-            );
-        }
-
-        const { data } = tableQueryResult;
-
-        return (
-            <div style={{ marginTop: "1rem" }}>
-                <Row gutter={[32, 32]}>
-                    {data?.data.map((contact) => (
-                        <Col key={contact.id} span="6">
-                            <ContactCard
-                                onClick={({ key }) => {
-                                    if (key === "show") {
-                                        navigate(
-                                            getToPath({
-                                                action: "show",
-                                                meta: {
-                                                    id: contact.id,
-                                                },
-                                            }) ?? "",
-                                            {
-                                                replace: true,
-                                            },
-                                        );
-                                    }
-                                }}
-                                contact={contact}
-                            />
-                        </Col>
-                    ))}
-                </Row>
-
-                <Pagination
-                    style={{ textAlign: "end", marginTop: "1rem" }}
-                    total={data?.total}
-                    onChange={(page, pageSize) => {
-                        setCurrent(page);
-                        setPageSize(pageSize);
-                    }}
-                />
-            </div>
-        );
-    };
-
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -292,7 +284,11 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                 </div>
             </div>
 
-            {renderContent()}
+            {type === "table" ? (
+                <TableView {...tableProps} />
+            ) : (
+                <CardView {...tableProps} />
+            )}
             {children}
         </div>
     );
