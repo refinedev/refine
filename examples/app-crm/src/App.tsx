@@ -1,8 +1,6 @@
 import { Refine, Authenticated } from "@refinedev/core";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import routerProvider, {
     NavigateToResource,
@@ -27,11 +25,20 @@ import { UpdatePasswordPage } from "./routes/update-password";
 import { DashboardPage } from "./routes/dashboard/index";
 
 import { CalendarPageWrapper } from "./routes/calendar/wrapper";
-import { KanbanPage } from "./routes/scrumboard/kanban";
+import {
+    KanbanPage,
+    KanbanCreatePage,
+    KanbanEditPage,
+    KanbanCreateStage,
+    KanbanEditStage,
+} from "./routes/scrumboard/kanban";
 import { SalesPage } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
-import { ContactsPage } from "./routes/contacts";
+import { ContactsPageWrapper } from "./routes/contacts/wrapper";
+import { ContactCreatePage } from "./routes/contacts/create";
+import { ContactEditPage } from "./routes/contacts/edit";
+import { ContactShowPage } from "./routes/contacts/show";
 import { QuotesPage } from "./routes/quotes";
 import { SettingsPage } from "./routes/administration/settings";
 import { AuditLogPage } from "./routes/administration/audit-log";
@@ -41,10 +48,10 @@ import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
-import "./styles/index.css";
+import "./utilities/init-dayjs";
 
-dayjs.extend(utc);
-dayjs.extend(relativeTime);
+import "./styles/antd.css";
+import "./styles/index.css";
 
 const App: React.FC = () => {
     return (
@@ -99,9 +106,34 @@ const App: React.FC = () => {
                                 />
                             </Route>
                             <Route path="/scrumboard" element={<Outlet />}>
-                                <Route path="kanban" element={<KanbanPage />} />
+                                <Route
+                                    path="kanban"
+                                    element={
+                                        <KanbanPage>
+                                            <Outlet />
+                                        </KanbanPage>
+                                    }
+                                >
+                                    <Route
+                                        path="create"
+                                        element={<KanbanCreatePage />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<KanbanEditPage />}
+                                    />
+                                    <Route
+                                        path="stages/create"
+                                        element={<KanbanCreateStage />}
+                                    />
+                                    <Route
+                                        path="stages/edit/:id"
+                                        element={<KanbanEditStage />}
+                                    />
+                                </Route>
                                 <Route path="sales" element={<SalesPage />} />
                             </Route>
+
                             <Route path="/companies">
                                 <Route index element={<CompaniesPage />} />
                                 <Route
@@ -109,10 +141,30 @@ const App: React.FC = () => {
                                     element={<CompanyShowPage />}
                                 />
                             </Route>
+
                             <Route
                                 path="/contacts"
-                                element={<ContactsPage />}
-                            />
+                                element={
+                                    <ContactsPageWrapper>
+                                        <Outlet />
+                                    </ContactsPageWrapper>
+                                }
+                            >
+                                <Route index />
+                                <Route
+                                    path="show/:id"
+                                    element={<ContactShowPage />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ContactEditPage />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ContactCreatePage />}
+                                />
+                            </Route>
+
                             <Route path="/quotes" element={<QuotesPage />} />
                             <Route path="/administration" element={<Outlet />}>
                                 <Route
@@ -150,6 +202,7 @@ const App: React.FC = () => {
                     </Routes>
                     <UnsavedChangesNotifier />
                     <DocumentTitleHandler />
+                    <ReactQueryDevtools />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

@@ -56,11 +56,13 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             }}
             {...rest}
         >
-            <div className={styles.container}>
-                {data?.data.map((item) => (
-                    <CalendarUpcomingEvent key={item.id} {...item} />
-                ))}
-            </div>
+            {data.data.map((item) => (
+                <CalendarUpcomingEvent
+                    key={item.id}
+                    isLoading={isLoading}
+                    item={item}
+                />
+            ))}
         </Card>
     );
 };

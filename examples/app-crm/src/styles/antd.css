@@ -1,0 +1,58 @@
+.ant-modal {
+    .ant-modal-content {
+        padding: 0;
+    }
+
+    .ant-modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #d9d9d9;
+        margin-bottom: 0px;
+    }
+
+    .ant-modal-close {
+        top: 20px;
+    }
+
+    .ant-modal-body {
+        padding: 20px 24px;
+    }
+
+    .ant-modal-footer {
+        padding: 20px 24px;
+        border-top: 1px solid #d9d9d9;
+        margin-top: 0px;
+    }
+}
+
+.kanban-update-modal {
+    .ant-modal-body {
+        padding: 0px;
+    }
+
+    .ant-modal-footer {
+        border-top: none;
+        text-align: unset;
+    }
+
+    .ant-collapse {
+        .ant-collapse-header {
+            padding-left: 24px;
+        }
+
+        .ant-collapse-content {
+            background-color: white;
+            border-top: 0px;
+
+            .ant-collapse-content-box {
+                padding-left: 53px;
+                padding-top: 0px;
+            }
+        }
+    }
+}
+
+.ant-select.kanban-users-form-select {
+    .ant-select-selector {
+        background-color: #fff;
+    }
+}

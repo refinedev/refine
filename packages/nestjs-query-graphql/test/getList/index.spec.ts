@@ -121,6 +121,34 @@ describe("getList", () => {
                     expect(item["status"]).toBe("DRAFT");
                 });
             });
+
+            describe("and operator", () => {
+                it("should return filtered data", async () => {
+                    const { data } = await dataProvider(client).getList({
+                        resource: "blog_posts",
+                        filters: [
+                            {
+                                operator: "and",
+                                value: [
+                                    { field: "id", operator: "lt", value: 10 },
+                                    {
+                                        field: "status",
+                                        operator: "eq",
+                                        value: "DRAFT",
+                                    },
+                                ],
+                            },
+                        ],
+                        meta: {
+                            fields: ["id", "status"],
+                        },
+                    });
+
+                    expect(data.length).toBe(1);
+                    expect(data[0]["id"]).toBe("9");
+                    expect(data[0].status).toBe("DRAFT");
+                });
+            });
         });
     });
 
