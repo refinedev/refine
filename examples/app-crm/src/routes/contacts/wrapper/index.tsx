@@ -5,6 +5,7 @@ import {
     FilterDropdown,
     SaveButton,
     ShowButton,
+    useSelect,
     useTable,
 } from "@refinedev/antd";
 import {
@@ -48,6 +49,13 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
         value: ContactStatus[key as keyof typeof ContactStatus],
     }));
 
+    const { selectProps } = useSelect({
+        resource: "companies",
+        optionLabel: "name",
+        meta: {
+            fields: ["id", "name"],
+        },
+    });
     return (
         <Table {...rest} rowKey="id">
             <Table.Column dataIndex="id" title="ID" />
@@ -70,13 +78,20 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                 )}
             />
             <Table.Column
-                dataIndex={["company", "name"]}
+                dataIndex={["company", "id"]}
                 title="Company"
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
-                        <Input placeholder="Search Company" />
+                        <Select
+                            placeholder="Search Company"
+                            style={{ width: 220 }}
+                            {...selectProps}
+                        />
                     </FilterDropdown>
                 )}
+                render={(_, record: Contact) => {
+                    return <span>{record?.company.name}</span>;
+                }}
             />
             <Table.Column
                 dataIndex="jobTitle"
@@ -193,9 +208,9 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                         operator: "contains",
                     },
                     {
-                        field: "company.name",
+                        field: "company.id",
                         value: undefined,
-                        operator: "contains",
+                        operator: "eq",
                     },
                     {
                         field: "jobTitle",
