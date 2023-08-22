@@ -43,6 +43,11 @@ type CardViewProps = TableProps<Contact> & {
 };
 
 const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
+    const statusOptions = Object.keys(ContactStatus).map((key) => ({
+        label: `${key[0]}${key.slice(1).toLowerCase()}`,
+        value: ContactStatus[key as keyof typeof ContactStatus],
+    }));
+
     return (
         <Table {...rest} rowKey="id">
             <Table.Column dataIndex="id" title="ID" />
@@ -91,44 +96,7 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                             style={{ width: "200px" }}
                             defaultValue={null}
                             mode="multiple"
-                            options={[
-                                {
-                                    label: "New",
-                                    value: ContactStatus.NEW,
-                                },
-                                {
-                                    label: "Contacted",
-                                    value: ContactStatus.CONTACTED,
-                                },
-                                {
-                                    label: "Interested",
-                                    value: ContactStatus.INTERESTED,
-                                },
-                                {
-                                    label: "Unqualified",
-                                    value: ContactStatus.UNQUALIFIED,
-                                },
-                                {
-                                    label: "Qualified",
-                                    value: ContactStatus.QUALIFIED,
-                                },
-                                {
-                                    label: "Negotiation",
-                                    value: ContactStatus.NEGOTIATION,
-                                },
-                                {
-                                    label: "Lost",
-                                    value: ContactStatus.LOST,
-                                },
-                                {
-                                    label: "Won",
-                                    value: ContactStatus.WON,
-                                },
-                                {
-                                    label: "Churned",
-                                    value: ContactStatus.CHURNED,
-                                },
-                            ]}
+                            options={statusOptions}
                         ></Select>
                     </FilterDropdown>
                 )}
