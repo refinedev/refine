@@ -8,7 +8,6 @@ import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 
 import { Event } from "../../../interfaces/graphql";
-import styles from "./index.module.css";
 
 type CalendarUpcomingEventsProps = { limit?: number } & CardProps;
 
@@ -17,7 +16,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     ...rest
 }) => {
     const { token } = theme.useToken();
-    const { data } = useList<Event>({
+    const { data, isLoading } = useList<Event>({
         resource: "events",
         pagination: {
             pageSize: limit,
@@ -56,7 +55,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             }}
             {...rest}
         >
-            {data.data.map((item) => (
+            {data?.data.map((item) => (
                 <CalendarUpcomingEvent
                     key={item.id}
                     isLoading={isLoading}
