@@ -51,11 +51,11 @@ const operatorMapper = (
     }
 
     if (operator === "null") {
-        return { is: "null" };
+        return { is: null };
     }
 
     if (operator === "nnull") {
-        return { isNot: "null" };
+        return { isNot: null };
     }
 
     return { [operatorMap[operator]]: value };

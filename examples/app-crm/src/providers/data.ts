@@ -6,7 +6,7 @@ import graphqlDataProvider, {
 import { createClient } from "graphql-ws";
 
 export const API_URL = "https://api.crm.refine.dev/graphql";
-export const WS_URL = "ws://ap.crm.refine.dev/graphql";
+export const WS_URL = "wss://api.crm.refine.dev/graphql";
 
 export const client = new GraphQLClient(API_URL, {
     headers: {
