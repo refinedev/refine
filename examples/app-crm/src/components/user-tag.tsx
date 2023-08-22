@@ -18,7 +18,9 @@ export const UserTag = ({ user }: Props) => {
             }}
         >
             <Space size={4}>
-                <Avatar size={20}>A</Avatar>
+                <Avatar size="small" alt={user.name} src={user.avatarUrl}>
+                    {user.name.charAt(0)}
+                </Avatar>
                 {user.name}
             </Space>
         </Tag>

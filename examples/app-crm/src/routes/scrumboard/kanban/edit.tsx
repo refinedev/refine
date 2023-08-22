@@ -46,7 +46,7 @@ export const KanbanEditPage = () => {
                 "description",
                 "dueDate",
                 { stage: ["id", "title"] },
-                { users: ["id", "name"] },
+                { users: ["id", "name", "avatarUrl"] },
                 { checklist: ["title", "checked"] },
             ],
         },

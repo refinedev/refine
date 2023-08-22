@@ -1,8 +1,14 @@
-import { BaseKey, HttpError, useInvalidate, useParsed } from "@refinedev/core";
+import {
+    BaseKey,
+    HttpError,
+    useGetIdentity,
+    useInvalidate,
+    useParsed,
+} from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Avatar, Form, Input } from "antd";
 
-import { TaskComment } from "../../interfaces/graphql";
+import { TaskComment, User } from "../../interfaces/graphql";
 
 type FormValues = TaskComment & {
     taskId: BaseKey;
@@ -11,6 +17,8 @@ type FormValues = TaskComment & {
 export const CommentForm = () => {
     const invalidate = useInvalidate();
     const { id: taskId } = useParsed();
+
+    const { data: me } = useGetIdentity<User>();
 
     const { formProps, onFinish, form } = useForm<
         TaskComment,
@@ -53,8 +61,17 @@ export const CommentForm = () => {
 
     return (
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <Avatar style={{ flexShrink: 0 }} size={22}>
-                U
+            <Avatar
+                style={{
+                    flexShrink: 0,
+                    objectFit: "contain",
+                    textTransform: "uppercase",
+                }}
+                size="small"
+                alt={me?.name}
+                src={me?.avatarUrl}
+            >
+                {me?.name.charAt(0)}
             </Avatar>
             <Form
                 {...formProps}

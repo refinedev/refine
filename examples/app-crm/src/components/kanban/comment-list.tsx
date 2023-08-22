@@ -38,8 +38,17 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
 
     return (
         <div style={{ display: "flex", gap: "12px" }}>
-            <Avatar style={{ flexShrink: 0 }} size={22}>
-                {item.createdBy.name.toString().charAt(0)}
+            <Avatar
+                style={{
+                    flexShrink: 0,
+                    objectFit: "contain",
+                    textTransform: "uppercase",
+                }}
+                size="small"
+                alt={item.createdBy.name}
+                src={item.createdBy.avatarUrl}
+            >
+                {item.createdBy.name.charAt(0)}
             </Avatar>
             <div
                 style={{
@@ -153,7 +162,7 @@ export const CommentList = () => {
                 "id",
                 "comment",
                 "createdAt",
-                { createdBy: ["id", "name"] },
+                { createdBy: ["id", "name", "avatarUrl"] },
             ],
         },
     });
