@@ -46,7 +46,17 @@ export const SalesPage = () => {
         },
         meta: {
             operation: "dealStages",
-            fields: ["id", "title"],
+            fields: [
+                "id",
+                "title",
+                {
+                    dealsAggregate: [
+                        {
+                            sum: ["value"],
+                        },
+                    ],
+                },
+            ],
         },
     });
 
