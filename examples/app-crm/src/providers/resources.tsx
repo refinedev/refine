@@ -66,6 +66,9 @@ export const resources: IResourceItem[] = [
     {
         name: "contacts",
         list: "/contacts",
+        create: "/contacts/create",
+        edit: "/contacts/edit/:id",
+        show: "/contacts/show/:id",
         meta: {
             label: "Contacts",
             icon: <TeamOutlined />,
