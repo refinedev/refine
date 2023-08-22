@@ -38,7 +38,7 @@ import styles from "./index.module.css";
 type Props = React.PropsWithChildren<{}>;
 type ViewProps = TableProps<Contact>;
 
-const TableView: React.FC<ViewProps> = (...rest) => {
+const TableView: React.FC<ViewProps> = ({ ...rest }) => {
     return (
         <Table {...rest} rowKey="id">
             <Table.Column dataIndex="id" title="ID" />
