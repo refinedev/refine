@@ -1,11 +1,11 @@
 import React from "react";
-import { useCustom } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 import { Calendar as AntdCalendar, Card, Button, Badge } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 import { Text } from "../../text";
-import { Event, EventConnection } from "../../../interfaces/graphql";
+import { Event } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
 type CalendarProps = {
@@ -15,73 +15,28 @@ type CalendarProps = {
 
 type CalendarCellProps = {
     value: Dayjs;
+    events: Event[];
 } & CalendarProps;
 
 const CalendarCell: React.FC<CalendarCellProps> = ({
+    events,
     value,
-    categoryId,
     onClickEvent,
 }) => {
-    const { data } = useCustom<{ events: EventConnection }>({
-        method: "post",
-        url: "/graphql",
-        meta: {
-            rawQuery: `query Events($startDate: DateTime!, $endDate: DateTime!, $categoryId: [ID!]) {
-                    events(
-                        paging: { limit: 1 }
-                        filter: {
-                            or: [
-                                {
-                                    and: [
-                                        { startDate: { lte: $startDate } }
-                                        { endDate: { gte: $startDate } }
-                                    ]
-                                }
-                                {
-                                    and: [
-                                        { startDate: { gte: $startDate } }
-                                        { startDate: { lte: $endDate } }
-                                    ]
-                                }
-                                {
-                                    and: [
-                                        { endDate: { gte: $startDate } }
-                                        { endDate: { lte: $endDate } }
-                                    ]
-                                }
-                            ], category: { id: { in: $categoryId } }
-                        }
-                    ) {
-                        nodes {
-                            id
-                            title
-                            description
-                            startDate
-                            endDate
-                            color
-                            createdAt
-                            createdBy {
-                                id
-                                name
-                            }
-                            category {
-                                id
-                                title
-                            }
-                        }
-                    }
-                }`,
-            variables: {
-                startDate: value.utc().startOf("day").toISOString(),
-                endDate: value.utc().endOf("day").toISOString(),
-                categoryId: categoryId?.length ? categoryId : undefined,
-            },
-        },
+    const todayEvents = events.filter((event) => {
+        const startDate = dayjs(event.startDate);
+        const endDate = dayjs(event.endDate);
+
+        return (
+            startDate.isSame(value, "day") ||
+            endDate.isSame(value, "day") ||
+            (startDate.isBefore(value, "day") && endDate.isAfter(value, "day"))
+        );
     });
 
     return (
         <div>
-            {data?.data.events.nodes.map((item) => (
+            {todayEvents.map((item) => (
                 <div onClick={() => onClickEvent?.(item)} key={item.id}>
                     <Text
                         ellipsis={{
@@ -104,18 +59,63 @@ export const Calendar: React.FC<CalendarProps> = ({
     categoryId,
     onClickEvent,
 }) => {
+    const [currentDate, setCurrentDate] = React.useState<Dayjs>(dayjs.utc());
+    const filterStartDate = currentDate.startOf("month").subtract(10, "day");
+    const filterEndDate = currentDate.endOf("month").add(10, "day");
+
+    const { data } = useList<Event>({
+        pagination: {
+            pageSize: 9999,
+        },
+        filters: [
+            {
+                field: "startDate",
+                operator: "gte",
+                value: filterStartDate.toISOString(),
+            },
+            {
+                field: "startDate",
+                operator: "lte",
+                value: filterEndDate.toISOString(),
+            },
+            {
+                field: "category.id",
+                operator: "in",
+                value: categoryId?.length ? categoryId : undefined,
+            },
+        ],
+        meta: {
+            fields: [
+                "id",
+                "title",
+                "description",
+                "startDate",
+                "endDate",
+                "color",
+                "createdAt",
+                {
+                    createdBy: ["id", "name"],
+                },
+                {
+                    category: ["id", "title"],
+                },
+            ],
+        },
+    });
+
     return (
         <Card>
             <AntdCalendar
                 mode="month"
                 cellRender={(value) => (
                     <CalendarCell
-                        categoryId={categoryId}
+                        events={data?.data || []}
                         onClickEvent={onClickEvent}
                         value={value}
                     />
                 )}
                 headerRender={({ value, onChange }) => {
+                    setCurrentDate(value);
                     return (
                         <div className={styles.calendar_header}>
                             <div className={styles.actions}>
