@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 
 import { Text } from "../../../text";
-import { Event } from "../../../../interfaces/graphql";
+import type { Event } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
 import { Skeleton } from "antd";
