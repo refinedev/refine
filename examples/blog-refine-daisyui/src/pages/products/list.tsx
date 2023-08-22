@@ -1,9 +1,25 @@
 import React from "react";
-import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
+import {
+    IResourceComponentsProps,
+    getDefaultFilter,
+    useDelete,
+    useNavigation,
+} from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
+import {
+    AscIcon,
+    CreateIcon,
+    EditIcon,
+    ShowIcon,
+    DeleteIcon,
+    FilterIcon,
+    DescIcon,
+} from "../../components/icons";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
+    const { mutate: deleteProduct } = useDelete();
+
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
@@ -17,44 +33,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 header: "Name",
             },
             {
-                id: "isActive",
-                accessorKey: "isActive",
-                header: "Is Active",
-                cell: function render({ getValue }) {
-                    return getValue<any>() ? "yes" : "no";
-                },
-            },
-            {
-                id: "description",
-                accessorKey: "description",
-                header: "Description",
-            },
-            {
-                id: "images",
-                accessorKey: "images",
-                header: "Images",
-
-                cell: function render({ getValue }) {
-                    return (
-                        <ul>
-                            {getValue<any[]>()?.map((item, index) => (
-                                <li key={index}>{item?.url}</li>
-                            ))}
-                        </ul>
-                    );
-                },
-            },
-            {
-                id: "createdAt",
-                accessorKey: "createdAt",
-                header: "Created At",
-                cell: function render({ getValue }) {
-                    return new Date(getValue<any>()).toLocaleString(undefined, {
-                        timeZone: "UTC",
-                    });
-                },
-            },
-            {
                 id: "price",
                 accessorKey: "price",
                 header: "Price",
@@ -62,7 +40,14 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "category",
                 header: "Category",
+                enableSorting: false,
                 accessorKey: "category.title",
+            },
+            {
+                id: "description",
+                accessorKey: "description",
+                enableSorting: false,
+                header: "Description",
             },
             {
                 id: "actions",
@@ -70,27 +55,33 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 header: "Actions",
                 cell: function render({ getValue }) {
                     return (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                flexWrap: "wrap",
-                                gap: "4px",
-                            }}
-                        >
+                        <div className="flex justify-around items-center">
                             <button
-                                onClick={() => {
-                                    show("products", getValue() as string);
-                                }}
-                            >
-                                Show
-                            </button>
-                            <button
+                                className="btn btn-xs btn-circle btn-ghost m-1"
                                 onClick={() => {
                                     edit("products", getValue() as string);
                                 }}
                             >
-                                Edit
+                                <EditIcon />
+                            </button>
+                            <button
+                                className="btn btn-xs btn-circle btn-ghost m-1"
+                                onClick={() => {
+                                    show("products", getValue() as string);
+                                }}
+                            >
+                                <ShowIcon />
+                            </button>
+                            <button
+                                className="btn btn-xs btn-circle btn-ghost m-1"
+                                onClick={() => {
+                                    deleteProduct({
+                                        resource: "products",
+                                        id: getValue() as string,
+                                    });
+                                }}
+                            >
+                                <DeleteIcon />
                             </button>
                         </div>
                     );
@@ -108,6 +99,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         setOptions,
         refineCore: {
             tableQueryResult: { data: tableData },
+            filters,
+            setCurrent,
+            setFilters,
         },
         getState,
         setPageIndex,
@@ -130,42 +124,85 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     }));
 
     return (
-        <div style={{ padding: "16px" }}>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
-            >
-                <h1>Products</h1>
-                <button onClick={() => create("products")}>Create</button>
+        <div className="page-container">
+            <div className="page-header">
+                <h1 className="page-title">Products</h1>
+                <button
+                    className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
+                    onClick={() => create("products")}
+                >
+                    <CreateIcon />
+                    Create
+                </button>
             </div>
-            <div style={{ maxWidth: "100%", overflowY: "scroll" }}>
-                <table>
-                    <thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
+            <div className="overflow-x-auto bg-slate-50 border">
+                <div className="flex justify-between items-center m-4">
+                    <button
+                        className="btn btn-outline btn-primary btn-sm normal-case font-light"
+                        onClick={() => {
+                            setCurrent(1);
+                            setFilters([], "replace");
+                        }}
+                    >
+                        <FilterIcon />
+                        Clear
+                    </button>
+                    <div className="flex justify-end items-center">
+                        <input
+                            className="input input-bordered input-sm"
+                            type="search"
+                            value={getDefaultFilter("q", filters)}
+                            onChange={(e) => {
+                                setCurrent(1);
+                                setFilters([
+                                    {
+                                        field: "q",
+                                        value: e.target.value,
+                                        operator: "contains",
+                                    },
+                                ]);
+                            }}
+                            placeholder="Search with keywords"
+                        />
+                    </div>
+                </div>
+                <table className="table table-zebra border-t">
+                    <thead className="bg-slate-200">
+                        {getHeaderGroups()?.map((headerGroup) => (
+                            <tr key={headerGroup?.id}>
+                                {headerGroup?.headers?.map((header) => (
+                                    <th
+                                        className="text-center"
+                                        key={header?.id}
+                                        onClick={header?.column?.getToggleSortingHandler()}
+                                    >
+                                        <div className="flex justify-center items-center">
+                                            {!header?.isPlaceholder &&
+                                                flexRender(
+                                                    header?.column?.columnDef
+                                                        ?.header,
+                                                    header?.getContext(),
+                                                )}
+                                            {{
+                                                asc: <AscIcon />,
+                                                desc: <DescIcon />,
+                                            }[
+                                                header?.column?.getIsSorted() as string
+                                            ] ?? null}
+                                        </div>
                                     </th>
                                 ))}
                             </tr>
                         ))}
                     </thead>
                     <tbody>
-                        {getRowModel().rows.map((row) => (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id}>
+                        {getRowModel()?.rows?.map((row) => (
+                            <tr key={row?.id}>
+                                {row?.getVisibleCells()?.map((cell) => (
+                                    <td key={cell?.id}>
                                         {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext(),
+                                            cell?.column?.columnDef?.cell,
+                                            cell?.getContext(),
                                         )}
                                     </td>
                                 ))}
@@ -174,56 +211,69 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     </tbody>
                 </table>
             </div>
-            <div style={{ marginTop: "12px" }}>
-                <button
-                    onClick={() => setPageIndex(0)}
-                    disabled={!getCanPreviousPage()}
-                >
-                    {"<<"}
-                </button>
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!getCanPreviousPage()}
-                >
-                    {"<"}
-                </button>
-                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
-                    {">"}
-                </button>
-                <button
-                    onClick={() => setPageIndex(getPageCount() - 1)}
-                    disabled={!getCanNextPage()}
-                >
-                    {">>"}
-                </button>
-                <span>
-                    <strong>
-                        {" "}
-                        {getState().pagination.pageIndex + 1} / {getPageCount()}{" "}
-                    </strong>
-                </span>
-                <span>
-                    | Go to Page:{" "}
-                    <input
-                        type="number"
-                        defaultValue={getState().pagination.pageIndex + 1}
-                        onChange={(e) => {
-                            const page = e.target.value
-                                ? Number(e.target.value) - 1
-                                : 0;
-                            setPageIndex(page);
-                        }}
-                    />
-                </span>{" "}
+            <div className="flex justify-center items-center mt-3">
+                <div className="join">
+                    <button
+                        className="join-item btn btn-sm btn-ghost"
+                        onClick={() => setPageIndex(0)}
+                        disabled={!getCanPreviousPage()}
+                    >
+                        {"<<"}
+                    </button>
+                    <button
+                        className="join-item btn btn-sm btn-ghost"
+                        onClick={() => previousPage()}
+                        disabled={!getCanPreviousPage()}
+                    >
+                        {"<"}
+                    </button>
+                    {Array.from(
+                        { length: getPageCount() },
+                        (_, index) => index + 1,
+                    )?.map((pageNumber) => {
+                        const btnActive =
+                            pageNumber - 1 == getState()?.pagination?.pageIndex
+                                ? " btn-active"
+                                : "";
+                        return (
+                            <button
+                                key={pageNumber}
+                                className={"join-item btn btn-sm" + btnActive}
+                                onClick={() => setPageIndex(pageNumber - 1)}
+                            >
+                                {pageNumber}
+                            </button>
+                        );
+                    })}
+                    <button
+                        className="join-item btn btn-sm btn-ghost"
+                        onClick={() => nextPage()}
+                        disabled={!getCanNextPage()}
+                    >
+                        {">"}
+                    </button>
+                    <button
+                        className="join-item btn btn-sm btn-ghost"
+                        onClick={() => setPageIndex(getPageCount() - 1)}
+                        disabled={!getCanNextPage()}
+                    >
+                        {">>"}
+                    </button>
+                </div>
                 <select
-                    value={getState().pagination.pageSize}
+                    className="mx-2 p-1 border rounded"
+                    value={getState()?.pagination?.pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
                 >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
+                    {[10, 25, 50].map((pageSize) => (
+                        <option
+                            className="border rounded"
+                            key={pageSize}
+                            value={pageSize}
+                        >
+                            {pageSize}
                         </option>
                     ))}
                 </select>
