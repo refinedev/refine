@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, theme } from "antd";
+import { Card, Skeleton, theme } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 
@@ -42,14 +42,23 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     });
 
     if (isError) {
-        // TODO: handle error message
+        console.error("Error fetching latest activities", isError);
         return null;
     }
 
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
+    const renderContent = () => {
+        return (
+            <>
+                {data?.data.map((item) => (
+                    <DashboardLatestActivity
+                        isLoading={isLoading}
+                        key={item.id}
+                        item={item}
+                    />
+                ))}
+            </>
+        );
+    };
 
     return (
         <Card
@@ -67,9 +76,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                 padding: "0 1rem",
             }}
         >
-            {data.data.map((item) => (
-                <DashboardLatestActivity key={item.id} {...item} />
-            ))}
+            {renderContent()}
         </Card>
     );
 };

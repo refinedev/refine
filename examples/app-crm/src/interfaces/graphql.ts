@@ -31,7 +31,7 @@ export type Scalars = {
 };
 
 export type Audit = {
-    action: AuditAction;
+    action: Scalars["String"]["output"];
     changes: Array<AuditChange>;
     createdAt: Scalars["DateTime"]["output"];
     id: Scalars["ID"]["output"];
@@ -39,26 +39,6 @@ export type Audit = {
     targetId: Scalars["Float"]["output"];
     updatedAt: Scalars["DateTime"]["output"];
     user?: Maybe<User>;
-};
-
-/** Audit action */
-export type AuditAction = "CREATE" | "DELETE" | "UPDATE";
-
-export type AuditActionFilterComparison = {
-    eq?: InputMaybe<AuditAction>;
-    gt?: InputMaybe<AuditAction>;
-    gte?: InputMaybe<AuditAction>;
-    iLike?: InputMaybe<AuditAction>;
-    in?: InputMaybe<Array<AuditAction>>;
-    is?: InputMaybe<Scalars["Boolean"]["input"]>;
-    isNot?: InputMaybe<Scalars["Boolean"]["input"]>;
-    like?: InputMaybe<AuditAction>;
-    lt?: InputMaybe<AuditAction>;
-    lte?: InputMaybe<AuditAction>;
-    neq?: InputMaybe<AuditAction>;
-    notILike?: InputMaybe<AuditAction>;
-    notIn?: InputMaybe<Array<AuditAction>>;
-    notLike?: InputMaybe<AuditAction>;
 };
 
 export type AuditChange = {
@@ -77,7 +57,7 @@ export type AuditConnection = {
 };
 
 export type AuditDeleteResponse = {
-    action?: Maybe<AuditAction>;
+    action?: Maybe<Scalars["String"]["output"]>;
     changes?: Maybe<Array<AuditChange>>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
@@ -87,7 +67,7 @@ export type AuditDeleteResponse = {
 };
 
 export type AuditFilter = {
-    action?: InputMaybe<AuditActionFilterComparison>;
+    action?: InputMaybe<StringFieldComparison>;
     and?: InputMaybe<Array<AuditFilter>>;
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
@@ -127,7 +107,7 @@ export type AuditSortFields =
     | "updatedAt";
 
 export type AuditSubscriptionFilter = {
-    action?: InputMaybe<AuditActionFilterComparison>;
+    action?: InputMaybe<StringFieldComparison>;
     and?: InputMaybe<Array<AuditSubscriptionFilter>>;
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;

@@ -61,23 +61,17 @@ export const DashboardDealsChart: React.FC<{}> = () => {
     });
 
     if (isError) {
-        // TODO: handle error message
+        console.error("Error fetching deals chart data", isError);
         return null;
     }
 
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
-
-    const { yearlyDealGrouped } = data.data;
     const dealsData: {
         id: number;
         title: string;
         won: number;
         lost: number;
     }[] = [];
-    yearlyDealGrouped.nodes.forEach((stage) => {
+    data?.data.yearlyDealGrouped.nodes.forEach((stage) => {
         stage.dealsAggregate.forEach((deal) => {
             const { closeDateMonth, closeDateYear } = deal.groupBy;
             const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);

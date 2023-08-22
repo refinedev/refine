@@ -277,3 +277,40 @@ nock("http://localhost:3003", { encodedQueryParams: true })
             "close",
         ],
     );
+
+nock("http://localhost:3003", { encodedQueryParams: true })
+    .post("/graphql", {
+        query: "query ($filter: BlogPostFilter!) { blogPosts (filter: $filter) { nodes { id, status }, totalCount } }",
+        variables: {
+            filter: { and: [{ id: { lt: 10 }, status: { eq: "DRAFT" } }] },
+        },
+    })
+    .reply(
+        200,
+        {
+            data: {
+                blogPosts: {
+                    nodes: [{ id: "9", status: "DRAFT" }],
+                    totalCount: 1,
+                },
+            },
+        },
+        [
+            "X-Powered-By",
+            "Express",
+            "Access-Control-Allow-Origin",
+            "*",
+            "cache-control",
+            "no-store",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "78",
+            "ETag",
+            'W/"4e-2LsE5ob5gSc54TzlCg4nWGLSUKI"',
+            "Date",
+            "Tue, 22 Aug 2023 07:35:33 GMT",
+            "Connection",
+            "close",
+        ],
+    );

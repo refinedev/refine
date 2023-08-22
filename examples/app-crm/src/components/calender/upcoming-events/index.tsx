@@ -63,7 +63,11 @@ export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
             }}
         >
             {data.data.map((item) => (
-                <CalendarUpcomingEvent key={item.id} {...item} />
+                <CalendarUpcomingEvent
+                    key={item.id}
+                    isLoading={isLoading}
+                    item={item}
+                />
             ))}
         </Card>
     );

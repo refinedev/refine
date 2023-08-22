@@ -116,6 +116,7 @@ export const authProvider: AuthBindings = {
                             phone,
                             jobTitle,
                             timezone
+                            avatarUrl
                         }
                       }
                 `,
