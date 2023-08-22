@@ -1,5 +1,11 @@
 # @refinedev/cli
 
+## 2.9.0
+
+### Minor Changes
+
+-   [#4833](https://github.com/refinedev/refine/pull/4833) [`9a24e46020d`](https://github.com/refinedev/refine/commit/9a24e46020df8568dc7dddd03fbc386981d75bcc) Thanks [@mikeyfarina](https://github.com/mikeyfarina)! - add "--platform" option on cli to start, dev, and build to specify project type
+
 ## 2.8.0
 
 ### Minor Changes
