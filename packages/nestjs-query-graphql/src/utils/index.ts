@@ -58,6 +58,18 @@ const operatorMapper = (
         return { isNot: null };
     }
 
+    if (operator === "between") {
+        if (!Array.isArray(value)) {
+            throw new Error("Between operator requires an array");
+        }
+
+        if (value.length !== 2) {
+            return {};
+        }
+
+        return { between: { lower: value[0], upper: value[1] } };
+    }
+
     return { [operatorMap[operator]]: value };
 };
 
