@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, theme, CardProps, Checkbox } from "antd";
+import { Button, Card, theme, CardProps, Checkbox, Skeleton } from "antd";
 import { useList } from "@refinedev/core";
 import { SettingOutlined, FlagOutlined } from "@ant-design/icons";
 
@@ -20,7 +20,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
 }) => {
     const { token } = theme.useToken();
     const { modalProps, show, close } = useModal();
-    const { data } = useList<EventCategory>({
+    const { data, isLoading } = useList<EventCategory>({
         resource: "eventCategories",
         meta: {
             operation: "eventCategories",
@@ -52,6 +52,16 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
                 {...rest}
             >
                 <div className={styles.container}>
+                    {isLoading && (
+                        <Skeleton
+                            loading={isLoading}
+                            active
+                            paragraph={{
+                                rows: 3,
+                                width: 200,
+                            }}
+                        />
+                    )}
                     {data?.data.map((item) => (
                         <div key={item.id} className={styles.category}>
                             <Checkbox
