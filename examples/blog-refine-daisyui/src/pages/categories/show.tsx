@@ -5,6 +5,7 @@ import {
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
+import { BackIcon, EditDocIcon } from "../../components/icons";
 
 export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     const { edit, list } = useNavigation();
@@ -15,40 +16,37 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     const record = data?.data;
 
     return (
-        <div style={{ padding: "16px" }}>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
-            >
-                <h1>Category Show</h1>
-                <div style={{ display: "flex", gap: "8px" }}>
-                    <button onClick={() => list("categories")}>
-                        Categories
+        <div className="page-container">
+            <div className="page-header">
+                <div className="flex justify-between items-center">
+                    <button
+                        className="mr-2 btn btn-primary btn-sm btn-ghost"
+                        onClick={() => list("categories")}
+                    >
+                        <BackIcon />
                     </button>
-                    <button onClick={() => edit("categories", id ?? "")}>
+                    <h1 className="page-title">Category Details</h1>
+                </div>
+                <div className="flex justify-start items-center">
+                    <button
+                        className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
+                        onClick={() => edit("categories", id ?? "")}
+                    >
+                        <EditDocIcon />
                         Edit
                     </button>
                 </div>
             </div>
-            <div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Id</h5>
-                    <div>{record?.id ?? ""}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Title</h5>
-                    <div>{record?.title}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Is Active</h5>
-                    <div>{record?.isActive ? "Yes" : "No"}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Cover</h5>
-                    <p>{record?.cover}</p>
+            <div className="card">
+                <div className="card-body">
+                    <div className="mb-2">
+                        <h5 className="text-xl font-bold">Id</h5>
+                        <div>{record?.id ?? "Loading..."}</div>
+                    </div>
+                    <div className="mb-2">
+                        <h5 className="text-xl font-bold">Name</h5>
+                        <div>{record?.title ?? "Loading..."}</div>
+                    </div>
                 </div>
             </div>
         </div>
