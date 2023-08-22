@@ -42,11 +42,12 @@ type CardViewProps = TableProps<Contact> & {
     setPageSize: (pageSize: number) => void;
 };
 
+const statusOptions = Object.keys(ContactStatus).map((key) => ({
+    label: `${key[0]}${key.slice(1).toLowerCase()}`,
+    value: ContactStatus[key as keyof typeof ContactStatus],
+}));
+    
 const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
-    const statusOptions = Object.keys(ContactStatus).map((key) => ({
-        label: `${key[0]}${key.slice(1).toLowerCase()}`,
-        value: ContactStatus[key as keyof typeof ContactStatus],
-    }));
 
     return (
         <Table {...rest} rowKey="id">
