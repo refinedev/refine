@@ -2,7 +2,7 @@ import { DateField, FilterDropdown, List, useTable } from "@refinedev/antd";
 import { Avatar, Input, Radio, Space, Table } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import { ActionCell } from "../../components/auidit-log/action-cell";
+import { ActionCell } from "../../components/audit-log/action-cell";
 import { Audit } from "../../interfaces/graphql";
 
 export const AuditLogPage = () => {
