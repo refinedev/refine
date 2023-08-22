@@ -83,6 +83,11 @@ export const CalendarManageCategories: React.FC<
                             return saveSuccces?.();
                         }
 
+                        // remove undefined values
+                        formValues.title = formValues.title.filter(
+                            (title) => title !== undefined,
+                        );
+
                         const values = formValues.title.map((title) => ({
                             title,
                         }));
