@@ -84,9 +84,7 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                 },
             ];
         },
-        resource: "contacts",
         meta: {
-            operation: "contacts",
             fields: [
                 "id",
                 "name",
