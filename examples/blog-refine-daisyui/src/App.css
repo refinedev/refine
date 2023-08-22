@@ -2,35 +2,9 @@ body {
   margin: 0px;
 }
 
-table {
-  border-spacing: 0;
-  border: 1px solid black;
-}
-
-table th,
-td {
-  margin: 0;
-  padding: 0.5rem;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
-
-table tr:last-child td {
-  border-bottom: 0;
-}
-
-table th,
-td {
-  margin: 0;
-  padding: 0.5rem;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
-
-table th:last-child,
-td:last-child {
-  border-right: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .layout {
   display: flex;
@@ -85,4 +59,23 @@ td:last-child {
 
 .menu ul {
   padding-left: 16px;
+}
+
+.page-container {
+  @apply mx-auto py-2 px-4 border rounded drop-shadow-sm;
+}
+
+.page-title {
+  @apply text-xl font-bold;
+}
+
+.page-header {
+  @apply flex justify-between items-center mb-6;
+}
+
+.bar-chart-container {
+  /* Disable shadows for bars by making the shadow transparent */
+  .recharts-bar-rectangle {
+    filter: drop-shadow(0px 0px 0px transparent);
+  }
 }
