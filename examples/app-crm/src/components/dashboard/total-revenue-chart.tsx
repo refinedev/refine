@@ -32,7 +32,7 @@ type DealRevenueResponse = {
 
 export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
-    const { data, isLoading, isError } = useCustom<DealRevenueResponse>({
+    const { data, isError } = useCustom<DealRevenueResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -65,21 +65,15 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     });
 
     if (isError) {
-        // TODO: handle error message
-        return null;
-    }
-
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
+        console.error("Error fetching dashboard data", isError);
         return null;
     }
 
     const COLORS = ["#CCCCCC", "#1677FF"];
-    const { realizationRevenueSum, expectedRevenueSum } = data.data;
-    const totalRealizationRevenue = realizationRevenueSum.nodes.map(
+    const totalRealizationRevenue = data?.data.realizationRevenueSum.nodes.map(
         (item) => item.dealsAggregate[0].sum.value,
     )[0];
-    const totalExpectedRevenue = expectedRevenueSum.nodes.map(
+    const totalExpectedRevenue = data?.data.expectedRevenueSum.nodes.map(
         (item) => item.dealsAggregate[0].sum.value,
     )[0];
 
@@ -153,11 +147,13 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                                     }}
                                 >
                                     %
-                                    {Math.round(
-                                        (totalRealizationRevenue /
-                                            totalExpectedRevenue) *
-                                            100,
-                                    )}
+                                    {totalRealizationRevenue &&
+                                        totalExpectedRevenue &&
+                                        Math.round(
+                                            (totalRealizationRevenue /
+                                                totalExpectedRevenue) *
+                                                100,
+                                        )}
                                 </text>
                             }
                         />
@@ -193,7 +189,9 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                             <Text size="xs">{item.name}</Text>
                         </div>
 
-                        <Text size="md">{currencyNumber(item.value)}</Text>
+                        <Text size="md">
+                            {item.value && currencyNumber(item.value)}
+                        </Text>
                     </div>
                 ))}
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, theme } from "antd";
+import { Card, Button, theme, Skeleton } from "antd";
 import { PieChart, Pie, Cell } from "recharts";
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useCustom, useNavigation } from "@refinedev/core";
@@ -43,17 +43,11 @@ export const DashboardTasksChart: React.FC<{}> = () => {
     });
 
     if (isError) {
-        // TODO: handle error message
+        console.error("Error fetching task chart data", isError);
         return null;
     }
 
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
-
-    const { taskStages } = data.data;
-    const tasksData = taskStages.nodes.map((stage) => ({
+    const tasksData = data?.data.taskStages.nodes.map((stage) => ({
         title: stage.title,
         value: stage.tasksAggregate[0].count.id,
     }));
@@ -107,7 +101,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                         paddingAngle={2}
                         dataKey="value"
                     >
-                        {tasksData.map((entry, index) => (
+                        {tasksData?.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
                                 fill={COLORS[index % COLORS.length]}
@@ -124,7 +118,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                         paddingBottom: "2rem",
                     }}
                 >
-                    {tasksData.map((item, index) => (
+                    {tasksData?.map((item, index) => (
                         <div
                             key={index}
                             style={{
