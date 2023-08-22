@@ -47,9 +47,8 @@ const statusOptions = Object.keys(ContactStatus).map((key) => ({
     label: `${key[0]}${key.slice(1).toLowerCase()}`,
     value: ContactStatus[key as keyof typeof ContactStatus],
 }));
-    
-const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
 
+const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
     const { selectProps } = useSelect({
         resource: "companies",
         optionLabel: "name",
