@@ -7,7 +7,13 @@ import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter,
+    Navigate,
+    Outlet,
+    Route,
+    Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import {
@@ -22,6 +28,8 @@ import {
     CategoryList,
     CategoryShow,
 } from "./pages/categories";
+import { ProductIcon, CategoryIcon } from "./components/icons";
+import { Dashboard } from "./pages/dashboard";
 
 function App() {
     return (
@@ -40,6 +48,7 @@ function App() {
                             create: "/products/create",
                             edit: "/products/edit/:id",
                             show: "/products/show/:id",
+                            icon: <ProductIcon />,
                             meta: {
                                 canDelete: true,
                             },
@@ -50,6 +59,7 @@ function App() {
                             create: "/categories/create",
                             edit: "/categories/edit/:id",
                             show: "/categories/show/:id",
+                            icon: <CategoryIcon />,
                             meta: {
                                 canDelete: true,
                             },
@@ -71,10 +81,9 @@ function App() {
                         >
                             <Route
                                 index
-                                element={
-                                    <NavigateToResource resource="products" />
-                                }
+                                element={<Navigate to="/dashboard" />}
                             />
+                            <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/products">
                                 <Route index element={<ProductList />} />
                                 <Route
@@ -108,7 +117,6 @@ function App() {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
-
                     <RefineKbar />
                     <UnsavedChangesNotifier />
                     <DocumentTitleHandler />
