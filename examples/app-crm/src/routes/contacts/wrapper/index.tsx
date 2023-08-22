@@ -90,6 +90,7 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
             <Table.Column
                 dataIndex="status"
                 title="Status"
+                sorter
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
                         <Select
