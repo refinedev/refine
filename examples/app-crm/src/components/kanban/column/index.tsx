@@ -73,7 +73,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
                                         e.domEvent.stopPropagation();
                                     },
                                 }}
-                                placement="bottomCenter"
+                                placement="bottom"
                                 arrow={{ pointAtCenter: true }}
                             >
                                 <Button
@@ -109,4 +109,12 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
     );
 };
 
-export const KanbanColumnMemo = memo(KanbanColumn);
+export const KanbanColumnMemo = memo(KanbanColumn, (prev, next) => {
+    return (
+        prev.id === next.id &&
+        prev.title === next.title &&
+        prev.description === next.description &&
+        prev.count === next.count &&
+        prev.variant === next.variant
+    );
+});

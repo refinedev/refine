@@ -23,7 +23,7 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
     const invalidate = useInvalidate();
     const { formProps } = useForm<Task, HttpError, FormValues>({
         queryOptions: {
-            enabled: false,
+            enabled: true,
         },
         autoSave: {
             enabled: true,

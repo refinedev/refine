@@ -8,24 +8,29 @@ import {
 } from "@refinedev/core";
 import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
-import { Deal, DealStage } from "../../interfaces/graphql";
-import { DealKanbanCardMemo, FullScreenLoading, Text } from "../../components";
+import { Deal, DealStage } from "../../../interfaces/graphql";
+import {
+    DealKanbanCardMemo,
+    FullScreenLoading,
+    Text,
+} from "../../../components";
 import {
     KanbanBoard,
     KanbanColumnMemo,
     KanbanItem,
     KanbanAddStageButton,
     KanbanAddCardButton,
-} from "../../components/kanban";
-import { currencyNumber } from "../../utilities";
+} from "../../../components/kanban";
+import { currencyNumber } from "../../../utilities";
 import { MenuProps } from "antd";
-import { DealKanbanWonLostDrop } from "../../components/deal-kanban-won-lost-drop";
+import { DealKanbanWonLostDrop } from "../../../components/deal-kanban-won-lost-drop";
 
 const dealsFragment = [
     "id",
     "title",
     "value",
     "createdAt",
+    "stageId",
     {
         company: ["id", "name"],
     },
@@ -35,49 +40,80 @@ const dealsFragment = [
 ];
 
 export const SalesPage = () => {
-    const { data: unassignedStage, isLoading: isLoadingUnassignedStage } =
-        useList<Deal>({
-            resource: "stages",
-            pagination: {
-                mode: "off",
+    const { data: stages, isLoading: isLoadingStages } = useList<DealStage>({
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            operation: "dealStages",
+            fields: ["id", "title"],
+        },
+    });
+
+    const { data: deals, isLoading: isLoadingDeals } = useList<Deal>({
+        sorters: [
+            {
+                field: "createdAt",
+                order: "asc",
             },
-            filters: [
-                {
-                    field: "stage.id",
-                    operator: "null",
-                    value: null,
-                },
-            ],
-            meta: {
-                operation: "deals",
-                fields: dealsFragment,
-            },
+        ],
+        queryOptions: {
+            enabled: !!stages,
+        },
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            operation: "deals",
+            fields: dealsFragment,
+        },
+    });
+
+    // its convert Deal[] to DealStage[] (group by stage) for kanban
+    // its also group `won` and `lost` stages
+    // uses `stages` and `tasks` from useList hooks
+    const stageGrouped = useMemo(() => {
+        if (!stages?.data || !deals?.data)
+            return {
+                stageUnassigned: null,
+                stageAll: [],
+                stageWon: null,
+                stageLost: null,
+            };
+        const stagesData = stages?.data;
+        const dealsData = deals?.data;
+
+        const stageUnassigned = dealsData.filter(
+            (deal) => deal.stageId === null,
+        );
+        const grouped = stagesData.map((stage) => {
+            return {
+                ...stage,
+                deals: dealsData
+                    .filter((deal) => deal.stageId === stage.id)
+                    .sort((a, b) => {
+                        return (
+                            new Date(a.createdAt).getTime() -
+                            new Date(b.createdAt).getTime()
+                        );
+                    }),
+            };
         });
 
-    const { data: dealStages, isLoading: isLoadingDealStages } =
-        useList<DealStage>({
-            resource: "stages",
-            pagination: {
-                mode: "off",
-            },
-            meta: {
-                operation: "dealStages",
-                fields: [
-                    "id",
-                    "title",
-                    {
-                        dealsAggregate: [
-                            {
-                                sum: ["value"],
-                            },
-                        ],
-                    },
-                    {
-                        deals: dealsFragment,
-                    },
-                ],
-            },
-        });
+        const stageWon = grouped.find((stage) => stage.title === "WON");
+        const stageLost = grouped.find((stage) => stage.title === "LOST");
+        // remove won and lost from grouped
+        const stageAll = grouped.filter(
+            (stage) => stage.title !== "WON" && stage.title !== "LOST",
+        );
+
+        return {
+            stageUnassigned,
+            stageAll,
+            stageWon,
+            stageLost,
+        };
+    }, [stages, deals]);
 
     const { mutate: updateDeal } = useUpdate();
     const { mutate: updateManyDeal } = useUpdateMany();
@@ -87,35 +123,14 @@ export const SalesPage = () => {
     const { unassignedStageTotalValue } = useMemo(() => {
         let unassignedStageTotalValue = 0;
 
-        unassignedStage?.data?.forEach((deal) => {
+        stageGrouped?.stageUnassigned?.forEach((deal) => {
             unassignedStageTotalValue += deal.value || 0;
         });
 
         return {
             unassignedStageTotalValue,
         };
-    }, [unassignedStage]);
-
-    const { allStages, stageLost, stageWon } = useMemo(() => {
-        if (!dealStages?.data) {
-            return {
-                stageWon: null,
-                stageLost: null,
-                allStages: [],
-            };
-        }
-
-        const won = dealStages?.data.find((stage) => stage.title === "WON");
-        const lost = dealStages?.data.find((stage) => stage.title === "LOST");
-
-        return {
-            stageWon: won,
-            stageLost: lost,
-            allStages: dealStages?.data.filter(
-                (stage) => stage.title !== "WON" && stage.title !== "LOST",
-            ),
-        };
-    }, [dealStages]);
+    }, [stageGrouped.stageUnassigned]);
 
     const handleOnDragEnd = (event: DragEndEvent) => {
         let stageId = event.over?.id as undefined | string | null;
@@ -127,11 +142,11 @@ export const SalesPage = () => {
         }
 
         if (stageId === "won") {
-            stageId = stageWon?.id;
+            stageId = stageGrouped.stageWon?.id;
         }
 
         if (stageId === "lost") {
-            stageId = stageLost?.id;
+            stageId = stageGrouped?.stageLost?.id;
         }
 
         if (stageId === "unassigned") {
@@ -139,22 +154,20 @@ export const SalesPage = () => {
         }
 
         updateDeal({
-            resource: "stages",
-            meta: {
-                operation: "deal",
-            },
+            resource: "deals",
             id: dealId,
             values: {
                 stageId: stageId,
             },
             successNotification: false,
+            mutationMode: "optimistic",
         });
     };
 
     const handleAddStage = () => {
         const title = prompt("Enter stage title");
         createStage({
-            resource: "stages",
+            resource: "deals",
             meta: {
                 operation: "dealStage",
             },
@@ -170,7 +183,7 @@ export const SalesPage = () => {
 
     const handleDeleteStage = (args: { stageId: string }) => {
         deleteStage({
-            resource: "stages",
+            resource: "deals",
             meta: {
                 operation: "dealStage",
             },
@@ -184,10 +197,7 @@ export const SalesPage = () => {
 
     const handleClearCards = (args: { dealsIds: string[] }) => {
         updateManyDeal({
-            resource: "stages",
-            meta: {
-                operation: "deals",
-            },
+            resource: "deals",
             ids: args.dealsIds,
             values: {
                 stageId: null,
@@ -229,7 +239,7 @@ export const SalesPage = () => {
         return items;
     };
 
-    const loading = isLoadingDealStages || isLoadingUnassignedStage;
+    const loading = isLoadingStages || isLoadingDeals;
 
     if (loading) {
         return <FullScreenLoading />;
@@ -240,7 +250,7 @@ export const SalesPage = () => {
             <KanbanColumnMemo
                 id={"unassigned"}
                 title={"unassigned"}
-                count={unassignedStage?.data?.length || 0}
+                count={stageGrouped.stageUnassigned?.length || 0}
                 description={
                     <Text size="md" disabled={unassignedStageTotalValue === 0}>
                         {currencyNumber(unassignedStageTotalValue)}
@@ -248,7 +258,7 @@ export const SalesPage = () => {
                 }
                 onAddClick={() => handleAddCard({ stageId: "unassigned" })}
             >
-                {unassignedStage?.data?.map((deal) => {
+                {stageGrouped.stageUnassigned?.map((deal) => {
                     return (
                         <KanbanItem
                             key={deal.id}
@@ -267,13 +277,13 @@ export const SalesPage = () => {
                         </KanbanItem>
                     );
                 })}
-                {!unassignedStage?.data?.length && (
+                {!stageGrouped.stageUnassigned?.length && (
                     <KanbanAddCardButton
                         onClick={() => handleAddCard({ stageId: "unassigned" })}
                     />
                 )}
             </KanbanColumnMemo>
-            {allStages.map((column) => {
+            {stageGrouped.stageAll.map((column) => {
                 const sum = column.dealsAggregate?.[0]?.sum?.value || 0;
                 const contextMenuItems = getContextMenuItems({ column });
 
@@ -321,32 +331,37 @@ export const SalesPage = () => {
                 );
             })}
             <KanbanAddStageButton onClick={handleAddStage} />
-            {stageWon && (
+            {stageGrouped.stageWon && (
                 <KanbanColumnMemo
-                    key={stageWon.id}
-                    id={stageWon.id}
-                    title={stageWon.title}
+                    key={stageGrouped.stageWon.id}
+                    id={stageGrouped.stageWon.id}
+                    title={stageGrouped.stageWon.title}
                     description={
                         <Text
                             size="md"
                             disabled={
-                                stageWon.dealsAggregate?.[0]?.sum?.value === 0
+                                stageGrouped.stageWon.dealsAggregate?.[0]?.sum
+                                    ?.value === 0
                             }
                         >
                             {currencyNumber(
-                                stageWon.dealsAggregate?.[0]?.sum?.value || 0,
+                                stageGrouped.stageWon.dealsAggregate?.[0]?.sum
+                                    ?.value || 0,
                             )}
                         </Text>
                     }
-                    count={stageWon.deals.length}
+                    count={stageGrouped.stageWon.deals.length}
                     variant="solid"
                 >
-                    {stageWon.deals.map((deal) => {
+                    {stageGrouped.stageWon.deals.map((deal) => {
                         return (
                             <KanbanItem
                                 key={deal.id}
                                 id={deal.id}
-                                data={{ ...deal, stageId: stageWon.id }}
+                                data={{
+                                    ...deal,
+                                    stageId: stageGrouped.stageWon?.id,
+                                }}
                             >
                                 <DealKanbanCardMemo
                                     id={deal.id}
@@ -363,32 +378,37 @@ export const SalesPage = () => {
                     })}
                 </KanbanColumnMemo>
             )}
-            {stageLost && (
+            {stageGrouped.stageLost && (
                 <KanbanColumnMemo
-                    key={stageLost.id}
-                    id={stageLost.id}
-                    title={stageLost.title}
+                    key={stageGrouped.stageLost.id}
+                    id={stageGrouped.stageLost.id}
+                    title={stageGrouped.stageLost.title}
                     description={
                         <Text
                             size="md"
                             disabled={
-                                stageLost.dealsAggregate?.[0]?.sum?.value === 0
+                                stageGrouped.stageLost.dealsAggregate?.[0]?.sum
+                                    ?.value === 0
                             }
                         >
                             {currencyNumber(
-                                stageLost.dealsAggregate?.[0]?.sum?.value || 0,
+                                stageGrouped.stageLost.dealsAggregate?.[0]?.sum
+                                    ?.value || 0,
                             )}
                         </Text>
                     }
-                    count={stageLost.deals.length}
+                    count={stageGrouped.stageLost.deals.length}
                     variant="solid"
                 >
-                    {stageLost.deals.map((deal) => {
+                    {stageGrouped.stageLost.deals.map((deal) => {
                         return (
                             <KanbanItem
                                 key={deal.id}
                                 id={deal.id}
-                                data={{ ...deal, stageId: stageLost.id }}
+                                data={{
+                                    ...deal,
+                                    stageId: stageGrouped.stageLost?.id,
+                                }}
                             >
                                 <DealKanbanCardMemo
                                     id={deal.id}

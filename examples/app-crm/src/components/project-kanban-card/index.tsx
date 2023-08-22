@@ -303,4 +303,13 @@ export const ProjectCard = ({
     );
 };
 
-export const ProjectCardMemo = memo(ProjectCard);
+export const ProjectCardMemo = memo(ProjectCard, (prev, next) => {
+    return (
+        prev.id === next.id &&
+        prev.title === next.title &&
+        prev.dueDate === next.dueDate &&
+        prev.comments.totalCount === next.comments.totalCount &&
+        prev.checkList?.length === next.checkList?.length &&
+        prev.users?.length === next.users?.length
+    );
+});

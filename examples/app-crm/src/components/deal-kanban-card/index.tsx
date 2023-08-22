@@ -66,11 +66,8 @@ export const DealKanbanCard: FC<Props> = ({
                 icon: <DeleteOutlined />,
                 onClick: () => {
                     mutate({
-                        resource: "stages",
+                        resource: "deals",
                         id,
-                        meta: {
-                            operation: "deal",
-                        },
                     });
                 },
             },
@@ -262,4 +259,14 @@ export const DealKanbanCard: FC<Props> = ({
     );
 };
 
-export const DealKanbanCardMemo = memo(DealKanbanCard);
+export const DealKanbanCardMemo = memo(DealKanbanCard, (prev, next) => {
+    return (
+        prev.id === next.id &&
+        prev.title === next.title &&
+        prev.price === next.price &&
+        prev.date === next.date &&
+        prev.user.name === next.user.name &&
+        prev.company.name === next.company.name &&
+        prev.variant === next.variant
+    );
+});

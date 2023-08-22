@@ -57,7 +57,7 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "sales",
+        name: "deals",
         list: "/scrumboard/sales",
         meta: {
             label: "Sales Pipeline",
