@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import { Badge, Skeleton } from "antd";
+import { Badge } from "antd";
 
 import { Text } from "../../../text";
 import type { Event } from "../../../../interfaces/graphql";
@@ -9,12 +9,10 @@ import styles from "../index.module.css";
 
 type CalendarUpcomingEventProps = {
     item: Event;
-    isLoading?: boolean;
 };
 
 export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
     item,
-    isLoading,
 }) => {
     const { id, title, startDate, endDate, color } = item;
     const isToday = dayjs.utc(startDate).isSame(dayjs.utc(), "day");
@@ -48,32 +46,21 @@ export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
     };
 
     return (
-        <div key={id} className={styles.container}>
-            <Skeleton
-                loading={isLoading}
-                active
-                avatar
-                paragraph={{
-                    rows: 0,
-                }}
-                style={{
-                    padding: 0,
-                }}
-            >
-                <div className={styles.date}>
-                    <span
-                        className={styles.icon}
-                        style={{
-                            backgroundColor: color,
-                        }}
-                    />
+        <div key={id} className={styles.item}>
+            <div className={styles.date}>
+                <Badge color={color} className={styles.badge} />
 
-                    <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
-                </div>
-                <Text strong className={styles.title}>
-                    {title}
-                </Text>
-            </Skeleton>
+                <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
+            </div>
+            <Text
+                ellipsis={{
+                    tooltip: true,
+                }}
+                strong
+                className={styles.title}
+            >
+                {title}
+            </Text>
         </div>
     );
 };

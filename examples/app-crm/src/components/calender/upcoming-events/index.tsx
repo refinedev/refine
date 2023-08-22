@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, theme, CardProps } from "antd";
+import { Card, theme, CardProps, Skeleton } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -55,12 +55,21 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             }}
             {...rest}
         >
-            {data?.data.map((item) => (
-                <CalendarUpcomingEvent
-                    key={item.id}
-                    isLoading={isLoading}
-                    item={item}
+            {isLoading && (
+                <Skeleton
+                    loading={isLoading}
+                    active
+                    paragraph={{
+                        rows: 3,
+                        width: 200,
+                    }}
+                    style={{
+                        padding: "1rem 0",
+                    }}
                 />
+            )}
+            {data?.data.map((item) => (
+                <CalendarUpcomingEvent key={item.id} item={item} />
             ))}
         </Card>
     );
