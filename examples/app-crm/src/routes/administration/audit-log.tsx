@@ -1,5 +1,5 @@
 import { DateField, FilterDropdown, List, useTable } from "@refinedev/antd";
-import { Avatar, Input, Radio, Space, Table } from "antd";
+import { Avatar, DatePicker, Input, Radio, Space, Table } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 import { ActionCell } from "../../components/audit-log/action-cell";
@@ -13,12 +13,19 @@ export const AuditLogPage = () => {
                 { user: ["name", "avatarUrl"] },
                 "action",
                 "targetEntity",
+                "targetId",
                 { changes: ["field", "from", "to"] },
                 "createdAt",
             ],
         },
         filters: {
-            initial: [{ field: "user.name", value: "", operator: "contains" }],
+            initial: [
+                { field: "user.name", value: "", operator: "contains" },
+                { field: "createdAt", value: [], operator: "between" },
+            ],
+        },
+        sorters: {
+            initial: [{ field: "createdAt", order: "desc" }],
         },
     });
 
@@ -80,6 +87,11 @@ export const AuditLogPage = () => {
                             value={value}
                             format="MM.DD.YYYY - hh:mm"
                         />
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <DatePicker.RangePicker />
+                        </FilterDropdown>
                     )}
                     sorter
                 />

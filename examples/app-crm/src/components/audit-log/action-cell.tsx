@@ -19,16 +19,6 @@ const getActionColor = (action: string): TagProps["color"] => {
     }
 };
 
-const getEntityId = (changes: Audit["changes"]) => {
-    const idField = changes.find((change) => change.field === "id");
-
-    if (idField) {
-        return idField.to;
-    }
-
-    return "N/A";
-};
-
 export const ActionCell = ({ record }: { record: Audit }) => {
     const [opened, setOpened] = useState(false);
 
@@ -77,7 +67,7 @@ export const ActionCell = ({ record }: { record: Audit }) => {
                     </Tag>
                     <span>
                         <Text strong>{record.targetEntity}</Text> with id{" "}
-                        <Text strong>{getEntityId(record.changes)}</Text>
+                        <Text strong>{record.targetId}</Text>
                     </span>
                 </Space>
                 <Button
