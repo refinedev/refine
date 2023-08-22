@@ -1,6 +1,5 @@
 import {
     HttpError,
-    useCreate,
     useDelete,
     useList,
     useUpdate,
@@ -32,7 +31,7 @@ const taskFragment = [
         checklist: ["title", "checked"],
     },
     {
-        users: ["id", "name"],
+        users: ["id", "name", "avatarUrl"],
     },
     {
         comments: ["totalCount"],

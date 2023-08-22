@@ -35,7 +35,7 @@ const dealsFragment = [
         company: ["id", "name"],
     },
     {
-        dealOwner: ["id", "name"],
+        dealOwner: ["id", "name", "avatarUrl"],
     },
 ];
 
@@ -313,7 +313,10 @@ export const SalesPage = () => {
                                         key={deal.id}
                                         title={deal.title}
                                         company={{ name: deal.company.name }}
-                                        user={{ name: deal.dealOwner.name }}
+                                        user={{
+                                            name: deal.dealOwner.name,
+                                            avatarUrl: deal.dealOwner.avatarUrl,
+                                        }}
                                         date={deal.createdAt}
                                         price={currencyNumber(deal.value || 0)}
                                     />
@@ -368,7 +371,10 @@ export const SalesPage = () => {
                                     key={deal.id}
                                     title={deal.title}
                                     company={{ name: deal.company.name }}
-                                    user={{ name: deal.dealOwner.name }}
+                                    user={{
+                                        name: deal.dealOwner.name,
+                                        avatarUrl: deal.dealOwner.avatarUrl,
+                                    }}
                                     date={deal.createdAt}
                                     price={currencyNumber(deal.value || 0)}
                                     variant="won"
@@ -415,7 +421,10 @@ export const SalesPage = () => {
                                     key={deal.id}
                                     title={deal.title}
                                     company={{ name: deal.company.name }}
-                                    user={{ name: deal.dealOwner.name }}
+                                    user={{
+                                        name: deal.dealOwner.name,
+                                        avatarUrl: deal.dealOwner.avatarUrl,
+                                    }}
                                     date={deal.createdAt}
                                     price={currencyNumber(deal.value || 0)}
                                     variant="lost"

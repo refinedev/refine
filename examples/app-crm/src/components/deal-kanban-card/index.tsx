@@ -13,6 +13,7 @@ import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text } from "../text";
 import { getRandomColorFromString } from "../../utilities";
+import { User } from "../../interfaces/graphql";
 
 type Props = {
     id: string;
@@ -21,7 +22,7 @@ type Props = {
     date: string;
     user: {
         name: string;
-        avatar?: string;
+        avatarUrl?: User["avatarUrl"];
     };
     company: {
         name: string;
@@ -152,7 +153,7 @@ export const DealKanbanCard: FC<Props> = ({
                                     }}
                                     shape="circle"
                                     size="small"
-                                    src={user?.avatar}
+                                    src={user?.avatarUrl}
                                     alt={user?.name}
                                 >
                                     {user?.name[0]}

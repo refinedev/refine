@@ -28,6 +28,7 @@ import {
     getNameInitials,
     getRandomColorFromString,
 } from "../../utilities";
+import { User } from "../../interfaces/graphql";
 
 type ProjectCardProps = {
     id: string;
@@ -39,7 +40,7 @@ type ProjectCardProps = {
     users?: {
         id: string;
         name: string;
-        avatar?: string;
+        avatarUrl?: User["avatarUrl"];
     }[];
     checkList?: {
         title: string;
@@ -278,7 +279,7 @@ export const ProjectCard = ({
                                             key={user.id}
                                             alt={user.name}
                                             size="small"
-                                            src={user.avatar}
+                                            src={user.avatarUrl}
                                             style={{
                                                 backgroundColor:
                                                     getRandomColorFromString(
