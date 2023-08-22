@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@refinedev/core": "^4.34.0",
-    "@refinedev/cli": "^2.8.0",
+    "@refinedev/cli": "^2.9.0",
     "@refinedev/nextjs-router": "^5.5.0",
     "@refinedev/simple-rest": "^4.5.0",
     "next": "13.0.6",
