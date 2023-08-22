@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, theme } from "antd";
+import { Card, theme, Skeleton } from "antd";
 import { useCustom } from "@refinedev/core";
 
 import { Text } from "../text";
@@ -24,12 +24,7 @@ export const DashboardTotalCountCard: React.FC<{
     });
 
     if (isError) {
-        // TODO: handle error message
-        return null;
-    }
-
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
+        console.error("Error fetching dashboard data", isError);
         return null;
     }
 
@@ -52,9 +47,13 @@ export const DashboardTotalCountCard: React.FC<{
                         {title}
                     </Text>
                 </div>
-                <Text size="xxxl" strong>
-                    {data.data[type].totalCount}
-                </Text>
+                {isLoading ? (
+                    <Skeleton.Avatar active={true} size={45} />
+                ) : (
+                    <Text size="xxxl" strong>
+                        {data.data[type].totalCount}
+                    </Text>
+                )}
             </div>
         </Card>
     );
