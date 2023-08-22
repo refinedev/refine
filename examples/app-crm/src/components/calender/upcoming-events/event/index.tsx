@@ -5,14 +5,18 @@ import { Text } from "../../../text";
 import { Event } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
+import { Skeleton } from "antd";
 
-export const CalendarUpcomingEvent: React.FC<Event> = ({
-    id,
-    title,
-    color,
-    startDate,
-    endDate,
+type CalendarUpcomingEventProps = {
+    item: Event;
+    isLoading?: boolean;
+};
+
+export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
+    item,
+    isLoading,
 }) => {
+    const { id, title, startDate, endDate, color } = item;
     const isToday = dayjs.utc(startDate).isSame(dayjs.utc(), "day");
     const isTomorrow = dayjs
         .utc(startDate)
@@ -45,19 +49,31 @@ export const CalendarUpcomingEvent: React.FC<Event> = ({
 
     return (
         <div key={id} className={styles.container}>
-            <div className={styles.date}>
-                <span
-                    className={styles.icon}
-                    style={{
-                        backgroundColor: color,
-                    }}
-                />
+            <Skeleton
+                loading={isLoading}
+                active
+                avatar
+                paragraph={{
+                    rows: 0,
+                }}
+                style={{
+                    padding: 0,
+                }}
+            >
+                <div className={styles.date}>
+                    <span
+                        className={styles.icon}
+                        style={{
+                            backgroundColor: color,
+                        }}
+                    />
 
-                <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
-            </div>
-            <Text strong className={styles.title}>
-                {title}
-            </Text>
+                    <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
+                </div>
+                <Text strong className={styles.title}>
+                    {title}
+                </Text>
+            </Skeleton>
         </div>
     );
 };
