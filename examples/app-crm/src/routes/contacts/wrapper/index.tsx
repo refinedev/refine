@@ -36,9 +36,13 @@ import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
 type Props = React.PropsWithChildren<{}>;
-type ViewProps = TableProps<Contact>;
+type TableViewProps = TableProps<Contact>;
+type CardViewProps = TableProps<Contact> & {
+    setCurrent: (current: number) => void;
+    setPageSize: (pageSize: number) => void;
+};
 
-const TableView: React.FC<ViewProps> = ({ ...rest }) => {
+const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
     return (
         <Table {...rest} rowKey="id">
             <Table.Column dataIndex="id" title="ID" />
@@ -154,7 +158,12 @@ const TableView: React.FC<ViewProps> = ({ ...rest }) => {
     );
 };
 
-const CardView: React.FC<ViewProps> = ({ dataSource, pagination }) => {
+const CardView: React.FC<CardViewProps> = ({
+    dataSource,
+    pagination,
+    setCurrent,
+    setPageSize,
+}) => {
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 
@@ -188,6 +197,10 @@ const CardView: React.FC<ViewProps> = ({ dataSource, pagination }) => {
             <Pagination
                 style={{ textAlign: "end", marginTop: "1rem" }}
                 {...pagination}
+                onChange={(page, pageSize) => {
+                    setCurrent(page);
+                    setPageSize(pageSize);
+                }}
             />
         </div>
     );
@@ -196,58 +209,59 @@ const CardView: React.FC<ViewProps> = ({ dataSource, pagination }) => {
 export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
     const [type, setType] = React.useState("table");
 
-    const { tableProps, searchFormProps } = useTable<Contact>({
-        filters: {
-            initial: [
-                {
-                    field: "name",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "email",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "company.name",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "jobTitle",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "status",
-                    value: undefined,
-                    operator: "in",
-                },
-            ],
-        },
-        onSearch: (values: any) => {
-            return [
-                {
-                    field: "name",
-                    operator: "contains",
-                    value: values.name,
-                },
-            ];
-        },
-        meta: {
-            fields: [
-                "id",
-                "name",
-                "email",
-                {
-                    company: ["id", "name"],
-                },
-                "jobTitle",
-                "status",
-            ],
-        },
-    });
+    const { tableProps, searchFormProps, setCurrent, setPageSize } =
+        useTable<Contact>({
+            filters: {
+                initial: [
+                    {
+                        field: "name",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "email",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "company.name",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "jobTitle",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "status",
+                        value: undefined,
+                        operator: "in",
+                    },
+                ],
+            },
+            onSearch: (values: any) => {
+                return [
+                    {
+                        field: "name",
+                        operator: "contains",
+                        value: values.name,
+                    },
+                ];
+            },
+            meta: {
+                fields: [
+                    "id",
+                    "name",
+                    "email",
+                    {
+                        company: ["id", "name"],
+                    },
+                    "jobTitle",
+                    "status",
+                ],
+            },
+        });
 
     return (
         <div className={styles.container}>
@@ -287,7 +301,11 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
             {type === "table" ? (
                 <TableView {...tableProps} />
             ) : (
-                <CardView {...tableProps} />
+                <CardView
+                    setPageSize={setPageSize}
+                    setCurrent={setCurrent}
+                    {...tableProps}
+                />
             )}
             {children}
         </div>
