@@ -8,6 +8,7 @@ import {
     Directus,
     Dp,
     Elide,
+    ElideGraphql,
     EntRefine,
     Firebase,
     Graphql,
@@ -183,6 +184,20 @@ export const integrations: IntegrationsType = {
             description:
                 "Connector for backends created with <strong>Elide</strong>",
             url: "https://github.com/chirdeeptomar/refine-elide-rest",
+            status: "stable",
+            contributors: [
+                {
+                    name: "chirdeeptomar",
+                    url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
+        {
+            name: "Elide GraphQL Data Provider",
+            icon: ElideGraphql,
+            description:
+                "Connector for GraphQL backends created with <strong>Elide</strong>",
+            url: "https://github.com/chirdeeptomar/refine-elide-graphql",
             status: "stable",
             contributors: [
                 {
