@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigation, IResourceComponentsProps } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
+import { BackIcon } from "../../components/icons";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
@@ -14,67 +15,39 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     } = useForm();
 
     return (
-        <div style={{ padding: "16px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h1>Category Create</h1>
-                <div>
+        <div className="page-container">
+            <div className="flex justify-start items-center">
+            <div>
                     <button
+                        className="mr-2 btn btn-primary btn-sm btn-ghost"
                         onClick={() => {
                             list("categories");
                         }}
                     >
-                        Categories
+                        <BackIcon />
                     </button>
                 </div>
+                <h1 className="page-title">Create a Category</h1>
             </div>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "8px",
-                    }}
-                >
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Title</span>
+            <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
+                <div className="form-control my-4">
+                    <label className="label">Name</label>
+                    <input
+                        className="input input-sm input-bordered"
+                        type="text"
+                        {...register("title", {
+                            required: "This field is required",
+                        })}
+                    />
+                    <span style={{ color: "red" }}>
+                        {(errors as any)?.title?.message as string}
+                    </span>
+                    <div className="flex justify-end items-center my-6">
                         <input
-                            type="text"
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
+                            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+                            type="submit"
+                            value="Save"
                         />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.title?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Is Active</span>
-                        <input
-                            type="checkbox"
-                            {...register("isActive", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {errors?.isActive?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Cover</span>
-                        <textarea
-                            rows={5}
-                            cols={33}
-                            style={{ verticalAlign: "top" }}
-                            {...register("cover", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.cover?.message as string}
-                        </span>
-                    </label>
-                    <div>
-                        <input type="submit" value="Save" />
                     </div>
                 </div>
             </form>
