@@ -41,6 +41,7 @@ import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
 
+import "./styles/antd.css";
 import "./styles/index.css";
 
 dayjs.extend(utc);

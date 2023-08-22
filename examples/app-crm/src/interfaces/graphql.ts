@@ -27,7 +27,6 @@ export type Scalars = {
     Boolean: { input: boolean; output: boolean };
     Int: { input: number; output: number };
     Float: { input: number; output: number };
-    ConnectionCursor: { input: any; output: any };
     DateTime: { input: any; output: any };
 };
 
@@ -69,10 +68,12 @@ export type AuditChange = {
 };
 
 export type AuditConnection = {
-    /** Array of edges. */
-    edges: Array<AuditEdge>;
+    /** Array of nodes. */
+    nodes: Array<Audit>;
     /** Paging information */
-    pageInfo: PageInfo;
+    pageInfo: OffsetPageInfo;
+    /** Fetch total count of records */
+    totalCount: Scalars["Int"]["output"];
 };
 
 export type AuditDeleteResponse = {
@@ -85,30 +86,30 @@ export type AuditDeleteResponse = {
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
-export type AuditEdge = {
-    /** Cursor for this node. */
-    cursor: Scalars["ConnectionCursor"]["output"];
-    /** The node containing the Audit */
-    node: Audit;
-};
-
 export type AuditFilter = {
     action?: InputMaybe<AuditActionFilterComparison>;
     and?: InputMaybe<Array<AuditFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<AuditFilter>>;
     targetEntity?: InputMaybe<StringFieldComparison>;
+    targetId?: InputMaybe<NumberFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     user?: InputMaybe<AuditFilterUserFilter>;
 };
 
 export type AuditFilterUserFilter = {
     and?: InputMaybe<Array<AuditFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<AuditFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type AuditSort = {
@@ -117,20 +118,34 @@ export type AuditSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type AuditSortFields = "action" | "id" | "targetEntity";
+export type AuditSortFields =
+    | "action"
+    | "createdAt"
+    | "id"
+    | "targetEntity"
+    | "targetId"
+    | "updatedAt";
 
 export type AuditSubscriptionFilter = {
     action?: InputMaybe<AuditActionFilterComparison>;
     and?: InputMaybe<Array<AuditSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<AuditSubscriptionFilter>>;
     targetEntity?: InputMaybe<StringFieldComparison>;
+    targetId?: InputMaybe<NumberFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type AuthResponse = {
     accessToken: Scalars["String"]["output"];
     refreshToken: Scalars["String"]["output"];
     user: User;
+};
+
+export type BooleanFieldComparison = {
+    is?: InputMaybe<Scalars["Boolean"]["input"]>;
+    isNot?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** Business type */
@@ -203,11 +218,13 @@ export type CompanyAggregateFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyAggregateFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
@@ -215,11 +232,21 @@ export type CompanyAggregateGroupBy = {
     businessType?: Maybe<BusinessType>;
     companySize?: Maybe<CompanySize>;
     country?: Maybe<Scalars["String"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     industry?: Maybe<Industry>;
     name?: Maybe<Scalars["String"]["output"]>;
     totalRevenue?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     website?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type CompanyAggregateGroupByCreatedAtArgs = {
+    by?: GroupBy;
+};
+
+export type CompanyAggregateGroupByUpdatedAtArgs = {
+    by?: GroupBy;
 };
 
 export type CompanyAggregateResponse = {
@@ -260,13 +287,17 @@ export type CompanyConnection = {
 };
 
 export type CompanyContactsAggregateGroupBy = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     score?: Maybe<Scalars["Int"]["output"]>;
     stage?: Maybe<ContactStage>;
     status?: Maybe<ContactStatus>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type CompanyContactsAggregateResponse = {
@@ -293,33 +324,45 @@ export type CompanyContactsConnection = {
 };
 
 export type CompanyContactsCountAggregate = {
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     email?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    jobTitle?: Maybe<Scalars["Int"]["output"]>;
     name?: Maybe<Scalars["Int"]["output"]>;
     phone?: Maybe<Scalars["Int"]["output"]>;
     score?: Maybe<Scalars["Int"]["output"]>;
     stage?: Maybe<Scalars["Int"]["output"]>;
     status?: Maybe<Scalars["Int"]["output"]>;
+    timezone?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type CompanyContactsMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     score?: Maybe<Scalars["Int"]["output"]>;
     stage?: Maybe<ContactStage>;
     status?: Maybe<ContactStatus>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type CompanyContactsMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     score?: Maybe<Scalars["Int"]["output"]>;
     stage?: Maybe<ContactStage>;
     status?: Maybe<ContactStatus>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type CompanyContactsSumAggregate = {
@@ -331,10 +374,12 @@ export type CompanyCountAggregate = {
     businessType?: Maybe<Scalars["Int"]["output"]>;
     companySize?: Maybe<Scalars["Int"]["output"]>;
     country?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     industry?: Maybe<Scalars["Int"]["output"]>;
     name?: Maybe<Scalars["Int"]["output"]>;
     totalRevenue?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
     website?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -354,9 +399,11 @@ export type CompanyDealsAggregateGroupBy = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -392,9 +439,11 @@ export type CompanyDealsCountAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     stageId?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
     value?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -402,9 +451,11 @@ export type CompanyDealsMaxAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -412,9 +463,11 @@ export type CompanyDealsMinAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -433,11 +486,13 @@ export type CompanyDeleteFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyDeleteFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
@@ -460,6 +515,7 @@ export type CompanyFilter = {
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     contacts?: InputMaybe<CompanyFilterContactFilter>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<CompanyFilterUserFilter>;
     deals?: InputMaybe<CompanyFilterDealFilter>;
     id?: InputMaybe<IdFilterComparison>;
@@ -469,26 +525,33 @@ export type CompanyFilter = {
     or?: InputMaybe<Array<CompanyFilter>>;
     salesOwner?: InputMaybe<CompanyFilterUserFilter>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<CompanyFilterUserFilter>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
 export type CompanyFilterCompanyNoteFilter = {
     and?: InputMaybe<Array<CompanyFilterCompanyNoteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyFilterCompanyNoteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyFilterContactFilter = {
     and?: InputMaybe<Array<CompanyFilterContactFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyFilterContactFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyFilterDealFilter = {
@@ -496,21 +559,27 @@ export type CompanyFilterDealFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyFilterDealFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
 export type CompanyFilterUserFilter = {
     and?: InputMaybe<Array<CompanyFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyIndustryFilterComparison = {
@@ -524,10 +593,12 @@ export type CompanyMaxAggregate = {
     businessType?: Maybe<BusinessType>;
     companySize?: Maybe<CompanySize>;
     country?: Maybe<Scalars["String"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     industry?: Maybe<Industry>;
     name?: Maybe<Scalars["String"]["output"]>;
     totalRevenue?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     website?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -535,10 +606,12 @@ export type CompanyMinAggregate = {
     businessType?: Maybe<BusinessType>;
     companySize?: Maybe<CompanySize>;
     country?: Maybe<Scalars["String"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     industry?: Maybe<Industry>;
     name?: Maybe<Scalars["String"]["output"]>;
     totalRevenue?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     website?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -554,8 +627,10 @@ export type CompanyNote = {
 
 export type CompanyNoteAggregateFilter = {
     and?: InputMaybe<Array<CompanyNoteAggregateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyNoteAggregateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyNoteConnection = {
@@ -574,8 +649,10 @@ export type CompanyNoteCreateInput = {
 
 export type CompanyNoteDeleteFilter = {
     and?: InputMaybe<Array<CompanyNoteDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyNoteDeleteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyNoteDeleteResponse = {
@@ -588,9 +665,11 @@ export type CompanyNoteDeleteResponse = {
 export type CompanyNoteFilter = {
     and?: InputMaybe<Array<CompanyNoteFilter>>;
     company?: InputMaybe<CompanyNoteFilterCompanyFilter>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<CompanyNoteFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyNoteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<CompanyNoteFilterUserFilter>;
 };
 
@@ -599,22 +678,28 @@ export type CompanyNoteFilterCompanyFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyNoteFilterCompanyFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
 export type CompanyNoteFilterUserFilter = {
     and?: InputMaybe<Array<CompanyNoteFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyNoteFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyNoteSort = {
@@ -623,18 +708,22 @@ export type CompanyNoteSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type CompanyNoteSortFields = "id";
+export type CompanyNoteSortFields = "createdAt" | "id" | "updatedAt";
 
 export type CompanyNoteSubscriptionFilter = {
     and?: InputMaybe<Array<CompanyNoteSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyNoteSubscriptionFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyNoteUpdateFilter = {
     and?: InputMaybe<Array<CompanyNoteUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyNoteUpdateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type CompanyNoteUpdateInput = {
@@ -642,7 +731,9 @@ export type CompanyNoteUpdateInput = {
 };
 
 export type CompanyNotesAggregateGroupBy = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type CompanyNotesAggregateResponse = {
@@ -668,15 +759,21 @@ export type CompanyNotesConnection = {
 };
 
 export type CompanyNotesCountAggregate = {
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type CompanyNotesMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type CompanyNotesMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type CompanyNotesSumAggregate = {
@@ -696,10 +793,12 @@ export type CompanySortFields =
     | "businessType"
     | "companySize"
     | "country"
+    | "createdAt"
     | "id"
     | "industry"
     | "name"
     | "totalRevenue"
+    | "updatedAt"
     | "website";
 
 export type CompanySubscriptionFilter = {
@@ -707,11 +806,13 @@ export type CompanySubscriptionFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanySubscriptionFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
@@ -725,11 +826,13 @@ export type CompanyUpdateFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyUpdateFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
@@ -745,21 +848,22 @@ export type CompanyUpdateInput = {
 };
 
 export type Contact = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     company: Company;
     createdAt: Scalars["DateTime"]["output"];
     createdBy: User;
     deals: ContactDealsConnection;
     email: Scalars["String"]["output"];
     id: Scalars["ID"]["output"];
-    jobTitle: Scalars["String"]["output"];
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name: Scalars["String"]["output"];
     notes: ContactNotesConnection;
-    phone: Scalars["String"]["output"];
+    phone?: Maybe<Scalars["String"]["output"]>;
     salesOwner: User;
-    score: Scalars["Int"]["output"];
+    score?: Maybe<Scalars["Int"]["output"]>;
     stage: ContactStage;
     status: ContactStatus;
-    timezone: Scalars["String"]["output"];
+    timezone?: Maybe<Scalars["String"]["output"]>;
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
 };
@@ -778,14 +882,18 @@ export type ContactNotesArgs = {
 
 export type ContactAggregateFilter = {
     and?: InputMaybe<Array<ContactAggregateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactAggregateFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactConnection = {
@@ -821,17 +929,22 @@ export type ContactDealsConnection = {
 
 export type ContactDeleteFilter = {
     and?: InputMaybe<Array<ContactDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactDeleteFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactDeleteResponse = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
@@ -848,10 +961,12 @@ export type ContactDeleteResponse = {
 export type ContactFilter = {
     and?: InputMaybe<Array<ContactFilter>>;
     company?: InputMaybe<ContactFilterCompanyFilter>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<ContactFilterUserFilter>;
     deals?: InputMaybe<ContactFilterDealFilter>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     notes?: InputMaybe<ContactFilterContactNoteFilter>;
     or?: InputMaybe<Array<ContactFilter>>;
@@ -860,6 +975,8 @@ export type ContactFilter = {
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<ContactFilterUserFilter>;
 };
 
@@ -868,18 +985,22 @@ export type ContactFilterCompanyFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactFilterCompanyFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
 export type ContactFilterContactNoteFilter = {
     and?: InputMaybe<Array<ContactFilterContactNoteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactFilterContactNoteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactFilterDealFilter = {
@@ -887,21 +1008,27 @@ export type ContactFilterDealFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactFilterDealFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
 export type ContactFilterUserFilter = {
     and?: InputMaybe<Array<ContactFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactNote = {
@@ -930,8 +1057,10 @@ export type ContactNoteCreateInput = {
 
 export type ContactNoteDeleteFilter = {
     and?: InputMaybe<Array<ContactNoteDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactNoteDeleteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactNoteDeleteResponse = {
@@ -944,32 +1073,42 @@ export type ContactNoteDeleteResponse = {
 export type ContactNoteFilter = {
     and?: InputMaybe<Array<ContactNoteFilter>>;
     contact?: InputMaybe<ContactNoteFilterContactFilter>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<ContactNoteFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactNoteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<ContactNoteFilterUserFilter>;
 };
 
 export type ContactNoteFilterContactFilter = {
     and?: InputMaybe<Array<ContactNoteFilterContactFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactNoteFilterContactFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactNoteFilterUserFilter = {
     and?: InputMaybe<Array<ContactNoteFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactNoteFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactNoteSort = {
@@ -978,18 +1117,22 @@ export type ContactNoteSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type ContactNoteSortFields = "id";
+export type ContactNoteSortFields = "createdAt" | "id" | "updatedAt";
 
 export type ContactNoteSubscriptionFilter = {
     and?: InputMaybe<Array<ContactNoteSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactNoteSubscriptionFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactNoteUpdateFilter = {
     and?: InputMaybe<Array<ContactNoteUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactNoteUpdateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactNoteUpdateInput = {
@@ -1012,13 +1155,17 @@ export type ContactSort = {
 };
 
 export type ContactSortFields =
+    | "createdAt"
     | "email"
     | "id"
+    | "jobTitle"
     | "name"
     | "phone"
     | "score"
     | "stage"
-    | "status";
+    | "status"
+    | "timezone"
+    | "updatedAt";
 
 /** Contact stage */
 export type ContactStage = "CUSTOMER" | "LEAD" | "SALES_QUALIFIED_LEAD";
@@ -1071,26 +1218,34 @@ export type ContactStatusFilterComparison = {
 
 export type ContactSubscriptionFilter = {
     and?: InputMaybe<Array<ContactSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactSubscriptionFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactUpdateFilter = {
     and?: InputMaybe<Array<ContactUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactUpdateFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type ContactUpdateInput = {
@@ -1306,17 +1461,6 @@ export type CreateUserSubscriptionFilterInput = {
     filter: UserSubscriptionFilter;
 };
 
-export type CursorPaging = {
-    /** Paginate after opaque cursor */
-    after?: InputMaybe<Scalars["ConnectionCursor"]["input"]>;
-    /** Paginate before opaque cursor */
-    before?: InputMaybe<Scalars["ConnectionCursor"]["input"]>;
-    /** Paginate first */
-    first?: InputMaybe<Scalars["Int"]["input"]>;
-    /** Paginate last */
-    last?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
 export type DateFieldComparison = {
     between?: InputMaybe<DateFieldComparisonBetween>;
     eq?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -1349,8 +1493,8 @@ export type Deal = {
     dealOwnerId: Scalars["ID"]["output"];
     id: Scalars["ID"]["output"];
     notes: Scalars["String"]["output"];
-    stage: DealStage;
-    stageId: Scalars["ID"]["output"];
+    stage?: Maybe<DealStage>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title: Scalars["String"]["output"];
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
@@ -1362,10 +1506,12 @@ export type DealAggregateFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealAggregateFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
@@ -1373,10 +1519,20 @@ export type DealAggregateGroupBy = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export type DealAggregateGroupByCreatedAtArgs = {
+    by?: GroupBy;
+};
+
+export type DealAggregateGroupByUpdatedAtArgs = {
+    by?: GroupBy;
 };
 
 export type DealAggregateResponse = {
@@ -1411,9 +1567,11 @@ export type DealCountAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     stageId?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
     value?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -1431,10 +1589,12 @@ export type DealDeleteFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealDeleteFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
@@ -1458,6 +1618,7 @@ export type DealFilter = {
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
     company?: InputMaybe<DealFilterCompanyFilter>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<DealFilterUserFilter>;
     dealContact?: InputMaybe<DealFilterContactFilter>;
     dealOwner?: InputMaybe<DealFilterUserFilter>;
@@ -1466,6 +1627,7 @@ export type DealFilter = {
     or?: InputMaybe<Array<DealFilter>>;
     stage?: InputMaybe<DealFilterDealStageFilter>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<DealFilterUserFilter>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -1475,50 +1637,64 @@ export type DealFilterCompanyFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<DealFilterCompanyFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
 export type DealFilterContactFilter = {
     and?: InputMaybe<Array<DealFilterContactFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<DealFilterContactFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealFilterDealStageFilter = {
     and?: InputMaybe<Array<DealFilterDealStageFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealFilterDealStageFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealFilterUserFilter = {
     and?: InputMaybe<Array<DealFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<DealFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealMaxAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -1526,9 +1702,11 @@ export type DealMinAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -1542,9 +1720,11 @@ export type DealSortFields =
     | "closeDateDay"
     | "closeDateMonth"
     | "closeDateYear"
+    | "createdAt"
     | "dealOwnerId"
     | "id"
     | "stageId"
+    | "updatedAt"
     | "value";
 
 export type DealStage = {
@@ -1567,6 +1747,15 @@ export type DealStageDealsAggregateArgs = {
     filter?: InputMaybe<DealAggregateFilter>;
 };
 
+export type DealStageConnection = {
+    /** Array of nodes. */
+    nodes: Array<DealStage>;
+    /** Paging information */
+    pageInfo: OffsetPageInfo;
+    /** Fetch total count of records */
+    totalCount: Scalars["Int"]["output"];
+};
+
 export type DealStageCreateInput = {
     title: Scalars["String"]["input"];
 };
@@ -1575,9 +1764,11 @@ export type DealStageDealsAggregateGroupBy = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -1604,9 +1795,11 @@ export type DealStageDealsCountAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     stageId?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
     value?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -1614,9 +1807,11 @@ export type DealStageDealsMaxAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -1624,9 +1819,11 @@ export type DealStageDealsMinAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
 
@@ -1642,9 +1839,11 @@ export type DealStageDealsSumAggregate = {
 
 export type DealStageDeleteFilter = {
     and?: InputMaybe<Array<DealStageDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealStageDeleteFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealStageDeleteResponse = {
@@ -1656,21 +1855,27 @@ export type DealStageDeleteResponse = {
 
 export type DealStageFilter = {
     and?: InputMaybe<Array<DealStageFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<DealStageFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealStageFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<DealStageFilterUserFilter>;
 };
 
 export type DealStageFilterUserFilter = {
     and?: InputMaybe<Array<DealStageFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<DealStageFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealStageSort = {
@@ -1679,24 +1884,29 @@ export type DealStageSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type DealStageSortFields = "id" | "title";
+export type DealStageSortFields = "createdAt" | "id" | "title" | "updatedAt";
 
 export type DealStageSubscriptionFilter = {
     and?: InputMaybe<Array<DealStageSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealStageSubscriptionFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealStageUpdateFilter = {
     and?: InputMaybe<Array<DealStageUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealStageUpdateFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type DealStageUpdateInput = {
-    title: Scalars["String"]["input"];
+    stageId?: InputMaybe<Scalars["ID"]["input"]>;
+    title?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type DealSubscriptionFilter = {
@@ -1704,10 +1914,12 @@ export type DealSubscriptionFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealSubscriptionFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
@@ -1726,10 +1938,12 @@ export type DealUpdateFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealUpdateFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
@@ -1988,9 +2202,11 @@ export type EventCategoryCreateInput = {
 
 export type EventCategoryDeleteFilter = {
     and?: InputMaybe<Array<EventCategoryDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventCategoryDeleteFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventCategoryDeleteResponse = {
@@ -2002,21 +2218,27 @@ export type EventCategoryDeleteResponse = {
 
 export type EventCategoryFilter = {
     and?: InputMaybe<Array<EventCategoryFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<EventCategoryFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventCategoryFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<EventCategoryFilterUserFilter>;
 };
 
 export type EventCategoryFilterUserFilter = {
     and?: InputMaybe<Array<EventCategoryFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<EventCategoryFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventCategorySort = {
@@ -2025,20 +2247,28 @@ export type EventCategorySort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type EventCategorySortFields = "id" | "title";
+export type EventCategorySortFields =
+    | "createdAt"
+    | "id"
+    | "title"
+    | "updatedAt";
 
 export type EventCategorySubscriptionFilter = {
     and?: InputMaybe<Array<EventCategorySubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventCategorySubscriptionFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventCategoryUpdateFilter = {
     and?: InputMaybe<Array<EventCategoryUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventCategoryUpdateFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventCategoryUpdateInput = {
@@ -2066,12 +2296,14 @@ export type EventCreateInput = {
 
 export type EventDeleteFilter = {
     and?: InputMaybe<Array<EventDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     endDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventDeleteFilter>>;
     startDate?: InputMaybe<DateFieldComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventDeleteResponse = {
@@ -2088,6 +2320,7 @@ export type EventDeleteResponse = {
 export type EventFilter = {
     and?: InputMaybe<Array<EventFilter>>;
     category?: InputMaybe<EventFilterEventCategoryFilter>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<EventFilterUserFilter>;
     description?: InputMaybe<StringFieldComparison>;
     endDate?: InputMaybe<DateFieldComparison>;
@@ -2095,24 +2328,31 @@ export type EventFilter = {
     or?: InputMaybe<Array<EventFilter>>;
     startDate?: InputMaybe<DateFieldComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<EventFilterUserFilter>;
 };
 
 export type EventFilterEventCategoryFilter = {
     and?: InputMaybe<Array<EventFilterEventCategoryFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventFilterEventCategoryFilter>>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventFilterUserFilter = {
     and?: InputMaybe<Array<EventFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<EventFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventSort = {
@@ -2122,30 +2362,36 @@ export type EventSort = {
 };
 
 export type EventSortFields =
+    | "createdAt"
     | "description"
     | "endDate"
     | "id"
     | "startDate"
-    | "title";
+    | "title"
+    | "updatedAt";
 
 export type EventSubscriptionFilter = {
     and?: InputMaybe<Array<EventSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     endDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventSubscriptionFilter>>;
     startDate?: InputMaybe<DateFieldComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventUpdateFilter = {
     and?: InputMaybe<Array<EventUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     endDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<EventUpdateFilter>>;
     startDate?: InputMaybe<DateFieldComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type EventUpdateInput = {
@@ -2657,6 +2903,26 @@ export type MutationUpdateOneUserArgs = {
     input: UpdateOneUserInput;
 };
 
+export type NumberFieldComparison = {
+    between?: InputMaybe<NumberFieldComparisonBetween>;
+    eq?: InputMaybe<Scalars["Float"]["input"]>;
+    gt?: InputMaybe<Scalars["Float"]["input"]>;
+    gte?: InputMaybe<Scalars["Float"]["input"]>;
+    in?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+    is?: InputMaybe<Scalars["Boolean"]["input"]>;
+    isNot?: InputMaybe<Scalars["Boolean"]["input"]>;
+    lt?: InputMaybe<Scalars["Float"]["input"]>;
+    lte?: InputMaybe<Scalars["Float"]["input"]>;
+    neq?: InputMaybe<Scalars["Float"]["input"]>;
+    notBetween?: InputMaybe<NumberFieldComparisonBetween>;
+    notIn?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+};
+
+export type NumberFieldComparisonBetween = {
+    lower: Scalars["Float"]["input"];
+    upper: Scalars["Float"]["input"];
+};
+
 export type OffsetPageInfo = {
     /** true if paging forward and there are more records. */
     hasNextPage?: Maybe<Scalars["Boolean"]["output"]>;
@@ -2669,17 +2935,6 @@ export type OffsetPaging = {
     limit?: InputMaybe<Scalars["Int"]["input"]>;
     /** Offset to start returning records from */
     offset?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
-export type PageInfo = {
-    /** The cursor of the last returned record. */
-    endCursor?: Maybe<Scalars["ConnectionCursor"]["output"]>;
-    /** true if paging forward and there are more records. */
-    hasNextPage?: Maybe<Scalars["Boolean"]["output"]>;
-    /** true if paging backwards and there are more records. */
-    hasPreviousPage?: Maybe<Scalars["Boolean"]["output"]>;
-    /** The cursor of the first returned record. */
-    startCursor?: Maybe<Scalars["ConnectionCursor"]["output"]>;
 };
 
 export type Query = {
@@ -2697,7 +2952,7 @@ export type Query = {
     deal: Deal;
     dealAggregate: Array<DealAggregateResponse>;
     dealStage: DealStage;
-    dealStages: Array<DealStage>;
+    dealStages: DealStageConnection;
     deals: DealConnection;
     event: Event;
     eventCategories: EventCategoryConnection;
@@ -2712,7 +2967,7 @@ export type Query = {
     taskComments: TaskCommentConnection;
     taskStage: TaskStage;
     taskStageAggregate: Array<TaskStageAggregateResponse>;
-    taskStages: Array<TaskStage>;
+    taskStages: TaskStageConnection;
     tasks: TaskConnection;
     user: User;
     users: UserConnection;
@@ -2724,7 +2979,7 @@ export type QueryAuditArgs = {
 
 export type QueryAuditsArgs = {
     filter?: AuditFilter;
-    paging?: CursorPaging;
+    paging?: OffsetPaging;
     sorting?: Array<AuditSort>;
 };
 
@@ -2786,6 +3041,7 @@ export type QueryDealStageArgs = {
 
 export type QueryDealStagesArgs = {
     filter?: DealStageFilter;
+    paging?: OffsetPaging;
     sorting?: Array<DealStageSort>;
 };
 
@@ -2853,6 +3109,7 @@ export type QueryTaskStageAggregateArgs = {
 
 export type QueryTaskStagesArgs = {
     filter?: TaskStageFilter;
+    paging?: OffsetPaging;
     sorting?: Array<TaskStageSort>;
 };
 
@@ -2949,34 +3206,44 @@ export type QuoteFilterCompanyFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<QuoteFilterCompanyFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
 export type QuoteFilterContactFilter = {
     and?: InputMaybe<Array<QuoteFilterContactFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<QuoteFilterContactFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type QuoteFilterUserFilter = {
     and?: InputMaybe<Array<QuoteFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<QuoteFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type QuoteItem = {
@@ -3332,10 +3599,11 @@ export type Task = {
     completed: Scalars["Boolean"]["output"];
     createdAt: Scalars["DateTime"]["output"];
     createdBy: User;
-    description: Scalars["String"]["output"];
-    dueDate: Scalars["DateTime"]["output"];
+    description?: Maybe<Scalars["String"]["output"]>;
+    dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id: Scalars["ID"]["output"];
     stage?: Maybe<TaskStage>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title: Scalars["String"]["output"];
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
@@ -3364,21 +3632,37 @@ export type TaskUsersAggregateArgs = {
 
 export type TaskAggregateFilter = {
     and?: InputMaybe<Array<TaskAggregateFilter>>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskAggregateFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskAggregateGroupBy = {
+    completed?: Maybe<Scalars["Boolean"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+};
+
+export type TaskAggregateGroupByCreatedAtArgs = {
+    by?: GroupBy;
 };
 
 export type TaskAggregateGroupByDueDateArgs = {
+    by?: GroupBy;
+};
+
+export type TaskAggregateGroupByUpdatedAtArgs = {
     by?: GroupBy;
 };
 
@@ -3393,6 +3677,7 @@ export type TaskAggregateResponse = {
 
 export type TaskAvgAggregate = {
     id?: Maybe<Scalars["Float"]["output"]>;
+    stageId?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type TaskComment = {
@@ -3407,8 +3692,10 @@ export type TaskComment = {
 
 export type TaskCommentAggregateFilter = {
     and?: InputMaybe<Array<TaskCommentAggregateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentAggregateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskCommentConnection = {
@@ -3427,8 +3714,10 @@ export type TaskCommentCreateInput = {
 
 export type TaskCommentDeleteFilter = {
     and?: InputMaybe<Array<TaskCommentDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentDeleteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskCommentDeleteResponse = {
@@ -3440,30 +3729,40 @@ export type TaskCommentDeleteResponse = {
 
 export type TaskCommentFilter = {
     and?: InputMaybe<Array<TaskCommentFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<TaskCommentFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentFilter>>;
     task?: InputMaybe<TaskCommentFilterTaskFilter>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<TaskCommentFilterUserFilter>;
 };
 
 export type TaskCommentFilterTaskFilter = {
     and?: InputMaybe<Array<TaskCommentFilterTaskFilter>>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentFilterTaskFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskCommentFilterUserFilter = {
     and?: InputMaybe<Array<TaskCommentFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<TaskCommentFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskCommentSort = {
@@ -3472,18 +3771,22 @@ export type TaskCommentSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type TaskCommentSortFields = "id";
+export type TaskCommentSortFields = "createdAt" | "id" | "updatedAt";
 
 export type TaskCommentSubscriptionFilter = {
     and?: InputMaybe<Array<TaskCommentSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentSubscriptionFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskCommentUpdateFilter = {
     and?: InputMaybe<Array<TaskCommentUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentUpdateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskCommentUpdateInput = {
@@ -3491,7 +3794,9 @@ export type TaskCommentUpdateInput = {
 };
 
 export type TaskCommentsAggregateGroupBy = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskCommentsAggregateResponse = {
@@ -3517,15 +3822,21 @@ export type TaskCommentsConnection = {
 };
 
 export type TaskCommentsCountAggregate = {
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TaskCommentsMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskCommentsMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskCommentsSumAggregate = {
@@ -3542,28 +3853,36 @@ export type TaskConnection = {
 };
 
 export type TaskCountAggregate = {
+    completed?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     description?: Maybe<Scalars["Int"]["output"]>;
     dueDate?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["Int"]["output"]>;
     title?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TaskCreateInput = {
     checklist?: InputMaybe<Array<ChecklistItemInput>>;
     description?: InputMaybe<Scalars["String"]["input"]>;
     dueDate?: InputMaybe<Scalars["DateTime"]["input"]>;
-    stageId: Scalars["Float"]["input"];
+    stageId?: InputMaybe<Scalars["Float"]["input"]>;
     title: Scalars["String"]["input"];
     userIds?: InputMaybe<Array<Scalars["ID"]["input"]>>;
 };
 
 export type TaskDeleteFilter = {
     and?: InputMaybe<Array<TaskDeleteFilter>>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskDeleteFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskDeleteResponse = {
@@ -3573,6 +3892,7 @@ export type TaskDeleteResponse = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -3580,50 +3900,68 @@ export type TaskDeleteResponse = {
 export type TaskFilter = {
     and?: InputMaybe<Array<TaskFilter>>;
     comments?: InputMaybe<TaskFilterTaskCommentFilter>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<TaskFilterUserFilter>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskFilter>>;
     stage?: InputMaybe<TaskFilterTaskStageFilter>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<TaskFilterUserFilter>;
 };
 
 export type TaskFilterTaskCommentFilter = {
     and?: InputMaybe<Array<TaskFilterTaskCommentFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskFilterTaskCommentFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskFilterTaskStageFilter = {
     and?: InputMaybe<Array<TaskFilterTaskStageFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskFilterTaskStageFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskFilterUserFilter = {
     and?: InputMaybe<Array<TaskFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<TaskFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskSort = {
@@ -3632,7 +3970,15 @@ export type TaskSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type TaskSortFields = "description" | "dueDate" | "id" | "title";
+export type TaskSortFields =
+    | "completed"
+    | "createdAt"
+    | "description"
+    | "dueDate"
+    | "id"
+    | "stageId"
+    | "title"
+    | "updatedAt";
 
 export type TaskStage = {
     createdAt: Scalars["DateTime"]["output"];
@@ -3656,12 +4002,24 @@ export type TaskStageTasksAggregateArgs = {
 
 export type TaskStageAggregateFilter = {
     and?: InputMaybe<Array<TaskStageAggregateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageAggregateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskStageAggregateGroupBy = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+};
+
+export type TaskStageAggregateGroupByCreatedAtArgs = {
+    by?: GroupBy;
+};
+
+export type TaskStageAggregateGroupByUpdatedAtArgs = {
+    by?: GroupBy;
 };
 
 export type TaskStageAggregateResponse = {
@@ -3677,8 +4035,19 @@ export type TaskStageAvgAggregate = {
     id?: Maybe<Scalars["Float"]["output"]>;
 };
 
+export type TaskStageConnection = {
+    /** Array of nodes. */
+    nodes: Array<TaskStage>;
+    /** Paging information */
+    pageInfo: OffsetPageInfo;
+    /** Fetch total count of records */
+    totalCount: Scalars["Int"]["output"];
+};
+
 export type TaskStageCountAggregate = {
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TaskStageCreateInput = {
@@ -3687,8 +4056,10 @@ export type TaskStageCreateInput = {
 
 export type TaskStageDeleteFilter = {
     and?: InputMaybe<Array<TaskStageDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageDeleteFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskStageDeleteResponse = {
@@ -3700,28 +4071,38 @@ export type TaskStageDeleteResponse = {
 
 export type TaskStageFilter = {
     and?: InputMaybe<Array<TaskStageFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<TaskStageFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<TaskStageFilterUserFilter>;
 };
 
 export type TaskStageFilterUserFilter = {
     and?: InputMaybe<Array<TaskStageFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<TaskStageFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskStageMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskStageMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskStageSort = {
@@ -3730,12 +4111,14 @@ export type TaskStageSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type TaskStageSortFields = "id";
+export type TaskStageSortFields = "createdAt" | "id" | "updatedAt";
 
 export type TaskStageSubscriptionFilter = {
     and?: InputMaybe<Array<TaskStageSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageSubscriptionFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskStageSumAggregate = {
@@ -3743,10 +4126,14 @@ export type TaskStageSumAggregate = {
 };
 
 export type TaskStageTasksAggregateGroupBy = {
+    completed?: Maybe<Scalars["Boolean"]["output"]>;
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskStageTasksAggregateResponse = {
@@ -3760,37 +4147,51 @@ export type TaskStageTasksAggregateResponse = {
 
 export type TaskStageTasksAvgAggregate = {
     id?: Maybe<Scalars["Float"]["output"]>;
+    stageId?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type TaskStageTasksCountAggregate = {
+    completed?: Maybe<Scalars["Int"]["output"]>;
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     description?: Maybe<Scalars["Int"]["output"]>;
     dueDate?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["Int"]["output"]>;
     title?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TaskStageTasksMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskStageTasksMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskStageTasksSumAggregate = {
     id?: Maybe<Scalars["Float"]["output"]>;
+    stageId?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type TaskStageUpdateFilter = {
     and?: InputMaybe<Array<TaskStageUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageUpdateFilter>>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskStageUpdateInput = {
@@ -3799,24 +4200,33 @@ export type TaskStageUpdateInput = {
 
 export type TaskSubscriptionFilter = {
     and?: InputMaybe<Array<TaskSubscriptionFilter>>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskSubscriptionFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskSumAggregate = {
     id?: Maybe<Scalars["Float"]["output"]>;
+    stageId?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type TaskUpdateFilter = {
     and?: InputMaybe<Array<TaskUpdateFilter>>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskUpdateFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskUpdateInput = {
@@ -3830,11 +4240,15 @@ export type TaskUpdateInput = {
 };
 
 export type TaskUsersAggregateGroupBy = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     role?: Maybe<Role>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskUsersAggregateResponse = {
@@ -3851,27 +4265,39 @@ export type TaskUsersAvgAggregate = {
 };
 
 export type TaskUsersCountAggregate = {
+    createdAt?: Maybe<Scalars["Int"]["output"]>;
     email?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    jobTitle?: Maybe<Scalars["Int"]["output"]>;
     name?: Maybe<Scalars["Int"]["output"]>;
     phone?: Maybe<Scalars["Int"]["output"]>;
     role?: Maybe<Scalars["Int"]["output"]>;
+    timezone?: Maybe<Scalars["Int"]["output"]>;
+    updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TaskUsersMaxAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     role?: Maybe<Role>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskUsersMinAggregate = {
+    createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     role?: Maybe<Role>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
+    updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskUsersSumAggregate = {
@@ -4136,6 +4562,7 @@ export type UpdateOneUserSubscriptionFilterInput = {
 };
 
 export type User = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     companies: UserCompaniesConnection;
     contacts: UserContactsConnection;
     createdAt: Scalars["DateTime"]["output"];
@@ -4144,12 +4571,12 @@ export type User = {
     email: Scalars["String"]["output"];
     events: UserEventsConnection;
     id: Scalars["ID"]["output"];
-    jobTitle: Scalars["String"]["output"];
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name: Scalars["String"]["output"];
-    phone: Scalars["String"]["output"];
+    phone?: Maybe<Scalars["String"]["output"]>;
     role: Role;
     tasks: UserTasksConnection;
-    timezone: Scalars["String"]["output"];
+    timezone?: Maybe<Scalars["String"]["output"]>;
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
 };
@@ -4186,12 +4613,16 @@ export type UserTasksArgs = {
 
 export type UserAggregateFilter = {
     and?: InputMaybe<Array<UserAggregateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserAggregateFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserCompaniesConnection = {
@@ -4241,15 +4672,20 @@ export type UserDealsConnection = {
 
 export type UserDeleteFilter = {
     and?: InputMaybe<Array<UserDeleteFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserDeleteFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserDeleteResponse = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
@@ -4274,16 +4710,20 @@ export type UserFilter = {
     and?: InputMaybe<Array<UserFilter>>;
     companies?: InputMaybe<UserFilterCompanyFilter>;
     contacts?: InputMaybe<UserFilterContactFilter>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<UserFilterUserFilter>;
     deals?: InputMaybe<UserFilterDealFilter>;
     email?: InputMaybe<StringFieldComparison>;
     events?: InputMaybe<UserFilterEventFilter>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
     tasks?: InputMaybe<UserFilterTaskFilter>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<UserFilterUserFilter>;
 };
 
@@ -4292,24 +4732,30 @@ export type UserFilterCompanyFilter = {
     businessType?: InputMaybe<CompanyBusinessTypeFilterComparison>;
     companySize?: InputMaybe<CompanyCompanySizeFilterComparison>;
     country?: InputMaybe<StringFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     industry?: InputMaybe<CompanyIndustryFilterComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserFilterCompanyFilter>>;
     totalRevenue?: InputMaybe<IntFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     website?: InputMaybe<StringFieldComparison>;
 };
 
 export type UserFilterContactFilter = {
     and?: InputMaybe<Array<UserFilterContactFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserFilterContactFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     score?: InputMaybe<IntFieldComparison>;
     stage?: InputMaybe<ContactStageFilterComparison>;
     status?: InputMaybe<ContactStatusFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserFilterDealFilter = {
@@ -4317,40 +4763,52 @@ export type UserFilterDealFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<UserFilterDealFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
 
 export type UserFilterEventFilter = {
     and?: InputMaybe<Array<UserFilterEventFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     endDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<UserFilterEventFilter>>;
     startDate?: InputMaybe<DateFieldComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserFilterTaskFilter = {
     and?: InputMaybe<Array<UserFilterTaskFilter>>;
+    completed?: InputMaybe<BooleanFieldComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     description?: InputMaybe<StringFieldComparison>;
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<UserFilterTaskFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserFilterUserFilter = {
     and?: InputMaybe<Array<UserFilterUserFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserRoleFilterComparison = {
@@ -4366,16 +4824,29 @@ export type UserSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type UserSortFields = "email" | "id" | "name" | "phone" | "role";
+export type UserSortFields =
+    | "createdAt"
+    | "email"
+    | "id"
+    | "jobTitle"
+    | "name"
+    | "phone"
+    | "role"
+    | "timezone"
+    | "updatedAt";
 
 export type UserSubscriptionFilter = {
     and?: InputMaybe<Array<UserSubscriptionFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserSubscriptionFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserTasksConnection = {
@@ -4389,12 +4860,16 @@ export type UserTasksConnection = {
 
 export type UserUpdateFilter = {
     and?: InputMaybe<Array<UserUpdateFilter>>;
+    createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserUpdateFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserUpdateInput = {
