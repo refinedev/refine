@@ -103,10 +103,12 @@ export type AuditFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<AuditFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -571,10 +573,12 @@ export type CompanyFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -689,10 +693,12 @@ export type CompanyNoteFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<CompanyNoteFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -842,6 +848,7 @@ export type CompanyUpdateInput = {
 };
 
 export type Contact = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     company: Company;
     createdAt: Scalars["DateTime"]["output"];
     createdBy: User;
@@ -937,6 +944,7 @@ export type ContactDeleteFilter = {
 };
 
 export type ContactDeleteResponse = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
@@ -1014,10 +1022,12 @@ export type ContactFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -1092,10 +1102,12 @@ export type ContactNoteFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<ContactNoteFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -1665,10 +1677,12 @@ export type DealFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<DealFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -1855,10 +1869,12 @@ export type DealStageFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<DealStageFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -2216,10 +2232,12 @@ export type EventCategoryFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<EventCategoryFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -2328,10 +2346,12 @@ export type EventFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<EventFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -3217,10 +3237,12 @@ export type QuoteFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<QuoteFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -3734,10 +3756,12 @@ export type TaskCommentFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<TaskCommentFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -3911,10 +3935,12 @@ export type TaskFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<TaskFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4058,10 +4084,12 @@ export type TaskStageFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<TaskStageFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4215,9 +4243,11 @@ export type TaskUsersAggregateGroupBy = {
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     role?: Maybe<Role>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
@@ -4238,9 +4268,11 @@ export type TaskUsersCountAggregate = {
     createdAt?: Maybe<Scalars["Int"]["output"]>;
     email?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    jobTitle?: Maybe<Scalars["Int"]["output"]>;
     name?: Maybe<Scalars["Int"]["output"]>;
     phone?: Maybe<Scalars["Int"]["output"]>;
     role?: Maybe<Scalars["Int"]["output"]>;
+    timezone?: Maybe<Scalars["Int"]["output"]>;
     updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -4248,9 +4280,11 @@ export type TaskUsersMaxAggregate = {
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     role?: Maybe<Role>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
@@ -4258,9 +4292,11 @@ export type TaskUsersMinAggregate = {
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name?: Maybe<Scalars["String"]["output"]>;
     phone?: Maybe<Scalars["String"]["output"]>;
     role?: Maybe<Role>;
+    timezone?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
@@ -4526,6 +4562,7 @@ export type UpdateOneUserSubscriptionFilterInput = {
 };
 
 export type User = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     companies: UserCompaniesConnection;
     contacts: UserContactsConnection;
     createdAt: Scalars["DateTime"]["output"];
@@ -4534,12 +4571,12 @@ export type User = {
     email: Scalars["String"]["output"];
     events: UserEventsConnection;
     id: Scalars["ID"]["output"];
-    jobTitle: Scalars["String"]["output"];
+    jobTitle?: Maybe<Scalars["String"]["output"]>;
     name: Scalars["String"]["output"];
-    phone: Scalars["String"]["output"];
+    phone?: Maybe<Scalars["String"]["output"]>;
     role: Role;
     tasks: UserTasksConnection;
-    timezone: Scalars["String"]["output"];
+    timezone?: Maybe<Scalars["String"]["output"]>;
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
 };
@@ -4579,10 +4616,12 @@ export type UserAggregateFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserAggregateFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4636,14 +4675,17 @@ export type UserDeleteFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserDeleteFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type UserDeleteResponse = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     email?: Maybe<Scalars["String"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
@@ -4674,11 +4716,13 @@ export type UserFilter = {
     email?: InputMaybe<StringFieldComparison>;
     events?: InputMaybe<UserFilterEventFilter>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
     tasks?: InputMaybe<UserFilterTaskFilter>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<UserFilterUserFilter>;
 };
@@ -4758,10 +4802,12 @@ export type UserFilterUserFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserFilterUserFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4782,9 +4828,11 @@ export type UserSortFields =
     | "createdAt"
     | "email"
     | "id"
+    | "jobTitle"
     | "name"
     | "phone"
     | "role"
+    | "timezone"
     | "updatedAt";
 
 export type UserSubscriptionFilter = {
@@ -4792,10 +4840,12 @@ export type UserSubscriptionFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserSubscriptionFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4813,10 +4863,12 @@ export type UserUpdateFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     email?: InputMaybe<StringFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
+    jobTitle?: InputMaybe<StringFieldComparison>;
     name?: InputMaybe<StringFieldComparison>;
     or?: InputMaybe<Array<UserUpdateFilter>>;
     phone?: InputMaybe<StringFieldComparison>;
     role?: InputMaybe<UserRoleFilterComparison>;
+    timezone?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
