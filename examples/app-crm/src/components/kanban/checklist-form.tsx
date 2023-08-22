@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import { HttpError, useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Button, Form } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -16,6 +16,7 @@ type Props = {
 };
 
 export const CheckListForm = ({ initialValues, isLoading }: Props) => {
+    const invalidate = useInvalidate();
     const { formProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: false,
@@ -23,8 +24,17 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
         redirect: false,
         autoSave: {
             enabled: true,
+            onFinish: (values) => {
+                return {
+                    ...values,
+                    checklist: values.checklist?.filter(Boolean),
+                };
+            },
         },
         successNotification: false,
+        onMutationSuccess: () => {
+            invalidate({ invalidates: ["list"], resource: "tasks" });
+        },
     });
 
     if (isLoading) {
@@ -33,7 +43,12 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
 
     return (
         <div>
-            <ChecklistHeader checklist={initialValues.checklist} />
+            <ChecklistHeader
+                checklist={
+                    formProps.form?.getFieldValue("checklist") ??
+                    initialValues.checklist
+                }
+            />
             <div
                 style={{
                     border: "1px solid #d9d9d9",

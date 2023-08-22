@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const ChecklistHeader = ({ checklist = [] }: Props) => {
-    const completed = checklist.filter((item) => item.checked).length;
+    const completed = checklist.filter((item) => item?.checked).length;
     const total = checklist.length;
 
     return (

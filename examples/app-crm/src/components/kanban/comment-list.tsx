@@ -1,4 +1,10 @@
-import { HttpError, useGetIdentity, useList, useParsed } from "@refinedev/core";
+import {
+    HttpError,
+    useGetIdentity,
+    useList,
+    useParsed,
+    useInvalidate,
+} from "@refinedev/core";
 import { DeleteButton, useForm } from "@refinedev/antd";
 import { Avatar, Form, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
@@ -7,6 +13,7 @@ import { Text } from "../../components/text";
 import { TaskComment, User } from "../../interfaces/graphql";
 
 const CommentListItem = ({ item }: { item: TaskComment }) => {
+    const invalidate = useInvalidate();
     const { formProps, setId, id, saveButtonProps } = useForm<
         TaskComment,
         HttpError,
@@ -19,6 +26,10 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
         },
         onMutationSuccess: () => {
             setId(undefined);
+            invalidate({
+                invalidates: ["list"],
+                resource: "taskComments",
+            });
         },
     });
     const { data: me } = useGetIdentity<User>();
@@ -88,11 +99,17 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                             Edit
                         </Typography.Link>
                         <DeleteButton
-                            resource="taskComment"
                             recordItemId={item.id}
+                            meta={{ operation: "taskComment" }}
                             size="small"
                             type="link"
                             icon={null}
+                            onSuccess={() => {
+                                invalidate({
+                                    invalidates: ["list"],
+                                    resource: "taskComments",
+                                });
+                            }}
                             style={{
                                 padding: 0,
                                 fontSize: "12px",

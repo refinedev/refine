@@ -9,7 +9,7 @@ type FormValues = TaskComment & {
 };
 
 export const CommentForm = () => {
-    const invalidates = useInvalidate();
+    const invalidate = useInvalidate();
     const { id: taskId } = useParsed();
 
     const { formProps, onFinish, form } = useForm<
@@ -28,7 +28,7 @@ export const CommentForm = () => {
         redirect: false,
         mutationMode: "optimistic",
         onMutationSuccess: () => {
-            invalidates({
+            invalidate({
                 invalidates: ["list", "detail"],
                 resource: "tasks",
                 id: taskId,

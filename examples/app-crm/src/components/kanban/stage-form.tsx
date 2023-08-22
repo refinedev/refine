@@ -1,4 +1,4 @@
-import { BaseKey, HttpError } from "@refinedev/core";
+import { BaseKey, HttpError, useInvalidate } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
 import { Checkbox, Form, Select, Space } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
@@ -20,6 +20,7 @@ type FormValues = Task & {
 };
 
 export const StageForm = ({ initialValues, isLoading }: Props) => {
+    const invalidate = useInvalidate();
     const { formProps } = useForm<Task, HttpError, FormValues>({
         queryOptions: {
             enabled: false,
@@ -34,6 +35,9 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
                     stageId: values.stage?.id,
                 };
             },
+        },
+        onMutationSuccess: () => {
+            invalidate({ invalidates: ["list"], resource: "tasks" });
         },
     });
 

@@ -17,7 +17,6 @@ import { DueDateForm } from "../../../components/kanban/duedate-form";
 import { DueDateHeader } from "../../../components/kanban/duedate-header";
 import { UsersForm } from "../../../components/kanban/users-form";
 import { UsersHeader } from "../../../components/kanban/users-header";
-import { ChecklistHeader } from "../../../components/kanban/checklist-header";
 import { CheckListForm } from "../../../components/kanban/checklist-form";
 import { CommentForm } from "../../../components/kanban/comment-form";
 import { CommentList } from "../../../components/kanban/comment-list";
@@ -55,7 +54,7 @@ export const KanbanEditPage = () => {
 
     const { description, completed, stage, dueDate, users, checklist, title } =
         queryResult?.data?.data ?? {};
-    const isLoading = queryResult?.isFetching ?? true;
+    const isLoading = queryResult?.isLoading ?? true;
 
     const items: CollapseProps["items"] = [
         {

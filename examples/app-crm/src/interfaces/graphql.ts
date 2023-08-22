@@ -3581,7 +3581,7 @@ export type Task = {
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id: Scalars["ID"]["output"];
     stage?: Maybe<TaskStage>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title: Scalars["String"]["output"];
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
@@ -3616,7 +3616,7 @@ export type TaskAggregateFilter = {
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskAggregateFilter>>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
@@ -3627,7 +3627,7 @@ export type TaskAggregateGroupBy = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -3724,7 +3724,7 @@ export type TaskCommentFilterTaskFilter = {
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskCommentFilterTaskFilter>>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
@@ -3856,7 +3856,7 @@ export type TaskDeleteFilter = {
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskDeleteFilter>>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
@@ -3868,7 +3868,7 @@ export type TaskDeleteResponse = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -3884,7 +3884,7 @@ export type TaskFilter = {
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskFilter>>;
     stage?: InputMaybe<TaskFilterTaskStageFilter>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<TaskFilterUserFilter>;
@@ -3923,7 +3923,7 @@ export type TaskMaxAggregate = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -3933,7 +3933,7 @@ export type TaskMinAggregate = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -4103,7 +4103,7 @@ export type TaskStageTasksAggregateGroupBy = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -4138,7 +4138,7 @@ export type TaskStageTasksMaxAggregate = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -4148,7 +4148,7 @@ export type TaskStageTasksMinAggregate = {
     description?: Maybe<Scalars["String"]["output"]>;
     dueDate?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
-    stageId?: Maybe<Scalars["Int"]["output"]>;
+    stageId?: Maybe<Scalars["ID"]["output"]>;
     title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
@@ -4178,7 +4178,7 @@ export type TaskSubscriptionFilter = {
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskSubscriptionFilter>>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
@@ -4196,7 +4196,7 @@ export type TaskUpdateFilter = {
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskUpdateFilter>>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
@@ -4748,7 +4748,7 @@ export type UserFilterTaskFilter = {
     dueDate?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<UserFilterTaskFilter>>;
-    stageId?: InputMaybe<IntFieldComparison>;
+    stageId?: InputMaybe<IdFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
