@@ -22,6 +22,7 @@ import {
     UnorderedListOutlined,
     AppstoreOutlined,
     PlusSquareOutlined,
+    SearchOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
@@ -265,7 +266,11 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                 <div className={styles.search}>
                     <Form {...searchFormProps} layout="inline">
                         <Form.Item name="name">
-                            <Input size="large" placeholder="Search by name" />
+                            <Input
+                                size="large"
+                                prefix={<SearchOutlined />}
+                                placeholder="Search by name"
+                            />
                         </Form.Item>
                         <SaveButton
                             hidden
