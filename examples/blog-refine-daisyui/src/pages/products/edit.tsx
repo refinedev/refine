@@ -5,6 +5,7 @@ import {
     useSelect,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
+import { BackIcon, RefreshIcon } from "../../components/icons";
 
 export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
@@ -29,144 +30,95 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     }, [categoryOptions]);
 
     return (
-        <div style={{ padding: "16px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h1>Product Edit</h1>
-                <div>
+        <div className="page-container">
+            <div className="flex justify-between items-center">
+                <div className="flex justify-start items-center">
                     <button
+                        className="mr-2 btn btn-primary btn-sm btn-ghost"
                         onClick={() => {
                             list("products");
                         }}
                     >
-                        Products
+                        <BackIcon />
+                    </button>
+                    <h1 className="page-title">Edit Product</h1>
+                </div>
+                <div>
+                    <button
+                        className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
+                        onClick={() => queryResult?.refetch()}
+                    >
+                        <RefreshIcon />
+                        Refresh
                     </button>
                 </div>
             </div>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "8px",
-                    }}
-                >
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Id</span>
-                        <input
-                            disabled
-                            type="number"
-                            {...register("id", {
-                                required: "This field is required",
-                                valueAsNumber: true,
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.id?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Name</span>
-                        <input
-                            type="text"
-                            {...register("name", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.name?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Is Active</span>
-                        <input
-                            type="checkbox"
-                            {...register("isActive", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {errors?.isActive?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Description</span>
-                        <input
-                            type="text"
-                            {...register("description", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.description?.message as string}
-                        </span>
-                    </label>
-                    <>
-                        {productsData?.images?.map(
-                            (item: any, index: number) => (
-                                <label key={index}>
-                                    <span style={{ marginRight: "8px" }}>
-                                        Images
-                                    </span>
-                                    <input
-                                        {...register(`images.${index}.url`, {
-                                            required: "This field is required",
-                                        })}
-                                    />
-                                    <span style={{ color: "red" }}>
-                                        {
-                                            (errors as any)?.images?.[index]
-                                                ?.url?.message as string
-                                        }
-                                    </span>
-                                </label>
-                            ),
-                        )}
-                    </>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Created At</span>
-                        <input
-                            {...register("createdAt", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.createdAt?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Price</span>
-                        <input
-                            type="number"
-                            {...register("price", {
-                                required: "This field is required",
-                                valueAsNumber: true,
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.price?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Category</span>
-                        <select
-                            placeholder="Select category"
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                        >
-                            {categoryOptions?.map((option) => (
-                                <option value={option.value} key={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.category?.id?.message as string}
-                        </span>
-                    </label>
-                    <div>
-                        <input type="submit" value="Save" />
-                    </div>
+            <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
+                <div className="form-control my-4">
+                    <label className="label">Name</label>
+                    <input
+                        className="input input-sm input-bordered"
+                        type="text"
+                        {...register("name", {
+                            required: "This field is required",
+                        })}
+                    />
+                    <span style={{ color: "red" }}>
+                        {(errors as any)?.name?.message as string}
+                    </span>
+                </div>
+                <div className="form-control my-4">
+                    <label className="label">Price</label>
+                    <input
+                        className="input input-sm input-bordered"
+                        type="number"
+                        {...register("price", {
+                            required: "This field is required",
+                            valueAsNumber: true,
+                        })}
+                    />
+                    <span style={{ color: "red" }}>
+                        {(errors as any)?.price?.message as string}
+                    </span>
+                </div>
+                <div className="form-control my-4">
+                    <label className="label">Category</label>
+                    <select
+                        className="input input-sm input-bordered"
+                        placeholder="Select category"
+                        {...register("category.id", {
+                            required: "This field is required",
+                        })}
+                    >
+                        {categoryOptions?.map((option) => (
+                            <option value={option.value} key={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                    <span style={{ color: "red" }}>
+                        {(errors as any)?.category?.id?.message as string}
+                    </span>
+                </div>
+                <div className="form-control my-4">
+                    <label className="label">Description</label>
+                    <textarea
+                        className="textarea textarea-bordered"
+                        rows={5}
+                        {...register("description", {
+                            required: "This field is required",
+                        })}
+                    />
+                    <span style={{ color: "red" }}>
+                        {(errors as any)?.description?.message as string}
+                    </span>
+                </div>
+                <div className="flex justify-end items-center">
+                    <input
+                        className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+                        type="submit"
+                        value="Save"
+                    />
                 </div>
             </form>
         </div>

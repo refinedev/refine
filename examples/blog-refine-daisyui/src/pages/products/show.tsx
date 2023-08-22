@@ -5,6 +5,7 @@ import {
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
+import { BackIcon, EditDocIcon } from "../../components/icons";
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     const { edit, list } = useNavigation();
@@ -15,58 +16,45 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     const record = data?.data;
 
     return (
-        <div style={{ padding: "16px" }}>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
-            >
-                <h1>Product Show</h1>
-                <div style={{ display: "flex", gap: "8px" }}>
-                    <button onClick={() => list("products")}>Products</button>
-                    <button onClick={() => edit("products", id ?? "")}>
+        <div className="page-container">
+            <div className="page-header">
+                <div className="flex justify-start items-center">
+                    <button
+                        className="mr-2 btn btn-primary btn-sm btn-ghost"
+                        onClick={() => list("products")}
+                    >
+                        <BackIcon />
+                    </button>
+                    <h1 className="page-title">Product Details</h1>
+                </div>
+                <div className="flex justify-between items-center">
+                    <button
+                        className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
+                        onClick={() => edit("products", id ?? "")}
+                    >
+                        <EditDocIcon />
                         Edit
                     </button>
                 </div>
             </div>
-            <div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Id</h5>
-                    <div>{record?.id ?? ""}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Name</h5>
-                    <div>{record?.name}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Is Active</h5>
-                    <div>{record?.isActive ? "Yes" : "No"}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Description</h5>
-                    <div>{record?.description}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Images</h5>
-                    <p>{record?.images?.url}</p>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Created At</h5>
-                    <div>
-                        {new Date(record?.createdAt).toLocaleString(undefined, {
-                            timeZone: "UTC",
-                        })}
+            <div className="card">
+                <div className="card-body">
+                    <div className="text-xl font-bold">
+                        {record?.name ?? "Loading..."}
                     </div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Price</h5>
-                    <div>{record?.price ?? ""}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Category</h5>
-                    <div>{record?.category?.title}</div>
+                    <div className="divider p-0 m-0"></div>
+                    <div className="mb-2">
+                        <h5 className="mb-1 font-bold">Price</h5>
+                        <div>{record?.price ? `$ ${record?.price}` : "Loading..."}</div>
+                    </div>
+                    <div className="mb-2">
+                        <h5 className="mb-1 font-bold">Category</h5>
+                        <div>{record?.category?.title ?? "Loading..."}</div>
+                    </div>
+                    <div className="mb-2">
+                        <h5 className="mb-1 font-bold">Description</h5>
+                        <div>{record?.description ?? "Loading..."}</div>
+                    </div>
                 </div>
             </div>
         </div>
