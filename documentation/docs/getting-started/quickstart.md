@@ -9,23 +9,29 @@ import TabItem from '@theme/TabItem';
 
 **refine** works on any environment that can run **React** (incl. *Vite, Next.js, Remix, and CRA(Legacy)* etc.)
 
-Although you could take the time to manually set up your environment and install the **refine** packages afterwards, the optimal way to get started with **refine** is using the [refine.new](https://refine.new/) platform or `create refine-app` project starter tool.
+Although you could take the time to manually set up your environment and install the **refine** packages afterwards, the optimal way to get started with **refine** is using the [Browser-based Scaffolder](https://refine.dev/?playground=true) and **CLI-based Scaffolder**.
 
 Choose one of the methods below to bootstrap a refine app:
 
 <Tabs>
-  <TabItem value="refine-new" label="refine.new" default>
+  <TabItem value="Browser-based-scaffolder" label="With Browser-based" default>
 
-  [refine.new](https://refine.new/) is a powerful tool that lets you create **refine** apps right in your browser. You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.
+This is an efficient tool that allows you to create refine app seamlessly in your browser.
 
- 1. Navigate to [refine.new](https://refine.new/?form=true) and select libraries and frameworks you want to work with by using interactive UI. 
+You can choose the libraries and frameworks you want to work with, and the tool will generate a boilerplate code for you.
+
+
+
+ 1. Navigate to [scaffolder](https://refine.dev/?playground=true) and select libraries and frameworks you want to work with by using interactive UI. 
  2. Download the generated project by clicking on the **"Build & Download"** button.
+
+
+<div className="flex justify-center">
+    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif" className="border border-gray-200 rounded" />
+</div>
 
 <br/>
 
-<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif"  alt="quick start gif" />
-
-<br />
 
 :::tip
 [If you do not want to deal with the installation steps, you can use this pre-configured refine.new template &rarr;](https://refine.new/preview/1a5eb93b-ab9b-4112-b80e-7563b334c025)
@@ -46,7 +52,7 @@ Choose one of the methods below to bootstrap a refine app:
 
 
   </TabItem>
-  <TabItem value="CLI" label="create refine-app">
+  <TabItem value="CLI" label="With CLI-based">
 
 `create refine-app` provides built-in templates for *Vite*, *Next.js*, *Remix*, and *CRA(Legacy)* environments, so you can bootstrap a **refine** project in just a couple of minutes. It also offers a wide range of options that you can easily configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* preferences.
 
