@@ -50,12 +50,12 @@
 
 ## What is refine?
 
-**refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications.  
+**refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications.
 
-From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications. 
+From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications.
 
 
-refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
+refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
 **refine** is _headless by design_, thereby offering unlimited styling and customization options.
 
@@ -74,12 +74,12 @@ For the routing, refine's headless approach shines too. It doesn't tie you to a 
 
 This means you can use refine seamlessly in different platforms like React Native, Electron, Next.js, Remix etc. without any extra steps for the setup.
 
-## 🔥 Try refine 
+## 🔥 Try refine
 refine's [Browser-based app scaffolder](https://refine.dev/#playground) lets you create refine app by making step-by-step selections directly in your browser
 
-You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.  
+You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
 
-This allows you yo preview, modify, and download project immediately, thereby streamlining the development process.
+This allows you to preview, modify, and download project immediately, thereby streamlining the development process.
 
 <br/>
 
