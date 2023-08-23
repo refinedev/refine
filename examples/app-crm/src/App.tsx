@@ -39,7 +39,12 @@ import { ContactsPageWrapper } from "./routes/contacts/wrapper";
 import { ContactCreatePage } from "./routes/contacts/create";
 import { ContactEditPage } from "./routes/contacts/edit";
 import { ContactShowPage } from "./routes/contacts/show";
-import { QuotesPage } from "./routes/quotes";
+import {
+    QuotesListPage,
+    QuotesCreatePage,
+    QuotesEditPage,
+    QuotesShowPage,
+} from "./routes/quotes";
 import { SettingsPage } from "./routes/administration/settings";
 import { AuditLogPage } from "./routes/administration/audit-log";
 import { Layout } from "./components/layout";
@@ -60,7 +65,6 @@ const App: React.FC = () => {
                 <Refine
                     authProvider={authProvider}
                     dataProvider={dataProvider}
-                    liveProvider={liveProvider}
                     routerProvider={routerProvider}
                     resources={resources}
                     notificationProvider={notificationProvider}
@@ -164,8 +168,30 @@ const App: React.FC = () => {
                                     element={<ContactCreatePage />}
                                 />
                             </Route>
+                            <Route path="/quotes">
+                                <Route
+                                    path=""
+                                    element={
+                                        <QuotesListPage>
+                                            <Outlet />
+                                        </QuotesListPage>
+                                    }
+                                >
+                                    <Route
+                                        path="create"
+                                        element={<QuotesCreatePage />}
+                                    />
 
-                            <Route path="/quotes" element={<QuotesPage />} />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<QuotesEditPage />}
+                                    />
+                                </Route>
+                                <Route
+                                    path="show/:id"
+                                    element={<QuotesShowPage />}
+                                />
+                            </Route>
                             <Route path="/administration" element={<Outlet />}>
                                 <Route
                                     path="settings"
