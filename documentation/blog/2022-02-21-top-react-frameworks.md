@@ -20,7 +20,7 @@ hide_table_of_contents: false
 
 In this post, I have listed some of the best React frameworks that are most popular and that I believe will be popular in 2022.
 
-<!--truncate-->
+
 
 ### What is React?
 
@@ -118,24 +118,36 @@ npm install react-bootstrap bootstrap@5.1.3
 
 ### 5. refine <a name="refine"></a>
 
-If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/) powerful interface!
+[refine](https://github.com/refinedev/refine) stands as an open-source React-oriented framework meticulously crafted to streamline and expedite web application development, bolstered by server-side rendering compatibility through Next.js or Remix. While its primary focus lies on data-rich B2B applications such as admin panels, dashboards, and internal tool, it seamlessly extends its capabilities to customer-facing interfaces like storefronts and a diverse array of CRUD applications.
 
 **Key features**
 
 ​
-🔥 **Headless** : Works with any UI framework
+⚙️ Experience effortless setup in just a minute using a single command via **zero-configuration**.
 
-⚙️ **Zero-configuration** : One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
+🔌 Seamlessly connect to over **15 backend services** such as [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
 
-📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
+🌐 Enable **server-side rendering (SSR)** support using **Next.js** or **Remix**.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
+🔍 Automatically generate UIs for **CRUD operations** based on your API data structure.
 
-📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
+⚛ Achieve optimal **state management** and handle **mutations** seamlessly with the power of **React Query**.
 
-🐜 **Enterprise UI** : Works seamlessly with Ant Design. (Support for multiple UI frameworks is on the Roadmap)
+🔀 Implement **advanced routing** with the router library of your preference.
 
-📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
+🔐 Enjoy the convenience of built-in providers for **authentication** and **access control** flows.
+
+⚡ Leverage built-in support for creating **live / real-time applications**.
+
+📄 Easily manage **audit logs** and track **document versioning**.
+
+💬 Seamlessly integrate with any **i18n** framework for localization needs.
+
+💪 Ensure a future-proof and **robust architecture**.
+
+⌛️ Utilize the time-saving features of the built-in [CLI](https://refine.dev/docs/packages/documentation/cli/).
+
+✅ Benefit from comprehensive **test coverage** for enhanced reliability.
 
 There are two ways to add UI elements to refine;
 
@@ -145,7 +157,7 @@ There are two ways to add UI elements to refine;
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/docs/tutorial/introduction/index/)
 
 ```
-npx superplate-cli -p refine-react tutorial
+npm create refine-app@latest
 ```
 **Examples**
 
