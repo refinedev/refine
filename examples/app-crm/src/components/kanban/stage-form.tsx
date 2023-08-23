@@ -1,9 +1,10 @@
-import { BaseKey, HttpError, useInvalidate } from "@refinedev/core";
+import { useEffect } from "react";
+import { HttpError, useInvalidate } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
 import { Checkbox, Form, Select, Space } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
-import { Task, TaskStage } from "../../interfaces/graphql";
+import { Task } from "../../interfaces/graphql";
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 
 type Props = {
@@ -14,14 +15,9 @@ type Props = {
     isLoading?: boolean;
 };
 
-type FormValues = Task & {
-    stage?: TaskStage;
-    stageId?: BaseKey;
-};
-
 export const StageForm = ({ initialValues, isLoading }: Props) => {
     const invalidate = useInvalidate();
-    const { formProps } = useForm<Task, HttpError, FormValues>({
+    const { formProps } = useForm<Task, HttpError, Task>({
         queryOptions: {
             enabled: true,
         },
@@ -47,6 +43,10 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
             fields: ["title", "id"],
         },
     });
+
+    useEffect(() => {
+        formProps.form?.setFieldsValue(initialValues);
+    }, [initialValues.completed, initialValues.stage]);
 
     if (isLoading) {
         return <AccordionHeaderSkeleton />;

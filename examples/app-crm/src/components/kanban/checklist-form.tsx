@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { HttpError, useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Button, Form } from "antd";
@@ -36,6 +37,10 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
             invalidate({ invalidates: ["list"], resource: "tasks" });
         },
     });
+
+    useEffect(() => {
+        formProps.form?.setFieldsValue(initialValues);
+    }, [initialValues.checklist]);
 
     if (isLoading) {
         return <AccordionHeaderSkeleton />;

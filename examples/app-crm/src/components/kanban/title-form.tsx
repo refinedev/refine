@@ -1,9 +1,9 @@
-import { HttpError } from "@refinedev/core";
+import { HttpError, useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Form, Skeleton } from "antd";
 
 import { Text } from "../../components/text";
-import { Task } from "../../interfaces/graphql";
+import { Task, TaskUpdateInput } from "../../interfaces/graphql";
 import { useEffect } from "react";
 
 const TitleInput = ({
@@ -37,7 +37,9 @@ type Props = {
 };
 
 export const TitleForm = ({ initialValues, isLoading }: Props) => {
-    const { formProps } = useForm<Task, HttpError, Task>({
+    const invalidate = useInvalidate();
+
+    const { formProps } = useForm<Task, HttpError, TaskUpdateInput>({
         queryOptions: {
             enabled: false,
         },
@@ -45,6 +47,9 @@ export const TitleForm = ({ initialValues, isLoading }: Props) => {
         warnWhenUnsavedChanges: false,
         autoSave: {
             enabled: true,
+        },
+        onMutationSuccess: () => {
+            invalidate({ invalidates: ["list"], resource: "tasks" });
         },
     });
 

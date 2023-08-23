@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode, memo } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 import { UseDroppableArguments, useDroppable } from "@dnd-kit/core";
 import { Button, Dropdown, MenuProps } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
@@ -108,13 +108,3 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
         </div>
     );
 };
-
-export const KanbanColumnMemo = memo(KanbanColumn, (prev, next) => {
-    return (
-        prev.id === next.id &&
-        prev.title === next.title &&
-        prev.description === next.description &&
-        prev.count === next.count &&
-        prev.variant === next.variant
-    );
-});

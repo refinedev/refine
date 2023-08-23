@@ -56,3 +56,17 @@
         background-color: #fff;
     }
 }
+
+.audit-log-table {
+    .ant-table {
+        .ant-table-tbody {
+            & > tr.ant-table-row:hover > td {
+                background: none !important;
+            }
+        }
+
+        .ant-table-cell {
+            vertical-align: top;
+        }
+    }
+}
