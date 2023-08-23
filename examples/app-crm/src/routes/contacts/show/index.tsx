@@ -13,9 +13,15 @@ import { useSelect } from "@refinedev/antd";
 
 import { Text } from "../../../components/text";
 import { SingleElementForm } from "../../../components/single-element-form";
+import { Timezone } from "../../../enums/timezone";
 
 import type { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
+
+const timezoneOptions = Object.keys(Timezone).map((key) => ({
+    label: Timezone[key as keyof typeof Timezone],
+    value: Timezone[key as keyof typeof Timezone],
+}));
 
 export const ContactShowPage = () => {
     const [activeForm, setActiveForm] = React.useState<
@@ -200,48 +206,7 @@ export const ContactShowPage = () => {
                     >
                         <Select
                             style={{ width: "100%" }}
-                            options={[
-                                {
-                                    label: "UTC (Coordinated Universal Time)",
-                                    value: "UTC (Coordinated Universal Time)",
-                                },
-                                {
-                                    label: "GMT (Greenwich Mean Time)",
-                                    value: "GMT (Greenwich Mean Time)",
-                                },
-                                {
-                                    label: "EST (Eastern Standard Time)",
-                                    value: "EST (Eastern Standard Time)",
-                                },
-                                {
-                                    label: "CST (Central Standard Time)",
-                                    value: "CST (Central Standard Time)",
-                                },
-                                {
-                                    label: "MST (Mountain Standard Time)",
-                                    value: "MST (Mountain Standard Time)",
-                                },
-                                {
-                                    label: "PST (Pacific Standard Time)",
-                                    value: "PST (Pacific Standard Time)",
-                                },
-                                {
-                                    label: "CET (Central European Time)",
-                                    value: "CET (Central European Time)",
-                                },
-                                {
-                                    label: "IST (Indian Standard Time)",
-                                    value: "IST (Indian Standard Time)",
-                                },
-                                {
-                                    label: "JST (Japan Standard Time)",
-                                    value: "JST (Japan Standard Time)",
-                                },
-                                {
-                                    label: "AEST (Australian Eastern Standard Time)",
-                                    value: "AEST (Australian Eastern Standard Time)",
-                                },
-                            ]}
+                            options={timezoneOptions}
                             defaultValue={data.data.timezone}
                         />
                     </SingleElementForm>
