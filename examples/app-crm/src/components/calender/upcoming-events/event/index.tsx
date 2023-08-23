@@ -1,6 +1,8 @@
 import React from "react";
 import dayjs from "dayjs";
 import { Badge } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useGetToPath } from "@refinedev/core";
 
 import { Text } from "../../../text";
 import type { Event } from "../../../../interfaces/graphql";
@@ -14,6 +16,8 @@ type CalendarUpcomingEventProps = {
 export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
     item,
 }) => {
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
     const { id, title, startDate, endDate, color } = item;
     const isToday = dayjs.utc(startDate).isSame(dayjs.utc(), "day");
     const isTomorrow = dayjs
@@ -46,7 +50,23 @@ export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
     };
 
     return (
-        <div key={id} className={styles.item}>
+        <div
+            onClick={() => {
+                navigate(
+                    getToPath({
+                        action: "show",
+                        meta: {
+                            id: item.id,
+                        },
+                    }) ?? "/calendar",
+                    {
+                        replace: true,
+                    },
+                );
+            }}
+            key={id}
+            className={styles.item}
+        >
             <div className={styles.date}>
                 <Badge color={color} className={styles.badge} />
 
