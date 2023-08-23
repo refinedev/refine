@@ -47,7 +47,7 @@ export const DealKanbanCard: FC<Props> = ({
         };
     });
 
-    const { push } = useNavigation();
+    const { edit } = useNavigation();
     const { mutate } = useDelete();
 
     const dropdownItems = useMemo(() => {
@@ -57,7 +57,7 @@ export const DealKanbanCard: FC<Props> = ({
                 key: "1",
                 icon: <EyeOutlined />,
                 onClick: () => {
-                    push(`${id}`);
+                    edit("deals", id, "replace");
                 },
             },
             {

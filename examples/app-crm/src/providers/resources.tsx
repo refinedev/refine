@@ -60,6 +60,7 @@ export const resources: IResourceItem[] = [
         name: "deals",
         list: "/scrumboard/sales",
         create: "/scrumboard/sales/create",
+        edit: "/scrumboard/sales/edit/:id",
         meta: {
             label: "Sales Pipeline",
             parent: "scrumboard",
