@@ -70,3 +70,16 @@
         }
     }
 }
+
+.ant-picker-calendar {
+    .ant-picker-panel {
+        .ant-picker-body {
+            .ant-picker-cell {
+                .ant-picker-calendar-date-content {
+                    height: 92px;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
