@@ -188,6 +188,7 @@ export const ContactShowPage = () => {
                         <Input defaultValue={phone || ""} />
                     </SingleElementForm>
                     <SingleElementForm
+                        style={{ borderBottom: "none" }}
                         icon={<GlobalOutlined />}
                         state={
                             activeForm && activeForm === "timezone"

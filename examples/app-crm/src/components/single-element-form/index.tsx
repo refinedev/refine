@@ -13,6 +13,7 @@ type SingleElementFormProps = {
     state?: "empty" | "form" | "view";
     onUpdate?: () => void;
     onClick?: () => void;
+    style?: React.CSSProperties;
 } & React.PropsWithChildren;
 
 export const SingleElementForm: React.FC<SingleElementFormProps> = ({
@@ -23,6 +24,7 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
     onClick,
     onUpdate,
     children,
+    style,
 }) => {
     const { formProps, saveButtonProps } = useForm({
         action: "edit",
@@ -40,7 +42,7 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
 
     return (
         <Form layout="vertical" {...formProps}>
-            <div className={styles.container}>
+            <div className={styles.container} style={{ ...style }}>
                 <div className={styles.icon}>{icon}</div>
                 <div className={styles.content}>
                     <div className={styles.input}>
