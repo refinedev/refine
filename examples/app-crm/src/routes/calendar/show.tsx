@@ -15,7 +15,7 @@ import { Text } from "../../components/text";
 import { Event } from "../../interfaces/graphql";
 import { UserTag } from "../../components/user-tag";
 
-export const CalendarShowPage = () => {
+export const CalendarShowPage: React.FC = () => {
     const { id } = useResource();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
@@ -47,7 +47,7 @@ export const CalendarShowPage = () => {
 
     if (isError) {
         console.error("Error fetching event", isError);
-        return;
+        return null;
     }
 
     const renderContent = () => {
