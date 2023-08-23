@@ -36,7 +36,7 @@ const CalendarCell: React.FC<CalendarCellProps> = ({
 
     return (
         <div>
-            {todayEvents.map((item) => (
+            {todayEvents.slice(0, 3).map((item) => (
                 <div onClick={() => onClickEvent?.(item)} key={item.id}>
                     <Text
                         ellipsis={{
@@ -51,6 +51,9 @@ const CalendarCell: React.FC<CalendarCellProps> = ({
                     </Text>
                 </div>
             ))}
+            {todayEvents.length > 3 && (
+                <Text strong>{todayEvents.length - 3} more</Text>
+            )}
         </div>
     );
 };
