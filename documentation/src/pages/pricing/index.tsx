@@ -565,10 +565,8 @@ const pricingData = [
             },
             {
                 description: "Access to Integrations",
-                community: <PricingText>Client-side only</PricingText>,
-                enterprise: (
-                    <PricingText bold>Client-side + Server-side</PricingText>
-                ),
+                community: <PricingText>Frontend only</PricingText>,
+                enterprise: <PricingText bold>Frontend + Backend</PricingText>,
             },
             {
                 description: "Query Designer",
