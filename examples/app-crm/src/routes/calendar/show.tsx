@@ -1,4 +1,4 @@
-import { Badge, Drawer, Skeleton, Space } from "antd";
+import { Badge, Drawer, Skeleton, Space, Tag } from "antd";
 import { useGetToPath, useResource, useShow } from "@refinedev/core";
 import {
     CalendarOutlined,
@@ -72,8 +72,10 @@ export const CalendarShowPage: React.FC = () => {
 
         // if the event is more than one day, don't show the time
         let dateFormat = "dddd, MMMM D, YYYY [at] h:mm A";
+        let allDay = false;
         if (dayjs(endDate).diff(dayjs(startDate), "day") > 0) {
             dateFormat = "dddd, MMMM D, YYYY";
+            allDay = true;
         }
 
         return (
@@ -81,6 +83,11 @@ export const CalendarShowPage: React.FC = () => {
                 <div>
                     <CalendarOutlined style={{ marginRight: ".5rem" }} />
                     <Text>{dayjs(startDate).format(dateFormat)}</Text>
+                    {allDay && (
+                        <Tag style={{ marginLeft: ".5rem" }} color="blue">
+                            All Day
+                        </Tag>
+                    )}
                 </div>
                 <div>
                     <CalendarOutlined style={{ marginRight: ".5rem" }} />
@@ -123,7 +130,7 @@ export const CalendarShowPage: React.FC = () => {
                     },
                 );
             }}
-            width={560}
+            width={378}
             extra={<EditButton icon={<EditOutlined />} hideText />}
         >
             {renderContent()}
