@@ -9,7 +9,7 @@ import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import {
     KanbanBoard,
-    KanbanColumnMemo,
+    KanbanColumn,
     KanbanItem,
     KanbanAddStageButton,
     KanbanAddCardButton,
@@ -42,6 +42,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     const navigate = useNavigate();
 
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
+        resource: "tasks",
         pagination: {
             mode: "off",
         },
@@ -52,6 +53,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     });
 
     const { data: tasks, isLoading: isLoadingTasks } = useList<Task>({
+        resource: "tasks",
         sorters: [
             {
                 field: "dueDate",
@@ -215,7 +217,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     return (
         <>
             <KanbanBoard onDragEnd={handleOnDragEnd}>
-                <KanbanColumnMemo
+                <KanbanColumn
                     id={"unassigned"}
                     title={"unassigned"}
                     count={taskStages?.unassignedStage?.length || 0}
@@ -239,12 +241,12 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                             }
                         />
                     )}
-                </KanbanColumnMemo>
+                </KanbanColumn>
                 {taskStages.stages?.map((column) => {
                     const contextMenuItems = getContextMenuItems({ column });
 
                     return (
-                        <KanbanColumnMemo
+                        <KanbanColumn
                             key={column.id}
                             id={column.id}
                             title={column.title}
@@ -272,7 +274,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                                     }
                                 />
                             )}
-                        </KanbanColumnMemo>
+                        </KanbanColumn>
                     );
                 })}
                 <KanbanAddStageButton onClick={handleAddStage} />

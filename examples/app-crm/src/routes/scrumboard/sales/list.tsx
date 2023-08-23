@@ -16,7 +16,7 @@ import {
 } from "../../../components";
 import {
     KanbanBoard,
-    KanbanColumnMemo,
+    KanbanColumn,
     KanbanItem,
     KanbanAddStageButton,
     KanbanAddCardButton,
@@ -257,7 +257,7 @@ export const SalesPage = () => {
 
     return (
         <KanbanBoard onDragEnd={handleOnDragEnd}>
-            <KanbanColumnMemo
+            <KanbanColumn
                 id={"unassigned"}
                 title={"unassigned"}
                 count={stageGrouped.stageUnassigned?.length || 0}
@@ -292,13 +292,13 @@ export const SalesPage = () => {
                         onClick={() => handleAddCard({ stageId: "unassigned" })}
                     />
                 )}
-            </KanbanColumnMemo>
+            </KanbanColumn>
             {stageGrouped.stageAll.map((column) => {
                 const sum = column.dealsAggregate?.[0]?.sum?.value || 0;
                 const contextMenuItems = getContextMenuItems({ column });
 
                 return (
-                    <KanbanColumnMemo
+                    <KanbanColumn
                         key={column.id}
                         id={column.id}
                         title={column.title}
@@ -340,12 +340,12 @@ export const SalesPage = () => {
                                 }
                             />
                         )}
-                    </KanbanColumnMemo>
+                    </KanbanColumn>
                 );
             })}
             <KanbanAddStageButton onClick={handleAddStage} />
             {stageGrouped.stageWon && (
-                <KanbanColumnMemo
+                <KanbanColumn
                     key={stageGrouped.stageWon.id}
                     id={stageGrouped.stageWon.id}
                     title={stageGrouped.stageWon.title}
@@ -392,10 +392,10 @@ export const SalesPage = () => {
                             </KanbanItem>
                         );
                     })}
-                </KanbanColumnMemo>
+                </KanbanColumn>
             )}
             {stageGrouped.stageLost && (
-                <KanbanColumnMemo
+                <KanbanColumn
                     key={stageGrouped.stageLost.id}
                     id={stageGrouped.stageLost.id}
                     title={stageGrouped.stageLost.title}
@@ -442,7 +442,7 @@ export const SalesPage = () => {
                             </KanbanItem>
                         );
                     })}
-                </KanbanColumnMemo>
+                </KanbanColumn>
             )}
             <DealKanbanWonLostDrop />
         </KanbanBoard>
