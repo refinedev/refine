@@ -1,4 +1,4 @@
-import { Badge, Drawer, Space } from "antd";
+import { Badge, Drawer, Skeleton, Space } from "antd";
 import { useGetToPath, useResource, useShow } from "@refinedev/core";
 import {
     CalendarOutlined,
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Text } from "../../components/text";
 import { Event } from "../../interfaces/graphql";
+import { UserTag } from "../../components/user-tag";
 
 export const CalendarShowPage = () => {
     const { id } = useResource();
@@ -30,13 +31,13 @@ export const CalendarShowPage = () => {
                 "color",
                 "createdAt",
                 {
-                    createdBy: ["id", "name"],
+                    createdBy: ["id", "name", "avatarUrl"],
                 },
                 {
                     category: ["id", "title"],
                 },
                 {
-                    participants: ["id", "name"],
+                    participants: ["id", "name", "avatarUrl"],
                 },
             ],
         },
@@ -45,53 +46,37 @@ export const CalendarShowPage = () => {
     const { data, isLoading, isError } = queryResult;
 
     if (isError) {
-        // TODO: handle error message
-        return null;
+        console.error("Error fetching event", isError);
+        return;
     }
 
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
+    const renderContent = () => {
+        if (isLoading) {
+            return (
+                <Skeleton
+                    loading={isLoading}
+                    active
+                    avatar
+                    paragraph={{
+                        rows: 3,
+                    }}
+                    style={{
+                        padding: 0,
+                    }}
+                />
+            );
+        }
 
-    const {
-        color,
-        title,
-        description,
-        startDate,
-        endDate,
-        category,
-        participants,
-    } = data.data;
+        const { description, startDate, endDate, category, participants } =
+            data.data;
 
-    // if the event is more than one day, don't show the time
-    let dateFormat = "dddd, MMMM D, YYYY [at] h:mm A";
-    if (dayjs(endDate).diff(dayjs(startDate), "day") > 0) {
-        dateFormat = "dddd, MMMM D, YYYY";
-    }
+        // if the event is more than one day, don't show the time
+        let dateFormat = "dddd, MMMM D, YYYY [at] h:mm A";
+        if (dayjs(endDate).diff(dayjs(startDate), "day") > 0) {
+            dateFormat = "dddd, MMMM D, YYYY";
+        }
 
-    return (
-        <Drawer
-            title={
-                <Space>
-                    <Badge color={color} />
-                    <Text>{title}</Text>
-                </Space>
-            }
-            open
-            onClose={() => {
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
-            }}
-            width={560}
-            extra={<EditButton icon={<EditOutlined />} hideText />}
-        >
+        return (
             <Space direction="vertical" size="large">
                 <div>
                     <CalendarOutlined style={{ marginRight: ".5rem" }} />
@@ -108,7 +93,7 @@ export const CalendarShowPage = () => {
                 <div>
                     <TeamOutlined style={{ marginRight: ".5rem" }} />
                     {participants.map((participant) => (
-                        <Text key={participant.id}>{participant.name}</Text>
+                        <UserTag key={participant.id} user={participant} />
                     ))}
                 </div>
                 <div>
@@ -116,6 +101,32 @@ export const CalendarShowPage = () => {
                     <Text>{description}</Text>
                 </div>
             </Space>
+        );
+    };
+
+    return (
+        <Drawer
+            title={
+                <Space>
+                    <Badge color={data?.data.color} />
+                    <Text>{data?.data.title}</Text>
+                </Space>
+            }
+            open
+            onClose={() => {
+                navigate(
+                    getToPath({
+                        action: "list",
+                    }) ?? "",
+                    {
+                        replace: true,
+                    },
+                );
+            }}
+            width={560}
+            extra={<EditButton icon={<EditOutlined />} hideText />}
+        >
+            {renderContent()}
         </Drawer>
     );
 };
