@@ -23,7 +23,6 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
     const { data, isLoading } = useList<EventCategory>({
         resource: "eventCategories",
         meta: {
-            operation: "eventCategories",
             fields: ["id", "title"],
         },
     });

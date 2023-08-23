@@ -19,7 +19,6 @@ export const CalendarManageCategories: React.FC<
     const { mutate: createManyMutation } = useCreateMany({
         mutationOptions: {
             meta: {
-                operation: "eventCategories",
                 fields: ["id", "title"],
             },
         },
@@ -28,7 +27,6 @@ export const CalendarManageCategories: React.FC<
     const { data } = useList<EventCategory>({
         resource: "eventCategories",
         meta: {
-            operation: "eventCategories",
             fields: ["id", "title"],
         },
     });
@@ -59,9 +57,6 @@ export const CalendarManageCategories: React.FC<
                                 deleteMutation({
                                     resource: "eventCategories",
                                     id: category.id,
-                                    meta: {
-                                        operation: "deleteOneEventCategory",
-                                    },
                                 });
                             }}
                         >
@@ -96,7 +91,6 @@ export const CalendarManageCategories: React.FC<
                             {
                                 resource: "eventCategories",
                                 meta: {
-                                    operation: "createManyEventCategories",
                                     fields: ["id", "title"],
                                 },
                                 values,

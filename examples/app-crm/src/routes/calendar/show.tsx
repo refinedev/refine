@@ -21,7 +21,6 @@ export const CalendarShowPage = () => {
     const { queryResult } = useShow<Event>({
         id,
         meta: {
-            operation: "getOneEvent",
             fields: [
                 "id",
                 "title",

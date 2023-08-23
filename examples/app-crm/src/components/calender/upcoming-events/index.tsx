@@ -35,7 +35,6 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             },
         ],
         meta: {
-            operation: "events",
             fields: ["id", "title", "color", "startDate", "endDate"],
         },
     });

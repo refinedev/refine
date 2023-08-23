@@ -31,7 +31,6 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
     const { selectProps: categorySelectProps } = useSelect({
         resource: "eventCategories",
         meta: {
-            operation: "getEventCategories",
             fields: ["id", "title"],
         },
     });
@@ -40,7 +39,6 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
         optionLabel: "name",
         resource: "users",
         meta: {
-            operation: "getUsers",
             fields: ["id", "name"],
         },
     });
