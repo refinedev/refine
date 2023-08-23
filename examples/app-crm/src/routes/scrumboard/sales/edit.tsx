@@ -64,6 +64,10 @@ export const SalesEditPage = () => {
             fields: ["title", "id"],
         },
     });
+    stageSelectProps.options?.concat({
+        label: "Unassigned",
+        value: null,
+    });
 
     const { selectProps: contactSelectProps } = useSelect({
         resource: "contacts",

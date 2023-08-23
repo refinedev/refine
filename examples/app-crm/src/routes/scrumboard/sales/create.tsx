@@ -58,6 +58,10 @@ export const SalesCreatePage = () => {
             fields: ["title", "id"],
         },
     });
+    stageSelectProps.options?.concat({
+        label: "Unassigned",
+        value: null,
+    });
 
     const { data: user } = useGetIdentity<User>();
 
@@ -176,6 +180,8 @@ export const SalesCreatePage = () => {
                                 dealOwnerId: user?.id,
                             });
                         }
+                    } else {
+                        formProps.onFinish?.(values);
                     }
                 }}
             >
