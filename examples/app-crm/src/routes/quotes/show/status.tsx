@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Quote, QuoteUpdateInput } from "../../../interfaces/graphql";
-import { Button, ConfigProvider } from "antd";
+import { Button, ConfigProvider, Space } from "antd";
 import { HttpError, useUpdate } from "@refinedev/core";
 
 interface Props {
@@ -48,26 +48,32 @@ export const Status: FC<Props> = ({ id, status, style }) => {
                 theme={{
                     components: {
                         Button: {
+                            colorPrimaryHover: variant[status].color,
                             colorPrimary: variant[status].color,
                         },
                     },
                 }}
             >
-                <Button type="primary" onClick={() => onStatusChange("DRAFT")}>
-                    Draft
-                </Button>
-                <Button
-                    type={step[status] > 0 ? "primary" : "default"}
-                    onClick={() => onStatusChange("SENT")}
-                >
-                    Sent
-                </Button>
-                <Button
-                    type={step[status] > 1 ? "primary" : "default"}
-                    onClick={() => onStatusChange("ACCEPTED")}
-                >
-                    Accepted
-                </Button>
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => onStatusChange("DRAFT")}
+                    >
+                        Draft
+                    </Button>
+                    <Button
+                        type={step[status] > 0 ? "primary" : "default"}
+                        onClick={() => onStatusChange("SENT")}
+                    >
+                        Sent
+                    </Button>
+                    <Button
+                        type={step[status] > 1 ? "primary" : "default"}
+                        onClick={() => onStatusChange("ACCEPTED")}
+                    >
+                        Accepted
+                    </Button>
+                </Space>
             </ConfigProvider>
         </div>
     );

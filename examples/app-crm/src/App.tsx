@@ -65,6 +65,7 @@ const App: React.FC = () => {
                 <Refine
                     authProvider={authProvider}
                     dataProvider={dataProvider}
+                    liveProvider={liveProvider}
                     routerProvider={routerProvider}
                     resources={resources}
                     notificationProvider={notificationProvider}
