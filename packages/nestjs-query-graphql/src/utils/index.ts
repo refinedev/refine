@@ -139,7 +139,11 @@ export const generateCreatedSubscription = ({
             ),
             required: true,
             value: {
-                filter: generateFilters(filters as LogicalFilter[]),
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
             },
         };
     }
@@ -174,7 +178,11 @@ export const generateUpdatedSubscription = ({
             ),
             required: true,
             value: {
-                filter: generateFilters(filters as LogicalFilter[]),
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
             },
         };
     }
@@ -209,14 +217,20 @@ export const generateDeletedSubscription = ({
             ),
             required: true,
             value: {
-                filter: generateFilters(filters as LogicalFilter[]),
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
             },
         };
     }
 
     const { query, variables } = gql.subscription({
         operation,
-        fields: meta.fields,
+        fields: meta.fields.filter(
+            (field: string | object) => typeof field !== "object",
+        ),
         variables: queryVariables,
     });
 
