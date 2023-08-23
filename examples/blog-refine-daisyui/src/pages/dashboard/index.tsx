@@ -5,7 +5,8 @@ import { KpiCard } from "../../components/dashboard/kpiCard";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
 import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
 import { TabView } from "../../components/dashboard/TabView";
-import { TTab } from "../../interfaces";
+import { IChartDatum, TTab } from "../../interfaces";
+import { DollarIcon, ProductIcon, UserGroupIcon } from "../../components/icons";
 
 const query = {
     start: dayjs().subtract(7, "days").startOf("day"),
@@ -41,7 +42,7 @@ export const Dashboard: React.FC = () => {
 
     const useMemoizedChartData = (d: any) => {
         return useMemo(() => {
-            return d?.data?.data?.map((item: any) => ({
+            return d?.data?.data?.map((item: IChartDatum) => ({
                 date: new Intl.DateTimeFormat("en-US", {
                     month: "short",
                     year: "numeric",
@@ -103,7 +104,62 @@ export const Dashboard: React.FC = () => {
 
     return (
         <>
-            {/* <KpiCard /> */}
+            <div className="container flex justify-center items-center">
+                <div className="stats mr-8 mt-4 mb-8 shadow flex-shrink md:flex-none lg:flex-grow">
+                    <KpiCard
+                        title="Weekly Revenue"
+                        data={dailyRevenue}
+                        formatTotal={(value: number | string) => `$ ${value}`}
+                        icon={
+                            <DollarIcon
+                                size={12}
+                                colors={{
+                                    stroke: "rgba(54, 162, 235, 0.6)",
+                                    fill: "rgb(54, 162, 235)",
+                                }}
+                            />
+                        }
+                        colors={{
+                            stroke: "rgb(54, 162, 235)",
+                            fill: "rgba(54, 162, 235, 0.2)",
+                        }}
+                    />
+                    <KpiCard
+                        title="Weekly Orders"
+                        data={dailyOrders}
+                        icon={
+                            <ProductIcon
+                                size={12}
+                                colors={{
+                                    stroke: "rgb(255, 159, 64)",
+                                    fill: "rgba(255, 159, 64, 0.6)",
+                                }}
+                            />
+                        }
+                        colors={{
+                            stroke: "rgb(255, 159, 64)",
+                            fill: "rgba(255, 159, 64, 0.7)",
+                        }}
+                    />
+                    <KpiCard
+                        title="New Customers"
+                        data={newCustomers}
+                        icon={
+                            <UserGroupIcon
+                                size={12}
+                                colors={{
+                                    stroke: "rgba(76, 175, 80, 0.6)",
+                                    fill: "rgb(76, 175, 80)",
+                                }}
+                            />
+                        }
+                        colors={{
+                            stroke: "rgb(76, 175, 80)",
+                            fill: "rgba(76, 175, 80, 0.6)",
+                        }}
+                    />
+                </div>
+            </div>
             <TabView tabs={tabs} />
         </>
     );
