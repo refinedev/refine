@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding: .5rem .8rem;
+    border-bottom: 1px solid rgba(217, 217, 217, 1);
+
+    
+    .icon {
+        padding-right: .5rem;
+        align-self: flex-start;
+
+    }
+    .content {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+
+        .input {
+            flex: 1;
+            margin-right: .8rem;
+        }
+
+        .label {
+            display: block;
+            margin-bottom: .5rem;
+        }
+
+        .buttons {
+            align-self: flex-end;
+            display: flex;
+            gap: .5rem;
+        }
+    }
+
+    .actions {
+        align-self: center;
+        display: flex;
+        gap: .5rem;
+    }
+}
+/* 
+.container:last-child {
+    border: none;
+} */

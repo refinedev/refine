@@ -224,6 +224,9 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                     },
                 ],
             },
+            sorters: {
+                initial: [{ field: "id", order: "asc" }],
+            },
             onSearch: (values: any) => {
                 return [
                     {
@@ -243,6 +246,9 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                     },
                     "jobTitle",
                     "status",
+                    "createdAt",
+                    "updatedAt",
+                    "avatarUrl",
                 ],
             },
         });
