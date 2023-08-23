@@ -1,18 +1,37 @@
 import { useEffect } from "react";
-import { useGetToPath } from "@refinedev/core";
+import {
+    HttpError,
+    useCreate,
+    useGetIdentity,
+    useGetToPath,
+} from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 import { DollarOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
-import { Company } from "../../../interfaces/graphql";
+import { Company, Contact, Deal, User } from "../../../interfaces/graphql";
+
+type FormValues = {
+    stageId?: string | null;
+    companyId?: string;
+    dealContactId?: string;
+    dealOwnerId?: string;
+    title?: string;
+    contactName?: string;
+    contactEmail?: string;
+};
 
 export const SalesCreatePage = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 
-    const { formProps, modalProps, close } = useModalForm({
+    const { formProps, modalProps, close } = useModalForm<
+        Deal,
+        HttpError,
+        FormValues
+    >({
         action: "create",
         defaultVisible: true,
     });
@@ -39,6 +58,10 @@ export const SalesCreatePage = () => {
             fields: ["title", "id"],
         },
     });
+
+    const { data: user } = useGetIdentity<User>();
+
+    const { mutateAsync: createMutateAsync } = useCreate<Contact>();
 
     const companyId = Form.useWatch("companyId", formProps.form);
 
@@ -83,6 +106,7 @@ export const SalesCreatePage = () => {
                 <Col span={12}>
                     <Form.Item
                         label="Contact name"
+                        name="contactName"
                         rules={[{ required: true }]}
                     >
                         <Input
@@ -94,6 +118,7 @@ export const SalesCreatePage = () => {
                 <Col span={12}>
                     <Form.Item
                         label="Contact email"
+                        name="contactEmail"
                         rules={[{ required: true }]}
                     >
                         <Input
@@ -123,7 +148,37 @@ export const SalesCreatePage = () => {
             title="Add new deal"
             width={512}
         >
-            <Form {...formProps} layout="vertical">
+            <Form
+                {...formProps}
+                layout="vertical"
+                onFinish={async (values) => {
+                    if (values.contactName && values.contactEmail) {
+                        const { data } = await createMutateAsync({
+                            resource: "contacts",
+                            values: {
+                                name: values.contactName,
+                                email: values.contactEmail,
+                                salesOwnerId: user?.id,
+                                companyId,
+                            },
+                            meta: {
+                                fields: ["id"],
+                            },
+                        });
+
+                        delete values.contactName;
+                        delete values.contactEmail;
+
+                        if (data) {
+                            formProps.onFinish?.({
+                                ...values,
+                                dealContactId: data.id,
+                                dealOwnerId: user?.id,
+                            });
+                        }
+                    }
+                }}
+            >
                 <Form.Item
                     label="Deal title"
                     name="title"
