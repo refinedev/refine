@@ -26,7 +26,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
     contact,
     onClick,
 }) => {
-    const { name, email, status, jobTitle, company } = contact;
+    const { name, email, status, jobTitle, company, avatarUrl } = contact;
     return (
         <div className={styles.container}>
             <Dropdown
@@ -41,9 +41,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
             </Dropdown>
 
             <div className={styles.personal}>
-                <Avatar className={styles.avatar} size={64}>
-                    {name[0]}
-                </Avatar>
+                <Avatar className={styles.avatar} size={64} src={avatarUrl} />
                 <Text
                     className={styles.name}
                     strong
