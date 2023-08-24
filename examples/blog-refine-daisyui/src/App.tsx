@@ -28,7 +28,7 @@ import {
     CategoryList,
     CategoryShow,
 } from "./pages/categories";
-import { ProductIcon, CategoryIcon } from "./components/icons";
+import { ProductIcon, CategoryIcon, HomeIcon } from "./components/icons";
 import { Dashboard } from "./pages/dashboard";
 
 function App() {
@@ -43,21 +43,36 @@ function App() {
                     routerProvider={routerBindings}
                     resources={[
                         {
+                            name: "dashboard",
+                            list: "/dashboard",
+                            meta: {
+                                icon: (
+                                    <HomeIcon
+                                        size={4}
+                                        colors={{
+                                            stroke: "#2f2f2f",
+                                            fill: "#4f4f4f",
+                                        }}
+                                    />
+                                ),
+                            },
+                        },
+                        {
                             name: "products",
                             list: "/products",
                             create: "/products/create",
                             edit: "/products/edit/:id",
                             show: "/products/show/:id",
-                            icon: (
-                                <ProductIcon
-                                    size={4}
-                                    colors={{
-                                        stroke: "#2f2f2f",
-                                        fill: "#4f4f4f",
-                                    }}
-                                />
-                            ),
                             meta: {
+                                icon: (
+                                    <ProductIcon
+                                        size={4}
+                                        colors={{
+                                            stroke: "#2f2f2f",
+                                            fill: "#4f4f4f",
+                                        }}
+                                    />
+                                ),
                                 canDelete: true,
                             },
                         },
@@ -67,8 +82,8 @@ function App() {
                             create: "/categories/create",
                             edit: "/categories/edit/:id",
                             show: "/categories/show/:id",
-                            icon: <CategoryIcon />,
                             meta: {
+                                icon: <CategoryIcon />,
                                 canDelete: true,
                             },
                         },
@@ -91,7 +106,9 @@ function App() {
                                 index
                                 element={<Navigate to="/dashboard" />}
                             />
-                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/dashboard">
+                                <Route index element={<Dashboard />} />
+                            </Route>
                             <Route path="/products">
                                 <Route index element={<ProductList />} />
                                 <Route
