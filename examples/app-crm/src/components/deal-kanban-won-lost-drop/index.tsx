@@ -13,6 +13,10 @@ export const DealKanbanWonLostDrop: FC = () => {
         onDragEnd: () => setShow(false),
     });
 
+    if (!show) {
+        return null;
+    }
+
     return (
         <div className={styles.container}>
             <WonArea />
