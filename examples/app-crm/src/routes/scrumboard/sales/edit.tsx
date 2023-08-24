@@ -194,6 +194,7 @@ export const SalesEditPage = () => {
                             <Select
                                 placeholder="Please select stage"
                                 {...stageSelectProps}
+                                showSearch={false}
                                 options={stageSelectProps.options?.concat({
                                     label: "UNASSIGNED",
                                     value: null,

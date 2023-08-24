@@ -284,6 +284,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                                 <Select
                                     placeholder="Please select stage"
                                     {...stageSelectProps}
+                                    showSearch={false}
                                     options={stageSelectProps.options?.concat({
                                         label: "UNASSIGNED",
                                         value: null,
