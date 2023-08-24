@@ -3,13 +3,16 @@ import {
     CreateButton,
     DeleteButton,
     EditButton,
+    FilterDropdown,
     List,
     ShowButton,
+    getDefaultSortOrder,
+    useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Avatar, Form, Input, Space, Table, Tooltip } from "antd";
+import { Avatar, Form, Input, Select, Space, Table, Tooltip } from "antd";
 import { PlusCircleOutlined, PlusSquareOutlined } from "@ant-design/icons";
-import { Quote, QuoteFilter } from "../../interfaces/graphql";
+import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
 import {
     currencyNumber,
     getNameInitials,
@@ -17,10 +20,25 @@ import {
 } from "../../utilities";
 import { Text, QuoteStatusTag } from "../../components";
 import dayjs from "dayjs";
-import { HttpError } from "@refinedev/core";
+import { HttpError, getDefaultFilter } from "@refinedev/core";
+
+const statusOptions: { label: string; value: QuoteStatus }[] = [
+    {
+        label: "Draft",
+        value: "DRAFT",
+    },
+    {
+        label: "Sent",
+        value: "SENT",
+    },
+    {
+        label: "Accepted",
+        value: "ACCEPTED",
+    },
+];
 
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
-    const { tableProps, searchFormProps } = useTable<
+    const { tableProps, searchFormProps, filters, sorters } = useTable<
         Quote,
         HttpError,
         QuoteFilter
@@ -33,6 +51,15 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     value: values.title,
                 },
             ];
+        },
+        filters: {
+            initial: [
+                {
+                    field: "title",
+                    value: "",
+                    operator: "contains",
+                },
+            ],
         },
         sorters: {
             initial: [
@@ -50,9 +77,20 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 "total",
                 "createdAt",
                 { company: ["id", "name"] },
-                { contact: ["id", "name"] },
-                { salesOwner: ["id", "name"] },
+                { contact: ["id", "name", "avatarUrl"] },
+                { salesOwner: ["id", "name", "avatarUrl"] },
             ],
+        },
+    });
+
+    const { selectProps: companySelectProps } = useSelect({
+        resource: "companies",
+        optionLabel: "name",
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            fields: ["id", "name"],
         },
     });
 
@@ -95,11 +133,36 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 }
             >
                 <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="title" title="Title" />
+                    <Table.Column
+                        dataIndex="title"
+                        title="Title"
+                        defaultFilteredValue={getDefaultFilter(
+                            "title",
+                            filters,
+                        )}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Input placeholder="Search Name" />
+                            </FilterDropdown>
+                        )}
+                    />
                     <Table.Column<Quote>
-                        dataIndex={["company", "name"]}
+                        dataIndex={["company", "id"]}
                         title="Company"
-                        render={(value) => {
+                        defaultFilteredValue={getDefaultFilter(
+                            "company.id",
+                            filters,
+                        )}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Select
+                                    placeholder="Search Company"
+                                    style={{ width: 220 }}
+                                    {...companySelectProps}
+                                />
+                            </FilterDropdown>
+                        )}
+                        render={(_, record) => {
                             return (
                                 <Space>
                                     <Avatar
@@ -107,17 +170,21 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                         style={{
                                             textTransform: "uppercase",
                                             backgroundColor:
-                                                getRandomColorFromString(value),
+                                                getRandomColorFromString(
+                                                    record.company.name,
+                                                ),
                                         }}
                                     >
-                                        {getNameInitials({ name: value })}
+                                        {getNameInitials({
+                                            name: record.company.name,
+                                        })}
                                     </Avatar>
                                     <Text
                                         style={{
                                             whiteSpace: "nowrap",
                                         }}
                                     >
-                                        {value}
+                                        {record.company.name}
                                     </Text>
                                 </Space>
                             );
@@ -141,6 +208,21 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     <Table.Column<Quote>
                         dataIndex="status"
                         title="Stage"
+                        defaultFilteredValue={getDefaultFilter(
+                            "status",
+                            filters,
+                        )}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Select
+                                    style={{ width: "200px" }}
+                                    defaultValue={null}
+                                    mode="multiple"
+                                    placeholder="Select Stage"
+                                    options={statusOptions}
+                                ></Select>
+                            </FilterDropdown>
+                        )}
                         render={(value) => {
                             return <QuoteStatusTag value={value} />;
                         }}
@@ -161,6 +243,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                     <Tooltip title={salesOwnerName}>
                                         <Avatar
                                             size="small"
+                                            src={value.salesOwner?.avatarUrl}
                                             style={{
                                                 backgroundColor:
                                                     getRandomColorFromString(
@@ -177,6 +260,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                     <Tooltip title={contactName}>
                                         <Avatar
                                             size="small"
+                                            src={value.contact?.avatarUrl}
                                             style={{
                                                 backgroundColor:
                                                     getRandomColorFromString(
@@ -196,6 +280,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     <Table.Column<Quote>
                         dataIndex={"createdAt"}
                         title="Created at"
+                        sorter
+                        defaultSortOrder={getDefaultSortOrder(
+                            "createdAt",
+                            sorters,
+                        )}
                         render={(value) => {
                             return <Text>{dayjs(value).fromNow()}</Text>;
                         }}
