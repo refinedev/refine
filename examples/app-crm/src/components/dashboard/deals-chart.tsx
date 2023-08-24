@@ -36,7 +36,7 @@ type YearlyDealGroupedResponse = {
 export const DashboardDealsChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
     const { list } = useNavigation();
-    const { data, isLoading, isError } = useCustom<YearlyDealGroupedResponse>({
+    const { data, isError } = useCustom<YearlyDealGroupedResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -117,7 +117,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
             }
             extra={
                 <Button
-                    onClick={() => list("sales")}
+                    onClick={() => list("deals")}
                     icon={<RightCircleOutlined />}
                 >
                     See sales pipeline
