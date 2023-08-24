@@ -27,10 +27,6 @@ const dealsFragment = [
     "value",
     "createdAt",
     "stageId",
-    "notes",
-    "closeDateMonth",
-    "closeDateDay",
-    "closeDateYear",
     {
         company: ["id", "name"],
     },
@@ -147,10 +143,6 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         let stageId = event.over?.id as undefined | string | null;
         const dealId = event.active.id;
         const dealStageId = event.active.data.current?.stageId;
-        const path = `/scrumboard/sales/details/edit/${dealId}`;
-        navigate(path, {
-            replace: true,
-        });
 
         if (dealStageId === stageId) {
             return;
@@ -168,15 +160,28 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             stageId = null;
         }
 
-        updateDeal({
-            resource: "deals",
-            id: dealId,
-            values: {
-                stageId: stageId,
+        updateDeal(
+            {
+                resource: "deals",
+                id: dealId,
+                values: {
+                    stageId: stageId,
+                },
+                successNotification: false,
+                mutationMode: "optimistic",
             },
-            successNotification: false,
-            mutationMode: "optimistic",
-        });
+            {
+                onSuccess: () => {
+                    const stage = event.over?.id as undefined | string | null;
+                    if (stage === "won" || stage === "lost") {
+                        const path = `/scrumboard/sales/details/edit/${dealId}`;
+                        navigate(path, {
+                            replace: true,
+                        });
+                    }
+                },
+            },
+        );
     };
 
     const handleAddStage = () => {

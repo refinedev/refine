@@ -38,15 +38,7 @@ export const resources: IResourceItem[] = [
             icon: <ProjectOutlined />,
         },
     },
-    {
-        name: "stages",
-        create: "/scrumboard/kanban/stages/create",
-        edit: "/scrumboard/kanban/stages/edit/:id",
-        list: "/scrumboard/kanban",
-        meta: {
-            hide: true,
-        },
-    },
+
     {
         name: "tasks",
         list: "/scrumboard/kanban",
@@ -59,10 +51,9 @@ export const resources: IResourceItem[] = [
     },
     {
         name: "stages",
-        identifier: "deal-stages",
-        create: "/scrumboard/sales/stages/create",
-        edit: "/scrumboard/sales/stages/edit/:id",
-        list: "/scrumboard/sales",
+        create: "/scrumboard/kanban/stages/create",
+        edit: "/scrumboard/kanban/stages/edit/:id",
+        list: "/scrumboard/kanban",
         meta: {
             hide: true,
         },
@@ -78,18 +69,20 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "deals",
-        identifier: "deals",
-        edit: "/scrumboard/sales/details/edit/:id",
+        name: "stages",
+        identifier: "deal-stages",
+        create: "/scrumboard/sales/stages/create",
+        edit: "/scrumboard/sales/stages/edit/:id",
         list: "/scrumboard/sales",
         meta: {
             hide: true,
         },
     },
     {
-        name: "companies",
-        identifier: "sales-companies",
-        create: "/scrumboard/sales/create/company/create",
+        name: "deals",
+        identifier: "deals-2",
+        edit: "/scrumboard/sales/details/edit/:id",
+        list: "/scrumboard/sales",
         meta: {
             hide: true,
         },
@@ -101,6 +94,14 @@ export const resources: IResourceItem[] = [
         meta: {
             label: "Companies",
             icon: <ShopOutlined />,
+        },
+    },
+    {
+        name: "companies",
+        identifier: "sales-companies",
+        create: "/scrumboard/sales/create/company/create",
+        meta: {
+            hide: true,
         },
     },
     {
