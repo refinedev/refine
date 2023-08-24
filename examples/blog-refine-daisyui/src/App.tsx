@@ -48,7 +48,15 @@ function App() {
                             create: "/products/create",
                             edit: "/products/edit/:id",
                             show: "/products/show/:id",
-                            icon: <ProductIcon />,
+                            icon: (
+                                <ProductIcon
+                                    size={4}
+                                    colors={{
+                                        stroke: "#2f2f2f",
+                                        fill: "#4f4f4f",
+                                    }}
+                                />
+                            ),
                             meta: {
                                 canDelete: true,
                             },
