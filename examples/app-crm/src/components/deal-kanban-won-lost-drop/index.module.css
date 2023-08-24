@@ -12,6 +12,8 @@
 }
 
 .dropArea {
+    transition: color 0.2s ease, border-color 0.2s ease,
+        background-color 0.2s ease;
     height: 100%;
     width: 100%;
     border-radius: 8px;
@@ -24,11 +26,23 @@
         color: #a8071a;
         border: 2px dashed #ff7875;
         background: #ffccc7;
+
+        &.isOver {
+            color: #fff;
+            border: 2px dashed #ffccc7;
+            background: #a8071a;
+        }
     }
 
     &.won {
         color: #237804;
         border: 2px dashed #95de64;
         background: #d9f7be;
+
+        &.isOver {
+            color: #fff;
+            border: 2px dashed #95de64;
+            background: #237804;
+        }
     }
 }

@@ -13,10 +13,6 @@ export const DealKanbanWonLostDrop: FC = () => {
         onDragEnd: () => setShow(false),
     });
 
-    if (!show) {
-        return null;
-    }
-
     return (
         <div className={styles.container}>
             <WonArea />
@@ -26,10 +22,15 @@ export const DealKanbanWonLostDrop: FC = () => {
 };
 
 const WonArea = () => {
-    const { setNodeRef } = useDroppable({ id: "won" });
+    const { setNodeRef, over } = useDroppable({ id: "won" });
 
     return (
-        <div ref={setNodeRef} className={cn(styles.dropArea, styles.won)}>
+        <div
+            ref={setNodeRef}
+            className={cn(styles.dropArea, styles.won, {
+                [styles.isOver]: over?.id === "won",
+            })}
+        >
             <Text
                 style={{
                     color: "inherit",
@@ -43,10 +44,15 @@ const WonArea = () => {
 };
 
 const LostArea = () => {
-    const { setNodeRef } = useDroppable({ id: "lost" });
+    const { setNodeRef, over } = useDroppable({ id: "lost" });
 
     return (
-        <div ref={setNodeRef} className={cn(styles.dropArea, styles.lost)}>
+        <div
+            ref={setNodeRef}
+            className={cn(styles.dropArea, styles.lost, {
+                [styles.isOver]: over?.id === "lost",
+            })}
+        >
             <Text
                 style={{
                     color: "inherit",
