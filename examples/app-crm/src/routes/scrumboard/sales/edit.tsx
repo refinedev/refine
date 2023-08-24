@@ -83,7 +83,7 @@ export const SalesEditPage = () => {
     }, [companyId]);
 
     const renderContactForm = () => {
-        if (!companyId) {
+        if (companyQueryResult.isLoading) {
             return null;
         }
 
@@ -142,6 +142,7 @@ export const SalesEditPage = () => {
             <Form
                 {...formProps}
                 layout="vertical"
+                preserve={false}
                 onFinish={(values) => {
                     const val = values as Deal;
 
