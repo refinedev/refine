@@ -262,7 +262,7 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                 "name",
                 "email",
                 {
-                    company: ["id", "name"],
+                    company: ["id", "name", "avatarUrl"],
                 },
                 "jobTitle",
                 "status",

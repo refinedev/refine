@@ -85,7 +85,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
                         <Avatar
                             className={styles.avatar}
                             size={22}
-                            // src={company?.avatarUrl}
+                            src={company.avatarUrl}
                             alt={company.name}
                             style={{ marginRight: 8, marginTop: -3 }}
                         />
