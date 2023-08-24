@@ -132,7 +132,7 @@ const ButtonAccepted = (props: {
             fill={props.fill}
             stroke="#F0F2F5"
             strokeWidth={2}
-            d="M2 1H1v42h108.735a5 5 0 0 0 4.288-2.428l9.6-16a5 5 0 0 0 0-5.145l-9.6-16A5 5 0 0 0 109.735 1H2Z"
+            d="M2 1H1v42h103c11.598 0 21-9.402 21-21s-9.402-21-21-21H2Z"
         />
         <text x="28" y="27" fill={props.textColor}>
             Accepted
