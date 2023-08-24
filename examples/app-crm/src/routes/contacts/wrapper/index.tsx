@@ -28,6 +28,7 @@ import {
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
+import debounce from "lodash/debounce";
 
 import { ContactStatusTag } from "../../../components/contact/status-tag";
 import { ContactStatus } from "../../../enums/contact-status";
@@ -247,6 +248,13 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
             },
         });
 
+    const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        searchFormProps?.onFinish?.({
+            name: e.target.value,
+        });
+    };
+    const debouncedOnChange = debounce(onSearch, 500);
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -258,8 +266,11 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                         <Form.Item name="name">
                             <Input
                                 size="large"
-                                prefix={<SearchOutlined />}
+                                prefix={
+                                    <SearchOutlined className="anticon tertiary" />
+                                }
                                 placeholder="Search by name"
+                                onChange={debouncedOnChange}
                             />
                         </Form.Item>
                         <SaveButton
