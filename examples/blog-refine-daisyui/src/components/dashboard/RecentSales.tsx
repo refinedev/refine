@@ -112,7 +112,7 @@ export const RecentSales = () => {
             <div className="my-2">
                 <h1 className="page-title text-gray-700">Recent Sales</h1>
             </div>
-            <div className="overflow-x-auto bg-slate-50 border">
+            <div className="overflow-x-auto bg-slate-50 border rounded-t-lg">
                 <div className="flex justify-between items-center m-4">
                     <button
                         className="btn btn-outline btn-primary btn-sm normal-case font-light"
@@ -150,7 +150,7 @@ export const RecentSales = () => {
     return (
         <div className="container my-8">
             {header}
-            <div className="overflow-x-auto bg-slate-50 border">
+            <div className="overflow-x-auto bg-slate-50 border rounded-b-lg">
                 <table className="table table-zebra border-t">
                     <thead className="bg-slate-200">
                         {getHeaderGroups()?.map((headerGroup) => (
