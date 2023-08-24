@@ -7,6 +7,7 @@ import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChar
 import { TabView } from "../../components/dashboard/TabView";
 import { IChartDatum, TTab } from "../../interfaces";
 import { DollarIcon, ProductIcon, UserGroupIcon } from "../../components/icons";
+import { RecentSales } from "../../components/dashboard/RecentSales";
 
 const query = {
     start: dayjs().subtract(7, "days").startOf("day"),
@@ -161,6 +162,7 @@ export const Dashboard: React.FC = () => {
                 </div>
             </div>
             <TabView tabs={tabs} />
+            <RecentSales />
         </>
     );
 };
