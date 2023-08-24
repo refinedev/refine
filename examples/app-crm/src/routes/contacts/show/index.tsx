@@ -14,11 +14,12 @@ import { useSelect } from "@refinedev/antd";
 import { Text } from "../../../components/text";
 import { SingleElementForm } from "../../../components/single-element-form";
 import { ContactStatus } from "../../../components/contact/status";
+import { TextIcon } from "../../../components/icon";
+import { ContactComment } from "../../../components/contact/comment";
 import { Timezone } from "../../../enums/timezone";
 
 import type { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
-import { TextIcon } from "../../../components/icon";
 
 const timezoneOptions = Object.keys(Timezone).map((key) => ({
     label: Timezone[key as keyof typeof Timezone],
@@ -227,8 +228,11 @@ export const ContactShowPage = () => {
                             <Text style={{ marginLeft: ".8rem" }}>Notes</Text>
                         </>
                     }
+                    bodyStyle={{
+                        padding: 0,
+                    }}
                 >
-                    <Text>Notes</Text>
+                    <ContactComment />
                 </Card>
             </div>
         );
