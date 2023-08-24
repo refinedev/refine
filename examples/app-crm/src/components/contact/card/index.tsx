@@ -26,7 +26,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
     contact,
     onClick,
 }) => {
-    const { name, email, status, jobTitle, company } = contact;
+    const { name, email, status, jobTitle, company, avatarUrl } = contact;
     return (
         <div className={styles.container}>
             <Dropdown
@@ -41,9 +41,12 @@ export const ContactCard: React.FC<ContactCardProps> = ({
             </Dropdown>
 
             <div className={styles.personal}>
-                <Avatar className={styles.avatar} size={64}>
-                    {name[0]}
-                </Avatar>
+                <Avatar
+                    className={styles.avatar}
+                    size={64}
+                    src={avatarUrl}
+                    alt={name}
+                />
                 <Text
                     className={styles.name}
                     strong
@@ -70,7 +73,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
                         tooltip: true,
                     }}
                 >
-                    {jobTitle || "-"}
+                    {`${jobTitle} at` || "-"}
                 </Text>
                 <div className={styles.companyName}>
                     <Text
@@ -79,6 +82,13 @@ export const ContactCard: React.FC<ContactCardProps> = ({
                             tooltip: true,
                         }}
                     >
+                        <Avatar
+                            className={styles.avatar}
+                            size={22}
+                            // src={company?.avatarUrl}
+                            alt={company.name}
+                            style={{ marginRight: 8, marginTop: -3 }}
+                        />
                         {company.name}
                     </Text>
                 </div>

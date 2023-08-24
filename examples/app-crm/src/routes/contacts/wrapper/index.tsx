@@ -19,12 +19,15 @@ import {
     Row,
     Col,
     TableProps,
+    Avatar,
+    Button,
 } from "antd";
 import {
     UnorderedListOutlined,
     AppstoreOutlined,
     PlusSquareOutlined,
     SearchOutlined,
+    PhoneOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
@@ -33,6 +36,7 @@ import debounce from "lodash/debounce";
 import { ContactStatusTag } from "../../../components/contact/status-tag";
 import { ContactStatus } from "../../../enums/contact-status";
 import { ContactCard } from "../../../components/contact/card";
+import { Text } from "../../../components";
 
 import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
@@ -59,15 +63,23 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
     });
     return (
         <Table {...rest} rowKey="id">
-            <Table.Column dataIndex="id" title="ID" />
             <Table.Column
                 dataIndex="name"
                 title="Name"
+                width={200}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
                         <Input placeholder="Search Name" />
                     </FilterDropdown>
                 )}
+                render={(_, record: Contact) => {
+                    return (
+                        <Space>
+                            <Avatar src={record.avatarUrl} alt={record.name} />
+                            <Text>{record.name}</Text>
+                        </Space>
+                    );
+                }}
             />
             <Table.Column
                 dataIndex="email"
@@ -130,6 +142,11 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                             hideText
                             size="small"
                             recordItemId={record.id}
+                        />
+                        <Button
+                            size="small"
+                            href="tel:1234567890"
+                            icon={<PhoneOutlined />}
                         />
                         <DeleteButton
                             hideText
@@ -194,59 +211,65 @@ const CardView: React.FC<CardViewProps> = ({
 export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
     const [type, setType] = React.useState("table");
 
-    const { tableProps, searchFormProps, setCurrent, setPageSize } =
-        useTable<Contact>({
-            filters: {
-                initial: [
-                    {
-                        field: "name",
-                        value: undefined,
-                        operator: "contains",
-                    },
-                    {
-                        field: "email",
-                        value: undefined,
-                        operator: "contains",
-                    },
-                    {
-                        field: "company.id",
-                        value: undefined,
-                        operator: "eq",
-                    },
-                    {
-                        field: "jobTitle",
-                        value: undefined,
-                        operator: "contains",
-                    },
-                    {
-                        field: "status",
-                        value: undefined,
-                        operator: "in",
-                    },
-                ],
-            },
-            onSearch: (values: any) => {
-                return [
-                    {
-                        field: "name",
-                        operator: "contains",
-                        value: values.name,
-                    },
-                ];
-            },
-            meta: {
-                fields: [
-                    "id",
-                    "name",
-                    "email",
-                    {
-                        company: ["id", "name"],
-                    },
-                    "jobTitle",
-                    "status",
-                ],
-            },
-        });
+    const {
+        tableProps,
+        searchFormProps,
+        setCurrent,
+        setPageSize,
+        tableQueryResult,
+    } = useTable<Contact>({
+        filters: {
+            initial: [
+                {
+                    field: "name",
+                    value: undefined,
+                    operator: "contains",
+                },
+                {
+                    field: "email",
+                    value: undefined,
+                    operator: "contains",
+                },
+                {
+                    field: "company.id",
+                    value: undefined,
+                    operator: "eq",
+                },
+                {
+                    field: "jobTitle",
+                    value: undefined,
+                    operator: "contains",
+                },
+                {
+                    field: "status",
+                    value: undefined,
+                    operator: "in",
+                },
+            ],
+        },
+        onSearch: (values: any) => {
+            return [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: values.name,
+                },
+            ];
+        },
+        meta: {
+            fields: [
+                "id",
+                "name",
+                "email",
+                {
+                    company: ["id", "name"],
+                },
+                "jobTitle",
+                "status",
+                "avatarUrl",
+            ],
+        },
+    });
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         searchFormProps?.onFinish?.({
@@ -302,6 +325,12 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                     {...tableProps}
                 />
             )}
+            <Text
+                className="anttext secondary"
+                style={{ bottom: 20, position: "absolute" }}
+            >
+                <b>{tableQueryResult.data?.total}</b> contacts in total
+            </Text>
             {children}
         </div>
     );
