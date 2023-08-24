@@ -5,11 +5,19 @@ export const Menu = () => {
     const { menuItems } = useMenu();
 
     return (
-        <nav className="menu">
-            <ul>
+        <nav className="menu mx-0">
+            <ul className="mx-0 flex justify-start items-center">
                 {menuItems.map((item) => (
-                    <li key={item.key}>
-                        <NavLink to={item.route}>{item.label}</NavLink>
+                    <li
+                        key={item?.key}
+                        className="mx-0 flex justify-start items-center"
+                    >
+                        <div className="text-gray-600">
+                            <span className="mr-1">{item?.icon}</span>
+                            <NavLink className="text-lg" to={item?.route}>
+                                {item?.label}
+                            </NavLink>
+                        </div>
                     </li>
                 ))}
             </ul>
