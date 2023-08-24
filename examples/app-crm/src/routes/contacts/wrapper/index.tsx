@@ -129,7 +129,7 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                         ></Select>
                     </FilterDropdown>
                 )}
-                render={(value: ContactStatus) => (
+                render={(value: ContactStatusEnum) => (
                     <ContactStatusTag status={value} />
                 )}
             />
