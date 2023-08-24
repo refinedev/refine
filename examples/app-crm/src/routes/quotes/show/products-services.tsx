@@ -144,7 +144,11 @@ export const ProductsServices = () => {
                     (item) => !!item?.title,
                 );
                 items?.forEach((item) => {
-                    if ("totalPrice" in item) delete item.totalPrice;
+                    if ("totalPrice" in item) {
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        delete item.totalPrice;
+                    }
                 });
                 return {
                     ...values,
