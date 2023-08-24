@@ -42,6 +42,17 @@ export const resources: IResourceItem[] = [
         name: "stages",
         create: "/scrumboard/kanban/stages/create",
         edit: "/scrumboard/kanban/stages/edit/:id",
+        list: "/scrumboard/kanban",
+        meta: {
+            hide: true,
+        },
+    },
+    {
+        name: "stages",
+        identifier: "dealStages",
+        create: "/scrumboard/sales/stages/create",
+        edit: "/scrumboard/sales/stages/edit/:id",
+        list: "/scrumboard/sales",
         meta: {
             hide: true,
         },

@@ -36,6 +36,8 @@ import {
     SalesPage,
     SalesCreatePage,
     SalesEditPage,
+    SalesCreateStage,
+    SalesEditStage,
 } from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
@@ -164,6 +166,14 @@ const App: React.FC = () => {
                                     <Route
                                         path="edit/:id"
                                         element={<SalesEditPage />}
+                                    />
+                                    <Route
+                                        path="stages/create"
+                                        element={<SalesCreateStage />}
+                                    />
+                                    <Route
+                                        path="stages/edit/:id"
+                                        element={<SalesEditStage />}
                                     />
                                 </Route>
                             </Route>

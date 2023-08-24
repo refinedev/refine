@@ -179,20 +179,16 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     };
 
     const handleAddStage = () => {
-        const title = prompt("Enter stage title");
-        createStage({
-            resource: "deals",
-            meta: {
-                operation: "dealStage",
-            },
-            values: {
-                title,
-            },
+        navigate("/scrumboard/sales/stages/create", {
+            replace: true,
         });
     };
 
     const handleEditStage = (args: { stageId: string }) => {
-        alert("not implemented [stageId]: " + args.stageId);
+        const path = `/scrumboard/sales/stages/edit/${args.stageId}`;
+        navigate(path, {
+            replace: true,
+        });
     };
 
     const handleDeleteStage = (args: { stageId: string }) => {
