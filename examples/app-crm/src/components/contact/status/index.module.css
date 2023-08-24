@@ -1,0 +1,47 @@
+.container {
+    background-color: blueviolet;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    border-radius: 2rem;
+    overflow: hidden;
+
+    margin: 1rem 0;
+
+    .item {
+        flex: 1;
+        text-align: center;
+        padding: 0.3rem 0;
+        color: #fff;
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        .button {
+            color: #fff;
+        }
+        .button:hover {
+            color: #fff;
+        }
+    }
+    .NEW:hover {
+        background-color: red;
+    }
+
+    .item::after {
+        right: -8px;
+        top: 0px;
+        position: absolute;
+        content: "";
+        border: solid rgb(245, 245, 245);
+        border-width: 0 3px 3px 0;
+        border-radius: 12px;
+        display: inline-block;
+        padding: 19px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+    .item:last-child::after {
+        display: none;
+    }
+}

@@ -30,7 +30,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 
 import { ContactStatusTag } from "../../../components/contact/status-tag";
-import { ContactStatus } from "../../../enums/contact-status";
+import { ContactStatusEnum } from "../../../enums/contact-status";
 import { ContactCard } from "../../../components/contact/card";
 
 import { Contact } from "../../../interfaces/graphql";
@@ -43,9 +43,9 @@ type CardViewProps = TableProps<Contact> & {
     setPageSize: (pageSize: number) => void;
 };
 
-const statusOptions = Object.keys(ContactStatus).map((key) => ({
+const statusOptions = Object.keys(ContactStatusEnum).map((key) => ({
     label: `${key[0]}${key.slice(1).toLowerCase()}`,
-    value: ContactStatus[key as keyof typeof ContactStatus],
+    value: ContactStatusEnum[key as keyof typeof ContactStatusEnum],
 }));
 
 const TableView: React.FC<TableViewProps> = ({ ...rest }) => {

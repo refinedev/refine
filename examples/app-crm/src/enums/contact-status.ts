@@ -1,4 +1,4 @@
-export enum ContactStatus {
+export enum ContactStatusEnum {
     NEW = "NEW",
     CONTACTED = "CONTACTED",
     INTERESTED = "INTERESTED",

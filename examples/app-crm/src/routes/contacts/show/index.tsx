@@ -13,6 +13,7 @@ import { useSelect } from "@refinedev/antd";
 
 import { Text } from "../../../components/text";
 import { SingleElementForm } from "../../../components/single-element-form";
+import { ContactStatus } from "../../../components/contact/status";
 import { Timezone } from "../../../enums/timezone";
 
 import type { Contact } from "../../../interfaces/graphql";
@@ -212,6 +213,8 @@ export const ContactShowPage = () => {
                         />
                     </SingleElementForm>
                 </div>
+
+                <ContactStatus />
             </div>
         );
     };
