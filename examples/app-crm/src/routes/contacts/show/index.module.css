@@ -9,5 +9,11 @@
     .form {
         background-color: #fff;
         border-radius: .5rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .stage {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
     }
 }

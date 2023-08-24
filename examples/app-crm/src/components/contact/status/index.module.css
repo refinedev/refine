@@ -1,47 +1,53 @@
 .container {
-    background-color: blueviolet;
-    list-style-type: none;
+    margin: 0;
     padding: 0;
     display: flex;
-    border-radius: 2rem;
+    list-style-type: none;
+    width: 100%;
+    border-radius: 18px;
     overflow: hidden;
 
-    margin: 1rem 0;
-
     .item {
-        flex: 1;
-        text-align: center;
-        padding: 0.3rem 0;
-        color: #fff;
-        position: relative;
         display: flex;
+        align-items: center;
         justify-content: center;
+        flex: 1;
+        height: 40px;
+        border-right: .5px solid #F0F2F5;
 
-        .button {
-            color: #fff;
+        a {
+            color: #000;
+            font-size: 12px;
         }
-        .button:hover {
-            color: #fff;
-        }
-    }
-    .NEW:hover {
-        background-color: red;
     }
 
-    .item::after {
-        right: -8px;
-        top: 0px;
-        position: absolute;
-        content: "";
-        border: solid rgb(245, 245, 245);
-        border-width: 0 3px 3px 0;
-        border-radius: 12px;
-        display: inline-block;
-        padding: 19px;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-    }
-    .item:last-child::after {
-        display: none;
+    .arrow {
+        margin-left: .2rem;
     }
 }
+
+.NEW, .CONTACTED, .INTERESTED .item {
+    background-color: #08979C;
+    a { color: #fff; }
+}
+
+.QUALIFIED, .NEGOTIATION .item {
+    background-color: #0958D9;
+    a { color: #fff; }
+}
+
+.WON .item {
+    background-color: #389E0D;
+    a { color: #fff; }
+}
+
+.UNQUALIFIED, .LOST, .CHURNED .item {
+    background-color: #CF1322;
+    a { color: #fff; }  
+}
+
+.item.active ~ .item {
+    background-color: #fff;
+    a { color: #000; }
+}
+

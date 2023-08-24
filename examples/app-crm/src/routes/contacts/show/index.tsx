@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Drawer, Input, Select, Spin, Typography } from "antd";
+import { Avatar, Card, Drawer, Input, Select, Spin, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath, useShow, useUpdate } from "@refinedev/core";
 import {
@@ -18,6 +18,7 @@ import { Timezone } from "../../../enums/timezone";
 
 import type { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
+import { TextIcon } from "../../../components/icon";
 
 const timezoneOptions = Object.keys(Timezone).map((key) => ({
     label: Timezone[key as keyof typeof Timezone],
@@ -43,6 +44,7 @@ export const ContactShowPage = () => {
                 "jobTitle",
                 "phone",
                 "timezone",
+                "stage",
                 "status",
                 "avatarUrl",
             ],
@@ -214,7 +216,20 @@ export const ContactShowPage = () => {
                     </SingleElementForm>
                 </div>
 
-                <ContactStatus />
+                <div className={styles.stage}>
+                    <ContactStatus contact={data.data} />
+                </div>
+
+                <Card
+                    title={
+                        <>
+                            <TextIcon />
+                            <Text style={{ marginLeft: ".8rem" }}>Notes</Text>
+                        </>
+                    }
+                >
+                    <Text>Notes</Text>
+                </Card>
             </div>
         );
     };
