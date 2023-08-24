@@ -1,21 +1,23 @@
 import React from "react";
 import dayjs from "dayjs";
+import { Badge } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useGetToPath } from "@refinedev/core";
 
 import { Text } from "../../../text";
 import type { Event } from "../../../../interfaces/graphql";
 
-import styles from "./index.module.css";
-import { Skeleton } from "antd";
+import styles from "../index.module.css";
 
 type CalendarUpcomingEventProps = {
     item: Event;
-    isLoading?: boolean;
 };
 
 export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
     item,
-    isLoading,
 }) => {
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
     const { id, title, startDate, endDate, color } = item;
     const isToday = dayjs.utc(startDate).isSame(dayjs.utc(), "day");
     const isTomorrow = dayjs
@@ -48,32 +50,37 @@ export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
     };
 
     return (
-        <div key={id} className={styles.container}>
-            <Skeleton
-                loading={isLoading}
-                active
-                avatar
-                paragraph={{
-                    rows: 0,
-                }}
-                style={{
-                    padding: 0,
-                }}
-            >
-                <div className={styles.date}>
-                    <span
-                        className={styles.icon}
-                        style={{
-                            backgroundColor: color,
-                        }}
-                    />
+        <div
+            onClick={() => {
+                navigate(
+                    getToPath({
+                        action: "show",
+                        meta: {
+                            id: item.id,
+                        },
+                    }) ?? "/calendar",
+                    {
+                        replace: true,
+                    },
+                );
+            }}
+            key={id}
+            className={styles.item}
+        >
+            <div className={styles.date}>
+                <Badge color={color} className={styles.badge} />
 
-                    <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
-                </div>
-                <Text strong className={styles.title}>
-                    {title}
-                </Text>
-            </Skeleton>
+                <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
+            </div>
+            <Text
+                ellipsis={{
+                    tooltip: true,
+                }}
+                strong
+                className={styles.title}
+            >
+                {title}
+            </Text>
         </div>
     );
 };

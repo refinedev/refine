@@ -20,15 +20,14 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "calendar",
-        list: "/calendar/:type",
-        create: "/calendar/:type/create",
-        edit: "/calendar/:type/edit/:id",
-        show: "/calendar/:type/show/:id",
+        name: "events",
+        list: "/calendar",
+        create: "/calendar/create",
+        edit: "/calendar/edit/:id",
+        show: "/calendar/show/:id",
         meta: {
             label: "Calendar",
             icon: <CalendarOutlined />,
-            type: "month",
         },
     },
     {

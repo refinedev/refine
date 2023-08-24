@@ -89,14 +89,14 @@ const App: React.FC = () => {
                         >
                             <Route index element={<DashboardPage />} />
                             <Route
-                                path="/calendar/:type"
+                                path="/calendar"
                                 element={
                                     <CalendarPageWrapper>
                                         <Outlet />
                                     </CalendarPageWrapper>
                                 }
                             >
-                                <Route index />
+                                <Route index element={null} />
                                 <Route
                                     path="show/:id"
                                     element={<CalendarShowPage />}
