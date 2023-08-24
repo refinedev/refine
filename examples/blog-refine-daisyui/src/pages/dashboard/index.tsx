@@ -105,7 +105,7 @@ export const Dashboard: React.FC = () => {
 
     return (
         <>
-            <div className="container flex justify-center items-center">
+            <div className="container mx-auto flex justify-center items-center">
                 <div className="stats mr-8 mt-4 mb-8 shadow flex-shrink md:flex-none lg:flex-grow">
                     <KpiCard
                         title="Weekly Revenue"

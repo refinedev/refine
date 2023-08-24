@@ -109,8 +109,8 @@ export const RecentSales = () => {
 
     const header = (
         <div className="container">
-            <div className="">
-                <h1 className="page-title">Recent Sales</h1>
+            <div className="my-2">
+                <h1 className="page-title text-gray-700">Recent Sales</h1>
             </div>
             <div className="overflow-x-auto bg-slate-50 border">
                 <div className="flex justify-between items-center m-4">
