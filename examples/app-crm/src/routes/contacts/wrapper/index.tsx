@@ -327,7 +327,10 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
             )}
             <Text
                 className="anttext secondary"
-                style={{ bottom: 20, position: "absolute" }}
+                style={{
+                    bottom: type === "table" ? 20 : 4,
+                    position: "absolute",
+                }}
             >
                 <b>{tableQueryResult.data?.total}</b> contacts in total
             </Text>
