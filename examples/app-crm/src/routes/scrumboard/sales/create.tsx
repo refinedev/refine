@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, PropsWithChildren, useEffect } from "react";
 import {
     HttpError,
     useCreate,
@@ -6,9 +6,23 @@ import {
     useGetToPath,
 } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
-import { DollarOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+    Col,
+    Form,
+    Input,
+    InputNumber,
+    Modal,
+    Row,
+    Select,
+    Typography,
+} from "antd";
+import {
+    DollarOutlined,
+    MailOutlined,
+    PlusCircleOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 
 import { Company, Contact, Deal, User } from "../../../interfaces/graphql";
 
@@ -22,8 +36,9 @@ type FormValues = {
     contactEmail?: string;
 };
 
-export const SalesCreatePage = () => {
+export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
     const [searchParams] = useSearchParams();
+    const { pathname } = useLocation();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 
@@ -37,9 +52,18 @@ export const SalesCreatePage = () => {
     });
 
     useEffect(() => {
-        if (searchParams.get("stageId")) {
+        const stageId = searchParams.get("stageId");
+        const companyId = searchParams.get("companyId");
+
+        if (stageId) {
             formProps.form?.setFieldsValue({
-                stageId: searchParams.get("stageId"),
+                stageId,
+            });
+        }
+
+        if (companyId && companyId !== "null") {
+            formProps.form?.setFieldsValue({
+                companyId,
             });
         }
     }, [searchParams]);
@@ -61,6 +85,14 @@ export const SalesCreatePage = () => {
     stageSelectProps.options?.concat({
         label: "Unassigned",
         value: null,
+    });
+
+    const { selectProps: userSelectProps } = useSelect<User>({
+        resource: "users",
+        meta: {
+            fields: ["name", "id"],
+        },
+        optionLabel: "name",
     });
 
     const { data: user } = useGetIdentity<User>();
@@ -115,7 +147,7 @@ export const SalesCreatePage = () => {
                     >
                         <Input
                             addonBefore={<UserOutlined />}
-                            placeholder="Please enter contact name"
+                            placeholder="Contact name"
                         />
                     </Form.Item>
                 </Col>
@@ -127,7 +159,7 @@ export const SalesCreatePage = () => {
                     >
                         <Input
                             addonBefore={<MailOutlined />}
-                            placeholder="Please enter contact email"
+                            placeholder="Contact email"
                         />
                     </Form.Item>
                 </Col>
@@ -135,103 +167,132 @@ export const SalesCreatePage = () => {
         );
     };
 
+    const isHaveOverModal =
+        pathname === "/scrumboard/sales/create/company/create";
+
     return (
-        <Modal
-            {...modalProps}
-            onCancel={() => {
-                close();
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
-            }}
-            title="Add new deal"
-            width={512}
-        >
-            <Form
-                {...formProps}
-                layout="vertical"
-                onFinish={async (values) => {
-                    if (values.contactName && values.contactEmail) {
-                        const { data } = await createMutateAsync({
-                            resource: "contacts",
-                            values: {
-                                name: values.contactName,
-                                email: values.contactEmail,
-                                salesOwnerId: user?.id,
-                                companyId,
-                            },
-                            meta: {
-                                fields: ["id"],
-                            },
-                        });
-
-                        delete values.contactName;
-                        delete values.contactEmail;
-
-                        if (data) {
-                            formProps.onFinish?.({
-                                ...values,
-                                dealContactId: data.id,
-                                dealOwnerId: user?.id,
-                            });
-                        }
-                    } else {
-                        formProps.onFinish?.(values);
-                    }
+        <>
+            <Modal
+                {...modalProps}
+                style={{ display: isHaveOverModal ? "none" : "inherit" }}
+                onCancel={() => {
+                    close();
+                    navigate(
+                        getToPath({
+                            action: "list",
+                        }) ?? "",
+                        {
+                            replace: true,
+                        },
+                    );
                 }}
+                title="Add new deal"
+                width={512}
             >
-                <Form.Item
-                    label="Deal title"
-                    name="title"
-                    rules={[{ required: true }]}
+                <Form
+                    {...formProps}
+                    layout="vertical"
+                    onFinish={async (values) => {
+                        if (values.contactName && values.contactEmail) {
+                            const { data } = await createMutateAsync({
+                                resource: "contacts",
+                                values: {
+                                    name: values.contactName,
+                                    email: values.contactEmail,
+                                    salesOwnerId: user?.id,
+                                    companyId,
+                                },
+                                meta: {
+                                    fields: ["id"],
+                                },
+                            });
+
+                            delete values.contactName;
+                            delete values.contactEmail;
+
+                            if (data) {
+                                formProps.onFinish?.({
+                                    ...values,
+                                    dealContactId: data.id,
+                                    dealOwnerId: user?.id,
+                                });
+                            }
+                        } else {
+                            formProps.onFinish?.(values);
+                        }
+                    }}
                 >
-                    <Input placeholder="Please enter deal title" />
-                </Form.Item>
-                <Form.Item
-                    label="Company"
-                    name="companyId"
-                    rules={[{ required: true }]}
-                >
-                    <Select placeholder="Please select user" {...selectProps} />
-                </Form.Item>
-                {renderContactForm()}
-                <Row gutter={12}>
-                    <Col span={12}>
-                        <Form.Item label="Stage" name="stageId">
-                            <Select
-                                placeholder="Please select stage"
-                                {...stageSelectProps}
-                            />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Form.Item label="Deal value" name="value">
-                            <InputNumber
-                                addonBefore={<DollarOutlined />}
-                                placeholder="0,00"
-                                formatter={(value) =>
-                                    `${value}`.replace(
-                                        /\B(?=(\d{3})+(?!\d))/g,
-                                        ",",
+                    <Form.Item
+                        label="Deal title"
+                        name="title"
+                        rules={[{ required: true }]}
+                    >
+                        <Input placeholder="Please enter deal title" />
+                    </Form.Item>
+                    <Form.Item
+                        label="Company"
+                        name="companyId"
+                        rules={[{ required: true }]}
+                        extra={
+                            <Typography.Link
+                                style={{ marginTop: 8, display: "block" }}
+                                onClick={() =>
+                                    navigate(
+                                        "company/create?to=/scrumboard/sales/create",
+                                        {
+                                            replace: true,
+                                        },
                                     )
                                 }
-                            />
-                        </Form.Item>
-                    </Col>
-                </Row>
-                <Form.Item
-                    label="Deal owner"
-                    name="dealOwnerId"
-                    rules={[{ required: true }]}
-                >
-                    <Select placeholder="Please select user" {...selectProps} />
-                </Form.Item>
-            </Form>
-        </Modal>
+                            >
+                                <PlusCircleOutlined /> Add new company
+                            </Typography.Link>
+                        }
+                    >
+                        <Select
+                            placeholder="Please select company"
+                            {...selectProps}
+                        />
+                    </Form.Item>
+
+                    {renderContactForm()}
+                    <Row gutter={12}>
+                        <Col span={12}>
+                            <Form.Item label="Stage" name="stageId">
+                                <Select
+                                    placeholder="Please select stage"
+                                    {...stageSelectProps}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item label="Deal value" name="value">
+                                <InputNumber
+                                    addonBefore={<DollarOutlined />}
+                                    placeholder="0,00"
+                                    formatter={(value) =>
+                                        `${value}`.replace(
+                                            /\B(?=(\d{3})+(?!\d))/g,
+                                            ",",
+                                        )
+                                    }
+                                />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                    <Form.Item
+                        label="Deal owner"
+                        name="dealOwnerId"
+                        rules={[{ required: true }]}
+                    >
+                        <Select
+                            placeholder="Please select user"
+                            {...userSelectProps}
+                        />
+                    </Form.Item>
+                </Form>
+            </Modal>
+            {children}
+        </>
     );
 };

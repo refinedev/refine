@@ -51,6 +51,7 @@ import { themeConfig } from "./providers/antd";
 import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
+import { CompanyCreatePage } from "./routes/companies/create";
 
 import "./utilities/init-dayjs";
 
@@ -145,8 +146,21 @@ const App: React.FC = () => {
                                 >
                                     <Route
                                         path="create"
-                                        element={<SalesCreatePage />}
-                                    />
+                                        element={
+                                            <SalesCreatePage>
+                                                <Outlet />
+                                            </SalesCreatePage>
+                                        }
+                                    >
+                                        <Route
+                                            path="company/create"
+                                            element={
+                                                <CompanyCreatePage
+                                                    isOverModal
+                                                />
+                                            }
+                                        />
+                                    </Route>
                                     <Route
                                         path="edit/:id"
                                         element={<SalesEditPage />}
