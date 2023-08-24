@@ -1,11 +1,5 @@
 import { FC, PropsWithChildren, useMemo } from "react";
-import {
-    useCreate,
-    useDelete,
-    useList,
-    useUpdate,
-    useUpdateMany,
-} from "@refinedev/core";
+import { useDelete, useList, useUpdate, useUpdateMany } from "@refinedev/core";
 import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
@@ -33,6 +27,10 @@ const dealsFragment = [
     "value",
     "createdAt",
     "stageId",
+    "notes",
+    "closeDateMonth",
+    "closeDateDay",
+    "closeDateYear",
     {
         company: ["id", "name"],
     },
@@ -131,7 +129,6 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
     const { mutate: updateDeal } = useUpdate();
     const { mutate: updateManyDeal } = useUpdateMany();
-    const { mutate: createStage } = useCreate();
     const { mutate: deleteStage } = useDelete();
 
     const { unassignedStageTotalValue } = useMemo(() => {
@@ -150,6 +147,10 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         let stageId = event.over?.id as undefined | string | null;
         const dealId = event.active.id;
         const dealStageId = event.active.data.current?.stageId;
+        const path = `/scrumboard/sales/details/edit/${dealId}`;
+        navigate(path, {
+            replace: true,
+        });
 
         if (dealStageId === stageId) {
             return;

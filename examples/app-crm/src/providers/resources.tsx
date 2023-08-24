@@ -48,16 +48,6 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "stages",
-        identifier: "deal-stages",
-        create: "/scrumboard/sales/stages/create",
-        edit: "/scrumboard/sales/stages/edit/:id",
-        list: "/scrumboard/sales",
-        meta: {
-            hide: true,
-        },
-    },
-    {
         name: "tasks",
         list: "/scrumboard/kanban",
         create: "/scrumboard/kanban/create",
@@ -68,6 +58,16 @@ export const resources: IResourceItem[] = [
         },
     },
     {
+        name: "stages",
+        identifier: "deal-stages",
+        create: "/scrumboard/sales/stages/create",
+        edit: "/scrumboard/sales/stages/edit/:id",
+        list: "/scrumboard/sales",
+        meta: {
+            hide: true,
+        },
+    },
+    {
         name: "deals",
         list: "/scrumboard/sales",
         create: "/scrumboard/sales/create",
@@ -75,6 +75,15 @@ export const resources: IResourceItem[] = [
         meta: {
             label: "Sales Pipeline",
             parent: "scrumboard",
+        },
+    },
+    {
+        name: "deals",
+        identifier: "deals",
+        edit: "/scrumboard/sales/details/edit/:id",
+        list: "/scrumboard/sales",
+        meta: {
+            hide: true,
         },
     },
     {

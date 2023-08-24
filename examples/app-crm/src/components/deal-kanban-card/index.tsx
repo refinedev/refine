@@ -1,4 +1,4 @@
-import { useDelete, useNavigation } from "@refinedev/core";
+import { useDelete } from "@refinedev/core";
 import { FC, memo, useMemo, useState } from "react";
 import {
     Avatar,
@@ -10,7 +10,9 @@ import {
     Tooltip,
 } from "antd";
 import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+
 import { Text } from "../text";
 import { getRandomColorFromString } from "../../utilities";
 import { User } from "../../interfaces/graphql";
@@ -47,7 +49,7 @@ export const DealKanbanCard: FC<Props> = ({
         };
     });
 
-    const { edit } = useNavigation();
+    const navigate = useNavigate();
     const { mutate } = useDelete();
 
     const dropdownItems = useMemo(() => {
@@ -57,7 +59,10 @@ export const DealKanbanCard: FC<Props> = ({
                 key: "1",
                 icon: <EyeOutlined />,
                 onClick: () => {
-                    edit("deals", id, "replace");
+                    console.log("view card");
+                    navigate(`/scrumboard/sales/edit/${id}`, {
+                        replace: true,
+                    });
                 },
             },
             {

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { HttpError, useGetToPath } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +7,6 @@ import { DollarOutlined } from "@ant-design/icons";
 
 import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 import { Company, Deal, User } from "../../../interfaces/graphql";
-import { useEffect } from "react";
 
 type FormValues = {
     stageId?: string | null;
