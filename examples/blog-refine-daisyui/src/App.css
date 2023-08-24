@@ -62,7 +62,7 @@ body {
 }
 
 .page-container {
-  @apply mx-auto py-2 px-4 border rounded drop-shadow-sm;
+  @apply mx-auto my-2 py-2 px-4 bg-slate-50 border rounded drop-shadow-md;
 }
 
 .page-title {
@@ -70,7 +70,7 @@ body {
 }
 
 .page-header {
-  @apply flex justify-between items-center mb-6;
+  @apply py-4 flex justify-between items-center mb-6;
 }
 
 .bar-chart-container {
