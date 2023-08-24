@@ -20,15 +20,14 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "calendar",
-        list: "/calendar/:type",
-        create: "/calendar/:type/create",
-        edit: "/calendar/:type/edit/:id",
-        show: "/calendar/:type/show/:id",
+        name: "events",
+        list: "/calendar",
+        create: "/calendar/create",
+        edit: "/calendar/edit/:id",
+        show: "/calendar/show/:id",
         meta: {
             label: "Calendar",
             icon: <CalendarOutlined />,
-            type: "month",
         },
     },
     {
@@ -39,15 +38,25 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "kanban",
+        name: "stages",
+        create: "/scrumboard/kanban/stages/create",
+        edit: "/scrumboard/kanban/stages/edit/:id",
+        meta: {
+            hide: true,
+        },
+    },
+    {
+        name: "tasks",
         list: "/scrumboard/kanban",
+        create: "/scrumboard/kanban/create",
+        edit: "/scrumboard/kanban/edit/:id",
         meta: {
             label: "Project Kanban",
             parent: "scrumboard",
         },
     },
     {
-        name: "sales",
+        name: "deals",
         list: "/scrumboard/sales",
         meta: {
             label: "Sales Pipeline",
@@ -98,7 +107,7 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "audit-log",
+        name: "audits",
         list: "/administration/audit-log",
         meta: {
             label: "Audit Log",

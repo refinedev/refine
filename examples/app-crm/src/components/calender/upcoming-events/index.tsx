@@ -1,19 +1,22 @@
 import React from "react";
-import { Card, Button, theme } from "antd";
-import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { useList, useNavigation } from "@refinedev/core";
+import { Card, theme, CardProps, Skeleton } from "antd";
+import { CalendarOutlined } from "@ant-design/icons";
+import { useList } from "@refinedev/core";
+import dayjs from "dayjs";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 
 import { Event } from "../../../interfaces/graphql";
 
-export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
+type CalendarUpcomingEventsProps = { limit?: number } & CardProps;
+
+export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
+    ...rest
 }) => {
     const { token } = theme.useToken();
-    const { list } = useNavigation();
-    const { data, isLoading, isError } = useList<Event>({
+    const { data, isLoading } = useList<Event>({
         resource: "events",
         pagination: {
             pageSize: limit,
@@ -24,21 +27,17 @@ export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
                 order: "asc",
             },
         ],
+        filters: [
+            {
+                field: "startDate",
+                operator: "gte",
+                value: dayjs().format("YYYY-MM-DD"),
+            },
+        ],
         meta: {
-            operation: "events",
             fields: ["id", "title", "color", "startDate", "endDate"],
         },
     });
-
-    if (isError) {
-        // TODO: handle error message
-        return null;
-    }
-
-    if (isLoading) {
-        // TODO: handle loading state (skeleton)
-        return null;
-    }
 
     return (
         <Card
@@ -50,24 +49,26 @@ export const CalendarUpcomingEvents: React.FC<{ limit?: number }> = ({
                     </Text>
                 </span>
             }
-            extra={
-                <Button
-                    onClick={() => list("calendar")}
-                    icon={<RightCircleOutlined />}
-                >
-                    See calendar
-                </Button>
-            }
             bodyStyle={{
                 padding: "0 1rem",
             }}
+            {...rest}
         >
-            {data.data.map((item) => (
-                <CalendarUpcomingEvent
-                    key={item.id}
-                    isLoading={isLoading}
-                    item={item}
+            {isLoading && (
+                <Skeleton
+                    loading={isLoading}
+                    active
+                    paragraph={{
+                        rows: 3,
+                        width: 200,
+                    }}
+                    style={{
+                        padding: "1rem 0",
+                    }}
                 />
+            )}
+            {data?.data.map((item) => (
+                <CalendarUpcomingEvent key={item.id} item={item} />
             ))}
         </Card>
     );

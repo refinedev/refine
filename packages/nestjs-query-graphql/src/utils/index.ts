@@ -51,11 +51,23 @@ const operatorMapper = (
     }
 
     if (operator === "null") {
-        return { is: "null" };
+        return { is: null };
     }
 
     if (operator === "nnull") {
-        return { isNot: "null" };
+        return { isNot: null };
+    }
+
+    if (operator === "between") {
+        if (!Array.isArray(value)) {
+            throw new Error("Between operator requires an array");
+        }
+
+        if (value.length !== 2) {
+            return {};
+        }
+
+        return { between: { lower: value[0], upper: value[1] } };
     }
 
     return { [operatorMap[operator]]: value };
@@ -127,7 +139,11 @@ export const generateCreatedSubscription = ({
             ),
             required: true,
             value: {
-                filter: generateFilters(filters as LogicalFilter[]),
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
             },
         };
     }
@@ -162,7 +178,11 @@ export const generateUpdatedSubscription = ({
             ),
             required: true,
             value: {
-                filter: generateFilters(filters as LogicalFilter[]),
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
             },
         };
     }
@@ -197,14 +217,20 @@ export const generateDeletedSubscription = ({
             ),
             required: true,
             value: {
-                filter: generateFilters(filters as LogicalFilter[]),
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
             },
         };
     }
 
     const { query, variables } = gql.subscription({
         operation,
-        fields: meta.fields,
+        fields: meta.fields.filter(
+            (field: string | object) => typeof field !== "object",
+        ),
         variables: queryVariables,
     });
 
