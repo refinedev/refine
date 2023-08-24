@@ -25,6 +25,7 @@ import {
 } from "@ant-design/icons";
 
 import { Company, Contact, Deal, User } from "../../../interfaces/graphql";
+import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 
 type FormValues = {
     stageId?: string | null;
@@ -71,7 +72,12 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
     const { selectProps, queryResult } = useSelect<Company>({
         resource: "companies",
         meta: {
-            fields: ["name", "id", { contacts: [{ nodes: ["name", "id"] }] }],
+            fields: [
+                "name",
+                "id",
+                { contacts: [{ nodes: ["name", "id", "avatarUrl"] }] },
+                "avatarUrl",
+            ],
         },
         optionLabel: "name",
     });
@@ -82,18 +88,15 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
             fields: ["title", "id"],
         },
     });
-    stageSelectProps.options?.concat({
-        label: "Unassigned",
-        value: null,
-    });
 
-    const { selectProps: userSelectProps } = useSelect<User>({
-        resource: "users",
-        meta: {
-            fields: ["name", "id"],
-        },
-        optionLabel: "name",
-    });
+    const { selectProps: userSelectProps, queryResult: userQueryResult } =
+        useSelect<User>({
+            resource: "users",
+            meta: {
+                fields: ["name", "id", "avatarUrl"],
+            },
+            optionLabel: "name",
+        });
 
     const { data: user } = useGetIdentity<User>();
 
@@ -121,7 +124,12 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
         if (hasContact) {
             const options = selectedCompany?.contacts?.nodes?.map(
                 (contact) => ({
-                    label: contact.name,
+                    label: (
+                        <SelectOptionWithAvatar
+                            name={contact.name}
+                            avatarUrl={contact.avatarUrl ?? undefined}
+                        />
+                    ),
                     value: contact.id,
                 }),
             );
@@ -252,6 +260,20 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                         <Select
                             placeholder="Please select company"
                             {...selectProps}
+                            options={
+                                queryResult.data?.data?.map((company) => ({
+                                    value: company.id,
+                                    label: (
+                                        <SelectOptionWithAvatar
+                                            name={company.name}
+                                            shape="square"
+                                            avatarUrl={
+                                                company.avatarUrl ?? undefined
+                                            }
+                                        />
+                                    ),
+                                })) ?? []
+                            }
                         />
                     </Form.Item>
 
@@ -262,6 +284,10 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                                 <Select
                                     placeholder="Please select stage"
                                     {...stageSelectProps}
+                                    options={stageSelectProps.options?.concat({
+                                        label: "UNASSIGNED",
+                                        value: null,
+                                    })}
                                 />
                             </Form.Item>
                         </Col>
@@ -288,6 +314,19 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                         <Select
                             placeholder="Please select user"
                             {...userSelectProps}
+                            options={
+                                userQueryResult.data?.data?.map((user) => ({
+                                    value: user.id,
+                                    label: (
+                                        <SelectOptionWithAvatar
+                                            name={user.name}
+                                            avatarUrl={
+                                                user.avatarUrl ?? undefined
+                                            }
+                                        />
+                                    ),
+                                })) ?? []
+                            }
                         />
                     </Form.Item>
                 </Form>

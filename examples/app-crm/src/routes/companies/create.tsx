@@ -18,8 +18,6 @@ import {
     Space,
     Typography,
 } from "antd";
-
-import { Company, User } from "../../interfaces/graphql";
 import {
     UserOutlined,
     MailOutlined,
@@ -27,6 +25,9 @@ import {
     PlusCircleOutlined,
     LeftOutlined,
 } from "@ant-design/icons";
+
+import { SelectOptionWithAvatar } from "../../components/select-option-with-avatar";
+import { Company, User } from "../../interfaces/graphql";
 
 type Props = {
     isOverModal?: boolean;
@@ -60,10 +61,10 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         mutationMode: "pessimistic",
     });
 
-    const { selectProps } = useSelect<User>({
+    const { selectProps, queryResult } = useSelect<User>({
         resource: "users",
         meta: {
-            fields: ["name", "id"],
+            fields: ["name", "id", "avatarUrl"],
         },
         optionLabel: "name",
     });
@@ -144,6 +145,17 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                     <Select
                         placeholder="Please sales owner user"
                         {...selectProps}
+                        options={
+                            queryResult.data?.data?.map((user) => ({
+                                value: user.id,
+                                label: (
+                                    <SelectOptionWithAvatar
+                                        name={user.name}
+                                        avatarUrl={user.avatarUrl ?? undefined}
+                                    />
+                                ),
+                            })) ?? []
+                        }
                     />
                 </Form.Item>
                 <Form.List name="contacts">

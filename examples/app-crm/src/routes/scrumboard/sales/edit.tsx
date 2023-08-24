@@ -1,11 +1,12 @@
-import { useEffect } from "react";
 import { HttpError, useGetToPath } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 import { DollarOutlined } from "@ant-design/icons";
 
-import { Company, Deal } from "../../../interfaces/graphql";
+import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
+import { Company, Deal, User } from "../../../interfaces/graphql";
+import { useEffect } from "react";
 
 type FormValues = {
     stageId?: string | null;
@@ -19,11 +20,10 @@ type FormValues = {
 };
 
 export const SalesEditPage = () => {
-    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 
-    const { formProps, modalProps, close } = useModalForm<
+    const { formProps, modalProps, close, queryResult } = useModalForm<
         Deal,
         HttpError,
         FormValues
@@ -42,21 +42,20 @@ export const SalesEditPage = () => {
         },
     });
 
-    useEffect(() => {
-        if (searchParams.get("stageId")) {
-            formProps.form?.setFieldsValue({
-                stageId: searchParams.get("stageId"),
-            });
-        }
-    }, [searchParams]);
-
-    const { selectProps } = useSelect<Company>({
-        resource: "companies",
-        meta: {
-            fields: ["name", "id", { contacts: [{ nodes: ["name", "id"] }] }],
+    const { selectProps, queryResult: companyQueryResult } = useSelect<Company>(
+        {
+            resource: "companies",
+            meta: {
+                fields: [
+                    "name",
+                    "id",
+                    "avatarUrl",
+                    { contacts: [{ nodes: ["name", "id", "avatarUrl"] }] },
+                ],
+            },
+            optionLabel: "name",
         },
-        optionLabel: "name",
-    });
+    );
 
     const { selectProps: stageSelectProps } = useSelect({
         resource: "dealStages",
@@ -64,18 +63,64 @@ export const SalesEditPage = () => {
             fields: ["title", "id"],
         },
     });
-    stageSelectProps.options?.concat({
-        label: "Unassigned",
-        value: null,
-    });
 
-    const { selectProps: contactSelectProps } = useSelect({
-        resource: "contacts",
+    const { queryResult: userQueryResult } = useSelect<User>({
+        resource: "users",
         meta: {
-            fields: ["name", "id"],
+            fields: ["name", "id", "avatarUrl"],
         },
         optionLabel: "name",
     });
+
+    const company = Form.useWatch("company", formProps.form);
+    const companyId = company?.id;
+
+    useEffect(() => {
+        const initialCompanyId = queryResult?.data?.data?.company?.id;
+        if (initialCompanyId !== companyId) {
+            formProps.form?.setFieldValue(["dealContact", "id"], undefined);
+        }
+    }, [companyId]);
+
+    const renderContactForm = () => {
+        if (!companyId) {
+            return null;
+        }
+
+        const selectedCompany = companyQueryResult.data?.data?.find(
+            (company) => company.id === companyId,
+        );
+
+        const hasContact =
+            selectedCompany?.contacts?.nodes?.length !== undefined &&
+            selectedCompany.contacts.nodes.length > 0;
+
+        if (hasContact) {
+            const options = selectedCompany?.contacts?.nodes?.map(
+                (contact) => ({
+                    label: (
+                        <SelectOptionWithAvatar
+                            name={contact.name}
+                            avatarUrl={contact.avatarUrl ?? undefined}
+                        />
+                    ),
+                    value: contact.id,
+                }),
+            );
+
+            return (
+                <Form.Item
+                    label="Deal contact"
+                    name={["dealContact", "id"]}
+                    rules={[{ required: true }]}
+                >
+                    <Select options={options} />
+                </Form.Item>
+            );
+        }
+
+        return null;
+    };
 
     return (
         <Modal
@@ -122,21 +167,36 @@ export const SalesEditPage = () => {
                     name={["company", "id"]}
                     rules={[{ required: true }]}
                 >
-                    <Select placeholder="Please select user" {...selectProps} />
+                    <Select
+                        placeholder="Please select company"
+                        {...selectProps}
+                        options={
+                            companyQueryResult.data?.data?.map((company) => ({
+                                value: company.id,
+                                label: (
+                                    <SelectOptionWithAvatar
+                                        name={company.name}
+                                        shape="square"
+                                        avatarUrl={
+                                            company.avatarUrl ?? undefined
+                                        }
+                                    />
+                                ),
+                            })) ?? []
+                        }
+                    />
                 </Form.Item>
-                <Form.Item
-                    label="Deal contact"
-                    name={["dealContact", "id"]}
-                    rules={[{ required: true }]}
-                >
-                    <Select {...contactSelectProps} />
-                </Form.Item>
+                {renderContactForm()}
                 <Row gutter={12}>
                     <Col span={12}>
                         <Form.Item label="Stage" name="stageId">
                             <Select
                                 placeholder="Please select stage"
                                 {...stageSelectProps}
+                                options={stageSelectProps.options?.concat({
+                                    label: "UNASSIGNED",
+                                    value: null,
+                                })}
                             />
                         </Form.Item>
                     </Col>
@@ -160,7 +220,21 @@ export const SalesEditPage = () => {
                     name="dealOwnerId"
                     rules={[{ required: true }]}
                 >
-                    <Select placeholder="Please select user" {...selectProps} />
+                    <Select
+                        placeholder="Please select user"
+                        {...selectProps}
+                        options={
+                            userQueryResult.data?.data?.map((user) => ({
+                                value: user.id,
+                                label: (
+                                    <SelectOptionWithAvatar
+                                        name={user.name}
+                                        avatarUrl={user.avatarUrl ?? undefined}
+                                    />
+                                ),
+                            })) ?? []
+                        }
+                    />
                 </Form.Item>
             </Form>
         </Modal>
