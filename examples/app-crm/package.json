@@ -22,7 +22,8 @@
     "@uiw/react-md-editor": "^3.19.5",
     "recharts": "^2.7.3",
     "dayjs": "^1.10.7",
-    "@react-pdf/renderer": "^3.1.8"
+    "@react-pdf/renderer": "^3.1.8",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
@@ -51,7 +52,8 @@
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "ts-jest": "^29.0.3",
-    "identity-obj-proxy": "^3.0.0"
+    "identity-obj-proxy": "^3.0.0",
+    "@types/lodash": "^4.14.171"
   },
   "scripts": {
     "start": "refine dev",

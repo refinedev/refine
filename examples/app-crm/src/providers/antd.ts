@@ -36,5 +36,17 @@ export const themeConfig: ThemeConfig = {
         Calendar: {
             colorBgContainer: "#FFFFFF",
         },
+        Table: {
+            colorBgContainer: "#fff",
+        },
+        Input: {
+            colorBgContainer: "#fff",
+        },
+        InputNumber: {
+            colorBgContainer: "#fff",
+        },
+        Radio: {
+            colorBgContainer: "#fff",
+        },
     },
 };

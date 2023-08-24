@@ -142,6 +142,7 @@ export type ChecklistItemInput = {
 };
 
 export type Company = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     businessType: BusinessType;
     companySize: CompanySize;
     contacts: CompanyContactsConnection;
@@ -477,6 +478,7 @@ export type CompanyDeleteFilter = {
 };
 
 export type CompanyDeleteResponse = {
+    avatarUrl?: Maybe<Scalars["String"]["output"]>;
     businessType?: Maybe<BusinessType>;
     companySize?: Maybe<CompanySize>;
     country?: Maybe<Scalars["String"]["output"]>;
@@ -1557,11 +1559,11 @@ export type DealCountAggregate = {
 
 export type DealCreateInput = {
     companyId: Scalars["ID"]["input"];
-    dealContactId: Scalars["ID"]["input"];
+    dealContactId?: InputMaybe<Scalars["ID"]["input"]>;
     dealOwnerId: Scalars["ID"]["input"];
-    stageId: Scalars["ID"]["input"];
+    stageId?: InputMaybe<Scalars["ID"]["input"]>;
     title: Scalars["String"]["input"];
-    value: Scalars["Float"]["input"];
+    value?: InputMaybe<Scalars["Float"]["input"]>;
 };
 
 export type DealDeleteFilter = {
@@ -1925,6 +1927,18 @@ export type DealUpdateFilter = {
     stageId?: InputMaybe<IdFilterComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
+};
+
+export type DealUpdateInput = {
+    closeDateDay?: InputMaybe<Scalars["Int"]["input"]>;
+    closeDateMonth?: InputMaybe<Scalars["Int"]["input"]>;
+    closeDateYear?: InputMaybe<Scalars["Int"]["input"]>;
+    companyId?: InputMaybe<Scalars["ID"]["input"]>;
+    dealContactId?: InputMaybe<Scalars["ID"]["input"]>;
+    dealOwnerId?: InputMaybe<Scalars["ID"]["input"]>;
+    stageId?: InputMaybe<Scalars["ID"]["input"]>;
+    title?: InputMaybe<Scalars["String"]["input"]>;
+    value?: InputMaybe<Scalars["Float"]["input"]>;
 };
 
 export type DeleteManyCompaniesInput = {
@@ -4323,7 +4337,7 @@ export type UpdateManyDealsInput = {
     /** Filter used to find fields to update */
     filter: DealUpdateFilter;
     /** The update to apply to all records found using the filter */
-    update: DealStageUpdateInput;
+    update: DealUpdateInput;
 };
 
 export type UpdateManyEventCategoriesInput = {
@@ -4437,7 +4451,7 @@ export type UpdateOneDealInput = {
     /** The id of the record to update */
     id: Scalars["ID"]["input"];
     /** The update to apply. */
-    update: DealStageUpdateInput;
+    update: DealUpdateInput;
 };
 
 export type UpdateOneDealStageInput = {
