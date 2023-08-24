@@ -24,7 +24,8 @@ const columns = [
         dataIndex: "title",
         flex: "auto",
         span: {
-            xs: 8,
+            xs: 6,
+            md: 8,
         },
         Input: (props: InputProps) => <Input {...props} />,
     },
@@ -34,6 +35,7 @@ const columns = [
         flex: "auto",
         span: {
             xs: 6,
+            md: 5,
         },
         Input: (props: InputNumberProps) => (
             <InputNumber
@@ -69,7 +71,7 @@ const columns = [
         dataIndex: "discount",
         flex: "auto",
         span: {
-            xs: 3,
+            xs: 4,
         },
         Input: (props: InputNumberProps) => (
             <InputNumber
@@ -292,6 +294,11 @@ export const ProductsServices = () => {
                                                         )}
                                                         <Col span={1}>
                                                             <Button
+                                                                size="small"
+                                                                style={{
+                                                                    marginTop:
+                                                                        "4px",
+                                                                }}
                                                                 danger
                                                                 icon={
                                                                     <DeleteOutlined />
