@@ -1,6 +1,6 @@
 import { ConfigProvider, Typography } from "antd";
 
-type Props = {
+export type TextProps = {
     size?:
         | "xs"
         | "sm"
@@ -57,7 +57,11 @@ const sizes = {
     },
 };
 
-export const Text: React.FC<Props> = ({ size = "sm", children, ...rest }) => {
+export const Text: React.FC<TextProps> = ({
+    size = "sm",
+    children,
+    ...rest
+}) => {
     return (
         <ConfigProvider
             theme={{

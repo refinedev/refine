@@ -7,7 +7,7 @@ import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { CheckListInput } from "./checklist-input";
 import { ChecklistHeader } from "./checklist-header";
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
-import { Task } from "../../interfaces/graphql";
+import { Task, TaskUpdateInput } from "../../interfaces/graphql";
 
 type Props = {
     initialValues: {
@@ -18,7 +18,7 @@ type Props = {
 
 export const CheckListForm = ({ initialValues, isLoading }: Props) => {
     const invalidate = useInvalidate();
-    const { formProps } = useForm<Task, HttpError, Task>({
+    const { formProps } = useForm<Task, HttpError, TaskUpdateInput>({
         queryOptions: {
             enabled: false,
         },
