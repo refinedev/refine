@@ -36,6 +36,15 @@ export const CompanyListPage = () => {
                 },
             ];
         },
+        filters: {
+            initial: [
+                {
+                    field: "contacts.id",
+                    operator: "in",
+                    value: undefined,
+                },
+            ],
+        },
         pagination: {
             pageSize: 12,
         },

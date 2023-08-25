@@ -49,6 +49,17 @@ export const CompaniesTableView: FC<Props> = ({
         },
     });
 
+    const { selectProps: selectPropsContacts } = useSelect({
+        resource: "contacts",
+        optionLabel: "name",
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            fields: ["id", "name"],
+        },
+    });
+
     return (
         <Table
             {...tableProps}
@@ -168,6 +179,21 @@ export const CompaniesTableView: FC<Props> = ({
             <Table.Column<Company>
                 dataIndex={["contacts", "id"]}
                 title="Related Contacts"
+                defaultFilteredValue={getDefaultFilter(
+                    "contacts.id",
+                    filters,
+                    "in",
+                )}
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Select
+                            mode="multiple"
+                            placeholder="Search related contacts"
+                            style={{ width: 220 }}
+                            {...selectPropsContacts}
+                        />
+                    </FilterDropdown>
+                )}
                 render={(_, record: Company) => {
                     const value = record.contacts;
 
