@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Avatar,
     Button,
@@ -31,7 +31,7 @@ import { TextIcon } from "../../../components/icon";
 import { ContactComment } from "../../../components/contact/comment";
 import { Timezone } from "../../../enums/timezone";
 
-import type { Company, Contact } from "../../../interfaces/graphql";
+import type { Company, Contact, User } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 
@@ -48,6 +48,8 @@ export const ContactShowPage = () => {
     const getToPath = useGetToPath();
     const { mutate } = useUpdate<Contact>();
     const { mutate: deleteMutation } = useDelete<Contact>();
+    const { mutate: updateMutation } = useUpdate<Contact>();
+    const [salesOwnerId, setSalesOwnerId] = useState<string>();
     const { queryResult } = useShow<Contact>({
         meta: {
             fields: [
@@ -63,6 +65,9 @@ export const ContactShowPage = () => {
                 "stage",
                 "status",
                 "avatarUrl",
+                {
+                    salesOwner: ["id", "name", "avatarUrl"],
+                },
             ],
         },
     });
@@ -71,6 +76,16 @@ export const ContactShowPage = () => {
         queryResult: companySelectQueryResult,
     } = useSelect<Company>({
         resource: "companies",
+        meta: {
+            fields: ["id", "name", "avatarUrl"],
+        },
+        optionLabel: "name",
+    });
+    const {
+        selectProps: usersSelectProps,
+        queryResult: usersSelectQueryResult,
+    } = useSelect<User>({
+        resource: "users",
         meta: {
             fields: ["id", "name", "avatarUrl"],
         },
@@ -97,6 +112,7 @@ export const ContactShowPage = () => {
             avatarUrl,
             company,
             createdAt,
+            salesOwner,
         } = data.data;
         return (
             <div className={styles.container}>
@@ -142,6 +158,7 @@ export const ContactShowPage = () => {
                         view={<Text>{email}</Text>}
                         onClick={() => setActiveForm("email")}
                         onUpdate={() => setActiveForm(undefined)}
+                        onCancel={() => setActiveForm(undefined)}
                     >
                         <Input defaultValue={email} />
                     </SingleElementForm>
@@ -166,7 +183,51 @@ export const ContactShowPage = () => {
                             </Space>
                         }
                         onClick={() => setActiveForm("companyId")}
-                        onUpdate={() => setActiveForm(undefined)}
+                        onCancel={() => setActiveForm(undefined)}
+                        onUpdate={() => {
+                            setActiveForm(undefined);
+                            // save sales owner
+                            console.log("salesOwnerId", salesOwnerId);
+                            updateMutation({
+                                resource: "contacts",
+                                id,
+                                values: {
+                                    salesOwnerId,
+                                },
+                            });
+                        }}
+                        extra={
+                            <div style={{ marginTop: ".8rem" }}>
+                                <Text>Sales Owner</Text>
+                                <Select
+                                    style={{ width: "100%" }}
+                                    defaultValue={{
+                                        label: salesOwner.name,
+                                        value: salesOwner.id,
+                                    }}
+                                    {...usersSelectProps}
+                                    onChange={(value: any) => {
+                                        setSalesOwnerId(value);
+                                    }}
+                                    options={
+                                        usersSelectQueryResult.data?.data?.map(
+                                            ({ id, name, avatarUrl }) => ({
+                                                value: id,
+                                                label: (
+                                                    <SelectOptionWithAvatar
+                                                        name={name}
+                                                        avatarUrl={
+                                                            avatarUrl ??
+                                                            undefined
+                                                        }
+                                                    />
+                                                ),
+                                            }),
+                                        ) ?? []
+                                    }
+                                />
+                            </div>
+                        }
                     >
                         <Select
                             style={{ width: "100%" }}
@@ -208,6 +269,7 @@ export const ContactShowPage = () => {
                         view={<Text>{jobTitle}</Text>}
                         onClick={() => setActiveForm("jobTitle")}
                         onUpdate={() => setActiveForm(undefined)}
+                        onCancel={() => setActiveForm(undefined)}
                     >
                         <Input defaultValue={jobTitle || ""} />
                     </SingleElementForm>
@@ -227,6 +289,7 @@ export const ContactShowPage = () => {
                         view={<Text>{phone}</Text>}
                         onClick={() => setActiveForm("phone")}
                         onUpdate={() => setActiveForm(undefined)}
+                        onCancel={() => setActiveForm(undefined)}
                     >
                         <Input defaultValue={phone || ""} />
                     </SingleElementForm>
@@ -247,6 +310,7 @@ export const ContactShowPage = () => {
                         view={<Text>{timezone}</Text>}
                         onClick={() => setActiveForm("timezone")}
                         onUpdate={() => setActiveForm(undefined)}
+                        onCancel={() => setActiveForm(undefined)}
                     >
                         <Select
                             style={{ width: "100%" }}

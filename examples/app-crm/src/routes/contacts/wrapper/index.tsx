@@ -275,6 +275,14 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         filters,
         sorters,
     } = useTable<Contact>({
+        sorters: {
+            initial: [
+                {
+                    field: "name",
+                    order: "asc",
+                },
+            ],
+        },
         filters: {
             initial: [
                 {

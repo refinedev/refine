@@ -9,9 +9,11 @@ import styles from "./index.module.css";
 type SingleElementFormProps = {
     icon?: React.ReactNode;
     itemProps?: FormItemProps;
+    extra?: React.ReactNode;
     view?: React.ReactNode;
     state?: "empty" | "form" | "view";
     onUpdate?: () => void;
+    onCancel?: () => void;
     onClick?: () => void;
     style?: React.CSSProperties;
 } & React.PropsWithChildren;
@@ -23,8 +25,10 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
     itemProps,
     onClick,
     onUpdate,
+    onCancel,
     children,
     style,
+    extra,
 }) => {
     const { formProps, saveButtonProps } = useForm({
         action: "edit",
@@ -38,6 +42,7 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
         onMutationSuccess() {
             onUpdate?.();
         },
+        mutationMode: "optimistic",
     });
 
     return (
@@ -46,16 +51,16 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
                 <div className={styles.icon}>{icon}</div>
                 <div className={styles.content}>
                     <div className={styles.input}>
-                        <Text
-                            size="xs"
-                            className={`${styles.label} ant-text tertiary`}
-                        >
+                        <Text size="sm" className={styles.label}>
                             {itemProps?.label}
                         </Text>
                         {state === "form" && (
-                            <Form.Item {...itemProps} noStyle>
-                                {children}
-                            </Form.Item>
+                            <>
+                                <Form.Item {...itemProps} noStyle>
+                                    {children}
+                                </Form.Item>
+                                {extra}
+                            </>
                         )}
                         {state === "empty" && (
                             <Button
@@ -72,7 +77,7 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
 
                     {state === "form" && (
                         <div className={styles.buttons}>
-                            <Button onClick={() => onUpdate?.()}>Cancel</Button>
+                            <Button onClick={() => onCancel?.()}>Cancel</Button>
                             <Button type="primary" {...saveButtonProps}>
                                 Save
                             </Button>
