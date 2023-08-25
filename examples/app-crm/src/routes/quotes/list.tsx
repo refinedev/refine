@@ -172,6 +172,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                         defaultFilteredValue={getDefaultFilter(
                             "company.id",
                             filters,
+                            "in",
                         )}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
@@ -237,7 +238,6 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                 <Select
                                     style={{ width: "200px" }}
                                     defaultValue={null}
-                                    mode="multiple"
                                     placeholder="Select Stage"
                                     options={statusOptions}
                                 ></Select>
