@@ -24,6 +24,7 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
         queryOptions: {
             enabled: false,
         },
+        mutationMode: "optimistic",
         onMutationSuccess: () => {
             setId(undefined);
             invalidate({

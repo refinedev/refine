@@ -29,11 +29,11 @@ import { SingleElementForm } from "../../../components/single-element-form";
 import { ContactStatus } from "../../../components/contact/status";
 import { TextIcon } from "../../../components/icon";
 import { ContactComment } from "../../../components/contact/comment";
+import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 import { Timezone } from "../../../enums/timezone";
 
 import type { Company, Contact, User } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
-import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 
 const timezoneOptions = Object.keys(Timezone).map((key) => ({
     label: Timezone[key as keyof typeof Timezone],

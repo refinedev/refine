@@ -102,6 +102,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
         const stage = statusToStage(status);
         mutate({
             resource: "contacts",
+            mutationMode: "optimistic",
             id: contact.id,
             values: {
                 status,
@@ -111,7 +112,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
     };
 
     return (
-        <div className="">
+        <div>
             <LifecycleStage status={status} />
             <ul
                 className={`${styles.container} ${styles[status]}`}
@@ -123,7 +124,6 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
                     }`}
                 >
                     <a
-                        className={styles.button}
                         onClick={() => {
                             updateStatus(ContactStatusEnum.NEW);
                         }}
@@ -140,12 +140,11 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
             }`}
                 >
                     <a
-                        className={styles.button}
                         onClick={() => {
                             updateStatus(ContactStatusEnum.CONTACTED);
                         }}
                     >
-                        Contact
+                        Contacted
                     </a>
                 </li>
                 <li
@@ -177,7 +176,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
                             ],
                         }}
                     >
-                        <a className={styles.button}>
+                        <a>
                             {status === ContactStatusEnum.UNQUALIFIED
                                 ? "Unqualified"
                                 : "Interested"}
@@ -193,7 +192,6 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
                     }`}
                 >
                     <a
-                        className={styles.button}
                         onClick={() => {
                             updateStatus(ContactStatusEnum.QUALIFIED);
                         }}
@@ -230,7 +228,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
                             ],
                         }}
                     >
-                        <a className={styles.button}>
+                        <a>
                             {status === ContactStatusEnum.LOST
                                 ? "Lost"
                                 : "Negotiation"}
@@ -267,7 +265,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
                             ],
                         }}
                     >
-                        <a className={styles.button}>
+                        <a>
                             {status === ContactStatusEnum.CHURNED
                                 ? "Churned"
                                 : "Won"}
