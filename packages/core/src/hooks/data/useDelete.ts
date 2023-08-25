@@ -44,6 +44,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 export type DeleteParams<TData, TError, TVariables> = {
     /**
@@ -165,6 +166,7 @@ export const useDelete = <
     const {
         options: { textTransformers },
     } = useRefineContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
@@ -474,6 +476,7 @@ export const useDelete = <
                     });
                 }
             },
+            mutationKey: keys().data().mutation("delete").get(preferLegacyKeys),
             ...mutationOptions,
         },
     );

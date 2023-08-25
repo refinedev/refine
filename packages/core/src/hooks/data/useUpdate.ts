@@ -44,6 +44,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 export type UpdateParams<TData, TError, TVariables> = {
     /**
@@ -168,6 +169,7 @@ export const useUpdate = <
     const {
         options: { textTransformers },
     } = useRefineContext();
+    const { keys } = useKeys();
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -516,6 +518,7 @@ export const useUpdate = <
                     });
                 }
             },
+            mutationKey: keys().data().mutation("update").key,
             ...mutationOptions,
         },
     );

@@ -17,6 +17,7 @@ import {
 } from "@definitions/helpers";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useActiveAuthProvider } from "@definitions/helpers";
+import { useKeys } from "@hooks/useKeys";
 
 type LogRenameData =
     | {
@@ -72,6 +73,7 @@ export const useLog = <
 > => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
+    const { keys } = useKeys();
 
     const authProvider = useActiveAuthProvider();
 
@@ -112,7 +114,10 @@ export const useLog = <
                 author: identityData ?? authorData?.data,
             });
         },
-        logMutationOptions,
+        {
+            mutationKey: keys().audit().action("log").key,
+            ...logMutationOptions,
+        },
     );
 
     const rename = useMutation<
@@ -131,6 +136,7 @@ export const useLog = <
                     queryClient.invalidateQueries(queryKey.logList());
                 }
             },
+            mutationKey: keys().audit().action("rename").key,
             ...renameMutationOptions,
         },
     );

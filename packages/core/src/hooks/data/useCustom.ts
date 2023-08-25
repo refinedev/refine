@@ -27,6 +27,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 interface UseCustomConfig<TQuery, TPayload> {
     /**
@@ -129,6 +130,7 @@ export const useCustom = <
     const translate = useTranslate();
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
 
@@ -142,13 +144,16 @@ export const useCustom = <
             TError,
             CustomResponse<TData>
         >({
-            queryKey: [
-                dataProviderName,
-                "custom",
-                method,
-                url,
-                { ...config, ...(preferredMeta || {}) },
-            ],
+            queryKey: keys()
+                .data(dataProviderName)
+                .mutation("custom")
+                .params({
+                    method,
+                    url,
+                    ...config,
+                    ...(preferredMeta || {}),
+                })
+                .get(preferLegacyKeys),
             queryFn: ({ queryKey, pageParam, signal }) =>
                 custom<TQueryFnData>({
                     url,
