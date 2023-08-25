@@ -32,6 +32,7 @@ import {
     KanbanCreateStage,
     KanbanEditStage,
 } from "./routes/scrumboard/kanban";
+import { CompanyListPage, CompanyShowPage } from "./routes/companies";
 import {
     SalesPage,
     SalesCreatePage,
@@ -40,8 +41,6 @@ import {
     SalesEditStage,
     SalesCreateDetails,
 } from "./routes/scrumboard/sales";
-import { CompaniesPage } from "./routes/companies";
-import { CompanyShowPage } from "./routes/companies/show";
 import { ContactsPageWrapper } from "./routes/contacts/wrapper";
 import { ContactCreatePage } from "./routes/contacts/create";
 import { ContactEditPage } from "./routes/contacts/edit";
@@ -184,7 +183,7 @@ const App: React.FC = () => {
                             </Route>
 
                             <Route path="/companies">
-                                <Route index element={<CompaniesPage />} />
+                                <Route index element={<CompanyListPage />} />
                                 <Route
                                     path=":id"
                                     element={<CompanyShowPage />}
