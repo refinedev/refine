@@ -132,7 +132,27 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     </CreateButton>
                 }
             >
-                <Table {...tableProps} rowKey="id">
+                <Table
+                    {...tableProps}
+                    pagination={{
+                        ...tableProps.pagination,
+                        showTotal: (total) => {
+                            return (
+                                <span
+                                    style={{
+                                        marginLeft: "16px",
+                                    }}
+                                >
+                                    <span className="ant-text secondary">
+                                        {total}
+                                    </span>{" "}
+                                    compaines in total
+                                </span>
+                            );
+                        },
+                    }}
+                    rowKey="id"
+                >
                     <Table.Column
                         dataIndex="title"
                         title="Title"
