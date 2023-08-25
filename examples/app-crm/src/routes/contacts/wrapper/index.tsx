@@ -72,7 +72,25 @@ const TableView: React.FC<TableViewProps> = ({ filters, sorters, ...rest }) => {
     });
 
     return (
-        <Table {...rest} rowKey="id">
+        <Table
+            {...rest}
+            pagination={{
+                ...rest.pagination,
+                showTotal: (total) => {
+                    return (
+                        <span
+                            style={{
+                                marginLeft: "48px",
+                            }}
+                        >
+                            <span className="ant-text secondary">{total}</span>{" "}
+                            contacts in total
+                        </span>
+                    );
+                },
+            }}
+            rowKey="id"
+        >
             <Table.Column
                 dataIndex="name"
                 title="Name"
@@ -87,7 +105,11 @@ const TableView: React.FC<TableViewProps> = ({ filters, sorters, ...rest }) => {
                 render={(_, record: Contact) => {
                     return (
                         <Space>
-                            <Avatar src={record.avatarUrl} alt={record.name} />
+                            <Avatar
+                                size="small"
+                                src={record.avatarUrl}
+                                alt={record.name}
+                            />
                             <Text>{record.name}</Text>
                         </Space>
                     );
@@ -188,7 +210,11 @@ const CardView: React.FC<CardViewProps> = ({
     const getToPath = useGetToPath();
 
     return (
-        <div style={{ marginTop: "1rem" }}>
+        <div
+            style={{
+                marginTop: "1rem",
+            }}
+        >
             <Row gutter={[32, 32]}>
                 {dataSource?.map((contact) => (
                     <Col key={contact.id} span="6">
@@ -215,8 +241,20 @@ const CardView: React.FC<CardViewProps> = ({
             </Row>
 
             <Pagination
-                style={{ textAlign: "end", marginTop: "1rem" }}
+                style={{ display: "flex", marginTop: "1rem" }}
                 {...pagination}
+                showTotal={(total) => {
+                    return (
+                        <span
+                            style={{
+                                marginLeft: "48px",
+                            }}
+                        >
+                            <span className="ant-text secondary">{total}</span>{" "}
+                            contacts in total
+                        </span>
+                    );
+                }}
                 onChange={(page, pageSize) => {
                     setCurrent(page);
                     setPageSize(pageSize);
@@ -234,7 +272,6 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         searchFormProps,
         setCurrent,
         setPageSize,
-        tableQueryResult,
         filters,
         sorters,
     } = useTable<Contact>({
@@ -349,15 +386,6 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                     {...tableProps}
                 />
             )}
-            <Text
-                className="ant-text secondary"
-                style={{
-                    bottom: type === "table" ? 20 : 4,
-                    position: "absolute",
-                }}
-            >
-                <b>{tableQueryResult.data?.total}</b> contacts in total
-            </Text>
             {children}
         </div>
     );
