@@ -1,14 +1,17 @@
 import { BaseKey } from "src/interfaces";
 
-type ParametrizedDataActions =
-    | "list"
-    | "infinite"
+type ParametrizedDataActions = "list" | "infinite";
+type IdRequiredDataActions = "one";
+type IdsRequiredDataActions = "many";
+type DataMutationActions =
     | "custom"
     | "customMutation"
     | "create"
-    | "createMany";
-type IdRequiredDataActions = "one" | "update" | "delete";
-type IdsRequiredDataActions = "many" | "updateMany" | "deleteMany";
+    | "createMany"
+    | "update"
+    | "updateMany"
+    | "delete"
+    | "deleteMany";
 
 type AuthActionType =
     | "login"
@@ -65,10 +68,27 @@ function convertToLegacy(segments: KeySegment[]) {
     if (segments[0] === "data") {
         // [data, dpName, resource, action, ...];
         const newSegments = segments.slice(1);
+
         if (newSegments[2] === "many") {
             newSegments[2] = "getMany";
+        } else if (newSegments[2] === "infinite") {
+            newSegments[2] = "list";
         } else if (newSegments[2] === "one") {
             newSegments[2] = "detail";
+        } else if (newSegments[1] === "custom") {
+            const newParams = {
+                ...newSegments[2],
+            };
+            delete newParams.method;
+            delete newParams.url;
+
+            return [
+                newSegments[0],
+                newSegments[1],
+                newSegments[2].method,
+                newSegments[2].url,
+                newParams,
+            ];
         }
 
         return newSegments;
@@ -196,17 +216,17 @@ class DataResourceKeyBuilder extends BaseKeyBuilder {
         | ParamsKeyBuilder
         | DataIdRequiringKeyBuilder
         | DataIdsRequiringKeyBuilder {
-        if (["one", "update", "delete"].includes(actionType)) {
+        if (actionType === "one") {
             return new DataIdRequiringKeyBuilder([
                 ...this.segments,
                 actionType,
             ]);
-        } else if (["many", "updateMany", "deleteMany"].includes(actionType)) {
+        } else if (actionType === "many") {
             return new DataIdsRequiringKeyBuilder([
                 ...this.segments,
                 actionType,
             ]);
-        } else if (["list", "infinite", "custom", "customMutation"]) {
+        } else if (["list", "infinite"].includes(actionType)) {
             return new ParamsKeyBuilder([...this.segments, actionType]);
         } else {
             throw new Error("Invalid action type");
@@ -221,6 +241,13 @@ class DataKeyBuilder extends BaseKeyBuilder {
 
     resource(resourceName: string) {
         return new DataResourceKeyBuilder([...this.segments, resourceName]);
+    }
+
+    mutation(mutationName: DataMutationActions) {
+        return new ParamsKeyBuilder([
+            ...(mutationName === "custom" ? this.segments : this.segments[0]),
+            mutationName,
+        ]);
     }
 }
 
@@ -259,7 +286,7 @@ class AuditActionKeyBuilder extends BaseKeyBuilder {
         super(segments);
     }
 
-    action(actionType: Extract<AuditActionType, "list" | "log">) {
+    action(actionType: Extract<AuditActionType, "list">) {
         return new ParamsKeyBuilder([...this.segments, actionType]);
     }
 }
@@ -273,7 +300,7 @@ class AuditKeyBuilder extends BaseKeyBuilder {
         return new AuditActionKeyBuilder([...this.segments, resourceName]);
     }
 
-    action(actionType: Extract<AuditActionType, "rename">) {
+    action(actionType: Extract<AuditActionType, "rename" | "log">) {
         return new ParamsKeyBuilder([...this.segments, actionType]);
     }
 }

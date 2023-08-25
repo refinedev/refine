@@ -177,16 +177,16 @@ describe("keys", () => {
             expect(keyBuilder.get()).toEqual(["audit", "rename"]);
         });
 
-        it("keys().audit().resource(posts).action(log).params({ foo: bar }).key === [audit, posts, log, { foo: bar }]", () => {
+        it("keys().audit().resource(posts).action(list).params({ foo: bar }).key === [audit, posts, list, { foo: bar }]", () => {
             const keyBuilder = keys()
                 .audit()
                 .resource("posts")
-                .action("log")
+                .action("list")
                 .params({ foo: "bar" });
             expect(keyBuilder.get()).toEqual([
                 "audit",
                 "posts",
-                "log",
+                "list",
                 { foo: "bar" },
             ]);
         });
@@ -318,6 +318,50 @@ describe("Legacy keys are identical with `queryKeys`", () => {
             );
         });
     });
+
+    it("logList matches the legacy", () => {
+        const metaData = {};
+        const meta = { foo: "bar" };
+        const resource = "posts";
+
+        const legacy = queryKeys(resource, undefined, metaData).logList(meta);
+
+        const newKey = keys()
+            .audit()
+            .resource(resource)
+            .action("list")
+            .params(meta);
+
+        expect(newKey.legacy).toEqual(legacy);
+    });
+
+    it("useCustom matches the legacy key", () => {
+        const dataProviderName = "default";
+        const method = "GET";
+        const url = "/posts";
+        const preferredMeta = { foo: "bar" };
+        const config = { enabled: true };
+
+        const legacyKey = [
+            dataProviderName,
+            "custom",
+            method,
+            url,
+            { ...config, ...(preferredMeta || {}) },
+        ];
+
+        const newKey = keys()
+            .data(dataProviderName)
+            .mutation("custom")
+            .params({
+                method,
+                url,
+                ...config,
+                ...(preferredMeta || {}),
+            });
+
+        expect(newKey.legacy).toEqual(legacyKey);
+    });
 });
 
 describe("Legacy keys are matching auth hooks", () => {
@@ -350,5 +394,34 @@ describe("Legacy keys are matching access hooks", () => {
                 enabled: true,
             },
         ]);
+    });
+
+    it("generates the same key for legacy", () => {
+        const action = "list";
+        const resource = "posts";
+        const paramsRest = { foo: "bar" };
+        const queryOptions = { enabled: true };
+        const sanitizedResource = { name: "posts" };
+
+        const legacyKey = [
+            "useCan",
+            {
+                action,
+                resource,
+                params: { ...paramsRest, resource: sanitizedResource },
+                enabled: queryOptions?.enabled,
+            },
+        ];
+
+        const newKey = keys()
+            .access()
+            .resource(resource)
+            .action(action)
+            .params({
+                params: { ...paramsRest, resource: sanitizedResource },
+                enabled: queryOptions?.enabled,
+            }).legacy;
+
+        expect(newKey).toEqual(legacyKey);
     });
 });
