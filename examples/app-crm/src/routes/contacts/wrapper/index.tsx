@@ -5,6 +5,7 @@ import {
     FilterDropdown,
     SaveButton,
     ShowButton,
+    getDefaultSortOrder,
     useSelect,
     useTable,
 } from "@refinedev/antd";
@@ -30,7 +31,12 @@ import {
     PhoneOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath } from "@refinedev/core";
+import {
+    CrudFilters,
+    CrudSorting,
+    getDefaultFilter,
+    useGetToPath,
+} from "@refinedev/core";
 import debounce from "lodash/debounce";
 
 import { ContactStatusTag } from "../../../components/contact/status-tag";
@@ -42,7 +48,10 @@ import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
 
 type Props = React.PropsWithChildren<{}>;
-type TableViewProps = TableProps<Contact>;
+type TableViewProps = TableProps<Contact> & {
+    filters?: CrudFilters;
+    sorters?: CrudSorting;
+};
 type CardViewProps = TableProps<Contact> & {
     setCurrent: (current: number) => void;
     setPageSize: (pageSize: number) => void;
@@ -53,7 +62,7 @@ const statusOptions = Object.keys(ContactStatusEnum).map((key) => ({
     value: ContactStatusEnum[key as keyof typeof ContactStatusEnum],
 }));
 
-const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
+const TableView: React.FC<TableViewProps> = ({ filters, sorters, ...rest }) => {
     const { selectProps } = useSelect({
         resource: "companies",
         optionLabel: "name",
@@ -61,12 +70,15 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
             fields: ["id", "name"],
         },
     });
+
     return (
         <Table {...rest} rowKey="id">
             <Table.Column
                 dataIndex="name"
                 title="Name"
                 width={200}
+                defaultFilteredValue={getDefaultFilter("name", filters)}
+                defaultSortOrder={getDefaultSortOrder("name", sorters)}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
                         <Input placeholder="Search Name" />
@@ -84,6 +96,8 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
             <Table.Column
                 dataIndex="email"
                 title="Email"
+                defaultFilteredValue={getDefaultFilter("email", filters)}
+                defaultSortOrder={getDefaultSortOrder("email", sorters)}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
                         <Input placeholder="Search Email" />
@@ -93,6 +107,8 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
             <Table.Column
                 dataIndex={["company", "id"]}
                 title="Company"
+                defaultFilteredValue={getDefaultFilter("company.id", filters)}
+                defaultSortOrder={getDefaultSortOrder("company.id", sorters)}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
                         <Select
@@ -119,6 +135,8 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                 dataIndex="status"
                 title="Status"
                 sorter
+                defaultFilteredValue={getDefaultFilter("status", filters)}
+                defaultSortOrder={getDefaultSortOrder("status", sorters)}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
                         <Select
@@ -217,6 +235,8 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         setCurrent,
         setPageSize,
         tableQueryResult,
+        filters,
+        sorters,
     } = useTable<Contact>({
         filters: {
             initial: [
@@ -317,7 +337,11 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
             </div>
 
             {type === "table" ? (
-                <TableView {...tableProps} />
+                <TableView
+                    {...tableProps}
+                    filters={filters}
+                    sorters={sorters}
+                />
             ) : (
                 <CardView
                     setPageSize={setPageSize}
@@ -326,7 +350,7 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                 />
             )}
             <Text
-                className="anttext secondary"
+                className="ant-text secondary"
                 style={{
                     bottom: type === "table" ? 20 : 4,
                     position: "absolute",
