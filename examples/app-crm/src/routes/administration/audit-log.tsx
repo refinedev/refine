@@ -1,12 +1,27 @@
-import { DateField, FilterDropdown, List, useTable } from "@refinedev/antd";
-import { Avatar, DatePicker, Input, Radio, Space, Table } from "antd";
+import { getDefaultFilter } from "@refinedev/core";
+import {
+    DateField,
+    FilterDropdown,
+    useTable,
+    getDefaultSortOrder,
+} from "@refinedev/antd";
+import {
+    Avatar,
+    DatePicker,
+    Input,
+    Radio,
+    Space,
+    Table,
+    Typography,
+} from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 import { ActionCell } from "../../components/audit-log/action-cell";
+
 import { Audit } from "../../interfaces/graphql";
 
 export const AuditLogPage = () => {
-    const { tableProps } = useTable<Audit>({
+    const { tableProps, filters, sorters } = useTable<Audit>({
         meta: {
             fields: [
                 "id",
@@ -30,12 +45,32 @@ export const AuditLogPage = () => {
     });
 
     return (
-        <List>
+        <div>
+            <Typography.Title level={3} style={{ marginBottom: "44px" }}>
+                Audit Log
+            </Typography.Title>
             <Table
                 className="audit-log-table"
                 {...tableProps}
                 rowKey="id"
                 scroll={{ x: true }}
+                pagination={{
+                    ...tableProps.pagination,
+                    showTotal: (total) => {
+                        return (
+                            <span
+                                style={{
+                                    marginLeft: "54px",
+                                }}
+                            >
+                                <span className="ant-text secondary">
+                                    {total}
+                                </span>{" "}
+                                actions in total
+                            </span>
+                        );
+                    },
+                }}
             >
                 <Table.Column
                     dataIndex="user.name"
@@ -60,6 +95,11 @@ export const AuditLogPage = () => {
                             <Input />
                         </FilterDropdown>
                     )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "user.name",
+                        filters,
+                        "contains",
+                    )}
                 />
                 <Table.Column
                     dataIndex="action"
@@ -75,6 +115,11 @@ export const AuditLogPage = () => {
                                 <Radio value="DELETE">Deleted</Radio>
                             </Radio.Group>
                         </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "action",
+                        filters,
+                        "eq",
                     )}
                 />
                 <Table.Column
@@ -94,8 +139,14 @@ export const AuditLogPage = () => {
                         </FilterDropdown>
                     )}
                     sorter
+                    defaultFilteredValue={getDefaultFilter(
+                        "createdAt",
+                        filters,
+                        "between",
+                    )}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorters)}
                 />
             </Table>
-        </List>
+        </div>
     );
 };
