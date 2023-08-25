@@ -21,9 +21,9 @@ import { CheckListForm } from "../../../components/kanban/checklist-form";
 import { CommentForm } from "../../../components/kanban/comment-form";
 import { CommentList } from "../../../components/kanban/comment-list";
 import { ModalFooter } from "../../../components/kanban/modal-footer";
-import { TitleForm } from "../../../components/kanban/title-form";
 
 import { Task } from "../../../interfaces/graphql";
+import { TitleForm } from "../../../components/kanban/title-form";
 
 const panelStyle: React.CSSProperties = {
     background: "#ffffff",
