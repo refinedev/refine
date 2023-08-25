@@ -1,0 +1,22 @@
+.calendar_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    .actions {
+        flex: 1;
+        display: flex;
+        gap: 0.8rem;
+    }
+
+    .title {
+        display: flex;
+        align-self: center;
+    }
+}
+
+.calendar_header::after {
+    flex: 1;
+    content: "";
+}

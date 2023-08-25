@@ -43,9 +43,7 @@ export const DashboardLatestActivity: React.FC<
                 }}
             >
                 <div className={styles.avatar}>
-                    <Avatar shape="square" size={48}>
-                        {user?.name[0]}
-                    </Avatar>
+                    <Avatar shape="square" size={48} src={user?.avatarUrl} />
                 </div>
                 <div className={styles.action}>
                     <Text type="secondary" size="xs">

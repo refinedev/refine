@@ -41,7 +41,7 @@
         line-height: 1.11;
     }
 }
-
+.anttext, 
 .anticon {
     &.primary {
         color: rgba(0, 0, 0, 0.85);

@@ -76,21 +76,29 @@ const operatorMapper = (
 export const generateFilters = (filters: LogicalFilter[]) => {
     const result: { [key: string]: { [key: string]: string | number } } = {};
 
-    filters.map((filter: LogicalFilter | CrudFilter) => {
-        if (filter.operator === "and" || filter.operator === "or") {
-            return set(result, filter.operator, [
-                generateFilters(filter.value as LogicalFilter[]),
-            ]);
-        } else if ("field" in filter) {
-            return set(
-                result,
-                filter.field,
-                operatorMapper(filter.operator, filter.value),
-            );
-        } else {
-            return {};
-        }
-    });
+    filters
+        .filter((f) => {
+            if (Array.isArray(f.value) && f.value.length === 0) {
+                return false;
+            }
+
+            return !!f.value;
+        })
+        .map((filter: LogicalFilter | CrudFilter) => {
+            if (filter.operator === "and" || filter.operator === "or") {
+                return set(result, filter.operator, [
+                    generateFilters(filter.value as LogicalFilter[]),
+                ]);
+            } else if ("field" in filter) {
+                return set(
+                    result,
+                    filter.field,
+                    operatorMapper(filter.operator, filter.value),
+                );
+            } else {
+                return {};
+            }
+        });
 
     return result;
 };

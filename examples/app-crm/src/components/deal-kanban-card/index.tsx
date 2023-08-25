@@ -133,6 +133,9 @@ export const DealKanbanCard: FC<Props> = ({
             <Card
                 size="small"
                 bordered
+                onClick={() => {
+                    push(`${id}`);
+                }}
                 actions={[
                     <div
                         key="1"

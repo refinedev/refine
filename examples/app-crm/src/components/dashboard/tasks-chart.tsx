@@ -22,7 +22,7 @@ type TaskStagesResponse = {
 export const DashboardTasksChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
     const { list } = useNavigation();
-    const { data, isLoading, isError } = useCustom<TaskStagesResponse>({
+    const { data, isError } = useCustom<TaskStagesResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -77,7 +77,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
             }
             extra={
                 <Button
-                    onClick={() => list("kanban")}
+                    onClick={() => list("tasks")}
                     icon={<RightCircleOutlined />}
                 >
                     See kanban board

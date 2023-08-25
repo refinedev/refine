@@ -35,7 +35,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                 },
                 "createdAt",
                 {
-                    user: ["id", "name"],
+                    user: ["id", "name", "avatarUrl"],
                 },
             ],
         },
