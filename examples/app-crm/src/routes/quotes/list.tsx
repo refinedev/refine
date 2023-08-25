@@ -146,7 +146,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                     <span className="ant-text secondary">
                                         {total}
                                     </span>{" "}
-                                    compaines in total
+                                    quotes in total
                                 </span>
                             );
                         },
