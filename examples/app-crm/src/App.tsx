@@ -45,7 +45,12 @@ import { ContactsPageWrapper } from "./routes/contacts/wrapper";
 import { ContactCreatePage } from "./routes/contacts/create";
 import { ContactEditPage } from "./routes/contacts/edit";
 import { ContactShowPage } from "./routes/contacts/show";
-import { QuotesPage } from "./routes/quotes";
+import {
+    QuotesListPage,
+    QuotesCreatePage,
+    QuotesEditPage,
+    QuotesShowPage,
+} from "./routes/quotes";
 import { SettingsPage } from "./routes/administration/settings";
 import { AuditLogPage } from "./routes/administration/audit-log";
 import { Layout } from "./components/layout";
@@ -223,8 +228,28 @@ const App: React.FC = () => {
                                     />
                                 </Route>
                             </Route>
+                            <Route
+                                path="/quotes"
+                                element={
+                                    <QuotesListPage>
+                                        <Outlet />
+                                    </QuotesListPage>
+                                }
+                            >
+                                <Route
+                                    path="create"
+                                    element={<QuotesCreatePage />}
+                                />
 
-                            <Route path="/quotes" element={<QuotesPage />} />
+                                <Route
+                                    path="edit/:id"
+                                    element={<QuotesEditPage />}
+                                />
+                            </Route>
+                            <Route
+                                path="/quotes/show/:id"
+                                element={<QuotesShowPage />}
+                            />
                             <Route path="/administration" element={<Outlet />}>
                                 <Route
                                     path="settings"

@@ -119,6 +119,9 @@ export const resources: IResourceItem[] = [
     {
         name: "quotes",
         list: "/quotes",
+        create: "/quotes/create",
+        edit: "/quotes/edit/:id",
+        show: "/quotes/show/:id",
         meta: {
             label: "Quotes",
             icon: <ContainerOutlined />,

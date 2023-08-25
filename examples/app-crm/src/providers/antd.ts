@@ -24,9 +24,6 @@ export const themeConfig: ThemeConfig = {
             boxShadowTertiary:
                 "0px 1px 2px 0px #00000008,0px 1px 6px -1px #000000050px,2px 4px 0px #00000005",
         },
-        Calendar: {
-            colorBgContainer: "#FFFFFF",
-        },
         Table: {
             colorBgContainer: "#fff",
         },
@@ -35,6 +32,9 @@ export const themeConfig: ThemeConfig = {
         },
         InputNumber: {
             colorBgContainer: "#fff",
+        },
+        Calendar: {
+            colorBgContainer: "#FFFFFF",
         },
         Radio: {
             colorBgContainer: "#fff",
