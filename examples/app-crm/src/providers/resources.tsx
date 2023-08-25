@@ -37,14 +37,7 @@ export const resources: IResourceItem[] = [
             icon: <ProjectOutlined />,
         },
     },
-    {
-        name: "stages",
-        create: "/scrumboard/kanban/stages/create",
-        edit: "/scrumboard/kanban/stages/edit/:id",
-        meta: {
-            hide: true,
-        },
-    },
+
     {
         name: "tasks",
         list: "/scrumboard/kanban",
@@ -56,20 +49,60 @@ export const resources: IResourceItem[] = [
         },
     },
     {
+        name: "stages",
+        create: "/scrumboard/kanban/stages/create",
+        edit: "/scrumboard/kanban/stages/edit/:id",
+        list: "/scrumboard/kanban",
+        meta: {
+            hide: true,
+        },
+    },
+    {
         name: "deals",
         list: "/scrumboard/sales",
+        create: "/scrumboard/sales/create",
+        edit: "/scrumboard/sales/edit/:id",
         meta: {
             label: "Sales Pipeline",
             parent: "scrumboard",
         },
     },
     {
+        name: "stages",
+        identifier: "deal-stages",
+        create: "/scrumboard/sales/stages/create",
+        edit: "/scrumboard/sales/stages/edit/:id",
+        list: "/scrumboard/sales",
+        meta: {
+            hide: true,
+        },
+    },
+    {
+        name: "deals",
+        identifier: "deals-2",
+        edit: "/scrumboard/sales/details/edit/:id",
+        list: "/scrumboard/sales",
+        meta: {
+            hide: true,
+        },
+    },
+    {
         name: "companies",
         list: "/companies",
         show: "/companies/:id",
+        create: "/companies/create",
+        edit: "/companies/edit/:id",
         meta: {
             label: "Companies",
             icon: <ShopOutlined />,
+        },
+    },
+    {
+        name: "companies",
+        identifier: "sales-companies",
+        create: "/scrumboard/sales/create/company/create",
+        meta: {
+            hide: true,
         },
     },
     {

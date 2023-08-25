@@ -141,6 +141,9 @@ export const ProjectCard = ({
             <Card
                 size="small"
                 title={<Text ellipsis={{ tooltip: title }}>{title}</Text>}
+                onClick={() => {
+                    edit("tasks", id, "replace");
+                }}
                 extra={
                     <Dropdown
                         trigger={["click"]}
