@@ -10,8 +10,21 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Avatar, Form, Input, Select, Space, Table, Tooltip } from "antd";
-import { PlusCircleOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import {
+    Avatar,
+    Button,
+    Form,
+    Input,
+    Select,
+    Space,
+    Table,
+    Tooltip,
+} from "antd";
+import {
+    FilterOutlined,
+    PlusCircleOutlined,
+    PlusSquareOutlined,
+} from "@ant-design/icons";
 import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
 import {
     currencyNumber,
@@ -59,6 +72,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     value: "",
                     operator: "contains",
                 },
+                {
+                    field: "status",
+                    value: undefined,
+                    operator: "in",
+                },
             ],
         },
         sorters: {
@@ -83,8 +101,19 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
         },
     });
 
-    const { selectProps: companySelectProps } = useSelect({
+    const { selectProps: selectPropsCompanies } = useSelect({
         resource: "companies",
+        optionLabel: "name",
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            fields: ["id", "name"],
+        },
+    });
+
+    const { selectProps: selectPropsUsers } = useSelect({
+        resource: "users",
         optionLabel: "name",
         pagination: {
             mode: "off",
@@ -179,7 +208,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                 <Select
                                     placeholder="Search Company"
                                     style={{ width: 220 }}
-                                    {...companySelectProps}
+                                    {...selectPropsCompanies}
                                 />
                             </FilterDropdown>
                         )}
@@ -232,12 +261,13 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                         defaultFilteredValue={getDefaultFilter(
                             "status",
                             filters,
+                            "in",
                         )}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
                                 <Select
                                     style={{ width: "200px" }}
-                                    defaultValue={null}
+                                    mode="multiple"
                                     placeholder="Select Stage"
                                     options={statusOptions}
                                 ></Select>
@@ -248,10 +278,22 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                         }}
                     />
                     <Table.Column<Quote>
+                        dataIndex={["salesOwner", "id"]}
                         title="Participants"
-                        render={(value) => {
-                            const salesOwnerName = value.salesOwner?.name;
-                            const contactName = value.contact?.name;
+                        filterDropdown={(props) => {
+                            return (
+                                <FilterDropdown {...props}>
+                                    <Select
+                                        style={{ width: "200px" }}
+                                        placeholder="Select Sales Owner"
+                                        {...selectPropsUsers}
+                                    />
+                                </FilterDropdown>
+                            );
+                        }}
+                        render={(_, record) => {
+                            const salesOwnerName = record.salesOwner?.name;
+                            const contactName = record.contact?.name;
 
                             return (
                                 <Space
@@ -263,7 +305,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                     <Tooltip title={salesOwnerName}>
                                         <Avatar
                                             size="small"
-                                            src={value.salesOwner?.avatarUrl}
+                                            src={record.salesOwner?.avatarUrl}
                                             style={{
                                                 backgroundColor:
                                                     getRandomColorFromString(
@@ -280,7 +322,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                     <Tooltip title={contactName}>
                                         <Avatar
                                             size="small"
-                                            src={value.contact?.avatarUrl}
+                                            src={record.contact?.avatarUrl}
                                             style={{
                                                 backgroundColor:
                                                     getRandomColorFromString(
