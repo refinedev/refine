@@ -39,5 +39,8 @@ export const themeConfig: ThemeConfig = {
         Radio: {
             colorBgContainer: "#fff",
         },
+        Select: {
+            colorBgContainer: "#fff",
+        },
     },
 };

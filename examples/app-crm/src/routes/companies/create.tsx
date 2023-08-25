@@ -6,7 +6,7 @@ import {
     useGetToPath,
 } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
     Button,
     Col,
@@ -47,6 +47,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const getToPath = useGetToPath();
     const [searchParams] = useSearchParams();
     const { data: user } = useGetIdentity<User>();
+    const { pathname, search } = useLocation();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
         Company,
@@ -120,8 +121,9 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                         });
 
                         close();
-
-                        const path = `/scrumboard/sales/create?companyId=${companyId}`;
+                        // navigate to path
+                        const to = searchParams.get("to") ?? pathname;
+                        const path = `${to}?companyId=${companyId}`;
                         navigate(path, {
                             replace: true,
                         });
