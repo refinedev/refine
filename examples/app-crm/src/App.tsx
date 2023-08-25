@@ -210,8 +210,19 @@ const App: React.FC = () => {
                                 />
                                 <Route
                                     path="create"
-                                    element={<ContactCreatePage />}
-                                />
+                                    element={
+                                        <ContactCreatePage>
+                                            <Outlet />
+                                        </ContactCreatePage>
+                                    }
+                                >
+                                    <Route
+                                        path="company-create"
+                                        element={
+                                            <CompanyCreatePage isOverModal />
+                                        }
+                                    />
+                                </Route>
                             </Route>
 
                             <Route path="/quotes" element={<QuotesPage />} />

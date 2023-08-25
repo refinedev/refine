@@ -161,7 +161,7 @@ export const ContactShowPage = () => {
                         }}
                         view={
                             <Space>
-                                <Avatar src={company.avatarUrl} size={22} />
+                                <Avatar src={company.avatarUrl} size="small" />
                                 <Text>{company.name}</Text>
                             </Space>
                         }

@@ -11,8 +11,8 @@ type Props = {
 export const SelectOptionWithAvatar = ({ avatarUrl, name, shape }: Props) => {
     return (
         <Space>
-            <Avatar shape={shape} size={20} src={avatarUrl} alt={name}>
-                {name.charAt(0)}
+            <Avatar shape={shape} size="small" src={avatarUrl} alt={name}>
+                {name.charAt(0).toUpperCase()}
             </Avatar>
             <Text>{name}</Text>
         </Space>
