@@ -4,6 +4,9 @@ import { QueryKey } from "@tanstack/react-query";
 import { MetaQuery } from "src/interfaces";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 
+/**
+ * @deprecated `queryKeys` is deprecated. Please use `keys` instead.
+ */
 export const queryKeys = (
     resource?: string,
     dataProviderName?: string,
