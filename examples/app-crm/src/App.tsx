@@ -32,7 +32,14 @@ import {
     KanbanCreateStage,
     KanbanEditStage,
 } from "./routes/scrumboard/kanban";
-import { SalesPage } from "./routes/scrumboard/sales";
+import {
+    SalesPage,
+    SalesCreatePage,
+    SalesEditPage,
+    SalesCreateStage,
+    SalesEditStage,
+    SalesCreateDetails,
+} from "./routes/scrumboard/sales";
 import { CompaniesPage } from "./routes/companies";
 import { CompanyShowPage } from "./routes/companies/show";
 import { ContactsPageWrapper } from "./routes/contacts/wrapper";
@@ -52,6 +59,7 @@ import { themeConfig } from "./providers/antd";
 import { CalendarShowPage } from "./routes/calendar/show";
 import { CalendarEditPage } from "./routes/calendar/edit";
 import { CalendarCreatePage } from "./routes/calendar/create";
+import { CompanyCreatePage } from "./routes/companies/create";
 
 import "./utilities/init-dayjs";
 
@@ -136,7 +144,48 @@ const App: React.FC = () => {
                                         element={<KanbanEditStage />}
                                     />
                                 </Route>
-                                <Route path="sales" element={<SalesPage />} />
+                                <Route
+                                    path="sales"
+                                    element={
+                                        <SalesPage>
+                                            <Outlet />
+                                        </SalesPage>
+                                    }
+                                >
+                                    <Route
+                                        path="create"
+                                        element={
+                                            <SalesCreatePage>
+                                                <Outlet />
+                                            </SalesCreatePage>
+                                        }
+                                    >
+                                        <Route
+                                            path="company/create"
+                                            element={
+                                                <CompanyCreatePage
+                                                    isOverModal
+                                                />
+                                            }
+                                        />
+                                    </Route>
+                                    <Route
+                                        path="edit/:id"
+                                        element={<SalesEditPage />}
+                                    />
+                                    <Route
+                                        path="stages/create"
+                                        element={<SalesCreateStage />}
+                                    />
+                                    <Route
+                                        path="stages/edit/:id"
+                                        element={<SalesEditStage />}
+                                    />
+                                    <Route
+                                        path="details/edit/:id"
+                                        element={<SalesCreateDetails />}
+                                    />
+                                </Route>
                             </Route>
 
                             <Route path="/companies">
