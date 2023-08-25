@@ -278,8 +278,8 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         sorters: {
             initial: [
                 {
-                    field: "name",
-                    order: "asc",
+                    field: "id",
+                    order: "desc",
                 },
             ],
         },
