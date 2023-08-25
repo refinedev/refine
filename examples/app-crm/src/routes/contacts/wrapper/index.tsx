@@ -74,7 +74,7 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                             }}
                         >
                             <span className="ant-text secondary">{total}</span>{" "}
-                            compaines in total
+                            contacts in total
                         </span>
                     );
                 },
@@ -233,7 +233,7 @@ const CardView: React.FC<CardViewProps> = ({
                             }}
                         >
                             <span className="ant-text secondary">{total}</span>{" "}
-                            compaines in total
+                            contacts in total
                         </span>
                     );
                 }}
