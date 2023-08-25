@@ -59,7 +59,6 @@ export const DealKanbanCard: FC<Props> = ({
                 key: "1",
                 icon: <EyeOutlined />,
                 onClick: () => {
-                    console.log("view card");
                     navigate(`/scrumboard/sales/edit/${id}`, {
                         replace: true,
                     });
@@ -134,7 +133,9 @@ export const DealKanbanCard: FC<Props> = ({
                 size="small"
                 bordered
                 onClick={() => {
-                    push(`${id}`);
+                    navigate(`/scrumboard/sales/edit/${id}`, {
+                        replace: true,
+                    });
                 }}
                 actions={[
                     <div
