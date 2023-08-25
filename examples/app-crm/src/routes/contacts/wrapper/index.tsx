@@ -62,7 +62,25 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
         },
     });
     return (
-        <Table {...rest} rowKey="id">
+        <Table
+            {...rest}
+            pagination={{
+                ...rest.pagination,
+                showTotal: (total) => {
+                    return (
+                        <span
+                            style={{
+                                marginLeft: "48px",
+                            }}
+                        >
+                            <span className="ant-text secondary">{total}</span>{" "}
+                            compaines in total
+                        </span>
+                    );
+                },
+            }}
+            rowKey="id"
+        >
             <Table.Column
                 dataIndex="name"
                 title="Name"
@@ -75,7 +93,11 @@ const TableView: React.FC<TableViewProps> = ({ ...rest }) => {
                 render={(_, record: Contact) => {
                     return (
                         <Space>
-                            <Avatar src={record.avatarUrl} alt={record.name} />
+                            <Avatar
+                                size="small"
+                                src={record.avatarUrl}
+                                alt={record.name}
+                            />
                             <Text>{record.name}</Text>
                         </Space>
                     );
@@ -170,7 +192,11 @@ const CardView: React.FC<CardViewProps> = ({
     const getToPath = useGetToPath();
 
     return (
-        <div style={{ marginTop: "1rem" }}>
+        <div
+            style={{
+                marginTop: "1rem",
+            }}
+        >
             <Row gutter={[32, 32]}>
                 {dataSource?.map((contact) => (
                     <Col key={contact.id} span="6">
@@ -197,8 +223,20 @@ const CardView: React.FC<CardViewProps> = ({
             </Row>
 
             <Pagination
-                style={{ textAlign: "end", marginTop: "1rem" }}
+                style={{ display: "flex", marginTop: "1rem" }}
                 {...pagination}
+                showTotal={(total) => {
+                    return (
+                        <span
+                            style={{
+                                marginLeft: "48px",
+                            }}
+                        >
+                            <span className="ant-text secondary">{total}</span>{" "}
+                            compaines in total
+                        </span>
+                    );
+                }}
                 onChange={(page, pageSize) => {
                     setCurrent(page);
                     setPageSize(pageSize);
@@ -211,65 +249,60 @@ const CardView: React.FC<CardViewProps> = ({
 export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
     const [type, setType] = React.useState("table");
 
-    const {
-        tableProps,
-        searchFormProps,
-        setCurrent,
-        setPageSize,
-        tableQueryResult,
-    } = useTable<Contact>({
-        filters: {
-            initial: [
-                {
-                    field: "name",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "email",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "company.id",
-                    value: undefined,
-                    operator: "eq",
-                },
-                {
-                    field: "jobTitle",
-                    value: undefined,
-                    operator: "contains",
-                },
-                {
-                    field: "status",
-                    value: undefined,
-                    operator: "in",
-                },
-            ],
-        },
-        onSearch: (values: any) => {
-            return [
-                {
-                    field: "name",
-                    operator: "contains",
-                    value: values.name,
-                },
-            ];
-        },
-        meta: {
-            fields: [
-                "id",
-                "name",
-                "email",
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-                "jobTitle",
-                "status",
-                "avatarUrl",
-            ],
-        },
-    });
+    const { tableProps, searchFormProps, setCurrent, setPageSize } =
+        useTable<Contact>({
+            filters: {
+                initial: [
+                    {
+                        field: "name",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "email",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "company.id",
+                        value: undefined,
+                        operator: "eq",
+                    },
+                    {
+                        field: "jobTitle",
+                        value: undefined,
+                        operator: "contains",
+                    },
+                    {
+                        field: "status",
+                        value: undefined,
+                        operator: "in",
+                    },
+                ],
+            },
+            onSearch: (values: any) => {
+                return [
+                    {
+                        field: "name",
+                        operator: "contains",
+                        value: values.name,
+                    },
+                ];
+            },
+            meta: {
+                fields: [
+                    "id",
+                    "name",
+                    "email",
+                    {
+                        company: ["id", "name", "avatarUrl"],
+                    },
+                    "jobTitle",
+                    "status",
+                    "avatarUrl",
+                ],
+            },
+        });
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         searchFormProps?.onFinish?.({
@@ -325,12 +358,6 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                     {...tableProps}
                 />
             )}
-            <Text
-                className="anttext secondary"
-                style={{ bottom: 20, position: "absolute" }}
-            >
-                <b>{tableQueryResult.data?.total}</b> contacts in total
-            </Text>
             {children}
         </div>
     );
