@@ -27,3 +27,4 @@ export { useMediaQuery } from "./useMediaQuery";
 export { generateDefaultDocumentTitle } from "./generateDocumentTitle";
 export { useUserFriendlyName } from "./useUserFriendlyName";
 export { keys, stripUndefined } from "./keys";
+export { KeyBuilder } from "./keys";

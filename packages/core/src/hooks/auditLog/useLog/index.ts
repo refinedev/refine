@@ -115,7 +115,7 @@ export const useLog = <
             });
         },
         {
-            mutationKey: keys().audit().action("log").key,
+            mutationKey: keys().audit().action("log").get(),
             ...logMutationOptions,
         },
     );
@@ -136,7 +136,7 @@ export const useLog = <
                     queryClient.invalidateQueries(queryKey.logList());
                 }
             },
-            mutationKey: keys().audit().action("rename").key,
+            mutationKey: keys().audit().action("rename").get(),
             ...renameMutationOptions,
         },
     );

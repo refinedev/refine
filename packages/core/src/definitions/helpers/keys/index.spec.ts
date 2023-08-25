@@ -3,14 +3,14 @@ import { queryKeys } from "../queryKeys";
 
 describe("keys", () => {
     describe("keys()", () => {
-        it("keys().key === []", () => {
+        it("keys().get() === []", () => {
             const keyBuilder = keys();
-            expect(keyBuilder.key).toEqual([]);
+            expect(keyBuilder.get()).toEqual([]);
         });
 
-        it("keys().legacy === []", () => {
+        it("keys().get(true) === []", () => {
             const keyBuilder = keys();
-            expect(keyBuilder.legacy).toEqual([]);
+            expect(keyBuilder.legacy()).toEqual([]);
         });
 
         it("keys().get() === []", () => {
@@ -20,14 +20,14 @@ describe("keys", () => {
     });
 
     describe("keys().auth()", () => {
-        it("keys().auth().key === [auth]", () => {
+        it("keys().auth().get() === [auth]", () => {
             const keyBuilder = keys().auth();
-            expect(keyBuilder.key).toEqual(["auth"]);
+            expect(keyBuilder.get()).toEqual(["auth"]);
         });
 
-        it("keys().auth().legacy === [auth]", () => {
+        it("keys().auth().get(true) === [auth]", () => {
             const keyBuilder = keys().auth();
-            expect(keyBuilder.legacy).toEqual(["auth"]);
+            expect(keyBuilder.legacy()).toEqual(["auth"]);
         });
 
         it("keys().auth().get() === [auth]", () => {
@@ -54,22 +54,22 @@ describe("keys", () => {
     });
 
     describe("keys().data()", () => {
-        it("keys().data().key === [data, default]", () => {
+        it("keys().data().get() === [data, default]", () => {
             const keyBuilder = keys().data();
-            expect(keyBuilder.key).toEqual(["data", "default"]);
+            expect(keyBuilder.get()).toEqual(["data", "default"]);
         });
 
-        it("keys().data('my-data-provider').key === [data, my-data-provider]", () => {
+        it("keys().data('my-data-provider').get() === [data, my-data-provider]", () => {
             const keyBuilder = keys().data("my-data-provider");
-            expect(keyBuilder.key).toEqual(["data", "my-data-provider"]);
+            expect(keyBuilder.get()).toEqual(["data", "my-data-provider"]);
         });
 
-        it("keys().data().resource(users).key === [data, default, users]", () => {
+        it("keys().data().resource(users).get() === [data, default, users]", () => {
             const keyBuilder = keys().data().resource("users");
             expect(keyBuilder.get()).toEqual(["data", "default", "users"]);
         });
 
-        it("keys().data().resource(posts).action(list).key === [data, default, posts, list]", () => {
+        it("keys().data().resource(posts).action(list).get() === [data, default, posts, list]", () => {
             const keyBuilder = keys().data().resource("posts").action("list");
             expect(keyBuilder.get()).toEqual([
                 "data",
@@ -79,7 +79,7 @@ describe("keys", () => {
             ]);
         });
 
-        it("keys().data().resource(posts).action(list).params({ page: 1 }).key === [data, default, posts, list, { page: 1 }]", () => {
+        it("keys().data().resource(posts).action(list).params({ page: 1 }).get() === [data, default, posts, list, { page: 1 }]", () => {
             const keyBuilder = keys()
                 .data()
                 .resource("posts")
@@ -94,7 +94,7 @@ describe("keys", () => {
             ]);
         });
 
-        it("keys().data().resource(posts).action(one).id(1).params({ foo: bar }).key === [data, default, posts, one, 1, { foo: bar }]", () => {
+        it("keys().data().resource(posts).action(one).id(1).params({ foo: bar }).get() === [data, default, posts, one, 1, { foo: bar }]", () => {
             const keyBuilder = keys()
                 .data()
                 .resource("posts")
@@ -110,17 +110,42 @@ describe("keys", () => {
                 { foo: "bar" },
             ]);
         });
+
+        it("keys().data().mutation(update).params({ foo: bar }).get() === [data, update, { foo: bar }]", () => {
+            const keyBuilder = keys()
+                .data()
+                .mutation("update")
+                .params({ foo: "bar" });
+            expect(keyBuilder.get()).toEqual([
+                "data",
+                "update",
+                { foo: "bar" },
+            ]);
+        });
+
+        it("keys().data().mutation(custom).params({ foo: bar }).get() === [data, default, custom, { foo: bar }]", () => {
+            const keyBuilder = keys()
+                .data()
+                .mutation("custom")
+                .params({ foo: "bar" });
+            expect(keyBuilder.get()).toEqual([
+                "data",
+                "default",
+                "custom",
+                { foo: "bar" },
+            ]);
+        });
     });
 
     describe("keys().access()", () => {
-        it("keys().access().key === [access]", () => {
+        it("keys().access().get() === [access]", () => {
             const keyBuilder = keys().access();
-            expect(keyBuilder.key).toEqual(["access"]);
+            expect(keyBuilder.get()).toEqual(["access"]);
         });
 
-        it("keys().access().legacy === [access]", () => {
+        it("keys().access().get(true) === [access]", () => {
             const keyBuilder = keys().access();
-            expect(keyBuilder.legacy).toEqual(["access"]);
+            expect(keyBuilder.get(true)).toEqual(["access"]);
         });
 
         it("keys().access().get() === [access]", () => {
@@ -128,12 +153,12 @@ describe("keys", () => {
             expect(keyBuilder.get()).toEqual(["access"]);
         });
 
-        it("keys().access().resource(users).key === [access, users]", () => {
+        it("keys().access().resource(users).get() === [access, users]", () => {
             const keyBuilder = keys().access().resource("users");
             expect(keyBuilder.get()).toEqual(["access", "users"]);
         });
 
-        it("keys().access().resource(users).action(create).key === [access, users, create]", () => {
+        it("keys().access().resource(users).action(create).get() === [access, users, create]", () => {
             const keyBuilder = keys()
                 .access()
                 .resource("users")
@@ -141,7 +166,7 @@ describe("keys", () => {
             expect(keyBuilder.get()).toEqual(["access", "users", "create"]);
         });
 
-        it("keys().access().resource(users).action(create).params({ foo: bar }).key === [access, users, create, { foo: bar }]", () => {
+        it("keys().access().resource(users).action(create).params({ foo: bar }).get() === [access, users, create, { foo: bar }]", () => {
             const keyBuilder = keys()
                 .access()
                 .resource("users")
@@ -157,14 +182,14 @@ describe("keys", () => {
     });
 
     describe("keys().audit()", () => {
-        it("keys().audit().key === [audit]", () => {
+        it("keys().audit().get() === [audit]", () => {
             const keyBuilder = keys().audit();
-            expect(keyBuilder.key).toEqual(["audit"]);
+            expect(keyBuilder.get()).toEqual(["audit"]);
         });
 
-        it("keys().audit().legacy === [audit]", () => {
+        it("keys().audit().get(true) === [audit]", () => {
             const keyBuilder = keys().audit();
-            expect(keyBuilder.legacy).toEqual(["audit"]);
+            expect(keyBuilder.get(true)).toEqual(["audit"]);
         });
 
         it("keys().audit().get() === [audit]", () => {
@@ -172,12 +197,12 @@ describe("keys", () => {
             expect(keyBuilder.get()).toEqual(["audit"]);
         });
 
-        it("keys().audit().action(rename).key === [audit, rename]", () => {
+        it("keys().audit().action(rename).get() === [audit, rename]", () => {
             const keyBuilder = keys().audit().action("rename");
             expect(keyBuilder.get()).toEqual(["audit", "rename"]);
         });
 
-        it("keys().audit().resource(posts).action(list).params({ foo: bar }).key === [audit, posts, list, { foo: bar }]", () => {
+        it("keys().audit().resource(posts).action(list).params({ foo: bar }).get() === [audit, posts, list, { foo: bar }]", () => {
             const keyBuilder = keys()
                 .audit()
                 .resource("posts")
@@ -260,11 +285,11 @@ describe("Legacy keys are identical with `queryKeys`", () => {
         const legacyQueryKeys = queryKeys("posts", undefined, { foo: "bar" });
 
         it("all === keys().data()", () => {
-            expect(keys().data().legacy).toEqual(legacyQueryKeys.all);
+            expect(keys().data().get(true)).toEqual(legacyQueryKeys.all);
         });
 
         it("resourceAll === keys().data().resource(posts)", () => {
-            expect(keys().data().resource("posts").legacy).toEqual(
+            expect(keys().data().resource("posts").get(true)).toEqual(
                 legacyQueryKeys.resourceAll,
             );
         });
@@ -275,7 +300,8 @@ describe("Legacy keys are identical with `queryKeys`", () => {
                     .audit()
                     .resource("posts")
                     .action("list")
-                    .params({ foo: "bar" }).legacy,
+                    .params({ foo: "bar" })
+                    .get(true),
             ).toEqual(legacyQueryKeys.logList({ foo: "bar" }));
         });
 
@@ -286,7 +312,8 @@ describe("Legacy keys are identical with `queryKeys`", () => {
                     .resource("posts")
                     .action("one")
                     .id(1)
-                    .params({ foo: "bar" }).legacy,
+                    .params({ foo: "bar" })
+                    .get(true),
             ).toEqual(legacyQueryKeys.detail(1));
         });
 
@@ -297,7 +324,8 @@ describe("Legacy keys are identical with `queryKeys`", () => {
                     .resource("posts")
                     .action("many")
                     .ids(1, 2, 3)
-                    .params({ foo: "bar" }).legacy,
+                    .params({ foo: "bar" })
+                    .get(true),
             ).toEqual(legacyQueryKeys.many([1, 2, 3]));
         });
 
@@ -310,7 +338,8 @@ describe("Legacy keys are identical with `queryKeys`", () => {
                     .params({
                         pagination: { current: 1, pageSize: 5 },
                         foo: "bar",
-                    }).legacy,
+                    })
+                    .get(true),
             ).toEqual(
                 legacyQueryKeys.list({
                     pagination: { current: 1, pageSize: 5 },
@@ -332,7 +361,7 @@ describe("Legacy keys are identical with `queryKeys`", () => {
             .action("list")
             .params(meta);
 
-        expect(newKey.legacy).toEqual(legacy);
+        expect(newKey.get(true)).toEqual(legacy);
     });
 
     it("useCustom matches the legacy key", () => {
@@ -360,19 +389,23 @@ describe("Legacy keys are identical with `queryKeys`", () => {
                 ...(preferredMeta || {}),
             });
 
-        expect(newKey.legacy).toEqual(legacyKey);
+        expect(newKey.get(true)).toEqual(legacyKey);
     });
 });
 
 describe("Legacy keys are matching auth hooks", () => {
-    it("keys().auth().action(login).params({ username: 'test' }).legacy === [useLogin]", () => {
+    it("keys().auth().action(login).params({ username: 'test' }).get(true) === [useLogin]", () => {
         expect(
-            keys().auth().action("login").params({ username: "test" }).legacy,
+            keys()
+                .auth()
+                .action("login")
+                .params({ username: "test" })
+                .get(true),
         ).toEqual(["useLogin"]);
     });
     it("keys().auth().action(check).params({ foo: bar }) === [useAuthenticated, { foo: bar }]", () => {
         expect(
-            keys().auth().action("check").params({ foo: "bar" }).legacy,
+            keys().auth().action("check").params({ foo: "bar" }).get(true),
         ).toEqual(["useAuthenticated", { foo: "bar" }]);
     });
 });
@@ -384,7 +417,8 @@ describe("Legacy keys are matching access hooks", () => {
                 .access()
                 .resource()
                 .action("list")
-                .params({ params: { foo: "bar" }, enabled: true }).legacy,
+                .params({ params: { foo: "bar" }, enabled: true })
+                .get(true),
         ).toEqual([
             "useCan",
             {
@@ -420,7 +454,8 @@ describe("Legacy keys are matching access hooks", () => {
             .params({
                 params: { ...paramsRest, resource: sanitizedResource },
                 enabled: queryOptions?.enabled,
-            }).legacy;
+            })
+            .legacy();
 
         expect(newKey).toEqual(legacyKey);
     });

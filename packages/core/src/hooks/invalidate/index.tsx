@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useResource } from "@hooks/resource";
-import { queryKeys, pickDataProvider } from "@definitions";
+import { pickDataProvider } from "@definitions";
 import { BaseKey, IQueryKeys } from "../../interfaces";
 import { useKeys } from "@hooks/useKeys";
 

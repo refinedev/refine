@@ -169,7 +169,7 @@ export const useUpdateMany = <
     const {
         options: { textTransformers },
     } = useRefineContext();
-    const { keys } = useKeys();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -558,7 +558,10 @@ export const useUpdateMany = <
                     });
                 }
             },
-            mutationKey: keys().data().mutation("updateMany").key,
+            mutationKey: keys()
+                .data()
+                .mutation("updateMany")
+                .get(preferLegacyKeys),
             ...mutationOptions,
         },
     );

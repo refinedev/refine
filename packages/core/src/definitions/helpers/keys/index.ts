@@ -156,16 +156,16 @@ class BaseKeyBuilder {
         this.segments = segments;
     }
 
-    get key() {
+    key() {
         return this.segments;
     }
 
-    get legacy() {
+    legacy() {
         return convertToLegacy(this.segments);
     }
 
     get(legacy?: boolean) {
-        return legacy ? this.legacy : this.segments;
+        return legacy ? this.legacy() : this.segments;
     }
 }
 
@@ -245,7 +245,7 @@ class DataKeyBuilder extends BaseKeyBuilder {
 
     mutation(mutationName: DataMutationActions) {
         return new ParamsKeyBuilder([
-            ...(mutationName === "custom" ? this.segments : this.segments[0]),
+            ...(mutationName === "custom" ? this.segments : [this.segments[0]]),
             mutationName,
         ]);
     }
@@ -305,7 +305,7 @@ class AuditKeyBuilder extends BaseKeyBuilder {
     }
 }
 
-class KeyBuilder extends BaseKeyBuilder {
+export class KeyBuilder extends BaseKeyBuilder {
     constructor(segments: KeySegment[]) {
         super(segments);
     }
