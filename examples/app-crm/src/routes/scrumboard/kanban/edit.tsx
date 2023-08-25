@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 import { useModalForm } from "@refinedev/antd";
-import { Collapse, CollapseProps, Modal } from "antd";
+import { Modal } from "antd";
 import {
     AlignLeftOutlined,
     FieldTimeOutlined,
@@ -10,7 +10,6 @@ import {
 } from "@ant-design/icons";
 
 import { StageForm } from "../../../components/kanban/stage-form";
-import { AccordionHeader } from "../../../components/kanban/accordion-header";
 import { DescriptionForm } from "../../../components/kanban/description-form";
 import { DescriptionHeader } from "../../../components/kanban/description-header";
 import { DueDateForm } from "../../../components/kanban/duedate-form";
@@ -21,14 +20,10 @@ import { CheckListForm } from "../../../components/kanban/checklist-form";
 import { CommentForm } from "../../../components/kanban/comment-form";
 import { CommentList } from "../../../components/kanban/comment-list";
 import { ModalFooter } from "../../../components/kanban/modal-footer";
+import { TitleForm } from "../../../components/kanban/title-form";
+import { Accordion } from "../../../components/kanban/accordion";
 
 import { Task } from "../../../interfaces/graphql";
-import { TitleForm } from "../../../components/kanban/title-form";
-
-const panelStyle: React.CSSProperties = {
-    background: "#ffffff",
-    borderRadius: 0,
-};
 
 export const KanbanEditPage = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();
@@ -56,101 +51,6 @@ export const KanbanEditPage = () => {
         queryResult?.data?.data ?? {};
     const isLoading = queryResult?.isLoading ?? true;
 
-    const items: CollapseProps["items"] = [
-        {
-            key: "0",
-            label: (
-                <StageForm
-                    initialValues={{ completed: completed ?? false, stage }}
-                    isLoading={isLoading}
-                />
-            ),
-            style: panelStyle,
-            showArrow: false,
-            collapsible: "icon",
-        },
-        {
-            key: "1",
-            label: (
-                <AccordionHeader
-                    icon={<AlignLeftOutlined />}
-                    isActive={activeKey === "1"}
-                    fallback={<DescriptionHeader description={description} />}
-                    isLoading={isLoading}
-                >
-                    Description
-                </AccordionHeader>
-            ),
-            children: (
-                <DescriptionForm
-                    initialValues={{ description }}
-                    cancelForm={() => setActiveKey(undefined)}
-                />
-            ),
-            style: panelStyle,
-            showArrow: false,
-        },
-        {
-            key: "2",
-            label: (
-                <AccordionHeader
-                    icon={<FieldTimeOutlined />}
-                    isActive={activeKey === "2"}
-                    fallback={<DueDateHeader dueData={dueDate} />}
-                    isLoading={isLoading}
-                >
-                    Due date
-                </AccordionHeader>
-            ),
-            children: (
-                <DueDateForm
-                    initialValues={{ dueDate: dueDate ?? undefined }}
-                    cancelForm={() => setActiveKey(undefined)}
-                />
-            ),
-            style: panelStyle,
-            showArrow: false,
-        },
-        {
-            key: "3",
-            label: (
-                <AccordionHeader
-                    icon={<UsergroupAddOutlined />}
-                    isActive={activeKey === "3"}
-                    fallback={<UsersHeader users={users} />}
-                    isLoading={isLoading}
-                >
-                    Users
-                </AccordionHeader>
-            ),
-            children: (
-                <UsersForm
-                    initialValues={{
-                        userIds: users?.map((user) => ({
-                            label: user.name,
-                            value: user.id,
-                        })),
-                    }}
-                    cancelForm={() => setActiveKey(undefined)}
-                />
-            ),
-            style: panelStyle,
-            showArrow: false,
-        },
-        {
-            key: "4",
-            label: (
-                <CheckListForm
-                    isLoading={isLoading}
-                    initialValues={{ checklist }}
-                />
-            ),
-            style: panelStyle,
-            showArrow: false,
-            collapsible: "icon",
-        },
-    ];
-
     return (
         <Modal
             {...modalProps}
@@ -172,13 +72,62 @@ export const KanbanEditPage = () => {
             width={586}
             footer={<ModalFooter />}
         >
-            <Collapse
-                accordion
-                items={items}
-                activeKey={activeKey}
-                onChange={(key) => setActiveKey(key[0])}
-                style={{ border: "none", borderRadius: 0 }}
+            <StageForm
+                initialValues={{ completed: completed ?? false, stage }}
+                isLoading={isLoading}
             />
+            <Accordion
+                accordionKey="description"
+                activeKey={activeKey}
+                setActive={setActiveKey}
+                fallback={<DescriptionHeader description={description} />}
+                isLoading={isLoading}
+                icon={<AlignLeftOutlined />}
+                label="Description"
+            >
+                <DescriptionForm
+                    initialValues={{ description }}
+                    cancelForm={() => setActiveKey(undefined)}
+                />
+            </Accordion>
+            <Accordion
+                accordionKey="due-date"
+                activeKey={activeKey}
+                setActive={setActiveKey}
+                fallback={<DueDateHeader dueData={dueDate} />}
+                isLoading={isLoading}
+                icon={<FieldTimeOutlined />}
+                label="Due date"
+            >
+                <DueDateForm
+                    initialValues={{ dueDate: dueDate ?? undefined }}
+                    cancelForm={() => setActiveKey(undefined)}
+                />
+            </Accordion>
+            <Accordion
+                accordionKey="users"
+                activeKey={activeKey}
+                setActive={setActiveKey}
+                fallback={<UsersHeader users={users} />}
+                isLoading={isLoading}
+                icon={<UsergroupAddOutlined />}
+                label="Users"
+            >
+                <UsersForm
+                    initialValues={{
+                        userIds: users?.map((user) => ({
+                            label: user.name,
+                            value: user.id,
+                        })),
+                    }}
+                    cancelForm={() => setActiveKey(undefined)}
+                />
+            </Accordion>
+            <CheckListForm
+                isLoading={isLoading}
+                initialValues={{ checklist }}
+            />
+
             <div
                 style={{
                     backgroundColor: "#f0f2f5",

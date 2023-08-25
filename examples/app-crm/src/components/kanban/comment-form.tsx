@@ -7,6 +7,7 @@ import {
 } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Avatar, Form, Input } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import { TaskComment, User } from "../../interfaces/graphql";
 
@@ -20,7 +21,7 @@ export const CommentForm = () => {
 
     const { data: me } = useGetIdentity<User>();
 
-    const { formProps, onFinish, form } = useForm<
+    const { formProps, formLoading } = useForm<
         TaskComment,
         HttpError,
         FormValues
@@ -49,14 +50,12 @@ export const CommentForm = () => {
             return;
         }
 
-        try {
-            await onFinish({
-                ...values,
-                taskId,
-            });
+        formProps?.onFinish?.({
+            ...values,
+            taskId,
+        });
 
-            form.resetFields();
-        } catch (error) {}
+        formProps?.form?.resetFields?.();
     };
 
     return (
@@ -81,7 +80,7 @@ export const CommentForm = () => {
                 <Form.Item name="comment" noStyle>
                     <Input
                         placeholder="Write a comment"
-                        style={{ backgroundColor: "#fff" }}
+                        addonAfter={formLoading && <LoadingOutlined />}
                     />
                 </Form.Item>
             </Form>

@@ -18,6 +18,9 @@ export const DueDateForm = ({ initialValues, cancelForm }: Props) => {
             enabled: false,
         },
         redirect: false,
+        onMutationSuccess: () => {
+            cancelForm();
+        },
     });
 
     return (

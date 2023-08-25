@@ -47,7 +47,9 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
     }
 
     return (
-        <div>
+        <div
+            style={{ padding: "12px 24px", borderBottom: "1px solid #d9d9d9" }}
+        >
             <ChecklistHeader
                 checklist={
                     formProps.form?.getFieldValue("checklist") ??

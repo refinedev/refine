@@ -18,6 +18,9 @@ export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
             enabled: false,
         },
         redirect: false,
+        onMutationSuccess: () => {
+            cancelForm();
+        },
     });
 
     return (
