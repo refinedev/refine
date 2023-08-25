@@ -53,7 +53,9 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
     }
 
     return (
-        <div>
+        <div
+            style={{ padding: "12px 24px", borderBottom: "1px solid #d9d9d9" }}
+        >
             <Form
                 layout="inline"
                 style={{
@@ -63,7 +65,7 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
                 {...formProps}
                 initialValues={initialValues}
             >
-                <Space>
+                <Space size={5}>
                     <FlagOutlined />
                     <Form.Item noStyle name={["stage", "id"]}>
                         <Select

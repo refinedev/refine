@@ -7,8 +7,9 @@ import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 type Props = PropsWithChildren<{
     icon: ReactNode;
     isActive: boolean;
-    fallback: string | ReactNode;
+    fallback?: string | ReactNode;
     isLoading?: boolean;
+    onClick?: () => void;
 }>;
 
 export const AccordionHeader = ({
@@ -16,6 +17,7 @@ export const AccordionHeader = ({
     isActive,
     fallback,
     isLoading = false,
+    onClick,
     children,
 }: Props) => {
     if (isLoading) {

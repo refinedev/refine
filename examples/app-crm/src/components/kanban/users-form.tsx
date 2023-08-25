@@ -17,6 +17,9 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
             enabled: false,
         },
         redirect: false,
+        onMutationSuccess: () => {
+            cancelForm();
+        },
     });
 
     const { selectProps } = useSelect({
