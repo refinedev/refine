@@ -131,7 +131,7 @@ export const generateCreatedSubscription = ({
     filters,
     meta,
 }: any) => {
-    const operation = `createOne${camelcase(
+    const operation = `created${camelcase(
         singular(meta?.operation ?? resource),
         {
             pascalCase: true,
@@ -175,7 +175,7 @@ export const generateUpdatedSubscription = ({
     filters,
     meta,
 }: any) => {
-    const operation = `updateOne${camelcase(
+    const operation = `updatedOne${camelcase(
         singular(meta?.operation ?? resource),
         {
             pascalCase: true,
@@ -219,7 +219,7 @@ export const generateDeletedSubscription = ({
     filters,
     meta,
 }: any) => {
-    const operation = `deleteOne${camelcase(
+    const operation = `deletedOne${camelcase(
         singular(meta?.operation ?? resource),
         {
             pascalCase: true,
