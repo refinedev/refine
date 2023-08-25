@@ -7,6 +7,7 @@ import {
     Input,
     Popconfirm,
     Select,
+    Space,
     Spin,
     Typography,
 } from "antd";
@@ -30,8 +31,9 @@ import { TextIcon } from "../../../components/icon";
 import { ContactComment } from "../../../components/contact/comment";
 import { Timezone } from "../../../enums/timezone";
 
-import type { Contact } from "../../../interfaces/graphql";
+import type { Company, Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
+import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 
 const timezoneOptions = Object.keys(Timezone).map((key) => ({
     label: Timezone[key as keyof typeof Timezone],
@@ -53,7 +55,7 @@ export const ContactShowPage = () => {
                 "name",
                 "email",
                 {
-                    company: ["id", "name"],
+                    company: ["id", "name", "avatarUrl"],
                 },
                 "jobTitle",
                 "phone",
@@ -64,10 +66,13 @@ export const ContactShowPage = () => {
             ],
         },
     });
-    const { selectProps: companySelectProps } = useSelect({
+    const {
+        selectProps: companySelectProps,
+        queryResult: companySelectQueryResult,
+    } = useSelect<Company>({
         resource: "companies",
         meta: {
-            fields: ["id", "name"],
+            fields: ["id", "name", "avatarUrl"],
         },
         optionLabel: "name",
     });
@@ -154,7 +159,12 @@ export const ContactShowPage = () => {
                             name: "companyId",
                             label: "Company",
                         }}
-                        view={<Text>{company.name}</Text>}
+                        view={
+                            <Space>
+                                <Avatar src={company.avatarUrl} size={22} />
+                                <Text>{company.name}</Text>
+                            </Space>
+                        }
                         onClick={() => setActiveForm("companyId")}
                         onUpdate={() => setActiveForm(undefined)}
                     >
@@ -165,6 +175,21 @@ export const ContactShowPage = () => {
                                 value: data.data.company.id,
                             }}
                             {...companySelectProps}
+                            options={
+                                companySelectQueryResult.data?.data?.map(
+                                    ({ id, name, avatarUrl }) => ({
+                                        value: id,
+                                        label: (
+                                            <SelectOptionWithAvatar
+                                                name={name}
+                                                avatarUrl={
+                                                    avatarUrl ?? undefined
+                                                }
+                                            />
+                                        ),
+                                    }),
+                                ) ?? []
+                            }
                         />
                     </SingleElementForm>
                     <SingleElementForm

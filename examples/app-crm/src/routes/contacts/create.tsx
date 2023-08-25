@@ -4,7 +4,8 @@ import { useForm, useSelect } from "@refinedev/antd";
 import { Button, Form, Input, Modal, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
-import { User } from "../../interfaces/graphql";
+import { Company, User } from "../../interfaces/graphql";
+import { SelectOptionWithAvatar } from "../../components/select-option-with-avatar";
 
 export const ContactCreatePage = () => {
     const navigate = useNavigate();
@@ -13,11 +14,11 @@ export const ContactCreatePage = () => {
     const { formProps, saveButtonProps, onFinish } = useForm({
         redirect: "list",
     });
-    const { selectProps } = useSelect({
+    const { selectProps, queryResult } = useSelect<Company>({
         resource: "companies",
         optionLabel: "name",
         meta: {
-            fields: ["id", "name"],
+            fields: ["id", "name", "avatarUrl"],
         },
     });
 
@@ -86,12 +87,35 @@ export const ContactCreatePage = () => {
                             style={{ paddingLeft: 0 }}
                             type="link"
                             icon={<PlusCircleOutlined />}
+                            onClick={() =>
+                                navigate(
+                                    "company/create?to=/scrumboard/sales/create",
+                                    {
+                                        replace: true,
+                                    },
+                                )
+                            }
                         >
                             Add new company
                         </Button>
                     }
                 >
-                    <Select {...selectProps} />
+                    <Select
+                        {...selectProps}
+                        options={
+                            queryResult.data?.data?.map(
+                                ({ id, name, avatarUrl }) => ({
+                                    value: id,
+                                    label: (
+                                        <SelectOptionWithAvatar
+                                            name={name}
+                                            avatarUrl={avatarUrl ?? undefined}
+                                        />
+                                    ),
+                                }),
+                            ) ?? []
+                        }
+                    />
                 </Form.Item>
             </Form>
         </Modal>
