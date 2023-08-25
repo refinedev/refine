@@ -16,7 +16,6 @@ import {
 } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import { Text } from "../../components/text";
 import { ActionCell } from "../../components/audit-log/action-cell";
 
 import { Audit } from "../../interfaces/graphql";
@@ -67,7 +66,7 @@ export const AuditLogPage = () => {
                                 <span className="ant-text secondary">
                                     {total}
                                 </span>{" "}
-                                contacts in total
+                                actions in total
                             </span>
                         );
                     },
