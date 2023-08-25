@@ -52,6 +52,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                         key="1"
                                         style={{
                                             width: "100%",
+                                            height: "60px",
                                             display: "flex",
                                             justifyContent: "space-between",
                                             alignItems: "center",
