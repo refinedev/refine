@@ -83,3 +83,10 @@
         }
     }
 }
+
+.ant-pagination-total-text {
+    margin-right: auto;
+    font-size: 14px !important;
+    color: rgba(0, 0, 0, 0.45) !important;
+    margin-inline-end: auto !important;
+}
