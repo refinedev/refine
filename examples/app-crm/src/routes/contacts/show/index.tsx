@@ -122,7 +122,7 @@ export const ContactShowPage = () => {
 
                 <div className={styles.form}>
                     <SingleElementForm
-                        icon={<MailOutlined />}
+                        icon={<MailOutlined className="anticon tertiary" />}
                         state={
                             activeForm && activeForm === "email"
                                 ? "form"
@@ -142,7 +142,7 @@ export const ContactShowPage = () => {
                     </SingleElementForm>
 
                     <SingleElementForm
-                        icon={<ShopOutlined />}
+                        icon={<ShopOutlined className="anticon tertiary" />}
                         state={
                             activeForm && activeForm === "companyId"
                                 ? "form"
@@ -168,7 +168,7 @@ export const ContactShowPage = () => {
                         />
                     </SingleElementForm>
                     <SingleElementForm
-                        icon={<IdcardOutlined />}
+                        icon={<IdcardOutlined className="anticon tertiary" />}
                         state={
                             activeForm && activeForm === "jobTitle"
                                 ? "form"
@@ -187,7 +187,7 @@ export const ContactShowPage = () => {
                         <Input defaultValue={jobTitle || ""} />
                     </SingleElementForm>
                     <SingleElementForm
-                        icon={<PhoneOutlined />}
+                        icon={<PhoneOutlined className="anticon tertiary" />}
                         state={
                             activeForm && activeForm === "phone"
                                 ? "form"
@@ -207,7 +207,7 @@ export const ContactShowPage = () => {
                     </SingleElementForm>
                     <SingleElementForm
                         style={{ borderBottom: "none" }}
-                        icon={<GlobalOutlined />}
+                        icon={<GlobalOutlined className="anticon tertiary" />}
                         state={
                             activeForm && activeForm === "timezone"
                                 ? "form"
@@ -250,7 +250,7 @@ export const ContactShowPage = () => {
                 </Card>
 
                 <div className={styles.actions}>
-                    <Text className="anttext tertiary">
+                    <Text className="ant-text tertiary">
                         Created on: {dayjs(createdAt).format("MMMM DD, YYYY")}
                     </Text>
 

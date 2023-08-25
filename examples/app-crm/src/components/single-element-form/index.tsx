@@ -46,7 +46,10 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
                 <div className={styles.icon}>{icon}</div>
                 <div className={styles.content}>
                     <div className={styles.input}>
-                        <Text size="xs" className={styles.label}>
+                        <Text
+                            size="xs"
+                            className={`${styles.label} ant-text tertiary`}
+                        >
                             {itemProps?.label}
                         </Text>
                         {state === "form" && (
