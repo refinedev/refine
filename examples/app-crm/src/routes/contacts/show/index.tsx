@@ -1,15 +1,27 @@
 import React from "react";
-import { Avatar, Card, Drawer, Input, Select, Spin, Typography } from "antd";
+import {
+    Avatar,
+    Button,
+    Card,
+    Drawer,
+    Input,
+    Popconfirm,
+    Select,
+    Spin,
+    Typography,
+} from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath, useShow, useUpdate } from "@refinedev/core";
+import { useDelete, useGetToPath, useShow, useUpdate } from "@refinedev/core";
 import {
     MailOutlined,
     ShopOutlined,
     GlobalOutlined,
     PhoneOutlined,
     IdcardOutlined,
+    DeleteOutlined,
 } from "@ant-design/icons";
 import { useSelect } from "@refinedev/antd";
+import dayjs from "dayjs";
 
 import { Text } from "../../../components/text";
 import { SingleElementForm } from "../../../components/single-element-form";
@@ -33,6 +45,7 @@ export const ContactShowPage = () => {
     const navigate = useNavigate();
     const getToPath = useGetToPath();
     const { mutate } = useUpdate<Contact>();
+    const { mutate: deleteMutation } = useDelete<Contact>();
     const { queryResult } = useShow<Contact>({
         meta: {
             fields: [
@@ -78,6 +91,7 @@ export const ContactShowPage = () => {
             timezone,
             avatarUrl,
             company,
+            createdAt,
         } = data.data;
         return (
             <div className={styles.container}>
@@ -234,6 +248,43 @@ export const ContactShowPage = () => {
                 >
                     <ContactComment />
                 </Card>
+
+                <div className={styles.actions}>
+                    <Text className="anttext tertiary">
+                        Created on: {dayjs(createdAt).format("MMMM DD, YYYY")}
+                    </Text>
+
+                    <Popconfirm
+                        title="Delete the contact"
+                        description="Are you sure to delete this contact?"
+                        onConfirm={() => {
+                            deleteMutation(
+                                {
+                                    id,
+                                    resource: "contacts",
+                                },
+                                {
+                                    onSuccess: () => {
+                                        navigate(
+                                            getToPath({
+                                                action: "list",
+                                            }) ?? "",
+                                            {
+                                                replace: true,
+                                            },
+                                        );
+                                    },
+                                },
+                            );
+                        }}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button type="link" danger icon={<DeleteOutlined />}>
+                            Delete Contact
+                        </Button>
+                    </Popconfirm>
+                </div>
             </div>
         );
     };
