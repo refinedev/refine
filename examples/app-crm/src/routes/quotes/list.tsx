@@ -10,21 +10,8 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import {
-    Avatar,
-    Button,
-    Form,
-    Input,
-    Select,
-    Space,
-    Table,
-    Tooltip,
-} from "antd";
-import {
-    FilterOutlined,
-    PlusCircleOutlined,
-    PlusSquareOutlined,
-} from "@ant-design/icons";
+import { Avatar, Form, Input, Select, Space, Table, Tooltip } from "antd";
+import { PlusCircleOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
 import {
     currencyNumber,
@@ -82,7 +69,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
         sorters: {
             initial: [
                 {
-                    field: "updatedAt",
+                    field: "createdAt",
                     order: "desc",
                 },
             ],
