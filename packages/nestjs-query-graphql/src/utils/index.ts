@@ -131,16 +131,21 @@ export const generateCreatedSubscription = ({
     filters,
     meta,
 }: any) => {
-    const operation = `created${camelcase(singular(resource), {
-        pascalCase: true,
-    })}`;
+    const operation = `createOne${camelcase(
+        singular(meta?.operation ?? resource),
+        {
+            pascalCase: true,
+        },
+    )}`;
 
     const queryVariables: VariableOptions = {};
 
     if (filters) {
         queryVariables["input"] = {
             type: camelcase(
-                `create_${singular(resource)}_subscription_filter_input`,
+                `create_${singular(
+                    meta?.operation ?? resource,
+                )}_subscription_filter_input`,
                 {
                     pascalCase: true,
                 },
@@ -170,16 +175,21 @@ export const generateUpdatedSubscription = ({
     filters,
     meta,
 }: any) => {
-    const operation = `updatedOne${camelcase(singular(resource), {
-        pascalCase: true,
-    })}`;
+    const operation = `updateOne${camelcase(
+        singular(meta?.operation ?? resource),
+        {
+            pascalCase: true,
+        },
+    )}`;
 
     const queryVariables: VariableOptions = {};
 
     if (filters) {
         queryVariables["input"] = {
             type: camelcase(
-                `update_one_${singular(resource)}_subscription_filter_input`,
+                `update_one_${singular(
+                    meta?.operation ?? resource,
+                )}_subscription_filter_input`,
                 {
                     pascalCase: true,
                 },
@@ -209,16 +219,21 @@ export const generateDeletedSubscription = ({
     filters,
     meta,
 }: any) => {
-    const operation = `deletedOne${camelcase(singular(resource), {
-        pascalCase: true,
-    })}`;
+    const operation = `deleteOne${camelcase(
+        singular(meta?.operation ?? resource),
+        {
+            pascalCase: true,
+        },
+    )}`;
 
     const queryVariables: VariableOptions = {};
 
     if (filters) {
         queryVariables["input"] = {
             type: camelcase(
-                `delete_one_${singular(resource)}_subscription_filter_input`,
+                `delete_one_${singular(
+                    meta?.operation ?? resource,
+                )}_subscription_filter_input`,
                 {
                     pascalCase: true,
                 },
