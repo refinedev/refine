@@ -217,30 +217,28 @@ const App: React.FC = () => {
                                     element={<ContactCreatePage />}
                                 />
                             </Route>
-                            <Route path="/quotes">
+                            <Route
+                                path="/quotes"
+                                element={
+                                    <QuotesListPage>
+                                        <Outlet />
+                                    </QuotesListPage>
+                                }
+                            >
                                 <Route
-                                    path=""
-                                    element={
-                                        <QuotesListPage>
-                                            <Outlet />
-                                        </QuotesListPage>
-                                    }
-                                >
-                                    <Route
-                                        path="create"
-                                        element={<QuotesCreatePage />}
-                                    />
+                                    path="create"
+                                    element={<QuotesCreatePage />}
+                                />
 
-                                    <Route
-                                        path="edit/:id"
-                                        element={<QuotesEditPage />}
-                                    />
-                                </Route>
                                 <Route
-                                    path="show/:id"
-                                    element={<QuotesShowPage />}
+                                    path="edit/:id"
+                                    element={<QuotesEditPage />}
                                 />
                             </Route>
+                            <Route
+                                path="/quotes/show/:id"
+                                element={<QuotesShowPage />}
+                            />
                             <Route path="/administration" element={<Outlet />}>
                                 <Route
                                     path="settings"
