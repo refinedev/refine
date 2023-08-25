@@ -77,7 +77,7 @@ describe("useInvalidate", () => {
             dataProviderName: "rest",
         });
 
-        expect(dispatch).toBeCalledWith(["rest", "posts", "list", {}]);
+        expect(dispatch).toBeCalledWith(["rest", "posts", "list"]);
     });
 
     it("with detail invalidation", async () => {
@@ -102,9 +102,9 @@ describe("useInvalidate", () => {
             id: "1",
         });
 
-        expect(dispatch).toBeCalledWith(["rest", "posts", "list", {}]);
+        expect(dispatch).toBeCalledWith(["rest", "posts", "list"]);
 
-        expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1", {}]);
+        expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1"]);
     });
 
     it("with 'all' invalidation", async () => {
@@ -131,9 +131,9 @@ describe("useInvalidate", () => {
 
         expect(dispatch).toBeCalledWith(["rest"]);
         expect(dispatch).toBeCalledWith(["rest", "posts"]);
-        expect(dispatch).toBeCalledWith(["rest", "posts", "list", {}]);
-        expect(dispatch).toBeCalledWith(["rest", "posts", "getMany", {}]);
-        expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1", {}]);
+        expect(dispatch).toBeCalledWith(["rest", "posts", "list"]);
+        expect(dispatch).toBeCalledWith(["rest", "posts", "getMany"]);
+        expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1"]);
     });
 
     it("with 'wrong invalidate key' ", async () => {
