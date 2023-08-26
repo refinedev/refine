@@ -19,7 +19,7 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
         HttpError,
         TaskComment
     >({
-        resource: "taskComment",
+        resource: "taskComments",
         action: "edit",
         queryOptions: {
             enabled: false,
@@ -109,7 +109,7 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                         </Typography.Link>
                         <DeleteButton
                             recordItemId={item.id}
-                            meta={{ operation: "taskComment" }}
+                            resource="taskComments"
                             size="small"
                             type="link"
                             icon={null}

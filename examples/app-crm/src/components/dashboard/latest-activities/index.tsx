@@ -24,7 +24,6 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             },
         ],
         meta: {
-            operation: "audits",
             fields: [
                 "id",
                 "action",

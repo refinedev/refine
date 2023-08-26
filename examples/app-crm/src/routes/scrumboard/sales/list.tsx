@@ -39,11 +39,11 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     const navigate = useNavigate();
 
     const { data: stages, isLoading: isLoadingStages } = useList<DealStage>({
+        resource: "dealStages",
         pagination: {
             mode: "off",
         },
         meta: {
-            operation: "dealStages",
             fields: [
                 "id",
                 "title",
@@ -59,6 +59,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     });
 
     const { data: deals, isLoading: isLoadingDeals } = useList<Deal>({
+        resource: "deals",
         sorters: [
             {
                 field: "createdAt",
@@ -72,7 +73,6 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            operation: "deals",
             fields: dealsFragment,
         },
     });
@@ -199,10 +199,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
     const handleDeleteStage = (args: { stageId: string }) => {
         deleteStage({
-            resource: "deals",
-            meta: {
-                operation: "dealStage",
-            },
+            resource: "dealStage",
             id: args.stageId,
         });
     };

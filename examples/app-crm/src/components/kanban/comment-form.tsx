@@ -31,9 +31,6 @@ export const CommentForm = () => {
         queryOptions: {
             enabled: false,
         },
-        meta: {
-            operation: "taskComment",
-        },
         redirect: false,
         mutationMode: "optimistic",
         onMutationSuccess: () => {
