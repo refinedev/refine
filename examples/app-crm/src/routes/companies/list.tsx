@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { HttpError } from "@refinedev/core";
+import { CreateButton, List, useTable } from "@refinedev/antd";
+import { Form, Input, Space, Radio } from "antd";
 import {
     AppstoreOutlined,
     PlusSquareOutlined,
+    SearchOutlined,
     UnorderedListOutlined,
 } from "@ant-design/icons";
-import { CreateButton, List, useTable } from "@refinedev/antd";
-import { Form, Input, Space, Radio } from "antd";
+import { debounce } from "lodash";
 
 import {
     CompaniesTableView,
     CompaniesCardView,
 } from "../../components/company";
-import { Company, CompanyFilter } from "../../interfaces/graphql";
+import { Company } from "../../interfaces/graphql";
 
 type View = "card" | "table";
 
@@ -29,7 +31,7 @@ export const CompanyListPage = () => {
         setPageSize,
         pageSize,
         current,
-    } = useTable<Company, HttpError, CompanyFilter>({
+    } = useTable<Company, HttpError, { name: string }>({
         onSearch: (values) => {
             return [
                 {
@@ -66,21 +68,28 @@ export const CompanyListPage = () => {
         setView(value);
     };
 
+    const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        searchFormProps?.onFinish?.({
+            name: e.target.value ?? "",
+        });
+    };
+    const debouncedOnChange = debounce(onSearch, 500);
+
     return (
         <List
             breadcrumb={false}
             headerButtons={() => {
                 return (
                     <Space>
-                        <Form
-                            {...searchFormProps}
-                            onChange={searchFormProps.form?.submit}
-                            layout="inline"
-                        >
+                        <Form {...searchFormProps} layout="inline">
                             <Form.Item name="name" noStyle>
-                                <Input.Search
+                                <Input
                                     size="large"
-                                    placeholder="Search"
+                                    prefix={
+                                        <SearchOutlined className="anticon tertiary" />
+                                    }
+                                    placeholder="Search by name"
+                                    onChange={debouncedOnChange}
                                 />
                             </Form.Item>
                         </Form>
