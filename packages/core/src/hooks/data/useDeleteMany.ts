@@ -34,7 +34,7 @@ import {
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
-    queryKeys,
+    queryKeysReplacement,
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
@@ -273,17 +273,27 @@ export const useDeleteMany = <
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
-                const queryKey = queryKeys(
+                const queryKey = queryKeysReplacement(preferLegacyKeys)(
                     identifier,
                     pickDataProvider(identifier, dataProviderName, resources),
                     preferredMeta,
                 );
 
+                const resourceKeys = keys()
+                    .data(
+                        pickDataProvider(
+                            identifier,
+                            dataProviderName,
+                            resources,
+                        ),
+                    )
+                    .resource(identifier);
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
                 await queryClient.cancelQueries(
-                    queryKey.resourceAll,
+                    resourceKeys.get(preferLegacyKeys),
                     undefined,
                     {
                         silent: true,
@@ -291,12 +301,17 @@ export const useDeleteMany = <
                 );
 
                 const previousQueries: PreviousQuery<TData>[] =
-                    queryClient.getQueriesData(queryKey.resourceAll);
+                    queryClient.getQueriesData(
+                        resourceKeys.get(preferLegacyKeys),
+                    );
 
                 if (mutationModePropOrContext !== "pessimistic") {
                     // Set the previous queries to the new ones:
                     queryClient.setQueriesData(
-                        queryKey.list(),
+                        resourceKeys
+                            .action("list")
+                            .params(preferredMeta ?? {})
+                            .get(preferLegacyKeys),
                         (previous?: GetListResponse<TData> | null) => {
                             if (!previous) {
                                 return null;
@@ -318,7 +333,7 @@ export const useDeleteMany = <
                     );
 
                     queryClient.setQueriesData(
-                        queryKey.many(),
+                        resourceKeys.action("many").get(preferLegacyKeys),
                         (previous?: GetListResponse<TData> | null) => {
                             if (!previous) {
                                 return null;
@@ -344,7 +359,11 @@ export const useDeleteMany = <
 
                     for (const id of ids) {
                         queryClient.setQueriesData(
-                            queryKey.detail(id),
+                            resourceKeys
+                                .action("one")
+                                .id(id)
+                                .params(preferredMeta)
+                                .get(preferLegacyKeys),
                             (previous?: any | null) => {
                                 if (!previous || previous.data.id == id) {
                                     return null;

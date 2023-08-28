@@ -34,7 +34,7 @@ import {
     MetaQuery,
 } from "../../interfaces";
 import {
-    queryKeys,
+    queryKeysReplacement,
     pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
@@ -267,17 +267,27 @@ export const useDelete = <
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
-                const queryKey = queryKeys(
+                const queryKey = queryKeysReplacement(preferLegacyKeys)(
                     identifier,
                     pickDataProvider(identifier, dataProviderName, resources),
                     preferredMeta,
                 );
 
+                const resourceKeys = keys()
+                    .data(
+                        pickDataProvider(
+                            identifier,
+                            dataProviderName,
+                            resources,
+                        ),
+                    )
+                    .resource(identifier);
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
                 await queryClient.cancelQueries(
-                    queryKey.resourceAll,
+                    resourceKeys.get(preferLegacyKeys),
                     undefined,
                     {
                         silent: true,
@@ -285,12 +295,17 @@ export const useDelete = <
                 );
 
                 const previousQueries: PreviousQuery<TData>[] =
-                    queryClient.getQueriesData(queryKey.resourceAll);
+                    queryClient.getQueriesData(
+                        resourceKeys.get(preferLegacyKeys),
+                    );
 
                 if (mutationModePropOrContext !== "pessimistic") {
                     // Set the previous queries to the new ones:
                     queryClient.setQueriesData(
-                        queryKey.list(),
+                        resourceKeys
+                            .action("list")
+                            .params(preferredMeta ?? {})
+                            .get(preferLegacyKeys),
                         (previous?: GetListResponse<TData> | null) => {
                             if (!previous) {
                                 return null;
@@ -308,7 +323,7 @@ export const useDelete = <
                     );
 
                     queryClient.setQueriesData(
-                        queryKey.many(),
+                        resourceKeys.action("many").get(preferLegacyKeys),
                         (previous?: GetListResponse<TData> | null) => {
                             if (!previous) {
                                 return null;

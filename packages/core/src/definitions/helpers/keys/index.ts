@@ -98,7 +98,7 @@ function convertToLegacy(segments: KeySegment[]) {
         // [audit, resource, action, params] (for log and list)
         // or
         // [audit, action, params] (for rename)
-        if (segments.length === 4 && segments[2] === "list") {
+        if (segments[2] === "list") {
             return ["logList", segments[1], segments[3]];
         }
     }
@@ -184,8 +184,11 @@ class DataIdRequiringKeyBuilder extends BaseKeyBuilder {
         super(segments);
     }
 
-    id(idValue: IdType) {
-        return new ParamsKeyBuilder([...this.segments, String(idValue)]);
+    id(idValue?: IdType) {
+        return new ParamsKeyBuilder([
+            ...this.segments,
+            idValue ? String(idValue) : undefined,
+        ]);
     }
 }
 
@@ -195,7 +198,10 @@ class DataIdsRequiringKeyBuilder extends BaseKeyBuilder {
     }
 
     ids(...idsValue: IdsType) {
-        return new ParamsKeyBuilder([...this.segments, idsValue.map(String)]);
+        return new ParamsKeyBuilder([
+            ...this.segments,
+            ...(idsValue.length ? [idsValue.map((el) => String(el))] : []),
+        ]);
     }
 }
 
@@ -239,7 +245,7 @@ class DataKeyBuilder extends BaseKeyBuilder {
         super(segments);
     }
 
-    resource(resourceName: string) {
+    resource(resourceName?: string) {
         return new DataResourceKeyBuilder([...this.segments, resourceName]);
     }
 
