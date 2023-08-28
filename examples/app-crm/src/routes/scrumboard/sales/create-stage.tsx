@@ -9,8 +9,8 @@ export const SalesCreateStage = () => {
     const { formProps, modalProps, close } = useModalForm({
         action: "create",
         defaultVisible: true,
+        resource: "dealStages",
         meta: {
-            operation: "dealStage",
             fields: ["id"],
         },
         onMutationSuccess: () => {

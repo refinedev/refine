@@ -9,8 +9,8 @@ export const KanbanCreateStage = () => {
     const { formProps, modalProps, close } = useModalForm({
         action: "create",
         defaultVisible: true,
+        resource: "taskStages",
         meta: {
-            operation: "taskStage",
             fields: ["id"],
         },
         onMutationSuccess: () => {

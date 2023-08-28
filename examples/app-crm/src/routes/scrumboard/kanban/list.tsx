@@ -42,12 +42,11 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     const navigate = useNavigate();
 
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
-        resource: "tasks",
+        resource: "taskStages",
         pagination: {
             mode: "off",
         },
         meta: {
-            operation: "taskStages",
             fields: ["id", "title"],
         },
     });
@@ -67,7 +66,6 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            operation: "tasks",
             fields: taskFragment,
         },
     });
@@ -146,10 +144,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
 
     const handleDeleteStage = (args: { stageId: string }) => {
         deleteStage({
-            resource: "tasks",
-            meta: {
-                operation: "taskStage",
-            },
+            resource: "taskStage",
             id: args.stageId,
         });
     };

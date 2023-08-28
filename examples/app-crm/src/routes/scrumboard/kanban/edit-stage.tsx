@@ -10,8 +10,8 @@ export const KanbanEditStage = () => {
     const { formProps, modalProps, close } = useModalForm({
         action: "edit",
         defaultVisible: true,
+        resource: "taskStages",
         meta: {
-            operation: "taskStage",
             fields: ["id", "title"],
         },
         onMutationSuccess: () => {

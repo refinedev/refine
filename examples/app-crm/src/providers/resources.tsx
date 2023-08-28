@@ -49,7 +49,7 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "stages",
+        name: "taskStages",
         create: "/scrumboard/kanban/stages/create",
         edit: "/scrumboard/kanban/stages/edit/:id",
         list: "/scrumboard/kanban",
@@ -68,8 +68,7 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "stages",
-        identifier: "deal-stages",
+        name: "dealStages",
         create: "/scrumboard/sales/stages/create",
         edit: "/scrumboard/sales/stages/edit/:id",
         list: "/scrumboard/sales",

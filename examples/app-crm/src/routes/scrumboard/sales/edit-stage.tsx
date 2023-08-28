@@ -10,8 +10,8 @@ export const SalesEditStage = () => {
     const { formProps, modalProps, close } = useModalForm({
         action: "edit",
         defaultVisible: true,
+        resource: "dealStages",
         meta: {
-            operation: "dealStage",
             fields: ["id", "title"],
         },
         onMutationSuccess: () => {
