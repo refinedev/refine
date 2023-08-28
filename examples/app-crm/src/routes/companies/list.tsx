@@ -7,9 +7,12 @@ import {
 } from "@ant-design/icons";
 import { CreateButton, List, useTable } from "@refinedev/antd";
 import { Form, Input, Space, Radio } from "antd";
+
+import {
+    CompaniesTableView,
+    CompaniesCardView,
+} from "../../components/company";
 import { Company, CompanyFilter } from "../../interfaces/graphql";
-import { CompaniesTableView } from "./table-view";
-import { CompaniesCardView } from "./card-view";
 
 type View = "card" | "table";
 

@@ -9,7 +9,7 @@ import {
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import { Avatar, Select, Space, Table, TableProps, Tooltip } from "antd";
 
-import { Text, CustomAvatar } from "../../components";
+import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
 

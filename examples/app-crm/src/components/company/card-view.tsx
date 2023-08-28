@@ -11,7 +11,7 @@ import {
 } from "antd";
 import { MoreOutlined } from "@ant-design/icons";
 
-import { Text, CustomAvatar } from "../../components";
+import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
 
