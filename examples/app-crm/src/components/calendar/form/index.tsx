@@ -100,7 +100,7 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                         noStyle
                     >
                         <RangePicker
-                            style={{ width: "100%" }}
+                            style={{ width: "100%", backgroundColor: "#fff" }}
                             showTime={!isAllDayEvent}
                             format={
                                 isAllDayEvent
