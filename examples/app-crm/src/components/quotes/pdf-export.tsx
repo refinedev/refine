@@ -1,6 +1,6 @@
+import { FC } from "react";
 import { FilePdfOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
-import React, { FC } from "react";
 import {
     Document,
     Image,
@@ -10,9 +10,10 @@ import {
     Text,
     PDFViewer,
 } from "@react-pdf/renderer";
-import { Quote } from "../../../interfaces/graphql";
 import { useModal } from "@refinedev/antd";
-import { currencyNumber } from "../../../utilities";
+
+import { currencyNumber } from "../../utilities";
+import { Quote } from "../../interfaces/graphql";
 
 type Props = {} & Partial<Quote>;
 

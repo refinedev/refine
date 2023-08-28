@@ -3,7 +3,7 @@ import cn from "classnames";
 import { HttpError, useUpdate } from "@refinedev/core";
 import { Quote, QuoteUpdateInput } from "../../../interfaces/graphql";
 
-import styles from "./status.module.css";
+import styles from "./index.module.css";
 
 interface Props {
     id: string;
@@ -11,7 +11,7 @@ interface Props {
     style?: React.CSSProperties;
 }
 
-export const Status: FC<Props> = ({ id, status, style }) => {
+export const StatusIndicator: FC<Props> = ({ id, status, style }) => {
     const { mutate } = useUpdate<Quote, HttpError, QuoteUpdateInput>();
 
     const onStatusChange = (newStatus: Quote["status"]) => {

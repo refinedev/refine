@@ -14,9 +14,10 @@ import {
     Spin,
 } from "antd";
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { FullScreenLoading, Text } from "../../../components";
-import { Quote, QuoteUpdateInput } from "../../../interfaces/graphql";
-import { currencyNumber } from "../../../utilities";
+
+import { FullScreenLoading, Text } from "..";
+import { Quote, QuoteUpdateInput } from "../../interfaces/graphql";
+import { currencyNumber } from "../../utilities";
 
 const columns = [
     {

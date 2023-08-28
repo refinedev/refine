@@ -4,16 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Space } from "antd";
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 
+import { FullScreenLoading, Text, CustomAvatar } from "../../../components";
 import {
-    FullScreenLoading,
     QuotesFormModal,
-    Text,
-    CustomAvatar,
-} from "../../../components";
-import { Status } from "./status";
-import { ProductsServices } from "./products-services";
-import { Description } from "./description";
-import { PdfExport } from "./pdf-export";
+    ProductsServices,
+    ShowDescription,
+    PdfExport,
+    StatusIndicator,
+} from "../../../components/quotes";
 
 import { Quote } from "../../../interfaces/graphql";
 
@@ -92,7 +90,7 @@ export const QuotesShowPage = () => {
                         </Button>
                     </Space>
                 </div>
-                <Status
+                <StatusIndicator
                     style={{
                         marginTop: "32px",
                     }}
@@ -130,7 +128,7 @@ export const QuotesShowPage = () => {
                     <div className={styles.divider} />
                     <ProductsServices />
                     <div className={styles.divider} />
-                    <Description />
+                    <ShowDescription />
                 </div>
             </div>
             {editModalVisible && (
