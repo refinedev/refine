@@ -75,7 +75,44 @@ export const CalendarShowPage: React.FC = () => {
 
     return (
         <Drawer
-            headerStyle={{ display: "none" }}
+            title={
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                >
+                    <div style={{ display: "flex", gap: "8px" }}>
+                        <div
+                            style={{
+                                backgroundColor: data?.data.color,
+                                flexShrink: 0,
+                                borderRadius: "50%",
+                                width: "10px",
+                                height: "10px",
+                                marginTop: "8px",
+                            }}
+                        />
+                        <Text strong size="md">
+                            {data?.data.title}
+                        </Text>
+                    </div>
+                    <div style={{ display: "flex", gap: "4px" }}>
+                        <EditButton
+                            icon={<EditOutlined />}
+                            hideText
+                            type="text"
+                        />
+                        <Button
+                            icon={<CloseOutlined />}
+                            type="text"
+                            onClick={handleOnClose}
+                        />
+                    </div>
+                </div>
+            }
+            closeIcon={false}
             open
             onClose={handleOnClose}
             width={378}
@@ -100,40 +137,6 @@ export const CalendarShowPage: React.FC = () => {
                         gap: "24px",
                     }}
                 >
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <div style={{ display: "flex", gap: "8px" }}>
-                            <div
-                                style={{
-                                    backgroundColor: data?.data.color,
-                                    flexShrink: 0,
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "10px",
-                                    marginTop: "8px",
-                                }}
-                            />
-                            <Text strong size="md">
-                                {data?.data.title}
-                            </Text>
-                        </div>
-                        <div style={{ display: "flex", gap: "4px" }}>
-                            <EditButton
-                                icon={<EditOutlined />}
-                                hideText
-                                type="text"
-                            />
-                            <Button
-                                icon={<CloseOutlined />}
-                                type="text"
-                                onClick={handleOnClose}
-                            />
-                        </div>
-                    </div>
                     <div>
                         <CalendarOutlined style={{ marginRight: ".5rem" }} />
                         <Text>{dayjs(startDate).format(dateFormat)}</Text>
