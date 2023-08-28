@@ -1,12 +1,14 @@
 import React from "react";
-import { Col, Row, App } from "antd";
+import { Col, Row } from "antd";
 import { CreateButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 
-import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
-import { CalendarCategories } from "../../components/calender/categories";
-import { Calendar } from "../../components/calender/calendar";
+import {
+    CalendarUpcomingEvents,
+    CalendarCategories,
+    Calendar,
+} from "../../components/calendar";
 
 type Props = React.PropsWithChildren<{}>;
 
@@ -18,7 +20,7 @@ export const CalendarPageWrapper = ({ children }: Props) => {
     >([]);
 
     return (
-        <App>
+        <>
             <Row gutter={[32, 32]}>
                 <Col span={6}>
                     <CreateButton
@@ -65,9 +67,9 @@ export const CalendarPageWrapper = ({ children }: Props) => {
                         }}
                         categoryId={selectedEventCategory}
                     />
-                    {children}
                 </Col>
             </Row>
-        </App>
+            {children}
+        </>
     );
 };

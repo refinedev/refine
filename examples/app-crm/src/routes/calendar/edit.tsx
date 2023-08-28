@@ -5,8 +5,7 @@ import { useGetToPath, useResource } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import dayjs from "dayjs";
 
-import { CalendarForm } from "../../components/calender/form";
-
+import { CalendarForm } from "../../components/calendar/form";
 import { Event } from "../../interfaces/graphql";
 
 export const CalendarEditPage = () => {
@@ -42,7 +41,6 @@ export const CalendarEditPage = () => {
                     },
                 ],
             },
-            redirect: "list",
         });
 
     React.useEffect(() => {

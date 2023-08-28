@@ -47,7 +47,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const getToPath = useGetToPath();
     const [searchParams] = useSearchParams();
     const { data: user } = useGetIdentity<User>();
-    const { pathname, search } = useLocation();
+    const { pathname } = useLocation();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
         Company,

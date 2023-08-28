@@ -190,8 +190,6 @@ export const ContactShowPage = () => {
                         onCancel={() => setActiveForm(undefined)}
                         onUpdate={() => {
                             setActiveForm(undefined);
-                            // save sales owner
-                            console.log("salesOwnerId", salesOwnerId);
                             updateMutation({
                                 resource: "contacts",
                                 id,

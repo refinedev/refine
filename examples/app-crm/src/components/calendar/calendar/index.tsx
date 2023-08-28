@@ -1,61 +1,18 @@
 import React from "react";
 import { useList } from "@refinedev/core";
-import { Calendar as AntdCalendar, Card, Button, Badge } from "antd";
+import { Calendar as AntdCalendar, Card, Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import dayjs, { Dayjs } from "dayjs";
 
 import { Text } from "../../text";
+import { CalendarCell } from "../calendar-cell";
 import { Event } from "../../../interfaces/graphql";
+
 import styles from "./index.module.css";
 
 type CalendarProps = {
     categoryId?: string[];
     onClickEvent?: (event: Event) => void;
-};
-
-type CalendarCellProps = {
-    value: Dayjs;
-    events: Event[];
-} & CalendarProps;
-
-const CalendarCell: React.FC<CalendarCellProps> = ({
-    events,
-    value,
-    onClickEvent,
-}) => {
-    const todayEvents = events.filter((event) => {
-        const startDate = dayjs(event.startDate);
-        const endDate = dayjs(event.endDate);
-
-        return (
-            startDate.isSame(value, "day") ||
-            endDate.isSame(value, "day") ||
-            (startDate.isBefore(value, "day") && endDate.isAfter(value, "day"))
-        );
-    });
-
-    return (
-        <div>
-            {todayEvents.slice(0, 3).map((item) => (
-                <div onClick={() => onClickEvent?.(item)} key={item.id}>
-                    <Text
-                        ellipsis={{
-                            tooltip: true,
-                        }}
-                    >
-                        <Badge
-                            style={{ marginRight: "0.5rem" }}
-                            color={item.color}
-                        />
-                        {item.title}
-                    </Text>
-                </div>
-            ))}
-            {todayEvents.length > 3 && (
-                <Text strong>{todayEvents.length - 3} more</Text>
-            )}
-        </div>
-    );
 };
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -68,7 +25,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
     const { data } = useList<Event>({
         pagination: {
-            pageSize: 9999,
+            mode: "off",
         },
         filters: [
             {

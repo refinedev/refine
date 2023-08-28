@@ -1,18 +1,19 @@
 import React from "react";
-import { Button, Card, theme, CardProps, Checkbox, Skeleton } from "antd";
+import { Button, Card, theme, Checkbox, Skeleton } from "antd";
 import { useList } from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
 import { SettingOutlined, FlagOutlined } from "@ant-design/icons";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 import { Text } from "../../text";
 import { CalendarManageCategories } from "../manage-categories";
-
 import { EventCategory } from "../../../interfaces/graphql";
+
 import styles from "./index.module.css";
-import { useModal } from "@refinedev/antd";
 
 type CalendarCategoriesProps = {
-    onChange?: (e: any) => void;
-} & CardProps;
+    onChange?: (e: CheckboxChangeEvent) => void;
+};
 
 export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
     onChange,

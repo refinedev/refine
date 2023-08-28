@@ -6,7 +6,7 @@ import { DashboardTotalCountCard } from "../../components/dashboard/total-count-
 import { DashboardTasksChart } from "../../components/dashboard/tasks-chart";
 import { DashboardDealsChart } from "../../components/dashboard/deals-chart";
 import { DashboardTotalRevenueChart } from "../../components/dashboard/total-revenue-chart";
-import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
+import { CalendarUpcomingEvents } from "../../components/calendar/upcoming-events";
 import { DashboardLatestActivities } from "../../components/dashboard/latest-activities";
 
 export const DashboardPage: React.FC = () => {
