@@ -11,13 +11,13 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Form, Input, Select, Space, Table, Tooltip } from "antd";
-import { PlusCircleOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import { Form, Input, Select, Space, Table } from "antd";
+import { PlusSquareOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-
 import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
 import { currencyNumber } from "../../utilities";
 import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
+import { Participants } from "../../components/participants";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -40,6 +40,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
         HttpError,
         QuoteFilter
     >({
+        resource: "quotes",
         onSearch: (values) => {
             return [
                 {
@@ -244,7 +245,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                             </FilterDropdown>
                         )}
                         render={(value) => {
-                            return <QuoteStatusTag value={value} />;
+                            return <QuoteStatusTag status={value} />;
                         }}
                     />
                     <Table.Column<Quote>
@@ -262,30 +263,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                             );
                         }}
                         render={(_, record) => {
-                            const salesOwnerName = record.salesOwner?.name;
-                            const contactName = record.contact?.name;
-
                             return (
-                                <Space
-                                    size={4}
-                                    style={{
-                                        textTransform: "uppercase",
-                                    }}
-                                >
-                                    <Tooltip title={salesOwnerName}>
-                                        <CustomAvatar
-                                            name={salesOwnerName}
-                                            src={record.salesOwner?.avatarUrl}
-                                        />
-                                    </Tooltip>
-                                    <PlusCircleOutlined className="xs tertiary" />
-                                    <Tooltip title={contactName}>
-                                        <CustomAvatar
-                                            name={contactName}
-                                            src={record.contact?.avatarUrl}
-                                        />
-                                    </Tooltip>
-                                </Space>
+                                <Participants
+                                    userOne={record.salesOwner}
+                                    userTwo={record.contact}
+                                />
                             );
                         }}
                     />

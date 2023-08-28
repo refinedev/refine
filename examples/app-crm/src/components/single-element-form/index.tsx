@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormItemProps } from "antd";
+import { Button, Form, FormItemProps, Skeleton } from "antd";
 import { useForm } from "@refinedev/antd";
 import { EditOutlined } from "@ant-design/icons";
 
@@ -15,6 +15,7 @@ type SingleElementFormProps = {
     onUpdate?: () => void;
     onCancel?: () => void;
     onClick?: () => void;
+    loading?: boolean;
     style?: React.CSSProperties;
 } & React.PropsWithChildren;
 
@@ -26,6 +27,7 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
     onClick,
     onUpdate,
     onCancel,
+    loading,
     children,
     style,
     extra,
@@ -47,22 +49,33 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
 
     return (
         <Form layout="vertical" {...formProps}>
-            <div className={styles.container} style={{ ...style }}>
+            <div className={styles.container} style={style}>
                 <div className={styles.icon}>{icon}</div>
                 <div className={styles.content}>
                     <div className={styles.input}>
-                        <Text size="sm" className={styles.label}>
+                        <Text
+                            size="sm"
+                            type="secondary"
+                            className={styles.label}
+                        >
                             {itemProps?.label}
                         </Text>
-                        {state === "form" && (
-                            <>
+                        {loading && (
+                            <Skeleton.Input
+                                className={styles.skeleton}
+                                size="small"
+                                active
+                            />
+                        )}
+                        {state === "form" && !loading && (
+                            <div className={styles.formItem}>
                                 <Form.Item {...itemProps} noStyle>
                                     {children}
                                 </Form.Item>
                                 {extra}
-                            </>
+                            </div>
                         )}
-                        {state === "empty" && (
+                        {state === "empty" && !loading && (
                             <Button
                                 onClick={onClick}
                                 type="link"

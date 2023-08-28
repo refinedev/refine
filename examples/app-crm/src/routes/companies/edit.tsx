@@ -1,0 +1,39 @@
+import { Col, Row } from "antd";
+import {
+    CompanyContactsTable,
+    CompanyDealsTable,
+    CompanyInfoForm,
+    CompanyQuotesTable,
+    CompanyTitleForm,
+} from "../../components/company";
+
+export const CompanyEditPage = () => {
+    return (
+        <div>
+            <CompanyTitleForm />
+            <Row
+                gutter={[32, 32]}
+                style={{
+                    marginTop: 32,
+                }}
+            >
+                <Col span={16}>
+                    <CompanyContactsTable />
+                    <CompanyDealsTable
+                        style={{
+                            marginTop: 32,
+                        }}
+                    />
+                    <CompanyQuotesTable
+                        style={{
+                            marginTop: 32,
+                        }}
+                    />
+                </Col>
+                <Col span={8}>
+                    <CompanyInfoForm />
+                </Col>
+            </Row>
+        </div>
+    );
+};

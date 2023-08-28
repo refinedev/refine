@@ -2,13 +2,13 @@
     .name {
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: flex-start;
         padding: 1rem;
     }
 
     .form {
         background-color: #fff;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         margin-bottom: 1.75rem;
     }
 

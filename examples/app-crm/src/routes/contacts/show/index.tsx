@@ -144,7 +144,7 @@ export const ContactShowPage = () => {
 
                 <div className={styles.form}>
                     <SingleElementForm
-                        icon={<MailOutlined className="anticon tertiary" />}
+                        icon={<MailOutlined className="tertiary" />}
                         state={
                             activeForm && activeForm === "email"
                                 ? "form"
@@ -165,7 +165,7 @@ export const ContactShowPage = () => {
                     </SingleElementForm>
 
                     <SingleElementForm
-                        icon={<ShopOutlined className="anticon tertiary" />}
+                        icon={<ShopOutlined className="tertiary" />}
                         state={
                             activeForm && activeForm === "companyId"
                                 ? "form"
@@ -256,7 +256,7 @@ export const ContactShowPage = () => {
                         />
                     </SingleElementForm>
                     <SingleElementForm
-                        icon={<IdcardOutlined className="anticon tertiary" />}
+                        icon={<IdcardOutlined className="tertiary" />}
                         state={
                             activeForm && activeForm === "jobTitle"
                                 ? "form"
@@ -276,7 +276,7 @@ export const ContactShowPage = () => {
                         <Input defaultValue={jobTitle || ""} />
                     </SingleElementForm>
                     <SingleElementForm
-                        icon={<PhoneOutlined className="anticon tertiary" />}
+                        icon={<PhoneOutlined className="tertiary" />}
                         state={
                             activeForm && activeForm === "phone"
                                 ? "form"
@@ -297,7 +297,7 @@ export const ContactShowPage = () => {
                     </SingleElementForm>
                     <SingleElementForm
                         style={{ borderBottom: "none" }}
-                        icon={<GlobalOutlined className="anticon tertiary" />}
+                        icon={<GlobalOutlined className="tertiary" />}
                         state={
                             activeForm && activeForm === "timezone"
                                 ? "form"

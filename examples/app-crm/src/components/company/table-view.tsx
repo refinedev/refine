@@ -1,8 +1,8 @@
 import { FC } from "react";
 import {
     DeleteButton,
+    EditButton,
     FilterDropdown,
-    ShowButton,
     getDefaultSortOrder,
     useSelect,
 } from "@refinedev/antd";
@@ -12,6 +12,7 @@ import { Avatar, Select, Space, Table, TableProps, Tooltip } from "antd";
 import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
+import { EyeOutlined } from "@ant-design/icons";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -198,7 +199,8 @@ export const CompaniesTableView: FC<Props> = ({
                 title="Actions"
                 render={(value) => (
                     <Space>
-                        <ShowButton
+                        <EditButton
+                            icon={<EyeOutlined />}
                             hideText
                             size="small"
                             recordItemId={value}
