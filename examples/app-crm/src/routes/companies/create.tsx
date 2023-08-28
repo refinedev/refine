@@ -2,7 +2,6 @@ import {
     CreateResponse,
     HttpError,
     useCreateMany,
-    useGetIdentity,
     useGetToPath,
 } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
@@ -46,7 +45,6 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const navigate = useNavigate();
     const getToPath = useGetToPath();
     const [searchParams] = useSearchParams();
-    const { data: user } = useGetIdentity<User>();
     const { pathname } = useLocation();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
@@ -60,6 +58,9 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         redirect: false,
         warnWhenUnsavedChanges: !isOverModal,
         mutationMode: "pessimistic",
+        meta: {
+            fields: ["id", { salesOwner: ["id"] }],
+        },
     });
 
     const { selectProps, queryResult } = useSelect<User>({
@@ -102,20 +103,21 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                             name: values.name,
                             salesOwnerId: values.salesOwnerId,
                         });
-                        const companyId = (data as CreateResponse<Company>)
-                            ?.data.id;
 
                         if (values.contacts?.length === 0) {
                             return;
                         }
+
+                        const createdCompany = (data as CreateResponse<Company>)
+                            ?.data;
 
                         await createManyMutateAsync({
                             resource: "contacts",
                             values:
                                 values.contacts?.map((contact) => ({
                                     ...contact,
-                                    companyId,
-                                    salesOwnerId: user?.id,
+                                    companyId: createdCompany.id,
+                                    salesOwnerId: createdCompany.salesOwner.id,
                                 })) ?? [],
                             successNotification: false,
                         });
@@ -123,7 +125,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                         close();
                         // navigate to path
                         const to = searchParams.get("to") ?? pathname;
-                        const path = `${to}?companyId=${companyId}`;
+                        const path = `${to}?companyId=${createdCompany.id}`;
                         navigate(path, {
                             replace: true,
                         });
