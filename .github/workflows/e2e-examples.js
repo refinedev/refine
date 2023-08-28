@@ -256,7 +256,7 @@ const runTests = async () => {
         try {
             if (!failed) {
                 const params = `-- --record --key ${KEY} --group ${path}`;
-                const runner = `npm run lerna run cypress:run -- --since=${BASE_REF} --scope ${path} ${params}`;
+                const runner = `npm run lerna run cypress:run -- --since=origin/${BASE_REF} --scope ${path} ${params}`;
 
                 prettyLog("blue", `Running tests for ${path}`);
 
