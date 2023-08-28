@@ -20,7 +20,6 @@ import {
     Row,
     Col,
     TableProps,
-    Avatar,
     Button,
 } from "antd";
 import {
@@ -42,7 +41,7 @@ import debounce from "lodash/debounce";
 import { ContactStatusTag } from "../../../components/contact/status-tag";
 import { ContactStatusEnum } from "../../../enums/contact-status";
 import { ContactCard } from "../../../components/contact/card";
-import { Text } from "../../../components";
+import { CustomAvatar, Text } from "../../../components";
 
 import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
@@ -105,10 +104,9 @@ const TableView: React.FC<TableViewProps> = ({ filters, sorters, ...rest }) => {
                 render={(_, record: Contact) => {
                     return (
                         <Space>
-                            <Avatar
-                                size="small"
+                            <CustomAvatar
                                 src={record.avatarUrl}
-                                alt={record.name}
+                                name={record.name}
                             />
                             <Text>{record.name}</Text>
                         </Space>

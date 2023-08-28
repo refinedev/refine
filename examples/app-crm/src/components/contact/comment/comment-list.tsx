@@ -6,10 +6,11 @@ import {
     useInvalidate,
 } from "@refinedev/core";
 import { DeleteButton, useForm } from "@refinedev/antd";
-import { Avatar, Form, Space, Typography, Input, Button } from "antd";
+import { Form, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "../../../components/text";
+import { Text } from "../../text";
+import { CustomAvatar } from "../../custom-avatar";
 import { User, ContactNote } from "../../../interfaces/graphql";
 
 const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
@@ -39,18 +40,12 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
 
     return (
         <div style={{ display: "flex", gap: "12px" }}>
-            <Avatar
-                style={{
-                    flexShrink: 0,
-                    objectFit: "contain",
-                    textTransform: "uppercase",
-                }}
-                size="small"
-                alt={item.createdBy.name}
+            <CustomAvatar
+                style={{ flexShrink: 0 }}
+                name={item.createdBy.name}
                 src={item.createdBy.avatarUrl}
-            >
-                {item.createdBy.name.charAt(0)}
-            </Avatar>
+            />
+
             <div
                 style={{
                     display: "flex",

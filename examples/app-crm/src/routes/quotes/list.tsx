@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren } from "react";
+import { HttpError, getDefaultFilter } from "@refinedev/core";
 import {
     CreateButton,
     DeleteButton,
@@ -10,17 +11,13 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Avatar, Form, Input, Select, Space, Table, Tooltip } from "antd";
+import { Form, Input, Select, Space, Table, Tooltip } from "antd";
 import { PlusCircleOutlined, PlusSquareOutlined } from "@ant-design/icons";
-import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
-import {
-    currencyNumber,
-    getNameInitials,
-    getRandomColorFromString,
-} from "../../utilities";
-import { Text, QuoteStatusTag } from "../../components";
 import dayjs from "dayjs";
-import { HttpError, getDefaultFilter } from "@refinedev/core";
+
+import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
+import { currencyNumber } from "../../utilities";
+import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -81,7 +78,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 "status",
                 "total",
                 "createdAt",
-                { company: ["id", "name"] },
+                { company: ["id", "name", "avatarUrl"] },
                 { contact: ["id", "name", "avatarUrl"] },
                 { salesOwner: ["id", "name", "avatarUrl"] },
             ],
@@ -202,25 +199,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                         render={(_, record) => {
                             return (
                                 <Space>
-                                    <Avatar
-                                        size="small"
-                                        style={{
-                                            textTransform: "uppercase",
-                                            backgroundColor:
-                                                getRandomColorFromString(
-                                                    record.company.name,
-                                                ),
-                                        }}
-                                    >
-                                        {getNameInitials({
-                                            name: record.company.name,
-                                        })}
-                                    </Avatar>
-                                    <Text
-                                        style={{
-                                            whiteSpace: "nowrap",
-                                        }}
-                                    >
+                                    <CustomAvatar
+                                        name={record.company.name}
+                                        src={record.company.avatarUrl}
+                                    />
+                                    <Text style={{ whiteSpace: "nowrap" }}>
                                         {record.company.name}
                                     </Text>
                                 </Space>
@@ -290,37 +273,17 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                                     }}
                                 >
                                     <Tooltip title={salesOwnerName}>
-                                        <Avatar
-                                            size="small"
+                                        <CustomAvatar
+                                            name={salesOwnerName}
                                             src={record.salesOwner?.avatarUrl}
-                                            style={{
-                                                backgroundColor:
-                                                    getRandomColorFromString(
-                                                        salesOwnerName,
-                                                    ),
-                                            }}
-                                        >
-                                            {getNameInitials({
-                                                name: salesOwnerName,
-                                            })}
-                                        </Avatar>
+                                        />
                                     </Tooltip>
                                     <PlusCircleOutlined className="xs tertiary" />
                                     <Tooltip title={contactName}>
-                                        <Avatar
-                                            size="small"
+                                        <CustomAvatar
+                                            name={contactName}
                                             src={record.contact?.avatarUrl}
-                                            style={{
-                                                backgroundColor:
-                                                    getRandomColorFromString(
-                                                        contactName,
-                                                    ),
-                                            }}
-                                        >
-                                            {getNameInitials({
-                                                name: contactName,
-                                            })}
-                                        </Avatar>
+                                        />
                                     </Tooltip>
                                 </Space>
                             );

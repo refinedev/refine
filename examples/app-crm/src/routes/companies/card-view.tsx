@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Company } from "../../interfaces/graphql";
 import {
     Avatar,
     Button,
@@ -11,12 +10,10 @@ import {
     Tooltip,
 } from "antd";
 import { MoreOutlined } from "@ant-design/icons";
-import { Text } from "../../components";
-import {
-    currencyNumber,
-    getNameInitials,
-    getRandomColorFromString,
-} from "../../utilities";
+
+import { Text, CustomAvatar } from "../../components";
+import { currencyNumber } from "../../utilities";
+import { Company } from "../../interfaces/graphql";
 
 type Props = {
     loading?: boolean;
@@ -46,7 +43,6 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                         >
                             <Card
                                 size="small"
-                                style={{}}
                                 actions={[
                                     <div
                                         key="1"
@@ -70,7 +66,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                 maxCount={3}
                                                 size="small"
                                             >
-                                                {company?.contacts?.nodes?.map(
+                                                {company.contacts?.nodes?.map(
                                                     (contact) => {
                                                         return (
                                                             <Tooltip
@@ -79,26 +75,14 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                                 }
                                                                 key={contact.id}
                                                             >
-                                                                <Avatar
+                                                                <CustomAvatar
+                                                                    name={
+                                                                        contact.name
+                                                                    }
                                                                     src={
                                                                         contact.avatarUrl
                                                                     }
-                                                                    size="small"
-                                                                    style={{
-                                                                        textTransform:
-                                                                            "uppercase",
-                                                                        backgroundColor:
-                                                                            getRandomColorFromString(
-                                                                                contact.name,
-                                                                            ),
-                                                                    }}
-                                                                >
-                                                                    {getNameInitials(
-                                                                        {
-                                                                            name: contact.name,
-                                                                        },
-                                                                    )}
-                                                                </Avatar>
+                                                                />
                                                             </Tooltip>
                                                         );
                                                     },
@@ -108,33 +92,18 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                         <Space direction="vertical" align="end">
                                             <Text size="xs">Sales owner</Text>
                                             <Tooltip
-                                                title={
-                                                    company?.salesOwner?.name
-                                                }
-                                                key={company?.salesOwner?.id}
+                                                title={company.salesOwner?.name}
+                                                key={company.salesOwner?.id}
                                             >
-                                                <Avatar
+                                                <CustomAvatar
+                                                    name={
+                                                        company.salesOwner?.name
+                                                    }
                                                     src={
-                                                        company?.salesOwner
+                                                        company.salesOwner
                                                             ?.avatarUrl
                                                     }
-                                                    size="small"
-                                                    style={{
-                                                        textTransform:
-                                                            "uppercase",
-                                                        backgroundColor:
-                                                            getRandomColorFromString(
-                                                                company
-                                                                    ?.salesOwner
-                                                                    ?.name,
-                                                            ),
-                                                    }}
-                                                >
-                                                    {getNameInitials({
-                                                        name: company
-                                                            ?.salesOwner?.name,
-                                                    })}
-                                                </Avatar>
+                                                />
                                             </Tooltip>
                                         </Space>
                                     </div>,
@@ -164,26 +133,14 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                             />
                                         }
                                     />
-                                    <Avatar
-                                        size="small"
+                                    <CustomAvatar
+                                        name={company.name}
                                         src={company.avatarUrl}
                                         style={{
                                             width: "48px",
                                             height: "48px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            textTransform: "uppercase",
-                                            backgroundColor:
-                                                getRandomColorFromString(
-                                                    company.name,
-                                                ),
                                         }}
-                                    >
-                                        {getNameInitials({
-                                            name: company.name,
-                                        })}
-                                    </Avatar>
-
+                                    />
                                     <Text
                                         strong
                                         size="md"

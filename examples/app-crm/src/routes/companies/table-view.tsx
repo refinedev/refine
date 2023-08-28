@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
     DeleteButton,
     FilterDropdown,
@@ -7,14 +8,10 @@ import {
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import { Avatar, Select, Space, Table, TableProps, Tooltip } from "antd";
-import {
-    currencyNumber,
-    getNameInitials,
-    getRandomColorFromString,
-} from "../../utilities";
-import { Text } from "../../components";
+
+import { Text, CustomAvatar } from "../../components";
+import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
-import { FC } from "react";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -97,20 +94,10 @@ export const CompaniesTableView: FC<Props> = ({
                 render={(_, record) => {
                     return (
                         <Space>
-                            <Avatar
-                                size="small"
+                            <CustomAvatar
+                                name={record.name}
                                 src={record.avatarUrl}
-                                style={{
-                                    textTransform: "uppercase",
-                                    backgroundColor: getRandomColorFromString(
-                                        record.name,
-                                    ),
-                                }}
-                            >
-                                {getNameInitials({
-                                    name: record.name,
-                                })}
-                            </Avatar>
+                            />
                             <Text
                                 style={{
                                     whiteSpace: "nowrap",
@@ -142,20 +129,10 @@ export const CompaniesTableView: FC<Props> = ({
                     const salesOwner = record.salesOwner;
                     return (
                         <Space>
-                            <Avatar
-                                size="small"
+                            <CustomAvatar
+                                name={salesOwner.name}
                                 src={salesOwner.avatarUrl}
-                                style={{
-                                    textTransform: "uppercase",
-                                    backgroundColor: getRandomColorFromString(
-                                        salesOwner.name,
-                                    ),
-                                }}
-                            >
-                                {getNameInitials({
-                                    name: salesOwner.name,
-                                })}
-                            </Avatar>
+                            />
                             <Text
                                 style={{
                                     whiteSpace: "nowrap",
@@ -205,21 +182,10 @@ export const CompaniesTableView: FC<Props> = ({
                                         title={contact.name}
                                         key={contact.id}
                                     >
-                                        <Avatar
+                                        <CustomAvatar
+                                            name={contact.name}
                                             src={contact.avatarUrl}
-                                            size="small"
-                                            style={{
-                                                textTransform: "uppercase",
-                                                backgroundColor:
-                                                    getRandomColorFromString(
-                                                        contact.name,
-                                                    ),
-                                            }}
-                                        >
-                                            {getNameInitials({
-                                                name: contact.name,
-                                            })}
-                                        </Avatar>
+                                        />
                                     </Tooltip>
                                 );
                             })}

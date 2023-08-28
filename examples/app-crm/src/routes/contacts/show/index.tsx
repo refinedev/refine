@@ -24,7 +24,7 @@ import {
 import { useSelect } from "@refinedev/antd";
 import dayjs from "dayjs";
 
-import { Text } from "../../../components/text";
+import { Text, CustomAvatar } from "../../../components";
 import { SingleElementForm } from "../../../components/single-element-form";
 import { ContactStatus } from "../../../components/contact/status";
 import { TextIcon } from "../../../components/icon";
@@ -117,10 +117,11 @@ export const ContactShowPage = () => {
         return (
             <div className={styles.container}>
                 <div className={styles.name}>
-                    <Avatar
+                    <CustomAvatar
                         style={{ marginRight: "1rem" }}
                         size={96}
                         src={avatarUrl}
+                        name={name}
                     />
                     <Typography.Title
                         level={3}
@@ -178,7 +179,10 @@ export const ContactShowPage = () => {
                         }}
                         view={
                             <Space>
-                                <Avatar src={company.avatarUrl} size="small" />
+                                <CustomAvatar
+                                    src={company.avatarUrl}
+                                    name={company.name}
+                                />
                                 <Text>{company.name}</Text>
                             </Space>
                         }

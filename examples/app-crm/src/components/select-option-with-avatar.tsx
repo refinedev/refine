@@ -1,6 +1,7 @@
-import { Avatar, Space } from "antd";
+import { Space } from "antd";
 
 import { Text } from "./text";
+import { CustomAvatar } from "./custom-avatar";
 
 type Props = {
     name: string;
@@ -11,9 +12,7 @@ type Props = {
 export const SelectOptionWithAvatar = ({ avatarUrl, name, shape }: Props) => {
     return (
         <Space>
-            <Avatar shape={shape} size="small" src={avatarUrl} alt={name}>
-                {name.charAt(0).toUpperCase()}
-            </Avatar>
+            <CustomAvatar shape={shape} name={name} src={avatarUrl} />
             <Text>{name}</Text>
         </Space>
     );

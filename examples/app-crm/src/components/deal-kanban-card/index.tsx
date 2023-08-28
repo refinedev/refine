@@ -1,7 +1,6 @@
 import { useDelete } from "@refinedev/core";
-import { FC, memo, useMemo, useState } from "react";
+import { FC, memo, useMemo } from "react";
 import {
-    Avatar,
     Button,
     Card,
     ConfigProvider,
@@ -14,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
 import { Text } from "../text";
-import { getRandomColorFromString } from "../../utilities";
+import { CustomAvatar } from "../custom-avatar";
 import { User } from "../../interfaces/graphql";
 
 type Props = {
@@ -42,13 +41,6 @@ export const DealKanbanCard: FC<Props> = ({
     user,
     variant = "default",
 }) => {
-    const [color] = useState(() => {
-        return {
-            user: getRandomColorFromString(user.name),
-            company: getRandomColorFromString(company.name),
-        };
-    });
-
     const navigate = useNavigate();
     const { mutate } = useDelete();
 
@@ -155,18 +147,10 @@ export const DealKanbanCard: FC<Props> = ({
                             }}
                         >
                             <Tooltip title={user.name}>
-                                <Avatar
-                                    style={{
-                                        backgroundColor: color.user,
-                                        objectFit: "cover",
-                                    }}
-                                    shape="circle"
-                                    size="small"
+                                <CustomAvatar
                                     src={user?.avatarUrl}
-                                    alt={user?.name}
-                                >
-                                    {user?.name[0]}
-                                </Avatar>
+                                    name={user?.name}
+                                />
                             </Tooltip>
                             <Tooltip
                                 title={dayjs(date).format(
@@ -184,23 +168,16 @@ export const DealKanbanCard: FC<Props> = ({
             >
                 <Card.Meta
                     avatar={
-                        <Avatar
+                        <CustomAvatar
                             style={{
-                                backgroundColor: color.company,
                                 width: "48px",
                                 height: "48px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                objectFit: "cover",
                             }}
                             shape="square"
                             size="large"
                             src={company?.avatar}
-                            alt={company?.name}
-                        >
-                            {company?.name[0]}
-                        </Avatar>
+                            name={company?.name}
+                        />
                     }
                     title={
                         <div

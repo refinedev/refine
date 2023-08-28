@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Button, Dropdown, MenuProps } from "antd";
+import { Button, Dropdown, MenuProps } from "antd";
 import { EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
 import { MenuInfo } from "rc-menu/lib/interface";
 
@@ -8,6 +8,7 @@ import { ContactStatusTag } from "../status-tag";
 
 import { Contact } from "../../../interfaces/graphql";
 import styles from "./index.module.css";
+import { CustomAvatar } from "../../custom-avatar";
 
 type ContactCardProps = {
     contact: Contact;
@@ -41,12 +42,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
             </Dropdown>
 
             <div className={styles.personal}>
-                <Avatar
-                    className={styles.avatar}
-                    size={64}
-                    src={avatarUrl}
-                    alt={name}
-                />
+                <CustomAvatar size={64} src={avatarUrl} name={name} />
                 <Text
                     className={styles.name}
                     strong
@@ -82,12 +78,13 @@ export const ContactCard: React.FC<ContactCardProps> = ({
                             tooltip: true,
                         }}
                     >
-                        <Avatar
-                            className={styles.avatar}
-                            size="small"
+                        <CustomAvatar
                             src={company.avatarUrl}
-                            alt={company.name}
-                            style={{ marginRight: 8, marginTop: -3 }}
+                            name={company.name}
+                            style={{
+                                display: "inline-flex",
+                                marginRight: 8,
+                            }}
                         />
                         {company.name}
                     </Text>

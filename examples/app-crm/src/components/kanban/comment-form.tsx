@@ -6,9 +6,10 @@ import {
     useParsed,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
-import { Avatar, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
+import { CustomAvatar } from "../custom-avatar";
 import { TaskComment, User } from "../../interfaces/graphql";
 
 type FormValues = TaskComment & {
@@ -60,18 +61,11 @@ export const CommentForm = () => {
 
     return (
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <Avatar
-                style={{
-                    flexShrink: 0,
-                    objectFit: "contain",
-                    textTransform: "uppercase",
-                }}
-                size="small"
-                alt={me?.name}
+            <CustomAvatar
+                style={{ flexShrink: 0 }}
                 src={me?.avatarUrl}
-            >
-                {me?.name.charAt(0)}
-            </Avatar>
+                name={me?.name}
+            />
             <Form
                 {...formProps}
                 style={{ width: "100%" }}
