@@ -69,16 +69,9 @@ export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
         >
             <div className={styles.date}>
                 <Badge color={color} className={styles.badge} />
-
                 <Text size="xs">{`${renderDate()}, ${renderTime()}`}</Text>
             </div>
-            <Text
-                ellipsis={{
-                    tooltip: true,
-                }}
-                strong
-                className={styles.title}
-            >
+            <Text ellipsis={{ tooltip: true }} strong className={styles.title}>
                 {title}
             </Text>
         </div>

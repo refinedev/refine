@@ -44,11 +44,14 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             title={
                 <span>
                     <CalendarOutlined style={{ color: token.colorPrimary }} />
-                    <Text size="sm" style={{ marginLeft: ".5rem" }}>
+                    <Text size="sm" style={{ marginLeft: ".7rem" }}>
                         Upcoming events
                     </Text>
                 </span>
             }
+            headStyle={{
+                padding: "0 12px",
+            }}
             bodyStyle={{
                 padding: "0 1rem",
             }}
