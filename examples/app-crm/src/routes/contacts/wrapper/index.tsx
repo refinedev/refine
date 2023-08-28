@@ -1,4 +1,5 @@
 import React from "react";
+import { HttpError } from "@refinedev/core";
 import { CreateButton, SaveButton, useTable } from "@refinedev/antd";
 import { Form, Input, Radio } from "antd";
 import {
@@ -26,7 +27,7 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         setPageSize,
         filters,
         sorters,
-    } = useTable<Contact>({
+    } = useTable<Contact, HttpError, { name: string }>({
         sorters: {
             initial: [
                 {
@@ -64,7 +65,7 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                 },
             ],
         },
-        onSearch: (values: any) => {
+        onSearch: (values) => {
             return [
                 {
                     field: "name",
