@@ -16,6 +16,7 @@ export const UserTag = ({ user }: Props) => {
                 paddingRight: 8,
                 borderRadius: 24,
                 lineHeight: "unset",
+                marginRight: "unset",
             }}
         >
             <Space size={4}>
