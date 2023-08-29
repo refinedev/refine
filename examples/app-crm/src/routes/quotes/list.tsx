@@ -214,6 +214,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     <Table.Column
                         dataIndex="total"
                         title="Total Amount"
+                        sorter
                         render={(value) => {
                             return (
                                 <Text

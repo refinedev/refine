@@ -162,7 +162,8 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
                     />
                     <Table.Column<Quote>
                         title="Total amount"
-                        dataIndex="value"
+                        dataIndex="total"
+                        sorter
                         render={(_, record) => {
                             return (
                                 <Text>{currencyNumber(record.total || 0)}</Text>

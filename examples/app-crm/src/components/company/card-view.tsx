@@ -175,6 +175,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                     <CustomAvatar
                                         name={company.name}
                                         src={company.avatarUrl}
+                                        shape="square"
                                         style={{
                                             width: "48px",
                                             height: "48px",
@@ -196,6 +197,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                         size={0}
                                         style={{
                                             marginTop: "8px",
+                                            alignItems: "center",
                                         }}
                                     >
                                         <Text type="secondary">
@@ -209,7 +211,8 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                             }}
                                         >
                                             {currencyNumber(
-                                                company.totalRevenue || 0,
+                                                company?.dealsAggregate?.[0].sum
+                                                    ?.value || 0,
                                             )}
                                         </Text>
                                     </Space>

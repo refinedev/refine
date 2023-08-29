@@ -6,8 +6,8 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { useParams } from "react-router-dom";
-import { Button, Card, Input, Select, Space, Table } from "antd";
-import { Deal } from "../../interfaces/graphql";
+import { Button, Card, Input, Select, Skeleton, Space, Table } from "antd";
+import { Deal, DealAggregateResponse } from "../../interfaces/graphql";
 import { DealStageTag, Participants, Text } from "../../components";
 import {
     AuditOutlined,
@@ -16,7 +16,7 @@ import {
     SearchOutlined,
 } from "@ant-design/icons";
 import { currencyNumber } from "../../utilities";
-import { useList, useNavigation, useOne } from "@refinedev/core";
+import { useCustom, useNavigation } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 type Props = {
@@ -68,6 +68,24 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                 { dealOwner: ["id", "name", "avatarUrl"] },
                 { dealContact: ["id", "name", "avatarUrl"] },
             ],
+        },
+    });
+
+    const { data: aggregate, isLoading: isLoadingDealAggregate } = useCustom<{
+        dealAggregate: DealAggregateResponse[];
+    }>({
+        method: "post",
+        url: "/graphql",
+        meta: {
+            rawQuery: `query dealAggregate {
+                dealAggregate(filter: {companyId:{eq: ${Number(params.id)}}}) {
+                  sum {
+                    id
+                    value
+                  }
+                }
+              }            
+            `,
         },
     });
 
@@ -126,7 +144,16 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             extra={
                 <>
                     <Text className="tertiary">Total deal amount: </Text>
-                    <Text strong>{currencyNumber(848852400)}</Text>
+                    {isLoadingDealAggregate ? (
+                        <Skeleton.Input active size="small" />
+                    ) : (
+                        <Text strong>
+                            {currencyNumber(
+                                aggregate?.data.dealAggregate?.[0]?.sum
+                                    ?.value || 0,
+                            )}
+                        </Text>
+                    )}
                 </>
             }
         >
@@ -159,7 +186,16 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                         showSizeChanger: false,
                     }}
                 >
-                    <Table.Column title="Deal Title" dataIndex="title" />
+                    <Table.Column
+                        title="Deal Title"
+                        dataIndex="title"
+                        filterIcon={<SearchOutlined />}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Input placeholder="Search Title" />
+                            </FilterDropdown>
+                        )}
+                    />
                     <Table.Column<Deal>
                         title="Deal amount"
                         dataIndex="value"

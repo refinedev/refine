@@ -18,6 +18,7 @@ export const CompanyTitleForm = () => {
             fields: [
                 "id",
                 "name",
+                "avatarUrl",
                 {
                     salesOwner: ["id", "name", "avatarUrl"],
                 },
@@ -34,6 +35,7 @@ export const CompanyTitleForm = () => {
                 <Avatar
                     size="large"
                     shape="square"
+                    src={company?.avatarUrl}
                     style={{
                         width: 96,
                         height: 96,
@@ -41,6 +43,7 @@ export const CompanyTitleForm = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        border: "none",
                         backgroundColor: getRandomColorFromString(
                             company?.name || "",
                         ),

@@ -82,6 +82,7 @@ export const CompaniesTableView: FC<Props> = ({
                     return (
                         <Space>
                             <CustomAvatar
+                                shape="square"
                                 name={record.name}
                                 src={record.avatarUrl}
                             />
@@ -134,10 +135,14 @@ export const CompaniesTableView: FC<Props> = ({
             <Table.Column<Company>
                 dataIndex={"totalRevenue"}
                 title="Open deals amount"
-                sorter
-                defaultSortOrder={getDefaultSortOrder("totalRevenue", sorters)}
-                render={(value) => {
-                    return <Text>{currencyNumber(value || 0)}</Text>;
+                render={(_, company) => {
+                    return (
+                        <Text>
+                            {currencyNumber(
+                                company?.dealsAggregate?.[0].sum?.value || 0,
+                            )}
+                        </Text>
+                    );
                 }}
             />
             <Table.Column<Company>

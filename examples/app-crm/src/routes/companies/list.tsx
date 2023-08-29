@@ -75,7 +75,14 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
             fields: [
                 "id",
                 "name",
-                "totalRevenue",
+                "avatarUrl",
+                {
+                    dealsAggregate: [
+                        {
+                            sum: ["value"],
+                        },
+                    ],
+                },
                 { salesOwner: ["id", "name", "avatarUrl"] },
                 { contacts: [{ nodes: ["id", "name", "avatarUrl"] }] },
             ],
