@@ -5,22 +5,25 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Card, Input, Select, Space, Table } from "antd";
 import { Quote, QuoteStatus } from "../../interfaces/graphql";
 import { QuoteStatusTag, Participants, Text } from "../../components";
 import {
     ContainerOutlined,
     ExportOutlined,
+    PlusCircleOutlined,
     SearchOutlined,
 } from "@ant-design/icons";
 import { currencyNumber } from "../../utilities";
+import { useNavigation } from "@refinedev/core";
 
 type Props = {
     style?: React.CSSProperties;
 };
 
 export const CompanyQuotesTable: FC<Props> = ({ style }) => {
+    const { listUrl } = useNavigation();
     const params = useParams();
 
     const { tableProps, filters, setFilters } = useTable<Quote>({
@@ -93,6 +96,8 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
         });
     }, [filters]);
 
+    const hasData = tableProps?.dataSource?.length || 0 > 0;
+
     return (
         <Card
             style={style}
@@ -117,89 +122,112 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
                 </Space>
             }
         >
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: false,
-                }}
-            >
-                <Table.Column
-                    title="Quote Title"
-                    dataIndex="title"
-                    filterIcon={<SearchOutlined />}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Input placeholder="Search Title" />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<Quote>
-                    title="Total amount"
-                    dataIndex="value"
-                    render={(_, record) => {
-                        return <Text>{currencyNumber(record.total || 0)}</Text>;
+            {!hasData && (
+                <Space
+                    direction="vertical"
+                    size={16}
+                    style={{
+                        padding: 16,
                     }}
-                />
-                <Table.Column<Quote>
-                    title="Stage"
-                    dataIndex="status"
-                    render={(_, record) => {
-                        if (!record.status) return null;
+                >
+                    <Text>No quotes yet</Text>
+                    <Link to={listUrl("quotes")}>
+                        <PlusCircleOutlined
+                            style={{
+                                marginRight: 4,
+                            }}
+                        />{" "}
+                        Add quotes
+                    </Link>
+                </Space>
+            )}
+            {hasData && (
+                <Table
+                    {...tableProps}
+                    rowKey="id"
+                    pagination={{
+                        ...tableProps.pagination,
+                        showSizeChanger: false,
+                    }}
+                >
+                    <Table.Column
+                        title="Quote Title"
+                        dataIndex="title"
+                        filterIcon={<SearchOutlined />}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Input placeholder="Search Title" />
+                            </FilterDropdown>
+                        )}
+                    />
+                    <Table.Column<Quote>
+                        title="Total amount"
+                        dataIndex="value"
+                        render={(_, record) => {
+                            return (
+                                <Text>{currencyNumber(record.total || 0)}</Text>
+                            );
+                        }}
+                    />
+                    <Table.Column<Quote>
+                        title="Stage"
+                        dataIndex="status"
+                        render={(_, record) => {
+                            if (!record.status) return null;
 
-                        return <QuoteStatusTag status={record.status} />;
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ width: "200px" }}
-                                mode="multiple"
-                                placeholder="Select Stage"
-                                options={statusOptions}
-                            ></Select>
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<Quote>
-                    dataIndex={["salesOwner", "id"]}
-                    title="Participants"
-                    render={(_, record) => {
-                        return (
-                            <Participants
-                                userOne={record.salesOwner}
-                                userTwo={record.contact}
-                            />
-                        );
-                    }}
-                    filterDropdown={(props) => {
-                        return (
+                            return <QuoteStatusTag status={record.status} />;
+                        }}
+                        filterDropdown={(props) => (
                             <FilterDropdown {...props}>
                                 <Select
                                     style={{ width: "200px" }}
-                                    placeholder="Select Sales Owner"
-                                    {...selectPropsUsers}
-                                />
+                                    mode="multiple"
+                                    placeholder="Select Stage"
+                                    options={statusOptions}
+                                ></Select>
                             </FilterDropdown>
-                        );
-                    }}
-                />
-                <Table.Column<Quote>
-                    dataIndex="id"
-                    width={48}
-                    render={(value) => {
-                        return (
-                            <ShowButton
-                                recordItemId={value}
-                                hideText
-                                size="small"
-                                resource="contacts"
-                                icon={<ExportOutlined />}
-                            />
-                        );
-                    }}
-                />
-            </Table>
+                        )}
+                    />
+                    <Table.Column<Quote>
+                        dataIndex={["salesOwner", "id"]}
+                        title="Participants"
+                        render={(_, record) => {
+                            return (
+                                <Participants
+                                    userOne={record.salesOwner}
+                                    userTwo={record.contact}
+                                />
+                            );
+                        }}
+                        filterDropdown={(props) => {
+                            return (
+                                <FilterDropdown {...props}>
+                                    <Select
+                                        style={{ width: "200px" }}
+                                        placeholder="Select Sales Owner"
+                                        {...selectPropsUsers}
+                                    />
+                                </FilterDropdown>
+                            );
+                        }}
+                    />
+                    <Table.Column<Quote>
+                        dataIndex="id"
+                        width={48}
+                        render={(value) => {
+                            return (
+                                <ShowButton
+                                    recordItemId={value}
+                                    hideText
+                                    size="small"
+                                    resource="contacts"
+                                    icon={<ExportOutlined />}
+                                />
+                            );
+                        }}
+                    />
+                </Table>
+            )}{" "}
         </Card>
     );
 };

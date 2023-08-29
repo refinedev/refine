@@ -16,7 +16,7 @@ import {
     SearchOutlined,
 } from "@ant-design/icons";
 import { currencyNumber } from "../../utilities";
-import { useNavigation } from "@refinedev/core";
+import { useList, useNavigation, useOne } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 type Props = {

@@ -4,16 +4,18 @@ import {
     Button,
     Card,
     Col,
+    Dropdown,
     Pagination,
     Row,
     Space,
     Tooltip,
 } from "antd";
-import { MoreOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 
 import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
+import { useDelete, useNavigation } from "@refinedev/core";
 
 type Props = {
     loading?: boolean;
@@ -27,6 +29,9 @@ type Props = {
 };
 
 export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
+    const { edit } = useNavigation();
+    const { mutate } = useDelete();
+
     return (
         <>
             <Row wrap gutter={[32, 32]}>
@@ -117,22 +122,56 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                         position: "relative",
                                     }}
                                 >
-                                    <Button
-                                        type="text"
-                                        shape="circle"
-                                        style={{
-                                            position: "absolute",
-                                            top: 0,
-                                            right: 0,
+                                    <Dropdown
+                                        menu={{
+                                            items: [
+                                                {
+                                                    label: "View company",
+                                                    key: "1",
+                                                    icon: <EyeOutlined />,
+                                                    onClick: () => {
+                                                        edit(
+                                                            "companies",
+                                                            company.id,
+                                                        );
+                                                    },
+                                                },
+                                                {
+                                                    danger: true,
+                                                    label: "Delete company",
+                                                    key: "2",
+                                                    icon: <DeleteOutlined />,
+                                                    onClick: () => {
+                                                        mutate({
+                                                            resource: "company",
+                                                            id: company.id,
+                                                        });
+                                                    },
+                                                },
+                                            ],
                                         }}
-                                        icon={
-                                            <MoreOutlined
-                                                style={{
-                                                    transform: "rotate(90deg)",
-                                                }}
-                                            />
-                                        }
-                                    />
+                                        placement="bottom"
+                                        arrow
+                                    >
+                                        <Button
+                                            type="text"
+                                            shape="circle"
+                                            style={{
+                                                position: "absolute",
+                                                top: 0,
+                                                right: 0,
+                                            }}
+                                            icon={
+                                                <MoreOutlined
+                                                    style={{
+                                                        transform:
+                                                            "rotate(90deg)",
+                                                    }}
+                                                />
+                                            }
+                                        />
+                                    </Dropdown>
+
                                     <CustomAvatar
                                         name={company.name}
                                         src={company.avatarUrl}

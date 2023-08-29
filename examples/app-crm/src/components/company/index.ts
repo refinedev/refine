@@ -5,3 +5,4 @@ export * from "./deals-table";
 export * from "./quotes-table";
 export * from "./info-form";
 export * from "./title-form/title-form";
+export * from "./notes";

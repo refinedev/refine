@@ -35,6 +35,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         setPageSize,
         pageSize,
         current,
+        setFilters,
     } = useTable<Company, HttpError, { name: string }>({
         onSearch: (values) => {
             return [
@@ -55,6 +56,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         },
         filters: {
             initial: [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: undefined,
+                },
                 {
                     field: "contacts.id",
                     operator: "in",
@@ -78,6 +84,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
 
     const onViewChange = (value: View) => {
         setView(value);
+        setFilters([], "replace");
     };
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

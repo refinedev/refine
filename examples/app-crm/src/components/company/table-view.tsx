@@ -7,12 +7,12 @@ import {
     useSelect,
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
-import { Avatar, Select, Space, Table, TableProps, Tooltip } from "antd";
+import { Avatar, Input, Select, Space, Table, TableProps, Tooltip } from "antd";
 
 import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
-import { EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -25,17 +25,6 @@ export const CompaniesTableView: FC<Props> = ({
     filters,
     sorters,
 }) => {
-    const { selectProps: selectPropsCompanies } = useSelect({
-        resource: "companies",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
-
     const { selectProps: selectPropsUsers } = useSelect({
         resource: "users",
         optionLabel: "name",
@@ -80,16 +69,13 @@ export const CompaniesTableView: FC<Props> = ({
             rowKey="id"
         >
             <Table.Column<Company>
-                dataIndex="id"
+                dataIndex="name"
                 title="Company title"
                 defaultFilteredValue={getDefaultFilter("id", filters)}
+                filterIcon={<SearchOutlined />}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
-                        <Select
-                            placeholder="Search Company"
-                            style={{ width: 220 }}
-                            {...selectPropsCompanies}
-                        />
+                        <Input placeholder="Search Company" />
                     </FilterDropdown>
                 )}
                 render={(_, record) => {

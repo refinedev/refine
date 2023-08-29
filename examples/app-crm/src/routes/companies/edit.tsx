@@ -3,6 +3,7 @@ import {
     CompanyContactsTable,
     CompanyDealsTable,
     CompanyInfoForm,
+    CompanyNotes,
     CompanyQuotesTable,
     CompanyTitleForm,
 } from "../../components/company";
@@ -25,6 +26,11 @@ export const CompanyEditPage = () => {
                         }}
                     />
                     <CompanyQuotesTable
+                        style={{
+                            marginTop: 32,
+                        }}
+                    />
+                    <CompanyNotes
                         style={{
                             marginTop: 32,
                         }}
