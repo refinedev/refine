@@ -44,6 +44,7 @@ export interface IRefineOptions {
      * The project id of your refine project. Will be set automatically. Don't modify.
      */
     projectId?: string;
+    useNewQueryKeys?: boolean;
 }
 
 export interface IRefineContextOptions {
@@ -62,6 +63,7 @@ export interface IRefineContextOptions {
     textTransformers: Required<TextTransformers>;
     disableServerSideValidation: boolean;
     projectId?: string;
+    useNewQueryKeys?: boolean;
 }
 
 export interface IRefineContext {

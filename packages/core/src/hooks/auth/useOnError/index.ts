@@ -3,6 +3,7 @@ import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OnErrorResponse } from "../../../interfaces";
 import { useGo, useLogout, useNavigation, useRouterType } from "@hooks";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseOnErrorLegacyProps = {
     v3LegacyAuthProviderCompatible: true;
@@ -64,6 +65,8 @@ export function useOnError({
     const { checkError: legacyCheckErrorFromContext } = useLegacyAuthContext();
     const { onError: onErrorFromContext } = useAuthBindingsContext();
 
+    const { keys, preferLegacyKeys } = useKeys();
+
     const { mutate: legacyLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
     });
@@ -71,26 +74,33 @@ export function useOnError({
         v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
     });
 
-    const mutation = useMutation(["useCheckError"], onErrorFromContext, {
-        onSuccess: ({ logout: shouldLogout, redirectTo }) => {
-            if (shouldLogout) {
-                logout({ redirectPath: redirectTo });
-                return;
-            }
-
-            if (redirectTo) {
-                if (routerType === "legacy") {
-                    replace(redirectTo);
-                } else {
-                    go({ to: redirectTo, type: "replace" });
+    const mutation = useMutation(
+        keys().auth().action("onError").get(preferLegacyKeys),
+        onErrorFromContext,
+        {
+            onSuccess: ({ logout: shouldLogout, redirectTo }) => {
+                if (shouldLogout) {
+                    logout({ redirectPath: redirectTo });
+                    return;
                 }
-                return;
-            }
+
+                if (redirectTo) {
+                    if (routerType === "legacy") {
+                        replace(redirectTo);
+                    } else {
+                        go({ to: redirectTo, type: "replace" });
+                    }
+                    return;
+                }
+            },
         },
-    });
+    );
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation(
-        ["useCheckError", "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys().auth().action("onError").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         legacyCheckErrorFromContext,
         {
             onError: (redirectPath?: string) => {

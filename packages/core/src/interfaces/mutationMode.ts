@@ -16,6 +16,9 @@ export type PreviousQuery<TData> = [QueryKey, TData | unknown];
 
 export type PrevContext<TData> = {
     previousQueries: PreviousQuery<TData>[];
+    /**
+     * @deprecated `QueryKeys` is deprecated in favor of `keys`. Please use `keys` instead to construct query keys for queries and mutations.
+     */
     queryKey: IQueryKeys;
 };
 

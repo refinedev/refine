@@ -57,7 +57,7 @@ describe("useCustom Hook", () => {
             expect(useQuerySpy).toHaveBeenLastCalledWith(
                 expect.objectContaining({
                     queryKey: [
-                        undefined,
+                        "default",
                         "custom",
                         "get",
                         "remoteUrl",

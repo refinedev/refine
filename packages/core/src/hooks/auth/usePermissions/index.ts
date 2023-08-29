@@ -5,6 +5,7 @@ import {
     UseQueryResult,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { useKeys } from "@hooks/useKeys";
 
 export type UsePermissionsLegacyProps<TData = any> = {
     v3LegacyAuthProviderCompatible: true;
@@ -61,9 +62,10 @@ export function usePermissions<TData = any>({
     | UsePermissionsLegacyReturnType<TData> {
     const { getPermissions: legacyGetPermission } = useLegacyAuthContext();
     const { getPermissions } = useAuthBindingsContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const queryResponse = useQuery<TData>(
-        ["usePermissions"],
+        keys().auth().action("permissions").get(preferLegacyKeys),
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         (getPermissions as (params?: unknown) => Promise<TData>) ??
             (() => Promise.resolve(undefined)),
@@ -74,7 +76,10 @@ export function usePermissions<TData = any>({
     );
 
     const legacyQueryResponse = useQuery<TData>(
-        ["usePermissions", "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys().auth().action("permissions").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         legacyGetPermission ?? (() => Promise.resolve(undefined)),
         {

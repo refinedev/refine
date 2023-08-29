@@ -6,6 +6,7 @@ import {
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { IdentityResponse } from "../../../interfaces";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseGetIdentityLegacyProps<TData> = {
     v3LegacyAuthProviderCompatible: true;
@@ -64,9 +65,10 @@ export function useGetIdentity<TData = any>({
     | UseGetIdentityLegacyReturnType<TData> {
     const { getUserIdentity: legacyGetUserIdentity } = useLegacyAuthContext();
     const { getIdentity } = useAuthBindingsContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const queryResponse = useQuery<TData>(
-        ["getUserIdentity"],
+        keys().auth().action("identity").get(preferLegacyKeys),
         // Enabled check for `getIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         (getIdentity as (params?: unknown) => Promise<TData>) ??
             (() => Promise.resolve({})),
@@ -78,7 +80,10 @@ export function useGetIdentity<TData = any>({
     );
 
     const legacyQueryResponse = useQuery<TData>(
-        ["getUserIdentity", "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys().auth().action("identity").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         legacyGetUserIdentity ?? (() => Promise.resolve({})),
         {

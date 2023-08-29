@@ -2,6 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { CheckResponse } from "../../../interfaces";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseIsAuthenticatedLegacyProps = {
     v3LegacyAuthProviderCompatible: true;
@@ -52,9 +53,10 @@ export function useIsAuthenticated({
     | UseIsAuthenticatedLegacyReturnType {
     const { checkAuth } = useLegacyAuthContext();
     const { check } = useAuthBindingsContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const queryResponse = useQuery(
-        ["useAuthenticated", params],
+        keys().auth().action("check").params(params).get(preferLegacyKeys),
         async () => (await check?.(params)) ?? {},
         {
             retry: false,
@@ -63,7 +65,14 @@ export function useIsAuthenticated({
     );
 
     const legacyQueryResponse = useQuery(
-        ["useAuthenticated", params, "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys()
+                .auth()
+                .action("check")
+                .params(params)
+                .get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         async () => (await checkAuth?.(params)) ?? {},
         {
             retry: false,

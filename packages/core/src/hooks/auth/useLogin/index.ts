@@ -23,6 +23,7 @@ import {
 } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseLoginLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -125,6 +126,7 @@ export function useLogin<TVariables = {}>({
     const { close, open } = useNotification();
     const { login: legacyLoginFromContext } = useLegacyAuthContext();
     const { login: loginFromContext } = useAuthBindingsContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const to = React.useMemo(() => {
         if (routerType === "legacy") {
@@ -142,7 +144,7 @@ export function useLogin<TVariables = {}>({
         Error | RefineError,
         TVariables,
         unknown
-    >(["useLogin"], loginFromContext, {
+    >(keys().auth().action("login").get(preferLegacyKeys), loginFromContext, {
         onSuccess: async ({ success, redirectTo, error }) => {
             if (success) {
                 close?.("login-error");
@@ -183,37 +185,44 @@ export function useLogin<TVariables = {}>({
         Error | RefineError,
         TVariables,
         unknown
-    >(["useLogin", "v3LegacyAuthProviderCompatible"], legacyLoginFromContext, {
-        onSuccess: async (redirectPathFromAuth) => {
-            await invalidateAuthStore();
+    >(
+        [
+            ...keys().auth().action("login").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
+        legacyLoginFromContext,
+        {
+            onSuccess: async (redirectPathFromAuth) => {
+                await invalidateAuthStore();
 
-            if (to) {
-                replace(to as string);
-            }
+                if (to) {
+                    replace(to as string);
+                }
 
-            if (redirectPathFromAuth !== false && !to) {
-                if (typeof redirectPathFromAuth === "string") {
-                    if (routerType === "legacy") {
-                        replace(redirectPathFromAuth);
+                if (redirectPathFromAuth !== false && !to) {
+                    if (typeof redirectPathFromAuth === "string") {
+                        if (routerType === "legacy") {
+                            replace(redirectPathFromAuth);
+                        } else {
+                            go({ to: redirectPathFromAuth, type: "replace" });
+                        }
                     } else {
-                        go({ to: redirectPathFromAuth, type: "replace" });
-                    }
-                } else {
-                    if (routerType === "legacy") {
-                        replace("/");
-                    } else {
-                        go({ to: "/", type: "replace" });
+                        if (routerType === "legacy") {
+                            replace("/");
+                        } else {
+                            go({ to: "/", type: "replace" });
+                        }
                     }
                 }
-            }
 
-            close?.("login-error");
+                close?.("login-error");
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
+            },
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-    });
+    );
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

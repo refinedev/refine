@@ -119,6 +119,8 @@ export {
     useUserFriendlyName,
     queryKeys,
     pickDataProvider,
+    keys,
+    KeyBuilder,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
 export { generateDefaultDocumentTitle } from "./definitions";

@@ -34,6 +34,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
     /**
@@ -114,6 +115,7 @@ export const useMany = <
     });
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
     const pickedDataProvider = pickDataProvider(
@@ -123,8 +125,6 @@ export const useMany = <
     );
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
-
-    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
 
     const { getMany, getOne } = dataProvider(pickedDataProvider);
 
@@ -151,7 +151,15 @@ export const useMany = <
         TError,
         GetManyResponse<TData>
     >(
-        queryKey.many(ids),
+        keys()
+            .data(pickedDataProvider)
+            .resource(identifier)
+            .action("many")
+            .ids(...ids)
+            .params({
+                ...(preferredMeta || {}),
+            })
+            .get(preferLegacyKeys),
         ({ queryKey, pageParam, signal }) => {
             if (getMany) {
                 return getMany({
