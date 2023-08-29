@@ -33,7 +33,7 @@ export const CalendarPageWrapper = ({ children }: Props) => {
 
                     <CalendarUpcomingEvents
                         limit={3}
-                        style={{ marginBottom: "1rem" }}
+                        cardProps={{ style: { marginBottom: "1rem" } }}
                     />
 
                     <CalendarCategories

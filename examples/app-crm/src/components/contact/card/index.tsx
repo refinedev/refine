@@ -1,41 +1,67 @@
 import React from "react";
 import { Button, Dropdown, MenuProps } from "antd";
-import { EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
-import { MenuInfo } from "rc-menu/lib/interface";
+import {
+    DeleteOutlined,
+    EllipsisOutlined,
+    EyeOutlined,
+} from "@ant-design/icons";
+import { useDelete, useGetToPath } from "@refinedev/core";
+import { useNavigate } from "react-router-dom";
 
 import { Text } from "../../text";
 import { ContactStatusTag } from "../status-tag";
-
-import { Contact } from "../../../interfaces/graphql";
-import styles from "./index.module.css";
 import { CustomAvatar } from "../../custom-avatar";
+import { Contact } from "../../../interfaces/graphql";
+
+import styles from "./index.module.css";
 
 type ContactCardProps = {
     contact: Contact;
-    onClick?: (menu: MenuInfo) => void;
 };
 
-const items: MenuProps["items"] = [
-    {
-        label: "Show",
-        key: "show",
-        icon: <EyeOutlined />,
-    },
-];
+export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
+    const { name, email, status, jobTitle, company, avatarUrl, id } = contact;
 
-export const ContactCard: React.FC<ContactCardProps> = ({
-    contact,
-    onClick,
-}) => {
-    const { name, email, status, jobTitle, company, avatarUrl } = contact;
+    const navigate = useNavigate();
+    const getToPath = useGetToPath();
+    const { mutate: deleteMutate } = useDelete();
+
+    const items: MenuProps["items"] = [
+        {
+            label: "Show",
+            key: "show",
+            icon: <EyeOutlined />,
+            onClick: () => {
+                navigate(
+                    getToPath({
+                        action: "show",
+                        meta: { id },
+                    }) ?? "",
+                    {
+                        replace: true,
+                    },
+                );
+            },
+        },
+        {
+            label: "Delete",
+            key: "delete",
+            danger: true,
+            icon: <DeleteOutlined />,
+            onClick: () => {
+                deleteMutate({
+                    resource: "contacts",
+                    id,
+                });
+            },
+        },
+    ];
+
     return (
         <div className={styles.container}>
             <Dropdown
                 className={styles.dropdown}
-                menu={{
-                    items,
-                    onClick: (e) => onClick?.(e),
-                }}
+                menu={{ items }}
                 trigger={["click"]}
             >
                 <Button type="text" icon={<EllipsisOutlined />} />
@@ -64,12 +90,8 @@ export const ContactCard: React.FC<ContactCardProps> = ({
             </div>
 
             <div className={styles.company}>
-                <Text
-                    ellipsis={{
-                        tooltip: true,
-                    }}
-                >
-                    {`${jobTitle} at` || "-"}
+                <Text ellipsis={{ tooltip: true }}>
+                    {(jobTitle && `${jobTitle} at`) || <span>&nbsp;</span>}
                 </Text>
                 <div className={styles.companyName}>
                     <Text
@@ -81,6 +103,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
                         <CustomAvatar
                             src={company.avatarUrl}
                             name={company.name}
+                            shape="square"
                             style={{
                                 display: "inline-flex",
                                 marginRight: 8,

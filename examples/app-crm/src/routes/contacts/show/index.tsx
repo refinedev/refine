@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-    Avatar,
     Button,
     Card,
     Drawer,
@@ -20,19 +19,23 @@ import {
     PhoneOutlined,
     IdcardOutlined,
     DeleteOutlined,
+    CloseOutlined,
+    EditOutlined,
 } from "@ant-design/icons";
 import { useSelect } from "@refinedev/antd";
 import dayjs from "dayjs";
 
-import { Text, CustomAvatar } from "../../../components";
-import { SingleElementForm } from "../../../components/single-element-form";
-import { ContactStatus } from "../../../components/contact/status";
+import {
+    Text,
+    CustomAvatar,
+    SingleElementForm,
+    SelectOptionWithAvatar,
+} from "../../../components";
+import { ContactStatus, ContactComment } from "../../../components/contact";
 import { TextIcon } from "../../../components/icon";
-import { ContactComment } from "../../../components/contact/comment";
-import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 import { Timezone } from "../../../enums/timezone";
-
 import type { Company, Contact, User } from "../../../interfaces/graphql";
+
 import styles from "./index.module.css";
 
 const timezoneOptions = Object.keys(Timezone).map((key) => ({
@@ -92,40 +95,86 @@ export const ContactShowPage = () => {
         optionLabel: "name",
     });
 
+    const closeModal = () => {
+        setActiveForm(undefined);
+        navigate(
+            getToPath({
+                action: "list",
+            }) ?? "",
+            {
+                replace: true,
+            },
+        );
+    };
+
     const { data, isLoading, isError } = queryResult;
-    const renderContent = () => {
-        if (isError) {
-            return null;
-        }
 
-        if (isLoading) {
-            return <Spin />;
-        }
+    if (isError) {
+        closeModal();
+        return null;
+    }
 
-        const {
-            id,
-            name,
-            email,
-            jobTitle,
-            phone,
-            timezone,
-            avatarUrl,
-            company,
-            createdAt,
-            salesOwner,
-        } = data.data;
+    if (isLoading) {
         return (
+            <Drawer
+                open
+                width={756}
+                bodyStyle={{
+                    background: "#f5f5f5",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Spin />
+            </Drawer>
+        );
+    }
+
+    const {
+        id,
+        name,
+        email,
+        jobTitle,
+        phone,
+        timezone,
+        avatarUrl,
+        company,
+        createdAt,
+        salesOwner,
+    } = data?.data ?? {};
+
+    return (
+        <Drawer
+            open
+            onClose={() => closeModal()}
+            width={756}
+            bodyStyle={{ background: "#f5f5f5", padding: 0 }}
+            headerStyle={{ display: "none" }}
+        >
+            <div className={styles.header}>
+                <Button
+                    type="text"
+                    icon={<CloseOutlined />}
+                    onClick={() => closeModal()}
+                />
+            </div>
             <div className={styles.container}>
                 <div className={styles.name}>
                     <CustomAvatar
-                        style={{ marginRight: "1rem" }}
+                        style={{
+                            marginRight: "1rem",
+                            flexShrink: 0,
+                            fontSize: "40px",
+                        }}
                         size={96}
                         src={avatarUrl}
                         name={name}
                     />
                     <Typography.Title
                         level={3}
-                        style={{ padding: 0, margin: 0 }}
+                        style={{ padding: 0, margin: 0, width: "100%" }}
+                        className={styles.title}
                         editable={{
                             onChange(value) {
                                 mutate({
@@ -134,8 +183,15 @@ export const ContactShowPage = () => {
                                     values: {
                                         name: value,
                                     },
+                                    successNotification: false,
                                 });
                             },
+                            triggerType: ["text", "icon"],
+                            icon: (
+                                <EditOutlined
+                                    className={styles.titleEditIcon}
+                                />
+                            ),
                         }}
                     >
                         {name}
@@ -355,16 +411,7 @@ export const ContactShowPage = () => {
                                     resource: "contacts",
                                 },
                                 {
-                                    onSuccess: () => {
-                                        navigate(
-                                            getToPath({
-                                                action: "list",
-                                            }) ?? "",
-                                            {
-                                                replace: true,
-                                            },
-                                        );
-                                    },
+                                    onSuccess: () => closeModal(),
                                 },
                             );
                         }}
@@ -377,28 +424,6 @@ export const ContactShowPage = () => {
                     </Popconfirm>
                 </div>
             </div>
-        );
-    };
-
-    return (
-        <Drawer
-            open
-            onClose={() => {
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
-            }}
-            width={756}
-            bodyStyle={{
-                background: "#f5f5f5",
-            }}
-        >
-            {renderContent()}
         </Drawer>
     );
 };
