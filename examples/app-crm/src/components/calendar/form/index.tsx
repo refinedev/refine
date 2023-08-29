@@ -134,12 +134,33 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                                 required: true,
                             },
                         ]}
-                        initialValue={"#000000"}
+                        initialValue={"#1677FF"}
                     >
                         <Input hidden />
                         <Form.Item noStyle>
                             <ColorPicker
-                                defaultValue="#000000"
+                                defaultValue="#1677FF"
+                                panelRender={(
+                                    _,
+                                    { components: { Presets } },
+                                ) => <Presets />}
+                                presets={[
+                                    {
+                                        label: "Recommended",
+                                        colors: [
+                                            "#F5222D",
+                                            "#FA8C16",
+                                            "#FADB14",
+                                            "#8BBB11",
+                                            "#52C41A",
+                                            "#13A8A8",
+                                            "#1677FF",
+                                            "#2F54EB",
+                                            "#722ED1",
+                                            "#EB2F96",
+                                        ],
+                                    },
+                                ]}
                                 onChangeComplete={(value) => {
                                     return form?.setFieldValue(
                                         "color",
