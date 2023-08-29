@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, theme, CardProps, Skeleton } from "antd";
+import { Card, theme, Skeleton } from "antd";
+import type { CardProps } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -9,11 +10,11 @@ import { CalendarUpcomingEvent } from "./event";
 
 import { Event } from "../../../interfaces/graphql";
 
-type CalendarUpcomingEventsProps = { limit?: number } & CardProps;
+type CalendarUpcomingEventsProps = { limit?: number; cardProps?: CardProps };
 
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
-    ...rest
+    cardProps,
 }) => {
     const { token } = theme.useToken();
     const { data, isLoading } = useList<Event>({
@@ -55,7 +56,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             bodyStyle={{
                 padding: "0 1rem",
             }}
-            {...rest}
+            {...cardProps}
         >
             {isLoading && (
                 <Skeleton
