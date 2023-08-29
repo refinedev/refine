@@ -37,6 +37,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         current,
         setFilters,
     } = useTable<Company, HttpError, { name: string }>({
+        resource: "companies",
         onSearch: (values) => {
             return [
                 {
