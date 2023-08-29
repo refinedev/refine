@@ -2,12 +2,13 @@ import { Avatar as AntdAvatar } from "antd";
 import type { AvatarProps } from "antd";
 
 import { getNameInitials, getRandomColorFromString } from "../utilities";
+import { memo } from "react";
 
 type Props = AvatarProps & {
     name?: string;
 };
 
-export const CustomAvatar = ({ name = "", style, ...rest }: Props) => {
+const CustomAvatarComponent = ({ name = "", style, ...rest }: Props) => {
     return (
         <AntdAvatar
             alt={name}
@@ -25,3 +26,12 @@ export const CustomAvatar = ({ name = "", style, ...rest }: Props) => {
         </AntdAvatar>
     );
 };
+
+export const CustomAvatar = memo(
+    CustomAvatarComponent,
+    (prevProps, nextProps) => {
+        return (
+            prevProps.name === nextProps.name && prevProps.src === nextProps.src
+        );
+    },
+);
