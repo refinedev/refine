@@ -90,12 +90,8 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
             </div>
 
             <div className={styles.company}>
-                <Text
-                    ellipsis={{
-                        tooltip: true,
-                    }}
-                >
-                    {`${jobTitle} at` || "-"}
+                <Text ellipsis={{ tooltip: true }}>
+                    {(jobTitle && `${jobTitle} at`) || <span>&nbsp;</span>}
                 </Text>
                 <div className={styles.companyName}>
                     <Text
@@ -107,6 +103,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
                         <CustomAvatar
                             src={company.avatarUrl}
                             name={company.name}
+                            shape="square"
                             style={{
                                 display: "inline-flex",
                                 marginRight: 8,
