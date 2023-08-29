@@ -3,6 +3,7 @@ import {
     HttpError,
     useCreateMany,
     useGetToPath,
+    useGo,
 } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -42,10 +43,10 @@ type FormValues = {
 };
 
 export const CompanyCreatePage = ({ isOverModal }: Props) => {
-    const navigate = useNavigate();
     const getToPath = useGetToPath();
     const [searchParams] = useSearchParams();
     const { pathname } = useLocation();
+    const go = useGo();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
         Company,
@@ -79,15 +80,20 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
             mask={!isOverModal}
             onCancel={() => {
                 close();
-                const path =
-                    searchParams.get("to") ??
-                    getToPath({
-                        action: "list",
-                    }) ??
-                    "";
-
-                navigate(path, {
-                    replace: true,
+                go({
+                    to:
+                        searchParams.get("to") ??
+                        getToPath({
+                            action: "list",
+                        }) ??
+                        "",
+                    query: {
+                        to: undefined,
+                    },
+                    options: {
+                        keepQuery: true,
+                    },
+                    type: "replace",
                 });
             }}
             title="Add new company"
@@ -123,11 +129,16 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                         });
 
                         close();
-                        // navigate to path
-                        const to = searchParams.get("to") ?? pathname;
-                        const path = `${to}?companyId=${createdCompany.id}`;
-                        navigate(path, {
-                            replace: true,
+                        go({
+                            to: searchParams.get("to") ?? pathname,
+                            query: {
+                                companyId: createdCompany.id,
+                                to: undefined,
+                            },
+                            options: {
+                                keepQuery: true,
+                            },
+                            type: "replace",
                         });
                     } catch (error) {
                         Promise.reject(error);

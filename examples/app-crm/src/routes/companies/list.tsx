@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, useState } from "react";
-import { HttpError, useNavigation } from "@refinedev/core";
+import { HttpError, useGo, useNavigation } from "@refinedev/core";
 import { List, useTable } from "@refinedev/antd";
 import { Form, Input, Space, Radio, Button } from "antd";
 import {
@@ -15,15 +15,15 @@ import {
     CompaniesCardView,
 } from "../../components/company";
 import { Company } from "../../interfaces/graphql";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 type View = "card" | "table";
 
 export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
-    const navigate = useNavigate();
     const { pathname } = useLocation();
     const { createUrl } = useNavigation();
     const [view, setView] = useState<View>("table");
+    const go = useGo();
 
     const {
         tableProps,
@@ -38,9 +38,6 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         setFilters,
     } = useTable<Company, HttpError, { name: string }>({
         resource: "companies",
-        queryOptions: {
-            enabled: !pathname.includes("create"),
-        },
         onSearch: (values) => {
             return [
                 {
@@ -76,6 +73,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
             pageSize: 12,
         },
         meta: {
+            to: "undefined",
             fields: [
                 "id",
                 "name",
@@ -152,14 +150,18 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                         type="primary"
                         size="large"
                         icon={<PlusCircleOutlined />}
-                        onClick={() =>
-                            navigate(
-                                `${createUrl("companies")}?to=${pathname}`,
-                                {
-                                    replace: true,
+                        onClick={() => {
+                            return go({
+                                to: `${createUrl("companies")}`,
+                                query: {
+                                    to: pathname,
                                 },
-                            )
-                        }
+                                options: {
+                                    keepQuery: true,
+                                },
+                                type: "replace",
+                            });
+                        }}
                     >
                         Add new company
                     </Button>
