@@ -34,22 +34,20 @@ Note. Throughout this article, we will refer to the `uiw/react-md-editor` librar
 
 In this tutorial, we will create a React application using refine, a React framework designed for developing headless enterprise web applications. We will leverage refine's pre-generated pages and content to illustrate how to incorporate React Markdown into an application that closely resembles a real-world application.
 
-To begin, head on to [refine Browser-based scaffolder](https://refine.dev/#playground), a tool that facilitates the creation of personalized refine projects, bootstrap a new project. This tool allows us to configure and create a new refine project according to our preferences, including the choice of **React platform**, **UI library**, and **backend architecture**.
+
+We'll use the npm create refine-app command to interactively initialize the project.
 
 Since this tutorial does not require a complex project setup, we can opt for the following options, which will be more than sufficient for our purposes:
 
 ```
-Vite > Headless > REST API > No Auth
+✔ Choose a project template · refine-react
+✔ What would you like to name your project?: · refine-markdown
+✔ Choose your backend service to connect: · REST API
+✔ Do you want to use a UI Framework?: · Ant Design
+✔ Do you want to add example pages?: · No
 ```
 
-On the landing page, you can utilize the stepper component to configure these options.
-
-
-
-
-After completing the configuration, you will be redirected to a preview page where you can further customize the project as desired. Once satisfied, you can proceed to download the project file to your computer. Extract the downloaded file and open it in your preferred IDE, such as VScode, which we will use in this case.
-
-The final step involves installing the project dependencies and launching the development server. To achieve this, execute the following commands in your terminal:
+Once the setup is complete, navigate to the project folder and start your app with:
 
 ```
 npm install
