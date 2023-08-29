@@ -1,6 +1,4 @@
-import { useGetToPath } from "@refinedev/core";
 import { Col, Pagination, Row, type TableProps } from "antd";
-import { useNavigate } from "react-router-dom";
 
 import { ContactCard } from "./card";
 import { Contact } from "../../interfaces/graphql";
@@ -16,9 +14,6 @@ export const CardView: React.FC<Props> = ({
     setCurrent,
     setPageSize,
 }) => {
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
-
     return (
         <div
             style={{
@@ -28,24 +23,7 @@ export const CardView: React.FC<Props> = ({
             <Row gutter={[32, 32]}>
                 {dataSource?.map((contact) => (
                     <Col key={contact.id} span="6">
-                        <ContactCard
-                            onClick={({ key }) => {
-                                if (key === "show") {
-                                    navigate(
-                                        getToPath({
-                                            action: "show",
-                                            meta: {
-                                                id: contact.id,
-                                            },
-                                        }) ?? "",
-                                        {
-                                            replace: true,
-                                        },
-                                    );
-                                }
-                            }}
-                            contact={contact}
-                        />
+                        <ContactCard contact={contact} />
                     </Col>
                 ))}
             </Row>
