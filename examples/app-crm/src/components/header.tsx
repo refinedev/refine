@@ -3,6 +3,7 @@ import { Layout, Space, theme } from "antd";
 
 import { Notifications } from "./notifications";
 import { CurrentUser } from "./current-user";
+import { AlgoliaSearch } from "./algolia-search";
 
 const { useToken } = theme;
 
@@ -12,17 +13,18 @@ export const Header: React.FC = () => {
     const headerStyles: React.CSSProperties = {
         backgroundColor: token.colorBgElevated,
         display: "flex",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         alignItems: "center",
         padding: "0px 24px",
         height: "64px",
         position: "sticky",
         top: 0,
-        zIndex: 1,
+        zIndex: 999,
     };
 
     return (
         <Layout.Header style={headerStyles}>
+            <AlgoliaSearch />
             <Space align="center" size="middle">
                 <Notifications />
                 <CurrentUser />
