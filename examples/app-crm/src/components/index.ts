@@ -4,5 +4,7 @@ export * from "./fullscreen-loading";
 export * from "./deal-kanban-card";
 export * from "./quotes";
 export * from "./custom-avatar";
+export * from "./deal-stage-tag";
+export * from "./participants";
 export * from "./single-element-form";
 export * from "./select-option-with-avatar";

@@ -1,13 +1,15 @@
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { HttpError, RedirectAction, useGetToPath } from "@refinedev/core";
-import { Form, Input, Modal, Select, Spin } from "antd";
-import { FC } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { RedirectAction, useGetToPath } from "@refinedev/core";
+import { Button, Form, Input, Modal, Select, Spin } from "antd";
+import { FC, useEffect } from "react";
 import {
-    Quote,
-    QuoteCreateInput,
-    QuoteUpdateInput,
-} from "../../interfaces/graphql";
+    useLocation,
+    useNavigate,
+    useParams,
+    useSearchParams,
+} from "react-router-dom";
+import { Quote } from "../../interfaces/graphql";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
 type Props = {
     action: "create" | "edit";
@@ -22,15 +24,13 @@ export const QuotesFormModal: FC<Props> = ({
     onCancel,
     onMutationSuccess,
 }) => {
+    const { pathname } = useLocation();
     const params = useParams<{ id: string }>();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
+    const [searchParams] = useSearchParams();
 
-    const { formProps, modalProps, close, onFinish } = useModalForm<
-        Quote,
-        HttpError,
-        QuoteCreateInput | QuoteUpdateInput
-    >({
+    const { formProps, modalProps, close, onFinish } = useModalForm<Quote>({
         resource: "quotes",
         action,
         id: params.id,
@@ -112,14 +112,29 @@ export const QuotesFormModal: FC<Props> = ({
         },
     });
 
+    useEffect(() => {
+        const companyId = searchParams.get("companyId");
+
+        if (companyId && companyId !== "null") {
+            formProps.form?.setFieldsValue({
+                company: {
+                    id: companyId,
+                },
+            });
+        }
+    }, [searchParams]);
+
     const loading =
         isLoadingCompanies || isLoadingContact || isLoadingSalesOwners;
+
+    const isHaveOverModal = pathname.includes("company-create");
 
     return (
         <Modal
             {...modalProps}
             confirmLoading={loading}
             width={560}
+            style={{ display: isHaveOverModal ? "none" : "inherit" }}
             onCancel={() => {
                 if (onCancel) {
                     onCancel();
@@ -166,6 +181,20 @@ export const QuotesFormModal: FC<Props> = ({
                         rules={[{ required: true }]}
                         name={["company", "id"]}
                         label="Company"
+                        extra={
+                            <Button
+                                style={{ paddingLeft: 0 }}
+                                type="link"
+                                icon={<PlusCircleOutlined />}
+                                onClick={() =>
+                                    navigate(`company-create?to=${pathname}`, {
+                                        replace: true,
+                                    })
+                                }
+                            >
+                                Add new company
+                            </Button>
+                        }
                     >
                         <Select
                             {...selectPropsCompanies}

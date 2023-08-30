@@ -31,8 +31,8 @@
     .name {
         display: flex;
         align-items: center;
-        justify-content: start;
-        margin-bottom: 16px;
+        justify-content: flex-start;
+        padding: 1rem;
     }
 
     .form {

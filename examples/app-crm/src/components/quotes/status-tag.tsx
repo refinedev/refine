@@ -23,13 +23,19 @@ const variant: Record<QuoteStatus, any> = {
 };
 
 type Props = {
-    value: QuoteStatus;
+    status: QuoteStatus;
 };
 
-export const QuoteStatusTag: FC<Props> = ({ value }) => {
+export const QuoteStatusTag: FC<Props> = ({ status }) => {
     return (
-        <Tag color={variant[value].color} icon={variant[value].icon}>
-            {value}
+        <Tag
+            style={{
+                textTransform: "capitalize",
+            }}
+            color={variant[status].color}
+            icon={variant[status].icon}
+        >
+            {status.toLowerCase()}
         </Tag>
     );
 };

@@ -37,7 +37,11 @@ import {
     KanbanCreateStage,
     KanbanEditStage,
 } from "./routes/scrumboard/kanban";
-import { CompanyListPage, CompanyShowPage } from "./routes/companies";
+import {
+    CompanyEditPage,
+    CompanyListPage,
+    CompanyCreatePage,
+} from "./routes/companies";
 import {
     SalesPage,
     SalesCreatePage,
@@ -60,7 +64,6 @@ import {
 } from "./routes/quotes";
 import { SettingsPage } from "./routes/administration/settings";
 import { AuditLogPage } from "./routes/administration/audit-log";
-import { CompanyCreatePage } from "./routes/companies/create";
 
 import "./utilities/init-dayjs";
 
@@ -188,15 +191,23 @@ const App: React.FC = () => {
                                     />
                                 </Route>
                             </Route>
-
-                            <Route path="/companies">
-                                <Route index element={<CompanyListPage />} />
+                            <Route
+                                path="/companies"
+                                element={
+                                    <CompanyListPage>
+                                        <Outlet />
+                                    </CompanyListPage>
+                                }
+                            >
                                 <Route
-                                    path=":id"
-                                    element={<CompanyShowPage />}
+                                    path="create"
+                                    element={<CompanyCreatePage />}
                                 />
                             </Route>
-
+                            <Route
+                                path="/companies/edit/:id"
+                                element={<CompanyEditPage />}
+                            />
                             <Route
                                 path="/contacts"
                                 element={
@@ -205,7 +216,7 @@ const App: React.FC = () => {
                                     </ContactsPageWrapper>
                                 }
                             >
-                                <Route index />
+                                <Route index element={null} />
                                 <Route
                                     path="show/:id"
                                     element={<ContactShowPage />}
@@ -240,13 +251,34 @@ const App: React.FC = () => {
                             >
                                 <Route
                                     path="create"
-                                    element={<QuotesCreatePage />}
-                                />
-
+                                    element={
+                                        <QuotesCreatePage>
+                                            <Outlet />
+                                        </QuotesCreatePage>
+                                    }
+                                >
+                                    <Route
+                                        path="company-create"
+                                        element={
+                                            <CompanyCreatePage isOverModal />
+                                        }
+                                    />
+                                </Route>
                                 <Route
                                     path="edit/:id"
-                                    element={<QuotesEditPage />}
-                                />
+                                    element={
+                                        <QuotesEditPage>
+                                            <Outlet />
+                                        </QuotesEditPage>
+                                    }
+                                >
+                                    <Route
+                                        path="company-create"
+                                        element={
+                                            <CompanyCreatePage isOverModal />
+                                        }
+                                    />
+                                </Route>
                             </Route>
                             <Route
                                 path="/quotes/show/:id"

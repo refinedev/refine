@@ -1,17 +1,18 @@
 import { FC } from "react";
 import {
     DeleteButton,
+    EditButton,
     FilterDropdown,
-    ShowButton,
     getDefaultSortOrder,
     useSelect,
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
-import { Avatar, Select, Space, Table, TableProps, Tooltip } from "antd";
+import { Avatar, Input, Select, Space, Table, TableProps, Tooltip } from "antd";
 
 import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -24,17 +25,6 @@ export const CompaniesTableView: FC<Props> = ({
     filters,
     sorters,
 }) => {
-    const { selectProps: selectPropsCompanies } = useSelect({
-        resource: "companies",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
-
     const { selectProps: selectPropsUsers } = useSelect({
         resource: "users",
         optionLabel: "name",
@@ -79,22 +69,20 @@ export const CompaniesTableView: FC<Props> = ({
             rowKey="id"
         >
             <Table.Column<Company>
-                dataIndex="id"
+                dataIndex="name"
                 title="Company title"
                 defaultFilteredValue={getDefaultFilter("id", filters)}
+                filterIcon={<SearchOutlined />}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
-                        <Select
-                            placeholder="Search Company"
-                            style={{ width: 220 }}
-                            {...selectPropsCompanies}
-                        />
+                        <Input placeholder="Search Company" />
                     </FilterDropdown>
                 )}
                 render={(_, record) => {
                     return (
                         <Space>
                             <CustomAvatar
+                                shape="square"
                                 name={record.name}
                                 src={record.avatarUrl}
                             />
@@ -147,10 +135,14 @@ export const CompaniesTableView: FC<Props> = ({
             <Table.Column<Company>
                 dataIndex={"totalRevenue"}
                 title="Open deals amount"
-                sorter
-                defaultSortOrder={getDefaultSortOrder("totalRevenue", sorters)}
-                render={(value) => {
-                    return <Text>{currencyNumber(value || 0)}</Text>;
+                render={(_, company) => {
+                    return (
+                        <Text>
+                            {currencyNumber(
+                                company?.dealsAggregate?.[0].sum?.value || 0,
+                            )}
+                        </Text>
+                    );
                 }}
             />
             <Table.Column<Company>
@@ -198,7 +190,8 @@ export const CompaniesTableView: FC<Props> = ({
                 title="Actions"
                 render={(value) => (
                     <Space>
-                        <ShowButton
+                        <EditButton
+                            icon={<EyeOutlined />}
                             hideText
                             size="small"
                             recordItemId={value}

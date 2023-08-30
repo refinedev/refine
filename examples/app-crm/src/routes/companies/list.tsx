@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { HttpError } from "@refinedev/core";
-import { CreateButton, List, useTable } from "@refinedev/antd";
-import { Form, Input, Space, Radio } from "antd";
+import { FC, PropsWithChildren, useState } from "react";
+import { HttpError, useGo, useNavigation } from "@refinedev/core";
+import { List, useTable } from "@refinedev/antd";
+import { Form, Input, Space, Radio, Button } from "antd";
 import {
     AppstoreOutlined,
-    PlusSquareOutlined,
+    PlusCircleOutlined,
     SearchOutlined,
     UnorderedListOutlined,
 } from "@ant-design/icons";
@@ -15,11 +15,15 @@ import {
     CompaniesCardView,
 } from "../../components/company";
 import { Company } from "../../interfaces/graphql";
+import { useLocation } from "react-router-dom";
 
 type View = "card" | "table";
 
-export const CompanyListPage = () => {
+export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
+    const { pathname } = useLocation();
+    const { createUrl } = useNavigation();
     const [view, setView] = useState<View>("table");
+    const go = useGo();
 
     const {
         tableProps,
@@ -31,7 +35,9 @@ export const CompanyListPage = () => {
         setPageSize,
         pageSize,
         current,
+        setFilters,
     } = useTable<Company, HttpError, { name: string }>({
+        resource: "companies",
         onSearch: (values) => {
             return [
                 {
@@ -41,8 +47,21 @@ export const CompanyListPage = () => {
                 },
             ];
         },
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
         filters: {
             initial: [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: undefined,
+                },
                 {
                     field: "contacts.id",
                     operator: "in",
@@ -54,10 +73,18 @@ export const CompanyListPage = () => {
             pageSize: 12,
         },
         meta: {
+            to: "undefined",
             fields: [
                 "id",
                 "name",
-                "totalRevenue",
+                "avatarUrl",
+                {
+                    dealsAggregate: [
+                        {
+                            sum: ["value"],
+                        },
+                    ],
+                },
                 { salesOwner: ["id", "name", "avatarUrl"] },
                 { contacts: [{ nodes: ["id", "name", "avatarUrl"] }] },
             ],
@@ -66,6 +93,7 @@ export const CompanyListPage = () => {
 
     const onViewChange = (value: View) => {
         setView(value);
+        setFilters([], "replace");
     };
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,76 +104,91 @@ export const CompanyListPage = () => {
     const debouncedOnChange = debounce(onSearch, 500);
 
     return (
-        <List
-            breadcrumb={false}
-            headerButtons={() => {
-                return (
-                    <Space>
-                        <Form {...searchFormProps} layout="inline">
-                            <Form.Item name="name" noStyle>
-                                <Input
-                                    size="large"
-                                    prefix={
-                                        <SearchOutlined className="anticon tertiary" />
-                                    }
-                                    placeholder="Search by name"
-                                    onChange={debouncedOnChange}
-                                />
-                            </Form.Item>
-                        </Form>
-                        <Radio.Group
-                            size="large"
-                            value={view}
-                            onChange={(e) => onViewChange(e.target.value)}
-                        >
-                            <Radio.Button value="table">
-                                <UnorderedListOutlined />
-                            </Radio.Button>
-                            <Radio.Button value="list">
-                                <AppstoreOutlined />
-                            </Radio.Button>
-                        </Radio.Group>
-                    </Space>
-                );
-            }}
-            contentProps={{
-                style: {
-                    marginTop: "28px",
-                },
-            }}
-            title={
-                <CreateButton
-                    style={{
-                        width: "192px",
-                    }}
-                    size="large"
-                    type="primary"
-                    icon={<PlusSquareOutlined />}
-                >
-                    Add new company
-                </CreateButton>
-            }
-        >
-            {view === "table" ? (
-                <CompaniesTableView
-                    tableProps={tableProps}
-                    filters={filters}
-                    sorters={sorters}
-                />
-            ) : (
-                <CompaniesCardView
-                    companies={tableProps.dataSource || []}
-                    pagination={{
-                        pageSize,
-                        current,
-                        total: tableQueryResult.data?.total || 0,
-                        onChange: (page, pageSize) => {
-                            setCurrent(page);
-                            setPageSize(pageSize);
-                        },
-                    }}
-                />
-            )}
-        </List>
+        <>
+            <List
+                breadcrumb={false}
+                headerButtons={() => {
+                    return (
+                        <Space>
+                            <Form {...searchFormProps} layout="inline">
+                                <Form.Item name="name" noStyle>
+                                    <Input
+                                        size="large"
+                                        prefix={
+                                            <SearchOutlined className="anticon tertiary" />
+                                        }
+                                        placeholder="Search by name"
+                                        onChange={debouncedOnChange}
+                                    />
+                                </Form.Item>
+                            </Form>
+                            <Radio.Group
+                                size="large"
+                                value={view}
+                                onChange={(e) => onViewChange(e.target.value)}
+                            >
+                                <Radio.Button value="table">
+                                    <UnorderedListOutlined />
+                                </Radio.Button>
+                                <Radio.Button value="list">
+                                    <AppstoreOutlined />
+                                </Radio.Button>
+                            </Radio.Group>
+                        </Space>
+                    );
+                }}
+                contentProps={{
+                    style: {
+                        marginTop: "28px",
+                    },
+                }}
+                title={
+                    <Button
+                        style={{
+                            width: "192px",
+                        }}
+                        type="primary"
+                        size="large"
+                        icon={<PlusCircleOutlined />}
+                        onClick={() => {
+                            return go({
+                                to: `${createUrl("companies")}`,
+                                query: {
+                                    to: pathname,
+                                },
+                                options: {
+                                    keepQuery: true,
+                                },
+                                type: "replace",
+                            });
+                        }}
+                    >
+                        Add new company
+                    </Button>
+                }
+            >
+                {view === "table" ? (
+                    <CompaniesTableView
+                        tableProps={tableProps}
+                        filters={filters}
+                        sorters={sorters}
+                    />
+                ) : (
+                    <CompaniesCardView
+                        companies={tableProps.dataSource || []}
+                        pagination={{
+                            pageSize,
+                            current,
+                            total: tableQueryResult.data?.total || 0,
+                            onChange: (page, pageSize) => {
+                                setCurrent(page);
+                                setPageSize(pageSize);
+                            },
+                        }}
+                    />
+                )}
+            </List>
+            {children}
+        </>
     );
 };
