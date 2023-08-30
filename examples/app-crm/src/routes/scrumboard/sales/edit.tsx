@@ -148,7 +148,7 @@ export const SalesEditPage = () => {
 
                     formProps.onFinish?.({
                         title: val.title,
-                        value: val.value,
+                        value: val.value || 0,
                         dealOwnerId: val.dealOwnerId,
                         stageId: val.stageId,
                         companyId: val.company?.id,
