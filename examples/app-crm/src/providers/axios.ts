@@ -1,4 +1,4 @@
-import axios, { InternalAxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { refreshTokens, shouldRefreshToken } from "./refresh-token";
 
 export const axiosInstance = axios.create({
@@ -11,7 +11,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     async (config) => {
         const accessToken = localStorage.getItem("access_token");
-        if (accessToken) {
+        if (accessToken && config?.headers) {
             config.headers.Authorization = `Bearer ${accessToken}`;
         }
         return config;
@@ -27,10 +27,9 @@ axiosInstance.interceptors.response.use(
 
         const data = response?.data;
         const errors = data?.errors;
-        const originalRequest =
-            response.config as InternalAxiosRequestConfig & {
-                _retry: boolean;
-            };
+        const originalRequest = response.config as AxiosRequestConfig & {
+            _retry: boolean;
+        };
 
         if (errors) {
             if (shouldRefreshToken(response) && !originalRequest?._retry) {
@@ -54,6 +53,8 @@ axiosInstance.interceptors.response.use(
 );
 
 const convertAxiosToFetchResponse = (response: AxiosResponse) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     response.headers["forEach"] = function (callback: any) {
         for (const header in this) {
             if (this.hasOwnProperty(header)) {

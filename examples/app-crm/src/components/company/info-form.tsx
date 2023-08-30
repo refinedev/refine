@@ -133,7 +133,7 @@ export const CompanyInfoForm = () => {
                     addonBefore={"$"}
                     min={0}
                     placeholder="0,00"
-                    defaultValue={totalRevenue}
+                    defaultValue={totalRevenue || 0}
                     formatter={(value) =>
                         `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                     }
@@ -207,7 +207,7 @@ export const CompanyInfoForm = () => {
             >
                 <Input
                     autoFocus
-                    defaultValue={country}
+                    defaultValue={country || ""}
                     placeholder="Country"
                     style={{
                         width: "100%",
@@ -232,7 +232,7 @@ export const CompanyInfoForm = () => {
             >
                 <Input
                     autoFocus
-                    defaultValue={website}
+                    defaultValue={website || ""}
                     placeholder="Website"
                     style={{
                         width: "100%",
