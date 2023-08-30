@@ -1,26 +1,29 @@
 import React from "react";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath } from "@refinedev/core";
+import { HttpError, useGetToPath } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import dayjs from "dayjs";
 
-import { CalendarForm } from "../../components/calender/form";
-import { Event } from "../../interfaces/graphql";
+import { CalendarForm } from "../../components/calendar/form";
+import { Event, EventCreateInput } from "../../interfaces/graphql";
+
+type FormValues = EventCreateInput & {
+    date: [dayjs.Dayjs, dayjs.Dayjs];
+};
 
 export const CalendarCreatePage = () => {
     const [isAllDayEvent, setIsAllDayEvent] = React.useState(false);
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 
-    const { formProps, saveButtonProps, form, onFinish } = useForm<Event>({
-        queryOptions: {
-            enabled: false,
-        },
-        redirect: "list",
-    });
+    const { formProps, saveButtonProps, form, onFinish } = useForm<
+        Event,
+        HttpError,
+        EventCreateInput
+    >();
 
-    const handleOnFinish = async (values: any) => {
+    const handleOnFinish = async (values: FormValues) => {
         const { date, ...otherValues } = values;
 
         let startDate = dayjs.utc(date[0]);

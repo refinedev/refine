@@ -2,7 +2,6 @@ import { useDelete, useNavigation } from "@refinedev/core";
 import { memo, useMemo } from "react";
 import dayjs from "dayjs";
 import {
-    Avatar,
     Button,
     Card,
     ConfigProvider,
@@ -21,13 +20,12 @@ import {
     EyeOutlined,
     DeleteOutlined,
 } from "@ant-design/icons";
+
 import { TextIcon } from "../icon";
 import { Text } from "../text";
-import {
-    getDateColor,
-    getNameInitials,
-    getRandomColorFromString,
-} from "../../utilities";
+import { CustomAvatar } from "../custom-avatar";
+import { getDateColor } from "../../utilities";
+
 import { User } from "../../interfaces/graphql";
 
 type ProjectCardProps = {
@@ -278,24 +276,10 @@ export const ProjectCard = ({
                             {users.map((user) => {
                                 return (
                                     <Tooltip key={user.id} title={user.name}>
-                                        <Avatar
-                                            key={user.id}
-                                            alt={user.name}
-                                            size="small"
+                                        <CustomAvatar
+                                            name={user.name}
                                             src={user.avatarUrl}
-                                            style={{
-                                                backgroundColor:
-                                                    getRandomColorFromString(
-                                                        user.name,
-                                                    ),
-                                                objectFit: "contain",
-                                                textTransform: "uppercase",
-                                            }}
-                                        >
-                                            {getNameInitials({
-                                                name: user.name,
-                                            })}
-                                        </Avatar>
+                                        />
                                     </Tooltip>
                                 );
                             })}

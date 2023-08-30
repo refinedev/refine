@@ -17,7 +17,7 @@ import {
 import { SearchOutlined } from "@ant-design/icons";
 
 import { ActionCell } from "../../components/audit-log/action-cell";
-
+import { CustomAvatar } from "../../components";
 import { Audit } from "../../interfaces/graphql";
 
 export const AuditLogPage = () => {
@@ -80,12 +80,10 @@ export const AuditLogPage = () => {
                     render={(_, record: Audit) => {
                         return (
                             <Space>
-                                <Avatar
+                                <CustomAvatar
                                     src={record.user?.avatarUrl}
-                                    alt={record.user?.name}
-                                >
-                                    {record.user?.name.charAt(0) ?? "U"}
-                                </Avatar>
+                                    name={record.user?.name}
+                                />
                                 {record.user?.name || "N/A"}
                             </Space>
                         );

@@ -1,10 +1,4 @@
-export const getNameInitials = ({
-    name,
-    count = 2,
-}: {
-    name: string;
-    count?: number;
-}) => {
+export const getNameInitials = (name: string, count = 2) => {
     const initials = name
         .split(" ")
         .map((n) => n[0])

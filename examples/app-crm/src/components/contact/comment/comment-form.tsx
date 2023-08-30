@@ -1,13 +1,8 @@
-import {
-    BaseKey,
-    HttpError,
-    useGetIdentity,
-    useInvalidate,
-    useParsed,
-} from "@refinedev/core";
+import { BaseKey, HttpError, useGetIdentity, useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
-import { Avatar, Form, Input } from "antd";
+import { Form, Input } from "antd";
 
+import { CustomAvatar } from "../../custom-avatar";
 import { ContactNote, User } from "../../../interfaces/graphql";
 
 type FormValues = ContactNote & {
@@ -60,18 +55,11 @@ export const ContactCommentForm = () => {
                 padding: "1rem",
             }}
         >
-            <Avatar
-                style={{
-                    flexShrink: 0,
-                    objectFit: "contain",
-                    textTransform: "uppercase",
-                }}
-                size="small"
-                alt={me?.name}
+            <CustomAvatar
+                style={{ flexShrink: 0 }}
+                name={me?.name}
                 src={me?.avatarUrl}
-            >
-                {me?.name.charAt(0)}
-            </Avatar>
+            />
             <Form
                 {...formProps}
                 style={{ width: "100%" }}

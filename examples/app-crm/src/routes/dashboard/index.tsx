@@ -1,15 +1,24 @@
 import React from "react";
-import { Row, Col } from "antd";
-import { ProjectOutlined, TeamOutlined } from "@ant-design/icons";
+import { Row, Col, Button } from "antd";
+import {
+    ProjectOutlined,
+    RightCircleOutlined,
+    TeamOutlined,
+} from "@ant-design/icons";
+import { useNavigation } from "@refinedev/core";
 
-import { DashboardTotalCountCard } from "../../components/dashboard/total-count-card";
-import { DashboardTasksChart } from "../../components/dashboard/tasks-chart";
-import { DashboardDealsChart } from "../../components/dashboard/deals-chart";
-import { DashboardTotalRevenueChart } from "../../components/dashboard/total-revenue-chart";
-import { CalendarUpcomingEvents } from "../../components/calender/upcoming-events";
-import { DashboardLatestActivities } from "../../components/dashboard/latest-activities";
+import {
+    DashboardTotalCountCard,
+    DashboardTasksChart,
+    DashboardDealsChart,
+    DashboardTotalRevenueChart,
+    DashboardLatestActivities,
+} from "../../components/dashboard";
+import { CalendarUpcomingEvents } from "../../components/calendar";
 
 export const DashboardPage: React.FC = () => {
+    const { list } = useNavigation();
+
     return (
         <Row gutter={[32, 32]}>
             <Col span={24}>
@@ -57,7 +66,19 @@ export const DashboardPage: React.FC = () => {
             <Col span={24}>
                 <Row gutter={[32, 32]}>
                     <Col span={8}>
-                        <CalendarUpcomingEvents limit={5} />
+                        <CalendarUpcomingEvents
+                            limit={5}
+                            cardProps={{
+                                extra: (
+                                    <Button
+                                        onClick={() => list("events")}
+                                        icon={<RightCircleOutlined />}
+                                    >
+                                        See calendar
+                                    </Button>
+                                ),
+                            }}
+                        />
                     </Col>
                     <Col span={16}>
                         <DashboardLatestActivities limit={5} />

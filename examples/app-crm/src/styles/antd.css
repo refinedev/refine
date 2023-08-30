@@ -74,3 +74,11 @@
     color: rgba(0, 0, 0, 0.45) !important;
     margin-inline-end: auto !important;
 }
+
+.ant-color-picker {
+    .ant-popover-content {
+        .ant-collapse-header {
+            display: none;
+        }
+    }
+}

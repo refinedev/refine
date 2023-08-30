@@ -1,17 +1,21 @@
+import { useState } from "react";
 import { useOne } from "@refinedev/core";
 import { Link, useParams } from "react-router-dom";
-import { Avatar, Button, Space } from "antd";
+import { Button, Space } from "antd";
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
-import { FullScreenLoading, QuotesFormModal, Text } from "../../../components";
-import { Status } from "./status";
-import { ProductsServices } from "./products-services";
-import { getNameInitials, getRandomColorFromString } from "../../../utilities";
+
+import { FullScreenLoading, Text, CustomAvatar } from "../../../components";
+import {
+    QuotesFormModal,
+    ProductsServices,
+    ShowDescription,
+    PdfExport,
+    StatusIndicator,
+} from "../../../components/quotes";
+
 import { Quote } from "../../../interfaces/graphql";
 
 import styles from "./index.module.css";
-import { useState } from "react";
-import { Description } from "./description";
-import { PdfExport } from "./pdf-export";
 
 export const QuotesShowPage = () => {
     const [editModalVisible, setEditModalVisible] = useState(false);
@@ -41,7 +45,7 @@ export const QuotesShowPage = () => {
                     ],
                 },
                 {
-                    company: ["id", "name", "country", "website"],
+                    company: ["id", "name", "country", "website", "avatarUrl"],
                 },
                 {
                     salesOwner: ["id", "name"],
@@ -86,7 +90,7 @@ export const QuotesShowPage = () => {
                         </Button>
                     </Space>
                 </div>
-                <Status
+                <StatusIndicator
                     style={{
                         marginTop: "32px",
                     }}
@@ -96,21 +100,14 @@ export const QuotesShowPage = () => {
                 <div className={styles.pdf}>
                     <div className={styles.pdfQuoteInfo}>
                         <div className={styles.companyInfo}>
-                            <Avatar
+                            <CustomAvatar
+                                name={company?.name}
+                                src={company?.avatarUrl}
                                 style={{
-                                    display: "flex",
-                                    alignItems: "center",
                                     width: "64px",
                                     height: "64px",
-                                    backgroundColor: getRandomColorFromString(
-                                        company?.name ?? "",
-                                    ),
                                 }}
-                            >
-                                {getNameInitials({
-                                    name: company?.name ?? "",
-                                })}
-                            </Avatar>
+                            />
                             <div className={styles.company}>
                                 <Text strong>{company.name}</Text>
                                 <Text>{company.country}</Text>
@@ -131,7 +128,7 @@ export const QuotesShowPage = () => {
                     <div className={styles.divider} />
                     <ProductsServices />
                     <div className={styles.divider} />
-                    <Description />
+                    <ShowDescription />
                 </div>
             </div>
             {editModalVisible && (

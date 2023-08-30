@@ -1,5 +1,6 @@
-import { Tag, Space, Avatar } from "antd";
+import { Tag, Space } from "antd";
 
+import { CustomAvatar } from "./custom-avatar";
 import { User } from "../interfaces/graphql";
 
 type Props = {
@@ -15,12 +16,15 @@ export const UserTag = ({ user }: Props) => {
                 paddingRight: 8,
                 borderRadius: 24,
                 lineHeight: "unset",
+                marginRight: "unset",
             }}
         >
             <Space size={4}>
-                <Avatar size="small" alt={user.name} src={user.avatarUrl}>
-                    {user.name.charAt(0)}
-                </Avatar>
+                <CustomAvatar
+                    src={user.avatarUrl}
+                    name={user.name}
+                    style={{ display: "inline-flex" }}
+                />
                 {user.name}
             </Space>
         </Tag>

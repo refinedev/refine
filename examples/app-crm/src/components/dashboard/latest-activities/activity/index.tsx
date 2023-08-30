@@ -1,8 +1,9 @@
 import React from "react";
-import { Avatar, Skeleton, Tag } from "antd";
+import { Skeleton, Tag } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "../../../text";
+import { CustomAvatar } from "../../../custom-avatar";
 import { Audit } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
@@ -43,7 +44,12 @@ export const DashboardLatestActivity: React.FC<
                 }}
             >
                 <div className={styles.avatar}>
-                    <Avatar shape="square" size={48} src={user?.avatarUrl} />
+                    <CustomAvatar
+                        shape="square"
+                        size={48}
+                        src={user?.avatarUrl}
+                        name={user?.name}
+                    />
                 </div>
                 <div className={styles.action}>
                     <Text type="secondary" size="xs">

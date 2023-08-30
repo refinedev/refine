@@ -1,8 +1,7 @@
-import React from "react";
-
-import { Avatar, Popover } from "antd";
+import { Popover } from "antd";
 import { useGetIdentity } from "@refinedev/core";
 
+import { CustomAvatar } from "./custom-avatar";
 import type { User } from "../interfaces/graphql";
 
 export const CurrentUser = () => {
@@ -12,16 +11,11 @@ export const CurrentUser = () => {
 
     return (
         <Popover placement="bottomRight" content={content} trigger="click">
-            <Avatar
-                alt={user?.name}
+            <CustomAvatar
+                name={user?.name}
                 size="default"
-                style={{
-                    verticalAlign: "middle",
-                    cursor: "pointer",
-                }}
-            >
-                {user?.name?.split(" ").map((name) => name[0])}
-            </Avatar>
+                style={{ cursor: "pointer" }}
+            />
         </Popover>
     );
 };
