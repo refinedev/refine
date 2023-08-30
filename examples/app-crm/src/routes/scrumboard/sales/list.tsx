@@ -43,6 +43,12 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         pagination: {
             mode: "off",
         },
+        sorters: [
+            {
+                field: "createdAt",
+                order: "asc",
+            },
+        ],
         meta: {
             fields: [
                 "id",
