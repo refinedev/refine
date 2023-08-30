@@ -143,25 +143,25 @@ export type ChecklistItemInput = {
 
 export type Company = {
     avatarUrl?: Maybe<Scalars["String"]["output"]>;
-    businessType: BusinessType;
-    companySize: CompanySize;
+    businessType?: Maybe<BusinessType>;
+    companySize?: Maybe<CompanySize>;
     contacts: CompanyContactsConnection;
     contactsAggregate: Array<CompanyContactsAggregateResponse>;
-    country: Scalars["String"]["output"];
+    country?: Maybe<Scalars["String"]["output"]>;
     createdAt: Scalars["DateTime"]["output"];
     createdBy: User;
     deals: CompanyDealsConnection;
     dealsAggregate: Array<CompanyDealsAggregateResponse>;
     id: Scalars["ID"]["output"];
-    industry: Industry;
+    industry?: Maybe<Industry>;
     name: Scalars["String"]["output"];
     notes: CompanyNotesConnection;
     notesAggregate: Array<CompanyNotesAggregateResponse>;
     salesOwner: User;
-    totalRevenue: Scalars["Int"]["output"];
+    totalRevenue?: Maybe<Scalars["Int"]["output"]>;
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
-    website: Scalars["String"]["output"];
+    website?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type CompanyContactsArgs = {
@@ -367,7 +367,6 @@ export type CompanyCountAggregate = {
 export type CompanyCreateInput = {
     businessType?: InputMaybe<BusinessType>;
     companySize?: InputMaybe<CompanySize>;
-    contactId?: InputMaybe<Scalars["ID"]["input"]>;
     country?: InputMaybe<Scalars["String"]["input"]>;
     industry?: InputMaybe<Industry>;
     name: Scalars["String"]["input"];
@@ -380,10 +379,12 @@ export type CompanyDealsAggregateGroupBy = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -401,6 +402,7 @@ export type CompanyDealsAvgAggregate = {
     closeDateDay?: Maybe<Scalars["Float"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Float"]["output"]>;
     closeDateYear?: Maybe<Scalars["Float"]["output"]>;
+    companyId?: Maybe<Scalars["Float"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Float"]["output"]>;
     id?: Maybe<Scalars["Float"]["output"]>;
     stageId?: Maybe<Scalars["Float"]["output"]>;
@@ -420,10 +422,12 @@ export type CompanyDealsCountAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["Int"]["output"]>;
     createdAt?: Maybe<Scalars["Int"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     stageId?: Maybe<Scalars["Int"]["output"]>;
+    title?: Maybe<Scalars["Int"]["output"]>;
     updatedAt?: Maybe<Scalars["Int"]["output"]>;
     value?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -432,10 +436,12 @@ export type CompanyDealsMaxAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -444,10 +450,12 @@ export type CompanyDealsMinAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -456,6 +464,7 @@ export type CompanyDealsSumAggregate = {
     closeDateDay?: Maybe<Scalars["Float"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Float"]["output"]>;
     closeDateYear?: Maybe<Scalars["Float"]["output"]>;
+    companyId?: Maybe<Scalars["Float"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Float"]["output"]>;
     id?: Maybe<Scalars["Float"]["output"]>;
     stageId?: Maybe<Scalars["Float"]["output"]>;
@@ -541,11 +550,13 @@ export type CompanyFilterDealFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<CompanyFilterDealFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -990,11 +1001,13 @@ export type ContactFilterDealFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<ContactFilterDealFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -1468,6 +1481,7 @@ export type Deal = {
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
     company: Company;
+    companyId: Scalars["ID"]["output"];
     createdAt: Scalars["DateTime"]["output"];
     createdBy: User;
     dealContact: Contact;
@@ -1480,7 +1494,7 @@ export type Deal = {
     title: Scalars["String"]["output"];
     updatedAt: Scalars["DateTime"]["output"];
     updatedBy?: Maybe<User>;
-    value: Scalars["Float"]["output"];
+    value?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type DealAggregateFilter = {
@@ -1488,11 +1502,13 @@ export type DealAggregateFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealAggregateFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -1501,10 +1517,12 @@ export type DealAggregateGroupBy = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -1530,6 +1548,7 @@ export type DealAvgAggregate = {
     closeDateDay?: Maybe<Scalars["Float"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Float"]["output"]>;
     closeDateYear?: Maybe<Scalars["Float"]["output"]>;
+    companyId?: Maybe<Scalars["Float"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Float"]["output"]>;
     id?: Maybe<Scalars["Float"]["output"]>;
     stageId?: Maybe<Scalars["Float"]["output"]>;
@@ -1549,10 +1568,12 @@ export type DealCountAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["Int"]["output"]>;
     createdAt?: Maybe<Scalars["Int"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     stageId?: Maybe<Scalars["Int"]["output"]>;
+    title?: Maybe<Scalars["Int"]["output"]>;
     updatedAt?: Maybe<Scalars["Int"]["output"]>;
     value?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -1571,11 +1592,13 @@ export type DealDeleteFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealDeleteFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -1584,6 +1607,7 @@ export type DealDeleteResponse = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
@@ -1600,6 +1624,7 @@ export type DealFilter = {
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
     company?: InputMaybe<DealFilterCompanyFilter>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<DealFilterUserFilter>;
     dealContact?: InputMaybe<DealFilterContactFilter>;
@@ -1609,6 +1634,7 @@ export type DealFilter = {
     or?: InputMaybe<Array<DealFilter>>;
     stage?: InputMaybe<DealFilterDealStageFilter>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<DealFilterUserFilter>;
     value?: InputMaybe<FloatFieldComparison>;
@@ -1672,10 +1698,12 @@ export type DealMaxAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -1684,10 +1712,12 @@ export type DealMinAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -1702,10 +1732,12 @@ export type DealSortFields =
     | "closeDateDay"
     | "closeDateMonth"
     | "closeDateYear"
+    | "companyId"
     | "createdAt"
     | "dealOwnerId"
     | "id"
     | "stageId"
+    | "title"
     | "updatedAt"
     | "value";
 
@@ -1746,10 +1778,12 @@ export type DealStageDealsAggregateGroupBy = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -1767,6 +1801,7 @@ export type DealStageDealsAvgAggregate = {
     closeDateDay?: Maybe<Scalars["Float"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Float"]["output"]>;
     closeDateYear?: Maybe<Scalars["Float"]["output"]>;
+    companyId?: Maybe<Scalars["Float"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Float"]["output"]>;
     id?: Maybe<Scalars["Float"]["output"]>;
     stageId?: Maybe<Scalars["Float"]["output"]>;
@@ -1777,10 +1812,12 @@ export type DealStageDealsCountAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["Int"]["output"]>;
     createdAt?: Maybe<Scalars["Int"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
     stageId?: Maybe<Scalars["Int"]["output"]>;
+    title?: Maybe<Scalars["Int"]["output"]>;
     updatedAt?: Maybe<Scalars["Int"]["output"]>;
     value?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -1789,10 +1826,12 @@ export type DealStageDealsMaxAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -1801,10 +1840,12 @@ export type DealStageDealsMinAggregate = {
     closeDateDay?: Maybe<Scalars["Int"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Int"]["output"]>;
     closeDateYear?: Maybe<Scalars["Int"]["output"]>;
+    companyId?: Maybe<Scalars["ID"]["output"]>;
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     dealOwnerId?: Maybe<Scalars["ID"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
     stageId?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
     value?: Maybe<Scalars["Float"]["output"]>;
 };
@@ -1813,6 +1854,7 @@ export type DealStageDealsSumAggregate = {
     closeDateDay?: Maybe<Scalars["Float"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Float"]["output"]>;
     closeDateYear?: Maybe<Scalars["Float"]["output"]>;
+    companyId?: Maybe<Scalars["Float"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Float"]["output"]>;
     id?: Maybe<Scalars["Float"]["output"]>;
     stageId?: Maybe<Scalars["Float"]["output"]>;
@@ -1896,11 +1938,13 @@ export type DealSubscriptionFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealSubscriptionFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -1909,6 +1953,7 @@ export type DealSumAggregate = {
     closeDateDay?: Maybe<Scalars["Float"]["output"]>;
     closeDateMonth?: Maybe<Scalars["Float"]["output"]>;
     closeDateYear?: Maybe<Scalars["Float"]["output"]>;
+    companyId?: Maybe<Scalars["Float"]["output"]>;
     dealOwnerId?: Maybe<Scalars["Float"]["output"]>;
     id?: Maybe<Scalars["Float"]["output"]>;
     stageId?: Maybe<Scalars["Float"]["output"]>;
@@ -1920,11 +1965,13 @@ export type DealUpdateFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealUpdateFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
@@ -1936,6 +1983,7 @@ export type DealUpdateInput = {
     companyId?: InputMaybe<Scalars["ID"]["input"]>;
     dealContactId?: InputMaybe<Scalars["ID"]["input"]>;
     dealOwnerId?: InputMaybe<Scalars["ID"]["input"]>;
+    notes?: InputMaybe<Scalars["String"]["input"]>;
     stageId?: InputMaybe<Scalars["ID"]["input"]>;
     title?: InputMaybe<Scalars["String"]["input"]>;
     value?: InputMaybe<Scalars["Float"]["input"]>;
@@ -3128,7 +3176,7 @@ export type Quote = {
     contact: Contact;
     createdAt: Scalars["DateTime"]["output"];
     createdBy: User;
-    description: Scalars["String"]["output"];
+    description?: Maybe<Scalars["String"]["output"]>;
     id: Scalars["ID"]["output"];
     items: Array<QuoteItem>;
     salesOwner: User;
@@ -3164,6 +3212,7 @@ export type QuoteDeleteFilter = {
     or?: InputMaybe<Array<QuoteDeleteFilter>>;
     status?: InputMaybe<QuoteStatusFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    total?: InputMaybe<FloatFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -3191,6 +3240,7 @@ export type QuoteFilter = {
     salesOwner?: InputMaybe<QuoteFilterUserFilter>;
     status?: InputMaybe<QuoteStatusFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    total?: InputMaybe<FloatFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<QuoteFilterUserFilter>;
 };
@@ -3266,6 +3316,7 @@ export type QuoteSortFields =
     | "id"
     | "status"
     | "title"
+    | "total"
     | "updatedAt";
 
 /** Quote status */
@@ -3295,6 +3346,7 @@ export type QuoteSubscriptionFilter = {
     or?: InputMaybe<Array<QuoteSubscriptionFilter>>;
     status?: InputMaybe<QuoteStatusFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    total?: InputMaybe<FloatFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -3305,6 +3357,7 @@ export type QuoteUpdateFilter = {
     or?: InputMaybe<Array<QuoteUpdateFilter>>;
     status?: InputMaybe<QuoteStatusFilterComparison>;
     title?: InputMaybe<StringFieldComparison>;
+    total?: InputMaybe<FloatFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4757,11 +4810,13 @@ export type UserFilterDealFilter = {
     closeDateDay?: InputMaybe<IntFieldComparison>;
     closeDateMonth?: InputMaybe<IntFieldComparison>;
     closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
     createdAt?: InputMaybe<DateFieldComparison>;
     dealOwnerId?: InputMaybe<IdFilterComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<UserFilterDealFilter>>;
     stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     value?: InputMaybe<FloatFieldComparison>;
 };
