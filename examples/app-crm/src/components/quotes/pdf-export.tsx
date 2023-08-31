@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { useOne } from "@refinedev/core";
 import { FilePdfOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import {
@@ -11,13 +11,49 @@ import {
     PDFViewer,
 } from "@react-pdf/renderer";
 import { useModal } from "@refinedev/antd";
+import { useParams } from "react-router-dom";
 
 import { currencyNumber } from "../../utilities";
 import { Quote } from "../../interfaces/graphql";
 
-type Props = {} & Partial<Quote>;
+export const PdfExport = () => {
+    const { modalProps, show } = useModal();
+    const params = useParams<{ id: string }>();
 
-export const PdfExport: FC<Props> = (props) => {
+    const { data, isLoading, isFetching, refetch } = useOne<Quote>({
+        resource: "quotes",
+        id: params.id,
+        liveMode: "off",
+        meta: {
+            fields: [
+                "id",
+                "title",
+                "description",
+                "subTotal",
+                "total",
+                "tax",
+                {
+                    items: [
+                        "title",
+                        "unitPrice",
+                        "quantity",
+                        "discount",
+                        "totalPrice",
+                    ],
+                },
+                {
+                    company: ["id", "name", "country", "website", "avatarUrl"],
+                },
+                {
+                    salesOwner: ["id", "name"],
+                },
+                {
+                    contact: ["id", "name"],
+                },
+            ],
+        },
+    });
+
     const {
         title,
         tax,
@@ -28,13 +64,23 @@ export const PdfExport: FC<Props> = (props) => {
         company,
         contact,
         salesOwner,
-    } = props;
+    } = data?.data || {};
 
-    const { modalProps, show } = useModal();
+    const loading = isLoading || isFetching;
+
+    const pdfOpenHandler = async () => {
+        await refetch();
+        show();
+    };
 
     return (
         <>
-            <Button onClick={show} type="primary" icon={<FilePdfOutlined />}>
+            <Button
+                loading={loading}
+                onClick={pdfOpenHandler}
+                type="primary"
+                icon={<FilePdfOutlined />}
+            >
                 Convert to PDF
             </Button>
 
