@@ -207,6 +207,12 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         deleteStage({
             resource: "dealStage",
             id: args.stageId,
+            successNotification: () => ({
+                key: "delete-stage",
+                type: "success",
+                message: "Successfully deleted stage",
+                description: "Successful",
+            }),
         });
     };
 
