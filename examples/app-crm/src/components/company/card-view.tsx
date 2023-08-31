@@ -74,7 +74,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                 display: "flex",
                                                 flexDirection: "column",
                                                 alignItems: "flex-start",
-                                                gap: "4px",
+                                                gap: "6px",
                                             }}
                                         >
                                             <Text size="xs">
@@ -92,7 +92,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                 display: "flex",
                                                 flexDirection: "column",
                                                 alignItems: "flex-end",
-                                                gap: "4px",
+                                                gap: "6px",
                                             }}
                                         >
                                             <Text size="xs">Sales owner</Text>
