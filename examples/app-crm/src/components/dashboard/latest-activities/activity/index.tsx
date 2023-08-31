@@ -1,34 +1,24 @@
 import React from "react";
-import { Skeleton, Tag } from "antd";
+import { Skeleton } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "../../../text";
 import { CustomAvatar } from "../../../custom-avatar";
-import { Audit } from "../../../../interfaces/graphql";
+import { Audit, Task, TaskStage } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
 
 type DashboardLatestActivityProps = {
     item: Audit;
     isLoading?: boolean;
+    task?: Task;
+    taskStage?: TaskStage;
 };
 
 export const DashboardLatestActivity: React.FC<
     DashboardLatestActivityProps
-> = ({ item, isLoading }) => {
-    const { id, action, targetEntity, targetId, user, createdAt } = item;
-    const renderTag = () => {
-        switch (action) {
-            case "CREATE":
-                return <Tag color="success">Created</Tag>;
-            case "DELETE":
-                return <Tag color="error">Updated</Tag>;
-            case "UPDATE":
-                return <Tag color="blue">Updated</Tag>;
-            default:
-                return null;
-        }
-    };
+> = ({ item, isLoading, task, taskStage }) => {
+    const { id, user, createdAt } = item;
 
     return (
         <div key={id} className={styles.container}>
@@ -45,7 +35,7 @@ export const DashboardLatestActivity: React.FC<
             >
                 <div className={styles.avatar}>
                     <CustomAvatar
-                        shape="square"
+                        shape="circle"
                         size={48}
                         src={user?.avatarUrl}
                         name={user?.name}
@@ -60,10 +50,11 @@ export const DashboardLatestActivity: React.FC<
                         <Text className={styles.name} strong>
                             {user?.name}
                         </Text>
-                        {renderTag()}
-                        <Text strong>{targetEntity}</Text>
-                        <Text>with</Text>
-                        <Text strong>{targetId}</Text>
+                        <Text>moved</Text>
+                        <Text strong>{task?.title}</Text>
+                        <Text>task to</Text>
+                        <Text strong>{taskStage?.title || "Unassigned"}</Text>
+                        <Text>stage.</Text>
                     </Text>
                 </div>
             </Skeleton>

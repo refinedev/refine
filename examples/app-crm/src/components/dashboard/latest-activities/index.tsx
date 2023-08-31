@@ -1,17 +1,35 @@
 import React from "react";
-import { Card, Skeleton, theme } from "antd";
+import { Card, theme } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 
 import { Text } from "../../text";
 import { DashboardLatestActivity } from "./activity";
 
-import { Audit } from "../../../interfaces/graphql";
+import { Audit, Task, TaskStage } from "../../../interfaces/graphql";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
 }) => {
     const { token } = theme.useToken();
+    const { data: tasks } = useList<Task>({
+        resource: "tasks",
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            fields: ["id", "title"],
+        },
+    });
+    const { data: taskStages } = useList<TaskStage>({
+        resource: "taskStages",
+        pagination: {
+            mode: "off",
+        },
+        meta: {
+            fields: ["id", "title"],
+        },
+    });
     const { data, isLoading, isError } = useList<Audit>({
         resource: "audits",
         pagination: {
@@ -21,6 +39,18 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             {
                 field: "id",
                 order: "desc",
+            },
+        ],
+        filters: [
+            {
+                field: "action",
+                operator: "eq",
+                value: "UPDATE",
+            },
+            {
+                field: "targetEntity",
+                operator: "eq",
+                value: "Task",
             },
         ],
         meta: {
@@ -53,6 +83,17 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                         isLoading={isLoading}
                         key={item.id}
                         item={item}
+                        task={
+                            tasks?.data.find(
+                                (task) => task.id === `${item.targetId}`,
+                            ) || undefined
+                        }
+                        taskStage={
+                            taskStages?.data.find(
+                                (taskStage) =>
+                                    taskStage.id === `${item.changes[0].to}`,
+                            ) || undefined
+                        }
                     />
                 ))}
             </>
