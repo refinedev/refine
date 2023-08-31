@@ -12,6 +12,19 @@ import { Event } from "../../../interfaces/graphql";
 
 type CalendarUpcomingEventsProps = { limit?: number; cardProps?: CardProps };
 
+const NoEvent = () => (
+    <span
+        style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "220px",
+        }}
+    >
+        No Upcomint Event
+    </span>
+);
+
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
     cardProps,
@@ -74,6 +87,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             {data?.data.map((item) => (
                 <CalendarUpcomingEvent key={item.id} item={item} />
             ))}
+            {!isLoading && data?.data.length === 0 && <NoEvent />}
         </Card>
     );
 };
