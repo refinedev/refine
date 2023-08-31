@@ -53,7 +53,7 @@ import {
     SalesCreateDetails,
 } from "./routes/scrumboard/sales";
 import {
-    ContactsPageWrapper,
+    ContactsListPage,
     ContactCreatePage,
     ContactEditPage,
     ContactShowPage,
@@ -216,9 +216,9 @@ const App: React.FC = () => {
                                 <Route
                                     path="/contacts"
                                     element={
-                                        <ContactsPageWrapper>
+                                        <ContactsListPage>
                                             <Outlet />
-                                        </ContactsPageWrapper>
+                                        </ContactsListPage>
                                     }
                                 >
                                     <Route index element={null} />
