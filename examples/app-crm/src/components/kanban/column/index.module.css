@@ -59,15 +59,15 @@
     flex: 1;
     overflow-y: auto;
     padding-bottom: 24px;
+    border: 2px dashed transparent;
 }
 
 .childrenWrapper {
     margin-top: 12px;
-    min-height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border: 2px dashed transparent;
 }
 
 .isOver {
