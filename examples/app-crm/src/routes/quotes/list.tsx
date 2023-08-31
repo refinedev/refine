@@ -114,7 +114,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
     const debouncedOnChange = debounce(onSearch, 500);
 
     return (
-        <>
+        <div className="page-container">
             <List
                 breadcrumb={false}
                 headerButtons={() => {
@@ -338,6 +338,6 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 </Table>
             </List>
             {children}
-        </>
+        </div>
     );
 };
