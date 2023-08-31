@@ -1,7 +1,10 @@
 import React from "react";
-import { Button, Form, FormItemProps, Skeleton } from "antd";
+import { Button, Form, Skeleton } from "antd";
 import { useForm } from "@refinedev/antd";
 import { EditOutlined } from "@ant-design/icons";
+
+import type { FormProps, FormItemProps } from "antd";
+import type { UseFormProps } from "@refinedev/antd";
 
 import { Text } from "../text";
 import styles from "./index.module.css";
@@ -17,6 +20,8 @@ type SingleElementFormProps = {
     onClick?: () => void;
     loading?: boolean;
     style?: React.CSSProperties;
+    useFormProps?: UseFormProps;
+    formProps?: FormProps;
 } & React.PropsWithChildren;
 
 export const SingleElementForm: React.FC<SingleElementFormProps> = ({
@@ -31,6 +36,8 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
     children,
     style,
     extra,
+    useFormProps,
+    formProps: formPropsFromProp,
 }) => {
     const { formProps, saveButtonProps } = useForm({
         action: "edit",
@@ -45,10 +52,11 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
             onUpdate?.();
         },
         mutationMode: "optimistic",
+        ...useFormProps,
     });
 
     return (
-        <Form layout="vertical" {...formProps}>
+        <Form layout="vertical" {...formProps} {...formPropsFromProp}>
             <div className={styles.container} style={style}>
                 <div className={styles.icon}>{icon}</div>
                 <div className={styles.content}>
