@@ -12,7 +12,9 @@ export const Breadcrumb = () => {
                 {breadcrumbs?.map((breadcrumb) => {
                     return (
                         <li key={`breadcrumb-${breadcrumb?.label}`}>
-                            <span className="mx-2">{breadcrumb?.icon}</span>
+                            {breadcrumb?.icon && (
+                                <span className="mx-2">{breadcrumb?.icon}</span>
+                            )}
                             {breadcrumb?.href ? (
                                 <Link to={breadcrumb?.href}>
                                     {breadcrumb?.label}
