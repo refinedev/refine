@@ -1,19 +1,20 @@
 import React from "react";
 import {
     useShow,
-    useResource,
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
 import { BackIcon, EditDocIcon } from "../../components/icons";
+import { IProduct } from "../../interfaces";
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     const { edit, list } = useNavigation();
-    const { id } = useResource();
-    const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+    const {
+        queryResult: { data },
+    } = useShow<IProduct>();
 
     const record = data?.data;
+    const id = record?.id;
 
     return (
         <div className="page-container">
@@ -45,7 +46,11 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
                     <div className="divider p-0 m-0"></div>
                     <div className="mb-2">
                         <h5 className="mb-1 font-bold">Price</h5>
-                        <div>{record?.price ? `$ ${record?.price}` : "Loading..."}</div>
+                        <div>
+                            {record?.price
+                                ? `$ ${record?.price}`
+                                : "Loading..."}
+                        </div>
                     </div>
                     <div className="mb-2">
                         <h5 className="mb-1 font-bold">Category</h5>

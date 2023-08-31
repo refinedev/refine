@@ -97,12 +97,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         getHeaderGroups,
         getRowModel,
         setOptions,
-        refineCore: {
-            tableQueryResult: { data: tableData },
-            filters,
-            setCurrent,
-            setFilters,
-        },
+        refineCore: { filters, setCurrent, setFilters },
         getState,
         setPageIndex,
         getCanPreviousPage,
@@ -111,7 +106,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         nextPage,
         previousPage,
         setPageSize,
-        getColumn,
     } = useTable({
         columns,
     });

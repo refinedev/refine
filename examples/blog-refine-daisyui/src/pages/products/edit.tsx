@@ -11,7 +11,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
 
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, queryResult },
         register,
         handleSubmit,
         setValue,
@@ -27,7 +27,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
 
     React.useEffect(() => {
         setValue("category.id", productsData?.category?.id);
-    }, [categoryOptions]);
+    }, [productsData, categoryOptions]);
 
     return (
         <div className="page-container">

@@ -11,10 +11,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
 
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { onFinish },
         register,
         handleSubmit,
-        resetField,
         formState: { errors },
     } = useForm();
 
