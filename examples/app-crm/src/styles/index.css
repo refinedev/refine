@@ -55,3 +55,30 @@
         color: rgba(0, 0, 0, 0.45);
     }
 }
+
+.leaflet-container {
+    height: 100%;
+    background-color: #fff;
+}
+
+.custom-marker-icon {
+    width: 4px;
+    height: 4px;
+    background-color: #13c2c2;
+    border-radius: 100%;
+    border: 1px solid #fff;
+}
+
+.custom-marker-cluster {
+    width: 30px;
+    height: 30px;
+    background-color: #13c2c2;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}

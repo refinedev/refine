@@ -15,6 +15,7 @@ import {
     DashboardLatestActivities,
 } from "../../components/dashboard";
 import { CalendarUpcomingEvents } from "../../components/calendar";
+import { CompaniesMap } from "../../components/dashboard/companies-map";
 
 export const DashboardPage: React.FC = () => {
     const { list } = useNavigation();
@@ -84,6 +85,9 @@ export const DashboardPage: React.FC = () => {
                         <DashboardLatestActivities limit={5} />
                     </Col>
                 </Row>
+            </Col>
+            <Col span={24}>
+                <CompaniesMap />
             </Col>
         </Row>
     );
