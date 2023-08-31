@@ -9,6 +9,7 @@ import {
 import { useForm, DeleteButton } from "@refinedev/antd";
 import { Form, Space, Typography, Input, Button, Card } from "antd";
 import { useParams } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text } from "../text";
 import { CustomAvatar } from "../custom-avatar";
@@ -52,7 +53,7 @@ export const CompanyNoteForm = () => {
 
     const { data: me } = useGetIdentity<User>();
 
-    const { formProps, onFinish, form } = useForm<CompanyNote>({
+    const { formProps, onFinish, form, formLoading } = useForm<CompanyNote>({
         action: "create",
         resource: "companyNotes",
         queryOptions: {
@@ -118,6 +119,7 @@ export const CompanyNoteForm = () => {
                     <Input
                         placeholder="Add your note"
                         style={{ backgroundColor: "#fff" }}
+                        addonAfter={formLoading && <LoadingOutlined />}
                     />
                 </Form.Item>
             </Form>

@@ -1,6 +1,7 @@
 import { BaseKey, HttpError, useGetIdentity, useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import { CustomAvatar } from "../../custom-avatar";
 import { ContactNote, User } from "../../../interfaces/graphql";
@@ -14,7 +15,7 @@ export const ContactCommentForm = () => {
 
     const { data: me } = useGetIdentity<User>();
 
-    const { formProps, onFinish, form } = useForm<
+    const { formProps, onFinish, form, formLoading } = useForm<
         ContactNote,
         HttpError,
         FormValues
@@ -67,8 +68,9 @@ export const ContactCommentForm = () => {
             >
                 <Form.Item name="note" noStyle>
                     <Input
-                        placeholder="Write a comment"
+                        placeholder="Add your note"
                         style={{ backgroundColor: "#fff" }}
+                        addonAfter={formLoading && <LoadingOutlined />}
                     />
                 </Form.Item>
             </Form>
