@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import { Text } from "../../../text";
 import { CustomAvatar } from "../../../custom-avatar";
-import { Audit, Task, TaskStage } from "../../../../interfaces/graphql";
+import { Audit, Task } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
 
@@ -12,12 +12,11 @@ type DashboardLatestActivityProps = {
     item: Audit;
     isLoading?: boolean;
     task?: Task;
-    taskStage?: TaskStage;
 };
 
 export const DashboardLatestActivity: React.FC<
     DashboardLatestActivityProps
-> = ({ item, isLoading, task, taskStage }) => {
+> = ({ item, isLoading, task }) => {
     const { id, user, createdAt } = item;
 
     return (
@@ -53,7 +52,7 @@ export const DashboardLatestActivity: React.FC<
                         <Text>moved</Text>
                         <Text strong>{task?.title}</Text>
                         <Text>task to</Text>
-                        <Text strong>{taskStage?.title || "Unassigned"}</Text>
+                        <Text strong>{task?.stage?.title || "Unassigned"}</Text>
                         <Text>stage.</Text>
                     </Text>
                 </div>

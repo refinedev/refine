@@ -6,7 +6,7 @@ import { useList } from "@refinedev/core";
 import { Text } from "../../text";
 import { DashboardLatestActivity } from "./activity";
 
-import { Audit, Task, TaskStage } from "../../../interfaces/graphql";
+import { Audit, Task } from "../../../interfaces/graphql";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
@@ -18,16 +18,13 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             mode: "off",
         },
         meta: {
-            fields: ["id", "title"],
-        },
-    });
-    const { data: taskStages } = useList<TaskStage>({
-        resource: "taskStages",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "title"],
+            fields: [
+                "id",
+                "title",
+                {
+                    stage: ["id", "title"],
+                },
+            ],
         },
     });
     const { data, isLoading, isError } = useList<Audit>({
@@ -86,12 +83,6 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                         task={
                             tasks?.data.find(
                                 (task) => task.id === `${item.targetId}`,
-                            ) || undefined
-                        }
-                        taskStage={
-                            taskStages?.data.find(
-                                (taskStage) =>
-                                    taskStage.id === `${item.changes[0].to}`,
                             ) || undefined
                         }
                     />
