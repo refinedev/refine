@@ -103,6 +103,7 @@ export const QuotesShowPage = () => {
                             <CustomAvatar
                                 name={company?.name}
                                 src={company?.avatarUrl}
+                                shape="square"
                                 style={{
                                     width: "64px",
                                     height: "64px",

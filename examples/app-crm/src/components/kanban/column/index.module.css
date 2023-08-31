@@ -3,19 +3,12 @@
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    padding-top: 16px;
-
-    &.default {
-        min-width: 258px;
-    }
+    padding-left: 16px;
+    padding-right: 16px;
+    min-width: 294px;
 
     &.solid {
-        min-width: 288px;
-        padding-left: 16px;
-        padding-right: 16px;
         background-color: #fff;
-        margin-top: 16px;
-        padding-top: 0;
     }
 }
 
@@ -66,16 +59,15 @@
     flex: 1;
     overflow-y: auto;
     padding-bottom: 24px;
+    border: 2px dashed transparent;
 }
 
 .childrenWrapper {
     margin-top: 12px;
-    min-height: 100%;
-    max-height: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border: 2px dashed transparent;
 }
 
 .isOver {

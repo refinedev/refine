@@ -218,6 +218,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                             return (
                                 <Space>
                                     <CustomAvatar
+                                        shape="square"
                                         name={record.company.name}
                                         src={record.company.avatarUrl}
                                     />
