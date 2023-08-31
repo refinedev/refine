@@ -60,6 +60,12 @@ export const CompanyNoteForm = () => {
         },
         redirect: false,
         mutationMode: "optimistic",
+        successNotification: () => ({
+            key: "company-comment",
+            message: "Successfully added comment",
+            description: "Successful",
+            type: "success",
+        }),
     });
 
     const handleOnFinish = async (values: CompanyNote) => {
