@@ -44,8 +44,8 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
         filters: [
             {
                 field: "action",
-                operator: "eq",
-                value: "UPDATE",
+                operator: "in",
+                value: ["CREATE", "UPDATE"],
             },
             {
                 field: "targetEntity",

@@ -49,7 +49,9 @@ export const DashboardLatestActivity: React.FC<
                         <Text className={styles.name} strong>
                             {user?.name}
                         </Text>
-                        <Text>moved</Text>
+                        <Text>
+                            {item.action === "CREATE" ? "created" : "moved"}
+                        </Text>
                         <Text strong>{deal?.title}</Text>
                         <Text>task to</Text>
                         <Text strong>
