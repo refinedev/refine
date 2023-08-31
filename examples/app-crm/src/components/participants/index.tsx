@@ -1,8 +1,8 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Avatar, Space, Tooltip } from "antd";
+import { Space, Tooltip } from "antd";
 import { FC } from "react";
-import { getNameInitials, getRandomColorFromString } from "../../utilities";
 import { User } from "../../interfaces/graphql";
+import { CustomAvatar } from "../custom-avatar";
 
 type Props = {
     userOne: Pick<User, "id" | "name" | "avatarUrl">;
@@ -18,27 +18,19 @@ export const Participants: FC<Props> = ({ userOne, userTwo }) => {
             }}
         >
             <Tooltip title={userOne.name}>
-                <Avatar
+                <CustomAvatar
                     size="small"
                     src={userOne.avatarUrl}
-                    style={{
-                        backgroundColor: getRandomColorFromString(userOne.name),
-                    }}
-                >
-                    {getNameInitials(userOne.name)}
-                </Avatar>
+                    name={userOne.name}
+                />
             </Tooltip>
             <PlusCircleOutlined className="xs tertiary" />
             <Tooltip title={userTwo.name}>
-                <Avatar
+                <CustomAvatar
                     size="small"
                     src={userTwo.avatarUrl}
-                    style={{
-                        backgroundColor: getRandomColorFromString(userTwo.name),
-                    }}
-                >
-                    {getNameInitials(userOne.name)}
-                </Avatar>
+                    name={userTwo.name}
+                />
             </Tooltip>
         </Space>
     );

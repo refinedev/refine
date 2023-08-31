@@ -11,13 +11,14 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Form, Input, Select, Space, Table } from "antd";
-import { PlusSquareOutlined } from "@ant-design/icons";
+import { Form, Input, Select, Space, Spin, Table } from "antd";
+import { PlusSquareOutlined, SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
 import { currencyNumber } from "../../utilities";
 import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
 import { Participants } from "../../components/participants";
+import { debounce } from "lodash";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -35,56 +36,53 @@ const statusOptions: { label: string; value: QuoteStatus }[] = [
 ];
 
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
-    const { tableProps, searchFormProps, filters, sorters } = useTable<
-        Quote,
-        HttpError,
-        QuoteFilter
-    >({
-        resource: "quotes",
-        onSearch: (values) => {
-            return [
-                {
-                    field: "title",
-                    operator: "contains",
-                    value: values.title,
-                },
-            ];
-        },
-        filters: {
-            initial: [
-                {
-                    field: "title",
-                    value: "",
-                    operator: "contains",
-                },
-                {
-                    field: "status",
-                    value: undefined,
-                    operator: "in",
-                },
-            ],
-        },
-        sorters: {
-            initial: [
-                {
-                    field: "createdAt",
-                    order: "desc",
-                },
-            ],
-        },
-        meta: {
-            fields: [
-                "id",
-                "title",
-                "status",
-                "total",
-                "createdAt",
-                { company: ["id", "name", "avatarUrl"] },
-                { contact: ["id", "name", "avatarUrl"] },
-                { salesOwner: ["id", "name", "avatarUrl"] },
-            ],
-        },
-    });
+    const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
+        useTable<Quote, HttpError, { title: string }>({
+            resource: "quotes",
+            onSearch: (values) => {
+                return [
+                    {
+                        field: "title",
+                        operator: "contains",
+                        value: values.title,
+                    },
+                ];
+            },
+            filters: {
+                initial: [
+                    {
+                        field: "title",
+                        value: "",
+                        operator: "contains",
+                    },
+                    {
+                        field: "status",
+                        value: undefined,
+                        operator: "in",
+                    },
+                ],
+            },
+            sorters: {
+                initial: [
+                    {
+                        field: "createdAt",
+                        order: "desc",
+                    },
+                ],
+            },
+            meta: {
+                fields: [
+                    "id",
+                    "title",
+                    "status",
+                    "total",
+                    "createdAt",
+                    { company: ["id", "name", "avatarUrl"] },
+                    { contact: ["id", "name", "avatarUrl"] },
+                    { salesOwner: ["id", "name", "avatarUrl"] },
+                ],
+            },
+        });
 
     const { selectProps: selectPropsCompanies } = useSelect({
         resource: "companies",
@@ -107,6 +105,13 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
             fields: ["id", "name"],
         },
     });
+    const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        searchFormProps?.onFinish?.({
+            title: e.target.value ?? "",
+        });
+    };
+
+    const debouncedOnChange = debounce(onSearch, 500);
 
     return (
         <>
@@ -114,15 +119,27 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 breadcrumb={false}
                 headerButtons={() => {
                     return (
-                        <Form
-                            {...searchFormProps}
-                            onChange={searchFormProps.form?.submit}
-                            layout="inline"
-                        >
+                        <Form {...searchFormProps} layout="inline">
                             <Form.Item name="title" noStyle>
-                                <Input.Search
+                                <Input
                                     size="large"
-                                    placeholder="Search"
+                                    prefix={
+                                        <SearchOutlined className="anticon tertiary" />
+                                    }
+                                    suffix={
+                                        <Spin
+                                            size="small"
+                                            style={{
+                                                visibility:
+                                                    tableQueryResult.isFetching
+                                                        ? "visible"
+                                                        : "hidden",
+                                            }}
+                                            spinning={true}
+                                        />
+                                    }
+                                    placeholder="Search by name"
+                                    onChange={debouncedOnChange}
                                 />
                             </Form.Item>
                         </Form>
