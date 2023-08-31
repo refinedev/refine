@@ -19,7 +19,7 @@ import styles from "./settings.module.css";
 
 export const SettingsPage = () => {
     return (
-        <>
+        <div className="page-container">
             <Space
                 size={16}
                 style={{
@@ -46,7 +46,7 @@ export const SettingsPage = () => {
                     <CompanyInfo />
                 </Col>
             </Row>
-        </>
+        </div>
     );
 };
 

@@ -20,7 +20,7 @@ export const CalendarPageWrapper = ({ children }: Props) => {
     >([]);
 
     return (
-        <>
+        <div className="page-container">
             <Row gutter={[32, 32]}>
                 <Col span={6}>
                     <CreateButton
@@ -70,6 +70,6 @@ export const CalendarPageWrapper = ({ children }: Props) => {
                 </Col>
             </Row>
             {children}
-        </>
+        </div>
     );
 };

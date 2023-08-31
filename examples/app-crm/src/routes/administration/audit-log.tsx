@@ -45,7 +45,7 @@ export const AuditLogPage = () => {
     });
 
     return (
-        <div>
+        <div className="page-container">
             <Typography.Title level={3} style={{ marginBottom: "44px" }}>
                 Audit Log
             </Typography.Title>

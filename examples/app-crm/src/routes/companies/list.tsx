@@ -104,7 +104,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const debouncedOnChange = debounce(onSearch, 500);
 
     return (
-        <>
+        <div className="page-container">
             <List
                 breadcrumb={false}
                 headerButtons={() => {
@@ -201,6 +201,6 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                 )}
             </List>
             {children}
-        </>
+        </div>
     );
 };

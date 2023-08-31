@@ -106,7 +106,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
     const debouncedOnChange = debounce(onSearch, 500);
 
     return (
-        <>
+        <div className="page-container">
             <List
                 breadcrumb={false}
                 headerButtons={() => {
@@ -184,6 +184,6 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                 )}
                 {children}
             </List>
-        </>
+        </div>
     );
 };
