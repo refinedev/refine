@@ -73,6 +73,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                             style={{
                                                 display: "flex",
                                                 flexDirection: "column",
+                                                alignItems: "flex-start",
                                                 gap: "4px",
                                             }}
                                         >
