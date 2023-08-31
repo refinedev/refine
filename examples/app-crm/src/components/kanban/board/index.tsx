@@ -40,10 +40,12 @@ export const KanbanBoard: FC<PropsWithChildren<Props>> = ({
     };
 
     return (
-        <div className={styles.container}>
-            <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
-                {children}
-            </DndContext>
+        <div className={styles.wrapper}>
+            <div className={styles.container}>
+                <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+                    {children}
+                </DndContext>
+            </div>
         </div>
     );
 };
