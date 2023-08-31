@@ -1,7 +1,7 @@
 import React from "react";
 import { HttpError } from "@refinedev/core";
 import { CreateButton, SaveButton, useTable } from "@refinedev/antd";
-import { Form, Input, Radio } from "antd";
+import { Form, Input, Radio, Spin } from "antd";
 import {
     UnorderedListOutlined,
     AppstoreOutlined,
@@ -27,6 +27,7 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
         setPageSize,
         filters,
         sorters,
+        tableQueryResult,
     } = useTable<Contact, HttpError, { name: string }>({
         sorters: {
             initial: [
@@ -109,6 +110,18 @@ export const ContactsPageWrapper: React.FC<Props> = ({ children }) => {
                                 size="large"
                                 prefix={
                                     <SearchOutlined className="anticon tertiary" />
+                                }
+                                suffix={
+                                    <Spin
+                                        size="small"
+                                        style={{
+                                            visibility:
+                                                tableQueryResult.isFetching
+                                                    ? "visible"
+                                                    : "hidden",
+                                        }}
+                                        spinning={true}
+                                    />
                                 }
                                 placeholder="Search by name"
                                 onChange={debouncedOnChange}

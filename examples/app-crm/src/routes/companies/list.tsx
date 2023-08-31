@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useState } from "react";
 import { HttpError, useGo, useNavigation } from "@refinedev/core";
 import { List, useTable } from "@refinedev/antd";
-import { Form, Input, Space, Radio, Button } from "antd";
+import { Form, Input, Space, Radio, Button, Spin } from "antd";
 import {
     AppstoreOutlined,
     PlusCircleOutlined,
@@ -116,6 +116,18 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                         size="large"
                                         prefix={
                                             <SearchOutlined className="anticon tertiary" />
+                                        }
+                                        suffix={
+                                            <Spin
+                                                size="small"
+                                                style={{
+                                                    visibility:
+                                                        tableQueryResult.isFetching
+                                                            ? "visible"
+                                                            : "hidden",
+                                                }}
+                                                spinning={true}
+                                            />
                                         }
                                         placeholder="Search by name"
                                         onChange={debouncedOnChange}
