@@ -3,16 +3,16 @@ import {
     DeleteButton,
     EditButton,
     FilterDropdown,
-    getDefaultSortOrder,
     useSelect,
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
-import { Avatar, Input, Select, Space, Table, TableProps, Tooltip } from "antd";
+import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
+import { CustomAvatarGroup } from "../custom-avatar-group";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -20,11 +20,7 @@ type Props = {
     sorters: CrudSorting;
 };
 
-export const CompaniesTableView: FC<Props> = ({
-    tableProps,
-    filters,
-    sorters,
-}) => {
+export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
     const { selectProps: selectPropsUsers } = useSelect({
         resource: "users",
         optionLabel: "name",
@@ -165,23 +161,15 @@ export const CompaniesTableView: FC<Props> = ({
                 )}
                 render={(_, record: Company) => {
                     const value = record.contacts;
+                    const avatars = value?.nodes?.map((contact) => {
+                        return {
+                            name: contact.name,
+                            src: contact.avatarUrl as string | undefined,
+                        };
+                    });
 
                     return (
-                        <Avatar.Group maxCount={3} size="small">
-                            {value?.nodes?.map((contact) => {
-                                return (
-                                    <Tooltip
-                                        title={contact.name}
-                                        key={contact.id}
-                                    >
-                                        <CustomAvatar
-                                            name={contact.name}
-                                            src={contact.avatarUrl}
-                                        />
-                                    </Tooltip>
-                                );
-                            })}
-                        </Avatar.Group>
+                        <CustomAvatarGroup avatars={avatars} size={"small"} />
                     );
                 }}
             />
