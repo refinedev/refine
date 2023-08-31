@@ -1,34 +1,23 @@
 import React from "react";
-import { Skeleton, Tag } from "antd";
+import { Skeleton } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "../../../text";
 import { CustomAvatar } from "../../../custom-avatar";
-import { Audit } from "../../../../interfaces/graphql";
+import { Audit, Deal } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
 
 type DashboardLatestActivityProps = {
     item: Audit;
     isLoading?: boolean;
+    deal?: Deal;
 };
 
 export const DashboardLatestActivity: React.FC<
     DashboardLatestActivityProps
-> = ({ item, isLoading }) => {
-    const { id, action, targetEntity, targetId, user, createdAt } = item;
-    const renderTag = () => {
-        switch (action) {
-            case "CREATE":
-                return <Tag color="success">Created</Tag>;
-            case "DELETE":
-                return <Tag color="error">Updated</Tag>;
-            case "UPDATE":
-                return <Tag color="blue">Updated</Tag>;
-            default:
-                return null;
-        }
-    };
+> = ({ item, isLoading, deal }) => {
+    const { id, user, createdAt } = item;
 
     return (
         <div key={id} className={styles.container}>
@@ -47,8 +36,8 @@ export const DashboardLatestActivity: React.FC<
                     <CustomAvatar
                         shape="square"
                         size={48}
-                        src={user?.avatarUrl}
-                        name={user?.name}
+                        src={deal?.company.avatarUrl}
+                        name={deal?.company.name}
                     />
                 </div>
                 <div className={styles.action}>
@@ -60,10 +49,12 @@ export const DashboardLatestActivity: React.FC<
                         <Text className={styles.name} strong>
                             {user?.name}
                         </Text>
-                        {renderTag()}
-                        <Text strong>{targetEntity}</Text>
-                        <Text>with</Text>
-                        <Text strong>{targetId}</Text>
+                        <Text>moved</Text>
+                        <Text strong>{deal?.title}</Text>
+                        <Text>task to</Text>
+                        <Text strong>
+                            {deal?.stage?.title || "Unassigned"}.
+                        </Text>
                     </Text>
                 </div>
             </Skeleton>

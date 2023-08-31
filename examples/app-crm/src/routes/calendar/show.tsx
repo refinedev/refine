@@ -44,10 +44,10 @@ export const CalendarShowPage: React.FC = () => {
         },
     });
 
-    const { data, isLoading, isError } = queryResult;
+    const { data, isLoading, isError, error } = queryResult;
 
     if (isError) {
-        console.error("Error fetching event", isError);
+        console.error("Error fetching event", error);
         return null;
     }
 

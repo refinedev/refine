@@ -105,7 +105,7 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                             format={
                                 isAllDayEvent
                                     ? "YYYY/MM/DD"
-                                    : "YYYY/MM/DD HH:mm:ss"
+                                    : "YYYY/MM/DD HH:mm"
                             }
                         />
                     </Form.Item>

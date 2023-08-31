@@ -22,7 +22,7 @@ type TaskStagesResponse = {
 export const DashboardTasksChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
     const { list } = useNavigation();
-    const { data, isError } = useCustom<TaskStagesResponse>({
+    const { data, isError, error } = useCustom<TaskStagesResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -43,7 +43,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
     });
 
     if (isError) {
-        console.error("Error fetching task chart data", isError);
+        console.error("Error fetching task chart data", error);
         return null;
     }
 

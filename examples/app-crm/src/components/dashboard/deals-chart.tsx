@@ -36,7 +36,7 @@ type YearlyDealGroupedResponse = {
 export const DashboardDealsChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
     const { list } = useNavigation();
-    const { data, isError } = useCustom<YearlyDealGroupedResponse>({
+    const { data, isError, error } = useCustom<YearlyDealGroupedResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -61,7 +61,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
     });
 
     if (isError) {
-        console.error("Error fetching deals chart data", isError);
+        console.error("Error fetching deals chart data", error);
         return null;
     }
 

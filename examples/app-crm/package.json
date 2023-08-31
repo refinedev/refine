@@ -26,7 +26,10 @@
     "react-dom": "^18.0.0",
     "react-instantsearch": "^7.0.1",
     "react-router-dom": "^6.8.1",
-    "recharts": "^2.7.3"
+    "recharts": "^2.7.3",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-cluster": "^2.1.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
@@ -41,6 +44,7 @@
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/leaflet": "^1.9.3",
     "@types/testing-library__jest-dom": "^5.14.3",
     "@typescript-eslint/eslint-plugin": "5.48.0",
     "@typescript-eslint/parser": "5.48.0",

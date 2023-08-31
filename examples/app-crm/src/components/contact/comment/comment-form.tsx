@@ -1,6 +1,7 @@
 import { BaseKey, HttpError, useGetIdentity, useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import { CustomAvatar } from "../../custom-avatar";
 import { ContactNote, User } from "../../../interfaces/graphql";
@@ -14,7 +15,7 @@ export const ContactCommentForm = () => {
 
     const { data: me } = useGetIdentity<User>();
 
-    const { formProps, onFinish, form } = useForm<
+    const { formProps, onFinish, form, formLoading } = useForm<
         ContactNote,
         HttpError,
         FormValues
@@ -42,6 +43,11 @@ export const ContactCommentForm = () => {
             return;
         }
 
+        const note = values.note.trim();
+        if (!note) {
+            return;
+        }
+
         try {
             await onFinish({
                 ...values,
@@ -59,6 +65,7 @@ export const ContactCommentForm = () => {
                 alignItems: "center",
                 gap: "12px",
                 padding: "1rem",
+                borderBottom: "1px solid #F0F0F0",
             }}
         >
             <CustomAvatar
@@ -71,10 +78,23 @@ export const ContactCommentForm = () => {
                 style={{ width: "100%" }}
                 onFinish={handleOnFinish}
             >
-                <Form.Item name="note" noStyle>
+                <Form.Item
+                    name="note"
+                    noStyle
+                    rules={[
+                        {
+                            required: true,
+                            pattern: new RegExp(
+                                /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
+                            ),
+                            message: "Please enter a note",
+                        },
+                    ]}
+                >
                     <Input
-                        placeholder="Write a note"
+                        placeholder="Add your note"
                         style={{ backgroundColor: "#fff" }}
+                        addonAfter={formLoading && <LoadingOutlined />}
                     />
                 </Form.Item>
             </Form>
