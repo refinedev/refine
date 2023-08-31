@@ -30,8 +30,8 @@ export const ContactCommentForm = () => {
         redirect: false,
         mutationMode: "optimistic",
         successNotification: () => ({
-            key: "contact-comment",
-            message: "Successfully added comment",
+            key: "contact-note",
+            message: "Successfully added note",
             description: "Successful",
             type: "success",
         }),
@@ -73,7 +73,7 @@ export const ContactCommentForm = () => {
             >
                 <Form.Item name="note" noStyle>
                     <Input
-                        placeholder="Write a comment"
+                        placeholder="Write a note"
                         style={{ backgroundColor: "#fff" }}
                     />
                 </Form.Item>

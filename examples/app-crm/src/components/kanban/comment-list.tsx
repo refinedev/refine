@@ -31,6 +31,12 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                 resource: "taskComments",
             });
         },
+        successNotification: () => ({
+            key: "task-update-comment",
+            message: "Successfully updated comment",
+            description: "Successful",
+            type: "success",
+        }),
     });
     const { data: me } = useGetIdentity<User>();
 
@@ -114,6 +120,12 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                                     resource: "taskComments",
                                 });
                             }}
+                            successNotification={() => ({
+                                key: "task-delete-comment",
+                                message: "Successfully deleted comment",
+                                description: "Successful",
+                                type: "success",
+                            })}
                             style={{
                                 padding: 0,
                                 fontSize: "12px",
