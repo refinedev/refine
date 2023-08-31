@@ -1,10 +1,21 @@
 import { getDefaultFilter } from "@refinedev/core";
 import { FilterDropdown, useTable } from "@refinedev/antd";
-import { Card, Input, Select, Space, Table } from "antd";
-import { SearchOutlined, TeamOutlined } from "@ant-design/icons";
+import { Card, Col, Input, Row, Select, Space, Table } from "antd";
+import {
+    EnvironmentOutlined,
+    GlobalOutlined,
+    MailOutlined,
+    PhoneOutlined,
+    SearchOutlined,
+    ShopOutlined,
+    TeamOutlined,
+} from "@ant-design/icons";
+import cn from "classnames";
 import { CustomAvatar, RoleTag, Text } from "../../components";
 import { User } from "../../interfaces/graphql";
 import { Logo } from "../../components/logo";
+
+import styles from "./settings.module.css";
 
 export const SettingsPage = () => {
     return (
@@ -22,9 +33,19 @@ export const SettingsPage = () => {
                     Globex Corporation
                 </Text>
             </Space>
-            <div style={{ marginTop: "32px" }}>
-                <UsersTable />
-            </div>
+            <Row
+                gutter={[32, 32]}
+                style={{
+                    marginTop: 32,
+                }}
+            >
+                <Col span={16}>
+                    <UsersTable />
+                </Col>
+                <Col span={8}>
+                    <CompanyInfo />
+                </Col>
+            </Row>
         </>
     );
 };
@@ -180,6 +201,74 @@ const UsersTable = () => {
                     }}
                 />
             </Table>
+        </Card>
+    );
+};
+
+const companyInfo = [
+    {
+        label: "Address",
+        value: "2158 Mount Tabor, Westbury, New York, USA 11590",
+        icon: <EnvironmentOutlined className="tertiary" />,
+    },
+    {
+        label: "Phone",
+        value: "+123 456 789 01 23",
+        icon: <PhoneOutlined className="tertiary" />,
+    },
+    {
+        label: "Email",
+        value: "info@globexcorp.com",
+        icon: <MailOutlined className="tertiary" />,
+    },
+    {
+        label: "Website",
+        value: "https://globexcorp.com",
+        icon: <GlobalOutlined className="tertiary" />,
+    },
+];
+
+export const CompanyInfo = () => {
+    return (
+        <Card
+            title={
+                <Space>
+                    <ShopOutlined />
+                    <Text>Company info</Text>
+                </Space>
+            }
+            headStyle={{
+                padding: "1rem",
+            }}
+            bodyStyle={{
+                padding: "0",
+            }}
+            style={{
+                maxWidth: "500px",
+            }}
+        >
+            <div className={styles.list}>
+                {companyInfo.map((item) => {
+                    return (
+                        <div key={item.label} className={styles.listItem}>
+                            <div>{item.icon}</div>
+                            <div className={styles.listItemContent}>
+                                <Text size="xs" className="tertiary">
+                                    {item.label}
+                                </Text>
+                                <Text
+                                    className={cn(
+                                        styles.listItemContent,
+                                        "primary",
+                                    )}
+                                >
+                                    {item.value}
+                                </Text>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
         </Card>
     );
 };
