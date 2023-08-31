@@ -28,6 +28,7 @@ export const CustomAvatarGroup: FC<Props> = ({
     const visibleAvatars = avatars.slice(0, maxCount);
     const remainingAvatars = avatars.slice(maxCount);
     const hasRemainingAvatars = remainingAvatars.length > 0;
+    const shouldOverlap = overlap && avatars.length > 3;
 
     const getImageSize = (size: AvatarProps["size"] | number) => {
         if (typeof size === "number") {
@@ -43,8 +44,6 @@ export const CustomAvatarGroup: FC<Props> = ({
                 return overlap ? "36px" : "32px";
         }
     };
-
-    const shouldOverlap = overlap && avatars.length > 3;
 
     return (
         <div
