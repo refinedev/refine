@@ -60,6 +60,12 @@ export const CompanyNoteForm = () => {
         },
         redirect: false,
         mutationMode: "optimistic",
+        successNotification: () => ({
+            key: "company-note",
+            message: "Successfully added note",
+            description: "Successful",
+            type: "success",
+        }),
     });
 
     const handleOnFinish = async (values: CompanyNote) => {
@@ -167,6 +173,12 @@ export const CompanyNoteList = () => {
                 resource: "companyNotes",
             });
         },
+        successNotification: () => ({
+            key: "company-update-note",
+            message: "Successfully updated note",
+            description: "Successful",
+            type: "success",
+        }),
     });
 
     const { data: me } = useGetIdentity<User>();
@@ -280,6 +292,13 @@ export const CompanyNoteList = () => {
                                         recordItemId={item.id}
                                         size="small"
                                         type="link"
+                                        successNotification={() => ({
+                                            key: "company-delete-note",
+                                            message:
+                                                "Successfully deleted note",
+                                            description: "Successful",
+                                            type: "success",
+                                        })}
                                         icon={null}
                                         className="ant-typography secondary"
                                         style={{

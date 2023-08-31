@@ -32,6 +32,12 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
                 resource: "contactNotes",
             });
         },
+        successNotification: () => ({
+            key: "contact-note",
+            message: "Successfully updated note",
+            description: "Successful",
+            type: "success",
+        }),
     });
     const { data: me } = useGetIdentity<User>();
 
@@ -107,6 +113,12 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
                             meta={{ operation: "contactNote" }}
                             size="small"
                             type="link"
+                            successNotification={() => ({
+                                key: "contact-delete-note",
+                                message: "Successfully deleted note",
+                                description: "Successful",
+                                type: "success",
+                            })}
                             icon={null}
                             style={{
                                 padding: 0,

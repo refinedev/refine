@@ -57,6 +57,13 @@ export const CalendarManageCategories: React.FC<
                                 deleteMutation({
                                     resource: "eventCategories",
                                     id: category.id,
+                                    successNotification: () => ({
+                                        key: "event-category-delete",
+                                        message:
+                                            "Successfully deleted category",
+                                        description: "Successful",
+                                        type: "success",
+                                    }),
                                 });
                             }}
                         >
@@ -94,6 +101,12 @@ export const CalendarManageCategories: React.FC<
                                     fields: ["id", "title"],
                                 },
                                 values,
+                                successNotification: () => ({
+                                    key: "event-category-create",
+                                    message: "Successfully created categories",
+                                    description: "Successful",
+                                    type: "success",
+                                }),
                             },
                             {
                                 onSuccess: () => {

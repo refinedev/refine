@@ -16,6 +16,14 @@ export const KanbanCreateStage = () => {
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "tasks" });
         },
+        successNotification: () => {
+            return {
+                key: "create-stage",
+                type: "success",
+                message: "Successfully created stage",
+                description: "Successful",
+            };
+        },
     });
 
     return (

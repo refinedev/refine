@@ -41,6 +41,12 @@ export const CommentForm = () => {
                 id: taskId,
             });
         },
+        successNotification: () => ({
+            key: "task-comment",
+            message: "Successfully added comment",
+            description: "Successful",
+            type: "success",
+        }),
     });
 
     const handleOnFinish = async (values: TaskComment) => {
