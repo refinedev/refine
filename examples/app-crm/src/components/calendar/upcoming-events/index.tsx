@@ -21,7 +21,7 @@ const NoEvent = () => (
             height: "220px",
         }}
     >
-        No Upcomint Event
+        No Upcoming Event
     </span>
 );
 
