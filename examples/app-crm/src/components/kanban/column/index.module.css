@@ -7,9 +7,6 @@
     padding-right: 16px;
     min-width: 294px;
 
-    &.default {
-    }
-
     &.solid {
         background-color: #fff;
     }
