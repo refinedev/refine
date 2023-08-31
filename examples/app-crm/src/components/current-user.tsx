@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Button, Popover } from "antd";
 import { useGetIdentity, useLogout } from "@refinedev/core";
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 
+import { AccountSettings } from "./account-settings";
 import { CustomAvatar } from "./custom-avatar";
 import { Text } from "./text";
 import type { User } from "../interfaces/graphql";
 
 export const CurrentUser = () => {
+    const [opened, setOpened] = useState(false);
     const { data: user } = useGetIdentity<User>();
     const { mutate: logout } = useLogout();
 
@@ -39,6 +42,7 @@ export const CurrentUser = () => {
                     icon={<SettingOutlined />}
                     type="text"
                     block
+                    onClick={() => setOpened(true)}
                 >
                     Account settings
                 </Button>
@@ -57,18 +61,28 @@ export const CurrentUser = () => {
     );
 
     return (
-        <Popover
-            placement="bottomRight"
-            content={content}
-            trigger="click"
-            overlayInnerStyle={{ padding: 0 }}
-        >
-            <CustomAvatar
-                name={user?.name}
-                src={user?.avatarUrl}
-                size="default"
-                style={{ cursor: "pointer" }}
-            />
-        </Popover>
+        <>
+            <Popover
+                placement="bottomRight"
+                content={content}
+                trigger="click"
+                overlayInnerStyle={{ padding: 0 }}
+                overlayStyle={{ zIndex: 999 }}
+            >
+                <CustomAvatar
+                    name={user?.name}
+                    src={user?.avatarUrl}
+                    size="default"
+                    style={{ cursor: "pointer" }}
+                />
+            </Popover>
+            {user && (
+                <AccountSettings
+                    opened={opened}
+                    setOpened={setOpened}
+                    userId={user.id}
+                />
+            )}
+        </>
     );
 };
