@@ -1,6 +1,5 @@
 import { FC } from "react";
 import {
-    Avatar,
     Button,
     Card,
     Col,
@@ -16,6 +15,7 @@ import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
 import { useDelete, useNavigation } from "@refinedev/core";
+import { CustomAvatarGroup } from "../custom-avatar-group";
 
 type Props = {
     loading?: boolean;
@@ -36,6 +36,15 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
         <>
             <Row wrap gutter={[32, 32]}>
                 {companies.map((company) => {
+                    const relatedContactAvatars = company.contacts?.nodes?.map(
+                        (contact) => {
+                            return {
+                                name: contact.name,
+                                src: contact.avatarUrl as string | undefined,
+                            };
+                        },
+                    );
+
                     return (
                         <Col
                             key={company.id}
@@ -56,45 +65,36 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                             height: "60px",
                                             display: "flex",
                                             justifyContent: "space-between",
-                                            alignItems: "center",
+                                            alignItems: "flex-start",
                                             padding: "0 16px",
                                         }}
                                     >
-                                        <Space
-                                            direction="vertical"
-                                            align="start"
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                alignItems: "flex-start",
+                                                gap: "6px",
+                                            }}
                                         >
                                             <Text size="xs">
                                                 Related contacts
                                             </Text>
-                                            <Avatar.Group
-                                                maxCount={3}
-                                                size="small"
-                                            >
-                                                {company.contacts?.nodes?.map(
-                                                    (contact) => {
-                                                        return (
-                                                            <Tooltip
-                                                                title={
-                                                                    contact.name
-                                                                }
-                                                                key={contact.id}
-                                                            >
-                                                                <CustomAvatar
-                                                                    name={
-                                                                        contact.name
-                                                                    }
-                                                                    src={
-                                                                        contact.avatarUrl
-                                                                    }
-                                                                />
-                                                            </Tooltip>
-                                                        );
-                                                    },
-                                                )}
-                                            </Avatar.Group>
-                                        </Space>
-                                        <Space direction="vertical" align="end">
+                                            <CustomAvatarGroup
+                                                size={"small"}
+                                                overlap
+                                                gap="4px"
+                                                avatars={relatedContactAvatars}
+                                            />
+                                        </div>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                alignItems: "flex-end",
+                                                gap: "6px",
+                                            }}
+                                        >
                                             <Text size="xs">Sales owner</Text>
                                             <Tooltip
                                                 title={company.salesOwner?.name}
@@ -110,7 +110,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                     }
                                                 />
                                             </Tooltip>
-                                        </Space>
+                                        </div>
                                     </div>,
                                 ]}
                             >

@@ -1,21 +1,13 @@
 import React, { CSSProperties } from "react";
 import {
-    useTranslate,
-    useLogout,
     CanAccess,
     ITreeMenu,
-    useIsExistAuthentication,
     useMenu,
-    useRefineContext,
     useLink,
-    useActiveAuthProvider,
     pickNotDeprecated,
-    useWarnAboutChange,
 } from "@refinedev/core";
 import { useThemedLayoutContext } from "@refinedev/antd";
 import {
-    DashboardOutlined,
-    LogoutOutlined,
     UnorderedListOutlined,
     BarsOutlined,
     LeftOutlined,
@@ -46,15 +38,8 @@ export const Sider: React.FC = () => {
     } = useThemedLayoutContext();
 
     const Link = useLink();
-    const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { hasDashboard } = useRefineContext();
-    const authProvider = useActiveAuthProvider();
-    const { mutate: mutateLogout } = useLogout({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
@@ -122,43 +107,10 @@ export const Sider: React.FC = () => {
         });
     };
 
-    const handleLogout = () => {
-        if (warnWhen) {
-            const confirm = window.confirm(
-                translate(
-                    "warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have unsaved changes.",
-                ),
-            );
-
-            if (confirm) {
-                setWarnWhen(false);
-                mutateLogout();
-            }
-        } else {
-            mutateLogout();
-        }
-    };
-
-    const logout = (
-        <Menu.Item
-            key="logout"
-            onClick={() => handleLogout()}
-            icon={<LogoutOutlined />}
-        >
-            {translate("buttons.logout", "Logout")}
-        </Menu.Item>
-    );
-
     const items = renderTreeView(menuItems, selectedKey);
 
     const renderSider = () => {
-        return (
-            <>
-                {items}
-                {logout}
-            </>
-        );
+        return <>{items}</>;
     };
 
     const renderMenu = () => {

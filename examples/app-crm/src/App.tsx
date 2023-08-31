@@ -64,8 +64,7 @@ import {
     QuotesEditPage,
     QuotesShowPage,
 } from "./routes/quotes";
-import { SettingsPage } from "./routes/administration/settings";
-import { AuditLogPage } from "./routes/administration/audit-log";
+import { SettingsPage, AuditLogPage } from "./routes/administration";
 
 import "./utilities/init-dayjs";
 

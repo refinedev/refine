@@ -9,3 +9,4 @@ export * from "./participants";
 export * from "./single-element-form";
 export * from "./select-option-with-avatar";
 export * from "./algolia-search";
+export * from "./role-tag";

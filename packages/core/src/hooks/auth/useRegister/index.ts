@@ -15,6 +15,7 @@ import {
     TRegisterData,
 } from "../../../interfaces";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseRegisterLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -111,40 +112,46 @@ export function useRegister<TVariables = {}>({
     const { register: registerFromContext } = useAuthBindingsContext();
     const { close, open } = useNotification();
 
+    const { keys, preferLegacyKeys } = useKeys();
+
     const mutation = useMutation<
         AuthActionResponse,
         Error | RefineError,
         TVariables,
         unknown
-    >(["useRegister"], registerFromContext, {
-        onSuccess: async ({ success, redirectTo, error }) => {
-            if (success) {
-                close?.("register-error");
-            }
+    >(
+        keys().auth().action("register").get(preferLegacyKeys),
+        registerFromContext,
+        {
+            onSuccess: async ({ success, redirectTo, error }) => {
+                if (success) {
+                    close?.("register-error");
+                }
 
-            if (error || !success) {
-                open?.(buildNotification(error));
-            }
+                if (error || !success) {
+                    open?.(buildNotification(error));
+                }
 
-            await invalidateAuthStore();
+                await invalidateAuthStore();
 
-            if (redirectTo) {
-                if (routerType === "legacy") {
-                    replace(redirectTo);
+                if (redirectTo) {
+                    if (routerType === "legacy") {
+                        replace(redirectTo);
+                    } else {
+                        go({ to: redirectTo, type: "replace" });
+                    }
                 } else {
-                    go({ to: redirectTo, type: "replace" });
+                    if (routerType === "legacy") {
+                        replace("/");
+                    }
                 }
-            } else {
-                if (routerType === "legacy") {
-                    replace("/");
-                }
-            }
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
+            },
+            ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
         },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-    });
+    );
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TRegisterData,
@@ -152,7 +159,10 @@ export function useRegister<TVariables = {}>({
         TVariables,
         unknown
     >(
-        ["useRegister", "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys().auth().action("register").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         legacyRegisterFromContext,
         {
             onSuccess: async (redirectPathFromAuth) => {

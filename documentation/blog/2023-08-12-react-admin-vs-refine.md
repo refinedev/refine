@@ -1,5 +1,5 @@
 ---
-title: React-admin vs refine
+title: React-admin vs refine - Which React Framework is Best for B2B Apps?
 description: We'll compare the architectural structures of two web development frameworks - refine and React-admin.
 slug: react-admin-vs-refine
 authors: ali_emir

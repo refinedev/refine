@@ -24,7 +24,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ExportButton>` is an Chakra UI'ss [`<Button>`](https://chakra-ui.com/docs/components/button/usage) with a default export icon and a default text with "Export". It only has presentational value.
+`<ExportButton>` is an Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) with a default export icon and a default text with "Export". It only has presentational value.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
@@ -173,7 +173,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);

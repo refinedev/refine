@@ -34,10 +34,10 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ListButton>` is using Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -179,11 +179,11 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);

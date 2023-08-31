@@ -25,6 +25,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 interface UseCustomMutationConfig {
     headers?: {};
@@ -112,6 +113,7 @@ export const useCustomMutation = <
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const getMeta = useMeta();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -198,6 +200,10 @@ export const useCustomMutation = <
                     type: "error",
                 });
             },
+            mutationKey: keys()
+                .data()
+                .mutation("customMutation")
+                .get(preferLegacyKeys),
             ...mutationOptions,
         },
     );

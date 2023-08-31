@@ -34,6 +34,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
     /**
@@ -119,6 +120,7 @@ export const useOne = <
     });
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
     const pickedDataProvider = pickDataProvider(
@@ -126,8 +128,6 @@ export const useOne = <
         dataProviderName,
         resources,
     );
-
-    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
 
     const { getOne } = dataProvider(pickedDataProvider);
 
@@ -159,7 +159,15 @@ export const useOne = <
         TError,
         GetOneResponse<TData>
     >(
-        queryKey.detail(id),
+        keys()
+            .data(pickedDataProvider)
+            .resource(identifier ?? "")
+            .action("one")
+            .id(id ?? "")
+            .params({
+                ...(preferredMeta || {}),
+            })
+            .get(preferLegacyKeys),
         ({ queryKey, pageParam, signal }) =>
             getOne<TQueryFnData>({
                 resource: resource?.name ?? "",

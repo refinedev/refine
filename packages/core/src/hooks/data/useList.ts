@@ -36,6 +36,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 export interface UseListConfig {
     pagination?: Pagination;
@@ -155,6 +156,7 @@ export const useList = <
     });
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const pickedDataProvider = pickDataProvider(
         identifier,
@@ -193,8 +195,6 @@ export const useList = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
-
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
@@ -222,19 +222,25 @@ export const useList = <
         TError,
         GetListResponse<TData>
     >(
-        queryKey.list({
-            filters: prefferedFilters,
-            hasPagination: isServerPagination,
-            ...(isServerPagination && {
-                pagination: prefferedPagination,
-            }),
-            ...(sorters && {
-                sorters,
-            }),
-            ...(config?.sort && {
-                sort: config?.sort,
-            }),
-        }),
+        keys()
+            .data(pickedDataProvider)
+            .resource(identifier ?? "")
+            .action("list")
+            .params({
+                ...(preferredMeta || {}),
+                filters: prefferedFilters,
+                hasPagination: isServerPagination,
+                ...(isServerPagination && {
+                    pagination: prefferedPagination,
+                }),
+                ...(sorters && {
+                    sorters,
+                }),
+                ...(config?.sort && {
+                    sort: config?.sort,
+                }),
+            })
+            .get(preferLegacyKeys),
         ({ queryKey, pageParam, signal }) => {
             return getList<TQueryFnData>({
                 resource: resource?.name ?? "",

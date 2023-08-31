@@ -1,31 +1,32 @@
 import { IntegrationsType } from "../types/integrations";
 import {
+    Ably,
     Airtable,
     Antd,
     Appwrite,
+    Chakra,
     Directus,
+    Dp,
+    Elide,
+    ElideGraphql,
+    EntRefine,
     Firebase,
     Graphql,
     Hasura,
+    HookForm,
+    Kbar,
     Mantine,
     Medusa,
     Mui,
     Nest,
     Nextjs,
     Nhost,
+    React,
     Remix,
     Rest,
     Strapi,
     Supabase,
-    React,
-    HookForm,
-    Kbar,
-    Ably,
-    Dp,
-    Elide,
     UseGenerated,
-    EntRefine,
-    Chakra,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -183,6 +184,20 @@ export const integrations: IntegrationsType = {
             description:
                 "Connector for backends created with <strong>Elide</strong>",
             url: "https://github.com/chirdeeptomar/refine-elide-rest",
+            status: "stable",
+            contributors: [
+                {
+                    name: "chirdeeptomar",
+                    url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
+        {
+            name: "Elide GraphQL Data Provider",
+            icon: ElideGraphql,
+            description:
+                "Connector for GraphQL backends created with <strong>Elide</strong>",
+            url: "https://github.com/chirdeeptomar/refine-elide-graphql",
             status: "stable",
             contributors: [
                 {

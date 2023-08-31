@@ -87,6 +87,7 @@ export const handleRefineOptions = ({
             options?.disableServerSideValidation ??
             defaultRefineOptions.disableServerSideValidation,
         projectId: options?.projectId,
+        useNewQueryKeys: options?.useNewQueryKeys,
     };
 
     const disableTelemetryWithDefault =

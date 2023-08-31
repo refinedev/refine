@@ -72,8 +72,8 @@ export const CompanyInfoForm = () => {
     return (
         <Card
             title={
-                <Space>
-                    <ShopOutlined />
+                <Space size={15}>
+                    <ShopOutlined className="sm" />
                     <Text>Company info</Text>
                 </Space>
             }

@@ -7,7 +7,7 @@ swizzle: true
 `<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -148,11 +148,11 @@ Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and 
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show and hide the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -186,7 +186,7 @@ render(
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+> The `resourceNameOrRouteName` prop is deprecated. Use the `resource` prop instead.
 
 `resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
 

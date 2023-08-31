@@ -4,10 +4,10 @@ title: Create
 swizzle: true
 ---
 
-`<CreateButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<CreateButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -107,7 +107,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `meta`
 
@@ -125,7 +125,7 @@ const MyComponent = () => {
 
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -165,7 +165,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+The `accessControl` prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { CreateButton } from "@refinedev/mui";
@@ -183,7 +183,7 @@ export const MyListComponent = () => {
 
 > `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
+`resourceNameOrRouteName` is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;

@@ -1,5 +1,29 @@
 # @refinedev/core
 
+## 4.36.0
+
+### Minor Changes
+
+-   [#4865](https://github.com/refinedev/refine/pull/4865) [`946e13408e7`](https://github.com/refinedev/refine/commit/946e13408e7e96020187a6e3c384163e8e711f0d) Thanks [@aliemir](https://github.com/aliemir)! - Updated query keys to be more consistent and structured.
+
+    Added mutation keys to the `useMutation` calls with the same structure as the query keys.
+
+    Added `options.useNewQueryKeys` option to the `<Refine>` component for opting into the new query keys.
+
+    Check out the [documentation](https://refine.dev/docs/api-reference/core/components/refine-config/#usenewquerykeys) for more information.
+
+## 4.35.0
+
+### Minor Changes
+
+-   [#4865](https://github.com/refinedev/refine/pull/4865) [`946e13408e7`](https://github.com/refinedev/refine/commit/946e13408e7e96020187a6e3c384163e8e711f0d) Thanks [@aliemir](https://github.com/aliemir)! - Updated query keys to be more consistent and structured.
+
+    Added mutation keys to the `useMutation` calls with the same structure as the query keys.
+
+    Added `options.useNewQueryKeys` option to the `<Refine>` component for opting into the new query keys.
+
+    Check out the [documentation](https://refine.dev/docs/api-reference/core/components/refine-config/#usenewquerykeys) for more information.
+
 ## 4.34.0
 
 ### Minor Changes
