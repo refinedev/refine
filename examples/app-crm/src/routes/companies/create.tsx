@@ -6,7 +6,7 @@ import {
     useGo,
 } from "@refinedev/core";
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import {
     Button,
     Col,
@@ -110,25 +110,23 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                             salesOwnerId: values.salesOwnerId,
                         });
 
-                        if (values.contacts?.length === 0) {
-                            return;
-                        }
-
                         const createdCompany = (data as CreateResponse<Company>)
                             ?.data;
 
-                        await createManyMutateAsync({
-                            resource: "contacts",
-                            values:
-                                values.contacts?.map((contact) => ({
-                                    ...contact,
-                                    companyId: createdCompany.id,
-                                    salesOwnerId: createdCompany.salesOwner.id,
-                                })) ?? [],
-                            successNotification: false,
-                        });
+                        if ((values.contacts ?? [])?.length > 0) {
+                            await createManyMutateAsync({
+                                resource: "contacts",
+                                values:
+                                    values.contacts?.map((contact) => ({
+                                        ...contact,
+                                        companyId: createdCompany.id,
+                                        salesOwnerId:
+                                            createdCompany.salesOwner.id,
+                                    })) ?? [],
+                                successNotification: false,
+                            });
+                        }
 
-                        close();
                         go({
                             to: searchParams.get("to") ?? pathname,
                             query: {
