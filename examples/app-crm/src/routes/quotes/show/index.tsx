@@ -81,7 +81,7 @@ export const QuotesShowPage = () => {
                         {title}
                     </Text>
                     <Space>
-                        <PdfExport {...(data?.data || {})} />
+                        <PdfExport />
                         <Button
                             icon={<EditOutlined />}
                             onClick={() => setEditModalVisible(true)}
