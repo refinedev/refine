@@ -22,6 +22,7 @@ import {
     TUpdatePasswordData,
     UpdatePasswordFormTypes,
 } from "../../../interfaces";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseUpdatePasswordLegacyProps<
     TVariables extends UpdatePasswordFormTypes,
@@ -135,6 +136,8 @@ export function useUpdatePassword<
         useAuthBindingsContext();
     const { close, open } = useNotification();
 
+    const { keys, preferLegacyKeys } = useKeys();
+
     const parsed = useParsed();
     const { useLocation } = useRouterContext();
     const { search } = useLocation();
@@ -156,7 +159,7 @@ export function useUpdatePassword<
         TVariables,
         unknown
     >(
-        ["useUpdatePassword"],
+        keys().auth().action("updatePassword").get(preferLegacyKeys),
         async (variables) => {
             return updatePasswordFromContext?.({
                 ...params,
@@ -194,7 +197,10 @@ export function useUpdatePassword<
         TVariables,
         unknown
     >(
-        ["useUpdatePassword", "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys().auth().action("updatePassword").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         async (variables) => {
             return legacyUpdatePasswordFromContext?.({
                 ...params,

@@ -10,13 +10,10 @@ import { AuditLogContext } from "@contexts/auditLog";
 import { ResourceContext } from "@contexts/resource";
 import { useGetIdentity } from "@hooks/auth";
 import { BaseKey, LogParams } from "../../../interfaces";
-import {
-    hasPermission,
-    pickNotDeprecated,
-    queryKeys,
-} from "@definitions/helpers";
+import { hasPermission, pickNotDeprecated } from "@definitions/helpers";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useActiveAuthProvider } from "@definitions/helpers";
+import { useKeys } from "@hooks/useKeys";
 
 type LogRenameData =
     | {
@@ -72,6 +69,7 @@ export const useLog = <
 > => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
+    const { keys, preferLegacyKeys } = useKeys();
 
     const authProvider = useActiveAuthProvider();
 
@@ -112,7 +110,10 @@ export const useLog = <
                 author: identityData ?? authorData?.data,
             });
         },
-        logMutationOptions,
+        {
+            mutationKey: keys().audit().action("log").get(),
+            ...logMutationOptions,
+        },
     );
 
     const rename = useMutation<
@@ -127,10 +128,16 @@ export const useLog = <
         {
             onSuccess: (data) => {
                 if (data?.resource) {
-                    const queryKey = queryKeys(data?.resource);
-                    queryClient.invalidateQueries(queryKey.logList());
+                    queryClient.invalidateQueries(
+                        keys()
+                            .audit()
+                            .resource(data?.resource ?? "")
+                            .action("list")
+                            .get(preferLegacyKeys),
+                    );
                 }
             },
+            mutationKey: keys().audit().action("rename").get(),
             ...renameMutationOptions,
         },
     );

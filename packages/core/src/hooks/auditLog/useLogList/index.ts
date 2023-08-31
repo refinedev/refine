@@ -6,8 +6,8 @@ import {
 } from "@tanstack/react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
-import { queryKeys } from "@definitions/helpers";
 import { HttpError, MetaQuery } from "../../../interfaces";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseLogProps<TQueryFnData, TError, TData> = {
     resource: string;
@@ -41,11 +41,15 @@ export const useLogList = <
     queryOptions,
 }: UseLogProps<TQueryFnData, TError, TData>): UseQueryResult<TData> => {
     const { get } = useContext(AuditLogContext);
-
-    const queryKey = queryKeys(resource, undefined, metaData);
+    const { keys, preferLegacyKeys } = useKeys();
 
     const queryResponse = useQuery<TQueryFnData, TError, TData>(
-        queryKey.logList(meta),
+        keys()
+            .audit()
+            .resource(resource)
+            .action("list")
+            .params(meta)
+            .get(preferLegacyKeys),
         () =>
             get?.({
                 resource,

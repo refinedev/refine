@@ -4,17 +4,17 @@ title: useDrawerForm
 sidebar_label: useDrawerForm
 ---
 
-[`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
+The [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
 
 We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
 :::info
-`useDrawerForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+The `useDrawerForm` hook is extended from the [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
 
-We'll show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
+We will show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
 <Tabs
 defaultValue="create"
@@ -25,7 +25,7 @@ values={[
 
 <TabItem value="create">
 
-In this example, we will show you how to `"create"` a record with `useDrawerForm`.
+In this example, we will show you how to `"create"` a record with `useDrawerForm`:
 
 ```tsx live url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);
@@ -247,7 +247,7 @@ render(<RefineMantineDemo />);
 
 <TabItem value="edit">
 
-In this example, we will show you how to `"edit"` a record with `useDrawerForm`.
+In this example, we will show you how to `"edit"` a record with `useDrawerForm`:
 
 ```tsx live url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);
@@ -519,8 +519,6 @@ const table = useTable({
 });
 ```
 
-:::
-
 :::caution
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
 :::
@@ -533,7 +531,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ### `refineCoreProps`
 
-All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties are also available in `useStepsForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) documentation.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -547,7 +545,9 @@ const drawerForm = useDrawerForm({
 
 ### `initialValues`
 
-> Only available in `"create"` form.
+:::caution
+Only available in `"create"` form.
+:::
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
@@ -561,9 +561,7 @@ const drawerForm = useDrawerForm({
 
 ### `defaultVisible`
 
-> Default: `false`
-
-When `true`, drawer will be visible by default.
+When `true`, drawer will be visible by default. It is `false` by default.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -575,9 +573,7 @@ const drawerForm = useDrawerForm({
 
 ### `autoSubmitClose`
 
-> Default: `true`
-
-When `true`, drawer will be closed after successful submit.
+When `true`, drawer will be closed after successful submit. It is `true` by default.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -589,9 +585,7 @@ const drawerForm = useDrawerForm({
 
 ### `autoResetForm`
 
-> Default: `true`
-
-When `true`, form will be reset after successful submit.
+When `true`, form will be reset after successful submit. It is `true` by default.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -603,9 +597,7 @@ const drawerForm = useDrawerForm({
 
 ### `syncWithLocation`
 
-> Default: `false`
-
-When `true`, the drawers visibility state and the `id` of the record will be synced with the URL.
+When `true`, the drawers visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
 This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
 
@@ -618,9 +610,9 @@ const drawerForm = useDrawerForm({
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. `elapsedTime` is the elapsed time in milliseconds.
 
-Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+Return the `overtime` object from this hook. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useDrawerForm({
@@ -663,6 +655,7 @@ useDrawerForm({
     }
 })
 ```
+
 #### `debounce`
 
 Set the debounce time for the `autoSave` prop. Default value is `1000`.
@@ -681,7 +674,7 @@ useDrawerForm({
 ## Return Values
 
 :::tip
-All [`useForm`][use-form-refine-mantine] return values also available in `useDrawerForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) documentation.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
 :::
@@ -717,7 +710,7 @@ console.log(title); // "Create Post"
 
 ### `close`
 
-A function that can close the drawer. It's useful when you want to close the drawer manually.
+`close` is a function that can close the drawer. It's useful when you want to close the drawer manually.
 
 ```tsx
 const {
@@ -743,7 +736,7 @@ return (
 
 ### `submit`
 
-A function that can submit the form. It's useful when you want to submit the form manually.
+`submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
 ```tsx
 const {
@@ -769,7 +762,7 @@ return (
 
 ### `show`
 
-A function that can show the drawer.
+`shows` is a function that can show the drawer.
 
 ```tsx
 const {
@@ -802,7 +795,7 @@ return (
 
 ### `saveButtonProps`
 
-It contains all the props needed by the "submit" button within the drawer (disabled,loading etc.). You can manually pass these props to your custom button.
+`saveButtonProps` contains all the props needed by the "submit" button within the drawer (disabled,loading etc.). You can manually pass these props to your custom button.
 
 ```tsx
 const { getInputProps, modal, saveButtonProps } = useDrawerForm();
@@ -827,6 +820,7 @@ return (
     </Drawer>
 );
 ```
+
 ### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -836,16 +830,18 @@ const { overtime } = useDrawerForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### `autoSaveProps`
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
+
 ### How can I change the form data before submitting it to the API?
 
 You may need to modify the form data before it is sent to the API.
 
-For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API, as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/core": "^4.34.0",
-    "@refinedev/cli": "^2.7.6",
+    "@refinedev/core": "^4.36.0",
+    "@refinedev/cli": "^2.9.0",
     "@refinedev/react-router-v6": "^4.5.0",
     "@refinedev/simple-rest": "^4.5.0",
     "bootstrap": "^5.2.1",

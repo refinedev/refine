@@ -542,7 +542,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                   Rows per page:
                 </p>
                 <div
-                  class="MuiInputBase-root MuiInputBase-colorPrimary css-16c50h-MuiInputBase-root-MuiTablePagination-select"
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input css-16c50h-MuiInputBase-root-MuiTablePagination-select"
                 >
                   <div
                     aria-expanded="false"

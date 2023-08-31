@@ -34,6 +34,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 type useCreateParams<TData, TError, TVariables> = {
     /**
@@ -131,6 +132,7 @@ export const useCreate = <
     const {
         options: { textTransformers },
     } = useRefineContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -277,6 +279,7 @@ export const useCreate = <
                     type: "error",
                 });
             },
+            mutationKey: keys().data().mutation("create").get(preferLegacyKeys),
             ...mutationOptions,
         },
     );

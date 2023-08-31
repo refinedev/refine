@@ -40,7 +40,7 @@ export const PostList: React.FC = () => {
 
 <br />
 
-Here, we show a button somewhere on the page and use `show` on it's onClick callback to trigger opening of the `<Modal>`. When the user clicks on the button, the `<Modal>` appears.
+Here, we show a button somewhere on the page and use `show` on it's `onClick` callback to trigger opening of the `<Modal>`. When the user clicks on the button, the `<Modal>` appears.
 
 ## API Reference
 
@@ -55,5 +55,3 @@ Here, we show a button somewhere on the page and use `show` on it's onClick call
 | show       | Returns the visibility state of the Modal   | `() => void` |
 | close      | A function that can open the modal          | `() => void` |
 | modalProps | Specify a function that can close the modal | `() => void` |
-
-[modal]: https://ant.design/components/modal/#API
