@@ -73,7 +73,18 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                         {...formProps}
                         initialValues={{ comment: item.comment }}
                     >
-                        <Form.Item name="comment" noStyle>
+                        <Form.Item
+                            name="comment"
+                            rules={[
+                                {
+                                    required: true,
+                                    pattern: new RegExp(
+                                        /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
+                                    ),
+                                    message: "Please enter a comment",
+                                },
+                            ]}
+                        >
                             <Input.TextArea
                                 autoFocus
                                 style={{ backgroundColor: "#fff" }}

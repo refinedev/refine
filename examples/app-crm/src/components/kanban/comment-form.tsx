@@ -22,7 +22,7 @@ export const CommentForm = () => {
 
     const { data: me } = useGetIdentity<User>();
 
-    const { formProps, formLoading } = useForm<
+    const { formProps, formLoading, form, onFinish } = useForm<
         TaskComment,
         HttpError,
         FormValues
@@ -47,13 +47,20 @@ export const CommentForm = () => {
         if (!taskId) {
             return;
         }
+        const comment = values.comment.trim();
+        if (!comment) {
+            form.resetFields();
+            return;
+        }
 
-        formProps?.onFinish?.({
-            ...values,
-            taskId,
-        });
+        try {
+            await onFinish({
+                ...values,
+                taskId,
+            });
+        } catch (error) {}
 
-        formProps?.form?.resetFields?.();
+        form.resetFields();
     };
 
     return (
@@ -68,7 +75,19 @@ export const CommentForm = () => {
                 style={{ width: "100%" }}
                 onFinish={handleOnFinish}
             >
-                <Form.Item name="comment" noStyle>
+                <Form.Item
+                    name="comment"
+                    noStyle
+                    rules={[
+                        {
+                            required: true,
+                            pattern: new RegExp(
+                                /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
+                            ),
+                            message: "Please enter a comment",
+                        },
+                    ]}
+                >
                     <Input
                         placeholder="Write a comment"
                         addonAfter={formLoading && <LoadingOutlined />}
