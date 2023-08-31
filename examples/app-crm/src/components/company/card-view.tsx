@@ -69,9 +69,12 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                             padding: "0 16px",
                                         }}
                                     >
-                                        <Space
-                                            direction="vertical"
-                                            align="start"
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                gap: "4px",
+                                            }}
                                         >
                                             <Text size="xs">
                                                 Related contacts
@@ -82,8 +85,15 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                 gap="4px"
                                                 avatars={relatedContactAvatars}
                                             />
-                                        </Space>
-                                        <Space direction="vertical" align="end">
+                                        </div>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                alignItems: "flex-end",
+                                                gap: "4px",
+                                            }}
+                                        >
                                             <Text size="xs">Sales owner</Text>
                                             <Tooltip
                                                 title={company.salesOwner?.name}
@@ -99,7 +109,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                                                     }
                                                 />
                                             </Tooltip>
-                                        </Space>
+                                        </div>
                                     </div>,
                                 ]}
                             >

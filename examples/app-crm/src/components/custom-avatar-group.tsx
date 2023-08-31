@@ -32,16 +32,16 @@ export const CustomAvatarGroup: FC<Props> = ({
 
     const getImageSize = (size: AvatarProps["size"] | number) => {
         if (typeof size === "number") {
-            return overlap ? `${size + 4}px` : `${size}px`;
+            return shouldOverlap ? `${size + 4}px` : `${size}px`;
         }
 
         switch (size) {
             case "large":
-                return overlap ? "44px" : "40px";
+                return shouldOverlap ? "44px" : "40px";
             case "small":
-                return overlap ? "28px" : "24px";
+                return shouldOverlap ? "28px" : "24px";
             default:
-                return overlap ? "36px" : "32px";
+                return shouldOverlap ? "36px" : "32px";
         }
     };
 
@@ -67,7 +67,9 @@ export const CustomAvatarGroup: FC<Props> = ({
                                 cursor: "pointer",
                                 transform,
                                 zIndex: index,
-                                border: overlap ? "2px solid #fff" : "none",
+                                border: shouldOverlap
+                                    ? "2px solid #fff"
+                                    : "none",
                                 width: getImageSize(size),
                                 height: getImageSize(size),
                                 ...avatarStyle,
