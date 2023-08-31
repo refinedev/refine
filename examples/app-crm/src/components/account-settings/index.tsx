@@ -47,6 +47,9 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
     const { data, isLoading, isError } = useOne<User>({
         resource: "users",
         id: userId,
+        queryOptions: {
+            enabled: opened,
+        },
         meta: {
             fields: [
                 "id",
