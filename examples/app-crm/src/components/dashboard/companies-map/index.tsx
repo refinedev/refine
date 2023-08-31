@@ -49,9 +49,9 @@ export const CompaniesMap: React.FC = () => {
                         <MapContainer
                             style={{ flex: 1, width: "100%", height: "100%" }}
                             center={[51.505, -0.09]}
-                            zoom={1}
+                            zoom={2}
                             scrollWheelZoom={false}
-                            maxZoom={3}
+                            maxZoom={2}
                             zoomControl={false}
                         >
                             <MarkerClusterGroup
