@@ -22,7 +22,7 @@ type View = "card" | "table";
 export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const { pathname } = useLocation();
     const { createUrl } = useNavigation();
-    const [view, setView] = useState<View>("table");
+    const [view, setView] = useState<View>("card");
     const go = useGo();
 
     const {
@@ -130,7 +130,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                 <Radio.Button value="table">
                                     <UnorderedListOutlined />
                                 </Radio.Button>
-                                <Radio.Button value="list">
+                                <Radio.Button value="card">
                                     <AppstoreOutlined />
                                 </Radio.Button>
                             </Radio.Group>
