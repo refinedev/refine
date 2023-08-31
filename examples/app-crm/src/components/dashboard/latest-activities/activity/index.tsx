@@ -53,7 +53,7 @@ export const DashboardLatestActivity: React.FC<
                             {item.action === "CREATE" ? "created" : "moved"}
                         </Text>
                         <Text strong>{deal?.title}</Text>
-                        <Text>task to</Text>
+                        <Text>deal to</Text>
                         <Text strong>
                             {deal?.stage?.title || "Unassigned"}.
                         </Text>
