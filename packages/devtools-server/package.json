@@ -1,0 +1,72 @@
+{
+  "name": "@refinedev/devtools-server",
+  "private": false,
+  "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
+  "author": "refine",
+  "version": "0.0.1",
+  "license": "MIT",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start:client": "refine build -- --watch --force --config src/client/vite.config.ts",
+    "build:client": "tsc && refine build -- --config src/client/vite.config.ts",
+    "start:server": "node dist/index.js",
+    "start": "npm run start:client & tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "NODE_ENV=production tsup --format esm,cjs,iife --minify --legacy-output",
+    "test": "jest --passWithNoTests --runInBand",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "error-stack-parser": "^2.1.4",
+    "express": "^4.18.2",
+    "@refinedev/devtools-ui": "^0.0.1",
+    "@refinedev/devtools-shared": "^0.0.1",
+    "ws": "^8.13.0",
+    "lodash-es": "^4.17.21",
+    "lodash": "^4.17.21",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "lowdb": "^6.0.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@refinedev/cli": "^2.9.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@types/jest": "^29.2.4",
+    "@types/ws": "^8.5.5",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "react-router-dom": "^6.8.1",
+    "ts-jest": "^29.0.3",
+    "tslib": "^2.3.1",
+    "tsup": "^6.7.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.3.1",
+    "typescript": "^4.7.4",
+    "esbuild-copy-static-files": "^0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/refinedev/refine.git",
+    "directory": "packages/devtools"
+  },
+  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+  "publishConfig": {
+    "access": "public"
+  }
+}
