@@ -16,6 +16,14 @@ export const SalesCreateStage = () => {
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "deals" });
         },
+        successNotification: () => {
+            return {
+                key: "create-stage",
+                type: "success",
+                message: "Successfully created stage",
+                description: "Successful",
+            };
+        },
     });
 
     return (

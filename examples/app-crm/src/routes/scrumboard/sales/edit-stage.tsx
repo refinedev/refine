@@ -17,6 +17,14 @@ export const SalesEditStage = () => {
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "deals" });
         },
+        successNotification: () => {
+            return {
+                key: "edit-stage",
+                type: "success",
+                message: "Successfully updated stage",
+                description: "Successful",
+            };
+        },
     });
 
     return (

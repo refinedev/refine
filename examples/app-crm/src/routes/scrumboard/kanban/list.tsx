@@ -1,3 +1,6 @@
+import { MenuProps } from "antd";
+import { FC, PropsWithChildren, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     HttpError,
     useDelete,
@@ -16,9 +19,6 @@ import {
 } from "../../../components/kanban";
 import { FullScreenLoading, ProjectCardMemo } from "../../../components";
 import { Task, TaskStage, TaskUpdateInput } from "../../../interfaces/graphql";
-import { MenuProps } from "antd";
-import { FC, PropsWithChildren, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 
 const taskFragment = [
     "id",
@@ -152,6 +152,12 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         deleteStage({
             resource: "taskStage",
             id: args.stageId,
+            successNotification: () => ({
+                key: "delete-stage",
+                type: "success",
+                message: "Successfully deleted stage",
+                description: "Successful",
+            }),
         });
     };
 

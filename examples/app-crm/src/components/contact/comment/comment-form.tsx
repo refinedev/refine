@@ -30,6 +30,12 @@ export const ContactCommentForm = () => {
         },
         redirect: false,
         mutationMode: "optimistic",
+        successNotification: () => ({
+            key: "contact-note",
+            message: "Successfully added note",
+            description: "Successful",
+            type: "success",
+        }),
     });
 
     const handleOnFinish = async (values: ContactNote) => {

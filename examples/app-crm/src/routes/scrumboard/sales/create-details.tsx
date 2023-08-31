@@ -37,6 +37,14 @@ export const SalesCreateDetails = () => {
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "deals" });
         },
+        successNotification: () => {
+            return {
+                key: "edit-deal",
+                type: "success",
+                message: "Successfully updated deal",
+                description: "Successful",
+            };
+        },
     });
 
     useEffect(() => {
