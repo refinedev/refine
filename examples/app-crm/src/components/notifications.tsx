@@ -4,35 +4,10 @@ import { Badge, Popover, Button, Space, Divider, Spin } from "antd";
 import { BellOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
+import { NotificationMessage } from "./notification-message";
 import { CustomAvatar } from "./custom-avatar";
 import { Text } from "./text";
 import { Audit, Task } from "../interfaces/graphql";
-
-const createNotificationMessage = (audit: Audit, task?: Task) => {
-    if (!task) return "Loading...";
-
-    if (audit.action === "UPDATE") {
-        return (
-            <Text>
-                <Text strong>{audit.user?.name}</Text>
-                {" moved "}
-                <Text strong>{task.title}</Text>
-                {" task to "}
-                <Text strong>{task.stage?.title || "Unassigned"}</Text> stage.
-            </Text>
-        );
-    } else if (audit.action === "CREATE") {
-        return (
-            <Text>
-                <Text strong>{audit.user?.name}</Text>
-                {" created "}
-                <Text strong>{task.title}</Text>
-                {" task in "}
-                <Text strong>{task.stage?.title || "Unassigned"}</Text> stage.
-            </Text>
-        );
-    }
-};
 
 export const Notifications: React.FC = () => {
     const [open, setOpen] = useState(false);
@@ -73,7 +48,7 @@ export const Notifications: React.FC = () => {
     });
 
     const targetIds = data?.data?.map((audit) => audit.targetId);
-    const { data: tastData } = useMany<Task>({
+    const { data: taskData } = useMany<Task>({
         resource: "tasks",
         ids: targetIds ?? [],
         meta: {
@@ -85,7 +60,7 @@ export const Notifications: React.FC = () => {
     });
 
     const getTask = (id: string | number) => {
-        return tastData?.data?.find((task) => task.id == id);
+        return taskData?.data?.find((task) => task.id == id);
     };
 
     const content = (
@@ -98,14 +73,12 @@ export const Notifications: React.FC = () => {
                         name={audit.user?.name}
                     />
                     <Space direction="vertical" size={0}>
-                        <Text>
-                            {createNotificationMessage(
-                                audit,
-                                getTask(audit.targetId),
-                            )}
-                        </Text>
+                        <NotificationMessage
+                            audit={audit}
+                            task={getTask(audit.targetId)}
+                        />
                         <Text size="xs" type="secondary">
-                            {dayjs(audit.user?.createdAt).fromNow()}
+                            {dayjs(audit?.createdAt).fromNow()}
                         </Text>
                     </Space>
                 </Space>
