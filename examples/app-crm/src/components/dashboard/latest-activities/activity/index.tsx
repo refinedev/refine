@@ -4,19 +4,19 @@ import dayjs from "dayjs";
 
 import { Text } from "../../../text";
 import { CustomAvatar } from "../../../custom-avatar";
-import { Audit, Task } from "../../../../interfaces/graphql";
+import { Audit, Deal } from "../../../../interfaces/graphql";
 
 import styles from "./index.module.css";
 
 type DashboardLatestActivityProps = {
     item: Audit;
     isLoading?: boolean;
-    task?: Task;
+    deal?: Deal;
 };
 
 export const DashboardLatestActivity: React.FC<
     DashboardLatestActivityProps
-> = ({ item, isLoading, task }) => {
+> = ({ item, isLoading, deal }) => {
     const { id, user, createdAt } = item;
 
     return (
@@ -34,10 +34,10 @@ export const DashboardLatestActivity: React.FC<
             >
                 <div className={styles.avatar}>
                     <CustomAvatar
-                        shape="circle"
+                        shape="square"
                         size={48}
-                        src={user?.avatarUrl}
-                        name={user?.name}
+                        src={deal?.company.avatarUrl}
+                        name={deal?.company.name}
                     />
                 </div>
                 <div className={styles.action}>
@@ -50,10 +50,11 @@ export const DashboardLatestActivity: React.FC<
                             {user?.name}
                         </Text>
                         <Text>moved</Text>
-                        <Text strong>{task?.title}</Text>
+                        <Text strong>{deal?.title}</Text>
                         <Text>task to</Text>
-                        <Text strong>{task?.stage?.title || "Unassigned"}</Text>
-                        <Text>stage.</Text>
+                        <Text strong>
+                            {deal?.stage?.title || "Unassigned"}.
+                        </Text>
                     </Text>
                 </div>
             </Skeleton>

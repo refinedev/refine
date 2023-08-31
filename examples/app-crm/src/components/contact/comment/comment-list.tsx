@@ -68,9 +68,20 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
                     </Text>
                 </div>
 
-                {id ? (
+                {id === item.id ? (
                     <Form {...formProps} initialValues={{ note: item.note }}>
-                        <Form.Item name="note" noStyle>
+                        <Form.Item
+                            name="note"
+                            rules={[
+                                {
+                                    required: true,
+                                    pattern: new RegExp(
+                                        /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
+                                    ),
+                                    message: "Please enter a note",
+                                },
+                            ]}
+                        >
                             <Input.TextArea
                                 autoFocus
                                 style={{

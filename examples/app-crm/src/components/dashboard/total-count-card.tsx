@@ -11,7 +11,7 @@ export const DashboardTotalCountCard: React.FC<{
     type: "companies" | "contacts" | "deals";
 }> = ({ icon, title, type }) => {
     const { token } = theme.useToken();
-    const { data, isLoading, isError } = useCustom({
+    const { data, isLoading, isError, error } = useCustom({
         method: "post",
         url: API_URL,
         meta: {
@@ -24,7 +24,7 @@ export const DashboardTotalCountCard: React.FC<{
     });
 
     if (isError) {
-        console.error("Error fetching dashboard data", isError);
+        console.error("Error fetching dashboard data", error);
         return null;
     }
 

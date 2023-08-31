@@ -37,6 +37,11 @@ export const ContactCommentForm = () => {
             return;
         }
 
+        const note = values.note.trim();
+        if (!note) {
+            return;
+        }
+
         try {
             await onFinish({
                 ...values,
@@ -54,6 +59,7 @@ export const ContactCommentForm = () => {
                 alignItems: "center",
                 gap: "12px",
                 padding: "1rem",
+                borderBottom: "1px solid #F0F0F0",
             }}
         >
             <CustomAvatar
@@ -66,7 +72,19 @@ export const ContactCommentForm = () => {
                 style={{ width: "100%" }}
                 onFinish={handleOnFinish}
             >
-                <Form.Item name="note" noStyle>
+                <Form.Item
+                    name="note"
+                    noStyle
+                    rules={[
+                        {
+                            required: true,
+                            pattern: new RegExp(
+                                /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
+                            ),
+                            message: "Please enter a note",
+                        },
+                    ]}
+                >
                     <Input
                         placeholder="Add your note"
                         style={{ backgroundColor: "#fff" }}

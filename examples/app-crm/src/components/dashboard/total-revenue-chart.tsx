@@ -32,7 +32,7 @@ type DealRevenueResponse = {
 
 export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     const { token } = theme.useToken();
-    const { data, isError } = useCustom<DealRevenueResponse>({
+    const { data, isError, error } = useCustom<DealRevenueResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -65,7 +65,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     });
 
     if (isError) {
-        console.error("Error fetching dashboard data", isError);
+        console.error("Error fetching dashboard data", error);
         return null;
     }
 
