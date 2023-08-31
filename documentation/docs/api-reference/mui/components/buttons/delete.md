@@ -4,11 +4,12 @@ title: Delete
 swizzle: true
 ---
 
-`<DeleteButton>` uses Material UI [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<DeleteButton>` uses Material UI's [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
+
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Usage
@@ -185,7 +186,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `onSuccess`
 
@@ -242,8 +243,6 @@ render(
 ### `mutationMode`
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
-
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -304,9 +303,11 @@ interface IPost {
 }
 ```
 
+> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
+
 ### `hideText`
 
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+`hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
@@ -418,7 +419,7 @@ render(
 
 ## How to override confirm texts?
 
-You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
+You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what 'ok' and 'cancel' buttons text look like with `confirmOkText` and `confirmCancelText` props.
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;

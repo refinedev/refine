@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field lets you show basic text. It uses Mantine [`<Text>`](https://chakra-ui.com/docs/components/text/usage) component.
+This field lets you show basic text. It uses Chakra UI's [`<Text>`](https://chakra-ui.com/docs/components/text/usage) component.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -111,5 +111,5 @@ render(
 <PropsTable module="@refinedev/chakra-ui/TextField" />
 
 :::tip External Props
-It also accepts all props of Chakra UI [Text](https://chakra-ui.com/docs/components/text/usage).
+It also accepts all props of Chakra UI's [Text](https://chakra-ui.com/docs/components/text/usage) component.
 :::

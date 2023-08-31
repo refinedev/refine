@@ -42,7 +42,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 -   `<Footer>`: displayed at the bottom of the page.
 -   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
-> `Footer` and `OffLayoutArea` do not have any default components.
+`Footer` and `OffLayoutArea` do not have any default components.
 
 ## Usage
 
@@ -130,7 +130,7 @@ Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](
 -   [Next.js](https://github.com/refinedev/refine/blob/next/examples/with-nextjs-auth/pages/_app.tsx#L31)
 -   [Remix](https://github.com/refinedev/refine/blob/next/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
 
-> ⚠️ Next.js examples are using `<ThemedLayout`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/mui` as same.
+⚠️ Next.js examples are using `<ThemedLayout`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/mui` as same.
 
 :::
 
@@ -224,10 +224,7 @@ type SiderRenderFunction = (props: {
 
 ### `initialSiderCollapsed`
 
-This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
-
--   `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
--   `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
+This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component. If it is `true`, It will be collapsed by default.
 
 ```tsx
 <ThemedLayoutV2
@@ -580,7 +577,9 @@ const App: React.FC = () => {
 
 ## Customizing with swizzle
 
-> 🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
+:::note
+🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
+:::
 
 `<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
@@ -885,7 +884,7 @@ render(<App />);
 
 ### How can I persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component?
 
-You can use [`initialSiderCollapsed`](#initialsidercollapsed) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+You can use the [`initialSiderCollapsed`](#initialsidercollapsed) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
 For example, you can get `initialSiderCollapsed`'s value from `localStorage` or `cookie` for persistence between sessions.
 
@@ -1012,5 +1011,4 @@ export default function BaseLayout() {
 [themed-title]: https://github.com/refinedev/refine/blob/next/packages/mui/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/api-reference/core/hooks/ui/useMenu/
 [refine-component]: /docs/api-reference/core/components/refine-config/
-[refine-themes]: /docs/api-reference/mui/theming/#refine-themes
 [mui-drawer]: https://mui.com/material-ui/react-drawer/

@@ -12,6 +12,7 @@ const CI_BUILD_ID = process.env.CI_BUILD_ID;
 
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
+const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "master";
 
 const execPromise = (command) => {
     let commandProcess;
@@ -255,7 +256,7 @@ const runTests = async () => {
         try {
             if (!failed) {
                 const params = `-- --record --key ${KEY} --group ${path}`;
-                const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
+                const runner = `npm run lerna run cypress:run -- --since=origin/${BASE_REF} --scope ${path} ${params}`;
 
                 prettyLog("blue", `Running tests for ${path}`);
 

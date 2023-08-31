@@ -792,6 +792,12 @@ The callback function receives two parameters:
 | id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
+### `useNewQueryKeys`
+
+With `@refinedev/core`'s `v4.35.0`, refine introduced new query and mutation keys which are more structured and easy to construct. These keys are used in all data, auth, access control and audit log queries and mutations.
+
+By default, refine uses the legacy keys for backward compatibility and in the future versions it will switch to using the new query keys. You can easily switch to using new keys by setting `useNewQueryKeys` to `true`.
+
 ## `onLiveEvent`
 
 Callback to handle all live events.

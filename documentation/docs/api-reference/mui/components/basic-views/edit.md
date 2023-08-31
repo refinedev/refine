@@ -4,7 +4,7 @@ title: Edit
 swizzle: true
 ---
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md).
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md).
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -124,14 +124,14 @@ render(
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
 :::
 
 ## Properties
 
 ### `title`
 
-It allows adding title inside the `<Edit>` component. if you don't pass title props it uses "Edit" prefix and singular resource name by default. For example, for the `/posts/edit` resource, it will be "Edit post".
+`title` allows the addition of titles inside the `<Edit>` component. If you don't pass title props it uses "Edit" prefix and singular resource name by default. For example, for the `/posts/edit` resource, it will be "Edit post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
@@ -225,15 +225,11 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `saveButtonProps`
 
-The `<Edit>` component has a save button by default. If you want to customize this button you can use the `saveButtonProps` property like the code below.
-
-Clicking on the save button will submit your form.
-
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mui/components/buttons/save.md)
+The `<Edit>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property like the code below:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -268,13 +264,13 @@ render(
 );
 ```
 
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mui/components/buttons/save.md)
+
 ### `canDelete` and `deleteButtonProps`
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 When clicked on, the delete button executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md).
-
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/mui/components/buttons/delete.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { default: simpleRest } = RefineSimpleRest;
@@ -373,11 +369,11 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`<DeleteButton>` &#8594](/api-reference/mui/components/buttons/delete.md) and [`usePermission` &#8594](/api-reference/core/hooks/authentication/usePermissions.md) documentations
 
 ### `recordItemId`
 
-The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
+The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL, like when its used on a custom page, modal or drawer.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
@@ -432,8 +428,6 @@ The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/a
 ### `mutationMode`
 
 Determines which mode mutation will have while executing [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md).
-
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -556,9 +550,11 @@ render(
 );
 ```
 
+> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
+
 ### `dataProviderName`
 
-If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -699,8 +695,6 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
-
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
@@ -750,11 +744,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property.
-
-[Refer to the `Card` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -798,11 +792,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
+
 ### `headerProps`
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
-
-[Refer to the `CardHeader` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-header/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -846,11 +840,11 @@ render(
 );
 ```
 
+> For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
+
 ### `contentProps`
 
 If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
-
-[Refer to the `CardContent` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-content/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -893,6 +887,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
 ### `headerButtons`
 
@@ -1009,8 +1005,6 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/box/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
 import { Edit } from "@refinedev/mui";
@@ -1059,6 +1053,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Material UI &#8594](https://mui.com/material-ui/api/box/)
 
 ### `footerButtons`
 
@@ -1169,8 +1165,6 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `CardActions` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-actions/)
-
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
 import { Edit } from "@refinedev/mui";
@@ -1219,6 +1213,8 @@ render(
     />,
 );
 ```
+
+> For more information, refer to the [`CardActions` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-actions/)
 
 ### `autoSaveProps`
 

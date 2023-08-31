@@ -470,12 +470,12 @@ const PostEdit: React.FC = () => {
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
-`useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
+The `useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
 :::
 
 ## Basic Usage
 
-We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
+We will show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
 <Tabs
 defaultValue="create"
@@ -1002,8 +1002,6 @@ const stepsForm = useStepsForm({
 
 #### `defaultStep`
 
-> Default: `0`
-
 Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
@@ -1016,9 +1014,7 @@ const stepsForm = useStepsForm({
 
 #### `isBackValidate`
 
-> Default: `false`
-
-When is `true`, validates a form fields when the user navigates to a previous step.
+When is `true`, validates a form fields when the user navigates to a previous step. It is `false` by default.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -1031,7 +1027,8 @@ const stepsForm = useStepsForm({
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -1078,7 +1075,7 @@ useStepsForm({
 ```
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+`debounce` sets the debounce time for the `autoSave` prop. Default value is `1000`.
 
 ```tsx
 useStepsForm({
