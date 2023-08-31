@@ -6,7 +6,7 @@
     overflow: scroll;
     display: flex;
     gap: 32px;
-    padding: 0 32px;
+    padding: 32px;
 }
 
 .wrapper {
