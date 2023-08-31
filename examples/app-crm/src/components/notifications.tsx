@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { NotificationMessage } from "./notification-message";
 import { CustomAvatar } from "./custom-avatar";
 import { Text } from "./text";
-import { Audit, Task } from "../interfaces/graphql";
+import { Audit, Deal } from "../interfaces/graphql";
 
 export const Notifications: React.FC = () => {
     const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ export const Notifications: React.FC = () => {
             {
                 field: "targetEntity",
                 operator: "eq",
-                value: "Task",
+                value: "Deal",
             },
         ],
         meta: {
@@ -48,19 +48,26 @@ export const Notifications: React.FC = () => {
     });
 
     const targetIds = data?.data?.map((audit) => audit.targetId);
-    const { data: taskData } = useMany<Task>({
-        resource: "tasks",
+    const { data: dealData } = useMany<Deal>({
+        resource: "deals",
         ids: targetIds ?? [],
         meta: {
-            fields: ["id", "title", { stage: ["id", "title"] }],
+            fields: [
+                "id",
+                "title",
+                { stage: ["id", "title"] },
+                {
+                    company: ["id", "name", "avatarUrl"],
+                },
+            ],
         },
         queryOptions: {
             enabled: Boolean(targetIds?.length),
         },
     });
 
-    const getTask = (id: string | number) => {
-        return taskData?.data?.find((task) => task.id == id);
+    const getDeal = (id: string | number) => {
+        return dealData?.data?.find((deal) => deal.id == id);
     };
 
     const content = (
@@ -69,13 +76,14 @@ export const Notifications: React.FC = () => {
                 <Space key={audit.id}>
                     <CustomAvatar
                         size={48}
-                        src={audit.user?.avatarUrl}
-                        name={audit.user?.name}
+                        shape="square"
+                        src={getDeal(audit.targetId)?.company?.avatarUrl}
+                        name={getDeal(audit.targetId)?.company?.name}
                     />
                     <Space direction="vertical" size={0}>
                         <NotificationMessage
                             audit={audit}
-                            task={getTask(audit.targetId)}
+                            deal={getDeal(audit.targetId)}
                         />
                         <Text size="xs" type="secondary">
                             {dayjs(audit?.createdAt).fromNow()}
