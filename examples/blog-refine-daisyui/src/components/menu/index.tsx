@@ -13,8 +13,11 @@ export const Menu = () => {
                         className="mx-0 flex justify-start items-center"
                     >
                         <div className="text-gray-600">
-                            <span className="mr-1">{item?.icon}</span>
-                            <NavLink className="text-lg" to={item?.route}>
+                            <NavLink
+                                className="text-lg flex items-center"
+                                to={item?.route}
+                            >
+                                <span className="mr-2">{item?.icon}</span>
                                 {item?.label}
                             </NavLink>
                         </div>
