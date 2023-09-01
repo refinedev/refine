@@ -2,8 +2,11 @@ import React, { useMemo, useRef } from "react";
 import { getDefaultFilter } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { AscIcon, DescIcon, FilterIcon } from "../icons";
-
+import {
+    FunnelIcon,
+    BarsArrowDownIcon,
+    BarsArrowUpIcon,
+} from "@heroicons/react/24/outline";
 export const RecentSales = () => {
     const filterForm: any = useRef(null);
 
@@ -118,7 +121,7 @@ export const RecentSales = () => {
                             filterForm?.current?.reset();
                         }}
                     >
-                        <FilterIcon />
+                        <FunnelIcon className="h-4 w-4" />
                         Clear
                     </button>
                     <div className="flex justify-end items-center">
@@ -147,7 +150,7 @@ export const RecentSales = () => {
     );
 
     return (
-        <div className="w-full mx-auto my-8">
+        <div className="w-full mx-auto my-8 drop-shadow-md">
             {header}
             <div className="p-4 overflow-x-auto bg-slate-50 border rounded-b-lg">
                 <table className="table table-zebra border-t">
@@ -168,8 +171,12 @@ export const RecentSales = () => {
                                                     header?.getContext(),
                                                 )}
                                             {{
-                                                asc: <AscIcon />,
-                                                desc: <DescIcon />,
+                                                asc: (
+                                                    <BarsArrowUpIcon className="h-4 w-4" />
+                                                ),
+                                                desc: (
+                                                    <BarsArrowDownIcon className="h-4 w-4" />
+                                                ),
                                             }[
                                                 header?.column?.getIsSorted() as string
                                             ] ?? null}

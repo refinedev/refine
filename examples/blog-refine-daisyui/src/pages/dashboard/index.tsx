@@ -1,44 +1,46 @@
 import React, { useMemo } from "react";
-import { useApiUrl, useCustom } from "@refinedev/core";
+import { CrudFilter, useList } from "@refinedev/core";
 import dayjs from "dayjs";
 import { KpiCard } from "../../components/dashboard/kpiCard";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
 import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
 import { TabView } from "../../components/dashboard/TabView";
-import { IChartDatum, TTab } from "../../interfaces";
-import { DollarIcon, ProductIcon, UserGroupIcon } from "../../components/icons";
 import { RecentSales } from "../../components/dashboard/RecentSales";
+import { IChartDatum, TTab } from "../../interfaces";
 
-const query = {
-    start: dayjs().subtract(7, "days").startOf("day"),
-    end: dayjs().startOf("day"),
-};
+import {
+    CurrencyDollarIcon,
+    ShoppingCartIcon,
+    UserGroupIcon,
+} from "@heroicons/react/24/outline";
+
+const filters: CrudFilter[] = [
+    {
+        field: "start",
+        operator: "eq",
+        value: dayjs()?.subtract(7, "days")?.startOf("day"),
+    },
+    {
+        field: "end",
+        operator: "eq",
+        value: dayjs().startOf("day"),
+    },
+];
 
 export const Dashboard: React.FC = () => {
-    const API_URL = useApiUrl();
-
-    const { data: dailyRevenue } = useCustom<any>({
-        url: `${API_URL}/dailyRevenue`,
-        method: "get",
-        config: {
-            query,
-        },
+    const { data: dailyRevenue } = useList<IChartDatum>({
+        resource: "dailyRevenue",
+        filters,
     });
 
-    const { data: dailyOrders } = useCustom<any>({
-        url: `${API_URL}/dailyOrders`,
-        method: "get",
-        config: {
-            query,
-        },
+    const { data: dailyOrders } = useList<IChartDatum>({
+        resource: "dailyOrders",
+        filters,
     });
 
-    const { data: newCustomers } = useCustom<any>({
-        url: `${API_URL}/newCustomers`,
-        method: "get",
-        config: {
-            query,
-        },
+    const { data: newCustomers } = useList<IChartDatum>({
+        resource: "newCustomers",
+        filters,
     });
 
     const useMemoizedChartData = (d: any) => {
@@ -105,58 +107,38 @@ export const Dashboard: React.FC = () => {
 
     return (
         <>
-            <div className="w-full mx-auto flex justify-center items-center">
-                <div className="stats mt-2 mb-8 shadow flex-grow rounded-lg">
+            <div className="w-full mx-auto mb-4 flex flex-col justify-center items-stretch md:flex-row md:justify-between drop-shadow-md">
+                <div className="w-full mx-auto md:flex-1 md:mr-2">
                     <KpiCard
                         title="Weekly Revenue"
                         data={dailyRevenue}
                         formatTotal={(value: number | string) => `$ ${value}`}
-                        icon={
-                            <DollarIcon
-                                size={12}
-                                colors={{
-                                    stroke: "rgba(54, 162, 235, 0.6)",
-                                    fill: "rgb(54, 162, 235)",
-                                }}
-                            />
-                        }
+                        icon={<CurrencyDollarIcon className="h-32 w-32" />}
                         colors={{
                             stroke: "rgb(54, 162, 235)",
                             fill: "rgba(54, 162, 235, 0.2)",
                         }}
                     />
+                </div>
+                <div className="w-full mx-auto md:flex-1">
                     <KpiCard
                         title="Weekly Orders"
                         data={dailyOrders}
-                        icon={
-                            <ProductIcon
-                                size={12}
-                                colors={{
-                                    stroke: "rgb(255, 159, 64)",
-                                    fill: "rgba(255, 159, 64, 0.6)",
-                                }}
-                            />
-                        }
+                        icon={<ShoppingCartIcon className="h-32 w-32" />}
                         colors={{
                             stroke: "rgb(255, 159, 64)",
-                            fill: "rgba(255, 159, 64, 0.7)",
+                            fill: "rgba(255, 159, 64, 0.2)",
                         }}
                     />
+                </div>
+                <div className="w-full mx-auto md:flex-1 md:ml-2">
                     <KpiCard
                         title="New Customers"
                         data={newCustomers}
-                        icon={
-                            <UserGroupIcon
-                                size={12}
-                                colors={{
-                                    stroke: "rgba(76, 175, 80, 0.6)",
-                                    fill: "rgb(76, 175, 80)",
-                                }}
-                            />
-                        }
+                        icon={<UserGroupIcon className="h-32 w-32" />}
                         colors={{
                             stroke: "rgb(76, 175, 80)",
-                            fill: "rgba(76, 175, 80, 0.6)",
+                            fill: "rgba(76, 175, 80, 0.2)",
                         }}
                     />
                 </div>

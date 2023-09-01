@@ -25,8 +25,16 @@ export const KpiCard = ({
     const textColor = total > trend ? "seagreen" : "crimson";
 
     return (
-        <div className="stat max-w-xl lg:px-12 py-8">
-            <div className="stat-figure text-secondary">{icon}</div>
+        <div
+            className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded"
+            style={{ borderColor: colors?.stroke }}
+        >
+            <div
+                className="stat-figure text-secondary"
+                style={{ color: colors?.fill }}
+            >
+                {icon}
+            </div>
             <div className="stat-title text-l">{title}</div>
             <div className="stat-value" style={{ color: colors?.stroke }}>
                 {formatTotal(total ?? "...")}
