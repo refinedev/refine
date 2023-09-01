@@ -108,15 +108,27 @@ The states you want to invalidate. You can use the following values:
 -   `"detail"`: Invalidates the `"detail"` state of the given `resource` and `id`.
 -   `"many"`: Invalidates the `"many"` state of the given `resource`.
 
+### `invalidationFilters` and `invalidationOptions`
+
+> Type: [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)
+
+The filters and options applied to the invalidation process when picking which queries to invalidate. By default **refine** applies some filters and options to fine-tune the invalidation process.
+
+By default settings, all the targeted queries are invalidated and the active ones are triggered for a refetch. If there are any ongoing queries, they are kept as they are.
+
+If you want to set filters globally, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
+
 ## API Reference
 
 ### Invalidation Parameters
 
-| Property                                                                                              | Description                                                       | Type                                                    | Default   |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------- | --------- |
-| <div className="required-block"><div>invalidates</div> <div className="required">Required</div></div> | The states you want to invalidate.                                | `all`, `resourceAll`, `list`, `many`, `detail`, `false` |           |
-| resource                                                                                              | Resource name for State invalidation.                             | `string`                                                |           |
-| id                                                                                                    | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)  |           |
-| dataProviderName                                                                                      | The name of the data provider whose state you want to invalidate. | `string`                                                | `default` |
+| Property                                                                                              | Description                                                       | Type                                                                                                                        | Default                                  |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| <div className="required-block"><div>invalidates</div> <div className="required">Required</div></div> | The states you want to invalidate.                                | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                                                     |                                          |
+| resource                                                                                              | Resource name for State invalidation.                             | `string`                                                                                                                    |                                          |
+| id                                                                                                    | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                      |                                          |
+| dataProviderName                                                                                      | The name of the data provider whose state you want to invalidate. | `string`                                                                                                                    | `default`                                |
+| invalidationFilters                                                                                   | The filters to use when invalidating the "list" state.            | [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
+| invalidationOptions                                                                                   |                                                                   | [`InvalidateOptions`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |
 
 [data-provider]: /docs/api-reference/core/providers/data-provider/

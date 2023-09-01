@@ -461,6 +461,12 @@ const { data } = useList({ liveMode: "auto" });
 Queries of related resource are invalidated in Realtime as new events from subscription arrive.
 For example data from a `useTable` hook will be automatically updated when data is changed.
 
+:::tip
+
+By default, the invalidation and refetches are only triggered for the active queries. If you want to change these settings, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate.liveUpdates` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
+
+:::
+
 ### `manual`
 
 Queries of related resource are **not invalidated** in Realtime, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.

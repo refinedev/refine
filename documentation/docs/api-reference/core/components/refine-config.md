@@ -620,6 +620,52 @@ If you don't have a show page and you redirect to the show page, the user will b
 
 :::
 
+### `invalidate`
+
+By default, **refine** invalidates the respective query cache after a successful mutation or by a realtime event subscription. To make the invalidation behaviour smoother and more precise, **refine** applies some fine-tuning to the invalidation process. You can change the default configuration by setting the `invalidate` option as follows:
+
+```tsx title="App.tsx"
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-start
+            options={{
+                invalidate: {
+                    filters: {
+                        type: "all",
+                        refetchType: "active",
+                    },
+                    options: {
+                        cancelRefetch: false,
+                    },
+                    liveUpdates: {
+                        filters: {
+                            type: "active",
+                            refetchType: "active",
+                        },
+                        options: {
+                            cancelRefetch: false,
+                        },
+                    },
+                },
+            }}
+            // highlight-end
+        />
+    );
+};
+```
+
+After a successful mutation, **refine** invalidates all the queries of the defined scope of the resource but refetches only the active queries. If there are already on-going refetches, they are kept as they are.
+
+After a realtime event is captured in a subscription, **refine** invalidates and refetches all the active queries of the target resource while keeping the ongoing refetches as they are.
+
+While these are the default options and filters for the invalidation action, you can override them while using the [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate/) hook.
+
+:::tip
+The scope of the invalidation is determined by the mutation, you can always use the `invalidates` property of the mutation hook to override the scope of the invalidation.
+:::
+
 ### `reactQuery`
 
 #### `clientConfig`

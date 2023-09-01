@@ -679,6 +679,12 @@ useForm({
 });
 ```
 
+:::tip
+**refine** applies some fine-tuning to the invalidation process. By default, all the queries within the respective scope will be invalidated but only the active/enabled queries will be triggered for a refetch.
+
+If you want to change these behaviors, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
+:::
+
 ### `dataProviderName`
 
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
@@ -939,6 +945,7 @@ Works only in `action: "edit"` mode.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
 #### `enabled`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
@@ -949,8 +956,8 @@ useForm({
         autoSave: {
             enabled: true,
         },
-    }
-})
+    },
+});
 ```
 
 #### `debounce`
@@ -965,9 +972,10 @@ useForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
 #### `onFinish`
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
@@ -987,8 +995,9 @@ useForm({
             // highlight-end
         },
     },
-})
+});
 ```
+
 ## Return Values
 
 ### `queryResult`
@@ -1200,7 +1209,6 @@ const {
 | --------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.BaseSyntheticEvent) => void; }`                                                                |
 | autoSaveProps   | Auto save props           | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
-
 
 ### Type Parameters
 

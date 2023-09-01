@@ -897,6 +897,12 @@ useForm({
 });
 ```
 
+:::tip
+**refine** applies some fine-tuning to the invalidation process. By default, all the queries within the respective scope will be invalidated but only the active/enabled queries will be triggered for a refetch.
+
+If you want to change these behaviors, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
+:::
+
 ### `dataProviderName`
 
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
