@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
     IResourceComponentsProps,
     getDefaultFilter,
@@ -19,6 +19,8 @@ import {
 import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+    const filterForm: any = useRef(null);
+
     const { mutate: deleteCategory } = useDelete<ICategory>();
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
@@ -127,28 +129,31 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         onClick={() => {
                             setCurrent(1);
                             setFilters([], "replace");
+                            filterForm?.current?.reset();
                         }}
                     >
                         <FilterIcon />
                         Clear
                     </button>
                     <div className="flex justify-end items-center">
-                        <input
-                            className="input input-bordered input-sm"
-                            type="search"
-                            value={getDefaultFilter("q", filters)}
-                            onChange={(e) => {
-                                setCurrent(1);
-                                setFilters([
-                                    {
-                                        field: "q",
-                                        value: e.target.value,
-                                        operator: "contains",
-                                    },
-                                ]);
-                            }}
-                            placeholder="Search with keywords"
-                        />
+                        <form ref={filterForm}>
+                            <input
+                                className="input input-bordered input-sm"
+                                type="search"
+                                value={getDefaultFilter("q", filters)}
+                                onChange={(e) => {
+                                    setCurrent(1);
+                                    setFilters([
+                                        {
+                                            field: "q",
+                                            value: e.target.value,
+                                            operator: "contains",
+                                        },
+                                    ]);
+                                }}
+                                placeholder="Search with keywords"
+                            />
+                        </form>
                     </div>
                 </div>
             </div>

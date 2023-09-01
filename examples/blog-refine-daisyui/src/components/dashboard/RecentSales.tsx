@@ -1,11 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import { getDefaultFilter } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { IOrder, IOrderStatus } from "../../interfaces";
 import { AscIcon, DescIcon, FilterIcon } from "../icons";
 
 export const RecentSales = () => {
+    const filterForm: any = useRef(null);
+
     const columns = useMemo<ColumnDef<any>[]>(
         () => [
             {
@@ -89,12 +90,7 @@ export const RecentSales = () => {
     );
 
     const {
-        refineCore: {
-            tableQueryResult: { data: ordersData },
-            filters,
-            setCurrent,
-            setFilters,
-        },
+        refineCore: { filters, setCurrent, setFilters },
         getHeaderGroups,
         getRowModel,
     } = useTable({
@@ -119,28 +115,31 @@ export const RecentSales = () => {
                         onClick={() => {
                             setCurrent(1);
                             setFilters([], "replace");
+                            filterForm?.current?.reset();
                         }}
                     >
                         <FilterIcon />
                         Clear
                     </button>
                     <div className="flex justify-end items-center">
-                        <input
-                            className="input input-bordered input-sm"
-                            type="search"
-                            value={getDefaultFilter("q", filters)}
-                            onChange={(e) => {
-                                setCurrent(1);
-                                setFilters([
-                                    {
-                                        field: "q",
-                                        value: e.target.value,
-                                        operator: "contains",
-                                    },
-                                ]);
-                            }}
-                            placeholder="Search with keywords"
-                        />
+                        <form ref={filterForm}>
+                            <input
+                                className="input input-bordered input-sm"
+                                type="search"
+                                value={getDefaultFilter("q", filters)}
+                                onChange={(e) => {
+                                    setCurrent(1);
+                                    setFilters([
+                                        {
+                                            field: "q",
+                                            value: e.target.value,
+                                            operator: "contains",
+                                        },
+                                    ]);
+                                }}
+                                placeholder="Search with keywords"
+                            />
+                        </form>
                     </div>
                 </div>
             </div>
