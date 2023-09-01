@@ -1,17 +1,17 @@
 import React from "react";
 import {
     useShow,
-    useResource,
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
 import { BackIcon, EditDocIcon } from "../../components/icons";
+import { ICategory } from "../../interfaces";
 
 export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     const { edit, list } = useNavigation();
-    const { id } = useResource();
-    const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+    const {
+        queryResult: { data },
+    } = useShow<ICategory>();
 
     const record = data?.data;
 
@@ -30,7 +30,7 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
                 <div className="flex justify-start items-center">
                     <button
                         className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
-                        onClick={() => edit("categories", id ?? "")}
+                        onClick={() => edit("categories", record?.id ?? "")}
                     >
                         <EditDocIcon />
                         Edit

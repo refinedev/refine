@@ -16,9 +16,10 @@ import {
     AscIcon,
     DescIcon,
 } from "../../components/icons";
+import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-    const { mutate: deleteCategory } = useDelete();
+    const { mutate: deleteCategory } = useDelete<ICategory>();
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
@@ -30,6 +31,13 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 id: "title",
                 accessorKey: "title",
                 header: "Name",
+                cell: function render({ getValue }) {
+                    return (
+                        <div className="w-24 md:w-60 lg:w-96 text-center">
+                            {getValue() as string}
+                        </div>
+                    );
+                },
             },
             {
                 id: "actions",
@@ -38,7 +46,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <div className="flex justify-end items-center">
+                        <div className="flex justify-around items-center">
                             <button
                                 className="btn btn-xs btn-circle btn-ghost m-1"
                                 onClick={() => {
@@ -59,7 +67,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                 className="btn btn-xs btn-circle btn-ghost m-1"
                                 onClick={() => {
                                     deleteCategory({
-                                        resource: "products",
+                                        resource: "categories",
                                         id: getValue() as string,
                                     });
                                 }}
@@ -80,12 +88,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         getHeaderGroups,
         getRowModel,
         setOptions,
-        refineCore: {
-            tableQueryResult: { data: tableData },
-            setCurrent,
-            filters,
-            setFilters,
-        },
+        refineCore: { setCurrent, filters, setFilters },
         getState,
         setPageIndex,
         getCanPreviousPage,
@@ -94,7 +97,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         nextPage,
         previousPage,
         setPageSize,
-        getColumn,
     } = useTable({
         columns,
     });
@@ -184,10 +186,12 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         <tr key={row?.id}>
                             {row?.getVisibleCells()?.map((cell) => (
                                 <td className="text-center" key={cell?.id}>
-                                    {flexRender(
-                                        cell?.column?.columnDef?.cell,
-                                        cell?.getContext(),
-                                    )}
+                                    <div className="flex justify-center items-center">
+                                        {flexRender(
+                                            cell?.column?.columnDef?.cell,
+                                            cell?.getContext(),
+                                        )}
+                                    </div>
                                 </td>
                             ))}
                         </tr>

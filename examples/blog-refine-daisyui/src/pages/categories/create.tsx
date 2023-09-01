@@ -7,17 +7,16 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
 
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { onFinish },
         register,
         handleSubmit,
-        resetField,
         formState: { errors },
     } = useForm();
 
     return (
         <div className="page-container">
             <div className="flex justify-start items-center">
-            <div>
+                <div>
                     <button
                         className="mr-2 btn btn-primary btn-sm btn-ghost"
                         onClick={() => {

@@ -7,14 +7,11 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
 
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, queryResult },
         register,
         handleSubmit,
-        setValue,
         formState: { errors },
     } = useForm();
-
-    const categoriesData = queryResult?.data?.data;
 
     return (
         <div className="page-container">
