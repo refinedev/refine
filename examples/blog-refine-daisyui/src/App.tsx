@@ -3,7 +3,6 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
     DocumentTitleHandler,
-    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -28,7 +27,7 @@ import {
     CategoryList,
     CategoryShow,
 } from "./pages/categories";
-import { ProductIcon, CategoryIcon, HomeIcon } from "./components/icons";
+import { HomeIcon, ShoppingCartIcon, TagIcon } from "@heroicons/react/20/solid";
 import { Dashboard } from "./pages/dashboard";
 
 function App() {
@@ -46,15 +45,7 @@ function App() {
                             name: "dashboard",
                             list: "/dashboard",
                             meta: {
-                                icon: (
-                                    <HomeIcon
-                                        size={4}
-                                        colors={{
-                                            stroke: "#2f2f2f",
-                                            fill: "#4f4f4f",
-                                        }}
-                                    />
-                                ),
+                                icon: <HomeIcon className="h-4 w-4" />,
                             },
                         },
                         {
@@ -64,15 +55,7 @@ function App() {
                             edit: "/products/edit/:id",
                             show: "/products/show/:id",
                             meta: {
-                                icon: (
-                                    <ProductIcon
-                                        size={4}
-                                        colors={{
-                                            stroke: "#2f2f2f",
-                                            fill: "#4f4f4f",
-                                        }}
-                                    />
-                                ),
+                                icon: <ShoppingCartIcon className="h-4 w-4" />,
                                 canDelete: true,
                             },
                         },
@@ -83,7 +66,7 @@ function App() {
                             edit: "/categories/edit/:id",
                             show: "/categories/show/:id",
                             meta: {
-                                icon: <CategoryIcon />,
+                                icon: <TagIcon className="h-4 w-4" />,
                                 canDelete: true,
                             },
                         },

@@ -5,7 +5,7 @@ import {
     useSelect,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { BackIcon, RefreshIcon } from "../../components/icons";
+import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
 export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
@@ -39,7 +39,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                             list("products");
                         }}
                     >
-                        <BackIcon />
+                        <ArrowLeftIcon className="h-5 w-5" />
                     </button>
                     <h1 className="page-title">Edit Product</h1>
                 </div>
@@ -48,7 +48,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                         className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
                         onClick={() => queryResult?.refetch()}
                     >
-                        <RefreshIcon />
+                        <ArrowPathIcon className="h-5 w-5" />
                         Refresh
                     </button>
                 </div>

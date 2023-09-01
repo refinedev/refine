@@ -4,7 +4,7 @@ import {
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
-import { BackIcon, EditDocIcon } from "../../components/icons";
+import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { IProduct } from "../../interfaces";
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {
@@ -24,7 +24,7 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
                         className="mr-2 btn btn-primary btn-sm btn-ghost"
                         onClick={() => list("products")}
                     >
-                        <BackIcon />
+                        <ArrowLeftIcon className="h-5 w-5" />
                     </button>
                     <h1 className="page-title">Product Details</h1>
                 </div>
@@ -33,7 +33,7 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
                         className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
                         onClick={() => edit("products", id ?? "")}
                     >
-                        <EditDocIcon />
+                        <PencilSquareIcon className="h-5 w-5" />
                         Edit
                     </button>
                 </div>

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@refinedev/cli": "^2.9.0",
     "@refinedev/core": "^4.36.0",
     "@refinedev/inferencer": "^4.5.4",

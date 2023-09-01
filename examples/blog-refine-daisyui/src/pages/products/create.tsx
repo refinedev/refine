@@ -5,7 +5,7 @@ import {
     useSelect,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { BackIcon } from "../../components/icons";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
@@ -31,7 +31,7 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                             list("products");
                         }}
                     >
-                        <BackIcon />
+                        <ArrowLeftIcon className="h-5 w-5" />
                     </button>
                 </div>
                 <h1 className="page-title">Create a Product</h1>
