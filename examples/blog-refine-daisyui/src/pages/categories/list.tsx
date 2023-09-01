@@ -89,7 +89,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        setOptions,
         refineCore: { setCurrent, filters, setFilters },
         getState,
         setPageIndex,
@@ -156,7 +155,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         <tr key={headerGroup?.id}>
                             {headerGroup?.headers?.map((header) => (
                                 <th
-                                    className="text-center"
+                                    className="text-center hover:bg-slate-300"
                                     key={header?.id}
                                     onClick={header?.column?.getToggleSortingHandler()}
                                 >

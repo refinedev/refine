@@ -55,6 +55,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "actions",
                 accessorKey: "id",
                 header: "Actions",
+                enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
                         <div className="flex justify-around items-center">
@@ -98,7 +99,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        setOptions,
         refineCore: { filters, setCurrent, setFilters },
         getState,
         setPageIndex,
@@ -164,7 +164,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             <tr key={headerGroup?.id}>
                                 {headerGroup?.headers?.map((header) => (
                                     <th
-                                        className="text-center"
+                                        className="text-center hover:bg-slate-300"
                                         key={header?.id}
                                         onClick={header?.column?.getToggleSortingHandler()}
                                     >
