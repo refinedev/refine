@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigation, IResourceComponentsProps } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { BackIcon } from "../../components/icons";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
@@ -23,7 +23,7 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
                             list("categories");
                         }}
                     >
-                        <BackIcon />
+                        <ArrowLeftIcon className="h-4 w-4" />
                     </button>
                 </div>
                 <h1 className="page-title">Create a Category</h1>

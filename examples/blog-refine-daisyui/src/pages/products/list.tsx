@@ -184,10 +184,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                                 )}
                                             {{
                                                 asc: (
-                                                    <BarsArrowDownIcon className="h-4 w-4" />
+                                                    <BarsArrowUpIcon className="h-4 w-4" />
                                                 ),
                                                 desc: (
-                                                    <BarsArrowUpIcon className="h-4 w-4" />
+                                                    <BarsArrowDownIcon className="h-4 w-4" />
                                                 ),
                                             }[
                                                 header?.column?.getIsSorted() as string

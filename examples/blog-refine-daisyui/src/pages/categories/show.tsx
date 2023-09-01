@@ -4,7 +4,7 @@ import {
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
-import { BackIcon, EditDocIcon } from "../../components/icons";
+import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
 export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
@@ -23,7 +23,7 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
                         className="mr-2 btn btn-primary btn-sm btn-ghost"
                         onClick={() => list("categories")}
                     >
-                        <BackIcon />
+                        <ArrowLeftIcon className="h-5 w-5" />
                     </button>
                     <h1 className="page-title">Category Details</h1>
                 </div>
@@ -32,7 +32,7 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
                         className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
                         onClick={() => edit("categories", record?.id ?? "")}
                     >
-                        <EditDocIcon />
+                        <PencilSquareIcon className="h-5 w-5" />
                         Edit
                     </button>
                 </div>

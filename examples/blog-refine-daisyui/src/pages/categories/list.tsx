@@ -7,15 +7,15 @@ import {
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { PlusIcon } from "@heroicons/react/20/solid";
 import {
-    EditIcon,
-    ShowIcon,
-    DeleteIcon,
-    CreateIcon,
-    FilterIcon,
-    AscIcon,
-    DescIcon,
-} from "../../components/icons";
+    FunnelIcon,
+    PencilSquareIcon,
+    EyeIcon,
+    TrashIcon,
+    BarsArrowDownIcon,
+    BarsArrowUpIcon,
+} from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
@@ -55,7 +55,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     edit("categories", getValue() as string);
                                 }}
                             >
-                                <EditIcon />
+                                <PencilSquareIcon className="h-4 w-4" />
                             </button>
                             <button
                                 className="btn btn-xs btn-circle btn-ghost m-1"
@@ -63,7 +63,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     show("categories", getValue() as string);
                                 }}
                             >
-                                <ShowIcon />
+                                <EyeIcon className="h-4 w-4" />
                             </button>
                             <button
                                 className="btn btn-xs btn-circle btn-ghost m-1"
@@ -74,7 +74,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     });
                                 }}
                             >
-                                <DeleteIcon />
+                                <TrashIcon className="h-4 w-4 text-error" />
                             </button>
                         </div>
                     );
@@ -118,7 +118,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
                     onClick={() => create("categories")}
                 >
-                    <CreateIcon />
+                    <PlusIcon className="h-5 w-5" />
                     Create
                 </button>
             </div>
@@ -132,7 +132,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                             filterForm?.current?.reset();
                         }}
                     >
-                        <FilterIcon />
+                        <FunnelIcon className="h-4 w-4" />
                         Clear
                     </button>
                     <div className="flex justify-end items-center">
@@ -175,8 +175,12 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                                 header?.getContext(),
                                             )}
                                         {{
-                                            asc: <AscIcon />,
-                                            desc: <DescIcon />,
+                                            asc: (
+                                                <BarsArrowUpIcon className="h-4 w-4" />
+                                            ),
+                                            desc: (
+                                                <BarsArrowDownIcon className="h-4 w-4" />
+                                            ),
                                         }[
                                             header?.column?.getIsSorted() as string
                                         ] ?? null}
