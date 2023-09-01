@@ -20,7 +20,9 @@ export type UseInvalidateProp = {
     invalidationOptions?: InvalidateOptions;
 };
 
-export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
+export const useInvalidate = (): ((
+    props: UseInvalidateProp,
+) => Promise<void>) => {
     const { resources } = useResource();
     const queryClient = useQueryClient();
     const { keys, preferLegacyKeys } = useKeys();
@@ -34,7 +36,7 @@ export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
     }, [options.invalidate.filters, options.invalidate.options]);
 
     const invalidate = useCallback(
-        ({
+        async ({
             resource,
             dataProviderName,
             invalidates,
@@ -51,50 +53,49 @@ export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
                 .data(dp)
                 .resource(resource ?? "");
 
-            invalidates.forEach((key) => {
-                switch (key) {
-                    case "all":
-                        queryClient.invalidateQueries(
-                            keys().data(dp).get(preferLegacyKeys),
-                            invalidationFilters,
-                            invalidationOptions,
-                        );
-                        break;
-                    case "list":
-                        queryClient.invalidateQueries(
-                            queryKey.action("list").get(preferLegacyKeys),
-                            invalidationFilters,
-                            invalidationOptions,
-                        );
-                        break;
-                    case "many":
-                        queryClient.invalidateQueries(
-                            queryKey.action("many").get(preferLegacyKeys),
-                            invalidationFilters,
-                            invalidationOptions,
-                        );
-                        break;
-                    case "resourceAll":
-                        queryClient.invalidateQueries(
-                            queryKey.get(preferLegacyKeys),
-                            invalidationFilters,
-                            invalidationOptions,
-                        );
-                        break;
-                    case "detail":
-                        queryClient.invalidateQueries(
-                            queryKey
-                                .action("one")
-                                .id(id || "")
-                                .get(preferLegacyKeys),
-                            invalidationFilters,
-                            invalidationOptions,
-                        );
-                        break;
-                    default:
-                        break;
-                }
-            });
+            await Promise.all(
+                invalidates.map((key) => {
+                    switch (key) {
+                        case "all":
+                            return queryClient.invalidateQueries(
+                                keys().data(dp).get(preferLegacyKeys),
+                                invalidationFilters,
+                                invalidationOptions,
+                            );
+                        case "list":
+                            return queryClient.invalidateQueries(
+                                queryKey.action("list").get(preferLegacyKeys),
+                                invalidationFilters,
+                                invalidationOptions,
+                            );
+                        case "many":
+                            return queryClient.invalidateQueries(
+                                queryKey.action("many").get(preferLegacyKeys),
+                                invalidationFilters,
+                                invalidationOptions,
+                            );
+                        case "resourceAll":
+                            return queryClient.invalidateQueries(
+                                queryKey.get(preferLegacyKeys),
+                                invalidationFilters,
+                                invalidationOptions,
+                            );
+                        case "detail":
+                            return queryClient.invalidateQueries(
+                                queryKey
+                                    .action("one")
+                                    .id(id || "")
+                                    .get(preferLegacyKeys),
+                                invalidationFilters,
+                                invalidationOptions,
+                            );
+                        default:
+                            return;
+                    }
+                }),
+            );
+
+            return;
         },
         [],
     );
