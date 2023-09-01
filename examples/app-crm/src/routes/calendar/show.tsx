@@ -165,8 +165,13 @@ export const CalendarShowPage: React.FC = () => {
                             ))}
                         </Space>
                     </div>
-                    <div>
-                        <InfoCircleOutlined style={{ marginRight: ".5rem" }} />
+                    <div style={{ display: "flex", alignItems: "start" }}>
+                        <InfoCircleOutlined
+                            style={{
+                                marginRight: ".5rem",
+                                marginTop: "0.32rem",
+                            }}
+                        />
                         <Text>{description}</Text>
                     </div>
                 </div>
