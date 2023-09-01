@@ -1,6 +1,11 @@
 import { RefineProps } from "@components/containers";
 import React, { ReactNode } from "react";
-import { QueryClientConfig, QueryClient } from "@tanstack/react-query";
+import {
+    QueryClientConfig,
+    QueryClient,
+    InvalidateQueryFilters,
+    InvalidateOptions,
+} from "@tanstack/react-query";
 
 import {
     MutationMode,
@@ -24,6 +29,14 @@ export interface IRefineOptions {
         afterCreate?: RedirectAction;
         afterClone?: RedirectAction;
         afterEdit?: RedirectAction;
+    };
+    invalidate?: {
+        filters?: InvalidateQueryFilters;
+        options?: InvalidateOptions;
+        liveUpdates?: {
+            filters?: InvalidateQueryFilters;
+            options?: InvalidateOptions;
+        };
     };
     reactQuery?: {
         clientConfig?: QueryClientConfig | InstanceType<typeof QueryClient>;
@@ -58,6 +71,14 @@ export interface IRefineContextOptions {
         afterCreate: RedirectAction;
         afterClone: RedirectAction;
         afterEdit: RedirectAction;
+    };
+    invalidate: {
+        filters: InvalidateQueryFilters;
+        options: InvalidateOptions;
+        liveUpdates: {
+            filters: InvalidateQueryFilters;
+            options: InvalidateOptions;
+        };
     };
     overtime: UseLoadingOvertimeRefineContext;
     textTransformers: Required<TextTransformers>;
