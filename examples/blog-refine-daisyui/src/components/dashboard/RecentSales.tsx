@@ -66,10 +66,10 @@ export const RecentSales = () => {
                     };
 
                     const status = getValue() as string;
-                    const daisyClasses =
+                    const daisyBadgeClasses = () =>
                         "badge badge-" + saleStatusStyleMap[status];
 
-                    return <div className={daisyClasses}>{status}</div>;
+                    return <div className={daisyBadgeClasses()}>{status}</div>;
                 },
             },
             {
@@ -104,7 +104,7 @@ export const RecentSales = () => {
     });
 
     const header = (
-        <div className="container">
+        <div className="w-full mx-auto">
             <div className="my-2">
                 <h1 className="page-title text-gray-700">Recent Sales</h1>
             </div>
@@ -147,9 +147,9 @@ export const RecentSales = () => {
     );
 
     return (
-        <div className="container my-8">
+        <div className="w-full mx-auto my-8">
             {header}
-            <div className="overflow-x-auto bg-slate-50 border rounded-b-lg">
+            <div className="p-4 overflow-x-auto bg-slate-50 border rounded-b-lg">
                 <table className="table table-zebra border-t">
                     <thead className="bg-slate-200">
                         {getHeaderGroups()?.map((headerGroup) => (

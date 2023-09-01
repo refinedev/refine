@@ -105,8 +105,8 @@ export const Dashboard: React.FC = () => {
 
     return (
         <>
-            <div className="container mx-auto flex justify-center items-center">
-                <div className="stats mt-2 mb-8 shadow flex-shrink md:flex-none lg:flex-grow rounded-lg">
+            <div className="w-full mx-auto flex justify-center items-center">
+                <div className="stats mt-2 mb-8 shadow flex-grow rounded-lg">
                     <KpiCard
                         title="Weekly Revenue"
                         data={dailyRevenue}
