@@ -103,13 +103,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         columns,
     });
 
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
-        },
-    }));
-
     return (
         <div className="page-container">
             <div className="page-header">
