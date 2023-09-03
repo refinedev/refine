@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import {
     InvalidateOptions,
     InvalidateQueryFilters,
@@ -9,7 +9,6 @@ import { useResource } from "@hooks/resource";
 import { pickDataProvider } from "@definitions";
 import { BaseKey, IQueryKeys } from "../../interfaces";
 import { useKeys } from "@hooks/useKeys";
-import { useRefineContext } from "..";
 
 export type UseInvalidateProp = {
     resource?: string;
@@ -26,14 +25,6 @@ export const useInvalidate = (): ((
     const { resources } = useResource();
     const queryClient = useQueryClient();
     const { keys, preferLegacyKeys } = useKeys();
-    const { options } = useRefineContext();
-
-    const invalidationDefaults = useMemo(() => {
-        return {
-            filters: options.invalidate.filters,
-            options: options.invalidate.options,
-        };
-    }, [options.invalidate.filters, options.invalidate.options]);
 
     const invalidate = useCallback(
         async ({
@@ -41,8 +32,8 @@ export const useInvalidate = (): ((
             dataProviderName,
             invalidates,
             id,
-            invalidationFilters = invalidationDefaults.filters,
-            invalidationOptions = invalidationDefaults.options,
+            invalidationFilters = { type: "all", refetchType: "active" },
+            invalidationOptions = { cancelRefetch: false },
         }: UseInvalidateProp) => {
             if (invalidates === false) {
                 return;

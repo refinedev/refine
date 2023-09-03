@@ -63,9 +63,6 @@ export const useResourceSubscription = ({
     const {
         liveMode: liveModeFromContext,
         onLiveEvent: onLiveEventContextCallback,
-        options: {
-            invalidate: { liveUpdates },
-        },
     } = useContext<IRefineContext>(RefineContext);
 
     const liveMode = liveModeFromProp ?? liveModeFromContext;
@@ -81,8 +78,11 @@ export const useResourceSubscription = ({
                     resource: identifier,
                     dataProviderName: resource?.meta?.dataProviderName,
                     invalidates: ["resourceAll"],
-                    invalidationFilters: liveUpdates.filters,
-                    invalidationOptions: liveUpdates.options,
+                    invalidationFilters: {
+                        type: "active",
+                        refetchType: "active",
+                    },
+                    invalidationOptions: { cancelRefetch: false },
                 });
             }
 
