@@ -25,24 +25,6 @@ export const defaultRefineOptions: IRefineContextOptions = {
     overtime: {
         interval: 1000,
     },
-    invalidate: {
-        filters: {
-            type: "all",
-            refetchType: "active",
-        },
-        options: {
-            cancelRefetch: false,
-        },
-        liveUpdates: {
-            filters: {
-                type: "active",
-                refetchType: "active",
-            },
-            options: {
-                cancelRefetch: false,
-            },
-        },
-    },
     textTransformers: {
         humanize: humanizeString,
         plural: pluralize.plural,

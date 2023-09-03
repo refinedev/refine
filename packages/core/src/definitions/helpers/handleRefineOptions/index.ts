@@ -71,22 +71,6 @@ export const handleRefineOptions = ({
                 options?.redirect?.afterEdit ??
                 defaultRefineOptions.redirect.afterEdit,
         },
-        invalidate: {
-            filters:
-                options?.invalidate?.filters ??
-                defaultRefineOptions.invalidate.filters,
-            options:
-                options?.invalidate?.options ??
-                defaultRefineOptions.invalidate.options,
-            liveUpdates: {
-                filters:
-                    options?.invalidate?.liveUpdates?.filters ??
-                    defaultRefineOptions.invalidate.liveUpdates.filters,
-                options:
-                    options?.invalidate?.liveUpdates?.options ??
-                    defaultRefineOptions.invalidate.liveUpdates.options,
-            },
-        },
         overtime: options?.overtime ?? defaultRefineOptions.overtime,
         textTransformers: {
             humanize:
