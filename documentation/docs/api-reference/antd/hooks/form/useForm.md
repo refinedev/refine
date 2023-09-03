@@ -570,12 +570,6 @@ useForm({
 });
 ```
 
-:::tip
-**refine** applies some fine-tuning to the invalidation process. By default, all the queries within the respective scope will be invalidated but only the active/enabled queries will be triggered for a refetch.
-
-If you want to change these behaviors, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
-:::
-
 ### `dataProviderName`
 
 If there is more than one `dataProvider`, you should pass the name of the `dataProvider` you are going to use to `dataProviderName`.
@@ -844,11 +838,8 @@ const { overtime } = useForm({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
-}
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
-
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.

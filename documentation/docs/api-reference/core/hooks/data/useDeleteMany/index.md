@@ -107,9 +107,7 @@ const { overtime } = useDeleteMany({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
-}
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
 
 ## Mutation Parameters
@@ -327,12 +325,6 @@ mutate({
     invalidates: ["list", "many", "detail"],
 });
 ```
-
-:::tip
-**refine** applies some fine-tuning to the invalidation process. By default, all the queries within the respective scope will be invalidated but only the active/enabled queries will be triggered for a refetch.
-
-If you want to change these behaviors, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
-:::
 
 ## Return Values
 

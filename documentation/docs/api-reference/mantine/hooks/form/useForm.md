@@ -527,7 +527,7 @@ render(<RefineMantineDemo />);
 
 ### `resource`
 
-`resource`, read from the current URL by default, will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider].
+`resource`, read from the current URL by default, will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. 
 
 See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
@@ -590,7 +590,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 :::note
-`id` is required when `action: "edit"` or `action: "clone"`.
+ `id` is required when `action: "edit"` or `action: "clone"`.
 :::
 
 ```tsx
@@ -675,12 +675,6 @@ useForm({
     },
 });
 ```
-
-:::tip
-**refine** applies some fine-tuning to the invalidation process. By default, all the queries within the respective scope will be invalidated but only the active/enabled queries will be triggered for a refetch.
-
-If you want to change these behaviors, you can use the `options.invalidate` prop of the `<Refine>` component. For more information, refer to the [`invalidate` section of the `<Refine>` component documentation &#8594](/docs/api-reference/core/components/refine-config.md#invalidate)
-:::
 
 ### `dataProviderName`
 
@@ -976,6 +970,7 @@ If you want to save the form automatically after some delay when user edits the 
 
 It also supports the [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use the `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
+
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
@@ -1096,6 +1091,7 @@ const { overtime } = useForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 
 ### `autoSaveProps`
 
