@@ -775,13 +775,22 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const App = () => {
     return (
         <Refine>
-            ...
-            // highlight-next-line
+            ... // highlight-next-line
             <ReactQueryDevtools />
         </Refine>
     );
 };
 ```
+
+## How do invalidation works in queries?
+
+**refine** invalidates for the specific scope of queries after a successful mutation. The scope of the invalidation can be customized by the `invalidates` prop in the mutation hooks.
+
+By default, **refine** invalidates all the queries that are in the defined scope and only triggers a refetch for the active queries (mounted and enabled). This is done to prevent unnecessary refetches and for more precise invalidation.
+
+In realtime updates, **refine** will invalidate and refetch all the active queries that are in the defined scope.
+
+In both cases, if there are any ongoing queries, **refine** will keep them as they are and will not invalidate or refetch them.
 
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
