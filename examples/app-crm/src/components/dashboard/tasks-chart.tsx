@@ -92,7 +92,11 @@ export const DashboardTasksChart: React.FC<{}> = () => {
             >
                 <PieChart width={272} height={231}>
                     <Pie
-                        data={tasksData}
+                        data={
+                            tasksData?.filter((taskStage) => {
+                                return taskStage.value > 0;
+                            }) || []
+                        }
                         cx={132}
                         cy={110}
                         innerRadius={55}
