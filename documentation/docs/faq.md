@@ -775,7 +775,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const App = () => {
     return (
         <Refine>
-            ... // highlight-next-line
+            ...
+            // highlight-next-line
             <ReactQueryDevtools />
         </Refine>
     );
