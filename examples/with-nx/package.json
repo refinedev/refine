@@ -10,7 +10,7 @@
   "private": true,
   "dependencies": {
     "@refinedev/cli": "^2.9.0",
-    "@refinedev/core": "^4.36.1",
+    "@refinedev/core": "^4.36.2",
     "@refinedev/inferencer": "^4.5.4",
     "@refinedev/kbar": "^1.3.0",
     "react": "^18.0.0",
