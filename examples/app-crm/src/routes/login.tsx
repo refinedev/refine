@@ -9,10 +9,10 @@ import { useSearchParams } from "react-router-dom";
 import { useLogin } from "@refinedev/core";
 
 export const LoginPage: React.FC = () => {
-    const [params, setParams] = useSearchParams();
-    const emailFromSearchParams = params.get("email");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const emailFromSearchParams = searchParams.get("email");
 
-    const toParams = params.get("to");
+    const toParams = searchParams.get("to");
     const { mutate } = useLogin();
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [refreshToken, setRefreshToken] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export const LoginPage: React.FC = () => {
             setAccessToken(decoded.get("accessToken"));
             setRefreshToken(decoded.get("refreshToken"));
 
-            setParams({});
+            setSearchParams({});
         }
     }, [toParams]);
 
