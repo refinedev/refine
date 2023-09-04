@@ -290,7 +290,7 @@ const siteConfig = {
             '<strong style="font-weight:700;">refine</strong> is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by <strong style="font-weight:700;">CRUD</strong> operations and provides industry standard solutions.',
         contactTitle: "Contact",
         contactDescription: [
-            "refine Dev Corporation",
+            "Refine Development Inc.",
             "256 Chapman Road STE 105-4 Newark, DE 19702",
         ],
         contactEmail: "info@refine.dev",

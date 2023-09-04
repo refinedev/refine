@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 import {
     BaseKey,
     CrudFilters,
@@ -14,7 +13,7 @@ import {
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
 import { useResource } from "@hooks/resource";
-import { useKeys } from "@hooks/useKeys";
+import { useInvalidate } from "@hooks/invalidate";
 
 export type UseResourceSubscriptionProps = {
     channel: string;
@@ -58,10 +57,7 @@ export const useResourceSubscription = ({
     liveMode: liveModeFromProp,
     onLiveEvent,
 }: UseResourceSubscriptionProps): void => {
-    const queryClient = useQueryClient();
-
     const { resource, identifier } = useResource(resourceFromProp);
-    const { keys, preferLegacyKeys } = useKeys();
 
     const liveDataContext = useContext<ILiveContext>(LiveContext);
     const {
@@ -71,8 +67,28 @@ export const useResourceSubscription = ({
 
     const liveMode = liveModeFromProp ?? liveModeFromContext;
 
+    const invalidate = useInvalidate();
+
     useEffect(() => {
         let subscription: any;
+
+        const callback = (event: LiveEvent) => {
+            if (liveMode === "auto") {
+                invalidate({
+                    resource: identifier,
+                    dataProviderName: resource?.meta?.dataProviderName,
+                    invalidates: ["resourceAll"],
+                    invalidationFilters: {
+                        type: "active",
+                        refetchType: "active",
+                    },
+                    invalidationOptions: { cancelRefetch: false },
+                });
+            }
+
+            onLiveEvent?.(event);
+            onLiveEventContextCallback?.(event);
+        };
 
         if (liveMode && liveMode !== "off" && enabled) {
             subscription = liveDataContext?.subscribe({
@@ -82,19 +98,7 @@ export const useResourceSubscription = ({
                     ...params,
                 },
                 types,
-                callback: (event) => {
-                    if (liveMode === "auto") {
-                        queryClient.invalidateQueries(
-                            keys()
-                                .data(resource?.meta?.dataProviderName)
-                                .resource(identifier)
-                                .get(preferLegacyKeys),
-                        );
-                    }
-
-                    onLiveEvent?.(event);
-                    onLiveEventContextCallback?.(event);
-                },
+                callback,
             });
         }
 

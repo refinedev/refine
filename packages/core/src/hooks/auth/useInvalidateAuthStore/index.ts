@@ -6,17 +6,13 @@ export const useInvalidateAuthStore = () => {
     const { keys, preferLegacyKeys } = useKeys();
 
     const invalidate = async () => {
-        await Promise.all([
-            queryClient.invalidateQueries(
-                keys().auth().action("check").get(preferLegacyKeys),
+        await Promise.all(
+            (["check", "identity", "permissions"] as const).map((action) =>
+                queryClient.invalidateQueries(
+                    keys().auth().action(action).get(preferLegacyKeys),
+                ),
             ),
-            queryClient.invalidateQueries(
-                keys().auth().action("identity").get(preferLegacyKeys),
-            ),
-            queryClient.invalidateQueries(
-                keys().auth().action("permissions").get(preferLegacyKeys),
-            ),
-        ]);
+        );
     };
 
     return invalidate;
