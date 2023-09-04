@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import { createProvider, providerArgs } from "./create-provider";
 import { createResources } from "./create-resource";
+import { getPreferedPM } from "@utils/package";
 
 const load = (program: Command) => {
     return program
@@ -30,8 +31,7 @@ const action = async (
 ) => {
     const args = command.args;
     if (!args.length) {
-        console.log("Please provide a feature name ❌");
-        console.log("Example: add data");
+        await printNoArgs();
         return;
     }
 
@@ -41,7 +41,7 @@ const action = async (
         createProvider(providers, options?.path);
     }
 
-    if (resources.length) {
+    if (args.includes("resource")) {
         createResources(
             {
                 actions: options?.actions,
@@ -60,16 +60,33 @@ export const getGroupedArgs = (args: string[]) => {
     const resourceIndex = args.findIndex((arg) => arg === "resource");
     if (resourceIndex === -1)
         return {
-            providers: args.filter((arg) => providerArgs.includes(arg)),
+            providers: getValidProviders(args),
             resources: [],
         };
 
-    const providers = args
-        .slice(0, resourceIndex)
-        .filter((arg) => providerArgs.includes(arg));
+    const providers = getValidProviders(args.slice(0, resourceIndex));
+
     const resources = args.slice(resourceIndex + 1);
 
     return { providers, resources };
+};
+
+const printNoArgs = async () => {
+    const { name } = await getPreferedPM();
+
+    console.log("Please provide a feature name ❌");
+    console.log(
+        `For more information please use: "${name} run refine add help"`,
+    );
+};
+
+const getValidProviders = (providers: string[]) => {
+    return providers.filter((provider) => {
+        if (providerArgs.includes(provider)) return true;
+
+        console.log(`"${provider}" is not a valid provider ❌`);
+        return false;
+    });
 };
 
 export default load;
