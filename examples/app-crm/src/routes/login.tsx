@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
@@ -9,34 +9,24 @@ import { useSearchParams } from "react-router-dom";
 import { useLogin } from "@refinedev/core";
 
 export const LoginPage: React.FC = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const emailFromSearchParams = searchParams.get("email");
+    const [searchParams] = useSearchParams();
 
-    const toParams = searchParams.get("to");
+    const emailFromSearchParams = searchParams.get("email");
+    const accessToken = searchParams.get("accessToken");
+    const refreshToken = searchParams.get("refreshToken");
+
     const { mutate } = useLogin();
-    const [accessToken, setAccessToken] = useState<string | null>(null);
-    const [refreshToken, setRefreshToken] = useState<string | null>(null);
 
     const initialValues = emailFromSearchParams
         ? { email: emailFromSearchParams }
         : demoCredentials;
 
     useEffect(() => {
-        if (toParams && toParams?.includes("accessToken")) {
-            const decoded = new URLSearchParams(
-                decodeURIComponent(toParams.split("?")[1]),
-            );
-
-            setAccessToken(decoded.get("accessToken"));
-            setRefreshToken(decoded.get("refreshToken"));
-
-            setSearchParams({});
-        }
-    }, [toParams]);
-
-    useEffect(() => {
         if (accessToken && refreshToken) {
-            mutate({ accessToken, refreshToken });
+            mutate({
+                accessToken: accessToken,
+                refreshToken: refreshToken,
+            });
         }
     }, [accessToken, refreshToken]);
 
