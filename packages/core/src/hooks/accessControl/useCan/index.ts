@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AccessControlContext } from "@contexts/accessControl";
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 import { CanParams, CanReturnType } from "../../../interfaces";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseCanProps = CanParams & {
     /**
@@ -31,6 +32,7 @@ export const useCan = ({
     queryOptions,
 }: UseCanProps): UseQueryResult<CanReturnType> => {
     const { can } = useContext(AccessControlContext);
+    const { keys, preferLegacyKeys } = useKeys();
 
     /**
      * Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
@@ -43,15 +45,15 @@ export const useCan = ({
 
     /* eslint-enable @typescript-eslint/no-unused-vars */
     const queryResponse = useQuery<CanReturnType>(
-        [
-            "useCan",
-            {
-                action,
-                resource,
+        keys()
+            .access()
+            .resource(resource)
+            .action(action)
+            .params({
                 params: { ...paramsRest, resource: sanitizedResource },
                 enabled: queryOptions?.enabled,
-            },
-        ],
+            })
+            .get(preferLegacyKeys),
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         () =>
             can?.({

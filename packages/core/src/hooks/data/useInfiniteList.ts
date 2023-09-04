@@ -40,6 +40,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 export interface UseInfiniteListConfig {
     pagination?: Pagination;
@@ -159,6 +160,7 @@ export const useInfiniteList = <
     });
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const pickedDataProvider = pickDataProvider(
         identifier,
@@ -194,13 +196,6 @@ export const useInfiniteList = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    const queryKey = queryKeys(
-        identifier,
-        pickedDataProvider,
-        preferredMeta,
-        preferredMeta,
-    );
-
     const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     const { getList } = dataProvider(pickedDataProvider);
@@ -230,19 +225,25 @@ export const useInfiniteList = <
         TError,
         GetListResponse<TData>
     >(
-        queryKey.list({
-            filters: prefferedFilters,
-            hasPagination: isServerPagination,
-            ...(isServerPagination && {
-                pagination: prefferedPagination,
-            }),
-            ...(sorters && {
-                sorters,
-            }),
-            ...(config?.sort && {
-                sort: config?.sort,
-            }),
-        }),
+        keys()
+            .data(pickedDataProvider)
+            .resource(identifier)
+            .action("infinite")
+            .params({
+                ...(preferredMeta || {}),
+                filters: prefferedFilters,
+                hasPagination: isServerPagination,
+                ...(isServerPagination && {
+                    pagination: prefferedPagination,
+                }),
+                ...(sorters && {
+                    sorters,
+                }),
+                ...(config?.sort && {
+                    sort: config?.sort,
+                }),
+            })
+            .get(preferLegacyKeys),
         ({ queryKey, pageParam, signal }) => {
             const paginationProperties = {
                 ...prefferedPagination,

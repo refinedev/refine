@@ -34,7 +34,7 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import {
-    queryKeys,
+    queryKeysReplacement,
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
@@ -45,6 +45,7 @@ import {
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { useKeys } from "@hooks/useKeys";
 
 type UpdateManyParams<TData, TError, TVariables> = {
     /**
@@ -168,6 +169,7 @@ export const useUpdateMany = <
     const {
         options: { textTransformers },
     } = useRefineContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -275,17 +277,27 @@ export const useUpdateMany = <
             }) => {
                 const { identifier } = select(resourceName);
 
-                const queryKey = queryKeys(
+                const queryKey = queryKeysReplacement(preferLegacyKeys)(
                     identifier,
                     pickDataProvider(identifier, dataProviderName, resources),
                     pickNotDeprecated(meta, metaData),
                 );
 
+                const resourceKeys = keys()
+                    .data(
+                        pickDataProvider(
+                            identifier,
+                            dataProviderName,
+                            resources,
+                        ),
+                    )
+                    .resource(identifier);
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
                 await queryClient.cancelQueries(
-                    queryKey.resourceAll,
+                    resourceKeys.get(preferLegacyKeys),
                     undefined,
                     {
                         silent: true,
@@ -294,12 +306,15 @@ export const useUpdateMany = <
 
                 const previousQueries = queryClient.getQueriesData<
                     QueryResponse<TData>
-                >(queryKey.resourceAll);
+                >(resourceKeys.get(preferLegacyKeys));
 
                 if (mutationModePropOrContext !== "pessimistic") {
                     // Set the previous queries to the new ones:
                     queryClient.setQueriesData(
-                        queryKey.list(),
+                        resourceKeys
+                            .action("list")
+                            .params(pickNotDeprecated(meta, metaData) ?? {})
+                            .get(preferLegacyKeys),
                         (previous?: GetListResponse<TData> | null) => {
                             if (!previous) {
                                 return null;
@@ -330,7 +345,7 @@ export const useUpdateMany = <
                     );
 
                     queryClient.setQueriesData(
-                        queryKey.many(),
+                        resourceKeys.action("many").get(preferLegacyKeys),
                         (previous?: GetListResponse<TData> | null) => {
                             if (!previous) {
                                 return null;
@@ -357,9 +372,14 @@ export const useUpdateMany = <
                             };
                         },
                     );
+
                     for (const id of ids) {
                         queryClient.setQueriesData(
-                            queryKey.detail(id),
+                            resourceKeys
+                                .action("one")
+                                .id(id)
+                                .params(pickNotDeprecated(meta, metaData))
+                                .get(preferLegacyKeys),
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -556,6 +576,10 @@ export const useUpdateMany = <
                     });
                 }
             },
+            mutationKey: keys()
+                .data()
+                .mutation("updateMany")
+                .get(preferLegacyKeys),
             ...mutationOptions,
         },
     );

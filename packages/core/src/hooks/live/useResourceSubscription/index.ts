@@ -13,8 +13,8 @@ import {
 } from "../../../interfaces";
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
-import { queryKeys } from "@definitions";
 import { useResource } from "@hooks/resource";
+import { useKeys } from "@hooks/useKeys";
 
 export type UseResourceSubscriptionProps = {
     channel: string;
@@ -61,7 +61,7 @@ export const useResourceSubscription = ({
     const queryClient = useQueryClient();
 
     const { resource, identifier } = useResource(resourceFromProp);
-    const queryKey = queryKeys(identifier);
+    const { keys, preferLegacyKeys } = useKeys();
 
     const liveDataContext = useContext<ILiveContext>(LiveContext);
     const {
@@ -84,7 +84,12 @@ export const useResourceSubscription = ({
                 types,
                 callback: (event) => {
                     if (liveMode === "auto") {
-                        queryClient.invalidateQueries(queryKey.resourceAll);
+                        queryClient.invalidateQueries(
+                            keys()
+                                .data(resource?.meta?.dataProviderName)
+                                .resource(identifier)
+                                .get(preferLegacyKeys),
+                        );
                     }
 
                     onLiveEvent?.(event);

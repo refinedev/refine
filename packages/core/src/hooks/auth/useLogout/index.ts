@@ -13,6 +13,7 @@ import {
 } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
+import { useKeys } from "@hooks/useKeys";
 
 type Variables = {
     redirectPath?: string | false;
@@ -109,13 +110,14 @@ export function useLogout<TVariables = {}>({
     const { open, close } = useNotification();
     const { logout: legacyLogoutFromContext } = useLegacyAuthContext();
     const { logout: logoutFromContext } = useAuthBindingsContext();
+    const { keys, preferLegacyKeys } = useKeys();
 
     const mutation = useMutation<
         AuthActionResponse,
         Error | RefineError,
         (TVariables & Variables) | void,
         unknown
-    >(["useLogout"], logoutFromContext, {
+    >(keys().auth().action("logout").get(preferLegacyKeys), logoutFromContext, {
         onSuccess: async (data, variables) => {
             const { success, error, redirectTo } = data;
             const { redirectPath } = variables ?? {};
@@ -154,7 +156,10 @@ export function useLogout<TVariables = {}>({
         (TVariables & Variables) | void,
         unknown
     >(
-        ["useLogout", "v3LegacyAuthProviderCompatible"],
+        [
+            ...keys().auth().action("logout").get(preferLegacyKeys),
+            "v3LegacyAuthProviderCompatible",
+        ],
         legacyLogoutFromContext,
         {
             onSuccess: async (data, variables) => {

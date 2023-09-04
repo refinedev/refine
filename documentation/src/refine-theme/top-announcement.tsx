@@ -4,7 +4,7 @@ import React from "react";
 export const TopAnnouncement = () => {
     return (
         <a
-            href="https://s.refine.dev/discover-enterprise"
+            href="https://github.com/refinedev/refine"
             target="_blank"
             rel="noreferrer"
             className={clsx(
@@ -27,8 +27,7 @@ export const TopAnnouncement = () => {
                     "linear-gradient(180deg, rgba(0, 128, 255, 0.05) 0%, rgba(110, 179, 247, 0.00) 100%), #F6FAFE",
             }}
         >
-            👀 Interested in the latest enterprise backend features of refine?
-            👉{" "}
+            🧙‍♂️ refine grants your wishes! Please give us a ⭐️ on{" "}
             <span
                 className={clsx(
                     "font-bold",
@@ -36,9 +35,9 @@ export const TopAnnouncement = () => {
                     "hover:text-refine-blue-dark",
                 )}
             >
-                Join now
+                GitHub
             </span>{" "}
-            and get early access!
+            to keep the magic going.
         </a>
     );
 };

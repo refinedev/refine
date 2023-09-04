@@ -84,11 +84,23 @@ You need to execute some commands in order to start the text editing application
 
 The server and client begin a handshake over the WebSocket protocol. At the server level, the HTTP server is turned on, and the WebSocket server is connected using a single port. The WebSocket server is connected to the HTTP port once the HTTP server has been set up. The process of creating a WebSocket connection starts with this, and it serves as the beginning of an exchange between the server and the client, much like a virtual handshake.
 
+```tsx title="/server/index.js"
+// Import required modules
+const { WebSocket, WebSocketServer } = require('ws');
+const http = require('http');
+const uuidv4 = require('uuid').v4;
 
-  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/clip_image018.png"  alt="react-websocket-nodejs" />
-</div>
+// Create an HTTP server and a WebSocket server
+const server = http.createServer();
+const wsServer = new WebSocketServer({ server });
+const port = 8000;
 
+// Start the WebSocket server
+server.listen(port, () => {
+  console.log(`WebSocket server is running on port ${port}`);
+});
+
+```
 
 ### Managing Client Connections
 
