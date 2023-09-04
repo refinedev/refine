@@ -96,8 +96,44 @@ export const authProvider: AuthBindings = {
             };
         }
     },
-    register: async (params) => {
-        throw new Error("Method not implemented.");
+    register: async ({ email, password }) => {
+        try {
+            await dataProvider.custom({
+                url: API_URL,
+                method: "post",
+                headers: {},
+                meta: {
+                    variables: { email, password },
+                    rawQuery: `
+                mutation register($email: String!, $password: String!) {
+                    register(registerInput: {
+                      email: $email
+                        password: $password
+                    }) {
+                        id
+                        email
+                    }
+                  }
+                `,
+                },
+            });
+            return {
+                success: true,
+                redirectTo: `/login?email=${email}`,
+            };
+        } catch (error: any) {
+            return {
+                success: false,
+                error: {
+                    message:
+                        "message" in error ? error.message : "Register failed",
+                    name:
+                        "name" in error
+                            ? error.name
+                            : "Invalid email or password",
+                },
+            };
+        }
     },
     logout: async () => {
         client.setHeaders({
@@ -141,6 +177,18 @@ export const authProvider: AuthBindings = {
                 authenticated: false,
             };
         }
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+            redirectTo: "/update-password",
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
     getIdentity: async () => {
         try {

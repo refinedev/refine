@@ -10,10 +10,16 @@ import { useLogin } from "@refinedev/core";
 
 export const LoginPage: React.FC = () => {
     const [params, setParams] = useSearchParams();
+    const emailFromSearchParams = params.get("email");
+
     const toParams = params.get("to");
     const { mutate } = useLogin();
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [refreshToken, setRefreshToken] = useState<string | null>(null);
+
+    const initialValues = emailFromSearchParams
+        ? { email: emailFromSearchParams }
+        : demoCredentials;
 
     useEffect(() => {
         if (toParams && toParams?.includes("accessToken")) {
@@ -38,9 +44,7 @@ export const LoginPage: React.FC = () => {
         <AuthPage
             type="login"
             formProps={{
-                initialValues: {
-                    ...demoCredentials,
-                },
+                initialValues,
             }}
             title={<Title collapsed={false} />}
             providers={[

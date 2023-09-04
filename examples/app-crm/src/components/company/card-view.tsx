@@ -46,15 +46,7 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                     );
 
                     return (
-                        <Col
-                            key={company.id}
-                            xs={24}
-                            sm={24}
-                            md={12}
-                            lg={12}
-                            xl={6}
-                            xxl={4}
-                        >
+                        <Col key={company.id} span={6}>
                             <Card
                                 size="small"
                                 actions={[

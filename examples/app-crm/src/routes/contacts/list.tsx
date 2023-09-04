@@ -32,6 +32,9 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
         sorters,
         setFilters,
     } = useTable<Contact, HttpError, { name: string }>({
+        pagination: {
+            pageSize: 12,
+        },
         sorters: {
             initial: [
                 {
