@@ -1062,10 +1062,12 @@ const stepsForm = useStepsForm({
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
+
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -1119,6 +1121,23 @@ useStepsForm({
     },
 })
 ```
+
+#### `invalidateOnUnmountDetailCache`
+
+If you want to invalidate the `detail` query cache when the form is unmounted, you can set the `invalidateOnUnmountDetailCache` parameter to `true`. Default value is `false`.
+
+```tsx
+useStepsForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            invalidateOnUnmountDetailCache: true,
+        },
+    },
+})
+```
+
 ## Return Values
 
 :::tip
