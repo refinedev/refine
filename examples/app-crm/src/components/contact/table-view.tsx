@@ -44,6 +44,7 @@ export const TableView: React.FC<Props> = ({
             {...tableProps}
             pagination={{
                 ...tableProps.pagination,
+                pageSizeOptions: ["12", "24", "48", "96"],
                 showTotal: (total) => {
                     return (
                         <span
