@@ -460,6 +460,11 @@ export const useForm = <
     ): Promise<UpdateResponse<TResponse> | void> | void => {
         if (!resource || !isEdit) return;
 
+        const defaultInvalidates: (keyof IQueryKeys)[] = ["list", "many"];
+        if (autoSave?.invalidateOnUnmountDetailCache) {
+            defaultInvalidates.push("detail");
+        }
+
         const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
             id: id ?? "",
             values,
@@ -469,7 +474,8 @@ export const useForm = <
             meta: { ...combinedMeta, ...mutationMeta },
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
-            invalidates: [],
+            invalidates: invalidates ?? defaultInvalidates,
+            mutationMode: "pessimistic",
         };
 
         return autoSaveMutation.mutate(variables, {
