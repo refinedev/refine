@@ -168,7 +168,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                         key={header?.id}
                                         onClick={header?.column?.getToggleSortingHandler()}
                                     >
-                                        <div className="flex justify-center items-center">
+                                        <div className="flex justify-start items-center">
                                             {!header?.isPlaceholder &&
                                                 flexRender(
                                                     header?.column?.columnDef

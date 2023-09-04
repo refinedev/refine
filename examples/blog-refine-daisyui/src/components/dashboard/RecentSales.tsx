@@ -159,11 +159,11 @@ export const RecentSales = () => {
                             <tr key={headerGroup?.id}>
                                 {headerGroup?.headers?.map((header) => (
                                     <th
-                                        className="text-center hover:bg-slate-300"
+                                        className="hover:bg-slate-300"
                                         key={header?.id}
                                         onClick={header?.column?.getToggleSortingHandler()}
                                     >
-                                        <div className="flex justify-center items-center">
+                                        <div className="flex justify-start items-center">
                                             {!header?.isPlaceholder &&
                                                 flexRender(
                                                     header?.column?.columnDef

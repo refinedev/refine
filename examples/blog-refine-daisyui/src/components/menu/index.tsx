@@ -5,7 +5,7 @@ export const Menu = () => {
     const { menuItems } = useMenu();
 
     return (
-        <nav className="menu mx-0">
+        <nav className="sticky top-0 z-50 menu mx-0 bg-white">
             <ul className="mx-0 flex justify-start items-center">
                 {menuItems.map((item) => (
                     <li
