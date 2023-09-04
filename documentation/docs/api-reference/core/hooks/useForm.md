@@ -1152,8 +1152,6 @@ If you want to save the form automatically after some delay when user edits the 
 
 By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
 
-By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
-
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
