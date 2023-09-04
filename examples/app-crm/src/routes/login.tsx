@@ -5,15 +5,21 @@ import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 import { demoCredentials } from "../providers/auth";
 
 import { Title } from "../components/title";
+import { useSearchParams } from "react-router-dom";
 
 export const LoginPage: React.FC = () => {
+    const [searchParams] = useSearchParams();
+    const emailFromSearchParams = searchParams.get("email");
+
+    const initialValues = emailFromSearchParams
+        ? { email: emailFromSearchParams }
+        : demoCredentials;
+
     return (
         <AuthPage
             type="login"
             formProps={{
-                initialValues: {
-                    ...demoCredentials,
-                },
+                initialValues,
             }}
             title={<Title collapsed={false} />}
             providers={[

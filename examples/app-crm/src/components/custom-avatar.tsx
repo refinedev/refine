@@ -14,7 +14,9 @@ const CustomAvatarComponent = ({ name = "", style, ...rest }: Props) => {
             alt={name}
             size="small"
             style={{
-                backgroundColor: getRandomColorFromString(name),
+                backgroundColor: rest?.src
+                    ? "transparent"
+                    : getRandomColorFromString(name),
                 display: "flex",
                 alignItems: "center",
                 border: "none",
