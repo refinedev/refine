@@ -24,8 +24,8 @@ export const LoginPage: React.FC = () => {
     useEffect(() => {
         if (accessToken && refreshToken) {
             mutate({
-                accessToken: accessToken,
-                refreshToken: refreshToken,
+                accessToken,
+                refreshToken,
             });
         }
     }, [accessToken, refreshToken]);
