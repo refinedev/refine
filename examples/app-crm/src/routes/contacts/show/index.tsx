@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Button,
     Card,
@@ -8,6 +8,7 @@ import {
     Select,
     Space,
     Spin,
+    Form,
     Typography,
 } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -51,8 +52,6 @@ export const ContactShowPage = () => {
     const getToPath = useGetToPath();
     const { mutate } = useUpdate<Contact>();
     const { mutate: deleteMutation } = useDelete<Contact>();
-    const { mutate: updateMutation } = useUpdate<Contact>();
-    const [salesOwnerId, setSalesOwnerId] = useState<string>();
     const { queryResult } = useShow<Contact>({
         meta: {
             fields: [
@@ -246,27 +245,26 @@ export const ContactShowPage = () => {
                         onCancel={() => setActiveForm(undefined)}
                         onUpdate={() => {
                             setActiveForm(undefined);
-                            updateMutation({
-                                resource: "contacts",
-                                id,
-                                values: {
-                                    salesOwnerId,
-                                },
-                            });
                         }}
                         extra={
-                            <div style={{ marginTop: ".8rem" }}>
-                                <Text>Sales Owner</Text>
+                            <Form.Item
+                                name="salesOwnerId"
+                                label="Sales Owner"
+                                labelCol={{
+                                    style: {
+                                        marginTop: "0.8rem",
+                                    },
+                                }}
+                            >
                                 <Select
-                                    style={{ width: "100%" }}
+                                    style={{
+                                        width: "100%",
+                                    }}
                                     defaultValue={{
                                         label: salesOwner.name,
                                         value: salesOwner.id,
                                     }}
                                     {...usersSelectProps}
-                                    onChange={(value: any) => {
-                                        setSalesOwnerId(value);
-                                    }}
                                     options={
                                         usersSelectQueryResult.data?.data?.map(
                                             ({ id, name, avatarUrl }) => ({
@@ -284,7 +282,7 @@ export const ContactShowPage = () => {
                                         ) ?? []
                                     }
                                 />
-                            </div>
+                            </Form.Item>
                         }
                     >
                         <Select
