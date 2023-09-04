@@ -1,5 +1,5 @@
 import { AuthBindings } from "@refinedev/core";
-import { API_URL, client, dataProvider } from "./data";
+import { API_BASE_URL, API_URL, client, dataProvider } from "./data";
 import type { User } from "../interfaces/graphql";
 
 const emails = [
@@ -28,7 +28,29 @@ export const demoCredentials = {
 };
 
 export const authProvider: AuthBindings = {
-    login: async ({ email }) => {
+    login: async ({ email, providerName, accessToken, refreshToken }) => {
+        if (accessToken && refreshToken) {
+            client.setHeaders({
+                Authorization: `Bearer ${accessToken}`,
+            });
+
+            localStorage.setItem("access_token", accessToken);
+            localStorage.setItem("refresh_token", refreshToken);
+
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
+
+        if (providerName) {
+            window.location.href = `${API_BASE_URL}/auth/${providerName}`;
+
+            return {
+                success: true,
+            };
+        }
+
         try {
             const { data } = await dataProvider.custom({
                 url: API_URL,
