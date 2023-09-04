@@ -323,7 +323,7 @@ export const useForm = <
                 });
             }
         };
-    }, []);
+    }, [autoSave?.invalidateOnUnmountDetailCache]);
 
     const getAction = () => {
         if (actionFromProps) return actionFromProps;
