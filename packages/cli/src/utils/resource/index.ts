@@ -23,6 +23,29 @@ export const getResourcePath = (
     };
 };
 
+export const getProviderPath = (
+    projectType: ProjectTypes,
+): { path: string; alias: string } => {
+    switch (projectType) {
+        case ProjectTypes.NEXTJS:
+            return {
+                path: "src/providers",
+                alias: "../src/providers",
+            };
+        case ProjectTypes.REMIX:
+            return {
+                path: "app/providers",
+                alias: "~/providers",
+            };
+    }
+
+    // vite and react
+    return {
+        path: "src/providers",
+        alias: "providers",
+    };
+};
+
 export const getFilesPathByProject = (projectType?: ProjectTypes) => {
     switch (projectType) {
         case ProjectTypes.REMIX:
