@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+import { AuthPage } from "@refinedev/antd";
+import { useLogin } from "@refinedev/core";
+import { useSearchParams } from "react-router-dom";
 
 import { demoCredentials } from "../providers/auth";
 
 import { Title } from "../components/title";
-import { useSearchParams } from "react-router-dom";
-import { useLogin } from "@refinedev/core";
 
 export const LoginPage: React.FC = () => {
     const [searchParams] = useSearchParams();
+    const { mutate } = useLogin();
 
     const emailFromSearchParams = searchParams.get("email");
     const accessToken = searchParams.get("accessToken");
     const refreshToken = searchParams.get("refreshToken");
-
-    const { mutate } = useLogin();
 
     const initialValues = emailFromSearchParams
         ? { email: emailFromSearchParams }
