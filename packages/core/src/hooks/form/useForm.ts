@@ -12,6 +12,7 @@ import {
     useOne,
     useRefineContext,
     useMeta,
+    useInvalidate,
 } from "@hooks";
 
 import {
@@ -271,6 +272,7 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const invalidate = useInvalidate();
     const { options } = useRefineContext();
     const getMeta = useMeta();
 
@@ -308,6 +310,20 @@ export const useForm = <
     React.useEffect(() => {
         setId(defaultId);
     }, [defaultId]);
+
+    // invalidate `detail` cache when unmount
+    React.useEffect(() => {
+        return () => {
+            if (autoSave?.invalidateOnUnmountDetailCache) {
+                invalidate({
+                    id,
+                    invalidates: ["detail"],
+                    dataProviderName,
+                    resource: identifier,
+                });
+            }
+        };
+    }, []);
 
     const getAction = () => {
         if (actionFromProps) return actionFromProps;
@@ -460,11 +476,6 @@ export const useForm = <
     ): Promise<UpdateResponse<TResponse> | void> | void => {
         if (!resource || !isEdit) return;
 
-        const defaultInvalidates: (keyof IQueryKeys)[] = ["list", "many"];
-        if (autoSave?.invalidateOnUnmountDetailCache) {
-            defaultInvalidates.push("detail");
-        }
-
         const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
             id: id ?? "",
             values,
@@ -474,7 +485,7 @@ export const useForm = <
             meta: { ...combinedMeta, ...mutationMeta },
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
-            invalidates: invalidates ?? defaultInvalidates,
+            invalidates: invalidates ?? ["list", "many"],
             mutationMode: "pessimistic",
         };
 
