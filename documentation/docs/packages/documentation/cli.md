@@ -30,7 +30,8 @@ Options:
   -h, --help                 Output usage information.
 
 Commands:
-  create-resource [options]  Create a new resource files
+  add [options] [auth] [live] [data] [resource]  Creates new features for your project (data-provider, auth-provider, live-provider, resource etc.)
+  create-resource [options]  Create a new resource files (deprecated, please use "add resource" command)
   check-updates              Check all installed `refine` packages are up to date
   update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
   dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
@@ -158,7 +159,46 @@ If there is already a file with the same name in the directory, the swizzle comm
 
 :::
 
+### add
+
+Use this command to add a new `resource` or `provider` to your project.
+
+#### resource
+
+CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
+
+```bash
+> npm run refine add resource
+```
+
+| Argument                | Description                               |
+| ----------------------- | ----------------------------------------- |
+| resourceName (optional) | The name of the resource you want to add. |
+
+#### provider
+
+Empty Provider methods are created for to easily implement and connect to your data source from your **refine** project. These components are put on the specified path.
+
+```bash
+> npm run refine add auth
+> npm run refine add data
+> npm run refine add live
+```
+
+| Argument                                    | Description                               |
+| ------------------------------------------- | ----------------------------------------- |
+| `auth` &#124 `data` &#124 `live` (required) | The name of the provider you want to add. |
+
+| Alias | Option    | Default                                                                                             | Description                                                                                |
+| ----- | --------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| -a    | --actions | `list`,`create`,`edit`,`show`                                                                       | Only generate the specified actions for resource. (works only when `add resource`)         |
+| -p    | --path    | (when `add resource`): react/vite: `src/pages` next.js: `src/components` remix: `app/components`    | The path to create source files. (It is created automatically according to the framework.) |
+| -p    | --path    | (when `add providers`): react/vite: `src/providers` next.js: `src/providers` remix: `app/providers` | The path to create source files. (It is created automatically according to the framework.) |
+| -h    | --help    |                                                                                                     | Output usage information                                                                   |
+
 ### create-resource
+
+> 🚨 Deprecated: Please use [add](#add) command instead.
 
 Use this command to add a new resource to your project. CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
 
@@ -166,9 +206,9 @@ Use this command to add a new resource to your project. CRUD components are crea
 > npm run refine create-resource
 ```
 
-| Argument               | Description                               |
-| ---------------------- | ----------------------------------------- |
-| resourceName (optinal) | The name of the resource you want to add. |
+| Argument                | Description                               |
+| ----------------------- | ----------------------------------------- |
+| resourceName (optional) | The name of the resource you want to add. |
 
 #### Options
 
