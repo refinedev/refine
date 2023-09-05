@@ -33,12 +33,24 @@ export const DevtoolsPanel = () => {
                 {({ resizing }) => (
                     <iframe
                         src={devtoolsUrl}
+                        srcDoc={
+                            devtoolsUrl
+                                ? undefined
+                                : `
+                            <html style="height:100%;padding:0;margin:0;">
+                                <body style="display:flex;justify-content:center;height:100%;padding:24px;margin:0;align-items:center;box-sizing:border-box;">
+                                    <h1 style="font-family:ui-monospace,monospace;color:#CFD7E2;text-align:center;">Could not connect to the devtools server</h1>
+                                </body>
+                            </html>
+                        `
+                        }
                         style={{
                             width: "100%",
                             height: "100%",
                             border: "none",
                             borderRadius: "7px",
                             pointerEvents: resizing ? "none" : "auto",
+                            background: "#14141F",
                         }}
                     />
                 )}
