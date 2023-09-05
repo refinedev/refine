@@ -88,3 +88,5 @@ export * from "./prettify";
 export * from "./autoSave";
 
 export * from "./textTransformers";
+
+export * from "./optimistic-update-map";

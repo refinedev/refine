@@ -32,6 +32,7 @@ import {
     MetaQuery,
     GetListResponse,
     IQueryKeys,
+    OptimisticUpdateManyMapType,
 } from "../../interfaces";
 import {
     queryKeysReplacement,
@@ -98,29 +99,7 @@ type UpdateManyParams<TData, TError, TVariables> = {
      *   one: true,
      * }
      */
-    optimisticUpdateMap?: {
-        list?:
-            | ((
-                  previous: GetListResponse<TData> | null,
-                  values: TVariables,
-                  ids: BaseKey[],
-              ) => GetListResponse<TData> | null)
-            | boolean;
-        many?:
-            | ((
-                  previous: GetListResponse<TData> | null,
-                  values: TVariables,
-                  ids: BaseKey[],
-              ) => GetListResponse<TData> | null)
-            | boolean;
-        one?:
-            | ((
-                  previous: GetListResponse<TData> | null,
-                  values: TVariables,
-                  id: BaseKey,
-              ) => GetListResponse<TData> | null)
-            | boolean;
-    };
+    optimisticUpdateMap?: OptimisticUpdateManyMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateManyResponse<TData>,
     TError,

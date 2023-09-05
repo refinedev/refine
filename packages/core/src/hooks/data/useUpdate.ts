@@ -18,6 +18,7 @@ import {
     PreviousQuery,
     GetListResponse,
     IQueryKeys,
+    OptimisticUpdateMapType,
 } from "../../interfaces";
 import {
     useResource,
@@ -97,28 +98,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      *   one: true,
      * }
      */
-    optimisticUpdateMap?: {
-        list?:
-            | ((
-                  previous: GetListResponse<TData> | null,
-                  values: TVariables,
-                  id: BaseKey,
-              ) => GetListResponse<TData> | null)
-            | boolean;
-        many?:
-            | ((
-                  previous: GetListResponse<TData> | null,
-                  values: TVariables,
-                  id: BaseKey,
-              ) => GetListResponse<TData> | null)
-            | boolean;
-        one?:
-            | ((
-                  previous: GetListResponse<TData> | null,
-                  values: TVariables,
-              ) => GetListResponse<TData> | null)
-            | boolean;
-    };
+    optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TData>,
     TError,
