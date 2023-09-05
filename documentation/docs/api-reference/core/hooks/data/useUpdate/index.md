@@ -352,6 +352,106 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 {elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
 
+### `optimisticUpdateMap`
+
+If the mutation mode is defined as `optimistic` the `useUpdate` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+
+:::caution
+This feature is only work with the `mutationMode` set to `optimistic`.
+:::
+
+`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
+
+```tsx
+const { mutate } = useUpdate();
+
+mutate({
+    //...
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+        list: true,
+        many: true,
+        detail: false,
+    },
+});
+```
+
+In the above case the `list` and `many` queries will be updated automatically. But the `detail` query will not be updated.
+
+Also for customize the cache update, you can pass the function to the `list`, `many` and `detail` keys. The function will be called with the `previous` data, `values` and `id` parameters. You should return the new data from the function.
+
+```tsx
+const { mutate } = useUpdate();
+
+mutate({
+    //...
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+        // highlight-start
+        optimisticUpdateMap: {
+            list: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = previous.data.map((record) => {
+                    if (record.id === id) {
+                        return {
+                            foo: "bar",
+                            ...record,
+                            ...values,
+                        };
+                    }
+                    return record;
+                });
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+            many: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = previous.data.map((record) => {
+                    if (record.id === id) {
+                        return {
+                            foo: "bar",
+                            ...record,
+                            ...values,
+                        };
+                    }
+                    return record;
+                });
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+            one: (previous, values) => {
+                if (!previous) {
+                    return null;
+                }
+
+                return {
+                    ...previous,
+                    data: {
+                        foo: "bar",
+                        ...previous.data,
+                        ...values,
+                    },
+                };
+            },
+        },
+        // highlight-end
+    },
+});
+```
+
+
 ## Return Values
 
 Returns an object with TanStack Query's `useMutation` return values.
@@ -368,7 +468,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 const { overtime } = useUpdate();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
-```
+````
 
 ## API
 
