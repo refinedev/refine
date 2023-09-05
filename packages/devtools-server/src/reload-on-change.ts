@@ -1,6 +1,6 @@
 import fs from "fs";
 import { debounce } from "lodash";
-import { DevtoolsEvent } from "@refinedev/devtools-shared";
+import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 
 import type { Server } from "ws";
 import { OPEN } from "ws";
@@ -12,7 +12,7 @@ export const reloadOnChange = __DEVELOPMENT__
                   ws.clients.forEach((client) => {
                       if (client.readyState === OPEN) {
                           console.log("Reloading connected client...");
-                          client.send(DevtoolsEvent.RELOAD);
+                          send(client as any, DevtoolsEvent.RELOAD, {});
                       }
                   });
               }, 200);
