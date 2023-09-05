@@ -1,9 +1,14 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["src/**/*.{ts,tsx}"],
     prefix: "re-",
     theme: {
         extend: {
+            fontFamily: {
+                sans: ["Inter", ...defaultTheme.fontFamily.sans],
+            },
             colors: {
                 gray: {
                     0: "#ffffff",
