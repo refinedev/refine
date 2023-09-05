@@ -3,6 +3,19 @@ import React, { useEffect } from "react";
 import { useCan, useResource } from "@hooks";
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 
+type Params = {
+    resource?: IResourceItem & { children?: ITreeMenu[] };
+    id?: BaseKey;
+    [key: string]: any;
+};
+
+type OnUnauthorizedProps = {
+    resource?: string;
+    reason?: string;
+    action: string;
+    params: Params;
+};
+
 type CanAccessBaseProps = {
     /**
      * Resource name for API data interactions
@@ -16,11 +29,7 @@ type CanAccessBaseProps = {
      * Parameters associated with the resource
      * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
      */
-    params?: {
-        resource?: IResourceItem & { children?: ITreeMenu[] };
-        id?: BaseKey;
-        [key: string]: any;
-    };
+    params?: Params;
     /**
      * Content to show if access control returns `false`
      */
@@ -28,16 +37,7 @@ type CanAccessBaseProps = {
     /**
      * Callback function to be called if access control returns `false`
      */
-    onUnauthorized?: (props: {
-        resource?: string;
-        reason?: string;
-        action: string;
-        params: {
-            resource?: IResourceItem & { children?: ITreeMenu[] };
-            id?: BaseKey;
-            [key: string]: any;
-        };
-    }) => void;
+    onUnauthorized?: (props: OnUnauthorizedProps) => void;
     children: React.ReactNode;
 };
 
