@@ -69,10 +69,10 @@ export const createResources = async (
 
         if (pathExistsSync(resourcePath)) {
             console.error(
-                `Resource (${join(
+                `❌ Resource (${join(
                     destinationPath,
                     resourceFolderName,
-                )}) already exist! ❌`,
+                )}) already exist!`,
             );
             return;
         }
@@ -152,7 +152,7 @@ export const createResources = async (
         }
 
         console.log(
-            `Resource (${destinationResourcePath}) generated successfully! 🎉`,
+            `🎉 Resource (${destinationResourcePath}) generated successfully!`,
         );
     });
 

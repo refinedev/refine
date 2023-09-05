@@ -1,5 +1,9 @@
 import { DataProvider } from "@refinedev/core";
 
+/**
+ * Check out the Data Provider documentation for detailed information
+ * https://refine.dev/docs/api-reference/core/providers/data-provider/
+ **/
 export const dataProvider = (
     apiUrl: string,
     httpClient: any, // TODO: replace `any` with your http client type
