@@ -101,14 +101,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
                 params,
             });
         }
-    }, [
-        onUnauthorized,
-        resourceName,
-        action,
-        data?.can,
-        params.id,
-        params.resource,
-    ]);
+    }, [data?.can]);
 
     if (data?.can) {
         if (React.isValidElement(children)) {
