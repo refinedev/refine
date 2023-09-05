@@ -183,11 +183,16 @@ Empty Provider methods are created for to easily implement and connect to your d
 > npm run refine add auth
 > npm run refine add data
 > npm run refine add live
+> npm run refine add access-control
+> npm run refine add audit-log
+> npm run refine add i18n
+> npm run refine add notification
+
 ```
 
-| Argument                                    | Description                               |
-| ------------------------------------------- | ----------------------------------------- |
-| `auth` &#124 `data` &#124 `live` (required) | The name of the provider you want to add. |
+| Argument                                                                                                               | Description                               |
+| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `auth` &#124 `data` &#124 `live` &#124 `access-control` &#124 `audit-log` &#124 `i18n` &#124 `notification` (required) | The name of the provider you want to add. |
 
 | Alias | Option    | Default                                                                                             | Description                                                                                |
 | ----- | --------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
