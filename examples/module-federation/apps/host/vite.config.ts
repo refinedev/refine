@@ -1,6 +1,6 @@
 import federation from "@originjs/vite-plugin-federation";
 import react from "@vitejs/plugin-react";
-import dns from "dns";
+import * as dns from "dns";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -39,11 +39,7 @@ export default defineConfig({
         }),
         tsconfigPaths(),
     ],
-    server: {
-        host: "localhost",
-        port: 4000,
-        strictPort: true,
-    },
+
     preview: {
         host: "localhost",
         port: 4000,

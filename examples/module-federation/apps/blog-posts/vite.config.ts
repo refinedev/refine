@@ -30,14 +30,6 @@ export default defineConfig({
         }),
         tsconfigPaths(),
     ],
-    server: {
-        host: "localhost",
-        port: 4001,
-        strictPort: true,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-        },
-    },
     preview: {
         host: "localhost",
         port: 4001,
