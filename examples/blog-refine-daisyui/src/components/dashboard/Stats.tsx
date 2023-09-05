@@ -1,5 +1,5 @@
 import React from "react";
-import { KpiCard } from "./kpiCard";
+import { KpiCard } from "./KpiCard";
 import { IChartDatum } from "../../interfaces";
 import {
     CurrencyDollarIcon,
