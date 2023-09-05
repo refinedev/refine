@@ -24,8 +24,7 @@
   "module": "dist/esm/index.js",
   "dependencies": {
     "error-stack-parser": "^2.1.4",
-    "@refinedev/devtools-shared": "^0.0.1",
-    "@refinedev/devtools-server": "^0.0.1"
+    "@refinedev/devtools-shared": "^0.0.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
