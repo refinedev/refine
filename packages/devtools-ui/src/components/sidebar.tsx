@@ -46,13 +46,13 @@ const SidebarItem = ({
     index,
     separator,
     active,
-    withLabel,
+    hideLabel,
 }: {
     item: (typeof items)[number];
     separator?: boolean;
     index: number;
     active?: boolean;
-    withLabel?: boolean;
+    hideLabel?: boolean;
 }) => {
     const timeoutRef = React.useRef<number | null>(null);
     const [hover, setHover] = React.useState(false);
@@ -87,7 +87,7 @@ const SidebarItem = ({
                 className={clsx(
                     "re-relative",
                     "re-flex-shrink-0",
-                    !withLabel && "re-w-12",
+                    "re-w-12",
                     "re-h-12",
                     active ? "re-text-alt-cyan" : "re-text-gray-500",
                     !active && "hover:re-text-alt-cyan",
@@ -95,53 +95,49 @@ const SidebarItem = ({
                     "re-duration-200",
                     "re-ease-in-out",
                     "re-flex",
-                    !withLabel && "re-justify-center",
-                    withLabel && "re-justify-start",
+                    "re-justify-center",
                     "re-gap-4",
                     "re-items-center",
                     "re-group",
                 )}
             >
-                {!withLabel && <ActiveItemBackground active={active} />}
+                <ActiveItemBackground active={active} />
                 <Icon className={clsx("re-z-[1]", soon && "re-opacity-50")} />
-                {soon && !withLabel && (
+                {soon && (
                     <div
                         className={clsx(
                             "re-absolute",
-                            "re-bottom-3",
-                            "re-left-0",
-                            "re-bg-alt-cyan",
-                            "re-text-gray-800",
+                            "re-h-[11px]",
+                            "re-bottom-[-2px]",
+                            "re-right-[-2px]",
                             "re-text-[7px]",
+                            "re-leading-[7px]",
                             "re-z-[2]",
-                            "re-w-full",
+                            "re",
                             "re-text-center",
                             "re-font-semibold",
-                            "-re-rotate-12",
-                            "re-transition-all",
-                            "re-duration-200",
-                            "re-ease-in-out",
-                            "group-hover:re-rotate-0",
-                            "group-hover:re-bottom-0",
+                            "re-text-alt-cyan",
+                            "re-bg-alt-cyan",
+                            "re-bg-opacity-10",
+                            "re-border",
+                            "re-border-opacity-20",
+                            "re-border-alt-cyan",
+                            "re-py-px",
+                            "re-px-1",
+                            "re-rounded-lg",
                         )}
                     >
                         SOON
                     </div>
                 )}
-                {withLabel && (
-                    <span>
-                        {label}
-                        {soon ? " (Soon)" : ""}
-                    </span>
-                )}
-                {!withLabel && (
+                {!hideLabel && (
                     <div
                         className={clsx(
                             "re-transition-transform",
                             !hover && "re-scale-y-0 re--translate-x-6",
                             hover && "re-scale-y-100 re-translate-x-0",
                             "re-absolute",
-                            "re-left-16",
+                            "re-left-[52px]",
                             "re-top-0",
                             "re-h-full",
                             "re-flex",
@@ -150,6 +146,7 @@ const SidebarItem = ({
                             "re-text-sm",
                             "re-break-keep",
                             "re-whitespace-nowrap",
+                            "re-z-[2]",
                         )}
                     >
                         <div
@@ -157,9 +154,11 @@ const SidebarItem = ({
                                 "re-px-2",
                                 "re-py-1",
                                 "re-border",
-                                "re-border-gray-700",
-                                "re-bg-gray-800",
+                                "re-border-gray-600",
+                                "re-bg-gray-700",
                                 "re-shadow-md",
+                                "re-rounded",
+                                "re-text-gray-0",
                             )}
                         >
                             {label}
@@ -256,7 +255,7 @@ const SidebarHiddenItemsItem = ({
                         !hover && "re-scale-x-0 re--translate-x-6",
                         hover && "re-scale-x-100 re-translate-x-0",
                         "re-absolute",
-                        "re-left-16",
+                        "re-left-[52px]",
                         "re-bottom-0",
                         "re-flex",
                         "re-items-center",
@@ -269,11 +268,16 @@ const SidebarHiddenItemsItem = ({
                     <div
                         className={clsx(
                             "re-px-3",
-                            "re-py-0",
+                            "re-pt-0",
+                            "re-pb-1",
                             "re-border",
-                            "re-border-gray-700",
-                            "re-bg-gray-800",
+                            "re-border-gray-600",
+                            "re-bg-gray-900",
                             "re-shadow-md",
+                            "re-flex",
+                            "re-items-center",
+                            "re-gap-2",
+                            "re-rounded",
                         )}
                     >
                         {hiddenItems.map((item, index) => {
@@ -283,7 +287,7 @@ const SidebarHiddenItemsItem = ({
                                     key={index}
                                     index={index}
                                     active={false}
-                                    withLabel
+                                    hideLabel
                                 />
                             );
                         })}
