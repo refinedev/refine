@@ -7,7 +7,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 export const DevToolsApp = () => {
     return (
-        <DevToolsContextProvider>
+        <DevToolsContextProvider __devtools>
             <ReloadOnChanges />
             <BrowserRouter>
                 <Routes>
