@@ -30,6 +30,7 @@ import {
     MetaQuery,
     AutoSaveProps,
     AutoSaveReturnType,
+    OptimisticUpdateMapType,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -157,6 +158,15 @@ type ActionFormProps<
         TResponseError,
         TVariables
     >["mutationOptions"];
+    /**
+     * If you customize the [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) option, you can use it to manage the invalidations that will occur at the end of the mutation.
+     * @default {
+     *   list: true,
+     *   many: true,
+     *   one: true,
+     * }
+     */
+    optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TResponse> | CreateResponse<TResponse>,
     TResponseError,
@@ -256,6 +266,7 @@ export const useForm = <
     updateMutationOptions,
     overtimeOptions,
     autoSave,
+    optimisticUpdateMap,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -554,6 +565,7 @@ export const useForm = <
                             }
                             reject();
                         },
+                        ...optimisticUpdateMap,
                     });
                 });
             },
