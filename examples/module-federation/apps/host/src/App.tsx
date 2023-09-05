@@ -102,7 +102,7 @@ function App() {
                                     </Authenticated>
                                 }
                             >
-                                <Route index element={<div>Dashboard</div>} />
+                                <Route index element={<NavigateToResource />} />
                                 <Route path="/blog-posts">
                                     <Route
                                         index
