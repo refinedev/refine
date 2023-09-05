@@ -2,7 +2,8 @@
   "name": "module-federation",
   "private": true,
   "workspaces": [
-    "apps/*"
+    "apps/host",
+    "apps/blog-posts"
   ],
   "scripts": {
     "dev": "npm run dev --workspaces",

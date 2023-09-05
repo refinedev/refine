@@ -1,3 +1,5 @@
+import React, { Suspense } from "react";
+
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -19,21 +21,14 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { authProvider } from "./authProvider";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
-import {
-    BlogPostCreate,
-    BlogPostEdit,
-    BlogPostList,
-    BlogPostShow,
-} from "./pages/blog-posts";
-import {
-    CategoryCreate,
-    CategoryEdit,
-    CategoryList,
-    CategoryShow,
-} from "./pages/categories";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+
+const BlogPostList = React.lazy(() => import("blog_posts/BlogPostList"));
+const BlogPostShow = React.lazy(() => import("blog_posts/BlogPostShow"));
+const BlogPostEdit = React.lazy(() => import("blog_posts/BlogPostEdit"));
+const BlogPostCreate = React.lazy(() => import("blog_posts/BlogPostCreate"));
 
 function App() {
     return (
@@ -89,28 +84,50 @@ function App() {
                                     </Authenticated>
                                 }
                             >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+                                <Route index element={<div>Dashboard</div>} />
                                 <Route path="/blog-posts">
-                                    <Route index element={<BlogPostList />} />
+                                    <Route
+                                        index
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <BlogPostList />
+                                            </Suspense>
+                                        }
+                                    />
                                     <Route
                                         path="create"
-                                        element={<BlogPostCreate />}
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <BlogPostCreate />
+                                            </Suspense>
+                                        }
                                     />
                                     <Route
                                         path="edit/:id"
-                                        element={<BlogPostEdit />}
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <BlogPostEdit />
+                                            </Suspense>
+                                        }
                                     />
                                     <Route
                                         path="show/:id"
-                                        element={<BlogPostShow />}
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <BlogPostShow />
+                                            </Suspense>
+                                        }
                                     />
                                 </Route>
-                                <Route path="/categories">
+                                {/* <Route path="/categories">
                                     <Route index element={<CategoryList />} />
                                     <Route
                                         path="create"
@@ -124,7 +141,7 @@ function App() {
                                         path="show/:id"
                                         element={<CategoryShow />}
                                     />
-                                </Route>
+                                </Route> */}
                             </Route>
                             <Route
                                 element={
