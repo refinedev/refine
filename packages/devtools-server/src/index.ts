@@ -23,24 +23,38 @@ ws.on("connection", (client) => {
             });
         } else {
             db.connectedApp = data.url;
+            db.clientWs = client;
+
+            ws.clients.forEach((c) => {
+                send(c as any, DevtoolsEvent.DEVTOOLS_CONNECTED_APP, {
+                    url: db.connectedApp,
+                });
+            });
         }
     });
 
     // close connected app if client disconnects
     client.on("close", (_, reason) => {
-        if (reason.toString() === db.connectedApp) {
-            db.connectedApp = null;
+        if (__DEVELOPMENT__) {
+            console.log("Client disconnected", ws.clients.size);
+        }
+
+        if (db.clientWs) {
+            if (!ws.clients.has(db.clientWs)) {
+                db.clientWs = null;
+                db.connectedApp = null;
+
+                ws.clients.forEach((c) => {
+                    send(c as any, DevtoolsEvent.DEVTOOLS_DISCONNECTED_APP, {
+                        url: db.connectedApp,
+                    });
+                });
+            }
         }
     });
 
     if (__DEVELOPMENT__) {
         console.log("Client connected", ws.clients.size);
-    }
-});
-
-ws.on("close", () => {
-    if (__DEVELOPMENT__) {
-        console.log("Client disconnected", ws.clients.size);
     }
 });
 

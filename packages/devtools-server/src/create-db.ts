@@ -1,3 +1,5 @@
+import type { WebSocket } from "ws";
+
 type Invocation = {
     id: number;
     method: string;
@@ -9,11 +11,13 @@ type Invocation = {
 
 export type Data = {
     connectedApp: null | string;
+    clientWs: null | WebSocket;
     invocations: Invocation[];
 };
 
 const defaultData: Data = {
     connectedApp: null,
+    clientWs: null,
     invocations: [],
 };
 
