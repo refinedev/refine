@@ -1,4 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
+import * as ReactQuery from "@tanstack/react-query";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -12,6 +13,7 @@ import {
     assertOne,
     assertMutationSuccess,
 } from "@test/mutation-helpers";
+import { stubFalse } from "lodash";
 
 describe("useUpdate Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -780,6 +782,179 @@ describe("useUpdate Hook", () => {
                     }),
                 }),
             );
+        });
+    });
+
+    describe("when passing `optimisticUpdateMap`", () => {
+        const initialTitle =
+            "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
+        const updatedTitle = "optimistic test";
+
+        fit("when pass `false`", async () => {
+            const { result } = renderHook(() => useUpdate(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer.default,
+                        update: async () => {
+                            return new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    return reject(new Error("Error"));
+                                }, 500);
+                            });
+                        },
+                    },
+                }),
+            });
+            const useOneResult = renderUseOne();
+            const useListResult = renderUseList();
+            const useManyResult = renderUseMany();
+
+            act(() => {
+                result.current.mutate({
+                    resource: "posts",
+                    mutationMode: "optimistic",
+                    id: "1",
+                    values: { title: updatedTitle },
+                    optimisticUpdateMap: {
+                        list: false,
+                        one: false,
+                        many: false,
+                    },
+                });
+            });
+
+            await assertOne(useOneResult, "title", initialTitle);
+            await assertList(useListResult, "title", initialTitle);
+            await assertList(useManyResult, "title", initialTitle);
+        });
+
+        fit("when pass `true`", async () => {
+            const { result } = renderHook(() => useUpdate(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer.default,
+                        update: async () => {
+                            return new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    return reject(new Error("Error"));
+                                }, 500);
+                            });
+                        },
+                    },
+                }),
+            });
+            const useOneResult = renderUseOne();
+            const useListResult = renderUseList();
+            const useManyResult = renderUseMany();
+
+            act(() => {
+                result.current.mutate({
+                    resource: "posts",
+                    mutationMode: "optimistic",
+                    id: "1",
+                    values: { title: updatedTitle },
+                    optimisticUpdateMap: {
+                        list: true,
+                        one: true,
+                        many: true,
+                    },
+                });
+            });
+
+            await assertOne(useOneResult, "title", updatedTitle);
+            await assertList(useListResult, "title", updatedTitle);
+            await assertList(useManyResult, "title", updatedTitle);
+        });
+
+        fit("when pass custom mapper function", async () => {
+            const { result } = renderHook(() => useUpdate(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer.default,
+                        update: async () => {
+                            return new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    return reject(new Error("Error"));
+                                }, 500);
+                            });
+                        },
+                    },
+                }),
+            });
+            const useOneResult = renderUseOne();
+            const useListResult = renderUseList();
+            const useManyResult = renderUseMany();
+
+            act(() => {
+                result.current.mutate({
+                    resource: "posts",
+                    mutationMode: "optimistic",
+                    id: "1",
+                    values: { title: updatedTitle },
+                    optimisticUpdateMap: {
+                        list: (previous, values, id) => {
+                            if (!previous) {
+                                return null;
+                            }
+
+                            const data = previous.data.map((record) => {
+                                if (record.id === id) {
+                                    return {
+                                        foo: "bar-list",
+                                        ...record,
+                                        ...values,
+                                    };
+                                }
+                                return record;
+                            });
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                        many: (previous, values, id) => {
+                            if (!previous) {
+                                return null;
+                            }
+
+                            const data = previous.data.map((record) => {
+                                if (record.id === id) {
+                                    return {
+                                        foo: "bar-many",
+                                        ...record,
+                                        ...values,
+                                    };
+                                }
+                                return record;
+                            });
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                        one: (previous, values) => {
+                            if (!previous) {
+                                return null;
+                            }
+
+                            return {
+                                ...previous,
+                                data: {
+                                    foo: "bar-one",
+                                    ...previous.data,
+                                    ...values,
+                                },
+                            };
+                        },
+                    },
+                });
+            });
+
+            await assertOne(useOneResult, "foo", "bar-one");
+            await assertList(useListResult, "foo", "bar-list");
+            await assertList(useManyResult, "foo", "bar-many");
         });
     });
 });

@@ -89,6 +89,36 @@ export type UpdateParams<TData, TError, TVariables> = {
      *  You can use it to manage the invalidations that will occur at the end of the mutation.
      */
     invalidates?: Array<keyof IQueryKeys>;
+    /**
+     * You can use it to manage the invalidations that will occur at the end of the mutation.
+     * @default {
+     *   list: true,
+     *   many: true,
+     *   one: true,
+     * }
+     */
+    optimisticUpdateMap?: {
+        list?:
+            | ((
+                  previous: GetListResponse<TData> | null,
+                  values: TVariables,
+                  id: BaseKey,
+              ) => GetListResponse<TData> | null)
+            | boolean;
+        many?:
+            | ((
+                  previous: GetListResponse<TData> | null,
+                  values: TVariables,
+                  id: BaseKey,
+              ) => GetListResponse<TData> | null)
+            | boolean;
+        one?:
+            | ((
+                  previous: GetListResponse<TData> | null,
+                  values: TVariables,
+              ) => GetListResponse<TData> | null)
+            | boolean;
+    };
 } & SuccessErrorNotification<
     UpdateResponse<TData>,
     TError,
@@ -265,6 +295,7 @@ export const useUpdate = <
                 dataProviderName,
                 meta,
                 metaData,
+                optimisticUpdateMap = { list: true, many: true, one: true },
             }) => {
                 const { identifier } = select(resourceName);
 
@@ -303,78 +334,127 @@ export const useUpdate = <
                 );
 
                 if (mutationModePropOrContext !== "pessimistic") {
-                    // Set the previous queries to the new ones:
-                    queryClient.setQueriesData(
-                        resourceKeys
-                            .action("list")
-                            .params(preferredMeta ?? {})
-                            .get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-                            const data = previous.data.map((record: TData) => {
-                                if (record.id?.toString() === id?.toString()) {
-                                    return {
-                                        id,
-                                        ...record,
-                                        ...values,
-                                    } as unknown as TData;
+                    if (optimisticUpdateMap.list) {
+                        // Set the previous queries to the new ones:
+                        queryClient.setQueriesData(
+                            resourceKeys
+                                .action("list")
+                                .params(preferredMeta ?? {})
+                                .get(preferLegacyKeys),
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
                                 }
-                                return record;
-                            });
 
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
-
-                    queryClient.setQueriesData(
-                        resourceKeys.action("many").get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-
-                            const data = previous.data.map((record: TData) => {
-                                if (record.id?.toString() === id?.toString()) {
-                                    record = {
+                                if (
+                                    typeof optimisticUpdateMap.list ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.list(
+                                        previous,
+                                        values,
                                         id,
-                                        ...record,
-                                        ...values,
-                                    } as unknown as TData;
+                                    );
                                 }
-                                return record;
-                            });
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
 
-                    queryClient.setQueriesData(
-                        resourceKeys
-                            .action("one")
-                            .id(id)
-                            .params(preferredMeta ?? {})
-                            .get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id?.toString() ===
+                                            id?.toString()
+                                        ) {
+                                            return {
+                                                id,
+                                                ...record,
+                                                ...values,
+                                            } as unknown as TData;
+                                        }
+                                        return record;
+                                    },
+                                );
 
-                            return {
-                                ...previous,
-                                data: {
-                                    ...previous.data,
-                                    ...values,
-                                },
-                            };
-                        },
-                    );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+                    }
+
+                    if (optimisticUpdateMap.many) {
+                        queryClient.setQueriesData(
+                            resourceKeys.action("many").get(preferLegacyKeys),
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                if (
+                                    typeof optimisticUpdateMap.many ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.many(
+                                        previous,
+                                        values,
+                                        id,
+                                    );
+                                }
+
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id?.toString() ===
+                                            id?.toString()
+                                        ) {
+                                            record = {
+                                                id,
+                                                ...record,
+                                                ...values,
+                                            } as unknown as TData;
+                                        }
+                                        return record;
+                                    },
+                                );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+                    }
+
+                    if (optimisticUpdateMap.one) {
+                        queryClient.setQueriesData(
+                            resourceKeys
+                                .action("one")
+                                .id(id)
+                                .params(preferredMeta ?? {})
+                                .get(preferLegacyKeys),
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                if (
+                                    typeof optimisticUpdateMap.one ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.one(
+                                        previous,
+                                        values,
+                                    );
+                                }
+
+                                return {
+                                    ...previous,
+                                    data: {
+                                        ...previous.data,
+                                        ...values,
+                                    },
+                                };
+                            },
+                        );
+                    }
                 }
 
                 return {
