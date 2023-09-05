@@ -10,6 +10,7 @@ import { build, dev, run, start } from "@commands/runner";
 import swizzle from "@commands/swizzle";
 import update from "@commands/update";
 import whoami from "@commands/whoami";
+import devtools from "@commands/devtools";
 import { telemetryHook } from "@telemetryindex";
 import "@utils/env";
 import NotifyCloud from "./cloud-notifier";
@@ -48,6 +49,7 @@ const bootstrap = () => {
     checkUpdates(program);
     whoami(program);
     proxy(program);
+    devtools(program);
 
     program.hook("preAction", (thisCommand) => {
         NotifyCloud();
