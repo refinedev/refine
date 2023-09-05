@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
@@ -24,13 +24,31 @@ import { ColorModeContextProvider } from "./contexts/color-mode";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import { ExtendedWindow } from "./types";
 
 const BlogPostList = React.lazy(() => import("blog_posts/BlogPostList"));
 const BlogPostShow = React.lazy(() => import("blog_posts/BlogPostShow"));
 const BlogPostEdit = React.lazy(() => import("blog_posts/BlogPostEdit"));
 const BlogPostCreate = React.lazy(() => import("blog_posts/BlogPostCreate"));
 
+const CategoryList = React.lazy(() => import("categories/CategoryList"));
+const CategoryShow = React.lazy(() => import("categories/CategoryShow"));
+const CategoryEdit = React.lazy(() => import("categories/CategoryEdit"));
+const CategoryCreate = React.lazy(() => import("categories/CategoryCreate"));
+
+declare let window: ExtendedWindow;
+
 function App() {
+    useEffect(() => {
+        // This is not as elegant as production code as we cannot use such in production.
+        // But lets assume these envs are coming from a environment handler.
+        // And this is only for sample case.
+        if (import.meta.env.VITE_CATEGORIES_URL) {
+            // This is where we set the payment remote's URL.
+            window.categoriesUrl = import.meta.env.VITE_CATEGORIES_URL;
+        }
+    }, []);
+
     return (
         <BrowserRouter>
             <GitHubBanner />
@@ -127,21 +145,48 @@ function App() {
                                         }
                                     />
                                 </Route>
-                                {/* <Route path="/categories">
-                                    <Route index element={<CategoryList />} />
+                                <Route path="/categories">
+                                    <Route
+                                        index
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <CategoryList />
+                                            </Suspense>
+                                        }
+                                    />
                                     <Route
                                         path="create"
-                                        element={<CategoryCreate />}
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <CategoryCreate />
+                                            </Suspense>
+                                        }
                                     />
                                     <Route
                                         path="edit/:id"
-                                        element={<CategoryEdit />}
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <CategoryEdit />
+                                            </Suspense>
+                                        }
                                     />
                                     <Route
                                         path="show/:id"
-                                        element={<CategoryShow />}
+                                        element={
+                                            <Suspense
+                                                fallback={<div>Loading...</div>}
+                                            >
+                                                <CategoryShow />
+                                            </Suspense>
+                                        }
                                     />
-                                </Route> */}
+                                </Route>
                             </Route>
                             <Route
                                 element={
@@ -172,7 +217,6 @@ function App() {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
-
                         <RefineKbar />
                         <UnsavedChangesNotifier />
                         <DocumentTitleHandler />

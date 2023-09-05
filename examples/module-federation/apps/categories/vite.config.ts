@@ -11,23 +11,14 @@ export default defineConfig({
     plugins: [
         react(),
         federation({
-            name: "host",
-            remotes: [
-                {
-                    blog_posts: {
-                        external: "http://localhost:4001/assets/blog_posts.js",
-                        from: "vite",
-                        externalType: "url",
-                    },
-                },
-                {
-                    categories: {
-                        external: "Promise.resolve(window.categoriesUrl)",
-                        from: "vite",
-                        externalType: "promise",
-                    },
-                },
-            ],
+            name: "categories",
+            filename: "categories.js",
+            exposes: {
+                "./CategoryList": "./src/pages/categories/list.tsx",
+                "./CategoryShow": "./src/pages/categories/show.tsx",
+                "./CategoryEdit": "./src/pages/categories/edit.tsx",
+                "./CategoryCreate": "./src/pages/categories/create.tsx",
+            },
             shared: [
                 "react",
                 "react-dom",
@@ -39,11 +30,13 @@ export default defineConfig({
         }),
         tsconfigPaths(),
     ],
-
     preview: {
         host: "localhost",
-        port: 4000,
+        port: 4002,
         strictPort: true,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+        },
     },
     build: {
         target: "esnext",
