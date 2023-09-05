@@ -76,6 +76,7 @@ describe("CanAccess Component", () => {
         });
 
         await waitFor(() => {
+            expect(onUnauthorized).toHaveBeenCalledTimes(1);
             expect(onUnauthorized).toHaveBeenCalledWith({
                 resource: "posts",
                 action: "list",
