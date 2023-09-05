@@ -1,5 +1,5 @@
 {
-  "name": "module-federation",
+  "name": "monorepo-module-federation",
   "private": true,
   "workspaces": [
     "apps/host",

@@ -31,11 +31,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example module-federation
+npm create refine-app@latest -- --example monorepo-module-federation
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open module-federation example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/module-federation?view=preview&theme=dark&codemirror=1)
+[![Open monorepo-module-federation example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/monorepo-module-federation?view=preview&theme=dark&codemirror=1)
