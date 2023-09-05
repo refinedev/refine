@@ -187,7 +187,6 @@ Empty Provider methods are created for to easily implement and connect to your d
 > npm run refine add audit-log
 > npm run refine add i18n
 > npm run refine add notification
-
 ```
 
 | Argument                                                                                                               | Description                               |
