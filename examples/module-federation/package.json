@@ -1,0 +1,15 @@
+{
+  "name": "module-federation",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "stop": "kill-port 5000,5001"
+  },
+  "devDependencies": {
+    "kill-port": "^2.0.1"
+  }
+}
