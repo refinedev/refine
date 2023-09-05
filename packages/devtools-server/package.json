@@ -13,6 +13,9 @@
     "dist",
     "src"
   ],
+  "bin": {
+    "refine-devtools": "./dist/cli.js"
+  },
   "engines": {
     "node": ">=10"
   },

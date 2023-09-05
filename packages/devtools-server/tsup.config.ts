@@ -6,7 +6,7 @@ import fs from "fs";
 const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
 export default defineConfig((tsupOptions) => ({
-    entry: ["src/index.ts"],
+    entry: ["src/index.ts", "src/cli.ts"],
     splitting: false,
     sourcemap: true,
     clean: false,

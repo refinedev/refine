@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { debounce } from "lodash";
 import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 
@@ -19,7 +20,7 @@ export const reloadOnChange = __DEVELOPMENT__
           }, 300);
 
           const watcher = fs.watch(
-              "./dist/client",
+              path.resolve(__dirname, "client"),
               { recursive: true },
               reloadEmitter,
           );
