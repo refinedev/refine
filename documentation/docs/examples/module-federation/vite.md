@@ -44,6 +44,12 @@ So when you made changes in sub apps, you need to rebuild and restart the app(s)
 https://github.com/originjs/vite-plugin-federation#vite-dev-mode
 :::
 
+If you are using a library which requires shared context (ie: ColorContextProvider for antd), make sure you are updating `vite.config.ts` by adding relevant package(s) to `shared` array.
+
+You need to do this for both `host` and sub apps which will consume shared context.
+
+https://github.com/refinedev/refine/blob/next/examples/monorepo-module-federation/apps/host/vite.config.ts#L36
+
 <CodeSandboxExample path="monorepo-module-federation" hideSandbox />
 
 References:
