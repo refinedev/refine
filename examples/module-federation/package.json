@@ -3,12 +3,14 @@
   "private": true,
   "workspaces": [
     "apps/host",
-    "apps/blog-posts"
+    "apps/blog-posts",
+    "apps/categories"
   ],
   "scripts": {
     "dev": "npm run dev --workspaces",
+    "preview": "npm run preview --workspaces",
     "build": "npm run build --workspaces",
-    "stop": "kill-port 5000,5001"
+    "stop": "kill-port 4000,4001,4002"
   },
   "devDependencies": {
     "kill-port": "^2.0.1"
