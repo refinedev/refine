@@ -8,6 +8,8 @@ export const cleanStack = (stack: StackFrame[]) => {
     );
 
     if (firstUnrelatedIndex !== -1) {
-        stack = stack.slice(0, firstUnrelatedIndex);
+        return stack.slice(0, firstUnrelatedIndex);
     }
+
+    return stack;
 };
