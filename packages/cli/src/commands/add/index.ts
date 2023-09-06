@@ -1,4 +1,4 @@
-import { Command } from "commander";
+import { Argument, Command } from "commander";
 import { Provider, createProvider, providerArgs } from "./create-provider";
 import { createResources } from "./create-resource";
 import { getPreferedPM } from "@utils/package";
@@ -6,16 +6,18 @@ import { getPreferedPM } from "@utils/package";
 const load = (program: Command) => {
     return program
         .command("add")
-        .allowExcessArguments(true)
-        .description("Creates new feature")
-        .argument("[auth]", "Creates demo Auth provider")
-        .argument("[live]", "Creates demo Live provider")
-        .argument("[data]", "Creates demo Data provider")
-        .argument("[access-control]", "Creates demo Access Control provider")
-        .argument("[audit-log]", "Creates demo Audit Log provider")
-        .argument("[i18n]", "Creates demo i18n provider")
-        .argument("[notification]", "Creates demo nNtification provider")
-        .argument("[resource]", "Create a new resource files")
+        .allowExcessArguments(false)
+        .addArgument(
+            new Argument("[provider...]", "Create a new provider")
+                .choices([...providerArgs, "resource"])
+                .argOptional(),
+        )
+        .addArgument(
+            new Argument(
+                "[resource...]",
+                "Create a new resource files",
+            ).argOptional(),
+        )
         .option("-p, --path [path]", "Path to generate files")
         .option(
             "-a, --actions [actions]",
@@ -26,14 +28,8 @@ const load = (program: Command) => {
 };
 
 const action = async (
-    _arg1: string,
-    _arg2: string,
-    _arg3: string,
-    _arg4: string,
-    _arg5: string,
-    _arg6: string,
-    _arg7: string,
-    _arg8: string,
+    _provider: string,
+    _resource: string,
     options: { actions: string; path?: string },
     command: Command,
 ) => {
