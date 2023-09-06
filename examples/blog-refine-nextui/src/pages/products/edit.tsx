@@ -103,8 +103,6 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               control={control}
               rules={{ required: "Category is required." }}
               render={({ field, fieldState }) => {
-                console.log("Inside controller", field);
-
                 return (
                   <Dropdown id="options-categories">
                     <DropdownTrigger>

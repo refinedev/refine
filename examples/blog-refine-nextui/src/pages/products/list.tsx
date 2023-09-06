@@ -236,7 +236,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 selectionMode="single"
                 selectedKeys={[`${pageSize}`]}
                 onSelectionChange={(rows) => {
-                  console.log(+(rows as Set<string>).values().next().value);
                   setPageSize(+(rows as Set<string>).values().next().value);
                 }}
               >

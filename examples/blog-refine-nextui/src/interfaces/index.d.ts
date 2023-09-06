@@ -66,7 +66,7 @@ export interface IProductCategory {
   label: string;
 }
 
-export interface DeleteModalPropsI {
+export interface IDeleteModalProps {
   isOpen: boolean;
   warningMessage: string;
   onOpenChange: () => void;
