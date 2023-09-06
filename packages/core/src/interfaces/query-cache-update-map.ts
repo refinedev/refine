@@ -1,6 +1,6 @@
 import { BaseKey, GetListResponse } from ".";
 
-export type OptimisticUpdateMapType<TData, TVariables> = {
+export type QueryCacheUpdateMapType<TData, TVariables> = {
     list?:
         | ((
               previous: GetListResponse<TData> | null,

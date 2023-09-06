@@ -30,7 +30,7 @@ import {
     MetaQuery,
     AutoSaveProps,
     AutoSaveReturnType,
-    OptimisticUpdateMapType,
+    QueryCacheUpdateMapType,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -166,7 +166,7 @@ type ActionFormProps<
      *   detail: true,
      * }
      */
-    queryCacheUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
+    queryCacheUpdateMap?: QueryCacheUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TResponse> | CreateResponse<TResponse>,
     TResponseError,

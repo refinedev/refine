@@ -18,7 +18,7 @@ import {
     PreviousQuery,
     GetListResponse,
     IQueryKeys,
-    OptimisticUpdateMapType,
+    QueryCacheUpdateMapType,
 } from "../../interfaces";
 import {
     useResource,
@@ -98,7 +98,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      *   detail: true,
      * }
      */
-    queryCacheUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
+    queryCacheUpdateMap?: QueryCacheUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TData>,
     TError,
