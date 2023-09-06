@@ -1,6 +1,6 @@
 ---
 id: vite
-title: Module Federation with Vite
+title: Module Federation
 example-tags: [module-federation]
 ---
 
