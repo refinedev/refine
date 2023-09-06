@@ -783,7 +783,7 @@ describe("useUpdate Hook", () => {
         });
     });
 
-    describe("when passing `optimisticUpdateMap`", () => {
+    describe("when passing `queryCacheUpdateMap`", () => {
         const initialTitle =
             "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
         const updatedTitle = "optimistic test";
@@ -813,7 +813,7 @@ describe("useUpdate Hook", () => {
                     mutationMode: "optimistic",
                     id: "1",
                     values: { title: updatedTitle },
-                    optimisticUpdateMap: {
+                    queryCacheUpdateMap: {
                         list: false,
                         detail: false,
                         many: false,
@@ -851,7 +851,7 @@ describe("useUpdate Hook", () => {
                     mutationMode: "optimistic",
                     id: "1",
                     values: { title: updatedTitle },
-                    optimisticUpdateMap: {
+                    queryCacheUpdateMap: {
                         list: true,
                         detail: true,
                         many: true,
@@ -889,7 +889,7 @@ describe("useUpdate Hook", () => {
                     mutationMode: "optimistic",
                     id: "1",
                     values: { title: updatedTitle },
-                    optimisticUpdateMap: {
+                    queryCacheUpdateMap: {
                         list: (previous, values, id) => {
                             if (!previous) {
                                 return null;

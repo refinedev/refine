@@ -1184,21 +1184,21 @@ useForm({
 });
 ```
 
-### `optimisticUpdateMap`
+### `queryCacheUpdateMap`
 
-If the mutation mode is defined as `optimistic` the `useForm` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+If the mutation mode is defined as `optimistic` the `useForm` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `queryCacheUpdateMap` prop.
 
 :::caution
 This feature is only work with the `mutationMode` set to `optimistic`.
 :::
 
-`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
+`list`, `many` and `detail` are the keys of the `queryCacheUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
 
 ```tsx
 const { formProps, saveButtonProps } = useForm({
     //...
     mutationMode: "optimistic",
-    optimisticUpdateMap: {
+    queryCacheUpdateMap: {
         list: true,
         many: true,
         detail: false,
@@ -1215,7 +1215,7 @@ const { formProps, saveButtonProps } = useForm({
     //...
     mutationMode: "optimistic",
     // highlight-start
-    optimisticUpdateMap: {
+    queryCacheUpdateMap: {
         list: (previous, values, id) => {
             if (!previous) {
                 return null;

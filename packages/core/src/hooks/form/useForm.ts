@@ -159,14 +159,14 @@ type ActionFormProps<
         TVariables
     >["mutationOptions"];
     /**
-     * If you customize the [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) option, you can use it to manage the invalidations that will occur at the end of the mutation.
+     * If you customize the [`queryCacheUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) option, you can use it to manage the invalidations that will occur at the end of the mutation.
      * @default {
      *   list: true,
      *   many: true,
      *   detail: true,
      * }
      */
-    optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
+    queryCacheUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TResponse> | CreateResponse<TResponse>,
     TResponseError,
@@ -266,7 +266,7 @@ export const useForm = <
     updateMutationOptions,
     overtimeOptions,
     autoSave,
-    optimisticUpdateMap,
+    queryCacheUpdateMap,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -565,7 +565,7 @@ export const useForm = <
                             }
                             reject();
                         },
-                        ...optimisticUpdateMap,
+                        ...queryCacheUpdateMap,
                     });
                 });
             },
