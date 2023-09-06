@@ -911,7 +911,7 @@ describe("useUpdateMany Hook", () => {
                     values: { title: updatedTitle },
                     optimisticUpdateMap: {
                         list: false,
-                        one: false,
+                        detail: false,
                         many: false,
                     },
                 });
@@ -949,7 +949,7 @@ describe("useUpdateMany Hook", () => {
                     values: { title: updatedTitle },
                     optimisticUpdateMap: {
                         list: true,
-                        one: true,
+                        detail: true,
                         many: true,
                     },
                 });
@@ -1041,7 +1041,7 @@ describe("useUpdateMany Hook", () => {
                                 data,
                             };
                         },
-                        one: (previous, values, id) => {
+                        detail: (previous, values, id) => {
                             if (!previous) {
                                 return null;
                             }

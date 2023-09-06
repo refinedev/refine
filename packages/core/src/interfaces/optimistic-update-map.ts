@@ -15,7 +15,7 @@ export type OptimisticUpdateMapType<TData, TVariables> = {
               id: BaseKey,
           ) => GetListResponse<TData> | null)
         | boolean;
-    one?:
+    detail?:
         | ((
               previous: GetListResponse<TData> | null,
               values: TVariables,
@@ -38,7 +38,7 @@ export type OptimisticUpdateManyMapType<TData, TVariables> = {
               ids: BaseKey[],
           ) => GetListResponse<TData> | null)
         | boolean;
-    one?:
+    detail?:
         | ((
               previous: GetListResponse<TData> | null,
               values: TVariables,

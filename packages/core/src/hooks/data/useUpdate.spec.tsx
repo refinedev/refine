@@ -1,5 +1,4 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
-import * as ReactQuery from "@tanstack/react-query";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -13,7 +12,6 @@ import {
     assertOne,
     assertMutationSuccess,
 } from "@test/mutation-helpers";
-import { stubFalse } from "lodash";
 
 describe("useUpdate Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -790,7 +788,7 @@ describe("useUpdate Hook", () => {
             "Necessitatibus necessitatibus id et cupiditate provident est qui amet.";
         const updatedTitle = "optimistic test";
 
-        fit("when pass `false`", async () => {
+        it("when pass `false`", async () => {
             const { result } = renderHook(() => useUpdate(), {
                 wrapper: TestWrapper({
                     dataProvider: {
@@ -817,7 +815,7 @@ describe("useUpdate Hook", () => {
                     values: { title: updatedTitle },
                     optimisticUpdateMap: {
                         list: false,
-                        one: false,
+                        detail: false,
                         many: false,
                     },
                 });
@@ -828,7 +826,7 @@ describe("useUpdate Hook", () => {
             await assertList(useManyResult, "title", initialTitle);
         });
 
-        fit("when pass `true`", async () => {
+        it("when pass `true`", async () => {
             const { result } = renderHook(() => useUpdate(), {
                 wrapper: TestWrapper({
                     dataProvider: {
@@ -855,7 +853,7 @@ describe("useUpdate Hook", () => {
                     values: { title: updatedTitle },
                     optimisticUpdateMap: {
                         list: true,
-                        one: true,
+                        detail: true,
                         many: true,
                     },
                 });
@@ -866,7 +864,7 @@ describe("useUpdate Hook", () => {
             await assertList(useManyResult, "title", updatedTitle);
         });
 
-        fit("when pass custom mapper function", async () => {
+        it("when pass custom mapper function", async () => {
             const { result } = renderHook(() => useUpdate(), {
                 wrapper: TestWrapper({
                     dataProvider: {
@@ -934,7 +932,7 @@ describe("useUpdate Hook", () => {
                                 data,
                             };
                         },
-                        one: (previous, values) => {
+                        detail: (previous, values) => {
                             if (!previous) {
                                 return null;
                             }

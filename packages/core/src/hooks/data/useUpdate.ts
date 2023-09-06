@@ -95,7 +95,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      * @default {
      *   list: true,
      *   many: true,
-     *   one: true,
+     *   detail: true,
      * }
      */
     optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
@@ -275,7 +275,7 @@ export const useUpdate = <
                 dataProviderName,
                 meta,
                 metaData,
-                optimisticUpdateMap = { list: true, many: true, one: true },
+                optimisticUpdateMap = { list: true, many: true, detail: true },
             }) => {
                 const { identifier } = select(resourceName);
 
@@ -403,7 +403,7 @@ export const useUpdate = <
                         );
                     }
 
-                    if (optimisticUpdateMap.one) {
+                    if (optimisticUpdateMap.detail) {
                         queryClient.setQueriesData(
                             resourceKeys
                                 .action("one")
@@ -416,10 +416,10 @@ export const useUpdate = <
                                 }
 
                                 if (
-                                    typeof optimisticUpdateMap.one ===
+                                    typeof optimisticUpdateMap.detail ===
                                     "function"
                                 ) {
-                                    return optimisticUpdateMap.one(
+                                    return optimisticUpdateMap.detail(
                                         previous,
                                         values,
                                     );

@@ -96,7 +96,7 @@ type UpdateManyParams<TData, TError, TVariables> = {
      * @default {
      *   list: true,
      *   many: true,
-     *   one: true,
+     *   detail: true,
      * }
      */
     optimisticUpdateMap?: OptimisticUpdateManyMapType<TData, TVariables>;
@@ -284,7 +284,7 @@ export const useUpdateMany = <
                 dataProviderName,
                 meta,
                 metaData,
-                optimisticUpdateMap = { list: true, many: true, one: true },
+                optimisticUpdateMap = { list: true, many: true, detail: true },
             }) => {
                 const { identifier } = select(resourceName);
                 const preferredMeta = pickNotDeprecated(meta, metaData);
@@ -419,39 +419,41 @@ export const useUpdateMany = <
                         );
                     }
 
-                    for (const id of ids) {
-                        queryClient.setQueriesData(
-                            resourceKeys
-                                .action("one")
-                                .id(id)
-                                .params(preferredMeta ?? {})
-                                .get(preferLegacyKeys),
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
+                    if (optimisticUpdateMap.detail) {
+                        for (const id of ids) {
+                            queryClient.setQueriesData(
+                                resourceKeys
+                                    .action("one")
+                                    .id(id)
+                                    .params(preferredMeta ?? {})
+                                    .get(preferLegacyKeys),
+                                (previous?: GetListResponse<TData> | null) => {
+                                    if (!previous) {
+                                        return null;
+                                    }
 
-                                if (
-                                    typeof optimisticUpdateMap.one ===
-                                    "function"
-                                ) {
-                                    return optimisticUpdateMap.one(
-                                        previous,
-                                        values,
-                                        id,
-                                    );
-                                }
+                                    if (
+                                        typeof optimisticUpdateMap.detail ===
+                                        "function"
+                                    ) {
+                                        return optimisticUpdateMap.detail(
+                                            previous,
+                                            values,
+                                            id,
+                                        );
+                                    }
 
-                                const data = {
-                                    ...previous.data,
-                                    ...values,
-                                };
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
+                                    const data = {
+                                        ...previous.data,
+                                        ...values,
+                                    };
+                                    return {
+                                        ...previous,
+                                        data,
+                                    };
+                                },
+                            );
+                        }
                     }
                 }
 
