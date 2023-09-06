@@ -400,7 +400,7 @@ mutate({
                                 .includes(record.id.toString())
                         ) {
                             return {
-                                foo: "bar-list",
+                                foo: "bar",
                                 ...record,
                                 ...values,
                             };
@@ -428,7 +428,7 @@ mutate({
                                 .includes(record.id.toString())
                         ) {
                             return {
-                                foo: "bar-many",
+                                foo: "bar",
                                 ...record,
                                 ...values,
                             };
@@ -441,7 +441,7 @@ mutate({
                         data,
                     };
                 },
-                one: (previous, values, id) => {
+                detail: (previous, values, id) => {
                     if (!previous) {
                         return null;
                     }
@@ -450,7 +450,7 @@ mutate({
                         id,
                         ...previous.data,
                         ...values,
-                        foo: `bar-one`,
+                        foo: `bar`,
                     };
 
                     return {

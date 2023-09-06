@@ -431,7 +431,7 @@ mutate({
                     data,
                 };
             },
-            one: (previous, values) => {
+            detail: (previous, values) => {
                 if (!previous) {
                     return null;
                 }
