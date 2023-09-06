@@ -1122,9 +1122,9 @@ useStepsForm({
 })
 ```
 
-#### `invalidateOnUnmountDetailCache`
+#### `invalidateOnUnmount`
 
-If you want to invalidate the `detail` query cache when the form is unmounted, you can set the `invalidateOnUnmountDetailCache` parameter to `true`. Default value is `false`.
+If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 ```tsx
 useStepsForm({
@@ -1132,7 +1132,7 @@ useStepsForm({
         autoSave: {
             enabled: true,
             // highlight-next-line
-            invalidateOnUnmountDetailCache: true,
+            invalidateOnUnmount: true,
         },
     },
 })
