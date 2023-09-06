@@ -311,20 +311,6 @@ export const useForm = <
         setId(defaultId);
     }, [defaultId]);
 
-    // invalidate `detail` cache when unmount
-    React.useEffect(() => {
-        return () => {
-            if (autoSave?.invalidateOnUnmountDetailCache) {
-                invalidate({
-                    id,
-                    invalidates: ["detail"],
-                    dataProviderName,
-                    resource: identifier,
-                });
-            }
-        };
-    }, [autoSave?.invalidateOnUnmountDetailCache]);
-
     const getAction = () => {
         if (actionFromProps) return actionFromProps;
         else if (actionFromRoute === "edit" || actionFromRoute === "clone")
@@ -471,6 +457,22 @@ export const useForm = <
         );
     };
 
+    React.useEffect(() => {
+        return () => {
+            if (
+                autoSave?.invalidateOnUnmount &&
+                autoSaveMutation.status === "success"
+            ) {
+                invalidate({
+                    id,
+                    invalidates: invalidates || ["list", "many", "detail"],
+                    dataProviderName,
+                    resource: identifier,
+                });
+            }
+        };
+    }, [autoSave?.invalidateOnUnmount, autoSaveMutation.status]);
+
     const onFinishAutoSaveMutation = (
         values: TVariables,
     ): Promise<UpdateResponse<TResponse> | void> | void => {
@@ -485,7 +487,7 @@ export const useForm = <
             meta: { ...combinedMeta, ...mutationMeta },
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
-            invalidates: invalidates ?? ["list", "many"],
+            invalidates: [],
             mutationMode: "pessimistic",
         };
 
@@ -503,13 +505,9 @@ export const useForm = <
         });
     };
 
-    const onFinishAutoSave = React.useMemo(
-        () =>
-            debounce((allValues) => {
-                return onFinishAutoSaveMutation(allValues);
-            }, autoSave?.debounce || 1000),
-        [],
-    );
+    const onFinishAutoSave = debounce((allValues) => {
+        return onFinishAutoSaveMutation(allValues);
+    }, autoSave?.debounce || 1000);
 
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
