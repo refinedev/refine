@@ -3,6 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getTrace } from "@refinedev/devtools-internal";
 
 import {
     GetOneResponse,
@@ -238,6 +239,10 @@ export const useOne = <
                     description: err.message,
                     type: "error",
                 });
+            },
+            meta: {
+                ...queryOptions?.meta,
+                trace: getTrace(),
             },
         },
     );

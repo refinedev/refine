@@ -4,6 +4,7 @@ import {
     UseMutationResult,
     UseMutationOptions,
 } from "@tanstack/react-query";
+import { getTrace } from "@refinedev/devtools-internal";
 
 import {
     DeleteManyResponse,
@@ -528,6 +529,10 @@ export const useDeleteMany = <
                 .mutation("deleteMany")
                 .get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                trace: getTrace(),
+            },
         },
     );
 

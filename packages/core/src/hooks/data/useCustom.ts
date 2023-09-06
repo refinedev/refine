@@ -3,6 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getTrace } from "@refinedev/devtools-internal";
 
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
@@ -212,6 +213,10 @@ export const useCustom = <
                     description: err.message,
                     type: "error",
                 });
+            },
+            meta: {
+                ...queryOptions?.meta,
+                trace: getTrace(),
             },
         });
         const { elapsedTime } = useLoadingOvertime({

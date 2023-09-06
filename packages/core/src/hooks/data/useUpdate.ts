@@ -4,6 +4,7 @@ import {
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
+import { getTrace } from "@refinedev/devtools-internal";
 
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -539,6 +540,10 @@ export const useUpdate = <
             },
             mutationKey: keys().data().mutation("update").get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                trace: getTrace(),
+            },
         },
     );
 

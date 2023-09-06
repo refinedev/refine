@@ -4,6 +4,7 @@ import {
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
+import { getTrace } from "@refinedev/devtools-internal";
 
 import {
     useResource,
@@ -581,6 +582,10 @@ export const useUpdateMany = <
                 .mutation("updateMany")
                 .get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                trace: getTrace(),
+            },
         },
     );
 

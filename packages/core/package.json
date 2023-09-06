@@ -43,6 +43,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@refinedev/devtools-internal": "^0.0.1",
     "export-to-csv-fix-source-map": "^0.2.1",
     "lodash-es": "^4.17.21",
     "lodash": "^4.17.21",

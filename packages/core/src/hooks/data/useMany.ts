@@ -3,6 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getTrace } from "@refinedev/devtools-internal";
 
 import {
     BaseRecord,
@@ -240,6 +241,10 @@ export const useMany = <
                     description: err.message,
                     type: "error",
                 });
+            },
+            meta: {
+                ...queryOptions?.meta,
+                trace: getTrace(),
             },
         },
     );
