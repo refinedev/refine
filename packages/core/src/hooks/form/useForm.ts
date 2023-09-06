@@ -163,7 +163,7 @@ type ActionFormProps<
      * @default {
      *   list: true,
      *   many: true,
-     *   one: true,
+     *   detail: true,
      * }
      */
     optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;

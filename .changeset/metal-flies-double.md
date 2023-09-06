@@ -24,7 +24,7 @@ mutate({
                 id,
                 ...previous.data,
                 ...values,
-                foo: `bar-one`,
+                foo: "bar",
             };
 
             return {
@@ -54,7 +54,7 @@ const { formProps, saveButtonProps } = useForm({
                     id,
                     ...previous.data,
                     ...values,
-                    foo: `bar-one`,
+                    foo: "bar",
                 };
 
                 return {
