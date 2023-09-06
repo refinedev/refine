@@ -11,7 +11,7 @@ export const authProvider: AuthBindings = {
         // TODO: send request to the API to login
 
         return {
-            success: true,
+            success: true, // or false if the login is not successful
             redirectTo: "/",
         };
     },
@@ -22,7 +22,7 @@ export const authProvider: AuthBindings = {
         // TODO: send request to the API to login
 
         return {
-            success: true,
+            success: true, // or false if the register is not successful
             redirectTo: "/",
         };
     },
@@ -33,7 +33,7 @@ export const authProvider: AuthBindings = {
         // TODO: control if the user is logged in
 
         return {
-            authenticated: true,
+            authenticated: true, // or false if the user is not authenticated
         };
     },
 
@@ -43,7 +43,7 @@ export const authProvider: AuthBindings = {
         // TODO: send request to the API to logout
 
         return {
-            success: true,
+            success: true, // or false if the logout is not successful
             redirectTo: "/login",
         };
     },
@@ -54,7 +54,7 @@ export const authProvider: AuthBindings = {
         // TODO: send request to the API to forgot password
 
         return {
-            success: true,
+            success: true, // or false if the forgot password is not successful
             redirectTo: "/update-password",
         };
     },
@@ -65,7 +65,7 @@ export const authProvider: AuthBindings = {
         // TODO: send request to the API to update password
 
         return {
-            success: true,
+            success: true, // or false if the update password is not successful
             redirectTo: "/login",
         };
     },
