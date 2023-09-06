@@ -1,7 +1,7 @@
 ---
 id: vite
 title: Module Federation with Vite
-example-tags: [module-federation, vite, microfrontend]
+example-tags: [module-federation]
 ---
 
 Module federation is concept which get different builds to come together to make one application. So in most cases one will be the host application which will bring all other remote components that are built to be shared.
