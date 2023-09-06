@@ -49,5 +49,8 @@ export default defineConfig({
     loader: {
         ".svg": "dataurl",
     },
+    esbuildOptions(options) {
+        options.keepNames = true;
+    },
     onSuccess: "tsc --project tsconfig.declarations.json",
 });
