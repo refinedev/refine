@@ -962,16 +962,15 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `autoSave`
 
-:::caution
-`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-:::
-
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
+If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports the [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use the `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
+:::caution
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
@@ -1005,9 +1004,9 @@ useForm({
 });
 ```
 
-#### `invalidateOnUnmountDetailCache`
+#### `invalidateOnUnmount`
 
-If you want to invalidate the `detail` query cache when the form is unmounted, you can set the `invalidateOnUnmountDetailCache` parameter to `true`. Default value is `false`.
+If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 ```tsx
 useForm({
@@ -1015,7 +1014,7 @@ useForm({
         autoSave: {
             enabled: true,
             // highlight-next-line
-            invalidateOnUnmountDetailCache: true,
+            invalidateOnUnmount: true,
         },
     },
 });

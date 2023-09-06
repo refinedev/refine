@@ -932,7 +932,7 @@ Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provi
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
+If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -992,9 +992,9 @@ useForm({
 })
 ```
 
-#### `invalidateOnUnmountDetailCache`
+#### `invalidateOnUnmount`
 
-If you want to invalidate the `detail` query cache when the form is unmounted, you can set the `invalidateOnUnmountDetailCache` parameter to `true`. Default value is `false`.
+If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 ```tsx
 useForm({
@@ -1002,7 +1002,7 @@ useForm({
         autoSave: {
             enabled: true,
             // highlight-next-line
-            invalidateOnUnmountDetailCache: true,
+            invalidateOnUnmount: true,
         },
     },
 })

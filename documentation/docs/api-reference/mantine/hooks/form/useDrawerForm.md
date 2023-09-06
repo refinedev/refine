@@ -634,7 +634,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
+If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -674,9 +674,9 @@ useDrawerForm({
 })
 ```
 
-#### `invalidateOnUnmountDetailCache`
+#### `invalidateOnUnmount`
 
-If you want to invalidate the `detail` query cache when the drawer is closed, you can pass `true` to `invalidateOnUnmountDetailCache` prop. Default value is `false`.
+If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 ```tsx
 useDrawerForm({
@@ -684,7 +684,23 @@ useDrawerForm({
         autoSave: {
             enabled: true,
             // highlight-next-line
-            invalidateOnUnmountDetailCache: true,
+            invalidateOnUnmount: true,
+        },
+    }
+})
+```
+
+#### `invalidateOnClose`
+
+If you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed, you can use the `invalidateOnClose` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+
+```tsx
+useDrawerForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            invalidateOnClose: true,
         },
     }
 })
