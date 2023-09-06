@@ -82,7 +82,7 @@ export const providerOptions: {
     },
 };
 
-const getProviderOptions = (provider: Provider) => {
+export const getProviderOptions = (provider: Provider) => {
     if (!providerOptions?.[provider]) {
         throw new Error(`Invalid provider: ${provider}`);
     }
@@ -90,7 +90,7 @@ const getProviderOptions = (provider: Provider) => {
     return providerOptions[provider];
 };
 
-const getDefaultPath = () => {
+export const getDefaultPath = () => {
     const projectType = getProjectType();
     const { path } = getProviderPath(projectType);
     return path;
