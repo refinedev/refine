@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useCan, useResource } from "@hooks";
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 
-type Params = {
+type CanParams = {
     resource?: IResourceItem & { children?: ITreeMenu[] };
     id?: BaseKey;
     [key: string]: any;
@@ -13,7 +13,7 @@ type OnUnauthorizedProps = {
     resource?: string;
     reason?: string;
     action: string;
-    params: Params;
+    params: CanParams;
 };
 
 type CanAccessBaseProps = {
@@ -29,7 +29,7 @@ type CanAccessBaseProps = {
      * Parameters associated with the resource
      * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
      */
-    params?: Params;
+    params?: CanParams;
     /**
      * Content to show if access control returns `false`
      */
