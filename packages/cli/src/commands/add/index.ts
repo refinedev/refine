@@ -8,7 +8,7 @@ const load = (program: Command) => {
         .command("add")
         .allowExcessArguments(false)
         .addArgument(
-            new Argument("[provider...]", "Create a new provider")
+            new Argument("[provider]", "Create a new provider")
                 .choices([...providerArgs, "resource"])
                 .argOptional(),
         )
