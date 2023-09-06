@@ -33,10 +33,11 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@refinedev/devtools-shared": "^0.0.1",
+    "@tanstack/react-table": "^8.2.6",
     "clsx": "^1.1.1",
-    "react-router-dom": "^6.8.1",
-    "@headlessui/react": "^1.7.17"
+    "react-router-dom": "^6.8.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
