@@ -1814,7 +1814,7 @@ export default App;
 
 </details>
 
-Notice towards the top, that we have imported the scaffolded components (the ones with `<HeadlessInferencer />` component, not yet the actual page code). Towards the end, we assigned them to `/products` paths for defining the routes. Routine **React Router DOM** stuff.
+Notice towards the top that we have imported the scaffolded components (the ones with `<HeadlessInferencer />` component, not yet the actual page code). Towards the end, we assigned them to `/products` paths for defining the routes. Routine **React Router DOM** stuff.
 
 With the above changes, we have added possible actions and their routes for the `products` resource. We defined the routes and pages for `list`, `create`, `edit` and `show` actions and have enabled `delete` action as well. The page mapping for each route are handled with the `<Route />` component.
 
@@ -1837,7 +1837,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-The `<HeadlessInferencer />` infers the resource name and action path from the resource and routes definitions based on the current URL of the browser. It then polls the **Fine Foods** `/products` end point to figure out the data shape and based on the shape uses necessary refine-React Table APIs and JSX markup to present the fetched data in a table.
+The `<HeadlessInferencer />` infers the resource name and action path from the resource and routes definitions based on the current URL of the browser. It then polls the **Fine Foods** `/products` end point to figure out the data shape, and based on the shape, it uses the necessary refine-React Table APIs and JSX markup to present the fetched data in a table.
 
 We'll grab the generated code from the page modal by clicking on the `Show the auto-generated code` button. It is pretty diligent and should look something like this:
 
@@ -2082,11 +2082,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 </details>
 
-The generated code implements a handful of features including data fetching, button actions, pagination and JSX markup with minimal styles for presenting the data in a table. Pretty much the skeleton of what we want in a table of data that we want to improve with daisyUI.
+The generated code implements a handful of features, including data fetching, button actions, pagination, and JSX markup with minimal styles for presenting the data in a table. This is pretty much the skeleton of what we want in a table of data that we want to improve with daisyUI.
 
 It uses the [`useTable()`](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
 
-We want to keep most of it and add filter functionality at the top, modify the pagination and apply daisyUI classes for table, buttons, and groups.
+We want to keep most of it and add filter functionality at the top, modify the pagination and apply daisyUI classes for tables, buttons, and groups.
 
 So, we'll build on top of it and make necessary logic, markup and style modifications. Replacing the old ones, we'll eventually adopt the following `<ProductList />` code:
 
@@ -2378,7 +2378,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 </details>
 
-It is definitely possible to refactor the component into smaller, testable ones. However, for the purpose of the tutorial, we'll try to keep things inside the same page as much as possible. As done below, this will give us the scope to rather focus on explaining the code easily part by part.
+It is definitely possible to refactor the components into smaller, testable ones. However, for the purpose of the tutorial, we'll try to keep things on the same page as much as possible. As done below, this will give us the scope to rather focus on explaining the code easily, part by part.
 
 **1. Data Fetching and Processing**
 
@@ -2405,9 +2405,9 @@ const {
 });
 ```
 
-Notice that we are passing **React Table** column definitions, the `columns` object, to `useTable()` hook and grabbing all necessary table props. We are destructuring the table related data with `getRowModel` and `getHeaderGroups` methods and presenting them inside the table.
+Notice that we are passing **React Table** column definitions, the `columns` object, to `useTable()` hook and grabbing all necessary table props. We are destructuring the table related data with the `getRowModel` and `getHeaderGroups` methods and presenting them inside the table.
 
-We are making use of pagination props such as `setPageIndex`, `getPageCount`, `previousPage` returned by `useReactTable()` to build the client side pagination strip.
+We are making use of pagination props such as `setPageIndex`, `getPageCount`, and `previousPage` returned by `useReactTable()` to build the client side pagination strip.
 
 Filtering utilities such as `filters`, `setCurrent`, `setFilters` are accessed from the `refineCore` object returned from the query. Inside the JSX, we are using them to build the filter by keywords feature.
 
@@ -2470,7 +2470,7 @@ Near the top, we're using the `create()` method inside the `Create` button that 
 
 **3. daisyUI Styles**
 
-Throughout the component, we are using short daisyUI classes that come handy for styling our components. We are using `btn` and its derived classes such as `btn-sm`, `btn-primary`, `btn-ghost`, `btn-circle` and `btn-outline` to style our buttons. For the table, we are using `table` and `table-zebra`. For grouping elements, we are using `join` and `join-items`.
+Throughout the component, we are using short daisyUI classes that come in handy for styling our components. We are using `btn` and its derived classes such as `btn-sm`, `btn-primary`, `btn-ghost`, `btn-circle` and `btn-outline` to style our buttons. For the table, we are using `table` and `table-zebra`. For grouping elements, we are using `join` and `join-items`.
 
 Notice throughout the markup that we are able to seamlessly apply regular Tailwind Flex, responsive and spacing classes as well. We can also use them to customize the styles of the elements that are already using the component classes.
 
@@ -2487,7 +2487,7 @@ With these changes, when we navigate to the `/products` route, our products list
 
 ### `<ProductCreate />` Page
 
-We have already scaffolded the `<ProductCreate />` component using the **Inferencer**. Following the same process described for `<ProductList />`, we can get the code for `<ProductCreate />` component from the page at `/products/create`. We won't get into the detailed steps here, as moving ahead you can repeat the process of getting the page code from the modal at all action routes. You can then make necessary adjustments and come up with the final code.
+We have already scaffolded the `<ProductCreate />` component using the **Inferencer**. Following the same process described for `<ProductList />`, we can get the code for `<ProductCreate />` component from the page at `/products/create`. We won't get into the detailed steps here, as moving ahead, you can repeat the process of getting the page code from the modal at all action routes. You can then make the necessary adjustments and come up with the final code.
 
 The `<HeadlessInferencer />` uses **refine**'s `@refinedev/react-hook-form` APIs to build forms for `create` and `edit` pages. The **refine-React Hook Form** package integrates the `useForm()` core hook with the features of **React Hook Form**'s `useForm()` hook.
 
@@ -2629,9 +2629,9 @@ const {
 } = useForm();
 ```
 
-We are grabbing the `onFinish` object returned from the **refine** core and passing it to React Hook Form's `handleSubmit()` submission handler which upon submission passes the field values to `dataProvider.create()` method under the hood. Notice we are registering the fields with React Hook Form's `register()` method for controlling the fields and emitting error messages.
+We are grabbing the `onFinish` object returned from the **refine** core and passing it to React Hook Form's `handleSubmit()` submission handler which upon submission passes the field values to the `dataProvider.create()` method under the hood. Notice we are registering the fields with React Hook Form's `register()` method for controlling the fields and emitting error messages.
 
-Notice, we are not passing any resource name to `useForm()`. Like `useTable()`, it is inferred from the current URL.
+Notice that we are not passing any resource name to `useForm()`. Like `useTable()`, it is inferred from the current URL.
 
 We are also using the `useSelect()` core hook to fetch and populate `categories` items to present inside `<select />` fields.
 
@@ -2641,9 +2641,9 @@ More on the [`useSelect()` hook in the refine docs here](https://refine.dev/docs
 
 We are using form related daisyUI style classes such as `form-control`, `input`, `textarea` and their variations like `input-sm`, `input-bordered`, `textarea-bordered`, etc.
 
-Inside the `App.css` file, we are still able to compose smaller class names from longer ones. For exmaple, `page-container` and `page-title` are custom composed resusable classes that help reduce some Tailwind spaghetti strings.
+Inside the `App.css` file, we are still able to compose smaller class names from longer ones. For example, `page-container` and `page-title` are custom composed reusable classes that help reduce some Tailwind spaghetti strings.
 
-With the above `<ProductCreate />` page, when we navigate to `/products/create` route, we should be presented with a form to create a product:
+With the above `<ProductCreate />` page, when we navigate to the `/products/create` route, we should be presented with a form to create a product:
 
 
 
@@ -2903,15 +2903,15 @@ With the `<ProductShow />` page completed, when we navigate to the `/products/sh
 <br/>
 
 
-This also means, we can navigate back and forth to edit and show pages of a product item from the list page. Or open the create page to create new products.
+This also means we can navigate back and forth to edit and show pages of a product item from the list page. Or open the `create` page to create new products.
 
 ## Category Pages
 
-The category pages are very similar to product pages. So, I'll quickly add their final versions. You can copy paste directly and used them in your files.
+The category pages are very similar to the product pages. So, I'll quickly add their final versions. You can copy and paste them directly and use them in your files.
 
 Or alternatively, if you want to make your way through generating the code with **Inferencer**s, please feel free to do so.
 
-Run the following **Inferencer** command anyway to produce the scaffold pages inside `src/pages/categories/` directory:
+Run the following **Inferencer** command anyway to produce the scaffold pages inside the `src/pages/categories/` directory:
 
 ```bash
 npm run refine create-resource category
@@ -3596,7 +3596,7 @@ In this section, we'll customize the app layout for a top navbar menu with icons
 
 Currently, the layout places the navigation menu to the left of the page. We want to move it to the top as a navbar.
 
-To begin with, we'll remove **refine**'s `layout` class from there and add some Tailwind classes to move the items to top. At `src/components/layout/index.tsx`, make it look like this:
+To begin with, we'll remove **refine**'s `layout` class from there and add some Tailwind classes to move the items to the top. At `src/components/layout/index.tsx`, make it look like this:
 
 ```tsx title="src/components/layout/index.tsx"
 import { PropsWithChildren } from "react";
@@ -3769,7 +3769,7 @@ export default App;
 
 </details>
 
-Adding icons to `resources` make them available to menu items as well as breadcrumbs. So, now we'll update the `<Menu />` and `<Breadcrumb />` components with icons and daisyUI styles.
+Adding icons to `resources` makes them available for menu items as well as breadcrumbs. So, now we'll update the `<Menu />` and `<Breadcrumb />` components with icons and daisyUI styles.
 
 ### Menu Component
 
@@ -3813,7 +3813,7 @@ export const Menu = () => {
 
 </details>
 
-Notice now, we are displaying an icon beside each menu item and we are also using the daisyUI `menu` class to style the menu.
+Notice now that we are displaying an icon beside each menu item and we are also using the daisyUI `menu` class to style the menu.
 
 ### Breadcrumb Component
 
@@ -3857,9 +3857,9 @@ export const Breadcrumb = () => {
 
 </details>
 
-Notice here also, we are displaying the icons beside the resource name in each breadcrumb. We are using daisyUI `breadcrumbs` class to style the elements.
+Notice also that we are displaying the icons beside the resource name in each breadcrumb. We are using the daisyUI `breadcrumbs` class to style the elements.
 
-With these changes, we should now see a sticky top navbar with items that gives access to all the resource list pages. Also breadcrumbs should show up along a resource path:
+With these changes, we should now see a sticky top navbar with items that give access to all the resource list pages. Also, breadcrumbs should show up along a resource path:
 
 Here's the walkthrough of all the resource list pages:
 
@@ -3882,7 +3882,7 @@ We generated CRUD pages with the **Inferencer** tool, and we went ahead to furth
 
 We saw that **refine** brings the power of **React Hook Form** into its pages with its supplementary `@refinedev/react-form-hook` package that helps effortlessly manage data fetching, form state, caching and error handling in a CRUD application with the `useForm()` hook. We found that daisyUI can fit in seamlessly among all to build enterprise level data-heavy applications like admin panels, dashboards and other internal tools.
 
-We have initially dashed, frequently dazed and finally established an admin panel by getting refine.d.
+We initially dashed, frequently dazed, and finally established an admin panel by getting refine.d.
 
 ## Live CodeSandbox Example
 
