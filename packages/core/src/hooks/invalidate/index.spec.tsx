@@ -77,7 +77,11 @@ describe("useInvalidate", () => {
             dataProviderName: "rest",
         });
 
-        expect(dispatch).toBeCalledWith(["rest", "posts", "list"]);
+        expect(dispatch).toBeCalledWith(
+            ["rest", "posts", "list"],
+            expect.anything(),
+            expect.anything(),
+        );
     });
 
     it("with detail invalidation", async () => {
@@ -102,9 +106,17 @@ describe("useInvalidate", () => {
             id: "1",
         });
 
-        expect(dispatch).toBeCalledWith(["rest", "posts", "list"]);
+        expect(dispatch).toHaveBeenCalledWith(
+            expect.arrayContaining(["rest", "posts", "list"]),
+            expect.anything(),
+            expect.anything(),
+        );
 
-        expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1"]);
+        expect(dispatch).toHaveBeenCalledWith(
+            expect.arrayContaining(["rest", "posts", "detail", "1"]),
+            expect.anything(),
+            expect.anything(),
+        );
     });
 
     it("with 'all' invalidation", async () => {
@@ -122,18 +134,38 @@ describe("useInvalidate", () => {
             wrapper: TestWrapper({}),
         });
 
-        result.current({
+        await result.current({
             resource: "posts",
             invalidates: ["detail", "all", "list", "many", "resourceAll"],
             dataProviderName: "rest",
             id: "1",
         });
 
-        expect(dispatch).toBeCalledWith(["rest"]);
-        expect(dispatch).toBeCalledWith(["rest", "posts"]);
-        expect(dispatch).toBeCalledWith(["rest", "posts", "list"]);
-        expect(dispatch).toBeCalledWith(["rest", "posts", "getMany"]);
-        expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1"]);
+        expect(dispatch).toBeCalledWith(
+            expect.arrayContaining(["rest", "posts", "detail", "1"]),
+            expect.anything(),
+            expect.anything(),
+        );
+        expect(dispatch).toBeCalledWith(
+            expect.arrayContaining(["rest"]),
+            expect.anything(),
+            expect.anything(),
+        );
+        expect(dispatch).toBeCalledWith(
+            expect.arrayContaining(["rest", "posts"]),
+            expect.anything(),
+            expect.anything(),
+        );
+        expect(dispatch).toBeCalledWith(
+            expect.arrayContaining(["rest", "posts", "list"]),
+            expect.anything(),
+            expect.anything(),
+        );
+        expect(dispatch).toBeCalledWith(
+            expect.arrayContaining(["rest", "posts", "getMany"]),
+            expect.anything(),
+            expect.anything(),
+        );
     });
 
     it("with 'wrong invalidate key' ", async () => {

@@ -856,6 +856,7 @@ module.exports = {
                             label: "Live Provider",
                             items: ["examples/live-provider/ably"],
                         },
+                        "examples/module-federation/vite",
                         "examples/multi-level-menu/multi-level-menu",
                         "examples/mutation-mode",
                         {
