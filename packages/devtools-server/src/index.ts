@@ -1,14 +1,23 @@
 import express from "express";
 
+import boxen from "boxen";
+import chalk from "chalk";
+
+import { DevtoolsEvent, receive, send } from "@refinedev/devtools-shared";
+
 import { serveClient } from "./serve-client";
 import { serveWs } from "./serve-ws";
 import { reloadOnChange } from "./reload-on-change";
 import { setupServer } from "./setup-server";
-import { DevtoolsEvent, receive, send } from "@refinedev/devtools-shared";
-import { createDb } from "./create-db";
+import { Activity, createDb } from "./create-db";
 import { serveApi } from "./serve-api";
+import { SERVER_PORT } from "./constants";
 
-export const server = async () => {
+type Options = {
+    projectPath?: string;
+};
+
+export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
     const app = express();
     const ws = serveWs();
 
@@ -32,6 +41,33 @@ export const server = async () => {
                     });
                 });
             }
+        });
+
+        receive(client as any, DevtoolsEvent.ACTIVITY, (data) => {
+            // match by identifier, if identifier is same, update data instead of pushing
+            const index = db.activities.findIndex(
+                (activity) => activity.identifier === data.identifier,
+            );
+
+            const record: Activity = {
+                ...data,
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
+            };
+
+            if (index > -1) {
+                record.createdAt = db.activities[index].createdAt;
+
+                db.activities[index] = record;
+            } else {
+                db.activities.push(record);
+            }
+
+            ws.clients.forEach((c) => {
+                send(c as any, DevtoolsEvent.DEVTOOLS_ACTIVITY_UPDATE, {
+                    updatedActivities: [record],
+                });
+            });
         });
 
         // close connected app if client disconnects
@@ -67,4 +103,21 @@ export const server = async () => {
     serveClient(app);
     setupServer(app);
     serveApi(app, db);
+
+    console.log(
+        `\n${boxen(
+            `refine devtools is running on ${chalk.blueBright.bold(
+                `http://localhost:${SERVER_PORT}`,
+            )}`,
+            {
+                padding: 1,
+                title: "refine devtools",
+                titleAlignment: "center",
+                textAlignment: "center",
+                dimBorder: true,
+                borderColor: "blueBright",
+                borderStyle: "round",
+            },
+        )}\n`,
+    );
 };
