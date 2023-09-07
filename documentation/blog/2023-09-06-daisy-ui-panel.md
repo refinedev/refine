@@ -50,7 +50,7 @@ The **refine** data hooks mentioned above are basically core hooks. Higher level
 
 ### Routing
 
-Routing in **refine** are supported by the `react-router-dom` package. **refine**`v4` supports explicit routing by delegating everything related to routing to the [**React Router**](https://reactrouter.com/en/main/start/overview) APIs.
+Routing in **refine** is supported by the `react-router-dom` package. **refine**`v4` supports explicit routing by delegating everything related to routing to the [**React Router**](https://reactrouter.com/en/main/start/overview) APIs.
 
 ### Inferencer
 
