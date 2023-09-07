@@ -54,7 +54,7 @@ Routing in **refine** is supported by the `react-router-dom` package. **refine**
 
 ### Inferencer
 
-**refine**'s [**Inferencer**](https://refine.dev/docs/api-reference/core/components/inferencer/#usage) is a powerful tool for quickly scaffolding CRUD pages and automatically generating code for a resource page. The **Inferencer** works by first polling a particular API endpoint to get the shape of the data and then placing all the hooks and UI elements necessary to fetch and present the data in a page.
+**refine**'s [**Inferencer**](https://refine.dev/docs/api-reference/core/components/inferencer/#usage) is a powerful tool for quickly scaffolding CRUD pages and automatically generating code for a resource page. The **Inferencer** works by first polling a particular API endpoint to get the shape of the data and then placing all the hooks and UI elements necessary to fetch and present the data on a page.
 
 ### UI Framework Integration
 
@@ -70,9 +70,9 @@ Routing in **refine** is supported by the `react-router-dom` package. **refine**
 
 
 
-[**daisyUI**](https://daisyui.com) is an open source UI library built on top of [**TailwindCSS**](https://tailwindcss.com/docs/installation). It provides short, component oriented, semantic classes composed from regular longer Tailwind class strings that typically contribute to clumsy markup in an application. daisyUI hosts a growing collection of prestyled templates for components like buttons, menus and tabs with responsive, size, shape and color variants.
+[**daisyUI**](https://daisyui.com) is an open source UI library built on top of [**TailwindCSS**](https://tailwindcss.com/docs/installation). It provides short, component-oriented, semantic classes composed from regular, longer Tailwind class strings that typically contribute to clumsy markup in an application. daisyUI hosts a growing collection of pre-styled templates for components like buttons, menus, and tabs with responsive, size, shape, and color variants.
 
-Composing responsive, color, size and shape variant classes manually with the `@apply` directive is practically inefficient with plain TailwindCSS classes. daisyUI does this out-of-the-box. On top of that, these component styles can be overriden or extended with usual TailwindCSS utilities. As a result, daisyUI brings the convenience of using smaller class names, a smaller CSS file size, configurable number of variants as well as greater customization without compromising much of the code quality.
+Composing responsive, color, size, and shape variant classes manually with the `@apply` directive is practically inefficient with plain TailwindCSS classes. daisyUI does this out-of-the-box. On top of that, these component styles can be overridden or extended with the usual TailwindCSS utilities. As a result, daisyUI offers the convenience of using smaller class names, a smaller CSS file size, configurable number of variants, and greater customization without compromising much of the code quality.
 
 Feel free to check out the [daisyUI documentation](https://daisyui.com/docs/install/) to learn more.
 
@@ -172,19 +172,19 @@ function App() {
 export default App;
 ```
 
-With these changes, we'll start fresh towards building the dashboard page first and then later move on to the CRUD pages for `products` and `categories` resources. At his point, we don't have any resources and their pages.
+With these changes, we'll start fresh towards building the dashboard page first and then later move on to the CRUD pages for `products` and `categories` resources. At this point, we don't have any resources or their pages.
 
 Notice, we are now using the **Fine Foods** REST API in the `dataProvider` prop of `<Refine />`.
 
-The **Fine Foods** API is an example REST API hosted by **refine** with a collection of end points. In this app, we will be querying the `/dailyRevenue`, `/dailyOrders`, `/newCustomers` and `/orders` endpoints for fetching data for our dashboard page. Later on, we'll also be accessing its `/products` and `/catgories` enpoints for our resource pages.
+The **Fine Foods** API is an example of the REST API hosted by **refine** with a collection of end points. In this app, we will be querying the `/dailyRevenue`, `/dailyOrders`, `/newCustomers` and `/orders` endpoints for fetching data for our dashboard page. Later on, we'll also be accessing its `/products` and `/catgories` endpoints for our resource pages.
 
 ### daisyUI Installation
 
-We are using daisyUI as our UI library. In order to integrate daisyUI to our **refine** app, we have to first perform a [ **Vite** installation](https://tailwindcss.com/docs/guides/vite) of **TailwindCSS**, its dependencies and set up their configurations.
+We are using daisyUI as our UI library. In order to integrate daisyUI into our **refine** app, we have to first perform a [ **Vite** installation](https://tailwindcss.com/docs/guides/vite) of **TailwindCSS**, its dependencies, and set up their configurations.
 
 Go ahead an follow the below steps to first add TailwindCSS, PostCSS and Autoprefixer packages and then initialize `tailwind.config.js`:
 
-**Install TailwindCSS and Related Packages**
+**Install TailwindCSS and related packages**
 
 1. Run the following commands:
 
@@ -303,7 +303,7 @@ We'll be using the custom classes in this `App.css`, so feel free to copy it ove
 
 If you need a hand with TailwindCSS installation, please follow [this guide for installing TailwindCSS with Vite](https://tailwindcss.com/docs/guides/vite)
 
-**Install and Setup daisyUI**
+**Install and setup daisyUI**
 
 With TailwindCSS set up properly, it's now turn to install and configure daisyUI.
 
@@ -342,7 +342,7 @@ More details on customizing a daisyUI theme is available on the docs [here](http
 
 
 
-After these changes, with the server running, daisyUI watches for the use of daisyUI and TailwindCSS classes, and automatically compile updated styles.
+After these changes, with the server running, daisyUI watches for the use of daisyUI and TailwindCSS classes, and automatically compiles updated styles.
 
 ### Other Packages
 
@@ -780,7 +780,7 @@ With these changes, our dashboard page has three KPI cards displayed at the top:
 
 ### Tab Components
 
-Now we want to display three charts inside a tabs panel below the KPI cards. So, we'll create the `<TabItem />`, `<TabPanel />` and `<TabView />` components inside the `src/components/dashboard` directory. We'll also create two chart components, one `<ResponsiveAreaChart />` and the other a `<ResponsiveBarChart />` to plot KPI data. Once all components are ready, we'll add the `<TabView />` component to `<Dashboard />`.
+Now we want to display three charts inside a tabs panel below the KPI cards. So, we'll create the `<TabItem />`, `<TabPanel />` and `<TabView />` components inside the `src/components/dashboard` directory. We'll also create two chart components, a `<ResponsiveAreaChart />` and a `<ResponsiveBarChart />` to plot KPI data. Once all components are ready, we'll add the `<TabView />` component to `<Dashboard />`.
 
 The `<TabView />` component will house the other two tab components, so in order to avoid linter and browser errors, we'll start with the children.
 
@@ -890,7 +890,7 @@ export const TabView = ({ tabs }: TTabViewProps) => {
 
 With the tab components ready, we need to create three charts to be displayed inside `<TabView />` by mapping through the `tabs` object. We want to implement them using **Recharts**. One `<ResponsiveAreaChart />` and one `<ResponsiveBarChart />`.
 
-For plotting the data, `<ResonsiveAreaChart />` will use `<AreaChart />` APIs of the **Recharts** library and `<ResponsiveBarChart />` will use the `<BarChart />` APIs. They both will use `<ResponsiveContainer />` for responsiveness.
+For plotting the data, `<ResponsiveAreaChart />` will use the `<AreaChart />` APIs of the **Recharts** library and `<ResponsiveBarChart />` will use the `<BarChart />` APIs. They both will use `<ResponsiveContainer />` for responsiveness.
 
 You can find all the detials in the **Rechats** [`<AreaChart />`](https://recharts.org/en-US/api/AreaChart), [`<BarChart />`](https://recharts.org/en-US/api/BarChart) and [`<ResponsiveContainer />`](https://recharts.org/en-US/api/ResponsiveContainer) documentations if you need to.
 
@@ -991,7 +991,7 @@ export const ResponsiveAreaChart = ({
 
 </details>
 
-Inside `<ResponsiveAreaChart />` we are receiving the `data` along with other props and relaying to `<AreaChart />` with its `data={data}` prop. We are using `<XAxis />`, `<YAxis />` for ticks and axes label. We are drawing the area and monotonic line with `<Area />` component and its props. `<CartesianGrid />` draws a grid in the background. We also have a custom tooltip shown inside `<ToolTip />`.
+Inside `<ResponsiveAreaChart />` we are receiving the `data` along with other props and relaying it to `<AreaChart />` with its `data={data}` prop. We are using `<XAxis />`, `<YAxis />` for ticks and axes labels. We are drawing the area and monotonic line with `<Area />` component and its props. `<CartesianGrid />` draws a grid in the background. We also have a custom tooltip shown inside `<ToolTip />`.
 
 ### Bar Chart
 
@@ -1155,7 +1155,7 @@ export const ChartTooltip = ({
 
 </details>
 
-Now we have all the components for displaying `<TabView />` reday. So, we'll import and display it inside the dashboard below `<Stats />`. Let's update the `<Dashboard />` component with the below code:
+Now we have all the components for displaying `<TabView />` ready. So, we'll import and display it inside the dashboard below `<Stats />`. Let's update the `<Dashboard />` component with the below code:
 
 <details>
 
@@ -1282,7 +1282,7 @@ export const Dashboard: React.FC = () => {
 
 </details>
 
-Notice we are defining a `useMemoizedChartData()` hook to transform the fetched data and memoize them to make them chart ready. We are then setting the `tabs` object from the data, the charts and other properties. We eventually pass the `tabs` objec to the `<TabView />` component.
+Notice we are defining a `useMemoizedChartData()` hook to transform the fetched data and memoize them to make them chart ready. We are then setting the `tabs` object from the data, the charts, and other properties. We eventually pass the `tabs` object to the `<TabView />` component.
 
 With these changes, our dashboard page displays a panel of charts accessible from a top tabbed menu:
 
@@ -1515,7 +1515,7 @@ export const RecentSales = () => {
 
 </details>
 
-In the `<RecentSales />` component, we are using a `useTable()` hook, which is a high level hook provided by **refine**'s **React Table** supported `@refinedev/react-table` package. It queries the `/orders` end point and implements a table with filtering and sorting features.
+In the `<RecentSales />` component, we are using a `useTable()` hook, which is a high level hook provided by **refine**'s **React Table** supported `@refinedev/react-table` package. It queries the `/orders` endpoint and implements a table with filtering and sorting features.
 
 We'll come to the details of `useTable()` when we create `list` pages for `products` and `categories` resources.
 
