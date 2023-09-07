@@ -35,6 +35,9 @@ export const LoginPage: React.FC = () => {
             formProps={{
                 initialValues,
             }}
+            contentProps={{
+                className: "auth-page",
+            }}
             title={<Title collapsed={false} />}
             providers={[
                 {
