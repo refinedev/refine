@@ -19,5 +19,6 @@ export function send<T extends DevtoolsEvent>(
         });
     } else {
         ws.send(JSON.stringify({ event, payload }));
+        return;
     }
 }
