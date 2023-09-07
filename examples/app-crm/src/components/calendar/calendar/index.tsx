@@ -149,6 +149,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                 }}
                 headerToolbar={false}
                 nextDayThreshold="23:59:59"
+                dayMaxEventRows={3}
             />
         </Card>
     );
