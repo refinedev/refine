@@ -11,7 +11,6 @@ export const useQuerySubscription =
               const mutationCacheSubscription = React.useRef<() => void>();
 
               React.useEffect(() => {
-                  console.log("useQuerySubscription", ws);
                   if (!ws) return () => 0;
 
                   const queryCache = queryClient.getQueryCache();
