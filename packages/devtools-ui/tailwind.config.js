@@ -24,6 +24,9 @@ module.exports = {
                     900: "#14141F",
                     1000: "#0A0A15",
                 },
+                brand: {
+                    blue: "#0080FF",
+                },
                 alt: {
                     blue: "#6EB3F7",
                     cyan: "#47EBEB",

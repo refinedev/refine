@@ -1,28 +1,52 @@
 import React from "react";
 import { DevToolsContextProvider } from "@refinedev/devtools-shared";
-import { Overview } from "./overview";
 import { ReloadOnChanges } from "./reload-on-changes";
 import { Layout } from "./components/layout";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter,
+    Navigate,
+    Outlet,
+    Route,
+    Routes,
+} from "react-router-dom";
+import { Authenticated } from "./components/authenticated";
+import { Overview } from "./pages/overview";
+import { Login } from "./pages/login";
+import { Onboarding } from "./pages/onboarding";
+import { AuthContextProvider } from "./components/auth-context";
+import { Monitor } from "./pages/monitor";
 
 export const DevToolsApp = () => {
     return (
         <DevToolsContextProvider __devtools>
             <ReloadOnChanges />
-            <BrowserRouter>
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route path="/" element={<Overview />} />
-                        <Route path="/monitor" element={<div>Monitor</div>} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+            <AuthContextProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<Navigate to="/login" />}
+                                >
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/" element={<Overview />} />
+                            <Route path="/monitor" element={<Monitor />} />
+                        </Route>
+                        <Route element={<Outlet />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route
+                                path="/onboarding"
+                                element={<Onboarding />}
+                            />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </AuthContextProvider>
         </DevToolsContextProvider>
     );
 };

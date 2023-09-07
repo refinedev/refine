@@ -13,3 +13,43 @@ html,body,#root {
     min-width: 640px;
     min-height: 360px;
 }
+
+.trace-list {
+    /*  */
+}
+.trace-list .trace-item {
+    position: relative;
+}
+
+.trace-list .trace-item {
+    border-right-width: 0;
+    border-left-width: 0;
+}
+
+.trace-list .trace-item:first-of-type {
+    border-left-width: 1px;
+}
+
+.trace-list .trace-item:last-of-type {
+    border-right-width: 1px;
+}
+
+.trace-list .trace-item::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 0;
+    width: 16px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='26' viewBox='0 0 9 26' fill='none'%3E%3Cpath d='M1 1L7.5208 10.7812C8.41653 12.1248 8.41653 13.8752 7.5208 15.2188L1 25' stroke='%23303450'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.trace-list .trace-item:last-of-type::after {
+    display: none;
+}
+
+.monitor-table-row:hover {
+    background-color: #F7F7F7;
+}

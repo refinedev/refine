@@ -23,6 +23,7 @@ export const Layout = ({ children }: Props) => {
                     "re-flex-1",
                     "re-w-full",
                     "re-h-full",
+                    "re-overflow-hidden",
                 )}
             >
                 <Sidebar />
