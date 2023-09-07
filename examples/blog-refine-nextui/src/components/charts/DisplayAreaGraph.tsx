@@ -9,14 +9,10 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { IChartDatum } from "../../interfaces";
+import { IDisplayAreaGraphProps } from "../../interfaces";
 import { formatDate } from "./DisplayBarChart";
 
-interface RevenueChartPropsI {
-  data: IChartDatum[];
-}
-
-export const RevenueChart: React.FC<RevenueChartPropsI> = ({ data }) => {
+export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({ data, stroke, fill }) => {
   const transformedData = data.map(({ date, value }) => ({
     date: formatDate.format(new Date(date)),
     value
@@ -29,7 +25,7 @@ export const RevenueChart: React.FC<RevenueChartPropsI> = ({ data }) => {
         <XAxis dataKey="date" />
         <YAxis dataKey="value" />
         <Tooltip label="Daily Revenue" />
-        <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#cfeafc" />
+        <Area type="monotone" dataKey="value"  stroke={stroke}  fill={fill} />
       </AreaChart>
     </ResponsiveContainer>
   );

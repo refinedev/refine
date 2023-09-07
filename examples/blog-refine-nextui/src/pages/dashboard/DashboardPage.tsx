@@ -4,7 +4,7 @@ import { useApiUrl, useCustom } from "@refinedev/core";
 import { IChart } from "../../interfaces";
 
 import { KpiCard } from "../../components/kpiCard";
-import { RevenueChart, DisplayBarChart } from "../../components/charts";
+import { DisplayAreaGraph, DisplayBarChart } from "../../components/charts";
 import { RecentSalesTable } from "../../components/table";
 import dayjs from "dayjs";
 
@@ -86,21 +86,21 @@ export const DashboardPage: React.FC = () => {
           <Tab key="revenue" title="Revenue">
             <Card shadow="none" radius="none">
               <CardBody>
-                <RevenueChart data={dailyRevenue?.data?.data ?? []} />
+                <DisplayAreaGraph data={dailyRevenue?.data?.data ?? []} stroke="#8884d8" fill="#cfeafc" />
               </CardBody>
             </Card>
           </Tab>
           <Tab key="orders" title="Orders">
             <Card shadow="none" radius="none">
               <CardBody>
-                <DisplayBarChart data={dailyOrders?.data?.data ?? []} />{" "}
+                <DisplayBarChart data={dailyOrders?.data?.data ?? []} fill="#ffce90" />{" "}
               </CardBody>
             </Card>
           </Tab>
           <Tab key="customers" title="Customers">
             <Card shadow="none" radius="none">
               <CardBody>
-                <DisplayBarChart data={newCustomers?.data?.data ?? []} />{" "}
+                <DisplayAreaGraph data={newCustomers?.data?.data ?? []} stroke="#00bd56" fill="#ccf3f3" />{" "}
               </CardBody>
             </Card>
           </Tab>

@@ -73,3 +73,14 @@ export interface IDeleteModalProps {
   onDelete: () => void;
 }
 
+interface IDisplayAreaGraphProps {
+  data: IChartDatum[];
+  stroke: string,
+  fill: string,
+}
+
+interface IDisplayBarChartProps {
+  data: IChartDatum[];
+  fill: string,
+}
+

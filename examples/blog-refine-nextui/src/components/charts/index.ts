@@ -1,2 +1,2 @@
-export { RevenueChart } from "./RevenueChart";
+export { DisplayAreaGraph } from "./DisplayAreaGraph";
 export { DisplayBarChart } from "./DisplayBarChart";
