@@ -37,7 +37,9 @@
     "@refinedev/devtools-shared": "^0.0.1",
     "@tanstack/react-table": "^8.2.6",
     "clsx": "^1.1.1",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "dayjs": "^1.10.7",
+    "react-json-view": "^1.21.3"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",

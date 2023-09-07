@@ -16,6 +16,11 @@ import { Onboarding } from "./pages/onboarding";
 import { AuthContextProvider } from "./components/auth-context";
 import { Monitor } from "./pages/monitor";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
 export const DevToolsApp = () => {
     return (
         <DevToolsContextProvider __devtools>
