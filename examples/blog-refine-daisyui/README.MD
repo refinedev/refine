@@ -28,7 +28,7 @@
 
 </div>
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg "Cover Image")
+![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
 
 ## About
 
