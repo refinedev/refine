@@ -1662,11 +1662,11 @@ With all these updates, we have completed implementing the dashboard page. It no
 
 ## Adding CRUD Pages
 
-Having completed the dashboard page above, in this section, we'll add CRUD pages for `products` and `categories` resources. We'll start implementing the pages for `products` resource first.
+Having completed the dashboard page above, in this section, we'll add CRUD pages for `products` and `categories` resources. We'll start implementing the pages for the `products` resource first.
 
 ## Product Pages
 
-We want `list`, `create`, `edit` and `show` pages for `products`. Since we are using **refine**'s headless core without any supported UI library, it helps if we use the **Inferencer** to generate the pages for us. We'll leverage the power of **refine**'s `<HeadlessInferencer />` component in the CRUD pages.
+We want `list`, `create`, `edit` and `show` pages for the `products`. Since we are using **refine**'s headless core without any supported UI library, it helps if we use the **Inferencer** to generate the pages for us. We'll leverage the power of **refine**'s `<HeadlessInferencer />` component in the CRUD pages.
 
 There are two steps to getting the **Inferencer** generated page code:
 
