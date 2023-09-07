@@ -42,6 +42,8 @@ export const ResizablePane = ({ placement, visible, children }: Props) => {
             setPanelSize((p) => getDefaultPanelSize(placement, p));
         };
 
+        handleResize();
+
         window.addEventListener("resize", handleResize);
 
         return () => {

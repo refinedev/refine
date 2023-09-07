@@ -7,8 +7,10 @@ export const getPanelToggleTransforms = (visible: boolean) => {
 export const SIZE = 50;
 export const BUFFER = 10;
 
-const PREFERRED_DEFAULT_WIDTH = 800;
-const PREFERRED_DEFAULT_HEIGHT = 520;
+const PREFERRED_DEFAULT_WIDTH = () =>
+    typeof window !== "undefined" ? window.innerWidth * 0.7 : 1440 * 0.7; // 70% of window width
+const PREFERRED_DEFAULT_HEIGHT = () =>
+    typeof window !== "undefined" ? window.innerHeight * 0.7 : 900 * 0.7; // 70% of window height
 
 export const MIN_PANEL_WIDTH = 640;
 export const MIN_PANEL_HEIGHT = 360;
@@ -74,10 +76,20 @@ export const getMaxPanelWidth = (placement: Placement) => {
     switch (placement) {
         case "left":
         case "right":
-            return -BUFFER - SIZE - BUFFER + window.innerWidth - BUFFER;
+            return (
+                -BUFFER -
+                SIZE -
+                BUFFER +
+                (typeof window !== "undefined" ? window.innerWidth : 1440) -
+                BUFFER
+            );
         case "top":
         case "bottom":
-            return -BUFFER + window.innerWidth - BUFFER;
+            return (
+                -BUFFER +
+                (typeof window !== "undefined" ? window.innerWidth : 1440) -
+                BUFFER
+            );
     }
 };
 
@@ -85,25 +97,43 @@ export const getMaxPanelHeight = (placement: Placement) => {
     switch (placement) {
         case "left":
         case "right":
-            return -BUFFER + window.innerHeight - BUFFER;
+            return (
+                -BUFFER +
+                (typeof window !== "undefined" ? window.innerHeight : 900) -
+                BUFFER
+            );
         case "top":
         case "bottom":
-            return -BUFFER - SIZE - BUFFER + window.innerHeight - BUFFER;
+            return (
+                -BUFFER -
+                SIZE -
+                BUFFER +
+                (typeof window !== "undefined" ? window.innerHeight : 900) -
+                BUFFER
+            );
     }
 };
 
 export const getDefaultPanelSize = (
     placement: Placement,
-    preferredSize: { width: number; height: number } = {
-        width: PREFERRED_DEFAULT_WIDTH,
-        height: PREFERRED_DEFAULT_HEIGHT,
-    },
+    preferredSize?: { width: number; height: number },
 ): { width: number; height: number } => {
+    const defaultPreferred = {
+        width: PREFERRED_DEFAULT_WIDTH(),
+        height: PREFERRED_DEFAULT_HEIGHT(),
+    };
+
     const maxPanelWidth = getMaxPanelWidth(placement);
     const maxPanelHeight = getMaxPanelHeight(placement);
 
-    const width = Math.min(maxPanelWidth, preferredSize.width);
-    const height = Math.min(maxPanelHeight, preferredSize.height);
+    const width = Math.min(
+        maxPanelWidth,
+        (preferredSize ?? defaultPreferred).width,
+    );
+    const height = Math.min(
+        maxPanelHeight,
+        (preferredSize ?? defaultPreferred).height,
+    );
 
     return {
         width: width,
