@@ -42,7 +42,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
         },
         sorters: [
             {
-                field: "id",
+                field: "createdAt",
                 order: "desc",
             },
         ],
