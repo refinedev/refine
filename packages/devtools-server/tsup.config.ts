@@ -34,4 +34,5 @@ export default defineConfig((tsupOptions) => ({
     onSuccess: tsupOptions.watch
         ? "tsc --project tsconfig.declarations.json && npm run start:server"
         : "tsc --project tsconfig.declarations.json",
+    // onSuccess: "tsc --project tsconfig.declarations.json",
 }));

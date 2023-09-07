@@ -16,8 +16,8 @@ export const reloadOnChange = __DEVELOPMENT__
                           send(client as any, DevtoolsEvent.RELOAD, {});
                       }
                   });
-              }, 200);
-          }, 300);
+              }, 800);
+          }, 1000);
 
           const watcher = fs.watch(
               path.resolve(__dirname, "client"),
