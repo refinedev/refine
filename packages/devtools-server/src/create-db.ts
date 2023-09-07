@@ -1,24 +1,30 @@
+import {
+    DevtoolsEvent,
+    DevtoolsEventPayloads,
+} from "@refinedev/devtools-shared";
 import type { WebSocket } from "ws";
 
-type Invocation = {
-    id: number;
-    method: string;
-    trace: string[];
-    fileName: string;
-    lineNumber: number;
-    meta: Record<string, unknown>;
-};
+export type Activity =
+    DevtoolsEventPayloads[DevtoolsEvent.DEVTOOLS_ACTIVITY_UPDATE]["updatedActivities"][number];
 
 export type Data = {
     connectedApp: null | string;
     clientWs: null | WebSocket;
-    invocations: Invocation[];
+    devtoolsWsClients: WebSocket[];
+    appWsClients: WebSocket[];
+    activities: Activity[];
+    packages: string[];
 };
 
 const defaultData: Data = {
     connectedApp: null,
     clientWs: null,
-    invocations: [],
+    // connections
+    devtoolsWsClients: [],
+    appWsClients: [],
+    // data
+    activities: [],
+    packages: [],
 };
 
 export const createDb = (): Data => {
