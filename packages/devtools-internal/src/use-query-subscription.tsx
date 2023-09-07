@@ -1,6 +1,7 @@
 import { DevToolsContext } from "@refinedev/devtools-shared";
 import { QueryClient } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { createQueryListener, createMutationListener } from "./listeners";
 
 export const useQuerySubscription =
     process.env.NODE_ENV === "development"
@@ -15,26 +16,14 @@ export const useQuerySubscription =
 
                   const queryCache = queryClient.getQueryCache();
 
-                  queryCache.getAll().forEach((query) => {
-                      console.table({
-                          name: "sub - init",
-                          key: query.queryKey,
-                          status: query.state.status,
-                          meta: query.meta,
-                      });
-                  });
+                  const queryListener = createQueryListener(ws);
+
+                  queryCache.getAll().forEach(queryListener);
 
                   queryCacheSubscription.current = queryCache.subscribe(
-                      ({ query, type }) => {
-                          if (["added", "updated"].includes(type)) {
-                              console.table({
-                                  name: `sub - ${type}`,
-                                  key: query.queryKey,
-                                  status: query.state.status,
-                                  meta: query.meta,
-                              });
-                          }
-                      },
+                      ({ query, type }) =>
+                          (type === "added" || type === "updated") &&
+                          queryListener(query),
                   );
 
                   return () => {
@@ -47,28 +36,14 @@ export const useQuerySubscription =
 
                   const mutationCache = queryClient.getMutationCache();
 
-                  mutationCache.getAll().forEach((mutation) => {
-                      console.table({
-                          name: "sub - (mut) init",
-                          key: mutation.options.mutationKey,
-                          id: mutation.mutationId,
-                          status: mutation.state.status,
-                          meta: mutation.meta,
-                      });
-                  });
+                  const mutationListener = createMutationListener(ws);
+
+                  mutationCache.getAll().forEach(mutationListener);
 
                   mutationCacheSubscription.current = mutationCache.subscribe(
-                      ({ mutation, type }) => {
-                          if (["added", "updated"].includes(type)) {
-                              console.table({
-                                  name: `sub - (mut) ${type}`,
-                                  key: mutation?.options.mutationKey,
-                                  id: mutation?.mutationId,
-                                  status: mutation?.state.status,
-                                  meta: mutation?.meta,
-                              });
-                          }
-                      },
+                      ({ mutation, type }) =>
+                          (type === "added" || type === "updated") &&
+                          mutationListener(mutation),
                   );
 
                   return () => {
