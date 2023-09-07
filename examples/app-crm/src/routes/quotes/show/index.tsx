@@ -99,16 +99,16 @@ export const QuotesShowPage = () => {
                 />
                 <div className={styles.pdf}>
                     <div className={styles.pdfQuoteInfo}>
+                        <CustomAvatar
+                            name={company?.name}
+                            src={company?.avatarUrl}
+                            shape="square"
+                            style={{
+                                width: "64px",
+                                height: "64px",
+                            }}
+                        />
                         <div className={styles.companyInfo}>
-                            <CustomAvatar
-                                name={company?.name}
-                                src={company?.avatarUrl}
-                                shape="square"
-                                style={{
-                                    width: "64px",
-                                    height: "64px",
-                                }}
-                            />
                             <div className={styles.company}>
                                 <Text strong>{company.name}</Text>
                                 <Text>{company.country}</Text>
