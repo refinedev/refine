@@ -5,6 +5,8 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
 
 import { Text } from "../../text";
 import { Event } from "../../../interfaces/graphql";
@@ -27,8 +29,10 @@ export const Calendar: React.FC<CalendarProps> = ({
     const { md } = Grid.useBreakpoint();
 
     React.useEffect(() => {
-        if (!md) {
-            calendarRef.current?.getApi().changeView("dayGridDay");
+        if (md) {
+            calendarRef.current?.getApi().changeView("dayGridMonth");
+        } else {
+            calendarRef.current?.getApi().changeView("timeGridDay");
         }
     }, [md]);
 
@@ -98,45 +102,36 @@ export const Calendar: React.FC<CalendarProps> = ({
                 <Text className={styles.title} size="lg">
                     {title}
                 </Text>
-                <Radio.Group
-                    // defaultValue="dayGridMonth"
-                    value={calendarRef.current?.getApi().view.type}
-                >
-                    <Radio.Button
-                        value="dayGridMonth"
-                        onClick={() => {
-                            calendarRef.current
-                                ?.getApi()
-                                .changeView("dayGridMonth");
-                        }}
-                    >
-                        Month
-                    </Radio.Button>
-                    <Radio.Button
-                        value="dayGridWeek"
-                        onClick={() => {
-                            calendarRef.current
-                                ?.getApi()
-                                .changeView("dayGridWeek");
-                        }}
-                    >
-                        Week
-                    </Radio.Button>
-                    <Radio.Button
-                        value="dayGridDay"
-                        onClick={() => {
-                            calendarRef.current
-                                ?.getApi()
-                                .changeView("dayGridDay");
-                        }}
-                    >
-                        Day
-                    </Radio.Button>
+                <Radio.Group value={calendarRef.current?.getApi().view.type}>
+                    {[
+                        {
+                            label: "Month",
+                            value: "dayGridMonth",
+                        },
+                        {
+                            label: "Week",
+                            value: "timeGridWeek",
+                        },
+                        {
+                            label: "Day",
+                            value: "timeGridDay",
+                        },
+                    ].map(({ label, value }) => (
+                        <Radio.Button
+                            key={value}
+                            value={value}
+                            onClick={() => {
+                                calendarRef.current?.getApi().changeView(value);
+                            }}
+                        >
+                            {label}
+                        </Radio.Button>
+                    ))}
                 </Radio.Group>
             </div>
             <FullCalendar
                 ref={calendarRef}
-                plugins={[dayGridPlugin]}
+                plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
                 initialView={"dayGridMonth"}
                 events={events}
                 eventTimeFormat={{

@@ -69,6 +69,7 @@ import { SettingsPage, AuditLogPage } from "./routes/administration";
 import "./utilities/init-dayjs";
 
 import "./styles/antd.css";
+import "./styles/fc.css";
 import "./styles/index.css";
 
 const App: React.FC = () => {
