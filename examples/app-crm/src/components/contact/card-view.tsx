@@ -2,17 +2,20 @@ import { Col, Pagination, Row, type TableProps } from "antd";
 
 import { ContactCard } from "./card";
 import { Contact } from "../../interfaces/graphql";
+import { CardSkeleton } from "../company/card-skeleton";
 
 type Props = {
     tableProps: TableProps<Contact>;
     setCurrent: (current: number) => void;
     setPageSize: (pageSize: number) => void;
+    loading?: boolean;
 };
 
 export const CardView: React.FC<Props> = ({
     tableProps: { dataSource, pagination },
     setCurrent,
     setPageSize,
+    loading,
 }) => {
     return (
         <div
@@ -21,6 +24,21 @@ export const CardView: React.FC<Props> = ({
             }}
         >
             <Row gutter={[32, 32]}>
+                {loading &&
+                    Array.from({ length: 12 }).map((_, index) => {
+                        return (
+                            <Col
+                                key={index}
+                                span="6"
+                                lg={{ span: 6 }}
+                                md={{ span: 12 }}
+                                xs={{ span: 24 }}
+                            >
+                                <CardSkeleton />
+                            </Col>
+                        );
+                    })}
+
                 {dataSource?.map((contact) => (
                     <Col
                         key={contact.id}
