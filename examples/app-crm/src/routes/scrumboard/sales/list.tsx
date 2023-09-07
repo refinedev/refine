@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
     DealKanbanCardMemo,
-    FullScreenLoading,
+    DealKanbanCardSkeleton,
     Text,
 } from "../../../components";
 import {
@@ -16,6 +16,8 @@ import {
     KanbanItem,
     KanbanAddStageButton,
     KanbanAddCardButton,
+    KanbanBoardSkeleton,
+    KanbanColumnSkeleton,
 } from "../../../components/kanban";
 import { DealKanbanWonLostDrop } from "../../../components/deal-kanban-won-lost-drop";
 import { Deal, DealStage } from "../../../interfaces/graphql";
@@ -28,7 +30,7 @@ const dealsFragment = [
     "createdAt",
     "stageId",
     {
-        company: ["id", "name"],
+        company: ["id", "name", "avatarUrl"],
     },
     {
         dealOwner: ["id", "name", "avatarUrl"],
@@ -70,6 +72,13 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             {
                 field: "createdAt",
                 order: "asc",
+            },
+        ],
+        filters: [
+            {
+                field: "createdAt",
+                operator: "gte",
+                value: new Date(new Date().setMonth(new Date().getMonth() - 1)),
             },
         ],
         queryOptions: {
@@ -273,7 +282,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     const loading = isLoadingStages || isLoadingDeals;
 
     if (loading) {
-        return <FullScreenLoading />;
+        return <PageSkeleton />;
     }
 
     return (
@@ -353,6 +362,8 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                                             title={deal.title}
                                             company={{
                                                 name: deal.company.name,
+                                                avatarUrl: deal.company
+                                                    .avatarUrl as string,
                                             }}
                                             user={{
                                                 name: deal.dealOwner.name,
@@ -482,5 +493,35 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             </KanbanBoard>
             {children}
         </>
+    );
+};
+
+const PageSkeleton = () => {
+    const columnCount = 5;
+    const itemCount = 4;
+
+    return (
+        <KanbanBoardSkeleton>
+            {Array.from({ length: columnCount }).map((_, index) => {
+                return (
+                    <KanbanColumnSkeleton key={index} type="deal">
+                        {Array.from({ length: itemCount }).map((_, index) => {
+                            return <DealKanbanCardSkeleton key={index} />;
+                        })}
+                    </KanbanColumnSkeleton>
+                );
+            })}
+            <KanbanAddStageButton disabled />
+            <KanbanColumnSkeleton type="deal" variant="solid">
+                {Array.from({ length: itemCount }).map((_, index) => {
+                    return <DealKanbanCardSkeleton key={index} />;
+                })}
+            </KanbanColumnSkeleton>
+            <KanbanColumnSkeleton type="deal" variant="solid">
+                {Array.from({ length: itemCount }).map((_, index) => {
+                    return <DealKanbanCardSkeleton key={index} />;
+                })}
+            </KanbanColumnSkeleton>
+        </KanbanBoardSkeleton>
     );
 };

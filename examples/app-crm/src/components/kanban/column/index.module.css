@@ -9,6 +9,7 @@
 
     &.solid {
         background-color: #fff;
+        margin-left: 16px;
     }
 }
 

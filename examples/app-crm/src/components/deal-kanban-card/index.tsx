@@ -6,6 +6,7 @@ import {
     ConfigProvider,
     Dropdown,
     MenuProps,
+    Skeleton,
     Tooltip,
 } from "antd";
 import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -27,7 +28,7 @@ type Props = {
     };
     company: {
         name: string;
-        avatar?: string;
+        avatarUrl?: string;
     };
     variant?: "default" | "won" | "lost";
 };
@@ -175,7 +176,7 @@ export const DealKanbanCard: FC<Props> = ({
                             }}
                             shape="square"
                             size="large"
-                            src={company?.avatar}
+                            src={company?.avatarUrl}
                             name={company?.name}
                         />
                     }
@@ -243,6 +244,92 @@ export const DealKanbanCard: FC<Props> = ({
                 />
             </Card>
         </ConfigProvider>
+    );
+};
+
+export const DealKanbanCardSkeleton = () => {
+    return (
+        <Card
+            size="small"
+            actions={[
+                <div
+                    key={1}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        padding: "0 12px",
+                    }}
+                >
+                    <div>
+                        <Skeleton.Avatar size="small" shape="circle" active />
+                        <Skeleton.Button
+                            size="small"
+                            active
+                            style={{
+                                width: "50px",
+                                marginTop: "4px",
+                                marginLeft: "8px",
+                                height: "16px",
+                            }}
+                        />
+                    </div>
+                    <Skeleton.Button
+                        size="small"
+                        active
+                        style={{
+                            width: "100px",
+                            marginTop: "4px",
+                            height: "16px",
+                        }}
+                    />
+                </div>,
+            ]}
+        >
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "16px",
+                    height: "72px",
+                }}
+            >
+                <Skeleton.Avatar
+                    active
+                    style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "4px",
+                    }}
+                    shape="square"
+                    size="large"
+                />
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Skeleton.Button
+                        active
+                        size="small"
+                        style={{
+                            height: "22px",
+                            width: "125px",
+                        }}
+                    />
+                    <Skeleton.Button
+                        active
+                        size="small"
+                        style={{
+                            marginTop: "8px",
+                            height: "22px",
+                            width: "125px",
+                        }}
+                    />
+                </div>
+            </div>
+        </Card>
     );
 };
 

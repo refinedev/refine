@@ -1,0 +1,16 @@
+.areaChartWrapper {
+    height: 27px;
+    margin-left: auto;
+
+    @media (min-width: 1600px) {
+        width: 250px;
+    }
+
+    @media (max-width: 1599px) {
+        width: 100px;
+    }
+
+    @media (max-width: 528px) {
+        width: 100px;
+    }
+}

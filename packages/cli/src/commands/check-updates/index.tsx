@@ -49,7 +49,10 @@ export const getOutdatedRefinePackages = async () => {
         const dependency = packages[packageName];
 
         if (packageName.includes("@refinedev")) {
-            changelog = packageName.replace(/@refinedev\//, "https://c.refine.dev/");
+            changelog = packageName.replace(
+                /@refinedev\//,
+                "https://c.refine.dev/",
+            );
 
             list.push({
                 name: packageName,
