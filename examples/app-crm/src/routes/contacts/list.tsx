@@ -31,6 +31,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
         filters,
         sorters,
         setFilters,
+        tableQueryResult,
     } = useTable<Contact, HttpError, { name: string }>({
         pagination: {
             pageSize: 12,
@@ -180,6 +181,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                     />
                 ) : (
                     <CardView
+                        loading={tableQueryResult?.isFetching}
                         tableProps={tableProps}
                         setPageSize={setPageSize}
                         setCurrent={setCurrent}

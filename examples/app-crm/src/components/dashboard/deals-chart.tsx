@@ -1,15 +1,6 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Card, Button, theme } from "antd";
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from "recharts";
+import { Area, AreaConfig } from "@ant-design/plots";
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useCustom, useNavigation } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -34,7 +25,6 @@ type YearlyDealGroupedResponse = {
 };
 
 export const DashboardDealsChart: React.FC<{}> = () => {
-    const { token } = theme.useToken();
     const { list } = useNavigation();
     const { data, isError, error } = useCustom<YearlyDealGroupedResponse>({
         method: "post",
@@ -65,55 +55,94 @@ export const DashboardDealsChart: React.FC<{}> = () => {
         return null;
     }
 
-    const dealsData: {
-        id: number;
-        title: string;
-        won: number;
-        lost: number;
-    }[] = [];
-    data?.data.yearlyDealGrouped.nodes.forEach((stage) => {
-        stage.dealsAggregate.forEach((deal) => {
-            const { closeDateMonth, closeDateYear } = deal.groupBy;
-            const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
-            const id = date.unix();
-            const title = date.format("MMM YYYY");
-
-            const index = dealsData.findIndex((d: any) => d.title === title);
-            if (index === -1) {
-                dealsData.push({
-                    id,
-                    title,
-                    won: stage.title === "WON" ? deal.sum.value : 0,
-                    lost: stage.title === "LOST" ? deal.sum.value : 0,
-                });
-            } else {
-                dealsData[index] = {
-                    ...dealsData[index],
-                    won:
-                        stage.title === "WON"
-                            ? dealsData[index].won + deal.sum.value
-                            : dealsData[index].won,
-                    lost:
-                        stage.title === "LOST"
-                            ? dealsData[index].lost + deal.sum.value
-                            : dealsData[index].lost,
+    const dealData = useMemo(() => {
+        const won = data?.data.yearlyDealGrouped.nodes
+            .find((node) => node.title === "WON")
+            ?.dealsAggregate.map((item) => {
+                const { closeDateMonth, closeDateYear } = item.groupBy;
+                const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
+                return {
+                    timeUnix: date.unix(),
+                    timeText: date.format("MMM YYYY"),
+                    value: item.sum.value,
+                    state: "Won",
                 };
-            }
-        });
-    });
+            });
 
-    // sort by date
-    dealsData.sort((a, b) => a.id - b.id);
+        const lost = data?.data.yearlyDealGrouped.nodes
+            .find((node) => node.title === "LOST")
+            ?.dealsAggregate.map((item) => {
+                const { closeDateMonth, closeDateYear } = item.groupBy;
+                const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
+                return {
+                    timeUnix: date.unix(),
+                    timeText: date.format("MMM YYYY"),
+                    value: item.sum.value,
+                    state: "Lost",
+                };
+            });
+
+        return [...(won || []), ...(lost || [])].sort(
+            (a, b) => a.timeUnix - b.timeUnix,
+        );
+    }, [data]);
+
+    const config: AreaConfig = {
+        isStack: false,
+        data: dealData,
+        xField: "timeText",
+        yField: "value",
+        seriesField: "state",
+        animation: true,
+        startOnZero: false,
+        smooth: true,
+        legend: {
+            offsetY: -10,
+        },
+        yAxis: {
+            tickCount: 4,
+            label: {
+                formatter: (v) => {
+                    return `$${Number(v) / 1000}k`;
+                },
+            },
+        },
+        tooltip: {
+            formatter: (data) => {
+                return {
+                    name: data.state,
+                    value: `$${Number(data.value) / 1000}k`,
+                };
+            },
+        },
+        areaStyle: (datum) => {
+            const won = "l(270) 0:#ffffff 0.5:#b7eb8f 1:#52c41a";
+            const lost = "l(270) 0:#ffffff 0.5:#f3b7c2 1:#ff4d4f";
+            return { fill: datum.state === "Won" ? won : lost };
+        },
+        color: (datum) => {
+            return datum.state === "Won" ? "#52C41A" : "#F5222D";
+        },
+    };
 
     return (
         <Card
+            style={{ height: "100%" }}
+            headStyle={{ padding: "8px 16px" }}
+            bodyStyle={{ padding: "24px 24px 0px 24px" }}
             title={
-                <span>
-                    <DollarOutlined style={{ color: token.colorPrimary }} />
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                    }}
+                >
+                    <DollarOutlined />
                     <Text size="sm" style={{ marginLeft: ".5rem" }}>
                         Deals
                     </Text>
-                </span>
+                </div>
             }
             extra={
                 <Button
@@ -124,25 +153,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                 </Button>
             }
         >
-            <ResponsiveContainer width="100%" height={350}>
-                <BarChart
-                    data={dealsData}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="1" />
-                    <XAxis dataKey="title" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="won" fill="#73D13D" />
-                    <Bar dataKey="lost" fill="#FF4D4F" />
-                </BarChart>
-            </ResponsiveContainer>
+            <Area {...config} height={325} />
         </Card>
     );
 };

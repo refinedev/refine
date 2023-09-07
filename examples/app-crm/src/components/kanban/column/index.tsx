@@ -1,11 +1,13 @@
 import { FC, PropsWithChildren, ReactNode } from "react";
 import { UseDroppableArguments, useDroppable } from "@dnd-kit/core";
-import { Button, Dropdown, MenuProps } from "antd";
+import { Button, Dropdown, MenuProps, Skeleton } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
 import cn from "classnames";
 import { Text } from "../../text";
 
 import styles from "./index.module.css";
+
+type Variant = "default" | "solid";
 
 type Props = {
     id: string;
@@ -13,7 +15,7 @@ type Props = {
     description?: ReactNode;
     count: number;
     data?: UseDroppableArguments["data"];
-    variant?: "default" | "solid";
+    variant?: Variant;
     contextMenuItems?: MenuProps["items"];
     onAddClick?: (args: { id: string }) => void;
 };
@@ -103,6 +105,39 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
                     [styles.isOver]: isOver,
                 })}
             >
+                <div className={cn(styles.childrenWrapper)}>{children}</div>
+            </div>
+        </div>
+    );
+};
+
+export const KanbanColumnSkeleton: FC<
+    PropsWithChildren<{ type: "deal" | "project"; variant?: Variant }>
+> = ({ children, type, variant = "default" }) => {
+    return (
+        <div className={cn(styles.container, styles[variant])}>
+            <div className={styles.header}>
+                <div className={styles.titleContainer}>
+                    <Skeleton.Button size="small" style={{ width: "125px" }} />
+                    <Button
+                        disabled
+                        type="text"
+                        shape="circle"
+                        icon={
+                            <MoreOutlined
+                                style={{
+                                    transform: "rotate(90deg)",
+                                }}
+                            />
+                        }
+                    />
+                    <Button disabled shape="circle" icon={<PlusOutlined />} />
+                </div>
+                {type === "deal" && (
+                    <Skeleton.Button size="small" style={{ width: "175px" }} />
+                )}
+            </div>
+            <div className={cn(styles.columnScrollableContainer)}>
                 <div className={cn(styles.childrenWrapper)}>{children}</div>
             </div>
         </div>

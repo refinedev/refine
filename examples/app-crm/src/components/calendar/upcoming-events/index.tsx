@@ -1,16 +1,20 @@
 import React from "react";
-import { Card, theme, Skeleton } from "antd";
+import { Card, Skeleton as AntdSkeleton, Button } from "antd";
 import type { CardProps } from "antd";
-import { CalendarOutlined } from "@ant-design/icons";
-import { useList } from "@refinedev/core";
+import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { useList, useNavigation } from "@refinedev/core";
 import dayjs from "dayjs";
-
+import { Event } from "../../../interfaces/graphql";
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 
-import { Event } from "../../../interfaces/graphql";
+import styles from "./index.module.css";
 
-type CalendarUpcomingEventsProps = { limit?: number; cardProps?: CardProps };
+type CalendarUpcomingEventsProps = {
+    limit?: number;
+    cardProps?: CardProps;
+    showGoToListButton?: boolean;
+};
 
 const NoEvent = () => (
     <span
@@ -28,8 +32,10 @@ const NoEvent = () => (
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
     cardProps,
+    showGoToListButton,
 }) => {
-    const { token } = theme.useToken();
+    const { list } = useNavigation();
+
     const { data, isLoading } = useList<Event>({
         resource: "events",
         pagination: {
@@ -55,39 +61,76 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
 
     return (
         <Card
-            title={
-                <span>
-                    <CalendarOutlined style={{ color: token.colorPrimary }} />
-                    <Text size="sm" style={{ marginLeft: ".7rem" }}>
-                        Upcoming events
-                    </Text>
-                </span>
-            }
-            headStyle={{
-                padding: "0 12px",
-            }}
+            headStyle={{ padding: "8px 16px" }}
             bodyStyle={{
                 padding: "0 1rem",
             }}
+            title={
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                    }}
+                >
+                    <CalendarOutlined />
+                    <Text size="sm" style={{ marginLeft: ".7rem" }}>
+                        Upcoming events
+                    </Text>
+                </div>
+            }
+            extra={
+                showGoToListButton && (
+                    <Button
+                        onClick={() => list("events")}
+                        icon={<RightCircleOutlined />}
+                    >
+                        See calendar
+                    </Button>
+                )
+            }
             {...cardProps}
         >
-            {isLoading && (
-                <Skeleton
-                    loading={isLoading}
-                    active
-                    paragraph={{
-                        rows: 3,
-                        width: 200,
-                    }}
-                    style={{
-                        padding: "1rem 0",
-                    }}
-                />
-            )}
-            {data?.data.map((item) => (
-                <CalendarUpcomingEvent key={item.id} item={item} />
-            ))}
+            {isLoading &&
+                Array.from({ length: limit }).map((_, index) => (
+                    <Skeleton key={index} />
+                ))}
+            {!isLoading &&
+                data?.data.map((item) => (
+                    <CalendarUpcomingEvent key={item.id} item={item} />
+                ))}
             {!isLoading && data?.data.length === 0 && <NoEvent />}
         </Card>
+    );
+};
+
+const Skeleton = () => {
+    return (
+        <div className={styles.item}>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    marginLeft: "24px",
+                    padding: "1px 0",
+                }}
+            >
+                <AntdSkeleton.Button
+                    active
+                    style={{
+                        height: "14px",
+                    }}
+                />
+                <AntdSkeleton.Button
+                    active
+                    style={{
+                        width: "90%",
+                        marginTop: "8px",
+                        height: "16px",
+                    }}
+                />
+            </div>
+        </div>
     );
 };

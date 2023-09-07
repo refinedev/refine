@@ -1,5 +1,6 @@
-import { Card, Col, Row, theme } from "antd";
-import { GlobalOutlined } from "@ant-design/icons";
+import { useNavigation } from "@refinedev/core";
+import { Card, Button } from "antd";
+import { GlobalOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { divIcon, point, LatLngExpression } from "leaflet";
 import { MapContainer, GeoJSON, Marker } from "react-leaflet";
 import type { GeoJsonObject } from "geojson";
@@ -15,7 +16,8 @@ import Countries from "./countries.json";
 import styles from "./index.module.css";
 
 export const CompaniesMap: React.FC = () => {
-    const { token } = theme.useToken();
+    const { list } = useNavigation();
+
     const customMarkerIcon = divIcon({
         className: "custom-marker-icon",
     });
@@ -30,79 +32,98 @@ export const CompaniesMap: React.FC = () => {
 
     return (
         <Card
-            title={
-                <span>
-                    <GlobalOutlined style={{ color: token.colorPrimary }} />
-                    <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                        Companies
-                    </Text>
-                </span>
-            }
+            style={{ height: "100%" }}
             bodyStyle={{
                 padding: 0,
                 overflow: "hidden",
             }}
+            title={
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                    }}
+                >
+                    <GlobalOutlined />
+                    <Text size="sm" style={{ marginLeft: ".5rem" }}>
+                        Companies
+                    </Text>
+                </div>
+            }
+            extra={
+                <Button
+                    onClick={() => list("companies")}
+                    icon={<RightCircleOutlined />}
+                >
+                    See all companies
+                </Button>
+            }
         >
-            <Row gutter={[32, 32]} justify="space-between">
-                <Col span={16}>
-                    <div style={{ height: "330px" }}>
-                        <MapContainer
-                            style={{ flex: 1, width: "100%", height: "100%" }}
-                            center={[51.505, -0.09]}
-                            zoom={2}
-                            scrollWheelZoom={false}
-                            maxZoom={2}
-                            zoomControl={false}
-                        >
-                            <MarkerClusterGroup
-                                chunkedLoading
-                                polygonOptions={{
-                                    opacity: 0,
-                                    fillOpacity: 0,
-                                }}
-                                iconCreateFunction={customClusterIcon}
-                            >
-                                {Markers.map((marker) => (
-                                    <Marker
-                                        key={marker.id}
-                                        position={
-                                            marker.coordinates as LatLngExpression
-                                        }
-                                        icon={customMarkerIcon}
-                                    />
-                                ))}
-                            </MarkerClusterGroup>
-
-                            <GeoJSON
-                                data={CustomGeoJson as GeoJsonObject}
-                                style={{
-                                    fillColor: "#F0F0F0",
-                                    color: "#CCCCCC",
-                                    weight: 1.2,
-                                }}
+            <div
+                style={{
+                    height: "390px",
+                    marginTop: "2px",
+                    position: "relative",
+                }}
+            >
+                <MapContainer
+                    style={{
+                        flex: 1,
+                        width: "100%",
+                        height: "100%",
+                        zIndex: 0,
+                    }}
+                    center={[51.505, -0.09]}
+                    zoom={2}
+                    scrollWheelZoom={false}
+                    maxZoom={2}
+                    zoomControl={false}
+                >
+                    <MarkerClusterGroup
+                        chunkedLoading
+                        polygonOptions={{
+                            opacity: 0,
+                            fillOpacity: 0,
+                        }}
+                        iconCreateFunction={customClusterIcon}
+                    >
+                        {Markers.map((marker) => (
+                            <Marker
+                                key={marker.id}
+                                position={
+                                    marker.coordinates as LatLngExpression
+                                }
+                                icon={customMarkerIcon}
                             />
-                        </MapContainer>
-                    </div>
-                </Col>
-                <Col span={8}>
-                    <div className={styles.countries}>
-                        {Countries.map((country) => (
-                            <div key={country.id} className={styles.item}>
-                                <div>
-                                    <img
-                                        src={country.flag}
-                                        alt={country.name}
-                                        className={styles.flag}
-                                    />
-                                    <Text>{country.name}</Text>
-                                </div>
-
-                                <Text>{country.count}</Text>
-                            </div>
                         ))}
-                    </div>
-                </Col>
-            </Row>
+                    </MarkerClusterGroup>
+
+                    <GeoJSON
+                        data={CustomGeoJson as GeoJsonObject}
+                        style={{
+                            fillColor: "#F0F0F0",
+                            color: "#CCCCCC",
+                            weight: 1.2,
+                        }}
+                    />
+                </MapContainer>
+                <div className={styles.countries}>
+                    {Countries.map((country) => {
+                        return (
+                            <div className={styles.item} key={country.id}>
+                                <img
+                                    className={styles.flag}
+                                    src={country.flag}
+                                    alt={`${country.name} flag`}
+                                />
+                                <div>{country.shortName}</div>
+                                {country.count}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         </Card>
     );
 };

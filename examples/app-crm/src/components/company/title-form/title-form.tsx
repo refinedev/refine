@@ -4,7 +4,7 @@ import { useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 
 import { useForm, useSelect } from "@refinedev/antd";
-import { Text } from "../../../components";
+import { CustomAvatar, Text } from "../../../components";
 import { getNameInitials, getRandomColorFromString } from "../../../utilities";
 import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 import { Company, User } from "../../../interfaces/graphql";
@@ -32,10 +32,11 @@ export const CompanyTitleForm = () => {
     return (
         <Form {...formProps}>
             <Space size={16}>
-                <Avatar
+                <CustomAvatar
                     size="large"
                     shape="square"
                     src={company?.avatarUrl}
+                    name={getNameInitials(company?.name || "")}
                     style={{
                         width: 96,
                         height: 96,
@@ -44,13 +45,8 @@ export const CompanyTitleForm = () => {
                         alignItems: "center",
                         justifyContent: "center",
                         border: "none",
-                        backgroundColor: getRandomColorFromString(
-                            company?.name || "",
-                        ),
                     }}
-                >
-                    {getNameInitials(company?.name || "")}
-                </Avatar>
+                />
                 <Space direction="vertical" size={0}>
                     <Form.Item name="name" required noStyle>
                         <TitleInput
@@ -150,18 +146,13 @@ const SalesOwnerInput = ({
             )}
             {!isEdit && !loading && (
                 <>
-                    <Avatar
+                    <CustomAvatar
                         size="small"
                         src={salesOwner?.avatarUrl}
                         style={{
                             marginRight: 4,
-                            backgroundColor: getRandomColorFromString(
-                                salesOwner?.name || "",
-                            ),
                         }}
-                    >
-                        {getNameInitials(salesOwner?.name || "")}
-                    </Avatar>
+                    />
                     <Text>{salesOwner?.name}</Text>
                     <Button
                         type="link"
