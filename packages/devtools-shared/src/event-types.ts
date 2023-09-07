@@ -19,6 +19,11 @@ export enum DevtoolsEvent {
     DEVTOOLS_DISCONNECTED_APP = "devtools:disconnected-app",
 }
 
+type Timestamps = {
+    createdAt: number;
+    updatedAt: number;
+};
+
 type ActivityPayload =
     | {
           type: "mutation";
@@ -45,7 +50,7 @@ export type DevtoolsEventPayloads = {
     [DevtoolsEvent.DEVTOOLS_ALREADY_CONNECTED]: { url: string };
     [DevtoolsEvent.ACTIVITY]: ActivityPayload;
     [DevtoolsEvent.DEVTOOLS_ACTIVITY_UPDATE]: {
-        updatedActivities: ActivityPayload[];
+        updatedActivities: (ActivityPayload & Timestamps)[];
     };
     [DevtoolsEvent.DEVTOOLS_CONNECTED_APP]: { url: string | null };
     [DevtoolsEvent.DEVTOOLS_DISCONNECTED_APP]: {};
