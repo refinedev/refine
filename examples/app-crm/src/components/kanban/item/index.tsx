@@ -40,7 +40,8 @@ export const KanbanItem: FC<PropsWithChildren<Props>> = ({
                 {children}
             </div>
             {active?.id === id && (
-                <DragOverlay>
+                // antd sider has z-index of 999
+                <DragOverlay zIndex={1000}>
                     <div
                         style={{
                             borderRadius: "8px",
