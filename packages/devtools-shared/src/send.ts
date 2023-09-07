@@ -5,5 +5,19 @@ export function send<T extends DevtoolsEvent>(
     event: T,
     payload: DevtoolsEventPayloads[T],
 ) {
-    ws.send(JSON.stringify({ event, payload }));
+    // check if the socket is open
+    // if not, wait for it to open
+    if (ws.readyState !== ws.OPEN) {
+        return new Promise<void>((resolve) => {
+            const listener = () => {
+                ws.send(JSON.stringify({ event, payload }));
+                resolve();
+                ws.removeEventListener("open", listener);
+            };
+
+            ws.addEventListener("open", listener);
+        });
+    } else {
+        ws.send(JSON.stringify({ event, payload }));
+    }
 }
