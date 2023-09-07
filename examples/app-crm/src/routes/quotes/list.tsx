@@ -303,6 +303,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                         }}
                     />
                     <Table.Column<Quote>
+                        fixed="right"
                         title="Actions"
                         dataIndex="actions"
                         render={(_, record) => {

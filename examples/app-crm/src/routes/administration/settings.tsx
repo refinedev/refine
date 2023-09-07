@@ -39,10 +39,20 @@ export const SettingsPage = () => {
                     marginTop: 32,
                 }}
             >
-                <Col span={16}>
+                <Col
+                    xs={{ span: 24 }}
+                    md={{ span: 24 }}
+                    lg={{ span: 24 }}
+                    xl={{ span: 16 }}
+                >
                     <UsersTable />
                 </Col>
-                <Col span={8}>
+                <Col
+                    xs={{ span: 24 }}
+                    md={{ span: 24 }}
+                    lg={{ span: 24 }}
+                    xl={{ span: 8 }}
+                >
                     <CompanyInfo />
                 </Col>
             </Row>
@@ -242,9 +252,6 @@ export const CompanyInfo = () => {
             }}
             bodyStyle={{
                 padding: "0",
-            }}
-            style={{
-                maxWidth: "500px",
             }}
         >
             <div className={styles.list}>

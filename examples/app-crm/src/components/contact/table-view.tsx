@@ -142,6 +142,7 @@ export const TableView: React.FC<Props> = ({
                 )}
             />
             <Table.Column<Contact>
+                fixed="right"
                 title="Actions"
                 dataIndex="actions"
                 render={(_, record) => (

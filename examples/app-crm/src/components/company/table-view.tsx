@@ -174,6 +174,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
                 }}
             />
             <Table.Column<Company>
+                fixed="right"
                 dataIndex="id"
                 title="Actions"
                 render={(value) => (
