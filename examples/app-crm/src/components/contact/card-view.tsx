@@ -2,7 +2,7 @@ import { Col, Pagination, Row, type TableProps } from "antd";
 
 import { ContactCard } from "./card";
 import { Contact } from "../../interfaces/graphql";
-import { CardSkeleton } from "../company/card-skeleton";
+import { CardSkeleton } from "./card/skeleton";
 
 type Props = {
     tableProps: TableProps<Contact>;
@@ -38,6 +38,15 @@ export const CardView: React.FC<Props> = ({
                             </Col>
                         );
                     })}
+
+                <Col
+                    span="6"
+                    lg={{ span: 6 }}
+                    md={{ span: 12 }}
+                    xs={{ span: 24 }}
+                >
+                    <CardSkeleton />
+                </Col>
 
                 {dataSource?.map((contact) => (
                     <Col

@@ -54,6 +54,7 @@ export const CompaniesCardView: FC<Props> = ({
                             </Col>
                         );
                     })}
+
                 {!loading &&
                     companies.map((company) => {
                         const relatedContactAvatars =

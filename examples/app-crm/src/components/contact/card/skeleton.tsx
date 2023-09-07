@@ -72,8 +72,8 @@ export const CardSkeleton = () => {
                     active
                     style={{
                         width: "100px",
-                        height: "16px",
-                        marginTop: "10px",
+                        height: "12px",
+                        marginTop: "14px",
                     }}
                 />
                 <Space
