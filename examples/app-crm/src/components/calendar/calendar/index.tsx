@@ -1,6 +1,6 @@
 import React from "react";
 import { useList } from "@refinedev/core";
-import { Card, Button } from "antd";
+import { Card, Button, Radio, Grid } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import FullCalendar from "@fullcalendar/react";
@@ -24,6 +24,13 @@ export const Calendar: React.FC<CalendarProps> = ({
     const [title, setTitle] = React.useState(
         calendarRef.current?.getApi().view.title,
     );
+    const { md } = Grid.useBreakpoint();
+
+    React.useEffect(() => {
+        if (!md) {
+            calendarRef.current?.getApi().changeView("dayGridDay");
+        }
+    }, [md]);
 
     const { data } = useList<Event>({
         pagination: {
@@ -91,11 +98,46 @@ export const Calendar: React.FC<CalendarProps> = ({
                 <Text className={styles.title} size="lg">
                     {title}
                 </Text>
+                <Radio.Group
+                    // defaultValue="dayGridMonth"
+                    value={calendarRef.current?.getApi().view.type}
+                >
+                    <Radio.Button
+                        value="dayGridMonth"
+                        onClick={() => {
+                            calendarRef.current
+                                ?.getApi()
+                                .changeView("dayGridMonth");
+                        }}
+                    >
+                        Month
+                    </Radio.Button>
+                    <Radio.Button
+                        value="dayGridWeek"
+                        onClick={() => {
+                            calendarRef.current
+                                ?.getApi()
+                                .changeView("dayGridWeek");
+                        }}
+                    >
+                        Week
+                    </Radio.Button>
+                    <Radio.Button
+                        value="dayGridDay"
+                        onClick={() => {
+                            calendarRef.current
+                                ?.getApi()
+                                .changeView("dayGridDay");
+                        }}
+                    >
+                        Day
+                    </Radio.Button>
+                </Radio.Group>
             </div>
             <FullCalendar
                 ref={calendarRef}
                 plugins={[dayGridPlugin]}
-                initialView="dayGridMonth"
+                initialView={"dayGridMonth"}
                 events={events}
                 eventTimeFormat={{
                     hour: "2-digit",
