@@ -90,3 +90,40 @@
 .auth-page .ant-card-head {
     background-color: unset;
 }
+
+.fc-daygrid-day-number, .fc-col-header-cell-cushion {
+    color:rgba(0, 0, 0, 0.75) !important;
+    font-weight: 400;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: rgba(230, 244, 255, 1);
+}
+
+.fc-event::after{
+    background-color: unset !important;
+}
+.fc-event:hover, .fc-event:focus {
+    background-color: unset;
+    box-shadow: unset;
+}
+
+.fc-event {
+    .fc-event-title, .fc-event-time {
+        color: rgba(0, 0, 0, 0.65);
+        font-weight: 400 !important;
+        font-size: 12px;
+    }
+}
+
+.fc-daygrid-block-event {
+    .fc-event-time {
+        width: 35px;
+    }
+    .fc-event-title, .fc-event-time {
+
+        color: #fff;
+        font-weight: 400 !important;
+        font-size: 12px;
+    }
+} 

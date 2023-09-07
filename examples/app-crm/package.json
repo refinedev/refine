@@ -29,7 +29,10 @@
     "recharts": "^2.7.3",
     "leaflet": "^1.9.4",
     "react-leaflet": "^4.2.1",
-    "react-leaflet-cluster": "^2.1.0"
+    "react-leaflet-cluster": "^2.1.0",
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",

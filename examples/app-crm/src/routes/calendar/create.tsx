@@ -10,6 +10,7 @@ import { Event, EventCreateInput } from "../../interfaces/graphql";
 
 type FormValues = EventCreateInput & {
     date: [dayjs.Dayjs, dayjs.Dayjs];
+    color: any;
 };
 
 export const CalendarCreatePage = () => {
@@ -24,7 +25,7 @@ export const CalendarCreatePage = () => {
     >();
 
     const handleOnFinish = async (values: FormValues) => {
-        const { date, ...otherValues } = values;
+        const { date, color, ...otherValues } = values;
 
         let startDate = dayjs.utc(date[0]);
         let endDate = dayjs.utc(date[1]);
@@ -38,6 +39,7 @@ export const CalendarCreatePage = () => {
             ...otherValues,
             startDate: startDate.utc().toISOString(),
             endDate: endDate.utc().toISOString(),
+            color: typeof color === "object" ? `#${color.toHex()}` : color,
         });
     };
 

@@ -65,7 +65,7 @@ export const CalendarEditPage = () => {
     }, [queryResult?.data]);
 
     const handleOnFinish = async (values: any) => {
-        const { date, ...otherValues } = values;
+        const { date, color, ...otherValues } = values;
 
         let startDate = dayjs.utc(date[0]);
         let endDate = dayjs.utc(date[1]);
@@ -79,6 +79,7 @@ export const CalendarEditPage = () => {
             ...otherValues,
             startDate: startDate.utc().toISOString(),
             endDate: endDate.utc().toISOString(),
+            color: typeof color === "object" ? `#${color.toHex()}` : color,
         });
     };
 
