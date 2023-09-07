@@ -48,7 +48,7 @@ export const Monitor = () => {
                         );
 
                         if (index === -1) {
-                            return [activity, ...activities];
+                            return [...activities, activity];
                         }
 
                         return [
@@ -74,7 +74,7 @@ export const Monitor = () => {
                 {
                     header: "Resource",
                     accessorFn: (activity) => {
-                        const value = activity.key?.[1];
+                        const value = (activity.key as any)?.[1];
                         return value?.charAt(0).toUpperCase() + value?.slice(1);
                     },
                 },
@@ -121,9 +121,13 @@ export const Monitor = () => {
                     cell: (cell: Cell<Activity, Activity["status"]>) => {
                         const status = cell.getValue();
                         const dataUpdateCount =
-                            cell.row.original.state?.dataUpdateCount ?? 0;
+                            cell.row.original.type === "query"
+                                ? cell.row.original.state.dataUpdateCount
+                                : 0;
                         const fetchStatus =
-                            cell.row.original.state?.fetchStatus;
+                            cell.row.original.type === "query"
+                                ? cell.row.original.state.fetchStatus
+                                : "idle";
 
                         let state: typeof status | "initial" | "refetching" =
                             status;
