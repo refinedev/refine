@@ -1,3 +1,11 @@
+import {
+    Mutation,
+    MutationKey,
+    MutationStatus,
+    QueryKey,
+    QueryState,
+    QueryStatus,
+} from "@tanstack/react-query";
 import { TraceType } from "./meta-types";
 
 export enum DevtoolsEvent {
@@ -15,20 +23,19 @@ type ActivityPayload =
     | {
           type: "mutation";
           identifier: string;
-          id?: number;
-          key?: any[];
-          status?: "idle" | "loading" | "success" | "error";
+          key?: MutationKey;
+          status?: MutationStatus;
           trace?: TraceType[];
-          state: any;
-          variables?: any;
+          state: Mutation<any, any, any, any>["state"];
+          variables?: Mutation<any, any, any, any>["state"]["variables"];
       }
     | {
           type: "query";
           identifier: string;
-          key?: any[];
-          status?: "loading" | "error" | "success";
+          key?: QueryKey;
+          status?: QueryStatus;
           trace?: TraceType[];
-          state: any;
+          state: QueryState<any, any>;
       };
 
 export type DevtoolsEventPayloads = {

@@ -23,6 +23,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "dependencies": {
+    "@tanstack/react-query": "^4.10.1",
     "error-stack-parser": "^2.1.4"
   },
   "peerDependencies": {
