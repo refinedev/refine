@@ -316,7 +316,11 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                                     id={deal.id}
                                     key={deal.id}
                                     title={deal.title}
-                                    company={{ name: deal.company.name }}
+                                    company={{
+                                        name: deal.company.name,
+                                        avatarUrl: deal.company
+                                            .avatarUrl as string,
+                                    }}
                                     user={{ name: deal.dealOwner.name }}
                                     date={deal.createdAt}
                                     price={currencyNumber(deal.value || 0)}
@@ -428,7 +432,11 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                                         id={deal.id}
                                         key={deal.id}
                                         title={deal.title}
-                                        company={{ name: deal.company.name }}
+                                        company={{
+                                            name: deal.company.name,
+                                            avatarUrl: deal.company
+                                                .avatarUrl as string,
+                                        }}
                                         user={{
                                             name: deal.dealOwner.name,
                                             avatarUrl: deal.dealOwner.avatarUrl,
@@ -478,7 +486,11 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                                         id={deal.id}
                                         key={deal.id}
                                         title={deal.title}
-                                        company={{ name: deal.company.name }}
+                                        company={{
+                                            name: deal.company.name,
+                                            avatarUrl: deal.company
+                                                .avatarUrl as string,
+                                        }}
                                         user={{
                                             name: deal.dealOwner.name,
                                             avatarUrl: deal.dealOwner.avatarUrl,
