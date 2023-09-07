@@ -71,7 +71,6 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
     "pidtree": "^0.6.0",
     "wait-on": "^7.0.1"
   }
