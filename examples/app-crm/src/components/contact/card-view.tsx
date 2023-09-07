@@ -3,6 +3,7 @@ import { Col, Pagination, Row, type TableProps } from "antd";
 import { ContactCard } from "./card";
 import { Contact } from "../../interfaces/graphql";
 import { CardSkeleton } from "./card/skeleton";
+import { PaginationTotal } from "../pagination-total";
 
 type Props = {
     tableProps: TableProps<Contact>;
@@ -55,18 +56,9 @@ export const CardView: React.FC<Props> = ({
             <Pagination
                 style={{ display: "flex", marginTop: "1rem" }}
                 {...pagination}
-                showTotal={(total) => {
-                    return (
-                        <span
-                            style={{
-                                marginLeft: "48px",
-                            }}
-                        >
-                            <span className="ant-text secondary">{total}</span>{" "}
-                            contacts in total
-                        </span>
-                    );
-                }}
+                showTotal={(total) => (
+                    <PaginationTotal total={total} entityName="contacts" />
+                )}
                 onChange={(page, pageSize) => {
                     setCurrent(page);
                     setPageSize(pageSize);

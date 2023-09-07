@@ -19,6 +19,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { ActionCell } from "../../components/audit-log/action-cell";
 import { CustomAvatar } from "../../components";
 import { Audit } from "../../interfaces/graphql";
+import { PaginationTotal } from "../../components/pagination-total";
 
 export const AuditLogPage = () => {
     const { tableProps, filters, sorters } = useTable<Audit>({
@@ -56,20 +57,12 @@ export const AuditLogPage = () => {
                 scroll={{ x: true }}
                 pagination={{
                     ...tableProps.pagination,
-                    showTotal: (total) => {
-                        return (
-                            <span
-                                style={{
-                                    marginLeft: "54px",
-                                }}
-                            >
-                                <span className="ant-text secondary">
-                                    {total}
-                                </span>{" "}
-                                actions in total
-                            </span>
-                        );
-                    },
+                    showTotal: (total) => (
+                        <PaginationTotal
+                            total={total}
+                            entityName="audit logs"
+                        />
+                    ),
                 }}
             >
                 <Table.Column

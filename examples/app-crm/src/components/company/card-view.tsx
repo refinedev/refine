@@ -17,6 +17,7 @@ import { Company } from "../../interfaces/graphql";
 import { useDelete, useNavigation } from "@refinedev/core";
 import { CustomAvatarGroup } from "../custom-avatar-group";
 import { CardSkeleton } from "./card-skeleton";
+import { PaginationTotal } from "../pagination-total";
 
 type Props = {
     loading?: boolean;
@@ -265,18 +266,9 @@ export const CompaniesCardView: FC<Props> = ({
                 onChange={(page: number, pageSize: number) => {
                     pagination.onChange(page, pageSize);
                 }}
-                showTotal={(total) => {
-                    return (
-                        <span
-                            style={{
-                                marginLeft: "48px",
-                            }}
-                        >
-                            <span className="ant-text secondary">{total}</span>{" "}
-                            compaines in total
-                        </span>
-                    );
-                }}
+                showTotal={(total) => (
+                    <PaginationTotal total={total} entityName="companies" />
+                )}
             />
         </>
     );

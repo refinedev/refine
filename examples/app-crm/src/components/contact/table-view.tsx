@@ -14,6 +14,7 @@ import { CustomAvatar } from "../custom-avatar";
 import { ContactStatusTag } from "./status-tag";
 import { Text } from "../text";
 import { Contact } from "../../interfaces/graphql";
+import { PaginationTotal } from "../pagination-total";
 
 type Props = {
     tableProps: TableProps<Contact>;
@@ -45,18 +46,9 @@ export const TableView: React.FC<Props> = ({
             pagination={{
                 ...tableProps.pagination,
                 pageSizeOptions: ["12", "24", "48", "96"],
-                showTotal: (total) => {
-                    return (
-                        <span
-                            style={{
-                                marginLeft: "48px",
-                            }}
-                        >
-                            <span className="ant-text secondary">{total}</span>{" "}
-                            contacts in total
-                        </span>
-                    );
-                },
+                showTotal: (total) => (
+                    <PaginationTotal total={total} entityName="contacts" />
+                ),
             }}
             rowKey="id"
         >
