@@ -39,15 +39,6 @@ export const CardView: React.FC<Props> = ({
                         );
                     })}
 
-                <Col
-                    span="6"
-                    lg={{ span: 6 }}
-                    md={{ span: 12 }}
-                    xs={{ span: 24 }}
-                >
-                    <CardSkeleton />
-                </Col>
-
                 {dataSource?.map((contact) => (
                     <Col
                         key={contact.id}
