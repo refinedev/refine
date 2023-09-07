@@ -37,6 +37,8 @@ const dealsFragment = [
     },
 ];
 
+const lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1));
+
 export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     const navigate = useNavigate();
 
@@ -68,6 +70,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
     const { data: deals, isLoading: isLoadingDeals } = useList<Deal>({
         resource: "deals",
+
         sorters: [
             {
                 field: "createdAt",
@@ -78,7 +81,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             {
                 field: "createdAt",
                 operator: "gte",
-                value: new Date(new Date().setMonth(new Date().getMonth() - 1)),
+                value: lastMonth,
             },
         ],
         queryOptions: {
