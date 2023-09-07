@@ -22,7 +22,7 @@
   "scripts": {
     "start:client": "refine build -- --watch --force --config src/client/vite.config.ts",
     "build:client": "tsc && refine build -- --config src/client/vite.config.ts",
-    "start:server": "node dist/index.js",
+    "start:server": "node dist/cli.js",
     "start": "npm run start:client & tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "NODE_ENV=production tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
@@ -33,12 +33,13 @@
     "express": "^4.18.2",
     "@refinedev/devtools-ui": "^0.0.1",
     "@refinedev/devtools-shared": "^0.0.1",
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
     "ws": "^8.13.0",
-    "lodash-es": "^4.17.21",
     "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "lowdb": "^1.0.0"
+    "execa": "^5.1.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
