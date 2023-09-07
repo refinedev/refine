@@ -46,7 +46,7 @@ The **refine** data hooks mentioned above are basically core hooks. Higher level
 
 ### Resource Definitions
 
-**refine**'s resource definitions are specified inside the `resources` object. The `resources` object is passed to the `resources` prop of the `<Refine />` component. Resource definitions, in combination with route definitions, sets up a **refine** app's nav menu items, their navigation URLs as well as breadcrumbs and help infer the default resource name of a CRUD page along a route.
+**refine**'s resource definitions are specified inside the `resources` object. The `resources` object is passed to the `resources` prop of the `<Refine />` component. Resource definitions, in combination with route definitions, set up a **refine** app's nav menu items, their navigation URLs, as well as breadcrumbs, and help infer the default resource name of a CRUD page along a route.
 
 ### Routing
 
