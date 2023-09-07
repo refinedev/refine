@@ -46,7 +46,13 @@ export const CompaniesCardView: FC<Props> = ({ companies, pagination }) => {
                     );
 
                     return (
-                        <Col key={company.id} span={6}>
+                        <Col
+                            key={company.id}
+                            span={6}
+                            lg={{ span: 6 }}
+                            md={{ span: 12 }}
+                            xs={{ span: 24 }}
+                        >
                             <Card
                                 size="small"
                                 actions={[
