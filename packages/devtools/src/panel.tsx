@@ -11,6 +11,7 @@ export const DevtoolsPanel = () => {
     const [visible, setVisible] = React.useState(false);
     const [placement] = React.useState<Placement>("bottom");
     const { devtoolsUrl } = React.useContext(DevToolsContext);
+    const [hover, setHover] = React.useState(false);
 
     return (
         <div
@@ -19,15 +20,18 @@ export const DevtoolsPanel = () => {
                 left: 0,
                 top: 0,
                 zIndex: 99,
-                width: `${SIZE}px`,
+                width: `${SIZE * 2}px`,
                 height: `${SIZE}px`,
 
                 transform: getPinTransform(placement),
             }}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
         >
             <DevtoolsPin
                 active={visible}
                 onClick={() => setVisible((v) => !v)}
+                groupHover={hover}
             />
             <ResizablePane visible={visible} placement={placement}>
                 {({ resizing }) => (

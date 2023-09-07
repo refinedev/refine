@@ -5,7 +5,7 @@ export const getPanelToggleTransforms = (visible: boolean) => {
 };
 
 export const SIZE = 50;
-export const BUFFER = 20;
+export const BUFFER = 10;
 
 const PREFERRED_DEFAULT_WIDTH = 800;
 const PREFERRED_DEFAULT_HEIGHT = 520;
@@ -14,11 +14,13 @@ export const MIN_PANEL_WIDTH = 640;
 export const MIN_PANEL_HEIGHT = 360;
 
 const verticalCenterTransform = `translateY(calc((100vh - ${SIZE}px) / 2))`;
-const horizontalCenterTransform = `translateX(calc((100vw - ${SIZE}px) / 2))`;
+const horizontalCenterTransform = `translateX(calc((100vw - ${
+    SIZE * 2
+}px) / 2))`;
 const rightAlignTransform = `translateX(calc((100vw - ${SIZE}px) - ${BUFFER}px))`;
 const leftAlignTransform = `translateX(${BUFFER}px)`;
 const topAlignTransform = `translateY(${BUFFER}px)`;
-const bottomAlignTransform = `translateY(calc((100vh - ${SIZE}px) - ${BUFFER}px))`;
+const bottomAlignTransform = `translateY(calc((100vh - ${SIZE}px) - ${0}px))`;
 
 export const getPinTransform = (placement: Placement) => {
     switch (placement) {
@@ -32,6 +34,10 @@ export const getPinTransform = (placement: Placement) => {
         case "bottom":
             return `${bottomAlignTransform} ${horizontalCenterTransform}`;
     }
+};
+
+export const getPinButtonTransform = (hover?: boolean) => {
+    return `translateY(${hover ? "0" : "50%"})`;
 };
 
 export const getPanelPosition = (placement: Placement) => {
