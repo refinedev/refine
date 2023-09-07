@@ -22,7 +22,13 @@ export const CardView: React.FC<Props> = ({
         >
             <Row gutter={[32, 32]}>
                 {dataSource?.map((contact) => (
-                    <Col key={contact.id} span="6">
+                    <Col
+                        key={contact.id}
+                        span="6"
+                        lg={{ span: 6 }}
+                        md={{ span: 12 }}
+                        xs={{ span: 24 }}
+                    >
                         <ContactCard contact={contact} />
                     </Col>
                 ))}
