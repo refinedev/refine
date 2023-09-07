@@ -14,7 +14,6 @@ export const createMutationListener =
                     mutation?.meta?.trace as any,
                 ),
                 key: mutation?.options.mutationKey as any,
-                id: mutation?.mutationId,
                 status: mutation?.state.status,
                 trace: mutation?.meta?.trace as TraceType[],
                 state: mutation?.state,
