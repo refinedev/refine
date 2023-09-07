@@ -1,4 +1,4 @@
-export { DevtoolsEvent } from "./event-types";
+export { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
 export { TraceType } from "./meta-types";
 
 export { DevToolsContextProvider, DevToolsContext } from "./context";
