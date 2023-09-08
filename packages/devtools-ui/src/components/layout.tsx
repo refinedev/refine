@@ -30,7 +30,9 @@ export const Layout = ({ children }: Props) => {
                 <div
                     className={clsx(
                         "re-flex-1",
-                        "re-p-8",
+                        "re-p-4",
+                        "md:re-p-6",
+                        "lg:re-p-8",
                         "re-overflow-scroll",
                     )}
                 >

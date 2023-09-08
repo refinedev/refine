@@ -58,7 +58,9 @@ export const Header = () => {
             className={clsx(
                 "re-flex-shrink-0",
                 "re-bg-gray-800",
-                "re-p-3",
+                "re-py-2",
+                "re-pr-1",
+                "re-pl-px",
                 "re-border-b",
                 "re-border-b-gray-700",
                 "re-flex",
@@ -66,18 +68,17 @@ export const Header = () => {
                 "re-gap-5",
                 "re-items-center",
                 "re-justify-between",
-                "re-h-[65px]",
             )}
         >
             <div className="re-flex-shrink-0">
-                <LogoIcon />
+                <LogoIcon className="re-h-9" />
             </div>
             <div
                 className={clsx(
                     "re-bg-gray-900",
                     "re-flex-1",
                     "re-border-gray-700",
-                    "re-py-2",
+                    "re-py-1.5",
                     "re-px-4",
                     "re-rounded-lg",
                     "re-text-sm",
@@ -116,8 +117,8 @@ export const Header = () => {
             >
                 <div
                     className={clsx(
-                        "re-w-10",
-                        "re-h-10",
+                        "re-w-9",
+                        "re-h-9",
                         "re-text-gray-500",
                         "re-flex",
                         "re-justify-center",
@@ -128,8 +129,8 @@ export const Header = () => {
                 </div>
                 <div
                     className={clsx(
-                        "re-w-10",
-                        "re-h-10",
+                        "re-w-9",
+                        "re-h-9",
                         "re-text-gray-500",
                         "re-flex",
                         "re-justify-center",
@@ -138,11 +139,11 @@ export const Header = () => {
                 >
                     <NotificationIcon />
                 </div>
-                <div className={clsx("re-pl-2")}>
+                <div className={clsx("re-px-2")}>
                     <div
                         className={clsx(
-                            "re-w-10",
-                            "re-h-10",
+                            "re-w-8",
+                            "re-h-8",
                             "re-bg-alt-green",
                             "re-rounded-full",
                         )}
