@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { json } from "express";
 import { Data } from "./create-db";
+import { Section, getFeed } from "./feed/get-feed";
 
 export const serveApi = (app: Express, db: Data) => {
     app.use("/api", json());
@@ -49,5 +50,18 @@ export const serveApi = (app: Express, db: Data) => {
         // }
 
         // res.json({ version: latestVersion });
+    });
+
+    let cachedFeed: Section[] | null = null;
+    app.get("/api/feed", async (req, res) => {
+        if (!cachedFeed) {
+            const feed = await getFeed();
+
+            cachedFeed = feed;
+        }
+
+        res.header("x-total-count", `${cachedFeed.length}`);
+
+        res.json({ data: cachedFeed });
     });
 };
