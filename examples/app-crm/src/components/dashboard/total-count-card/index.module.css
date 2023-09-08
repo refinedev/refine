@@ -1,6 +1,8 @@
 .areaChartWrapper {
-    height: 27px;
+    height: 48px;
     margin-left: auto;
+    align-self: flex-end;
+    margin-bottom: 8px;
 
     @media (min-width: 1600px) {
         width: 250px;
