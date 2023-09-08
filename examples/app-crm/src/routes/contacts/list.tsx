@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HttpError } from "@refinedev/core";
 import { useTable, List } from "@refinedev/antd";
-import { Form, Input, Radio, Space } from "antd";
+import { Form, Input, Radio, Space, Grid } from "antd";
 import {
     UnorderedListOutlined,
     AppstoreOutlined,
@@ -18,6 +18,7 @@ type View = "card" | "table";
 
 export const ContactsListPage: React.FC<Props> = ({ children }) => {
     const [view, setView] = useState<View>("table");
+    const screens = Grid.useBreakpoint();
 
     const {
         tableProps,
@@ -111,7 +112,11 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                 breadcrumb={false}
                 headerButtons={() => {
                     return (
-                        <Space>
+                        <Space
+                            style={{
+                                marginTop: screens.xs ? "1.6rem" : undefined,
+                            }}
+                        >
                             <Form {...searchFormProps} layout="inline">
                                 <Form.Item name="name" noStyle>
                                     <Input
@@ -124,18 +129,22 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                                     />
                                 </Form.Item>
                             </Form>
-                            <Radio.Group
-                                size="large"
-                                value={view}
-                                onChange={(e) => onViewChange(e.target.value)}
-                            >
-                                <Radio.Button value="table">
-                                    <UnorderedListOutlined />
-                                </Radio.Button>
-                                <Radio.Button value="list">
-                                    <AppstoreOutlined />
-                                </Radio.Button>
-                            </Radio.Group>
+                            {!screens.xs ? (
+                                <Radio.Group
+                                    size="large"
+                                    value={view}
+                                    onChange={(e) =>
+                                        onViewChange(e.target.value)
+                                    }
+                                >
+                                    <Radio.Button value="table">
+                                        <UnorderedListOutlined />
+                                    </Radio.Button>
+                                    <Radio.Button value="card">
+                                        <AppstoreOutlined />
+                                    </Radio.Button>
+                                </Radio.Group>
+                            ) : null}
                         </Space>
                     );
                 }}
@@ -151,18 +160,18 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                     />
                 }
             >
-                {view === "table" ? (
-                    <TableView
-                        tableProps={tableProps}
-                        filters={filters}
-                        sorters={sorters}
-                    />
-                ) : (
+                {screens.xs || view === "card" ? (
                     <CardView
                         loading={tableQueryResult?.isFetching}
                         tableProps={tableProps}
                         setPageSize={setPageSize}
                         setCurrent={setCurrent}
+                    />
+                ) : (
+                    <TableView
+                        tableProps={tableProps}
+                        filters={filters}
+                        sorters={sorters}
                     />
                 )}
                 {children}
