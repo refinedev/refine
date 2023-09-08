@@ -168,8 +168,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     setTitle(view.title);
                 }}
                 headerToolbar={false}
-                nextDayThreshold="23:59:59"
-                // dayMaxEventRows={3}
+                timeZone="UTC"
             />
         </Card>
     );

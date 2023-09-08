@@ -10,6 +10,7 @@ import {
     Select,
     ColorPicker,
     FormInstance,
+    TimePicker,
 } from "antd";
 import { useSelect } from "@refinedev/antd";
 
@@ -86,29 +87,65 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                     <Checkbox
                         checked={isAllDayEvent}
                         onChange={(e) => setIsAllDayEvent(e.target.checked)}
-                        style={{ width: 120 }}
+                        style={{ flex: 1 }}
                     >
                         All Day
                     </Checkbox>
-                    <Form.Item
-                        name="date"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                        noStyle
-                    >
-                        <RangePicker
-                            style={{ width: "100%", backgroundColor: "#fff" }}
-                            showTime={!isAllDayEvent}
-                            format={
-                                isAllDayEvent
-                                    ? "YYYY/MM/DD"
-                                    : "YYYY/MM/DD HH:mm"
-                            }
-                        />
-                    </Form.Item>
+
+                    {isAllDayEvent ? (
+                        <Form.Item
+                            name="rangeDate"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                            noStyle
+                        >
+                            <RangePicker format={"YYYY/MM/DD"} />
+                        </Form.Item>
+                    ) : (
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                gap: "0.5rem",
+                            }}
+                        >
+                            <Form.Item
+                                name="date"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                                noStyle
+                            >
+                                <DatePicker
+                                    style={{
+                                        width: "180px",
+                                    }}
+                                    format={"YYYY/MM/DD"}
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                name="time"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                                noStyle
+                            >
+                                <TimePicker.RangePicker
+                                    style={{
+                                        width: "180px",
+                                    }}
+                                    format={"HH:mm"}
+                                />
+                            </Form.Item>
+                        </div>
+                    )}
                 </div>
             </Form.Item>
             <Row gutter={[32, 32]}>
@@ -147,7 +184,6 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                                     colors: [
                                         "#F5222D",
                                         "#FA8C16",
-                                        "#FADB14",
                                         "#8BBB11",
                                         "#52C41A",
                                         "#13A8A8",
