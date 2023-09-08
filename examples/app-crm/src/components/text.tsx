@@ -1,4 +1,4 @@
-import { Breakpoint, ConfigProvider, Grid, Typography } from "antd";
+import { ConfigProvider, Typography } from "antd";
 
 export type TextProps = {
     size?:
@@ -12,8 +12,6 @@ export type TextProps = {
         | "huge"
         | "xhuge"
         | "xxhuge";
-    hideOnSizes?: Breakpoint[];
-    xs?: React.ComponentProps<typeof Typography.Text>;
 } & React.ComponentProps<typeof Typography.Text>;
 
 const sizes = {
@@ -62,12 +60,9 @@ const sizes = {
 export const Text: React.FC<TextProps> = ({
     size = "sm",
     children,
-    hideOnSizes = [],
     ...rest
 }) => {
-    const screens = Grid.useBreakpoint();
-
-    const renderContent = () => (
+    return (
         <ConfigProvider
             theme={{
                 token: {
@@ -78,14 +73,4 @@ export const Text: React.FC<TextProps> = ({
             <Typography.Text {...rest}>{children}</Typography.Text>
         </ConfigProvider>
     );
-
-    if (hideOnSizes.length === 0) {
-        return renderContent();
-    }
-
-    return Object.entries<boolean>(screens).find(
-        ([k, v]) => hideOnSizes.includes(k as Breakpoint) && v,
-    )
-        ? renderContent()
-        : null;
 };

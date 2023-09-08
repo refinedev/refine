@@ -41,14 +41,13 @@ export const ListTitleButton: React.FC<ListTitleButtonProps> = ({
             }}
         >
             <Text
-                hideOnSizes={["sm"]}
                 style={{
                     color: "#fff",
                     fontSize: "16px",
                     fontWeight: 400,
                 }}
             >
-                {buttonText}
+                {!screens.xs ? buttonText : null}
             </Text>
         </Button>
     );
