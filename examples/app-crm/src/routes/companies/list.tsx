@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useState } from "react";
 import { HttpError } from "@refinedev/core";
 import { List, useTable } from "@refinedev/antd";
-import { Form, Input, Space, Radio, Spin } from "antd";
+import { Form, Input, Space, Radio, Spin, Grid } from "antd";
 import {
     AppstoreOutlined,
     SearchOutlined,
@@ -20,6 +20,7 @@ type View = "card" | "table";
 
 export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const [view, setView] = useState<View>("card");
+    const screens = Grid.useBreakpoint();
 
     const {
         tableProps,
@@ -105,7 +106,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                 breadcrumb={false}
                 headerButtons={() => {
                     return (
-                        <Space>
+                        <Space
+                            style={{
+                                marginTop: screens.xs ? "1.6rem" : undefined,
+                            }}
+                        >
                             <Form {...searchFormProps} layout="inline">
                                 <Form.Item name="name" noStyle>
                                     <Input
@@ -130,18 +135,22 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                     />
                                 </Form.Item>
                             </Form>
-                            <Radio.Group
-                                size="large"
-                                value={view}
-                                onChange={(e) => onViewChange(e.target.value)}
-                            >
-                                <Radio.Button value="table">
-                                    <UnorderedListOutlined />
-                                </Radio.Button>
-                                <Radio.Button value="card">
-                                    <AppstoreOutlined />
-                                </Radio.Button>
-                            </Radio.Group>
+                            {!screens.xs ? (
+                                <Radio.Group
+                                    size="large"
+                                    value={view}
+                                    onChange={(e) =>
+                                        onViewChange(e.target.value)
+                                    }
+                                >
+                                    <Radio.Button value="table">
+                                        <UnorderedListOutlined />
+                                    </Radio.Button>
+                                    <Radio.Button value="card">
+                                        <AppstoreOutlined />
+                                    </Radio.Button>
+                                </Radio.Group>
+                            ) : null}
                         </Space>
                     );
                 }}
