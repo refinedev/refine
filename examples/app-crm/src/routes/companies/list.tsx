@@ -30,7 +30,6 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         sorters,
         setCurrent,
         setPageSize,
-
         setFilters,
     } = useTable<Company, HttpError, { name: string }>({
         resource: "companies",
