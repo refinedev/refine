@@ -32,17 +32,36 @@ export const DashboardTotalCountCard: React.FC<{
     const { primaryColor, secondaryColor, icon, title } = variants[variant];
 
     const config: AreaConfig = {
-        data: mockLineData,
+        className: styles.area,
+        appendPadding: [1, 0, 0, 0],
+        padding: 0,
+        syncViewPadding: true,
+        data: variants[variant].data,
+        autoFit: true,
         tooltip: false,
         animation: false,
         xField: "index",
         yField: "value",
         xAxis: false,
-        yAxis: false,
+        yAxis: {
+            tickCount: 12,
+            label: {
+                style: {
+                    fill: "transparent",
+                },
+            },
+            grid: {
+                line: {
+                    style: {
+                        stroke: "transparent",
+                    },
+                },
+            },
+        },
         smooth: true,
         areaStyle: () => {
             return {
-                fill: `l(270) 0:${secondaryColor} 1:${primaryColor}`,
+                fill: `l(270) 0:#fff 0.2:${secondaryColor} 1:${primaryColor}`,
             };
         },
         line: {
@@ -62,7 +81,13 @@ export const DashboardTotalCountCard: React.FC<{
             }}
             size="small"
         >
-            <div>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                }}
+            >
                 <div
                     style={{
                         display: "flex",
@@ -102,7 +127,7 @@ export const DashboardTotalCountCard: React.FC<{
                 </Text>
             </div>
             <div className={styles.areaChartWrapper}>
-                <Area {...config} autoFit />
+                <Area {...config} />
             </div>
         </Card>
     );
@@ -135,11 +160,12 @@ const variants: {
         secondaryColor?: string;
         icon: React.ReactNode;
         title: string;
+        data: { index: string; value: number }[];
     };
 } = {
     companies: {
         primaryColor: "#1677FF",
-        secondaryColor: "#E6F4FF",
+        secondaryColor: "#BAE0FF",
         icon: (
             <IconWrapper color="#E6F4FF">
                 <ShopOutlined
@@ -151,10 +177,32 @@ const variants: {
             </IconWrapper>
         ),
         title: "Number of companies",
+        data: [
+            {
+                index: "1",
+                value: 3500,
+            },
+            {
+                index: "2",
+                value: 2750,
+            },
+            {
+                index: "3",
+                value: 5000,
+            },
+            {
+                index: "4",
+                value: 4250,
+            },
+            {
+                index: "5",
+                value: 5000,
+            },
+        ],
     },
     contacts: {
         primaryColor: "#52C41A",
-        secondaryColor: "#F6FFED",
+        secondaryColor: "#D9F7BE",
         icon: (
             <IconWrapper color="#F6FFED">
                 <TeamOutlined
@@ -166,10 +214,36 @@ const variants: {
             </IconWrapper>
         ),
         title: "Number of contacts",
+        data: [
+            {
+                index: "1",
+                value: 10000,
+            },
+            {
+                index: "2",
+                value: 19500,
+            },
+            {
+                index: "3",
+                value: 13000,
+            },
+            {
+                index: "4",
+                value: 17000,
+            },
+            {
+                index: "5",
+                value: 13000,
+            },
+            {
+                index: "6",
+                value: 20000,
+            },
+        ],
     },
     deals: {
         primaryColor: "#FA541C",
-        secondaryColor: "#FFF2E8",
+        secondaryColor: "#FFD8BF",
         icon: (
             <IconWrapper color="#FFF2E8">
                 <AuditOutlined
@@ -181,32 +255,39 @@ const variants: {
             </IconWrapper>
         ),
         title: "Total deals in pipeline",
+        data: [
+            {
+                index: "1",
+                value: 1000,
+            },
+            {
+                index: "2",
+                value: 1300,
+            },
+            {
+                index: "3",
+                value: 1200,
+            },
+            {
+                index: "4",
+                value: 2000,
+            },
+            {
+                index: "5",
+                value: 800,
+            },
+            {
+                index: "6",
+                value: 1700,
+            },
+            {
+                index: "7",
+                value: 1400,
+            },
+            {
+                index: "8",
+                value: 1800,
+            },
+        ],
     },
 };
-
-const mockLineData = [
-    {
-        index: "1",
-        value: 100,
-    },
-    {
-        index: "2",
-        value: 25,
-    },
-    {
-        index: "3",
-        value: 200,
-    },
-    {
-        index: "4",
-        value: 125,
-    },
-    {
-        index: "4",
-        value: 125,
-    },
-    {
-        index: "5",
-        value: 300,
-    },
-];
