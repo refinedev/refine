@@ -20,9 +20,9 @@ export const CalendarPageWrapper = ({ children }: Props) => {
     >([]);
 
     return (
-        <div className="page-container">
+        <div className="">
             <Row gutter={[32, 32]}>
-                <Col span={6}>
+                <Col xs={24} xl={6}>
                     <CreateButton
                         block
                         size="large"
@@ -50,7 +50,7 @@ export const CalendarPageWrapper = ({ children }: Props) => {
                         }}
                     />
                 </Col>
-                <Col span={18}>
+                <Col xs={24} xl={18}>
                     <Calendar
                         onClickEvent={({ id }) => {
                             navigate(

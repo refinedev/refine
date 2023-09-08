@@ -9,7 +9,10 @@ import { CalendarForm } from "../../components/calendar/form";
 import { Event, EventCreateInput } from "../../interfaces/graphql";
 
 type FormValues = EventCreateInput & {
-    date: [dayjs.Dayjs, dayjs.Dayjs];
+    rangeDate: [dayjs.Dayjs, dayjs.Dayjs];
+    date: dayjs.Dayjs;
+    time: [dayjs.Dayjs, dayjs.Dayjs];
+    color: any;
 };
 
 export const CalendarCreatePage = () => {
@@ -24,20 +27,31 @@ export const CalendarCreatePage = () => {
     >();
 
     const handleOnFinish = async (values: FormValues) => {
-        const { date, ...otherValues } = values;
+        const { rangeDate, date, time, color, ...otherValues } = values;
 
-        let startDate = dayjs.utc(date[0]);
-        let endDate = dayjs.utc(date[1]);
+        let startDate = dayjs();
+        let endDate = dayjs();
 
-        if (isAllDayEvent) {
-            startDate = startDate.startOf("day");
-            endDate = endDate.endOf("day");
+        if (rangeDate) {
+            startDate = rangeDate[0].startOf("day");
+            endDate = rangeDate[1].endOf("day");
+        } else {
+            startDate = date
+                .set("hour", time[0].hour())
+                .set("minute", time[0].minute())
+                .set("second", 0);
+
+            endDate = date
+                .set("hour", time[1].hour())
+                .set("minute", time[1].minute())
+                .set("second", 0);
         }
 
         await onFinish({
             ...otherValues,
-            startDate: startDate.utc().toISOString(),
-            endDate: endDate.utc().toISOString(),
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString(),
+            color: typeof color === "object" ? `#${color.toHex()}` : color,
         });
     };
 
@@ -59,6 +73,7 @@ export const CalendarCreatePage = () => {
                 ...saveButtonProps,
             }}
             okText="Save"
+            width={560}
         >
             <CalendarForm
                 isAllDayEvent={isAllDayEvent}

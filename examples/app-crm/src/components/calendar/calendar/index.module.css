@@ -1,11 +1,17 @@
 .calendar_header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 1rem;
 
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
     .actions {
-        flex: 1;
         display: flex;
         gap: 0.8rem;
     }
@@ -14,9 +20,4 @@
         display: flex;
         align-self: center;
     }
-}
-
-.calendar_header::after {
-    flex: 1;
-    content: "";
 }

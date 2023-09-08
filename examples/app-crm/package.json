@@ -29,7 +29,12 @@
     "react-router-dom": "^6.8.1",
     "leaflet": "^1.9.4",
     "react-leaflet": "^4.2.1",
-    "react-leaflet-cluster": "^2.1.0"
+    "react-leaflet-cluster": "^2.1.0",
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/timegrid": "^6.1.8",
+    "@fullcalendar/list": "^6.1.8"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",

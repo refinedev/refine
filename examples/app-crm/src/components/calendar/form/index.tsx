@@ -10,8 +10,10 @@ import {
     Select,
     ColorPicker,
     FormInstance,
+    TimePicker,
 } from "antd";
 import { useSelect } from "@refinedev/antd";
+import dayjs from "dayjs";
 
 type CalendarFormProps = {
     isAllDayEvent: boolean;
@@ -42,6 +44,9 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
             fields: ["id", "name"],
         },
     });
+
+    const rangeDate = form.getFieldsValue().rangeDate;
+    const date = form.getFieldsValue().date;
 
     return (
         <Form layout="vertical" form={form} {...formProps}>
@@ -83,32 +88,79 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                         alignItems: "center",
                     }}
                 >
-                    <Checkbox
-                        checked={isAllDayEvent}
-                        onChange={(e) => setIsAllDayEvent(e.target.checked)}
-                        style={{ width: 120 }}
-                    >
-                        All Day
-                    </Checkbox>
-                    <Form.Item
-                        name="date"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                        noStyle
-                    >
-                        <RangePicker
-                            style={{ width: "100%", backgroundColor: "#fff" }}
-                            showTime={!isAllDayEvent}
-                            format={
-                                isAllDayEvent
-                                    ? "YYYY/MM/DD"
-                                    : "YYYY/MM/DD HH:mm"
-                            }
-                        />
-                    </Form.Item>
+                    <div style={{ flex: 1, width: 80 }}>
+                        <Checkbox
+                            checked={isAllDayEvent}
+                            onChange={(e) => setIsAllDayEvent(e.target.checked)}
+                        >
+                            All Day
+                        </Checkbox>
+                    </div>
+
+                    {isAllDayEvent ? (
+                        <Form.Item
+                            name="rangeDate"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                            noStyle
+                        >
+                            <RangePicker
+                                style={{
+                                    width: 416,
+                                }}
+                                format={"YYYY/MM/DD"}
+                                defaultValue={[dayjs(date), dayjs(date)]}
+                            />
+                        </Form.Item>
+                    ) : (
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                gap: "0.5rem",
+                            }}
+                        >
+                            <Form.Item
+                                name="date"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                                noStyle
+                            >
+                                <DatePicker
+                                    style={{
+                                        width: "160px",
+                                    }}
+                                    format={"YYYY/MM/DD"}
+                                    defaultValue={dayjs(
+                                        rangeDate ? rangeDate[0] : undefined,
+                                    )}
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                name="time"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                                noStyle
+                            >
+                                <TimePicker.RangePicker
+                                    style={{
+                                        width: 240,
+                                    }}
+                                    format={"HH:mm"}
+                                    minuteStep={15}
+                                />
+                            </Form.Item>
+                        </div>
+                    )}
                 </div>
             </Form.Item>
             <Row gutter={[32, 32]}>
@@ -136,39 +188,28 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                         ]}
                         initialValue={"#1677FF"}
                     >
-                        <Input hidden />
-                        <Form.Item noStyle>
-                            <ColorPicker
-                                defaultValue="#1677FF"
-                                panelRender={(
-                                    _,
-                                    { components: { Presets } },
-                                ) => <Presets />}
-                                presets={[
-                                    {
-                                        label: "Recommended",
-                                        colors: [
-                                            "#F5222D",
-                                            "#FA8C16",
-                                            "#FADB14",
-                                            "#8BBB11",
-                                            "#52C41A",
-                                            "#13A8A8",
-                                            "#1677FF",
-                                            "#2F54EB",
-                                            "#722ED1",
-                                            "#EB2F96",
-                                        ],
-                                    },
-                                ]}
-                                onChangeComplete={(value) => {
-                                    return form?.setFieldValue(
-                                        "color",
-                                        `#${value.toHex()}`,
-                                    );
-                                }}
-                            />
-                        </Form.Item>
+                        <ColorPicker
+                            defaultValue="#1677FF"
+                            panelRender={(_, { components: { Presets } }) => (
+                                <Presets />
+                            )}
+                            presets={[
+                                {
+                                    label: "Recommended",
+                                    colors: [
+                                        "#F5222D",
+                                        "#FA8C16",
+                                        "#8BBB11",
+                                        "#52C41A",
+                                        "#13A8A8",
+                                        "#1677FF",
+                                        "#2F54EB",
+                                        "#722ED1",
+                                        "#EB2F96",
+                                    ],
+                                },
+                            ]}
+                        />
                     </Form.Item>
                 </Col>
             </Row>

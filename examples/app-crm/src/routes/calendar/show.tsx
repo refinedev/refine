@@ -7,6 +7,7 @@ import {
     InfoCircleOutlined,
     EditOutlined,
     CloseOutlined,
+    ClockCircleOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { EditButton } from "@refinedev/antd";
@@ -54,11 +55,13 @@ export const CalendarShowPage: React.FC = () => {
     const { description, startDate, endDate, category, participants } =
         data?.data ?? {};
 
+    const utcStartDate = dayjs(startDate).utc();
+    const utcEndDate = dayjs(endDate).utc();
+
     // if the event is more than one day, don't show the time
-    let dateFormat = "dddd, MMMM D, YYYY [at] h:mm A";
     let allDay = false;
-    if (dayjs(endDate).diff(dayjs(startDate), "day") > 0) {
-        dateFormat = "dddd, MMMM D, YYYY";
+    // check if more then 23 hours
+    if (utcEndDate.diff(utcStartDate, "hours") >= 23) {
         allDay = true;
     }
 
@@ -137,19 +140,43 @@ export const CalendarShowPage: React.FC = () => {
                         gap: "24px",
                     }}
                 >
-                    <div>
-                        <CalendarOutlined style={{ marginRight: ".5rem" }} />
-                        <Text>{dayjs(startDate).format(dateFormat)}</Text>
-                        {allDay && (
+                    {allDay ? (
+                        <div>
+                            <CalendarOutlined
+                                style={{ marginRight: ".5rem" }}
+                            />
+                            <Text>{`${dayjs(utcStartDate).format(
+                                "MMMM D",
+                            )} - ${dayjs(utcEndDate).format("MMMM D")}`}</Text>
                             <Tag style={{ marginLeft: ".5rem" }} color="blue">
                                 All Day
                             </Tag>
-                        )}
-                    </div>
-                    <div>
-                        <CalendarOutlined style={{ marginRight: ".5rem" }} />
-                        <Text>{dayjs(endDate).format(dateFormat)}</Text>
-                    </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div>
+                                <CalendarOutlined
+                                    style={{ marginRight: ".5rem" }}
+                                />
+                                <Text>
+                                    {dayjs(utcStartDate).format(
+                                        "MMMM D, YYYY dddd",
+                                    )}
+                                </Text>
+                            </div>
+                            <div>
+                                <ClockCircleOutlined
+                                    style={{ marginRight: ".5rem" }}
+                                />
+                                <Text>{`${dayjs(utcStartDate).format(
+                                    "h:mma",
+                                )} - ${dayjs(utcEndDate).format(
+                                    "h:mma",
+                                )}`}</Text>
+                            </div>
+                        </>
+                    )}
+
                     <div>
                         <FlagOutlined style={{ marginRight: ".5rem" }} />
                         <Text>{category?.title}</Text>
