@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import { HttpError, getDefaultFilter } from "@refinedev/core";
 import {
-    CreateButton,
     DeleteButton,
     EditButton,
     FilterDropdown,
@@ -12,14 +11,15 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { Form, Input, Select, Space, Spin, Table } from "antd";
-import { PlusSquareOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
 import { currencyNumber } from "../../utilities";
-import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
+import { Quote, QuoteStatus } from "../../interfaces/graphql";
 import { Participants } from "../../components/participants";
 import { debounce } from "lodash";
 import { PaginationTotal } from "../../components/pagination-total";
+import { ListTitleButton } from "../../components/list-title-button";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -152,16 +152,10 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     },
                 }}
                 title={
-                    <CreateButton
-                        style={{
-                            width: "192px",
-                        }}
-                        size="large"
-                        type="primary"
-                        icon={<PlusSquareOutlined />}
-                    >
-                        Add Quote
-                    </CreateButton>
+                    <ListTitleButton
+                        buttonText="Add new quote"
+                        toPath="quotes"
+                    />
                 }
             >
                 <Table

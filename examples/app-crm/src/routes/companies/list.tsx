@@ -1,10 +1,9 @@
 import { FC, PropsWithChildren, useState } from "react";
-import { HttpError, useGo, useNavigation } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import { List, useTable } from "@refinedev/antd";
-import { Form, Input, Space, Radio, Button, Spin } from "antd";
+import { Form, Input, Space, Radio, Spin } from "antd";
 import {
     AppstoreOutlined,
-    PlusCircleOutlined,
     SearchOutlined,
     UnorderedListOutlined,
 } from "@ant-design/icons";
@@ -15,15 +14,12 @@ import {
     CompaniesCardView,
 } from "../../components/company";
 import { Company } from "../../interfaces/graphql";
-import { useLocation } from "react-router-dom";
+import { ListTitleButton } from "../../components/list-title-button";
 
 type View = "card" | "table";
 
 export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
-    const { pathname } = useLocation();
-    const { createUrl } = useNavigation();
     const [view, setView] = useState<View>("card");
-    const go = useGo();
 
     const {
         tableProps,
@@ -155,28 +151,10 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                     },
                 }}
                 title={
-                    <Button
-                        style={{
-                            width: "192px",
-                        }}
-                        type="primary"
-                        size="large"
-                        icon={<PlusCircleOutlined />}
-                        onClick={() => {
-                            return go({
-                                to: `${createUrl("companies")}`,
-                                query: {
-                                    to: pathname,
-                                },
-                                options: {
-                                    keepQuery: true,
-                                },
-                                type: "replace",
-                            });
-                        }}
-                    >
-                        Add new company
-                    </Button>
+                    <ListTitleButton
+                        toPath="companies"
+                        buttonText="Add new company"
+                    />
                 }
             >
                 {view === "table" ? (

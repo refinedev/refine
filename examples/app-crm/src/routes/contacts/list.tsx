@@ -1,27 +1,23 @@
 import React, { useState } from "react";
-import { HttpError, useGo, useNavigation } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import { useTable, List } from "@refinedev/antd";
-import { Button, Form, Input, Radio, Space } from "antd";
+import { Form, Input, Radio, Space } from "antd";
 import {
     UnorderedListOutlined,
     AppstoreOutlined,
     SearchOutlined,
-    PlusCircleOutlined,
 } from "@ant-design/icons";
 import debounce from "lodash/debounce";
-import { useLocation } from "react-router-dom";
 
 import { TableView, CardView } from "../../components/contact";
 import { Contact } from "../../interfaces/graphql";
+import { ListTitleButton } from "../../components/list-title-button";
 
 type Props = React.PropsWithChildren<{}>;
 type View = "card" | "table";
 
 export const ContactsListPage: React.FC<Props> = ({ children }) => {
     const [view, setView] = useState<View>("table");
-    const go = useGo();
-    const { pathname } = useLocation();
-    const { createUrl } = useNavigation();
 
     const {
         tableProps,
@@ -149,28 +145,10 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                     },
                 }}
                 title={
-                    <Button
-                        style={{
-                            width: "192px",
-                        }}
-                        type="primary"
-                        size="large"
-                        icon={<PlusCircleOutlined />}
-                        onClick={() => {
-                            return go({
-                                to: `${createUrl("contacts")}`,
-                                query: {
-                                    to: pathname,
-                                },
-                                options: {
-                                    keepQuery: true,
-                                },
-                                type: "replace",
-                            });
-                        }}
-                    >
-                        Add new contact
-                    </Button>
+                    <ListTitleButton
+                        toPath="contacts"
+                        buttonText="Add new contact"
+                    />
                 }
             >
                 {view === "table" ? (
