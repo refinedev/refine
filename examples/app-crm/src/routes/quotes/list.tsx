@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import { HttpError, getDefaultFilter } from "@refinedev/core";
 import {
-    CreateButton,
     DeleteButton,
     EditButton,
     FilterDropdown,
@@ -11,15 +10,16 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Form, Input, Select, Space, Spin, Table } from "antd";
-import { PlusSquareOutlined, SearchOutlined } from "@ant-design/icons";
+import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
 import { currencyNumber } from "../../utilities";
-import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
+import { Quote, QuoteStatus } from "../../interfaces/graphql";
 import { Participants } from "../../components/participants";
 import { debounce } from "lodash";
 import { PaginationTotal } from "../../components/pagination-total";
+import { ListTitleButton } from "../../components/list-title-button";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -37,6 +37,8 @@ const statusOptions: { label: string; value: QuoteStatus }[] = [
 ];
 
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
+    const screens = Grid.useBreakpoint();
+
     const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
         useTable<Quote, HttpError, { title: string }>({
             resource: "quotes",
@@ -120,30 +122,32 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 breadcrumb={false}
                 headerButtons={() => {
                     return (
-                        <Form {...searchFormProps} layout="inline">
-                            <Form.Item name="title" noStyle>
-                                <Input
-                                    size="large"
-                                    prefix={
-                                        <SearchOutlined className="anticon tertiary" />
-                                    }
-                                    suffix={
-                                        <Spin
-                                            size="small"
-                                            style={{
-                                                visibility:
+                        <Space
+                            style={{
+                                marginTop: screens.xs ? "1.6rem" : undefined,
+                            }}
+                        >
+                            <Form {...searchFormProps} layout="inline">
+                                <Form.Item name="title" noStyle>
+                                    <Input
+                                        size="large"
+                                        prefix={
+                                            <SearchOutlined className="anticon tertiary" />
+                                        }
+                                        suffix={
+                                            <Spin
+                                                size="small"
+                                                spinning={
                                                     tableQueryResult.isFetching
-                                                        ? "visible"
-                                                        : "hidden",
-                                            }}
-                                            spinning={true}
-                                        />
-                                    }
-                                    placeholder="Search by name"
-                                    onChange={debouncedOnChange}
-                                />
-                            </Form.Item>
-                        </Form>
+                                                }
+                                            />
+                                        }
+                                        placeholder="Search by name"
+                                        onChange={debouncedOnChange}
+                                    />
+                                </Form.Item>
+                            </Form>
+                        </Space>
                     );
                 }}
                 contentProps={{
@@ -152,16 +156,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     },
                 }}
                 title={
-                    <CreateButton
-                        style={{
-                            width: "192px",
-                        }}
-                        size="large"
-                        type="primary"
-                        icon={<PlusSquareOutlined />}
-                    >
-                        Add Quote
-                    </CreateButton>
+                    <ListTitleButton buttonText="Add quote" toPath="quotes" />
                 }
             >
                 <Table

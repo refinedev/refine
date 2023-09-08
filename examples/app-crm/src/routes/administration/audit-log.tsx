@@ -4,20 +4,13 @@ import {
     FilterDropdown,
     useTable,
     getDefaultSortOrder,
+    List,
 } from "@refinedev/antd";
-import {
-    Avatar,
-    DatePicker,
-    Input,
-    Radio,
-    Space,
-    Table,
-    Typography,
-} from "antd";
+import { DatePicker, Input, Radio, Space, Table } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 import { ActionCell } from "../../components/audit-log/action-cell";
-import { CustomAvatar } from "../../components";
+import { CustomAvatar, Text } from "../../components";
 import { Audit } from "../../interfaces/graphql";
 import { PaginationTotal } from "../../components/pagination-total";
 
@@ -47,97 +40,113 @@ export const AuditLogPage = () => {
 
     return (
         <div className="page-container">
-            <Typography.Title level={3} style={{ marginBottom: "44px" }}>
-                Audit Log
-            </Typography.Title>
-            <Table
-                className="audit-log-table"
-                {...tableProps}
-                rowKey="id"
-                scroll={{ x: true }}
-                pagination={{
-                    ...tableProps.pagination,
-                    showTotal: (total) => (
-                        <PaginationTotal
-                            total={total}
-                            entityName="audit logs"
-                        />
-                    ),
-                }}
+            <List
+                breadcrumb={false}
+                contentProps={{ style: { marginTop: "1.6rem" } }}
+                title={
+                    <Text
+                        style={{
+                            fontWeight: "500",
+                            fontSize: "24px",
+                            lineHeight: "24px",
+                        }}
+                    >
+                        Audit Log
+                    </Text>
+                }
             >
-                <Table.Column
-                    dataIndex="user.name"
-                    title="User"
-                    width="15%"
-                    filterIcon={<SearchOutlined />}
-                    render={(_, record: Audit) => {
-                        return (
-                            <Space>
-                                <CustomAvatar
-                                    src={record.user?.avatarUrl}
-                                    name={record.user?.name}
-                                />
-                                {record.user?.name || "N/A"}
-                            </Space>
-                        );
+                <Table
+                    className="audit-log-table"
+                    {...tableProps}
+                    rowKey="id"
+                    scroll={{ x: true }}
+                    pagination={{
+                        ...tableProps.pagination,
+                        showTotal: (total) => (
+                            <PaginationTotal
+                                total={total}
+                                entityName="audit logs"
+                            />
+                        ),
                     }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Input />
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={getDefaultFilter(
-                        "user.name",
-                        filters,
-                        "contains",
-                    )}
-                />
-                <Table.Column
-                    dataIndex="action"
-                    title="Action"
-                    render={(_, record: Audit) => {
-                        return <ActionCell record={record} />;
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="CREATE">Created</Radio>
-                                <Radio value="UPDATE">Updated</Radio>
-                                <Radio value="DELETE">Deleted</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={getDefaultFilter(
-                        "action",
-                        filters,
-                        "eq",
-                    )}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="Date & Time"
-                    width="15%"
-                    render={(value) => (
-                        <DateField
-                            style={{ verticalAlign: "middle" }}
-                            value={value}
-                            format="MM.DD.YYYY - hh:mm"
-                        />
-                    )}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <DatePicker.RangePicker />
-                        </FilterDropdown>
-                    )}
-                    sorter
-                    defaultFilteredValue={getDefaultFilter(
-                        "createdAt",
-                        filters,
-                        "between",
-                    )}
-                    defaultSortOrder={getDefaultSortOrder("createdAt", sorters)}
-                />
-            </Table>
+                >
+                    <Table.Column
+                        dataIndex="user.name"
+                        title="User"
+                        width="15%"
+                        filterIcon={<SearchOutlined />}
+                        render={(_, record: Audit) => {
+                            return (
+                                <Space>
+                                    <CustomAvatar
+                                        src={record.user?.avatarUrl}
+                                        name={record.user?.name}
+                                    />
+                                    {record.user?.name || "N/A"}
+                                </Space>
+                            );
+                        }}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Input />
+                            </FilterDropdown>
+                        )}
+                        defaultFilteredValue={getDefaultFilter(
+                            "user.name",
+                            filters,
+                            "contains",
+                        )}
+                    />
+                    <Table.Column
+                        dataIndex="action"
+                        title="Action"
+                        render={(_, record: Audit) => {
+                            return <ActionCell record={record} />;
+                        }}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Radio.Group>
+                                    <Radio value="CREATE">Created</Radio>
+                                    <Radio value="UPDATE">Updated</Radio>
+                                    <Radio value="DELETE">Deleted</Radio>
+                                </Radio.Group>
+                            </FilterDropdown>
+                        )}
+                        defaultFilteredValue={getDefaultFilter(
+                            "action",
+                            filters,
+                            "eq",
+                        )}
+                    />
+                    <Table.Column
+                        dataIndex="createdAt"
+                        title="Date & Time"
+                        width="15%"
+                        render={(value) => (
+                            <DateField
+                                style={{ verticalAlign: "middle" }}
+                                value={value}
+                                format="MM.DD.YYYY - hh:mm"
+                            />
+                        )}
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <DatePicker.RangePicker />
+                            </FilterDropdown>
+                        )}
+                        sorter
+                        defaultFilteredValue={getDefaultFilter(
+                            "createdAt",
+                            filters,
+                            "between",
+                        )}
+                        defaultSortOrder={getDefaultSortOrder(
+                            "createdAt",
+                            sorters,
+                        )}
+                    />
+                </Table>
+            </List>
         </div>
     );
 };
