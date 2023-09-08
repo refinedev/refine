@@ -62,7 +62,7 @@ export const CompaniesMap: React.FC = () => {
         >
             <div
                 style={{
-                    height: "390px",
+                    height: "318px",
                     marginTop: "2px",
                     position: "relative",
                 }}
@@ -112,21 +112,21 @@ export const CompaniesMap: React.FC = () => {
                         }}
                     />
                 </MapContainer>
-                <div className={styles.countries}>
-                    {Countries.map((country) => {
-                        return (
-                            <div className={styles.item} key={country.id}>
-                                <img
-                                    className={styles.flag}
-                                    src={country.flag}
-                                    alt={`${country.name} flag`}
-                                />
-                                <div>{country.shortName}</div>
-                                {country.count}
-                            </div>
-                        );
-                    })}
-                </div>
+            </div>
+            <div className={styles.countries}>
+                {Countries.map((country) => {
+                    return (
+                        <div className={styles.item} key={country.id}>
+                            <img
+                                className={styles.flag}
+                                src={country.flag}
+                                alt={`${country.name} flag`}
+                            />
+                            <div>{country.shortName}</div>
+                            {country.count}
+                        </div>
+                    );
+                })}
             </div>
         </Card>
     );

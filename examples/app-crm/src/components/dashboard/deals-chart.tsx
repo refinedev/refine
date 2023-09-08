@@ -97,7 +97,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
         startOnZero: false,
         smooth: true,
         legend: {
-            offsetY: -10,
+            offsetY: -6,
         },
         yAxis: {
             tickCount: 4,

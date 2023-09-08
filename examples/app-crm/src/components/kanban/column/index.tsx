@@ -31,7 +31,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
     contextMenuItems,
     onAddClick,
 }) => {
-    const { isOver, setNodeRef } = useDroppable({
+    const { isOver, setNodeRef, active } = useDroppable({
         id,
         data,
     });
@@ -103,6 +103,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
             <div
                 className={cn(styles.columnScrollableContainer, {
                     [styles.isOver]: isOver,
+                    [styles.active]: active,
                 })}
             >
                 <div className={cn(styles.childrenWrapper)}>{children}</div>

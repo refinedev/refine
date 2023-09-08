@@ -80,23 +80,15 @@ export const DashboardTasksChart: React.FC<{}> = () => {
         angleField: "value",
         colorField: "title",
         color: COLORS,
-        autoFit: true,
         legend: false,
         radius: 1,
         innerRadius: 0.6,
         label: false,
+        syncViewPadding: true,
         statistic: {
             title: false,
             content: false,
         },
-        interactions: [
-            {
-                type: "element-selected",
-            },
-            {
-                type: "element-active",
-            },
-        ],
     };
 
     return (
