@@ -86,3 +86,11 @@
 .ant-table-cell {
     white-space: nowrap;
 }
+
+th.ant-table-column-sort {
+    background-color: #fafafa !important;
+}
+
+td.ant-table-column-sort {
+    background-color: #ffffff !important;
+}
