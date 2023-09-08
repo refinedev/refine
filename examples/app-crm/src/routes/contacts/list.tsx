@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HttpError } from "@refinedev/core";
 import { useTable, List } from "@refinedev/antd";
-import { Form, Input, Radio, Space, Grid } from "antd";
+import { Form, Input, Radio, Space, Grid, Spin } from "antd";
 import {
     UnorderedListOutlined,
     AppstoreOutlined,
@@ -123,6 +123,14 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                                         size="large"
                                         prefix={
                                             <SearchOutlined className="anticon tertiary" />
+                                        }
+                                        suffix={
+                                            <Spin
+                                                size="small"
+                                                spinning={
+                                                    tableQueryResult.isFetching
+                                                }
+                                            />
                                         }
                                         placeholder="Search by name"
                                         onChange={debouncedOnChange}

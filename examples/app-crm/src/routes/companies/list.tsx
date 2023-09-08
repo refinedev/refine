@@ -121,13 +121,9 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                         suffix={
                                             <Spin
                                                 size="small"
-                                                style={{
-                                                    visibility:
-                                                        tableQueryResult.isFetching
-                                                            ? "visible"
-                                                            : "hidden",
-                                                }}
-                                                spinning={true}
+                                                spinning={
+                                                    tableQueryResult.isFetching
+                                                }
                                             />
                                         }
                                         placeholder="Search by name"
