@@ -61,6 +61,10 @@
     overflow-y: auto;
     padding-bottom: 24px;
     border: 2px dashed transparent;
+
+    &.active {
+        overflow-y: unset;
+    }
 }
 
 .childrenWrapper {
