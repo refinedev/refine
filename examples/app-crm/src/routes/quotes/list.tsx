@@ -156,10 +156,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     },
                 }}
                 title={
-                    <ListTitleButton
-                        buttonText="Add new quote"
-                        toPath="quotes"
-                    />
+                    <ListTitleButton buttonText="Add quote" toPath="quotes" />
                 }
             >
                 <Table
