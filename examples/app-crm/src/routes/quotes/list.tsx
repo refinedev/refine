@@ -10,7 +10,7 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Form, Input, Select, Space, Spin, Table } from "antd";
+import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
@@ -37,6 +37,8 @@ const statusOptions: { label: string; value: QuoteStatus }[] = [
 ];
 
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
+    const screens = Grid.useBreakpoint();
+
     const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
         useTable<Quote, HttpError, { title: string }>({
             resource: "quotes",
@@ -120,30 +122,36 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 breadcrumb={false}
                 headerButtons={() => {
                     return (
-                        <Form {...searchFormProps} layout="inline">
-                            <Form.Item name="title" noStyle>
-                                <Input
-                                    size="large"
-                                    prefix={
-                                        <SearchOutlined className="anticon tertiary" />
-                                    }
-                                    suffix={
-                                        <Spin
-                                            size="small"
-                                            style={{
-                                                visibility:
-                                                    tableQueryResult.isFetching
-                                                        ? "visible"
-                                                        : "hidden",
-                                            }}
-                                            spinning={true}
-                                        />
-                                    }
-                                    placeholder="Search by name"
-                                    onChange={debouncedOnChange}
-                                />
-                            </Form.Item>
-                        </Form>
+                        <Space
+                            style={{
+                                marginTop: screens.xs ? "1.6rem" : undefined,
+                            }}
+                        >
+                            <Form {...searchFormProps} layout="inline">
+                                <Form.Item name="title" noStyle>
+                                    <Input
+                                        size="large"
+                                        prefix={
+                                            <SearchOutlined className="anticon tertiary" />
+                                        }
+                                        suffix={
+                                            <Spin
+                                                size="small"
+                                                style={{
+                                                    visibility:
+                                                        tableQueryResult.isFetching
+                                                            ? "visible"
+                                                            : "hidden",
+                                                }}
+                                                spinning={true}
+                                            />
+                                        }
+                                        placeholder="Search by name"
+                                        onChange={debouncedOnChange}
+                                    />
+                                </Form.Item>
+                            </Form>
+                        </Space>
                     );
                 }}
                 contentProps={{
