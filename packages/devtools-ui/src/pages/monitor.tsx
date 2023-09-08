@@ -188,13 +188,7 @@ export const Monitor = () => {
 
     return (
         <div
-            className={clsx(
-                "re-flex",
-                "re-flex-col",
-                "re-gap-4",
-                "re-h-full",
-                "re-mb-8",
-            )}
+            className={clsx("re-flex", "re-flex-col", "re-gap-4", "re-h-full")}
         >
             <div
                 className={clsx(
