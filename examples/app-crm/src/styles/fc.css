@@ -48,3 +48,8 @@
     position: relative;
     z-index: 1;
 }
+
+.fc-event-title-container {
+    padding-left: 8px;
+    padding-right: 8px; 
+}

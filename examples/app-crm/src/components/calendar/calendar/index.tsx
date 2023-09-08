@@ -97,10 +97,11 @@ export const Calendar: React.FC<CalendarProps> = ({
                         shape="circle"
                         icon={<RightOutlined />}
                     />
+                    <Text className={styles.title} size="lg">
+                        {title}
+                    </Text>
                 </div>
-                <Text className={styles.title} size="lg">
-                    {title}
-                </Text>
+
                 <Radio.Group value={calendarRef.current?.getApi().view.type}>
                     {[
                         {
@@ -110,12 +111,12 @@ export const Calendar: React.FC<CalendarProps> = ({
                         },
                         {
                             label: "Week",
-                            desktopView: "dayGridWeek",
+                            desktopView: "timeGridWeek",
                             mobileView: "listWeek",
                         },
                         {
                             label: "Day",
-                            desktopView: "dayGridDay",
+                            desktopView: "timeGridDay",
                             mobileView: "listDay",
                         },
                     ].map(({ label, desktopView, mobileView }) => {
@@ -168,6 +169,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                 }}
                 headerToolbar={false}
                 timeZone="UTC"
+                height={600}
             />
         </Card>
     );

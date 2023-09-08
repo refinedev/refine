@@ -13,6 +13,7 @@ import {
     TimePicker,
 } from "antd";
 import { useSelect } from "@refinedev/antd";
+import dayjs from "dayjs";
 
 type CalendarFormProps = {
     isAllDayEvent: boolean;
@@ -43,6 +44,9 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
             fields: ["id", "name"],
         },
     });
+
+    const rangeDate = form.getFieldsValue().rangeDate;
+    const date = form.getFieldsValue().date;
 
     return (
         <Form layout="vertical" form={form} {...formProps}>
@@ -84,13 +88,14 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                         alignItems: "center",
                     }}
                 >
-                    <Checkbox
-                        checked={isAllDayEvent}
-                        onChange={(e) => setIsAllDayEvent(e.target.checked)}
-                        style={{ flex: 1 }}
-                    >
-                        All Day
-                    </Checkbox>
+                    <div style={{ flex: 1, width: 80 }}>
+                        <Checkbox
+                            checked={isAllDayEvent}
+                            onChange={(e) => setIsAllDayEvent(e.target.checked)}
+                        >
+                            All Day
+                        </Checkbox>
+                    </div>
 
                     {isAllDayEvent ? (
                         <Form.Item
@@ -102,7 +107,13 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                             ]}
                             noStyle
                         >
-                            <RangePicker format={"YYYY/MM/DD"} />
+                            <RangePicker
+                                style={{
+                                    width: 416,
+                                }}
+                                format={"YYYY/MM/DD"}
+                                defaultValue={[dayjs(date), dayjs(date)]}
+                            />
                         </Form.Item>
                     ) : (
                         <div
@@ -123,9 +134,12 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                             >
                                 <DatePicker
                                     style={{
-                                        width: "180px",
+                                        width: "160px",
                                     }}
                                     format={"YYYY/MM/DD"}
+                                    defaultValue={dayjs(
+                                        rangeDate ? rangeDate[0] : undefined,
+                                    )}
                                 />
                             </Form.Item>
                             <Form.Item
@@ -139,9 +153,10 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
                             >
                                 <TimePicker.RangePicker
                                     style={{
-                                        width: "180px",
+                                        width: 240,
                                     }}
                                     format={"HH:mm"}
+                                    minuteStep={15}
                                 />
                             </Form.Item>
                         </div>

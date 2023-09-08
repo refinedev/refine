@@ -119,6 +119,7 @@ export const CalendarEditPage = () => {
                 ...saveButtonProps,
             }}
             okText="Save"
+            width={560}
         >
             <CalendarForm
                 isAllDayEvent={isAllDayEvent}
