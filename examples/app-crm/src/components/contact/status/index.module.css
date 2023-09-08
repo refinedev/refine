@@ -26,6 +26,12 @@
     }
 }
 
+@media (max-width: 576px) {
+    .container {
+        display: block;
+    }
+}
+
 .NEW, .CONTACTED, .INTERESTED .item {
     background-color: #08979C;
     a { color: #fff; }
