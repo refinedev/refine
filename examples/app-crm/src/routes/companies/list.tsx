@@ -170,7 +170,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                     />
                 ) : (
                     <CompaniesCardView
-                        loading={tableQueryResult.isFetching}
+                        loading={tableQueryResult.isLoading}
                         companies={tableProps.dataSource || []}
                         pagination={{
                             pageSize,

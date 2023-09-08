@@ -170,7 +170,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
             >
                 {screens.xs || view === "card" ? (
                     <CardView
-                        loading={tableQueryResult?.isFetching}
+                        loading={tableQueryResult?.isLoading}
                         tableProps={tableProps}
                         setPageSize={setPageSize}
                         setCurrent={setCurrent}
