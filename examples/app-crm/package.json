@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@ant-design/plots": "^1.2.5",
     "@ant-design/icons": "5.0.1",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",
@@ -26,7 +27,6 @@
     "react-dom": "^18.0.0",
     "react-instantsearch": "^7.0.1",
     "react-router-dom": "^6.8.1",
-    "recharts": "^2.7.3",
     "leaflet": "^1.9.4",
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",

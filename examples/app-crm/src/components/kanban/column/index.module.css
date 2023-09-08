@@ -5,10 +5,11 @@
     border-radius: 1rem;
     padding-left: 16px;
     padding-right: 16px;
-    min-width: 294px;
+    width: 294px;
 
     &.solid {
         background-color: #fff;
+        margin-left: 16px;
     }
 }
 

@@ -5,7 +5,6 @@
     overflow-y: hidden;
     overflow: scroll;
     display: flex;
-    gap: 32px;
     padding: 32px;
 }
 

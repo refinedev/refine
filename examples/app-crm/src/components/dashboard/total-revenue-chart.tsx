@@ -1,6 +1,6 @@
-import React from "react";
-import { Card, theme } from "antd";
-import { PieChart, Pie, Cell, Label } from "recharts";
+import React, { useEffect, useRef } from "react";
+import { Card, Skeleton, Space } from "antd";
+import { Gauge, GaugeConfig } from "@ant-design/plots";
 import { DollarOutlined } from "@ant-design/icons";
 import { useCustom } from "@refinedev/core";
 
@@ -31,8 +31,7 @@ type DealRevenueResponse = {
 };
 
 export const DashboardTotalRevenueChart: React.FC<{}> = () => {
-    const { token } = theme.useToken();
-    const { data, isError, error } = useCustom<DealRevenueResponse>({
+    const { data, isError, error, isLoading } = useCustom<DealRevenueResponse>({
         method: "post",
         url: "/graphql",
         meta: {
@@ -69,131 +68,152 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
         return null;
     }
 
-    const COLORS = ["#CCCCCC", "#1677FF"];
     const totalRealizationRevenue = data?.data.realizationRevenueSum.nodes.map(
         (item) => item.dealsAggregate[0].sum.value,
     )[0];
     const totalExpectedRevenue = data?.data.expectedRevenueSum.nodes.map(
         (item) => item.dealsAggregate[0].sum.value,
     )[0];
+    const realizationPercentageOfExpected =
+        totalRealizationRevenue && totalExpectedRevenue
+            ? (totalRealizationRevenue / totalExpectedRevenue) * 100
+            : 0;
 
-    const totalRevenue = [
-        {
-            name: "Expected",
-            value: totalExpectedRevenue,
+    const config: GaugeConfig = {
+        animation: isLoading ? false : true,
+        supportCSSTransform: true,
+        // antd expects a percentage value between 0 and 1
+        percent: realizationPercentageOfExpected / 100,
+        range: {
+            color: "l(0) 0:#D9F7BE 1:#52C41A",
         },
-        {
-            name: "Realization",
-            value: totalRealizationRevenue,
+        axis: {
+            tickLine: {
+                style: {
+                    stroke: "#BFBFBF",
+                },
+            },
+            label: {
+                formatter(v) {
+                    return Number(v) * 100;
+                },
+            },
+            subTickLine: {
+                count: 3,
+            },
         },
-    ];
+        indicator: {
+            pointer: {
+                style: {
+                    fontSize: 4,
+                    stroke: "#BFBFBF",
+                    lineWidth: 2,
+                },
+            },
+            pin: {
+                style: {
+                    r: 8,
+                    lineWidth: 2,
+                    stroke: "#BFBFBF",
+                },
+            },
+        },
+        statistic: {
+            content: {
+                formatter: (datum) => {
+                    return (datum?.percent * 100).toFixed(2) + "%";
+                },
+                style: {
+                    color: "rgba(0,0,0,0.85)",
+                    fontWeight: 500,
+                    fontSize: "24px",
+                },
+            },
+        },
+    };
 
     return (
         <Card
             style={{ height: "100%" }}
-            bodyStyle={{ padding: "3rem" }}
+            bodyStyle={{
+                padding: "0 32px 32px 32px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+            headStyle={{ padding: "16px" }}
             title={
-                <span>
-                    <DollarOutlined style={{ color: token.colorPrimary }} />
-                    <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                        Total revenue (yearly)
-                    </Text>
-                </span>
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                    }}
+                >
+                    <DollarOutlined />
+                    <Text size="sm">Total revenue (yearly)</Text>
+                </div>
             }
         >
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginBottom: "3rem",
-                }}
-            >
-                <PieChart width={180} height={180}>
-                    <Pie
-                        data={totalRevenue}
-                        cx={90}
-                        cy={90}
-                        innerRadius={65}
-                        outerRadius={85}
-                        fill="#8884d8"
-                        paddingAngle={2}
-                        dataKey="value"
-                    >
-                        <Label
-                            x={63}
-                            y={90}
-                            value="71%"
-                            content={
-                                <text
-                                    style={{
-                                        fontSize: ".8rem",
-                                        fontWeight: "400",
-                                    }}
-                                >
-                                    Realization
-                                </text>
-                            }
-                        />
-                        <Label
-                            x={77}
-                            y={120}
-                            value="71%"
-                            content={
-                                <text
-                                    style={{
-                                        fontSize: "1.5rem",
-                                        fontWeight: "400",
-                                    }}
-                                >
-                                    %
-                                    {totalRealizationRevenue &&
-                                        totalExpectedRevenue &&
-                                        Math.round(
-                                            (totalRealizationRevenue /
-                                                totalExpectedRevenue) *
-                                                100,
-                                        )}
-                                </text>
-                            }
-                        />
-                        {totalRevenue.map((entry, index) => (
-                            <Cell
-                                key={`cell-${index}`}
-                                fill={COLORS[index % COLORS.length]}
-                            />
-                        ))}
-                    </Pie>
-                </PieChart>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                }}
-            >
-                {totalRevenue.map((item, index) => (
-                    <div key={index}>
-                        <div>
-                            <span
-                                style={{
-                                    display: "inline-block",
-                                    width: ".5rem",
-                                    height: ".5rem",
-                                    backgroundColor:
-                                        COLORS[index % COLORS.length],
-                                    marginRight: ".5rem",
-                                }}
-                            />
-                            <Text size="xs">{item.name}</Text>
-                        </div>
+            <Gauge {...config} padding={0} width={280} height={280} />
 
-                        <Text size="md">
-                            {item.value && currencyNumber(item.value)}
+            <div
+                style={{
+                    display: "flex",
+                    gap: "32px",
+                }}
+            >
+                <Space direction="vertical" size={0}>
+                    <Text size="xs" className="secondary">
+                        Expected
+                    </Text>
+                    {!isLoading ? (
+                        <Text
+                            size="md"
+                            className="primary"
+                            style={{
+                                minWidth: "100px",
+                            }}
+                        >
+                            {currencyNumber(totalExpectedRevenue || 0)}
                         </Text>
-                    </div>
-                ))}
+                    ) : (
+                        <Skeleton.Button
+                            style={{
+                                width: "100px",
+                                height: "16px",
+                                marginTop: "6px",
+                            }}
+                            active={true}
+                        />
+                    )}
+                </Space>
+                <Space direction="vertical" size={0}>
+                    <Text size="xs" className="secondary">
+                        Realized
+                    </Text>
+                    {!isLoading ? (
+                        <Text
+                            size="md"
+                            className="primary"
+                            style={{
+                                minWidth: "100px",
+                            }}
+                        >
+                            {currencyNumber(totalRealizationRevenue || 0)}
+                        </Text>
+                    ) : (
+                        <Skeleton.Button
+                            style={{
+                                width: "100px",
+                                height: "16px",
+                                marginTop: "6px",
+                            }}
+                            active={true}
+                        />
+                    )}
+                </Space>
             </div>
         </Card>
     );

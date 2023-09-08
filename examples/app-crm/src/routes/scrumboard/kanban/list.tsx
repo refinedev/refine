@@ -16,8 +16,13 @@ import {
     KanbanItem,
     KanbanAddStageButton,
     KanbanAddCardButton,
+    KanbanColumnSkeleton,
+    KanbanBoardSkeleton,
 } from "../../../components/kanban";
-import { FullScreenLoading, ProjectCardMemo } from "../../../components";
+import {
+    ProjectKanbanCardSkeleton,
+    ProjectCardMemo,
+} from "../../../components";
 import { Task, TaskStage, TaskUpdateInput } from "../../../interfaces/graphql";
 
 const taskFragment = [
@@ -215,11 +220,9 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         return items;
     };
 
-    const loading = isLoadingTasks || isLoadingStages;
+    const isLoading = isLoadingTasks || isLoadingStages;
 
-    if (loading) {
-        return <FullScreenLoading />;
-    }
+    if (isLoading) return <PageSkeleton />;
 
     return (
         <>
@@ -263,17 +266,22 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                                 handleAddCard({ stageId: column.id })
                             }
                         >
-                            {column.tasks.map((task) => {
-                                return (
-                                    <KanbanItem
-                                        key={task.id}
-                                        id={task.id}
-                                        data={{ ...task, stageId: column.id }}
-                                    >
-                                        <ProjectCardMemo {...task} />
-                                    </KanbanItem>
-                                );
-                            })}
+                            {isLoading && <ProjectKanbanCardSkeleton />}
+                            {!isLoading &&
+                                column.tasks.map((task) => {
+                                    return (
+                                        <KanbanItem
+                                            key={task.id}
+                                            id={task.id}
+                                            data={{
+                                                ...task,
+                                                stageId: column.id,
+                                            }}
+                                        >
+                                            <ProjectCardMemo {...task} />
+                                        </KanbanItem>
+                                    );
+                                })}
                             {!column.tasks.length && (
                                 <KanbanAddCardButton
                                     onClick={() =>
@@ -288,5 +296,24 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
             </KanbanBoard>
             {children}
         </>
+    );
+};
+
+const PageSkeleton = () => {
+    const columnCount = 6;
+    const itemCount = 4;
+
+    return (
+        <KanbanBoardSkeleton>
+            {Array.from({ length: columnCount }).map((_, index) => {
+                return (
+                    <KanbanColumnSkeleton key={index} type="project">
+                        {Array.from({ length: itemCount }).map((_, index) => {
+                            return <ProjectKanbanCardSkeleton key={index} />;
+                        })}
+                    </KanbanColumnSkeleton>
+                );
+            })}
+        </KanbanBoardSkeleton>
     );
 };

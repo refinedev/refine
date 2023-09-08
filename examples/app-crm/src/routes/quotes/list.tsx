@@ -19,6 +19,7 @@ import { currencyNumber } from "../../utilities";
 import { Quote, QuoteFilter, QuoteStatus } from "../../interfaces/graphql";
 import { Participants } from "../../components/participants";
 import { debounce } from "lodash";
+import { PaginationTotal } from "../../components/pagination-total";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -167,20 +168,12 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     {...tableProps}
                     pagination={{
                         ...tableProps.pagination,
-                        showTotal: (total) => {
-                            return (
-                                <span
-                                    style={{
-                                        marginLeft: "16px",
-                                    }}
-                                >
-                                    <span className="ant-text secondary">
-                                        {total}
-                                    </span>{" "}
-                                    quotes in total
-                                </span>
-                            );
-                        },
+                        showTotal: (total) => (
+                            <PaginationTotal
+                                total={total}
+                                entityName="quotes"
+                            />
+                        ),
                     }}
                     rowKey="id"
                 >
@@ -303,6 +296,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                         }}
                     />
                     <Table.Column<Quote>
+                        fixed="right"
                         title="Actions"
                         dataIndex="actions"
                         render={(_, record) => {

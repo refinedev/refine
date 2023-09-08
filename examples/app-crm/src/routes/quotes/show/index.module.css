@@ -1,10 +1,13 @@
 .container {
-    padding: 32px 88px;
+    max-width: 944px;
+    margin: 0 auto;
 }
 
 .title {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
     align-items: center;
 }
 
@@ -22,8 +25,9 @@
 .pdfQuoteInfo {
     padding: 32px 32px 0 32px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
     width: 100%;
-    justify-content: space-between;
 }
 
 .companyInfo {
@@ -42,6 +46,12 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-left: auto;
+
+    @media (max-width: 768px) {
+        align-items: flex-end;
+        margin-top: 16px;
+    }
 }
 
 .user {

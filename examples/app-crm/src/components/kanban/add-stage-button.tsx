@@ -1,15 +1,15 @@
 import { FC, PropsWithChildren } from "react";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, ButtonProps } from "antd";
 import { Text } from "../text";
 
-interface Props {
-    onClick: () => void;
-}
+type Props = ButtonProps;
 
 export const KanbanAddStageButton: FC<PropsWithChildren<Props>> = ({
     children,
     onClick,
+    style,
+    ...rest
 }) => {
     return (
         <Button
@@ -18,9 +18,13 @@ export const KanbanAddStageButton: FC<PropsWithChildren<Props>> = ({
             icon={<PlusSquareOutlined className="secondary md" />}
             style={{
                 marginTop: "16px",
+                marginLeft: "16px",
+                marginRight: "16px",
                 height: "56px",
+                ...style,
             }}
             onClick={onClick}
+            {...rest}
         >
             {children ?? (
                 <Text size="md" type="secondary">

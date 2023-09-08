@@ -13,6 +13,7 @@ import { currencyNumber } from "../../utilities";
 import { Company } from "../../interfaces/graphql";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { CustomAvatarGroup } from "../custom-avatar-group";
+import { PaginationTotal } from "../pagination-total";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -49,18 +50,9 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
             pagination={{
                 ...tableProps.pagination,
                 pageSizeOptions: ["12", "24", "48", "96"],
-                showTotal: (total) => {
-                    return (
-                        <span
-                            style={{
-                                marginLeft: "48px",
-                            }}
-                        >
-                            <span className="ant-text secondary">{total}</span>{" "}
-                            compaines in total
-                        </span>
-                    );
-                },
+                showTotal: (total) => (
+                    <PaginationTotal total={total} entityName="companies" />
+                ),
             }}
             rowKey="id"
         >
@@ -174,6 +166,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
                 }}
             />
             <Table.Column<Company>
+                fixed="right"
                 dataIndex="id"
                 title="Actions"
                 render={(value) => (
