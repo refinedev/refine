@@ -40,7 +40,7 @@
     }
 }
 
-.fc-timegrid-slot-label-cushion {
+.fc-timegrid-slot-label-cushion, .fc-list-day-text, .fc-list-day-side-text {
     color: rgba(0, 0, 0, 0.75);
 }
 

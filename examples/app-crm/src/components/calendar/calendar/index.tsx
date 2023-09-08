@@ -32,7 +32,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         if (md) {
             calendarRef.current?.getApi().changeView("dayGridMonth");
         } else {
-            calendarRef.current?.getApi().changeView("timeGridDay");
+            calendarRef.current?.getApi().changeView("listMonth");
         }
     }, [md]);
 
@@ -106,33 +106,53 @@ export const Calendar: React.FC<CalendarProps> = ({
                     {[
                         {
                             label: "Month",
-                            value: "dayGridMonth",
+                            desktopView: "dayGridMonth",
+                            mobileView: "listMonth",
                         },
                         {
                             label: "Week",
-                            value: "timeGridWeek",
+                            desktopView: "dayGridWeek",
+                            mobileView: "listWeek",
                         },
                         {
                             label: "Day",
-                            value: "timeGridDay",
+                            desktopView: "dayGridDay",
+                            mobileView: "listDay",
                         },
-                    ].map(({ label, value }) => (
+                    ].map(({ label, desktopView, mobileView }) => {
+                        const view = md ? desktopView : mobileView;
+                        return (
+                            <Radio.Button
+                                key={label}
+                                value={view}
+                                onClick={() => {
+                                    calendarRef.current
+                                        ?.getApi()
+                                        .changeView(view);
+                                }}
+                            >
+                                {label}
+                            </Radio.Button>
+                        );
+                    })}
+                    {md && (
                         <Radio.Button
-                            key={value}
-                            value={value}
+                            value="listMonth"
                             onClick={() => {
-                                calendarRef.current?.getApi().changeView(value);
+                                calendarRef.current
+                                    ?.getApi()
+                                    .changeView("listMonth");
                             }}
                         >
-                            {label}
+                            List
                         </Radio.Button>
-                    ))}
+                    )}
                 </Radio.Group>
             </div>
             <FullCalendar
                 ref={calendarRef}
                 plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
-                initialView={"dayGridMonth"}
+                initialView={`dayGridMonth`}
                 events={events}
                 eventTimeFormat={{
                     hour: "2-digit",
@@ -149,7 +169,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                 }}
                 headerToolbar={false}
                 nextDayThreshold="23:59:59"
-                dayMaxEventRows={3}
+                // dayMaxEventRows={3}
             />
         </Card>
     );
