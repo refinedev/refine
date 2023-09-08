@@ -12,7 +12,7 @@ import {
     PdfExport,
     StatusIndicator,
 } from "../../../components/quotes";
-
+import { quotesFragment } from "../../../components/quotes/quotes-fragment";
 import { Quote } from "../../../interfaces/graphql";
 
 import styles from "./index.module.css";
@@ -27,33 +27,7 @@ export const QuotesShowPage = () => {
         id: params.id,
         liveMode: "off",
         meta: {
-            fields: [
-                "id",
-                "title",
-                "status",
-                "description",
-                "subTotal",
-                "total",
-                "tax",
-                {
-                    items: [
-                        "title",
-                        "unitPrice",
-                        "quantity",
-                        "discount",
-                        "totalPrice",
-                    ],
-                },
-                {
-                    company: ["id", "name", "country", "website", "avatarUrl"],
-                },
-                {
-                    salesOwner: ["id", "name"],
-                },
-                {
-                    contact: ["id", "name"],
-                },
-            ],
+            fields: quotesFragment,
         },
     });
 
