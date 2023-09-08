@@ -1,5 +1,29 @@
 # @refinedev/core
 
+## 4.36.2
+
+### Patch Changes
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - `useInvalidate` now returns a promise that resolves when the invalidation is completed.
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - Fine-tuning the invalidation process by setting up additional filters and options for the invalidation.
+
+    Now after a successful mutation, refine will invalidate all the queries in the scope but trigger a refetch only for the active queries. If there are any ongoing queries, they will be kept as they are.
+
+    After receiving a realtime subscription event, refine will invalidate and refetch only the active queries.
+
+## 4.36.1
+
+### Patch Changes
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - `useInvalidate` now returns a promise that resolves when the invalidation is completed.
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - Fine-tuning the invalidation process by setting up additional filters and options for the invalidation.
+
+    Now after a successful mutation, refine will invalidate all the queries in the scope but trigger a refetch only for the active queries. If there are any ongoing queries, they will be kept as they are.
+
+    After receiving a realtime subscription event, refine will invalidate and refetch only the active queries.
+
 ## 4.36.0
 
 ### Minor Changes
