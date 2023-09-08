@@ -36,7 +36,9 @@ export const ListTitleButton: React.FC<ListTitleButtonProps> = ({
                 });
             }}
             size={screens.xs ? "middle" : "large"}
-            style={{ marginTop: screens.xs ? "1.6rem" : undefined }}
+            style={{
+                marginTop: screens.xs ? "1.6rem" : "0.3rem",
+            }}
         >
             <Text
                 hideOnSizes={["sm"]}
