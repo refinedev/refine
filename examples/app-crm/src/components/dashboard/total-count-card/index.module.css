@@ -10,17 +10,12 @@
 
 .area {
     height: 48px !important;
-    width: 96px;
 
-    @media (min-width: 1920px) {
+    @media (min-width: 1600px) {
         width: 250px;
     }
 
-    @media (max-width: 1919px) {
-        width: 150px;
-    }
-
-    @media (max-width: 1536px) {
+    @media (max-width: 1599px) {
         width: 96px;
     }
 
