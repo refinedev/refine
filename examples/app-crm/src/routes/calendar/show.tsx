@@ -60,8 +60,8 @@ export const CalendarShowPage: React.FC = () => {
 
     // if the event is more than one day, don't show the time
     let allDay = false;
-    // check if more then 12 hours
-    if (utcEndDate.diff(utcStartDate, "hours") > 12) {
+    // check if more then 23 hours
+    if (utcEndDate.diff(utcStartDate, "hours") >= 23) {
         allDay = true;
     }
 

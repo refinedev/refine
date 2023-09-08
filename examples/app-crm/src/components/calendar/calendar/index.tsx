@@ -74,9 +74,8 @@ export const Calendar: React.FC<CalendarProps> = ({
             end: endDate,
             color: color,
             allDay:
-                dayjs(endDate).diff(dayjs(startDate), "days") > 0
-                    ? true
-                    : false,
+                dayjs(endDate).utc().diff(dayjs(startDate).utc(), "hours") >=
+                23,
         }),
     );
 

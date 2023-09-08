@@ -46,6 +46,8 @@ export const CalendarEditPage = () => {
     React.useEffect(() => {
         const startDate = queryResult?.data?.data.startDate;
         const endDate = queryResult?.data?.data.endDate;
+        const utcStartDate = dayjs(startDate).utc();
+        const utcEndDate = dayjs(endDate).utc();
 
         form.setFieldsValue({
             categoryId: queryResult?.data?.data.category.id,
@@ -54,16 +56,16 @@ export const CalendarEditPage = () => {
             ),
         });
 
-        // if more then 12 hours, set as all day event
-        if (dayjs(endDate).diff(dayjs(startDate), "hours") > 12) {
+        // if more then 24 hours, set as all day event
+        if (utcEndDate.diff(utcStartDate, "hours") >= 23) {
             setIsAllDayEvent(true);
             form.setFieldsValue({
-                rangeDate: [dayjs(startDate).utc(), dayjs(endDate).utc()],
+                rangeDate: [utcStartDate, utcEndDate],
             });
         } else {
             form.setFieldsValue({
-                date: dayjs(startDate).utc(),
-                time: [dayjs(startDate).utc(), dayjs(endDate).utc()],
+                date: utcStartDate,
+                time: [utcStartDate, utcEndDate],
             });
         }
     }, [queryResult?.data]);
