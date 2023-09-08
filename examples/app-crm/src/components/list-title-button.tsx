@@ -1,6 +1,6 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useGo, useNavigation } from "@refinedev/core";
-import { Button } from "antd";
+import { Button, Grid } from "antd";
 import { useLocation } from "react-router-dom";
 
 import { Text } from "../components";
@@ -17,11 +17,11 @@ export const ListTitleButton: React.FC<ListTitleButtonProps> = ({
     const go = useGo();
     const { pathname } = useLocation();
     const { createUrl } = useNavigation();
+    const screens = Grid.useBreakpoint();
 
     return (
         <Button
             type="primary"
-            size="large"
             icon={<PlusCircleOutlined />}
             onClick={() => {
                 return go({
@@ -35,6 +35,8 @@ export const ListTitleButton: React.FC<ListTitleButtonProps> = ({
                     type: "replace",
                 });
             }}
+            size={screens.xs ? "middle" : "large"}
+            style={{ marginTop: screens.xs ? "1.6rem" : undefined }}
         >
             <Text
                 hideOnSizes={["sm"]}
