@@ -30,8 +30,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         sorters,
         setCurrent,
         setPageSize,
-        pageSize,
-        current,
+
         setFilters,
     } = useTable<Company, HttpError, { name: string }>({
         resource: "companies",
@@ -91,6 +90,8 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const onViewChange = (value: View) => {
         setView(value);
         setFilters([], "replace");
+        // TODO: useForm should handle this automatically. remove this when its fixed from antd useForm.
+        searchFormProps.form?.resetFields();
     };
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -170,17 +171,9 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                     />
                 ) : (
                     <CompaniesCardView
-                        loading={tableQueryResult.isLoading}
-                        companies={tableProps.dataSource || []}
-                        pagination={{
-                            pageSize,
-                            current,
-                            total: tableQueryResult.data?.total || 0,
-                            onChange: (page, pageSize) => {
-                                setCurrent(page);
-                                setPageSize(pageSize);
-                            },
-                        }}
+                        tableProps={tableProps}
+                        setPageSize={setPageSize}
+                        setCurrent={setCurrent}
                     />
                 )}
             </List>

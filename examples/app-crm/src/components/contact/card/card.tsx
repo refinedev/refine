@@ -14,18 +14,20 @@ import { CustomAvatar } from "../../custom-avatar";
 import { Contact } from "../../../interfaces/graphql";
 
 import styles from "./index.module.css";
+import { ContactCardSkeleton } from "./skeleton";
 
 type ContactCardProps = {
-    contact: Contact;
+    contact: Contact | null;
 };
 
 export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
-    const { name, email, status, jobTitle, company, avatarUrl, id } = contact;
-
     const navigate = useNavigate();
     const getToPath = useGetToPath();
     const { mutate: deleteMutate } = useDelete();
 
+    if (!contact) return <ContactCardSkeleton />;
+
+    const { name, email, status, jobTitle, company, avatarUrl, id } = contact;
     const items: MenuProps["items"] = [
         {
             label: "Show",

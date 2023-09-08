@@ -1,68 +1,80 @@
-import { Col, Pagination, Row, type TableProps } from "antd";
-
-import { ContactCard } from "./card";
+import { List, type TableProps } from "antd";
+import { ContactCard } from "./card/card";
 import { Contact } from "../../interfaces/graphql";
-import { CardSkeleton } from "./card/skeleton";
 import { PaginationTotal } from "../pagination-total";
+import { ListProps } from "antd/lib";
+import { useMemo } from "react";
+import { ContactCardSkeleton } from "./card/skeleton";
 
 type Props = {
     tableProps: TableProps<Contact>;
     setCurrent: (current: number) => void;
     setPageSize: (pageSize: number) => void;
-    loading?: boolean;
 };
 
 export const CardView: React.FC<Props> = ({
-    tableProps: { dataSource, pagination },
+    tableProps: { dataSource, pagination, loading },
     setCurrent,
     setPageSize,
-    loading,
 }) => {
-    return (
-        <div
-            style={{
-                marginTop: "1rem",
-            }}
-        >
-            <Row gutter={[32, 32]}>
-                {loading
-                    ? Array.from({ length: 12 }).map((_, index) => {
-                          return (
-                              <Col
-                                  key={index}
-                                  span="6"
-                                  lg={{ span: 6 }}
-                                  md={{ span: 12 }}
-                                  xs={{ span: 24 }}
-                              >
-                                  <CardSkeleton />
-                              </Col>
-                          );
-                      })
-                    : dataSource?.map((contact) => (
-                          <Col
-                              key={contact.id}
-                              span="6"
-                              lg={{ span: 6 }}
-                              md={{ span: 12 }}
-                              xs={{ span: 24 }}
-                          >
-                              <ContactCard contact={contact} />
-                          </Col>
-                      ))}
-            </Row>
+    const data = useMemo(() => {
+        return [...(dataSource || [])];
+    }, [dataSource]);
 
-            <Pagination
-                style={{ display: "flex", marginTop: "1rem" }}
-                {...pagination}
-                showTotal={(total) => (
-                    <PaginationTotal total={total} entityName="contacts" />
-                )}
-                onChange={(page, pageSize) => {
+    return (
+        <List
+            grid={{
+                gutter: 32,
+                column: 4,
+                xs: 1,
+                sm: 1,
+                md: 2,
+                lg: 2,
+                xl: 4,
+            }}
+            dataSource={data}
+            renderItem={(item) => (
+                <List.Item>
+                    <ContactCard contact={item} />
+                </List.Item>
+            )}
+            pagination={{
+                ...(pagination as ListProps<Contact>["pagination"]),
+                hideOnSinglePage: true,
+                itemRender: undefined,
+                position: "bottom",
+                style: { display: "flex", marginTop: "1rem" },
+                pageSizeOptions: ["12", "24", "48"],
+                onChange: (page, pageSize) => {
                     setCurrent(page);
                     setPageSize(pageSize);
-                }}
-            />
-        </div>
+                },
+                showTotal: (total) => (
+                    <PaginationTotal total={total} entityName="contacts" />
+                ),
+            }}
+        >
+            {loading ? (
+                <List
+                    grid={{
+                        gutter: 32,
+                        column: 4,
+                        xs: 1,
+                        sm: 1,
+                        md: 2,
+                        lg: 2,
+                        xl: 4,
+                    }}
+                    dataSource={Array.from({ length: 12 }).map((_, i) => ({
+                        id: i,
+                    }))}
+                    renderItem={() => (
+                        <List.Item>
+                            <ContactCardSkeleton />
+                        </List.Item>
+                    )}
+                />
+            ) : undefined}
+        </List>
     );
 };

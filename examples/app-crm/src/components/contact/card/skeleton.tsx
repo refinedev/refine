@@ -1,6 +1,6 @@
 import { Card, Skeleton, Space } from "antd";
 
-export const CardSkeleton = () => {
+export const ContactCardSkeleton = () => {
     return (
         <Card
             size="small"
