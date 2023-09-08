@@ -79,6 +79,10 @@ export const CompaniesMap: React.FC = () => {
                     scrollWheelZoom={false}
                     maxZoom={2}
                     zoomControl={false}
+                    maxBounds={[
+                        [-80, -180],
+                        [90, 180],
+                    ]}
                 >
                     <MarkerClusterGroup
                         chunkedLoading
