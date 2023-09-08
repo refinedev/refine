@@ -32,6 +32,10 @@ export const DashboardTotalCountCard: React.FC<{
     const { primaryColor, secondaryColor, icon, title } = variants[variant];
 
     const config: AreaConfig = {
+        className: styles.area,
+        appendPadding: [1, 0, 0, 0],
+        padding: 0,
+        syncViewPadding: true,
         data: variants[variant].data,
         autoFit: true,
         tooltip: false,
@@ -40,7 +44,7 @@ export const DashboardTotalCountCard: React.FC<{
         yField: "value",
         xAxis: false,
         yAxis: {
-            tickCount: 10,
+            tickCount: 12,
             label: {
                 style: {
                     fill: "transparent",
@@ -57,7 +61,7 @@ export const DashboardTotalCountCard: React.FC<{
         smooth: true,
         areaStyle: () => {
             return {
-                fill: `l(270) 0:${secondaryColor} 1:${primaryColor}`,
+                fill: `l(270) 0:#fff 0.2:${secondaryColor} 1:${primaryColor}`,
             };
         },
         line: {
