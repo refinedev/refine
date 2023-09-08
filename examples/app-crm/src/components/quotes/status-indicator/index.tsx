@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import cn from "classnames";
 import { HttpError, useUpdate } from "@refinedev/core";
 import { Quote, QuoteUpdateInput } from "../../../interfaces/graphql";
+import { quotesFragment } from "../quotes-fragment";
 
 import styles from "./index.module.css";
 
@@ -23,6 +24,9 @@ export const StatusIndicator: FC<Props> = ({ id, status, style }) => {
             },
             mutationMode: "optimistic",
             invalidates: [],
+            meta: {
+                fields: quotesFragment,
+            },
         });
     };
 
