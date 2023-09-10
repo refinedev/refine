@@ -17,7 +17,7 @@ export const getAllPackages = async (projectPath?: string) => {
 
                 return {
                     name: packageName,
-                    latestVersion: latestInfo?.version,
+                    latestVersion: latestInfo?.version ?? currentInfo?.version,
                     currentVersion: currentInfo?.version,
                     description: latestInfo?.description,
                     changelog: getChangelog(packageName),
