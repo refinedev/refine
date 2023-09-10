@@ -186,15 +186,18 @@ export const Monitor = () => {
                         className={clsx(
                             "re-ml-4",
                             "!re-px-2",
-                            "!re-py-1",
+                            "!re-py-2",
                             "re-flex",
                             "re-items-center",
                             "re-justify-center",
                             "re-gap-2",
+                            "re-bg-alt-blue",
+                            "re-bg-opacity-[0.15]",
+                            "!re-text-alt-blue",
                         )}
                     >
                         <FilterIcon />
-                        Filters
+                        <span className="re-text-alt-blue">Filters</span>
                     </Button>
                 </div>
                 <div>
