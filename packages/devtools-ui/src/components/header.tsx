@@ -110,35 +110,40 @@ export const Header = () => {
                 className={clsx(
                     "re-flex",
                     "re-items-center",
-                    "re-justify-center",
+                    "re-justify-end",
                     "re-gap-2",
                     "re-flex-shrink-0",
+                    "re-min-w-[168px]",
                 )}
             >
-                <div
-                    className={clsx(
-                        "re-w-9",
-                        "re-h-9",
-                        "re-text-gray-500",
-                        "re-flex",
-                        "re-justify-center",
-                        "re-items-center",
-                    )}
-                >
-                    <ContactIcon />
-                </div>
-                <div
-                    className={clsx(
-                        "re-w-9",
-                        "re-h-9",
-                        "re-text-gray-500",
-                        "re-flex",
-                        "re-justify-center",
-                        "re-items-center",
-                    )}
-                >
-                    <NotificationIcon />
-                </div>
+                {false && (
+                    <>
+                        <div
+                            className={clsx(
+                                "re-w-9",
+                                "re-h-9",
+                                "re-text-gray-500",
+                                "re-flex",
+                                "re-justify-center",
+                                "re-items-center",
+                            )}
+                        >
+                            <ContactIcon />
+                        </div>
+                        <div
+                            className={clsx(
+                                "re-w-9",
+                                "re-h-9",
+                                "re-text-gray-500",
+                                "re-flex",
+                                "re-justify-center",
+                                "re-items-center",
+                            )}
+                        >
+                            <NotificationIcon />
+                        </div>
+                    </>
+                )}
                 <div className={clsx("re-px-2")}>
                     <div
                         className={clsx(
