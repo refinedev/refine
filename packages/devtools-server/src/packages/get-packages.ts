@@ -1,10 +1,10 @@
 import path from "path";
-import fs from "fs";
+import { readJSON } from "fs-extra";
 
-export const getPackages = (projectPath: string = process.cwd()) => {
-    const packageJson = JSON.parse(
-        fs.readFileSync(path.join(projectPath, "package.json"), "utf-8"),
-    );
+export const getPackages = async (projectPath: string = process.cwd()) => {
+    const packageJson = await readJSON(path.join(projectPath, "package.json"), {
+        encoding: "utf-8",
+    });
 
     const refinePackages = Object.keys(packageJson.dependencies).filter(
         (packageName) => packageName.startsWith("@refinedev/"),
