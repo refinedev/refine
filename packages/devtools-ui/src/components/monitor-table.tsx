@@ -8,7 +8,7 @@ type Props = {
     table: Table<Activity>;
     columns: ColumnDef<Activity>[];
     selected: string | null;
-    onSelect: (identifier: string) => void;
+    onSelect: (identifier: string | null) => void;
 };
 
 export const MonitorTable = ({ table, columns, selected, onSelect }: Props) => {
@@ -98,7 +98,11 @@ export const MonitorTable = ({ table, columns, selected, onSelect }: Props) => {
                                         "re-cursor-pointer",
                                     )}
                                     onClick={() => {
-                                        onSelect(row.original.identifier);
+                                        onSelect(
+                                            selected === row.original.identifier
+                                                ? null
+                                                : row.original.identifier,
+                                        );
                                     }}
                                 >
                                     {row.getVisibleCells().map((cell) => (
