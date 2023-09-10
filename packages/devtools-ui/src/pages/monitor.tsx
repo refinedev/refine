@@ -94,7 +94,9 @@ export const Monitor = () => {
                 {
                     header: "Trace",
                     accessorFn: (activity) =>
-                        activity.trace?.map((t) => t.function).reverse(),
+                        [
+                            ...(activity.trace?.map((t) => t.function) ?? []),
+                        ].reverse(),
                     cell: (cell: Cell<Activity, string[] | undefined>) => {
                         return (
                             <div className={clsx("re-flex", "trace-list")}>
@@ -616,8 +618,11 @@ export const Monitor = () => {
                                                         "trace-list",
                                                     )}
                                                 >
-                                                    {selectedActivityRecord.trace
-                                                        ?.reverse()
+                                                    {[
+                                                        ...(selectedActivityRecord.trace ??
+                                                            []),
+                                                    ]
+                                                        .reverse()
                                                         .map((t, i, arr) => (
                                                             <div
                                                                 key={`${t}-${i}`}
