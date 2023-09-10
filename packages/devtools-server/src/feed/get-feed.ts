@@ -1,17 +1,11 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { FEED_MD_URL } from "src/constants";
+import { marked } from "marked";
+import sanitizeHtml from "sanitize-html";
 
-export type Section = {
-    content: string;
-    // frontmatter
-    title: string;
-    featured?: boolean;
-    date: string;
-    author: string;
-    avatar: string;
-    cover?: string;
-};
+import { Feed, FeedSection } from "@refinedev/devtools-shared";
+
+import { FEED_MD_URL } from "src/constants";
 
 const splitSections = (feed: string) => {
     const sections = feed.split("---section");
@@ -19,13 +13,25 @@ const splitSections = (feed: string) => {
     return sections.slice(1).map((section) => `---section${section}`);
 };
 
-const parseSection = (section: string): Section => {
+const contentToHtml = (content: string) => {
+    const html = marked(content);
+
+    return sanitizeHtml(html, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+        allowedAttributes: {
+            ...sanitizeHtml.defaults.allowedAttributes,
+            img: ["src"],
+        },
+    });
+};
+
+const parseSection = (section: string): FeedSection => {
     const parsed = matter(section.replace("---section", "---"));
 
     return {
         ...parsed.data,
-        content: parsed.content,
-    } as Section;
+        content: contentToHtml(parsed.content),
+    } as FeedSection;
 };
 
 const fetchFeed = async () => {
@@ -37,7 +43,7 @@ const fetchFeed = async () => {
     return response.text();
 };
 
-export const getFeed = async () => {
+export const getFeed = async (): Promise<Feed> => {
     try {
         const rawContent = await fetchFeed();
         const rawSections = splitSections(rawContent);

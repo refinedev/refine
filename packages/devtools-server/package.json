@@ -40,7 +40,10 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "execa": "^5.1.1",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "marked": "^4.3.0",
+    "sanitize-html": "^2.11.0",
+    "preferred-pm": "^3.0.3"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
@@ -63,7 +66,9 @@
     "@vitejs/plugin-react": "^4.0.0",
     "vite": "^4.3.1",
     "typescript": "^4.7.4",
-    "esbuild-copy-static-files": "^0.1.0"
+    "esbuild-copy-static-files": "^0.1.0",
+    "@types/sanitize-html": "^2.9.0",
+    "@types/marked": "^5.0.1"
   },
   "repository": {
     "type": "git",
