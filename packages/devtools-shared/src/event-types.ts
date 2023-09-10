@@ -6,7 +6,7 @@ import {
     QueryState,
     QueryStatus,
 } from "@tanstack/react-query";
-import { TraceType } from "./meta-types";
+import { TraceType } from "./trace";
 
 export enum DevtoolsEvent {
     RELOAD = "devtools:reload",

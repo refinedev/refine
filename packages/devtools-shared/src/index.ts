@@ -1,5 +1,7 @@
 export { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
-export { TraceType } from "./meta-types";
+export { TraceType } from "./trace";
+export { Feed, FeedSection } from "./feed";
+export { PackageType } from "./package";
 
 export { DevToolsContextProvider, DevToolsContext } from "./context";
 
