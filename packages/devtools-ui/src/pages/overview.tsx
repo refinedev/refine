@@ -1,5 +1,40 @@
 import React from "react";
+import clsx from "clsx";
+
+import { Feed } from "src/components/feed";
+import { Packages } from "src/components/packages";
 
 export const Overview = () => {
-    return <div className="re-text-gray-0">overview page</div>;
+    return (
+        <div
+            className={clsx(
+                "re-flex",
+                "re-flex-col",
+                "large:re-flex-row",
+                "re-gap-8",
+                "re-w-full",
+                "re-max-w-full",
+                "re-overflow-hidden",
+                "re-px-10",
+                "large:re-px-0",
+                "re-max-w-[640px]",
+                "large:re-max-w-none",
+                "re-mx-auto",
+                "large:re-mx-0",
+            )}
+        >
+            <Feed />
+            <div
+                className={clsx(
+                    "re-hidden",
+                    "large:re-block",
+                    "re-h-auto",
+                    "re-w-px",
+                    "re-bg-gray-700",
+                    "re-flex-shrink-0",
+                )}
+            />
+            <Packages />
+        </div>
+    );
 };

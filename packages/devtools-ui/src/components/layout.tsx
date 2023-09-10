@@ -24,6 +24,7 @@ export const Layout = ({ children }: Props) => {
                     "re-w-full",
                     "re-h-full",
                     "re-overflow-hidden",
+                    "re-h-[calc(100vh-36px-8px-8px-1px)]",
                 )}
             >
                 <Sidebar />

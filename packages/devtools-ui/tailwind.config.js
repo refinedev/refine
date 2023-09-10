@@ -6,6 +6,17 @@ module.exports = {
     prefix: "re-",
     theme: {
         extend: {
+            screens: {
+                large: { min: "960px" },
+            },
+            backgroundImage: {
+                "feed-item-featured":
+                    "radial-gradient(26.38% 26.38% at 100% 0%, rgba(237, 94, 201, 0.33) 0%, rgba(237, 94, 201, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",
+                "feed-item-new":
+                    "radial-gradient(41.75% 41.75% at 100% 0%, rgba(71, 235, 235, 0.20) 0%, rgba(71, 235, 235, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",
+                "package-item-has-updates":
+                    "radial-gradient(43.74% 43.74% at 100% 0%, rgba(110, 179, 247, 0.20) 0%, rgba(110, 179, 247, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",
+            },
             fontFamily: {
                 sans: ["Inter", ...defaultTheme.fontFamily.sans],
             },
@@ -33,9 +44,10 @@ module.exports = {
                     green: "#26D97F",
                     red: "#FF4C4D",
                     yellow: "#FFBF00",
+                    pink: "#ED5EC9",
                 },
             },
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/typography")],
 };

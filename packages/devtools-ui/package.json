@@ -39,7 +39,8 @@
     "clsx": "^1.1.1",
     "react-router-dom": "^6.8.1",
     "dayjs": "^1.10.7",
-    "react-json-view": "^1.21.3"
+    "react-json-view": "^1.21.3",
+    "semver-diff": "^3.1.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
@@ -59,7 +60,8 @@
     "tsup": "^6.7.0",
     "autoprefixer": "^10.4.1",
     "postcss": "^8.1.4",
-    "tailwindcss": "^3.0.11"
+    "tailwindcss": "^3.0.11",
+    "@tailwindcss/typography": "^0.5.9"
   },
   "repository": {
     "type": "git",
