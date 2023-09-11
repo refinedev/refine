@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const Menu = () => {
   const { menuItems } = useMenu();
   return (
-    <nav>
+    <nav className="mb-4">
       <ul className="flex border-b-1 py-2">
         {menuItems.map((item) => (
           <li key={item.key} className="mr-4">
