@@ -1,7 +1,7 @@
 import { Card, Skeleton, Space } from "antd";
-import { Text } from "..";
+import { Text } from "../..";
 
-export const CardSkeleton = () => {
+export const CompanyCardSkeleton = () => {
     return (
         <Card
             size="small"
