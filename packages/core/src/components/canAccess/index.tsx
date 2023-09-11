@@ -35,7 +35,7 @@ type CanAccessBaseProps = {
      */
     fallback?: React.ReactNode;
     /**
-     * Callback function to be called if access control returns `false`
+     * Callback function to be called if access control returns `can: false`
      */
     onUnauthorized?: (props: OnUnauthorizedProps) => void;
     children: React.ReactNode;
