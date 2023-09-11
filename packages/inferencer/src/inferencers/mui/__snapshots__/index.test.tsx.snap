@@ -383,7 +383,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
               <div
                 class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
                 role="presentation"
-                style="width: auto; height: 104px; min-height: auto;"
+                style="width: auto; min-height: auto; height: 104px;"
               >
                 <div
                   class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
@@ -41255,7 +41255,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
           <p
             class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
           >
-            04/02/2022
+            04/01/2022
           </p>
           <p
             class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
