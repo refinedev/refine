@@ -39,7 +39,7 @@ This example provides a great starting point to learn how to build a full-fledge
 refine is a React-based powerful framework for building low-code applications. It is primarily focused on implementing data-heavy apps such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems such and UI frameworks. It is highly customizable and extensible. In this example, you get an opportunity to learn how to integrate **daisyUI** with **refine** for building an admin panel app.
 
 
-Refer to the complete tutorial of this app [here](PLEASE ADD THE TUTORIAL LINK HERE)
+Refer to the complete tutorial of this app [here.](https://refine.dev/blog/daisy-ui-react-admin-panel/)
 
 
 ## Quick Start
