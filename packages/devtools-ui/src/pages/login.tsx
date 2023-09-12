@@ -28,6 +28,8 @@ export const Login = () => {
     return (
         <div
             className={clsx(
+                "re-bg-gray-900",
+                "re-h-full",
                 "re-flex",
                 "re-items-center",
                 "re-justify-center",
@@ -55,9 +57,10 @@ export const Login = () => {
                         "re-items-center",
                     )}
                 >
-                    <LogoIcon height={80} width={336} />
+                    <LogoIcon height={60} width={252} />
                     <div
                         className={clsx(
+                            "re-w-full",
                             "re-flex",
                             "re-flex-col",
                             "re-items-center",
@@ -70,6 +73,7 @@ export const Login = () => {
                                 key={name}
                                 type="button"
                                 className={clsx(
+                                    "re-w-full",
                                     "re-py-4",
                                     "re-px-8",
                                     "re-bg-gray-0",

@@ -49,6 +49,8 @@ export const Onboarding = () => {
     return (
         <div
             className={clsx(
+                "re-bg-gray-900",
+                "re-h-full",
                 "re-flex",
                 "re-items-center",
                 "re-justify-center",

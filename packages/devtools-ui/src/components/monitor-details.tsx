@@ -307,6 +307,33 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                 </div>
                                 <JsonViewer data={activity.key ?? []} />
                             </div>
+                            {activity.type === "mutation" &&
+                                activity.variables && (
+                                    <div
+                                        className={clsx(
+                                            "re-px-2",
+                                            "re-py-4",
+                                            "re-flex",
+                                            "re-flex-col",
+                                            "re-gap-2",
+                                            "re-border-b",
+                                            "re-border-b-gray-700",
+                                        )}
+                                    >
+                                        <div
+                                            className={clsx(
+                                                "re-text-xs",
+                                                "re-font-semibold",
+                                                "re-text-gray-300",
+                                            )}
+                                        >
+                                            Variables
+                                        </div>
+                                        <JsonViewer
+                                            data={activity.variables ?? {}}
+                                        />
+                                    </div>
+                                )}
                             {activity.state.data && (
                                 <div
                                     className={clsx(
