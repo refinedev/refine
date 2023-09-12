@@ -4,6 +4,9 @@ import {
     DevToolsContext,
     DevtoolsEvent,
     receive,
+    hooksByScope,
+    RefineHook,
+    Scopes,
 } from "@refinedev/devtools-shared";
 import {
     Cell,
@@ -16,14 +19,13 @@ import {
 } from "@tanstack/react-table";
 import dayjs from "dayjs";
 
-import { Button } from "src/components/button";
-import { FilterIcon } from "src/components/icons/filter";
 import { ResizablePane } from "src/components/resizable-pane";
 import type { Activity } from "src/interfaces/activity";
 import { Status } from "src/components/status";
 import { MonitorDetails } from "src/components/monitor-details";
 import { TraceList } from "src/components/trace-list";
 import { MonitorTable } from "src/components/monitor-table";
+import { Filters, MonitorFilters } from "src/components/monitor-filters";
 
 export const Monitor = () => {
     const { ws } = React.useContext(DevToolsContext);
@@ -84,7 +86,14 @@ export const Monitor = () => {
                     minSize: 100,
                     accessorFn: (activity) => {
                         const value = (activity.key as any)?.[1];
-                        return value?.charAt(0).toUpperCase() + value?.slice(1);
+                        if (typeof value === "string") {
+                            return (
+                                value?.charAt?.(0).toUpperCase() +
+                                value?.slice?.(1)
+                            );
+                        } else {
+                            return "";
+                        }
                     },
                 },
                 {
@@ -126,6 +135,62 @@ export const Monitor = () => {
         [],
     );
 
+    const [filters, setFilters] = React.useState<Filters>({
+        hook: [],
+        parent: undefined,
+        resource: undefined,
+        scope: ["data"],
+        status: [],
+    });
+
+    const data = React.useMemo(() => {
+        let filtered = [...activities];
+
+        if (filters.scope && filters.scope.length > 0) {
+            const allowedHooks: RefineHook[] = [];
+            filters.scope.forEach((scope) => {
+                allowedHooks.push(...hooksByScope[scope as Scopes]);
+            });
+
+            filtered = filtered.filter((activity) =>
+                allowedHooks.includes(activity.hookName as RefineHook),
+            );
+        }
+        if (filters.hook && filters.hook.length > 0) {
+            filtered = filtered.filter((activity) =>
+                filters.hook.includes(activity.hookName),
+            );
+        }
+        if (filters.parent) {
+            filtered = filtered.filter((activity) => {
+                const regex = new RegExp(
+                    (filters.parent ?? "")
+                        .split(/[, ]+/)
+                        .map((s) => `(${s.toLowerCase().trim()})`)
+                        .join(".*"),
+                    "i",
+                );
+
+                return activity.trace
+                    ?.map((t) => t.function?.toLowerCase())
+                    .reverse()
+                    .join(",")
+                    .match(regex);
+            });
+        }
+        if (filters.resource) {
+            //
+        }
+
+        if (filters.status && filters.status.length > 0) {
+            filtered = filtered.filter((activity) =>
+                filters.status.includes(activity.status as any),
+            );
+        }
+
+        return filtered;
+    }, [activities, filters]);
+
     const [sorting, setSorting] = React.useState<SortingState>([
         {
             id: "createdAt",
@@ -135,7 +200,7 @@ export const Monitor = () => {
 
     const tableInstance = useReactTable({
         columns,
-        data: activities,
+        data,
         state: {
             sorting,
         },
@@ -182,23 +247,10 @@ export const Monitor = () => {
                     >
                         Monitor
                     </div>
-                    <Button
-                        className={clsx(
-                            "re-ml-4",
-                            "!re-px-2",
-                            "!re-py-2",
-                            "re-flex",
-                            "re-items-center",
-                            "re-justify-center",
-                            "re-gap-2",
-                            "re-bg-alt-blue",
-                            "re-bg-opacity-[0.15]",
-                            "!re-text-alt-blue",
-                        )}
-                    >
-                        <FilterIcon />
-                        <span className="re-text-alt-blue">Filters</span>
-                    </Button>
+                    <MonitorFilters
+                        filters={filters}
+                        onSubmit={(f) => setFilters(f)}
+                    />
                 </div>
                 <div>
                     <div className={clsx("re-text-xs", "re-text-gray-300")}>

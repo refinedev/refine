@@ -9,6 +9,9 @@ module.exports = {
             screens: {
                 large: { min: "960px" },
             },
+            boxShadow: {
+                "monitor-filters": "0px 16px 32px 16px rgba(0, 0, 0, 0.75)",
+            },
             backgroundImage: {
                 "feed-item-featured":
                     "radial-gradient(26.38% 26.38% at 100% 0%, rgba(237, 94, 201, 0.33) 0%, rgba(237, 94, 201, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",

@@ -39,6 +39,7 @@
     "clsx": "^1.1.1",
     "react-router-dom": "^6.8.1",
     "dayjs": "^1.10.7",
+    "lodash": "^4.17.21",
     "react-json-view": "^1.21.3",
     "semver-diff": "^3.1.1"
   },

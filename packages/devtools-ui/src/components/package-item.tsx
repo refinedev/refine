@@ -14,7 +14,10 @@ type Props = {
 };
 
 export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
-    const updateKind = semverDiff(item.currentVersion, item.latestVersion);
+    const updateKind =
+        item.currentVersion && item.latestVersion
+            ? semverDiff(item.currentVersion, item.latestVersion)
+            : undefined;
 
     const hasUpdate = typeof updateKind !== "undefined";
 

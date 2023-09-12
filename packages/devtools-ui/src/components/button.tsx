@@ -7,21 +7,24 @@ type Props = {
     className?: string;
 };
 
-export const Button = ({ children, onClick, className }: Props) => {
-    return (
-        <button
-            onClick={onClick}
-            className={clsx(
-                "re-rounded",
-                "re-py-2",
-                "re-px-4",
-                "re-text-xs",
-                "re-text-gray-0",
-                "re-bg-brand-blue",
-                className,
-            )}
-        >
-            {children}
-        </button>
-    );
-};
+export const Button = React.forwardRef<HTMLButtonElement, Props>(
+    function Button({ children, onClick, className }, ref) {
+        return (
+            <button
+                ref={ref}
+                onClick={onClick}
+                className={clsx(
+                    "re-rounded",
+                    "re-py-2",
+                    "re-px-4",
+                    "re-text-xs",
+                    "re-text-gray-0",
+                    "re-bg-brand-blue",
+                    className,
+                )}
+            >
+                {children}
+            </button>
+        );
+    },
+);
