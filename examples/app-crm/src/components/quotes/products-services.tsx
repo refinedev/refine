@@ -402,6 +402,7 @@ const TotalSection = (props: {
                         style={{
                             display: "flex",
                             gap: "16px",
+                            justifyContent: "space-between",
                         }}
                     >
                         <div>
@@ -425,7 +426,7 @@ const TotalSection = (props: {
                         <div
                             style={{
                                 width: "96px",
-                                marginLeft: "16px",
+                                justifyContent: "space-between",
                             }}
                         >
                             <TaxForm
@@ -440,6 +441,7 @@ const TotalSection = (props: {
                         style={{
                             display: "flex",
                             gap: "16px",
+                            justifyContent: "space-between",
                         }}
                     >
                         <div>
