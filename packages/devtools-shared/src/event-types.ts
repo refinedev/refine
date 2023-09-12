@@ -33,6 +33,9 @@ type ActivityPayload =
           trace?: TraceType[];
           state: Mutation<any, any, any, any>["state"];
           variables?: Mutation<any, any, any, any>["state"]["variables"];
+          hookName: string;
+          resourcePath: string;
+          legacyKey: boolean;
       }
     | {
           type: "query";
@@ -41,6 +44,9 @@ type ActivityPayload =
           status?: QueryStatus;
           trace?: TraceType[];
           state: QueryState<any, any>;
+          hookName: string;
+          resourcePath: string;
+          legacyKey: boolean;
       };
 
 export type DevtoolsEventPayloads = {
