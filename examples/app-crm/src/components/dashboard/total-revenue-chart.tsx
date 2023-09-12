@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Card, Skeleton, Space } from "antd";
 import { Gauge, GaugeConfig } from "@ant-design/plots";
 import { DollarOutlined } from "@ant-design/icons";
@@ -58,7 +58,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                         }
                     }
                 }
-            }                         
+            }
             `,
         },
     });

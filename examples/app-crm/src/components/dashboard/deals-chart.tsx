@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Card, Button, theme } from "antd";
+import { Card, Button } from "antd";
 import { Area, AreaConfig } from "@ant-design/plots";
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useCustom, useNavigation } from "@refinedev/core";
@@ -45,7 +45,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                       }
                     }
                   }
-              }              
+              }
             `,
         },
     });

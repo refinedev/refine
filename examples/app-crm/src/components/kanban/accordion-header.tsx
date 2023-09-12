@@ -17,7 +17,6 @@ export const AccordionHeader = ({
     isActive,
     fallback,
     isLoading = false,
-    onClick,
     children,
 }: Props) => {
     if (isLoading) {

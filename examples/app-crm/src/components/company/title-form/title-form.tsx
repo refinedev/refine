@@ -1,11 +1,11 @@
 import { HttpError } from "@refinedev/core";
-import { Avatar, Button, Form, Select, Skeleton, Space } from "antd";
+import { Button, Form, Select, Skeleton, Space } from "antd";
 import { useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 
 import { useForm, useSelect } from "@refinedev/antd";
 import { CustomAvatar, Text } from "../../../components";
-import { getNameInitials, getRandomColorFromString } from "../../../utilities";
+import { getNameInitials } from "../../../utilities";
 import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 import { Company, User } from "../../../interfaces/graphql";
 

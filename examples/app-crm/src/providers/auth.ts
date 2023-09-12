@@ -154,7 +154,7 @@ export const authProvider: AuthBindings = {
     },
     check: async () => {
         try {
-            const response = await dataProvider.custom({
+            await dataProvider.custom({
                 url: API_URL,
                 method: "post",
                 headers: {},

@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGetToPath, useParsed } from "@refinedev/core";
+import { useGetToPath } from "@refinedev/core";
 import { useModalForm } from "@refinedev/antd";
 import { Form, Input, Modal } from "antd";
 
