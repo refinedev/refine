@@ -6,13 +6,26 @@ import {
     getDefaultSortOrder,
     List,
 } from "@refinedev/antd";
-import { DatePicker, Input, Radio, Space, Table } from "antd";
+import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 import { ActionCell } from "../../components/audit-log/action-cell";
 import { CustomAvatar, Text } from "../../components";
 import { Audit } from "../../interfaces/graphql";
 import { PaginationTotal } from "../../components/pagination-total";
+
+const getActionColor = (action: string): TagProps["color"] => {
+    switch (action) {
+        case "CREATE":
+            return "green";
+        case "UPDATE":
+            return "cyan";
+        case "DELETE":
+            return "red";
+        default:
+            return "default";
+    }
+};
 
 export const AuditLogPage = () => {
     const { tableProps, filters, sorters } = useTable<Audit>({
@@ -101,7 +114,16 @@ export const AuditLogPage = () => {
                         dataIndex="action"
                         title="Action"
                         render={(_, record: Audit) => {
-                            return <ActionCell record={record} />;
+                            return (
+                                <Space>
+                                    <Tag color={getActionColor(record.action)}>
+                                        {record.action.charAt(0) +
+                                            record.action
+                                                .slice(1)
+                                                .toLowerCase()}
+                                    </Tag>
+                                </Space>
+                            );
                         }}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
@@ -116,6 +138,15 @@ export const AuditLogPage = () => {
                             "action",
                             filters,
                             "eq",
+                        )}
+                    />
+                    <Table.Column dataIndex="targetEntity" title="Entity" />
+                    <Table.Column dataIndex="targetId" title="Entity ID" />
+                    <Table.Column
+                        dataIndex="changes"
+                        title="Changes"
+                        render={(_, record: Audit) => (
+                            <ActionCell record={record} />
                         )}
                     />
                     <Table.Column

@@ -1,23 +1,10 @@
 import { useState } from "react";
-import { DownCircleOutlined } from "@ant-design/icons";
-import { TagProps, Space, Tag, Button, Table } from "antd";
+import { ZoomInOutlined } from "@ant-design/icons";
+import { Button, Table, Modal } from "antd";
 import { ColumnsType } from "antd/es/table";
 
 import { Text } from "../text";
 import { Audit, AuditChange } from "../../interfaces/graphql";
-
-const getActionColor = (action: string): TagProps["color"] => {
-    switch (action) {
-        case "CREATE":
-            return "green";
-        case "UPDATE":
-            return "cyan";
-        case "DELETE":
-            return "red";
-        default:
-            return "default";
-    }
-};
 
 export const ActionCell = ({ record }: { record: Audit }) => {
     const [opened, setOpened] = useState(false);
@@ -60,34 +47,35 @@ export const ActionCell = ({ record }: { record: Audit }) => {
                     justifyContent: "space-between",
                 }}
             >
-                <Space>
-                    <Tag color={getActionColor(record.action)}>
-                        {record.action.charAt(0) +
-                            record.action.slice(1).toLowerCase()}
-                    </Tag>
-                    <span>
-                        <Text strong>{record.targetEntity}</Text> with id{" "}
-                        <Text strong>{record.targetId}</Text>
-                    </span>
-                </Space>
                 <Button
                     size="small"
-                    icon={<DownCircleOutlined />}
+                    icon={<ZoomInOutlined />}
                     onClick={() => setOpened((prev) => !prev)}
                 >
                     Details
                 </Button>
             </div>
             {opened && (
-                <Table
-                    dataSource={record.changes}
-                    pagination={false}
-                    rowKey="field"
-                    bordered
-                    size="small"
-                    scroll={{ x: true }}
-                    columns={columns}
-                />
+                <Modal
+                    open={opened}
+                    onOk={() => setOpened(false)}
+                    onCancel={() => setOpened(false)}
+                    style={{ minWidth: "60vw" }}
+                    bodyStyle={{
+                        maxHeight: "500px",
+                        overflow: "auto",
+                    }}
+                >
+                    <Table
+                        dataSource={record.changes}
+                        pagination={false}
+                        rowKey="field"
+                        bordered
+                        size="small"
+                        scroll={{ x: true }}
+                        columns={columns}
+                    />
+                </Modal>
             )}
         </div>
     );
