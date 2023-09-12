@@ -20,7 +20,7 @@ export const CalendarPageWrapper: React.FC<React.PropsWithChildren> = ({
     >([]);
 
     return (
-        <div className="">
+        <div className="page-container">
             <Row gutter={[32, 32]}>
                 <Col xs={24} xl={6}>
                     <CreateButton

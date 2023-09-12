@@ -10,7 +10,7 @@ import {
 
 export const CompanyEditPage = () => {
     return (
-        <div>
+        <div className="page-container">
             <CompanyTitleForm />
             <Row
                 gutter={[32, 32]}
