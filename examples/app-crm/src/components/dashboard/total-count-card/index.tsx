@@ -74,37 +74,32 @@ export const DashboardTotalCountCard: React.FC<{
             style={{ height: "96px", padding: 0 }}
             bodyStyle={{
                 padding: "8px 8px 8px 12px",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
             }}
             size="small"
         >
             <div
                 style={{
                     display: "flex",
-                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "8px",
+                    whiteSpace: "nowrap",
+                }}
+            >
+                {icon}
+                <Text
+                    size="md"
+                    className="secondary"
+                    style={{ marginLeft: "8px" }}
+                >
+                    {title}
+                </Text>
+            </div>
+            <div
+                style={{
+                    display: "flex",
                     justifyContent: "space-between",
                 }}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        whiteSpace: "nowrap",
-                    }}
-                >
-                    {icon}
-                    <Text
-                        size="md"
-                        className="secondary"
-                        style={{ marginLeft: "8px" }}
-                    >
-                        {title}
-                    </Text>
-                </div>
                 <Text
                     size="xxxl"
                     strong
@@ -125,8 +120,6 @@ export const DashboardTotalCountCard: React.FC<{
                         data?.data[variant].totalCount
                     )}
                 </Text>
-            </div>
-            <div className={styles.areaChartWrapper}>
                 <Area {...config} />
             </div>
         </Card>

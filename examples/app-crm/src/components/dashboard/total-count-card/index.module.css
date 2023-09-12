@@ -1,13 +1,3 @@
-.areaChartWrapper {
-    height: 100%;
-    margin-left: auto;
-    display: flex;
-    flex-grow: 0;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding-bottom: 8px;
-}
-
 .area {
     height: 48px !important;
 
