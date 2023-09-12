@@ -36,8 +36,8 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
         sorters: {
             initial: [
                 {
-                    field: "id",
-                    order: "desc",
+                    field: "createdAt",
+                    order: "asc",
                 },
             ],
         },
