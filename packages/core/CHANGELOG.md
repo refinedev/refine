@@ -1,5 +1,49 @@
 # @refinedev/core
 
+## 4.38.0
+
+### Minor Changes
+
+-   [#4906](https://github.com/refinedev/refine/pull/4906) [`58d3d605510`](https://github.com/refinedev/refine/commit/58d3d605510954a4355a4db3069d68060a062e59) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `onUnauthorized` callback to `<CanAccess />` component. This callback to be called when [`useCan`](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/) returns false.
+
+    ```tsx
+    <CanAccess
+        onUnauthorized={({ resource, reason, action, params }) =>
+            console.log(
+                `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
+            )
+        }
+    >
+        <YourComponent />
+    </CanAccess>
+    ```
+
+### Patch Changes
+
+-   [#4926](https://github.com/refinedev/refine/pull/4926) [`053798ae52b`](https://github.com/refinedev/refine/commit/053798ae52b172520aff624a7b518d6dd914ddb7) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: update `useForm` warn condition
+
+## 4.37.0
+
+### Minor Changes
+
+-   [#4906](https://github.com/refinedev/refine/pull/4906) [`58d3d605510`](https://github.com/refinedev/refine/commit/58d3d605510954a4355a4db3069d68060a062e59) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `onUnauthorized` callback to `<CanAccess />` component. This callback to be called when [`useCan`](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/) returns false.
+
+    ```tsx
+    <CanAccess
+        onUnauthorized={({ resource, reason, action, params }) =>
+            console.log(
+                `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
+            )
+        }
+    >
+        <YourComponent />
+    </CanAccess>
+    ```
+
+### Patch Changes
+
+-   [#4926](https://github.com/refinedev/refine/pull/4926) [`053798ae52b`](https://github.com/refinedev/refine/commit/053798ae52b172520aff624a7b518d6dd914ddb7) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: update `useForm` warn condition
+
 ## 4.36.2
 
 ### Patch Changes

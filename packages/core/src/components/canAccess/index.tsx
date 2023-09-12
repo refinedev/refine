@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useCan, useResource } from "@hooks";
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
+
+type CanParams = {
+    resource?: IResourceItem & { children?: ITreeMenu[] };
+    id?: BaseKey;
+    [key: string]: any;
+};
+
+type OnUnauthorizedProps = {
+    resource?: string;
+    reason?: string;
+    action: string;
+    params: CanParams;
+};
 
 type CanAccessBaseProps = {
     /**
@@ -16,15 +29,15 @@ type CanAccessBaseProps = {
      * Parameters associated with the resource
      * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
      */
-    params?: {
-        resource?: IResourceItem & { children?: ITreeMenu[] };
-        id?: BaseKey;
-        [key: string]: any;
-    };
+    params?: CanParams;
     /**
      * Content to show if access control returns `false`
      */
     fallback?: React.ReactNode;
+    /**
+     * Callback function to be called if access control returns `can: false`
+     */
+    onUnauthorized?: (props: OnUnauthorizedProps) => void;
     children: React.ReactNode;
 };
 
@@ -42,8 +55,9 @@ export type CanAccessProps = CanAccessBaseProps | CanAccessWithoutParamsProps;
 export const CanAccess: React.FC<CanAccessProps> = ({
     resource: resourceFromProp,
     action: actionFromProp,
-    params,
+    params: paramsFromProp,
     fallback,
+    onUnauthorized,
     children,
     ...rest
 }) => {
@@ -55,24 +69,39 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     const { identifier } = useResource();
 
     const getDefaultId = () => {
-        const idFromPropsOrRoute = params?.id ?? idFromRoute;
+        const idFromPropsOrRoute = paramsFromProp?.id ?? idFromRoute;
 
         if (resourceFromProp && resourceFromProp !== identifier) {
-            return params?.id;
+            return paramsFromProp?.id;
         }
 
         return idFromPropsOrRoute;
     };
     const defaultId = getDefaultId();
 
+    const resourceName = resourceFromProp ?? resource?.name;
+    const action = actionFromProp ?? actionFromRoute ?? "";
+    const params = paramsFromProp ?? {
+        id: defaultId,
+        resource: resource,
+    };
+
     const { data } = useCan({
-        resource: resourceFromProp ?? resource?.name,
-        action: actionFromProp ?? actionFromRoute ?? "",
-        params: params ?? {
-            id: defaultId,
-            resource: resource,
-        },
+        resource: resourceName,
+        action,
+        params,
     });
+
+    useEffect(() => {
+        if (onUnauthorized && data?.can === false) {
+            onUnauthorized({
+                resource: resourceName,
+                action,
+                reason: data?.reason,
+                params,
+            });
+        }
+    }, [data?.can]);
 
     if (data?.can) {
         if (React.isValidElement(children)) {
