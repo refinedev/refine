@@ -1,10 +1,14 @@
-import { DevtoolsEvent, TraceType, send } from "@refinedev/devtools-shared";
+import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 import { Mutation, Query } from "@tanstack/react-query";
+
 import { createIdentifier } from "./create-identifier";
+import { XRayResponse } from "./get-xray";
 
 export const createMutationListener =
     (ws: WebSocket) => (mutation?: Mutation) => {
         if (!mutation?.meta?.trace) return;
+
+        const meta: XRayResponse = mutation?.meta as any;
 
         new Promise<void>((resolve) => {
             send(ws, DevtoolsEvent.ACTIVITY, {
@@ -15,9 +19,9 @@ export const createMutationListener =
                 ),
                 key: mutation?.options.mutationKey as any,
                 status: mutation?.state.status,
-                trace: mutation?.meta?.trace as TraceType[],
                 state: mutation?.state,
                 variables: mutation?.state?.variables,
+                ...meta,
             });
             resolve();
         });
@@ -36,6 +40,8 @@ export const createMutationListener =
 export const createQueryListener = (ws: WebSocket) => (query: Query) => {
     if (!query?.meta?.trace) return;
 
+    const meta: XRayResponse = query?.meta as any;
+
     new Promise<void>((resolve) => {
         send(ws, DevtoolsEvent.ACTIVITY, {
             type: "query",
@@ -45,8 +51,8 @@ export const createQueryListener = (ws: WebSocket) => (query: Query) => {
             ),
             key: query.queryKey as any,
             status: query.state.status,
-            trace: query.meta?.trace as TraceType[],
             state: query.state,
+            ...meta,
         });
         resolve();
     });
