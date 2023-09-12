@@ -12,7 +12,7 @@
     "@refinedev/antd": "^5.34.0",
     "@refinedev/cli": "^2.7.6",
     "@refinedev/core": "^4.34.0",
-    "@refinedev/nestjs-query": "^1.0.0",
+    "@refinedev/nestjs-query": "^1.0.1",
     "@refinedev/react-router-v6": "^4.5.0",
     "@tanstack/react-query-devtools": "^4.32.6",
     "@uiw/react-md-editor": "^3.19.5",
