@@ -1,24 +1,16 @@
-import path from "path";
 import fs from "fs";
+import { getInstalledPackageJSONPath } from "./get-installed-package-json-path";
 
 export const getInstalledPackageData = async (packageName: string) => {
     try {
-        const packagePath = require.resolve(packageName);
+        const packagePath = await getInstalledPackageJSONPath(packageName);
 
         if (!packagePath) {
             return null;
         }
 
-        const packageDirectoryName = packageName.replace(/^@.*\//, "");
-        const packageDirectoryPath = packagePath.replace(
-            new RegExp(`/${packageDirectoryName}.*$`),
-            `/${packageDirectoryName}`,
-        );
-
-        const packageJsonPath = path.join(packageDirectoryPath, "package.json");
-
         const parsed = JSON.parse(
-            fs.readFileSync(packageJsonPath, { encoding: "utf-8" }),
+            fs.readFileSync(packagePath, { encoding: "utf-8" }),
         );
 
         return {

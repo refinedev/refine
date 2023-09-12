@@ -1,7 +1,9 @@
 import path from "path";
 import { readJSON } from "fs-extra";
 
-export const getPackages = async (projectPath: string = process.cwd()) => {
+export const getPackagesFromPackageJSON = async (
+    projectPath: string = process.cwd(),
+) => {
     const packageJson = await readJSON(path.join(projectPath, "package.json"), {
         encoding: "utf-8",
     });

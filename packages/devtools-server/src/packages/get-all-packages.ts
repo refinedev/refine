@@ -1,13 +1,13 @@
 import { PackageType } from "@refinedev/devtools-shared";
 import { getInstalledPackageData } from "./get-installed-package-data";
 import { getLatestPackageData } from "./get-latest-package-data";
-import { getPackages } from "./get-packages";
+import { getPackagesFromPackageJSON } from "./get-packages-from-package-json";
 import { getChangelog } from "./get-changelog";
 import { getDocumentation } from "./get-documentation";
 
 export const getAllPackages = async (projectPath?: string) => {
     try {
-        const refinePackages = await getPackages(projectPath);
+        const refinePackages = await getPackagesFromPackageJSON(projectPath);
         const installedVersions = await Promise.all(
             refinePackages.map(async (packageName) => {
                 const [latestInfo, currentInfo] = await Promise.all([
