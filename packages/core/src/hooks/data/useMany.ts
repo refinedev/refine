@@ -3,7 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     BaseRecord,
@@ -244,7 +244,7 @@ export const useMany = <
             },
             meta: {
                 ...queryOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useMany", preferLegacyKeys),
             },
         },
     );

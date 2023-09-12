@@ -3,7 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     GetOneResponse,
@@ -242,7 +242,7 @@ export const useOne = <
             },
             meta: {
                 ...queryOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useOne", preferLegacyKeys),
             },
         },
     );

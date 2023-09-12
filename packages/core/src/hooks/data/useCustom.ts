@@ -3,7 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
@@ -216,7 +216,7 @@ export const useCustom = <
             },
             meta: {
                 ...queryOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useCustom", preferLegacyKeys),
             },
         });
         const { elapsedTime } = useLoadingOvertime({

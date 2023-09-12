@@ -3,7 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     GetListResponse,
@@ -333,7 +333,7 @@ export const useList = <
             },
             meta: {
                 ...queryOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useList", preferLegacyKeys),
             },
         },
     );

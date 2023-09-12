@@ -9,6 +9,7 @@ import { AccessControlContext } from "@contexts/accessControl";
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 import { CanParams, CanReturnType } from "../../../interfaces";
 import { useKeys } from "@hooks/useKeys";
+import { getXRay } from "@refinedev/devtools-internal";
 
 export type UseCanProps = CanParams & {
     /**
@@ -64,6 +65,10 @@ export const useCan = ({
         {
             enabled: typeof can !== "undefined",
             ...queryOptions,
+            meta: {
+                ...queryOptions?.meta,
+                ...getXRay("useCan", preferLegacyKeys),
+            },
             retry: false,
         },
     );

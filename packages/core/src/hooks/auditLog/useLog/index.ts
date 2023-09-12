@@ -14,6 +14,7 @@ import { hasPermission, pickNotDeprecated } from "@definitions/helpers";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useActiveAuthProvider } from "@definitions/helpers";
 import { useKeys } from "@hooks/useKeys";
+import { getXRay } from "@refinedev/devtools-internal";
 
 type LogRenameData =
     | {
@@ -113,6 +114,10 @@ export const useLog = <
         {
             mutationKey: keys().audit().action("log").get(),
             ...logMutationOptions,
+            meta: {
+                ...logMutationOptions?.meta,
+                ...getXRay("useLog", preferLegacyKeys),
+            },
         },
     );
 
@@ -139,6 +144,10 @@ export const useLog = <
             },
             mutationKey: keys().audit().action("rename").get(),
             ...renameMutationOptions,
+            meta: {
+                ...renameMutationOptions?.meta,
+                ...getXRay("useLog", preferLegacyKeys),
+            },
         },
     );
 

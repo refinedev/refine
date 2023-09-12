@@ -4,7 +4,7 @@ import {
     UseMutationResult,
     UseMutationOptions,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     DeleteManyResponse,
@@ -531,7 +531,7 @@ export const useDeleteMany = <
             ...mutationOptions,
             meta: {
                 ...mutationOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useDeleteMany", preferLegacyKeys),
             },
         },
     );

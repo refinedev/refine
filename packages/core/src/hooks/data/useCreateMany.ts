@@ -3,7 +3,7 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     BaseRecord,
@@ -271,7 +271,7 @@ export const useCreateMany = <
             ...mutationOptions,
             meta: {
                 ...mutationOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useCreateMany", preferLegacyKeys),
             },
         },
     );

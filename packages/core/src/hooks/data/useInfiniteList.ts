@@ -4,7 +4,7 @@ import {
     InfiniteQueryObserverResult,
     InfiniteData,
 } from "@tanstack/react-query";
-import { getTrace } from "@refinedev/devtools-internal";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     CrudFilters,
@@ -324,7 +324,7 @@ export const useInfiniteList = <
             },
             meta: {
                 ...queryOptions?.meta,
-                trace: getTrace(),
+                ...getXRay("useInfiniteList", preferLegacyKeys),
             },
         },
     );
