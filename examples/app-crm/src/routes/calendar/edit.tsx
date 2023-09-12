@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath, useResource } from "@refinedev/core";
@@ -8,8 +8,8 @@ import dayjs from "dayjs";
 import { CalendarForm } from "../../components/calendar/form";
 import { Event } from "../../interfaces/graphql";
 
-export const CalendarEditPage = () => {
-    const [isAllDayEvent, setIsAllDayEvent] = React.useState(false);
+export const CalendarEditPage: React.FC = () => {
+    const [isAllDayEvent, setIsAllDayEvent] = useState(false);
     const { id } = useResource();
     const navigate = useNavigate();
     const getToPath = useGetToPath();
@@ -43,7 +43,7 @@ export const CalendarEditPage = () => {
             },
         });
 
-    React.useEffect(() => {
+    useEffect(() => {
         const startDate = queryResult?.data?.data.startDate;
         const endDate = queryResult?.data?.data.endDate;
         const utcStartDate = dayjs(startDate).utc();

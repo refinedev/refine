@@ -19,7 +19,7 @@ import { CustomAvatar } from "../custom-avatar";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 
-export const AlgoliaSearch = () => {
+export const AlgoliaSearch: React.FC = () => {
     const [open, setOpen] = useState(false);
     const { query, refine } = useSearchBox();
     const [inputValue, setInputValue] = useState(query);

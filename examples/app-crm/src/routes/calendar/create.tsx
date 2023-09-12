@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { HttpError, useGetToPath } from "@refinedev/core";
@@ -15,8 +15,8 @@ type FormValues = EventCreateInput & {
     color: any;
 };
 
-export const CalendarCreatePage = () => {
-    const [isAllDayEvent, setIsAllDayEvent] = React.useState(false);
+export const CalendarCreatePage: React.FC = () => {
+    const [isAllDayEvent, setIsAllDayEvent] = useState(false);
     const navigate = useNavigate();
     const getToPath = useGetToPath();
 

@@ -4,7 +4,7 @@ import type { RadioChangeEvent } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 
-export const CalendarTypeSwitch = () => {
+export const CalendarTypeSwitch: React.FC = () => {
     const { type } = useParams();
 
     const navigate = useNavigate();

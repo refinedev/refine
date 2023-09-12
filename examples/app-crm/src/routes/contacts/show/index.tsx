@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Button,
     Card,
@@ -44,8 +44,8 @@ const timezoneOptions = Object.keys(Timezone).map((key) => ({
     value: Timezone[key as keyof typeof Timezone],
 }));
 
-export const ContactShowPage = () => {
-    const [activeForm, setActiveForm] = React.useState<
+export const ContactShowPage: React.FC = () => {
+    const [activeForm, setActiveForm] = useState<
         "email" | "companyId" | "jobTitle" | "phone" | "timezone"
     >();
     const navigate = useNavigate();

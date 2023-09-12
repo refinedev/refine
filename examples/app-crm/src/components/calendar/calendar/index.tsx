@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useList } from "@refinedev/core";
 import { Card, Button, Radio, Grid } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
@@ -22,13 +22,13 @@ export const Calendar: React.FC<CalendarProps> = ({
     categoryId,
     onClickEvent,
 }) => {
-    const calendarRef = React.useRef<FullCalendar>(null);
-    const [title, setTitle] = React.useState(
+    const calendarRef = useRef<FullCalendar>(null);
+    const [title, setTitle] = useState(
         calendarRef.current?.getApi().view.title,
     );
     const { md } = Grid.useBreakpoint();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (md) {
             calendarRef.current?.getApi().changeView("dayGridMonth");
         } else {

@@ -16,7 +16,7 @@ type CalendarUpcomingEventsProps = {
     showGoToListButton?: boolean;
 };
 
-const NoEvent = () => (
+const NoEvent: React.FC = () => (
     <span
         style={{
             display: "flex",
@@ -28,6 +28,37 @@ const NoEvent = () => (
         No Upcoming Event
     </span>
 );
+
+const Skeleton: React.FC = () => {
+    return (
+        <div className={styles.item}>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    marginLeft: "24px",
+                    padding: "1px 0",
+                }}
+            >
+                <AntdSkeleton.Button
+                    active
+                    style={{
+                        height: "14px",
+                    }}
+                />
+                <AntdSkeleton.Button
+                    active
+                    style={{
+                        width: "90%",
+                        marginTop: "8px",
+                        height: "16px",
+                    }}
+                />
+            </div>
+        </div>
+    );
+};
 
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
@@ -101,36 +132,5 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
                 ))}
             {!isLoading && data?.data.length === 0 && <NoEvent />}
         </Card>
-    );
-};
-
-const Skeleton = () => {
-    return (
-        <div className={styles.item}>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    marginLeft: "24px",
-                    padding: "1px 0",
-                }}
-            >
-                <AntdSkeleton.Button
-                    active
-                    style={{
-                        height: "14px",
-                    }}
-                />
-                <AntdSkeleton.Button
-                    active
-                    style={{
-                        width: "90%",
-                        marginTop: "8px",
-                        height: "16px",
-                    }}
-                />
-            </div>
-        </div>
     );
 };

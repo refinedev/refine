@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useGetIdentity, useGetToPath } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
@@ -27,7 +27,7 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
         },
     });
 
-    React.useEffect(() => {
+    useEffect(() => {
         const companyId = searchParams.get("companyId");
 
         if (companyId && companyId !== "null") {

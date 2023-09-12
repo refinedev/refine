@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import { CreateButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,12 @@ import {
     Calendar,
 } from "../../components/calendar";
 
-type Props = React.PropsWithChildren<{}>;
-
-export const CalendarPageWrapper = ({ children }: Props) => {
+export const CalendarPageWrapper: React.FC<React.PropsWithChildren> = ({
+    children,
+}) => {
     const navigate = useNavigate();
     const getToPath = useGetToPath();
-    const [selectedEventCategory, setSelectedEventCategory] = React.useState<
+    const [selectedEventCategory, setSelectedEventCategory] = useState<
         string[]
     >([]);
 

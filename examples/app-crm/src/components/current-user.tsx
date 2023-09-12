@@ -8,7 +8,7 @@ import { CustomAvatar } from "./custom-avatar";
 import { Text } from "./text";
 import type { User } from "../interfaces/graphql";
 
-export const CurrentUser = () => {
+export const CurrentUser: React.FC = () => {
     const [opened, setOpened] = useState(false);
     const { data: user } = useGetIdentity<User>();
     const { mutate: logout } = useLogout();
