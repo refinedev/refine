@@ -8,7 +8,7 @@ import {
 import dataProvider, {
     GraphQLClient,
     liveProvider,
-} from "@refinedev/nestjs-query-graphql";
+} from "@refinedev/nestjs-query";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,

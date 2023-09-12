@@ -1,4 +1,4 @@
-import { gql, request } from "@refinedev/nestjs-query-graphql";
+import { gql, request } from "@refinedev/nestjs-query";
 import { AxiosResponse } from "axios";
 
 const mutationRefrehToken = gql`

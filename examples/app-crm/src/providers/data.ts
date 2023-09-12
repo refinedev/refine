@@ -1,7 +1,7 @@
 import graphqlDataProvider, {
     GraphQLClient,
     liveProvider as graphqlLiveProvider,
-} from "@refinedev/nestjs-query-graphql";
+} from "@refinedev/nestjs-query";
 
 import { createClient } from "graphql-ws";
 import { axiosInstance } from "./axios";

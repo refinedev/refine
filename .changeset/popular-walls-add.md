@@ -1,10 +1,10 @@
 ---
-"@refinedev/nestjs-query-graphql": patch
+"@refinedev/nestjs-query": patch
 ---
 
-feat: initialize nestjs-query-graphql package.
+feat: initialize nestjs-query package.
 
-🎉🎉🎉 This is the initial release of our nestjs-query-graphql data provider. https://tripss.github.io/nestjs-query 🎉🎉🎉
+🎉🎉🎉 This is the initial release of our nestjs-query data provider. https://tripss.github.io/nestjs-query 🎉🎉🎉
 
 Supported features:
 
@@ -20,7 +20,7 @@ Usage example:
 import graphqlDataProvider, {
     GraphQLClient,
     liveProvider,
-} from "@refinedev/nestjs-query-graphql";
+} from "@refinedev/nestjs-query";
 
 import { createClient } from "graphql-ws";
 
