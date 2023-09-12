@@ -26,7 +26,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
         url: "/graphql",
         meta: {
             rawQuery: `query {
-                taskStages {
+                taskStages(paging: { limit: 6 }) {
                   nodes {
                     title
                     tasksAggregate {
@@ -36,7 +36,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                     }
                   }
                 }
-              }              
+              }
             `,
         },
     });
