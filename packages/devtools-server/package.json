@@ -20,11 +20,11 @@
     "node": ">=10"
   },
   "scripts": {
-    "start:client": "refine build -- --watch --force --config src/client/vite.config.ts",
-    "build:client": "tsc && refine build -- --config src/client/vite.config.ts",
+    "start:client": "vite build --watch --force --config src/client/vite.config.ts",
+    "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "start:server": "node dist/cli.js",
     "start": "npm run start:client & tsup --watch --format esm,cjs,iife --legacy-output",
-    "build": "NODE_ENV=production tsup --format esm,cjs,iife --minify --legacy-output",
+    "build": "npm run build:client && tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
@@ -43,6 +43,7 @@
     "gray-matter": "^4.0.3",
     "fs-extra": "^10.1.0",
     "marked": "^4.3.0",
+    "globby": "^11.1.0",
     "sanitize-html": "^2.11.0",
     "preferred-pm": "^3.0.3"
   },
@@ -53,7 +54,6 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@refinedev/cli": "^2.9.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/fs-extra": "^9.0.13",

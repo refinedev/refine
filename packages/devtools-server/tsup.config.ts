@@ -1,9 +1,5 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
-import path from "path";
-import fs from "fs";
-
-const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
 export default defineConfig((tsupOptions) => ({
     entry: ["src/index.ts", "src/cli.ts"],
@@ -31,8 +27,5 @@ export default defineConfig((tsupOptions) => ({
             },
         }),
     ],
-    onSuccess: tsupOptions.watch
-        ? "tsc --project tsconfig.declarations.json && npm run start:server"
-        : "tsc --project tsconfig.declarations.json",
-    // onSuccess: "tsc --project tsconfig.declarations.json",
+    onSuccess: "tsc --project tsconfig.declarations.json",
 }));
