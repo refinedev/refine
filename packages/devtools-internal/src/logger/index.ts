@@ -4,7 +4,7 @@
  * In production, these logs will be ignored.
  */
 export const log = (...args: any[]) =>
-    process.env.NODE_ENV === "development"
+    __DEV_CONDITION__ === "development"
         ? console.log
         : {
               // log to ws

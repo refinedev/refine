@@ -5,7 +5,7 @@ import { getPackageNameFromFilename } from "./get-package-name-from-filename";
 import { TraceType } from "@refinedev/devtools-shared";
 
 export function getTrace() {
-    if (process.env.NODE_ENV === "development") {
+    if (__DEV_CONDITION__ === "development") {
         try {
             const error = new Error();
             const stack = ErrorStackParser.parse(error);

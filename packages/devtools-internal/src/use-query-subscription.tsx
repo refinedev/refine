@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { createQueryListener, createMutationListener } from "./listeners";
 
 export const useQuerySubscription =
-    process.env.NODE_ENV === "development"
+    __DEV_CONDITION__ === "development"
         ? (queryClient: QueryClient) => {
               const { ws } = useContext(DevToolsContext);
               const queryCacheSubscription = React.useRef<() => void>();
