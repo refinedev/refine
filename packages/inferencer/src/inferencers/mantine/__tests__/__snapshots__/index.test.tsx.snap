@@ -128,7 +128,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                       <div
                         class="mantine-Text-root mantine-1pbxw0k"
                       >
-                        04/01/2022
+                        04/02/2022
                       </div>
                     </td>
                     <td>
@@ -18028,7 +18028,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-rq"
               type="text"
-              value="2022-04-02T04:25:44.933Z"
+              value="2022-04-02T08:25:44.933Z"
             />
           </div>
         </div>
@@ -23917,7 +23917,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
         <div
           class="mantine-Text-root mantine-1pbxw0k"
         >
-          04/01/2022
+          04/02/2022
         </div>
         <h5
           class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"

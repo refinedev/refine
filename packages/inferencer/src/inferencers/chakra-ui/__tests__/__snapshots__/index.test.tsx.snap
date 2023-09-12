@@ -174,7 +174,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                   <p
                     class="chakra-text css-0"
                   >
-                    04/01/2022
+                    04/02/2022
                   </p>
                 </td>
                 <td
@@ -38511,7 +38511,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
         <p
           class="chakra-text css-0"
         >
-          04/01/2022
+          04/02/2022
         </p>
         <h5
           class="chakra-heading css-1fhgjcy"
