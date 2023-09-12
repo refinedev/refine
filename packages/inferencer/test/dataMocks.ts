@@ -119,7 +119,7 @@ export const posts = [
         status: "published",
         status_color: "lime",
         createdAt: "2022-09-24T08:33:21.883Z",
-        publishedAt: "2021-09-01T03:33:43.753Z",
+        publishedAt: "2021-09-01T08:33:43.753Z",
         image: [
             {
                 url: "http://loremflickr.com/640/480/abstract",
