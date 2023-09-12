@@ -8,7 +8,7 @@ import {
 import dataProvider, {
     GraphQLClient,
     liveProvider,
-} from "@refinedev/nestjs-query-graphql";
+} from "@refinedev/nestjs-query";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
@@ -23,18 +23,8 @@ import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 import { ConfigProvider } from "antd";
 
-const API_URL = "http://localhost:3003/graphql";
-const WS_URL = "ws://localhost:3003/graphql";
-
-/*
-## Refine supports GraphQL subscriptions out-of-the-box. For more detailed information, please visit here: https://refine.dev/docs/core/providers/live-provider/
-
-const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
-
-const gqlWebSocketClient = graphqlWS.createClient({
-    url: WS_URL,
-});
- */
+const API_URL = "https://api.nestjs-query.refine.dev/graphql";
+const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
 
 const client = new GraphQLClient(API_URL);
 

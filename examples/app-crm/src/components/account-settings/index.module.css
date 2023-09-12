@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 16px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px;
+
+    .title {
+        display: block;
+        margin: 0 !important;
+
+        .titleEditIcon {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+            .titleEditIcon {
+                opacity: 1;
+                visibility: visible !important;
+            }
+        }
+    }
+
+    .name {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1rem;
+    }
+
+    .form {
+        background-color: #fff;
+        border-radius: 0.5rem;
+        margin-bottom: 1.75rem;
+    }
+}

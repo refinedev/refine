@@ -1,0 +1,23 @@
+.calendar_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .actions {
+        display: flex;
+        gap: 0.8rem;
+    }
+
+    .title {
+        display: flex;
+        align-self: center;
+    }
+}

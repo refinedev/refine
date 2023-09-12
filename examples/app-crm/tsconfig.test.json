@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "types": ["jest"],
+    "typeRoots": ["../../node_modules/@types"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
