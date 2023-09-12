@@ -5,7 +5,6 @@ import {
     useTable,
 } from "@refinedev/antd";
 import {
-    Avatar,
     Button,
     Card,
     Col,
@@ -17,7 +16,7 @@ import {
     Table,
 } from "antd";
 import { Company, Contact, ContactCreateInput } from "../../interfaces/graphql";
-import { Text } from "../../components";
+import { CustomAvatar, Text } from "../../components";
 import {
     DeleteOutlined,
     ExportOutlined,
@@ -28,7 +27,6 @@ import {
     TeamOutlined,
     UserOutlined,
 } from "@ant-design/icons";
-import { getRandomColorFromString } from "../../utilities";
 import { useParams } from "react-router-dom";
 import { FC, useMemo } from "react";
 import { HttpError, useCreateMany, useOne } from "@refinedev/core";
@@ -167,20 +165,19 @@ export const CompanyContactsTable: FC<Props> = ({ style }) => {
                         dataIndex="name"
                         render={(_, record) => {
                             return (
-                                <div>
-                                    <Avatar
-                                        size="small"
+                                <Space>
+                                    <CustomAvatar
+                                        name={record.name}
                                         src={record.avatarUrl}
-                                        style={{
-                                            marginRight: 8,
-                                            backgroundColor:
-                                                getRandomColorFromString(
-                                                    record?.name || "",
-                                                ),
-                                        }}
                                     />
-                                    <Text>{record?.name}</Text>
-                                </div>
+                                    <Text
+                                        style={{
+                                            whiteSpace: "nowrap",
+                                        }}
+                                    >
+                                        {record.name}
+                                    </Text>
+                                </Space>
                             );
                         }}
                         filterIcon={<SearchOutlined />}
