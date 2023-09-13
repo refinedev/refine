@@ -17,7 +17,7 @@ import { Table, Space, Select } from "antd";
 import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters, sorter } = useTable<IPost>({
+    const { tableProps, filters, sorters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
@@ -56,7 +56,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="id"
                     title="ID"
                     sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
                 />
                 <Table.Column
                     dataIndex="title"
@@ -87,7 +87,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="createdAt"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorters)}
                     sorter
                 />
                 <Table.Column<IPost>
@@ -109,9 +109,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
-                                metaData={{
-                                    fields: ["id", "content", "categoryId"],
-                                }}
                             />
                         </Space>
                     )}

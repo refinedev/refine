@@ -6,14 +6,15 @@ import {
     EditButton,
     DateField,
     getDefaultSortOrder,
+    DeleteButton,
 } from "@refinedev/antd";
 
-import { Table } from "antd";
+import { Space, Table } from "antd";
 
 import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<ICategory>({
+    const { tableProps, sorters } = useTable<ICategory>({
         initialSorter: [
             {
                 field: "id",
@@ -34,18 +35,25 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="createdAt"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorters)}
                     sorter
                 />
                 <Table.Column<ICategory>
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
-                        <EditButton
-                            size="small"
-                            hideText
-                            recordItemId={record.id}
-                        />
+                        <Space>
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
                     )}
                 />
             </Table>
