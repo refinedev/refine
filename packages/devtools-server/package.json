@@ -33,6 +33,7 @@
     "express": "^4.18.2",
     "@refinedev/devtools-ui": "^0.0.1",
     "@refinedev/devtools-shared": "^0.0.1",
+    "http-proxy-middleware": "^2.0.6",
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
     "ws": "^8.13.0",
@@ -45,7 +46,8 @@
     "marked": "^4.3.0",
     "globby": "^11.1.0",
     "sanitize-html": "^2.11.0",
-    "preferred-pm": "^3.0.3"
+    "preferred-pm": "^3.0.3",
+    "body-parser": "^1.20.2"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",

@@ -12,6 +12,7 @@ import { setupServer } from "./setup-server";
 import { Activity, createDb } from "./create-db";
 import { serveApi } from "./serve-api";
 import { SERVER_PORT } from "./constants";
+import { serveProxy } from "./serve-proxy";
 
 type Options = {
     projectPath?: string;
@@ -103,6 +104,7 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
     serveClient(app);
     setupServer(app);
     serveApi(app, db);
+    serveProxy(app);
 
     console.log(
         `\n${boxen(
