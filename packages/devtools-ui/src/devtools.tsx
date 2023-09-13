@@ -13,11 +13,11 @@ import { Authenticated } from "./components/authenticated";
 import { Overview } from "./pages/overview";
 import { Login } from "./pages/login";
 import { Onboarding } from "./pages/onboarding";
-import { AuthContextProvider } from "./components/auth-context";
 import { Monitor } from "./pages/monitor";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Onboarded } from "./components/onboarded";
 
 dayjs.extend(relativeTime);
 
@@ -25,33 +25,56 @@ export const DevToolsApp = () => {
     return (
         <DevToolsContextProvider __devtools>
             <ReloadOnChanges />
-            <AuthContextProvider>
-                <BrowserRouter>
-                    <Routes>
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                key="app"
+                                fallback={<Navigate to="/login" />}
+                            >
+                                <Outlet />
+                            </Authenticated>
+                        }
+                    >
                         <Route
                             element={
-                                <Authenticated
-                                    fallback={<Navigate to="/login" />}
+                                <Onboarded
+                                    fallback={<Navigate to="/onboarding" />}
                                 >
                                     <Layout>
                                         <Outlet />
                                     </Layout>
-                                </Authenticated>
+                                </Onboarded>
                             }
                         >
                             <Route path="/" element={<Overview />} />
                             <Route path="/monitor" element={<Monitor />} />
                         </Route>
-                        <Route element={<Outlet />}>
-                            <Route path="/login" element={<Login />} />
+                        <Route
+                            element={
+                                <Onboarded fallback={<Outlet />}>
+                                    <Navigate to="/" />
+                                </Onboarded>
+                            }
+                        >
                             <Route
                                 path="/onboarding"
                                 element={<Onboarding />}
                             />
                         </Route>
-                    </Routes>
-                </BrowserRouter>
-            </AuthContextProvider>
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated key="gate" fallback={<Outlet />}>
+                                <Navigate to="/" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
         </DevToolsContextProvider>
     );
 };

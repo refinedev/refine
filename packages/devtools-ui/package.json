@@ -34,6 +34,7 @@
   "module": "dist/esm/index.js",
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@ory/client": "^1.1.25",
     "@refinedev/devtools-shared": "^0.0.1",
     "@tanstack/react-table": "^8.2.6",
     "clsx": "^1.1.1",

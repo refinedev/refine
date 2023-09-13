@@ -9,6 +9,7 @@ import {
     DevtoolsEvent,
     receive,
 } from "@refinedev/devtools-shared";
+import { HeaderAuthStatus } from "./header-auth-status";
 
 export const Header = () => {
     const [connectedApp, setConnectedApp] = React.useState<string | null>(null);
@@ -65,12 +66,11 @@ export const Header = () => {
                 "re-border-b-gray-700",
                 "re-flex",
                 "re-w-full",
-                "re-gap-5",
                 "re-items-center",
                 "re-justify-between",
             )}
         >
-            <div className="re-flex-shrink-0">
+            <div className="re-flex-shrink-0 re-min-w-[200px]">
                 <LogoIcon className="re-h-9" />
             </div>
             <div
@@ -79,7 +79,7 @@ export const Header = () => {
                     "re-flex-1",
                     "re-border-gray-700",
                     "re-py-1.5",
-                    "re-px-4",
+                    "re-px-2",
                     "re-rounded-lg",
                     "re-text-sm",
                     "re-leading-6",
@@ -102,7 +102,7 @@ export const Header = () => {
                     )}
                 />
 
-                <span className="re-font-mono">
+                <span className="re-font-mono re-whitespace-nowrap re-text-ellipsis re-overflow-hidden">
                     {connectedApp ?? "No App Connected"}
                 </span>
             </div>
@@ -113,7 +113,7 @@ export const Header = () => {
                     "re-justify-end",
                     "re-gap-2",
                     "re-flex-shrink-0",
-                    "re-min-w-[168px]",
+                    "re-min-w-[200px]",
                 )}
             >
                 {false && (
@@ -144,16 +144,7 @@ export const Header = () => {
                         </div>
                     </>
                 )}
-                <div className={clsx("re-px-2")}>
-                    <div
-                        className={clsx(
-                            "re-w-8",
-                            "re-h-8",
-                            "re-bg-alt-green",
-                            "re-rounded-full",
-                        )}
-                    />
-                </div>
+                <HeaderAuthStatus />
             </div>
         </div>
     );

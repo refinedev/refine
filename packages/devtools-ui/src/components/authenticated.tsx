@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "./auth-context";
+import { isAuthenticated } from "src/utils/auth";
 
 export const Authenticated = ({
     children,
@@ -8,11 +8,34 @@ export const Authenticated = ({
     children: React.ReactNode;
     fallback: React.ReactNode;
 }) => {
-    const { accessToken } = useAuth();
+    const [authenticated, setAuthenticated] = React.useState<
+        "loading" | "success" | "error"
+    >("loading");
 
-    if (accessToken) {
+    const checkAuth = React.useCallback(async () => {
+        try {
+            const authStatus = await isAuthenticated();
+            if (authStatus) {
+                setAuthenticated("success");
+            } else {
+                setAuthenticated("error");
+            }
+        } catch (_error) {
+            setAuthenticated("error");
+        }
+    }, []);
+
+    React.useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
+
+    if (authenticated === "error") {
+        return <>{fallback}</>;
+    }
+
+    if (authenticated === "success") {
         return <>{children}</>;
     }
 
-    return <>{fallback}</>;
+    return null;
 };
