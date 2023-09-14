@@ -7,6 +7,12 @@ export default defineConfig({
     sourcemap: true,
     clean: false,
     platform: "browser",
+    esbuildOptions: (options) => {
+        options.define = {
+            ...options.define,
+            __DEV_CONDITION__: "process.env.NODE_ENV",
+        };
+    },
     esbuildPlugins: [
         NodeResolvePlugin({
             extensions: [".js", "ts", "tsx", "jsx"],
