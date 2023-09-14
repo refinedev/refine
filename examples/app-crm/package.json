@@ -18,6 +18,7 @@
     "@uiw/react-md-editor": "^3.19.5",
     "algoliasearch": "^4.19.1",
     "antd": "^5.0.5",
+    "cross-env": "^7.0.3",
     "axios": "^0.26.1",
     "classnames": "^2.3.2",
     "dayjs": "^1.10.7",
@@ -69,7 +70,7 @@
   },
   "scripts": {
     "start": "refine dev",
-    "build": "tsc && refine build",
+    "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
     "test": "jest --passWithNoTests --runInBand",
     "preview": "refine start",
     "refine": "refine",
