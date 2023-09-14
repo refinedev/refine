@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { render, act, TestWrapper } from "@test";
-import { ShowInferencer, renderer } from "../show";
+import { act, render, TestWrapper } from "@test";
+import { renderer, ShowInferencer } from "../show";
 
 describe("MuiShowInferencer", () => {
-    it("should match the snapshot", async () => {
+    fit("should match the snapshot", async () => {
         const Wrapper = TestWrapper({
             routerInitialEntries: ["/posts/show/11"],
             resources: [
