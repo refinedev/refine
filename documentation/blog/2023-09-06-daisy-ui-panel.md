@@ -342,7 +342,7 @@ More details on customizing a daisyUI theme is available on the docs [here](http
 
 
 
-After these changes, with the server running, daisyUI watches for the use of daisyUI and TailwindCSS classes, and automatically compiles updated styles.
+After these changes, with the server running, TailwindCSS watches for the use of daisyUI and TailwindCSS classes, and automatically compiles updated styles.
 
 ### Other Packages
 

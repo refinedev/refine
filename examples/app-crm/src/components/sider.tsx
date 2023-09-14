@@ -22,7 +22,7 @@ const drawerButtonStyles: CSSProperties = {
     borderBottomLeftRadius: 0,
     position: "fixed",
     top: 64,
-    zIndex: 999,
+    zIndex: 1001,
 };
 
 const { SubMenu } = Menu;
@@ -193,20 +193,15 @@ export const Sider: React.FC = () => {
     const siderStyles: React.CSSProperties = {
         backgroundColor: token.colorBgContainer,
         borderRight: `1px solid ${token.colorBorderBg}`,
-        position: "fixed",
+        position: "sticky",
         top: 0,
+        left: 0,
         height: "100vh",
         zIndex: 999,
     };
 
     return (
         <>
-            <div
-                style={{
-                    width: siderCollapsed ? "80px" : "256px",
-                    transition: "all 0.2s",
-                }}
-            />
             <Layout.Sider
                 style={siderStyles}
                 width={256}

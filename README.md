@@ -47,39 +47,37 @@
 
 [![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png)](https://refine.dev)
 
-
 ## What is refine?
 
 **refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications.
 
-From internal tools, admin panels, B2B apps and dashboards, it serves as a comprehensive solution for building any type of **CRUD** applications.
+From internal tools to admin panels, B2B apps, and dashboards, it serves as a comprehensive solution for building any type of **CRUD** application.
 
-
-refine's internal hooks and components  simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+refine's internal hooks and components simplify the development process and eliminate repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
 **refine** is _headless by design_, thereby offering unlimited styling and customization options.
 
 ## What do you mean by "headless" ?
 
-Instead of being limited to a set of pre-styled components, **refine** provides collections of helper `hooks`, `components` and `providers` and more. Since business logic and UI are completely decoupled, you can customize UI without constraints.
+Instead of being limited to a set of pre-styled components, **refine** provides collections of helper `hooks`, `components`, `providers`, and more. Since business logic and the UI are completely decoupled, you can customize the UI without constraints.
 
- It means, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
+It means that **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/)to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
-
+refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are a set of components that are nicely integrated with the headless `@refinedev/core` package.
 
 ### Headless in Routing
 
 For the routing, refine's headless approach shines too. It doesn't tie you to a single routing method or library. Instead, it offers a simple routing interface with built-in integrations for popular libraries.
 
-This means you can use refine seamlessly in different platforms like React Native, Electron, Next.js, Remix etc. without any extra steps for the setup.
+This means you can use refine seamlessly on different platforms like React Native, Electron, Next.js, Remix, etc. without any extra setup steps.
 
 ## 🔥 Try refine
-refine's [Browser-based app scaffolder](https://refine.dev/#playground) lets you create refine app by making step-by-step selections directly in your browser
+
+refine's [browser-based app scaffolder](https://refine.dev/#playground) lets you create refine app by making step-by-step selections directly in your browser
 
 You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
 
-This allows you to preview, modify, and download project immediately, thereby streamlining the development process.
+This allows you to preview, modify, and download the project immediately, thereby streamlining the development process.
 
 <br/>
 
@@ -95,14 +93,11 @@ This allows you to preview, modify, and download project immediately, thereby st
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
-
-- [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
-- [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
-- [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
-- [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
-- [Storefront](https://s.refine.dev/readme-ssr-storefront)
-
-
+-   [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
+-   [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
+-   [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
+-   [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
+-   [Storefront](https://s.refine.dev/readme-ssr-storefront)
 
 [👉 Refer to most popular real use case examples](https://refine.dev/docs/examples/)
 
@@ -138,10 +133,9 @@ You can take a look at some live examples that can be built using **refine** fro
 
 ## Quick Start
 
-The fastest way to get started with **refine** is by using the `create refine-app` CLI tool or using [browser-based app scaffolder](https://refine.dev/#playground).
+The fastest way to get started with **refine** is by using the `create refine-app` CLI tool or the [browser-based app scaffolder](https://refine.dev/#playground).
 
-
-For this example we'll use CLI tool. Simply, run the following command to create a new **refine** project configured with [Ant Design](https://ant.design/) as the default UI framework:
+For this example, we'll use the CLI tool. Simply run the following command to create a new **refine** project configured with [Ant Design](https://ant.design/) as the default UI framework:
 
 ```
 npm create refine-app@latest -- -o refine-antd
@@ -161,7 +155,7 @@ Your **refine** application will be accessible at [http://localhost:5173](http:/
 
 <br/>
 
-Let's consume a public `fake REST API` and add two resources (_blog_posts_, _categories_) to our project. Replace the contents of `src/App.tsx` with the following code:
+Let's consume a public `fake REST API` and add two resources (_blog_posts_ and _categories_) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -243,7 +237,7 @@ export default App;
 
 <br/>
 
-🚀 Thanks to **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.
+🚀 Thanks to the **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.
 
 Now, you should see the output as a table populated with `blog_posts` & `category` data:
 
@@ -257,14 +251,14 @@ You can get the auto-generated page codes by clicking the `Show Code` button on 
 
 👉 Jump to [Tutorial](https://refine.dev/docs/tutorial/introduction/index/) to continue your work and turn the example into a full-blown CRUD application.
 
-👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
+👉 Visit the [Learn the Basics page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
 
 👉 Read more on [Advanced Tutorials
 ](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 
-👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
+👉 Play with interactive [examples.](https://refine.dev/docs/examples/)
 
 ## Stargazers
 
@@ -272,9 +266,9 @@ You can get the auto-generated page codes by clicking the `Show Code` button on 
 
 ## Contribution
 
-[👉 Refer to contribution docs for more information](https://refine.dev/docs/contributing/#ways-to-contribute)
+[👉 Refer to the contribution docs for more information.](https://refine.dev/docs/contributing/#ways-to-contribute)
 
-If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
+If you have any doubts related to the project or want to discuss something, then join our [Discord server](https://discord.gg/refine).
 
 ## Our ♥️ Contributors
 
