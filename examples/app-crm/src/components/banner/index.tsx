@@ -12,8 +12,8 @@ export const Banner = () => {
                 <div className={styles.content}>
                     <span className={styles.icon}>💡</span>
                     <span className={styles.text}>
-                        This example app is an Open Source! Get the complete
-                        project code from here.
+                        This example app is Open Source! Get the complete
+                        project code.
                     </span>
                 </div>
             </a>
