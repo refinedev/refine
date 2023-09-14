@@ -3,6 +3,7 @@ import { ThemedLayoutContextProvider } from "@refinedev/antd";
 
 import { Header } from "./header";
 import { Sider } from "./sider";
+import { Banner } from "./banner";
 import { Grid, Layout as AntdLayout } from "antd";
 
 export const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
@@ -11,6 +12,7 @@ export const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
 
     return (
         <ThemedLayoutContextProvider>
+            <Banner />
             <AntdLayout style={{ minHeight: "100vh" }}>
                 <Sider />
                 <AntdLayout>
