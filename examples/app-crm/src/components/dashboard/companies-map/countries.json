@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "United States",
+    "shortName": "US",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg",
+    "count": 24
+  },
+  {
+    "id": 2,
+    "name": "Germany",
+    "shortName": "DE",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg",
+    "count": 18
+  },
+  {
+    "id": 3,
+    "name": "United Kingdom",
+    "shortName": "UK",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg",
+    "count": 6
+  },
+  {
+    "id": 4,
+    "name": "Canada",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg",
+    "count": 4
+  },
+  {
+    "id": 5,
+    "name": "Spain",
+    "shortName": "ES",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_Espa%C3%B1a.svg",
+    "count": 3
+  },
+  {
+    "id": 6,
+    "name": "France",
+    "shortName": "FR",
+    "flag": "http://upload.turkcewiki.org/wikipedia/commons/9/93/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%29.svg",
+    "count": 2
+  }
+]

@@ -248,7 +248,7 @@ const TwitterStats = () => {
                     />
                 </div>
                 <div className={clsx("flex flex-col gap-6")}>
-                    <NumberField number={2000} label="Twitter Followers" />
+                    <NumberField number={2000} label="X Followers" />
                 </div>
             </div>
         </div>

@@ -1,0 +1,24 @@
+.container {
+    border: 1px solid rgba(217, 217, 217, 1);
+    border-radius: .5rem;
+    
+    .category {
+        padding: .3rem .8rem;
+        border-bottom: 1px solid rgba(217, 217, 217, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .category:last-child {
+        border-bottom: none;
+    }
+
+    .new-category-button {
+        padding: 0;
+    }
+    .new-category-input {
+        padding: .3rem 0;
+    }
+    
+}
