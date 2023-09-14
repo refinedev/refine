@@ -735,6 +735,7 @@ module.exports = {
                                 "examples/data-provider/hasura",
                                 "examples/data-provider/multiple",
                                 "examples/data-provider/nestjsxCrud",
+                                "examples/data-provider/nestjs-query",
                                 "examples/data-provider/nhost",
                                 "examples/data-provider/strapi",
                                 "examples/data-provider/strapi-graphql",
