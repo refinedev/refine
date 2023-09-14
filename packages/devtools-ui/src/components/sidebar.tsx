@@ -3,15 +3,15 @@ import clsx from "clsx";
 
 import { OverviewIcon } from "./icons/overview";
 import { MonitorIcon } from "./icons/monitor";
-import { ResourceViewerIcon } from "./icons/resource-viewer";
-import { PackageOverviewIcon } from "./icons/package-overview";
-import { OptionsIcon } from "./icons/options";
+// import { ResourceViewerIcon } from "./icons/resource-viewer";
+// import { PackageOverviewIcon } from "./icons/package-overview";
+// import { OptionsIcon } from "./icons/options";
 import { PlaygroundIcon } from "./icons/playground";
 import { InferencerPreviewIcon } from "./icons/inferencer-preview";
-import { SnippetsIcon } from "./icons/snippets";
+// import { SnippetsIcon } from "./icons/snippets";
 import { ChatbotIcon } from "./icons/chatbot";
-import { TicketIcon } from "./icons/ticket";
-import { SettingsIcon } from "./icons/settings";
+// import { TicketIcon } from "./icons/ticket";
+// import { SettingsIcon } from "./icons/settings";
 
 import { NavLink, useLocation } from "react-router-dom";
 import { HiddenItemsBgIcon } from "./icons/hidden-items-bg";
@@ -310,7 +310,7 @@ const items: SidebarItemType[] = [
     {
         icon: OverviewIcon,
         label: "Overview",
-        path: "/",
+        path: "/overview",
         section: "first",
     },
     {

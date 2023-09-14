@@ -18,6 +18,9 @@ import { Monitor } from "./pages/monitor";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Onboarded } from "./components/onboarded";
+import { InitialLayout } from "./components/initial-layout";
+import { LocationChangeHandler } from "./components/location-change-handler";
+import { getLastLocation } from "./utils/last-location";
 
 dayjs.extend(relativeTime);
 
@@ -40,6 +43,7 @@ export const DevToolsApp = () => {
                         <Route
                             element={
                                 <Onboarded
+                                    key="onboarded"
                                     fallback={<Navigate to="/onboarding" />}
                                 >
                                     <Layout>
@@ -48,13 +52,28 @@ export const DevToolsApp = () => {
                                 </Onboarded>
                             }
                         >
-                            <Route path="/" element={<Overview />} />
+                            <Route
+                                path="/"
+                                element={<Navigate to={getLastLocation()} />}
+                            />
+                            <Route path="/overview" element={<Overview />} />
                             <Route path="/monitor" element={<Monitor />} />
+                            <Route
+                                path="*"
+                                element={<Navigate to="/overview" />}
+                            />
                         </Route>
                         <Route
                             element={
-                                <Onboarded fallback={<Outlet />}>
-                                    <Navigate to="/" />
+                                <Onboarded
+                                    key="onboarding"
+                                    fallback={
+                                        <InitialLayout>
+                                            <Outlet />
+                                        </InitialLayout>
+                                    }
+                                >
+                                    <Navigate to="/overview" />
                                 </Onboarded>
                             }
                         >
@@ -62,18 +81,31 @@ export const DevToolsApp = () => {
                                 path="/onboarding"
                                 element={<Onboarding />}
                             />
+                            <Route
+                                path="*"
+                                element={<Navigate to="/overview" />}
+                            />
                         </Route>
                     </Route>
                     <Route
                         element={
-                            <Authenticated key="gate" fallback={<Outlet />}>
-                                <Navigate to="/" />
+                            <Authenticated
+                                key="gate"
+                                fallback={
+                                    <InitialLayout>
+                                        <Outlet />
+                                    </InitialLayout>
+                                }
+                            >
+                                <Navigate to="/overview" />
                             </Authenticated>
                         }
                     >
                         <Route path="/login" element={<Login />} />
+                        <Route path="*" element={<Navigate to="/login" />} />
                     </Route>
                 </Routes>
+                <LocationChangeHandler />
             </BrowserRouter>
         </DevToolsContextProvider>
     );

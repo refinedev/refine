@@ -1,7 +1,7 @@
 import { LoginFlow } from "@ory/client";
 import clsx from "clsx";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { GithubIcon } from "src/components/icons/github";
 import { GoogleIcon } from "src/components/icons/google";
 import { LogoIcon } from "src/components/icons/logo";
@@ -10,20 +10,23 @@ import { ory } from "src/utils/ory";
 const providers = [
     {
         name: "github",
-        icon: <GithubIcon />,
+        icon: <GithubIcon className="re-w-6 re-h-6" />,
         label: "Sign in with GitHub",
         callback: "",
     },
     {
         name: "google",
-        icon: <GoogleIcon />,
+        icon: <GoogleIcon className="re-w-6 re-h-6" />,
         label: "Sign in with Google",
         callback: "",
     },
 ];
 
 export const Login = () => {
+    const [searchParams] = useSearchParams();
     const [flowData, setFlowData] = React.useState<LoginFlow | null>(null);
+
+    const error = searchParams.get("error");
 
     const generateAuthFlow = React.useCallback(async () => {
         try {
@@ -47,85 +50,87 @@ export const Login = () => {
     return (
         <div
             className={clsx(
-                "re-bg-gray-900",
-                "re-h-full",
+                "re-flex-1",
                 "re-flex",
                 "re-items-center",
                 "re-justify-center",
-                "re-h-auto",
                 "re-py-16",
             )}
         >
             <div
                 className={clsx(
-                    "re-flex-1",
+                    "re-max-w-[336px]",
+                    "re-w-full",
                     "re-flex",
-                    "re-items-center",
+                    "re-flex-col",
+                    "re-gap-16",
                     "re-justify-center",
-                    "re-h-full",
+                    "re-items-center",
                 )}
             >
-                <div
+                <LogoIcon height={60} width={252} />
+                <form
                     className={clsx(
-                        "re-max-w-[336px]",
                         "re-w-full",
                         "re-flex",
                         "re-flex-col",
-                        "re-gap-16",
-                        "re-justify-center",
                         "re-items-center",
+                        "re-justify-center",
+                        "re-gap-4",
                     )}
+                    action={flowData?.ui?.action}
+                    method={flowData?.ui?.method}
                 >
-                    <LogoIcon height={60} width={252} />
-                    <form
-                        className={clsx(
-                            "re-w-full",
-                            "re-flex",
-                            "re-flex-col",
-                            "re-items-center",
-                            "re-justify-center",
-                            "re-gap-6",
-                        )}
-                        action={flowData?.ui?.action}
-                        method={flowData?.ui?.method}
-                    >
-                        <input
-                            type="hidden"
-                            name="csrf_token"
-                            value={
-                                (flowData?.ui.nodes[2].attributes as any)?.value
-                            }
-                        />
-                        {providers.map(({ name, icon, label }) => (
-                            <button
-                                key={name}
-                                id={name}
-                                name="provider"
-                                type="submit"
-                                value={name}
-                                disabled={!flowData}
-                                className={clsx(
-                                    "re-w-full",
-                                    "re-py-4",
-                                    "re-px-8",
-                                    "re-bg-gray-0",
-                                    "re-text-gray-900",
-                                    "re-text-xl",
-                                    "re-leading-8",
-                                    "re-font-bold",
-                                    "re-gap-4",
-                                    "re-flex",
-                                    "re-items-center",
-                                    "re-justify-center",
-                                    "re-rounded-lg",
-                                )}
-                            >
-                                {icon}
-                                <span>{label}</span>
-                            </button>
-                        ))}
-                    </form>
-                </div>
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value={(flowData?.ui.nodes[2].attributes as any)?.value}
+                    />
+                    {providers.map(({ name, icon, label }) => (
+                        <button
+                            key={name}
+                            id={name}
+                            name="provider"
+                            type="submit"
+                            value={name}
+                            disabled={!flowData}
+                            className={clsx(
+                                "re-w-full",
+                                "re-py-2.5",
+                                "re-px-4",
+                                "re-bg-gray-0",
+                                "re-text-gray-900",
+                                "re-text-base",
+                                "re-leading-6",
+                                "re-font-semibold",
+                                "re-gap-4",
+                                "re-flex",
+                                "re-items-center",
+                                "re-justify-center",
+                                "re-rounded",
+                            )}
+                        >
+                            {icon}
+                            <span>{label}</span>
+                        </button>
+                    ))}
+                    {error && (
+                        <div
+                            className={clsx(
+                                "re-bg-alt-yellow",
+                                "re-bg-opacity-20",
+                                "re-border-2",
+                                "re-border-alt-yellow",
+                                "re-text-alt-yellow",
+                                "re-text-xs",
+                                "re-p-3",
+                                "re-rounded",
+                            )}
+                        >
+                            {error}
+                        </div>
+                    )}
+                </form>
             </div>
         </div>
     );
