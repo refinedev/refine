@@ -5,6 +5,7 @@ import { PackageType } from "@refinedev/devtools-shared";
 import { PackageItem } from "src/components/package-item";
 import { AddPackageDrawer } from "./add-package-drawer";
 import { Button } from "./button";
+import { PlusCircleIcon } from "./icons/plus-circle";
 
 export const Packages = () => {
     const [updating, setUpdating] = React.useState(false);
@@ -61,8 +62,24 @@ export const Packages = () => {
                         Package Overview
                     </div>
                     <div>
-                        <Button onClick={() => setVisible(true)}>
-                            add package
+                        <Button
+                            onClick={() => setVisible(true)}
+                            className={clsx(
+                                "re-gap-2",
+                                "re-text-alt-blue",
+                                "re-bg-alt-blue",
+                                "re-bg-opacity-[0.15]",
+                                "re-flex-nowrap",
+                                "re-flex",
+                                "re-items-center",
+                                "re-justify-between",
+                                "!re-px-2",
+                            )}
+                        >
+                            <PlusCircleIcon className="re-text-alt-blue" />
+                            <span className="re-text-alt-blue">
+                                More packages
+                            </span>
                         </Button>
                     </div>
                 </div>

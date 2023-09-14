@@ -1,7 +1,14 @@
 import React from "react";
 import clsx from "clsx";
+import { PackageType } from "@refinedev/devtools-shared";
+
 import { CloseIcon } from "./icons/close";
 import { SearchIcon } from "./icons/search";
+import { AddPackageItem } from "./add-package.item";
+import { Modal } from "./modal";
+import { Highlight } from "./highlight";
+import { PlusCircleIcon } from "./icons/plus-circle";
+import { Button } from "./button";
 
 type Props = {
     visible: boolean;
@@ -17,6 +24,23 @@ export const AddPackageDrawer = ({
     dismissOnOverlayClick = true,
 }: Props) => {
     const [delayedVisible, setDelayedVisible] = React.useState(visible);
+    const [installModal, setInstallModal] = React.useState<string | null>(null);
+    const [packages, setPackages] = React.useState<
+        Omit<PackageType, "currentVersion">[]
+    >([
+        {
+            name: "@refinedev/react-hook-form",
+            description: "lorem ipsum dolor sit amet",
+            latestVersion: "1.0.0",
+            documentation: "https://refine.dev/docs/",
+        },
+        {
+            name: "@refinedev/react-table",
+            description: "lorem ipsum dolor sit amet",
+            latestVersion: "1.0.0",
+            documentation: "https://refine.dev/docs/",
+        },
+    ]);
 
     React.useEffect(() => {
         setTimeout(() => {
@@ -212,22 +236,177 @@ export const AddPackageDrawer = ({
                                 "re-gap-6",
                             )}
                         >
-                            {[1, 2, 3, 4, 5].map((el) => (
-                                <div
-                                    key={el}
-                                    className={clsx(
-                                        "re-h-[250px]",
-                                        "re-border",
-                                        "re-border-gray-700",
-                                    )}
-                                >
-                                    {el}
-                                </div>
-                            ))}
+                            {packages
+                                .filter(
+                                    (pkg) =>
+                                        !installedPackages.includes(pkg.name),
+                                )
+                                .map((pkg) => (
+                                    <AddPackageItem
+                                        key={pkg.name}
+                                        {...pkg}
+                                        version={pkg.latestVersion}
+                                        onInstall={() =>
+                                            setInstallModal(pkg.name)
+                                        }
+                                    />
+                                ))}
                         </div>
                     </div>
                 </div>
             </div>
+            <Modal
+                visible={Boolean(installModal)}
+                onClose={() => setInstallModal(null)}
+                overlay
+                header={
+                    <div className={clsx("re-flex", "re-flex-col", "re-gap-2")}>
+                        <div
+                            className={clsx(
+                                "re-text-gray-300",
+                                "re-text-sm",
+                                "re-leading-6",
+                                "re-font-semibold",
+                            )}
+                        >
+                            {
+                                packages.find((el) => el.name === installModal)
+                                    ?.name
+                            }
+                        </div>
+                        <div
+                            className={clsx(
+                                "re-text-gray-400",
+                                "re-text-sm",
+                                "re-leading-6",
+                                "re-font-normal",
+                            )}
+                        >
+                            {packages.find((el) => el.name === installModal)
+                                ?.description ?? ""}
+                        </div>
+                    </div>
+                }
+                footer={
+                    <div
+                        className={clsx(
+                            "re-flex",
+                            "re-flex-row",
+                            "re-gap-2",
+                            "re-items-center",
+                            "re-justify-end",
+                        )}
+                    >
+                        {/* <Button
+                            onClick={() => setInstallModal(null)}
+                            className={clsx(
+                                "re-gap-2",
+                                "re-bg-transparent",
+                                "re-border",
+                                "re-border-gray-700",
+                                "re-flex-nowrap",
+                                "re-flex",
+                                "re-items-center",
+                                "re-justify-between",
+                            )}
+                        >
+                            <span className="re-text-gray-300">Cancel</span>
+                        </Button> */}
+                        <Button
+                            onClick={() => 0}
+                            className={clsx(
+                                "re-gap-2",
+                                "re-bg-alt-blue",
+                                "re-flex-nowrap",
+                                "re-flex",
+                                "re-items-center",
+                                "re-justify-between",
+                                "!re-pl-2",
+                            )}
+                        >
+                            <PlusCircleIcon className="re-text-gray-0" />
+                            <span className="re-text-gray-0">Install</span>
+                        </Button>
+                    </div>
+                }
+            >
+                <div
+                    className={clsx(
+                        "re-p-5",
+                        "re-flex",
+                        "re-flex-col",
+                        "re-gap-2",
+                        "re-border-b",
+                        "re-border-b-gray-700",
+                    )}
+                >
+                    <div
+                        className={clsx(
+                            "re-text-sm",
+                            "re-leading-6",
+                            "re-text-gray-300",
+                            "re-font-semibold",
+                        )}
+                    >
+                        How to install?
+                    </div>
+                    <div
+                        className={clsx(
+                            "re-bg-gray-700",
+                            "re-rounded-lg",
+                            "re-p-4",
+                            "re-text-sm",
+                        )}
+                    >
+                        <Highlight
+                            code={"npm install @tanstack/react-query"}
+                            language="bash"
+                        />
+                    </div>
+                </div>
+                <div
+                    className={clsx(
+                        "re-p-5",
+                        "re-flex",
+                        "re-flex-col",
+                        "re-gap-2",
+                    )}
+                >
+                    <div
+                        className={clsx(
+                            "re-text-sm",
+                            "re-leading-6",
+                            "re-text-gray-300",
+                            "re-font-semibold",
+                        )}
+                    >
+                        How to use?
+                    </div>
+                    <div
+                        className={clsx(
+                            "re-bg-gray-700",
+                            "re-rounded-lg",
+                            "re-p-4",
+                            "re-text-sm",
+                        )}
+                    >
+                        <Highlight
+                            code={`
+import React from "react";
+
+const MyComponent = () => {
+    const [state, setState] = React.useState(null);
+
+    return (
+        <div>{state}</div>
+    );
+}
+                            `.trim()}
+                            language="tsx"
+                        />
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };
