@@ -29,11 +29,11 @@
 
 </div>
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
+![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM/crm-readme-temp.png "Cover Image")
 
 ## About
 
-⭐  You can view the live demo off the application [here](https://app-crm.refine.dev/).
+⭐  You can view the live demo off the application [here](https://example.crm.refine.dev/).
 
 
 
@@ -47,26 +47,31 @@ refine is a React-based powerful framework for building low-code applications. I
 
 ## Features
 
- **Dashboard**: Gain insights into your business with interactive charts and analytics.
- **Calendar**: Schedule and manage appointments, meetings, and events.
+ **Dashboard**: Gain insights into your business with interactive charts and analytics.  
+ **Calendar**: Schedule and manage appointments, meetings, and events.  
  **Scrumboard**: Organize and track tasks using a Kanban-style board.  
  **Companies**: Create, update, and delete company records.  
  **Contacts**: Manage your customer contacts efficiently.  
  **Quotes**: Generate and manage quotes for your clients.  
  **Administration**: Configure application settings and user roles.
 
+<br>
 
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/dashboard.png "Product Edit Page")
 
+<br>
+
 ![Dashboard Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/companies.png "Dashboard Page")
+
+<br>
 
 ![Product List Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/contacts.png "Product List Page")
 
 
+<br>
+
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sales-pipeline.png "Product Edit Page")
-
-
-
+<br>
 
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/login.png "Product Edit Page")
 
