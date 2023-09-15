@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Onboarded } from "./components/onboarded";
 import { InitialLayout } from "./components/initial-layout";
+import { RaffleHandler } from "./components/raffle-handler";
 import { LocationChangeHandler } from "./components/location-change-handler";
 import { getLastLocation } from "./utils/last-location";
 
@@ -48,6 +49,7 @@ export const DevToolsApp = () => {
                                 >
                                     <Layout>
                                         <Outlet />
+                                        <RaffleHandler />
                                     </Layout>
                                 </Onboarded>
                             }

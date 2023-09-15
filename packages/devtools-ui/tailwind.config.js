@@ -8,6 +8,9 @@ module.exports = {
         extend: {
             screens: {
                 large: { min: "960px" },
+                tall: {
+                    raw: "(min-height: 670px)",
+                },
             },
             boxShadow: {
                 "monitor-filters": "0px 16px 32px 16px rgba(0, 0, 0, 0.75)",

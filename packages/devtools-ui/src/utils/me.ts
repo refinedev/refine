@@ -42,6 +42,7 @@ export const updateMe = async (variables: MeUpdateVariables) => {
 export const raffle = async () => {
     try {
         const response = await fetch(
+            // TODO: Change to real endpoint
             "/api/.refine/users/me/ruffle?result=true",
         );
 
