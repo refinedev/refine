@@ -30,7 +30,7 @@ export const Onboarded = ({
                 logoutUser().then(() => {
                     setTimeout(() => {
                         navigate("/login");
-                    }, 300);
+                    }, 100);
                 });
             }
         } catch (_error) {

@@ -41,7 +41,7 @@ export const HeaderAuthStatus = () => {
         logoutUser().then(() => {
             setTimeout(() => {
                 navigate("/login");
-            }, 300);
+            }, 100);
         });
     }, [navigate]);
 
