@@ -4,11 +4,7 @@
  * In production, these logs will be ignored.
  */
 export const log = (...args: any[]) =>
-    __DEV_CONDITION__ === "development"
-        ? console.log
-        : {
-              // log to ws
-          };
+    __DEV_CONDITION__ !== "development" ? 0 : console.log(...args);
 
 type InternalLog = {
     type?: "log" | "warn" | "error";

@@ -5,7 +5,9 @@ import { getPackageNameFromFilename } from "./get-package-name-from-filename";
 import { TraceType } from "@refinedev/devtools-shared";
 
 export function getTrace() {
-    if (__DEV_CONDITION__ === "development") {
+    if (__DEV_CONDITION__ !== "development") {
+        return [];
+    } else {
         try {
             const error = new Error();
             const stack = ErrorStackParser.parse(error);
@@ -25,7 +27,5 @@ export function getTrace() {
         } catch (error) {
             return [];
         }
-    } else {
-        return [];
     }
 }

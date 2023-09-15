@@ -9,7 +9,14 @@ export type XRayResponse = {
 };
 
 export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
-    if (__DEV_CONDITION__ === "development") {
+    if (__DEV_CONDITION__ !== "development") {
+        return {
+            hookName: "",
+            trace: [],
+            resourcePath: "",
+            legacyKey: false,
+        };
+    } else {
         const trace = getTrace().slice(1);
 
         const resourcePath = ""; // legacy key and hook name will be used to determine this.
@@ -19,13 +26,6 @@ export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
             trace,
             resourcePath,
             legacyKey,
-        };
-    } else {
-        return {
-            hookName: "",
-            trace: [],
-            resourcePath: "",
-            legacyKey: false,
         };
     }
 }
