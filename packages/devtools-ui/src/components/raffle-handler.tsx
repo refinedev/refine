@@ -7,6 +7,7 @@ import { CalendarIcon } from "./icons/calendar";
 const CALENDLY_URL = "#";
 
 export const RaffleHandler = () => {
+    const [ran, setRan] = React.useState(false);
     const [raffleModal, setRaffleModal] = React.useState(false);
 
     const submitRaffle = React.useCallback(async () => {
@@ -16,10 +17,19 @@ export const RaffleHandler = () => {
     }, []);
 
     React.useEffect(() => {
-        setTimeout(() => {
+        const time = 60 * 1000 * (ran ? 5 : 1);
+
+        const interval = setInterval(() => {
             submitRaffle();
-        }, 60 * 1000);
-    }, []);
+            if (!ran) {
+                setRan(true);
+            }
+        }, time);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [ran]);
 
     return (
         <Modal
@@ -44,7 +54,7 @@ export const RaffleHandler = () => {
                 className={clsx("re-p-5", "re-flex", "re-flex-col", "re-gap-5")}
             >
                 <img
-                    src="https://i.ibb.co/pKHfSKB/raffle-cover.webp"
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/devtools/refine-swag.webp"
                     className={clsx(
                         "re-hidden",
                         "tall:re-block",
