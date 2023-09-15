@@ -31,11 +31,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example data-provider-hasura
+npm create refine-app@latest -- --example data-provider-nestjs-query
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open data-provider-hasura example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/data-provider-hasura?view=preview&theme=dark&codemirror=1)
+[![Open data-provider-nestjs-query example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/data-provider-nestjs-query?view=preview&theme=dark&codemirror=1)
