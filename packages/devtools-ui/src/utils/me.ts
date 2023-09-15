@@ -43,7 +43,7 @@ export const raffle = async (): Promise<RaffleResponse> => {
     try {
         const response = await fetch(
             // TODO: Change to real endpoint
-            "/api/.refine/users/me/ruffle?result=true",
+            "/api/.refine/users/me/raffle?result=true",
         );
 
         const data = (await response.json()) as RaffleResponse;
@@ -52,12 +52,12 @@ export const raffle = async (): Promise<RaffleResponse> => {
     } catch (_) {
         //
     }
-    return { ruffle: false };
+    return { raffle: false };
 };
 
 export const acknowledgeRaffle = async () => {
     try {
-        await fetch("/api/.refine/users/me/ruffle/acknowledge");
+        await fetch("/api/.refine/users/me/raffle/acknowledge");
     } catch (_) {
         //
     }

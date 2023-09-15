@@ -14,7 +14,7 @@ export const RaffleHandler = () => {
     const submitRaffle = React.useCallback(async () => {
         const response = await raffle();
 
-        if (response.ruffle) {
+        if (response.raffle) {
             setCalendlyURL(response.calendlyURL);
             setRaffleModal(true);
         } else {

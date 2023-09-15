@@ -1,10 +1,10 @@
 export type RaffleResponse =
     | {
-          ruffle: true;
+          raffle: true;
           calendlyURL: string;
       }
     | {
-          ruffle: false;
+          raffle: false;
       };
 
 export type MeResponse = {
