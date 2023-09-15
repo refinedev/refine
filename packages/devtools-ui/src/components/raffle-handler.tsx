@@ -1,5 +1,5 @@
 import React from "react";
-import { raffle } from "src/utils/me";
+import { acknowledgeRaffle, raffle } from "src/utils/me";
 import { Modal } from "./modal";
 import clsx from "clsx";
 import { CalendarIcon } from "./icons/calendar";
@@ -8,16 +8,27 @@ const CALENDLY_URL = "#";
 
 export const RaffleHandler = () => {
     const [ran, setRan] = React.useState(false);
+    const [calendlyURL, setCalendlyURL] = React.useState("");
     const [raffleModal, setRaffleModal] = React.useState(false);
 
     const submitRaffle = React.useCallback(async () => {
         const response = await raffle();
 
-        setRaffleModal(response);
+        if (response.ruffle) {
+            setCalendlyURL(response.calendlyURL);
+            setRaffleModal(true);
+        } else {
+            setRaffleModal(false);
+        }
+    }, []);
+
+    const onCloseModal = React.useCallback(() => {
+        acknowledgeRaffle();
+        setRaffleModal(false);
     }, []);
 
     React.useEffect(() => {
-        const time = 60 * 1000 * (ran ? 5 : 1);
+        const time = 60 * 1000 * (ran ? 5 : 0.5);
 
         const interval = setInterval(() => {
             submitRaffle();
@@ -35,7 +46,7 @@ export const RaffleHandler = () => {
         <Modal
             overlay
             visible={raffleModal}
-            onClose={() => setRaffleModal(false)}
+            onClose={onCloseModal}
             header={
                 <div className={clsx("re-flex")}>
                     <h1
@@ -76,7 +87,7 @@ export const RaffleHandler = () => {
                     our swag Kit as a thank you gift!
                 </p>
                 <a
-                    href={CALENDLY_URL}
+                    href={calendlyURL}
                     rel="noreferrer noopener"
                     target="_blank"
                     className={clsx(

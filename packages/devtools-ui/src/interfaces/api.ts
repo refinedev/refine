@@ -1,6 +1,11 @@
-export type RaffleResponse = {
-    ruffle: boolean;
-};
+export type RaffleResponse =
+    | {
+          ruffle: true;
+          calendlyURL: string;
+      }
+    | {
+          ruffle: false;
+      };
 
 export type MeResponse = {
     company: string | null;

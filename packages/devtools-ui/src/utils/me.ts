@@ -39,7 +39,7 @@ export const updateMe = async (variables: MeUpdateVariables) => {
     return false;
 };
 
-export const raffle = async () => {
+export const raffle = async (): Promise<RaffleResponse> => {
     try {
         const response = await fetch(
             // TODO: Change to real endpoint
@@ -48,9 +48,17 @@ export const raffle = async () => {
 
         const data = (await response.json()) as RaffleResponse;
 
-        return Boolean(data?.ruffle);
+        return data;
     } catch (_) {
         //
     }
-    return false;
+    return { ruffle: false };
+};
+
+export const acknowledgeRaffle = async () => {
+    try {
+        await fetch("/api/.refine/users/me/ruffle/acknowledge");
+    } catch (_) {
+        //
+    }
 };
