@@ -7,6 +7,7 @@
     "@refinedev/core": "^4.36.0",
     "@refinedev/cli": "^2.9.0",
     "@refinedev/react-router-v6": "^4.5.0",
+    "@refinedev/devtools": "^0.0.1",
     "@refinedev/simple-rest": "^4.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -15,10 +16,12 @@
     "antd": "^5.0.5"
   },
   "scripts": {
-    "start": "refine dev",
+    "start": "refine dev --devtools",
     "build": "tsc && refine build",
+    "list": "npm list --depth=0",
     "preview": "refine start",
     "refine": "refine",
+    "devtools": "refine devtools",
     "cypress": "cypress open -C ./cypress.config.ts",
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
