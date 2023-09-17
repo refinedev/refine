@@ -71,6 +71,22 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
             });
         });
 
+        receive(
+            client as any,
+            DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR,
+            ({ name }) => {
+                ws.clients.forEach((c) => {
+                    send(
+                        c as any,
+                        DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION,
+                        {
+                            name,
+                        },
+                    );
+                });
+            },
+        );
+
         // close connected app if client disconnects
         client.on("close", (_, reason) => {
             if (__DEVELOPMENT__) {
@@ -81,6 +97,8 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
                 if (!ws.clients.has(db.clientWs)) {
                     db.clientWs = null;
                     db.connectedApp = null;
+
+                    db.activities = [];
 
                     ws.clients.forEach((c) => {
                         send(
