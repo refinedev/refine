@@ -26,10 +26,14 @@ import { MonitorDetails } from "src/components/monitor-details";
 import { TraceList } from "src/components/trace-list";
 import { MonitorTable } from "src/components/monitor-table";
 import { Filters, MonitorFilters } from "src/components/monitor-filters";
+import { useSearchParams } from "react-router-dom";
 
 export const Monitor = () => {
     const { ws } = React.useContext(DevToolsContext);
     const [activities, setActivities] = React.useState<Activity[]>([]);
+    const [searchParams] = useSearchParams();
+
+    const highlightParam = searchParams.get("highlight");
 
     const fetchActivities = React.useCallback(() => {
         fetch("/api/activities")
@@ -142,6 +146,18 @@ export const Monitor = () => {
         scope: ["data"],
         status: [],
     });
+
+    React.useEffect(() => {
+        if (highlightParam) {
+            setFilters({
+                hook: [],
+                resource: undefined,
+                scope: [],
+                status: [],
+                parent: highlightParam,
+            });
+        }
+    }, [highlightParam]);
 
     const data = React.useMemo(() => {
         let filtered = [...activities];

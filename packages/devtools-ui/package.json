@@ -33,7 +33,6 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "dependencies": {
-    "@aliemir/dom-to-fiber-utils": "^0.2.0",
     "@headlessui/react": "^1.7.17",
     "@ory/client": "^1.1.25",
     "@refinedev/devtools-shared": "^0.0.1",

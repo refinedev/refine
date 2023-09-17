@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "src/components/button";
 import { LogoIcon } from "src/components/icons/logo";
 import { Input } from "src/components/input";
-import { MeUpdateVariables } from "src/interfaces/api";
-import { updateMe } from "src/utils/me";
+import { MeResponse, MeUpdateVariables } from "src/interfaces/api";
+import { getMe, updateMe } from "src/utils/me";
 
 const inputs = [
     {
@@ -47,6 +47,21 @@ export const Onboarding = () => {
     });
 
     const navigate = useNavigate();
+
+    const fetchMe = React.useCallback(() => {
+        return getMe().then((me) => {
+            if (me && typeof me.name === "string") {
+                setValues((p) => ({
+                    ...p,
+                    name: me.name as string,
+                }));
+            }
+        });
+    }, []);
+
+    React.useEffect(() => {
+        fetchMe();
+    }, [fetchMe]);
 
     return (
         <div
