@@ -17,6 +17,8 @@ export enum DevtoolsEvent {
     DEVTOOLS_ACTIVITY_UPDATE = "devtools:activity-update",
     DEVTOOLS_CONNECTED_APP = "devtools:connected-app",
     DEVTOOLS_DISCONNECTED_APP = "devtools:disconnected-app",
+    DEVTOOLS_HIGHLIGHT_IN_MONITOR = "devtools:highlight-in-monitor",
+    DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION = "devtools:highlight-in-monitor-action",
 }
 
 type Timestamps = {
@@ -60,4 +62,6 @@ export type DevtoolsEventPayloads = {
     };
     [DevtoolsEvent.DEVTOOLS_CONNECTED_APP]: { url: string | null };
     [DevtoolsEvent.DEVTOOLS_DISCONNECTED_APP]: {};
+    [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR]: { name: string };
+    [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
 };
