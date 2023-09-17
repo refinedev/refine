@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DevtoolsPin } from "./components/devtools-pin";
 import { ResizablePane } from "./components/resizable-pane";
 
 import { SIZE, getPinTransform } from "./utilities";
 
 import { Placement } from "./interfaces/placement";
-import { DevToolsContext } from "@refinedev/devtools-shared";
+import {
+    DevToolsContext,
+    DevtoolsEvent,
+    send,
+} from "@refinedev/devtools-shared";
 
 export const DevtoolsPanel =
     __DEV_CONDITION__ !== "development"
@@ -13,8 +17,24 @@ export const DevtoolsPanel =
         : () => {
               const [visible, setVisible] = React.useState(false);
               const [placement] = React.useState<Placement>("bottom");
-              const { devtoolsUrl } = React.useContext(DevToolsContext);
+              const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
               const [hover, setHover] = React.useState(false);
+
+              const onSelectorHighlight = React.useCallback(
+                  (name: string) => {
+                      if (ws) {
+                          send(
+                              ws,
+                              DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR,
+                              {
+                                  name,
+                              },
+                          );
+                      }
+                      setVisible(true);
+                  },
+                  [ws],
+              );
 
               return (
                   <div
@@ -35,6 +55,7 @@ export const DevtoolsPanel =
                           active={visible}
                           onClick={() => setVisible((v) => !v)}
                           groupHover={hover}
+                          onSelectorHighlight={onSelectorHighlight}
                       />
                       <ResizablePane visible={visible} placement={placement}>
                           {({ resizing }) => (

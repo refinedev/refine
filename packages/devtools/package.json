@@ -23,8 +23,11 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "dependencies": {
+    "@aliemir/dom-to-fiber-utils": "^0.2.0",
+    "@refinedev/devtools-shared": "^0.0.1",
     "error-stack-parser": "^2.1.4",
-    "@refinedev/devtools-shared": "^0.0.1"
+    "lodash-es": "^4.17.21",
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
@@ -36,6 +39,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
+    "@types/lodash": "^4.14.171",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "react-router-dom": "^6.8.1",
