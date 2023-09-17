@@ -3,6 +3,7 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
@@ -148,6 +149,12 @@ export function useLogout<TVariables = {}>({
             open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible === true
+                ? {}
+                : mutationOptions?.meta),
+            ...getXRay("useLogout", preferLegacyKeys),
+        },
     });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
@@ -190,6 +197,12 @@ export function useLogout<TVariables = {}>({
                 open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible
+                    ? mutationOptions?.meta
+                    : {}),
+                ...getXRay("useLogout", preferLegacyKeys),
+            },
         },
     );
 

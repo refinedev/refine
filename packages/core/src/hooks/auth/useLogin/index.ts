@@ -4,6 +4,7 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 import qs from "qs";
 
 import {
@@ -178,6 +179,12 @@ export function useLogin<TVariables = {}>({
             open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible === true
+                ? {}
+                : mutationOptions?.meta),
+            ...getXRay("useLogin", preferLegacyKeys),
+        },
     });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
@@ -221,6 +228,12 @@ export function useLogin<TVariables = {}>({
                 open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible
+                    ? mutationOptions?.meta
+                    : {}),
+                ...getXRay("useLogin", preferLegacyKeys),
+            },
         },
     );
 

@@ -3,6 +3,7 @@ import {
     UseQueryResult,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { IdentityResponse } from "../../../interfaces";
@@ -76,6 +77,12 @@ export function useGetIdentity<TData = any>({
             enabled: !v3LegacyAuthProviderCompatible && !!getIdentity,
             retry: false,
             ...(v3LegacyAuthProviderCompatible === true ? {} : queryOptions),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible === true
+                    ? {}
+                    : queryOptions?.meta),
+                ...getXRay("useGetIdentity", preferLegacyKeys),
+            },
         },
     );
 
@@ -90,6 +97,10 @@ export function useGetIdentity<TData = any>({
             enabled: v3LegacyAuthProviderCompatible && !!legacyGetUserIdentity,
             retry: false,
             ...(v3LegacyAuthProviderCompatible ? queryOptions : {}),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible ? queryOptions?.meta : {}),
+                ...getXRay("useGetIdentity", preferLegacyKeys),
+            },
         },
     );
 
