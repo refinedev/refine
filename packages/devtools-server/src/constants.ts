@@ -4,7 +4,9 @@ export const DEFAULT_SERVER_PORT = 5001;
 export const WS_PORT = Number(process.env.WS_PORT || DEFAULT_WS_PORT);
 export const SERVER_PORT = Number(process.env.PORT || DEFAULT_SERVER_PORT);
 
-export const REFINE_API_URL = "https://develop.cloud.refine.dev";
+export const REFINE_API_URL = __DEVELOPMENT__
+    ? "https://develop.cloud.refine.dev"
+    : "https://api.cloud.refine.dev";
 
 export const FEED_MD_URL =
     "https://raw.githubusercontent.com/refinedev/refine/next/packages/devtools-server/FEED.md";
