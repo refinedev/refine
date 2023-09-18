@@ -19,6 +19,7 @@ export type OptimisticUpdateMapType<TData, TVariables> = {
         | ((
               previous: GetListResponse<TData> | null,
               values: TVariables,
+              id: BaseKey,
           ) => GetListResponse<TData> | null)
         | boolean;
 };

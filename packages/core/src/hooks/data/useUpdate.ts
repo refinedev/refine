@@ -422,6 +422,7 @@ export const useUpdate = <
                                     return optimisticUpdateMap.detail(
                                         previous,
                                         values,
+                                        id,
                                     );
                                 }
 
