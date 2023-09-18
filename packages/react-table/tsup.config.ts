@@ -20,5 +20,8 @@ export default defineConfig({
             },
         }),
     ],
+    esbuildOptions(options) {
+        options.keepNames = true;
+    },
     onSuccess: "tsc --project tsconfig.declarations.json",
 });

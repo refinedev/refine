@@ -1,0 +1,19 @@
+.area {
+    height: 48px !important;
+
+    @media (min-width: 1600px) {
+        width: 250px;
+    }
+
+    @media (max-width: 1599px) {
+        width: 96px;
+    }
+
+    @media (max-width: 1200px) {
+        width: 300px;
+    }
+
+    @media (max-width: 528px) {
+        width: 100px;
+    }
+}

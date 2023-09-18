@@ -206,6 +206,7 @@ export const useModalForm = <
     React.useEffect(() => {
         if (initiallySynced === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+
             if (typeof openStatus === "boolean") {
                 if (openStatus) {
                     show();

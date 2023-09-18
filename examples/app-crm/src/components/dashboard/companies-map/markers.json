@@ -1,0 +1,15 @@
+[
+  { "id": 1, "coordinates": [38.0, 35.33] },
+  { "id": 2, "coordinates": [55.88, 46.05] },
+  { "id": 3, "coordinates": [50.63, 11.78] },
+  { "id": 4, "coordinates": [38.41, -104.41] },
+  { "id": 5, "coordinates": [44.72, -120.23] },
+  { "id": 6, "coordinates": [-8.75, -54.84] },
+  { "id": 7, "coordinates": [3.86, -73.65] },
+  { "id": 8, "coordinates": [19.97, -11.95] },
+  { "id": 9, "coordinates": [34.16, 97.56] },
+  { "id": 10, "coordinates": [35.6, 97.03] },
+  { "id": 11, "coordinates": [47.8040943, -84.5165] },
+  { "id": 12, "coordinates": [57.118132, -107.677649] },
+  { "id": 13, "coordinates": [-24.05, 134.3] }
+]

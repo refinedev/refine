@@ -735,6 +735,7 @@ module.exports = {
                                 "examples/data-provider/hasura",
                                 "examples/data-provider/multiple",
                                 "examples/data-provider/nestjsxCrud",
+                                "examples/data-provider/nestjs-query",
                                 "examples/data-provider/nhost",
                                 "examples/data-provider/strapi",
                                 "examples/data-provider/strapi-graphql",
@@ -856,6 +857,7 @@ module.exports = {
                             label: "Live Provider",
                             items: ["examples/live-provider/ably"],
                         },
+                        "examples/module-federation/vite",
                         "examples/multi-level-menu/multi-level-menu",
                         "examples/mutation-mode",
                         {

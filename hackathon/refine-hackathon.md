@@ -134,7 +134,7 @@ A prompt sharing platform where users can share their AI prompts and receive com
 
 A real-time collaboration platform with team management, task tracking, and chat features.
 
-**Author**: [Rasir Colakel](https://twitter.com/rasitcolakel) - [GitHub Repo](https://github.com/rasitcolakel/managify) - [Project Details](https://dev.to/rasitcolakel/manage-your-team-easily-with-managify-5gbp)
+**Author**: [Rasit Colakel](https://twitter.com/rasitcolakel) - [GitHub Repo](https://github.com/rasitcolakel/managify) - [Project Details](https://dev.to/rasitcolakel/manage-your-team-easily-with-managify-5gbp)
 
 ### Rapply: The All-In-One Job Hunting Assistant
 
