@@ -91,7 +91,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      */
     invalidates?: Array<keyof IQueryKeys>;
     /**
-     * You can use it to manage the invalidations that will occur at the end of the mutation.
+     * You can use it to customize the optimistic update logic.
      * @default {
      *   list: true,
      *   many: true,
