@@ -11,6 +11,7 @@ import { excludeKeys } from "src/utils/exclude-keys";
 import { getResourceValue } from "src/utils/get-resource-value";
 import { ResourceValue } from "./resource-value";
 import { RefineHook, scopes } from "@refinedev/devtools-shared";
+import { getOwners } from "src/utils/get-owners";
 
 export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
     return (
@@ -273,28 +274,30 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                             </div>
                         </div>
                         <div className={clsx("re-flex", "re-flex-col")}>
-                            <div
-                                className={clsx(
-                                    "re-px-2",
-                                    "re-py-4",
-                                    "re-flex",
-                                    "re-flex-col",
-                                    "re-gap-2",
-                                    "re-border-b",
-                                    "re-border-b-gray-700",
-                                )}
-                            >
+                            {getOwners(activity).length > 0 && (
                                 <div
                                     className={clsx(
-                                        "re-text-xs",
-                                        "re-font-semibold",
-                                        "re-text-gray-300",
+                                        "re-px-2",
+                                        "re-py-4",
+                                        "re-flex",
+                                        "re-flex-col",
+                                        "re-gap-2",
+                                        "re-border-b",
+                                        "re-border-b-gray-700",
                                     )}
                                 >
-                                    Owner(s)
+                                    <div
+                                        className={clsx(
+                                            "re-text-xs",
+                                            "re-font-semibold",
+                                            "re-text-gray-300",
+                                        )}
+                                    >
+                                        Owner(s)
+                                    </div>
+                                    <Owners activity={activity} />
                                 </div>
-                                <Owners activity={activity} />
-                            </div>
+                            )}
                             <div
                                 className={clsx(
                                     "re-px-2",

@@ -2,9 +2,10 @@ import React from "react";
 import { cleanFilePath } from "src/utils/clean-file-path";
 import { Activity } from "src/interfaces/activity";
 import clsx from "clsx";
+import { getOwners } from "src/utils/get-owners";
 
 export const Owners = ({ activity }: { activity: Activity }) => {
-    const owners = activity.trace?.filter((t) => !t.isRefine) ?? [];
+    const owners = getOwners(activity);
 
     return (
         <ul className={clsx("re-list-disc", "re-list-inside")}>
