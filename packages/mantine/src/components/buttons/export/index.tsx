@@ -1,17 +1,17 @@
-import React from "react";
+import { ActionIcon, Button } from "@mantine/core";
 import { useTranslate } from "@refinedev/core";
 import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Button } from "@mantine/core";
 import { IconFileExport } from "@tabler/icons";
+import React from "react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ExportButtonProps } from "../types";
 
 /**
- * `<ExportButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component with a default export icon and a default text with "Export".
+ * `<ExportButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `} component with a default export icon and a default text with "Export".
  * It only has presentational value.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/export-button} for more details.

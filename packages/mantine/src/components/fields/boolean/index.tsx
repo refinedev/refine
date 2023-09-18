@@ -1,11 +1,11 @@
-import React from "react";
 import { Tooltip } from "@mantine/core";
-import { IconX, IconCheck } from "@tabler/icons";
+import { IconCheck, IconX } from "@tabler/icons";
+import React from "react";
 
 import { BooleanFieldProps } from "../types";
 
 /**
- * This field is used to display boolean values. It uses the {@link https://mantine.dev/core/tooltip/ `<Tooltip>`} values from Mantine.
+ * This field is used to display boolean values. It uses the {@link https://mantine.dev/core/tooltip `<Tooltip>`} values from Mantine.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/boolean} for more details.
  */
