@@ -9,7 +9,7 @@ import { Modal } from "./modal";
 import { Highlight } from "./highlight";
 import { PlusCircleIcon } from "./icons/plus-circle";
 import { Button } from "./button";
-import { getAvailablePackages, installPackages } from "src/utils/packages";
+import { getAvailablePackages } from "src/utils/packages";
 import { UpdateIcon } from "./icons/update";
 import { CheckIcon } from "./icons/check";
 import { InfoIcon } from "./icons/info";
@@ -18,6 +18,7 @@ type Props = {
     visible: boolean;
     onClose: () => void;
     installedPackages: string[];
+    onInstall: (packagesToInstall: string[]) => Promise<boolean>;
     dismissOnOverlayClick?: boolean;
 };
 
@@ -25,6 +26,7 @@ export const AddPackageDrawer = ({
     visible,
     onClose,
     installedPackages,
+    onInstall,
     dismissOnOverlayClick = true,
 }: Props) => {
     const [delayedVisible, setDelayedVisible] = React.useState(visible);
@@ -53,29 +55,25 @@ export const AddPackageDrawer = ({
         "idle" | "installing" | "error" | "done"
     >("idle");
 
-    const updatePackage = React.useCallback(() => {
+    const updatePackage = React.useCallback(async () => {
         if (installModal) {
+            const installCommand =
+                packages.find((el) => el.name === installModal)?.install ?? "";
+            const packagesToInstall = installCommand
+                .replace("npm install ", "")
+                .split(" ");
+
             setStatus("installing");
-            installPackages([installModal])
-                .then((res) => {
-                    if (res) {
-                        setStatus("done");
-                        setInstallModal(null);
-                        getAvailablePackages().then((pkgs) => {
-                            setPackages(pkgs);
-                        });
-                        new Promise((resolve) => setTimeout(resolve, 200)).then(
-                            () => {
-                                onCloseInternal();
-                            },
-                        );
-                    } else {
-                        setStatus("error");
-                    }
-                })
-                .catch(() => {
-                    setStatus("error");
+            const response = await onInstall(packagesToInstall);
+            if (response) {
+                setStatus("done");
+                setInstallModal(null);
+                getAvailablePackages().then((pkgs) => {
+                    setPackages(pkgs);
                 });
+            } else {
+                setStatus("error");
+            }
         }
     }, [installModal]);
 

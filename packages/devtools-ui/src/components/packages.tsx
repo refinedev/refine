@@ -6,10 +6,9 @@ import { PackageItem } from "src/components/package-item";
 import { AddPackageDrawer } from "./add-package-drawer";
 import { Button } from "./button";
 import { PlusCircleIcon } from "./icons/plus-circle";
-import { getInstalledPackages } from "src/utils/packages";
+import { getInstalledPackages, installPackages } from "src/utils/packages";
 
 export const Packages = () => {
-    const [updating, setUpdating] = React.useState(false);
     const [packages, setPackages] = React.useState<PackageType[]>([]);
     const [visible, setVisible] = React.useState(false);
 
@@ -17,6 +16,22 @@ export const Packages = () => {
         getInstalledPackages().then((data) => {
             setPackages(data);
         });
+    }, []);
+
+    const [installInProgress, setInstallInProgress] = React.useState(false);
+    const onInstall = React.useCallback(async (packagesToInstall: string[]) => {
+        setInstallInProgress(true);
+        const state = await installPackages(packagesToInstall);
+
+        if (state) {
+            getInstalledPackages().then((data) => {
+                setPackages(data);
+            });
+        }
+
+        setInstallInProgress(false);
+
+        return state;
     }, []);
 
     return (
@@ -84,8 +99,8 @@ export const Packages = () => {
                         <PackageItem
                             key={item.name}
                             item={item}
-                            onUpdate={(v) => setUpdating(v)}
-                            blocked={updating}
+                            onUpdate={(v) => onInstall([v])}
+                            blocked={installInProgress}
                         />
                     ))}
                 </div>
@@ -98,6 +113,7 @@ export const Packages = () => {
                         setPackages(data);
                     });
                 }}
+                onInstall={(pkgs) => onInstall(pkgs)}
                 dismissOnOverlayClick
                 visible={visible}
             />

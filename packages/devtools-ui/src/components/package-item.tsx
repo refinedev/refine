@@ -9,12 +9,12 @@ import semverDiff from "semver-diff";
 import { UpdateIcon } from "./icons/update";
 import { CheckIcon } from "./icons/check";
 import { InfoIcon } from "./icons/info";
-import { getLatestInfo, installPackages } from "src/utils/packages";
+import { getLatestInfo } from "src/utils/packages";
 
 type Props = {
     item: PackageType;
     blocked?: boolean;
-    onUpdate: (updating: boolean) => void;
+    onUpdate: (packageName: string) => Promise<boolean>;
 };
 
 export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
@@ -78,10 +78,9 @@ export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
         if (status !== "idle") return;
         try {
             setStatus("updating");
-            onUpdate?.(true);
-            const status = await installPackages([item.name]);
+            const response = await onUpdate?.(item.name);
 
-            if (status) {
+            if (response) {
                 setStatus("done");
             } else {
                 setStatus("error");
@@ -90,7 +89,6 @@ export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
             setStatus("error");
             //
         }
-        onUpdate(false);
     }, [item.name, status]);
 
     return (
