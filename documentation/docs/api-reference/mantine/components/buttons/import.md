@@ -217,5 +217,5 @@ render(
 <PropsTable module="@refinedev/mantine/ImportButton" />
 
 [useimport]: /api-reference/core/hooks/import-export/useImport.md
-[button]: https://mantine.dev/core/button/
+[button]: https://mantine.dev/core/button
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input

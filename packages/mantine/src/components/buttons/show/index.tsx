@@ -20,7 +20,7 @@ import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ShowButtonProps } from "../types";
 
 /**
- * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
+ * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when red sirecting the app to the show page with the record id route of resource.
  *

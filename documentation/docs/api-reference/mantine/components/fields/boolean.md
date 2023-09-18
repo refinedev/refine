@@ -33,7 +33,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field is used to display boolean values. It uses the [`<Tooltip>`](https://mantine.dev/core/tooltip/) values from Mantine.
+This field is used to display boolean values. It uses the [`<Tooltip>`](https://mantine.dev/core/tooltip) values from Mantine.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -167,5 +167,5 @@ render(
 <PropsTable module="@refinedev/mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
 
 :::tip External Props
-It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip/?t=props).
+It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip?t=props).
 :::

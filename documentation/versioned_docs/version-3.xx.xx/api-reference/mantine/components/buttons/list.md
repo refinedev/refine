@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ListButton>` is using Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -223,7 +223,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <ListButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 
