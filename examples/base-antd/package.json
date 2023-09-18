@@ -16,7 +16,7 @@
     "antd": "^5.0.5"
   },
   "scripts": {
-    "start": "refine dev --devtools",
+    "start": "refine dev",
     "build": "tsc && refine build",
     "list": "npm list --depth=0",
     "preview": "refine start",
