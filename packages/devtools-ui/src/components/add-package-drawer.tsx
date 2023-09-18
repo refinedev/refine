@@ -60,6 +60,15 @@ export const AddPackageDrawer = ({
                 .then((res) => {
                     if (res) {
                         setStatus("done");
+                        setInstallModal(null);
+                        getAvailablePackages().then((pkgs) => {
+                            setPackages(pkgs);
+                        });
+                        new Promise((resolve) => setTimeout(resolve, 200)).then(
+                            () => {
+                                onCloseInternal();
+                            },
+                        );
                     } else {
                         setStatus("error");
                     }
@@ -82,7 +91,7 @@ export const AddPackageDrawer = ({
                 return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
             case "idle":
             default:
-                return <UpdateIcon className="re-text-gray-0" />;
+                return <PlusCircleIcon className="re-text-gray-0" />;
         }
     }, [status]);
 

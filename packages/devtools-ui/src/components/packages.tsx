@@ -80,9 +80,9 @@ export const Packages = () => {
                             "repeat(auto-fill, minmax(380px, 1fr))",
                     }}
                 >
-                    {packages.map((item, index) => (
+                    {packages.map((item) => (
                         <PackageItem
-                            key={index}
+                            key={item.name}
                             item={item}
                             onUpdate={(v) => setUpdating(v)}
                             blocked={updating}
@@ -91,8 +91,13 @@ export const Packages = () => {
                 </div>
             </div>
             <AddPackageDrawer
-                installedPackages={[]}
-                onClose={() => setVisible(false)}
+                installedPackages={packages.map((item) => item.name)}
+                onClose={() => {
+                    setVisible(false);
+                    getInstalledPackages().then((data) => {
+                        setPackages(data);
+                    });
+                }}
                 dismissOnOverlayClick
                 visible={visible}
             />
