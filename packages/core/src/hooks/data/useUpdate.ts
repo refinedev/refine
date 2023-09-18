@@ -98,7 +98,7 @@ export type UpdateParams<TData, TError, TVariables> = {
      *   detail: true,
      * }
      */
-    queryCacheUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
+    optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TData>,
     TError,
@@ -275,7 +275,7 @@ export const useUpdate = <
                 dataProviderName,
                 meta,
                 metaData,
-                queryCacheUpdateMap = { list: true, many: true, detail: true },
+                optimisticUpdateMap = { list: true, many: true, detail: true },
             }) => {
                 const { identifier } = select(resourceName);
 
@@ -314,7 +314,7 @@ export const useUpdate = <
                 );
 
                 if (mutationModePropOrContext !== "pessimistic") {
-                    if (queryCacheUpdateMap.list) {
+                    if (optimisticUpdateMap.list) {
                         // Set the previous queries to the new ones:
                         queryClient.setQueriesData(
                             resourceKeys
@@ -327,10 +327,10 @@ export const useUpdate = <
                                 }
 
                                 if (
-                                    typeof queryCacheUpdateMap.list ===
+                                    typeof optimisticUpdateMap.list ===
                                     "function"
                                 ) {
-                                    return queryCacheUpdateMap.list(
+                                    return optimisticUpdateMap.list(
                                         previous,
                                         values,
                                         id,
@@ -361,7 +361,7 @@ export const useUpdate = <
                         );
                     }
 
-                    if (queryCacheUpdateMap.many) {
+                    if (optimisticUpdateMap.many) {
                         queryClient.setQueriesData(
                             resourceKeys.action("many").get(preferLegacyKeys),
                             (previous?: GetListResponse<TData> | null) => {
@@ -370,10 +370,10 @@ export const useUpdate = <
                                 }
 
                                 if (
-                                    typeof queryCacheUpdateMap.many ===
+                                    typeof optimisticUpdateMap.many ===
                                     "function"
                                 ) {
-                                    return queryCacheUpdateMap.many(
+                                    return optimisticUpdateMap.many(
                                         previous,
                                         values,
                                         id,
@@ -403,7 +403,7 @@ export const useUpdate = <
                         );
                     }
 
-                    if (queryCacheUpdateMap.detail) {
+                    if (optimisticUpdateMap.detail) {
                         queryClient.setQueriesData(
                             resourceKeys
                                 .action("one")
@@ -416,10 +416,10 @@ export const useUpdate = <
                                 }
 
                                 if (
-                                    typeof queryCacheUpdateMap.detail ===
+                                    typeof optimisticUpdateMap.detail ===
                                     "function"
                                 ) {
-                                    return queryCacheUpdateMap.detail(
+                                    return optimisticUpdateMap.detail(
                                         previous,
                                         values,
                                     );
