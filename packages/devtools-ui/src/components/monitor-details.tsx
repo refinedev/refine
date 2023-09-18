@@ -305,7 +305,10 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                 >
                                     Key
                                 </div>
-                                <JsonViewer data={activity.key ?? []} />
+                                <JsonViewer
+                                    data={activity.key ?? []}
+                                    label="Key"
+                                />
                             </div>
                             {activity.type === "mutation" &&
                                 activity.variables && (
@@ -331,6 +334,7 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                         </div>
                                         <JsonViewer
                                             data={activity.variables ?? {}}
+                                            label="Variables"
                                         />
                                     </div>
                                 )}
@@ -357,6 +361,7 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                     </div>
                                     <JsonViewer
                                         data={activity.state.data ?? {}}
+                                        label="Data"
                                     />
                                 </div>
                             )}
@@ -383,6 +388,7 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                     </div>
                                     <JsonViewer
                                         data={activity.state.error ?? {}}
+                                        label="Error"
                                     />
                                 </div>
                             )}
@@ -413,6 +419,7 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                             "error",
                                             "status",
                                         ])}
+                                        label="Extra"
                                     />
                                 </div>
                             )}
