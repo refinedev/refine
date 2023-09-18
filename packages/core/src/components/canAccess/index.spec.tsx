@@ -1,5 +1,5 @@
 import React from "react";
-import { render, TestWrapper } from "@test";
+import { render, TestWrapper, waitFor } from "@test";
 
 import { CanAccess } from ".";
 import { act } from "react-dom/test-utils";
@@ -12,8 +12,14 @@ import * as PickResource from "../../definitions/helpers/pick-resource";
 
 describe("CanAccess Component", () => {
     it("should render children", async () => {
+        const onUnauthorized = jest.fn();
+
         const { container, findByText } = render(
-            <CanAccess action="list" resource="posts">
+            <CanAccess
+                action="list"
+                resource="posts"
+                onUnauthorized={(args) => onUnauthorized(args)}
+            >
                 Accessible
             </CanAccess>,
             {
@@ -35,11 +41,21 @@ describe("CanAccess Component", () => {
 
         expect(container).toBeTruthy();
         await findByText("Accessible");
+
+        await waitFor(() => {
+            expect(onUnauthorized).not.toHaveBeenCalled();
+        });
     });
 
-    it("should not render children", async () => {
+    it("should not render children and call onUnauthorized", async () => {
+        const onUnauthorized = jest.fn();
+
         const { container, queryByText } = render(
-            <CanAccess action="list" resource="posts">
+            <CanAccess
+                action="list"
+                resource="posts"
+                onUnauthorized={(args) => onUnauthorized(args)}
+            >
                 Accessible
             </CanAccess>,
             {
@@ -47,6 +63,7 @@ describe("CanAccess Component", () => {
                     accessControlProvider: {
                         can: async () => ({
                             can: false,
+                            reason: "test",
                         }),
                     },
                 }),
@@ -56,6 +73,21 @@ describe("CanAccess Component", () => {
         await act(async () => {
             expect(container).toBeTruthy();
             expect(queryByText("Accessible")).not.toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(onUnauthorized).toHaveBeenCalledTimes(1);
+            expect(onUnauthorized).toHaveBeenCalledWith({
+                resource: "posts",
+                action: "list",
+                reason: "test",
+                params: {
+                    id: undefined,
+                    resource: {
+                        name: "posts",
+                    },
+                },
+            });
         });
     });
 

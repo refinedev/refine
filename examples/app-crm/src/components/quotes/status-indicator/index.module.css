@@ -1,0 +1,46 @@
+.button {
+    cursor: pointer;
+    user-select: none;
+    transition: filter 0.2s ease-in-out;
+
+    &.first {
+        z-index: 3;
+
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+
+    &.second {
+        z-index: 2;
+        transform: translateX(-14px);
+
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+
+    &.third {
+        z-index: 1;
+        transform: translateX(-32px);
+
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+}
+
+.draft {
+    transition: color 0.2s ease-in-out;
+    color: #0958d9;
+}
+
+.sent {
+    transition: color 0.2s ease-in-out;
+    color: #08979c;
+}
+
+.accepted {
+    transition: color 0.2s ease-in-out;
+    color: #389e0d;
+}

@@ -1,0 +1,36 @@
+.container {
+    width: 100%;
+    height: 262px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    position: relative;
+
+    .dropdown {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .personal {
+        padding: 0.75rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .company {
+        display: flex;
+        flex-direction: column;
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+        border-top: 1px solid rgba(240, 240, 240, 1);
+        text-align: center;
+    }
+}

@@ -19,6 +19,7 @@ import {
     Medusa,
     Mui,
     Nest,
+    NestQuery,
     Nextjs,
     Nhost,
     React,
@@ -66,7 +67,7 @@ export const integrations: IntegrationsType = {
     ],
     "data-provider-packages": [
         {
-            name: "REST API Data Provider",
+            name: "REST API",
             icon: Rest,
             description:
                 "Connect any custom <strong>REST API</strong> backend.",
@@ -74,14 +75,14 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "GraphQL Data Provider",
+            name: "GraphQL",
             icon: Graphql,
             description: "Connect any custom <strong>GraphQL</strong> backend.",
             url: "https://www.npmjs.com/package/@refinedev/graphql",
             status: "stable",
         },
         {
-            name: "NestJsX Crud Data Provider",
+            name: "NestJsX CRUD",
             icon: Nest,
             description:
                 "Consume <strong>REST API's</strong> built with <strong>NestJs</strong>.",
@@ -89,7 +90,7 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Strapi Data Provider",
+            name: "Strapi",
             icon: Strapi,
             description:
                 "<strong>Strapi</strong> connector for <strong>v4 REST API</strong>.",
@@ -97,7 +98,7 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Supabase Data Provider",
+            name: "Supabase",
             icon: Supabase,
             description:
                 "<strong>Supabase</strong> data provider. Supports <strong>Supabase Realtime</strong> for <strong>live/realtime</strong> projects.",
@@ -105,7 +106,7 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Hasura GraphQL Data Provider",
+            name: "Hasura GraphQL",
             icon: Hasura,
             description:
                 "<strong>Hasura GraphQL</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
@@ -113,7 +114,15 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Nhost Data Provider",
+            name: "Nestjs-Query",
+            icon: NestQuery,
+            description:
+                "Consume <strong>GraphQL API's</strong> built with <strong>Nestjs-Query</strong>.",
+            url: "https://www.npmjs.com/package/@refinedev/nestjs-query",
+            status: "stable",
+        },
+        {
+            name: "Nhost",
             icon: Nhost,
             description:
                 "<strong>Nhost</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
@@ -121,7 +130,7 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Appwrite Data Provider",
+            name: "Appwrite",
             icon: Appwrite,
             description:
                 " Appwrite data provider. Supports <strong>Appwrite Realtime</strong> for <strong>live/realtime</strong> projects.",
@@ -129,14 +138,14 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Airtable Data Provider",
+            name: "Airtable",
             icon: Airtable,
             description: "Use <strong>Airtable</strong> as backend service.",
             url: "https://www.npmjs.com/package/@refinedev/airtable",
             status: "stable",
         },
         {
-            name: "Medusa Data Provider",
+            name: "Medusa",
             icon: Medusa,
             description:
                 "<strong>Medusa</strong> connector for your e-commerce projects.",
@@ -144,7 +153,7 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Strapi - GraphQL Data Provider",
+            name: "Strapi - GraphQL",
             icon: Strapi,
             description:
                 "<strong>Strapi</strong> connector for <strong>GraphQL API</strong>.",
@@ -152,7 +161,7 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Firebase Data Provider",
+            name: "Firebase",
             icon: Firebase,
             description: "Support for <strong>Firebase</strong> services.",
             url: "https://www.npmjs.com/package/refine-firebase",
@@ -165,7 +174,7 @@ export const integrations: IntegrationsType = {
             ],
         },
         {
-            name: "Directus Data Provider",
+            name: "Directus",
             icon: Directus,
             description:
                 "Connector for backends created with <strong>Directus</strong>",

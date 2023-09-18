@@ -1,0 +1,246 @@
+import {
+    CrudOperators,
+    LogicalFilter,
+    CrudSorting,
+    Pagination,
+    CrudFilter,
+} from "@refinedev/core";
+import camelcase from "camelcase";
+import VariableOptions from "gql-query-builder/build/VariableOptions";
+import * as gql from "gql-query-builder";
+import { singular } from "pluralize";
+import set from "lodash/set";
+
+const operatorMap: { [key: string]: string } = {
+    eq: "eq",
+    ne: "neq",
+    lt: "lt",
+    gt: "gt",
+    lte: "lte",
+    gte: "gte",
+    in: "in",
+    nin: "notIn",
+};
+
+const operatorMapper = (
+    operator: CrudOperators,
+    value: any,
+): { [key: string]: any } => {
+    if (operator === "contains") {
+        return { iLike: `%${value}%` };
+    }
+
+    if (operator === "ncontains") {
+        return { notILike: `%${value}%` };
+    }
+
+    if (operator === "startswith") {
+        return { iLike: `${value}%` };
+    }
+
+    if (operator === "nstartswith") {
+        return { notILike: `${value}%` };
+    }
+
+    if (operator === "endswith") {
+        return { iLike: `%${value}` };
+    }
+
+    if (operator === "nendswith") {
+        return { notILike: `%${value}` };
+    }
+
+    if (operator === "null") {
+        return { is: null };
+    }
+
+    if (operator === "nnull") {
+        return { isNot: null };
+    }
+
+    if (operator === "between") {
+        if (!Array.isArray(value)) {
+            throw new Error("Between operator requires an array");
+        }
+
+        if (value.length !== 2) {
+            return {};
+        }
+
+        return { between: { lower: value[0], upper: value[1] } };
+    }
+
+    return { [operatorMap[operator]]: value };
+};
+
+export const generateFilters = (filters: LogicalFilter[]) => {
+    const result: { [key: string]: { [key: string]: string | number } } = {};
+
+    filters
+        .filter((f) => {
+            if (Array.isArray(f.value) && f.value.length === 0) {
+                return false;
+            }
+
+            return !!f.value;
+        })
+        .map((filter: LogicalFilter | CrudFilter) => {
+            if (filter.operator === "and" || filter.operator === "or") {
+                return set(result, filter.operator, [
+                    generateFilters(filter.value as LogicalFilter[]),
+                ]);
+            } else if ("field" in filter) {
+                return set(
+                    result,
+                    filter.field,
+                    operatorMapper(filter.operator, filter.value),
+                );
+            } else {
+                return {};
+            }
+        });
+
+    return result;
+};
+
+export const generateSorting = (sorters: CrudSorting) => {
+    return sorters.map((sorter) => {
+        return {
+            field: sorter.field,
+            direction: sorter.order.toUpperCase(),
+        };
+    });
+};
+
+export const generatePaging = (pagination: Pagination) => {
+    // maximum value of 32 bit signed integer
+    if (pagination.mode === "off") return { limit: 2147483647 };
+
+    if (pagination.mode !== "server") return undefined;
+
+    if (!pagination.current || !pagination.pageSize) return undefined;
+
+    return {
+        limit: pagination.pageSize,
+        offset: (pagination.current - 1) * pagination.pageSize,
+    };
+};
+
+export const generateCreatedSubscription = ({
+    resource,
+    filters,
+    meta,
+}: any) => {
+    const operation = `created${camelcase(singular(resource), {
+        pascalCase: true,
+    })}`;
+
+    const queryVariables: VariableOptions = {};
+
+    if (filters) {
+        queryVariables["input"] = {
+            type: camelcase(
+                `create_${singular(resource)}_subscription_filter_input`,
+                {
+                    pascalCase: true,
+                },
+            ),
+            required: true,
+            value: {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            },
+        };
+    }
+
+    const { query, variables } = gql.subscription({
+        operation,
+        fields: meta.fields,
+        variables: queryVariables,
+    });
+
+    return { query, variables, operation };
+};
+
+export const generateUpdatedSubscription = ({
+    resource,
+    filters,
+    meta,
+}: any) => {
+    const operation = `updatedOne${camelcase(singular(resource), {
+        pascalCase: true,
+    })}`;
+
+    const queryVariables: VariableOptions = {};
+
+    if (filters) {
+        queryVariables["input"] = {
+            type: camelcase(
+                `update_one_${singular(resource)}_subscription_filter_input`,
+                {
+                    pascalCase: true,
+                },
+            ),
+            required: true,
+            value: {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            },
+        };
+    }
+
+    const { query, variables } = gql.subscription({
+        operation,
+        fields: meta.fields,
+        variables: queryVariables,
+    });
+
+    return { query, variables, operation };
+};
+
+export const generateDeletedSubscription = ({
+    resource,
+    filters,
+    meta,
+}: any) => {
+    const operation = `deletedOne${camelcase(singular(resource), {
+        pascalCase: true,
+    })}`;
+
+    const queryVariables: VariableOptions = {};
+
+    if (filters) {
+        queryVariables["input"] = {
+            type: camelcase(
+                `delete_one_${singular(resource)}_subscription_filter_input`,
+                {
+                    pascalCase: true,
+                },
+            ),
+            required: true,
+            value: {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            },
+        };
+    }
+
+    const { query, variables } = gql.subscription({
+        operation,
+        fields: meta.fields.filter(
+            (field: string | object) => typeof field !== "object",
+        ),
+        variables: queryVariables,
+    });
+
+    return { query, variables, operation };
+};

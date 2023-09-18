@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popover {
+    .ant-input-affix-wrapper,
+    .ant-input-affix-wrapper-lg {
+        padding: 0 !important;
+    }
+}
+
+.input {
+    min-width: 256px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    font-size: 14px !important;
+}
+
+.inputPrefix {
+    margin-right: 4px;
+    font-size: 12px !important;
+}
+
+.inputSuffix {
+    user-select: none;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    color: #b4b4b4;
+    border-radius: 4px;
+    font-size: 12px !important;
+}
+
+.list {
+    height: auto;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.listItem {
+    cursor: pointer;
+    border-block-end: 1px solid rgba(72, 48, 24, 0.04) !important;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+}

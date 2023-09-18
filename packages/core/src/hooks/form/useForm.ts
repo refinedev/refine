@@ -334,7 +334,8 @@ export const useForm = <
     warnOnce(
         (isClone || isEdit) &&
             Boolean(resourceFromProps) &&
-            !Boolean(idFromProps),
+            !Boolean(idFromProps) &&
+            queryOptions?.enabled !== false,
         `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
             `If you don't use the \`setId\` method to set the \`id\`, you should pass the \`id\` prop to \`useForm\`. Otherwise, \`useForm\` will not be able to infer the \`id\` from the current URL. \n\n` +
             `See https://refine.dev/docs/api-reference/core/hooks/useForm/#resource`,
