@@ -1,6 +1,6 @@
 ---
 id: nestjsxCrud
-title: Nestjsx Crud
+title: Nestjsx CRUD
 example-tags: [data-provider]
 ---
 

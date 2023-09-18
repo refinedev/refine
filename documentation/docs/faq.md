@@ -793,6 +793,10 @@ In realtime updates, **refine** will invalidate and refetch all the active queri
 
 In both cases, if there are any ongoing queries, **refine** will keep them as they are and will not invalidate or refetch them.
 
+## Handling client side pagination along with client side filtering and sorting
+
+When you're implementing client side pagination with the `pagination.mode` set to "client," you might run into issues when applying client side filtering and sorting. This is due to the fact that client side filtering and sorting are applied to the sliced data, not the whole data. To ensure that the client side filtering and sorting are applied to the whole data, you need to use the `pagination.mode: "off"` prop.
+
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [use-form-antd]: /docs/api-reference/antd/hooks/form/useForm/

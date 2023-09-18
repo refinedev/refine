@@ -377,7 +377,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
               <div
                 class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
                 role="presentation"
-                style="width: auto; height: 104px; min-height: auto;"
+                style="width: auto; min-height: auto; height: 104px;"
               >
                 <div
                   class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
