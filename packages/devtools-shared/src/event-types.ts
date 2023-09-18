@@ -36,7 +36,7 @@ type ActivityPayload =
           state: Mutation<any, any, any, any>["state"];
           variables?: Mutation<any, any, any, any>["state"]["variables"];
           hookName: string;
-          resourcePath: string;
+          resourcePath: string | null;
           legacyKey: boolean;
       }
     | {
@@ -47,7 +47,7 @@ type ActivityPayload =
           trace?: TraceType[];
           state: QueryState<any, any>;
           hookName: string;
-          resourcePath: string;
+          resourcePath: string | null;
           legacyKey: boolean;
       };
 
