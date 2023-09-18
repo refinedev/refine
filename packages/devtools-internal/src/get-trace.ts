@@ -12,17 +12,21 @@ export function getTrace() {
             const error = new Error();
             const stack = ErrorStackParser.parse(error);
             const clean = cleanStack(stack);
-            const traces = clean.map(
-                (frame) =>
-                    ({
-                        file: frame.fileName,
-                        line: frame.lineNumber,
-                        column: frame.columnNumber,
-                        function: frame.functionName,
-                        isRefine: isRefineStack(frame.fileName),
-                        packageName: getPackageNameFromFilename(frame.fileName),
-                    } as TraceType),
-            );
+            const traces = clean
+                .map(
+                    (frame) =>
+                        ({
+                            file: frame.fileName,
+                            line: frame.lineNumber,
+                            column: frame.columnNumber,
+                            function: frame.functionName,
+                            isRefine: isRefineStack(frame.fileName),
+                            packageName: getPackageNameFromFilename(
+                                frame.fileName,
+                            ),
+                        } as TraceType),
+                )
+                .filter((trace) => trace.function);
             return traces.slice(1);
         } catch (error) {
             return [];
