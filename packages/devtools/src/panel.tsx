@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { DevtoolsPin } from "./components/devtools-pin";
 import { ResizablePane } from "./components/resizable-pane";
 
