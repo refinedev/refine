@@ -2,14 +2,13 @@ import execa from "execa";
 
 export const getLatestPackageData = async (
     packageName: string,
-): Promise<{ name: string; version?: string; description?: string }> => {
+): Promise<{ name: string; version?: string }> => {
     try {
         const { stdout } = await execa("npm", [
             "view",
             packageName,
             "name",
             "version",
-            "description",
             "--json",
         ]);
         const parsed = JSON.parse(stdout);

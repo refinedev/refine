@@ -1,12 +1,18 @@
 import type { Express } from "express";
 import { json } from "express";
 
-import { Feed, PackageType } from "@refinedev/devtools-shared";
+import {
+    AvailablePackageType,
+    Feed,
+    PackageType,
+} from "@refinedev/devtools-shared";
 
 import { Data } from "./create-db";
 import { getFeed } from "./feed/get-feed";
 import { getAllPackages } from "./packages/get-all-packages";
+import { getAvailablePackages } from "./packages/get-available-packages";
 import { updatePackage } from "./packages/update-package";
+import { getLatestPackageData } from "./packages/get-latest-package-data";
 
 export const serveApi = (app: Express, db: Data) => {
     app.use("/api", json());
@@ -30,18 +36,30 @@ export const serveApi = (app: Express, db: Data) => {
         res.json({ success: true });
     });
 
-    let cachedPackages: PackageType[] | null = null;
-    app.get("/api/packages", async (_, res) => {
-        if (!cachedPackages) {
-            cachedPackages = await getAllPackages();
+    let cachedInstalledPackages: PackageType[] | null = null;
+    app.get("/api/installed-packages", async (_, res) => {
+        if (!cachedInstalledPackages) {
+            cachedInstalledPackages = await getAllPackages();
         }
 
-        res.header("x-total-count", `${cachedPackages.length}`);
+        res.header("x-total-count", `${cachedInstalledPackages.length}`);
 
-        res.json({ data: cachedPackages });
+        res.json({ data: cachedInstalledPackages });
     });
 
-    app.post("/api/packages/:packageName/update", async (req, res) => {
+    let cachedAvailablePackages: AvailablePackageType[] | null = null;
+    app.get("/api/available-packages", async (_, res) => {
+        if (!cachedAvailablePackages) {
+            cachedAvailablePackages = await getAvailablePackages();
+        }
+
+        res.header("x-total-count", `${cachedAvailablePackages.length}`);
+
+        res.json({ data: cachedAvailablePackages });
+    });
+
+    const cachedLatestPackages = new Map<string, any>();
+    app.get("/api/packages/:packageName/latest", async (req, res) => {
         const { packageName } = req.params ?? {};
 
         if (!packageName) {
@@ -49,10 +67,27 @@ export const serveApi = (app: Express, db: Data) => {
             return;
         }
 
-        const success = await updatePackage(packageName);
+        if (!cachedLatestPackages.has(packageName)) {
+            const latest = await getLatestPackageData(packageName);
+            cachedLatestPackages.set(packageName, latest);
+        }
+
+        return res.json({ data: cachedLatestPackages.get(packageName) });
+    });
+
+    app.post("/api/packages/install", async (req, res) => {
+        const { packages } = req.body ?? {};
+
+        if (packages?.length > 0) {
+            res.status(400).json({ error: "Package name is required" });
+            return;
+        }
+
+        const success = await updatePackage(packages as string[]);
 
         if (success) {
-            cachedPackages = null;
+            cachedInstalledPackages = null;
+            cachedAvailablePackages = null;
             res.status(200).json({ success: true });
         } else {
             res.status(400).json({

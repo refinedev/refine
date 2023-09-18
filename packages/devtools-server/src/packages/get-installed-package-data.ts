@@ -16,6 +16,7 @@ export const getInstalledPackageData = async (packageName: string) => {
         return {
             name: parsed.name,
             version: parsed.version,
+            description: parsed.description,
         };
     } catch (e) {
         return null;

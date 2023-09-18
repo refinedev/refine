@@ -2,7 +2,7 @@ import preferredPM from "preferred-pm";
 import execa from "execa";
 
 export const updatePackage = async (
-    packageName: string,
+    packages: string[],
     projectPath: string = process.cwd(),
 ) => {
     try {
@@ -12,7 +12,7 @@ export const updatePackage = async (
 
         const { failed } = await execa(pm ?? "npm", [
             "install",
-            `${packageName}@latest`,
+            ...packages.map((p) => `${p}@latest`),
         ]);
 
         return !failed;
