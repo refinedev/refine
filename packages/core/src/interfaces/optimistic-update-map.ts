@@ -1,4 +1,4 @@
-import { BaseKey, GetListResponse } from ".";
+import { BaseKey, GetListResponse, GetManyResponse, GetOneResponse } from ".";
 
 export type OptimisticUpdateMapType<TData, TVariables> = {
     list?:
@@ -10,17 +10,17 @@ export type OptimisticUpdateMapType<TData, TVariables> = {
         | boolean;
     many?:
         | ((
-              previous: GetListResponse<TData> | null,
+              previous: GetManyResponse<TData> | null,
               values: TVariables,
               id: BaseKey,
-          ) => GetListResponse<TData> | null)
+          ) => GetManyResponse<TData> | null)
         | boolean;
     detail?:
         | ((
-              previous: GetListResponse<TData> | null,
+              previous: GetOneResponse<TData> | null,
               values: TVariables,
               id: BaseKey,
-          ) => GetListResponse<TData> | null)
+          ) => GetOneResponse<TData> | null)
         | boolean;
 };
 
@@ -34,16 +34,16 @@ export type OptimisticUpdateManyMapType<TData, TVariables> = {
         | boolean;
     many?:
         | ((
-              previous: GetListResponse<TData> | null,
+              previous: GetManyResponse<TData> | null,
               values: TVariables,
               ids: BaseKey[],
-          ) => GetListResponse<TData> | null)
+          ) => GetManyResponse<TData> | null)
         | boolean;
     detail?:
         | ((
-              previous: GetListResponse<TData> | null,
+              previous: GetOneResponse<TData> | null,
               values: TVariables,
               id: BaseKey,
-          ) => GetListResponse<TData> | null)
+          ) => GetOneResponse<TData> | null)
         | boolean;
 };

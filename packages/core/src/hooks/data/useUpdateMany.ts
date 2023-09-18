@@ -33,6 +33,8 @@ import {
     GetListResponse,
     IQueryKeys,
     OptimisticUpdateManyMapType,
+    GetManyResponse,
+    GetOneResponse,
 } from "../../interfaces";
 import {
     queryKeysReplacement,
@@ -376,7 +378,7 @@ export const useUpdateMany = <
                     if (optimisticUpdateMap.many) {
                         queryClient.setQueriesData(
                             resourceKeys.action("many").get(preferLegacyKeys),
-                            (previous?: GetListResponse<TData> | null) => {
+                            (previous?: GetManyResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
                                 }
@@ -427,7 +429,7 @@ export const useUpdateMany = <
                                     .id(id)
                                     .params(preferredMeta ?? {})
                                     .get(preferLegacyKeys),
-                                (previous?: GetListResponse<TData> | null) => {
+                                (previous?: GetOneResponse<TData> | null) => {
                                     if (!previous) {
                                         return null;
                                     }
