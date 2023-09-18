@@ -86,7 +86,7 @@ export const Monitor = () => {
                 {
                     header: "Hook",
                     minSize: 90,
-                    accessorFn: (activity) => activity.trace?.[0]?.function,
+                    accessorFn: (activity) => activity.hookName,
                 },
                 {
                     header: "Resource",

@@ -105,7 +105,7 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                     Hook name:
                                 </div>
                                 <div className={clsx("re-flex-1")}>
-                                    {activity?.trace?.[0].function}
+                                    {activity?.hookName}
                                     {activity.type === "query" && (
                                         <span
                                             className={clsx(
