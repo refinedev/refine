@@ -56,7 +56,7 @@ const ClonePage = () => {
 };
 ```
 
-`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button/) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
@@ -251,9 +251,7 @@ import { Refine } from "@refinedev/core";
 import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton resource="categories" recordItemId="2" />
-    );
+    return <CloneButton resource="categories" recordItemId="2" />;
 };
 // visible-block-end
 
@@ -291,9 +289,7 @@ If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <CloneButton meta={{ authorId: "10" }} />
-    );
+    return <CloneButton meta={{ authorId: "10" }} />;
 };
 ```
 

@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<SaveButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
+`<SaveButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)

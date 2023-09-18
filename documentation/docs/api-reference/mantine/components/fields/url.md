@@ -159,5 +159,5 @@ render(
 <PropsTable module="@refinedev/mantine/UrlField" value-description="URL for link to reference to"/>
 
 :::tip External Props
-It also accepts all props of Mantine [Anchor](https://mantine.dev/core/anchor/?t=props).
+It also accepts all props of Mantine [Anchor](https://mantine.dev/core/anchor?t=props).
 :::
