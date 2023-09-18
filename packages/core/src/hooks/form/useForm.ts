@@ -166,7 +166,7 @@ type ActionFormProps<
      *   detail: true,
      * }
      */
-    optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
+    optimisticUpdateMap?: OptimisticUpdateMapType<TResponse, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TResponse> | CreateResponse<TResponse>,
     TResponseError,
@@ -523,6 +523,7 @@ export const useForm = <
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
             invalidates,
+            optimisticUpdateMap,
         };
 
         const onSuccess = () => {
@@ -549,7 +550,6 @@ export const useForm = <
                 }
                 return setTimeout(() => {
                     mutateUpdate(variables, {
-                        ...optimisticUpdateMap,
                         onSuccess: (data, _, context) => {
                             if (onMutationSuccess) {
                                 onMutationSuccess(data, values, context);
