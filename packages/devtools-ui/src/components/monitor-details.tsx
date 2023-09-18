@@ -8,6 +8,9 @@ import dayjs from "dayjs";
 import { Owners } from "./owners";
 import { JsonViewer } from "./json-viewer";
 import { excludeKeys } from "src/utils/exclude-keys";
+import { getResourceValue } from "src/utils/get-resource-value";
+import { ResourceValue } from "./resource-value";
+import { RefineHook, scopes } from "@refinedev/devtools-shared";
 
 export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
     return (
@@ -71,7 +74,14 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                         "re-capitalize",
                                     )}
                                 >
-                                    {activity.key?.[1] as any}
+                                    <ResourceValue
+                                        resource={getResourceValue(activity)}
+                                        scope={
+                                            scopes[
+                                                activity.hookName as RefineHook
+                                            ]
+                                        }
+                                    />
                                 </div>
                             </div>
                             <div
