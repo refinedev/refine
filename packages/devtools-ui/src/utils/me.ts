@@ -43,7 +43,7 @@ export const raffle = async (): Promise<RaffleResponse> => {
     try {
         const response = await fetch(
             // TODO: Change to real endpoint
-            "/api/.refine/users/me/raffle?result=true",
+            "/api/.refine/users/me/raffle",
         );
 
         const data = (await response.json()) as RaffleResponse;
