@@ -78,7 +78,7 @@ export const serveApi = (app: Express, db: Data) => {
     app.post("/api/packages/install", async (req, res) => {
         const { packages } = req.body ?? {};
 
-        if (packages?.length > 0) {
+        if (packages?.length === 0) {
             res.status(400).json({ error: "Package name is required" });
             return;
         }
