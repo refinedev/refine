@@ -549,6 +549,7 @@ export const useForm = <
                 }
                 return setTimeout(() => {
                     mutateUpdate(variables, {
+                        ...optimisticUpdateMap,
                         onSuccess: (data, _, context) => {
                             if (onMutationSuccess) {
                                 onMutationSuccess(data, values, context);
@@ -566,7 +567,6 @@ export const useForm = <
                             }
                             reject();
                         },
-                        ...optimisticUpdateMap,
                     });
                 });
             },
