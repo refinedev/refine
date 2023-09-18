@@ -1040,19 +1040,22 @@ const { overtime } = useStepsForm({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -1072,9 +1075,10 @@ useStepsForm({
         autoSave: {
             enabled: true,
         },
-    }
-})
+    },
+});
 ```
+
 #### `debounce`
 
 `debounce` sets the debounce time for the `autoSave` prop. Default value is `1000`.
@@ -1087,8 +1091,8 @@ useStepsForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
 
 #### `invalidateOnUnmount`
@@ -1103,8 +1107,8 @@ useStepsForm({
             // highlight-next-line
             invalidateOnUnmount: true,
         },
-    }
-})
+    },
+});
 ```
 
 ## Return Values
@@ -1135,11 +1139,13 @@ const { overtime } = useStepsForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### `autoSaveProps`
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
+
 ### How can I change the form data before submitting it to the API?
 
 You may need to modify the form data before it is sent to the API.
@@ -1168,7 +1174,7 @@ const UserCreate: React.FC = () => {
         }),
         // highlight-end
     });
-    
+
     // ...
 };
 ```

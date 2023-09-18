@@ -700,7 +700,7 @@ const modalForm = useModalForm({
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -720,8 +720,8 @@ useModalForm({
         autoSave: {
             enabled: true,
         },
-    }
-})
+    },
+});
 ```
 
 #### `debounce`
@@ -736,9 +736,10 @@ useModalForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
 #### `onFinish`
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
@@ -758,7 +759,7 @@ useModalForm({
             // highlight-end
         },
     },
-})
+});
 ```
 
 #### `invalidateOnUnmount`
@@ -773,7 +774,7 @@ useDrawerForm({
             // highlight-next-line
             invalidateOnUnmount: true,
         },
-    }
+    },
 });
 ```
 
@@ -789,9 +790,10 @@ useDrawerForm({
             // highlight-next-line
             invalidateOnClose: true,
         },
-    }
+    },
 });
 ```
+
 ## Return Values
 
 :::tip

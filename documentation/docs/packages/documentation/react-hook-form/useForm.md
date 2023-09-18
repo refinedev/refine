@@ -932,7 +932,7 @@ Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provi
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -941,6 +941,7 @@ It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
+
 #### `enabled`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
@@ -951,8 +952,8 @@ useForm({
         autoSave: {
             enabled: true,
         },
-    }
-})
+    },
+});
 ```
 
 #### `debounce`
@@ -967,9 +968,10 @@ useForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
 #### `onFinish`
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
@@ -989,7 +991,7 @@ useForm({
             // highlight-end
         },
     },
-})
+});
 ```
 
 #### `invalidateOnUnmount`
@@ -1005,7 +1007,7 @@ useForm({
             invalidateOnUnmount: true,
         },
     },
-})
+});
 ```
 
 ## Return Values
@@ -1219,7 +1221,6 @@ const {
 | --------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.BaseSyntheticEvent) => void; }`                                                                |
 | autoSaveProps   | Auto save props           | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
-
 
 ### Type Parameters
 

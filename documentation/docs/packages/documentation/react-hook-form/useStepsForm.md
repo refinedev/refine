@@ -1058,11 +1058,12 @@ const stepsForm = useStepsForm({
     },
 });
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -1080,11 +1081,12 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 useStepsForm({
     refineCoreProps: {
         autoSave: {
-            enabled: true
+            enabled: true,
         },
-    }
-})
+    },
+});
 ```
+
 #### `debounce`
 
 Set the debounce time for the `autoSave` prop. Default value is `1000`.
@@ -1097,9 +1099,10 @@ useStepsForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
 #### `onFinish`
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
@@ -1119,7 +1122,7 @@ useStepsForm({
             // highlight-end
         },
     },
-})
+});
 ```
 
 #### `invalidateOnUnmount`
@@ -1135,7 +1138,7 @@ useStepsForm({
             invalidateOnUnmount: true,
         },
     },
-})
+});
 ```
 
 ## Return Values

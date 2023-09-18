@@ -253,7 +253,6 @@ export const useModalForm = <
     };
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const {} = useMantineFormResult;
     const handleClose = useCallback(() => {
         if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
             invalidate({
