@@ -93,6 +93,9 @@ export const authProvider: AuthBindings = {
 
         // TODO: do something with the error
 
-        return { logout: true, redirectTo: "/login" };
+        return {
+            logout: true, // or false if you want to continue
+            redirectTo: "/login", // or undefined if you want to continue
+        };
     },
 };
