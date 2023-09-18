@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.

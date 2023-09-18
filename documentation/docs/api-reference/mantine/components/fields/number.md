@@ -167,5 +167,5 @@ render(
 <PropsTable module="@refinedev/mantine/NumberField" value-description="Number value" />
 
 :::tip External Props
-It also accepts all props of Mantine [Text](https://mantine.dev/core/text?t=props).
+It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
 :::

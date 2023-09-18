@@ -158,7 +158,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/api-reference/mantine/hooks/useSelect/) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select)
+> For more information, refer to the [`useSelect`](/docs/api-reference/mantine/hooks/useSelect/) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
 
 ## Adding the Edit Page to the App
 

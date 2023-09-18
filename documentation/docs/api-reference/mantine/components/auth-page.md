@@ -950,8 +950,8 @@ const MyLoginPage = () => {
 | registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
 | loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
 | forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
-| wrapperProps       | Wrapper element props.                                                              | [`BoxProps`](https://mantine.dev/core/box?t=props)           |
-| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://mantine.dev/core/card?t=props)         |
+| wrapperProps       | Wrapper element props.                                                              | [`BoxProps`](https://mantine.dev/core/box/?t=props)           |
+| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://mantine.dev/core/card/?t=props)         |
 | formProps          | Props for the form component.                                                       | [`UseFormInput`]                                              |
 | renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 

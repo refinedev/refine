@@ -33,7 +33,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field is used to display email values. It uses the [`<Anchor>`](https://mantine.dev/core/anchor) component of Mantine.
+This field is used to display email values. It uses the [`<Anchor>`](https://mantine.dev/core/anchor/) component of Mantine.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -159,7 +159,7 @@ render(
 ```
 
 :::tip
-`<EmailField>` uses "mailto:" in the href prop of the [`<Anchor>`](https://mantine.dev/core/anchor) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
+`<EmailField>` uses "mailto:" in the href prop of the [`<Anchor>`](https://mantine.dev/core/anchor/) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 :::
 
 ## API Reference
@@ -168,4 +168,4 @@ render(
 
 <PropsTable module="@refinedev/mantine/EmailField" />
 
-[Refer to the documentation for the rest of Anchor properties. &#8594](https://mantine.dev/core/anchor?t=props)
+[Refer to the documentation for the rest of Anchor properties. &#8594](https://mantine.dev/core/anchor/?t=props)

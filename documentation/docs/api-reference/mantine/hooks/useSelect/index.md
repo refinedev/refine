@@ -10,7 +10,7 @@ import SortLivePreview from "./sort-live-preview.md";
 import DefaultValueLivePreview from "./default-value-live-preview.md";
 import CrudLivePreview from "./crud-live-preview.md";
 
-`useSelect` hook allows you to manage Mantine's [`<Select>`](https://mantine.dev/core/select) component when records in a resource needs to be used as select options.
+`useSelect` hook allows you to manage Mantine's [`<Select>`](https://mantine.dev/core/select/) component when records in a resource needs to be used as select options.
 
 This hook uses the `useList` hook for fetching data. [Refer to useList hook documentation for details. →](/docs/api-reference/core/hooks/data/useList/)
 

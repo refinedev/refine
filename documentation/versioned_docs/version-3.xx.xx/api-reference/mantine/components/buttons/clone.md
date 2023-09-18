@@ -56,7 +56,7 @@ const ClonePage = () => {
 };
 ```
 
-`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button/) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle

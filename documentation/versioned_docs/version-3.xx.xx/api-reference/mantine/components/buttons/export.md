@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ExportButton>` is an Mantine [`<Button>`](https://mantine.dev/core/button) with a default export icon and a default text with "Export". It only has presentational value.
+`<ExportButton>` is an Mantine [`<Button>`](https://mantine.dev/core/button/) with a default export icon and a default text with "Export". It only has presentational value.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
