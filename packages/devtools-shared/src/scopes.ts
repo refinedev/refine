@@ -13,7 +13,16 @@ export type RefineHook =
     | "useMany"
     | "useOne"
     | "useUpdate"
-    | "useUpdateMany";
+    | "useUpdateMany"
+    | "useForgotPassword"
+    | "useGetIdentity"
+    | "useIsAuthenticated"
+    | "useLogin"
+    | "useLogout"
+    | "useOnError"
+    | "usePermissions"
+    | "useRegister"
+    | "useUpdatePassword";
 
 export type Scopes = "data" | "audit-log" | "access-control" | "auth";
 
@@ -33,6 +42,15 @@ export const scopes: Record<RefineHook, Scopes> = {
     useOne: "data",
     useUpdate: "data",
     useUpdateMany: "data",
+    useForgotPassword: "auth",
+    useGetIdentity: "auth",
+    useIsAuthenticated: "auth",
+    useLogin: "auth",
+    useLogout: "auth",
+    useOnError: "auth",
+    usePermissions: "auth",
+    useRegister: "auth",
+    useUpdatePassword: "auth",
 };
 
 export const hooksByScope = Object.entries(scopes).reduce(
