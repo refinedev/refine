@@ -9,7 +9,10 @@ import { Modal } from "./modal";
 import { Highlight } from "./highlight";
 import { PlusCircleIcon } from "./icons/plus-circle";
 import { Button } from "./button";
-import { getAvailablePackages } from "src/utils/packages";
+import { getAvailablePackages, installPackages } from "src/utils/packages";
+import { UpdateIcon } from "./icons/update";
+import { CheckIcon } from "./icons/check";
+import { InfoIcon } from "./icons/info";
 
 type Props = {
     visible: boolean;
@@ -45,6 +48,57 @@ export const AddPackageDrawer = ({
             onClose();
         }, 200);
     }, [onClose]);
+
+    const [status, setStatus] = React.useState<
+        "idle" | "installing" | "error" | "done"
+    >("idle");
+
+    const updatePackage = React.useCallback(() => {
+        if (installModal) {
+            setStatus("installing");
+            installPackages([installModal])
+                .then((res) => {
+                    if (res) {
+                        setStatus("done");
+                    } else {
+                        setStatus("error");
+                    }
+                })
+                .catch(() => {
+                    setStatus("error");
+                });
+        }
+    }, [installModal]);
+
+    const icon = React.useMemo(() => {
+        switch (status) {
+            case "installing":
+                return (
+                    <UpdateIcon className="re-text-gray-0 re-animate-spin" />
+                );
+            case "done":
+                return <CheckIcon className="re-text-gray-0" />;
+            case "error":
+                return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
+            case "idle":
+            default:
+                return <UpdateIcon className="re-text-gray-0" />;
+        }
+    }, [status]);
+
+    const statusText = React.useMemo(() => {
+        switch (status) {
+            case "installing":
+                return "Installing";
+            case "done":
+                return "Installed";
+            case "error":
+                return "Error";
+            case "idle":
+            default:
+                return "Install";
+        }
+    }, [status]);
 
     return (
         <div
@@ -288,7 +342,7 @@ export const AddPackageDrawer = ({
                         )}
                     >
                         <Button
-                            onClick={() => 0}
+                            onClick={() => updatePackage()}
                             className={clsx(
                                 "re-gap-2",
                                 "re-bg-alt-blue",
@@ -299,8 +353,8 @@ export const AddPackageDrawer = ({
                                 "!re-pl-2",
                             )}
                         >
-                            <PlusCircleIcon className="re-text-gray-0" />
-                            <span className="re-text-gray-0">Install</span>
+                            {icon}
+                            <span className="re-text-gray-0">{statusText}</span>
                         </Button>
                     </div>
                 }
