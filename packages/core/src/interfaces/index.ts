@@ -89,4 +89,4 @@ export * from "./autoSave";
 
 export * from "./textTransformers";
 
-export * from "./query-cache-update-map";
+export * from "./optimistic-update-map";
