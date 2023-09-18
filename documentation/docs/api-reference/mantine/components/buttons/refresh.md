@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) omponent to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
+`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) omponent to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::info-tip Swizzle
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.

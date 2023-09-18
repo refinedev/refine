@@ -107,7 +107,7 @@ In the create page, we may need to select a record from another resource. For ex
 
 [Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/mantine/hooks/useSelect/)
 
-[Refer to the **Mantine** `<Select/>` documentation for more information &#8594](https://mantine.dev/core/select/)
+[Refer to the **Mantine** `<Select/>` documentation for more information &#8594](https://mantine.dev/core/select)
 
 In the auto-generated create page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 

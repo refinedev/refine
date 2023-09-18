@@ -410,7 +410,7 @@ render(
 
 If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
-[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
+[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -464,7 +464,7 @@ render(
 
 If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -518,7 +518,7 @@ render(
 
 If you want to customize the content of the `<List/>` component, you can use the `contentProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -626,7 +626,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);

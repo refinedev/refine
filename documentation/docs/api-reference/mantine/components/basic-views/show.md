@@ -698,7 +698,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Card` documentation from Mantine &#8594](https://mantine.dev/core/card/)
+> For more information, refer to the [`Card` documentation from Mantine &#8594](https://mantine.dev/core/card)
 
 ### `headerProps`
 
@@ -761,7 +761,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Group` documentation from Mantine &#8594](https://mantine.dev/core/group/)
+> For more information, refer to the [`Group` documentation from Mantine &#8594](https://mantine.dev/core/group)
 
 ### `contentProps`
 
@@ -824,7 +824,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box/)
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box)
 
 ### `headerButtons`
 
@@ -1064,7 +1064,7 @@ render(
 );
 ```
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group)
 
 ### `footerButtons`
 
@@ -1199,7 +1199,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group/)
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group)
 
 ## API Reference
 

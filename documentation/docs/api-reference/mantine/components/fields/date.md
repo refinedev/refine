@@ -159,5 +159,5 @@ render(
 <PropsTable module="@refinedev/mantine/DateField" format-default="`L`" />
 
 :::tip External Props
-It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
+It also accepts all props of Mantine [Text](https://mantine.dev/core/text?t=props).
 :::

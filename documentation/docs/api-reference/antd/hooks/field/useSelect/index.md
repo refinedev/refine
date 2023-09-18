@@ -19,7 +19,7 @@ If you're looking for a complete select library, refine has out-of-the-box suppo
 
 -   refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
 -   [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
--   [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
+-   [Mantine Select](https://mantine.dev/core/select) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
 
 :::
 
