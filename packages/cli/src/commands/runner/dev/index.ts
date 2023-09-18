@@ -6,6 +6,7 @@ import { action as devtoolsRunner } from "src/commands/devtools";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { getPlatformOptionDescription, getRunnerDescription } from "../utils";
+import { isDevtoolsInstalled } from "@utils/package";
 
 const dev = (program: Command) => {
     return program
@@ -23,10 +24,7 @@ const dev = (program: Command) => {
             ),
         )
         .addOption(
-            new Option(
-                "-d, --devtools",
-                "Start refine's devtools server",
-            ).default(false),
+            new Option("-d, --devtools", "Start refine's devtools server"),
         )
         .argument("[args...]")
         .action(action);
@@ -44,7 +42,9 @@ const action = async (
 
     await updateNotifier();
 
-    if (devtools) {
+    const devtoolsDefault = await isDevtoolsInstalled();
+
+    if (devtools ?? devtoolsDefault) {
         devtoolsRunner();
     }
 
