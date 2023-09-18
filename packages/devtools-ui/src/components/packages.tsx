@@ -1,14 +1,17 @@
 import React from "react";
 import clsx from "clsx";
-
+import { Fireworks } from "@fireworks-js/react";
+import type { FireworksHandlers } from "@fireworks-js/react";
 import { PackageType } from "@refinedev/devtools-shared";
-import { PackageItem } from "src/components/package-item";
-import { AddPackageDrawer } from "./add-package-drawer";
-import { Button } from "./button";
-import { PlusCircleIcon } from "./icons/plus-circle";
+
 import { getInstalledPackages, installPackages } from "src/utils/packages";
+import { PackageItem } from "src/components/package-item";
+import { Button } from "./button";
+import { AddPackageDrawer } from "./add-package-drawer";
+import { PlusCircleIcon } from "./icons/plus-circle";
 
 export const Packages = () => {
+    const ref = React.useRef<FireworksHandlers>(null);
     const [packages, setPackages] = React.useState<PackageType[]>([]);
     const [visible, setVisible] = React.useState(false);
 
@@ -18,12 +21,22 @@ export const Packages = () => {
         });
     }, []);
 
+    const fireworks = React.useCallback(() => {
+        if (ref.current) {
+            ref.current.start();
+            setTimeout(() => {
+                ref.current?.waitStop();
+            }, 3000);
+        }
+    }, []);
+
     const [installInProgress, setInstallInProgress] = React.useState(false);
     const onInstall = React.useCallback(async (packagesToInstall: string[]) => {
         setInstallInProgress(true);
         const state = await installPackages(packagesToInstall);
 
         if (state) {
+            fireworks();
             getInstalledPackages().then((data) => {
                 setPackages(data);
             });
@@ -116,6 +129,23 @@ export const Packages = () => {
                 onInstall={(pkgs) => onInstall(pkgs)}
                 dismissOnOverlayClick
                 visible={visible}
+            />
+            <Fireworks
+                ref={ref}
+                autostart={false}
+                options={{
+                    intensity: 38,
+                    explosion: 8,
+                }}
+                style={{
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    position: "fixed",
+                    zIndex: 99999,
+                    pointerEvents: "none",
+                }}
             />
         </>
     );
