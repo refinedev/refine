@@ -350,10 +350,10 @@ mutate({
 
 ### `optimisticUpdateMap`
 
-If the mutation mode is defined as `optimistic` the `useUpdateMany` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+If the mutation mode is defined as `optimistic` or `undoable` the `useUpdateMany` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
 
 :::caution
-This feature is only work with the `mutationMode` set to `optimistic`.
+This feature is only work with the `mutationMode` is set to `optimistic` and `undoable`
 :::
 
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.

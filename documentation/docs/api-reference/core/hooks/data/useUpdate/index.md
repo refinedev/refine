@@ -349,15 +349,17 @@ const { overtime } = useUpdate({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ### `optimisticUpdateMap`
 
-If the mutation mode is defined as `optimistic` the `useUpdate` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
 
 :::caution
-This feature is only work with the `mutationMode` set to `optimistic`.
+This feature is only work with the `mutationMode` is set to `optimistic` and `undoable`
 :::
 
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
@@ -451,7 +453,6 @@ mutate({
 });
 ```
 
-
 ## Return Values
 
 Returns an object with TanStack Query's `useMutation` return values.
@@ -468,7 +469,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 const { overtime } = useUpdate();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
-````
+```
 
 ## API
 
