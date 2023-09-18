@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { PackageType } from "@refinedev/devtools-shared";
+import { AvailablePackageType } from "@refinedev/devtools-shared";
 
 import { CloseIcon } from "./icons/close";
 import { SearchIcon } from "./icons/search";
@@ -9,6 +9,7 @@ import { Modal } from "./modal";
 import { Highlight } from "./highlight";
 import { PlusCircleIcon } from "./icons/plus-circle";
 import { Button } from "./button";
+import { getAvailablePackages } from "src/utils/packages";
 
 type Props = {
     visible: boolean;
@@ -25,22 +26,12 @@ export const AddPackageDrawer = ({
 }: Props) => {
     const [delayedVisible, setDelayedVisible] = React.useState(visible);
     const [installModal, setInstallModal] = React.useState<string | null>(null);
-    const [packages, setPackages] = React.useState<
-        Omit<PackageType, "currentVersion">[]
-    >([
-        {
-            name: "@refinedev/react-hook-form",
-            description: "lorem ipsum dolor sit amet",
-            latestVersion: "1.0.0",
-            documentation: "https://refine.dev/docs/",
-        },
-        {
-            name: "@refinedev/react-table",
-            description: "lorem ipsum dolor sit amet",
-            latestVersion: "1.0.0",
-            documentation: "https://refine.dev/docs/",
-        },
-    ]);
+
+    const [packages, setPackages] = React.useState<AvailablePackageType[]>([]);
+
+    React.useEffect(() => {
+        getAvailablePackages().then((pkgs) => setPackages(pkgs));
+    }, []);
 
     React.useEffect(() => {
         setTimeout(() => {
@@ -245,7 +236,6 @@ export const AddPackageDrawer = ({
                                     <AddPackageItem
                                         key={pkg.name}
                                         {...pkg}
-                                        version={pkg.latestVersion}
                                         onInstall={() =>
                                             setInstallModal(pkg.name)
                                         }
@@ -297,21 +287,6 @@ export const AddPackageDrawer = ({
                             "re-justify-end",
                         )}
                     >
-                        {/* <Button
-                            onClick={() => setInstallModal(null)}
-                            className={clsx(
-                                "re-gap-2",
-                                "re-bg-transparent",
-                                "re-border",
-                                "re-border-gray-700",
-                                "re-flex-nowrap",
-                                "re-flex",
-                                "re-items-center",
-                                "re-justify-between",
-                            )}
-                        >
-                            <span className="re-text-gray-300">Cancel</span>
-                        </Button> */}
                         <Button
                             onClick={() => 0}
                             className={clsx(
@@ -356,10 +331,14 @@ export const AddPackageDrawer = ({
                             "re-rounded-lg",
                             "re-p-4",
                             "re-text-sm",
+                            "re-overflow-auto",
                         )}
                     >
                         <Highlight
-                            code={"npm install @tanstack/react-query"}
+                            code={
+                                packages.find((el) => el.name === installModal)
+                                    ?.install ?? ""
+                            }
                             language="bash"
                         />
                     </div>
@@ -388,20 +367,14 @@ export const AddPackageDrawer = ({
                             "re-rounded-lg",
                             "re-p-4",
                             "re-text-sm",
+                            "re-overflow-auto",
                         )}
                     >
                         <Highlight
-                            code={`
-import React from "react";
-
-const MyComponent = () => {
-    const [state, setState] = React.useState(null);
-
-    return (
-        <div>{state}</div>
-    );
-}
-                            `.trim()}
+                            code={
+                                packages.find((el) => el.name === installModal)
+                                    ?.usage ?? ""
+                            }
                             language="tsx"
                         />
                     </div>

@@ -6,28 +6,18 @@ import { PackageItem } from "src/components/package-item";
 import { AddPackageDrawer } from "./add-package-drawer";
 import { Button } from "./button";
 import { PlusCircleIcon } from "./icons/plus-circle";
+import { getInstalledPackages } from "src/utils/packages";
 
 export const Packages = () => {
     const [updating, setUpdating] = React.useState(false);
     const [packages, setPackages] = React.useState<PackageType[]>([]);
     const [visible, setVisible] = React.useState(false);
 
-    const fetchPackages = React.useCallback(async () => {
-        try {
-            const response = await fetch("api/packages");
-            const { data } = (await response.json()) as {
-                data: PackageType[];
-            };
-
-            setPackages(data);
-        } catch (error) {
-            //
-        }
-    }, []);
-
     React.useEffect(() => {
-        fetchPackages();
-    }, [fetchPackages]);
+        getInstalledPackages().then((data) => {
+            setPackages(data);
+        });
+    }, []);
 
     return (
         <>

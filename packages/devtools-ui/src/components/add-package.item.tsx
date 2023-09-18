@@ -2,20 +2,15 @@ import React from "react";
 import clsx from "clsx";
 import { Button } from "./button";
 import { PlusCircleIcon } from "./icons/plus-circle";
+import { AvailablePackageType } from "@refinedev/devtools-shared";
 
 type PackageItemProps = {
-    name: string;
-    version: string;
-    description?: string;
-    documentation?: string;
     onInstall?: () => void;
-};
+} & AvailablePackageType;
 
 export const AddPackageItem = ({
     name,
-    version,
     description,
-    documentation,
     onInstall,
 }: PackageItemProps) => {
     return (
@@ -90,16 +85,25 @@ export const AddPackageItem = ({
                     "re-justify-between",
                 )}
             >
-                <div className={clsx("re-font-mono", "re-text-xs")}>
-                    <span className="re-text-gray-400">version:</span>
-                    <span className="re-text-gray-300 re-font-bold">
-                        {" v"}
-                        {version}
-                    </span>
-                </div>
-                <div className={clsx(!documentation && "re-hidden")}>
+                <div>
                     <a
-                        href={documentation ?? "#"}
+                        href={name.replace(
+                            "@refinedev/",
+                            "https://c.refine.dev/",
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={clsx("re-text-alt-blue", "re-text-xs")}
+                    >
+                        changelog
+                    </a>
+                </div>
+                <div>
+                    <a
+                        href={name.replace(
+                            "@refinedev/",
+                            "https://d.refine.dev/",
+                        )}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={clsx("re-text-alt-blue", "re-text-xs")}

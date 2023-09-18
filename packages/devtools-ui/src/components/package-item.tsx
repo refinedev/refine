@@ -1,11 +1,15 @@
 import React from "react";
 import clsx from "clsx";
 
-import { PackageType } from "@refinedev/devtools-shared";
+import {
+    PackageLatestVersionType,
+    PackageType,
+} from "@refinedev/devtools-shared";
 import semverDiff from "semver-diff";
 import { UpdateIcon } from "./icons/update";
 import { CheckIcon } from "./icons/check";
 import { InfoIcon } from "./icons/info";
+import { getLatestInfo, installPackages } from "src/utils/packages";
 
 type Props = {
     item: PackageType;
@@ -14,9 +18,26 @@ type Props = {
 };
 
 export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
+    const [latestLoading, setLatestLoading] = React.useState(true);
+    const [latestData, setLatestData] =
+        React.useState<PackageLatestVersionType | null>(null);
+
+    React.useEffect(() => {
+        setLatestLoading(true);
+
+        getLatestInfo(item.name)
+            .then((data) => {
+                setLatestData(data);
+            })
+            .catch(() => 0)
+            .finally(() => {
+                setLatestLoading(false);
+            });
+    }, []);
+
     const updateKind =
-        item.currentVersion && item.latestVersion
-            ? semverDiff(item.currentVersion, item.latestVersion)
+        latestData && item.currentVersion && latestData.latestVersion
+            ? semverDiff(item.currentVersion, latestData.latestVersion)
             : undefined;
 
     const hasUpdate = typeof updateKind !== "undefined";
@@ -58,14 +79,9 @@ export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
         try {
             setStatus("updating");
             onUpdate?.(true);
-            const encoded = encodeURIComponent(item.name);
-            const { status } = await fetch(`api/packages/${encoded}/update`, {
-                method: "POST",
-            });
-            await new Promise((resolve) => {
-                setTimeout(resolve, 2000);
-            });
-            if (status === 200) {
+            const status = await installPackages([item.name]);
+
+            if (status) {
                 setStatus("done");
             } else {
                 setStatus("error");
@@ -160,8 +176,14 @@ export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
                                 "re-gap-2",
                             )}
                         >
-                            <CheckIcon />
-                            <span>Up to date</span>
+                            {latestLoading ? (
+                                <span className="re-block re-h-4 re-w-20 re-bg-gray-700 re-animate-pulse re-rounded-md" />
+                            ) : (
+                                <>
+                                    <CheckIcon />
+                                    <span>Up to date</span>
+                                </>
+                            )}
                         </div>
                     )}
                 </div>
@@ -216,7 +238,9 @@ export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
                                     "re-leading-4",
                                 )}
                             >
-                                v{item.latestVersion}
+                                {latestData && latestData.latestVersion
+                                    ? `v${latestData.latestVersion}`
+                                    : ""}
                             </span>
                         </span>
                     </div>
