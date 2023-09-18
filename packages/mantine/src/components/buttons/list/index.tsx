@@ -1,28 +1,28 @@
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import React, { useContext } from "react";
 import {
-    AccessControlContext,
-    pickNotDeprecated,
     useCan,
-    useLink,
     useNavigation,
+    useTranslate,
+    useUserFriendlyName,
     useResource,
     useRouterContext,
     useRouterType,
-    useTranslate,
-    useUserFriendlyName,
+    useLink,
+    pickNotDeprecated,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
+import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons";
-import React, { useContext } from "react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ListButtonProps } from "../types";
 
 /**
- * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
+ * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
  * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *

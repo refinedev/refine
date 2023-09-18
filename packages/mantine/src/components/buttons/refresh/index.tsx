@@ -1,17 +1,17 @@
-import { ActionIcon, Button } from "@mantine/core";
+import React from "react";
 import {
-    pickDataProvider,
-    queryKeys,
-    useInvalidate,
-    useResource,
     useTranslate,
+    useResource,
+    useInvalidate,
+    queryKeys,
+    pickDataProvider,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
+import { ActionIcon, Button } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons";
-import React from "react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { RefreshButtonProps } from "../types";
@@ -19,7 +19,7 @@ import { RefreshButtonProps } from "../types";
 import { useQueryClient } from "@tanstack/react-query";
 
 /**
- * `<RefreshButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
+ * `<RefreshButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
  * to update the data shown on the page via the {@link https://refine.dev/docs/api-reference/core/hooks/invalidate/useInvalidate `useInvalidate`} hook.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/refresh-button} for more details.

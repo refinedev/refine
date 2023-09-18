@@ -1,26 +1,26 @@
-import { ActionIcon, Button, Group, Popover, Text } from "@mantine/core";
+import React, { useContext, useState } from "react";
 import {
-    AccessControlContext,
-    pickNotDeprecated,
-    useCan,
     useDelete,
-    useMutationMode,
-    useResource,
     useTranslate,
+    useMutationMode,
+    useCan,
+    useResource,
+    pickNotDeprecated,
     useWarnAboutChange,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
+import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons";
-import React, { useContext, useState } from "react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { DeleteButtonProps } from "../types";
 
 /**
- * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button `<Button>`} and {@link https://mantine.dev/core/modal `<Modal>`} components.
+ * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button>`} and {@link https://mantine.dev/core/modal/ `<Modal>`} components.
  * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/delete-button} for more details.

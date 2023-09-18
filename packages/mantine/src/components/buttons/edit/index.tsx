@@ -1,26 +1,26 @@
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import React, { useContext } from "react";
 import {
-    AccessControlContext,
     useCan,
-    useLink,
     useNavigation,
+    useTranslate,
     useResource,
     useRouterContext,
     useRouterType,
-    useTranslate,
+    useLink,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
+import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconPencil } from "@tabler/icons";
-import React, { useContext } from "react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { EditButtonProps } from "../types";
 
 /**
- * `<EditButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> component`}.
+ * `<EditButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *

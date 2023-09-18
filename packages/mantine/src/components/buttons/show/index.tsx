@@ -1,26 +1,26 @@
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import React, { useContext } from "react";
 import {
-    AccessControlContext,
     useCan,
-    useLink,
     useNavigation,
+    useTranslate,
     useResource,
     useRouterContext,
     useRouterType,
-    useTranslate,
+    useLink,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
+import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconEye } from "@tabler/icons";
-import React, { useContext } from "react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ShowButtonProps } from "../types";
 
 /**
- * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
+ * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when red sirecting the app to the show page with the record id route of resource.
  *
