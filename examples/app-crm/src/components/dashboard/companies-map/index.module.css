@@ -1,0 +1,24 @@
+.countries {
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 24px 24px 24px;
+    gap: 16px;
+
+    .item {
+        display: flex;
+        padding: 5px 8px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 4px;
+        background: #f5f5f5;
+        border: 1px solid #e0e0e0;
+
+        .flag {
+            width: 14px;
+        }
+    }
+}

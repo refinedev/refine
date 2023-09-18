@@ -28,6 +28,8 @@ title: List of Packages
 
 - `@refinedev/nestjsx-crud` -  Consume **REST API**'s built with **NestJs**.
 
+- `@refinedev/nestjs-query` -  Consume **GraphQL API**'s built with **Nestjs-Query**.
+
 - `@refinedev/strapi-v4` - [Strapi](https://strapi.io/) connector for **v4 REST API.**
 
 - `@refinedev/strapi-graphql` - [Strapi](https://strapi.io/) connector for **GraphQL API.**

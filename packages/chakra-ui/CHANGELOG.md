@@ -1,5 +1,23 @@
 # @refinedev/chakra-ui
 
+## 2.26.4
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
+-   Updated dependencies [[`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4)]:
+    -   @refinedev/react-hook-form@4.8.4
+
+## 2.26.3
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
+-   Updated dependencies [[`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4)]:
+    -   @refinedev/react-hook-form@4.8.3
+
 ## 2.26.2
 
 ### Patch Changes

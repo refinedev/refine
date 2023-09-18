@@ -1,5 +1,17 @@
 # @refinedev/antd
 
+## 5.34.2
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
+## 5.34.1
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
 ## 5.34.0
 
 ### Minor Changes

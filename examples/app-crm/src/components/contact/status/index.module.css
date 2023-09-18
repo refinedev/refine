@@ -1,0 +1,59 @@
+.container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        height: 40px;
+        border-right: .5px solid #F0F2F5;
+
+        a {
+            color: #000;
+            font-size: 12px;
+        }
+    }
+
+    .arrow {
+        margin-left: .2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        display: block;
+    }
+}
+
+.NEW, .CONTACTED, .INTERESTED .item {
+    background-color: #08979C;
+    a { color: #fff; }
+}
+
+.QUALIFIED, .NEGOTIATION .item {
+    background-color: #0958D9;
+    a { color: #fff; }
+}
+
+.WON .item {
+    background-color: #389E0D;
+    a { color: #fff; }
+}
+
+.UNQUALIFIED, .LOST, .CHURNED .item {
+    background-color: #CF1322;
+    a { color: #fff; }  
+}
+
+.item.active ~ .item {
+    background-color: #fff;
+    a { color: #000; }
+}
+
