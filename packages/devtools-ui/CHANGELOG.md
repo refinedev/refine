@@ -13,7 +13,7 @@
     Install the dependencies using your package manager.
 
     ```bash
-    npm i @refinedev/devtools@latest @refinedev/cli@latest
+    npm i @refinedev/devtools@next @refinedev/cli@next @refinedev/core@next
     ```
 
     Add `<DevtoolsProvider />` and `<DevtoolsPanel />` components to your app:

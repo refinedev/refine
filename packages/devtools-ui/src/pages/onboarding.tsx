@@ -31,11 +31,11 @@ const inputs = [
 const links = [
     {
         name: "Privacy Policy",
-        url: "https://www.google.com",
+        url: "https://refine.dev/privacy-policy/",
     },
     {
         name: "Terms and conditions",
-        url: "https://www.google.com",
+        url: "https://github.com/refinedev/refine/blob/next/LICENSE",
     },
 ];
 
