@@ -11,6 +11,7 @@ import {
     useUserFriendlyName,
     useTranslate,
     useWarnAboutChange,
+    useInvalidate,
 } from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
@@ -107,11 +108,17 @@ export const useModalForm = <
     TResponseError
 > => {
     const [initiallySynced, setInitiallySynced] = React.useState(false);
+    const invalidate = useInvalidate();
 
     const translate = useTranslate();
 
-    const { resource: resourceProp, action: actionProp } =
-        refineCoreProps ?? {};
+    const {
+        resource: resourceProp,
+        action: actionProp,
+        autoSave,
+        invalidates,
+        dataProviderName,
+    } = refineCoreProps ?? {};
     const {
         defaultVisible = false,
         autoSubmitClose = true,
@@ -165,7 +172,7 @@ export const useModalForm = <
 
     const {
         reset,
-        refineCore: { onFinish, id, setId },
+        refineCore: { onFinish, id, setId, autoSaveProps },
         saveButtonProps,
         onSubmit,
     } = useMantineFormResult;
@@ -247,6 +254,15 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const handleClose = useCallback(() => {
+        if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+            invalidate({
+                id,
+                invalidates: invalidates || ["list", "many", "detail"],
+                dataProviderName,
+                resource: identifier,
+            });
+        }
+
         if (warnWhen) {
             const warnWhenConfirm = window.confirm(
                 translate(
@@ -264,7 +280,7 @@ export const useModalForm = <
 
         setId?.(undefined);
         close();
-    }, [warnWhen]);
+    }, [warnWhen, autoSaveProps.status]);
 
     const handleShow = useCallback(
         (showId?: BaseKey) => {

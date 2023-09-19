@@ -33,8 +33,8 @@ setInitialRoutes(["/posts"]);
 
 import React from "react";
 
-import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Modal, Space } from "antd";
+import { List, useModalForm, useTable } from "@refinedev/antd";
+import { Form, Input, Modal, Select, Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -145,8 +145,8 @@ setInitialRoutes(["/posts"]);
 
 import React from "react";
 
-import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Modal, Space } from "antd";
+import { EditButton, List, useModalForm, useTable } from "@refinedev/antd";
+import { Form, Input, Modal, Select, Space, Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -285,8 +285,8 @@ setInitialRoutes(["/posts"]);
 
 import React from "react";
 
-import { List, CloneButton, useTable, useModalForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Modal, Space } from "antd";
+import { CloneButton, List, useModalForm, useTable } from "@refinedev/antd";
+import { Form, Input, Modal, Select, Space, Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -514,21 +514,28 @@ const { overtime } = useModalForm({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` and `invalidateOnClose` props to invalidate queries upon unmount or close.
+
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -537,22 +544,25 @@ useModalForm({
     autoSave: {
         enabled: true,
     },
-})
+});
 ```
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
     autoSave: {
         enabled: true,
         // highlight-next-line
-        debounce: 2000,  
+        debounce: 2000,
     },
-})
+});
 ```
+
 #### `onFinish`
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
@@ -570,8 +580,41 @@ useModalForm({
         },
         // highlight-end
     },
-})
+});
 ```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useModalForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        invalidateOnUnmount: true,
+    },
+});
+```
+
+#### `invalidateOnClose`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useModalForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        invalidateOnClose: true,
+    },
+});
+```
+
 ## Return Values
 
 ### `formProps`
@@ -751,6 +794,7 @@ const { overtime } = useModalForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### `autoSaveProps`
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
@@ -764,9 +808,9 @@ Here is an example where we modify the form data before submit:
 We need to send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
 import { Modal, useModalForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import React from "react";
 
 export const UserCreate: React.FC = () => {
     // highlight-start

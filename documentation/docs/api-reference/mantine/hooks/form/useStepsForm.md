@@ -4,36 +4,33 @@ title: useStepsForm
 ---
 
 ```tsx live shared
-import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender, Column } from "@tanstack/react-table";
+import { Column, ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
+import {
+    Box as MantineBox,
+    Code as MantineCode,
+    Group as MantineGroup,
+    Pagination as MantinePagination,
+    ScrollArea as MantineScrollArea,
+    Select as MantineSelect,
+    Space as MantineSpace,
+    Stepper as MantineStepper,
+    Table as MantineTable,
+    Textarea as MantineTextarea,
+    TextInput as MantineTextInput,
+} from "@mantine/core";
 import { GetManyResponse, useMany } from "@refinedev/core";
 import {
     Button as MantineButton,
-    Edit as MantineEdit,
     Create as MantineCreate,
+    DeleteButton as MantineDeleteButton,
+    Edit as MantineEdit,
+    EditButton as MantineEditButton,
     List as MantineList,
     useStepsForm as MantineUseStepsForm,
-    useSelect as MantineUseSelect,
-    DeleteButton as MantineDeleteButton,
-    SaveButton as MantineSaveButton,
-    EditButton as MantineEditButton,
 } from "@refinedev/mantine";
-import {
-    Code as MantineCode,
-    Group as MantineGroup,
-    Select as MantineSelect,
-    Stepper as MantineStepper,
-    TextInput as MantineTextInput,
-    Text as MantineText,
-    Textarea as MantineTextarea,
-    Space as MantineSpace,
-    Pagination as MantinePagination,
-    ScrollArea as MantineScrollArea,
-    Table as MantineTable,
-    Box as MantineBox,
-} from "@mantine/core";
 
 interface ICategory {
     id: number;
@@ -492,20 +489,19 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import React from "react";
-import { HttpError } from "@refinedev/core";
-import { Create, useStepsForm, SaveButton } from "@refinedev/mantine";
 import {
     Button,
     Code,
     Group,
     Select,
-    Stepper,
-    TextInput,
-    Text,
     Space,
+    Stepper,
     Textarea,
+    TextInput,
 } from "@mantine/core";
+import { HttpError } from "@refinedev/core";
+import { Create, SaveButton, useStepsForm } from "@refinedev/mantine";
+import React from "react";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -650,20 +646,19 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import React from "react";
-import { HttpError } from "@refinedev/core";
-import { Edit, useStepsForm, SaveButton } from "@refinedev/mantine";
 import {
     Button,
     Code,
     Group,
     Select,
-    Stepper,
-    TextInput,
-    Text,
     Space,
+    Stepper,
     Textarea,
+    TextInput,
 } from "@mantine/core";
+import { HttpError } from "@refinedev/core";
+import { Edit, SaveButton, useStepsForm } from "@refinedev/mantine";
+import React from "react";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -807,9 +802,9 @@ In this example we're going to build a Post `"create"` form. To creating a multi
 To show your form inputs step by step, first import and use `useStepsForm` hook in your page:
 
 ```tsx
-import React from "react";
 import { HttpError } from "@refinedev/core";
 import { Create } from "@refinedev/mantine";
+import React from "react";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -855,9 +850,9 @@ This hook returns a set of useful values to render [`<Stepper/>`](https://mantin
 Here, we're going to use a [`<Stepper/>`](https://mantine.dev/core/stepper/) component to render the form items based on the `currentStep` and we added `<Button>` to footer with `gotoStep` function to navigate between steps.
 
 ```tsx
-import React from "react";
 import { HttpError } from "@refinedev/core";
 import { Create } from "@refinedev/mantine";
+import React from "react";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -1040,27 +1035,34 @@ const { overtime } = useStepsForm({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
+
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -1070,12 +1072,15 @@ useStepsForm({
         autoSave: {
             enabled: true,
         },
-    }
-})
+    },
+});
 ```
+
 #### `debounce`
 
-`debounce` sets the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+`debounce` sets the debounce time for the `autoSave` prop.
 
 ```tsx
 useStepsForm({
@@ -1085,9 +1090,28 @@ useStepsForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useStepsForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            invalidateOnUnmount: true,
+        },
+    },
+});
+```
+
 ## Return Values
 
 :::tip
@@ -1116,11 +1140,13 @@ const { overtime } = useStepsForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### `autoSaveProps`
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
 ## FAQ
+
 ### How can I change the form data before submitting it to the API?
 
 You may need to modify the form data before it is sent to the API.
@@ -1128,8 +1154,8 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
 import { useStepsForm } from "@refinedev/mantine";
+import React from "react";
 
 const UserCreate: React.FC = () => {
     const {
@@ -1149,7 +1175,7 @@ const UserCreate: React.FC = () => {
         }),
         // highlight-end
     });
-    
+
     // ...
 };
 ```

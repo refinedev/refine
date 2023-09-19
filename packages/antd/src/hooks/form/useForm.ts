@@ -251,6 +251,7 @@ export const useForm = <
         id: idFromProps,
         overtimeOptions,
         optimisticUpdateMap,
+        autoSave,
     });
 
     const { formLoading, onFinish, queryResult, id, onFinishAutoSave } =
