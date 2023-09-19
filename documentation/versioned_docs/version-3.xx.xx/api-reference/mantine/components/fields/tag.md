@@ -33,7 +33,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field lets you display a value in a tag. It uses Mantine [`<Chip>`](https://mantine.dev/core/chip/) component.
+This field lets you display a value in a tag. It uses Mantine [`<Chip>`](https://mantine.dev/core/chip) component.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -157,5 +157,5 @@ render(
 <PropsTable module="@pankod/refine-mantine/TagField" value-description="Tag content" />
 
 :::tip External Props
-It also accepts all props of Mantine [Chip](https://mantine.dev/core/chip/?t=props).
+It also accepts all props of Mantine [Chip](https://mantine.dev/core/chip?t=props).
 :::

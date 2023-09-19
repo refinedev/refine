@@ -4,7 +4,7 @@ import { Text } from "@mantine/core";
 import { TextFieldProps } from "../types";
 
 /**
- * This field lets you show basic text. It uses Mantine {@link https://mantine.dev/core/text/  `<Text>`} component.
+ * This field lets you show basic text. It uses Mantine {@link https://mantine.dev/core/text `<Text>`} component.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/text} for more details.
  */
