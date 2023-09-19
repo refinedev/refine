@@ -4,6 +4,7 @@ import {
     UseMutationResult,
     UseMutationOptions,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import {
     useResource,
@@ -493,6 +494,10 @@ export const useDelete = <
             },
             mutationKey: keys().data().mutation("delete").get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                ...getXRay("useDelete", preferLegacyKeys),
+            },
         },
     );
 

@@ -1,4 +1,5 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OnErrorResponse } from "../../../interfaces";
@@ -93,6 +94,9 @@ export function useOnError({
                     return;
                 }
             },
+            meta: {
+                ...getXRay("useOnError", preferLegacyKeys),
+            },
         },
     );
 
@@ -105,6 +109,9 @@ export function useOnError({
         {
             onError: (redirectPath?: string) => {
                 legacyLogout({ redirectPath });
+            },
+            meta: {
+                ...getXRay("useOnError", preferLegacyKeys),
             },
         },
     );

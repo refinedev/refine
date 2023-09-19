@@ -4,6 +4,7 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 import qs from "qs";
 
 import {
@@ -188,6 +189,12 @@ export function useUpdatePassword<
                 open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible === true
+                    ? {}
+                    : mutationOptions?.meta),
+                ...getXRay("useUpdatePassword", preferLegacyKeys),
+            },
         },
     );
 
@@ -224,6 +231,12 @@ export function useUpdatePassword<
                 open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible
+                    ? mutationOptions?.meta
+                    : {}),
+                ...getXRay("useUpdatePassword", preferLegacyKeys),
+            },
         },
     );
 

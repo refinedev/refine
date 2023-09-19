@@ -3,6 +3,7 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     pickDataProvider,
     pickNotDeprecated,
@@ -281,6 +282,10 @@ export const useCreate = <
             },
             mutationKey: keys().data().mutation("create").get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                ...getXRay("useCreate", preferLegacyKeys),
+            },
         },
     );
 

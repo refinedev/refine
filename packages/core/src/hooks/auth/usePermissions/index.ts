@@ -1,11 +1,14 @@
-import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { PermissionResponse } from "../../../interfaces";
 import {
     useQuery,
     UseQueryResult,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
+
 import { useKeys } from "@hooks/useKeys";
+
+import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { PermissionResponse } from "../../../interfaces";
 
 export type UsePermissionsLegacyProps<TData = any> = {
     v3LegacyAuthProviderCompatible: true;
@@ -72,6 +75,10 @@ export function usePermissions<TData = any>({
         {
             enabled: !v3LegacyAuthProviderCompatible && !!getPermissions,
             ...(v3LegacyAuthProviderCompatible ? {} : options),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible ? {} : options?.meta),
+                ...getXRay("usePermissions", preferLegacyKeys),
+            },
         },
     );
 
@@ -85,6 +92,10 @@ export function usePermissions<TData = any>({
         {
             enabled: v3LegacyAuthProviderCompatible && !!legacyGetPermission,
             ...(v3LegacyAuthProviderCompatible ? options : {}),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible ? options?.meta : {}),
+                ...getXRay("usePermissions", preferLegacyKeys),
+            },
         },
     );
 

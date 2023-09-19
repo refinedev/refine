@@ -1,5 +1,6 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useQuerySubscription } from "@refinedev/devtools-internal";
 
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { Telemetry } from "@components/telemetry";
@@ -236,6 +237,8 @@ export const Refine: React.FC<RefineProps> = ({
             },
         });
     }, [reactQueryWithDefaults.clientConfig]);
+
+    useQuerySubscription(queryClient);
 
     const useNotificationProviderValues = React.useMemo(() => {
         return typeof notificationProvider === "function"

@@ -114,6 +114,7 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
         return [];
     }
 };
+
 export const isPackageHaveRefineConfig = async (packagePath: string) => {
     return await pathExists(`${packagePath}/refine.config.js`);
 };
@@ -207,4 +208,10 @@ export const getRefineProjectId = () => {
     const packageJson = getPackageJson();
 
     return packageJson?.refine?.projectId;
+};
+
+export const isDevtoolsInstalled = async () => {
+    const installedPackages = await getInstalledRefinePackagesFromNodeModules();
+
+    return installedPackages.some((pkg) => pkg.name === "@refinedev/devtools");
 };

@@ -8,6 +8,7 @@ import {
 import { AuditLogContext } from "@contexts/auditLog";
 import { HttpError, MetaQuery } from "../../../interfaces";
 import { useKeys } from "@hooks/useKeys";
+import { getXRay } from "@refinedev/devtools-internal";
 
 export type UseLogProps<TQueryFnData, TError, TData> = {
     resource: string;
@@ -62,6 +63,10 @@ export const useLogList = <
             enabled: typeof get !== "undefined",
             ...queryOptions,
             retry: false,
+            meta: {
+                ...queryOptions?.meta,
+                ...getXRay("useLogList", preferLegacyKeys),
+            },
         },
     );
 

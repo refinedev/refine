@@ -3,6 +3,7 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
@@ -212,6 +213,10 @@ export const useCustom = <
                     description: err.message,
                     type: "error",
                 });
+            },
+            meta: {
+                ...queryOptions?.meta,
+                ...getXRay("useCustom", preferLegacyKeys),
             },
         });
         const { elapsedTime } = useLoadingOvertime({
