@@ -324,10 +324,6 @@ export const useUpdate = <
                                 .params(preferredMeta ?? {})
                                 .get(preferLegacyKeys),
                             (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-
                                 if (
                                     typeof optimisticUpdateMap.list ===
                                     "function"
@@ -337,6 +333,10 @@ export const useUpdate = <
                                         values,
                                         id,
                                     );
+                                }
+
+                                if (!previous) {
+                                    return null;
                                 }
 
                                 const data = previous.data.map(
@@ -367,10 +367,6 @@ export const useUpdate = <
                         queryClient.setQueriesData(
                             resourceKeys.action("many").get(preferLegacyKeys),
                             (previous?: GetManyResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-
                                 if (
                                     typeof optimisticUpdateMap.many ===
                                     "function"
@@ -380,6 +376,10 @@ export const useUpdate = <
                                         values,
                                         id,
                                     );
+                                }
+
+                                if (!previous) {
+                                    return null;
                                 }
 
                                 const data = previous.data.map(
@@ -413,10 +413,6 @@ export const useUpdate = <
                                 .params(preferredMeta ?? {})
                                 .get(preferLegacyKeys),
                             (previous?: GetOneResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-
                                 if (
                                     typeof optimisticUpdateMap.detail ===
                                     "function"
@@ -426,6 +422,10 @@ export const useUpdate = <
                                         values,
                                         id,
                                     );
+                                }
+
+                                if (!previous) {
+                                    return null;
                                 }
 
                                 return {
