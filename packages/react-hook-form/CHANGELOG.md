@@ -1,5 +1,13 @@
 # @refinedev/react-hook-form
 
+## 4.8.5
+
+### Patch Changes
+
+-   [#4903](https://github.com/refinedev/refine/pull/4903) [`e327cadc011`](https://github.com/refinedev/refine/commit/e327cadc011ce8696d7149252e1ad308005b1eff) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `invalidateOnUnmount` prop to [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook.
+    feat: add `invalidateOnUnmount` and `invalidateOnClose` prop to [`useModalForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useModalForm/) hook.
+    From now on, you can use these props to invalidate queries upon unmount and/or close
+
 ## 4.8.4
 
 ### Patch Changes
