@@ -14,6 +14,7 @@ import {
     useParsed,
     useGo,
     useModal,
+    useInvalidate,
 } from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
@@ -104,6 +105,8 @@ export const useDrawerForm = <
     defaultVisible = false,
     autoSubmitClose = true,
     autoResetForm = true,
+    autoSave,
+    invalidates,
     ...rest
 }: UseDrawerFormProps<
     TQueryFnData,
@@ -120,13 +123,18 @@ export const useDrawerForm = <
     TResponse,
     TResponseError
 > => {
+    const invalidate = useInvalidate();
     const [initiallySynced, setInitiallySynced] = React.useState(false);
 
     const { visible, show, close } = useModal({
         defaultVisible,
     });
 
-    const { resource, action: actionFromParams } = useResource(rest.resource);
+    const {
+        resource,
+        action: actionFromParams,
+        identifier,
+    } = useResource(rest.resource);
 
     const parsed = useParsed();
     const go = useGo();
@@ -159,10 +167,13 @@ export const useDrawerForm = <
                 : {}),
             ...rest.meta,
         },
+        autoSave,
+        invalidates,
         ...rest,
     });
 
-    const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
+    const { form, formProps, formLoading, id, setId, onFinish, autoSaveProps } =
+        useFormProps;
 
     React.useEffect(() => {
         if (initiallySynced === false && syncWithLocationKey) {
@@ -241,6 +252,15 @@ export const useDrawerForm = <
     };
 
     const handleClose = useCallback(() => {
+        if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+            invalidate({
+                id,
+                invalidates: invalidates || ["list", "many", "detail"],
+                dataProviderName: rest.dataProviderName,
+                resource: identifier,
+            });
+        }
+
         if (warnWhen) {
             const warnWhenConfirm = window.confirm(
                 translate(

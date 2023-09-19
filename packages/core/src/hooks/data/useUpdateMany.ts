@@ -33,6 +33,9 @@ import {
     MetaQuery,
     GetListResponse,
     IQueryKeys,
+    OptimisticUpdateManyMapType,
+    GetManyResponse,
+    GetOneResponse,
 } from "../../interfaces";
 import {
     queryKeysReplacement,
@@ -91,6 +94,15 @@ type UpdateManyParams<TData, TError, TVariables> = {
      *  You can use it to manage the invalidations that will occur at the end of the mutation.
      */
     invalidates?: Array<keyof IQueryKeys>;
+    /**
+     * You can use it to manage the invalidations that will occur at the end of the mutation.
+     * @default {
+     *   list: true,
+     *   many: true,
+     *   detail: true,
+     * }
+     */
+    optimisticUpdateMap?: OptimisticUpdateManyMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateManyResponse<TData>,
     TError,
@@ -275,8 +287,10 @@ export const useUpdateMany = <
                 dataProviderName,
                 meta,
                 metaData,
+                optimisticUpdateMap = { list: true, many: true, detail: true },
             }) => {
                 const { identifier } = select(resourceName);
+                const preferredMeta = pickNotDeprecated(meta, metaData);
 
                 const queryKey = queryKeysReplacement(preferLegacyKeys)(
                     identifier,
@@ -310,92 +324,139 @@ export const useUpdateMany = <
                 >(resourceKeys.get(preferLegacyKeys));
 
                 if (mutationModePropOrContext !== "pessimistic") {
-                    // Set the previous queries to the new ones:
-                    queryClient.setQueriesData(
-                        resourceKeys
-                            .action("list")
-                            .params(pickNotDeprecated(meta, metaData) ?? {})
-                            .get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-
-                            const data = previous.data.map((record: TData) => {
-                                if (
-                                    record.id !== undefined &&
-                                    ids
-                                        .filter((id) => id !== undefined)
-                                        .map(String)
-                                        .includes(record.id.toString())
-                                ) {
-                                    return {
-                                        ...record,
-                                        ...values,
-                                    };
-                                }
-
-                                return record;
-                            });
-
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
-
-                    queryClient.setQueriesData(
-                        resourceKeys.action("many").get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-
-                            const data = previous.data.map((record: TData) => {
-                                if (
-                                    record.id !== undefined &&
-                                    ids
-                                        .filter((id) => id !== undefined)
-                                        .map(String)
-                                        .includes(record.id.toString())
-                                ) {
-                                    return {
-                                        ...record,
-                                        ...values,
-                                    };
-                                }
-                                return record;
-                            });
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
-
-                    for (const id of ids) {
+                    if (optimisticUpdateMap.list) {
+                        // Set the previous queries to the new ones:
                         queryClient.setQueriesData(
                             resourceKeys
-                                .action("one")
-                                .id(id)
-                                .params(pickNotDeprecated(meta, metaData))
+                                .action("list")
+                                .params(preferredMeta ?? {})
                                 .get(preferLegacyKeys),
                             (previous?: GetListResponse<TData> | null) => {
+                                if (
+                                    typeof optimisticUpdateMap.list ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.list(
+                                        previous,
+                                        values,
+                                        ids,
+                                    );
+                                }
+
                                 if (!previous) {
                                     return null;
                                 }
 
-                                const data = {
-                                    ...previous.data,
-                                    ...values,
-                                };
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id !== undefined &&
+                                            ids
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
+                                                .map(String)
+                                                .includes(record.id.toString())
+                                        ) {
+                                            return {
+                                                ...record,
+                                                ...values,
+                                            };
+                                        }
+
+                                        return record;
+                                    },
+                                );
+
                                 return {
                                     ...previous,
                                     data,
                                 };
                             },
                         );
+                    }
+
+                    if (optimisticUpdateMap.many) {
+                        queryClient.setQueriesData(
+                            resourceKeys.action("many").get(preferLegacyKeys),
+                            (previous?: GetManyResponse<TData> | null) => {
+                                if (
+                                    typeof optimisticUpdateMap.many ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.many(
+                                        previous,
+                                        values,
+                                        ids,
+                                    );
+                                }
+
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id !== undefined &&
+                                            ids
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
+                                                .map(String)
+                                                .includes(record.id.toString())
+                                        ) {
+                                            return {
+                                                ...record,
+                                                ...values,
+                                            };
+                                        }
+                                        return record;
+                                    },
+                                );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+                    }
+
+                    if (optimisticUpdateMap.detail) {
+                        for (const id of ids) {
+                            queryClient.setQueriesData(
+                                resourceKeys
+                                    .action("one")
+                                    .id(id)
+                                    .params(preferredMeta ?? {})
+                                    .get(preferLegacyKeys),
+                                (previous?: GetOneResponse<TData> | null) => {
+                                    if (
+                                        typeof optimisticUpdateMap.detail ===
+                                        "function"
+                                    ) {
+                                        return optimisticUpdateMap.detail(
+                                            previous,
+                                            values,
+                                            id,
+                                        );
+                                    }
+
+                                    if (!previous) {
+                                        return null;
+                                    }
+
+                                    const data = {
+                                        ...previous.data,
+                                        ...values,
+                                    };
+                                    return {
+                                        ...previous,
+                                        data,
+                                    };
+                                },
+                            );
+                        }
                     }
                 }
 

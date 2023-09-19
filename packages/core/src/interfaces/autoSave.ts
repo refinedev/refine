@@ -6,6 +6,8 @@ export type AutoSaveProps<TVariables> = {
         enabled: boolean;
         debounce?: number;
         onFinish?: (values: TVariables) => TVariables;
+        invalidateOnUnmount?: boolean;
+        invalidateOnClose?: boolean;
     };
 };
 
