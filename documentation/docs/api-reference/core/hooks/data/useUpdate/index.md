@@ -358,11 +358,13 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
 
+When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
+
 :::caution
-This feature is only work with the `mutationMode` is set to `optimistic` and `undoable`
+This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
 :::
 
-`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
+`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
 
 ```tsx
 const { mutate } = useUpdate();
@@ -378,9 +380,9 @@ mutate({
 });
 ```
 
-In the above case the `list` and `many` queries will be updated automatically. But the `detail` query will not be updated.
+In the scenario mentioned above, the `list` and `many` queries will receive automatic cache updates, whereas the `detail` query cache will remain unaffected.
 
-Also for customize the cache update, you can pass the function to the `list`, `many` and `detail` keys. The function will be called with the `previous` data, `values` and `id` parameters. You should return the new data from the function.
+If you wish to customize the cache update, you have the option to provide functions for the `list`, `many`, and `detail` keys. These functions will be invoked with the `previous` data, `values`, and `id` parameters. Your responsibility is to return the updated data within these functions.
 
 ```tsx
 const { mutate } = useUpdate();
@@ -388,68 +390,66 @@ const { mutate } = useUpdate();
 mutate({
     //...
     mutationMode: "optimistic",
+    // highlight-start
     optimisticUpdateMap: {
-        // highlight-start
-        optimisticUpdateMap: {
-            list: (previous, values, id) => {
-                if (!previous) {
-                    return null;
-                }
+        list: (previous, values, id) => {
+            if (!previous) {
+                return null;
+            }
 
-                const data = previous.data.map((record) => {
-                    if (record.id === id) {
-                        return {
-                            foo: "bar",
-                            ...record,
-                            ...values,
-                        };
-                    }
-                    return record;
-                });
-
-                return {
-                    ...previous,
-                    data,
-                };
-            },
-            many: (previous, values, id) => {
-                if (!previous) {
-                    return null;
-                }
-
-                const data = previous.data.map((record) => {
-                    if (record.id === id) {
-                        return {
-                            foo: "bar",
-                            ...record,
-                            ...values,
-                        };
-                    }
-                    return record;
-                });
-
-                return {
-                    ...previous,
-                    data,
-                };
-            },
-            detail: (previous, values) => {
-                if (!previous) {
-                    return null;
-                }
-
-                return {
-                    ...previous,
-                    data: {
+            const data = previous.data.map((record) => {
+                if (record.id === id) {
+                    return {
                         foo: "bar",
-                        ...previous.data,
+                        ...record,
                         ...values,
-                    },
-                };
-            },
+                    };
+                }
+                return record;
+            });
+
+            return {
+                ...previous,
+                data,
+            };
         },
-        // highlight-end
+        many: (previous, values, id) => {
+            if (!previous) {
+                return null;
+            }
+
+            const data = previous.data.map((record) => {
+                if (record.id === id) {
+                    return {
+                        foo: "bar",
+                        ...record,
+                        ...values,
+                    };
+                }
+                return record;
+            });
+
+            return {
+                ...previous,
+                data,
+            };
+        },
+        detail: (previous, values) => {
+            if (!previous) {
+                return null;
+            }
+
+            return {
+                ...previous,
+                data: {
+                    foo: "bar",
+                    ...previous.data,
+                    ...values,
+                },
+            };
+        },
     },
+    // highlight-end
 });
 ```
 
