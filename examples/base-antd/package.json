@@ -20,7 +20,6 @@
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",
-    "devtools": "refine devtools",
     "cypress": "cypress open -C ./cypress.config.ts",
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
