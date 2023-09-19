@@ -3,6 +3,8 @@ import {
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
+
 import {
     GetListResponse,
     CrudFilters,
@@ -328,6 +330,10 @@ export const useList = <
                     description: err.message,
                     type: "error",
                 });
+            },
+            meta: {
+                ...queryOptions?.meta,
+                ...getXRay("useList", preferLegacyKeys),
             },
         },
     );

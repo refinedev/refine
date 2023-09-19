@@ -4,6 +4,7 @@ import {
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -602,6 +603,10 @@ export const useUpdate = <
             },
             mutationKey: keys().data().mutation("update").get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                ...getXRay("useUpdate", preferLegacyKeys),
+            },
         },
     );
 

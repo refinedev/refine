@@ -4,6 +4,8 @@ import {
     InfiniteQueryObserverResult,
     InfiniteData,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
+
 import {
     CrudFilters,
     Pagination,
@@ -319,6 +321,10 @@ export const useInfiniteList = <
                     description: err.message,
                     type: "error",
                 });
+            },
+            meta: {
+                ...queryOptions?.meta,
+                ...getXRay("useInfiniteList", preferLegacyKeys),
             },
         },
     );

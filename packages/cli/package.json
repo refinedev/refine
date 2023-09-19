@@ -35,6 +35,7 @@
     "@refinedev/core": "^4.40.0"
   },
   "dependencies": {
+    "@refinedev/devtools-server": "^0.0.1",
     "boxen": "^5.1.2",
     "cardinal": "^2.1.1",
     "chalk": "^4.1.2",
