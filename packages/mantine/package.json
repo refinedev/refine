@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "@refinedev/cli": "^2.0.0",
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.40.0",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",

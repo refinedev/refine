@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "@refinedev/cli": "^2.0.0",
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.40.0",
     "@chakra-ui/react": "^2.5.1",
     "react-hook-form": "^7.30.0",
     "dayjs": "^1.10.7",
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@refinedev/cli": "^2.7.6",
     "@refinedev/ui-tests": "^1.13.2",
-    "@refinedev/core": "^4.38.4",
+    "@refinedev/core": "^4.40.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

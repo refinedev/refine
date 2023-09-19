@@ -17,7 +17,7 @@
     "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.40.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "antd": "^5.0.5",

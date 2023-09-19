@@ -14,7 +14,7 @@
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.40.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "dayjs": "^1.10.7",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@refinedev/cli": "^2.7.6",
     "@refinedev/ui-tests": "^1.13.2",
-    "@refinedev/core": "^4.38.4",
+    "@refinedev/core": "^4.40.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
