@@ -47,7 +47,7 @@ Devtools is integrated with `@refinedev/cli` and it will be started automaticall
 
 If you want to start devtools manually or have a custom dev script, you can run `refine devtools` in your project directory or add the following scripts to your `package.json`:
 
-```json
+```js
 {
     "scripts": {
         // If you have not customized the start script.
