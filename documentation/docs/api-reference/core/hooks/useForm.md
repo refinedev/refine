@@ -1200,6 +1200,99 @@ useForm({
 });
 ```
 
+### `optimisticUpdateMap`
+
+If the mutation mode is defined as `optimistic` or `undoable` the `useForm` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+
+:::caution
+This feature is only work with the `mutationMode` is set to `optimistic` and `undoable`
+:::
+
+`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
+
+```tsx
+const { formProps, saveButtonProps } = useForm({
+    //...
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+        list: true,
+        many: true,
+        detail: false,
+    },
+});
+```
+
+In the above case the `list` and `many` queries will be updated automatically. But the `detail` query will not be updated.
+
+Also for customize the cache update, you can pass the function to the `list`, `many` and `detail` keys. The function will be called with the `previous` data, `values` and `id` parameters. You should return the new data from the function.
+
+```tsx
+const { formProps, saveButtonProps } = useForm({
+    //...
+    mutationMode: "optimistic",
+    // highlight-start
+    optimisticUpdateMap: {
+        list: (previous, values, id) => {
+            if (!previous) {
+                return null;
+            }
+
+            const data = previous.data.map((record) => {
+                if (record.id === id) {
+                    return {
+                        foo: "bar",
+                        ...record,
+                        ...values,
+                    };
+                }
+                return record;
+            });
+
+            return {
+                ...previous,
+                data,
+            };
+        },
+        many: (previous, values, id) => {
+            if (!previous) {
+                return null;
+            }
+
+            const data = previous.data.map((record) => {
+                if (record.id === id) {
+                    return {
+                        foo: "bar",
+                        ...record,
+                        ...values,
+                    };
+                }
+                return record;
+            });
+
+            return {
+                ...previous,
+                data,
+            };
+        },
+        detail: (previous, values) => {
+            if (!previous) {
+                return null;
+            }
+
+            return {
+                ...previous,
+                data: {
+                    foo: "bar",
+                    ...previous.data,
+                    ...values,
+                },
+            };
+        },
+    },
+    // highlight-end
+});
+```
+
 ## Return Values
 
 ### `queryResult`

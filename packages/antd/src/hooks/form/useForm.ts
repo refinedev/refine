@@ -118,6 +118,7 @@ export const useForm = <
     updateMutationOptions,
     id: idFromProps,
     overtimeOptions,
+    optimisticUpdateMap,
     disableServerSideValidation: disableServerSideValidationProp = false,
 }: UseFormProps<
     TQueryFnData,
@@ -249,6 +250,7 @@ export const useForm = <
         updateMutationOptions,
         id: idFromProps,
         overtimeOptions,
+        optimisticUpdateMap,
         autoSave,
     });
 
