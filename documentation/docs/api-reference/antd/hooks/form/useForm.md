@@ -7,19 +7,19 @@ source: packages/antd/src/hooks/form/useForm.ts
 
 ```tsx live shared
 import {
+    CloneButton as AntdCloneButton,
     Create as AntdCreate,
+    EditButton as AntdEditButton,
     List as AntdList,
     useForm as useAntdForm,
     useTable as useAntdTable,
-    EditButton as AntdEditButton,
-    CloneButton as AntdCloneButton,
 } from "@refinedev/antd";
 import {
-    Table as AntdTable,
     Edit as AntdEdit,
     Form as AntdForm,
     Input as AntdInput,
     Space as AntdSpace,
+    Table as AntdTable,
 } from "antd";
 
 interface IPost {
@@ -375,7 +375,7 @@ setInitialRoutes(["/posts/clone/123"]);
 import React from "react";
 
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input, Space, Switch } from "antd";
+import { Form, Input } from "antd";
 
 interface IPost {
     id: number;
@@ -838,21 +838,28 @@ const { overtime } = useForm({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
+
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -866,7 +873,9 @@ useForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
@@ -894,6 +903,22 @@ useForm({
             };
         },
         // highlight-end
+    },
+});
+```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        invalidateOnUnmount: true,
     },
 });
 ```
@@ -1026,9 +1051,7 @@ You can invalidate other resources with help of [`useInvalidate`](/docs/api-refe
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
 ```tsx
-import React from "react";
-import { Create, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { useForm } from "@refinedev/antd";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -1055,9 +1078,9 @@ Here is an example where we modify the form data before submit:
 We need to send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
 import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import React from "react";
 
 export const UserCreate: React.FC = () => {
     // highlight-next-line

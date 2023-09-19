@@ -11,6 +11,7 @@ import {
     useUserFriendlyName,
     useTranslate,
     useWarnAboutChange,
+    useInvalidate,
 } from "@refinedev/core";
 import { FieldValues } from "react-hook-form";
 
@@ -111,6 +112,7 @@ export const useModalForm = <
     TResponse,
     TResponseError
 > => {
+    const invalidate = useInvalidate();
     const [initiallySynced, setInitiallySynced] = React.useState(false);
 
     const translate = useTranslate();
@@ -171,7 +173,7 @@ export const useModalForm = <
 
     const {
         reset,
-        refineCore: { onFinish, id, setId },
+        refineCore: { onFinish, id, setId, autoSaveProps },
         saveButtonProps,
         handleSubmit,
     } = useHookFormResult;
@@ -244,6 +246,22 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const handleClose = useCallback(() => {
+        if (
+            autoSaveProps.status === "success" &&
+            refineCoreProps?.autoSave?.invalidateOnClose
+        ) {
+            invalidate({
+                id,
+                invalidates: refineCoreProps.invalidates || [
+                    "list",
+                    "many",
+                    "detail",
+                ],
+                dataProviderName: refineCoreProps.dataProviderName,
+                resource: identifier,
+            });
+        }
+
         if (warnWhen) {
             const warnWhenConfirm = window.confirm(
                 translate(
@@ -261,7 +279,7 @@ export const useModalForm = <
 
         setId?.(undefined);
         close();
-    }, [warnWhen]);
+    }, [warnWhen, autoSaveProps.status]);
 
     const handleShow = useCallback(
         (showId?: BaseKey) => {

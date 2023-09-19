@@ -29,11 +29,11 @@ In this example, we will show you how to `"create"` a record with `useDrawerForm
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React, { useState } from "react";
-import { useShow, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
+import React from "react";
 
-import { List, Create, useTable, useDrawerForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Drawer } from "antd";
+import { Create, List, useDrawerForm, useTable } from "@refinedev/antd";
+import { Drawer, Form, Input, Select, Table } from "antd";
 
 interface IPost {
     id: number;
@@ -143,17 +143,17 @@ In this example, we will show you how to `"edit"` a record with `useDrawerForm`:
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React, { useState } from "react";
-import { useShow, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
+import React from "react";
 
 import {
-    List,
     Edit,
     EditButton,
-    useTable,
+    List,
     useDrawerForm,
+    useTable,
 } from "@refinedev/antd";
-import { Table, Form, Select, Input, Drawer, Space } from "antd";
+import { Drawer, Form, Input, Select, Space, Table } from "antd";
 
 interface IPost {
     id: number;
@@ -334,22 +334,28 @@ const { overtime } = useDrawerForm({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` and `invalidateOnClose` props to invalidate queries upon unmount or close.
+
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -363,7 +369,9 @@ useDrawerForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useDrawerForm({
@@ -391,6 +399,38 @@ useDrawerForm({
             };
         },
         // highlight-end
+    },
+});
+```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useDrawerForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        invalidateOnUnmount: true,
+    },
+});
+```
+
+#### `invalidateOnClose`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useDrawerForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        invalidateOnClose: true,
     },
 });
 ```
@@ -469,9 +509,9 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
-import { Drawer, Create, useDrawerForm } from "@refinedev/antd";
+import { Create, Drawer, useDrawerForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import React from "react";
 
 export const UserCreate: React.FC = () => {
     // highlight-start
@@ -492,7 +532,11 @@ export const UserCreate: React.FC = () => {
         <Drawer {...drawerProps}>
             <Create saveButtonProps={saveButtonProps}>
                 // highlight-next-line
-                <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+                <Form
+                    {...formProps}
+                    onFinish={handleOnFinish}
+                    layout="vertical"
+                >
                     <Form.Item label="Name" name="name">
                         <Input />
                     </Form.Item>

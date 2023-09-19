@@ -30,21 +30,20 @@ In this example, we will show you how to `"create"` a record with `useModalForm`
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
-import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import { List, useModalForm, SaveButton } from "@refinedev/mantine";
 import {
     Box,
     Group,
-    ScrollArea,
-    Table,
-    Pagination,
     Modal,
+    Pagination,
+    ScrollArea,
     Select,
+    Table,
     TextInput,
 } from "@mantine/core";
+import { List, SaveButton, useModalForm } from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
 const PostList: React.FC = () => {
     // highlight-start
@@ -240,21 +239,20 @@ In this example, we will show you how to `"edit"` a record with `useModalForm`:
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
-import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import { List, useModalForm, EditButton, SaveButton } from "@refinedev/mantine";
 import {
     Box,
     Group,
-    ScrollArea,
-    Table,
-    Pagination,
     Modal,
+    Pagination,
+    ScrollArea,
     Select,
+    Table,
     TextInput,
 } from "@mantine/core";
+import { EditButton, List, SaveButton, useModalForm } from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
 const PostList: React.FC = () => {
     // highlight-start
@@ -509,26 +507,25 @@ In this example, we will show you how to `"clone"` a record with `useModalForm`.
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
-import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import {
-    List,
-    useModalForm,
-    CloneButton,
-    SaveButton,
-} from "@refinedev/mantine";
 import {
     Box,
     Group,
-    ScrollArea,
-    Table,
-    Pagination,
     Modal,
+    Pagination,
+    ScrollArea,
     Select,
+    Table,
     TextInput,
 } from "@mantine/core";
+import {
+    CloneButton,
+    List,
+    SaveButton,
+    useModalForm,
+} from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
 const PostList: React.FC = () => {
     // highlight-start
@@ -871,27 +868,34 @@ const { overtime } = useModalForm({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` and `invalidateOnClose` props to invalidate queries upon unmount or close.
+
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -901,12 +905,15 @@ useModalForm({
         autoSave: {
             enabled: true,
         },
-    }
-})
+    },
+});
 ```
+
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
@@ -916,9 +923,46 @@ useModalForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            invalidateOnUnmount: true,
+        },
+    },
+});
+```
+
+#### `invalidateOnClose`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useModalForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            invalidateOnClose: true,
+        },
+    },
+});
+```
+
 ## Return Values
 
 :::tip
@@ -1113,7 +1157,7 @@ const UserCreate: React.FC = () => {
         }),
         // highlight-end
     });
-    
+
     return (
         <Modal opened={visible} onClose={close} title={title}>
             <TextInput

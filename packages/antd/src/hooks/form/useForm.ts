@@ -249,6 +249,7 @@ export const useForm = <
         updateMutationOptions,
         id: idFromProps,
         overtimeOptions,
+        autoSave,
     });
 
     const { formLoading, onFinish, queryResult, id, onFinishAutoSave } =
