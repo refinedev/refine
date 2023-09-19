@@ -1,5 +1,47 @@
 # @refinedev/antd
 
+## 5.35.0
+
+### Minor Changes
+
+-   [#4914](https://github.com/refinedev/refine/pull/4914) [`91a4d0da9f1`](https://github.com/refinedev/refine/commit/91a4d0da9f180ae358a448c7d187cee44f8c2299) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/#optimisticupdatemap) prop added to `useForm` hook. This prop allows you to update the data in the cache.
+
+    ```tsx
+    useForm({
+        mutationMode: "optimistic",
+        optimisticUpdateMap: {
+            list: true,
+            many: true,
+            detail: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = {
+                    id,
+                    ...previous.data,
+                    ...values,
+                    foo: "bar",
+                };
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#4903](https://github.com/refinedev/refine/pull/4903) [`e327cadc011`](https://github.com/refinedev/refine/commit/e327cadc011ce8696d7149252e1ad308005b1eff) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: when using [`useForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/), `autoSave` parameters not passed to `@refinedev/core/useForm` hook.
+    From now on, you can use `autoSave` parameters in [`useForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/) hook.
+
+    feat: add `invalidateOnUnmount` prop to [`useForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/) hook.
+    feat: add `invalidateOnUnmount` and `invalidateOnClose` prop to [`useModalForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm/) and [`useDrawerForm`](https://refine.dev/docs/api-reference/antd/hooks/form/useDrawerForm/) hooks.
+    From now on, you can use the use this props to invalidate queries upon unmount or close.
+
 ## 5.34.2
 
 ### Patch Changes
