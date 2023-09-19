@@ -1,6 +1,6 @@
 import { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
 
-export function send<T extends DevtoolsEvent>(
+export async function send<T extends DevtoolsEvent>(
     ws: WebSocket,
     event: T,
     payload: DevtoolsEventPayloads[T],
@@ -8,7 +8,7 @@ export function send<T extends DevtoolsEvent>(
     // check if the socket is open
     // if not, wait for it to open
     if (ws.readyState !== ws.OPEN) {
-        return new Promise<void>((resolve) => {
+        await new Promise<void>((resolve) => {
             const listener = () => {
                 ws.send(JSON.stringify({ event, payload }));
                 resolve();
@@ -17,6 +17,7 @@ export function send<T extends DevtoolsEvent>(
 
             ws.addEventListener("open", listener);
         });
+        return;
     } else {
         ws.send(JSON.stringify({ event, payload }));
         return;

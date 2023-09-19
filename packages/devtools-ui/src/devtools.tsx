@@ -23,6 +23,7 @@ import { RaffleHandler } from "./components/raffle-handler";
 import { MonitorHighlightHandler } from "./components/monitor-highlight-handler";
 import { LocationChangeHandler } from "./components/location-change-handler";
 import { getLastLocation } from "./utils/last-location";
+import { AfterLogin } from "./pages/after-login";
 
 dayjs.extend(relativeTime);
 
@@ -32,6 +33,14 @@ export const DevToolsApp = () => {
             <ReloadOnChanges />
             <BrowserRouter>
                 <Routes>
+                    <Route
+                        path="/after-login"
+                        element={
+                            <InitialLayout>
+                                <AfterLogin />
+                            </InitialLayout>
+                        }
+                    />
                     <Route
                         element={
                             <Authenticated

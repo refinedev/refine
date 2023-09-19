@@ -87,6 +87,12 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
             },
         );
 
+        receive(client as any, DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS, () => {
+            ws.clients.forEach((c) => {
+                send(c as any, DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN, {});
+            });
+        });
+
         // close connected app if client disconnects
         client.on("close", (_, reason) => {
             if (__DEVELOPMENT__) {

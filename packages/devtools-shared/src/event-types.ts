@@ -19,6 +19,8 @@ export enum DevtoolsEvent {
     DEVTOOLS_DISCONNECTED_APP = "devtools:disconnected-app",
     DEVTOOLS_HIGHLIGHT_IN_MONITOR = "devtools:highlight-in-monitor",
     DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION = "devtools:highlight-in-monitor-action",
+    DEVTOOLS_LOGIN_SUCCESS = "devtools:login-success",
+    DEVTOOLS_RELOAD_AFTER_LOGIN = "devtools:reload-after-login",
 }
 
 type Timestamps = {
@@ -64,4 +66,6 @@ export type DevtoolsEventPayloads = {
     [DevtoolsEvent.DEVTOOLS_DISCONNECTED_APP]: {};
     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR]: { name: string };
     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
+    [DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS]: {};
+    [DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN]: {};
 };

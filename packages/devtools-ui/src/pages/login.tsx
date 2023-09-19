@@ -1,4 +1,9 @@
 import { LoginFlow } from "@ory/client";
+import {
+    DevToolsContext,
+    DevtoolsEvent,
+    receive,
+} from "@refinedev/devtools-shared";
 import clsx from "clsx";
 import React from "react";
 import { useSearchParams } from "react-router-dom";
@@ -23,6 +28,7 @@ const providers = [
 ];
 
 export const Login = () => {
+    const { ws } = React.useContext(DevToolsContext);
     const [searchParams] = useSearchParams();
     const [flowData, setFlowData] = React.useState<LoginFlow | null>(null);
 
@@ -30,7 +36,7 @@ export const Login = () => {
 
     const generateAuthFlow = React.useCallback(async () => {
         try {
-            const redirectUrl = `${window.location.href}`.split(/[?#]/)[0];
+            const redirectUrl = `${window.location.origin}/after-login`;
 
             const { data } = await ory.createBrowserLoginFlow({
                 refresh: true,
@@ -46,6 +52,20 @@ export const Login = () => {
     React.useEffect(() => {
         generateAuthFlow();
     }, [generateAuthFlow]);
+
+    React.useEffect(() => {
+        if (ws) {
+            const unsub = receive(
+                ws,
+                DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN,
+                () => {
+                    window.location.reload();
+                },
+            );
+            return unsub;
+        }
+        return () => 0;
+    }, [ws]);
 
     return (
         <div
@@ -80,6 +100,7 @@ export const Login = () => {
                     )}
                     action={flowData?.ui?.action}
                     method={flowData?.ui?.method}
+                    target="_blank"
                 >
                     <input
                         type="hidden"
