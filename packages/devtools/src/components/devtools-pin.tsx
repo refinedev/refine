@@ -8,6 +8,7 @@ type Props = {
     active?: boolean;
     groupHover?: boolean;
     onSelectorHighlight: (name: string) => void;
+    onSelectorOpen: () => void;
 };
 
 export const DevtoolsPin = ({
@@ -15,6 +16,7 @@ export const DevtoolsPin = ({
     onClick,
     groupHover,
     onSelectorHighlight,
+    onSelectorOpen,
 }: Props) => {
     const [hover, setHover] = React.useState(false);
 
@@ -51,6 +53,7 @@ export const DevtoolsPin = ({
         >
             <RefineDevtoolsIcon active={active} hovered={hover} />
             <DevtoolsSelector
+                onSelectorOpen={onSelectorOpen}
                 onHighlight={onSelectorHighlight}
                 groupHover={hover}
             />

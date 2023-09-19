@@ -36,6 +36,10 @@ export const DevtoolsPanel =
                   [ws],
               );
 
+              const onSelectorOpen = React.useCallback(() => {
+                  setVisible(false);
+              }, []);
+
               return (
                   <div
                       style={{
@@ -56,6 +60,7 @@ export const DevtoolsPanel =
                           onClick={() => setVisible((v) => !v)}
                           groupHover={hover}
                           onSelectorHighlight={onSelectorHighlight}
+                          onSelectorOpen={onSelectorOpen}
                       />
                       <ResizablePane visible={visible} placement={placement}>
                           {({ resizing }) => (

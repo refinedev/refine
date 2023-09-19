@@ -6,11 +6,16 @@ import { SelectorBox } from "./selector-box";
 import { SelectorHint } from "./selector-hint";
 
 type Props = {
+    onSelectorOpen: () => void;
     onHighlight: (name: string) => void;
     groupHover?: boolean;
 };
 
-export const DevtoolsSelector = ({ onHighlight, groupHover }: Props) => {
+export const DevtoolsSelector = ({
+    onSelectorOpen,
+    onHighlight,
+    groupHover,
+}: Props) => {
     const [active, setActive] = React.useState(false);
     const [hover, setHover] = React.useState(false);
     const { rect, name } = useSelector(active);
@@ -55,6 +60,12 @@ export const DevtoolsSelector = ({ onHighlight, groupHover }: Props) => {
             document.removeEventListener("keydown", onKeyDown);
         };
     }, [name, onHighlight, active]);
+
+    React.useEffect(() => {
+        if (active) {
+            onSelectorOpen();
+        }
+    }, [active, onSelectorOpen]);
 
     return (
         <div
