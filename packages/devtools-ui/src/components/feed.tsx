@@ -40,9 +40,9 @@ export const Feed = () => {
             <div
                 className={clsx(
                     "re-text-sm",
-                    "re-leading-6",
                     "re-text-gray-0",
                     "re-font-semibold",
+                    "re-leading-8",
                 )}
             >
                 Updates from the refine team
