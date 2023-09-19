@@ -1,5 +1,7 @@
 import { defineConfig } from "tsup";
-import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+
+import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
+import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 
 export default defineConfig({
     entry: ["src/index.ts"],
@@ -7,18 +9,6 @@ export default defineConfig({
     sourcemap: true,
     clean: false,
     platform: "browser",
-    esbuildPlugins: [
-        NodeResolvePlugin({
-            extensions: [".js", "ts", "tsx", "jsx"],
-            onResolved: (resolved) => {
-                if (resolved.includes("node_modules")) {
-                    return {
-                        external: true,
-                    };
-                }
-                return resolved;
-            },
-        }),
-    ],
+    esbuildPlugins: [lodashReplacePlugin, markAsExternalPlugin],
     onSuccess: "tsc --project tsconfig.declarations.json",
 });

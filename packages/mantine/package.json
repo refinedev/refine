@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/mantine",
-  "version": "2.28.4",
+  "version": "2.28.6",
   "description": "refine is a React-based framework for building internal tools, rapidly.",
   "private": false,
   "sideEffects": false,
@@ -30,8 +30,8 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.7.6",
-    "@refinedev/core": "^4.38.2",
-    "@refinedev/ui-tests": "^1.13.0",
+    "@refinedev/core": "^4.38.4",
+    "@refinedev/ui-tests": "^1.13.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
@@ -56,7 +56,7 @@
     "@mantine/hooks": "^5.10.4",
     "@mantine/form": "^5.10.4",
     "@mantine/notifications": "^5.10.4",
-    "@refinedev/ui-types": "^1.22.0",
+    "@refinedev/ui-types": "^1.22.2",
     "dayjs": "^1.10.7",
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
