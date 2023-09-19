@@ -48,10 +48,17 @@ If you want to start devtools manually or have a custom dev script, you can run 
 ```json
 {
     "scripts": {
-        "devtools": "refine devtools",
-        "dev": "my-custom-dev-script & refine devtools"
+        // If you have not customized the start script.
+        "start": "refine dev", // The devtools server runs automatically; you don't need to do anything.
+
+        // If you have customized the start script.
+        "start": "my-custom-dev-script & refine devtools" // Run the devtools server manually.
+
+        // other scripts
     }
 }
 ```
+
+If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) to add it to your project.
 
 These commands will start the devtools server. If you want to access the devtools UI outside of your app without depending on the `<DevtoolsPanel>` component, you can go to `http://localhost:5001` in your browser. 🚀
