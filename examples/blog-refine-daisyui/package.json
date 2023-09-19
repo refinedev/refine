@@ -13,8 +13,8 @@
     "@refinedev/react-router-v6": "^4.5.0",
     "@refinedev/react-table": "^5.6.2",
     "@refinedev/simple-rest": "^4.5.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
     "recharts": "^2.1.9"
   },
@@ -25,7 +25,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.1",
     "daisyui": "^3.5.1",
-    "postcss": "^8.1.4",
+    "postcss": "^8.4.21",
     "tailwindcss": "^3.0.11",
     "typescript": "^4.7.4",
     "vite": "^4.3.1"
