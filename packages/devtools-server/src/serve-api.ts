@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { json } from "express";
-
+import uniq from "lodash/uniq";
 import {
     AvailablePackageType,
     Feed,
@@ -34,6 +34,24 @@ export const serveApi = (app: Express, db: Data) => {
     app.get("/api/activities/reset", (_, res) => {
         db.activities = [];
         res.json({ success: true });
+    });
+
+    app.get("/api/unique-trace-items", (req, res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header(
+            "Access-Control-Allow-Headers",
+            "Origin, X-Requested-With, Content-Type, Accept",
+        );
+
+        const traceItems = db.activities.flatMap(
+            (activity) =>
+                activity.trace?.map((t) => t.function).filter(Boolean) ?? [],
+        ) as string[];
+        const uniqueTraceItems = uniq(traceItems);
+
+        res.setHeader("x-total-count", uniqueTraceItems.length);
+
+        res.json({ data: uniqueTraceItems });
     });
 
     let cachedInstalledPackages: PackageType[] | null = null;

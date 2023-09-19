@@ -12,6 +12,20 @@ import {
 type Fiber = Exclude<ReturnType<typeof getFiberFromElement>, null>;
 
 export const useSelector = (active: boolean) => {
+    const [traceItems, setTraceItems] = React.useState<string[]>([]);
+
+    React.useEffect(() => {
+        if (active) {
+            fetch("http://localhost:5001/api/unique-trace-items").then((res) =>
+                res
+                    .json()
+                    .then((data: { data: string[] }) =>
+                        setTraceItems(data.data),
+                    ),
+            );
+        }
+    }, [active]);
+
     const [selectedFiber, setSelectedFiber] = React.useState<{
         stateNode: Fiber | null;
         nameFiber: Fiber | null;
@@ -47,29 +61,53 @@ export const useSelector = (active: boolean) => {
         return () => 0;
     }, [active]);
 
-    const pickFiber = React.useCallback((target: HTMLElement) => {
-        // Get the fiber node from the element
-        const fiber = getFiberFromElement(target);
-        // Get the first fiber node that has a state node (look up the tree)
-        const fiberWithStateNode = getFirstStateNodeFiber(fiber);
-        // Get the first fiber node that has a name (look up the tree)
-        const firstParentOfNodeWithName =
-            getFirstFiberHasName(fiberWithStateNode);
+    const selectAppropriateFiber = React.useCallback(
+        (start: Fiber | null) => {
+            let fiber = start;
+            let firstParentOfNodeWithName: Fiber | null;
+            let fiberWithStateNode: Fiber | null;
 
-        if (fiberWithStateNode && firstParentOfNodeWithName) {
-            setSelectedFiber({
-                stateNode: fiberWithStateNode,
-                nameFiber: firstParentOfNodeWithName,
-            });
+            let acceptedName = false;
+
+            while (!acceptedName && fiber) {
+                // Get the first fiber node that has a name (look up the tree)
+                firstParentOfNodeWithName = getFirstFiberHasName(fiber);
+                // Get the first fiber node that has a state node (look up the tree)
+                fiberWithStateNode = getFirstStateNodeFiber(
+                    firstParentOfNodeWithName,
+                );
+                acceptedName = traceItems.includes(
+                    getNameFromFiber(firstParentOfNodeWithName) ?? "",
+                );
+                if (!acceptedName) {
+                    fiber = getParentOfFiber(fiber);
+                }
+            }
+
+            if (fiberWithStateNode && firstParentOfNodeWithName) {
+                return {
+                    stateNode: fiberWithStateNode,
+                    nameFiber: firstParentOfNodeWithName,
+                };
+            } else {
+                return {
+                    stateNode: null,
+                    nameFiber: null,
+                };
+            }
+        },
+        [traceItems],
+    );
+
+    const pickFiber = React.useCallback(
+        (target: HTMLElement) => {
+            const fiber = getFiberFromElement(target);
+
+            setSelectedFiber(selectAppropriateFiber(fiber));
             return;
-        } else {
-            setSelectedFiber({
-                stateNode: null,
-                nameFiber: null,
-            });
-            return;
-        }
-    }, []);
+        },
+        [traceItems],
+    );
 
     React.useEffect(() => {
         if (
@@ -157,23 +195,15 @@ export const useSelector = (active: boolean) => {
                     e.preventDefault();
 
                     const parent = getParentOfFiber(activeFiber.nameFiber);
-                    if (parent) {
-                        // Get the first fiber node that has a name (look up the tree)
-                        const firstParentOfNodeWithName =
-                            getFirstFiberHasName(parent);
-                        // Get the first fiber node that has a state node (look up the tree)
-                        const fiberWithStateNode = getFirstStateNodeFiber(
-                            firstParentOfNodeWithName,
-                        );
 
-                        if (fiberWithStateNode && firstParentOfNodeWithName) {
-                            setActiveFiber({
-                                stateNode: fiberWithStateNode,
-                                nameFiber: firstParentOfNodeWithName,
-                                derived: true,
-                            });
-                            return;
-                        }
+                    const fibers = selectAppropriateFiber(parent);
+
+                    if (fibers.nameFiber && fibers.stateNode) {
+                        setActiveFiber({
+                            ...fibers,
+                            derived: true,
+                        });
+                        return;
                     }
                 }
             };
@@ -186,8 +216,15 @@ export const useSelector = (active: boolean) => {
 
     React.useEffect(() => {
         if (active) {
+            let previousTarget: HTMLElement | null = null;
             const listener = debounce((e: MouseEvent) => {
-                if (e?.target) pickFiber(e.target as HTMLElement);
+                if (e?.target) {
+                    if (previousTarget === e.target) {
+                        return;
+                    }
+                    pickFiber(e.target as HTMLElement);
+                    previousTarget = e.target as HTMLElement;
+                }
             }, 30);
 
             document.addEventListener("mousemove", listener);
