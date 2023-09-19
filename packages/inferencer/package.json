@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/inferencer",
-  "version": "4.5.6",
+  "version": "4.5.8",
   "description": "refine is a React-based framework for building internal tools, rapidly.",
   "private": false,
   "sideEffects": false,
@@ -153,10 +153,10 @@
   },
   "devDependencies": {
     "@refinedev/antd": "^5.34.2",
-    "@refinedev/chakra-ui": "^2.26.4",
-    "@refinedev/core": "^4.38.2",
-    "@refinedev/mantine": "^2.28.4",
-    "@refinedev/mui": "^5.13.6",
+    "@refinedev/chakra-ui": "^2.26.6",
+    "@refinedev/core": "^4.38.4",
+    "@refinedev/mantine": "^2.28.6",
+    "@refinedev/mui": "^5.13.8",
     "@types/lodash": "^4.14.171",
     "@refinedev/react-hook-form": "^4.8.4",
     "@refinedev/react-table": "^5.6.2",
@@ -185,7 +185,7 @@
   },
   "dependencies": {
     "@tabler/icons": "^1.1.0",
-    "@refinedev/core": "^4.38.2",
+    "@refinedev/core": "^4.38.4",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",

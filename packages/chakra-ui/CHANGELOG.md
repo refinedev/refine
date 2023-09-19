@@ -1,5 +1,23 @@
 # @refinedev/chakra-ui
 
+## 2.26.6
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.2
+
+## 2.26.5
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.1
+
 ## 2.26.4
 
 ### Patch Changes
