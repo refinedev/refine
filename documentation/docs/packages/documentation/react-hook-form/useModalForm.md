@@ -116,11 +116,10 @@ values={[
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
 import { HttpError, useTable } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 
-import { Modal, PostsTable } from "@components";
+import { Modal } from "@components";
 
 const PostList = () => {
     const { tableQueryResult } = useTable<IPost>({
@@ -231,11 +230,10 @@ render(<RefineHeadlessDemo />);
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
 import { HttpError, useTable } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 
-import { Modal, PostsTable } from "@components";
+import { Modal } from "@components";
 
 const PostList = () => {
     const { tableQueryResult } = useTable<IPost>({
@@ -372,11 +370,10 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
 import { HttpError, useTable } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 
-import { Modal, PostsTable } from "@components";
+import { Modal } from "@components";
 
 const PostList = () => {
     const { tableQueryResult } = useTable<IPost>({
@@ -700,7 +697,7 @@ const modalForm = useModalForm({
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` and `invalidateOnClose` props to invalidate queries upon unmount or close.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -711,6 +708,8 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -726,7 +725,9 @@ useModalForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
@@ -764,7 +765,9 @@ useModalForm({
 
 #### `invalidateOnUnmount`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useDrawerForm({
@@ -780,7 +783,9 @@ useDrawerForm({
 
 #### `invalidateOnClose`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed, you can use the `invalidateOnClose` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useDrawerForm({

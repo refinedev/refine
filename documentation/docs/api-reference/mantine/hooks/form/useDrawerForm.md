@@ -31,26 +31,25 @@ In this example, we will show you how to `"create"` a record with `useDrawerForm
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
-import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import {
-    List,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
-    SaveButton,
-} from "@refinedev/mantine";
 import {
     Box,
-    Group,
-    ScrollArea,
-    Table,
-    Pagination,
     Drawer,
+    Group,
+    Pagination,
+    ScrollArea,
     Select,
+    Table,
     TextInput,
 } from "@mantine/core";
+import {
+    List,
+    SaveButton,
+    // highlight-next-line
+    useModalForm as useDrawerForm,
+} from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
 const PostList: React.FC = () => {
     // highlight-start
@@ -253,27 +252,26 @@ In this example, we will show you how to `"edit"` a record with `useDrawerForm`:
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import React from "react";
-import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import {
-    List,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
-    EditButton,
-    SaveButton,
-} from "@refinedev/mantine";
 import {
     Box,
-    Group,
-    ScrollArea,
-    Table,
-    Pagination,
     Drawer,
+    Group,
+    Pagination,
+    ScrollArea,
     Select,
+    Table,
     TextInput,
 } from "@mantine/core";
+import {
+    EditButton,
+    List,
+    SaveButton,
+    // highlight-next-line
+    useModalForm as useDrawerForm,
+} from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
 const PostList: React.FC = () => {
     // highlight-start
@@ -637,7 +635,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` and `invalidateOnClose` props to invalidate queries upon unmount or close.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -648,6 +646,8 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -663,7 +663,9 @@ useDrawerForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useDrawerForm({
@@ -679,7 +681,9 @@ useDrawerForm({
 
 #### `invalidateOnUnmount`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useDrawerForm({
@@ -695,7 +699,9 @@ useDrawerForm({
 
 #### `invalidateOnClose`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed, you can use the `invalidateOnClose` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useDrawerForm({
@@ -882,9 +888,9 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API, as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
+import { Drawer, TextInput } from "@mantine/core";
 import { useDrawerForm } from "@refinedev/mantine";
-import { TextInput, Drawer } from "@mantine/core";
+import React from "react";
 
 const UserCreate: React.FC = () => {
     const {

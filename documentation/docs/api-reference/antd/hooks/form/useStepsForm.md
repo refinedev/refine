@@ -7,24 +7,24 @@ title: useStepsForm
 import { useMany } from "@refinedev/core";
 
 import {
-    List,
-    TextField,
-    useTable,
-    EditButton,
-    useStepsForm as useStepsFormAntd,
-    useSelect as useSelectAntd,
-    SaveButton as AntdSaveButton,
-    Edit as AntdEdit,
     Create as AntdCreate,
+    Edit as AntdEdit,
+    EditButton,
+    List,
+    SaveButton as AntdSaveButton,
+    TextField,
+    useSelect as useSelectAntd,
+    useStepsForm as useStepsFormAntd,
+    useTable,
 } from "@refinedev/antd";
 import {
-    Table,
-    Space,
-    Select as AntdSelect,
-    Input as AntdInput,
-    Form as AntdForm,
-    Steps as AntdSteps,
     Button as AntdButton,
+    Form as AntdForm,
+    Input as AntdInput,
+    Select as AntdSelect,
+    Space,
+    Steps as AntdSteps,
+    Table,
 } from "antd";
 
 const PostList = () => {
@@ -343,11 +343,11 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import React from "react";
 import { HttpError } from "@refinedev/core";
+import React from "react";
 
 import { Create, SaveButton, useSelect, useStepsForm } from "@refinedev/antd";
-import { Form, Input, Select, Button, Steps } from "antd";
+import { Button, Form, Input, Select, Steps } from "antd";
 
 const { Step } = Steps;
 
@@ -506,11 +506,11 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import React from "react";
 import { HttpError } from "@refinedev/core";
+import React from "react";
 
 import { Edit, SaveButton, useSelect, useStepsForm } from "@refinedev/antd";
-import { Form, Input, Select, Button, Steps } from "antd";
+import { Button, Form, Input, Select, Steps } from "antd";
 
 const { Step } = Steps;
 
@@ -676,9 +676,9 @@ For the sake of simplicity, in this example we're going to build a Post `"create
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
 ```tsx title="pages/posts/create.tsx"
-import React from "react";
-import { HttpError } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/antd";
+import { HttpError } from "@refinedev/core";
+import React from "react";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -714,10 +714,10 @@ This hook returns a set of useful values to render steps form. Given `current` v
 Here, each item of `formList` corresponds to one step in form:
 
 ```tsx title="pages/posts/create.tsx"
-import React from "react";
+import { useSelect, useStepsForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
-import { useStepsForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
+import React from "react";
 
 export const PostCreate: React.FC = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
@@ -790,15 +790,8 @@ Refer to [`useSelect` documentation for detailed usage. &#8594](/docs/api-refere
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx title="pages/posts/create.tsx"
-import React from "react";
+import { Create, useSelect, useStepsForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
-import {
-    useStepsForm,
-    useSelect,
-    // highlight-start
-    Create,
-    // highlight-end
-} from "@refinedev/antd";
 import {
     Form,
     Input,
@@ -806,6 +799,7 @@ import {
     // highlight-next-line
     Steps,
 } from "antd";
+import React from "react";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -891,16 +885,16 @@ Make sure to add as much `<Steps.Step>` components as the number of steps in the
 To help users navigate between steps in the form, you can use the action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the the `useStepsForm` hook.
 
 ```tsx title="pages/posts/create.tsx"
-import React from "react";
-import { HttpError } from "@refinedev/core";
 import {
-    useStepsForm,
-    useSelect,
     Create,
     // highlight-next-line
     SaveButton,
+    useSelect,
+    useStepsForm,
 } from "@refinedev/antd";
+import { HttpError } from "@refinedev/core";
 import { Button, Form, Input, Select, Steps } from "antd";
+import React from "react";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -1069,13 +1063,16 @@ const { overtime } = useStepsForm({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default it's invalidates `list` and `many` queries from the current resource. You can also invalidate the `detail` query with the `invalidateOnUnmountDetailCache` prop when `unmount`.
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -1086,6 +1083,8 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -1099,7 +1098,9 @@ useStepsForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useStepsForm({
@@ -1130,10 +1131,12 @@ useStepsForm({
     },
 });
 ```
+
 #### `invalidateOnUnmount`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
 
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useStepsForm({
@@ -1205,25 +1208,19 @@ We need to send the values we received from the user in two separate inputs, `na
 ```tsx title="pages/user/create.tsx"
 import { useStepsForm } from "@refinedev/antd";
 // ...
-const {
-    current,
-    gotoStep,
-    stepsProps,
-    formProps,
-    saveButtonProps,
-    onFinish,
-} = useStepsForm<IPost>({
-    submit: (values) => {
-        // highlight-start
-        const data = {
-            fullName: `${formValues.name} ${formValues.surname}`,
-            age: formValues.age,
-            city: formValues.city,
-        };
-        onFinish(data as any);
-    // highlight-end
-    },
-});
+const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } =
+    useStepsForm<IPost>({
+        submit: (values) => {
+            // highlight-start
+            const data = {
+                fullName: `${formValues.name} ${formValues.surname}`,
+                age: formValues.age,
+                city: formValues.city,
+            };
+            onFinish(data as any);
+            // highlight-end
+        },
+    });
 // ...
 ```
 

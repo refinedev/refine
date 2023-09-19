@@ -6,9 +6,9 @@ source: packages/react-hook-form/src/useForm/index.ts
 ---
 
 ```tsx live shared
-import React from "react";
-import { useTable, useNavigation } from "@refinedev/core";
+import { useNavigation, useTable } from "@refinedev/core";
 import { useForm as ReactHookFormUseForm } from "@refinedev/react-hook-form";
+import React from "react";
 
 interface IPost {
     id: number;
@@ -553,8 +553,8 @@ useForm({
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
 ```tsx
-import { useForm } from "@refinedev/react-hook-form";
 import { useParsed } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 const { id } = useParsed();
 
@@ -932,7 +932,7 @@ Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provi
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -943,6 +943,8 @@ It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -958,7 +960,9 @@ useForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
@@ -996,7 +1000,9 @@ useForm({
 
 #### `invalidateOnUnmount`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useForm({
@@ -1106,7 +1112,6 @@ You can invalidate other resources with help of [`useInvalidate`](/docs/api-refe
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
 ```tsx
-import React from "react";
 import { useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
@@ -1135,8 +1140,8 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
 import { useForm } from "@refinedev/react-hook-form";
+import React from "react";
 import { FieldValues } from "react-hook-form";
 
 export const UserCreate: React.FC = () => {

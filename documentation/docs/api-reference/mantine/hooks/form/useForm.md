@@ -6,29 +6,26 @@ source: packages/mantine/src/hooks/form/useForm/index.ts
 ---
 
 ```tsx live shared
-import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
+import React from "react";
 
 import {
-    Edit as MantineEdit,
-    Create as MantineCreate,
-    List as MantineList,
-    useTable as useMantineTable,
-    EditButton as MantineEditButton,
-    CloneButton as MantineCloneButton,
-} from "@refinedev/mantine";
-import {
-    Input as MantineInput,
     Box as MantineBox,
     Group as MantineGroup,
+    Pagination as MantinePagination,
     ScrollArea as MantineScrollArea,
     Table as MantineTable,
-    Pagination as MantinePagination,
-    TextInput as MantineTextInput,
-    Text as MantineText,
     Textarea as MantineTextarea,
+    TextInput as MantineTextInput,
 } from "@mantine/core";
+import {
+    CloneButton as MantineCloneButton,
+    Create as MantineCreate,
+    Edit as MantineEdit,
+    EditButton as MantineEditButton,
+    List as MantineList,
+} from "@refinedev/mantine";
 
 interface IPost {
     id: number;
@@ -233,8 +230,8 @@ const PostCreate: React.FC = () => {
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx
-import { Edit, useForm } from "@refinedev/mantine";
 import { Select, TextInput } from "@mantine/core";
+import { Edit, useForm } from "@refinedev/mantine";
 
 const PostEdit: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
@@ -322,8 +319,8 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React from "react";
 
+import { Textarea, TextInput } from "@mantine/core";
 import { Create, useForm } from "@refinedev/mantine";
-import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -393,8 +390,8 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React from "react";
 
+import { Textarea, TextInput } from "@mantine/core";
 import { Edit, useForm } from "@refinedev/mantine";
-import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostEditPage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -466,8 +463,8 @@ setInitialRoutes(["/posts/clone/123"]);
 // visible-block-start
 import React from "react";
 
+import { Textarea, TextInput } from "@mantine/core";
 import { Create, useForm } from "@refinedev/mantine";
-import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -548,8 +545,8 @@ useForm({
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
 ```tsx
-import { useForm } from "@refinedev/mantine";
 import { useParsed } from "@refinedev/core";
+import { useForm } from "@refinedev/mantine";
 
 const { id } = useParsed();
 
@@ -964,7 +961,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
 
 It also supports the [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use the `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -975,6 +972,8 @@ It also supports the [`onMutationSuccess`](#onmutationsuccess) and [`onMutationE
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -990,7 +989,9 @@ useForm({
 
 #### `debounce`
 
-`debounce` allows you to set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+`debounce` allows you to set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
@@ -1006,7 +1007,9 @@ useForm({
 
 #### `invalidateOnUnmount`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useForm({
@@ -1122,7 +1125,6 @@ You can invalidate other resources with help of the [`useInvalidate`](/docs/api-
 It is useful when you want to `invalidate` other resources that don't have relation with the current resource.
 
 ```tsx
-import React from "react";
 import { useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/mantine";
 
@@ -1151,9 +1153,9 @@ You may need to modify the form data before it is sent to the API.
 For example, let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
-import { Create, useForm } from "@refinedev/mantine";
 import { TextInput } from "@mantine/core";
+import { Create, useForm } from "@refinedev/mantine";
+import React from "react";
 
 const UserCreate: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({

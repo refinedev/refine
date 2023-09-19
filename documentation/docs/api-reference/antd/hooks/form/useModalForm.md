@@ -33,8 +33,8 @@ setInitialRoutes(["/posts"]);
 
 import React from "react";
 
-import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Modal, Space } from "antd";
+import { List, useModalForm, useTable } from "@refinedev/antd";
+import { Form, Input, Modal, Select, Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -145,8 +145,8 @@ setInitialRoutes(["/posts"]);
 
 import React from "react";
 
-import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Modal, Space } from "antd";
+import { EditButton, List, useModalForm, useTable } from "@refinedev/antd";
+import { Form, Input, Modal, Select, Space, Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -285,8 +285,8 @@ setInitialRoutes(["/posts"]);
 
 import React from "react";
 
-import { List, CloneButton, useTable, useModalForm } from "@refinedev/antd";
-import { Table, Form, Select, Input, Modal, Space } from "antd";
+import { CloneButton, List, useModalForm, useTable } from "@refinedev/antd";
+import { Form, Input, Modal, Select, Space, Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -523,7 +523,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
-By default the `autoSave` feature does not invalidate queries. If you need to invalidate when auto save mutation is successful; you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` and `invalidateOnClose` props to invalidate queries upon unmount or close.
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
@@ -534,6 +534,8 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -547,7 +549,9 @@ useModalForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
@@ -581,7 +585,9 @@ useModalForm({
 
 #### `invalidateOnUnmount`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when auto save mutation is successful, you can use the `invalidateOnUnmount` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useModalForm({
@@ -595,7 +601,9 @@ useModalForm({
 
 #### `invalidateOnClose`
 
-If you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed, you can use the `invalidateOnClose` prop. This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource. However, you can use the `invalidates` prop if you want to customize it.
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 ```tsx
 useModalForm({
@@ -800,9 +808,9 @@ Here is an example where we modify the form data before submit:
 We need to send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
 import { Modal, useModalForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import React from "react";
 
 export const UserCreate: React.FC = () => {
     // highlight-start
