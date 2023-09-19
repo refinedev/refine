@@ -46,7 +46,7 @@ export const DevtoolsPanel =
                           position: "fixed",
                           left: 0,
                           top: 0,
-                          zIndex: 99,
+                          zIndex: 99999,
                           width: `${SIZE * 2}px`,
                           height: `${SIZE}px`,
 

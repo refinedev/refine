@@ -30,7 +30,7 @@ export const SelectorBox = ({
                 borderTopLeftRadius: 0,
                 background: "rgba(37,160,160, 0.25)",
                 backdropFilter: "sepia(30%) hue-rotate(180deg)",
-                zIndex: 9999,
+                zIndex: 99998,
                 ...(outlinePosition === "outside"
                     ? {
                           left: -6,
