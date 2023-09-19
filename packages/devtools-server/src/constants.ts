@@ -9,4 +9,4 @@ export const REFINE_API_URL = __DEVELOPMENT__
     : "https://cloud2.refine.dev";
 
 export const FEED_MD_URL =
-    "https://raw.githubusercontent.com/refinedev/refine/next/packages/devtools-server/FEED.md";
+    "https://raw.githubusercontent.com/refinedev/refine/feat/devtools/packages/devtools-server/FEED.md";

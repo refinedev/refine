@@ -35,12 +35,13 @@ const parseSection = (section: string): FeedSection => {
 };
 
 const fetchFeed = async () => {
-    if (__DEVELOPMENT__) {
-        return fs.readFileSync("FEED.md", { encoding: "utf-8" });
-    }
-    const response = await fetch(FEED_MD_URL);
+    try {
+        const response = await fetch(FEED_MD_URL);
 
-    return response.text();
+        return response.text();
+    } catch (_) {
+        return "";
+    }
 };
 
 export const getFeed = async (): Promise<Feed> => {
