@@ -18,7 +18,6 @@
   "scripts": {
     "start": "refine dev",
     "build": "tsc && refine build",
-    "list": "npm list --depth=0",
     "preview": "refine start",
     "refine": "refine",
     "devtools": "refine devtools",
