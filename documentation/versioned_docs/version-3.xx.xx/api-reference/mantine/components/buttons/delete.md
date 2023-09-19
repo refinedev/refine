@@ -32,7 +32,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<DeleteButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
+`<DeleteButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
@@ -466,7 +466,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <DeleteButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

@@ -241,9 +241,10 @@ describe("useResourceSubscription Hook", () => {
 
         expect(onSubscribeMock).toBeCalled();
         expect(onLiveEventMock).toBeCalledWith(mockCallbackEventPayload);
-        expect(invalidateQueriesMock).toBeCalledWith([
-            "default",
-            "featured-posts",
-        ]);
+        expect(invalidateQueriesMock).toBeCalledWith(
+            ["default", "featured-posts"],
+            expect.anything(),
+            expect.anything(),
+        );
     });
 });

@@ -1,0 +1,14 @@
+import { defineConfig } from "tsup";
+
+import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
+import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
+
+export default defineConfig({
+    entry: ["src/index.ts"],
+    splitting: false,
+    sourcemap: true,
+    clean: false,
+    platform: "browser",
+    esbuildPlugins: [markAsExternalPlugin, lodashReplacePlugin],
+    onSuccess: "tsc --project tsconfig.declarations.json",
+});

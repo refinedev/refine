@@ -1,1 +1,0 @@
-# @refinedev/nestjs-query-graphql

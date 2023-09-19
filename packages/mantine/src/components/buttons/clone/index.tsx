@@ -20,7 +20,7 @@ import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { CloneButtonProps } from "../types";
 
 /**
- * `<CloneButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
+ * `<CloneButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *

@@ -1,5 +1,35 @@
 # @refinedev/mantine
 
+## 2.28.6
+
+### Patch Changes
+
+-   [#4953](https://github.com/refinedev/refine/pull/4953) [`07dd28d4142`](https://github.com/refinedev/refine/commit/07dd28d41421b08d73d5b2dbf9af2d4d4788c01b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: broken Mantine documentation links on JSDoc.
+
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.2
+
+## 2.28.5
+
+### Patch Changes
+
+-   [#4953](https://github.com/refinedev/refine/pull/4953) [`07dd28d4142`](https://github.com/refinedev/refine/commit/07dd28d41421b08d73d5b2dbf9af2d4d4788c01b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: broken Mantine documentation links on JSDoc.
+
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.1
+
+## 2.28.4
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
+## 2.28.3
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
 ## 2.28.2
 
 ### Patch Changes

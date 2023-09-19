@@ -32,7 +32,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<DeleteButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button/) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
+`<DeleteButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
@@ -238,9 +238,7 @@ import dataProvider from "@refinedev/simple-rest";
 import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton resource="categories" recordItemId="2" />
-    );
+    return <DeleteButton resource="categories" recordItemId="2" />;
 };
 // visible-block-end
 

@@ -3,6 +3,7 @@
 -   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 -   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
 -   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Nestjs-Query](https://github.com/refinedev/refine/tree/master/packages/nestjs-query)
 -   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
 -   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
 -   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)

@@ -54,6 +54,59 @@ const CloneWrapperWithRoute: React.FC<{
 }> = ({ children }) => <CloneWrapper>{children}</CloneWrapper>;
 
 describe("useForm Hook", () => {
+    describe("warn messages", () => {
+        const warnMock = jest.fn();
+        beforeAll(() => {
+            jest.spyOn(console, "warn").mockImplementation(warnMock);
+        });
+        beforeEach(() => {
+            warnMock.mockClear();
+        });
+
+        it("should warn when `resource` is passed and `id` is not", async () => {
+            renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(warnMock).toBeCalled();
+            });
+        });
+
+        it("should not warn when `resource` is passed and `id` is not, if `queryOption.enabled` is false", async () => {
+            renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        queryOptions: {
+                            enabled: false,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(warnMock).not.toBeCalled();
+            });
+        });
+    });
+
     it("renders with form", async () => {
         const { result } = renderHook(() => useForm({ resource: "posts" }), {
             wrapper: SimpleWrapper,

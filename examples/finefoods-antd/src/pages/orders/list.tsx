@@ -44,6 +44,8 @@ import {
     IUser,
 } from "../../interfaces";
 
+const { RangePicker } = DatePicker;
+
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, searchFormProps, filters } = useTable<
         IOrder,
@@ -282,8 +284,6 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
         defaultValue: getDefaultFilter("user.id", filters),
     });
 
-    const { RangePicker } = DatePicker;
-
     const createdAt = useMemo(() => {
         const start = getDefaultFilter("createdAt", filters, "gte");
         const end = getDefaultFilter("createdAt", filters, "lte");
@@ -303,8 +303,12 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
             {...formProps}
             initialValues={{
                 q: getDefaultFilter("q", filters),
-                store: getDefaultFilter("store.id", filters),
-                user: getDefaultFilter("user.id", filters),
+                store: getDefaultFilter("store.id", filters)
+                    ? Number(getDefaultFilter("store.id", filters))
+                    : undefined,
+                user: getDefaultFilter("user.id", filters)
+                    ? Number(getDefaultFilter("user.id", filters))
+                    : undefined,
                 status: getDefaultFilter("status.text", filters, "in"),
                 createdAt,
             }}

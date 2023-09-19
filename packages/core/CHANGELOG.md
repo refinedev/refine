@@ -1,5 +1,99 @@
 # @refinedev/core
 
+## 4.38.4
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+
+## 4.38.3
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+
+## 4.38.2
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
+## 4.38.1
+
+### Patch Changes
+
+-   [#4948](https://github.com/refinedev/refine/pull/4948) [`8e5efffbb23`](https://github.com/refinedev/refine/commit/8e5efffbb231bc3163c56f8e823ccb649755a9d4) Thanks [@aliemir](https://github.com/aliemir)! - Keep the hook and component names in builds for better debugging.
+
+## 4.38.0
+
+### Minor Changes
+
+-   [#4906](https://github.com/refinedev/refine/pull/4906) [`58d3d605510`](https://github.com/refinedev/refine/commit/58d3d605510954a4355a4db3069d68060a062e59) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `onUnauthorized` callback to `<CanAccess />` component. This callback to be called when [`useCan`](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/) returns false.
+
+    ```tsx
+    <CanAccess
+        onUnauthorized={({ resource, reason, action, params }) =>
+            console.log(
+                `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
+            )
+        }
+    >
+        <YourComponent />
+    </CanAccess>
+    ```
+
+### Patch Changes
+
+-   [#4926](https://github.com/refinedev/refine/pull/4926) [`053798ae52b`](https://github.com/refinedev/refine/commit/053798ae52b172520aff624a7b518d6dd914ddb7) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: update `useForm` warn condition
+
+## 4.37.0
+
+### Minor Changes
+
+-   [#4906](https://github.com/refinedev/refine/pull/4906) [`58d3d605510`](https://github.com/refinedev/refine/commit/58d3d605510954a4355a4db3069d68060a062e59) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `onUnauthorized` callback to `<CanAccess />` component. This callback to be called when [`useCan`](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/) returns false.
+
+    ```tsx
+    <CanAccess
+        onUnauthorized={({ resource, reason, action, params }) =>
+            console.log(
+                `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
+            )
+        }
+    >
+        <YourComponent />
+    </CanAccess>
+    ```
+
+### Patch Changes
+
+-   [#4926](https://github.com/refinedev/refine/pull/4926) [`053798ae52b`](https://github.com/refinedev/refine/commit/053798ae52b172520aff624a7b518d6dd914ddb7) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: update `useForm` warn condition
+
+## 4.36.2
+
+### Patch Changes
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - `useInvalidate` now returns a promise that resolves when the invalidation is completed.
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - Fine-tuning the invalidation process by setting up additional filters and options for the invalidation.
+
+    Now after a successful mutation, refine will invalidate all the queries in the scope but trigger a refetch only for the active queries. If there are any ongoing queries, they will be kept as they are.
+
+    After receiving a realtime subscription event, refine will invalidate and refetch only the active queries.
+
+## 4.36.1
+
+### Patch Changes
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - `useInvalidate` now returns a promise that resolves when the invalidation is completed.
+
+-   [#4896](https://github.com/refinedev/refine/pull/4896) [`daabcd666be`](https://github.com/refinedev/refine/commit/daabcd666be13119a482a39874844a94a1e7bd13) Thanks [@aliemir](https://github.com/aliemir)! - Fine-tuning the invalidation process by setting up additional filters and options for the invalidation.
+
+    Now after a successful mutation, refine will invalidate all the queries in the scope but trigger a refetch only for the active queries. If there are any ongoing queries, they will be kept as they are.
+
+    After receiving a realtime subscription event, refine will invalidate and refetch only the active queries.
+
 ## 4.36.0
 
 ### Minor Changes

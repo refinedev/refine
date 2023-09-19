@@ -56,6 +56,22 @@ export const MyComponent = () => {
 
 It also accepts all the properties of [`useCan`](/docs/api-reference/core/hooks/accessControl/useCan/#properties).
 
+### `onUnauthorized`
+
+Callback to be called when [`useCan`][use-can] returns false.
+
+```tsx
+<CanAccess
+    onUnauthorized={({ resource, reason, action, params }) =>
+        console.log(
+            `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
+        )
+    }
+>
+    <YourComponent />
+</CanAccess>
+```
+
 ### `fallback`
 
 Component to render if [`useCan`][use-can] returns false. If `undefined`, it renders `null`.

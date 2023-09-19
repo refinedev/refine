@@ -123,7 +123,7 @@ export const LandingFooter = () => {
                                         )}
                                     >
                                         <div className={clsx("opacity-75")}>
-                                            refine Dev Corporation{" "}
+                                            Refine Development Inc.{" "}
                                             <br className="landing-md:hidden landing-xl:inline" />
                                             256 Chapman Road STE 105-4{" "}
                                             <br className="landing-md:hidden landing-xl:inline" />

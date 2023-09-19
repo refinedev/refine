@@ -56,7 +56,7 @@ const CreatePage = () => {
 };
 ```
 
-`<CreateButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<CreateButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
@@ -229,9 +229,7 @@ If the `create` action route is defined by the pattern: `/posts/:authorId/create
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <CreateButton meta={{ authorId: "10" }} />
-    );
+    return <CreateButton meta={{ authorId: "10" }} />;
 };
 ```
 
