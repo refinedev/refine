@@ -2,9 +2,9 @@
 
 ---section
 title: refine devtools is now in beta!
-author: Ali Emir Sen
-cover: https://picsum.photos/seed/picsum/200/300
-date: 2023-08-01T00:00:00.000Z
+author: Ali Emir Şen
+cover: https://refine.ams3.cdn.digitaloceanspaces.com/devtools/first-feed-cover.png
+date: 2023-09-19T15:14:00.000Z
 featured: true
 avatar: https://avatars.githubusercontent.com/u/11361964
 
