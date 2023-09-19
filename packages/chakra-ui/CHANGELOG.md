@@ -1,5 +1,14 @@
 # @refinedev/chakra-ui
 
+## 2.26.7
+
+### Patch Changes
+
+-   [#4964](https://github.com/refinedev/refine/pull/4964) [`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update @refinedev/core peer dependency versions.
+
+-   Updated dependencies [[`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848)]:
+    -   @refinedev/react-hook-form@4.8.7
+
 ## 2.26.6
 
 ### Patch Changes
