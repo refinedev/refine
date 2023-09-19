@@ -34,6 +34,8 @@ export const AddPackageDrawer = ({
 
     const [packages, setPackages] = React.useState<AvailablePackageType[]>([]);
 
+    const [search, setSearch] = React.useState("");
+
     React.useEffect(() => {
         getAvailablePackages().then((pkgs) => setPackages(pkgs));
     }, []);
@@ -76,6 +78,14 @@ export const AddPackageDrawer = ({
             }
         }
     }, [installModal]);
+
+    const data = React.useMemo(() => {
+        const filtered = packages
+            .filter((pkg) => !installedPackages.includes(pkg.name))
+            .filter((pkg) => pkg.name.includes(search));
+
+        return filtered;
+    }, [packages, installedPackages, search]);
 
     const icon = React.useMemo(() => {
         switch (status) {
@@ -248,6 +258,8 @@ export const AddPackageDrawer = ({
                                     "re-pl-10",
                                 )}
                                 placeholder="Search packages"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
                             />
                             <div
                                 className={clsx(
@@ -288,20 +300,13 @@ export const AddPackageDrawer = ({
                                 "re-gap-6",
                             )}
                         >
-                            {packages
-                                .filter(
-                                    (pkg) =>
-                                        !installedPackages.includes(pkg.name),
-                                )
-                                .map((pkg) => (
-                                    <AddPackageItem
-                                        key={pkg.name}
-                                        {...pkg}
-                                        onInstall={() =>
-                                            setInstallModal(pkg.name)
-                                        }
-                                    />
-                                ))}
+                            {data.map((pkg) => (
+                                <AddPackageItem
+                                    key={pkg.name}
+                                    {...pkg}
+                                    onInstall={() => setInstallModal(pkg.name)}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
