@@ -1,5 +1,14 @@
 # @refinedev/devtools-server
 
+## 1.0.1
+
+### Patch Changes
+
+-   [#4968](https://github.com/refinedev/refine/pull/4968) [`246b3cb6a00`](https://github.com/refinedev/refine/commit/246b3cb6a0000a5b70557d31940cb69113e0397b) Thanks [@aliemir](https://github.com/aliemir)! - Fix feed content url with main github branch
+
+-   Updated dependencies [[`246b3cb6a00`](https://github.com/refinedev/refine/commit/246b3cb6a0000a5b70557d31940cb69113e0397b)]:
+    -   @refinedev/devtools-ui@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
