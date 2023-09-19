@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.0.1
+
+### Patch Changes
+
+-   [#4968](https://github.com/refinedev/refine/pull/4968) [`246b3cb6a00`](https://github.com/refinedev/refine/commit/246b3cb6a0000a5b70557d31940cb69113e0397b) Thanks [@aliemir](https://github.com/aliemir)! - Update Privacy Policy and Terms and Conditions links in the onboarding page.
+
 ## 1.0.0
 
 ### Major Changes

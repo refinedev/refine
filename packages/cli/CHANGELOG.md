@@ -1,5 +1,14 @@
 # @refinedev/cli
 
+## 2.12.1
+
+### Patch Changes
+
+-   [`25539d23320`](https://github.com/refinedev/refine/commit/25539d2332094e74736c2507172650be36ab4632) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/devtools-server` dependency
+
+-   Updated dependencies [[`246b3cb6a00`](https://github.com/refinedev/refine/commit/246b3cb6a0000a5b70557d31940cb69113e0397b)]:
+    -   @refinedev/devtools-server@1.0.1
+
 ## 2.12.0
 
 ### Minor Changes
