@@ -18,7 +18,7 @@ Install the dependencies using your package manager.
 npm i @refinedev/devtools@latest @refinedev/cli@latest
 ```
 
-Add `<DevtoolsProvider>` and `<DevtoolsPanel>` components to your app:
+Add `<DevtoolsProvider />` and `<DevtoolsPanel />` components to your app:
 
 You'll need to wrap your app with `<DevtoolsProvider>` component and add `<DevtoolsPanel>` component to your app to access the devtools UI.
 
