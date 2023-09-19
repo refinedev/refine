@@ -1,5 +1,18 @@
 # @refinedev/cli
 
+## 2.12.0
+
+### Minor Changes
+
+-   [#4960](https://github.com/refinedev/refine/pull/4960) [`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3) Thanks [@aliemir](https://github.com/aliemir)! - Integration with refine devtools.
+
+    Now you can start the Devtools server using the `refine devtools` command or when the server will be started automatically when you start your app in development mode using `refine dev` command if you have `@refinedev/devtools` installed.
+
+### Patch Changes
+
+-   Updated dependencies [[`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3)]:
+    -   @refinedev/devtools-server@1.0.0
+
 ## 2.11.0
 
 ### Minor Changes
