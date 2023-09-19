@@ -1065,6 +1065,10 @@ describe("useUpdateMany Hook", () => {
             await assertOne(useOneResult, "foo", "bar-one");
             await assertList(useListResult, "foo", "bar-list");
             await assertList(useManyResult, "foo", "bar-many");
+
+            await assertOne(useOneResult, "foo", undefined);
+            await assertList(useListResult, "foo", undefined);
+            await assertList(useManyResult, "foo", undefined);
         });
     });
 });
