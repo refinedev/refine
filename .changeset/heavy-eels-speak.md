@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": major
+"@refinedev/antd": minor
 ---
 
 feat: [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/#optimisticupdatemap) prop added to `useForm` hook. This prop allows you to update the data in the cache.
