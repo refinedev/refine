@@ -20,7 +20,7 @@ npm i @refinedev/devtools@latest @refinedev/cli@latest
 
 Add `<DevtoolsProvider />` and `<DevtoolsPanel />` components to your app:
 
-You'll need to wrap your app with `<DevtoolsProvider>` component and add `<DevtoolsPanel>` component to your app to access the devtools UI.
+You'll need to wrap your app with `<DevtoolsProvider />` component and add `<DevtoolsPanel />` component to your app to access the devtools UI.
 
 ```tsx
 import { DevtoolsProvider, DevtoolsPanel } from "@refinedev/devtools";
@@ -39,7 +39,7 @@ const App = () => {
 };
 ```
 
-Then you're good to go 🙌, `<DevtoolsProvider>` will tell refine to connect to the devtools server and track your queries and mutations. `<DevtoolsPanel>` will render the devtools UI in your app.
+Then you're good to go 🙌, `<DevtoolsProvider />` will tell refine to connect to the devtools server and track your queries and mutations. `<DevtoolsPanel />` will render the devtools UI in your app.
 
 Devtools is integrated with `@refinedev/cli` and it will be started automatically in development mode if you have `@refinedev/devtools` installed.
 
@@ -61,4 +61,4 @@ If you want to start devtools manually or have a custom dev script, you can run 
 
 If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) to add it to your project.
 
-These commands will start the devtools server. If you want to access the devtools UI outside of your app without depending on the `<DevtoolsPanel>` component, you can go to `http://localhost:5001` in your browser. 🚀
+These commands will start the devtools server. If you want to access the devtools UI outside of your app without depending on the `<DevtoolsPanel />` component, you can go to `http://localhost:5001` in your browser. 🚀
