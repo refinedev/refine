@@ -1,9 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+import Gravatar from "react-gravatar";
 
 import { getMe } from "src/utils/me";
-import { stringToColor } from "src/utils/string-to-color";
-import { getInitials } from "src/utils/get-initials";
 
 import { MeResponse } from "src/interfaces/api";
 import { logoutUser } from "src/utils/auth";
@@ -64,28 +63,13 @@ export const HeaderAuthStatus = () => {
                         "re-justify-center",
                         "re-group",
                     )}
-                    style={{
-                        backgroundColor: stringToColor(me?.name ?? ""),
-                    }}
                     onClick={() => setLogoutVisible(!logoutVisible)}
                 >
-                    <span
-                        className={clsx(
-                            "re-mix-blend-difference",
-                            "re-text-gray-0",
-                            "re-text-lg",
-                            "re-leading-[18px]",
-                            "re-font-extralight",
-                            "group-hover:re-font-light",
-                            "re-tracking-wide",
-                            "group-hover:re-scale-105",
-                            "re-transition-all",
-                            "re-duration-200",
-                            "re-ease-in-out",
-                        )}
-                    >
-                        {getInitials(me?.name ?? "")}
-                    </span>
+                    <Gravatar
+                        email={me?.email ?? ""}
+                        size={32}
+                        style={{ borderRadius: "50%" }}
+                    />
                     <div
                         className={clsx(
                             "re-absolute",
