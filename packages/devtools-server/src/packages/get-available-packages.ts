@@ -147,7 +147,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
         ),
     },
     {
-        name: "@refinedev/graphql",
+        name: "@refinedev/hasura",
         description: "GraphQL integration for refine",
         install: `npm install @refinedev/hasura`,
         usage: dedent(
