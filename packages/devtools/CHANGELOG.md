@@ -1,5 +1,11 @@
 # @refinedev/devtools
 
+## 1.0.2
+
+### Patch Changes
+
+-   [#4976](https://github.com/refinedev/refine/pull/4976) [`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb) Thanks [@aliemir](https://github.com/aliemir)! - Snappier DOM selector
+
 ## 1.0.1
 
 ### Patch Changes

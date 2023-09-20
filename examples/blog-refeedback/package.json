@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/antd": "^5.36.2",
     "@refinedev/core": "^4.41.0",
-    "@refinedev/cli": "^2.12.1",
+    "@refinedev/cli": "^2.12.2",
     "@refinedev/react-router-v6": "^4.5.0",
     "@refinedev/strapi": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.4",

@@ -1,5 +1,16 @@
 # @refinedev/cli
 
+## 2.12.2
+
+### Patch Changes
+
+-   [#4971](https://github.com/refinedev/refine/pull/4971) [`34b23d84368`](https://github.com/refinedev/refine/commit/34b23d843682f3e1c2404bbfa48cea57da57d357) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: add refine devtools warning
+
+-   [#4976](https://github.com/refinedev/refine/pull/4976) [`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb) Thanks [@aliemir](https://github.com/aliemir)! - Updated dependency of `@refinedev/devtools-server`
+
+-   Updated dependencies [[`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb)]:
+    -   @refinedev/devtools-server@1.0.2
+
 ## 2.12.1
 
 ### Patch Changes
