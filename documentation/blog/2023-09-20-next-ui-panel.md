@@ -1,34 +1,28 @@
 ---
 title: Building React admin panel with NextUI and refine
-description: This post is about how to use TailwindCSS Flex classes effectively to implement responsive components in React.
-slug: next-ui
-authors: abdullah_numan
-tags: [tailwind, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/social.png
+description: We will see how  to build a React admin panel using refine and NextUI components library
+slug: next-ui-react-admin-panel
+authors: joseph_mawa
+tags: [refine, tutorial, react, tailwind]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/social.jpg
 hide_table_of_contents: false
 ---
 
-## Introduction
+It's hard to build data-intensive front-end applications such as dashboards and admin panels from the ground up without feature-rich and niche frameworks such as [refine](https://github.com/refinedev/refine) and [NextUI](https://nextui.org/).
 
-It's hard to build data-intensive front-end applications such as dashboards and admin panels from the ground up without feature-rich and niche frameworks such as refine and NextUI.
-
-With refine, you can bootstrap a project instantly using the refine.dev web platform or the command line tool and customize the template to meet the requirements of your project.
+With [refine](https://github.com/refinedev/refine), you can bootstrap a project instantly using the refine.dev web platform or the command line tool and customize the template to meet the requirements of your project.
 
 Any refine project has built-in features for state management, routing, networking, authentication, and internationalization.
 
-NextUI is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like refine and Next.js. In this article, you will learn to build a React admin panel using refine and NextUI components library.
+[NextUI](https://nextui.org/) is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like refine and Next.js. In this article, you will learn to build a React admin panel using refine and NextUI components library.
 
-What we'll cover in this article:
 
-- [What is refine](#what-is-refine)
-- [How to create a refine application](#how-to-create-a-refine-application)
-- [What is NextUI](#what-is-nextui)
-- [How to set up NextUI in a refine application](how-to-set-up-nextui-in-a-refine-application)
-- [How to build React admin dashboard with NextUI and refine](how-to-build-react-admin-dashboard-with-nextui-and-refine)
-- [How to build product CRUD pages with NextUI and refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
-- [How to build categories CRUD pages with NextUI and refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
-- [Update the layout](#update-the-layout)
+<div className="centered-image">
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/next-ui.gif
+"  alt="react admin panel next ui" />
+</div>
 
+<br/>
 
 ## What is refine
 
@@ -38,44 +32,39 @@ Similarly, refine has built-in support for integrating some of the commonest UI 
 
 All these built-in refine features accelerate development speed, improve developer experience, and significantly reduce time to production. Check out the refine documentation for more on what else it can do.
 
+
+
 ## How to create a refine application
 
-You can create a refine application either using the command line tool or the [refine.new](https://refine.new/) platform in your browser. In this article, we will use the refine.new platform.
+You can create a refine application either using the CLI or the [Browser-based Scaffolder](https://refine.dev/?playground=true).
 
-Follow the steps below to create a basic refine application with all the necessary setup using the refine.new web platform.
 
-### Step 1 — Create refine application using the refine.new web service
+The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create refine app seamlessly in your browser.
 
-Navigate to [refine.new](https://refine.new/) and follow the steps to create a new refine application. Select Vite as the React platform, Headless as the UI framework, REST API as the back-end service, and no Authentication provider.
+You can choose the libraries and frameworks you want to work with, and the tool will generate a boilerplate code for you.
 
-<div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/refine-dev-options.png"  alt="tailwind flex" />
+For this tutorial, we'll be select the following options:
+
+**React Platform**: Vite  
+**UI Framework**: Headless  
+**Backend**: REST API  
+**Authentication Provider**: No Auth
+
+<div className="flex justify-center">
+    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif" className="border border-gray-200 rounded" />
 </div>
 
-<br/>
+Once you've completed the steps, you'll have the ability to download your project
 
-
-After selecting the options above, click the "Continue" button. Your application will look like the image below.
-
-<div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/refine-dev-platform-app.png"  alt="tailwind flex" />
-</div>
-
-<br/>
-
-### Step 2 — Download the project
 
 After creating the project, you can download it to your local machine. You may need to sign into the refine.new platform with your GitHub or Google account to build and download the project.
 
-### Step 3 — Install dependencies
-
-After downloading the zipped project directory to your local machine, extract it to an appropriate location and open it in a text editor of your choice. Use the command below to install dependencies.
+Then use the command below to install dependencies.
 
 ```sh
 npm install
 ```
 
-### Step 4 — Launch the development server
 
 After installing dependencies, use the command below to launch the development server on localhost. You can then view the project in a web browser.
 
@@ -83,13 +72,25 @@ After installing dependencies, use the command below to launch the development s
 npm run dev
 ```
 
-### Step 5 — Tidy things up
+
+Once your project is successfully run, you will see the following page:
+
+<div className="flex justify-center">
+    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.jpg" className="border border-gray-200 rounded" />
+</div>
+
+### Tidy things up
 
 The refine project we created above has a set of default styles in the `src/App.css` file, which will interfere with the NextUI styles. Therefore, you can delete the `src/App.css` file.
 
 Similarly, we won't use the generated `blog-posts` pages. Therefore, you can delete the  `src/pages/blog-posts` directory.
 
 Finally, copy and paste the code below into the `src/App.tsx` file.
+
+
+<details>
+
+<summary>Show App.tsx</summary>
 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
@@ -176,16 +177,23 @@ function App() {
 
 export default App;
 ```
+</details>
 
 ## What is NextUI
 
-NextUI is a fully-featured React UI library for building accessible UI in React. It is built on top of React Aria and Tailwind CSS. It uses Framer motion internally for animating some of the built-in components.
+<div className="flex justify-center">
+    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/nextui%20(1).jpeg
+" className="border border-gray-200 rounded" />
+</div>
+
+
+[NextUI](https://nextui.org/) is a fully-featured React UI library for building accessible UI in React. It is built on top of React Aria and Tailwind CSS. It uses Framer motion internally for animating some of the built-in components.
 
 You can use NextUI in a vanilla React project or React frameworks like Next.js and refine.
 
 ## How to set up NextUI in a refine application
 
-### Step 1 — Install NextUI and its dependencies
+### Install NextUI and its dependencies
 
 Install NextUI and its dependencies from the NPM package registry to start using it in a refine application. Internally, NextUI uses Tailwind CSS and framer-motion for animation.
 
@@ -201,7 +209,7 @@ We will also use [heroicons](https://heroicons.com/) in this article. Install it
 npm install @heroicons/react
 ```
 
-### Step 2  —  Add Tailwind CSS configuration file
+###  Add Tailwind CSS configuration file
 
 After successfully installing Tailwind CSS, use the command below to create a `tailwind.config.js`  file at the root of your project directory.
 
@@ -211,7 +219,7 @@ npx tailwindcss init -p
 
 Copy and paste the code below into the `tailwind.config.js` file you have just created.
 
-```js title="tailwind.config.js"
+```tsx title="tailwind.config.js"
 const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
@@ -229,7 +237,7 @@ export default {
 };
 ```
 
-### Step 3 — Add Tailwind CSS directives
+###  Add Tailwind CSS directives
 
 Create the `src/index.css` file and add the following Tailwind CSS directives.
 
@@ -262,7 +270,7 @@ root.render(
 );
 ```
 
-### Step 4 — Set up NextUI provider
+### Set up NextUI provider
 
 After installing and configuring NextUI and its dependencies, set up `NextUIProvider` at the root of your refine project. Apply the following changes to the `src/index.tsx` file.
 
@@ -298,11 +306,18 @@ That is everything you need to start using NextUI in your refine application. Yo
 
 In this section, we will use the refine app we created above as a template to build a simple React admin dashboard with NextUI and refine. This section assumes you have installed NextUI and its dependencies. We will install additional packages as we build this project.
 
-The refine team has put together several APIs that you can experiment with when you're learning refine. In this article, we will create an admin panel using the [fine foods API](https://api.finefoods.refine.dev/). You can click the link to explore the API resources and endpoints available.
+The refine team has put together several APIs that you can experiment with when you're learning refine. In this article, we will create an admin panel using the [Fine foods API](https://api.finefoods.refine.dev/). You can click the link to explore the API resources and endpoints available.
 
 The dashboard we want to create will track the key performance indicators for a restaurant business against set targets. The key performance indicators comprise the restaurant's weekly revenue, weekly customers, and weekly orders.
 
-Before we start building the dashboard, let's declare the interfaces that we will use throughout this application. They define the shape of our data.  Create the `src/interfaces/index.d.ts` file. Copy and paste the code below into it.
+Before we start building the dashboard, let's declare the interfaces that we will use throughout this application. They define the shape of our data.  Create the `src/interfaces/index.d.ts` file. 
+
+Copy and paste the code below into it.
+
+<details>
+
+<summary>Show Interfaces file</summary>
+
 
 ```ts title="src/interfaces/index.d.ts"
 export interface IOrder {
@@ -391,12 +406,18 @@ interface IDisplayBarChartProps {
   fill: string,
 }
 ```
+</details>
 
 ### Create key performance indicator card
 
 In this section, we will represent the key performance indicators(KPIs) we are tracking on a card. We will have three cards for the weekly revenue, weekly customers, and weekly orders.
 
 We need to create a `KpiCard` component and reuse it for all three performance indicators. Create the `src/components/kpiCard/index.tsx` file. Copy and paste the code below into it. Be aware that the `kpiCard` directory doesn't exist yet. You need to create it yourself.
+
+
+<details>
+
+<summary>Show KpiCard code</summary>
 
 ```tsx title="src/components/kpiCard/index.tsx"
 import { Progress, Card, Chip, Spinner } from "@nextui-org/react";
@@ -479,6 +500,8 @@ export const KpiCard = ({
 };
 ```
 
+</details>
+
 In the code above, we imported the built-in NextUI components and applied Tailwind CSS classes. For more about the components we used in the code above, check the NextUI documentation.
 
 The above component will look like the image below after rendering.
@@ -486,7 +509,7 @@ The above component will look like the image below after rendering.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-card.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-card.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -500,6 +523,10 @@ npm install dayjs
 We need to fetch the data for the key performance indicators from the database and pass them as props to the `KpiCard` component we created above.  
 
 Create the `src/pages/dashboard/DashboardPage.tsx` file. Copy and paste the code below into it. Be aware that the `dashboard` directory doesn't exist. You need to create it yourself.
+
+<details>
+
+<summary>Show DashboardPage code</summary>
 
 ```tsx title="src/pages/dashboard/DashboardPage.tsx"
 import React from "react";
@@ -588,27 +615,23 @@ export const DashboardPage: React.FC = () => {
 };
 ```
 
+</details>
+
 You can now create the `src/pages/dashboard/index.ts` file and export the above component, like in the example below.
 
 ```ts title="src/pages/dashboard/index.ts"
 export { DashboardPage } from "./DashboardPage";
 ```
 
-Finally, add the `dashboard` resource to the `<Refine />` component. Add the following changes to the `src/App.tsx` file.
+Finally, add the `dashboard` resource to the `<Refine />` component. Add the highlighted changes to the `src/App.tsx` file.
+
+<details>
+
+<summary>Show App.tsx code</summary>
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+...
 
-import routerBindings, {
-  DocumentTitleHandler,
-  NavigateToResource,
-  UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/layout";
 //highlight-next-line
 import { DashboardPage } from "./pages/dashboard";
 import {
@@ -619,21 +642,15 @@ import {
 } from "./pages/categories";
 
 function App() {
-  const { t, i18n } = useTranslation();
 
-  const i18nProvider = {
-    translate: (key: string, params: object) => t(key, params),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
-    getLocale: () => i18n.language,
-  };
+..
+
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          i18nProvider={i18nProvider}
           routerProvider={routerBindings}
           resources={[
             //highlight-start
@@ -642,16 +659,7 @@ function App() {
               list: "/dashboard",
             },
             //highlight-end
-            {
-              name: "categories",
-              list: "/categories",
-              create: "/categories/create",
-              edit: "/categories/edit/:id",
-              show: "/categories/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
+            ...
           ]}
           options={{
             syncWithLocation: true,
@@ -676,13 +684,7 @@ function App() {
                 <Route index element={<DashboardPage />} />
               </Route>
               //highlight-end
-              <Route path="/categories">
-                <Route index element={<CategoryList />} />
-                <Route path="create" element={<CategoryCreate />} />
-                <Route path="edit/:id" element={<CategoryEdit />} />
-                <Route path="show/:id" element={<CategoryShow />} />
-              </Route>
-              <Route path="*" element={<ErrorComponent />} />
+              ...
             </Route>
           </Routes>
 
@@ -698,11 +700,13 @@ function App() {
 export default App;
 ```
 
+</details>
+
 The three `KpiCard` components we rendered in the above component will look like the image below.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-cards.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-cards.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -806,15 +810,16 @@ export { DisplayAreaGraph } from "./DisplayAreaGraph";
 export { DisplayBarChart } from "./DisplayBarChart";
 ```
 
-We need to import the above components and render them in the dashboard component. Add the following changes to the `src/pages/dashboard/DashboardPage.tsx` file.
+We need to import the above components and render them in the dashboard component. Add the following highlighted codes to the `src/pages/dashboard/DashboardPage.tsx` file.
+
+
+<details>
+
+<summary>Show DashboardPage code</summary>
+
 
 ```tsx title="src/pages/dashboard/DashboardPage.tsx"
-import React from "react";
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import { useApiUrl, useCustom } from "@refinedev/core";
-import { IChart } from "../../interfaces";
-
-import { KpiCard } from "../../components/kpiCard";
+... 
 //highlight-next-line
 import { DisplayAreaGraph, DisplayBarChart } from "../../components/charts";
 import dayjs from "dayjs";
@@ -861,36 +866,7 @@ export const DashboardPage: React.FC = () => {
     <main className="flex w-full flex-col mt-5 gap-3">
       <h1 className="font-bold">Dashboards</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-stretch">
-        <KpiCard
-          title="Weekly Revenue"
-          total={dailyRevenue?.data.total ?? 0}
-          trend={dailyRevenue?.data.trend ?? 0}
-          target={10_500}
-          formattedTotal={`${currencyFormatter.format(
-            dailyRevenue?.data.total ?? 0
-          )}`}
-          formattedTarget={`${currencyFormatter.format(10_500)}`}
-        />
-        <KpiCard
-          title="Weekly Orders"
-          total={dailyOrders?.data.total ?? 0}
-          trend={dailyOrders?.data.trend ?? 0}
-          target={500}
-          formattedTotal={`${numberFormatter.format(
-            dailyOrders?.data.total ?? 0
-          )}`}
-          formattedTarget={`${numberFormatter.format(500)}`}
-        />
-        <KpiCard
-          title="New Customers"
-          total={newCustomers?.data.total ?? 0}
-          trend={newCustomers?.data.trend ?? 0}
-          target={200}
-          formattedTotal={`${numberFormatter.format(
-            newCustomers?.data.total ?? 0
-          )}`}
-          formattedTarget={`${numberFormatter.format(200)}`}
-        />
+      ...
       </div>
       //highlight-start
       <Card className="p-5">
@@ -924,10 +900,12 @@ export const DashboardPage: React.FC = () => {
 };
 ```
 
+</details>
+
 The Revenue chart will look like the image below after rendering.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/revenue-area-graph.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/revenue-area-graph.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -935,7 +913,7 @@ The Revenue chart will look like the image below after rendering.
 The Orders bar chart will look like the image below after rendering.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/orders-bar-chart.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/orders-bar-chart.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -943,7 +921,7 @@ The Orders bar chart will look like the image below after rendering.
 Similarly, the Customer chart will look like the image below after rendering.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/new-customers-area-graph.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/new-customers-area-graph.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -953,6 +931,11 @@ Similarly, the Customer chart will look like the image below after rendering.
 Similar to the previous section, let's represent the recent sales of the restaurant business in a table. A user can search the table using keywords and filter it in ascending or descending order.
 
 Create the `src/components/table/RecentSalesTable.tsx` file. Copy and paste the code below into it. The `table` directory doesn't exist yet. You need to first create it.
+
+
+<details>
+
+<summary>Show RecentSalesTable Code</summary>
 
 ```tsx title="src/components/table/RecentSalesTable.tsx"
 import {
@@ -1196,6 +1179,8 @@ export const RecentSalesTable = () => {
 };
 ```
 
+</details>
+
 The above component uses the built-in `Table` component to display the recent sales. The built-in NextUI `Table` has out-of-the-box support for pagination, sorting, filtering, and selection.
 
 Similarly, create the `src/components/table/index.ts` file. You can export the component created above from it.
@@ -1206,127 +1191,22 @@ export { RecentSalesTable } from "./RecentSalesTable";
 
 Import the `RecentSalesTable` component we created above into the `src/pages/dashboard/DashboardPage.tsx` file and render it like so:
 
-```tsx title="src/pages/dashboard/DashboardPage.tsx"
-import React from "react";
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import { useApiUrl, useCustom } from "@refinedev/core";
-import { IChart } from "../../interfaces";
 
-import { KpiCard } from "../../components/kpiCard";
-import { DisplayAreaGraph, DisplayBarChart } from "../../components/charts";
+
+```tsx title="src/pages/dashboard/DashboardPage.tsx"
+...
+
 //highlight-next-line
 import { RecentSalesTable } from "../../components/table";
-import dayjs from "dayjs";
-
-const query = {
-  start: dayjs().subtract(7, "days").startOf("day"),
-  end: dayjs().startOf("day"),
-};
-
-const currencyFormatter = Intl.NumberFormat("en", {
-  style: "currency",
-  currency: "USD",
-});
-const numberFormatter = Intl.NumberFormat("en");
+...
 
 export const DashboardPage: React.FC = () => {
-  const API_URL = useApiUrl();
-
-  const { data: dailyRevenue } = useCustom<IChart>({
-    url: `${API_URL}/dailyRevenue`,
-    method: "get",
-    config: {
-      query,
-    },
-  });
-
-  const { data: dailyOrders } = useCustom<IChart>({
-    url: `${API_URL}/dailyOrders`,
-    method: "get",
-    config: {
-      query,
-    },
-  });
-
-  const { data: newCustomers } = useCustom<IChart>({
-    url: `${API_URL}/newCustomers`,
-    method: "get",
-    config: {
-      query,
-    },
-  });
+  ...
 
   return (
     <main className="flex w-full flex-col mt-5 gap-3">
       <h1 className="font-bold">Dashboards</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-stretch">
-        <KpiCard
-          title="Weekly Revenue"
-          total={dailyRevenue?.data.total ?? 0}
-          trend={dailyRevenue?.data.trend ?? 0}
-          target={10_500}
-          formattedTotal={`${currencyFormatter.format(
-            dailyRevenue?.data.total ?? 0
-          )}`}
-          formattedTarget={`${currencyFormatter.format(10_500)}`}
-        />
-        <KpiCard
-          title="Weekly Orders"
-          total={dailyOrders?.data.total ?? 0}
-          trend={dailyOrders?.data.trend ?? 0}
-          target={500}
-          formattedTotal={`${numberFormatter.format(
-            dailyOrders?.data.total ?? 0
-          )}`}
-          formattedTarget={`${numberFormatter.format(500)}`}
-        />
-        <KpiCard
-          title="New Customers"
-          total={newCustomers?.data.total ?? 0}
-          trend={newCustomers?.data.trend ?? 0}
-          target={200}
-          formattedTotal={`${numberFormatter.format(
-            newCustomers?.data.total ?? 0
-          )}`}
-          formattedTarget={`${numberFormatter.format(200)}`}
-        />
-      </div>
-      <Card className="p-5">
-        <Tabs aria-label="Options" className="gap-0">
-          <Tab key="revenue" title="Revenue">
-            <Card shadow="none" radius="none">
-              <CardBody>
-                <DisplayAreaGraph
-                  data={dailyRevenue?.data?.data ?? []}
-                  stroke="#8884d8"
-                  fill="#cfeafc"
-                />
-              </CardBody>
-            </Card>
-          </Tab>
-          <Tab key="orders" title="Orders">
-            <Card shadow="none" radius="none">
-              <CardBody>
-                <DisplayBarChart
-                  data={dailyOrders?.data?.data ?? []}
-                  fill="#ffce90"
-                />{" "}
-              </CardBody>
-            </Card>
-          </Tab>
-          <Tab key="customers" title="Customers">
-            <Card shadow="none" radius="none">
-              <CardBody>
-                <DisplayAreaGraph
-                  data={newCustomers?.data?.data ?? []}
-                  stroke="#00bd56"
-                  fill="#ccf3f3"
-                />{" "}
-              </CardBody>
-            </Card>
-          </Tab>
-        </Tabs>
-      </Card>
+      ...
       //highlight-next-line
       <RecentSalesTable />
     </main>
@@ -1334,10 +1214,11 @@ export const DashboardPage: React.FC = () => {
 };
 ```
 
+
 The `<RecentSalesTable />` component we created above will look like the image below after rendering.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/recent-sales.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/recent-sales.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -1408,6 +1289,11 @@ export const DeleteModal: React.FC<IDeleteModalProps> = ({
 ```
 
 Create the `src/pages/products/list.tsx` file. Copy and paste the code below into it. Be aware that the `products` directory doesn't exist yet. You need to first create it.
+
+
+<details>
+
+<summary>Show ProductList Code</summary>
 
 ```tsx title="src/pages/products/list.tsx"
 import {
@@ -1714,6 +1600,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
+</details>
+
 The above component uses refine's built-in `useTable` hook to query the data. It returns the data in a form that can be displayed in a table.
 
 We used NextUI's built-in `Table` component that supports sorting, selection, and pagination out of the box. Check the [NextUI documentation](https://nextui.org/docs/guide/introduction) to learn more about the `Table` component.
@@ -1726,6 +1614,11 @@ export { ProductList } from "./list";
 ```
 
 We need to add the `products` resource to the `<Refine />` component. Therefore, add the following changes to the `src/App.tsx` file.
+
+
+<details>
+
+<summary>Show App.tsx Code</summary>
 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
@@ -1843,10 +1736,12 @@ function App() {
 export default App;
 ```
 
+</details>
+
 The products list page should now look like the image below after rendering.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-list.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-list.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -1866,6 +1761,10 @@ npm install react-hook-form
 ```
 
 After successfully installing `react-hook-form`, create the `src/pages/products/create.tsx` file. Copy and paste the code below into it.
+
+<details>
+
+<summary>Show ProductCreate code</summary>
 
 ```tsx title="src/pages/products/create.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
@@ -2041,6 +1940,8 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
+</details>
+
 Export the above component from the `src/pages/products/index.ts` file.
 
 ```ts title="src/pages/products/index.ts"
@@ -2049,116 +1950,29 @@ export { ProductList } from "./list";
 export { ProductCreate } from "./create";
 ```
 
-Finally, render the above component in the `src/App.tsx` file when a user navigates to the `/create` route. Add the following changes to the `src/App.tsx` file.
+Finally, render the above component in the `src/App.tsx` file when a user navigates to the `/create` route. Add the highlighted changes to the `src/App.tsx` file.
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
-import routerBindings, {
-  DocumentTitleHandler,
-  NavigateToResource,
-  UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/layout";
-import { DashboardPage } from "./pages/dashboard";
+...
 //highlight-next-line
 import { ProductList, ProductCreate } from "./pages/products";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
-
-function App() {
-  const { t, i18n } = useTranslation();
-
-  const i18nProvider = {
-    translate: (key: string, params: object) => t(key, params),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
-    getLocale: () => i18n.language,
-  };
+...
 
   return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <RefineKbarProvider>
         <Refine
-          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
-          resources={[
-            {
-              name: "dashboard",
-              list: "/dashboard",
-            },
-            {
-              name: "products",
-              list: "/products",
-              create: "/products/create",
-              edit: "/products/edit/:id",
-              show: "/products/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
-            {
-              name: "categories",
-              list: "/categories",
-              create: "/categories/create",
-              edit: "/categories/edit/:id",
-              show: "/categories/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
-          ]}
-          options={{
-            syncWithLocation: true,
-            warnWhenUnsavedChanges: true,
-            projectId: "rhafgh-aLP9JS-0GTfcM",
-          }}
+         ...
         >
           <Routes>
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route
-                index
-                element={<NavigateToResource resource="dashboard" />}
-              />
-              <Route path="/dashboard">
-                <Route index element={<DashboardPage />} />
-              </Route>
+          ...
               <Route path="/products">
                 <Route index element={<ProductList />} />
                 //highlight-next-line
                 <Route path="create" element={<ProductCreate />} />
               </Route>
-              <Route path="/categories">
-                <Route index element={<CategoryList />} />
-                <Route path="create" element={<CategoryCreate />} />
-                <Route path="edit/:id" element={<CategoryEdit />} />
-                <Route path="show/:id" element={<CategoryShow />} />
-              </Route>
+               ...
               <Route path="*" element={<ErrorComponent />} />
             </Route>
           </Routes>
-
-          <RefineKbar />
-          <UnsavedChangesNotifier />
-          <DocumentTitleHandler />
-        </Refine>
-      </RefineKbarProvider>
-    </BrowserRouter>
   );
 }
 
@@ -2169,7 +1983,7 @@ The above component will look like the image below after rendering.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-create.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-create.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -2179,6 +1993,11 @@ The above component will look like the image below after rendering.
 The products table we created above has an actions column that you can use to edit, show, and delete a record. Clicking the edit button takes you to a blank page at the moment.
 
 Let's create a component for editing an existing record in the products table. Create the `src/pages/products/edit.tsx` file. Copy and paste the code below into it.
+
+
+<details>
+
+<summary>Show ProductEdit code</summary>
 
 ```tsx title="src/pages/products/edit.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
@@ -2351,6 +2170,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
   );
 };
 ```
+</details>
 
 Export the above component from the `src/pages/products/index.ts` file.
 
@@ -2361,117 +2181,35 @@ export { ProductCreate } from "./create";
 export { ProductEdit } from "./edit";
 ```
 
-You can import the `<ProductEdit />` component into the `src/App.tsx` file and render it on the `edit` route. Add the following changes to the `src/App.tsx` file.
+You can import the `<ProductEdit />` component into the `src/App.tsx` file and render it on the `edit` route. Add the following highlighted changes to the `src/App.tsx` file.
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
-import routerBindings, {
-  DocumentTitleHandler,
-  NavigateToResource,
-  UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/layout";
-import { DashboardPage } from "./pages/dashboard";
+...
 //highlight-next-line
 import { ProductList, ProductCreate, ProductEdit } from "./pages/products";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
 
 function App() {
-  const { t, i18n } = useTranslation();
 
-  const i18nProvider = {
-    translate: (key: string, params: object) => t(key, params),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
-    getLocale: () => i18n.language,
-  };
-
+  ...
+  
   return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <RefineKbarProvider>
         <Refine
-          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
-          resources={[
-            {
-              name: "dashboard",
-              list: "/dashboard",
-            },
-            {
-              name: "products",
-              list: "/products",
-              create: "/products/create",
-              edit: "/products/edit/:id",
-              show: "/products/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
-            {
-              name: "categories",
-              list: "/categories",
-              create: "/categories/create",
-              edit: "/categories/edit/:id",
-              show: "/categories/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
-          ]}
-          options={{
-            syncWithLocation: true,
-            warnWhenUnsavedChanges: true,
-            projectId: "rhafgh-aLP9JS-0GTfcM",
-          }}
+          ...
         >
           <Routes>
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route
-                index
-                element={<NavigateToResource resource="dashboard" />}
-              />
-              <Route path="/dashboard">
-                <Route index element={<DashboardPage />} />
-              </Route>
+              ...
               <Route path="/products">
                 <Route index element={<ProductList />} />
                 <Route path="create" element={<ProductCreate />} />
                 //highlight-next-line
                 <Route path="edit/:id" element={<ProductEdit />} />
               </Route>
-              <Route path="/categories">
-                <Route index element={<CategoryList />} />
-                <Route path="create" element={<CategoryCreate />} />
-                <Route path="edit/:id" element={<CategoryEdit />} />
-                <Route path="show/:id" element={<CategoryShow />} />
-              </Route>
+               ...
               <Route path="*" element={<ErrorComponent />} />
             </Route>
           </Routes>
-
-          <RefineKbar />
-          <UnsavedChangesNotifier />
-          <DocumentTitleHandler />
+          ...
         </Refine>
-      </RefineKbarProvider>
-    </BrowserRouter>
   );
 }
 
@@ -2482,7 +2220,7 @@ The above component should now look like the image below after rendering. You ca
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-edit.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-edit.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -2492,6 +2230,11 @@ The above component should now look like the image below after rendering. You ca
 Similar to editing an existing record in the products table, we can also show the details of a record. Clicking the show button under the actions column displays a blank page at the moment.
 
 Let's create a component that shows the details of a specific product. Create the `src/pages/products/show.tsx` file. Copy and paste the code below into it.
+
+<details>
+
+<summary>Show ProductShow code</summary>
+
 
 ```tsx title="src/pages/products/show.tsx"
 import {
@@ -2569,6 +2312,8 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
+</details>
+
 Export the component we have created above from the `src/pages/products/show.tsx` file.
 
 ```ts title="src/pages/products/show.tsx"
@@ -2579,22 +2324,14 @@ export { ProductEdit } from "./edit";
 export { ProductShow } from "./show";
 ```
 
-Finally, add the following changes to the `src/App.tsx` file.
+Finally, add the following highligthed changes to the `src/App.tsx` file.
+
+<details>
+
+<summary>Show App.tsx code</summary>
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
-import routerBindings, {
-  DocumentTitleHandler,
-  NavigateToResource,
-  UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/layout";
-import { DashboardPage } from "./pages/dashboard";
+...
 import {
   ProductList,
   ProductCreate,
@@ -2602,77 +2339,18 @@ import {
   //highlight-next-line
   ProductShow,
 } from "./pages/products";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
+...
 
 function App() {
-  const { t, i18n } = useTranslation();
-
-  const i18nProvider = {
-    translate: (key: string, params: object) => t(key, params),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
-    getLocale: () => i18n.language,
-  };
+  ...
 
   return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <RefineKbarProvider>
+    
         <Refine
-          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
-          resources={[
-            {
-              name: "dashboard",
-              list: "/dashboard",
-            },
-            {
-              name: "products",
-              list: "/products",
-              create: "/products/create",
-              edit: "/products/edit/:id",
-              show: "/products/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
-            {
-              name: "categories",
-              list: "/categories",
-              create: "/categories/create",
-              edit: "/categories/edit/:id",
-              show: "/categories/show/:id",
-              meta: {
-                canDelete: true,
-              },
-            },
-          ]}
-          options={{
-            syncWithLocation: true,
-            warnWhenUnsavedChanges: true,
-            projectId: "rhafgh-aLP9JS-0GTfcM",
-          }}
+         ...
         >
           <Routes>
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route
-                index
-                element={<NavigateToResource resource="dashboard" />}
-              />
-              <Route path="/dashboard">
-                <Route index element={<DashboardPage />} />
-              </Route>
+               ...
               <Route path="/products">
                 <Route index element={<ProductList />} />
                 <Route path="create" element={<ProductCreate />} />
@@ -2680,33 +2358,20 @@ function App() {
                 //highlight-next-line
                 <Route path="show/:id" element={<ProductShow />} />
               </Route>
-              <Route path="/categories">
-                <Route index element={<CategoryList />} />
-                <Route path="create" element={<CategoryCreate />} />
-                <Route path="edit/:id" element={<CategoryEdit />} />
-                <Route path="show/:id" element={<CategoryShow />} />
-              </Route>
-              <Route path="*" element={<ErrorComponent />} />
-            </Route>
-          </Routes>
-
-          <RefineKbar />
-          <UnsavedChangesNotifier />
-          <DocumentTitleHandler />
+              ...
         </Refine>
-      </RefineKbarProvider>
-    </BrowserRouter>
   );
 }
 
 export default App;
 ```
+</details>
 
 The above component will look like the image below after rendering.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-show.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-show.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -2721,6 +2386,10 @@ Like the product CRUD pages we created above, let's create CRUD pages for the ca
 This page will display the categories in tabular form. The table will have features for sorting and searching. We will also include features for updating and deleting items from the table.
 
 Copy and paste the code below into the `src/pages/categories/list.tsx` file.
+
+<details>
+
+<summary>Show CategoryList code</summary>
 
 ```tsx title="src/pages/categories/list.tsx"
 import {
@@ -3003,11 +2672,13 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
+</details>
+
 The above component will look like the image below after rendering. You can search and sort the contents of the table.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-list.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-list.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -3018,6 +2689,10 @@ The above component will look like the image below after rendering. You can sear
 You can use this page to create a new product. A user can navigate to it by clicking the "Create Category" button or pointing the browser to the `/categories/create`  endpoint in the browser's address bar.
 
 Copy and paste the code below into the `src/pages/categories/create.tsx` file.
+
+<details>
+
+<summary>Show CategoryCreate code</summary>
 
 ```tsx
 import { IResourceComponentsProps } from "@refinedev/core";
@@ -3101,10 +2776,12 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
+</details>
+
 The above component looks like the image below after rendering.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-create.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-create.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -3117,7 +2794,11 @@ Similar to creating a new category, you can also edit an existing category. Curr
 
 Copy and paste the code below into the `pages/categories/edit.tsx` file.
 
-```tsx
+<details>
+
+<summary>Show CategoryEdit code</summary>
+
+```tsx title="src/pages/categories/edit.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
 
 import { HttpError, useBack } from "@refinedev/core";
@@ -3197,14 +2878,14 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     </div>
   );
 };
-
 ```
+</details>
 
 The above component looks like the image below after rendering. You can edit a category and save the changes using the "Save Category" button.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-edit.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-edit.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -3214,6 +2895,11 @@ The above component looks like the image below after rendering. You can edit a c
 The categories show page displays a specific product category. At the moment when you click the show button under the actions column, you will navigate to a page that's not styled.  
 
 Let's create a component that displays the contents of a specific category. Copy and paste the code below into the `src/pages/categories/show.tsx` file.
+
+
+<details>
+
+<summary>Show CategoryShow code</summary>
 
 ```tsx title="src/pages/categories/show.tsx"
 import { useBack, useShow, IResourceComponentsProps } from "@refinedev/core";
@@ -3265,12 +2951,13 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
   );
 };
 ```
+</details>
 
 The above component looks like the image below after rendering.
 
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-show.png"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-show.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -3382,3 +3069,9 @@ refine has the tools and packages to set up a modern front-end application withi
 You can easily add design systems and UI libraries such as Chakra UI, Material UI, Ant design, NextUI, and Mantine into a refine project. It also has a variety of packages for integrating modern cloud databases and live providers.
 
 NextUI is a React library for building accessible UIs fast. Internally, it uses Tailwind CSS and framer-motion. To use NextUI in a refine or any other React application, install and configure it as highlighted above.
+
+
+## Live CodeSandbox Example
+
+
+<CodeSandboxExample path="blog-refine-nextui" />
