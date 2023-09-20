@@ -1,9 +1,9 @@
 ---
-"@refinedev/devtools": major
-"@refinedev/devtools-internal": major
-"@refinedev/devtools-server": major
-"@refinedev/devtools-shared": major
-"@refinedev/devtools-ui": major
+"@refinedev/devtools": minor
+"@refinedev/devtools-internal": minor
+"@refinedev/devtools-server": minor
+"@refinedev/devtools-shared": minor
+"@refinedev/devtools-ui": minor
 ---
 
 Initial beta release of refine devtools.🎉
