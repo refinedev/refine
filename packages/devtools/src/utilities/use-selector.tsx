@@ -141,6 +141,17 @@ export const useSelector = (active: boolean) => {
     });
 
     const { rect, name } = React.useMemo(() => {
+        if (!active) {
+            return {
+                rect: {
+                    width: 0,
+                    height: 0,
+                    x: 0,
+                    y: 0,
+                },
+                name: "",
+            };
+        }
         if (activeFiber.stateNode || activeFiber.nameFiber) {
             // Get the element from the fiber with a state node
             const element = activeFiber.stateNode
@@ -179,7 +190,7 @@ export const useSelector = (active: boolean) => {
         }
 
         return previousValues.current;
-    }, [activeFiber]);
+    }, [activeFiber, active]);
 
     previousValues.current = {
         rect,
@@ -225,7 +236,7 @@ export const useSelector = (active: boolean) => {
                     pickFiber(e.target as HTMLElement);
                     previousTarget = e.target as HTMLElement;
                 }
-            }, 30);
+            }, 50);
 
             document.addEventListener("mousemove", listener);
 

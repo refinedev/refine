@@ -19,7 +19,8 @@ export const TraceList = ({ trace }: { trace?: TraceType[] }) => {
                         "re-border",
                         "re-border-gray-700",
                         "re-py-1",
-                        "re-px-1.5",
+                        "re-pl-1.5",
+                        "re-pr-2",
                         "re-text-gray-300",
                         "re-text-xs",
                     )}
