@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@refinedev/cli": "^2.12.2",
-    "@refinedev/core": "^4.41.0",
-    "@refinedev/inferencer": "^4.5.11",
+    "@refinedev/cli": "^2.13.0",
+    "@refinedev/core": "^4.42.0",
+    "@refinedev/inferencer": "^4.5.12",
     "@refinedev/kbar": "^1.1.2",
     "@refinedev/nestjs-query": "^1.0.4",
     "@refinedev/antd": "^5.36.2",
