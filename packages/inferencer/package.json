@@ -184,7 +184,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@tabler/icons": "^1.1.0",
+    "@tabler/icons": "^1.119.0",
     "@refinedev/core": "^4.40.0",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",

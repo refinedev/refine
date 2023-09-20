@@ -15,7 +15,7 @@
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/react-table": "^5.6.2",
     "@tanstack/react-table": "^8.2.6",
-    "@tabler/icons": "^1.1.0",
+    "@tabler/icons": "^1.119.0",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
