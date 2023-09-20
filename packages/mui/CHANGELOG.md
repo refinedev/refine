@@ -1,5 +1,41 @@
 # @refinedev/mui
 
+## 5.13.10
+
+### Patch Changes
+
+-   [#4964](https://github.com/refinedev/refine/pull/4964) [`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update @refinedev/core peer dependency versions.
+
+-   Updated dependencies [[`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848)]:
+    -   @refinedev/react-hook-form@4.8.8
+
+## 5.13.9
+
+### Patch Changes
+
+-   [#4964](https://github.com/refinedev/refine/pull/4964) [`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update @refinedev/core peer dependency versions.
+
+-   Updated dependencies [[`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848)]:
+    -   @refinedev/react-hook-form@4.8.7
+
+## 5.13.8
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.2
+
+## 5.13.7
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.1
+
 ## 5.13.6
 
 ### Patch Changes

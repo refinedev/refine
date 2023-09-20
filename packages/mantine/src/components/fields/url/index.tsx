@@ -4,8 +4,8 @@ import { Anchor } from "@mantine/core";
 import { UrlFieldProps } from "../types";
 
 /**
- * This field is used to display email values. It uses the {@link https://mantine.dev/core/text/  `<Text>` }
- * and {@link https://mantine.dev/core/anchor/ <Anchor>`} components from Mantine.
+ * This field is used to display email values. It uses the {@link https://mantine.dev/core/text `<Text>` }
+ * and {@link https://mantine.dev/core/anchor <Anchor>`} components from Mantine.
  * You can pass a URL in its `value` property and you can show a text in its place by passing any `children`.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/url} for more details.

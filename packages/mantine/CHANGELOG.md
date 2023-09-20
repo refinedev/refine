@@ -1,5 +1,51 @@
 # @refinedev/mantine
 
+## 2.28.10
+
+### Patch Changes
+
+-   [#4964](https://github.com/refinedev/refine/pull/4964) [`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update @refinedev/core peer dependency versions.
+
+## 2.28.9
+
+### Patch Changes
+
+-   [#4964](https://github.com/refinedev/refine/pull/4964) [`85b1ac0db5f`](https://github.com/refinedev/refine/commit/85b1ac0db5f8e61c7a78137aed0adf4bf2871848) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update @refinedev/core peer dependency versions.
+
+## 2.28.8
+
+### Patch Changes
+
+-   [#4903](https://github.com/refinedev/refine/pull/4903) [`e327cadc011`](https://github.com/refinedev/refine/commit/e327cadc011ce8696d7149252e1ad308005b1eff) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add [`invalidateOnUnmount`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#invalidateonunmount) prop to [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm) hook.
+    feat: add `invalidateOnUnmount` and `invalidateOnClose` prop to [`useModalForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useModalForm/#invalidateonunmount) and [`useDrawerForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useDrawerForm/#invalidateonunmount) hooks.
+    From now on, you can use the use this props to invalidate queries upon unmount or close.
+
+## 2.28.7
+
+### Patch Changes
+
+-   [#4903](https://github.com/refinedev/refine/pull/4903) [`e327cadc011`](https://github.com/refinedev/refine/commit/e327cadc011ce8696d7149252e1ad308005b1eff) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add [`invalidateOnUnmount`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#invalidateonunmount) prop to [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm) hook.
+    feat: add `invalidateOnUnmount` and `invalidateOnClose` prop to [`useModalForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useModalForm/#invalidateonunmount) and [`useDrawerForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useDrawerForm/#invalidateonunmount) hooks.
+    From now on, you can use the use this props to invalidate queries upon unmount or close.
+
+## 2.28.6
+
+### Patch Changes
+
+-   [#4953](https://github.com/refinedev/refine/pull/4953) [`07dd28d4142`](https://github.com/refinedev/refine/commit/07dd28d41421b08d73d5b2dbf9af2d4d4788c01b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: broken Mantine documentation links on JSDoc.
+
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.2
+
+## 2.28.5
+
+### Patch Changes
+
+-   [#4953](https://github.com/refinedev/refine/pull/4953) [`07dd28d4142`](https://github.com/refinedev/refine/commit/07dd28d41421b08d73d5b2dbf9af2d4d4788c01b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: broken Mantine documentation links on JSDoc.
+
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.1
+
 ## 2.28.4
 
 ### Patch Changes

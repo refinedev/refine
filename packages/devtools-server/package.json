@@ -1,0 +1,88 @@
+{
+  "name": "@refinedev/devtools-server",
+  "private": false,
+  "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
+  "author": "refine",
+  "version": "1.0.1",
+  "license": "MIT",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "bin": {
+    "refine-devtools": "./dist/cli.js"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start:client": "vite build --watch --force --config src/client/vite.config.ts",
+    "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
+    "start:server": "node dist/cli.js",
+    "start": "npm run start:client & tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "npm run build:client && tsup --format esm,cjs,iife --minify --legacy-output",
+    "test": "jest --passWithNoTests --runInBand",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "error-stack-parser": "^2.1.4",
+    "express": "^4.18.2",
+    "@refinedev/devtools-ui": "^1.0.1",
+    "@refinedev/devtools-shared": "^1.0.0",
+    "http-proxy-middleware": "^2.0.6",
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
+    "dedent": "^0.7.0",
+    "ws": "^8.13.0",
+    "lodash": "^4.17.21",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "execa": "^5.1.1",
+    "gray-matter": "^4.0.3",
+    "fs-extra": "^10.1.0",
+    "marked": "^4.3.0",
+    "globby": "^11.1.0",
+    "sanitize-html": "^2.11.0",
+    "preferred-pm": "^3.0.3",
+    "body-parser": "^1.20.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^29.2.4",
+    "@types/ws": "^8.5.5",
+    "@types/dedent": "^0.7.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "react-router-dom": "^6.8.1",
+    "ts-jest": "^29.0.3",
+    "tslib": "^2.3.1",
+    "tsup": "^6.7.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.3.1",
+    "typescript": "^4.7.4",
+    "esbuild-copy-static-files": "^0.1.0",
+    "@types/sanitize-html": "^2.9.0",
+    "@types/marked": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/refinedev/refine.git",
+    "directory": "packages/devtools"
+  },
+  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+  "publishConfig": {
+    "access": "public"
+  }
+}

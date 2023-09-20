@@ -5,23 +5,17 @@ source: packages/core/src/hooks/form/useForm.ts
 ---
 
 ```tsx live shared
-import React from "react";
 import {
-    Refine,
+    HttpError,
     LayoutProps,
     useList,
-    HttpError,
-    useShow,
     useNavigation,
 } from "@refinedev/core";
+import React from "react";
 
 import { Layout } from "components";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-
-import routerProvider from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import { PostCreate, PostEdit, PostList } from "pages/posts";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -358,8 +352,8 @@ This is the default behavior of `useForm`. You can customize it by passing your 
 We'll show the basic usage of `useForm` by adding an creating form.
 
 ```tsx
-import { useState } from "react";
 import { useForm } from "@refinedev/core";
+import { useState } from "react";
 
 const PostCreate = () => {
     const [title, setTitle] = useState();
@@ -409,8 +403,8 @@ In the following example, we will show how to use `useForm` with `action: "creat
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import React, { useState } from "react";
 import { useForm } from "@refinedev/core";
+import React, { useState } from "react";
 
 interface FormValues {
     id: number;
@@ -524,8 +518,8 @@ In the following example, we'll show how to use `useForm` with `action: "edit"`.
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import React, { useState, useEffect } from "react";
 import { useForm } from "@refinedev/core";
+import React, { useEffect, useState } from "react";
 
 interface FormValues {
     id: number;
@@ -650,8 +644,8 @@ In the following example, we'll show how to use `useForm` with `action: "clone"`
 setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
-import React, { useState, useEffect } from "react";
 import { useForm } from "@refinedev/core";
+import React, { useEffect, useState } from "react";
 
 interface FormValues {
     id: number;
@@ -1150,15 +1144,19 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
+
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -1172,7 +1170,9 @@ useForm({
 
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
@@ -1181,6 +1181,115 @@ useForm({
         // highlight-next-line
         debounce: 2000,
     },
+});
+```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useForm({
+    autoSave: {
+        enabled: true,
+        // highlight-next-line
+        invalidateOnUnmount: true,
+    },
+});
+```
+
+### `optimisticUpdateMap`
+
+If the mutation mode is defined as `optimistic` or `undoable` the `useForm` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+
+:::caution
+This feature is only work with the `mutationMode` is set to `optimistic` and `undoable`
+:::
+
+`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
+
+```tsx
+const { formProps, saveButtonProps } = useForm({
+    //...
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+        list: true,
+        many: true,
+        detail: false,
+    },
+});
+```
+
+In the above case the `list` and `many` queries will be updated automatically. But the `detail` query will not be updated.
+
+Also for customize the cache update, you can pass the function to the `list`, `many` and `detail` keys. The function will be called with the `previous` data, `values` and `id` parameters. You should return the new data from the function.
+
+```tsx
+const { formProps, saveButtonProps } = useForm({
+    //...
+    mutationMode: "optimistic",
+    // highlight-start
+    optimisticUpdateMap: {
+        list: (previous, values, id) => {
+            if (!previous) {
+                return null;
+            }
+
+            const data = previous.data.map((record) => {
+                if (record.id === id) {
+                    return {
+                        foo: "bar",
+                        ...record,
+                        ...values,
+                    };
+                }
+                return record;
+            });
+
+            return {
+                ...previous,
+                data,
+            };
+        },
+        many: (previous, values, id) => {
+            if (!previous) {
+                return null;
+            }
+
+            const data = previous.data.map((record) => {
+                if (record.id === id) {
+                    return {
+                        foo: "bar",
+                        ...record,
+                        ...values,
+                    };
+                }
+                return record;
+            });
+
+            return {
+                ...previous,
+                data,
+            };
+        },
+        detail: (previous, values) => {
+            if (!previous) {
+                return null;
+            }
+
+            return {
+                ...previous,
+                data: {
+                    foo: "bar",
+                    ...previous.data,
+                    ...values,
+                },
+            };
+        },
+    },
+    // highlight-end
 });
 ```
 
@@ -1278,7 +1387,7 @@ You can invalidate other resources with help of [`useInvalidate`](/docs/api-refe
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
 ```tsx
-import { useInvalidate, useForm } from "@refinedev/core";
+import { useForm, useInvalidate } from "@refinedev/core";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -1303,8 +1412,8 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 ```tsx title="src/users/create.tsx"
-import React, { useState } from "react";
 import { useForm } from "@refinedev/core";
+import React, { useState } from "react";
 
 export const UserCreate: React.FC = () => {
     const [name, setName] = useState();

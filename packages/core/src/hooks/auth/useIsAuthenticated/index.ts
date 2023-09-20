@@ -1,4 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { CheckResponse } from "../../../interfaces";
@@ -61,6 +62,9 @@ export function useIsAuthenticated({
         {
             retry: false,
             enabled: !v3LegacyAuthProviderCompatible,
+            meta: {
+                ...getXRay("useIsAuthenticated", preferLegacyKeys),
+            },
         },
     );
 
@@ -77,6 +81,9 @@ export function useIsAuthenticated({
         {
             retry: false,
             enabled: v3LegacyAuthProviderCompatible,
+            meta: {
+                ...getXRay("useIsAuthenticated", preferLegacyKeys),
+            },
         },
     );
 

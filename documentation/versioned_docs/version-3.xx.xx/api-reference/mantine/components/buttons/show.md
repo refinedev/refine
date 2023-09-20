@@ -56,7 +56,7 @@ const ShowPage = () => {
 };
 ```
 
-`<ShowButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -317,7 +317,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <ShowButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

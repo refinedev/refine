@@ -4,6 +4,7 @@ import {
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -18,6 +19,9 @@ import {
     PreviousQuery,
     GetListResponse,
     IQueryKeys,
+    OptimisticUpdateMapType,
+    GetManyResponse,
+    GetOneResponse,
 } from "../../interfaces";
 import {
     useResource,
@@ -89,6 +93,15 @@ export type UpdateParams<TData, TError, TVariables> = {
      *  You can use it to manage the invalidations that will occur at the end of the mutation.
      */
     invalidates?: Array<keyof IQueryKeys>;
+    /**
+     * You can use it to customize the optimistic update logic.
+     * @default {
+     *   list: true,
+     *   many: true,
+     *   detail: true,
+     * }
+     */
+    optimisticUpdateMap?: OptimisticUpdateMapType<TData, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TData>,
     TError,
@@ -265,6 +278,7 @@ export const useUpdate = <
                 dataProviderName,
                 meta,
                 metaData,
+                optimisticUpdateMap = { list: true, many: true, detail: true },
             }) => {
                 const { identifier } = select(resourceName);
 
@@ -303,78 +317,128 @@ export const useUpdate = <
                 );
 
                 if (mutationModePropOrContext !== "pessimistic") {
-                    // Set the previous queries to the new ones:
-                    queryClient.setQueriesData(
-                        resourceKeys
-                            .action("list")
-                            .params(preferredMeta ?? {})
-                            .get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-                            const data = previous.data.map((record: TData) => {
-                                if (record.id?.toString() === id?.toString()) {
-                                    return {
+                    if (optimisticUpdateMap.list) {
+                        // Set the previous queries to the new ones:
+                        queryClient.setQueriesData(
+                            resourceKeys
+                                .action("list")
+                                .params(preferredMeta ?? {})
+                                .get(preferLegacyKeys),
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (
+                                    typeof optimisticUpdateMap.list ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.list(
+                                        previous,
+                                        values,
                                         id,
-                                        ...record,
-                                        ...values,
-                                    } as unknown as TData;
+                                    );
                                 }
-                                return record;
-                            });
 
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
+                                if (!previous) {
+                                    return null;
+                                }
 
-                    queryClient.setQueriesData(
-                        resourceKeys.action("many").get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id?.toString() ===
+                                            id?.toString()
+                                        ) {
+                                            return {
+                                                id,
+                                                ...record,
+                                                ...values,
+                                            } as unknown as TData;
+                                        }
+                                        return record;
+                                    },
+                                );
 
-                            const data = previous.data.map((record: TData) => {
-                                if (record.id?.toString() === id?.toString()) {
-                                    record = {
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+                    }
+
+                    if (optimisticUpdateMap.many) {
+                        queryClient.setQueriesData(
+                            resourceKeys.action("many").get(preferLegacyKeys),
+                            (previous?: GetManyResponse<TData> | null) => {
+                                if (
+                                    typeof optimisticUpdateMap.many ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.many(
+                                        previous,
+                                        values,
                                         id,
-                                        ...record,
-                                        ...values,
-                                    } as unknown as TData;
+                                    );
                                 }
-                                return record;
-                            });
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
 
-                    queryClient.setQueriesData(
-                        resourceKeys
-                            .action("one")
-                            .id(id)
-                            .params(preferredMeta ?? {})
-                            .get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
+                                if (!previous) {
+                                    return null;
+                                }
 
-                            return {
-                                ...previous,
-                                data: {
-                                    ...previous.data,
-                                    ...values,
-                                },
-                            };
-                        },
-                    );
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id?.toString() ===
+                                            id?.toString()
+                                        ) {
+                                            record = {
+                                                id,
+                                                ...record,
+                                                ...values,
+                                            } as unknown as TData;
+                                        }
+                                        return record;
+                                    },
+                                );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+                    }
+
+                    if (optimisticUpdateMap.detail) {
+                        queryClient.setQueriesData(
+                            resourceKeys
+                                .action("one")
+                                .id(id)
+                                .params(preferredMeta ?? {})
+                                .get(preferLegacyKeys),
+                            (previous?: GetOneResponse<TData> | null) => {
+                                if (
+                                    typeof optimisticUpdateMap.detail ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.detail(
+                                        previous,
+                                        values,
+                                        id,
+                                    );
+                                }
+
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                return {
+                                    ...previous,
+                                    data: {
+                                        ...previous.data,
+                                        ...values,
+                                    },
+                                };
+                            },
+                        );
+                    }
                 }
 
                 return {
@@ -539,6 +603,10 @@ export const useUpdate = <
             },
             mutationKey: keys().data().mutation("update").get(preferLegacyKeys),
             ...mutationOptions,
+            meta: {
+                ...mutationOptions?.meta,
+                ...getXRay("useUpdate", preferLegacyKeys),
+            },
         },
     );
 

@@ -44,7 +44,7 @@ export const renderUseMany = () => {
 export const assertOne = async (
     useOneResult: ReturnType<typeof renderUseOne>,
     property: string,
-    value: string,
+    value: string | undefined,
 ) => {
     await waitFor(() => {
         expect(useOneResult.current.data?.data[property]).toEqual(value);
@@ -56,7 +56,7 @@ export const assertList = async (
         | ReturnType<typeof renderUseList>
         | ReturnType<typeof renderUseMany>,
     keyInput: string,
-    valueInput: string | string[],
+    valueInput: string | string[] | undefined,
 ) => {
     await waitFor(() => {
         if (Array.isArray(valueInput)) {

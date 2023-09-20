@@ -14,6 +14,7 @@ import {
     FormWithSyncWithLocationParams,
     useParsed,
     useGo,
+    useInvalidate,
 } from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { useModal } from "@hooks/modal";
@@ -112,6 +113,8 @@ export const useModalForm = <
     defaultVisible = false,
     autoSubmitClose = true,
     autoResetForm = true,
+    autoSave,
+    invalidates,
     ...rest
 }: UseModalFormProps<
     TQueryFnData,
@@ -129,6 +132,7 @@ export const useModalForm = <
     TResponseError
 > => {
     const [initiallySynced, setInitiallySynced] = React.useState(false);
+    const invalidate = useInvalidate();
 
     const {
         resource,
@@ -168,10 +172,13 @@ export const useModalForm = <
                 : {}),
             ...rest.meta,
         },
+        autoSave,
+        invalidates,
         ...rest,
     });
 
-    const { form, formProps, id, setId, formLoading, onFinish } = useFormProps;
+    const { form, formProps, id, setId, formLoading, onFinish, autoSaveProps } =
+        useFormProps;
 
     const translate = useTranslate();
 
@@ -263,6 +270,15 @@ export const useModalForm = <
     };
 
     const handleClose = useCallback(() => {
+        if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+            invalidate({
+                id,
+                invalidates: invalidates || ["list", "many", "detail"],
+                dataProviderName: rest.dataProviderName,
+                resource: identifier,
+            });
+        }
+
         if (warnWhen) {
             const warnWhenConfirm = window.confirm(
                 translate(
@@ -280,7 +296,7 @@ export const useModalForm = <
 
         setId?.(undefined);
         sunflowerUseModal.close();
-    }, [warnWhen]);
+    }, [warnWhen, autoSaveProps.status]);
 
     const handleShow = useCallback(
         (showId?: BaseKey) => {

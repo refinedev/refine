@@ -1,5 +1,59 @@
 # @refinedev/cli
 
+## 2.12.1
+
+### Patch Changes
+
+-   [`25539d23320`](https://github.com/refinedev/refine/commit/25539d2332094e74736c2507172650be36ab4632) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/devtools-server` dependency
+
+-   Updated dependencies [[`246b3cb6a00`](https://github.com/refinedev/refine/commit/246b3cb6a0000a5b70557d31940cb69113e0397b)]:
+    -   @refinedev/devtools-server@1.0.1
+
+## 2.12.0
+
+### Minor Changes
+
+-   [#4960](https://github.com/refinedev/refine/pull/4960) [`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3) Thanks [@aliemir](https://github.com/aliemir)! - Integration with refine devtools.
+
+    Now you can start the Devtools server using the `refine devtools` command or when the server will be started automatically when you start your app in development mode using `refine dev` command if you have `@refinedev/devtools` installed.
+
+### Patch Changes
+
+-   Updated dependencies [[`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3)]:
+    -   @refinedev/devtools-server@1.0.0
+
+## 2.11.0
+
+### Minor Changes
+
+-   [#4904](https://github.com/refinedev/refine/pull/4904) [`b1ab9a23520`](https://github.com/refinedev/refine/commit/b1ab9a23520c42f9747bcb5ef3ffce76b3d4a0fd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `add` command to add new features to the project
+    Now you can add a new provider or resource to the project using the command `npm run refine add <arg>`.
+
+    -   `npm run refine add resource posts`: will add a new resource to the project with the name `posts`.
+    -   `npm run refine add auth`: will add a new auth provider to the project.
+    -   `npm run refine add data`: will add a new data provider to the project.
+    -   `npm run refine add live`: will add a new live provider to the project.
+    -   `npm run refine add access-control`: will add a new access control provider to the project.
+    -   `npm run refine add audit-log`: will add a new audit log provider to the project.
+    -   `npm run refine add i18n`: will add a new i18n provider to the project.
+    -   `npm run refine add notification`: will add a new notification provider to the project.
+
+## 2.10.0
+
+### Minor Changes
+
+-   [#4904](https://github.com/refinedev/refine/pull/4904) [`b1ab9a23520`](https://github.com/refinedev/refine/commit/b1ab9a23520c42f9747bcb5ef3ffce76b3d4a0fd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `add` command to add new features to the project
+    Now you can add a new provider or resource to the project using the command `npm run refine add <arg>`.
+
+    -   `npm run refine add resource posts`: will add a new resource to the project with the name `posts`.
+    -   `npm run refine add auth`: will add a new auth provider to the project.
+    -   `npm run refine add data`: will add a new data provider to the project.
+    -   `npm run refine add live`: will add a new live provider to the project.
+    -   `npm run refine add access-control`: will add a new access control provider to the project.
+    -   `npm run refine add audit-log`: will add a new audit log provider to the project.
+    -   `npm run refine add i18n`: will add a new i18n provider to the project.
+    -   `npm run refine add notification`: will add a new notification provider to the project.
+
 ## 2.9.0
 
 ### Minor Changes

@@ -11,10 +11,11 @@ body {
 ```
 
 ```tsx live shared
-import { useTable, useNavigation, useMany } from "@refinedev/core";
 import {
+    useMany,
+    useNavigation,
     useSelect as useSelectShared,
-    HttpError as httpErrorShared,
+    useTable,
 } from "@refinedev/core";
 import { useStepsForm as useStepsFormShared } from "@refinedev/react-hook-form";
 
@@ -375,7 +376,7 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { useSelect, HttpError } from "@refinedev/core";
+import { HttpError, useSelect } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 const stepTitles = ["Title", "Status", "Category and content"];
@@ -545,7 +546,7 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import { useSelect, HttpError } from "@refinedev/core";
+import { HttpError, useSelect } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 const stepTitles = ["Title", "Status", "Category and content"];
@@ -716,7 +717,7 @@ In this example we're going to build a Post `"create"` form. We also added a rel
 To split your `<input/>` components under a `<form/>` component, first import and use `useStepsForm` hook in your page:
 
 ```tsx
-import { HttpError, useSelect } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
@@ -1058,19 +1059,24 @@ const stepsForm = useStepsForm({
     },
 });
 ```
+
 ### `autoSave`
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
+By default the `autoSave` feature does not invalidate queries. However, you can use the `invalidateOnUnmount` prop to invalidate queries upon unmount.
+
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
-Works only in `action: "edit"` mode.
+`autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
+
+> Default: `false`
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
@@ -1078,14 +1084,17 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 useStepsForm({
     refineCoreProps: {
         autoSave: {
-            enabled: true
+            enabled: true,
         },
-    }
-})
+    },
+});
 ```
+
 #### `debounce`
 
-Set the debounce time for the `autoSave` prop. Default value is `1000`.
+> Default: `1000`
+
+Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useStepsForm({
@@ -1095,9 +1104,10 @@ useStepsForm({
             // highlight-next-line
             debounce: 2000,
         },
-    }
-})
+    },
+});
 ```
+
 #### `onFinish`
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
@@ -1117,8 +1127,27 @@ useStepsForm({
             // highlight-end
         },
     },
-})
+});
 ```
+
+#### `invalidateOnUnmount`
+
+> Default: `false`
+
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+```tsx
+useStepsForm({
+    refineCoreProps: {
+        autoSave: {
+            enabled: true,
+            // highlight-next-line
+            invalidateOnUnmount: true,
+        },
+    },
+});
+```
+
 ## Return Values
 
 :::tip

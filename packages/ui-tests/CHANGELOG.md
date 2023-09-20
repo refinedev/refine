@@ -1,5 +1,25 @@
 # @refinedev/ui-tests
 
+## 1.13.2
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - Remove redundant lodash plugin for esbuild and use the shared plugins instead
+
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea), [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.2
+    -   @refinedev/core@4.38.4
+
+## 1.13.1
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - Remove redundant lodash plugin for esbuild and use the shared plugins instead
+
+-   Updated dependencies [[`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea), [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea)]:
+    -   @refinedev/ui-types@1.22.1
+    -   @refinedev/core@4.38.3
+
 ## 1.13.0
 
 ### Minor Changes

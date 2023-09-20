@@ -1,5 +1,178 @@
 # @refinedev/core
 
+## 4.41.0
+
+### Minor Changes
+
+-   [#4960](https://github.com/refinedev/refine/pull/4960) [`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3) Thanks [@aliemir](https://github.com/aliemir)! - Added devtools internals and integrated with the core hooks. Now users will be able to track the queries and mutation made by refine through refine devtools.
+
+### Patch Changes
+
+-   Updated dependencies [[`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3)]:
+    -   @refinedev/devtools-internal@1.0.0
+
+## 4.40.0
+
+### Minor Changes
+
+-   [#4914](https://github.com/refinedev/refine/pull/4914) [`91a4d0da9f1`](https://github.com/refinedev/refine/commit/91a4d0da9f180ae358a448c7d187cee44f8c2299) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) prop to the `useUpdate` and `useUpdateMany` hooks
+
+    `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
+
+    If you wish to customize the cache update, you have the option to provide functions for the `list`, `many`, and `detail` keys. These functions will be invoked with the `previous` data, `values`, and `id` parameters. Your responsibility is to return the updated data within these functions.
+
+    ```tsx
+    const { mutate } = useUpdateMany();
+
+    mutate({
+        //...
+        mutationMode: "optimistic",
+        optimisticUpdateMap: {
+            list: true,
+            many: true,
+            detail: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = {
+                    id,
+                    ...previous.data,
+                    ...values,
+                    foo: "bar",
+                };
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+        },
+    });
+    ```
+
+    feat: add [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) prop to the `useForm` hook
+
+    ```tsx
+    const { formProps, saveButtonProps } = useForm({
+        mutationMode: "optimistic",
+        optimisticUpdateMap: {
+            list: true,
+            many: true,
+            detail: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = {
+                    id,
+                    ...previous.data,
+                    ...values,
+                    foo: "bar",
+                };
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#4903](https://github.com/refinedev/refine/pull/4903) [`e327cadc011`](https://github.com/refinedev/refine/commit/e327cadc011ce8696d7149252e1ad308005b1eff) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add [`invalidateOnUnmount`](https://refine.dev/docs/api-reference/core/hooks/useForm/#invalidateonunmount) prop to [`useForm`](https://refine.dev/docs/api-reference/core/hooks/useForm) hook.
+    From now on, you can use the [`invalidateOnUnmount`](https://refine.dev/docs/api-reference/core/hooks/useForm/#invalidateonunmount) prop to invalidate queries upon unmount.
+
+## 4.39.0
+
+### Minor Changes
+
+-   [#4914](https://github.com/refinedev/refine/pull/4914) [`91a4d0da9f1`](https://github.com/refinedev/refine/commit/91a4d0da9f180ae358a448c7d187cee44f8c2299) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) prop to the `useUpdate` and `useUpdateMany` hooks
+
+    `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
+
+    If you wish to customize the cache update, you have the option to provide functions for the `list`, `many`, and `detail` keys. These functions will be invoked with the `previous` data, `values`, and `id` parameters. Your responsibility is to return the updated data within these functions.
+
+    ```tsx
+    const { mutate } = useUpdateMany();
+
+    mutate({
+        //...
+        mutationMode: "optimistic",
+        optimisticUpdateMap: {
+            list: true,
+            many: true,
+            detail: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = {
+                    id,
+                    ...previous.data,
+                    ...values,
+                    foo: "bar",
+                };
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+        },
+    });
+    ```
+
+    feat: add [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) prop to the `useForm` hook
+
+    ```tsx
+    const { formProps, saveButtonProps } = useForm({
+        mutationMode: "optimistic",
+        optimisticUpdateMap: {
+            list: true,
+            many: true,
+            detail: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = {
+                    id,
+                    ...previous.data,
+                    ...values,
+                    foo: "bar",
+                };
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#4903](https://github.com/refinedev/refine/pull/4903) [`e327cadc011`](https://github.com/refinedev/refine/commit/e327cadc011ce8696d7149252e1ad308005b1eff) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add [`invalidateOnUnmount`](https://refine.dev/docs/api-reference/core/hooks/useForm/#invalidateonunmount) prop to [`useForm`](https://refine.dev/docs/api-reference/core/hooks/useForm) hook.
+    From now on, you can use the [`invalidateOnUnmount`](https://refine.dev/docs/api-reference/core/hooks/useForm/#invalidateonunmount) prop to invalidate queries upon unmount.
+
+## 4.38.4
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+
+## 4.38.3
+
+### Patch Changes
+
+-   [#4951](https://github.com/refinedev/refine/pull/4951) [`04837c62077`](https://github.com/refinedev/refine/commit/04837c6207758a7460cfb7a5aff2a104967e20ea) Thanks [@aliemir](https://github.com/aliemir)! - - Update build configuration for `esbuild` to use the shared plugins.
+    -   Fix the lodash replacement plugin to skip redundant files.
+
 ## 4.38.2
 
 ### Patch Changes

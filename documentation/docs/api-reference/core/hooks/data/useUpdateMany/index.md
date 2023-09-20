@@ -348,6 +348,123 @@ mutate({
 });
 ```
 
+### `optimisticUpdateMap`
+
+If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
+
+When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
+
+:::caution
+This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
+:::
+
+`list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
+
+```tsx
+const { mutate } = useUpdateMany();
+
+mutate({
+    //...
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+        list: true,
+        many: true,
+        detail: false,
+    },
+});
+```
+
+In the scenario mentioned above, the `list` and `many` queries will receive automatic cache updates, whereas the `detail` query cache will remain unaffected.
+
+If you wish to customize the cache update, you have the option to provide functions for the `list`, `many`, and `detail` keys. These functions will be invoked with the `previous` data, `values`, and `id` parameters. Your responsibility is to return the updated data within these functions.
+
+```tsx
+const { mutate } = useUpdateMany();
+
+mutate({
+    //...
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+        // highlight-start
+        optimisticUpdateMap: {
+            list: (previous, values, ids) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = previous.data.map((record) => {
+                    if (
+                        record.id !== undefined &&
+                        ids
+                            .filter((id) => id !== undefined)
+                            .map(String)
+                            .includes(record.id.toString())
+                    ) {
+                        return {
+                            foo: "bar",
+                            ...record,
+                            ...values,
+                        };
+                    }
+
+                    return record;
+                });
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+            many: (previous, values, ids) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = previous.data.map((record) => {
+                    if (
+                        record.id !== undefined &&
+                        ids
+                            .filter((id) => id !== undefined)
+                            .map(String)
+                            .includes(record.id.toString())
+                    ) {
+                        return {
+                            foo: "bar",
+                            ...record,
+                            ...values,
+                        };
+                    }
+                    return record;
+                });
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+            detail: (previous, values, id) => {
+                if (!previous) {
+                    return null;
+                }
+
+                const data = {
+                    id,
+                    ...previous.data,
+                    ...values,
+                    foo: `bar`,
+                };
+
+                return {
+                    ...previous,
+                    data,
+                };
+            },
+        },
+    },
+    // highlight-end
+});
+```
+
 ## Return Values
 
 Returns an object with TanStack Query's `useMutation` return values.

@@ -3,6 +3,7 @@ import {
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
+import { getXRay } from "@refinedev/devtools-internal";
 
 import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
@@ -150,6 +151,12 @@ export function useRegister<TVariables = {}>({
                 open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible === true
+                    ? {}
+                    : mutationOptions?.meta),
+                ...getXRay("useRegister", preferLegacyKeys),
+            },
         },
     );
 
@@ -189,6 +196,12 @@ export function useRegister<TVariables = {}>({
                 open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+            meta: {
+                ...(v3LegacyAuthProviderCompatible
+                    ? mutationOptions?.meta
+                    : {}),
+                ...getXRay("useRegister", preferLegacyKeys),
+            },
         },
     );
 

@@ -12,6 +12,7 @@ import {
     useOne,
     useRefineContext,
     useMeta,
+    useInvalidate,
 } from "@hooks";
 
 import {
@@ -30,6 +31,7 @@ import {
     MetaQuery,
     AutoSaveProps,
     AutoSaveReturnType,
+    OptimisticUpdateMapType,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -157,6 +159,15 @@ type ActionFormProps<
         TResponseError,
         TVariables
     >["mutationOptions"];
+    /**
+     * If you customize the [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) option, you can use it to manage the invalidations that will occur at the end of the mutation.
+     * @default {
+     *   list: true,
+     *   many: true,
+     *   detail: true,
+     * }
+     */
+    optimisticUpdateMap?: OptimisticUpdateMapType<TResponse, TVariables>;
 } & SuccessErrorNotification<
     UpdateResponse<TResponse> | CreateResponse<TResponse>,
     TResponseError,
@@ -256,6 +267,7 @@ export const useForm = <
     updateMutationOptions,
     overtimeOptions,
     autoSave,
+    optimisticUpdateMap,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -271,6 +283,7 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
+    const invalidate = useInvalidate();
     const { options } = useRefineContext();
     const getMeta = useMeta();
 
@@ -456,6 +469,22 @@ export const useForm = <
         );
     };
 
+    React.useEffect(() => {
+        return () => {
+            if (
+                autoSave?.invalidateOnUnmount &&
+                autoSaveMutation.status === "success"
+            ) {
+                invalidate({
+                    id,
+                    invalidates: invalidates || ["list", "many", "detail"],
+                    dataProviderName,
+                    resource: identifier,
+                });
+            }
+        };
+    }, [autoSave?.invalidateOnUnmount, autoSaveMutation.status]);
+
     const onFinishAutoSaveMutation = (
         values: TVariables,
     ): Promise<UpdateResponse<TResponse> | void> | void => {
@@ -471,6 +500,7 @@ export const useForm = <
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
             invalidates: [],
+            mutationMode: "pessimistic",
         };
 
         return autoSaveMutation.mutate(variables, {
@@ -487,13 +517,9 @@ export const useForm = <
         });
     };
 
-    const onFinishAutoSave = React.useMemo(
-        () =>
-            debounce((allValues) => {
-                return onFinishAutoSaveMutation(allValues);
-            }, autoSave?.debounce || 1000),
-        [],
-    );
+    const onFinishAutoSave = debounce((allValues) => {
+        return onFinishAutoSaveMutation(allValues);
+    }, autoSave?.debounce || 1000);
 
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
@@ -512,6 +538,7 @@ export const useForm = <
             metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
             invalidates,
+            optimisticUpdateMap,
         };
 
         const onSuccess = () => {
