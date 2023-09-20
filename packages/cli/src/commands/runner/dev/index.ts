@@ -47,21 +47,6 @@ const action = async (
 
     if (devtools ?? devtoolsDefault) {
         devtoolsRunner();
-    } else {
-        console.log(
-            `\n${boxen(
-                `refine Devtools beta version has been released, join the waitlist to try it out. https://s.refine.dev/devtools`,
-                {
-                    padding: 1,
-                    title: "refine devtools",
-                    titleAlignment: "center",
-                    textAlignment: "center",
-                    dimBorder: true,
-                    borderColor: "blueBright",
-                    borderStyle: "round",
-                },
-            )}\n`,
-        );
     }
 
     runScript(binPath, command);

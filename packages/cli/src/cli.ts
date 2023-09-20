@@ -14,6 +14,7 @@ import devtools from "@commands/devtools";
 import add from "@commands/add";
 import { telemetryHook } from "@telemetryindex";
 import "@utils/env";
+import NotifyCloud from "./cloud-notifier";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_CLI_VERSION = "1.0.0";
@@ -51,6 +52,10 @@ const bootstrap = () => {
     proxy(program);
     devtools(program);
     add(program);
+
+    program.hook("preAction", (thisCommand) => {
+        NotifyCloud();
+    });
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];
