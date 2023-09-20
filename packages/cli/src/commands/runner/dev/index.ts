@@ -1,8 +1,9 @@
+import boxen from "boxen";
 import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
 import { Command, Option } from "commander";
 import { updateNotifier } from "src/update-notifier";
-import { action as devtoolsRunner } from "src/commands/devtools";
+import { devtoolsRunner } from "src/commands/devtools";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { getPlatformOptionDescription, getRunnerDescription } from "../utils";
@@ -46,6 +47,21 @@ const action = async (
 
     if (devtools ?? devtoolsDefault) {
         devtoolsRunner();
+    } else {
+        console.log(
+            `\n${boxen(
+                `refine Devtools beta version has been released, join the waitlist to try it out. https://s.refine.dev/devtools`,
+                {
+                    padding: 1,
+                    title: "refine devtools",
+                    titleAlignment: "center",
+                    textAlignment: "center",
+                    dimBorder: true,
+                    borderColor: "blueBright",
+                    borderStyle: "round",
+                },
+            )}\n`,
+        );
     }
 
     runScript(binPath, command);
