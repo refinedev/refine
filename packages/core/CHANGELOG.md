@@ -1,5 +1,16 @@
 # @refinedev/core
 
+## 4.42.0
+
+### Minor Changes
+
+-   [#4960](https://github.com/refinedev/refine/pull/4960) [`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3) Thanks [@aliemir](https://github.com/aliemir)! - Added devtools internals and integrated with the core hooks. Now users will be able to track the queries and mutation made by refine through refine devtools.
+
+### Patch Changes
+
+-   Updated dependencies [[`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3)]:
+    -   @refinedev/devtools-internal@1.1.0
+
 ## 4.41.0
 
 ### Minor Changes

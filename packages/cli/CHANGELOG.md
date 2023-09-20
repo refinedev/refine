@@ -1,5 +1,24 @@
 # @refinedev/cli
 
+## 2.13.0
+
+### Minor Changes
+
+-   [#4960](https://github.com/refinedev/refine/pull/4960) [`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3) Thanks [@aliemir](https://github.com/aliemir)! - Integration with refine devtools.
+
+    Now you can start the Devtools server using the `refine devtools` command or when the server will be started automatically when you start your app in development mode using `refine dev` command if you have `@refinedev/devtools` installed.
+
+### Patch Changes
+
+-   [#4971](https://github.com/refinedev/refine/pull/4971) [`34b23d84368`](https://github.com/refinedev/refine/commit/34b23d843682f3e1c2404bbfa48cea57da57d357) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: add refine devtools warning
+
+-   [#4976](https://github.com/refinedev/refine/pull/4976) [`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb) Thanks [@aliemir](https://github.com/aliemir)! - Updated dependency of `@refinedev/devtools-server`
+
+-   [`25539d23320`](https://github.com/refinedev/refine/commit/25539d2332094e74736c2507172650be36ab4632) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/devtools-server` dependency
+
+-   Updated dependencies [[`d8e464fa2c4`](https://github.com/refinedev/refine/commit/d8e464fa2c461d0fd60050cf18247758ecdc42e3), [`246b3cb6a00`](https://github.com/refinedev/refine/commit/246b3cb6a0000a5b70557d31940cb69113e0397b), [`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb)]:
+    -   @refinedev/devtools-server@1.1.0
+
 ## 2.12.2
 
 ### Patch Changes
