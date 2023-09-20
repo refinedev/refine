@@ -201,7 +201,7 @@ describe("transformMuiOperatorToCrudOperators", () => {
     });
 });
 
-describe("transformMuiOperatorToCrudOperator", () => {
+describe("transformCrudOperatorToMuiOperator", () => {
     it("transform crud operator to mui operator with 'number' value", () => {
         expect(transformCrudOperatorToMuiOperator("eq", "number")).toEqual("=");
         expect(transformCrudOperatorToMuiOperator("ne", "number")).toEqual(
