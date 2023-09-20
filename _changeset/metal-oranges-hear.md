@@ -10,6 +10,9 @@ Initial beta release of refine devtools.🎉
 
 We're releasing refine devtools in beta. refine devtools is designed to help you debug and develop your refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating refine packages from the UI and more. 🤯
 
+![refine devtools gif](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
+
+
 ## Usage
 
 Install the dependencies using your package manager.
