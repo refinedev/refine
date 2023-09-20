@@ -7,6 +7,10 @@ import {
     isDevtoolsInstalled,
 } from "@utils/package";
 import { hasDefaultScript } from "@utils/refine";
+import boxen from "boxen";
+import cardinal from "cardinal";
+import dedent from "dedent";
+import spinner from "@utils/spinner";
 
 type DevtoolsCommand = "start" | "init";
 const commands: DevtoolsCommand[] = ["start", "init"];
@@ -15,7 +19,9 @@ const defaultCommand: DevtoolsCommand = "start";
 const load = (program: Command) => {
     return program
         .command("devtools")
-        .description("Start refine's devtools server; it starts on port 5001.")
+        .description(
+            "Start or install refine's devtools server; it starts on port 5001.",
+        )
         .addArgument(
             new Argument("[command]", "devtools related commands")
                 .choices(commands)
@@ -44,18 +50,23 @@ export const action = async (command: DevtoolsCommand) => {
 };
 
 const devtoolsInstaller = async () => {
-    // const isInstalled = await spinner(
-    //     isDevtoolsInstalled,
-    //     "Checking if devtools is installed...",
-    // );
+    const isInstalled = await spinner(
+        isDevtoolsInstalled,
+        "Checking if devtools is installed...",
+    );
 
-    // if (isInstalled) {
-    //     console.log("🎉 refine devtools is already installed");
-    //     return;
-    // }
+    if (isInstalled) {
+        console.log("🎉 refine devtools is already installed");
+        return;
+    }
 
     console.log("🌱 Installing refine devtools...");
     await installPackagesSync(["@refinedev/devtools@latest"]);
+
+    // empty line
+    console.log("");
+    console.log("");
+
     console.log("🌱 Adding devtools component to your project....");
     await addDevtoolsComponent();
     console.log(
@@ -66,7 +77,7 @@ const devtoolsInstaller = async () => {
     console.log("");
 
     const { dev } = hasDefaultScript();
-    if (dev === "default") {
+    if (dev) {
         console.log(
             `🙌 You're good to go. "npm run dev" will automatically starts the devtools server.`,
         );
@@ -76,7 +87,7 @@ const devtoolsInstaller = async () => {
         return;
     }
 
-    if (dev === "modified") {
+    if (!dev) {
         const scriptDev = getPackageJson().scripts?.dev;
 
         console.log(
@@ -84,16 +95,32 @@ const devtoolsInstaller = async () => {
         );
         console.log(`👉 You can append "refine devtools" to "dev" script`);
         console.log(
-            `👉 You can start the devtools server manually by running "refine devtools start"`,
+            `👉 You can start the devtools server manually by running "refine devtools"`,
         );
 
-        console.log(`
-"scripts": {
-    "dev": "${scriptDev} & refine devtools",
-    "refine: "refine",
-    // other scripts
-},
-        `);
+        // empty line
+        console.log("");
+        console.log(
+            boxen(
+                cardinal.highlight(
+                    dedent(`
+                {
+                    "scripts": {
+                        "dev": "${scriptDev} & refine devtools",
+                        "refine": "refine"
+                    }
+                }  
+        `),
+                ),
+                {
+                    padding: 1,
+                    title: "package.json",
+                    dimBorder: true,
+                    borderColor: "blueBright",
+                    borderStyle: "round",
+                },
+            ),
+        );
     }
 };
 

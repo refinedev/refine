@@ -1,7 +1,7 @@
 import * as utilsPackage from "@utils/package";
 import { hasDefaultScript } from ".";
 
-test("Has refine script", () => {
+test("Has default script", () => {
     const testCases = [
         {
             input: {
@@ -10,7 +10,7 @@ test("Has refine script", () => {
                 },
             },
             output: {
-                dev: "default",
+                dev: true,
             },
         },
         {
@@ -20,17 +20,37 @@ test("Has refine script", () => {
                 },
             },
             output: {
-                dev: "default",
+                dev: true,
             },
         },
         {
             input: {
                 scripts: {
-                    dev: "vite start",
+                    dev: "refine dev",
                 },
             },
             output: {
-                dev: "modified",
+                dev: true,
+            },
+        },
+        {
+            input: {
+                scripts: {
+                    dev: "refine dev2",
+                },
+            },
+            output: {
+                dev: false,
+            },
+        },
+        {
+            input: {
+                scripts: {
+                    dev: "refine dev;echo '1'",
+                },
+            },
+            output: {
+                dev: true,
             },
         },
     ];

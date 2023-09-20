@@ -1,7 +1,7 @@
 import { getPackageJson } from "@utils/package";
 
 type ReturnType = {
-    dev: "default" | "modified";
+    dev: boolean;
 };
 
 /**
@@ -12,9 +12,11 @@ export const hasDefaultScript = (): ReturnType => {
 
     const scripts = packageJson.scripts || {};
 
-    const isModified = !scripts.dev.includes("refine dev");
+    const isDefault =
+        ((scripts?.dev || "") as string).match(/refine dev(\s|$|;){1}/) !==
+        null;
 
     return {
-        dev: isModified ? "modified" : "default",
+        dev: isDefault,
     };
 };
