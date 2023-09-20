@@ -16,7 +16,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "axios": "^0.26.1",
-    "@tabler/icons": "^1.1.0",
+    "@tabler/icons": "^1.119.0",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
