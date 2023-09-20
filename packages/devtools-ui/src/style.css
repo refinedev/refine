@@ -40,6 +40,7 @@ body,
 .trace-list .trace-item {
     border-right-width: 0;
     border-left-width: 0;
+    flex-shrink: 0;
 }
 
 .trace-list .trace-item:first-of-type {
@@ -53,7 +54,7 @@ body,
 .trace-list .trace-item::after {
     content: "";
     position: absolute;
-    right: -6px;
+    right: -4px;
     top: 0;
     width: 16px;
     height: 24px;
@@ -69,3 +70,13 @@ body,
 .monitor-table-row:hover {
     background-color: #f7f7f7;
 }
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+*::-webkit-scrollbar {
+display: none;
+}
+  

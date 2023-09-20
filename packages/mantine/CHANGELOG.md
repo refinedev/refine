@@ -1,5 +1,11 @@
 # @refinedev/mantine
 
+## 2.28.11
+
+### Patch Changes
+
+-   [#4975](https://github.com/refinedev/refine/pull/4975) [`ff66a862e46`](https://github.com/refinedev/refine/commit/ff66a862e46d3ae89c2f848ba71f2d8d77650d6a) Thanks [@aliemir](https://github.com/aliemir)! - Updated dependency of `@tabler/icons` to `v1.119.0` to fix the issue of using misconfigured versions. (Fixes #4921)
+
 ## 2.28.10
 
 ### Patch Changes
