@@ -16,7 +16,7 @@ import {
     Table,
 } from "antd";
 import { Company, Contact, ContactCreateInput } from "@/interfaces";
-import { CustomAvatar, Text } from "../../components";
+import { CustomAvatar, Text } from "../../../components";
 import {
     DeleteOutlined,
     ExportOutlined,
@@ -30,7 +30,7 @@ import {
 import { useParams } from "react-router-dom";
 import { FC, useMemo } from "react";
 import { HttpError, useCreateMany, useOne } from "@refinedev/core";
-import { ContactStatusTag } from "../../components/contact/status-tag";
+import { ContactStatusTag } from "../../../components/contact/status-tag";
 
 type Props = {
     style?: React.CSSProperties;

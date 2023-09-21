@@ -1,34 +1,33 @@
 import { FC, useMemo } from "react";
 import {
-    EditButton,
     FilterDropdown,
+    ShowButton,
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { useParams } from "react-router-dom";
-import { Button, Card, Input, Select, Skeleton, Space, Table } from "antd";
-import { Deal, DealAggregateResponse } from "@/interfaces";
-import { DealStageTag, Participants, Text } from "../../components";
+import { Link, useParams } from "react-router-dom";
+import { Button, Card, Input, Select, Space, Table } from "antd";
+import { Quote, QuoteStatus } from "@/interfaces";
+import { QuoteStatusTag, Participants, Text } from "../../../components";
 import {
-    AuditOutlined,
+    ContainerOutlined,
     ExportOutlined,
     PlusCircleOutlined,
     SearchOutlined,
 } from "@ant-design/icons";
-import { currencyNumber } from "../../utilities";
-import { useCustom, useNavigation } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { currencyNumber } from "../../../utilities";
+import { useNavigation } from "@refinedev/core";
 
 type Props = {
     style?: React.CSSProperties;
 };
 
-export const CompanyDealsTable: FC<Props> = ({ style }) => {
+export const CompanyQuotesTable: FC<Props> = ({ style }) => {
     const { listUrl } = useNavigation();
     const params = useParams();
 
-    const { tableProps, filters, setFilters } = useTable<Deal>({
-        resource: "deals",
+    const { tableProps, filters, setFilters } = useTable<Quote>({
+        resource: "quotes",
         syncWithLocation: false,
         sorters: {
             initial: [
@@ -46,9 +45,9 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                     operator: "contains",
                 },
                 {
-                    field: "stage.title",
-                    value: "",
-                    operator: "contains",
+                    field: "status",
+                    value: undefined,
+                    operator: "in",
                 },
             ],
             permanent: [
@@ -63,29 +62,12 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             fields: [
                 "id",
                 "title",
-                "value",
-                { stage: ["id", "title"] },
-                { dealOwner: ["id", "name", "avatarUrl"] },
-                { dealContact: ["id", "name", "avatarUrl"] },
+                "status",
+                "total",
+                { company: ["id", "name"] },
+                { contact: ["id", "name", "avatarUrl"] },
+                { salesOwner: ["id", "name", "avatarUrl"] },
             ],
-        },
-    });
-
-    const { data: aggregate, isLoading: isLoadingDealAggregate } = useCustom<{
-        dealAggregate: DealAggregateResponse[];
-    }>({
-        method: "post",
-        url: "/graphql",
-        meta: {
-            rawQuery: `query dealAggregate {
-                dealAggregate(filter: {companyId:{eq: ${Number(params.id)}}}) {
-                  sum {
-                    id
-                    value
-                  }
-                }
-              }
-            `,
         },
     });
 
@@ -99,10 +81,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             fields: ["id", "name"],
         },
     });
-
-    const hasData = tableProps.loading
-        ? true
-        : tableProps?.dataSource?.length || 0 > 0;
 
     const showResetFilters = useMemo(() => {
         return filters?.filter((filter) => {
@@ -118,6 +96,8 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         });
     }, [filters]);
 
+    const hasData = tableProps?.dataSource?.length || 0 > 0;
+
     return (
         <Card
             style={style}
@@ -128,8 +108,8 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             bodyStyle={{ padding: 0 }}
             title={
                 <Space size="middle">
-                    <AuditOutlined />
-                    <Text>Deals</Text>
+                    <ContainerOutlined />
+                    <Text>Quotes</Text>
 
                     {showResetFilters?.length > 0 && (
                         <Button
@@ -141,21 +121,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                     )}
                 </Space>
             }
-            extra={
-                <>
-                    <Text className="tertiary">Total deal amount: </Text>
-                    {isLoadingDealAggregate ? (
-                        <Skeleton.Input active size="small" />
-                    ) : (
-                        <Text strong>
-                            {currencyNumber(
-                                aggregate?.data.dealAggregate?.[0]?.sum
-                                    ?.value || 0,
-                            )}
-                        </Text>
-                    )}
-                </>
-            }
         >
             {!hasData && (
                 <Space
@@ -165,18 +130,17 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                         padding: 16,
                     }}
                 >
-                    <Text>No deals yet</Text>
-                    <Link to={listUrl("deals")}>
+                    <Text>No quotes yet</Text>
+                    <Link to={listUrl("quotes")}>
                         <PlusCircleOutlined
                             style={{
                                 marginRight: 4,
                             }}
                         />{" "}
-                        Add deals through sales pipeline
+                        Add quotes
                     </Link>
                 </Space>
             )}
-
             {hasData && (
                 <Table
                     {...tableProps}
@@ -187,7 +151,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                     }}
                 >
                     <Table.Column
-                        title="Deal Title"
+                        title="Quote Title"
                         dataIndex="title"
                         filterIcon={<SearchOutlined />}
                         filterDropdown={(props) => (
@@ -196,39 +160,43 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                             </FilterDropdown>
                         )}
                     />
-                    <Table.Column<Deal>
-                        title="Deal amount"
-                        dataIndex="value"
+                    <Table.Column<Quote>
+                        title="Total amount"
+                        dataIndex="total"
                         sorter
                         render={(_, record) => {
                             return (
-                                <Text>{currencyNumber(record.value || 0)}</Text>
+                                <Text>{currencyNumber(record.total || 0)}</Text>
                             );
                         }}
                     />
-                    <Table.Column<Deal>
+                    <Table.Column<Quote>
                         title="Stage"
-                        dataIndex={["stage", "title"]}
+                        dataIndex="status"
                         render={(_, record) => {
-                            if (!record.stage) return null;
+                            if (!record.status) return null;
 
-                            return <DealStageTag stage={record.stage} />;
+                            return <QuoteStatusTag status={record.status} />;
                         }}
-                        filterIcon={<SearchOutlined />}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
-                                <Input placeholder="Search Title" />
+                                <Select
+                                    style={{ width: "200px" }}
+                                    mode="multiple"
+                                    placeholder="Select Stage"
+                                    options={statusOptions}
+                                ></Select>
                             </FilterDropdown>
                         )}
                     />
-                    <Table.Column<Deal>
-                        dataIndex={["dealOwnerId"]}
+                    <Table.Column<Quote>
+                        dataIndex={["salesOwner", "id"]}
                         title="Participants"
                         render={(_, record) => {
                             return (
                                 <Participants
-                                    userOne={record.dealOwner}
-                                    userTwo={record.dealContact}
+                                    userOne={record.salesOwner}
+                                    userTwo={record.contact}
                                 />
                             );
                         }}
@@ -244,23 +212,38 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                             );
                         }}
                     />
-                    <Table.Column<Deal>
+                    <Table.Column<Quote>
                         dataIndex="id"
                         width={48}
                         render={(value) => {
                             return (
-                                <EditButton
+                                <ShowButton
                                     recordItemId={value}
                                     hideText
                                     size="small"
-                                    resource="deals"
+                                    resource="contacts"
                                     icon={<ExportOutlined />}
                                 />
                             );
                         }}
                     />
                 </Table>
-            )}
+            )}{" "}
         </Card>
     );
 };
+
+const statusOptions: { label: string; value: QuoteStatus }[] = [
+    {
+        label: "Draft",
+        value: "DRAFT",
+    },
+    {
+        label: "Sent",
+        value: "SENT",
+    },
+    {
+        label: "Accepted",
+        value: "ACCEPTED",
+    },
+];

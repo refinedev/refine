@@ -2,10 +2,10 @@ import { FC } from "react";
 import { useDelete, useNavigation } from "@refinedev/core";
 import { Button, Card, Dropdown, Space, Tooltip } from "antd";
 import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
-import { Text, CustomAvatar } from "../..";
-import { currencyNumber } from "../../../utilities";
+import { Text, CustomAvatar } from "../../../../../components";
+import { currencyNumber } from "../../../../../utilities";
 import { Company } from "@/interfaces";
-import { CustomAvatarGroup } from "../../custom-avatar-group";
+import { CustomAvatarGroup } from "../../../../../components/custom-avatar-group";
 import { CompanyCardSkeleton } from "./skeleton";
 
 type Props = {

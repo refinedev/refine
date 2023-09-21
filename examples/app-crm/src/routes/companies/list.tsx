@@ -9,10 +9,7 @@ import {
 } from "@ant-design/icons";
 import { debounce } from "lodash";
 
-import {
-    CompaniesTableView,
-    CompaniesCardView,
-} from "../../components/company";
+import { CompaniesTableView, CompaniesCardView } from "./components";
 import { Company } from "@/interfaces";
 import { ListTitleButton } from "../../components/list-title-button";
 

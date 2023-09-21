@@ -6,7 +6,7 @@ import {
     CompanyNotes,
     CompanyQuotesTable,
     CompanyTitleForm,
-} from "../../components/company";
+} from "./components";
 
 export const CompanyEditPage = () => {
     return (

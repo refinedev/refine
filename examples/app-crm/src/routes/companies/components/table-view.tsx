@@ -8,12 +8,12 @@ import {
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
-import { Text, CustomAvatar } from "..";
-import { currencyNumber } from "../../utilities";
+import { Text, CustomAvatar } from "../../../components";
+import { currencyNumber } from "../../../utilities";
 import { Company } from "@/interfaces";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { CustomAvatarGroup } from "../custom-avatar-group";
-import { PaginationTotal } from "../pagination-total";
+import { CustomAvatarGroup } from "../../../components/custom-avatar-group";
+import { PaginationTotal } from "../../../components/pagination-total";
 
 type Props = {
     tableProps: TableProps<Company>;
