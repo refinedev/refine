@@ -13,11 +13,14 @@ import { InstantSearch } from "react-instantsearch";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { authProvider } from "./providers/auth";
-import { dataProvider, liveProvider } from "./providers/data";
-import { resources } from "./providers/resources";
-import { themeConfig } from "./providers/antd";
-import { indexName, searchClient } from "./providers/search-client";
+import {
+    authProvider,
+    dataProvider,
+    liveProvider,
+    indexName,
+    searchClient,
+} from "@/providers";
+import { themeConfig, resources } from "@/config";
 
 import { Layout } from "./components/layout";
 
