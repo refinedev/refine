@@ -26,8 +26,6 @@
 
     Install latest version of `@refinedev/cli`:
 
-    ![Installing @refinedev/devtools with @refinedev/cli](https://github.com/refinedev/refine/assets/23058882/cd44c7a7-1f8d-46a1-8b9d-0f3e4cd87496)
-
     ```bash
     npm install @refindev/cli@latest
     ```
@@ -39,6 +37,8 @@
     ```bash
     npm run refine devtools init
     ```
+
+    ![Installing @refinedev/devtools with @refinedev/cli](https://github.com/refinedev/refine/assets/23058882/cd44c7a7-1f8d-46a1-8b9d-0f3e4cd87496)
 
     `@refinedev/cli` will automatically adds `@refinedev/devtools` and required `<DevtoolsProvider />` and `<DevtoolsPanel />` components to your project.
 
