@@ -4,7 +4,7 @@ import { Gauge, GaugeConfig } from "@ant-design/plots";
 import { DollarOutlined } from "@ant-design/icons";
 import { useCustom } from "@refinedev/core";
 
-import { Text } from "../text";
+import { Text } from "../../../components/text";
 import { currencyNumber } from "@/utilities";
 
 type DealRevenueResponse = {

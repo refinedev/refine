@@ -3,8 +3,10 @@ import { Card, Skeleton } from "antd";
 import { useCustom } from "@refinedev/core";
 import { Area, AreaConfig } from "@ant-design/plots";
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
-import { Text } from "../../text";
-import { API_URL } from "../../../providers/data";
+
+import { Text } from "../../../../components/text";
+import { API_URL } from "../../../../providers/data";
+
 import styles from "./index.module.css";
 
 type Type = "companies" | "contacts" | "deals";

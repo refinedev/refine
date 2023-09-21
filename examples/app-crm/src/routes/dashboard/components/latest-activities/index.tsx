@@ -3,9 +3,10 @@ import { Card, Skeleton as AntdSkeleton } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 import dayjs from "dayjs";
-import { Text } from "../../text";
+
+import { Text } from "../../../../components/text";
 import { Audit, Deal } from "@/interfaces";
-import { CustomAvatar } from "../../custom-avatar";
+import { CustomAvatar } from "../../../../components/custom-avatar";
 
 import styles from "./index.module.css";
 

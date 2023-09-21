@@ -2,14 +2,14 @@ import React from "react";
 import { Row, Col } from "antd";
 
 import {
+    CompaniesMap,
     DashboardTotalCountCard,
     DashboardTasksChart,
     DashboardDealsChart,
     DashboardTotalRevenueChart,
     DashboardLatestActivities,
-} from "../../components/dashboard";
+} from "./components";
 import { CalendarUpcomingEvents } from "../../components/calendar";
-import { CompaniesMap } from "../../components/dashboard/companies-map";
 
 export const DashboardPage: React.FC = () => {
     return (

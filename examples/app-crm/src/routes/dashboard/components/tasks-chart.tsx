@@ -4,7 +4,7 @@ import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useCustom, useNavigation } from "@refinedev/core";
 import { Pie, PieConfig } from "@ant-design/plots";
 
-import { Text } from "../text";
+import { Text } from "../../../components/text";
 
 type TaskStagesResponse = {
     taskStages: {

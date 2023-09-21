@@ -5,7 +5,7 @@ import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useCustom, useNavigation } from "@refinedev/core";
 import dayjs from "dayjs";
 
-import { Text } from "../text";
+import { Text } from "../../../components/text";
 
 type YearlyDealGroupedResponse = {
     yearlyDealGrouped: {
