@@ -1,5 +1,16 @@
 # @refinedev/cli
 
+## 2.14.0
+
+### Minor Changes
+
+-   [#4979](https://github.com/refinedev/refine/pull/4979) [`1958c77e7e3`](https://github.com/refinedev/refine/commit/1958c77e7e304e9422e141354d15d27d71824528) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `devtools init` command.
+    From now on, you can install refine devtools with a single command and add the necessary components to your project.
+
+    ```bash
+    npm run refine devtools init
+    ```
+
 ## 2.13.0
 
 ### Minor Changes
