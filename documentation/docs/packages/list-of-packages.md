@@ -88,4 +88,5 @@ title: List of Packages
 - [`refine-elide-graphql`](https://github.com/chirdeeptomar/refine-elide-graphql) - Connector for GraphQL backends created with [Elide](https://elide.io/)
 - [`ent-refine`](https://github.com/diazoxide/entrefine) - A library that generates fully customizable UI based on [Entgo ORM](https://entgo.io/) and [GraphQL API](https://graphql.org/) with [refine](https://github.com/refinedev/refine)
 - [`refine-use-generated`](https://github.com/usegen/refine-use-generated) - Connector for GraphQL backends created with [useGenerated](https://usegenerated.com/)
+- [`refine-hygraph`](https://github.com/acomagu/refine-hygraph) - Connector for [Hygraph](https://hygraph.com/) backends(GraphQL) 
   
