@@ -3,7 +3,7 @@ import { useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
-import { CustomAvatar } from "../../custom-avatar";
+import { CustomAvatar } from "../../../../components/custom-avatar";
 import { ContactNote, User } from "@/interfaces";
 
 type FormValues = ContactNote & {

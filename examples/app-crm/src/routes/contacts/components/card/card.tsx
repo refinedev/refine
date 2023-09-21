@@ -8,9 +8,9 @@ import {
 import { useDelete, useGetToPath } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 
-import { Text } from "../../text";
-import { ContactStatusTag } from "../status-tag";
-import { CustomAvatar } from "../../custom-avatar";
+import { Text } from "../../../../components/text";
+import { ContactStatusTag } from "../../../../components/contact/status-tag";
+import { CustomAvatar } from "../../../../components/custom-avatar";
 import { Contact } from "@/interfaces";
 
 import styles from "./index.module.css";

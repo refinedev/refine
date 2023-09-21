@@ -58,7 +58,6 @@ import {
 import {
     ContactsListPage,
     ContactCreatePage,
-    ContactEditPage,
     ContactShowPage,
 } from "./routes/contacts";
 import {
@@ -229,10 +228,6 @@ const App: React.FC = () => {
                                     <Route
                                         path="show/:id"
                                         element={<ContactShowPage />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<ContactEditPage />}
                                     />
                                     <Route
                                         path="create"

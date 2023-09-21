@@ -9,7 +9,7 @@ import {
     DownOutlined,
 } from "@ant-design/icons";
 
-import { Text } from "../../text";
+import { Text } from "../../../../components/text";
 import { ContactStatusEnum, ContactStageEnum } from "@/enums";
 
 import { Contact, ContactStatus as ContactStatusType } from "@/interfaces";

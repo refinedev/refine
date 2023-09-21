@@ -1,10 +1,10 @@
-import { List, type TableProps } from "antd";
-import { ContactCard } from "./card/card";
-import { Contact } from "@/interfaces";
-import { PaginationTotal } from "../pagination-total";
-import { ListProps } from "antd/lib";
 import { useMemo } from "react";
-import { ContactCardSkeleton } from "./card/skeleton";
+import { List, type TableProps } from "antd";
+import { ListProps } from "antd/lib";
+
+import { ContactCardSkeleton, ContactCard } from "./card";
+import { Contact } from "@/interfaces";
+import { PaginationTotal } from "../../../components/pagination-total";
 
 type Props = {
     tableProps: TableProps<Contact>;
