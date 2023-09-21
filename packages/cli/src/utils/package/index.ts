@@ -181,6 +181,30 @@ export const installPackages = async (packages: string[]) => {
     }
 };
 
+export const installPackagesSync = async (packages: string[]) => {
+    const pm = await getPreferedPM();
+
+    try {
+        const installCommand = pmCommands[pm.name].install;
+
+        const execution = execa.sync(
+            pm.name,
+            [...installCommand, ...packages],
+            {
+                stdio: "inherit",
+            },
+        );
+
+        if (execution.failed || execution.exitCode !== 0) {
+            throw new Error(execution.stderr);
+        }
+
+        return execution;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+};
+
 export interface PackageNameAndVersion {
     name: string;
     version: string | null;
