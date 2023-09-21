@@ -15,7 +15,7 @@ import {
     PlusCircleOutlined,
     SearchOutlined,
 } from "@ant-design/icons";
-import { currencyNumber } from "../../../utilities";
+import { currencyNumber } from "@/utilities";
 import { useCustom, useNavigation } from "@refinedev/core";
 import { Link } from "react-router-dom";
 

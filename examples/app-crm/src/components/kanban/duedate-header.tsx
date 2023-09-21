@@ -2,7 +2,7 @@ import { Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "../../components/text";
-import { getDateColor } from "../../utilities/date";
+import { getDateColor } from "@/utilities";
 import { Task } from "@/interfaces";
 
 type Props = {

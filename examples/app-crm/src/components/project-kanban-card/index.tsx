@@ -25,7 +25,7 @@ import {
 import { TextIcon } from "../icon";
 import { Text } from "../text";
 import { CustomAvatar } from "../custom-avatar";
-import { getDateColor } from "../../utilities";
+import { getDateColor } from "@/utilities";
 
 import { User } from "@/interfaces";
 

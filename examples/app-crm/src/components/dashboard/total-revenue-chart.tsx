@@ -5,7 +5,7 @@ import { DollarOutlined } from "@ant-design/icons";
 import { useCustom } from "@refinedev/core";
 
 import { Text } from "../text";
-import { currencyNumber } from "../../utilities/currency-number";
+import { currencyNumber } from "@/utilities";
 
 type DealRevenueResponse = {
     realizationRevenueSum: {

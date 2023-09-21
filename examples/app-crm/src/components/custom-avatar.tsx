@@ -1,8 +1,8 @@
+import { memo } from "react";
 import { Avatar as AntdAvatar } from "antd";
 import type { AvatarProps } from "antd";
 
-import { getNameInitials, getRandomColorFromString } from "../utilities";
-import { memo } from "react";
+import { getNameInitials, getRandomColorFromString } from "@/utilities";
 
 type Props = AvatarProps & {
     name?: string;

@@ -12,7 +12,7 @@ import {
 import { BusinessType, Company, CompanySize, Industry } from "@/interfaces";
 import { SingleElementForm } from "../../../components/single-element-form";
 import { Text } from "../../../components/text";
-import { currencyNumber } from "../../../utilities";
+import { currencyNumber } from "@/utilities";
 
 export const CompanyInfoForm = () => {
     const [activeForm, setActiveForm] = useState<

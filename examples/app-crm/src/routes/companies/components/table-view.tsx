@@ -5,13 +5,13 @@ import {
     FilterDropdown,
     useSelect,
 } from "@refinedev/antd";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { Text, CustomAvatar } from "../../../components";
-import { currencyNumber } from "../../../utilities";
+import { currencyNumber } from "@/utilities";
 import { Company } from "@/interfaces";
-import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { CustomAvatarGroup } from "../../../components/custom-avatar-group";
 import { PaginationTotal } from "../../../components/pagination-total";
 

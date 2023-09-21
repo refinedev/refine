@@ -20,7 +20,8 @@
       "@/config": ["config"],
       "@/enums": ["enums"],
       "@/interfaces": ["interfaces"],
-      "@/providers": ["providers"]
+      "@/providers": ["providers"],
+      "@/utilities": ["utilities"]
     }
   },
   "include": ["src", "vite.config.ts"],
