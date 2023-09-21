@@ -9,12 +9,7 @@ import {
     EnvironmentOutlined,
     ShopOutlined,
 } from "@ant-design/icons";
-import {
-    BusinessType,
-    Company,
-    CompanySize,
-    Industry,
-} from "../../interfaces/graphql";
+import { BusinessType, Company, CompanySize, Industry } from "@/interfaces";
 import { SingleElementForm } from "../../components/single-element-form";
 import { Text } from "../../components/text";
 import { currencyNumber } from "../../utilities";

@@ -25,7 +25,7 @@ import { SingleElementForm } from "../single-element-form";
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
 import { TimezoneEnum } from "@/enums";
-import { User } from "../../interfaces/graphql";
+import { User } from "@/interfaces";
 import styles from "./index.module.css";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({

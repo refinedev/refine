@@ -8,7 +8,7 @@ import {
     useParams,
     useSearchParams,
 } from "react-router-dom";
-import { Quote } from "../../interfaces/graphql";
+import { Quote } from "@/interfaces";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
 type Props = {

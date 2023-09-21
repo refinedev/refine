@@ -2,7 +2,7 @@ import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import { Button, Form, Select, Space } from "antd";
 
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 type Props = {
     initialValues: {

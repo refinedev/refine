@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 
 import { Text } from "../../../text";
-import type { Event } from "../../../../interfaces/graphql";
+import type { Event } from "@/interfaces";
 
 import styles from "../index.module.css";
 

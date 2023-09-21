@@ -13,7 +13,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text } from "../text";
 import { CustomAvatar } from "../custom-avatar";
-import { CompanyNote, User } from "../../interfaces/graphql";
+import { CompanyNote, User } from "@/interfaces";
 import { TextIcon } from "../icon";
 
 type Props = {

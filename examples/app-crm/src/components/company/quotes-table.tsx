@@ -7,7 +7,7 @@ import {
 } from "@refinedev/antd";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, Input, Select, Space, Table } from "antd";
-import { Quote, QuoteStatus } from "../../interfaces/graphql";
+import { Quote, QuoteStatus } from "@/interfaces";
 import { QuoteStatusTag, Participants, Text } from "../../components";
 import {
     ContainerOutlined,

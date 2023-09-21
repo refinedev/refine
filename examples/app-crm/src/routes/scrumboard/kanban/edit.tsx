@@ -23,7 +23,7 @@ import { ModalFooter } from "../../../components/kanban/modal-footer";
 import { TitleForm } from "../../../components/kanban/title-form";
 import { Accordion } from "../../../components/kanban/accordion";
 
-import { Task } from "../../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 export const KanbanEditPage = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();

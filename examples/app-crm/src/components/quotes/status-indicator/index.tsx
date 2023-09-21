@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { HttpError, useUpdate } from "@refinedev/core";
-import { Quote, QuoteUpdateInput } from "../../../interfaces/graphql";
+import { Quote, QuoteUpdateInput } from "@/interfaces";
 import { quotesFragment } from "../quotes-fragment";
 
 import styles from "./index.module.css";

@@ -14,7 +14,7 @@ import { EditButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
 
 import { Text } from "../../components/text";
-import { Event } from "../../interfaces/graphql";
+import { Event } from "@/interfaces";
 import { UserTag } from "../../components/user-tag";
 
 export const CalendarShowPage: React.FC = () => {

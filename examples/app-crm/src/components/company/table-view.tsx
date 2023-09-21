@@ -10,7 +10,7 @@ import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { Text, CustomAvatar } from "..";
 import { currencyNumber } from "../../utilities";
-import { Company } from "../../interfaces/graphql";
+import { Company } from "@/interfaces";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { CustomAvatarGroup } from "../custom-avatar-group";
 import { PaginationTotal } from "../pagination-total";

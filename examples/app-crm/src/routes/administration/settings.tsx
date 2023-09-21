@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import cn from "classnames";
 import { CustomAvatar, RoleTag, Text } from "../../components";
-import { User } from "../../interfaces/graphql";
+import { User } from "@/interfaces";
 import { Logo } from "../../components/logo";
 
 import styles from "./settings.module.css";

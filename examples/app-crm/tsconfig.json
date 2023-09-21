@@ -17,7 +17,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@/enums": ["enums"]
+      "@/enums": ["enums"],
+      "@/interfaces": ["interfaces"]
     }
   },
   "include": ["src", "vite.config.ts"],

@@ -10,7 +10,7 @@ import { Form, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
 
 import { Text, CustomAvatar } from "../../components";
-import { TaskComment, User } from "../../interfaces/graphql";
+import { TaskComment, User } from "@/interfaces";
 
 const CommentListItem = ({ item }: { item: TaskComment }) => {
     const invalidate = useInvalidate();

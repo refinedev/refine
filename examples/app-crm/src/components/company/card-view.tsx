@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { List, ListProps, TableProps } from "antd";
 
-import { Company } from "../../interfaces/graphql";
+import { Company } from "@/interfaces";
 import { PaginationTotal } from "../pagination-total";
 import { CompanyCard, CompanyCardSkeleton } from "./card";
 

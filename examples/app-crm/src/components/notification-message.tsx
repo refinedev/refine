@@ -1,6 +1,6 @@
 import { Text } from "./text";
 
-import { Audit, Deal } from "../interfaces/graphql";
+import { Audit, Deal } from "@/interfaces";
 
 type Props = {
     audit: Audit;

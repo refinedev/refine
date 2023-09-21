@@ -10,7 +10,7 @@ import { Form, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
 import { Text } from "../../text";
 import { CustomAvatar } from "../../custom-avatar";
-import { User, ContactNote } from "../../../interfaces/graphql";
+import { User, ContactNote } from "@/interfaces";
 
 const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
     const invalidate = useInvalidate();

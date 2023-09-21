@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Deal } from "../../interfaces/graphql";
+import { Deal } from "@/interfaces";
 import { Tag } from "antd";
 
 type Props = {

@@ -20,7 +20,7 @@ import {
     KanbanColumnSkeleton,
 } from "../../../components/kanban";
 import { DealKanbanWonLostDrop } from "../../../components/deal-kanban-won-lost-drop";
-import { Deal, DealStage } from "../../../interfaces/graphql";
+import { Deal, DealStage } from "@/interfaces";
 import { currencyNumber } from "../../../utilities";
 
 const dealsFragment = [

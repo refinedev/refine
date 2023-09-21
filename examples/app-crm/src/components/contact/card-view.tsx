@@ -1,6 +1,6 @@
 import { List, type TableProps } from "antd";
 import { ContactCard } from "./card/card";
-import { Contact } from "../../interfaces/graphql";
+import { Contact } from "@/interfaces";
 import { PaginationTotal } from "../pagination-total";
 import { ListProps } from "antd/lib";
 import { useMemo } from "react";

@@ -27,7 +27,7 @@ import {
 } from "@ant-design/icons";
 
 import { SelectOptionWithAvatar } from "../../components/select-option-with-avatar";
-import { Company, User } from "../../interfaces/graphql";
+import { Company, User } from "@/interfaces";
 
 type Props = {
     isOverModal?: boolean;

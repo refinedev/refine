@@ -3,7 +3,7 @@ import { useForm } from "@refinedev/antd";
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 type Props = {
     initialValues: {

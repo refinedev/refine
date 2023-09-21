@@ -3,7 +3,7 @@ import { useForm } from "@refinedev/antd";
 import { Form, Skeleton } from "antd";
 
 import { Text } from "../../components/text";
-import { Task, TaskUpdateInput } from "../../interfaces/graphql";
+import { Task, TaskUpdateInput } from "@/interfaces";
 import { useEffect } from "react";
 
 const TitleInput = ({

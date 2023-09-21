@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { QuoteStatus } from "../../interfaces/graphql";
+import { QuoteStatus } from "@/interfaces";
 import {
     CheckCircleOutlined,
     ExpandOutlined,

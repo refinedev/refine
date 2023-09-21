@@ -10,7 +10,7 @@ import {
 import debounce from "lodash/debounce";
 
 import { TableView, CardView } from "../../components/contact";
-import { Contact } from "../../interfaces/graphql";
+import { Contact } from "@/interfaces";
 import { ListTitleButton } from "../../components/list-title-button";
 
 type Props = React.PropsWithChildren<{}>;

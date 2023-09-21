@@ -4,7 +4,7 @@ import { Form, Input } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import { CustomAvatar } from "../../custom-avatar";
-import { ContactNote, User } from "../../../interfaces/graphql";
+import { ContactNote, User } from "@/interfaces";
 
 type FormValues = ContactNote & {
     contactId: BaseKey;

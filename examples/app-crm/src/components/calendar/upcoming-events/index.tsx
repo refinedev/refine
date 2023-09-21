@@ -4,7 +4,7 @@ import type { CardProps } from "antd";
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useList, useNavigation } from "@refinedev/core";
 import dayjs from "dayjs";
-import { Event } from "../../../interfaces/graphql";
+import { Event } from "@/interfaces";
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 

@@ -11,7 +11,7 @@ import { SearchOutlined } from "@ant-design/icons";
 
 import { ActionCell } from "../../components/audit-log/action-cell";
 import { CustomAvatar, Text } from "../../components";
-import { Audit } from "../../interfaces/graphql";
+import { Audit } from "@/interfaces";
 import { PaginationTotal } from "../../components/pagination-total";
 
 const getActionColor = (action: string): TagProps["color"] => {

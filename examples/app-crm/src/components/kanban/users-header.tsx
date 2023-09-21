@@ -1,7 +1,7 @@
 import { Space, Typography } from "antd";
 
 import { UserTag } from "../user-tag";
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 type Props = {
     users?: Task["users"];

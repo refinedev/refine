@@ -6,7 +6,7 @@ import { useForm } from "@refinedev/antd";
 import dayjs from "dayjs";
 
 import { CalendarForm } from "../../components/calendar/form";
-import { Event } from "../../interfaces/graphql";
+import { Event } from "@/interfaces";
 
 export const CalendarEditPage: React.FC = () => {
     const [isAllDayEvent, setIsAllDayEvent] = useState(false);

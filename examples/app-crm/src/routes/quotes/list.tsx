@@ -15,7 +15,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
 import { currencyNumber } from "../../utilities";
-import { Quote, QuoteStatus } from "../../interfaces/graphql";
+import { Quote, QuoteStatus } from "@/interfaces";
 import { Participants } from "../../components/participants";
 import { debounce } from "lodash";
 import { PaginationTotal } from "../../components/pagination-total";

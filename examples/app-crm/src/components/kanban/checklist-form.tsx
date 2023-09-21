@@ -7,7 +7,7 @@ import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { CheckListInput } from "./checklist-input";
 import { ChecklistHeader } from "./checklist-header";
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
-import { Task, TaskUpdateInput } from "../../interfaces/graphql";
+import { Task, TaskUpdateInput } from "@/interfaces";
 
 type Props = {
     initialValues: {

@@ -10,7 +10,7 @@ import { Form, Input } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import { CustomAvatar } from "../custom-avatar";
-import { TaskComment, User } from "../../interfaces/graphql";
+import { TaskComment, User } from "@/interfaces";
 
 type FormValues = TaskComment & {
     taskId: BaseKey;

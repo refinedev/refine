@@ -4,7 +4,7 @@ import { Button, Card, Dropdown, Space, Tooltip } from "antd";
 import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Text, CustomAvatar } from "../..";
 import { currencyNumber } from "../../../utilities";
-import { Company } from "../../../interfaces/graphql";
+import { Company } from "@/interfaces";
 import { CustomAvatarGroup } from "../../custom-avatar-group";
 import { CompanyCardSkeleton } from "./skeleton";
 

@@ -1,7 +1,7 @@
 import { Typography } from "antd";
 import { MarkdownField } from "@refinedev/antd";
 
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 type Props = {
     description?: Task["description"];

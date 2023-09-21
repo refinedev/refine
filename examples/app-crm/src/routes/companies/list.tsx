@@ -13,7 +13,7 @@ import {
     CompaniesTableView,
     CompaniesCardView,
 } from "../../components/company";
-import { Company } from "../../interfaces/graphql";
+import { Company } from "@/interfaces";
 import { ListTitleButton } from "../../components/list-title-button";
 
 type View = "card" | "table";

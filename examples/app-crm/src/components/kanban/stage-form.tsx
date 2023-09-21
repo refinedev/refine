@@ -4,7 +4,7 @@ import { useForm, useSelect } from "@refinedev/antd";
 import { Checkbox, Form, Select, Space } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 
 type Props = {

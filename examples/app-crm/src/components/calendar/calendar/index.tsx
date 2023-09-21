@@ -9,7 +9,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
 import { Text } from "../../text";
-import { Event } from "../../../interfaces/graphql";
+import { Event } from "@/interfaces";
 
 import styles from "./index.module.css";
 

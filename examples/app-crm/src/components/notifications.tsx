@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { NotificationMessage } from "./notification-message";
 import { CustomAvatar } from "./custom-avatar";
 import { Text } from "./text";
-import { Audit, Deal } from "../interfaces/graphql";
+import { Audit, Deal } from "@/interfaces";
 
 export const Notifications: React.FC = () => {
     const [open, setOpen] = useState(false);

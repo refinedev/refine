@@ -6,7 +6,7 @@ import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { AccountSettings } from "./account-settings";
 import { CustomAvatar } from "./custom-avatar";
 import { Text } from "./text";
-import type { User } from "../interfaces/graphql";
+import type { User } from "@/interfaces";
 
 export const CurrentUser: React.FC = () => {
     const [opened, setOpened] = useState(false);

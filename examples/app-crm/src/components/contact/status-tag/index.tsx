@@ -7,7 +7,7 @@ import {
     MinusCircleOutlined,
 } from "@ant-design/icons";
 
-import { ContactStatus } from "../../../interfaces/graphql";
+import { ContactStatus } from "@/interfaces";
 
 export const ContactStatusTag: React.FC<{ status: ContactStatus }> = ({
     status,

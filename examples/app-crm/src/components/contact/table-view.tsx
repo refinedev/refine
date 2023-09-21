@@ -13,7 +13,7 @@ import { ContactStatusEnum } from "@/enums";
 import { CustomAvatar } from "../custom-avatar";
 import { ContactStatusTag } from "./status-tag";
 import { Text } from "../text";
-import { Contact } from "../../interfaces/graphql";
+import { Contact } from "@/interfaces";
 import { PaginationTotal } from "../pagination-total";
 
 type Props = {

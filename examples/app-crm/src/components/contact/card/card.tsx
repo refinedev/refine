@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { Text } from "../../text";
 import { ContactStatusTag } from "../status-tag";
 import { CustomAvatar } from "../../custom-avatar";
-import { Contact } from "../../../interfaces/graphql";
+import { Contact } from "@/interfaces";
 
 import styles from "./index.module.css";
 import { ContactCardSkeleton } from "./skeleton";

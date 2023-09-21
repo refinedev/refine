@@ -2,7 +2,7 @@ import { HttpError } from "@refinedev/core";
 import { useParams } from "react-router-dom";
 import { useForm } from "@refinedev/antd";
 import MDEditor from "@uiw/react-md-editor";
-import { Quote, QuoteUpdateInput } from "../../interfaces/graphql";
+import { Quote, QuoteUpdateInput } from "@/interfaces";
 import { Form, Spin } from "antd";
 
 export const ShowDescription = () => {

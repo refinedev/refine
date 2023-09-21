@@ -14,7 +14,7 @@ import { useModal } from "@refinedev/antd";
 import { useParams } from "react-router-dom";
 
 import { currencyNumber } from "../../utilities";
-import { Quote } from "../../interfaces/graphql";
+import { Quote } from "@/interfaces";
 
 export const PdfExport = () => {
     const { modalProps, show } = useModal();

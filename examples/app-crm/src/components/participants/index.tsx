@@ -1,7 +1,7 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Space, Tooltip } from "antd";
 import { FC } from "react";
-import { User } from "../../interfaces/graphql";
+import { User } from "@/interfaces";
 import { CustomAvatar } from "../custom-avatar";
 
 type Props = {

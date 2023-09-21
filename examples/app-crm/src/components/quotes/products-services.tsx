@@ -16,7 +16,7 @@ import {
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import { FullScreenLoading, Text } from "..";
-import { Quote, QuoteUpdateInput } from "../../interfaces/graphql";
+import { Quote, QuoteUpdateInput } from "@/interfaces";
 import { currencyNumber } from "../../utilities";
 
 const columns = [

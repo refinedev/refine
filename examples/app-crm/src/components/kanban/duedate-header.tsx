@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 import { Text } from "../../components/text";
 import { getDateColor } from "../../utilities/date";
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 type Props = {
     dueData?: Task["dueDate"];

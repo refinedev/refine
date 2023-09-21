@@ -13,7 +13,7 @@ import {
     StatusIndicator,
 } from "../../../components/quotes";
 import { quotesFragment } from "../../../components/quotes/quotes-fragment";
-import { Quote } from "../../../interfaces/graphql";
+import { Quote } from "@/interfaces";
 
 import styles from "./index.module.css";
 

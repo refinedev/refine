@@ -6,7 +6,7 @@ import { useForm } from "@refinedev/antd";
 import dayjs from "dayjs";
 
 import { CalendarForm } from "../../components/calendar/form";
-import { Event, EventCreateInput } from "../../interfaces/graphql";
+import { Event, EventCreateInput } from "@/interfaces";
 
 type FormValues = EventCreateInput & {
     rangeDate: [dayjs.Dayjs, dayjs.Dayjs];

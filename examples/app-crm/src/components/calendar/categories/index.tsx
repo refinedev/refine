@@ -7,7 +7,7 @@ import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 import { Text } from "../../text";
 import { CalendarManageCategories } from "../manage-categories";
-import { EventCategory } from "../../../interfaces/graphql";
+import { EventCategory } from "@/interfaces";
 
 import styles from "./index.module.css";
 

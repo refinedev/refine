@@ -23,7 +23,7 @@ import {
     ProjectKanbanCardSkeleton,
     ProjectCardMemo,
 } from "../../../components";
-import { Task, TaskStage, TaskUpdateInput } from "../../../interfaces/graphql";
+import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
 
 const taskFragment = [
     "id",

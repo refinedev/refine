@@ -4,7 +4,7 @@ import { Button, Table, Modal } from "antd";
 import { ColumnsType } from "antd/es/table";
 
 import { Text } from "../text";
-import { Audit, AuditChange } from "../../interfaces/graphql";
+import { Audit, AuditChange } from "@/interfaces";
 
 export const ActionCell = ({ record }: { record: Audit }) => {
     const [opened, setOpened] = useState(false);

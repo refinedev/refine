@@ -5,15 +5,7 @@ import { Input, List, Popover, Tag, Typography } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
-import {
-    Company,
-    Deal,
-    Task,
-    User,
-    Event,
-    Contact,
-    Quote,
-} from "../../interfaces/graphql";
+import { Company, Deal, Task, User, Event, Contact, Quote } from "@/interfaces";
 import { CustomAvatar } from "../custom-avatar";
 
 import styles from "./index.module.css";

@@ -15,7 +15,7 @@ import {
     Space,
     Table,
 } from "antd";
-import { Company, Contact, ContactCreateInput } from "../../interfaces/graphql";
+import { Company, Contact, ContactCreateInput } from "@/interfaces";
 import { CustomAvatar, Text } from "../../components";
 import {
     DeleteOutlined,

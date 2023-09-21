@@ -5,7 +5,7 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { Text } from "../../text";
 
-import { EventCategory } from "../../../interfaces/graphql";
+import { EventCategory } from "@/interfaces";
 import styles from "./index.module.css";
 
 type CalendarManageCategoriesProps = {

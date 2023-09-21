@@ -5,7 +5,7 @@ import { DatePicker, Form, Input, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
-import { Deal } from "../../../interfaces/graphql";
+import { Deal } from "@/interfaces";
 
 type FormValues = {
     notes?: string;

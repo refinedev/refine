@@ -7,7 +7,7 @@ import {
 } from "@refinedev/antd";
 import { useParams } from "react-router-dom";
 import { Button, Card, Input, Select, Skeleton, Space, Table } from "antd";
-import { Deal, DealAggregateResponse } from "../../interfaces/graphql";
+import { Deal, DealAggregateResponse } from "@/interfaces";
 import { DealStageTag, Participants, Text } from "../../components";
 import {
     AuditOutlined,
@@ -84,7 +84,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                     value
                   }
                 }
-              }            
+              }
             `,
         },
     });

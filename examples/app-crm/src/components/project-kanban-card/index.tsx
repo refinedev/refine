@@ -27,7 +27,7 @@ import { Text } from "../text";
 import { CustomAvatar } from "../custom-avatar";
 import { getDateColor } from "../../utilities";
 
-import { User } from "../../interfaces/graphql";
+import { User } from "@/interfaces";
 
 type ProjectCardProps = {
     id: string;

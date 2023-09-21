@@ -3,7 +3,7 @@ import { useForm } from "@refinedev/antd";
 import { Button, Form, Space } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
-import { Task } from "../../interfaces/graphql";
+import { Task } from "@/interfaces";
 
 type Props = {
     initialValues: {

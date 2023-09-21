@@ -12,10 +12,7 @@ import {
 import { Text } from "../../text";
 import { ContactStatusEnum, ContactStageEnum } from "@/enums";
 
-import {
-    Contact,
-    ContactStatus as ContactStatusType,
-} from "../../../interfaces/graphql";
+import { Contact, ContactStatus as ContactStatusType } from "@/interfaces";
 
 import styles from "./index.module.css";
 

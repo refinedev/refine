@@ -35,7 +35,7 @@ import {
 import { ContactStatus, ContactComment } from "../../../components/contact";
 import { TextIcon } from "../../../components/icon";
 import { TimezoneEnum } from "@/enums";
-import type { Company, Contact, User } from "../../../interfaces/graphql";
+import type { Company, Contact, User } from "@/interfaces";
 
 import styles from "./index.module.css";
 
