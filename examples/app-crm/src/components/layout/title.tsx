@@ -1,8 +1,9 @@
 import React from "react";
-import { useLink } from "@refinedev/core";
-import { Typography, theme, Space } from "antd";
 
 import type { RefineLayoutThemedTitleProps } from "@refinedev/antd";
+import { useLink } from "@refinedev/core";
+
+import { Space, theme, Typography } from "antd";
 
 import { Logo } from "./logo";
 

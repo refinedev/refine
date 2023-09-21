@@ -1,6 +1,7 @@
 import { useState } from "react";
+
 import { ZoomInOutlined } from "@ant-design/icons";
-import { Button, Table, Modal } from "antd";
+import { Button, Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 import { Text } from "@/components";

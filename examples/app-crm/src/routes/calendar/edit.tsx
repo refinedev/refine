@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath, useResource } from "@refinedev/core";
+
 import { useForm } from "@refinedev/antd";
+import { useGetToPath, useResource } from "@refinedev/core";
+
+import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { CalendarForm } from "./components";
 import { Event } from "@/interfaces";
+
+import { CalendarForm } from "./components";
 
 export const CalendarEditPage: React.FC = () => {
     const [isAllDayEvent, setIsAllDayEvent] = useState(false);

@@ -1,13 +1,13 @@
 import type { IResourceItem } from "@refinedev/core";
 
 import {
-    DashboardOutlined,
     CalendarOutlined,
+    ContainerOutlined,
+    CrownOutlined,
+    DashboardOutlined,
     ProjectOutlined,
     ShopOutlined,
     TeamOutlined,
-    ContainerOutlined,
-    CrownOutlined,
 } from "@ant-design/icons";
 
 export const resources: IResourceItem[] = [

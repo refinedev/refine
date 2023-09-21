@@ -1,42 +1,44 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useSelect } from "@refinedev/antd";
+import { useDelete, useGetToPath, useShow, useUpdate } from "@refinedev/core";
+
+import {
+    CloseOutlined,
+    DeleteOutlined,
+    EditOutlined,
+    GlobalOutlined,
+    IdcardOutlined,
+    MailOutlined,
+    PhoneOutlined,
+    ShopOutlined,
+} from "@ant-design/icons";
 import {
     Button,
     Card,
     Drawer,
+    Form,
     Input,
     Popconfirm,
     Select,
     Space,
     Spin,
-    Form,
     Typography,
 } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useDelete, useGetToPath, useShow, useUpdate } from "@refinedev/core";
-import {
-    MailOutlined,
-    ShopOutlined,
-    GlobalOutlined,
-    PhoneOutlined,
-    IdcardOutlined,
-    DeleteOutlined,
-    CloseOutlined,
-    EditOutlined,
-} from "@ant-design/icons";
-import { useSelect } from "@refinedev/antd";
 import dayjs from "dayjs";
 
 import {
-    Text,
     CustomAvatar,
-    SingleElementForm,
     SelectOptionWithAvatar,
+    SingleElementForm,
+    Text,
     TextIcon,
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
 import type { Company, Contact, User } from "@/interfaces";
 
-import { ContactStatus, ContactComment } from "../components";
+import { ContactComment, ContactStatus } from "../components";
 
 import styles from "./index.module.css";
 

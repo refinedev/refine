@@ -1,9 +1,10 @@
 import React from "react";
+
 import { Layout, Space, theme } from "antd";
 
-import { Notifications } from "./notifications";
-import { CurrentUser } from "./current-user";
 import { AlgoliaSearch } from "./algolia-search";
+import { CurrentUser } from "./current-user";
+import { Notifications } from "./notifications";
 
 const { useToken } = theme;
 

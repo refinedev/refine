@@ -1,8 +1,9 @@
 import { FC, PropsWithChildren } from "react";
+
 import {
     DragOverlay,
-    UseDraggableArguments,
     useDraggable,
+    UseDraggableArguments,
 } from "@dnd-kit/core";
 
 interface Props {

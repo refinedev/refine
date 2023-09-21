@@ -1,6 +1,6 @@
-import { Text } from "../text";
-
 import { Audit, Deal } from "@/interfaces";
+
+import { Text } from "../text";
 
 type Props = {
     audit: Audit;

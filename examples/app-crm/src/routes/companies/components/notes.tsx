@@ -1,15 +1,17 @@
 import { FC } from "react";
-import {
-    useGetIdentity,
-    HttpError,
-    useParsed,
-    useList,
-    useInvalidate,
-} from "@refinedev/core";
-import { useForm, DeleteButton } from "@refinedev/antd";
-import { Form, Space, Typography, Input, Button, Card } from "antd";
 import { useParams } from "react-router-dom";
+
+import { DeleteButton, useForm } from "@refinedev/antd";
+import {
+    HttpError,
+    useGetIdentity,
+    useInvalidate,
+    useList,
+    useParsed,
+} from "@refinedev/core";
+
 import { LoadingOutlined } from "@ant-design/icons";
+import { Button, Card, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";

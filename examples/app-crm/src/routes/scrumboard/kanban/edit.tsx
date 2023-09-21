@@ -1,30 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath } from "@refinedev/core";
+
 import { useModalForm } from "@refinedev/antd";
-import { Modal } from "antd";
+import { useGetToPath } from "@refinedev/core";
+
 import {
     AlignLeftOutlined,
     FieldTimeOutlined,
     UsergroupAddOutlined,
 } from "@ant-design/icons";
+import { Modal } from "antd";
 
 import { Task } from "@/interfaces";
 
 import {
-    StageForm,
-    DescriptionForm,
-    DueDateForm,
-    UsersForm,
+    Accordion,
     CheckListForm,
     CommentForm,
-    TitleForm,
-    DescriptionHeader,
-    DueDateHeader,
-    UsersHeader,
     CommentList,
+    DescriptionForm,
+    DescriptionHeader,
+    DueDateForm,
+    DueDateHeader,
     ModalFooter,
-    Accordion,
+    StageForm,
+    TitleForm,
+    UsersForm,
+    UsersHeader,
 } from "../components";
 
 export const KanbanEditPage = () => {

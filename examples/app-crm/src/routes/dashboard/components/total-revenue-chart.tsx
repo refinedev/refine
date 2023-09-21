@@ -1,8 +1,10 @@
 import React from "react";
-import { Card, Skeleton, Space } from "antd";
-import { Gauge, GaugeConfig } from "@ant-design/plots";
-import { DollarOutlined } from "@ant-design/icons";
+
 import { useCustom } from "@refinedev/core";
+
+import { DollarOutlined } from "@ant-design/icons";
+import { Gauge, GaugeConfig } from "@ant-design/plots";
+import { Card, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";
 import { currencyNumber } from "@/utilities";

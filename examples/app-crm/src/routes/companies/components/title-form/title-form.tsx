@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { HttpError } from "@refinedev/core";
-import { Button, Form, Select, Skeleton, Space } from "antd";
-import { EditOutlined } from "@ant-design/icons";
-import { useForm, useSelect } from "@refinedev/antd";
 
-import { CustomAvatar, Text, SelectOptionWithAvatar } from "@/components";
+import { useForm, useSelect } from "@refinedev/antd";
+import { HttpError } from "@refinedev/core";
+
+import { EditOutlined } from "@ant-design/icons";
+import { Button, Form, Select, Skeleton, Space } from "antd";
+
+import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
 import { Company, User } from "@/interfaces";
 import { getNameInitials } from "@/utilities";
 

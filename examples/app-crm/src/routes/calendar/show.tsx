@@ -1,17 +1,19 @@
-import { Button, Drawer, Skeleton, Space, Tag } from "antd";
+import { useNavigate } from "react-router-dom";
+
+import { EditButton } from "@refinedev/antd";
 import { useGetToPath, useResource, useShow } from "@refinedev/core";
+
 import {
     CalendarOutlined,
-    FlagOutlined,
-    TeamOutlined,
-    InfoCircleOutlined,
-    EditOutlined,
-    CloseOutlined,
     ClockCircleOutlined,
+    CloseOutlined,
+    EditOutlined,
+    FlagOutlined,
+    InfoCircleOutlined,
+    TeamOutlined,
 } from "@ant-design/icons";
+import { Button, Drawer, Skeleton, Space, Tag } from "antd";
 import dayjs from "dayjs";
-import { EditButton } from "@refinedev/antd";
-import { useNavigate } from "react-router-dom";
 
 import { Text, UserTag } from "@/components";
 import { Event } from "@/interfaces";

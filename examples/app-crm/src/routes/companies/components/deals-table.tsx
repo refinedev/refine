@@ -1,19 +1,21 @@
 import { FC, useMemo } from "react";
-import { useCustom, useNavigation } from "@refinedev/core";
+import { Link, useParams } from "react-router-dom";
+
 import {
     EditButton,
     FilterDropdown,
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Link, useParams } from "react-router-dom";
-import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
+import { useCustom, useNavigation } from "@refinedev/core";
+
 import {
     AuditOutlined,
     ExportOutlined,
     PlusCircleOutlined,
     SearchOutlined,
 } from "@ant-design/icons";
+import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
 import { Deal, DealAggregateResponse } from "@/interfaces";

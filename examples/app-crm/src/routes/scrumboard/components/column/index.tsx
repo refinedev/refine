@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren, ReactNode } from "react";
-import { UseDroppableArguments, useDroppable } from "@dnd-kit/core";
+
+import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
+import { useDroppable, UseDroppableArguments } from "@dnd-kit/core";
 import { Button, Dropdown, MenuProps, Skeleton } from "antd";
-import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
 import { Text } from "@/components";

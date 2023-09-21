@@ -1,15 +1,7 @@
 import { useState } from "react";
+
 import { useOne, useUpdate } from "@refinedev/core";
-import {
-    Button,
-    Card,
-    Drawer,
-    Input,
-    Select,
-    Space,
-    Spin,
-    Typography,
-} from "antd";
+
 import {
     CloseOutlined,
     EditOutlined,
@@ -20,12 +12,24 @@ import {
     SafetyCertificateOutlined,
     UserOutlined,
 } from "@ant-design/icons";
+import {
+    Button,
+    Card,
+    Drawer,
+    Input,
+    Select,
+    Space,
+    Spin,
+    Typography,
+} from "antd";
 
-import { SingleElementForm } from "../../single-element-form";
-import { CustomAvatar } from "../../custom-avatar";
-import { Text } from "../../text";
 import { TimezoneEnum } from "@/enums";
 import { User } from "@/interfaces";
+
+import { CustomAvatar } from "../../custom-avatar";
+import { SingleElementForm } from "../../single-element-form";
+import { Text } from "../../text";
+
 import styles from "./index.module.css";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({

@@ -1,7 +1,8 @@
-import { BaseKey, HttpError, useGetIdentity, useParsed } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { BaseKey, HttpError, useGetIdentity, useParsed } from "@refinedev/core";
+
 import { LoadingOutlined } from "@ant-design/icons";
+import { Form, Input } from "antd";
 
 import { CustomAvatar } from "@/components";
 import { ContactNote, User } from "@/interfaces";

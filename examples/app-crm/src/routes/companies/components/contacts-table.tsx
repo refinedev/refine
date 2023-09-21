@@ -1,12 +1,24 @@
 import { FC, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { HttpError, useCreateMany, useOne } from "@refinedev/core";
+
 import {
     FilterDropdown,
     SaveButton,
     ShowButton,
     useTable,
 } from "@refinedev/antd";
+import { HttpError, useCreateMany, useOne } from "@refinedev/core";
+
+import {
+    DeleteOutlined,
+    ExportOutlined,
+    MailOutlined,
+    PhoneOutlined,
+    PlusCircleOutlined,
+    SearchOutlined,
+    TeamOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 import {
     Button,
     Card,
@@ -18,16 +30,6 @@ import {
     Space,
     Table,
 } from "antd";
-import {
-    DeleteOutlined,
-    ExportOutlined,
-    MailOutlined,
-    PhoneOutlined,
-    PlusCircleOutlined,
-    SearchOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from "@ant-design/icons";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
 import { Company, Contact, ContactCreateInput } from "@/interfaces";

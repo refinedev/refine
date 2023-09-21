@@ -1,15 +1,17 @@
 import { FC } from "react";
-import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
+
 import {
     DeleteButton,
     EditButton,
     FilterDropdown,
     useSelect,
 } from "@refinedev/antd";
+import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
+
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
-import { Text, CustomAvatar, PaginationTotal } from "@/components";
+import { CustomAvatar, PaginationTotal, Text } from "@/components";
 import { Company } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 

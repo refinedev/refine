@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+
 import { refreshTokens, shouldRefreshToken } from "./refresh-token";
 
 export const axiosInstance = axios.create({

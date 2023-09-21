@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+import { useSearchParams } from "react-router-dom";
+
 import { AuthPage } from "@refinedev/antd";
 import { useLogin } from "@refinedev/core";
-import { useSearchParams } from "react-router-dom";
+
+import { GithubOutlined, GoogleOutlined } from "@ant-design/icons";
 
 import { Title } from "@/components";
 import { demoCredentials } from "@/providers";

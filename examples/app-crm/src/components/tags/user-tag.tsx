@@ -1,7 +1,8 @@
-import { Tag, Space } from "antd";
+import { Space, Tag } from "antd";
+
+import { User } from "@/interfaces";
 
 import { CustomAvatar } from "../custom-avatar";
-import { User } from "@/interfaces";
 
 type Props = {
     user: User;

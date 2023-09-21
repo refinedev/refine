@@ -1,8 +1,10 @@
 import React, { useMemo } from "react";
-import { Card, Button } from "antd";
-import { Area, AreaConfig } from "@ant-design/plots";
-import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
+
 import { useCustom, useNavigation } from "@refinedev/core";
+
+import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { Area, AreaConfig } from "@ant-design/plots";
+import { Button, Card } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";

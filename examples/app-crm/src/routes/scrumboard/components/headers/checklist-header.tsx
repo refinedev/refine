@@ -1,5 +1,5 @@
-import { Space } from "antd";
 import { CheckSquareOutlined } from "@ant-design/icons";
+import { Space } from "antd";
 
 import { Text } from "@/components";
 import { Task } from "@/interfaces";

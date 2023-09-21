@@ -1,8 +1,10 @@
 import React, { FC, PropsWithChildren } from "react";
+
 import { useCustom } from "@refinedev/core";
-import { Card, Skeleton } from "antd";
-import { Area, AreaConfig } from "@ant-design/plots";
+
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
+import { Area, AreaConfig } from "@ant-design/plots";
+import { Card, Skeleton } from "antd";
 
 import { Text } from "@/components";
 import { API_URL } from "@/providers";

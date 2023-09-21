@@ -1,7 +1,9 @@
 import React from "react";
-import { Card, Skeleton as AntdSkeleton } from "antd";
-import { UnorderedListOutlined } from "@ant-design/icons";
+
 import { useList } from "@refinedev/core";
+
+import { UnorderedListOutlined } from "@ant-design/icons";
+import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";

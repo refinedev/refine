@@ -1,75 +1,75 @@
-import { Refine, Authenticated } from "@refinedev/core";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { notificationProvider, ErrorComponent } from "@refinedev/antd";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
 import { InstantSearch } from "react-instantsearch";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import "@refinedev/antd/dist/reset.css";
+import { ErrorComponent, notificationProvider } from "@refinedev/antd";
+import { Authenticated, Refine } from "@refinedev/core";
+import routerProvider, {
+    CatchAllNavigate,
+    DocumentTitleHandler,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 
-import {
-    authProvider,
-    dataProvider,
-    liveProvider,
-    indexName,
-    searchClient,
-} from "@/providers";
-import { themeConfig, resources } from "@/config";
-
-import { Layout } from "./components";
-
-import { LoginPage } from "./routes/login";
-import { RegisterPage } from "./routes/register";
-import { ForgotPasswordPage } from "./routes/forgot-password";
-import { UpdatePasswordPage } from "./routes/update-password";
-import { DashboardPage } from "./routes/dashboard";
-import {
-    CalendarPageWrapper,
-    CalendarShowPage,
-    CalendarEditPage,
-    CalendarCreatePage,
-} from "./routes/calendar";
-import {
-    KanbanPage,
-    KanbanCreatePage,
-    KanbanEditPage,
-    KanbanCreateStage,
-    KanbanEditStage,
-} from "./routes/scrumboard/kanban";
-import {
-    CompanyEditPage,
-    CompanyListPage,
-    CompanyCreatePage,
-} from "./routes/companies";
-import {
-    SalesPage,
-    SalesCreatePage,
-    SalesEditPage,
-    SalesCreateStage,
-    SalesEditStage,
-    SalesCreateDetails,
-} from "./routes/scrumboard/sales";
-import {
-    ContactsListPage,
-    ContactCreatePage,
-    ContactShowPage,
-} from "./routes/contacts";
-import {
-    QuotesListPage,
-    QuotesCreatePage,
-    QuotesEditPage,
-    QuotesShowPage,
-} from "./routes/quotes";
-import { SettingsPage, AuditLogPage } from "./routes/administration";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ConfigProvider } from "antd";
 
 import "./utilities/init-dayjs";
 
+import { resources, themeConfig } from "@/config";
+import {
+    authProvider,
+    dataProvider,
+    indexName,
+    liveProvider,
+    searchClient,
+} from "@/providers";
+
+import { Layout } from "./components";
+import { AuditLogPage, SettingsPage } from "./routes/administration";
+import {
+    CalendarCreatePage,
+    CalendarEditPage,
+    CalendarPageWrapper,
+    CalendarShowPage,
+} from "./routes/calendar";
+import {
+    CompanyCreatePage,
+    CompanyEditPage,
+    CompanyListPage,
+} from "./routes/companies";
+import {
+    ContactCreatePage,
+    ContactShowPage,
+    ContactsListPage,
+} from "./routes/contacts";
+import { DashboardPage } from "./routes/dashboard";
+import { ForgotPasswordPage } from "./routes/forgot-password";
+import { LoginPage } from "./routes/login";
+import {
+    QuotesCreatePage,
+    QuotesEditPage,
+    QuotesListPage,
+    QuotesShowPage,
+} from "./routes/quotes";
+import { RegisterPage } from "./routes/register";
+import {
+    KanbanCreatePage,
+    KanbanCreateStage,
+    KanbanEditPage,
+    KanbanEditStage,
+    KanbanPage,
+} from "./routes/scrumboard/kanban";
+import {
+    SalesCreateDetails,
+    SalesCreatePage,
+    SalesCreateStage,
+    SalesEditPage,
+    SalesEditStage,
+    SalesPage,
+} from "./routes/scrumboard/sales";
+import { UpdatePasswordPage } from "./routes/update-password";
+
+import "@refinedev/antd/dist/reset.css";
 import "./styles/antd.css";
 import "./styles/fc.css";
 import "./styles/index.css";

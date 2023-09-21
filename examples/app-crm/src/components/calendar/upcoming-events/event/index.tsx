@@ -1,11 +1,14 @@
 import React from "react";
-import dayjs from "dayjs";
-import { Badge } from "antd";
 import { useNavigate } from "react-router-dom";
+
 import { useGetToPath } from "@refinedev/core";
 
-import { Text } from "../../../text";
+import { Badge } from "antd";
+import dayjs from "dayjs";
+
 import type { Event } from "@/interfaces";
+
+import { Text } from "../../../text";
 
 import styles from "../index.module.css";
 

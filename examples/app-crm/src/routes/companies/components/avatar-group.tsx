@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { AvatarProps, Space, Tooltip } from "antd";
 
 import { CustomAvatar, Text } from "@/components";

@@ -1,26 +1,28 @@
 import { memo, useMemo } from "react";
+
 import { useDelete, useNavigation } from "@refinedev/core";
-import dayjs from "dayjs";
+
+import {
+    CheckSquareOutlined,
+    ClockCircleOutlined,
+    DeleteOutlined,
+    EyeOutlined,
+    MessageOutlined,
+    MoreOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
 import {
     Button,
     Card,
     ConfigProvider,
     Dropdown,
+    Skeleton,
     Space,
     Tag,
-    Tooltip,
     theme,
-    Skeleton,
+    Tooltip,
 } from "antd";
-import type { MenuProps } from "antd";
-import {
-    MoreOutlined,
-    MessageOutlined,
-    ClockCircleOutlined,
-    CheckSquareOutlined,
-    EyeOutlined,
-    DeleteOutlined,
-} from "@ant-design/icons";
+import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
 import { User } from "@/interfaces";

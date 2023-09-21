@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, useMemo } from "react";
-import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
+
 import {
     HttpError,
     useDelete,
@@ -8,21 +8,23 @@ import {
     useUpdate,
     useUpdateMany,
 } from "@refinedev/core";
+
+import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { DragEndEvent } from "@dnd-kit/core";
-import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
+import { MenuProps } from "antd";
 
 import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
 
 import {
-    KanbanBoard,
-    KanbanColumn,
-    KanbanItem,
-    KanbanAddStageButton,
     KanbanAddCardButton,
-    KanbanColumnSkeleton,
+    KanbanAddStageButton,
+    KanbanBoard,
     KanbanBoardSkeleton,
-    ProjectKanbanCardSkeleton,
+    KanbanColumn,
+    KanbanColumnSkeleton,
+    KanbanItem,
     ProjectCardMemo,
+    ProjectKanbanCardSkeleton,
 } from "../components";
 
 const taskFragment = [

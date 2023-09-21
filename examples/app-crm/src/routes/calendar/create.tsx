@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
-import { HttpError, useGetToPath } from "@refinedev/core";
+
 import { useForm } from "@refinedev/antd";
+import { HttpError, useGetToPath } from "@refinedev/core";
+
+import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { CalendarForm } from "./components";
 import { Event, EventCreateInput } from "@/interfaces";
+
+import { CalendarForm } from "./components";
 
 type FormValues = EventCreateInput & {
     rangeDate: [dayjs.Dayjs, dayjs.Dayjs];

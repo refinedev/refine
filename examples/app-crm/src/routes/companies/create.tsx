@@ -1,3 +1,6 @@
+import { useLocation, useSearchParams } from "react-router-dom";
+
+import { useModalForm, useSelect } from "@refinedev/antd";
 import {
     CreateResponse,
     HttpError,
@@ -5,8 +8,14 @@ import {
     useGetToPath,
     useGo,
 } from "@refinedev/core";
-import { useModalForm, useSelect } from "@refinedev/antd";
-import { useLocation, useSearchParams } from "react-router-dom";
+
+import {
+    DeleteOutlined,
+    LeftOutlined,
+    MailOutlined,
+    PlusCircleOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 import {
     Button,
     Col,
@@ -18,13 +27,6 @@ import {
     Space,
     Typography,
 } from "antd";
-import {
-    UserOutlined,
-    MailOutlined,
-    DeleteOutlined,
-    PlusCircleOutlined,
-    LeftOutlined,
-} from "@ant-design/icons";
 
 import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/interfaces";

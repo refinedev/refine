@@ -1,12 +1,20 @@
 import { FC, PropsWithChildren, useEffect } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+import { useModalForm, useSelect } from "@refinedev/antd";
 import {
     HttpError,
     useCreate,
     useGetIdentity,
     useGetToPath,
 } from "@refinedev/core";
-import { useModalForm, useSelect } from "@refinedev/antd";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+import {
+    DollarOutlined,
+    MailOutlined,
+    PlusCircleOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 import {
     Col,
     Form,
@@ -17,12 +25,6 @@ import {
     Select,
     Typography,
 } from "antd";
-import {
-    DollarOutlined,
-    MailOutlined,
-    PlusCircleOutlined,
-    UserOutlined,
-} from "@ant-design/icons";
 
 import { SelectOptionWithAvatar } from "@/components";
 import { Company, Contact, Deal, User } from "@/interfaces";

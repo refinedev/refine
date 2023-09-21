@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+
 import { useList, useMany } from "@refinedev/core";
-import { Badge, Popover, Button, Space, Divider, Spin } from "antd";
+
 import { BellOutlined } from "@ant-design/icons";
+import { Badge, Button, Divider, Popover, Space, Spin } from "antd";
 import dayjs from "dayjs";
 
-import { NotificationMessage } from "./notification-message";
+import { Audit, Deal } from "@/interfaces";
+
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
-import { Audit, Deal } from "@/interfaces";
+import { NotificationMessage } from "./notification-message";
 
 export const Notifications: React.FC = () => {
     const [open, setOpen] = useState(false);

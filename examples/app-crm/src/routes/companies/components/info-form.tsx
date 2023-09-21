@@ -1,6 +1,7 @@
 import { useState } from "react";
+
 import { useShow } from "@refinedev/core";
-import { Card, Input, InputNumber, Select, Space } from "antd";
+
 import {
     ApiOutlined,
     BankOutlined,
@@ -9,6 +10,7 @@ import {
     EnvironmentOutlined,
     ShopOutlined,
 } from "@ant-design/icons";
+import { Card, Input, InputNumber, Select, Space } from "antd";
 
 import { SingleElementForm, Text } from "@/components";
 import { BusinessType, Company, CompanySize, Industry } from "@/interfaces";

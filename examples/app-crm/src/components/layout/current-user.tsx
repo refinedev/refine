@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Button, Popover } from "antd";
-import { useGetIdentity, useLogout } from "@refinedev/core";
-import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 
-import { AccountSettings } from "./account-settings";
+import { useGetIdentity, useLogout } from "@refinedev/core";
+
+import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
+import { Button, Popover } from "antd";
+
+import type { User } from "@/interfaces";
+
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
-import type { User } from "@/interfaces";
+import { AccountSettings } from "./account-settings";
 
 export const CurrentUser: React.FC = () => {
     const [opened, setOpened] = useState(false);

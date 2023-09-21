@@ -1,11 +1,12 @@
 import React from "react";
-import { Tag, TagProps } from "antd";
+
 import {
-    PlayCircleOutlined,
-    PlayCircleFilled,
     CheckCircleOutlined,
     MinusCircleOutlined,
+    PlayCircleFilled,
+    PlayCircleOutlined,
 } from "@ant-design/icons";
+import { Tag, TagProps } from "antd";
 
 import { ContactStatus } from "@/interfaces";
 

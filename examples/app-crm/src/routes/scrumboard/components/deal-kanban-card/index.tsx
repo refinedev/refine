@@ -1,5 +1,9 @@
 import { FC, memo, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useDelete } from "@refinedev/core";
+
+import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import {
     Button,
     Card,
@@ -9,8 +13,6 @@ import {
     Skeleton,
     Tooltip,
 } from "antd";
-import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";

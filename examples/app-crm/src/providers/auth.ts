@@ -1,6 +1,8 @@
 import { AuthBindings } from "@refinedev/core";
-import { API_BASE_URL, API_URL, client, dataProvider } from "./data";
+
 import type { User } from "@/interfaces";
+
+import { API_BASE_URL, API_URL, client, dataProvider } from "./data";
 
 const emails = [
     "michael.scott@dundermifflin.com",

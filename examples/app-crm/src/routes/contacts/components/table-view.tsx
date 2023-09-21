@@ -1,21 +1,22 @@
-import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import {
     DeleteButton,
     FilterDropdown,
+    getDefaultSortOrder,
     ShowButton,
     useSelect,
-    getDefaultSortOrder,
 } from "@refinedev/antd";
-import { Button, Input, Select, Space, Table, type TableProps } from "antd";
-import { PhoneOutlined } from "@ant-design/icons";
+import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 
-import { ContactStatusEnum } from "@/enums";
+import { PhoneOutlined } from "@ant-design/icons";
+import { Button, Input, Select, Space, Table, type TableProps } from "antd";
+
 import {
-    CustomAvatar,
     ContactStatusTag,
-    Text,
+    CustomAvatar,
     PaginationTotal,
+    Text,
 } from "@/components";
+import { ContactStatusEnum } from "@/enums";
 import { Contact } from "@/interfaces";
 
 type Props = {

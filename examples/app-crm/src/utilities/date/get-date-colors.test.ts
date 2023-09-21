@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+
 import { getDateColor } from "./get-date-colors";
 
 describe("getDateColors function", () => {

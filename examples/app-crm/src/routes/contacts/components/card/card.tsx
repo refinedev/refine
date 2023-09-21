@@ -1,14 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useDelete, useGetToPath } from "@refinedev/core";
-import { Button, Dropdown, MenuProps } from "antd";
+
 import {
     DeleteOutlined,
     EllipsisOutlined,
     EyeOutlined,
 } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { Button, Dropdown, MenuProps } from "antd";
 
-import { Text, ContactStatusTag, CustomAvatar } from "@/components";
+import { ContactStatusTag, CustomAvatar, Text } from "@/components";
 import { Contact } from "@/interfaces";
 
 import { ContactCardSkeleton } from "./skeleton";

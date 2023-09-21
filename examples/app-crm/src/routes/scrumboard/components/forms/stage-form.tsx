@@ -1,10 +1,13 @@
 import { useEffect } from "react";
-import { HttpError, useInvalidate } from "@refinedev/core";
+
 import { useForm, useSelect } from "@refinedev/antd";
-import { Checkbox, Form, Select, Space } from "antd";
+import { HttpError, useInvalidate } from "@refinedev/core";
+
 import { FlagOutlined } from "@ant-design/icons";
+import { Checkbox, Form, Select, Space } from "antd";
 
 import { Task } from "@/interfaces";
+
 import { AccordionHeaderSkeleton } from "../accordion-header-skeleton";
 
 type Props = {

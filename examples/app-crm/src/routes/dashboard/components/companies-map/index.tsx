@@ -1,16 +1,18 @@
-import { useNavigation } from "@refinedev/core";
-import { Card, Button } from "antd";
-import { GlobalOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { divIcon, point, LatLngExpression } from "leaflet";
-import { MapContainer, GeoJSON, Marker } from "react-leaflet";
-import type { GeoJsonObject } from "geojson";
+import { GeoJSON, MapContainer, Marker } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+
+import { useNavigation } from "@refinedev/core";
+
+import { GlobalOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { Button, Card } from "antd";
+import type { GeoJsonObject } from "geojson";
+import { divIcon, LatLngExpression, point } from "leaflet";
 
 import { Text } from "@/components";
 
+import Countries from "./countries.json";
 import CustomGeoJson from "./custom.geo.json";
 import Markers from "./markers.json";
-import Countries from "./countries.json";
 
 import "leaflet/dist/leaflet.css";
 import styles from "./index.module.css";

@@ -1,12 +1,15 @@
 import { FC, useState } from "react";
-import { useNavigation, useResource } from "@refinedev/core";
-import { useSearchBox, useHits } from "react-instantsearch";
+import { useHits, useSearchBox } from "react-instantsearch";
 import { Link } from "react-router-dom";
-import { Input, List, Popover, Tag, Typography } from "antd";
+
+import { useNavigation, useResource } from "@refinedev/core";
+
 import { SearchOutlined } from "@ant-design/icons";
+import { Input, List, Popover, Tag, Typography } from "antd";
 import cn from "classnames";
 
-import { Company, Deal, Task, User, Event, Contact, Quote } from "@/interfaces";
+import { Company, Contact, Deal, Event, Quote, Task, User } from "@/interfaces";
+
 import { CustomAvatar } from "../../custom-avatar";
 
 import styles from "./index.module.css";

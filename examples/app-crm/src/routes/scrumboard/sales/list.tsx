@@ -1,9 +1,11 @@
 import { FC, PropsWithChildren, useMemo } from "react";
-import { useDelete, useList, useUpdate, useUpdateMany } from "@refinedev/core";
-import { DragEndEvent } from "@dnd-kit/core";
-import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
-import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
+
+import { useDelete, useList, useUpdate, useUpdateMany } from "@refinedev/core";
+
+import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DragEndEvent } from "@dnd-kit/core";
+import { MenuProps } from "antd";
 
 import { Text } from "@/components";
 import { Deal, DealStage } from "@/interfaces";
@@ -13,13 +15,13 @@ import {
     DealKanbanCardMemo,
     DealKanbanCardSkeleton,
     DealKanbanWonLostDrop,
-    KanbanBoard,
-    KanbanColumn,
-    KanbanItem,
-    KanbanAddStageButton,
     KanbanAddCardButton,
+    KanbanAddStageButton,
+    KanbanBoard,
     KanbanBoardSkeleton,
+    KanbanColumn,
     KanbanColumnSkeleton,
+    KanbanItem,
 } from "../components";
 
 const dealsFragment = [

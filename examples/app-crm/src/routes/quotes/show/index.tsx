@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { useOne } from "@refinedev/core";
 import { Link, useParams } from "react-router-dom";
-import { Button, Space } from "antd";
-import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 
-import { FullScreenLoading, Text, CustomAvatar } from "@/components";
+import { useOne } from "@refinedev/core";
+
+import { EditOutlined, LeftOutlined } from "@ant-design/icons";
+import { Button, Space } from "antd";
+
+import { CustomAvatar, FullScreenLoading, Text } from "@/components";
 import { Quote } from "@/interfaces";
 
 import {
-    ProductsServices,
-    ShowDescription,
     PdfExport,
-    StatusIndicator,
+    ProductsServices,
     QuotesFormModal,
     quotesFragment,
+    ShowDescription,
+    StatusIndicator,
 } from "../components";
 
 import styles from "./index.module.css";

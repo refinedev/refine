@@ -1,16 +1,18 @@
 import React from "react";
-import { Dropdown } from "antd";
+
 import { useUpdate } from "@refinedev/core";
+
 import {
-    PlayCircleOutlined,
     CheckCircleFilled,
+    DownOutlined,
     MinusCircleFilled,
     PlayCircleFilled,
-    DownOutlined,
+    PlayCircleOutlined,
 } from "@ant-design/icons";
+import { Dropdown } from "antd";
 
 import { Text } from "@/components";
-import { ContactStatusEnum, ContactStageEnum } from "@/enums";
+import { ContactStageEnum, ContactStatusEnum } from "@/enums";
 import { Contact, ContactStatus as ContactStatusType } from "@/interfaces";
 
 import styles from "./index.module.css";

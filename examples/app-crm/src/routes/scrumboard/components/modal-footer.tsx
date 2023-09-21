@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useGetToPath } from "@refinedev/core";
+
 import { DeleteButton } from "@refinedev/antd";
+import { useGetToPath } from "@refinedev/core";
 
 export const ModalFooter = () => {
     const navigate = useNavigate();

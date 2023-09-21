@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import { useList } from "@refinedev/core";
-import { Card, Button, Radio, Grid } from "antd";
+
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import dayjs from "dayjs";
-import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import { Button, Card, Grid, Radio } from "antd";
+import dayjs from "dayjs";
 
 import { Text } from "@/components";
 import { Event } from "@/interfaces";

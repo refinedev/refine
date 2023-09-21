@@ -1,11 +1,13 @@
 import { FC } from "react";
-import { QuoteStatus } from "@/interfaces";
+
 import {
     CheckCircleOutlined,
     ExpandOutlined,
     SendOutlined,
 } from "@ant-design/icons";
 import { Tag } from "antd/lib";
+
+import { QuoteStatus } from "@/interfaces";
 
 const variant: Record<QuoteStatus, any> = {
     DRAFT: {

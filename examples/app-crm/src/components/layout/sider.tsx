@@ -1,19 +1,21 @@
 import React, { CSSProperties } from "react";
+
+import { useThemedLayoutContext } from "@refinedev/antd";
 import {
     CanAccess,
     ITreeMenu,
-    useMenu,
-    useLink,
     pickNotDeprecated,
+    useLink,
+    useMenu,
 } from "@refinedev/core";
-import { useThemedLayoutContext } from "@refinedev/antd";
+
 import {
-    UnorderedListOutlined,
     BarsOutlined,
     LeftOutlined,
     RightOutlined,
+    UnorderedListOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
+import { Button, Drawer, Grid, Layout, Menu, theme } from "antd";
 
 import { Title } from "./title";
 
