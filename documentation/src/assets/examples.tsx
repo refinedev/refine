@@ -50,19 +50,19 @@ export const SHOW_CASES: Examples = [
         source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui",
     },
     {
-        title: "Finefoods Storefront",
+        title: "refine Swag Store",
         description:
-            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
-        image: "/examples/food-delivery.jpg",
-        image2x: "/examples/food-delivery2x.jpg",
+            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
+        image: "/examples/swag-store.jpg",
+        image2x: "/examples/swag-store2x.jpg",
         buttons: [
             {
                 text: "Demo",
-                link: "https://example.refine.dev",
+                link: "https://store.refine.dev",
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
-        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
+        source: "https://github.com/refinedev/refine/tree/master/examples/store",
     },
 ];
 
@@ -82,19 +82,19 @@ export const EXAMPLES: Examples = [
         source: "https://github.com/refinedev/real-world-example",
     },
     {
-        title: "refine Swag Store",
+        title: "Finefoods Storefront",
         description:
-            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
-        image: "/examples/swag-store.jpg",
-        image2x: "/examples/swag-store2x.jpg",
+            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
+        image: "/examples/food-delivery.jpg",
+        image2x: "/examples/food-delivery2x.jpg",
         buttons: [
             {
                 text: "Demo",
-                link: "https://store.refine.dev",
+                link: "https://example.refine.dev",
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
-        source: "https://github.com/refinedev/refine/tree/master/examples/store",
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
     },
     {
         title: "Win95 Style Admin Panel",
