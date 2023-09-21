@@ -1,5 +1,5 @@
-import { MenuProps } from "antd";
 import { FC, PropsWithChildren, useMemo } from "react";
+import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
     HttpError,
@@ -10,6 +10,7 @@ import {
 } from "@refinedev/core";
 import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
+
 import {
     KanbanBoard,
     KanbanColumn,
@@ -18,11 +19,9 @@ import {
     KanbanAddCardButton,
     KanbanColumnSkeleton,
     KanbanBoardSkeleton,
-} from "../../../components/kanban";
-import {
     ProjectKanbanCardSkeleton,
     ProjectCardMemo,
-} from "../../../components";
+} from "../components";
 import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
 
 const taskFragment = [

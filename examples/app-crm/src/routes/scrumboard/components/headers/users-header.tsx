@@ -1,6 +1,6 @@
 import { Space, Typography } from "antd";
 
-import { UserTag } from "../user-tag";
+import { UserTag } from "../../../../components/user-tag";
 import { Task } from "@/interfaces";
 
 type Props = {

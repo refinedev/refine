@@ -4,9 +4,7 @@ import { useForm } from "@refinedev/antd";
 import { Button, Form } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 
-import { CheckListInput } from "./checklist-input";
-import { ChecklistHeader } from "./checklist-header";
-import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
+import { AccordionHeaderSkeleton, ChecklistHeader, CheckListInput } from "../";
 import { Task, TaskUpdateInput } from "@/interfaces";
 
 type Props = {

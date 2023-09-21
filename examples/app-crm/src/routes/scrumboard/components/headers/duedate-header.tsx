@@ -1,7 +1,7 @@
 import { Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "../../components/text";
+import { Text } from "../../../../components/text";
 import { getDateColor } from "@/utilities";
 import { Task } from "@/interfaces";
 

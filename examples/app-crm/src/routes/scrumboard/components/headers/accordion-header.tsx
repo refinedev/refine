@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { Space } from "antd";
 
-import { Text } from "../../components/text";
-import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
+import { Text } from "../../../../components/text";
+import { AccordionHeaderSkeleton } from "../accordion-header-skeleton";
 
 type Props = PropsWithChildren<{
     icon: ReactNode;

@@ -3,7 +3,8 @@ import { UseDroppableArguments, useDroppable } from "@dnd-kit/core";
 import { Button, Dropdown, MenuProps, Skeleton } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
 import cn from "classnames";
-import { Text } from "../../text";
+
+import { Text } from "../../../../components/text";
 
 import styles from "./index.module.css";
 

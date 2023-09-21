@@ -5,12 +5,11 @@ import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
+import { Text } from "../../../components";
 import {
     DealKanbanCardMemo,
     DealKanbanCardSkeleton,
-    Text,
-} from "../../../components";
-import {
+    DealKanbanWonLostDrop,
     KanbanBoard,
     KanbanColumn,
     KanbanItem,
@@ -18,8 +17,7 @@ import {
     KanbanAddCardButton,
     KanbanBoardSkeleton,
     KanbanColumnSkeleton,
-} from "../../../components/kanban";
-import { DealKanbanWonLostDrop } from "../../../components/deal-kanban-won-lost-drop";
+} from "../components";
 import { Deal, DealStage } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 

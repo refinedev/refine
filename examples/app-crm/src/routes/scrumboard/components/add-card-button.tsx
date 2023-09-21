@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren } from "react";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { Text } from "../text";
+
+import { Text } from "../../../components/text";
 
 interface Props {
     onClick: () => void;

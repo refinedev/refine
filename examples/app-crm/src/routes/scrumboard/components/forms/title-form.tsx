@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import { HttpError, useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Form, Skeleton } from "antd";
 
-import { Text } from "../../components/text";
+import { Text } from "../../../../components/text";
 import { Task, TaskUpdateInput } from "@/interfaces";
-import { useEffect } from "react";
 
 const TitleInput = ({
     value,

@@ -5,7 +5,7 @@ import { Checkbox, Form, Select, Space } from "antd";
 import { FlagOutlined } from "@ant-design/icons";
 
 import { Task } from "@/interfaces";
-import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
+import { AccordionHeaderSkeleton } from "../accordion-header-skeleton";
 
 type Props = {
     initialValues: {

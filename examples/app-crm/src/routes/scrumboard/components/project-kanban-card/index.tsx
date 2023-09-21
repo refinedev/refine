@@ -1,5 +1,5 @@
-import { useDelete, useNavigation } from "@refinedev/core";
 import { memo, useMemo } from "react";
+import { useDelete, useNavigation } from "@refinedev/core";
 import dayjs from "dayjs";
 import {
     Button,
@@ -22,9 +22,9 @@ import {
     DeleteOutlined,
 } from "@ant-design/icons";
 
-import { TextIcon } from "../icon";
-import { Text } from "../text";
-import { CustomAvatar } from "../custom-avatar";
+import { TextIcon } from "../../../../components/icon";
+import { Text } from "../../../../components/text";
+import { CustomAvatar } from "../../../../components/custom-avatar";
 import { getDateColor } from "@/utilities";
 
 import { User } from "@/interfaces";
