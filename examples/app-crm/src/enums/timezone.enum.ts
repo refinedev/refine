@@ -1,4 +1,4 @@
-export enum Timezone {
+export enum TimezoneEnum {
     "UTC (Coordinated Universal Time)" = "UTC (Coordinated Universal Time)",
     "GMT (Greenwich Mean Time)" = "GMT (Greenwich Mean Time)",
     "EST (Eastern Standard Time)" = "EST (Eastern Standard Time)",

@@ -9,7 +9,7 @@ import {
 import { Button, Input, Select, Space, Table, type TableProps } from "antd";
 import { PhoneOutlined } from "@ant-design/icons";
 
-import { ContactStatusEnum } from "../../enums/contact-status";
+import { ContactStatusEnum } from "@/enums";
 import { CustomAvatar } from "../custom-avatar";
 import { ContactStatusTag } from "./status-tag";
 import { Text } from "../text";

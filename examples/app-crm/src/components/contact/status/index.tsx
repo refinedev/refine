@@ -10,8 +10,7 @@ import {
 } from "@ant-design/icons";
 
 import { Text } from "../../text";
-import { ContactStatusEnum } from "../../../enums/contact-status";
-import { ContactStageEnum } from "../../../enums/contact-stage";
+import { ContactStatusEnum, ContactStageEnum } from "@/enums";
 
 import {
     Contact,
