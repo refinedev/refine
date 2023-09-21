@@ -30,3 +30,4 @@ export { default as StrapiWithText } from "./strapi-with-text";
 export { default as Supabase } from "./supabase";
 export { default as SupabaseWithText } from "./supabase-with-text";
 export { default as UseGenerated } from "./usegenerated";
+export { default as Hygraph } from "./hygraph";
