@@ -9,7 +9,7 @@ import {
 import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import { ActionCell } from "../../components/audit-log/action-cell";
+import { ActionCell } from "./components/action-cell";
 import { CustomAvatar, Text } from "../../components";
 import { Audit } from "@/interfaces";
 import { PaginationTotal } from "../../components/pagination-total";

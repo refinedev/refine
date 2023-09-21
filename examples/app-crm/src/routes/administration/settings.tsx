@@ -11,6 +11,7 @@ import {
     TeamOutlined,
 } from "@ant-design/icons";
 import cn from "classnames";
+
 import { CustomAvatar, RoleTag, Text } from "../../components";
 import { User } from "@/interfaces";
 import { Logo } from "../../components/logo";
