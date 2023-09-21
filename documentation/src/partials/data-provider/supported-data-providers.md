@@ -19,5 +19,6 @@
 -   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
 -   [Elide GraphQL](https://github.com/chirdeeptomar/refine-elide-graphql) by [chirdeeptomar](https://github.com/chirdeeptomar)
 -   [useGenerated](https://github.com/usegen/refine-use-generated) by [usegen](https://github.com/usegen)
+-   [Hygraph](https://hygraph.com/) by [acomagu](https://github.com/acomagu/refine-hygraph)
 
 _If you have created a custom data provider and would like to share it with the community, please don't hesitate to get in touch with us. We would be happy to include it on this page for others to use._

@@ -14,6 +14,7 @@ import {
     Graphql,
     Hasura,
     HookForm,
+    Hygraph,
     Kbar,
     Mantine,
     Medusa,
@@ -226,6 +227,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "usegen",
                     url: "https://github.com/usegen",
+                },
+            ],
+        },
+        {
+            name: "Hygraph Data Provider",
+            icon: Hygraph,
+            description:
+                "Connector for backends created with <strong>Hygraph</strong> (GraphQL)",
+            url: "https://github.com/acomagu/refine-hygraph",
+            status: "stable",
+            contributors: [
+                {
+                    name: "acomagu",
+                    url: "https://github.com/acomagu",
                 },
             ],
         },
