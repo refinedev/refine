@@ -1,4 +1,4 @@
-import { Text } from "./text";
+import { Text } from "../text";
 
 import { Audit, Deal } from "@/interfaces";
 

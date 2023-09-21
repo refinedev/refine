@@ -21,9 +21,9 @@ import {
     UserOutlined,
 } from "@ant-design/icons";
 
-import { SingleElementForm } from "../single-element-form";
-import { CustomAvatar } from "../custom-avatar";
-import { Text } from "../text";
+import { SingleElementForm } from "../../single-element-form";
+import { CustomAvatar } from "../../custom-avatar";
+import { Text } from "../../text";
 import { TimezoneEnum } from "@/enums";
 import { User } from "@/interfaces";
 import styles from "./index.module.css";

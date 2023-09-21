@@ -22,7 +22,7 @@ import {
 } from "@/providers";
 import { themeConfig, resources } from "@/config";
 
-import { Layout } from "./components/layout";
+import { Layout } from "./components";
 
 import { LoginPage } from "./routes/login";
 import { RegisterPage } from "./routes/register";

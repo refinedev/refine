@@ -14,7 +14,7 @@ import cn from "classnames";
 
 import { CustomAvatar, RoleTag, Text } from "../../components";
 import { User } from "@/interfaces";
-import { Logo } from "../../components/logo";
+import { Logo } from "../../components/layout/logo";
 
 import styles from "./settings.module.css";
 

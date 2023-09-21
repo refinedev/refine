@@ -1,10 +1,10 @@
 import React from "react";
 import { ThemedLayoutContextProvider } from "@refinedev/antd";
+import { Grid, Layout as AntdLayout } from "antd";
 
 import { Header } from "./header";
 import { Sider } from "./sider";
 import { Banner } from "./banner";
-import { Grid, Layout as AntdLayout } from "antd";
 
 export const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     const breakpoint = Grid.useBreakpoint();

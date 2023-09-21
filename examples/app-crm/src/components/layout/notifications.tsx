@@ -5,8 +5,8 @@ import { BellOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
 import { NotificationMessage } from "./notification-message";
-import { CustomAvatar } from "./custom-avatar";
-import { Text } from "./text";
+import { CustomAvatar } from "../custom-avatar";
+import { Text } from "../text";
 import { Audit, Deal } from "@/interfaces";
 
 export const Notifications: React.FC = () => {

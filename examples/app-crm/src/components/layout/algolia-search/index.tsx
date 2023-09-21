@@ -1,15 +1,15 @@
 import { FC, useState } from "react";
 import { useNavigation, useResource } from "@refinedev/core";
 import { useSearchBox, useHits } from "react-instantsearch";
+import { Link } from "react-router-dom";
 import { Input, List, Popover, Tag, Typography } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
 import { Company, Deal, Task, User, Event, Contact, Quote } from "@/interfaces";
-import { CustomAvatar } from "../custom-avatar";
+import { CustomAvatar } from "../../custom-avatar";
 
 import styles from "./index.module.css";
-import { Link } from "react-router-dom";
 
 export const AlgoliaSearch: React.FC = () => {
     const [open, setOpen] = useState(false);
