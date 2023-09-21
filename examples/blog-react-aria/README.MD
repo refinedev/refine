@@ -11,7 +11,7 @@
   <sub>Created by <a href="https://refine.dev">refine</a></sub>
 </div>
 
-## About 
+## About 
 
 The [refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 

@@ -1,5 +1,16 @@
 # @refinedev/devtools-server
 
+![refine devtools](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
+
+## 1.0.2
+
+### Patch Changes
+
+-   [#4976](https://github.com/refinedev/refine/pull/4976) [`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb) Thanks [@aliemir](https://github.com/aliemir)! - Updated dependency of `@refinedev/devtools-ui`
+
+-   Updated dependencies [[`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb), [`ed026da4239`](https://github.com/refinedev/refine/commit/ed026da4239af5f15afa74fcb180f1086bce63cb)]:
+    -   @refinedev/devtools-ui@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
