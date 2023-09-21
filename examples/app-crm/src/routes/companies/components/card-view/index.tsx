@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { List, ListProps, TableProps } from "antd";
 
-import { PaginationTotal } from "../../../../components";
+import { PaginationTotal } from "@/components";
 import { Company } from "@/interfaces";
 
 import { CompanyCard, CompanyCardSkeleton } from "./card";

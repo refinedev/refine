@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ZoomInOutlined } from "@ant-design/icons";
 import { Button, Table, Modal } from "antd";
-import { ColumnsType } from "antd/es/table";
+import type { ColumnsType } from "antd/es/table";
 
-import { Text } from "../../../components";
+import { Text } from "@/components";
 import { Audit, AuditChange } from "@/interfaces";
 
 export const ActionCell = ({ record }: { record: Audit }) => {

@@ -9,6 +9,8 @@ import {
     UsergroupAddOutlined,
 } from "@ant-design/icons";
 
+import { Task } from "@/interfaces";
+
 import {
     StageForm,
     DescriptionForm,
@@ -24,7 +26,6 @@ import {
     ModalFooter,
     Accordion,
 } from "../components";
-import { Task } from "@/interfaces";
 
 export const KanbanEditPage = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();

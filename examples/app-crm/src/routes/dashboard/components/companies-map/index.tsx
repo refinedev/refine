@@ -6,13 +6,13 @@ import { MapContainer, GeoJSON, Marker } from "react-leaflet";
 import type { GeoJsonObject } from "geojson";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
-import "leaflet/dist/leaflet.css";
+import { Text } from "@/components";
 
-import { Text } from "../../../../components";
 import CustomGeoJson from "./custom.geo.json";
 import Markers from "./markers.json";
 import Countries from "./countries.json";
 
+import "leaflet/dist/leaflet.css";
 import styles from "./index.module.css";
 
 export const CompaniesMap: React.FC = () => {

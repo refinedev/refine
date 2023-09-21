@@ -18,6 +18,7 @@
     "baseUrl": "./src",
     "paths": {
       "@/config": ["config"],
+      "@/components": ["components"],
       "@/enums": ["enums"],
       "@/interfaces": ["interfaces"],
       "@/providers": ["providers"],

@@ -10,7 +10,7 @@ import {
     ShopOutlined,
 } from "@ant-design/icons";
 
-import { SingleElementForm, Text } from "../../../components";
+import { SingleElementForm, Text } from "@/components";
 import { BusinessType, Company, CompanySize, Industry } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 

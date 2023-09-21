@@ -26,7 +26,7 @@ import {
     LeftOutlined,
 } from "@ant-design/icons";
 
-import { SelectOptionWithAvatar } from "../../components";
+import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/interfaces";
 
 type Props = {

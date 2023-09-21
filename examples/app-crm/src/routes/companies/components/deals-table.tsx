@@ -15,8 +15,8 @@ import {
     SearchOutlined,
 } from "@ant-design/icons";
 
+import { Participants, Text } from "@/components";
 import { Deal, DealAggregateResponse } from "@/interfaces";
-import { Participants, Text } from "../../../components";
 import { currencyNumber } from "@/utilities";
 
 type Props = {

@@ -13,7 +13,7 @@ import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
-import { CustomAvatar, Text } from "../../../../components";
+import { CustomAvatar, Text } from "@/components";
 import { User } from "@/interfaces";
 
 type Props = {

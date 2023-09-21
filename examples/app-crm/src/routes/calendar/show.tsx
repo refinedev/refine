@@ -13,7 +13,7 @@ import dayjs from "dayjs";
 import { EditButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
 
-import { Text, UserTag } from "../../components";
+import { Text, UserTag } from "@/components";
 import { Event } from "@/interfaces";
 
 export const CalendarShowPage: React.FC = () => {

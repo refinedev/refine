@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import {
     DeleteButton,
     EditButton,
@@ -6,12 +7,12 @@ import {
     useSelect,
 } from "@refinedev/antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
-import { Text, CustomAvatar, PaginationTotal } from "../../../components";
-import { currencyNumber } from "@/utilities";
+import { Text, CustomAvatar, PaginationTotal } from "@/components";
 import { Company } from "@/interfaces";
+import { currencyNumber } from "@/utilities";
+
 import { AvatarGroup } from "./avatar-group";
 
 type Props = {

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 import { DollarOutlined } from "@ant-design/icons";
 
-import { SelectOptionWithAvatar } from "../../../components";
+import { SelectOptionWithAvatar } from "@/components";
 import { Company, Deal, User } from "@/interfaces";
 
 type FormValues = {

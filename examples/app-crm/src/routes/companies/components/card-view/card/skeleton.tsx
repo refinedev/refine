@@ -1,5 +1,6 @@
 import { Card, Skeleton, Space } from "antd";
-import { Text } from "../../../../../components";
+
+import { Text } from "@/components";
 
 export const CompanyCardSkeleton = () => {
     return (

@@ -5,7 +5,10 @@ import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import { Text } from "../../../components";
+import { Text } from "@/components";
+import { Deal, DealStage } from "@/interfaces";
+import { currencyNumber } from "@/utilities";
+
 import {
     DealKanbanCardMemo,
     DealKanbanCardSkeleton,
@@ -18,8 +21,6 @@ import {
     KanbanBoardSkeleton,
     KanbanColumnSkeleton,
 } from "../components";
-import { Deal, DealStage } from "@/interfaces";
-import { currencyNumber } from "@/utilities";
 
 const dealsFragment = [
     "id",

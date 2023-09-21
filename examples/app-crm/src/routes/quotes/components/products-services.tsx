@@ -15,7 +15,7 @@ import {
 } from "antd";
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
-import { FullScreenLoading, Text } from "../../../components";
+import { FullScreenLoading, Text } from "@/components";
 import { Quote, QuoteUpdateInput } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 

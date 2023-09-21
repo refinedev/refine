@@ -15,7 +15,7 @@ import {
     ContactStatusTag,
     Text,
     PaginationTotal,
-} from "../../../components";
+} from "@/components";
 import { Contact } from "@/interfaces";
 
 type Props = {

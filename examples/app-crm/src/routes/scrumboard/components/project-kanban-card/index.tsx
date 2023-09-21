@@ -22,7 +22,7 @@ import {
     DeleteOutlined,
 } from "@ant-design/icons";
 
-import { CustomAvatar, Text, TextIcon } from "../../../../components";
+import { CustomAvatar, Text, TextIcon } from "@/components";
 import { User } from "@/interfaces";
 import { getDateColor } from "@/utilities";
 

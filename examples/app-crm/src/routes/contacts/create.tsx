@@ -5,7 +5,7 @@ import { useForm, useSelect } from "@refinedev/antd";
 import { Button, Form, Input, Modal, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
-import { SelectOptionWithAvatar } from "../../components";
+import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/interfaces";
 
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({

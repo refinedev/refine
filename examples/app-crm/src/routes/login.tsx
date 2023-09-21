@@ -4,9 +4,8 @@ import { AuthPage } from "@refinedev/antd";
 import { useLogin } from "@refinedev/core";
 import { useSearchParams } from "react-router-dom";
 
-import { demoCredentials } from "../providers/auth";
-
-import { Title } from "../components";
+import { Title } from "@/components";
+import { demoCredentials } from "@/providers";
 
 export const LoginPage: React.FC = () => {
     const [searchParams] = useSearchParams();

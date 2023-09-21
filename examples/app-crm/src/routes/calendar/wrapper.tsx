@@ -4,7 +4,8 @@ import { CreateButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
 import { useGetToPath } from "@refinedev/core";
 
-import { CalendarUpcomingEvents } from "../../components";
+import { CalendarUpcomingEvents } from "@/components";
+
 import { CalendarCategories, Calendar } from "./components";
 
 export const CalendarPageWrapper: React.FC<React.PropsWithChildren> = ({

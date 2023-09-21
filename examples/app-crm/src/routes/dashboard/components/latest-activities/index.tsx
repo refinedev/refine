@@ -4,7 +4,7 @@ import { UnorderedListOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 import dayjs from "dayjs";
 
-import { CustomAvatar, Text } from "../../../../components";
+import { CustomAvatar, Text } from "@/components";
 import { Audit, Deal } from "@/interfaces";
 
 import styles from "./index.module.css";

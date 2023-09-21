@@ -11,6 +11,8 @@ import {
 import { DragEndEvent } from "@dnd-kit/core";
 import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
 
+import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
+
 import {
     KanbanBoard,
     KanbanColumn,
@@ -22,7 +24,6 @@ import {
     ProjectKanbanCardSkeleton,
     ProjectCardMemo,
 } from "../components";
-import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
 
 const taskFragment = [
     "id",

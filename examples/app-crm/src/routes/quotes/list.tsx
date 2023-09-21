@@ -22,7 +22,7 @@ import {
     Participants,
     PaginationTotal,
     ListTitleButton,
-} from "../../components";
+} from "@/components";
 import { Quote, QuoteStatus } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 

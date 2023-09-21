@@ -3,9 +3,10 @@ import { useDelete, useNavigation } from "@refinedev/core";
 import { Button, Card, Dropdown, Space, Tooltip } from "antd";
 import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 
-import { Text, CustomAvatar } from "../../../../../components";
-import { currencyNumber } from "@/utilities";
+import { Text, CustomAvatar } from "@/components";
 import { Company } from "@/interfaces";
+import { currencyNumber } from "@/utilities";
+
 import { AvatarGroup } from "../../avatar-group";
 import { CompanyCardSkeleton } from "./skeleton";
 

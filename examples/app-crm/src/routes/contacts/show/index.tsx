@@ -32,7 +32,7 @@ import {
     SingleElementForm,
     SelectOptionWithAvatar,
     TextIcon,
-} from "../../../components";
+} from "@/components";
 import { TimezoneEnum } from "@/enums";
 import type { Company, Contact, User } from "@/interfaces";
 

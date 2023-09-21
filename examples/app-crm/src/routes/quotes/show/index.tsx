@@ -4,7 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Space } from "antd";
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 
-import { FullScreenLoading, Text, CustomAvatar } from "../../../components";
+import { FullScreenLoading, Text, CustomAvatar } from "@/components";
+import { Quote } from "@/interfaces";
+
 import {
     ProductsServices,
     ShowDescription,
@@ -13,7 +15,6 @@ import {
     QuotesFormModal,
     quotesFragment,
 } from "../components";
-import { Quote } from "@/interfaces";
 
 import styles from "./index.module.css";
 

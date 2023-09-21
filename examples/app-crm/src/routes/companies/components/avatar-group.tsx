@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { AvatarProps, Space, Tooltip } from "antd";
 
-import { CustomAvatar, Text } from "../../../components";
+import { CustomAvatar, Text } from "@/components";
 
 type Props = {
     avatars: {

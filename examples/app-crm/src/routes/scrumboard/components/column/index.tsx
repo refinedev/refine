@@ -4,7 +4,7 @@ import { Button, Dropdown, MenuProps, Skeleton } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
-import { Text } from "../../../../components";
+import { Text } from "@/components";
 
 import styles from "./index.module.css";
 

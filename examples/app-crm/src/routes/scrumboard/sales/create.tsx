@@ -24,7 +24,7 @@ import {
     UserOutlined,
 } from "@ant-design/icons";
 
-import { SelectOptionWithAvatar } from "../../../components";
+import { SelectOptionWithAvatar } from "@/components";
 import { Company, Contact, Deal, User } from "@/interfaces";
 
 type FormValues = {

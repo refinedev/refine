@@ -1,3 +1,6 @@
+import { FC, useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { HttpError, useCreateMany, useOne } from "@refinedev/core";
 import {
     FilterDropdown,
     SaveButton,
@@ -15,8 +18,6 @@ import {
     Space,
     Table,
 } from "antd";
-import { Company, Contact, ContactCreateInput } from "@/interfaces";
-import { CustomAvatar, Text } from "../../../components";
 import {
     DeleteOutlined,
     ExportOutlined,
@@ -27,11 +28,9 @@ import {
     TeamOutlined,
     UserOutlined,
 } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
-import { FC, useMemo } from "react";
-import { HttpError, useCreateMany, useOne } from "@refinedev/core";
 
-import { ContactStatusTag } from "../../../components";
+import { ContactStatusTag, CustomAvatar, Text } from "@/components";
+import { Company, Contact, ContactCreateInput } from "@/interfaces";
 
 type Props = {
     style?: React.CSSProperties;

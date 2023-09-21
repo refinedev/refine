@@ -9,7 +9,7 @@ import { useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
-import { CustomAvatar } from "../../../../components";
+import { CustomAvatar } from "@/components";
 import { TaskComment, User } from "@/interfaces";
 
 type FormValues = TaskComment & {

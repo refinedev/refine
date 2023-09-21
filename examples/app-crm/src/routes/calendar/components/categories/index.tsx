@@ -3,11 +3,12 @@ import { Button, Card, theme, Checkbox, Skeleton } from "antd";
 import { useList } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 import { SettingOutlined, FlagOutlined } from "@ant-design/icons";
-import { CheckboxChangeEvent } from "antd/es/checkbox";
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
-import { Text } from "../../../../components";
-import { CalendarManageCategories } from "./manage-categories";
+import { Text } from "@/components";
 import { EventCategory } from "@/interfaces";
+
+import { CalendarManageCategories } from "./manage-categories";
 
 import styles from "./index.module.css";
 

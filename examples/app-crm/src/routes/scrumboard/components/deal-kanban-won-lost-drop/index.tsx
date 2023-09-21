@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import cn from "classnames";
 
-import { Text } from "../../../../components";
+import { Text } from "@/components";
 
 import styles from "./index.module.css";
 

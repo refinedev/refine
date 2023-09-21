@@ -4,11 +4,7 @@ import { Button, Form, Select, Skeleton, Space } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { useForm, useSelect } from "@refinedev/antd";
 
-import {
-    CustomAvatar,
-    Text,
-    SelectOptionWithAvatar,
-} from "../../../../components";
+import { CustomAvatar, Text, SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/interfaces";
 import { getNameInitials } from "@/utilities";
 

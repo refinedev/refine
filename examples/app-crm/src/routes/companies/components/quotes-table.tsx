@@ -8,7 +8,6 @@ import {
 } from "@refinedev/antd";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, Input, Select, Space, Table } from "antd";
-import { Quote, QuoteStatus } from "@/interfaces";
 import {
     ContainerOutlined,
     ExportOutlined,
@@ -16,7 +15,8 @@ import {
     SearchOutlined,
 } from "@ant-design/icons";
 
-import { QuoteStatusTag, Participants, Text } from "../../../components";
+import { QuoteStatusTag, Participants, Text } from "@/components";
+import { Quote, QuoteStatus } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 
 type Props = {

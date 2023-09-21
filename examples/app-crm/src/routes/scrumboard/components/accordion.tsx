@@ -1,7 +1,8 @@
 import { PropsWithChildren, ReactNode } from "react";
 
+import { Text } from "@/components";
+
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
-import { Text } from "../../../components";
 
 type Props = PropsWithChildren<{
     accordionKey: string;

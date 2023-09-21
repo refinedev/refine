@@ -1,16 +1,17 @@
 import React from "react";
+import { useDelete, useGetToPath } from "@refinedev/core";
 import { Button, Dropdown, MenuProps } from "antd";
 import {
     DeleteOutlined,
     EllipsisOutlined,
     EyeOutlined,
 } from "@ant-design/icons";
-import { useDelete, useGetToPath } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 
-import { Text, ContactStatusTag, CustomAvatar } from "../../../../components";
-import { ContactCardSkeleton } from "./skeleton";
+import { Text, ContactStatusTag, CustomAvatar } from "@/components";
 import { Contact } from "@/interfaces";
+
+import { ContactCardSkeleton } from "./skeleton";
 
 import styles from "./index.module.css";
 
