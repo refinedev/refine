@@ -8,7 +8,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
-import { Text } from "../../text";
+import { Text } from "../../../../components/text";
 import { Event } from "@/interfaces";
 
 import styles from "./index.module.css";

@@ -5,7 +5,7 @@ import { HttpError, useGetToPath } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import dayjs from "dayjs";
 
-import { CalendarForm } from "../../components/calendar/form";
+import { CalendarForm } from "./components";
 import { Event, EventCreateInput } from "@/interfaces";
 
 type FormValues = EventCreateInput & {
