@@ -2,8 +2,9 @@ import { HttpError } from "@refinedev/core";
 import { useParams } from "react-router-dom";
 import { useForm } from "@refinedev/antd";
 import MDEditor from "@uiw/react-md-editor";
-import { Quote, QuoteUpdateInput } from "@/interfaces";
 import { Form, Spin } from "antd";
+
+import { Quote, QuoteUpdateInput } from "@/interfaces";
 
 export const ShowDescription = () => {
     const params = useParams<{ id: string }>();

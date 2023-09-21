@@ -6,13 +6,13 @@ import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 
 import { FullScreenLoading, Text, CustomAvatar } from "../../../components";
 import {
-    QuotesFormModal,
     ProductsServices,
     ShowDescription,
     PdfExport,
     StatusIndicator,
-} from "../../../components/quotes";
-import { quotesFragment } from "../../../components/quotes/quotes-fragment";
+    QuotesFormModal,
+    quotesFragment,
+} from "../components";
 import { Quote } from "@/interfaces";
 
 import styles from "./index.module.css";
