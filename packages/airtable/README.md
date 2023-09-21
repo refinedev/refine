@@ -40,11 +40,7 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-<div align="center">
-  <sub>Created by <a href="https://refine.dev">refine</a></sub>
-</div>
 
-<br/>
 
 
 
@@ -67,7 +63,7 @@ The [refine](https://refine.dev/) is **headless by design**, offering unlimited 
 npm install @refinedev/airtable
 ```
 
-```
+```tsx
 import dataProvider from "@refinedev/airtable";
 
 const App = () => {
@@ -86,4 +82,4 @@ const App = () => {
 - For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
 - [Refer to refine Airtable example](https://refine.dev/docs/examples/data-provider/airtable/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials ](https://refine.dev/docs/tutorial/introduction/index/).
+- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

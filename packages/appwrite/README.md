@@ -40,11 +40,7 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-<div align="center">
-  <sub>Created by <a href="https://refine.dev">refine</a></sub>
-</div>
 
-<br/>
 
 
 
@@ -65,7 +61,7 @@ npm install @refinedev/appwrite
 ```
 
 
-```
+```tsx
 import {
     dataProvider,
     liveProvider,

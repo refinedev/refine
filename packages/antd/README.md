@@ -40,11 +40,7 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-<div align="center">
-  <sub>Created by <a href="https://refine.dev">refine</a></sub>
-</div>
 
-<br/>
 
 
 # Ant Design integration for refine
@@ -65,7 +61,7 @@ npm install @refinedev/antd antd
 ```
 
 
-```
+```tsx
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import "@refinedev/antd/dist/reset.css";

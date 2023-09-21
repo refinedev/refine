@@ -40,9 +40,6 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-<div align="center">
-  <sub>Created by <a href="https://refine.dev">refine</a></sub>
-</div>
 
 <br/>
 
@@ -65,7 +62,7 @@ npm install @refinedev/ably
 ```
 
 
-```
+```tsx
 import { liveProvider, Ably } from "@refinedev/ably";
 
 export const ablyClient = new Ably.Realtime("YOUR_API_TOKEN");
