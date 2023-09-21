@@ -1,6 +1,5 @@
 # @refinedev/devtools
 
-
 ![refine devtools](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
 
 ## 1.0.2
@@ -25,15 +24,17 @@
 
     ## Usage
 
-    Install the dependencies using your package manager.
+    Install `@refinedev/devtools` with `@refinedev/cli`
 
     ```bash
-    npm i @refinedev/devtools@next @refinedev/cli@next @refinedev/core@next
+    npm run refine devtools init
     ```
 
-    Add `<DevtoolsProvider />` and `<DevtoolsPanel />` components to your app:
+    > 🚨 If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) to add it to your project.
 
-    You'll need to wrap your app with `<DevtoolsProvider />` component and add `<DevtoolsPanel />` component to your app to access the devtools UI.
+    `@refinedev/cli` will automatically adds `@refinedev/devtools` and required `<DevtoolsProvider />` and `<DevtoolsPanel />` components to your project.
+
+    Your `App.tsx` should look like this after the installation:
 
     ```tsx
     import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
@@ -52,11 +53,11 @@
     };
     ```
 
-    Then you're good to go 🙌, `<DevtoolsProvider />` will tell refine to connect to the devtools server and track your queries and mutations. `<DevtoolsPanel />` will render the devtools UI in your app.
+    Then you're good to go 🙌, Devtools is integrated with `@refinedev/cli`, This means `npm run dev` will automatically starts the `@refinedev/devtools` along with your app.
 
-    note: Devtools only works in development mode and have no overhead on production builds. You don't need to do anything special to exclude DevTools from your bundle.
+    `<DevtoolsProvider />` will tell refine to connect to the devtools server and track your queries and mutations. `<DevtoolsPanel />` will render the devtools UI in your app.
 
-    Devtools is integrated with `@refinedev/cli` and it will be started automatically in development mode if you have `@refinedev/devtools` installed.
+    > note: Devtools only works in development mode and have no overhead on production builds. You don't need to do anything special to exclude DevTools from your bundle.
 
     If you want to start devtools manually or have a custom dev script, you can run `refine devtools` in your project directory or add the following scripts to your `package.json`:
 
@@ -73,8 +74,6 @@
         }
     }
     ```
-
-    If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) to add it to your project.
 
     These commands will start the devtools server. If you want to access the devtools UI outside of your app without depending on the `<DevtoolsPanel />` component, you can go to `http://localhost:5001` in your browser. 🚀
 
