@@ -4,7 +4,7 @@ import { useCustom } from "@refinedev/core";
 import { Area, AreaConfig } from "@ant-design/plots";
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 
-import { Text } from "../../../../components/text";
+import { Text } from "../../../../components";
 import { API_URL } from "../../../../providers/data";
 
 import styles from "./index.module.css";

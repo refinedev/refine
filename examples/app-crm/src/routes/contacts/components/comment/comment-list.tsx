@@ -9,8 +9,7 @@ import { DeleteButton, useForm } from "@refinedev/antd";
 import { Form, Space, Typography, Input, Button } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "../../../../components/text";
-import { CustomAvatar } from "../../../../components/custom-avatar";
+import { CustomAvatar, Text } from "../../../../components";
 import { User, ContactNote } from "@/interfaces";
 
 const ContactCommentListItem = ({ item }: { item: ContactNote }) => {

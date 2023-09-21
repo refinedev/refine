@@ -3,9 +3,10 @@ import { Button, Form, Input, Modal, ModalProps, Popconfirm } from "antd";
 import { useCreateMany, useDelete, useList } from "@refinedev/core";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 
-import { Text } from "../../../../../components/text";
+import { Text } from "../../../../../components";
 
 import { EventCategory } from "@/interfaces";
+
 import styles from "./index.module.css";
 
 type CalendarManageCategoriesProps = {

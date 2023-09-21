@@ -9,9 +9,10 @@ import {
 } from "@ant-design/icons";
 import debounce from "lodash/debounce";
 
-import { TableView, CardView } from "./components";
+import { ListTitleButton } from "../../components";
 import { Contact } from "@/interfaces";
-import { ListTitleButton } from "../../components/list-title-button";
+
+import { TableView, CardView } from "./components";
 
 type Props = React.PropsWithChildren<{}>;
 type View = "card" | "table";

@@ -1,5 +1,5 @@
-import { useDelete } from "@refinedev/core";
 import { FC, memo, useMemo } from "react";
+import { useDelete } from "@refinedev/core";
 import {
     Button,
     Card,
@@ -13,8 +13,7 @@ import { MoreOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
-import { Text } from "../../../../components/text";
-import { CustomAvatar } from "../../../../components/custom-avatar";
+import { CustomAvatar, Text } from "../../../../components";
 import { User } from "@/interfaces";
 
 type Props = {

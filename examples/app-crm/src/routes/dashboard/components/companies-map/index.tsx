@@ -8,7 +8,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import "leaflet/dist/leaflet.css";
 
-import { Text } from "../../../../components/text";
+import { Text } from "../../../../components";
 import CustomGeoJson from "./custom.geo.json";
 import Markers from "./markers.json";
 import Countries from "./countries.json";

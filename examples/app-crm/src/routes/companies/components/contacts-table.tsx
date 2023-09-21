@@ -30,7 +30,8 @@ import {
 import { useParams } from "react-router-dom";
 import { FC, useMemo } from "react";
 import { HttpError, useCreateMany, useOne } from "@refinedev/core";
-import { ContactStatusTag } from "../../../components/contact/status-tag";
+
+import { ContactStatusTag } from "../../../components";
 
 type Props = {
     style?: React.CSSProperties;

@@ -31,11 +31,12 @@ import {
     CustomAvatar,
     SingleElementForm,
     SelectOptionWithAvatar,
+    TextIcon,
 } from "../../../components";
-import { ContactStatus, ContactComment } from "../components";
-import { TextIcon } from "../../../components/icon";
 import { TimezoneEnum } from "@/enums";
 import type { Company, Contact, User } from "@/interfaces";
+
+import { ContactStatus, ContactComment } from "../components";
 
 import styles from "./index.module.css";
 

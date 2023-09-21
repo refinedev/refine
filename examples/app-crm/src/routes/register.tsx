@@ -2,7 +2,7 @@ import React from "react";
 import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
-import { Title } from "../components/layout/title";
+import { Title } from "../components";
 
 export const RegisterPage: React.FC = () => {
     return (

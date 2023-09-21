@@ -9,10 +9,9 @@ import {
 import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import { ActionCell } from "./components/action-cell";
-import { CustomAvatar, Text } from "../../components";
+import { ActionCell } from "./components";
+import { CustomAvatar, Text, PaginationTotal } from "../../components";
 import { Audit } from "@/interfaces";
-import { PaginationTotal } from "../../components/pagination-total";
 
 const getActionColor = (action: string): TagProps["color"] => {
     switch (action) {

@@ -10,11 +10,13 @@ import { Button, Input, Select, Space, Table, type TableProps } from "antd";
 import { PhoneOutlined } from "@ant-design/icons";
 
 import { ContactStatusEnum } from "@/enums";
-import { CustomAvatar } from "../../../components/custom-avatar";
-import { ContactStatusTag } from "../../../components/contact/status-tag";
-import { Text } from "../../../components/text";
+import {
+    CustomAvatar,
+    ContactStatusTag,
+    Text,
+    PaginationTotal,
+} from "../../../components";
 import { Contact } from "@/interfaces";
-import { PaginationTotal } from "../../../components/pagination-total";
 
 type Props = {
     tableProps: TableProps<Contact>;

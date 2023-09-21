@@ -9,11 +9,10 @@ import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
-import { Text, CustomAvatar } from "../../../components";
+import { Text, CustomAvatar, PaginationTotal } from "../../../components";
 import { currencyNumber } from "@/utilities";
 import { Company } from "@/interfaces";
-import { CustomAvatarGroup } from "../../../components/custom-avatar-group";
-import { PaginationTotal } from "../../../components/pagination-total";
+import { AvatarGroup } from "./avatar-group";
 
 type Props = {
     tableProps: TableProps<Company>;
@@ -160,9 +159,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
                         };
                     });
 
-                    return (
-                        <CustomAvatarGroup avatars={avatars} size={"small"} />
-                    );
+                    return <AvatarGroup avatars={avatars} size={"small"} />;
                 }}
             />
             <Table.Column<Company>

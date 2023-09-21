@@ -9,8 +9,8 @@ import {
     DownOutlined,
 } from "@ant-design/icons";
 
-import { Text } from "../../../../components/text";
 import { ContactStatusEnum, ContactStageEnum } from "@/enums";
+import { Text } from "../../../../components";
 
 import { Contact, ContactStatus as ContactStatusType } from "@/interfaces";
 

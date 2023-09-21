@@ -1,7 +1,7 @@
 import { Space } from "antd";
 import { CheckSquareOutlined } from "@ant-design/icons";
 
-import { Text } from "../../../../components/text";
+import { Text } from "../../../../components";
 import { Task } from "@/interfaces";
 
 type Props = {

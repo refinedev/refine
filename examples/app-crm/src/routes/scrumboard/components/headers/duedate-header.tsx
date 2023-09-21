@@ -1,9 +1,9 @@
 import { Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "../../../../components/text";
-import { getDateColor } from "@/utilities";
+import { Text } from "../../../../components";
 import { Task } from "@/interfaces";
+import { getDateColor } from "@/utilities";
 
 type Props = {
     dueData?: Task["dueDate"];

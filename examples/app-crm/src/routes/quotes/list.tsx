@@ -15,12 +15,16 @@ import { SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { debounce } from "lodash";
 
-import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
-import { currencyNumber } from "@/utilities";
+import {
+    Text,
+    QuoteStatusTag,
+    CustomAvatar,
+    Participants,
+    PaginationTotal,
+    ListTitleButton,
+} from "../../components";
 import { Quote, QuoteStatus } from "@/interfaces";
-import { Participants } from "../../components/participants";
-import { PaginationTotal } from "../../components/pagination-total";
-import { ListTitleButton } from "../../components/list-title-button";
+import { currencyNumber } from "@/utilities";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {

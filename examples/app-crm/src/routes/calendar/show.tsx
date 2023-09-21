@@ -13,9 +13,8 @@ import dayjs from "dayjs";
 import { EditButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
 
-import { Text } from "../../components/text";
+import { Text, UserTag } from "../../components";
 import { Event } from "@/interfaces";
-import { UserTag } from "../../components/user-tag";
 
 export const CalendarShowPage: React.FC = () => {
     const { id } = useResource();

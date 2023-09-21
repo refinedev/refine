@@ -6,7 +6,7 @@ import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Text, CustomAvatar } from "../../../../../components";
 import { currencyNumber } from "@/utilities";
 import { Company } from "@/interfaces";
-import { CustomAvatarGroup } from "../../../../../components/custom-avatar-group";
+import { AvatarGroup } from "../../avatar-group";
 import { CompanyCardSkeleton } from "./skeleton";
 
 type Props = {
@@ -50,7 +50,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
                         }}
                     >
                         <Text size="xs">Related contacts</Text>
-                        <CustomAvatarGroup
+                        <AvatarGroup
                             size={"small"}
                             overlap
                             gap="4px"

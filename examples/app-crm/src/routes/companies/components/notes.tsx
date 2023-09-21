@@ -11,10 +11,9 @@ import { Form, Space, Typography, Input, Button, Card } from "antd";
 import { useParams } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { Text } from "../../../components/text";
-import { CustomAvatar } from "../../../components/custom-avatar";
+
+import { CustomAvatar, Text, TextIcon } from "../../../components";
 import { CompanyNote, User } from "@/interfaces";
-import { TextIcon } from "../../../components/icon";
 
 type Props = {
     style?: React.CSSProperties;

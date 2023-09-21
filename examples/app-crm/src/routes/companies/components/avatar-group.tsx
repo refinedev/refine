@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { CustomAvatar } from "./custom-avatar";
 import { AvatarProps, Space, Tooltip } from "antd";
-import { Text } from "./text";
+
+import { CustomAvatar, Text } from "../../../components";
 
 type Props = {
     avatars: {
@@ -16,7 +16,7 @@ type Props = {
     overlap?: boolean;
 };
 
-export const CustomAvatarGroup: FC<Props> = ({
+export const AvatarGroup: FC<Props> = ({
     avatars,
     size,
     overlap,

@@ -1,5 +1,6 @@
 export * from "./title-form";
 export * from "./card-view";
+export * from "./avatar-group";
 export * from "./contacts-table";
 export * from "./deals-table";
 export * from "./info-form";

@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { demoCredentials } from "../providers/auth";
 
-import { Title } from "../components/layout/title";
+import { Title } from "../components";
 
 export const LoginPage: React.FC = () => {
     const [searchParams] = useSearchParams();

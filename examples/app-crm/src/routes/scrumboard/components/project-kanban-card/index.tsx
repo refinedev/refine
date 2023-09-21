@@ -22,12 +22,9 @@ import {
     DeleteOutlined,
 } from "@ant-design/icons";
 
-import { TextIcon } from "../../../../components/icon";
-import { Text } from "../../../../components/text";
-import { CustomAvatar } from "../../../../components/custom-avatar";
-import { getDateColor } from "@/utilities";
-
+import { CustomAvatar, Text, TextIcon } from "../../../../components";
 import { User } from "@/interfaces";
+import { getDateColor } from "@/utilities";
 
 type ProjectCardProps = {
     id: string;

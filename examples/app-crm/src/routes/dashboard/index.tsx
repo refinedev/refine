@@ -1,6 +1,8 @@
 import React from "react";
 import { Row, Col } from "antd";
 
+import { CalendarUpcomingEvents } from "../../components";
+
 import {
     CompaniesMap,
     DashboardTotalCountCard,
@@ -9,7 +11,6 @@ import {
     DashboardTotalRevenueChart,
     DashboardLatestActivities,
 } from "./components";
-import { CalendarUpcomingEvents } from "../../components/calendar";
 
 export const DashboardPage: React.FC = () => {
     return (

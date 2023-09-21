@@ -2,9 +2,10 @@ import { useMemo } from "react";
 import { List, type TableProps } from "antd";
 import { ListProps } from "antd/lib";
 
-import { ContactCardSkeleton, ContactCard } from "./card";
+import { PaginationTotal } from "../../../components";
 import { Contact } from "@/interfaces";
-import { PaginationTotal } from "../../../components/pagination-total";
+
+import { ContactCardSkeleton, ContactCard } from "./card";
 
 type Props = {
     tableProps: TableProps<Contact>;

@@ -5,7 +5,7 @@ import { useModal } from "@refinedev/antd";
 import { SettingOutlined, FlagOutlined } from "@ant-design/icons";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 
-import { Text } from "../../../../components/text";
+import { Text } from "../../../../components";
 import { CalendarManageCategories } from "./manage-categories";
 import { EventCategory } from "@/interfaces";
 

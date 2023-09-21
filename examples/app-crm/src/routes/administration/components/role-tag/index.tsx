@@ -1,8 +1,9 @@
 import React, { FC } from "react";
-import { User } from "@/interfaces";
 import { Tag } from "antd";
 import { TagProps } from "antd/lib";
 import { CrownOutlined, StarOutlined, UserOutlined } from "@ant-design/icons";
+
+import { User } from "@/interfaces";
 
 type Props = {
     role: User["role"];

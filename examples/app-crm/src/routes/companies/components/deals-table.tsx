@@ -1,23 +1,23 @@
 import { FC, useMemo } from "react";
+import { useCustom, useNavigation } from "@refinedev/core";
 import {
     EditButton,
     FilterDropdown,
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { useParams } from "react-router-dom";
-import { Button, Card, Input, Select, Skeleton, Space, Table } from "antd";
-import { Deal, DealAggregateResponse } from "@/interfaces";
-import { DealStageTag, Participants, Text } from "../../../components";
+import { Link, useParams } from "react-router-dom";
+import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 import {
     AuditOutlined,
     ExportOutlined,
     PlusCircleOutlined,
     SearchOutlined,
 } from "@ant-design/icons";
+
+import { Deal, DealAggregateResponse } from "@/interfaces";
+import { Participants, Text } from "../../../components";
 import { currencyNumber } from "@/utilities";
-import { useCustom, useNavigation } from "@refinedev/core";
-import { Link } from "react-router-dom";
 
 type Props = {
     style?: React.CSSProperties;
@@ -212,7 +212,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                         render={(_, record) => {
                             if (!record.stage) return null;
 
-                            return <DealStageTag stage={record.stage} />;
+                            return <Tag>{record.stage.title}</Tag>;
                         }}
                         filterIcon={<SearchOutlined />}
                         filterDropdown={(props) => (

@@ -8,13 +8,11 @@ import {
 import { useDelete, useGetToPath } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 
-import { Text } from "../../../../components/text";
-import { ContactStatusTag } from "../../../../components/contact/status-tag";
-import { CustomAvatar } from "../../../../components/custom-avatar";
+import { Text, ContactStatusTag, CustomAvatar } from "../../../../components";
+import { ContactCardSkeleton } from "./skeleton";
 import { Contact } from "@/interfaces";
 
 import styles from "./index.module.css";
-import { ContactCardSkeleton } from "./skeleton";
 
 type ContactCardProps = {
     contact: Contact | null;

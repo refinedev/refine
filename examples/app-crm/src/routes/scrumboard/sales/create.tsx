@@ -24,8 +24,8 @@ import {
     UserOutlined,
 } from "@ant-design/icons";
 
+import { SelectOptionWithAvatar } from "../../../components";
 import { Company, Contact, Deal, User } from "@/interfaces";
-import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
 
 type FormValues = {
     stageId?: string | null;

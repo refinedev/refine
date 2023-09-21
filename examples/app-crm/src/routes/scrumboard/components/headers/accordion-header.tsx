@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { Space } from "antd";
 
-import { Text } from "../../../../components/text";
+import { Text } from "../../../../components";
 import { AccordionHeaderSkeleton } from "../accordion-header-skeleton";
 
 type Props = PropsWithChildren<{

@@ -3,7 +3,7 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Form, Skeleton } from "antd";
 
-import { Text } from "../../../../components/text";
+import { Text } from "../../../../components";
 import { Task, TaskUpdateInput } from "@/interfaces";
 
 const TitleInput = ({
