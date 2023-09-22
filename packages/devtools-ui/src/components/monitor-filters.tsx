@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import clsx from "clsx";
 import { Select } from "./select";
 import { Button } from "./button";
@@ -8,17 +8,19 @@ import { FilterField } from "./filter-field";
 import { CheckboxGroup } from "./checkbox-group";
 import { scopes } from "@refinedev/devtools-shared";
 import { MonitorAppliedFilterGroup } from "./monitor-applied-filter-group";
+import { Activity } from "src/interfaces/activity";
 
 export type Filters = {
     scope: string[];
     hook: string[];
-    parent: string | undefined;
+    parent: string[];
     resource: string | undefined;
     status: Array<"loading" | "success" | "error" | "idle" | "paused">;
 };
 
 type Props = {
     filters: Filters;
+    activities: Activity[];
     onSubmit: (filters: Filters) => void;
 };
 
@@ -71,6 +73,7 @@ const filterStatus = [
 
 export const MonitorFilters = ({
     filters: defaultFilters,
+    activities,
     onSubmit,
 }: Props) => {
     const [filters, setFilters] = React.useState<Filters>(defaultFilters);
@@ -79,11 +82,30 @@ export const MonitorFilters = ({
         defaultFilters.hook.length > 0 ||
         defaultFilters.scope.length > 0 ||
         defaultFilters.status.length > 0 ||
-        defaultFilters.parent ||
+        defaultFilters.parent.length > 0 ||
         defaultFilters.resource;
 
     const panelRef = React.useRef<HTMLButtonElement>(null);
     const [panelVisible, setPanelVisible] = React.useState(false);
+
+    const filterParent = useMemo(() => {
+        const traces = activities
+            .map((activity) => activity.trace?.map((t) => t.function))
+            .flatMap((t) => t);
+
+        const tracesUnique = Array.from(new Set(traces)).filter(
+            (t) => !!t,
+        ) as string[];
+
+        const traceOptions = tracesUnique.map((trace) => {
+            return {
+                label: trace,
+                value: trace,
+            };
+        });
+
+        return traceOptions;
+    }, [activities]);
 
     const onApply = () => {
         onSubmit(filters);
@@ -148,7 +170,7 @@ export const MonitorFilters = ({
                     const emptyFilters = {
                         scope: [],
                         hook: [],
-                        parent: undefined,
+                        parent: [],
                         resource: undefined,
                         status: [],
                     };
@@ -226,7 +248,8 @@ export const MonitorFilters = ({
                             />
                         </FilterField>
                         <FilterField label="Parent">
-                            <FilterInput
+                            <Select
+                                type="multiple"
                                 value={filters.parent}
                                 onChange={(v) =>
                                     setFilters((p) => ({
@@ -234,7 +257,8 @@ export const MonitorFilters = ({
                                         parent: v,
                                     }))
                                 }
-                                placeholder="Type to filter by Trace"
+                                placeholder="Select Parent"
+                                options={filterParent}
                             />
                         </FilterField>
                         <FilterField label="Resource">
