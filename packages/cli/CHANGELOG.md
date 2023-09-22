@@ -1,5 +1,14 @@
 # @refinedev/cli
 
+## 2.15.2
+
+### Patch Changes
+
+-   [#4995](https://github.com/refinedev/refine/pull/4995) [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082) Thanks [@omeraplak](https://github.com/omeraplak)! - Updated `@refinedev/devtools-server` dependency
+
+-   Updated dependencies [[`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082), [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082)]:
+    -   @refinedev/devtools-server@1.1.2
+
 ## 2.15.1
 
 ### Patch Changes

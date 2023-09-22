@@ -1,5 +1,11 @@
 # @refinedev/devtools
 
+## 1.1.2
+
+### Patch Changes
+
+-   [#4995](https://github.com/refinedev/refine/pull/4995) [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082) Thanks [@omeraplak](https://github.com/omeraplak)! - Updated DOM selector to pick elements to highlight by `click` instead of `space`
+
 ## 1.1.1
 
 ### Patch Changes

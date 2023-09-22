@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@refinedev/core": "^4.42.0",
-    "@refinedev/cli": "^2.15.1",
+    "@refinedev/cli": "^2.15.2",
     "@refinedev/react-hook-form": "^4.8.8",
     "@refinedev/react-table": "^5.6.2",
     "@tanstack/react-table": "^8.2.6",
