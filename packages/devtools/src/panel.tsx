@@ -65,6 +65,7 @@ export const DevtoolsPanel =
                       <ResizablePane visible={visible} placement={placement}>
                           {({ resizing }) => (
                               <iframe
+                                  allow="clipboard-write;"
                                   src={devtoolsUrl}
                                   srcDoc={
                                       devtoolsUrl
