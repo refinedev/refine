@@ -1,13 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { useCustom } from "@refinedev/core";
 
 import { DollarOutlined } from "@ant-design/icons";
-import { Gauge, GaugeConfig } from "@ant-design/plots";
+import { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";
 import { currencyNumber } from "@/utilities";
+
+const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
 
 type DealRevenueResponse = {
     realizationRevenueSum: {
@@ -158,7 +160,9 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                 </div>
             }
         >
-            <Gauge {...config} padding={0} width={280} height={280} />
+            <Suspense>
+                <Gauge {...config} padding={0} width={280} height={280} />
+            </Suspense>
 
             <div
                 style={{
