@@ -72,6 +72,6 @@ const App = () => {
 ```
 
 ## Documentation
-- [Refer refine kbar example](https://refine.dev/docs/examples/command-palette/)
+- [Refer refine kbar example](https://refine.dev/docs/examples/command-palette/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

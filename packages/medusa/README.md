@@ -79,6 +79,5 @@ const App = () => {
 
 ## Documentation
 - For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
-- [Refer to refine Airtable example](https://refine.dev/docs/examples/data-provider/airtable/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

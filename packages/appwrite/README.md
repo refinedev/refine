@@ -93,5 +93,5 @@ const App = () => {
 ## Documentation
 - For more detailed information on data provider usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
 - [Refer to refine Appwrite docs](https://refine.dev/docs/packages/documentation/data-providers/appwrite/).
-- [Refer to documentation for more info about refin](https://refine.dev/docs/).
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

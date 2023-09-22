@@ -82,6 +82,6 @@ const App = () => {
 ## Documentation
 
 - For more detailed information and usage, refer to the [refine Mantine documentation](https://refine.dev/docs/api-reference/mantine/).
-- [Refer to complete refine tutorial with Mantine](https://refine.dev/docs/tutorial/introduction/select-framework/)
+- [Refer to complete refine tutorial with Mantine](https://refine.dev/docs/tutorial/introduction/select-framework/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

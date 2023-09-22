@@ -60,7 +60,7 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 ## Installation & Usage
 
 ```
-npm install @refinedev/airtable
+npm install @refinedev/nestjs-query graphql-ws
 ```
 
 ```tsx
