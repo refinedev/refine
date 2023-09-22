@@ -1,5 +1,5 @@
 ---
-"@refinedev/devtools-ui": minor
+"@refinedev/devtools-ui": patch
 ---
 
 feat: add parent filter to devtools-ui
