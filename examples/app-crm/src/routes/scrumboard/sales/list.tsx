@@ -1,27 +1,28 @@
 import { FC, PropsWithChildren, useMemo } from "react";
-import { useDelete, useList, useUpdate, useUpdateMany } from "@refinedev/core";
-import { DragEndEvent } from "@dnd-kit/core";
-import { DeleteOutlined, EditOutlined, ClearOutlined } from "@ant-design/icons";
-import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
+
+import { useDelete, useList, useUpdate, useUpdateMany } from "@refinedev/core";
+
+import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DragEndEvent } from "@dnd-kit/core";
+import { MenuProps } from "antd";
+
+import { Text } from "@/components";
+import { Deal, DealStage } from "@/interfaces";
+import { currencyNumber } from "@/utilities";
 
 import {
     DealKanbanCardMemo,
     DealKanbanCardSkeleton,
-    Text,
-} from "../../../components";
-import {
-    KanbanBoard,
-    KanbanColumn,
-    KanbanItem,
-    KanbanAddStageButton,
+    DealKanbanWonLostDrop,
     KanbanAddCardButton,
+    KanbanAddStageButton,
+    KanbanBoard,
     KanbanBoardSkeleton,
+    KanbanColumn,
     KanbanColumnSkeleton,
-} from "../../../components/kanban";
-import { DealKanbanWonLostDrop } from "../../../components/deal-kanban-won-lost-drop";
-import { Deal, DealStage } from "../../../interfaces/graphql";
-import { currencyNumber } from "../../../utilities";
+    KanbanItem,
+} from "../components";
 
 const dealsFragment = [
     "id",

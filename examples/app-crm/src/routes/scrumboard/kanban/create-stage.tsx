@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 import { useModalForm } from "@refinedev/antd";
 import { useInvalidate } from "@refinedev/core";
+
 import { Form, Input, Modal } from "antd";
-import { useNavigate } from "react-router-dom";
 
 export const KanbanCreateStage = () => {
     const invalidate = useInvalidate();

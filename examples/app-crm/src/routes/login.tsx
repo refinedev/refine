@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
-import { AuthPage } from "@refinedev/antd";
-import { useLogin } from "@refinedev/core";
 import { useSearchParams } from "react-router-dom";
 
-import { demoCredentials } from "../providers/auth";
+import { AuthPage } from "@refinedev/antd";
+import { useLogin } from "@refinedev/core";
 
-import { Title } from "../components/title";
+import { GithubOutlined, GoogleOutlined } from "@ant-design/icons";
+
+import { Title } from "@/components";
+import { demoCredentials } from "@/providers";
 
 export const LoginPage: React.FC = () => {
     const [searchParams] = useSearchParams();

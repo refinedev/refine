@@ -1,47 +1,50 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useSelect } from "@refinedev/antd";
+import { useDelete, useGetToPath, useShow, useUpdate } from "@refinedev/core";
+
+import {
+    CloseOutlined,
+    DeleteOutlined,
+    EditOutlined,
+    GlobalOutlined,
+    IdcardOutlined,
+    MailOutlined,
+    PhoneOutlined,
+    ShopOutlined,
+} from "@ant-design/icons";
 import {
     Button,
     Card,
     Drawer,
+    Form,
     Input,
     Popconfirm,
     Select,
     Space,
     Spin,
-    Form,
     Typography,
 } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useDelete, useGetToPath, useShow, useUpdate } from "@refinedev/core";
-import {
-    MailOutlined,
-    ShopOutlined,
-    GlobalOutlined,
-    PhoneOutlined,
-    IdcardOutlined,
-    DeleteOutlined,
-    CloseOutlined,
-    EditOutlined,
-} from "@ant-design/icons";
-import { useSelect } from "@refinedev/antd";
 import dayjs from "dayjs";
 
 import {
-    Text,
     CustomAvatar,
-    SingleElementForm,
     SelectOptionWithAvatar,
-} from "../../../components";
-import { ContactStatus, ContactComment } from "../../../components/contact";
-import { TextIcon } from "../../../components/icon";
-import { Timezone } from "../../../enums/timezone";
-import type { Company, Contact, User } from "../../../interfaces/graphql";
+    SingleElementForm,
+    Text,
+    TextIcon,
+} from "@/components";
+import { TimezoneEnum } from "@/enums";
+import type { Company, Contact, User } from "@/interfaces";
+
+import { ContactComment, ContactStatus } from "../components";
 
 import styles from "./index.module.css";
 
-const timezoneOptions = Object.keys(Timezone).map((key) => ({
-    label: Timezone[key as keyof typeof Timezone],
-    value: Timezone[key as keyof typeof Timezone],
+const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({
+    label: TimezoneEnum[key as keyof typeof TimezoneEnum],
+    value: TimezoneEnum[key as keyof typeof TimezoneEnum],
 }));
 
 export const ContactShowPage: React.FC = () => {
@@ -361,7 +364,7 @@ export const ContactShowPage: React.FC = () => {
                         }
                         itemProps={{
                             name: "timezone",
-                            label: "Timezone",
+                            label: "TimezoneEnum",
                         }}
                         view={<Text>{timezone}</Text>}
                         onClick={() => setActiveForm("timezone")}

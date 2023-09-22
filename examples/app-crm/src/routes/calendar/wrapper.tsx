@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Col, Row } from "antd";
-import { CreateButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
+
+import { CreateButton } from "@refinedev/antd";
 import { useGetToPath } from "@refinedev/core";
 
-import {
-    CalendarUpcomingEvents,
-    CalendarCategories,
-    Calendar,
-} from "../../components/calendar";
+import { Col, Row } from "antd";
+
+import { CalendarUpcomingEvents } from "@/components";
+
+import { Calendar, CalendarCategories } from "./components";
 
 export const CalendarPageWrapper: React.FC<React.PropsWithChildren> = ({
     children,

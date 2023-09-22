@@ -1,7 +1,7 @@
 import { Space } from "antd";
 
-import { Text } from "./text";
 import { CustomAvatar } from "./custom-avatar";
+import { Text } from "./text";
 
 type Props = {
     name: string;

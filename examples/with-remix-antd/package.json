@@ -15,7 +15,7 @@
     "@remix-run/react": "^1.6.7",
     "@remix-run/serve": "^1.6.7",
     "@refinedev/core": "^4.42.0",
-    "@refinedev/cli": "^2.13.0",
+    "@refinedev/cli": "^2.15.0",
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/remix-router": "^2.3.0",
     "@refinedev/antd": "^5.36.2",

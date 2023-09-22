@@ -1881,11 +1881,28 @@ export type DealStageFilter = {
     and?: InputMaybe<Array<DealStageFilter>>;
     createdAt?: InputMaybe<DateFieldComparison>;
     createdBy?: InputMaybe<DealStageFilterUserFilter>;
+    deals?: InputMaybe<DealStageFilterDealFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<DealStageFilter>>;
     title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<DealStageFilterUserFilter>;
+};
+
+export type DealStageFilterDealFilter = {
+    and?: InputMaybe<Array<DealStageFilterDealFilter>>;
+    closeDateDay?: InputMaybe<IntFieldComparison>;
+    closeDateMonth?: InputMaybe<IntFieldComparison>;
+    closeDateYear?: InputMaybe<IntFieldComparison>;
+    companyId?: InputMaybe<IdFilterComparison>;
+    createdAt?: InputMaybe<DateFieldComparison>;
+    dealOwnerId?: InputMaybe<IdFilterComparison>;
+    id?: InputMaybe<IdFilterComparison>;
+    or?: InputMaybe<Array<DealStageFilterDealFilter>>;
+    stageId?: InputMaybe<IdFilterComparison>;
+    title?: InputMaybe<StringFieldComparison>;
+    updatedAt?: InputMaybe<DateFieldComparison>;
+    value?: InputMaybe<FloatFieldComparison>;
 };
 
 export type DealStageFilterUserFilter = {
@@ -2597,6 +2614,7 @@ export type Mutation = {
     deleteOneUser: UserDeleteResponse;
     login: AuthResponse;
     refreshToken: AuthResponse;
+    register: User;
     updateManyCompanies: UpdateManyResponse;
     updateManyCompanyNotes: UpdateManyResponse;
     updateManyContactNotes: UpdateManyResponse;
@@ -2839,6 +2857,10 @@ export type MutationLoginArgs = {
 
 export type MutationRefreshTokenArgs = {
     refreshToken: Scalars["String"]["input"];
+};
+
+export type MutationRegisterArgs = {
+    registerInput: RegisterInput;
 };
 
 export type MutationUpdateManyCompaniesArgs = {
@@ -3370,6 +3392,11 @@ export type QuoteUpdateInput = {
     status?: InputMaybe<QuoteStatus>;
     tax?: InputMaybe<Scalars["Int"]["input"]>;
     title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type RegisterInput = {
+    email: Scalars["String"]["input"];
+    password: Scalars["String"]["input"];
 };
 
 /** Role */
@@ -3974,6 +4001,7 @@ export type TaskFilterTaskStageFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskFilterTaskStageFilter>>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4052,12 +4080,14 @@ export type TaskStageAggregateFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageAggregateFilter>>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
 export type TaskStageAggregateGroupBy = {
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
@@ -4094,6 +4124,7 @@ export type TaskStageConnection = {
 export type TaskStageCountAggregate = {
     createdAt?: Maybe<Scalars["Int"]["output"]>;
     id?: Maybe<Scalars["Int"]["output"]>;
+    title?: Maybe<Scalars["Int"]["output"]>;
     updatedAt?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -4106,6 +4137,7 @@ export type TaskStageDeleteFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageDeleteFilter>>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4122,6 +4154,7 @@ export type TaskStageFilter = {
     createdBy?: InputMaybe<TaskStageFilterUserFilter>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageFilter>>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
     updatedBy?: InputMaybe<TaskStageFilterUserFilter>;
 };
@@ -4143,12 +4176,14 @@ export type TaskStageFilterUserFilter = {
 export type TaskStageMaxAggregate = {
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
 export type TaskStageMinAggregate = {
     createdAt?: Maybe<Scalars["DateTime"]["output"]>;
     id?: Maybe<Scalars["ID"]["output"]>;
+    title?: Maybe<Scalars["String"]["output"]>;
     updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
 };
 
@@ -4158,13 +4193,14 @@ export type TaskStageSort = {
     nulls?: InputMaybe<SortNulls>;
 };
 
-export type TaskStageSortFields = "createdAt" | "id" | "updatedAt";
+export type TaskStageSortFields = "createdAt" | "id" | "title" | "updatedAt";
 
 export type TaskStageSubscriptionFilter = {
     and?: InputMaybe<Array<TaskStageSubscriptionFilter>>;
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageSubscriptionFilter>>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 
@@ -4238,6 +4274,7 @@ export type TaskStageUpdateFilter = {
     createdAt?: InputMaybe<DateFieldComparison>;
     id?: InputMaybe<IdFilterComparison>;
     or?: InputMaybe<Array<TaskStageUpdateFilter>>;
+    title?: InputMaybe<StringFieldComparison>;
     updatedAt?: InputMaybe<DateFieldComparison>;
 };
 

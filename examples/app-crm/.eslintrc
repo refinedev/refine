@@ -1,0 +1,31 @@
+{
+    "extends": "../../.eslintrc",
+    "plugins": ["simple-import-sort"],
+    "rules": {
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    // React first.
+                    ["^react"],
+                    // Refine packages.
+                    ["^@refinedev"],
+                    // Other packages
+                    ["^@?\\w"],
+                    // Internal path imports.
+                    [
+                        "/^@/(config|components|enums|interfaces|providers|utilities)$/"
+                    ],
+                    // Side effect imports.
+                    ["^\\u0000"],
+                    // Remaining imports.
+                    ["^"],
+                    // Relative imports.
+                    ["^\\."],
+                    // Style imports.
+                    ["^.+\\.?(css)$"]
+                ]
+            }
+        ]
+    }
+}
