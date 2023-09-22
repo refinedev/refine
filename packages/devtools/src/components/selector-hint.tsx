@@ -55,7 +55,7 @@ export const SelectorHint = ({
                     textShadow: "none",
                 }}
             >
-                space
+                click
             </kbd>{" "}
             to highlight in monitor.
         </div>
