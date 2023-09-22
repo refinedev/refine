@@ -84,6 +84,7 @@ const App = () => {
 ## Documentation
 - For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
 - [Refer to refine Supabase docs](https://refine.dev/docs/packages/documentation/data-providers/supabase/#introduction).
+- [Refer to refine integration on Supabase offical docs](https://supabase.com/docs/guides/getting-started/tutorials/with-refine)
 - [Refer to refine Supabase data provider example](https://refine.dev/docs/examples/data-provider/supabase/)
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
