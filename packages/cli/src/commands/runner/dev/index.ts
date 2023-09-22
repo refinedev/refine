@@ -4,7 +4,7 @@ import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
 import { Command, Option } from "commander";
 import { updateNotifier } from "src/update-notifier";
-import { action as devtoolsRunner } from "src/commands/devtools";
+import { devtoolsRunner } from "src/commands/devtools";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { getPlatformOptionDescription, getRunnerDescription } from "../utils";

@@ -10,7 +10,7 @@
     "@dnd-kit/sortable": "^7.0.2",
     "@react-pdf/renderer": "^3.1.8",
     "@refinedev/antd": "^5.36.2",
-    "@refinedev/cli": "^2.13.0",
+    "@refinedev/cli": "^2.15.0",
     "@refinedev/core": "^4.42.0",
     "@refinedev/nestjs-query": "^1.0.4",
     "@refinedev/react-router-v6": "^4.5.0",
