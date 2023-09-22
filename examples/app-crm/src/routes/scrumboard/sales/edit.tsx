@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import { HttpError, useGetToPath } from "@refinedev/core";
-import { useModalForm, useSelect } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
-import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
-import { DollarOutlined } from "@ant-design/icons";
 
-import { SelectOptionWithAvatar } from "../../../components/select-option-with-avatar";
-import { Company, Deal, User } from "../../../interfaces/graphql";
+import { useModalForm, useSelect } from "@refinedev/antd";
+import { HttpError, useGetToPath } from "@refinedev/core";
+
+import { DollarOutlined } from "@ant-design/icons";
+import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
+
+import { SelectOptionWithAvatar } from "@/components";
+import { Company, Deal, User } from "@/interfaces";
 
 type FormValues = {
     stageId?: string | null;

@@ -1,12 +1,14 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { useGetIdentity, useGetToPath } from "@refinedev/core";
-import { useForm, useSelect } from "@refinedev/antd";
-import { Button, Form, Input, Modal, Select } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
 
-import { Company, User } from "../../interfaces/graphql";
-import { SelectOptionWithAvatar } from "../../components/select-option-with-avatar";
+import { useForm, useSelect } from "@refinedev/antd";
+import { useGetIdentity, useGetToPath } from "@refinedev/core";
+
+import { PlusCircleOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Modal, Select } from "antd";
+
+import { SelectOptionWithAvatar } from "@/components";
+import { Company, User } from "@/interfaces";
 
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({
     children,

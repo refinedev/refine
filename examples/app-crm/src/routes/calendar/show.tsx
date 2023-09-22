@@ -1,21 +1,22 @@
-import { Button, Drawer, Skeleton, Space, Tag } from "antd";
-import { useGetToPath, useResource, useShow } from "@refinedev/core";
-import {
-    CalendarOutlined,
-    FlagOutlined,
-    TeamOutlined,
-    InfoCircleOutlined,
-    EditOutlined,
-    CloseOutlined,
-    ClockCircleOutlined,
-} from "@ant-design/icons";
-import dayjs from "dayjs";
-import { EditButton } from "@refinedev/antd";
 import { useNavigate } from "react-router-dom";
 
-import { Text } from "../../components/text";
-import { Event } from "../../interfaces/graphql";
-import { UserTag } from "../../components/user-tag";
+import { EditButton } from "@refinedev/antd";
+import { useGetToPath, useResource, useShow } from "@refinedev/core";
+
+import {
+    CalendarOutlined,
+    ClockCircleOutlined,
+    CloseOutlined,
+    EditOutlined,
+    FlagOutlined,
+    InfoCircleOutlined,
+    TeamOutlined,
+} from "@ant-design/icons";
+import { Button, Drawer, Skeleton, Space, Tag } from "antd";
+import dayjs from "dayjs";
+
+import { Text, UserTag } from "@/components";
+import { Event } from "@/interfaces";
 
 export const CalendarShowPage: React.FC = () => {
     const { id } = useResource();

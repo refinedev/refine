@@ -1,25 +1,32 @@
 import { FC, PropsWithChildren } from "react";
-import { HttpError, getDefaultFilter } from "@refinedev/core";
+
 import {
     DeleteButton,
     EditButton,
     FilterDropdown,
+    getDefaultSortOrder,
     List,
     ShowButton,
-    getDefaultSortOrder,
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
+import { getDefaultFilter, HttpError } from "@refinedev/core";
+
 import { SearchOutlined } from "@ant-design/icons";
+import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
 import dayjs from "dayjs";
-import { Text, QuoteStatusTag, CustomAvatar } from "../../components";
-import { currencyNumber } from "../../utilities";
-import { Quote, QuoteStatus } from "../../interfaces/graphql";
-import { Participants } from "../../components/participants";
 import { debounce } from "lodash";
-import { PaginationTotal } from "../../components/pagination-total";
-import { ListTitleButton } from "../../components/list-title-button";
+
+import {
+    CustomAvatar,
+    ListTitleButton,
+    PaginationTotal,
+    Participants,
+    QuoteStatusTag,
+    Text,
+} from "@/components";
+import { Quote, QuoteStatus } from "@/interfaces";
+import { currencyNumber } from "@/utilities";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {

@@ -1,29 +1,33 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetToPath } from "@refinedev/core";
+
 import { useModalForm } from "@refinedev/antd";
-import { Modal } from "antd";
+import { useGetToPath } from "@refinedev/core";
+
 import {
     AlignLeftOutlined,
     FieldTimeOutlined,
     UsergroupAddOutlined,
 } from "@ant-design/icons";
+import { Modal } from "antd";
 
-import { StageForm } from "../../../components/kanban/stage-form";
-import { DescriptionForm } from "../../../components/kanban/description-form";
-import { DescriptionHeader } from "../../../components/kanban/description-header";
-import { DueDateForm } from "../../../components/kanban/duedate-form";
-import { DueDateHeader } from "../../../components/kanban/duedate-header";
-import { UsersForm } from "../../../components/kanban/users-form";
-import { UsersHeader } from "../../../components/kanban/users-header";
-import { CheckListForm } from "../../../components/kanban/checklist-form";
-import { CommentForm } from "../../../components/kanban/comment-form";
-import { CommentList } from "../../../components/kanban/comment-list";
-import { ModalFooter } from "../../../components/kanban/modal-footer";
-import { TitleForm } from "../../../components/kanban/title-form";
-import { Accordion } from "../../../components/kanban/accordion";
+import { Task } from "@/interfaces";
 
-import { Task } from "../../../interfaces/graphql";
+import {
+    Accordion,
+    CheckListForm,
+    CommentForm,
+    CommentList,
+    DescriptionForm,
+    DescriptionHeader,
+    DueDateForm,
+    DueDateHeader,
+    ModalFooter,
+    StageForm,
+    TitleForm,
+    UsersForm,
+    UsersHeader,
+} from "../components";
 
 export const KanbanEditPage = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();

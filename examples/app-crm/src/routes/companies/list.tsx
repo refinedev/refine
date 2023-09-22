@@ -1,20 +1,20 @@
 import { FC, PropsWithChildren, useState } from "react";
-import { HttpError } from "@refinedev/core";
+
 import { List, useTable } from "@refinedev/antd";
-import { Form, Input, Space, Radio, Spin, Grid } from "antd";
+import { HttpError } from "@refinedev/core";
+
 import {
     AppstoreOutlined,
     SearchOutlined,
     UnorderedListOutlined,
 } from "@ant-design/icons";
+import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import { debounce } from "lodash";
 
-import {
-    CompaniesTableView,
-    CompaniesCardView,
-} from "../../components/company";
-import { Company } from "../../interfaces/graphql";
-import { ListTitleButton } from "../../components/list-title-button";
+import { ListTitleButton } from "@/components";
+import { Company } from "@/interfaces";
+
+import { CompaniesCardView, CompaniesTableView } from "./components";
 
 type View = "card" | "table";
 

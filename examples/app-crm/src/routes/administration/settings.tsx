@@ -1,6 +1,6 @@
-import { getDefaultFilter } from "@refinedev/core";
 import { FilterDropdown, useTable } from "@refinedev/antd";
-import { Card, Col, Input, Row, Select, Space, Table } from "antd";
+import { getDefaultFilter } from "@refinedev/core";
+
 import {
     EnvironmentOutlined,
     GlobalOutlined,
@@ -10,10 +10,13 @@ import {
     ShopOutlined,
     TeamOutlined,
 } from "@ant-design/icons";
+import { Card, Col, Input, Row, Select, Space, Table } from "antd";
 import cn from "classnames";
-import { CustomAvatar, RoleTag, Text } from "../../components";
-import { User } from "../../interfaces/graphql";
-import { Logo } from "../../components/logo";
+
+import { CustomAvatar, Logo, Text } from "@/components";
+import { User } from "@/interfaces";
+
+import { RoleTag } from "./components";
 
 import styles from "./settings.module.css";
 

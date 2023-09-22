@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+
+import { List, useTable } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
-import { useTable, List } from "@refinedev/antd";
-import { Form, Input, Radio, Space, Grid, Spin } from "antd";
+
 import {
-    UnorderedListOutlined,
     AppstoreOutlined,
     SearchOutlined,
+    UnorderedListOutlined,
 } from "@ant-design/icons";
+import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
-import { TableView, CardView } from "../../components/contact";
-import { Contact } from "../../interfaces/graphql";
-import { ListTitleButton } from "../../components/list-title-button";
+import { ListTitleButton } from "@/components";
+import { Contact } from "@/interfaces";
+
+import { CardView, TableView } from "./components";
 
 type Props = React.PropsWithChildren<{}>;
 type View = "card" | "table";

@@ -1,18 +1,19 @@
-import { getDefaultFilter } from "@refinedev/core";
 import {
     DateField,
     FilterDropdown,
-    useTable,
     getDefaultSortOrder,
     List,
+    useTable,
 } from "@refinedev/antd";
-import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { getDefaultFilter } from "@refinedev/core";
 
-import { ActionCell } from "../../components/audit-log/action-cell";
-import { CustomAvatar, Text } from "../../components";
-import { Audit } from "../../interfaces/graphql";
-import { PaginationTotal } from "../../components/pagination-total";
+import { SearchOutlined } from "@ant-design/icons";
+import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
+
+import { CustomAvatar, PaginationTotal, Text } from "@/components";
+import { Audit } from "@/interfaces";
+
+import { ActionCell } from "./components";
 
 const getActionColor = (action: string): TagProps["color"] => {
     switch (action) {
