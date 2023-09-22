@@ -1,17 +1,15 @@
-import { GeoJSON, MapContainer, Marker } from "react-leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 import { useNavigation } from "@refinedev/core";
 
 import { GlobalOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { Button, Card } from "antd";
-import type { GeoJsonObject } from "geojson";
 import { divIcon, LatLngExpression, point } from "leaflet";
 
 import { Text } from "@/components";
 
 import Countries from "./countries.json";
-import CustomGeoJson from "./custom.geo.json";
 import Markers from "./markers.json";
 
 import "leaflet/dist/leaflet.css";
@@ -86,6 +84,10 @@ export const CompaniesMap: React.FC = () => {
                         [90, 180],
                     ]}
                 >
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
                     <MarkerClusterGroup
                         chunkedLoading
                         polygonOptions={{
@@ -104,15 +106,6 @@ export const CompaniesMap: React.FC = () => {
                             />
                         ))}
                     </MarkerClusterGroup>
-
-                    <GeoJSON
-                        data={CustomGeoJson as GeoJsonObject}
-                        style={{
-                            fillColor: "#F0F0F0",
-                            color: "#CCCCCC",
-                            weight: 1.2,
-                        }}
-                    />
                 </MapContainer>
             </div>
             <div className={styles.countries}>
