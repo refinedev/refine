@@ -43,9 +43,9 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 # Chakra UI integration for refine
 
-[Chakra UI](https://chakra-ui.com/) is a React.js UI library that contains easy-to-use components that are useful for building interactive user interfaces. 
+[Chakra UI](https://chakra-ui.com/) is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.
 
-The [refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+[refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
   refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
 
@@ -55,31 +55,32 @@ The [refine](https://refine.dev/) is **headless by design**, offering unlimited 
 ## Installation & Usage
 
 ```
-npm install @refinedev/antd antd
+npm install @refinedev/chakra-ui @chakra-ui/react @emotion/react @emotion/styled framer-motion
 ```
 
 
-```
-import { ThemedLayoutV2 } from "@refinedev/antd";
-
-import "@refinedev/antd/dist/reset.css";
+```tsx
+import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
     return (
-        <Refine
-        /* ... */
-        >
-            <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-        </Refine>
+        <ChakraProvider>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+            </Refine>
+        </ChakraProvider>
     );
 };
+
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine Ant Design documentation](https://refine.dev/docs/api-reference/antd/).
+- For more detailed information and usage, refer to the [refine Chakra UI documentation](https://refine.dev/docs/api-reference/chakra-ui/).
 - [Refer to complete refine tutorial with Ant Design](https://refine.dev/docs/tutorial/introduction/select-framework/)
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
 
 
