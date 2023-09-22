@@ -1,13 +1,10 @@
-import { lazy, Suspense } from "react";
-
 import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 
+import MDEditor from "@uiw/react-md-editor";
 import { Button, Form, Space } from "antd";
 
 import { Task } from "@/interfaces";
-
-const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 
 type Props = {
     initialValues: {
@@ -30,15 +27,13 @@ export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
     return (
         <>
             <Form {...formProps} initialValues={initialValues}>
-                <Suspense>
-                    <Form.Item noStyle name="description">
-                        <MDEditor
-                            preview="edit"
-                            data-color-mode="light"
-                            height={250}
-                        />
-                    </Form.Item>
-                </Suspense>
+                <Form.Item noStyle name="description">
+                    <MDEditor
+                        preview="edit"
+                        data-color-mode="light"
+                        height={250}
+                    />
+                </Form.Item>
             </Form>
             <div
                 style={{

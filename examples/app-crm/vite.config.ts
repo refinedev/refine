@@ -10,6 +10,7 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     antd: ["antd"],
+                    reactMdEditor: ["@uiw/react-md-editor"],
                 },
             },
         },
