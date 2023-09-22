@@ -146,7 +146,7 @@ export const Monitor = () => {
 
     const [filters, setFilters] = React.useState<Filters>({
         hook: [],
-        parent: undefined,
+        parent: [],
         resource: undefined,
         scope: ["data"],
         status: [],
@@ -159,7 +159,7 @@ export const Monitor = () => {
                 resource: undefined,
                 scope: [],
                 status: [],
-                parent: highlightParam,
+                parent: [],
             });
         }
     }, [highlightParam]);
@@ -182,21 +182,12 @@ export const Monitor = () => {
                 filters.hook.includes(activity.hookName),
             );
         }
-        if (filters.parent) {
+        if (filters.parent && filters.parent.length > 0) {
             filtered = filtered.filter((activity) => {
-                const regex = new RegExp(
-                    (filters.parent ?? "")
-                        .split(/[, ]+/)
-                        .map((s) => `(${s.toLowerCase().trim()})`)
-                        .join(".*"),
-                    "i",
-                );
-
-                return activity.trace
-                    ?.map((t) => t.function?.toLowerCase())
-                    .reverse()
-                    .join(",")
-                    .match(regex);
+                return activity.trace?.some((trace) => {
+                    if (!trace.function) return false;
+                    return filters.parent.includes(trace.function);
+                });
             });
         }
         if (filters.resource) {
@@ -273,6 +264,7 @@ export const Monitor = () => {
                     </div>
                     <MonitorFilters
                         filters={filters}
+                        activities={activities}
                         onSubmit={(f) => setFilters(f)}
                     />
                 </div>
