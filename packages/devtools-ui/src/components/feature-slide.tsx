@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { OptionsIcon } from "src/components/icons/options";
 import { PlaygroundIcon } from "src/components/icons/playground";
@@ -10,31 +10,26 @@ import { ComingSoonText } from "src/components/coming-soon-text";
 
 const slides = [
     {
-        id: 0,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/devtools/login/slide1.png",
         icon: <ResourceViewerIcon className={clsx("re-z-[1]")} />,
         title: "Resource Viewer",
     },
     {
-        id: 1,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/devtools/login/slide2.png",
         icon: <OptionsIcon className={clsx("re-z-[1]")} />,
         title: "Refine status",
     },
     {
-        id: 2,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/devtools/login/slide3.png",
         icon: <PlaygroundIcon className={clsx("re-z-[1]")} />,
         title: "Playground",
     },
     {
-        id: 3,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/devtools/login/slide4.png",
         icon: <InferencerPreviewIcon className={clsx("re-z-[1]")} />,
         title: "Inferencer preview",
     },
     {
-        id: 4,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/devtools/login/slide5.png",
         icon: <SnippetsIcon className={clsx("re-z-[1]")} />,
         title: "Snippets",
@@ -42,7 +37,32 @@ const slides = [
 ];
 
 export const FeatureSlide = (props: { className?: string }) => {
-    const [slideId, setSlideIndex] = useState(slides[0].id);
+    const slideTimeout = useRef<NodeJS.Timeout | null | undefined>(undefined);
+    const [slideIndex, setSlideIndex] = useState(0);
+
+    useEffect(() => {
+        if (slideTimeout.current === null) return;
+
+        slideTimeout.current = setTimeout(() => {
+            setSlideIndex((prev) => {
+                return prev === slides.length - 1 ? 0 : prev + 1;
+            });
+        }, 2000);
+
+        return () => {
+            if (slideTimeout.current) {
+                clearTimeout(slideTimeout.current);
+            }
+        };
+    }, [slideIndex]);
+
+    const handleSlideChange = (id: number) => {
+        setSlideIndex(id);
+        if (slideTimeout.current) {
+            clearTimeout(slideTimeout.current);
+            slideTimeout.current = null;
+        }
+    };
 
     return (
         <div
@@ -56,8 +76,30 @@ export const FeatureSlide = (props: { className?: string }) => {
             )}
         >
             <ComingSoonText />
-            <div className={clsx("re-mt-14", "min-h-[425px]")}>
-                <img src={slides[slideId].image} alt={slides[slideId].title} />
+            <div
+                className={clsx(
+                    "re-mt-14",
+                    "re-w-full re-h-[425px]",
+                    "re-relative",
+                )}
+            >
+                {slides.map((slide, index) => {
+                    const active = index === slideIndex;
+
+                    return (
+                        <img
+                            key={index}
+                            src={slides[slideIndex].image}
+                            alt={slides[slideIndex].title}
+                            className={clsx(
+                                "re-absolute re-top-0 re-left-0 re-w-full re-h-full re-object-contain",
+                                active ? "re-visible" : "re-invisible",
+                                active ? "re-opacity-100" : "re-opacity-0",
+                                "re-transition-opacity re-ease-in re-duration-300",
+                            )}
+                        />
+                    );
+                })}
             </div>
             <div
                 className={clsx(
@@ -71,12 +113,12 @@ export const FeatureSlide = (props: { className?: string }) => {
                     "re-rounded-lg",
                 )}
             >
-                {slides.map((slide) => {
-                    const active = slide.id === slideId;
+                {slides.map((slide, index) => {
+                    const active = index === slideIndex;
 
                     return (
                         <div
-                            key={slide.id}
+                            key={index}
                             className={clsx(
                                 "re-relative",
                                 active
@@ -87,7 +129,7 @@ export const FeatureSlide = (props: { className?: string }) => {
                         >
                             <ActiveItemBackground active={active} />
                             <button
-                                onClick={() => setSlideIndex(slide.id)}
+                                onClick={() => handleSlideChange(index)}
                                 className={clsx(
                                     "re-w-12 re-h-12",
                                     "re-flex",

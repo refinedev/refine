@@ -11,7 +11,7 @@ import {
 import { GithubIcon } from "src/components/icons/github";
 import { GoogleIcon } from "src/components/icons/google";
 import { LogoIcon } from "src/components/icons/logo";
-import { LoginSlide, LoginSlideMobile } from "src/components/feature-slide";
+import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
 
 export const Login = () => {
     return (
@@ -32,7 +32,7 @@ export const Login = () => {
                     "re-hidden lg:re-flex",
                 )}
             >
-                <LoginSlide className={clsx("re-max-w-3xl")} />
+                <FeatureSlide className={clsx("re-w-full", "re-max-w-3xl")} />
             </div>
             <div
                 className={clsx(
@@ -43,7 +43,7 @@ export const Login = () => {
                 )}
             >
                 <LoginForm />
-                <LoginSlideMobile
+                <FeatureSlideMobile
                     className={clsx("re-flex lg:re-hidden", "re-mt-12")}
                 />
             </div>

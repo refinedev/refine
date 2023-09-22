@@ -27,7 +27,7 @@ export const Onboarding = () => {
                     "re-hidden lg:re-flex",
                 )}
             >
-                <FeatureSlide className={clsx("re-max-w-3xl")} />
+                <FeatureSlide className={clsx("re-w-full", "re-max-w-3xl")} />
             </div>
             <div
                 className={clsx(
