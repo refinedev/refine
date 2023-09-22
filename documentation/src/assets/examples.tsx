@@ -5,6 +5,21 @@ import { Examples } from "../types/examples";
 
 export const SHOW_CASES: Examples = [
     {
+        title: "refine CRM Application",
+        description:
+            "Comprehensive CRM App developed using refine, Ant Design and GraphQL. It includes features like authentication, a dashboard, and over 10 CRUD interfaces ranging from charts and sales kanban boards to user administration.",
+        image: "/examples/crm-banner.jpg",
+        image2x: "/examples/crm-banner.jpg",
+        buttons: [
+            {
+                text: "Demo",
+                link: "https://example.crm.refine.dev/",
+                icon: (props) => <ShareIcon {...props} />,
+            },
+        ],
+        source: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
+    },
+    {
         title: "Finefoods Ant Design Admin Panel",
         description:
             "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
@@ -49,21 +64,6 @@ export const SHOW_CASES: Examples = [
         ],
         source: "https://github.com/refinedev/refine/tree/master/examples/store",
     },
-    {
-        title: "Finefoods Storefront",
-        description:
-            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
-        image: "/examples/food-delivery.jpg",
-        image2x: "/examples/food-delivery2x.jpg",
-        buttons: [
-            {
-                text: "Demo",
-                link: "https://example.refine.dev",
-                icon: (props) => <ShareIcon {...props} />,
-            },
-        ],
-        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
-    },
 ];
 
 export const EXAMPLES: Examples = [
@@ -80,6 +80,21 @@ export const EXAMPLES: Examples = [
             },
         ],
         source: "https://github.com/refinedev/real-world-example",
+    },
+    {
+        title: "Finefoods Storefront",
+        description:
+            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
+        image: "/examples/food-delivery.jpg",
+        image2x: "/examples/food-delivery2x.jpg",
+        buttons: [
+            {
+                text: "Demo",
+                link: "https://example.refine.dev",
+                icon: (props) => <ShareIcon {...props} />,
+            },
+        ],
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
     },
     {
         title: "Win95 Style Admin Panel",
