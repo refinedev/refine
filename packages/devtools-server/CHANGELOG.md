@@ -1,5 +1,16 @@
 # @refinedev/devtools-server
 
+## 1.1.2
+
+### Patch Changes
+
+-   [#4995](https://github.com/refinedev/refine/pull/4995) [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082) Thanks [@omeraplak](https://github.com/omeraplak)! - Add Project ID warning and auto-fix action for broken projects
+
+-   [#4995](https://github.com/refinedev/refine/pull/4995) [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed package descriptions and usage instructions
+
+-   Updated dependencies [[`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082), [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082)]:
+    -   @refinedev/devtools-ui@1.1.2
+
 ## 1.1.1
 
 ### Patch Changes
