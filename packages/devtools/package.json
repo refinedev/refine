@@ -36,7 +36,7 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "@refinedev/devtools-server": "^1.1.1",
     "@refinedev/cli": "^2.15.1",
-    "@refinedev/core": "^4.41.0"
+    "@refinedev/core": "^4.42.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
