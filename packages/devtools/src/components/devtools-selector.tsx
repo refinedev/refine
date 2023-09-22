@@ -43,22 +43,30 @@ export const DevtoolsSelector = ({
     }, [active]);
 
     React.useEffect(() => {
-        const onKeyDown = (e: KeyboardEvent) => {
+        const onMouseClick = (e: MouseEvent) => {
             if (!active) return;
             if (!name) return;
-            if (e.code === "Space") {
-                e?.preventDefault();
-                e?.stopPropagation();
-                onHighlight(name);
-                setActive(false);
-            }
+
+            e?.preventDefault();
+            e?.stopPropagation();
+            e.stopImmediatePropagation();
+            onHighlight(name);
+            setActive(false);
         };
 
-        document.addEventListener("keydown", onKeyDown);
+        if (active) {
+            document.addEventListener("click", onMouseClick, {
+                capture: true,
+            });
 
-        return () => {
-            document.removeEventListener("keydown", onKeyDown);
-        };
+            return () => {
+                document.removeEventListener("click", onMouseClick, {
+                    capture: true,
+                });
+            };
+        }
+
+        return () => 0;
     }, [name, onHighlight, active]);
 
     React.useEffect(() => {
