@@ -97,7 +97,13 @@ export const MonitorFilters = ({
             (t) => !!t,
         ) as string[];
 
-        const traceOptions = tracesUnique.map((trace) => {
+        const tracesWithoutScopes = tracesUnique.filter(
+            (trace) => Object.keys(scopes).includes(trace) === false,
+        );
+
+        tracesWithoutScopes.sort((a, b) => a.localeCompare(b));
+
+        const traceOptions = tracesWithoutScopes.map((trace) => {
             return {
                 label: trace,
                 value: trace,
