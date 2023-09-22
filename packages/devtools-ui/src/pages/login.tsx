@@ -38,11 +38,11 @@ export const Login = () => {
                 className={clsx(
                     "re-flex",
                     "re-flex-col",
-                    "re-justify-center",
                     "re-items-center",
+                    "re-justify-start tall:re-justify-center",
                 )}
             >
-                <LoginForm />
+                <LoginForm className={clsx("re-pt-2 tall:re-pt-0")} />
                 <FeatureSlideMobile
                     className={clsx("re-flex lg:re-hidden", "re-mt-12")}
                 />
@@ -66,7 +66,7 @@ const providers = [
     },
 ];
 
-const LoginForm = () => {
+const LoginForm = (props: { className?: string }) => {
     const { ws } = React.useContext(DevToolsContext);
     const [searchParams] = useSearchParams();
     const [flowData, setFlowData] = React.useState<LoginFlow | null>(null);
@@ -116,6 +116,7 @@ const LoginForm = () => {
                 "re-gap-16",
                 "re-justify-center",
                 "re-items-center",
+                props.className,
             )}
         >
             <LogoIcon height={60} width={252} />

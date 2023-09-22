@@ -71,7 +71,7 @@ export const FeatureSlide = (props: { className?: string }) => {
                 "re-flex",
                 "re-flex-col",
                 "re-items-center re-justify-center",
-                "re-p-8",
+                "re-py-4 tall:re-py-8 re-px-8",
                 props.className,
             )}
         >
@@ -83,7 +83,7 @@ export const FeatureSlide = (props: { className?: string }) => {
                     "re-relative",
                 )}
             >
-                {slides.map((slide, index) => {
+                {slides.map((_slide, index) => {
                     const active = index === slideIndex;
 
                     return (

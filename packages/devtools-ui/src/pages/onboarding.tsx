@@ -33,8 +33,8 @@ export const Onboarding = () => {
                 className={clsx(
                     "re-flex",
                     "re-flex-col",
-                    "re-justify-center",
                     "re-items-center",
+                    "re-justify-start tall:re-justify-center",
                 )}
             >
                 <OnboardingForm />

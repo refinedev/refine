@@ -84,7 +84,7 @@ module.exports = {
             },
             animation: {
                 "feature-slide-mobile-items":
-                    "feature-slide-mobile-items 15s linear infinite",
+                    "feature-slide-mobile-items 25s linear infinite",
             },
             keyframes: {
                 "feature-slide-mobile-items": {
