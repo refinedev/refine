@@ -1,6 +1,5 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, RefObject, SetStateAction } from "react";
 
-import { RefObject } from "@fullcalendar/core/preact";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";

@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 
 import { CrownOutlined, StarOutlined, UserOutlined } from "@ant-design/icons";
-import { Tag } from "antd";
-import { type TagProps } from "antd";
+import { Tag, type TagProps } from "antd";
 
 import { User } from "@/interfaces";
 
