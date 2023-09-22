@@ -9,7 +9,7 @@ import {
     UnorderedListOutlined,
 } from "@ant-design/icons";
 import { Form, Grid, Input, Radio, Space, Spin } from "antd";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
 import { Company } from "@/interfaces";
