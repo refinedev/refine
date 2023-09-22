@@ -15,6 +15,19 @@ module.exports = {
             boxShadow: {
                 "monitor-filters": "0px 16px 32px 16px rgba(0, 0, 0, 0.75)",
             },
+            animation: {
+                "pulse-spin": "pulse-spin 2.5s ease-in-out infinite",
+            },
+            keyframes: {
+                "pulse-spin": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "10%": { transform: "rotate(0deg)" },
+                    "40%": { transform: "rotate(180deg)" },
+                    "60%": { transform: "rotate(180deg)" },
+                    "90%": { transform: "rotate(360deg)" },
+                    "100%": { transform: "rotate(360deg)" },
+                },
+            },
             backgroundImage: {
                 "feed-item-featured":
                     "radial-gradient(26.38% 26.38% at 100% 0%, rgba(237, 94, 201, 0.33) 0%, rgba(237, 94, 201, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",
@@ -22,6 +35,12 @@ module.exports = {
                     "radial-gradient(41.75% 41.75% at 100% 0%, rgba(71, 235, 235, 0.20) 0%, rgba(71, 235, 235, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",
                 "package-item-has-updates":
                     "radial-gradient(43.74% 43.74% at 100% 0%, rgba(110, 179, 247, 0.20) 0%, rgba(110, 179, 247, 0.00) 100%), linear-gradient(180deg, #1D1E30 0%, rgba(29, 30, 48, 0.00) 100%)",
+                "project-id-warning":
+                    "radial-gradient(48.67% 50.06% at 2.36% 50%, rgba(255, 76, 77, 0.25) 0%, rgba(255, 76, 77, 0.00) 100%), linear-gradient(90deg, rgba(255, 76, 77, 0.20) 0%, rgba(255, 76, 77, 0.00) 100%)",
+                "project-id-success":
+                    "radial-gradient(48.67% 50.06% at 2.36% 50%, rgba(38, 217, 127, 0.25) 0%, rgba(38, 217, 127, 0.00) 100%), linear-gradient(90deg, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%)",
+                "project-id-loading":
+                    "radial-gradient(48.67% 50.06% at 2.36% 50%, rgba(110, 179, 247, 0.25) 0%, rgba(110, 179, 247, 0.00) 100%), linear-gradient(90deg, rgba(110, 179, 247, 0.10) 0%, rgba(110, 179, 247, 0.00) 100%)",
             },
             fontFamily: {
                 sans: ["Inter", ...defaultTheme.fontFamily.sans],

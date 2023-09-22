@@ -28,3 +28,7 @@ export type MeUpdateVariables = {
     company: string;
     jobTitle: string;
 };
+
+export type ProjectIdResponse = {
+    projectId: string | null;
+};
