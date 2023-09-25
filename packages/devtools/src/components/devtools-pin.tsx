@@ -1,7 +1,7 @@
 import React from "react";
-import { RefineDevtoolsIcon } from "./icons/devtools-icon";
-import { getPinButtonTransform } from "src/utilities";
 import { DevtoolsSelector } from "./devtools-selector";
+import { DevtoolsIcon } from "./icons/devtools-icon";
+import { SelectorButtonIcon } from "./icons/selector-button";
 
 type Props = {
     onClick?: () => void;
@@ -12,17 +12,17 @@ type Props = {
 };
 
 export const DevtoolsPin = ({
-    active,
+    active: _active,
     onClick,
-    groupHover,
     onSelectorHighlight,
     onSelectorOpen,
 }: Props) => {
     const [hover, setHover] = React.useState(false);
 
     return (
-        <button
-            type="button"
+        <div
+            onMouseOver={() => setHover(true)}
+            onMouseOut={() => setHover(false)}
             style={{
                 position: "relative",
                 userSelect: "none",
@@ -34,29 +34,31 @@ export const DevtoolsPin = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontWeight: "bold",
-                color: "white",
                 cursor: "pointer",
-                width: "100%",
-                height: "100%",
-                transition: "all ease-in-out 0.2s",
-                transform: `scale(${hover ? 1.05 : 1}) ${getPinButtonTransform(
-                    groupHover,
-                )}`,
-                filter: `drop-shadow(0 0 ${
-                    hover ? "8px" : "5px"
-                } rgba(71, 235, 235, ${hover ? "0.5" : "0.25"}))`,
+                color: hover ? "#0FBDBD" : "#6C7793",
+                transition: "color 0.1s ease-in-out",
             }}
-            onMouseOver={() => setHover(true)}
-            onMouseOut={() => setHover(false)}
             onClick={onClick}
         >
-            <RefineDevtoolsIcon active={active} hovered={hover} />
+            <DevtoolsIcon />
             <DevtoolsSelector
+                style={{
+                    position: "absolute",
+                    top: 5,
+                    right: 18,
+                    width: "16px",
+                    height: "16px",
+                }}
+                icon={
+                    <SelectorButtonIcon
+                        width={16}
+                        height={16}
+                        style={{ pointerEvents: "none" }}
+                    />
+                }
                 onSelectorOpen={onSelectorOpen}
                 onHighlight={onSelectorHighlight}
-                groupHover={hover}
             />
-        </button>
+        </div>
     );
 };

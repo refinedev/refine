@@ -1,22 +1,16 @@
 import React from "react";
 
-export const SelectorHint = ({
-    active,
-    groupHover,
-}: {
-    active: boolean;
-    groupHover?: boolean;
-}) => {
+export const SelectorHint = ({ active }: { active: boolean }) => {
     return (
         <div
             style={{
+                color: "white",
                 pointerEvents: "none",
                 position: "absolute",
                 left: "calc(-50% - 100px - 14px)",
                 top: "-50px",
                 width: "200px",
                 opacity: active ? 1 : 0,
-                transform: groupHover ? "translateX(0)" : "translateX(40px)",
                 transitionDuration: "0.2s",
                 transitionProperty: "transform,opacity",
                 transitionTimingFunction: "ease-in-out",

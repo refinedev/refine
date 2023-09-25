@@ -1,23 +1,24 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { useSelector } from "src/utilities/use-selector";
-import { SelectorButtonIcon } from "./icons/selector-button";
 import { SelectorBox } from "./selector-box";
 import { SelectorHint } from "./selector-hint";
 
 type Props = {
     onSelectorOpen: () => void;
     onHighlight: (name: string) => void;
-    groupHover?: boolean;
+    icon?: React.ReactNode;
+    style?: React.CSSProperties;
 };
 
 export const DevtoolsSelector = ({
     onSelectorOpen,
     onHighlight,
-    groupHover,
+    icon,
+    style,
 }: Props) => {
-    const [active, setActive] = React.useState(false);
     const [hover, setHover] = React.useState(false);
+    const [active, setActive] = React.useState(false);
     const { rect, name } = useSelector(active);
 
     const [selectorBoxRoot, setSelectorBoxRoot] =
@@ -76,20 +77,7 @@ export const DevtoolsSelector = ({
     }, [active, onSelectorOpen]);
 
     return (
-        <div
-            style={{
-                position: "absolute",
-                left: "calc((100px - ((100% - 42px) / 2)) + 7px)",
-                top: "calc((100% - 28px) / 2)",
-                transform: groupHover ? "translateX(0)" : "translateX(-40px)",
-                transitionDuration: "0.2s",
-                transitionProperty: "transform,opacity",
-                transitionTimingFunction: "ease-in-out",
-                pointerEvents: groupHover ? "auto" : "none",
-                height: 28,
-                width: 28,
-            }}
-        >
+        <div style={style}>
             <div
                 role="button"
                 title="Element Selector"
@@ -102,28 +90,17 @@ export const DevtoolsSelector = ({
                     setActive((active) => !active);
                 }}
                 style={{
-                    width: 28,
-                    height: 28,
-                    border: "none",
-                    background: "none",
-                    outline: "none",
-                    margin: 0,
                     padding: 0,
-                    cursor: "pointer",
-                    transform: `scale(${hover ? 1.05 : 1})`,
-                    transitionProperty: "transform,opacity",
-                    transitionTimingFunction: "ease-in-out",
-                    transitionDuration: "0.1s",
-                    opacity: groupHover ? 1 : 0,
+                    margin: 0,
+                    height: "100%",
+                    width: "100%",
+                    transform: hover ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 0.2s ease-in-out",
                 }}
             >
-                <SelectorButtonIcon
-                    width={28}
-                    height={28}
-                    style={{ pointerEvents: "none" }}
-                />
+                {icon}
             </div>
-            <SelectorHint active={active} groupHover={groupHover} />
+            <SelectorHint active={active} />
             {active &&
                 selectorBoxRoot &&
                 createPortal(

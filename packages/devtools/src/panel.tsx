@@ -2,8 +2,6 @@ import React from "react";
 import { DevtoolsPin } from "./components/devtools-pin";
 import { ResizablePane } from "./components/resizable-pane";
 
-import { SIZE, getPinTransform } from "./utilities";
-
 import { Placement } from "./interfaces/placement";
 import {
     DevToolsContext,
@@ -18,7 +16,6 @@ export const DevtoolsPanel =
               const [visible, setVisible] = React.useState(false);
               const [placement] = React.useState<Placement>("bottom");
               const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
-              const [hover, setHover] = React.useState(false);
 
               const onSelectorHighlight = React.useCallback(
                   (name: string) => {
@@ -44,21 +41,15 @@ export const DevtoolsPanel =
                   <div
                       style={{
                           position: "fixed",
-                          left: 0,
-                          top: 0,
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          bottom: 0,
                           zIndex: 99999,
-                          width: `${SIZE * 2}px`,
-                          height: `${SIZE}px`,
-
-                          transform: getPinTransform(placement),
                       }}
-                      onMouseEnter={() => setHover(true)}
-                      onMouseLeave={() => setHover(false)}
                   >
                       <DevtoolsPin
                           active={visible}
                           onClick={() => setVisible((v) => !v)}
-                          groupHover={hover}
                           onSelectorHighlight={onSelectorHighlight}
                           onSelectorOpen={onSelectorOpen}
                       />
