@@ -1,7 +1,7 @@
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    displayName: "react-hook-form",
+    displayName: "devtools-ui",
     testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
     testEnvironment: "jsdom",
     transform: {
