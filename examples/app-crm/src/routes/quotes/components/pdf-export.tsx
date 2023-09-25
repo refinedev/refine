@@ -18,7 +18,7 @@ import { Button, Modal } from "antd";
 import { Quote } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 
-export const PdfExport = () => {
+const PdfExport = () => {
     const { modalProps, show } = useModal();
     const params = useParams<{ id: string }>();
 
@@ -313,3 +313,5 @@ const styles = StyleSheet.create({
         backgroundColor: "#D9D9D9",
     },
 });
+
+export default PdfExport;

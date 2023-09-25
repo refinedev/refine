@@ -34,7 +34,7 @@ export const MonitorAppliedFilterGroup = ({ filters, onClear }: Props) => {
         filters.hook.length > 0 ||
         filters.scope.length > 0 ||
         filters.status.length > 0 ||
-        filters.parent ||
+        filters.parent.length > 0 ||
         filters.resource;
 
     const renderSection = (key: keyof Filters) => {

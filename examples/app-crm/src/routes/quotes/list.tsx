@@ -15,7 +15,7 @@ import { getDefaultFilter, HttpError } from "@refinedev/core";
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
 import dayjs from "dayjs";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 import {
     CustomAvatar,

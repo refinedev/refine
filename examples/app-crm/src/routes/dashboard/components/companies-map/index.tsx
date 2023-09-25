@@ -1,36 +1,20 @@
-import { GeoJSON, MapContainer, Marker } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-cluster";
+import { lazy, Suspense } from "react";
 
 import { useNavigation } from "@refinedev/core";
 
 import { GlobalOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { Button, Card } from "antd";
-import type { GeoJsonObject } from "geojson";
-import { divIcon, LatLngExpression, point } from "leaflet";
 
 import { Text } from "@/components";
 
 import Countries from "./countries.json";
-import CustomGeoJson from "./custom.geo.json";
-import Markers from "./markers.json";
 
-import "leaflet/dist/leaflet.css";
 import styles from "./index.module.css";
+
+const Map = lazy(() => import("./map"));
 
 export const CompaniesMap: React.FC = () => {
     const { list } = useNavigation();
-
-    const customMarkerIcon = divIcon({
-        className: "custom-marker-icon",
-    });
-
-    const customClusterIcon = (cluster: any) => {
-        return divIcon({
-            html: `<span>${cluster.getChildCount()}</span>`,
-            className: "custom-marker-cluster",
-            iconSize: point(33, 33, true),
-        });
-    };
 
     return (
         <Card
@@ -69,51 +53,9 @@ export const CompaniesMap: React.FC = () => {
                     position: "relative",
                 }}
             >
-                <MapContainer
-                    style={{
-                        flex: 1,
-                        width: "100%",
-                        height: "100%",
-                        zIndex: 0,
-                    }}
-                    center={[51.505, -0.09]}
-                    zoom={2}
-                    scrollWheelZoom={false}
-                    maxZoom={2}
-                    zoomControl={false}
-                    maxBounds={[
-                        [-80, -180],
-                        [90, 180],
-                    ]}
-                >
-                    <MarkerClusterGroup
-                        chunkedLoading
-                        polygonOptions={{
-                            opacity: 0,
-                            fillOpacity: 0,
-                        }}
-                        iconCreateFunction={customClusterIcon}
-                    >
-                        {Markers.map((marker) => (
-                            <Marker
-                                key={marker.id}
-                                position={
-                                    marker.coordinates as LatLngExpression
-                                }
-                                icon={customMarkerIcon}
-                            />
-                        ))}
-                    </MarkerClusterGroup>
-
-                    <GeoJSON
-                        data={CustomGeoJson as GeoJsonObject}
-                        style={{
-                            fillColor: "#F0F0F0",
-                            color: "#CCCCCC",
-                            weight: 1.2,
-                        }}
-                    />
-                </MapContainer>
+                <Suspense>
+                    <Map />
+                </Suspense>
             </div>
             <div className={styles.countries}>
                 {Countries.map((country) => {
@@ -123,6 +65,8 @@ export const CompaniesMap: React.FC = () => {
                                 className={styles.flag}
                                 src={country.flag}
                                 alt={`${country.name} flag`}
+                                width={14}
+                                height={7}
                             />
                             <div>{country.shortName}</div>
                             {country.count}

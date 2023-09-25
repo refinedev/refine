@@ -30,6 +30,7 @@ import { Filters, MonitorFilters } from "src/components/monitor-filters";
 import { useSearchParams } from "react-router-dom";
 import { getResourceValue } from "src/utils/get-resource-value";
 import { ResourceValue } from "src/components/resource-value";
+import { useLocalStorage } from "src/hooks/use-local-storage";
 
 export const Monitor = () => {
     const { ws } = React.useContext(DevToolsContext);
@@ -144,12 +145,15 @@ export const Monitor = () => {
         [],
     );
 
-    const [filters, setFilters] = React.useState<Filters>({
-        hook: [],
-        parent: [],
-        resource: undefined,
-        scope: ["data"],
-        status: [],
+    const [filters, setFilters] = useLocalStorage<Filters>({
+        name: "monitor-filters",
+        defaultValue: {
+            hook: [],
+            parent: [],
+            resource: undefined,
+            scope: ["data"],
+            status: [],
+        },
     });
 
     React.useEffect(() => {
@@ -159,7 +163,7 @@ export const Monitor = () => {
                 resource: undefined,
                 scope: [],
                 status: [],
-                parent: [],
+                parent: [highlightParam],
             });
         }
     }, [highlightParam]);
