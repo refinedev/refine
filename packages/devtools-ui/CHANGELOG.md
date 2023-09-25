@@ -1,5 +1,20 @@
 # @refinedev/devtools-ui
 
+## 1.1.3
+
+### Patch Changes
+
+-   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - Fixing the version of `@refinedev/devtools-shared` dependency to avoid breaking projects in mismatching releases.
+
+-   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - fix: filtering monitor from DOM selector
+
+    feat: persistently store monitor filter in local storage
+    From now on, the monitor filter will be stored in local storage and will be restored on page load.
+
+-   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - replaced the base64 encoded png with a remote CDN url
+
+-   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - feat: added feature slide show to login and onboarding page
+
 ## 1.1.2
 
 ### Patch Changes

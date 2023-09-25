@@ -1,5 +1,14 @@
 # @refinedev/core
 
+## 4.42.1
+
+### Patch Changes
+
+-   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - Fixing the version of `@refinedev/devtools-internal` dependency to avoid breaking projects in mismatching releases.
+
+-   Updated dependencies [[`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94)]:
+    -   @refinedev/devtools-internal@1.1.1
+
 ## 4.42.0
 
 ### Minor Changes

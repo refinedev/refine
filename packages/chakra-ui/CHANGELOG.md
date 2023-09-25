@@ -1,5 +1,13 @@
 # @refinedev/chakra-ui
 
+## 2.26.11
+
+### Patch Changes
+
+-   [#5003](https://github.com/refinedev/refine/pull/5003) [`6043c450432`](https://github.com/refinedev/refine/commit/6043c4504320b2b68cc1295aaaf0dfc3c14e88b1) Thanks [@adjsky](https://github.com/adjsky)! - fix(chakra-ui): use isLoading in RefreshButton
+
+    Now the right loading prop is used.
+
 ## 2.26.10
 
 ### Patch Changes

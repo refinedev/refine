@@ -1,5 +1,14 @@
 # @refinedev/devtools-server
 
+## 1.1.3
+
+### Patch Changes
+
+-   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - Fixing the versions of `@refinedev/devtools-ui` and `@refinedev/devtools-shared` dependencies to avoid breaking projects in mismatching releases.
+
+-   Updated dependencies [[`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94), [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94), [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94), [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94)]:
+    -   @refinedev/devtools-ui@1.1.3
+
 ## 1.1.2
 
 ### Patch Changes
