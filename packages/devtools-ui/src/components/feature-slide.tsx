@@ -72,14 +72,15 @@ export const FeatureSlide = (props: { className?: string }) => {
                 "re-flex-col",
                 "re-items-center re-justify-center",
                 "re-py-4 tall:re-py-8 re-px-8",
+                "re-gap-4 tall:re-gap-8",
                 props.className,
             )}
         >
             <ComingSoonText />
             <div
                 className={clsx(
-                    "re-mt-14",
-                    "re-w-full re-h-[425px]",
+                    "tall:re-mt-6",
+                    "re-w-full re-h-full re-max-h-[416px]",
                     "re-relative",
                 )}
             >
@@ -103,7 +104,6 @@ export const FeatureSlide = (props: { className?: string }) => {
             </div>
             <div
                 className={clsx(
-                    "re-mt-8",
                     "re-flex",
                     "re-items-center",
                     "re-justify-center",

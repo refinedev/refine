@@ -18,7 +18,7 @@ export const Login = () => {
         <div
             className={clsx(
                 "re-min-h-screen re-w-full",
-                "re-grid re-grid-cols-1 lg:re-grid-cols-2 re-gap-4",
+                "re-grid re-grid-cols-1 large:re-grid-cols-2 re-gap-4",
                 "re-p-4",
             )}
         >
@@ -29,7 +29,7 @@ export const Login = () => {
                     "re-items-center",
                     "re-rounded-lg",
                     "re-bg-gray-800",
-                    "re-hidden lg:re-flex",
+                    "re-hidden large:re-flex",
                 )}
             >
                 <FeatureSlide className={clsx("re-w-full", "re-max-w-3xl")} />
@@ -39,12 +39,12 @@ export const Login = () => {
                     "re-flex",
                     "re-flex-col",
                     "re-items-center",
-                    "re-justify-start tall:re-justify-center",
+                    "re-justify-center",
                 )}
             >
                 <LoginForm className={clsx("re-pt-2 tall:re-pt-0")} />
                 <FeatureSlideMobile
-                    className={clsx("re-flex lg:re-hidden", "re-mt-12")}
+                    className={clsx("re-flex large:re-hidden", "re-mt-12")}
                 />
             </div>
         </div>
