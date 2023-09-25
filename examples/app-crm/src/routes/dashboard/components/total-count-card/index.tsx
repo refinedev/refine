@@ -1,15 +1,17 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, Suspense } from "react";
 
 import { useCustom } from "@refinedev/core";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
 
 import { Text } from "@/components";
 import { API_URL } from "@/providers";
 
 import styles from "./index.module.css";
+
+const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
 
@@ -124,7 +126,9 @@ export const DashboardTotalCountCard: React.FC<{
                         data?.data[variant].totalCount
                     )}
                 </Text>
-                <Area {...config} />
+                <Suspense>
+                    <Area {...config} />
+                </Suspense>
             </div>
         </Card>
     );

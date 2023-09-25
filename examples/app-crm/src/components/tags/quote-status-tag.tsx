@@ -5,7 +5,7 @@ import {
     ExpandOutlined,
     SendOutlined,
 } from "@ant-design/icons";
-import { Tag } from "antd/lib";
+import { Tag } from "antd";
 
 import { QuoteStatus } from "@/interfaces";
 

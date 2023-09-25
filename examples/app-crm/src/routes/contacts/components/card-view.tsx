@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 
-import { List, type TableProps } from "antd";
-import { ListProps } from "antd/lib";
+import { List, type ListProps, type TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
 import { Contact } from "@/interfaces";
