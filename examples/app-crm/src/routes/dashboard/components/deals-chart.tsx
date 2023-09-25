@@ -1,13 +1,15 @@
-import React, { useMemo } from "react";
+import React, { lazy, Suspense, useMemo } from "react";
 
 import { useCustom, useNavigation } from "@refinedev/core";
 
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
+
+const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
 type YearlyDealGroupedResponse = {
     yearlyDealGrouped: {
@@ -155,7 +157,9 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                 </Button>
             }
         >
-            <Area {...config} height={325} />
+            <Suspense>
+                <Area {...config} height={325} />
+            </Suspense>
         </Card>
     );
 };

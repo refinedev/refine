@@ -1,12 +1,14 @@
-import React, { useMemo } from "react";
+import React, { lazy, Suspense, useMemo } from "react";
 
 import { useCustom, useNavigation } from "@refinedev/core";
 
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { Pie, PieConfig } from "@ant-design/plots";
+import { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 
 import { Text } from "@/components";
+
+const Pie = lazy(() => import("@ant-design/plots/es/components/pie"));
 
 type TaskStagesResponse = {
     taskStages: {
@@ -131,7 +133,9 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                     alignItems: "center",
                 }}
             >
-                <Pie {...config} />
+                <Suspense>
+                    <Pie {...config} />
+                </Suspense>
             </div>
             <div
                 style={{

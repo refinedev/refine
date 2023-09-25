@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 
 import { useList } from "@refinedev/core";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";
-import timeGridPlugin from "@fullcalendar/timegrid";
 import { Button, Card, Grid, Radio } from "antd";
 import dayjs from "dayjs";
 
@@ -14,6 +11,8 @@ import { Text } from "@/components";
 import { Event } from "@/interfaces";
 
 import styles from "./index.module.css";
+
+const FullCalendarWrapper = lazy(() => import("./full-calendar"));
 
 type CalendarProps = {
     categoryId?: string[];
@@ -68,7 +67,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         },
     });
 
-    const events = data?.data.map(
+    const events = (data?.data ?? []).map(
         ({ id, title, startDate, endDate, color }) => ({
             id: id,
             title: title,
@@ -151,28 +150,11 @@ export const Calendar: React.FC<CalendarProps> = ({
                     )}
                 </Radio.Group>
             </div>
-            <FullCalendar
-                ref={calendarRef}
-                plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
-                initialView={`dayGridMonth`}
-                events={events}
-                eventTimeFormat={{
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    meridiem: false,
-                }}
-                eventClick={({ event }) => {
-                    onClickEvent?.(
-                        data?.data.find(({ id }) => id === event.id) as Event,
-                    );
-                }}
-                datesSet={({ view }) => {
-                    setTitle(view.title);
-                }}
-                headerToolbar={false}
-                timeZone="UTC"
-                height={600}
-            />
+            <Suspense>
+                <FullCalendarWrapper
+                    {...{ calendarRef, events, onClickEvent, setTitle }}
+                />
+            </Suspense>
         </Card>
     );
 };

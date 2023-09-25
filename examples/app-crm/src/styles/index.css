@@ -75,13 +75,13 @@
     background-color: #13c2c2;
     border-radius: 100%;
     border: 1px solid #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
+    padding-left: 11px;
+    padding-top: 4px;
 }
+
 .page-container {
     max-width: 1664px;
     margin: 0 auto;
