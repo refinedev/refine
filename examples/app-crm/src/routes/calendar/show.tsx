@@ -1,7 +1,5 @@
-import { useNavigate } from "react-router-dom";
-
 import { EditButton } from "@refinedev/antd";
-import { useGetToPath, useResource, useShow } from "@refinedev/core";
+import { useNavigation, useResource, useShow } from "@refinedev/core";
 
 import {
     CalendarOutlined,
@@ -20,8 +18,8 @@ import { Event } from "@/interfaces";
 
 export const CalendarShowPage: React.FC = () => {
     const { id } = useResource();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
+
     const { queryResult } = useShow<Event>({
         id,
         meta: {
@@ -67,14 +65,7 @@ export const CalendarShowPage: React.FC = () => {
     }
 
     const handleOnClose = () => {
-        navigate(
-            getToPath({
-                action: "list",
-            }) ?? "",
-            {
-                replace: true,
-            },
-        );
+        list("events");
     };
 
     return (
