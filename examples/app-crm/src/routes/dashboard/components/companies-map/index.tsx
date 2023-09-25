@@ -65,6 +65,8 @@ export const CompaniesMap: React.FC = () => {
                                 className={styles.flag}
                                 src={country.flag}
                                 alt={`${country.name} flag`}
+                                width={14}
+                                height={7}
                             />
                             <div>{country.shortName}</div>
                             {country.count}
