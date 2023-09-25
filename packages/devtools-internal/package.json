@@ -23,7 +23,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "dependencies": {
-    "@refinedev/devtools-shared": "^1.1.0",
+    "@refinedev/devtools-shared": "1.1.0",
     "@tanstack/react-query": "^4.10.1",
     "error-stack-parser": "^2.1.4"
   },
