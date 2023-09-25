@@ -3,7 +3,7 @@
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "author": "refine",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "license": "MIT",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -31,7 +31,7 @@
   "dependencies": {
     "error-stack-parser": "^2.1.4",
     "express": "^4.18.2",
-    "@refinedev/devtools-ui": "^1.1.0",
+    "@refinedev/devtools-ui": "^1.1.2",
     "@refinedev/devtools-shared": "^1.1.0",
     "http-proxy-middleware": "^2.0.6",
     "boxen": "^5.1.2",
@@ -48,7 +48,8 @@
     "globby": "^11.1.0",
     "sanitize-html": "^2.11.0",
     "preferred-pm": "^3.0.3",
-    "body-parser": "^1.20.2"
+    "body-parser": "^1.20.2",
+    "jscodeshift": "0.13.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
@@ -63,6 +64,7 @@
     "@types/jest": "^29.2.4",
     "@types/ws": "^8.5.5",
     "@types/dedent": "^0.7.0",
+    "@types/jscodeshift": "^0.11.5",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "react-router-dom": "^6.8.1",

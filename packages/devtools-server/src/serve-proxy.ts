@@ -39,6 +39,7 @@ export const serveProxy = (app: Express) => {
         cookieDomainRewrite: {
             "refine.dev": "",
         },
+        logLevel: __DEVELOPMENT__ ? "debug" : "silent",
         headers: {
             "auth-base-url-rewrite": `http://localhost:5001/api/.auth`,
         },
@@ -51,6 +52,7 @@ export const serveProxy = (app: Express) => {
         target: REFINE_API_URL,
         secure: false,
         changeOrigin: true,
+        logLevel: __DEVELOPMENT__ ? "debug" : "silent",
         pathRewrite: { "^/api/.refine": "/.refine" },
         onProxyReq: restream,
     });

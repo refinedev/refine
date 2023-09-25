@@ -5,7 +5,9 @@ import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 export const serveWs = () => {
     const ws = new WebSocket.Server({ port: WS_PORT });
 
-    console.log(`WebSocket server started on PORT ${WS_PORT}`);
+    if (__DEVELOPMENT__) {
+        console.log(`WebSocket server started on PORT ${WS_PORT}`);
+    }
 
     ws.on("connection", (client) => {
         // send client the devtools client url
@@ -20,7 +22,9 @@ export const serveWs = () => {
 
     process.on("SIGTERM", () => {
         ws.close(() => {
-            console.log("Process terminated");
+            if (__DEVELOPMENT__) {
+                console.log("Process terminated");
+            }
         });
     });
 
