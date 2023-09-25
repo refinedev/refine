@@ -159,7 +159,7 @@ export const Monitor = () => {
                 resource: undefined,
                 scope: [],
                 status: [],
-                parent: [],
+                parent: [highlightParam],
             });
         }
     }, [highlightParam]);
