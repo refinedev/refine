@@ -5,9 +5,10 @@ import theme from "prism-react-renderer/themes/nightOwl";
 type Props = {
     code: string;
     language: Language;
+    size?: string;
 };
 
-export const Highlight = ({ code, language }: Props) => {
+export const Highlight = ({ code, language, size }: Props) => {
     return (
         <HighlightPrism
             {...defaultProps}
@@ -15,6 +16,7 @@ export const Highlight = ({ code, language }: Props) => {
                 plain: {
                     ...theme.plain,
                     backgroundColor: "transparent",
+                    ...(size ? { fontSize: size } : {}),
                 },
                 styles: theme.styles,
             }}

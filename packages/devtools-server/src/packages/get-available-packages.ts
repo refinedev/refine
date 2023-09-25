@@ -305,8 +305,6 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
 
             import { createClient } from "graphql-ws";
 
-            const client = 
-
             const App = () => {
                 return (
                     <Refine
@@ -466,7 +464,8 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
     },
     {
         name: "@refinedev/supabase",
-        description: "Data provider integration for REST APIs with refine",
+        description:
+            "Data provider and live provider integrations for Supabase with refine",
         install: `npm install @refinedev/supabase`,
         usage: dedent(
             `
@@ -538,7 +537,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
     },
     {
         name: "@refinedev/strapi-graphql",
-        description: "StrapiV4 integration of refine",
+        description: "Strapi GraphQL integration of refine",
         install: `npm install @refinedev/strapi-graphql`,
         usage: dedent(
             `

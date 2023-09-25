@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
+import { ProjectIdFixBanner } from "./project-id-fix-banner";
 
 type Props = React.PropsWithChildren<{}>;
 
@@ -34,10 +35,13 @@ export const Layout = ({ children }: Props) => {
                         "re-p-4",
                         "md:re-p-6",
                         "lg:re-p-8",
-                        "re-overflow-scroll",
                     )}
                 >
-                    {children}
+                    <ProjectIdFixBanner />
+
+                    <div className={clsx("re-flex-1", "re-overflow-scroll")}>
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
