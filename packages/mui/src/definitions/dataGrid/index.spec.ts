@@ -184,6 +184,7 @@ describe("transformMuiOperatorToCrudOperators", () => {
         expect(transformMuiOperatorToCrudOperator("=")).toEqual("eq");
         expect(transformMuiOperatorToCrudOperator("!=")).toEqual("ne");
         expect(transformMuiOperatorToCrudOperator("not")).toEqual("ne");
+        expect(transformMuiOperatorToCrudOperator("isAnyOf")).toEqual("in");
         expect(transformMuiOperatorToCrudOperator("<")).toEqual("lt");
         expect(transformMuiOperatorToCrudOperator("before")).toEqual("lt");
         expect(transformMuiOperatorToCrudOperator("<=")).toEqual("lte");
@@ -192,6 +193,16 @@ describe("transformMuiOperatorToCrudOperators", () => {
         expect(transformMuiOperatorToCrudOperator("after")).toEqual("gt");
         expect(transformMuiOperatorToCrudOperator(">=")).toEqual("gte");
         expect(transformMuiOperatorToCrudOperator("onOrAfter")).toEqual("gte");
+        expect(transformMuiOperatorToCrudOperator("startsWith")).toEqual(
+            "startswith",
+        );
+        expect(transformMuiOperatorToCrudOperator("endsWith")).toEqual(
+            "endswith",
+        );
+        expect(transformMuiOperatorToCrudOperator("isEmpty")).toEqual("null");
+        expect(transformMuiOperatorToCrudOperator("isNotEmpty")).toEqual(
+            "nnull",
+        );
         expect(transformMuiOperatorToCrudOperator("contains")).toEqual(
             "contains",
         );
