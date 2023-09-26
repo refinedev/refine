@@ -1,38 +1,12 @@
 # @refinedev/devtools
 
-## 1.1.4
+## 1.1.5
 
 ### Patch Changes
 
--   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the versions of the dependencies:
+-   [#5013](https://github.com/refinedev/refine/pull/5013) [`fdd6ce6ce81`](https://github.com/refinedev/refine/commit/fdd6ce6ce81cac9fbe8ce48aab7449c1e9ff12b3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: devtools button and selector tooltip styles updated
 
-    -   `@refinedev/devtools-shared`
-    -   `@refinedev/devtools-server` (peer)
-    -   `@refinedev/cli` (peer)
-    -   `@refinedev/core` (peer)
-
-    to avoid breaking the projects due to mismatching releases.
-
--   Updated dependencies [[`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94), [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94)]:
-    -   @refinedev/cli@2.15.4
-    -   @refinedev/devtools-server@1.1.4
-
-## 1.1.3
-
-### Patch Changes
-
--   [#5008](https://github.com/refinedev/refine/pull/5008) [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the versions of the dependencies:
-
-    -   `@refinedev/devtools-shared`
-    -   `@refinedev/devtools-server` (peer)
-    -   `@refinedev/cli` (peer)
-    -   `@refinedev/core` (peer)
-
-    to avoid breaking the projects due to mismatching releases.
-
--   Updated dependencies [[`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94), [`c8499114e55`](https://github.com/refinedev/refine/commit/c8499114e55968d8b440a8cd6eb2f29fbf3deb94)]:
-    -   @refinedev/cli@2.15.3
-    -   @refinedev/devtools-server@1.1.3
+-   [#5016](https://github.com/refinedev/refine/pull/5016) [`d144915cec3`](https://github.com/refinedev/refine/commit/d144915cec3114baeba8041184df6def555bdda2) Thanks [@aliemir](https://github.com/aliemir)! - Update `@aliemir/dom-to-fiber-utils` to latest version to fix issue with selecting elements in the DOM tree that are not handled by React Fiber.
 
 ![refine devtools](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
 
