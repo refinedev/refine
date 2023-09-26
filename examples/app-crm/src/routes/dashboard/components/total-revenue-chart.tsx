@@ -40,7 +40,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
         url: "/graphql",
         meta: {
             rawQuery: `query Dashboard {
-                expectedRevenueSum: dealStages(filter: { title: { eq: "WON" } }) {
+                expectedRevenueSum: dealStages(filter: { title: { notIn: ["WON", "LOST"] } }) {
                     nodes {
                     title
                     dealsAggregate {
@@ -51,7 +51,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                     }
                 }
                 realizationRevenueSum: dealStages(
-                    filter: { title: { notIn: ["WON", "LOST"] } }
+                    filter: { title: { eq: "WON" } }
                 ) {
                     nodes {
                     title
@@ -75,9 +75,12 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     const totalRealizationRevenue = data?.data.realizationRevenueSum.nodes.map(
         (item) => item.dealsAggregate[0].sum.value,
     )[0];
-    const totalExpectedRevenue = data?.data.expectedRevenueSum.nodes.map(
-        (item) => item.dealsAggregate[0].sum.value,
-    )[0];
+
+    const totalExpectedRevenue = data?.data.expectedRevenueSum.nodes.reduce(
+        (prev, curr) => prev + curr.dealsAggregate[0].sum.value,
+        0,
+    );
+
     const realizationPercentageOfExpected =
         totalRealizationRevenue && totalExpectedRevenue
             ? (totalRealizationRevenue / totalExpectedRevenue) * 100
