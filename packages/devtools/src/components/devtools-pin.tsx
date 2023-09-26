@@ -5,14 +5,12 @@ import { SelectorButtonIcon } from "./icons/selector-button";
 
 type Props = {
     onClick?: () => void;
-    active?: boolean;
     groupHover?: boolean;
     onSelectorHighlight: (name: string) => void;
     onSelectorOpen: () => void;
 };
 
 export const DevtoolsPin = ({
-    active: _active,
     onClick,
     onSelectorHighlight,
     onSelectorOpen,

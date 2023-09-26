@@ -48,7 +48,6 @@ export const DevtoolsPanel =
                       }}
                   >
                       <DevtoolsPin
-                          active={visible}
                           onClick={() => setVisible((v) => !v)}
                           onSelectorHighlight={onSelectorHighlight}
                           onSelectorOpen={onSelectorOpen}
