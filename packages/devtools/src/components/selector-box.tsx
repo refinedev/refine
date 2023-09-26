@@ -1,4 +1,8 @@
 import React from "react";
+import { ArrowUnionIcon } from "./icons/arrow-union-icon";
+
+const Y_OFFSET = 38;
+const X_OFFSET = 7;
 
 export const SelectorBox = ({
     width,
@@ -13,9 +17,10 @@ export const SelectorBox = ({
     y: number;
     name: string;
 }) => {
-    const namePosition = y - 6 > 25 ? "top" : "bottom";
+    const namePosition =
+        y > Y_OFFSET ? "top" : height > 3 * Y_OFFSET ? "inset" : "bottom";
 
-    const outlinePosition = x > 7 ? "outside" : "inside";
+    const outlinePosition = x > X_OFFSET && y > X_OFFSET ? "outside" : "inside";
 
     return (
         <div
@@ -29,7 +34,6 @@ export const SelectorBox = ({
                 transitionTimingFunction: "ease-out",
                 border: "1.5px solid #47EBEB",
                 borderRadius: "4px",
-                borderTopLeftRadius: 0,
                 background: "rgba(37,160,160, 0.25)",
                 backdropFilter: "sepia(30%) hue-rotate(180deg)",
                 zIndex: 99998,
@@ -54,28 +58,49 @@ export const SelectorBox = ({
                 style={{
                     position: "absolute",
                     left: "-1.5px",
-                    background: "#1D1E30",
-                    padding: "4px 6px",
-                    border: "1.5px solid #47EBEB",
-                    fontSize: "13px",
+                    background: "#303450",
+                    border: "1px solid #474E6B",
+                    borderRadius: "4px",
+                    padding: "8px 12px",
+                    fontSize: "12px",
                     lineHeight: "16px",
-                    fontWeight: 600,
-                    color: "#CFD7E2",
+                    fontWeight: 400,
+                    color: "#ffffff",
                     display: name ? "block" : "none",
-                    ...(namePosition === "top"
-                        ? {
-                              top: "-27px",
-                              borderTopLeftRadius: "4px",
-                              borderTopRightRadius: "4px",
-                          }
-                        : {
-                              top: "-1.5px",
-                              borderBottomLeftRadius: "0",
-                              borderBottomRightRadius: "4px",
-                          }),
+                    ...(namePosition === "top" && {
+                        top: "-38px",
+                    }),
+                    ...(namePosition === "bottom" && {
+                        bottom: "-38px",
+                    }),
+                    ...(namePosition === "inset" && {
+                        top: "4px",
+                        left: "8px",
+                    }),
                 }}
             >
                 {name}
+
+                <ArrowUnionIcon
+                    style={{
+                        position: "absolute",
+                        left: "30%",
+                        ...(namePosition === "top" && {
+                            transform: "translateX(-50%) rotate(180deg)",
+                            bottom: "-9px",
+                        }),
+                        ...(namePosition === "bottom" && {
+                            transform: "translateX(-50%) ",
+                            top: "-9px",
+                        }),
+                        ...(namePosition === "inset" && {
+                            transform: "translateX(-50%) rotate(-90deg)",
+                            top: "8px",
+                            left: "-1px",
+                        }),
+                        display: name ? "block" : "none",
+                    }}
+                />
             </div>
         </div>
     );

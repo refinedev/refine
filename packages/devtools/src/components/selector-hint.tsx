@@ -7,15 +7,17 @@ export const SelectorHint = ({ active }: { active: boolean }) => {
                 color: "white",
                 pointerEvents: "none",
                 position: "absolute",
-                left: "calc(-50% - 100px - 14px)",
-                top: "-50px",
-                width: "200px",
+                left: "calc(-50% - 144px - 14px)",
+                top: "-36px",
+                width: "max-content",
+                borderRadius: "8px",
+                backgroundColor: "#40414A",
                 opacity: active ? 1 : 0,
                 transitionDuration: "0.2s",
                 transitionProperty: "transform,opacity",
                 transitionTimingFunction: "ease-in-out",
                 padding: "8px",
-                fontSize: "10px",
+                fontSize: "12px",
                 lineHeight: "12px",
                 fontWeight: 400,
                 textShadow:
@@ -25,12 +27,11 @@ export const SelectorHint = ({ active }: { active: boolean }) => {
             <kbd
                 style={{
                     marginLeft: "4px",
-                    padding: "1px 2px",
+                    padding: "2px 4px",
                     borderRadius: "2px",
-                    background: "whitesmoke",
-                    color: "dimgray",
-                    border: "0.5px solid silver",
-                    boxShadow: "0 1px 1px silver",
+                    background: "#1D1E30",
+                    color: "#CFD7E2",
+                    border: "none",
                     textShadow: "none",
                 }}
             >
@@ -40,16 +41,15 @@ export const SelectorHint = ({ active }: { active: boolean }) => {
             <kbd
                 style={{
                     marginLeft: "4px",
-                    padding: "1px 2px",
+                    padding: "2px 4px",
                     borderRadius: "2px",
-                    background: "whitesmoke",
-                    color: "dimgray",
-                    border: "0.5px solid silver",
-                    boxShadow: "0 1px 1px silver",
+                    background: "#1D1E30",
+                    color: "#CFD7E2",
+                    border: "none",
                     textShadow: "none",
                 }}
             >
-                click
+                space
             </kbd>{" "}
             to highlight in monitor.
         </div>

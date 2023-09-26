@@ -24,7 +24,6 @@ const App: React.FC = () => {
     return (
         <DevtoolsProvider>
             <BrowserRouter>
-                <GitHubBanner />
                 <ConfigProvider theme={RefineThemes.Blue}>
                     <Refine
                         routerProvider={routerProvider}
