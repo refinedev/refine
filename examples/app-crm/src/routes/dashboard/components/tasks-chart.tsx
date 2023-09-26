@@ -1,48 +1,25 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
-import { useCustom, useNavigation } from "@refinedev/core";
+import { useList, useNavigation } from "@refinedev/core";
 
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
+import { TaskStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
 
 const Pie = lazy(() => import("@ant-design/plots/es/components/pie"));
 
-type TaskStagesResponse = {
-    taskStages: {
-        nodes: {
-            title: string;
-            tasksAggregate: {
-                count: {
-                    id: number;
-                };
-            }[];
-        }[];
-    };
-};
-
 export const DashboardTasksChart: React.FC<{}> = () => {
     const { list } = useNavigation();
-    const { data, isError, error } = useCustom<TaskStagesResponse>({
-        method: "post",
-        url: "/graphql",
-        meta: {
-            rawQuery: `query {
-                taskStages(paging: { limit: 6 }) {
-                  nodes {
-                    title
-                    tasksAggregate {
-                      count {
-                        id
-                      }
-                    }
-                  }
-                }
-              }
-            `,
+
+    const { data, isError, error } = useList<TaskStage>({
+        resource: "taskStages",
+        pagination: {
+            pageSize: 6,
         },
+        meta: { fields: ["title", { tasksAggregate: [{ count: ["id"] }] }] },
     });
 
     if (isError) {
@@ -51,18 +28,23 @@ export const DashboardTasksChart: React.FC<{}> = () => {
     }
 
     const tasksData = useMemo(() => {
-        if (!data?.data?.taskStages?.nodes?.length) {
+        if (!data?.data?.length) {
             return [];
         }
 
-        return data.data.taskStages.nodes
+        return data.data
             .map((stage) => ({
                 title: stage.title,
-                value: stage.tasksAggregate[0].count.id,
+                value: stage.tasksAggregate?.[0]?.count?.id ?? 0,
             }))
-            .filter((stage) => stage.value > 0)
-            .sort((a, b) => b.value - a.value);
-    }, [data?.data.taskStages.nodes]);
+            .filter(
+                (stage) =>
+                    stage.value !== null &&
+                    stage.value !== undefined &&
+                    stage.value > 0,
+            )
+            .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
+    }, [data?.data]);
 
     const COLORS = [
         "#BAE0FF",
