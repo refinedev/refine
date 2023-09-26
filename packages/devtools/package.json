@@ -23,7 +23,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "dependencies": {
-    "@aliemir/dom-to-fiber-utils": "^0.2.0",
+    "@aliemir/dom-to-fiber-utils": "^0.4.0",
     "@refinedev/devtools-shared": "1.1.0",
     "error-stack-parser": "^2.1.4",
     "lodash-es": "^4.17.21",
