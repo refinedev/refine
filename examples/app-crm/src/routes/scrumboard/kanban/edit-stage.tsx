@@ -1,14 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
 import { useModalForm } from "@refinedev/antd";
-import { useGetToPath, useInvalidate } from "@refinedev/core";
+import { useInvalidate, useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
 export const KanbanEditStage = () => {
     const invalidate = useInvalidate();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
     const { formProps, modalProps, close } = useModalForm({
         action: "edit",
         defaultVisible: true,
@@ -34,14 +31,7 @@ export const KanbanEditStage = () => {
             {...modalProps}
             onCancel={() => {
                 close();
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("tasks", "replace");
             }}
             title="Edit stage"
             width={512}

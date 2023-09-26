@@ -1,7 +1,6 @@
 import { FC, memo, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 
-import { useDelete } from "@refinedev/core";
+import { useDelete, useNavigation } from "@refinedev/core";
 
 import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import {
@@ -43,7 +42,7 @@ export const DealKanbanCard: FC<Props> = ({
     user,
     variant = "default",
 }) => {
-    const navigate = useNavigate();
+    const { replace } = useNavigation();
     const { mutate } = useDelete();
 
     const dropdownItems = useMemo(() => {
@@ -53,9 +52,7 @@ export const DealKanbanCard: FC<Props> = ({
                 key: "1",
                 icon: <EyeOutlined />,
                 onClick: () => {
-                    navigate(`/scrumboard/sales/edit/${id}`, {
-                        replace: true,
-                    });
+                    replace(`/scrumboard/sales/edit/${id}`);
                 },
             },
             {
@@ -127,9 +124,7 @@ export const DealKanbanCard: FC<Props> = ({
                 size="small"
                 bordered
                 onClick={() => {
-                    navigate(`/scrumboard/sales/edit/${id}`, {
-                        replace: true,
-                    });
+                    replace(`/scrumboard/sales/edit/${id}`);
                 }}
                 actions={[
                     <div

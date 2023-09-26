@@ -1,10 +1,10 @@
 import { FC, PropsWithChildren, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 
 import {
     HttpError,
     useDelete,
     useList,
+    useNavigation,
     useUpdate,
     useUpdateMany,
 } from "@refinedev/core";
@@ -46,7 +46,7 @@ const taskFragment = [
 ];
 
 export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
-    const navigate = useNavigate();
+    const { create, edit, replace } = useNavigation();
 
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
@@ -143,16 +143,11 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     };
 
     const handleAddStage = () => {
-        navigate("/scrumboard/kanban/stages/create", {
-            replace: true,
-        });
+        create("taskStages");
     };
 
     const handleEditStage = (args: { stageId: string }) => {
-        const path = `/scrumboard/kanban/stages/edit/${args.stageId}`;
-        navigate(path, {
-            replace: true,
-        });
+        edit("taskStages", args.stageId);
     };
 
     const handleDeleteStage = (args: { stageId: string }) => {
@@ -173,9 +168,8 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
             args.stageId === "unassigned"
                 ? "create"
                 : `create?stageId=${args.stageId}`;
-        navigate(path, {
-            replace: true,
-        });
+
+        replace(path);
     };
 
     const handleClearCards = (args: { taskIds: string[] }) => {
