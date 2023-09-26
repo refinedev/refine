@@ -143,7 +143,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     };
 
     const handleAddStage = () => {
-        create("taskStages");
+        create("taskStages", "replace");
     };
 
     const handleEditStage = (args: { stageId: string }) => {
