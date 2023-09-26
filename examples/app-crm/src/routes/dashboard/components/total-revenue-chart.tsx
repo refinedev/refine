@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { useCustom, useList } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { GaugeConfig } from "@ant-design/plots";
@@ -11,29 +11,6 @@ import { Text } from "@/components";
 import { currencyNumber } from "@/utilities";
 
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
-
-type DealRevenueResponse = {
-    realizationRevenueSum: {
-        nodes: {
-            title: string;
-            dealsAggregate: {
-                sum: {
-                    value: number;
-                };
-            }[];
-        }[];
-    };
-    expectedRevenueSum: {
-        nodes: {
-            title: string;
-            dealsAggregate: {
-                sum: {
-                    value: number;
-                };
-            }[];
-        }[];
-    };
-};
 
 export const DashboardTotalRevenueChart: React.FC<{}> = () => {
     const {
