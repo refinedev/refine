@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@refinedev/antd": "^5.36.2",
-    "@refinedev/core": "^4.42.0",
-    "@refinedev/cli": "^2.15.2",
+    "@refinedev/core": "^4.42.2",
+    "@refinedev/cli": "^2.15.4",
     "@refinedev/react-router-v6": "^4.5.0",
     "@refinedev/simple-rest": "^4.5.0",
     "axios": "^0.26.1",
