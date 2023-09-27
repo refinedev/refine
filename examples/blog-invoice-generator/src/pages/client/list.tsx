@@ -1,20 +1,23 @@
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
 import {
-    useSimpleList,
+    CreateButton,
     List,
     useDrawerForm,
-    CreateButton,
+    useSimpleList,
 } from "@refinedev/antd";
 
 import { List as AntdList } from "antd";
 
-import { IClient } from "interfaces";
 import { ClientItem, CreateClient, EditClient } from "components/client";
+import { IClient } from "interfaces";
+import { useState } from "react";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
+    const [currentClient, setCurrentClient] = useState<IClient>();
+
     const { listProps } = useSimpleList<IClient>({
-        metaData: { populate: ["contacts"] },
+        meta: { populate: ["contacts"] },
     });
 
     const {
@@ -32,12 +35,20 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
         drawerProps: editDrawerProps,
         formProps: editFormProps,
         saveButtonProps: editSaveButtonProps,
-        show: editShow,
+        show: editClientDrawerFrom,
     } = useDrawerForm<IClient, HttpError, IClient>({
         action: "edit",
         resource: "clients",
         redirect: false,
+        meta: {
+            populate: ["contacts"],
+        },
     });
+
+    const editShow = (item: IClient) => {
+        setCurrentClient(item);
+        editClientDrawerFrom(item?.id);
+    };
 
     return (
         <>
@@ -64,6 +75,7 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
             <EditClient
                 drawerProps={editDrawerProps}
                 formProps={editFormProps}
+                currentClient={currentClient as any}
                 saveButtonProps={editSaveButtonProps}
             />
         </>

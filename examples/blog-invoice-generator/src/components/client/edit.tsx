@@ -10,16 +10,19 @@ import {
     Grid,
     Select,
 } from "antd";
+import { IClient } from "interfaces";
 
 type EditClientProps = {
     drawerProps: DrawerProps;
     formProps: FormProps;
+    currentClient: IClient;
     saveButtonProps: ButtonProps;
 };
 
 export const EditClient: React.FC<EditClientProps> = ({
     drawerProps,
     formProps,
+    currentClient,
     saveButtonProps,
 }) => {
     const breakpoint = Grid.useBreakpoint();
@@ -27,6 +30,7 @@ export const EditClient: React.FC<EditClientProps> = ({
     const { selectProps } = useSelect({
         resource: "contacts",
         optionLabel: "first_name",
+        optionValue: "id",
     });
 
     return (
@@ -35,7 +39,20 @@ export const EditClient: React.FC<EditClientProps> = ({
             width={breakpoint.sm ? "500px" : "100%"}
             bodyStyle={{ padding: 0 }}
         >
-            <Edit saveButtonProps={saveButtonProps}>
+            <Edit
+                saveButtonProps={saveButtonProps}
+                title={
+                    <h3
+                        style={{
+                            fontSize: "20px",
+                            padding: "0 24px",
+                            fontWeight: "bold",
+                        }}
+                    >
+                        Edit Client
+                    </h3>
+                }
+            >
                 <Form
                     {...formProps}
                     layout="vertical"
@@ -55,8 +72,19 @@ export const EditClient: React.FC<EditClientProps> = ({
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item label="Select Contact" name="contacts">
-                        <Select {...selectProps} mode="multiple" />
+                    <Form.Item
+                        label="Select Contact"
+                        name={["first_name", "id"]}
+                    >
+                        <Select
+                            {...selectProps}
+                            mode="multiple"
+                            defaultValue={
+                                currentClient?.contacts?.map(
+                                    (contact) => contact?.first_name,
+                                ) as any
+                            }
+                        />
                     </Form.Item>
                 </Form>
             </Edit>
