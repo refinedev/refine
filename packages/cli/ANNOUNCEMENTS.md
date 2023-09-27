@@ -1,3 +1,6 @@
 ---announcement
+---
+
 test announcement here
+
 ---
