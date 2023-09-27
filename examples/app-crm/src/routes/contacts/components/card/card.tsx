@@ -1,7 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-import { useDelete, useGetToPath } from "@refinedev/core";
+import { useDelete, useNavigation } from "@refinedev/core";
 
 import {
     DeleteOutlined,
@@ -22,8 +21,7 @@ type ContactCardProps = {
 };
 
 export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { show } = useNavigation();
     const { mutate: deleteMutate } = useDelete();
 
     if (!contact) return <ContactCardSkeleton />;
@@ -35,15 +33,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
             key: "show",
             icon: <EyeOutlined />,
             onClick: () => {
-                navigate(
-                    getToPath({
-                        action: "show",
-                        meta: { id },
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                show("contacts", id, "replace");
             },
         },
         {

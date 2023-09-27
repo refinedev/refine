@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useSelect } from "@refinedev/antd";
-import { useDelete, useGetToPath, useShow, useUpdate } from "@refinedev/core";
+import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
 
 import {
     CloseOutlined,
@@ -51,8 +50,7 @@ export const ContactShowPage: React.FC = () => {
     const [activeForm, setActiveForm] = useState<
         "email" | "companyId" | "jobTitle" | "phone" | "timezone"
     >();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
     const { mutate } = useUpdate<Contact>();
     const { mutate: deleteMutation } = useDelete<Contact>();
     const { queryResult } = useShow<Contact>({
@@ -99,14 +97,8 @@ export const ContactShowPage: React.FC = () => {
 
     const closeModal = () => {
         setActiveForm(undefined);
-        navigate(
-            getToPath({
-                action: "list",
-            }) ?? "",
-            {
-                replace: true,
-            },
-        );
+
+        list("contacts");
     };
 
     const { data, isLoading, isError } = queryResult;

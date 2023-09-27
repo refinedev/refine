@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren, useEffect } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
 import {
     HttpError,
     useCreate,
     useGetIdentity,
-    useGetToPath,
+    useNavigation,
 } from "@refinedev/core";
 
 import {
@@ -42,8 +42,7 @@ type FormValues = {
 export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
     const [searchParams] = useSearchParams();
     const { pathname } = useLocation();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list, replace } = useNavigation();
 
     const { formProps, modalProps, close } = useModalForm<
         Deal,
@@ -187,14 +186,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                 style={{ display: isHaveOverModal ? "none" : "inherit" }}
                 onCancel={() => {
                     close();
-                    navigate(
-                        getToPath({
-                            action: "list",
-                        }) ?? "",
-                        {
-                            replace: true,
-                        },
-                    );
+                    list("deals", "replace");
                 }}
                 title="Add new deal"
                 width={512}
@@ -247,11 +239,8 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                             <Typography.Link
                                 style={{ marginTop: 8, display: "block" }}
                                 onClick={() =>
-                                    navigate(
+                                    replace(
                                         "company/create?to=/scrumboard/sales/create",
-                                        {
-                                            replace: true,
-                                        },
                                     )
                                 }
                             >
@@ -295,8 +284,13 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                             </Form.Item>
                         </Col>
                         <Col span={12}>
-                            <Form.Item label="Deal value" name="value">
+                            <Form.Item
+                                rules={[{ required: true }]}
+                                label="Deal value"
+                                name="value"
+                            >
                                 <InputNumber
+                                    min={0}
                                     addonBefore={<DollarOutlined />}
                                     placeholder="0,00"
                                     formatter={(value) =>

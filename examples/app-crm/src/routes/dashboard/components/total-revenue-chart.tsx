@@ -1,90 +1,82 @@
 import React, { Suspense } from "react";
 
-import { useCustom } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
+import { DealStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
 import { currencyNumber } from "@/utilities";
 
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
 
-type DealRevenueResponse = {
-    realizationRevenueSum: {
-        nodes: {
-            title: string;
-            dealsAggregate: {
-                sum: {
-                    value: number;
-                };
-            }[];
-        }[];
-    };
-    expectedRevenueSum: {
-        nodes: {
-            title: string;
-            dealsAggregate: {
-                sum: {
-                    value: number;
-                };
-            }[];
-        }[];
-    };
-};
-
 export const DashboardTotalRevenueChart: React.FC<{}> = () => {
-    const { data, isError, error, isLoading } = useCustom<DealRevenueResponse>({
-        method: "post",
-        url: "/graphql",
+    const {
+        data: expectedRevenueData,
+        isError: expectedRevenueIsError,
+        error: expectedRevenueError,
+        isLoading: expectedRevenueIsLoading,
+    } = useList<DealStage>({
+        resource: "dealStages",
+        filters: [
+            {
+                field: "title",
+                operator: "nin",
+                value: ["WON", "LOST"],
+            },
+        ],
         meta: {
-            rawQuery: `query Dashboard {
-                expectedRevenueSum: dealStages(filter: { title: { eq: "WON" } }) {
-                    nodes {
-                    title
-                    dealsAggregate {
-                        sum {
-                            value
-                            }
-                        }
-                    }
-                }
-                realizationRevenueSum: dealStages(
-                    filter: { title: { notIn: ["WON", "LOST"] } }
-                ) {
-                    nodes {
-                    title
-                    dealsAggregate {
-                            sum {
-                                value
-                            }
-                        }
-                    }
-                }
-            }
-            `,
+            fields: ["title", { dealsAggregate: [{ sum: ["value"] }] }],
         },
     });
 
-    if (isError) {
-        console.error("Error fetching dashboard data", error);
+    const {
+        data: realizedRevenueData,
+        isError: realizedRevenueIsError,
+        error: realizedRevenueError,
+        isLoading: realizedRevenueIsLoading,
+    } = useList<DealStage>({
+        resource: "dealStages",
+        filters: [
+            {
+                field: "title",
+                operator: "eq",
+                value: "WON",
+            },
+        ],
+        meta: {
+            fields: ["title", { dealsAggregate: [{ sum: ["value"] }] }],
+        },
+    });
+
+    if (expectedRevenueIsError || realizedRevenueIsError) {
+        console.error(
+            "Error fetching dashboard data",
+            expectedRevenueError,
+            realizedRevenueError,
+        );
         return null;
     }
 
-    const totalRealizationRevenue = data?.data.realizationRevenueSum.nodes.map(
-        (item) => item.dealsAggregate[0].sum.value,
+    const totalRealizationRevenue = (realizedRevenueData?.data || []).map(
+        (item) => item.dealsAggregate?.[0]?.sum?.value,
     )[0];
-    const totalExpectedRevenue = data?.data.expectedRevenueSum.nodes.map(
-        (item) => item.dealsAggregate[0].sum.value,
-    )[0];
+
+    const totalExpectedRevenue = (expectedRevenueData?.data || []).reduce(
+        (prev, curr) => prev + (curr?.dealsAggregate?.[0]?.sum?.value ?? 0),
+        0,
+    );
+
     const realizationPercentageOfExpected =
         totalRealizationRevenue && totalExpectedRevenue
             ? (totalRealizationRevenue / totalExpectedRevenue) * 100
             : 0;
 
     const config: GaugeConfig = {
-        animation: isLoading ? false : true,
+        animation:
+            expectedRevenueIsLoading || realizedRevenueIsLoading ? false : true,
         supportCSSTransform: true,
         // antd expects a percentage value between 0 and 1
         percent: realizationPercentageOfExpected / 100,
@@ -174,7 +166,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                     <Text size="xs" className="secondary">
                         Expected
                     </Text>
-                    {!isLoading ? (
+                    {!expectedRevenueIsLoading || !realizedRevenueIsLoading ? (
                         <Text
                             size="md"
                             className="primary"
@@ -199,7 +191,7 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
                     <Text size="xs" className="secondary">
                         Realized
                     </Text>
-                    {!isLoading ? (
+                    {!expectedRevenueIsLoading || !realizedRevenueIsLoading ? (
                         <Text
                             size="md"
                             className="primary"

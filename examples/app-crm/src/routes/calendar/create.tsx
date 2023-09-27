@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError, useGetToPath } from "@refinedev/core";
+import { HttpError, useNavigation } from "@refinedev/core";
 
 import { Modal } from "antd";
 import dayjs from "dayjs";
@@ -20,8 +19,7 @@ type FormValues = EventCreateInput & {
 
 export const CalendarCreatePage: React.FC = () => {
     const [isAllDayEvent, setIsAllDayEvent] = useState(false);
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
 
     const { formProps, saveButtonProps, form, onFinish } = useForm<
         Event,
@@ -63,14 +61,7 @@ export const CalendarCreatePage: React.FC = () => {
             title="Create Event"
             open
             onCancel={() => {
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("events");
             }}
             okButtonProps={{
                 ...saveButtonProps,

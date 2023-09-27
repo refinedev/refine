@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { HttpError, useGetToPath } from "@refinedev/core";
+import { HttpError, useNavigation } from "@refinedev/core";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
@@ -22,8 +21,7 @@ type FormValues = {
 };
 
 export const SalesEditPage = () => {
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
 
     const { formProps, modalProps, close, queryResult } = useModalForm<
         Deal,
@@ -129,14 +127,7 @@ export const SalesEditPage = () => {
             {...modalProps}
             onCancel={() => {
                 close();
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("deals", "replace");
             }}
             title="Edit deal"
             width={512}
@@ -207,6 +198,7 @@ export const SalesEditPage = () => {
                     <Col span={12}>
                         <Form.Item label="Deal value" name="value">
                             <InputNumber
+                                min={0}
                                 addonBefore={<DollarOutlined />}
                                 placeholder="0,00"
                                 formatter={(value) =>
