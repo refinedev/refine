@@ -1,5 +1,5 @@
 ---announcement
-hidden: false
+hidden: true
 
 ---
 
