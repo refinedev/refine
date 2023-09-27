@@ -198,6 +198,7 @@ export const SalesEditPage = () => {
                     <Col span={12}>
                         <Form.Item label="Deal value" name="value">
                             <InputNumber
+                                min={0}
                                 addonBefore={<DollarOutlined />}
                                 placeholder="0,00"
                                 formatter={(value) =>

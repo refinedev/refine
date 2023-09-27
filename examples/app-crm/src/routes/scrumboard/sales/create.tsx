@@ -284,8 +284,13 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                             </Form.Item>
                         </Col>
                         <Col span={12}>
-                            <Form.Item label="Deal value" name="value">
+                            <Form.Item
+                                rules={[{ required: true }]}
+                                label="Deal value"
+                                name="value"
+                            >
                                 <InputNumber
+                                    min={0}
                                     addonBefore={<DollarOutlined />}
                                     placeholder="0,00"
                                     formatter={(value) =>
