@@ -51,7 +51,13 @@ export const BannerImageWithText: FC<Props> = ({
                 to={image?.href ?? button?.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={clsx("flex", "h-auto xl:h-[192px]", "flex-shrink-0")}
+                className={clsx(
+                    "flex",
+                    "h-auto xl:h-[192px]",
+                    "flex-shrink-0",
+                    "rounded-lg",
+                    "overflow-hidden",
+                )}
             >
                 <img
                     src={image?.src}
