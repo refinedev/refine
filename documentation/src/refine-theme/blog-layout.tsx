@@ -50,7 +50,7 @@ export const RefineBlogLayout = (props: any) => {
                         "transition-opacity duration-300 ease-in-out",
                     )}
                 >
-                    <div className={clsx("fixed", "w-[264px]")}>
+                    <div className={clsx("fixed", "w-[264px]", "z-10")}>
                         <BannerSidebar />
                     </div>
                 </div>

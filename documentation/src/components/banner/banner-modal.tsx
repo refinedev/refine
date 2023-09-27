@@ -6,6 +6,12 @@ import Link from "@docusaurus/Link";
 import { Dialog, Transition } from "@headlessui/react";
 import { CloseIcon } from "@site/src/refine-theme/icons/close";
 import useScrollTracker from "@site/src/hooks/use-scroll-tracker";
+import useLocalStorage from "@site/src/hooks/use-localstorage";
+import { useLocation } from "@docusaurus/router";
+
+const SCROLL_TRESHOLD = 79;
+const SCROLL_MAX = 100;
+const MAX_VISIT_COUNT = 9;
 
 type Props = {
     title?: string;
@@ -36,24 +42,37 @@ export const BannerModal: FC<Props> = ({
         onClick: undefined,
     },
 }) => {
-    const hasSeen = useRef(false);
+    const { pathname } = useLocation();
     const [isOpen, setIsOpen] = useState(false);
-    const onClose = () => setIsOpen(false);
+    const [visitCount, setVisitCount] = useLocalStorage("banner-modal", 0);
+    const scrollTresholdExceeded = useRef(false);
 
     const tracker = useScrollTracker();
 
     useEffect(() => {
-        if (hasSeen.current || isOpen) return;
+        if (pathname === "/blog/" || pathname === "/blog") return;
+        if (scrollTresholdExceeded.current || isOpen) return;
 
-        if (tracker.scrollY > 79 && tracker.scrollY < 100) {
-            setIsOpen(true);
-            hasSeen.current = true;
+        if (tracker.scrollY > SCROLL_TRESHOLD && tracker.scrollY < SCROLL_MAX) {
+            scrollTresholdExceeded.current = true;
+
+            if (visitCount === MAX_VISIT_COUNT) {
+                setIsOpen(true);
+                setVisitCount(0);
+            } else {
+                setVisitCount(visitCount + 1);
+                scrollTresholdExceeded.current = true;
+            }
         }
     }, [tracker.scrollY]);
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-modal" onClose={onClose}>
+            <Dialog
+                as="div"
+                className="relative z-modal"
+                onClose={() => setIsOpen(false)}
+            >
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-75"
@@ -179,7 +198,7 @@ export const BannerModal: FC<Props> = ({
                                             "rounded-full",
                                             "bg-gray-900/20",
                                         )}
-                                        onClick={onClose}
+                                        onClick={() => setIsOpen(false)}
                                     >
                                         <CloseIcon className="w-4 h-4" />
                                     </button>
