@@ -8,10 +8,10 @@ refine Devtools beta version has been released, join the waitlist to try it out.
 ---
 
 ---announcement
-hidden: true
+hidden: false
 
 ---
 
-Hello from refine team! Hope you enjoy! Join our discord server to get help and discuss with other users. https://discord.gg/refine
+Hello from refine team! Hope you enjoy! Join our Discord community to get help and discuss with other users. https://discord.gg/refine
 
 ---
