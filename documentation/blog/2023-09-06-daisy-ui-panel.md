@@ -9,6 +9,10 @@ hide_table_of_contents: false
 is_featured: true
 ---
 
+import { BannerExamples } from "@site/src/components/banner/banner-examples.tsx";
+import { BannerImageWithText } from "@site/src/components/banner/banner-image-with-text.tsx";
+import { BannerModal } from "@site/src/components/banner/banner-modal.tsx";
+
 ## Introduction
 
 In this post, we go through the process of developing a React admin panel using [**refine**](https://github.com/refinedev/refine) and [**daisyUI**](https://daisyui.com).
@@ -18,6 +22,75 @@ In this post, we go through the process of developing a React admin panel using 
 **daisyUI** is a component templates library built on top of TailwindCSS. It provides us with short semantic classes composed from TailwindCSS utilities and a growing collection of convenient component templates that helps quickly build React components for our app.
 
 **daisyUI** can easily be integrated with **refine**, and in this post we are going to see how to do that while building a dashboard and admin panel app using **refine**'s **Fine Foods** API.
+
+<BannerModal
+variant="purple"
+title="Take a spin and supercharge your development experience."
+image={{
+        src: "https://www.linkpicture.com/q/Frame-1189.png",
+        alt: "refine.new screenshot",
+        href: "https://twitter.com/refine_dev",
+    }}
+button={{
+        text: "Try it online",
+        href: "https://refine.dev/",
+    }}
+/>
+
+<br/>
+<br/>
+
+<BannerImageWithText
+variant="gray"
+description="Refine is the tool of choice for over 15k active developers each month."
+image={{
+        src: "https://www.linkpicture.com/q/image-37_7.png",
+        alt: "X tweet about Refine",
+        href: "https://twitter.com/refine_dev",
+    }}
+button={{
+        text: "Learn more",
+        href: "https://refine.dev/",
+    }}
+/>
+
+<br/>
+<br/>
+
+<BannerImageWithText
+description="Refine is ranked among the top 3 rapidly growing React frameworks in the ecosystem."
+image={{
+        src: "https://www.linkpicture.com/q/Frame-1273.png",
+        alt: "OSS insight about Refine",
+        href: "https://github.com/refinedev/refine",
+    }}
+button={{
+        text: "Learn more",
+        href: "https://github.com/refinedev/refine",
+    }}
+/>
+
+<br/>
+<br/>
+
+<BannerImageWithText
+title="Save developer hours!"
+description="Open-source industry-standard code-base design for enterprise grade internal tools, admin panels and CRUD apps."
+image={{
+        src: "https://www.linkpicture.com/q/image-48_5.png",
+        alt: "OSS insight about Refine",
+        href: "https://github.com/refinedev/refine",
+    }}
+button={{
+        text: "Learn more",
+        href: "https://github.com/refinedev/refine",
+    }}
+/>
+
+<br/>
+<br/>
+
+<BannerExamples />
 
 ## Overview
 
@@ -68,8 +141,6 @@ Routing in **refine** is supported by the `react-router-dom` package. **refine**
 </div>
 
 <br/>
-
-
 
 [**daisyUI**](https://daisyui.com) is an open source UI library built on top of [**TailwindCSS**](https://tailwindcss.com/docs/installation). It provides short, component-oriented, semantic classes composed from regular, longer Tailwind class strings that typically contribute to clumsy markup in an application. daisyUI hosts a growing collection of pre-styled templates for components like buttons, menus, and tabs with responsive, size, shape, and color variants.
 
@@ -341,8 +412,6 @@ export default {
 
 More details on customizing a daisyUI theme is available on the docs [here](https://daisyui.com/docs/themes/#-7)
 
-
-
 After these changes, with the server running, TailwindCSS watches for the use of daisyUI and TailwindCSS classes, and automatically compiles updated styles.
 
 ### Other Packages
@@ -558,8 +627,6 @@ With these additions and changes, when we navigate to `/` or `/dashboard`, we sh
 
 <br/>
 
-
-
 ### The `<Stats />` Component
 
 Let's now focus on implementing the features of the dashboard. Inside it, we'll have a `<Stats />` component that takes in KPI data and returns a `<KpiCard />` component for each. We'll create the `<Stats />` component inside `src/components/dashboard`. And use the following code:
@@ -768,16 +835,11 @@ You can find more details in the [**refine** `useList()` docs here](https://refi
 
 With these changes, our dashboard page has three KPI cards displayed at the top:
 
-
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/kpi-cards.png"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
-
-
 
 ### Tab Components
 
@@ -1287,14 +1349,11 @@ Notice we are defining a `useMemoizedChartData()` hook to transform the fetched 
 
 With these changes, our dashboard page displays a panel of charts accessible from a top tabbed menu:
 
-
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/recensales.gif"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
 
 ### `<RecentSales />` Component
 
@@ -1650,16 +1709,11 @@ export const Dashboard: React.FC = () => {
 
 With all these updates, we have completed implementing the dashboard page. It now looks like this:
 
-
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/recent_last.png"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
-
-
 
 ## Adding CRUD Pages
 
@@ -2477,14 +2531,11 @@ Notice throughout the markup that we are able to seamlessly apply regular Tailwi
 
 With these changes, when we navigate to the `/products` route, our products list page looks like below:
 
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/products.png"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
-
 
 ### `<ProductCreate />` Page
 
@@ -2646,14 +2697,11 @@ Inside the `App.css` file, we are still able to compose smaller class names from
 
 With the above `<ProductCreate />` page, when we navigate to the `/products/create` route, we should be presented with a form to create a product:
 
-
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/product_create.png"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
 
 ### `<ProductEdit />` Page
 
@@ -2800,15 +2848,11 @@ Additionally, we are setting the current option of the `<select />` dropdown wit
 
 With the `<ProductEdit />` component worked out, the page at `/product/edit/:id` looks like this:
 
-
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/product_edit.png"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
-
 
 ### `<ProductShow />` Page
 
@@ -2896,13 +2940,11 @@ We are also invoking the familiar `useNavigation()` hook to access the `edit()` 
 
 With the `<ProductShow />` page completed, when we navigate to the `/products/show/:id` path, we can see the product details as below:
 
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/product_show.png"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
 
 This also means we can navigate back and forth to edit and show pages of a product item from the list page. Or open the `create` page to create new products.
 
@@ -3564,7 +3606,6 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
 
 After all these changes for the `category` resource, we should be able to navigate across the category pages as below:
 
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/layout-gif.gif"  alt="react admin panel daisy ui" />
 </div>
@@ -3864,14 +3905,11 @@ With these changes, we should now see a sticky top navbar with items that give a
 
 Here's the walkthrough of all the resource list pages:
 
-
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/ezgif.com-optimize-min.gif"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
-
 
 ## Summary
 
@@ -3886,6 +3924,5 @@ We saw that **refine** brings the power of **React Hook Form** into its pages wi
 We initially dashed, frequently dazed, and finally established an admin panel by getting refine.d.
 
 ## Live CodeSandbox Example
-
 
 <CodeSandboxExample path="blog-refine-daisyui" />
