@@ -53,6 +53,7 @@ export const BannerImageWithText: FC<Props> = ({
                 rel="noopener noreferrer"
                 className={clsx(
                     "flex",
+                    "max-w-[360px]",
                     "h-auto xl:h-[192px]",
                     "flex-shrink-0",
                     "rounded-lg",

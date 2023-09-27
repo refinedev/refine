@@ -44,7 +44,7 @@ export const BannerModal: FC<Props> = ({
 }) => {
     const { pathname } = useLocation();
     const [isOpen, setIsOpen] = useState(false);
-    const [visitCount, setVisitCount] = useLocalStorage("banner-modal", 0);
+    const [visitCount, setVisitCount] = useLocalStorage("banner-modal", null);
     const scrollTresholdExceeded = useRef(false);
 
     const tracker = useScrollTracker();
@@ -56,7 +56,7 @@ export const BannerModal: FC<Props> = ({
         if (tracker.scrollY > SCROLL_TRESHOLD && tracker.scrollY < SCROLL_MAX) {
             scrollTresholdExceeded.current = true;
 
-            if (visitCount === MAX_VISIT_COUNT) {
+            if (visitCount === MAX_VISIT_COUNT || visitCount === null) {
                 setIsOpen(true);
                 setVisitCount(0);
             } else {
