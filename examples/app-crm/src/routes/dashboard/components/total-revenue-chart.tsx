@@ -51,38 +51,6 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
         },
     });
 
-    // const { data, isError, error, isLoading } = useCustom<DealRevenueResponse>({
-    //     method: "post",
-    //     url: "/graphql",
-    //     meta: {
-    //         rawQuery: `query Dashboard {
-    //             expectedRevenueSum: dealStages(filter: { title: { notIn: ["WON", "LOST"] } }) {
-    //                 nodes {
-    //                 title
-    //                 dealsAggregate {
-    //                     sum {
-    //                         value
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //             realizationRevenueSum: dealStages(
-    //                 filter: { title: { eq: "WON" } }
-    //             ) {
-    //                 nodes {
-    //                 title
-    //                 dealsAggregate {
-    //                         sum {
-    //                             value
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         `,
-    //     },
-    // });
-
     if (expectedRevenueIsError || realizedRevenueIsError) {
         console.error(
             "Error fetching dashboard data",
