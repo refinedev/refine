@@ -8,7 +8,7 @@ refine Devtools beta version has been released, join the waitlist to try it out.
 ---
 
 ---announcement
-hidden: false
+hidden: true
 
 ---
 
