@@ -54,7 +54,7 @@ export const RefineBlogLayout = (props: any) => {
                         className={clsx(
                             "sticky",
                             "w-[264px]",
-                            "z-10",
+                            "z-[1]",
                             "top-32",
                             "left-0",
                         )}
