@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "1.1.7",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -24,7 +24,7 @@
   "module": "dist/esm/index.js",
   "dependencies": {
     "@aliemir/dom-to-fiber-utils": "^0.4.0",
-    "@refinedev/devtools-shared": "1.1.1",
+    "@refinedev/devtools-shared": "1.1.2",
     "error-stack-parser": "^2.1.4",
     "lodash-es": "^4.17.21",
     "lodash": "^4.17.21"
@@ -34,8 +34,8 @@
     "react-dom": "^17.0.0 || ^18.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "@refinedev/devtools-server": "1.1.5",
-    "@refinedev/cli": "2.16.0",
+    "@refinedev/devtools-server": "1.1.6",
+    "@refinedev/cli": "2.16.1",
     "@refinedev/core": "^4.42.0"
   },
   "devDependencies": {
