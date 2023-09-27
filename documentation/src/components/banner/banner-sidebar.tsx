@@ -8,7 +8,7 @@ const text = "Struggling with internal tools?";
 const description =
     "Explore Refine’s limitless possibilities in crafting CRUD apps, CRM solutions, HR dashboards, and more!";
 const image =
-    "https://cdn.discordapp.com/attachments/1085908808385187840/1156556183965020201/image.png?ex=65156662&is=651414e2&hm=99b52f918e15c3c89ecd6f986b5af259ef0cfc23a3f877578a1c77e8638a9a87&";
+    "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/app-crm.png";
 
 export const BannerSidebar = () => {
     return (

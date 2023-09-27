@@ -23,9 +23,13 @@ type Props = {
 };
 
 export const BannerModal: FC<Props> = ({
-    image,
     title = "Take a spin and supercharge your development experience.",
     variant = "purple",
+    image = {
+        src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/playground.gif",
+        alt: "refine App screenshot",
+        href: "https://refine.dev/?playground=true",
+    },
     button = {
         text: "Try online",
         href: "https://refine.dev/?playground=true",
@@ -110,10 +114,15 @@ export const BannerModal: FC<Props> = ({
                                                 "flex",
                                                 "h-auto xl:h-[192px]",
                                                 "flex-shrink-0",
+                                                "rounded-lg",
+                                                "overflow-hidden",
                                                 "focus:outline-none",
                                             )}
                                         >
                                             <img
+                                                className={clsx(
+                                                    "object-contain",
+                                                )}
                                                 src={image?.src}
                                                 alt={image?.alt ?? title}
                                                 loading="lazy"

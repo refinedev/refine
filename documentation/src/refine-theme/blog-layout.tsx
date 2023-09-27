@@ -77,11 +77,7 @@ export const RefineBlogLayout = (props: any) => {
                 )}
             </div>
             <BlogFooter />
-            <BannerModal
-                image={{
-                    src: "https://www.linkpicture.com/q/Frame-1189.png",
-                }}
-            />
+            <BannerModal />
         </CommonLayout>
     );
 };
