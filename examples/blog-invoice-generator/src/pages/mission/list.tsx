@@ -1,15 +1,15 @@
 import {
+    EditButton,
     List,
-    useTable,
     TagField,
     useModalForm,
-    EditButton,
+    useTable,
 } from "@refinedev/antd";
 
 import { Table } from "antd";
 
-import { IMission } from "interfaces";
 import { CreateMission, EditMission } from "components/mission";
+import { IMission } from "interfaces";
 
 export const MissionList: React.FC = () => {
     const { tableProps } = useTable<IMission>();
@@ -58,7 +58,7 @@ export const MissionList: React.FC = () => {
                             return (
                                 <TagField
                                     value={`${
-                                        record.daily_rate * record.day
+                                        record?.daily_rate * record?.day
                                     } $`}
                                     color="green"
                                 />
@@ -73,8 +73,8 @@ export const MissionList: React.FC = () => {
                             <EditButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
-                                onClick={() => editShow(record.id)}
+                                recordItemId={record?.id}
+                                onClick={() => editShow(record?.id)}
                             />
                         )}
                     />

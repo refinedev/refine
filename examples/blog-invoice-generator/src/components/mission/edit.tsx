@@ -1,4 +1,4 @@
-import { Form, Input, ModalProps, FormProps, Modal, InputNumber } from "antd";
+import { Form, FormProps, Input, InputNumber, Modal, ModalProps } from "antd";
 
 type EditMissionProps = {
     modalProps: ModalProps;
@@ -10,7 +10,13 @@ export const EditMission: React.FC<EditMissionProps> = ({
     formProps,
 }) => {
     return (
-        <Modal {...modalProps} title="Create Contact">
+        <Modal
+            {...modalProps}
+            title="Edit Mission"
+            style={{
+                padding: "0 80px",
+            }}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -26,11 +32,27 @@ export const EditMission: React.FC<EditMissionProps> = ({
                 <Form.Item label="Description" name="mission_description">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Day(s)" name="day">
-                    <InputNumber defaultValue={1} />
+                <Form.Item
+                    label="Day(s)"
+                    name="day"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber defaultValue={0} />
                 </Form.Item>
-                <Form.Item label="Daily Rate" name="daily_rate">
-                    <InputNumber defaultValue={1} />
+                <Form.Item
+                    label="Daily Rate"
+                    name="daily_rate"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputNumber defaultValue={0} />
                 </Form.Item>
             </Form>
         </Modal>
