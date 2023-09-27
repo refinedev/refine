@@ -1,7 +1,7 @@
-import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import { Form, FormProps, Input, Modal, ModalProps, Upload } from "antd";
 
-import { TOKEN_KEY, API_URL } from "../../constants";
+import { API_URL, TOKEN_KEY } from "../../constants";
 
 type EditCompanyProps = {
     modalProps: ModalProps;
@@ -13,13 +13,30 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
     formProps,
 }) => {
     return (
-        <Modal {...modalProps}>
+        <Modal
+            {...modalProps}
+            title={
+                <h3
+                    style={{
+                        padding: "0 16px",
+                        fontWeight: "bold",
+                    }}
+                >
+                    Edit Company
+                </h3>
+            }
+            style={{
+                padding: "0 80px",
+            }}
+        >
             <Form
                 {...formProps}
-                wrapperCol={{ span: 12 }}
                 layout="vertical"
                 onFinish={(values) => {
                     formProps.onFinish?.(mediaUploadMapper(values));
+                }}
+                style={{
+                    padding: "0 16px",
                 }}
             >
                 <Form.Item
@@ -42,7 +59,16 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
                 <Form.Item label="Company City" name="city">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Email" name="email">
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            type: "email",
+                        },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
                 <Form.Item label="Website" name="website">

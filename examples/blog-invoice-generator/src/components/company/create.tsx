@@ -14,12 +14,30 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     formProps,
 }) => {
     return (
-        <Modal {...modalProps} title="Create Company">
+        <Modal
+            {...modalProps}
+            title={
+                <h3
+                    style={{
+                        padding: "0 16px",
+                        fontWeight: "bold",
+                    }}
+                >
+                    Create Company
+                </h3>
+            }
+            style={{
+                padding: "0 80px",
+            }}
+        >
             <Form
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
                     formProps.onFinish?.(mediaUploadMapper(values));
+                }}
+                style={{
+                    padding: "0 16px",
                 }}
             >
                 <Form.Item

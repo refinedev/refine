@@ -1,8 +1,8 @@
 import {
     DeleteButton,
-    UrlField,
-    EmailField,
     EditButton,
+    EmailField,
+    UrlField,
 } from "@refinedev/antd";
 
 import { Card, Typography } from "antd";
@@ -18,7 +18,7 @@ type CompanyItemProps = {
 };
 
 export const CompanyItem: React.FC<CompanyItemProps> = ({ item, editShow }) => {
-    const image = item.logo ? API_URL + item.logo.url : "./error.png";
+    const image = item?.logo ? API_URL + item?.logo?.url : "./error.png";
 
     return (
         <Card
@@ -41,7 +41,7 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item, editShow }) => {
                     key="edit"
                     size="small"
                     hideText
-                    onClick={() => editShow(item.id)}
+                    onClick={() => editShow(item?.id)}
                 />,
                 <DeleteButton
                     key="delete"
@@ -52,17 +52,17 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item, editShow }) => {
             ]}
         >
             <Title level={5}>Company Name:</Title>
-            <Text>{item.name}</Text>
+            <Text>{item?.name}</Text>
             <Title level={5}>Company Address:</Title>
-            <Text>{item.address}</Text>
+            <Text>{item?.address}</Text>
             <Title level={5}>County:</Title>
-            <Text>{item.country}</Text>
+            <Text>{item?.country}</Text>
             <Title level={5}>City:</Title>
-            <Text>{item.city}</Text>
+            <Text>{item?.city}</Text>
             <Title level={5}>Email:</Title>
-            <EmailField value={item.email} />
+            <EmailField value={item?.email} />
             <Title level={5}>Website:</Title>
-            <UrlField value={item.website} />
+            <UrlField value={item?.website} />
         </Card>
     );
 };
