@@ -1,5 +1,37 @@
 # @refinedev/devtools-server
 
+## 1.1.6
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+-   [#5020](https://github.com/refinedev/refine/pull/5020) [`20f5b6128d4`](https://github.com/refinedev/refine/commit/20f5b6128d4ae85904b9b0e2845c1bb2dcae1a44) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue with the anchor tags in devtools feeds not opening in a new tab.
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b), [`20f5b6128d4`](https://github.com/refinedev/refine/commit/20f5b6128d4ae85904b9b0e2845c1bb2dcae1a44)]:
+    -   @refinedev/devtools-shared@1.1.2
+    -   @refinedev/devtools-ui@1.1.6
+
+## 1.1.5
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+-   [#5020](https://github.com/refinedev/refine/pull/5020) [`20f5b6128d4`](https://github.com/refinedev/refine/commit/20f5b6128d4ae85904b9b0e2845c1bb2dcae1a44) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue with the anchor tags in devtools feeds not opening in a new tab.
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b), [`20f5b6128d4`](https://github.com/refinedev/refine/commit/20f5b6128d4ae85904b9b0e2845c1bb2dcae1a44)]:
+    -   @refinedev/devtools-shared@1.1.1
+    -   @refinedev/devtools-ui@1.1.5
+
 ## 1.1.4
 
 ### Patch Changes
