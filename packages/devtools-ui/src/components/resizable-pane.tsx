@@ -5,6 +5,8 @@ import clsx from "clsx";
 type Props = {
     left: React.ReactNode;
     right: React.ReactNode;
+    leftClassName?: string;
+    rightClassName?: string;
     className?: string;
     defaultPercentage?: number;
     maxPercentage?: number;
@@ -13,6 +15,8 @@ type Props = {
 export const ResizablePane = ({
     left,
     right,
+    leftClassName,
+    rightClassName,
     className,
     defaultPercentage = 60,
     maxPercentage = 75,
@@ -95,7 +99,7 @@ export const ResizablePane = ({
             }}
             ref={containerRef}
         >
-            <div>{left}</div>
+            <div className={leftClassName}>{left}</div>
             <div
                 className={clsx(
                     "re-w-4",
@@ -105,15 +109,26 @@ export const ResizablePane = ({
                     "re-justify-center",
                 )}
             >
-                <ResizeHandleIcon
-                    className="re-cursor-col-resize"
+                <button
+                    type="button"
+                    className={clsx(
+                        "re-h-full",
+                        "re-w-2.5",
+                        "re-appearance-none",
+                        "re-outline-none",
+                        "re-bg-transparent",
+                        "re-border-0",
+                        "re-cursor-col-resize",
+                    )}
                     onMouseDown={(event) => {
                         setResizing(true);
                         event.preventDefault();
                     }}
-                />
+                >
+                    <ResizeHandleIcon />
+                </button>
             </div>
-            <div>{right}</div>
+            <div className={rightClassName}>{right}</div>
         </div>
     );
 };

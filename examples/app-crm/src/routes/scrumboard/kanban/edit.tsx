@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
-import { useGetToPath } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 
 import {
     AlignLeftOutlined,
@@ -32,8 +31,7 @@ import {
 export const KanbanEditPage = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();
 
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
     const { modalProps, close, queryResult } = useModalForm<Task>({
         action: "edit",
         defaultVisible: true,
@@ -61,14 +59,7 @@ export const KanbanEditPage = () => {
             className="kanban-update-modal"
             onCancel={() => {
                 close();
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("tasks", "replace");
             }}
             title={
                 <TitleForm initialValues={{ title }} isLoading={isLoading} />

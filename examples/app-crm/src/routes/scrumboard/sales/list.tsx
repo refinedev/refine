@@ -1,7 +1,12 @@
 import { FC, PropsWithChildren, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 
-import { useDelete, useList, useUpdate, useUpdateMany } from "@refinedev/core";
+import {
+    useDelete,
+    useList,
+    useNavigation,
+    useUpdate,
+    useUpdateMany,
+} from "@refinedev/core";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { DragEndEvent } from "@dnd-kit/core";
@@ -41,7 +46,7 @@ const dealsFragment = [
 const lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1));
 
 export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
-    const navigate = useNavigate();
+    const { replace, edit, create } = useNavigation();
 
     const { data: stages, isLoading: isLoadingStages } = useList<DealStage>({
         resource: "dealStages",
@@ -193,10 +198,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                 onSuccess: () => {
                     const stage = event.over?.id as undefined | string | null;
                     if (stage === "won" || stage === "lost") {
-                        const path = `/scrumboard/sales/details/edit/${dealId}`;
-                        navigate(path, {
-                            replace: true,
-                        });
+                        edit("deals", dealId, "replace");
                     }
                 },
             },
@@ -204,16 +206,11 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     };
 
     const handleAddStage = () => {
-        navigate("/scrumboard/sales/stages/create", {
-            replace: true,
-        });
+        create("dealStages", "replace");
     };
 
     const handleEditStage = (args: { stageId: string }) => {
-        const path = `/scrumboard/sales/stages/edit/${args.stageId}`;
-        navigate(path, {
-            replace: true,
-        });
+        edit("dealStages", args.stageId);
     };
 
     const handleDeleteStage = (args: { stageId: string }) => {
@@ -234,9 +231,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             args.stageId === "unassigned"
                 ? "create"
                 : `create?stageId=${args.stageId}`;
-        navigate(path, {
-            replace: true,
-        });
+        replace(path);
     };
 
     const handleClearCards = (args: { dealsIds: string[] }) => {

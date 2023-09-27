@@ -28,12 +28,10 @@ export const Feed = () => {
                 "re-flex-1",
                 "re-flex",
                 "re-flex-col",
-                "re-gap-8",
                 "re-h-full",
                 "re-w-full",
                 "large:re-max-w-[380px]",
                 "re-justify-center",
-                "re-overflow-auto",
                 "re-mx-auto",
             )}
         >
@@ -43,14 +41,20 @@ export const Feed = () => {
                     "re-text-gray-0",
                     "re-font-semibold",
                     "re-leading-8",
+                    "re-flex-shrink-0",
                 )}
             >
                 Updates from the refine team
             </div>
-            {feed?.map((item, index) => (
-                <FeedItem key={index} item={item} />
-            ))}
-            <div className="re-h-px re-w-full re-flex-shrink-0" />
+            <div className={clsx("re-flex-1", "re-overflow-auto")}>
+                <div className={clsx("re-flex", "re-flex-col", "re-gap-8")}>
+                    <div className="re-h-px re-w-full re-flex-shrink-0" />
+                    {feed?.map((item, index) => (
+                        <FeedItem key={index} item={item} />
+                    ))}
+                    <div className="re-h-px re-w-full re-flex-shrink-0" />
+                </div>
+            </div>
         </div>
     );
 };

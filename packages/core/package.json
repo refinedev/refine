@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/core",
-  "version": "4.42.2",
+  "version": "4.42.3",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "sideEffects": false,
@@ -43,7 +43,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@refinedev/devtools-internal": "1.1.2",
+    "@refinedev/devtools-internal": "1.1.3",
     "export-to-csv-fix-source-map": "^0.2.1",
     "lodash-es": "^4.17.21",
     "lodash": "^4.17.21",

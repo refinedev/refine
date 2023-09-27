@@ -1,13 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
 import { useModalForm } from "@refinedev/antd";
-import { useInvalidate } from "@refinedev/core";
+import { useInvalidate, useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
 export const SalesCreateStage = () => {
     const invalidate = useInvalidate();
-    const navigate = useNavigate();
+    const { list } = useNavigation();
     const { formProps, modalProps, close } = useModalForm({
         action: "create",
         defaultVisible: true,
@@ -33,7 +31,7 @@ export const SalesCreateStage = () => {
             {...modalProps}
             onCancel={() => {
                 close();
-                navigate("/scrumboard/sales", { replace: true });
+                list("deals", "replace");
             }}
             title="Add new stage"
             width={512}

@@ -13,6 +13,7 @@ import whoami from "@commands/whoami";
 import devtools from "@commands/devtools";
 import add from "@commands/add";
 import { telemetryHook } from "@telemetryindex";
+import { handleAnnouncements } from "@utils/announcement";
 import "@utils/env";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
@@ -51,6 +52,8 @@ const bootstrap = () => {
     proxy(program);
     devtools(program);
     add(program);
+
+    program.hook("preAction", handleAnnouncements);
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];

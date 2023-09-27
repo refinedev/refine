@@ -1,13 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
 import { useModalForm } from "@refinedev/antd";
-import { useInvalidate } from "@refinedev/core";
+import { useInvalidate, useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
 export const SalesEditStage = () => {
     const invalidate = useInvalidate();
-    const navigate = useNavigate();
+    const { list } = useNavigation();
 
     const { formProps, modalProps, close } = useModalForm({
         action: "edit",
@@ -33,7 +31,7 @@ export const SalesEditStage = () => {
         <Modal
             {...modalProps}
             onCancel={() => {
-                navigate("/scrumboard/sales", { replace: true });
+                list("deals", "replace");
                 close();
             }}
             title="Edit stage"

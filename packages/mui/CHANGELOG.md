@@ -1,5 +1,18 @@
 # @refinedev/mui
 
+## 5.13.11
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b)]:
+    -   @refinedev/react-hook-form@4.8.9
+
 ## 5.13.10
 
 ### Patch Changes

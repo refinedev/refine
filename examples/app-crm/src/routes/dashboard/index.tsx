@@ -18,13 +18,13 @@ export const DashboardPage: React.FC = () => {
         <div className="page-container">
             <Row gutter={[32, 32]}>
                 <Col xs={24} sm={24} xl={8}>
-                    <DashboardTotalCountCard variant="companies" />
+                    <DashboardTotalCountCard resource="companies" />
                 </Col>
                 <Col xs={24} sm={24} xl={8}>
-                    <DashboardTotalCountCard variant="contacts" />
+                    <DashboardTotalCountCard resource="contacts" />
                 </Col>
                 <Col xs={24} sm={24} xl={8}>
-                    <DashboardTotalCountCard variant="deals" />
+                    <DashboardTotalCountCard resource="deals" />
                 </Col>
             </Row>
 

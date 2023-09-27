@@ -14,7 +14,18 @@ const splitSections = (feed: string) => {
 };
 
 const contentToHtml = (content: string) => {
-    const html = marked(content);
+    const renderer = new marked.Renderer();
+    renderer.link = function (...args) {
+        const out = marked.Renderer.prototype.link.apply(this, args);
+        return out.replace(
+            /^<a/,
+            '<a target="_blank" rel="noopener noreferrer"',
+        );
+    };
+
+    const html = marked(content, {
+        renderer,
+    });
 
     return sanitizeHtml(html, {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),

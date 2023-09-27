@@ -56,6 +56,7 @@ export const checkPackage = (code = "") => {
     const hasStrapiV4 = code.includes("@refinedev/strapi-v4");
     const hasStrapiGraphql = code.includes("@refinedev/strapi-graphql");
     const hasSupabase = code.includes("@refinedev/supabase");
+    const hasDevtools = code.includes("@refinedev/devtools");
     const hasAxios = code.includes("axios");
     const hasAuth0 = code.includes("@auth0/auth0-react");
     const hasKeycloak =
@@ -110,6 +111,10 @@ export const checkPackage = (code = "") => {
 
     if (hasSupabase) {
         set.add("supabase");
+    }
+
+    if (hasDevtools) {
+        set.add("devtools");
     }
 
     if (hasAxios) {

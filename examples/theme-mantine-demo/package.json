@@ -8,12 +8,12 @@
     "refine": "refine"
   },
   "dependencies": {
-    "@refinedev/mantine": "^2.28.12",
-    "@refinedev/core": "^4.42.2",
-    "@refinedev/cli": "^2.15.4",
-    "@refinedev/react-router-v6": "^4.5.0",
-    "@refinedev/simple-rest": "^4.5.0",
-    "@refinedev/react-table": "^5.6.2",
+    "@refinedev/mantine": "^2.28.13",
+    "@refinedev/core": "^4.42.3",
+    "@refinedev/cli": "^2.16.0",
+    "@refinedev/react-router-v6": "^4.5.1",
+    "@refinedev/simple-rest": "^4.5.1",
+    "@refinedev/react-table": "^5.6.3",
     "@tanstack/react-table": "^8.2.6",
     "@uiw/react-md-editor": "^3.19.5",
     "@tabler/icons": "^1.119.0",
