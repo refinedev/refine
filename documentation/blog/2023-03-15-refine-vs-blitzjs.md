@@ -489,7 +489,7 @@ Create a new account and sign up, so we have a user record in the SQLite databas
 ---
 
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 
 
