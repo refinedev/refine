@@ -26,7 +26,6 @@
 "@refinedev/react-hook-form": patch
 "@refinedev/react-router-v6": patch
 "@refinedev/react-table": patch
-"@refinedev/sdk": patch
 "@refinedev/simple-rest": patch
 "@refinedev/strapi": patch
 "@refinedev/strapi-graphql": patch
