@@ -1,5 +1,12 @@
 # @refinedev/core
 
+## 4.42.3
+
+### Patch Changes
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b)]:
+    -   @refinedev/devtools-internal@1.1.3
+
 ## 4.42.2
 
 ### Patch Changes
