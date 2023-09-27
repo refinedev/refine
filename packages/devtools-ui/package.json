@@ -1,5 +1,5 @@
 {
-  "version": "1.1.5",
+  "version": "1.1.6",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@ory/client": "^1.1.25",
-    "@refinedev/devtools-shared": "1.1.1",
+    "@refinedev/devtools-shared": "1.1.2",
     "@tanstack/react-table": "^8.2.6",
     "clsx": "^1.1.1",
     "dayjs": "^1.10.7",

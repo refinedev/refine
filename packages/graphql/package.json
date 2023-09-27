@@ -1,7 +1,7 @@
 {
   "name": "@refinedev/graphql",
   "description": "refine GraphQL data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "6.4.5",
+  "version": "6.4.6",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,8 +23,8 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@refinedev/cli": "^2.16.0",
-    "@refinedev/core": "^4.42.3",
+    "@refinedev/cli": "^2.16.1",
+    "@refinedev/core": "^4.42.4",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/pluralize": "^0.0.29",
     "@types/jest": "^29.2.4",
