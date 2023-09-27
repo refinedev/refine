@@ -1,5 +1,5 @@
 ---announcement
-hidden: true
+hidden: false
 
 ---
 
@@ -8,10 +8,10 @@ test announcement here
 ---
 
 ---announcement
-hidden: true
+hidden: false
 
 ---
 
-second **announcement** here test [github](https://github.com) link. raw link: https://github.com
+refine Devtools beta version has been released, join the waitlist to try it out. https://s.refine.dev/devtools
 
 ---
