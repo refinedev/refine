@@ -23,12 +23,12 @@ type Props = {
 };
 
 export const BannerModal: FC<Props> = ({
-    title,
     image,
+    title = "Take a spin and supercharge your development experience.",
     variant = "purple",
     button = {
-        text: "Learn more",
-        href: "https://refine.dev/",
+        text: "Try online",
+        href: "https://refine.dev/?playground=true",
         onClick: undefined,
     },
 }) => {
@@ -110,6 +110,7 @@ export const BannerModal: FC<Props> = ({
                                                 "flex",
                                                 "h-auto xl:h-[192px]",
                                                 "flex-shrink-0",
+                                                "focus:outline-none",
                                             )}
                                         >
                                             <img
@@ -167,7 +168,7 @@ export const BannerModal: FC<Props> = ({
                                             "flex items-center justify-center flex-shrink-0",
                                             "text-gray-0",
                                             "rounded-full",
-                                            "bg-gray-700",
+                                            "bg-gray-900/20",
                                         )}
                                         onClick={onClose}
                                     >
