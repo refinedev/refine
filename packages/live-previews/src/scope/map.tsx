@@ -24,6 +24,7 @@ export const packageMap: Record<string, string> = {
     "@refinedev/strapi-v4": "RefineStrapiV4",
     "@refinedev/strapi-graphql": "RefineStrapiGraphql",
     "@refinedev/supabase": "RefineSupabase",
+    "@refinedev/devtools": "RefineDevtools",
     axios: "AxiosScope",
     "@auth0/auth0-react": "Auth0ReactScope",
     "keycloak-js": "KeycloakScope",

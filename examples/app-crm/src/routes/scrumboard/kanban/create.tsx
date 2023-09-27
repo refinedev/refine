@@ -1,14 +1,13 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
-import { useGetToPath } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
 export const KanbanCreatePage = () => {
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
     const { formProps, modalProps, close } = useModalForm({
         action: "create",
         defaultVisible: true,
@@ -19,14 +18,7 @@ export const KanbanCreatePage = () => {
             {...modalProps}
             onCancel={() => {
                 close();
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("tasks", "replace");
             }}
             title="Add new card"
             width={512}

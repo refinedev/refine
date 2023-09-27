@@ -1,16 +1,12 @@
 # @refinedev/devtools
 
-## 1.1.2
+## 1.1.5
 
 ### Patch Changes
 
--   [#4995](https://github.com/refinedev/refine/pull/4995) [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082) Thanks [@omeraplak](https://github.com/omeraplak)! - Updated DOM selector to pick elements to highlight by `click` instead of `space`
+-   [#5013](https://github.com/refinedev/refine/pull/5013) [`fdd6ce6ce81`](https://github.com/refinedev/refine/commit/fdd6ce6ce81cac9fbe8ce48aab7449c1e9ff12b3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: devtools button and selector tooltip styles updated
 
-## 1.1.1
-
-### Patch Changes
-
--   [#4995](https://github.com/refinedev/refine/pull/4995) [`ab01e8e32d8`](https://github.com/refinedev/refine/commit/ab01e8e32d8c1f141c4284b9c32727e905094082) Thanks [@omeraplak](https://github.com/omeraplak)! - Updated DOM selector to pick elements to highlight by `click` instead of `space`
+-   [#5016](https://github.com/refinedev/refine/pull/5016) [`d144915cec3`](https://github.com/refinedev/refine/commit/d144915cec3114baeba8041184df6def555bdda2) Thanks [@aliemir](https://github.com/aliemir)! - Update `@aliemir/dom-to-fiber-utils` to latest version to fix issue with selecting elements in the DOM tree that are not handled by React Fiber.
 
 ![refine devtools](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
 
@@ -27,7 +23,7 @@
     Install latest version of `@refinedev/cli`:
 
     ```bash
-    npm install @refindev/cli@latest
+    npm install @refinedev/cli@latest
     ```
 
     > 🚨 If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) to add it to your project.

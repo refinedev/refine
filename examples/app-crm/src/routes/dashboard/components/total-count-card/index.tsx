@@ -1,30 +1,29 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, Suspense } from "react";
 
-import { useCustom } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
+import { Company, Contact, Deal } from "interfaces/graphql";
 
 import { Text } from "@/components";
-import { API_URL } from "@/providers";
 
 import styles from "./index.module.css";
+
+const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
 
 export const DashboardTotalCountCard: React.FC<{
-    variant: Type;
-}> = ({ variant }) => {
-    const { data, isLoading, isError, error } = useCustom({
-        method: "post",
-        url: API_URL,
+    resource: Type;
+}> = ({ resource }) => {
+    const { data, isLoading, isError, error } = useList<
+        Company | Contact | Deal
+    >({
+        resource,
         meta: {
-            rawQuery: `query Dashboard {
-                ${variant} {
-                  totalCount
-                }
-              }`,
+            fields: ["id"],
         },
     });
 
@@ -33,14 +32,14 @@ export const DashboardTotalCountCard: React.FC<{
         return null;
     }
 
-    const { primaryColor, secondaryColor, icon, title } = variants[variant];
+    const { primaryColor, secondaryColor, icon, title } = variants[resource];
 
     const config: AreaConfig = {
         className: styles.area,
         appendPadding: [1, 0, 0, 0],
         padding: 0,
         syncViewPadding: true,
-        data: variants[variant].data,
+        data: variants[resource].data,
         autoFit: true,
         tooltip: false,
         animation: false,
@@ -121,10 +120,12 @@ export const DashboardTotalCountCard: React.FC<{
                             }}
                         />
                     ) : (
-                        data?.data[variant].totalCount
+                        data?.total
                     )}
                 </Text>
-                <Area {...config} />
+                <Suspense>
+                    <Area {...config} />
+                </Suspense>
             </div>
         </Card>
     );

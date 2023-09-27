@@ -1,54 +1,32 @@
-import React, { useMemo } from "react";
+import React, { lazy, Suspense, useMemo } from "react";
 
-import { useCustom, useNavigation } from "@refinedev/core";
+import { useList, useNavigation } from "@refinedev/core";
 
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
+import { DealStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
 
-type YearlyDealGroupedResponse = {
-    yearlyDealGrouped: {
-        nodes: {
-            title: string;
-            dealsAggregate: {
-                groupBy: {
-                    closeDateMonth: number;
-                    closeDateYear: number;
-                };
-                sum: {
-                    value: number;
-                };
-            }[];
-        }[];
-    };
-};
+const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
 export const DashboardDealsChart: React.FC<{}> = () => {
     const { list } = useNavigation();
-    const { data, isError, error } = useCustom<YearlyDealGroupedResponse>({
-        method: "post",
-        url: "/graphql",
+    const { data, isError, error } = useList<DealStage>({
+        resource: "dealStages",
+        filters: [{ field: "title", operator: "in", value: ["WON", "LOST"] }],
         meta: {
-            rawQuery: `query {
-                yearlyDealGrouped: dealStages(filter: { title: { in: ["WON", "LOST"] } }) {
-                    nodes {
-                      title
-                      dealsAggregate {
-                        groupBy {
-                          closeDateMonth
-                          closeDateYear
-                        }
-                        sum {
-                          value
-                        }
-                      }
-                    }
-                  }
-              }
-            `,
+            fields: [
+                "title",
+                {
+                    dealsAggregate: [
+                        { groupBy: ["closeDateMonth", "closeDateYear"] },
+                        { sum: ["value"] },
+                    ],
+                },
+            ],
         },
     });
 
@@ -58,28 +36,28 @@ export const DashboardDealsChart: React.FC<{}> = () => {
     }
 
     const dealData = useMemo(() => {
-        const won = data?.data.yearlyDealGrouped.nodes
+        const won = data?.data
             .find((node) => node.title === "WON")
             ?.dealsAggregate.map((item) => {
-                const { closeDateMonth, closeDateYear } = item.groupBy;
+                const { closeDateMonth, closeDateYear } = item.groupBy!;
                 const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
                 return {
                     timeUnix: date.unix(),
                     timeText: date.format("MMM YYYY"),
-                    value: item.sum.value,
+                    value: item.sum?.value,
                     state: "Won",
                 };
             });
 
-        const lost = data?.data.yearlyDealGrouped.nodes
+        const lost = data?.data
             .find((node) => node.title === "LOST")
             ?.dealsAggregate.map((item) => {
-                const { closeDateMonth, closeDateYear } = item.groupBy;
+                const { closeDateMonth, closeDateYear } = item.groupBy!;
                 const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
                 return {
                     timeUnix: date.unix(),
                     timeText: date.format("MMM YYYY"),
-                    value: item.sum.value,
+                    value: item.sum?.value,
                     state: "Lost",
                 };
             });
@@ -155,7 +133,9 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                 </Button>
             }
         >
-            <Area {...config} height={325} />
+            <Suspense>
+                <Area {...config} height={325} />
+            </Suspense>
         </Card>
     );
 };

@@ -1,13 +1,8 @@
 import { FC, useEffect } from "react";
-import {
-    useLocation,
-    useNavigate,
-    useParams,
-    useSearchParams,
-} from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { RedirectAction, useGetToPath } from "@refinedev/core";
+import { RedirectAction, useNavigation } from "@refinedev/core";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
@@ -29,8 +24,7 @@ export const QuotesFormModal: FC<Props> = ({
 }) => {
     const { pathname } = useLocation();
     const params = useParams<{ id: string }>();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list, replace } = useNavigation();
     const [searchParams] = useSearchParams();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<Quote>({
@@ -145,14 +139,7 @@ export const QuotesFormModal: FC<Props> = ({
                 }
                 //TODO: modalProps.onCancel expect an event so, I used close. Actually both of them are same.
                 close();
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("quotes", "replace");
             }}
         >
             <Spin spinning={loading}>
@@ -190,9 +177,7 @@ export const QuotesFormModal: FC<Props> = ({
                                 type="link"
                                 icon={<PlusCircleOutlined />}
                                 onClick={() =>
-                                    navigate(`company-create?to=${pathname}`, {
-                                        replace: true,
-                                    })
+                                    replace(`company-create?to=${pathname}`)
                                 }
                             >
                                 Add new company

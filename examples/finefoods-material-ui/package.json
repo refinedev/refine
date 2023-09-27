@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
-    "@refinedev/core": "^4.42.0",
-    "@refinedev/cli": "^2.15.2",
+    "@refinedev/core": "^4.42.2",
+    "@refinedev/cli": "^2.15.4",
     "@refinedev/mui": "^5.13.10",
     "@refinedev/kbar": "1.3.2",
     "@refinedev/react-hook-form": "^4.8.8",

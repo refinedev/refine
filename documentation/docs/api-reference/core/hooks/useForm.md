@@ -5,14 +5,12 @@ source: packages/core/src/hooks/form/useForm.ts
 ---
 
 ```tsx live shared
-import {
-    HttpError,
-    LayoutProps,
-    useList,
-    useNavigation,
-} from "@refinedev/core";
-import React from "react";
-
+import { Refine, LayoutProps, useList, useNavigation } from "@refinedev/core";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "components";
 
 import { PostCreate, PostEdit, PostList } from "pages/posts";
@@ -403,14 +401,16 @@ In the following example, we will show how to use `useForm` with `action: "creat
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { useForm } from "@refinedev/core";
+import { HttpError, useForm } from "@refinedev/core";
 import React, { useState } from "react";
 
-interface FormValues {
+interface IPost {
     id: number;
     title: string;
     content: string;
 }
+
+type FormValues = Omit<IPost, "id">;
 
 const PostCreatePage: React.FC = () => {
     const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
@@ -518,17 +518,23 @@ In the following example, we'll show how to use `useForm` with `action: "edit"`.
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import { useForm } from "@refinedev/core";
+import { HttpError, useForm } from "@refinedev/core";
 import React, { useEffect, useState } from "react";
 
-interface FormValues {
+interface IPost {
     id: number;
     title: string;
     content: string;
 }
 
+type FormValues = Omit<IPost, "id">;
+
 const PostEditPage: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm<FormValues>();
+    const { formLoading, onFinish, queryResult } = useForm<
+        IPost,
+        HttpError,
+        FormValues
+    >();
     const defaultValues = queryResult?.data?.data;
 
     const [formValues, seFormValues] = useState<FormValues>({
@@ -644,8 +650,16 @@ In the following example, we'll show how to use `useForm` with `action: "clone"`
 setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
-import { useForm } from "@refinedev/core";
+import { HttpError, useForm } from "@refinedev/core";
 import React, { useEffect, useState } from "react";
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+}
+
+type FormValues = Omit<IPost, "id">;
 
 interface FormValues {
     id: number;
@@ -654,7 +668,11 @@ interface FormValues {
 }
 
 const PostCreatePage: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm<FormValues>();
+    const { formLoading, onFinish, queryResult } = useForm<
+        IPost,
+        HttpError,
+        FormValues
+    >();
     const defaultValues = queryResult?.data?.data;
 
     const [formValues, seFormValues] = useState<FormValues>({

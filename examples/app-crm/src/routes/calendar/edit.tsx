@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
-import { useGetToPath, useResource } from "@refinedev/core";
+import { useNavigation, useResource } from "@refinedev/core";
 
 import { Modal } from "antd";
 import dayjs from "dayjs";
@@ -14,8 +13,7 @@ import { CalendarForm } from "./components";
 export const CalendarEditPage: React.FC = () => {
     const [isAllDayEvent, setIsAllDayEvent] = useState(false);
     const { id } = useResource();
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
 
     const { formProps, saveButtonProps, form, onFinish, queryResult } =
         useForm<Event>({
@@ -59,7 +57,7 @@ export const CalendarEditPage: React.FC = () => {
             ),
         });
 
-        // if more then 24 hours, set as all day event
+        // if more than 24 hours, set as all day event
         if (utcEndDate.diff(utcStartDate, "hours") >= 23) {
             setIsAllDayEvent(true);
             form.setFieldsValue({
@@ -109,14 +107,7 @@ export const CalendarEditPage: React.FC = () => {
             title="Edit Event"
             open
             onCancel={() => {
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("events");
             }}
             okButtonProps={{
                 ...saveButtonProps,

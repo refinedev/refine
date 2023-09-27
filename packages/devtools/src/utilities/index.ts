@@ -15,29 +15,6 @@ const PREFERRED_DEFAULT_HEIGHT = () =>
 export const MIN_PANEL_WIDTH = 640;
 export const MIN_PANEL_HEIGHT = 360;
 
-const verticalCenterTransform = `translateY(calc((100vh - ${SIZE}px) / 2))`;
-const horizontalCenterTransform = `translateX(calc((100vw - ${
-    SIZE * 2
-}px) / 2))`;
-const rightAlignTransform = `translateX(calc((100vw - ${SIZE}px) - ${BUFFER}px))`;
-const leftAlignTransform = `translateX(${BUFFER}px)`;
-const topAlignTransform = `translateY(${BUFFER}px)`;
-const bottomAlignTransform = `translateY(calc((100vh - ${SIZE}px) - ${0}px))`;
-
-export const getPinTransform = (placement: Placement) => {
-    switch (placement) {
-        case "left":
-            return `${leftAlignTransform} ${verticalCenterTransform}`;
-        case "right":
-            return `${rightAlignTransform} ${verticalCenterTransform}`;
-        case "top":
-            return `${topAlignTransform} ${horizontalCenterTransform}`;
-        default:
-        case "bottom":
-            return `${bottomAlignTransform} ${horizontalCenterTransform}`;
-    }
-};
-
 export const getPinButtonTransform = (hover?: boolean) => {
     return `translateY(${hover ? "0" : "50%"})`;
 };

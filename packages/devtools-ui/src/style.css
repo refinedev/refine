@@ -22,7 +22,7 @@ body,
 #root {
     height: 100%;
     width: 100%;
-    background-color: #14141F;
+    background-color: #14141f;
 }
 
 #root {
@@ -74,9 +74,8 @@ body,
 * {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-  
-*::-webkit-scrollbar {
-display: none;
 }
-  
+
+*::-webkit-scrollbar {
+    display: none;
+}

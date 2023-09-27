@@ -1,12 +1,14 @@
+import { lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 
-import MDEditor from "@uiw/react-md-editor";
 import { Form, Spin } from "antd";
 
 import { Quote, QuoteUpdateInput } from "@/interfaces";
+
+const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 
 export const ShowDescription = () => {
     const params = useParams<{ id: string }>();
@@ -42,13 +44,15 @@ export const ShowDescription = () => {
                 }}
             >
                 <Form {...formProps}>
-                    <Form.Item noStyle name="description">
-                        <MDEditor
-                            preview="edit"
-                            data-color-mode="light"
-                            height={250}
-                        />
-                    </Form.Item>
+                    <Suspense>
+                        <Form.Item noStyle name="description">
+                            <MDEditor
+                                preview="edit"
+                                data-color-mode="light"
+                                height={250}
+                            />
+                        </Form.Item>
+                    </Suspense>
                 </Form>
                 <div>
                     <Spin

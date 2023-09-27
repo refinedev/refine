@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useOne } from "@refinedev/core";
@@ -10,7 +10,6 @@ import { CustomAvatar, FullScreenLoading, Text } from "@/components";
 import { Quote } from "@/interfaces";
 
 import {
-    PdfExport,
     ProductsServices,
     QuotesFormModal,
     quotesFragment,
@@ -19,6 +18,8 @@ import {
 } from "../components";
 
 import styles from "./index.module.css";
+
+const PdfExport = lazy(() => import("../components/pdf-export"));
 
 export const QuotesShowPage = () => {
     const [editModalVisible, setEditModalVisible] = useState(false);
@@ -58,7 +59,9 @@ export const QuotesShowPage = () => {
                         {title}
                     </Text>
                     <Space>
-                        <PdfExport />
+                        <Suspense>
+                            <PdfExport />
+                        </Suspense>
                         <Button
                             icon={<EditOutlined />}
                             onClick={() => setEditModalVisible(true)}

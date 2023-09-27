@@ -7,7 +7,7 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import { useCustom, useNavigation } from "@refinedev/core";
+import { useNavigation, useOne } from "@refinedev/core";
 
 import {
     AuditOutlined,
@@ -18,7 +18,7 @@ import {
 import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
-import { Deal, DealAggregateResponse } from "@/interfaces";
+import { Company, Deal } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 
 type Props = {
@@ -73,21 +73,11 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         },
     });
 
-    const { data: aggregate, isLoading: isLoadingDealAggregate } = useCustom<{
-        dealAggregate: DealAggregateResponse[];
-    }>({
-        method: "post",
-        url: "/graphql",
+    const { data: companyData, isLoading: isLoadingCompany } = useOne<Company>({
+        resource: "companies",
+        id: params.id,
         meta: {
-            rawQuery: `query dealAggregate {
-                dealAggregate(filter: {companyId:{eq: ${Number(params.id)}}}) {
-                  sum {
-                    id
-                    value
-                  }
-                }
-              }
-            `,
+            fields: [{ dealsAggregate: [{ sum: ["value"] }] }],
         },
     });
 
@@ -146,12 +136,12 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             extra={
                 <>
                     <Text className="tertiary">Total deal amount: </Text>
-                    {isLoadingDealAggregate ? (
+                    {isLoadingCompany ? (
                         <Skeleton.Input active size="small" />
                     ) : (
                         <Text strong>
                             {currencyNumber(
-                                aggregate?.data.dealAggregate?.[0]?.sum
+                                companyData?.data.dealsAggregate?.[0]?.sum
                                     ?.value || 0,
                             )}
                         </Text>

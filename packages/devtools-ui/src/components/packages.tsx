@@ -54,11 +54,9 @@ export const Packages = () => {
                     "re-flex-1",
                     "re-flex",
                     "re-flex-col",
-                    "re-gap-8",
                     "re-h-full",
                     "re-w-full",
-                    "re-justify-center",
-                    "re-overflow-auto",
+                    "re-justify-start",
                     "re-mx-auto",
                 )}
             >
@@ -67,6 +65,7 @@ export const Packages = () => {
                         "re-flex",
                         "re-items-center",
                         "re-justify-between",
+                        "re-flex-shrink-0",
                     )}
                 >
                     <div
@@ -101,21 +100,23 @@ export const Packages = () => {
                         </Button>
                     </div>
                 </div>
-                <div
-                    className={clsx("re-grid", "re-gap-8")}
-                    style={{
-                        gridTemplateColumns:
-                            "repeat(auto-fill, minmax(380px, 1fr))",
-                    }}
-                >
-                    {packages.map((item) => (
-                        <PackageItem
-                            key={item.name}
-                            item={item}
-                            onUpdate={(v) => onInstall([v])}
-                            blocked={installInProgress}
-                        />
-                    ))}
+                <div className={clsx("re-flex-1", "re-overflow-auto")}>
+                    <div
+                        className={clsx("re-grid", "re-gap-8", "re-py-8")}
+                        style={{
+                            gridTemplateColumns:
+                                "repeat(auto-fill, minmax(380px, 1fr))",
+                        }}
+                    >
+                        {packages.map((item) => (
+                            <PackageItem
+                                key={item.name}
+                                item={item}
+                                onUpdate={(v) => onInstall([v])}
+                                blocked={installInProgress}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
             <AddPackageDrawer

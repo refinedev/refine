@@ -14,17 +14,24 @@ type Props = {
 export const MonitorTable = ({ table, columns, selected, onSelect }: Props) => {
     return (
         <>
-            <div
-                className={clsx(
-                    "re-overflow-auto",
-                    "re-rounded-tl-lg",
-                    "re-rounded-tr-lg",
-                    "re-border",
-                    "re-border-gray-700",
-                )}
-            >
+            <div className={clsx("re-flex-1")}>
                 <table className={clsx("re-w-full", "re-rounded-lg")}>
-                    <thead className={clsx("re-bg-gray-800", "re-rounded-lg")}>
+                    <thead
+                        className={clsx(
+                            "re-bg-gray-800",
+                            "re-rounded-lg",
+                            "re-sticky",
+                            "re-left-0",
+                            "re-top-0",
+                            "after:re-h-px",
+                            "after:re-w-full",
+                            "after:re-absolute",
+                            "after:re-left-0",
+                            "after:re-bottom-0",
+                            "after:re-bg-gray-700",
+                            "re-z-[1]",
+                        )}
+                    >
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr
                                 key={headerGroup.id}
@@ -124,16 +131,18 @@ export const MonitorTable = ({ table, columns, selected, onSelect }: Props) => {
             </div>
             <div
                 className={clsx(
-                    "re-border",
-                    "re-border-gray-700",
-                    "re-border-t-0",
-                    "re-rounded-bl-lg",
-                    "re-rounded-br-lg",
+                    "re-border-t",
+                    "re-border-t-gray-700",
                     "re-flex",
                     "re-items-center",
                     "re-justify-center",
                     "re-py-2",
                     "re-px-2",
+                    "re-sticky",
+                    "re-left-0",
+                    "re-bottom-0",
+                    "re-z-[1]",
+                    "re-bg-gray-900",
                 )}
             >
                 <div

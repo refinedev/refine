@@ -1,13 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
 import { useModalForm } from "@refinedev/antd";
-import { useInvalidate } from "@refinedev/core";
+import { useInvalidate, useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
 export const KanbanCreateStage = () => {
     const invalidate = useInvalidate();
-    const navigate = useNavigate();
+    const { list } = useNavigation();
     const { formProps, modalProps, close } = useModalForm({
         action: "create",
         defaultVisible: true,
@@ -33,7 +31,7 @@ export const KanbanCreateStage = () => {
             {...modalProps}
             onCancel={() => {
                 close();
-                navigate("/scrumboard/kanban", { replace: true });
+                list("tasks", "replace");
             }}
             title="Add new stage"
             width={512}
