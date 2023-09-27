@@ -9,10 +9,6 @@ hide_table_of_contents: false
 is_featured: true
 ---
 
-import { BannerExamples } from "@site/src/components/banner/banner-examples.tsx";
-import { BannerImageWithText } from "@site/src/components/banner/banner-image-with-text.tsx";
-import { BannerModal } from "@site/src/components/banner/banner-modal.tsx";
-
 ## Introduction
 
 In this post, we go through the process of developing a React admin panel using [**refine**](https://github.com/refinedev/refine) and [**daisyUI**](https://daisyui.com).
