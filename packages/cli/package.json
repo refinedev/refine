@@ -49,6 +49,7 @@
     "figlet": "^1.5.2",
     "fs-extra": "^10.1.0",
     "globby": "^11.1.0",
+    "gray-matter": "^4.0.3",
     "handlebars": "^4.7.7",
     "http-proxy-middleware": "^2.0.6",
     "ink": "^3.2.0",
