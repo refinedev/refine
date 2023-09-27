@@ -3,15 +3,15 @@ hidden: false
 
 ---
 
-test announcement here
+refine Devtools beta version has been released, join the waitlist to try it out. https://s.refine.dev/devtools
 
 ---
 
 ---announcement
-hidden: false
+hidden: true
 
 ---
 
-refine Devtools beta version has been released, join the waitlist to try it out. https://s.refine.dev/devtools
+Hello from refine team! Hope you enjoy! Join our discord server to get help and discuss with other users. https://discord.gg/refine
 
 ---
