@@ -102,6 +102,7 @@ export const Modal = ({
                     "re-origin-center",
                     "re-flex",
                     "re-flex-col",
+                    className,
                 )}
             >
                 <button
