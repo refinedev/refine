@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
-import { HttpError, useInvalidate } from "@refinedev/core";
+import { HttpError, useInvalidate, useNavigation } from "@refinedev/core";
 
 import { DatePicker, Form, Input, Modal } from "antd";
 import dayjs from "dayjs";
@@ -19,7 +18,7 @@ type FormValues = {
 
 export const SalesCreateDetails = () => {
     const invalidate = useInvalidate();
-    const navigate = useNavigate();
+    const { list } = useNavigation();
 
     const { formProps, modalProps, close, queryResult } = useModalForm<
         Deal,
@@ -67,7 +66,7 @@ export const SalesCreateDetails = () => {
             {...modalProps}
             onCancel={() => {
                 close();
-                navigate("/scrumboard/sales", { replace: true });
+                list("deals", "replace");
             }}
             title="Add more details"
             width={512}

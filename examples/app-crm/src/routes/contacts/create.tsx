@@ -1,8 +1,8 @@
 import React, { PropsWithChildren, useEffect } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useForm, useSelect } from "@refinedev/antd";
-import { useGetIdentity, useGetToPath } from "@refinedev/core";
+import { useGetIdentity, useNavigation } from "@refinedev/core";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select } from "antd";
@@ -13,8 +13,7 @@ import { Company, User } from "@/interfaces";
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({
     children,
 }) => {
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list, replace } = useNavigation();
     const { pathname } = useLocation();
     const { data: user } = useGetIdentity<User>();
     const [searchParams] = useSearchParams();
@@ -48,14 +47,7 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
                 title="Create Contact"
                 style={{ display: isHaveOverModal ? "none" : "inherit" }}
                 onCancel={() => {
-                    navigate(
-                        getToPath({
-                            action: "list",
-                        }) ?? "",
-                        {
-                            replace: true,
-                        },
-                    );
+                    list("contacts", "replace");
                 }}
                 okText="Save"
                 okButtonProps={{
@@ -108,14 +100,11 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
                                 style={{ paddingLeft: 0 }}
                                 type="link"
                                 icon={<PlusCircleOutlined />}
-                                onClick={() =>
-                                    navigate(
+                                onClick={() => {
+                                    replace(
                                         "company-create?to=/contacts/create",
-                                        {
-                                            replace: true,
-                                        },
-                                    )
-                                }
+                                    );
+                                }}
                             >
                                 Add new company
                             </Button>

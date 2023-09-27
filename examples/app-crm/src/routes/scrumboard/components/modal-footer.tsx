@@ -1,24 +1,14 @@
-import { useNavigate } from "react-router-dom";
-
 import { DeleteButton } from "@refinedev/antd";
-import { useGetToPath } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 
 export const ModalFooter = () => {
-    const navigate = useNavigate();
-    const getToPath = useGetToPath();
+    const { list } = useNavigation();
 
     return (
         <DeleteButton
             type="link"
             onSuccess={() => {
-                navigate(
-                    getToPath({
-                        action: "list",
-                    }) ?? "",
-                    {
-                        replace: true,
-                    },
-                );
+                list("tasks", "replace");
             }}
         >
             Delete card
