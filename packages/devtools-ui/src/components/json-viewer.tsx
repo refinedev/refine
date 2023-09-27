@@ -61,6 +61,11 @@ export const JsonViewer = ({ data, label }: { data: any; label: string }) => {
                 overlay
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}
+                className={clsx(
+                    "re-min-w-[520px]",
+                    "re-w-3/4",
+                    "re-max-w-[90%]",
+                )}
                 header={
                     <span className={clsx("re-capitalize", "re-font-semibold")}>
                         {label}
