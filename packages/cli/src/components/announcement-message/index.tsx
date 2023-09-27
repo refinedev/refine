@@ -19,16 +19,16 @@ const AnnouncementMessage: React.FC<Props> = ({ announcements }) => {
             paddingRight={1}
             paddingTop={1}
             paddingBottom={1}
+            display="flex"
         >
             {announcements.map(({ content }, i, arr) => (
-                <Box display="flex" key={i}>
-                    {arr.length > 1 && <Text>· </Text>}
-                    <Markdown key={i}>
-                        {content.trim() +
-                            (i === arr.length - 1 && arr.length > 1
-                                ? ""
-                                : "\n")}
-                    </Markdown>
+                <Box
+                    display="flex"
+                    key={i}
+                    paddingBottom={arr.length > 1 && i < arr.length - 1 ? 1 : 0}
+                >
+                    {arr.length > 1 && <Text>- </Text>}
+                    <Markdown key={i}>{content.trim()}</Markdown>
                 </Box>
             ))}
         </Box>
