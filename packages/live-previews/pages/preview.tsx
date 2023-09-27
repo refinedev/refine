@@ -112,6 +112,10 @@ const Preview: NextPage = () => {
                         ? (await import("../src/scope/supabase")).default
                         : {},
                 async () =>
+                    usedPackages.has("devtools")
+                        ? (await import("../src/scope/devtools")).default
+                        : {},
+                async () =>
                     usedPackages.has("axios")
                         ? (await import("../src/scope/axios")).default
                         : {},
