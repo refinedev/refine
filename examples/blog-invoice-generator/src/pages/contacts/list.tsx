@@ -1,17 +1,17 @@
 import {
+    DeleteButton,
+    EditButton,
+    EmailField,
     List,
     TagField,
-    useTable,
-    EditButton,
-    DeleteButton,
     useModalForm,
-    EmailField,
+    useTable,
 } from "@refinedev/antd";
 
-import { Table, Space } from "antd";
+import { Space, Table } from "antd";
 
-import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
+import { IContact } from "interfaces";
 
 export const ContactsList: React.FC = () => {
     const { tableProps } = useTable<IContact>({
@@ -69,12 +69,12 @@ export const ContactsList: React.FC = () => {
                                 <EditButton
                                     hideText
                                     size="small"
-                                    recordItemId={record.id}
+                                    recordItemId={record?.id}
                                 />
                                 <DeleteButton
                                     hideText
                                     size="small"
-                                    recordItemId={record.id}
+                                    recordItemId={record?.id}
                                 />
                             </Space>
                         )}
