@@ -15,8 +15,10 @@ export const Owners = ({ activity }: { activity: Activity }) => {
                         className={clsx(
                             "re--ml-2",
                             "re-inline-flex",
-                            "re-items-center",
+                            "re-flex-col",
+                            "re-items-start",
                             "re-gap-1",
+                            "re-max-w-[calc(100%-20px)]",
                         )}
                     >
                         <span
@@ -24,6 +26,7 @@ export const Owners = ({ activity }: { activity: Activity }) => {
                                 "re-text-xs",
                                 "re-text-gray-300",
                                 "re-font-mono",
+                                "re-break-all",
                             )}
                         >
                             {owner.function}
@@ -32,6 +35,7 @@ export const Owners = ({ activity }: { activity: Activity }) => {
                             className={clsx(
                                 "re-text-[10px]",
                                 "re-text-gray-500",
+                                "re-break-all",
                             )}
                         >
                             {"at "}
