@@ -8,7 +8,7 @@ test announcement here
 ---
 
 ---announcement
-hidden:true
+hidden: true
 
 ---
 
