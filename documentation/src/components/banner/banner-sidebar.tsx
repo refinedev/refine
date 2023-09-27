@@ -6,7 +6,7 @@ import React from "react";
 
 const text = "Struggling with internal tools?";
 const description =
-    "Explore Refine’s limitless possibilities in crafting CRUD apps, CRM solutions, HR dashboards, and more!";
+    "Explore refine’s limitless possibilities in crafting CRUD apps, CRM solutions, HR dashboards, and more!";
 const image =
     "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/app-crm.png";
 
