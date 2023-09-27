@@ -77,6 +77,7 @@ export const ProjectIdFixBanner = () => {
                     "re-flex",
                     "re-items-center",
                     "re-gap-3",
+                    "re-flex-shrink-0",
                 )}
             >
                 {status === "warning" && (

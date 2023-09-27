@@ -32,16 +32,20 @@ export const Layout = ({ children }: Props) => {
                 <div
                     className={clsx(
                         "re-flex-1",
-                        "re-p-4",
-                        "md:re-p-6",
-                        "lg:re-p-8",
+                        "re-px-4",
+                        "re-pt-4",
+                        "md:re-px-6",
+                        "md:re-pt-6",
+                        "lg:re-px-8",
+                        "lg:re-pt-8",
+                        "re-flex",
+                        "re-flex-col",
+                        "re-pb-0",
                     )}
                 >
                     <ProjectIdFixBanner />
 
-                    <div className={clsx("re-flex-1", "re-overflow-scroll")}>
-                        {children}
-                    </div>
+                    {children}
                 </div>
             </div>
         </div>

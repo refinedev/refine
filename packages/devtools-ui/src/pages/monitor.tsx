@@ -239,56 +239,85 @@ export const Monitor = () => {
     );
 
     return (
-        <div
-            className={clsx("re-flex", "re-flex-col", "re-gap-4", "re-h-full")}
-        >
+        <div className={clsx("flex-1", "re-h-full", "re-overflow-clip")}>
             <div
                 className={clsx(
                     "re-flex",
-                    "re-items-center",
-                    "re-justify-between",
+                    "re-flex-col",
+                    "re-gap-4",
+                    "re-h-full",
+                    "re-pb-4",
+                    "md:re-pb-6",
+                    "lg:re-pb-8",
                 )}
             >
                 <div
                     className={clsx(
                         "re-flex",
                         "re-items-center",
-                        "re-justify-start",
+                        "re-justify-between",
                     )}
                 >
                     <div
                         className={clsx(
-                            "re-text-gray-0",
-                            "re-font-semibold",
-                            "re-text-sm",
-                            "re-leading-6",
+                            "re-flex",
+                            "re-items-center",
+                            "re-justify-start",
                         )}
                     >
-                        Monitor
+                        <div
+                            className={clsx(
+                                "re-text-gray-0",
+                                "re-font-semibold",
+                                "re-text-sm",
+                                "re-leading-6",
+                            )}
+                        >
+                            Monitor
+                        </div>
+                        <MonitorFilters
+                            filters={filters}
+                            activities={activities}
+                            onSubmit={(f) => setFilters(f)}
+                        />
                     </div>
-                    <MonitorFilters
-                        filters={filters}
-                        activities={activities}
-                        onSubmit={(f) => setFilters(f)}
-                    />
+                    <div>
+                        <div className={clsx("re-text-xs", "re-text-gray-300")}>
+                            Count: {activities.length}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div className={clsx("re-text-xs", "re-text-gray-300")}>
-                        Count: {activities.length}
-                    </div>
+                <div className={clsx("re-flex-1", "re-overflow-hidden")}>
+                    <ResizablePane
+                        left={
+                            <MonitorTable
+                                table={tableInstance}
+                                columns={columns}
+                                onSelect={setSelectedActivity}
+                                selected={selectedActivity}
+                            />
+                        }
+                        right={
+                            <MonitorDetails activity={selectedActivityRecord} />
+                        }
+                        className={clsx("re-h-full")}
+                        leftClassName={clsx(
+                            "re-rounded-lg",
+                            "re-border",
+                            "re-border-gray-700",
+                            "re-overflow-auto",
+                            "re-flex",
+                            "re-flex-col",
+                        )}
+                        rightClassName={clsx(
+                            "re-rounded-lg",
+                            "re-border",
+                            "re-border-gray-700",
+                            "re-overflow-auto",
+                        )}
+                    />
                 </div>
             </div>
-            <ResizablePane
-                left={
-                    <MonitorTable
-                        table={tableInstance}
-                        columns={columns}
-                        onSelect={setSelectedActivity}
-                        selected={selectedActivity}
-                    />
-                }
-                right={<MonitorDetails activity={selectedActivityRecord} />}
-            />
         </div>
     );
 };

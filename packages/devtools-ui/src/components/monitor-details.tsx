@@ -15,16 +15,7 @@ import { getOwners } from "src/utils/get-owners";
 
 export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
     return (
-        <div
-            className={clsx(
-                "re-h-full",
-                "re-border",
-                "re-rounded-lg",
-                "re-border-gray-700",
-                "re-text-gray-300",
-                "re-relative",
-            )}
-        >
+        <div className={clsx("re-h-full", "re-text-gray-300", "re-relative")}>
             <div
                 className={clsx(
                     "re-absolute",
@@ -413,8 +404,6 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                                         "re-flex",
                                         "re-flex-col",
                                         "re-gap-2",
-                                        "re-border-b",
-                                        "re-border-b-gray-700",
                                     )}
                                 >
                                     <div
