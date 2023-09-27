@@ -1,5 +1,22 @@
 # @refinedev/cli
 
+## 2.16.0
+
+### Minor Changes
+
+-   [#5024](https://github.com/refinedev/refine/pull/5024) [`1bb29d9fc3d`](https://github.com/refinedev/refine/commit/1bb29d9fc3d0f34ba8152963e99919a929b485d2) Thanks [@aliemir](https://github.com/aliemir)! - Added dynamic announcements to the CLI to show when a command is executed. Users will be able to receive news and updates about refine without having to update their dependencies.
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b), [`20f5b6128d4`](https://github.com/refinedev/refine/commit/20f5b6128d4ae85904b9b0e2845c1bb2dcae1a44)]:
+    -   @refinedev/devtools-server@1.1.5
+
 ## 2.15.4
 
 ### Patch Changes

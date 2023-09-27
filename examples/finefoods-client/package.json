@@ -9,12 +9,12 @@
     "svgr": "npx @svgr/cli src/icons -d src/components/icons --typescript --no-svgo"
   },
   "dependencies": {
-    "@refinedev/core": "^4.42.2",
-    "@refinedev/cli": "^2.15.4",
-    "@refinedev/nextjs-router": "^5.5.0",
-    "@refinedev/react-table": "^5.6.2",
+    "@refinedev/core": "^4.42.3",
+    "@refinedev/cli": "^2.16.0",
+    "@refinedev/nextjs-router": "^5.5.1",
+    "@refinedev/react-table": "^5.6.3",
     "@tanstack/react-table": "^8.2.6",
-    "@refinedev/simple-rest": "^4.5.0",
+    "@refinedev/simple-rest": "^4.5.1",
     "gsap": "^3.8.0",
     "js-confetti": "^0.9.0",
     "next": "13.0.6",
