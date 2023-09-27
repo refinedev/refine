@@ -1,23 +1,23 @@
-import { useState } from "react";
-import { useModal } from "@refinedev/core";
 import {
-    List,
-    useTable,
     DateField,
-    TagField,
-    EmailField,
     DeleteButton,
     EditButton,
+    EmailField,
+    List,
+    TagField,
+    useTable,
 } from "@refinedev/antd";
+import { useModal } from "@refinedev/core";
+import { useState } from "react";
 
 import { FilePdfOutlined } from "@ant-design/icons";
-import { Table, Space, Button, Modal } from "antd";
+import { Button, Modal, Space, Table } from "antd";
 
-import { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "components/pdf";
+import { IInvoice, IMission } from "interfaces";
 
 export const InvoiceList: React.FC = () => {
-    const [record, setRecord] = useState<IInvoice>();
+    const [currentRecord, setCurrentRecord] = useState<IInvoice>();
 
     const { tableProps } = useTable<IInvoice>({
         metaData: {
@@ -40,7 +40,7 @@ export const InvoiceList: React.FC = () => {
                         dataIndex="name"
                         title="Invoice Name"
                         render={(_, record) => {
-                            return `Invoice_#${record.id}${record.name}`;
+                            return `Invoice_#${record?.id}${record?.name}`;
                         }}
                     />
                     <Table.Column<IInvoice>
@@ -58,12 +58,12 @@ export const InvoiceList: React.FC = () => {
                         dataIndex={"missions"}
                         title="Missions"
                         render={(value) => {
-                            return value.map((item: IMission) => {
+                            return value?.map((item: IMission) => {
                                 return (
                                     <TagField
-                                        key={item.id}
+                                        key={item?.id}
                                         color="blue"
-                                        value={item.mission}
+                                        value={item?.mission}
                                     />
                                 );
                             });
@@ -102,19 +102,19 @@ export const InvoiceList: React.FC = () => {
                                     <EditButton
                                         hideText
                                         size="small"
-                                        recordItemId={record.id}
+                                        recordItemId={record?.id}
                                     />
                                     <DeleteButton
                                         hideText
                                         size="small"
-                                        recordItemId={record.id}
+                                        recordItemId={record?.id}
                                     />
-                                    {record.company && (
+                                    {record && (
                                         <Button
                                             size="small"
                                             icon={<FilePdfOutlined />}
                                             onClick={() => {
-                                                setRecord(record);
+                                                setCurrentRecord(record);
                                                 show();
                                             }}
                                         />
@@ -126,7 +126,7 @@ export const InvoiceList: React.FC = () => {
                 </Table>
             </List>
             <Modal visible={visible} onCancel={close} width="80%" footer={null}>
-                <PdfLayout record={record} />
+                <PdfLayout record={currentRecord} />
             </Modal>
         </>
     );

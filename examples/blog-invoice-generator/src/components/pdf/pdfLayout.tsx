@@ -2,10 +2,10 @@ import {
     Document,
     Image,
     Page,
-    StyleSheet,
-    View,
-    Text,
     PDFViewer,
+    StyleSheet,
+    Text,
+    View,
 } from "@react-pdf/renderer";
 import { IInvoice } from "interfaces";
 import { API_URL } from "../../constants";
@@ -16,8 +16,8 @@ type PdfProps = {
 
 export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
     const subtotal =
-        record?.missions.reduce((prev, cur) => {
-            return prev + cur.day * cur.daily_rate;
+        record?.missions?.reduce((prev, cur) => {
+            return prev + cur?.day * cur?.daily_rate;
         }, 0) ?? 0;
 
     return (
@@ -67,14 +67,14 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                             </Text>
                             <View>
                                 <Text style={styles.inoviceForFromText}>
-                                    {record?.company.name}
+                                    {record?.company?.name}
                                 </Text>
                                 <Text style={styles.inoviceForFromText}>
-                                    {record?.company.city}
+                                    {record?.company?.city}
                                 </Text>
                                 <Text style={styles.inoviceForFromText}>
-                                    {record?.company.address},{" "}
-                                    {record?.company.country}
+                                    {record?.company?.address},{" "}
+                                    {record?.company?.country}
                                 </Text>
                             </View>
                             <View style={styles.dividerSM} />
@@ -127,16 +127,16 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                                 Total
                             </Text>
                         </View>
-                        {record?.missions.map((item) => {
+                        {record?.missions?.map((item) => {
                             return (
-                                <View key={item.id} style={styles.tableRow}>
+                                <View key={item?.id} style={styles.tableRow}>
                                     <Text
                                         style={[
                                             styles.tableCol,
                                             { width: "40%" },
                                         ]}
                                     >
-                                        {item.mission}
+                                        {item?.mission}
                                     </Text>
                                     <Text
                                         style={[
@@ -144,7 +144,7 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                                             { width: "20%" },
                                         ]}
                                     >
-                                        {item.day}
+                                        {item?.day}
                                     </Text>
                                     <Text
                                         style={[
@@ -152,7 +152,7 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                                             { width: "20%" },
                                         ]}
                                     >
-                                        {item.daily_rate}
+                                        {item?.daily_rate}
                                     </Text>
                                     <Text
                                         style={[
@@ -160,7 +160,7 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                                             { width: "20%" },
                                         ]}
                                     >
-                                        {item.daily_rate * item.day}
+                                        {item?.daily_rate * item?.day}
                                     </Text>
                                 </View>
                             );
@@ -173,7 +173,7 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                                 Signature: ________________
                             </Text>
                             <Text style={styles.signatureText}>
-                                Date: {record?.date.toString()}
+                                Date: {record?.date?.toString()}
                             </Text>
                         </View>
 
@@ -198,10 +198,11 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                     </View>
                     <View style={styles.footer}>
                         <Text style={styles.footerText}>
-                            {record?.company.city}
+                            {record?.company?.city}
                         </Text>
                         <Text style={styles.footerText}>
-                            {record?.company.address}, {record?.company.country}
+                            {record?.company?.address},{" "}
+                            {record?.company?.country}
                         </Text>
                     </View>
                 </Page>
