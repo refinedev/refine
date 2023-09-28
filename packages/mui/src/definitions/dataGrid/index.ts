@@ -47,6 +47,10 @@ export const transformMuiOperatorToCrudOperator = (
         case "!=":
         case "not":
             return "ne";
+        case "contains":
+            return "contains";
+        case "isAnyOf":
+            return "in";
         case ">":
         case "after":
             return "gt";
@@ -59,6 +63,10 @@ export const transformMuiOperatorToCrudOperator = (
         case "<=":
         case "onOrBefore":
             return "lte";
+        case "startsWith":
+            return "startswith";
+        case "endsWith":
+            return "endswith";
         case "isEmpty":
             return "null";
         case "isNotEmpty":
