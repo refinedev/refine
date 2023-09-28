@@ -5,7 +5,7 @@ import { BannerExamples } from "./banner-examples";
 const data = [
     {
         description:
-            "Refine is the tool of choice for over 15k active developers each month.",
+            "refine is the tool of choice for over 15k active developers each month.",
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
@@ -13,7 +13,7 @@ const data = [
         },
         button: {
             text: "Learn more",
-            href: "https://refine.dev/",
+            href: "https://github.com/refinedev/refine",
         },
     },
     {
@@ -23,24 +23,24 @@ const data = [
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-save-hours.png",
             alt: "Illustration about time is gold",
-            href: "https://twitter.com/refine_dev",
+            href: "https://github.com/refinedev/refine",
         },
         button: {
             text: "Learn more",
-            href: "https://refine.dev/",
+            href: "https://github.com/refinedev/refine",
         },
     },
     {
         description:
-            "Refine is ranked among the top 3 rapidly growing React frameworks in the ecosystem..",
+            "refine is ranked among the top 3 rapidly growing React frameworks in the ecosystem.",
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-oss-insight.png",
             alt: "Photo about refine ranking on OSS Insight website",
-            href: "https://twitter.com/refine_dev",
+            href: "https://github.com/refinedev/refine",
         },
         button: {
             text: "Learn more",
-            href: "https://refine.dev/",
+            href: "https://github.com/refinedev/refine",
         },
     },
 ];
