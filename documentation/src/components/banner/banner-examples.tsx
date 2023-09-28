@@ -47,7 +47,7 @@ export const BannerExamples: FC<Props> = ({
             >
                 {title}
             </h2>
-            <p className={clsx("mt-2", "text-base", "text-gray-300")}>
+            <p className={clsx("mt-2", "text-sm", "text-gray-300")}>
                 {description}
             </p>
             <LandingRainbowButton

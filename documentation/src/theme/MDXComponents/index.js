@@ -40,5 +40,5 @@ export default {
     CodeSandboxExample,
     ExampleLocalPrompt,
     ExampleSourcePrompt,
-    BannerRandom: BannerRandom,
+    BannerRandom,
 };

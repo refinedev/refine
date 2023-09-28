@@ -1,6 +1,7 @@
 import React from "react";
 import { BannerImageWithText } from "./banner-image-with-text";
 import { BannerExamples } from "./banner-examples";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 const data = [
     {
@@ -45,18 +46,18 @@ const data = [
     },
 ];
 
-const BannerImageWithTextList = data.map((item, index) => {
-    return <BannerImageWithText key={index} {...item} />;
-});
-
-const Banners = [
-    ...BannerImageWithTextList,
-    <BannerExamples key="banner-examples" />,
-];
+// +1 for BannerExamples
+const random = Math.floor(Math.random() * (data.length + 1));
 
 export const BannerRandom = () => {
-    const random = Math.floor(Math.random() * Banners.length);
-    const banner = Banners[random];
+    // when random is equal to data.length, we will show BannerExamples
+    if (random === data.length) {
+        return <BrowserOnly>{() => <BannerExamples />}</BrowserOnly>;
+    }
 
-    return <>{banner}</>;
+    return (
+        <BrowserOnly>
+            {() => <BannerImageWithText {...data[random]} />}
+        </BrowserOnly>
+    );
 };
