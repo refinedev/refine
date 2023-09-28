@@ -118,7 +118,7 @@ In this section, we'll look at how Bun compares to Node and do some benchmarking
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 ---
 

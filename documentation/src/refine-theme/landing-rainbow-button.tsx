@@ -1,4 +1,4 @@
-import React from "react";
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 
@@ -8,12 +8,21 @@ type Props = {
     children?: React.ReactNode;
     href?: string;
     onClick?: () => void;
-};
+    buttonClassname?: string;
+} & (AnchorHTMLAttributes<{}> | ButtonHTMLAttributes<{}>);
 
-export const LandingRainbowButton = ({ children, href, onClick }: Props) => {
+export const LandingRainbowButton = ({
+    children,
+    href,
+    className,
+    onClick,
+    buttonClassname,
+    ...rest
+}: Props) => {
     const Comp = href ? Link : "button";
     return (
         <Comp
+            {...(rest as any)}
             {...(href ? { href, to: href } : {})}
             {...(onClick ? { onClick } : {})}
             className={clsx(
@@ -27,6 +36,7 @@ export const LandingRainbowButton = ({ children, href, onClick }: Props) => {
                 "hover:text-refine-bg",
                 "z-[1]",
                 "group",
+                className,
             )}
         >
             <div
@@ -55,7 +65,14 @@ export const LandingRainbowButton = ({ children, href, onClick }: Props) => {
                     )}
                 />
             </div>
-            <div className={clsx("bg-gray-0", "rounded-lg", "px-10 py-3")}>
+            <div
+                className={clsx(
+                    "bg-gray-0",
+                    "rounded-lg",
+                    "px-10 py-3",
+                    buttonClassname,
+                )}
+            >
                 <div
                     className={clsx(
                         "gap-2",

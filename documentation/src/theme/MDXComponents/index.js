@@ -19,6 +19,7 @@ import CommonTabs from "@site/src/refine-theme/common-tabs";
 import CommonTabItem from "@site/src/refine-theme/common-tab-item";
 import CommonDetails from "@site/src/refine-theme/common-details";
 import CommonSummary from "@site/src/refine-theme/common-summary";
+import { BannerRandom } from "@site/src/components/banner/banner-random";
 
 export default {
     ...MDXComponents,
@@ -39,4 +40,5 @@ export default {
     CodeSandboxExample,
     ExampleLocalPrompt,
     ExampleSourcePrompt,
+    BannerRandom,
 };

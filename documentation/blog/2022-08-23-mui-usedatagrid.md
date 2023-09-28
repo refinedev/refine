@@ -426,7 +426,7 @@ By default, `syncWithLocation` is set to `true` in the `<Refine />` component. T
 
 You can refer to the MU X DataGrid [documentation](https://mui.com/x/react-data-grid/pagination/) for more information on the pagination feature.
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 ### Sorting
 

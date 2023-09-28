@@ -201,7 +201,7 @@ NEXTAUTH_SECRET=YOUR_SECRET
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 
 ---
@@ -280,7 +280,7 @@ Congratulations! You’ve added your complete API route. The next thing you are 
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 ---
 ## Configure Shared Session State

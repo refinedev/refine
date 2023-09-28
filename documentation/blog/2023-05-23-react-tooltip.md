@@ -361,7 +361,7 @@ This will bind the `<Tooltip/>` component to the navigations and display the spe
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 ---
 

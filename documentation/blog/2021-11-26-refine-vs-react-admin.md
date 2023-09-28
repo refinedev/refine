@@ -641,7 +641,7 @@ refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](http
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 
 ---

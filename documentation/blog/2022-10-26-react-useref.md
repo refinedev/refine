@@ -97,7 +97,7 @@ In the code snippet above, we created a function that gets the current value of 
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 ---
 ## Difference between Ref and useRef

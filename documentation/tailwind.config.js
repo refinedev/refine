@@ -185,6 +185,32 @@ module.exports = {
                     "linear-gradient(207deg, rgba(73, 69, 255, 0.15) 0%, rgba(73, 69, 255, 0.00) 100%)",
                 "week-of-refine-supabase-card-light":
                     "linear-gradient(207deg, rgba(62, 207, 142, 0.15) 0%, rgba(62, 207, 142, 0.00) 100%)",
+                "banner-examples-gray": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    `radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+                ],
+                "banner-examples-purple": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    `radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+                ],
+                "banner-examples-modal-gray": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+                ],
+                "banner-examples-modal-purple": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    `radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+                ],
+                "banner-examples-sider-gray": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+                ],
+                "banner-examples-sider-purple": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    `radial-gradient(191.28% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+                ],
+                "banner-examples-text":
+                    "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
