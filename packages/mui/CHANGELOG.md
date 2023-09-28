@@ -1,5 +1,18 @@
 # @refinedev/mui
 
+## 5.13.14
+
+### Patch Changes
+
+-   [#4974](https://github.com/refinedev/refine/pull/4974) [`a7b32dbf137`](https://github.com/refinedev/refine/commit/a7b32dbf137c77db28105f1cfdd2db79440faf1f) Thanks [@IkumaTadokoro](https://github.com/IkumaTadokoro)! - fix: add missing DataGrid operator conversion cases
+
+    MUI defines the operator for each column types in [here](https://github.com/mui/mui-x/tree/2d09dbc6e5d03c4e66765d225ef93d3984e300fc/packages/grid/x-data-grid/src/colDef). However, there were not enough conversion cases for the following operators, so this changes added them to the mapping.
+
+    -   isAnyof: used in Numeric, SingleSelect, String
+    -   contains: used in String,
+    -   startsWith: used in String
+    -   endsWith: used in String
+
 ## 5.13.13
 
 ### Patch Changes
