@@ -10,7 +10,7 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/mantine": "^2.28.14",
+    "@refinedev/mantine": "^2.28.15",
     "@refinedev/core": "^4.42.4",
     "@refinedev/cli": "^2.16.1",
     "@refinedev/react-router-v6": "^4.5.2",

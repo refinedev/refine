@@ -12,7 +12,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@refinedev/simple-rest": "^4.5.2",
-    "@refinedev/mui": "^5.13.12",
+    "@refinedev/mui": "^5.13.13",
     "@refinedev/react-hook-form": "^4.8.10",
     "@mui/icons-material": "^5.8.3",
     "@emotion/react": "^11.8.2",

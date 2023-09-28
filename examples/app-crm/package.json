@@ -22,7 +22,7 @@
     "@fullcalendar/react": "^6.1.8",
     "@fullcalendar/timegrid": "^6.1.8",
     "@react-pdf/renderer": "^3.1.8",
-    "@refinedev/antd": "^5.36.4",
+    "@refinedev/antd": "^5.36.5",
     "@refinedev/cli": "^2.16.1",
     "@refinedev/core": "^4.42.4",
     "@refinedev/devtools": "^1.1.7",
