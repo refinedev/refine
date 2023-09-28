@@ -1,5 +1,23 @@
 # @refinedev/mui
 
+## 5.13.15
+
+### Patch Changes
+
+-   [#5026](https://github.com/refinedev/refine/pull/5026) [`a605e4cd318`](https://github.com/refinedev/refine/commit/a605e4cd318ed5542b46e9e11a86f2c75dbb694b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: deprecated `<ThemedLayout />` and `<Layout />` components removed from `swizzle`.
+    From now on, users can swizzle `<ThemedLayoutV2 />` component instead.
+
+    feat: swizzled `<ThemedLayoutV2 />` component destination changed to `src/components/layout/` from `src/components/themedLayout`.
+
+-   [#4974](https://github.com/refinedev/refine/pull/4974) [`a7b32dbf137`](https://github.com/refinedev/refine/commit/a7b32dbf137c77db28105f1cfdd2db79440faf1f) Thanks [@IkumaTadokoro](https://github.com/IkumaTadokoro)! - fix: add missing DataGrid operator conversion cases
+
+    MUI defines the operator for each column types in [here](https://github.com/mui/mui-x/tree/2d09dbc6e5d03c4e66765d225ef93d3984e300fc/packages/grid/x-data-grid/src/colDef). However, there were not enough conversion cases for the following operators, so this changes added them to the mapping.
+
+    -   isAnyof: used in Numeric, SingleSelect, String
+    -   contains: used in String,
+    -   startsWith: used in String
+    -   endsWith: used in String
+
 ## 5.13.14
 
 ### Patch Changes
