@@ -10,7 +10,7 @@
     "react-router-dom": "^6.8.1",
     "web-vitals": "^1.1.1",
     "@refinedev/simple-rest": "^4.5.2",
-    "@refinedev/mantine": "^2.28.14",
+    "@refinedev/mantine": "^2.28.15",
     "@refinedev/react-table": "^5.6.4",
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.119.0",
