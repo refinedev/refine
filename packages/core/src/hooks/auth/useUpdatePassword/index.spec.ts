@@ -147,9 +147,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             });
         });
 
-        updatePasswordMock.mockResolvedValueOnce({
-            success: true,
-        });
+        updatePasswordMock.mockResolvedValueOnce(false);
         await act(async () => {
             updatePassword({});
         });
