@@ -20,7 +20,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require":"./dist/index.js"
+      "require": "./dist/index.js"
     },
     "./legacy": {
       "types": "./dist/index.d.ts",
