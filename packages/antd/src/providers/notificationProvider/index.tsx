@@ -4,10 +4,8 @@ import React from "react";
 
 import { UndoableNotification } from "@components/undoableNotification";
 
-const { useApp } = App;
-
 export const notificationProvider = () => {
-    const { notification: notificationFromContext } = useApp();
+    const { notification: notificationFromContext } = App.useApp();
     const notification =
         "open" in notificationFromContext
             ? notificationFromContext
