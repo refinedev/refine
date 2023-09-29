@@ -1,6 +1,6 @@
 import { RouterBindingsContext } from "@contexts/router";
 import { useResource } from "@hooks/resource";
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import type {
     Action,
     BaseKey,
@@ -43,21 +43,24 @@ export const useGo = () => {
 
     const goFromRouter = useGo();
 
-    const go = (config: GoConfigWithResource | GoConfigBase) => {
-        if (typeof config.to !== "object") {
-            return goFromRouter({ ...config, to: config.to });
-        }
+    const go = useCallback(
+        (config: GoConfigWithResource | GoConfigBase) => {
+            if (typeof config.to !== "object") {
+                return goFromRouter({ ...config, to: config.to });
+            }
 
-        // when config.to is an object, it means that we want to go to a resource.
-        // so we need to find the path for the resource.
-        const { resource } = resourceSelect(config.to.resource);
-        const newTo = findToPathFromResource(config.to, resource);
+            // when config.to is an object, it means that we want to go to a resource.
+            // so we need to find the path for the resource.
+            const { resource } = resourceSelect(config.to.resource);
+            const newTo = findToPathFromResource(config.to, resource);
 
-        return goFromRouter({
-            ...config,
-            to: newTo,
-        });
-    };
+            return goFromRouter({
+                ...config,
+                to: newTo,
+            });
+        },
+        [resourceSelect, goFromRouter],
+    );
 
     return go;
 };
