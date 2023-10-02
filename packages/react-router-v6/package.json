@@ -18,10 +18,12 @@
   "module": "dist/esm/index.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/index.js"
     },
     "./legacy": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/legacy.js",
       "require": "./dist/legacy.js"
     }
