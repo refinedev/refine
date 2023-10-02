@@ -1,5 +1,49 @@
 # @refinedev/chakra-ui
 
+## 2.26.16
+
+### Patch Changes
+
+-   [#5026](https://github.com/refinedev/refine/pull/5026) [`a605e4cd318`](https://github.com/refinedev/refine/commit/a605e4cd318ed5542b46e9e11a86f2c75dbb694b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: deprecated `<ThemedLayout />` and `<Layout />` components removed from `swizzle`.
+    From now on, users can swizzle `<ThemedLayoutV2 />` component instead.
+
+    feat: swizzled `<ThemedLayoutV2 />` component destination changed to `src/components/layout/` from `src/components/themedLayout`.
+
+## 2.26.15
+
+### Patch Changes
+
+-   [#5026](https://github.com/refinedev/refine/pull/5026) [`a605e4cd318`](https://github.com/refinedev/refine/commit/a605e4cd318ed5542b46e9e11a86f2c75dbb694b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: deprecated `<ThemedLayout />` and `<Layout />` components removed from `swizzle`.
+    From now on, users can swizzle `<ThemedLayoutV2 />` component instead.
+
+    feat: swizzled `<ThemedLayoutV2 />` component destination changed to `src/components/layout/` from `src/components/themedLayout`.
+
+## 2.26.14
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b)]:
+    -   @refinedev/react-hook-form@4.8.10
+
+## 2.26.13
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b)]:
+    -   @refinedev/react-hook-form@4.8.9
+
 ## 2.26.12
 
 ### Patch Changes

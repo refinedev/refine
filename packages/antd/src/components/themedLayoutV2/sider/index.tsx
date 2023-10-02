@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
 import {
     DashboardOutlined,
@@ -109,7 +109,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     undefined && children.length === 0
             );
 
-            const linkStyle: CSSProperties =
+            const linkStyle: React.CSSProperties =
                 activeItemDisabled && isSelected
                     ? { pointerEvents: "none" }
                     : {};

@@ -150,7 +150,7 @@ Check the [refine documentation](https://refine.dev/docs/api-reference/core/prov
 ---
 
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 
 

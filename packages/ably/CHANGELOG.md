@@ -1,5 +1,25 @@
 # @refinedev/ably
 
+## 4.1.2
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
+## 4.1.1
+
+### Patch Changes
+
+-   [#5022](https://github.com/refinedev/refine/pull/5022) [`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README.md
+
+    -   fix grammar errors.
+    -   make all README.md files consistent.
+    -   add code example code snippets.
+
 ## 4.1.0
 
 ### Minor Changes

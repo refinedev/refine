@@ -45,7 +45,7 @@ function BlogListPageContent(props) {
 
     return (
         <BlogLayout>
-            <div
+            {/*  <div
                 className={clsx(
                     "px-4",
                     "max-w-[512px]",
@@ -64,7 +64,7 @@ function BlogListPageContent(props) {
                 >
                     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" />
                 </a>
-            </div>
+            </div> */}
             {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
             <div
                 className={clsx(

@@ -1,12 +1,13 @@
 # @refinedev/devtools
 
-## 1.1.5
+## 1.1.7
 
 ### Patch Changes
 
--   [#5013](https://github.com/refinedev/refine/pull/5013) [`fdd6ce6ce81`](https://github.com/refinedev/refine/commit/fdd6ce6ce81cac9fbe8ce48aab7449c1e9ff12b3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: devtools button and selector tooltip styles updated
-
--   [#5016](https://github.com/refinedev/refine/pull/5016) [`d144915cec3`](https://github.com/refinedev/refine/commit/d144915cec3114baeba8041184df6def555bdda2) Thanks [@aliemir](https://github.com/aliemir)! - Update `@aliemir/dom-to-fiber-utils` to latest version to fix issue with selecting elements in the DOM tree that are not handled by React Fiber.
+-   Updated dependencies [[`80513a4e42f`](https://github.com/refinedev/refine/commit/80513a4e42f8dda39e01157643594a9e4c32001b), [`1bb29d9fc3d`](https://github.com/refinedev/refine/commit/1bb29d9fc3d0f34ba8152963e99919a929b485d2), [`20f5b6128d4`](https://github.com/refinedev/refine/commit/20f5b6128d4ae85904b9b0e2845c1bb2dcae1a44)]:
+    -   @refinedev/cli@2.16.1
+    -   @refinedev/devtools-server@1.1.6
+    -   @refinedev/devtools-shared@1.1.2
 
 ![refine devtools](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
 

@@ -142,10 +142,10 @@ export const MENU_ITEMS: MenuItemType[] = [
         label: "Blog",
         href: "/blog",
     },
-    {
+    /*    {
         isPopover: false,
         label: "Hackathon",
         icon: HackathonAltIcon,
         href: "https://s.refine.dev/hackathon2",
-    },
+    }, */
 ];

@@ -121,7 +121,7 @@ This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensiv
 
 ---
 
-<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<BannerRandom />
 
 ---
 
