@@ -17,11 +17,11 @@
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",
     "react-router-dom": "^6.8.1",
-    "@refinedev/simple-rest": "^4.5.3",
+    "@refinedev/simple-rest": "^4.5.4",
     "@refinedev/antd": "^5.36.6",
     "antd": "^5.0.5",
     "@ant-design/icons": "5.0.1",
-    "@refinedev/react-router-v6": "^4.5.3"
+    "@refinedev/react-router-v6": "^4.5.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
