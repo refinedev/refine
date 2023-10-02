@@ -16,7 +16,7 @@
     "@remix-run/serve": "^1.6.7",
     "@refinedev/core": "^4.42.4",
     "@refinedev/cli": "^2.16.1",
-    "@refinedev/simple-rest": "^4.5.3",
+    "@refinedev/simple-rest": "^4.5.4",
     "@refinedev/remix-router": "^2.3.0",
     "@refinedev/antd": "^5.36.6",
     "cookie": "^0.5.0",
