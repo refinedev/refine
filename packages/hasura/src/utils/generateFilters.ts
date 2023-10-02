@@ -125,8 +125,8 @@ export const generateNestedFilterQuery = (
 };
 
 export const generateFilters: any = (
+    namingConvention: NamingConvention,
     filters?: CrudFilters,
-    namingConvention?: NamingConvention,
 ) => {
     if (!filters) {
         return undefined;
@@ -137,7 +137,7 @@ export const generateFilters: any = (
             operator: "and",
             value: filters,
         },
-        namingConvention ?? "hasura-default",
+        namingConvention,
     );
 
     return nestedQuery;

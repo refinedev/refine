@@ -10,7 +10,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
                 { field: "published", operator: "eq", value: true },
             ];
 
-            const result = generateFilters(filters, namingConvention);
+            const result = generateFilters(namingConvention, filters);
 
             expect(result).toEqual({
                 _and: [
@@ -42,7 +42,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
                 },
             ];
 
-            const result = generateFilters(filters, namingConvention);
+            const result = generateFilters(namingConvention, filters);
 
             expect(result).toEqual({
                 _and: [
@@ -71,7 +71,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
                 },
             ];
 
-            const result = generateFilters(filters, namingConvention);
+            const result = generateFilters(namingConvention, filters);
             const expected =
                 namingConvention === "hasura-default"
                     ? {
