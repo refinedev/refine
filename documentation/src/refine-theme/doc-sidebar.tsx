@@ -96,7 +96,7 @@ const SidebarCategory = ({
                 isNavLink
                 href={item.href}
                 className={clsx(
-                    isHeader && item.label !== "Getting Started" && "mt-10",
+                    isHeader && item.label !== "Getting Started" && "mt-6",
                     isHeader && "cursor-default",
                     "w-full",
                     "min-h-[40px]",
@@ -104,8 +104,8 @@ const SidebarCategory = ({
                     "appearance-none",
                     "focus:outline-none",
                     isActive && !isHeader
-                        ? "dark:text-gray-0"
-                        : "dark:text-gray-400",
+                        ? "dark:text-gray-0 text-gray-900"
+                        : "text-gray-500 dark:text-gray-400",
                     isHeader ? "uppercase" : "",
                     "font-normal",
                     "flex items-center",
@@ -144,6 +144,10 @@ const SidebarCategory = ({
                 {!isHeader && (
                     <ChevronDownIcon
                         className={clsx(
+                            "opacity-70",
+                            isActive
+                                ? "dark:text-gray-0 text-gray-900"
+                                : "text-gray-500 dark:text-gray-400",
                             "h-6 w-6",
                             "flex-shrink-0",
                             "z-[1]",
@@ -257,7 +261,9 @@ const SidebarLink = ({
                 "no-underline",
             )}
         >
-            {dashed && <DashIcon className="z-[1] h-6 w-6 flex-shrink-0" />}
+            {dashed && (
+                <DashIcon className="z-[1] h-6 w-6 flex-shrink-0 opacity-70" />
+            )}
             <span className="z-[1]">{item.label}</span>
             <div
                 className={clsx(
