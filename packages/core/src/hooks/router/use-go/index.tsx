@@ -7,6 +7,7 @@ import type {
     GoConfig as GoConfigBase,
     IResourceItem,
 } from "../../../interfaces";
+import { useGetToPath } from "../use-get-to-path";
 
 type ResourceWithoutId = {
     /**
@@ -35,6 +36,7 @@ export type GoConfigWithResource = Omit<GoConfigBase, "to"> & {
 export const useGo = () => {
     const bindings = useContext(RouterBindingsContext);
     const { select: resourceSelect } = useResource();
+    const getToPath = useGetToPath();
 
     const useGo = React.useMemo(
         () => bindings?.go ?? (() => () => undefined),
@@ -52,7 +54,14 @@ export const useGo = () => {
             // when config.to is an object, it means that we want to go to a resource.
             // so we need to find the path for the resource.
             const { resource } = resourceSelect(config.to.resource);
-            const newTo = findToPathFromResource(config.to, resource);
+            handleResourceErrors(config.to, resource);
+            const newTo = getToPath({
+                resource,
+                action: config.to.action,
+                meta: {
+                    id: config.to.id,
+                },
+            });
 
             return goFromRouter({
                 ...config,
@@ -66,13 +75,10 @@ export const useGo = () => {
 };
 
 /**
- * Find the path for a resource.
+ * handle errors for resource
  * @internal
  */
-export const findToPathFromResource = (
-    to: Resource,
-    resource: IResourceItem,
-) => {
+export const handleResourceErrors = (to: Resource, resource: IResourceItem) => {
     if (!to?.action || !to?.resource) {
         throw new Error(`[useGo]: "action" or "resource" is required.`);
     }
@@ -89,17 +95,4 @@ export const findToPathFromResource = (
             `[useGo]: [action: ${to.action}] is not defined for [resource: ${to.resource}]`,
         );
     }
-
-    let newTo = "";
-    if (typeof actionUrl === "string") {
-        newTo = actionUrl;
-    }
-    if (typeof actionUrl === "object") {
-        newTo = actionUrl.path;
-    }
-    if (typeof to.id !== "undefined") {
-        newTo = newTo.replace(":id", to.id.toString());
-    }
-
-    return newTo;
 };

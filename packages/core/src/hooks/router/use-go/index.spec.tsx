@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
-import { Resource, findToPathFromResource, useGo } from "./";
+import { Resource, handleResourceErrors, useGo } from "./";
 
 describe("useGo Hook", () => {
     it("should return routerProvider go function", () => {
@@ -179,19 +179,19 @@ describe("findToPathFromResource", () => {
 
     it('should throw an error if "id" is not defined for "edit", "show", or "clone" actions', () => {
         expect(() =>
-            findToPathFromResource(
+            handleResourceErrors(
                 { resource: "posts", action: "edit" } as unknown as Resource,
                 resource,
             ),
         ).toThrowError('[useGo]: [action: edit] requires an "id" for resource');
         expect(() =>
-            findToPathFromResource(
+            handleResourceErrors(
                 { resource: "posts", action: "show" } as unknown as Resource,
                 resource,
             ),
         ).toThrowError('[useGo]: [action: show] requires an "id" for resource');
         expect(() =>
-            findToPathFromResource(
+            handleResourceErrors(
                 { resource: "posts", action: "clone" } as unknown as Resource,
                 resource,
             ),
@@ -202,33 +202,12 @@ describe("findToPathFromResource", () => {
 
     it("should throw an error if the action URL is not defined for the given action", () => {
         expect(() =>
-            findToPathFromResource(
+            handleResourceErrors(
                 { resource: "posts", action: "create" },
                 { ...resource, create: undefined },
             ),
         ).toThrowError(
             "[useGo]: [action: create] is not defined for [resource: posts]",
         );
-    });
-
-    it('should return the correct URL for "edit", "show", and "clone" actions', () => {
-        expect(
-            findToPathFromResource(
-                { resource: "posts", action: "edit", id: 1 },
-                resource,
-            ),
-        ).toEqual("/posts/1/edit");
-        expect(
-            findToPathFromResource(
-                { resource: "posts", action: "show", id: 1 },
-                resource,
-            ),
-        ).toEqual("/posts/1");
-        expect(
-            findToPathFromResource(
-                { resource: "posts", action: "clone", id: 1 },
-                resource,
-            ),
-        ).toEqual("/posts/1/clone");
     });
 });
