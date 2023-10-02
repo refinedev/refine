@@ -91,7 +91,7 @@ const convertHasuraOperatorToGraphqlDefaultNaming = (
 
 export const generateNestedFilterQuery = (
     filter: CrudFilter,
-    namingConvention: NamingConvention,
+    namingConvention: NamingConvention = "hasura-default",
 ): any => {
     const { operator } = filter;
 
@@ -125,8 +125,8 @@ export const generateNestedFilterQuery = (
 };
 
 export const generateFilters: any = (
-    namingConvention: NamingConvention,
     filters?: CrudFilters,
+    namingConvention: NamingConvention = "hasura-default",
 ) => {
     if (!filters) {
         return undefined;

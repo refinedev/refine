@@ -99,7 +99,7 @@ const dataProvider = (
                 ? generateSorting(sorters)
                 : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
-            const hasuraFilters = generateFilters(namingConvention, filters);
+            const hasuraFilters = generateFilters(filters, namingConvention);
 
             const operation = defaultNamingConvention
                 ? meta?.operation ?? resource
