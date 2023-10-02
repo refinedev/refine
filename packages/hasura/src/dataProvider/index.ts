@@ -11,7 +11,7 @@ import {
 
 type IDType = "uuid" | "Int" | "String" | "Numeric";
 
-type NamingConvention = "hasura-default" | "graphql-default";
+export type NamingConvention = "hasura-default" | "graphql-default";
 
 export type HasuraDataProviderOptions = {
     idType?: IDType | ((resource: string) => IDType);

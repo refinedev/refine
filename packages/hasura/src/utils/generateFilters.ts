@@ -1,5 +1,7 @@
 import { CrudFilter, CrudFilters, CrudOperators } from "@refinedev/core";
+import camelcase from "camelcase";
 import setWith from "lodash/setWith";
+import { NamingConvention } from "src/dataProvider";
 
 export type HasuraFilterCondition =
     | "_and"
@@ -81,13 +83,27 @@ export const handleFilterValue = (operator: CrudOperators, value: any) => {
     }
 };
 
-export const generateNestedFilterQuery = (filter: CrudFilter): any => {
+const convertHasuraOperatorToGraphqlDefaultNaming = (
+    hasuraOperator?: HasuraFilterCondition,
+) => {
+    return hasuraOperator ? `_${camelcase(hasuraOperator)}` : undefined;
+};
+
+export const generateNestedFilterQuery = (
+    filter: CrudFilter,
+    namingConvention: NamingConvention,
+): any => {
     const { operator } = filter;
 
     if (operator !== "or" && operator !== "and" && "field" in filter) {
         const { field, value } = filter;
 
-        const hasuraOperator = hasuraFilters[filter.operator];
+        const defaultNamingConvention = namingConvention === "hasura-default";
+        const hasuraOperator = defaultNamingConvention
+            ? hasuraFilters[filter.operator]
+            : convertHasuraOperatorToGraphqlDefaultNaming(
+                  hasuraFilters[filter.operator],
+              );
         if (!hasuraOperator) {
             throw new Error(`Operator ${operator} is not supported`);
         }
@@ -102,19 +118,27 @@ export const generateNestedFilterQuery = (filter: CrudFilter): any => {
     }
 
     return {
-        [`_${operator}`]: filter.value.map((f) => generateNestedFilterQuery(f)),
+        [`_${operator}`]: filter.value.map((f) =>
+            generateNestedFilterQuery(f, namingConvention),
+        ),
     };
 };
 
-export const generateFilters: any = (filters?: CrudFilters) => {
+export const generateFilters: any = (
+    filters?: CrudFilters,
+    namingConvention?: NamingConvention,
+) => {
     if (!filters) {
         return undefined;
     }
 
-    const nestedQuery = generateNestedFilterQuery({
-        operator: "and",
-        value: filters,
-    });
+    const nestedQuery = generateNestedFilterQuery(
+        {
+            operator: "and",
+            value: filters,
+        },
+        namingConvention ?? "hasura-default",
+    );
 
     return nestedQuery;
 };
