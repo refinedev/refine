@@ -37,7 +37,7 @@ export const generateUseListSubscription = ({
     } = pagination ?? {};
 
     const hasuraSorting = generateSorting(sorters);
-    const hasuraFilters = generateFilters("hasura-default", filters);
+    const hasuraFilters = generateFilters(filters, "hasura-default");
 
     const operation = meta.operation ?? resource;
 
