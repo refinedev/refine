@@ -6,7 +6,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 const data = [
     {
         description:
-            "refine is the tool of choice for over 15k active developers each month.",
+            "refine is a React framework preferred by over 15,000 active developers each month for streamlining the development of enterprise-grade internal tools, admin panels. ",
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
@@ -20,7 +20,7 @@ const data = [
     {
         title: "Save developer hours!",
         description:
-            "Open-source industry-standard code-base design for enterprise grade internal tools, admin panels and CRUD apps.",
+            "An open-source, industry-standard codebase designed for building enterprise-grade internal tools, admin panels, and CRUD apps.",
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-save-hours.png",
             alt: "Illustration about time is gold",

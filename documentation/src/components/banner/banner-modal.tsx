@@ -29,7 +29,7 @@ type Props = {
 };
 
 export const BannerModal: FC<Props> = ({
-    title = "Take a spin and supercharge your development experience.",
+    title = " refine's app scaffolder offers +720 customizable CRUD app codebase combinations.",
     variant = "purple",
     image = {
         src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/playground.gif",
