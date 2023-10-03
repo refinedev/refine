@@ -19,7 +19,7 @@
     "@remix-run/serve": "^1.6.7",
     "@refinedev/core": "^4.42.4",
     "@refinedev/cli": "^2.16.1",
-    "@refinedev/simple-rest": "^4.5.2",
+    "@refinedev/simple-rest": "^4.5.4",
     "@refinedev/remix-router": "^2.3.0",
     "@refinedev/mui": "^5.13.15",
     "@emotion/react": "^11.8.2",

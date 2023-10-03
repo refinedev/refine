@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/antd": "^5.36.6",
     "@refinedev/core": "^4.42.4",
-    "@refinedev/react-router-v6": "^4.5.2",
+    "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/supabase": "^5.7.2",
     "@refinedev/cli": "^2.16.1",
     "casbin": "^5.15.2",

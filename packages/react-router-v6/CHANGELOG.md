@@ -1,5 +1,17 @@
 # @refinedev/react-router-v6
 
+## 4.5.4
+
+### Patch Changes
+
+-   [#5000](https://github.com/refinedev/refine/pull/5000) [`847124858e0`](https://github.com/refinedev/refine/commit/847124858e06c2135dd7685391ae03158201b2eb) Thanks [@dzcpy](https://github.com/dzcpy)! - fix: added `types` path to export in `package.json`
+
+## 4.5.3
+
+### Patch Changes
+
+-   [#5000](https://github.com/refinedev/refine/pull/5000) [`847124858e0`](https://github.com/refinedev/refine/commit/847124858e06c2135dd7685391ae03158201b2eb) Thanks [@dzcpy](https://github.com/dzcpy)! - fix: added `types` path to export in `package.json`
+
 ## 4.5.2
 
 ### Patch Changes

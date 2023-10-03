@@ -293,14 +293,24 @@ html[data-active-page="index"] body {
 }
 
 @keyframes element-animation {
-    0%,
-    35%,
-    to {
+    0% {
         opacity: 0;
     }
-    30%,
+
     5% {
         opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    35% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
     }
 }
 
@@ -311,6 +321,54 @@ html[data-active-page="index"] body {
     opacity: 0;
     animation: element-animation 24s infinite;
     will-change: opacity;
+}
+
+.landing-hero-mobile-svg .nextjs {
+    animation-delay: 0s;
+}
+
+.landing-hero-mobile-svg .vite {
+    animation-delay: 8s;
+}
+
+.landing-hero-mobile-svg .remix {
+    animation-delay: 16s;
+}
+
+.landing-hero-mobile-svg .mui {
+    animation-delay: -3s;
+}
+
+.landing-hero-mobile-svg .antd {
+    animation-delay: 5s;
+}
+
+.landing-hero-mobile-svg .chakra {
+    animation-delay: 13s;
+}
+
+.landing-hero-mobile-svg .supabase {
+    animation-delay: -6s;
+}
+
+.landing-hero-mobile-svg .nest {
+    animation-delay: 2s;
+}
+
+.landing-hero-mobile-svg .appwrite {
+    animation-delay: 10s;
+}
+
+.landing-hero-mobile-svg .google {
+    animation-delay: -9s;
+}
+
+.landing-hero-mobile-svg .auth0 {
+    animation-delay: -1s;
+}
+
+.landing-hero-mobile-svg .strapi {
+    animation-delay: 7s;
 }
 
 .animation-parent {
