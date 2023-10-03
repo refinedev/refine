@@ -11,7 +11,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
-    "@refinedev/hasura": "^6.4.8",
+    "@refinedev/hasura": "^6.4.9",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
     "@refinedev/antd": "^5.36.6",
