@@ -129,11 +129,12 @@ Our documentation is built with [Docusaurus][docusaurus]. To start it in develop
 ```bash
 cd documentation
 npm install
-DISABLE_DOCGEN=true npm run start
+npm run dev:docs
+# npm run dev:blog if you're working on blog posts
 ```
 
 :::tip
-`DISABLE_DOCGEN` is set to `true` to skip generate type documentation for the packages. If you want to generate documentation for the packages, you can set it to `false`.
+`dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `npm run start` command.
 :::
 
 :::note Docgen plugin and Props Table
