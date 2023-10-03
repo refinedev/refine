@@ -2,7 +2,7 @@
 "@refinedev/core": minor
 ---
 
-Feature: The `go` function returned by `useGo` now accepts a `resource` object as the `to` parameter.
+feat: The `go` function returned by `useGo` now accepts a `resource` object as the `to` parameter.
 From now now, you can provide either a string or a resource object to the `go` function. When a resource object is passed, it will be transformed into the path defined within the resources array of the `<Refine />` component.
 
 `to` accepts an object with the following shape to navigate to a resource:
