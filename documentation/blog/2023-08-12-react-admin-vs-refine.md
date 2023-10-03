@@ -333,7 +333,7 @@ You can dive deeper into your application inner workings with refine's devtools.
 
 Whenever you need to manage your refine packages, devtools allowing you to review, install, and update packages effortlessly.
 
-More info on refine devtools can be found [here](https://github.com/refinedev/refine/blob/master/packages/devtools/CHANGELOG.md).
+More info on refine devtools can be found [here](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md).
 
 ## Customization
 
