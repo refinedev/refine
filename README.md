@@ -7,6 +7,12 @@
   <img style="" align="center" alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-logo-dark.png">
 </picture>
 
+<p align="center">
+
+<img  style="width:350px;" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-logo-white.png#gh-light-mode-only">
+<img style="width:350px;"  src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-logo-dark.png#gh-dark-mode-only">
+</p>
+
 </a>
 
 
