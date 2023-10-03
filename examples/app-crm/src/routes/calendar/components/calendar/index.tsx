@@ -14,6 +14,14 @@ import styles from "./index.module.css";
 
 const FullCalendarWrapper = lazy(() => import("./full-calendar"));
 
+type View =
+    | "dayGridMonth"
+    | "timeGridWeek"
+    | "timeGridDay"
+    | "listMonth"
+    | "listDay"
+    | "listWeek";
+
 type CalendarProps = {
     categoryId?: string[];
     onClickEvent?: (event: Event) => void;
@@ -23,6 +31,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     categoryId,
     onClickEvent,
 }) => {
+    const [calendarView, setCalendarView] = useState<View>("dayGridMonth");
     const calendarRef = useRef<FullCalendar>(null);
     const [title, setTitle] = useState(
         calendarRef.current?.getApi().view.title,
@@ -30,10 +39,14 @@ export const Calendar: React.FC<CalendarProps> = ({
     const { md } = Grid.useBreakpoint();
 
     useEffect(() => {
+        calendarRef.current?.getApi().changeView(calendarView);
+    }, [calendarView]);
+
+    useEffect(() => {
         if (md) {
-            calendarRef.current?.getApi().changeView("dayGridMonth");
+            setCalendarView("dayGridMonth");
         } else {
-            calendarRef.current?.getApi().changeView("listMonth");
+            setCalendarView("listMonth");
         }
     }, [md]);
 
@@ -103,7 +116,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     </Text>
                 </div>
 
-                <Radio.Group value={calendarRef.current?.getApi().view.type}>
+                <Radio.Group value={calendarView}>
                     {[
                         {
                             label: "Month",
@@ -127,9 +140,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                                 key={label}
                                 value={view}
                                 onClick={() => {
-                                    calendarRef.current
-                                        ?.getApi()
-                                        .changeView(view);
+                                    setCalendarView(view as View);
                                 }}
                             >
                                 {label}
@@ -140,9 +151,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                         <Radio.Button
                             value="listMonth"
                             onClick={() => {
-                                calendarRef.current
-                                    ?.getApi()
-                                    .changeView("listMonth");
+                                setCalendarView("listMonth");
                             }}
                         >
                             List
