@@ -8,6 +8,8 @@ sidebar_label: useGo 🆕
 
 ## Basic Usage
 
+### With path
+
 ```tsx
 import { useGo } from "@refinedev/core";
 
@@ -38,11 +40,53 @@ const MyComponent = () => {
 };
 ```
 
+### With resource
+
+`to` accepts an object with the following shape to navigate to a resource:
+
+| Name     | Type                                                        | Description                                                 |
+| -------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| resource | `string`                                                    | resource name or identifier.                                |
+| id       | [`BaseKey`][basekey]                                        | required when `action` is `"edit"`, `"show"`, or `"clone"`. |
+| action   | `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` | action name.                                                |
+
+`useGo` will convert the resource object into the path defined in the resources array within the `<Refine />` component.
+
+```tsx
+import { useGo } from "@refinedev/core";
+
+const MyComponent = () => {
+    const go = useGo();
+
+    return (
+        <Button
+            onClick={() => {
+                go({
+                    to:  {
+                        resource: "posts", // resource name or identifier
+                        action: "edit",
+                        id: "1",
+                    }
+                    query: {
+                         foo: "bar",
+                    },
+                    type: "push",
+                });
+            }}
+        >
+            Go Posts With Default Filters
+        </Button>
+    );
+};
+```
+
 ## Parameters
 
 ### `to`
 
 The `to` parameter is the path you want to navigate to. If left empty, it will navigate to the current path, which is useful for updating the query parameters.
+
+Also, you can pass a `resource` object to the `to` parameter. The `routerProvider` will convert the resource object to the path.
 
 ### `query`
 
@@ -73,3 +117,4 @@ The `options.keepHash` parameter is a boolean that determines whether the curren
 `useGo` does not return any value except for the `path` type, which returns the navigation path for the given config without mutating the history stack.
 
 [routerprovider]: /docs/api-reference/core/providers/router-provider.md
+[basekey]: /api-reference/core/interfaces.md#basekey

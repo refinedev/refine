@@ -1,5 +1,11 @@
 # @refinedev/simple-rest
 
+## 4.5.4
+
+### Patch Changes
+
+-   [#5036](https://github.com/refinedev/refine/pull/5036) [`fba8f737005`](https://github.com/refinedev/refine/commit/fba8f7370057fa8d4c27de6b9432fec4ccada268) Thanks [@saarthak08](https://github.com/saarthak08)! - fix: headers persisting in useCustomMutation hook
+
 ## 4.5.3
 
 ### Patch Changes

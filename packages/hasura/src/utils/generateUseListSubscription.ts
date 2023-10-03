@@ -1,8 +1,8 @@
 import {
+    CrudFilters,
+    CrudSorting,
     MetaQuery,
     Pagination,
-    CrudSorting,
-    CrudFilters,
 } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
@@ -37,7 +37,7 @@ export const generateUseListSubscription = ({
     } = pagination ?? {};
 
     const hasuraSorting = generateSorting(sorters);
-    const hasuraFilters = generateFilters(filters);
+    const hasuraFilters = generateFilters(filters, "hasura-default");
 
     const operation = meta.operation ?? resource;
 

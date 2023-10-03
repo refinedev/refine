@@ -5,19 +5,19 @@
   "type": "module",
   "dependencies": {
     "@refinedev/cli": "^2.16.1",
-    "@refinedev/core": "^4.42.4",
+    "@refinedev/core": "^4.43.0",
     "@refinedev/inferencer": "^4.5.14",
     "@refinedev/kbar": "^1.3.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
-    "@refinedev/hasura": "^6.4.8",
+    "@refinedev/hasura": "^6.4.9",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
     "@refinedev/antd": "^5.36.6",
     "antd": "^5.0.5",
     "@ant-design/icons": "5.0.1",
-    "@refinedev/react-router-v6": "^4.5.3"
+    "@refinedev/react-router-v6": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^18.16.2",
