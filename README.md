@@ -2,14 +2,14 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-<picture >
+<picture  style="display: inline-block; width:350px;" >
   <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-logo-white.png">
-  <img style="width:350px;" align="center" alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-logo-dark.png">
+  <img style="" align="center" alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-logo-dark.png">
 </picture>
 
 </a>
-<br />
-<br />
+
+
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
