@@ -127,6 +127,8 @@ You can take a look at some live examples that can be built using **refine** fro
 
 ⌛️ Built-in CLI with time-saving features
 
+💻 refine [Devtools](https://github.com/refinedev/refine/blob/master/packages/devtools/CHANGELOG.md) - dive deeper into your app and provide useful insights
+
 ✅ Full **test coverage**
 
 ## Quick Start
