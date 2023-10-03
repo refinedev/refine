@@ -9,7 +9,7 @@ From now on, you can use the parameter types of Data Provider methods.
 import type {
     DataProvider,
     GetListResponse
-    // mew exported types
+    // new exported types
     GetListParams,
     GetManyParams,
     GetOneParams,
