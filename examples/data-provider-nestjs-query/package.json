@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/antd": "^5.36.6",
     "@refinedev/cli": "^2.16.1",
-    "@refinedev/core": "^4.43.0",
+    "@refinedev/core": "^4.44.0",
     "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/nestjs-query": "^1.0.6",
     "@uiw/react-md-editor": "^3.19.5",
