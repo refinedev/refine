@@ -42,6 +42,7 @@ export type UseResourceSubscriptionProps = {
     types: LiveEvent["type"][];
     resource?: string;
     enabled?: boolean;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 export type PublishType = {
@@ -56,6 +57,7 @@ export const useResourceSubscription = ({
     enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
+    dataProviderName,
 }: UseResourceSubscriptionProps): void => {
     const { resource, identifier } = useResource(resourceFromProp);
 
@@ -99,6 +101,7 @@ export const useResourceSubscription = ({
                 },
                 types,
                 callback,
+                dataProviderName,
             });
         }
 

@@ -12,7 +12,7 @@ A live provider must include following methods:
 
 ```ts
 const liveProvider = {
-    subscribe: ({ channel, params: { ids }, types, callback }) => any,
+    subscribe: ({ channel, params: { ids }, types, callback, dataProviderName }) => any,
     unsubscribe: (subscription) => void,
     publish?: (event) => void,
 };
@@ -55,7 +55,7 @@ interface MessageType extends Types.Message {
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
         // highlight-start
-        subscribe: ({ channel, types, params, callback }) => {
+        subscribe: ({ channel, types, params, callback, dataProviderName }) => {
             const channelInstance = client.channels.get(channel);
 
             const listener = function (message: MessageType) {
@@ -88,12 +88,13 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 
 #### Parameter Types
 
-| Name     | Type                                                                  | Default |
-| -------- | --------------------------------------------------------------------- | ------- |
-| channel  | `string`                                                              |         |
-| types    | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> | `["*"]` |
-| params   | `{ids?: string[]; [key: string]: any;}`                               |         |
-| callback | `(event: LiveEvent) => void;`                                         |         |
+| Name             | Type                                                                  | Default   |
+| ---------------- | --------------------------------------------------------------------- | --------- |
+| channel          | `string`                                                              |           |
+| types            | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> | `["*"]`   |
+| params           | `{ids?: string[]; [key: string]: any;}`                               |           |
+| callback         | `(event: LiveEvent) => void;`                                         |           |
+| dataProviderName | `string`                                                              | "default" |
 
 > For more information, refer to [`LiveEvent`](/api-reference/core/interfaces.md#liveevent)
 
@@ -282,7 +283,7 @@ const subscriptions = {
 
 export const liveProvider = (client: Client): LiveProvider => {
     return {
-        subscribe: ({ callback, params }) => {
+        subscribe: ({ callback, params, dataProviderName }) => {
             const {
                 resource,
                 meta,

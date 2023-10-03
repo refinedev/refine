@@ -36,6 +36,7 @@ export type ILiveContext =
                   [key: string]: any;
               };
               types: LiveEvent["type"][];
+              dataProviderName?: string;
               callback: (event: LiveEvent) => void;
           }) => any;
           unsubscribe: (subscription: any) => void;
