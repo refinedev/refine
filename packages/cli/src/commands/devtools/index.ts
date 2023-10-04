@@ -77,7 +77,7 @@ const devtoolsInstaller = async () => {
     console.log("🌱 Installing refine devtools...");
     const installPackages = ["@refinedev/devtools@latest"];
     // we should update core package if it is lower than minRefineCoreVersionForDevtools
-    if (isCorePackageUpToDate({ pckg: corePackage })) {
+    if (isCorePackageOld({ pckg: corePackage })) {
         installPackages.push("@refinedev/core@latest");
         console.log(`🌱 refine core package is updating for devtools...`);
     }
@@ -172,7 +172,7 @@ export const devtoolsRunner = async () => {
         return;
     }
 
-    if (isCorePackageUpToDate({ pckg: corePackage })) {
+    if (isCorePackageOld({ pckg: corePackage })) {
         console.log(
             `🚨 You're using an old version of refine(${corePackage.version}). refine version should be @4.42.0 or higher to use devtools.`,
         );
@@ -186,7 +186,7 @@ export const devtoolsRunner = async () => {
     server();
 };
 
-export const isCorePackageUpToDate = ({
+export const isCorePackageOld = ({
     pckg,
 }: {
     pckg: { name: string; version: string };
