@@ -325,6 +325,16 @@ You'll just need to run the `refine swizzle` command, follow the instructions an
 
 React-admin does not provide such features and lacks the extensibility that refine provides.
 
+## refine Devtools
+
+refine has it's own devtools that you can use to manage your refine packages, get insights about your queries and mutations and explore additional information about your app's components, their interactions, and their impact on data flow.
+
+You can dive deeper into your application inner workings with refine's devtools. Gain invaluable insights into your queries and mutations, allowing you to fine-tune your data operations for optimal performance. The X-Ray feature offers a unique perspective, enabling you to explore additional information about your app's components, their interactions, and their impact on data flow.
+
+Whenever you need to manage your refine packages, devtools allowing you to review, install, and update packages effortlessly.
+
+More info on refine devtools can be found [here](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md).
+
 ## Customization
 
 Like it's mentioned in the previous sections, refine's approach is to be a companion for the developers and provide the best developer experience for any use case. It provides many customization options for you to customize your project as you wish. 

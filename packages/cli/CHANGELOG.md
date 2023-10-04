@@ -1,5 +1,14 @@
 # @refinedev/cli
 
+## 2.16.2
+
+### Patch Changes
+
+-   [#5055](https://github.com/refinedev/refine/pull/5055) [`68f24d5b596`](https://github.com/refinedev/refine/commit/68f24d5b596eaf1b5b1690c7a57baf3e93fcf42b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: From now on, `npm run refine devtools init` updates `@refinedev/core` to latest version.
+
+-   Updated dependencies [[`1fa531ebe89`](https://github.com/refinedev/refine/commit/1fa531ebe89bdab2af0dd57db121e2c0e72d44e8)]:
+    -   @refinedev/devtools-server@1.1.7
+
 ## 2.16.1
 
 ### Patch Changes
