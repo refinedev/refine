@@ -44,7 +44,7 @@ export const getInstalledRefinePackages = async () => {
         const refineDependencies = Object.keys(dependencies).filter(
             (dependency) =>
                 dependency.startsWith("@refinedev") ||
-                dependency.startsWith("@pankod"),
+                dependency.startsWith("@pankod/refine-"),
         );
 
         const normalize: {
