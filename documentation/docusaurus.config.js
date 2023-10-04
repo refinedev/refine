@@ -6,7 +6,6 @@
  */
 
 require("dotenv").config();
-const path = require("path");
 
 const redirectJson = require("./redirects.json");
 const tutorialData = require("./tutorial-units");
@@ -26,34 +25,38 @@ const siteConfig = {
         [
             "@docusaurus/preset-classic",
             {
-                docs: {
-                    path: "./docs",
-                    sidebarPath: require.resolve("./sidebars.js"),
-                    editUrl:
-                        "https://github.com/refinedev/refine/tree/master/documentation",
-                    showLastUpdateAuthor: true,
-                    showLastUpdateTime: true,
-                    versions: {
-                        current: {
-                            label: "4.xx.xx",
-                        },
-                    },
-                    lastVersion: "current",
-                    admonitions: {
-                        tag: ":::",
-                        keywords: [
-                            "additional",
-                            "note",
-                            "tip",
-                            "info-tip",
-                            "info",
-                            "caution",
-                            "danger",
-                            "sourcecode",
-                            "create-example",
-                        ],
-                    },
-                },
+                docs: Boolean(process.env.DISABLE_DOCS)
+                    ? false
+                    : {
+                          path: "./docs",
+                          sidebarPath: require.resolve("./sidebars.js"),
+                          editUrl:
+                              "https://github.com/refinedev/refine/tree/master/documentation",
+                          showLastUpdateAuthor: true,
+                          showLastUpdateTime: true,
+                          disableVersioning:
+                              process.env.DISABLE_VERSIONING === "true",
+                          versions: {
+                              current: {
+                                  label: "4.xx.xx",
+                              },
+                          },
+                          lastVersion: "current",
+                          admonitions: {
+                              tag: ":::",
+                              keywords: [
+                                  "additional",
+                                  "note",
+                                  "tip",
+                                  "info-tip",
+                                  "info",
+                                  "caution",
+                                  "danger",
+                                  "sourcecode",
+                                  "create-example",
+                              ],
+                          },
+                      },
                 blog: false,
                 theme: {
                     customCss: [
@@ -99,21 +102,25 @@ const siteConfig = {
         "./plugins/docgen.js",
         "./plugins/examples.js",
         "./plugins/checklist.js",
-        [
-            "./plugins/blog-plugin.js",
-            {
-                blogTitle: "Blog",
-                blogDescription: "A Docusaurus powered blog!",
-                routeBasePath: "/blog",
-                postsPerPage: 12,
-                blogSidebarTitle: "All posts",
-                blogSidebarCount: 0,
-                feedOptions: {
-                    type: "all",
-                    copyright: `Copyright © ${new Date().getFullYear()} refine.`,
-                },
-            },
-        ],
+        ...(process.env.DISABLE_BLOG
+            ? []
+            : [
+                  [
+                      "./plugins/blog-plugin.js",
+                      {
+                          blogTitle: "Blog",
+                          blogDescription: "A Docusaurus powered blog!",
+                          routeBasePath: "/blog",
+                          postsPerPage: 12,
+                          blogSidebarTitle: "All posts",
+                          blogSidebarCount: 0,
+                          feedOptions: {
+                              type: "all",
+                              copyright: `Copyright © ${new Date().getFullYear()} refine.`,
+                          },
+                      },
+                  ],
+              ]),
         "./plugins/intercom.js",
     ],
     themeConfig: {
