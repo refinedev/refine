@@ -1,12 +1,12 @@
-import axios, { AxiosInstance } from "axios";
 import {
-    DataProvider as IDataProvider,
-    HttpError,
+    BaseKey,
     CrudFilters,
     CrudSorting,
-    BaseKey,
+    DataProvider as IDataProvider,
+    HttpError,
     LogicalFilter,
 } from "@refinedev/core";
+import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
 
 const axiosInstance = axios.create();
@@ -230,27 +230,23 @@ export const DataProvider = (
             requestUrl = `${requestUrl}&${stringify(query)}`;
         }
 
-        if (headers) {
-            httpClient.defaults.headers = {
-                ...httpClient.defaults.headers,
-                ...headers,
-            };
-        }
-
         let axiosResponse;
         switch (method) {
             case "put":
             case "post":
             case "patch":
-                axiosResponse = await httpClient[method](url, payload);
+                axiosResponse = await httpClient[method](url, payload, {
+                    headers,
+                });
                 break;
             case "delete":
                 axiosResponse = await httpClient.delete(url, {
                     data: payload,
+                    headers: headers,
                 });
                 break;
             default:
-                axiosResponse = await httpClient.get(requestUrl);
+                axiosResponse = await httpClient.get(requestUrl, { headers });
                 break;
         }
 
