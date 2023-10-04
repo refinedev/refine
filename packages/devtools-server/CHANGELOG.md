@@ -1,5 +1,11 @@
 # @refinedev/devtools-server
 
+## 1.1.9
+
+### Patch Changes
+
+-   [#26](https://github.com/TheRakeshPurohit/refine/pull/26) [`7533e541739`](https://github.com/refinedev/refine/commit/7533e541739faadffb763feef8739ac46f62bd17) Thanks [@pull](https://github.com/apps/pull)! - Fixed the issue with conflicting devtools port when `PORT` environment variable is set.
+
 ## 1.1.8
 
 ### Patch Changes
