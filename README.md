@@ -2,7 +2,10 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:350px;" align="center" />
+<picture>
+  <source srcset="/logo-light.png" media="(prefers-color-scheme: dark)">
+  <img src="/logo.png"  style="width:350px;" align="center" />
+</picture>
 </a>
 <br />
 <br />
