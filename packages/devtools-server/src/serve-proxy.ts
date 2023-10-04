@@ -1,6 +1,6 @@
 import { type Express } from "express";
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
-import { REFINE_API_URL } from "./constants";
+import { REFINE_API_URL, SERVER_PORT } from "./constants";
 
 const onProxyRes: Options["onProxyRes"] | undefined = (proxyRes) => {
     if (proxyRes.headers["set-cookie"]) {
@@ -41,7 +41,7 @@ export const serveProxy = (app: Express) => {
         },
         logLevel: __DEVELOPMENT__ ? "debug" : "silent",
         headers: {
-            "auth-base-url-rewrite": `http://localhost:5001/api/.auth`,
+            "auth-base-url-rewrite": `http://localhost:${SERVER_PORT}/api/.auth`,
         },
         onProxyRes,
     });

@@ -8,15 +8,21 @@ import {
     getNameFromFiber,
     getParentOfFiber,
 } from "@aliemir/dom-to-fiber-utils";
+import { DevToolsContext } from "@refinedev/devtools-shared";
 
 type Fiber = Exclude<ReturnType<typeof getFiberFromElement>, null>;
 
 export const useSelector = (active: boolean) => {
+    const { devtoolsUrl } = React.useContext(DevToolsContext);
     const [traceItems, setTraceItems] = React.useState<string[]>([]);
 
     React.useEffect(() => {
         if (active) {
-            fetch("http://localhost:5001/api/unique-trace-items").then((res) =>
+            fetch(
+                `${
+                    devtoolsUrl ?? "http://localhost:5001"
+                }/api/unique-trace-items`,
+            ).then((res) =>
                 res
                     .json()
                     .then((data: { data: string[] }) =>
@@ -24,7 +30,7 @@ export const useSelector = (active: boolean) => {
                     ),
             );
         }
-    }, [active]);
+    }, [active, devtoolsUrl]);
 
     const [selectedFiber, setSelectedFiber] = React.useState<{
         stateNode: Fiber | null;
