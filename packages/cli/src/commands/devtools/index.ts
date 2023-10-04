@@ -178,7 +178,7 @@ export const devtoolsRunner = async () => {
         );
         const pm = await getPreferedPM();
         console.log(
-            `👉 You can update @refinedev/core package by running "${pm.name} run refine refine update"`,
+            `👉 You can update @refinedev/core package by running "${pm.name} run refine update"`,
         );
         return;
     }
