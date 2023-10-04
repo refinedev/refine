@@ -2,12 +2,13 @@ import { Argument, Command } from "commander";
 import { server } from "@refinedev/devtools-server";
 import { addDevtoolsComponent } from "@transformers/add-devtools-component";
 import {
+    getInstalledRefinePackages,
     getPackageJson,
     getPreferedPM,
     installPackagesSync,
     isDevtoolsInstalled,
 } from "@utils/package";
-import { getRefineCorePackage, hasDefaultScript } from "@utils/refine";
+import { hasDefaultScript } from "@utils/refine";
 import boxen from "boxen";
 import cardinal from "cardinal";
 import dedent from "dedent";
@@ -57,9 +58,6 @@ export const action = async (command: DevtoolsCommand) => {
 
 const devtoolsInstaller = async () => {
     const corePackage = await getRefineCorePackage();
-    if (!corePackage) {
-        throw new Error("refine core package not found");
-    }
 
     const isInstalled = await spinner(
         isDevtoolsInstalled,
@@ -77,9 +75,9 @@ const devtoolsInstaller = async () => {
     console.log("🌱 Installing refine devtools...");
     const packagesToInstall = ["@refinedev/devtools@latest"];
     // we should update core package if it is lower than minRefineCoreVersionForDevtools
-    if (isCorePackageOld({ pckg: corePackage })) {
+    if (semver.lt(corePackage.version, minRefineCoreVersionForDevtools)) {
         packagesToInstall.push("@refinedev/core@latest");
-        console.log(`🌱 refine core package is updating for devtools...`);
+        console.log(`🌱 refine core package is being updated for devtools...`);
     }
     await installPackagesSync(packagesToInstall);
 
@@ -94,12 +92,9 @@ const devtoolsInstaller = async () => {
     );
     // if core package is updated, we should show the updated version
     if (packagesToInstall.includes("@refinedev/core@latest")) {
-        const corePackageUpdated = await getRefineCorePackage();
-        if (!corePackageUpdated) {
-            throw new Error("refine core package not found");
-        }
+        const updatedCorePackage = await getRefineCorePackage();
         console.log(
-            `✅ refine core package updated from ${corePackage.version} to ${corePackageUpdated?.version}`,
+            `✅ refine core package updated from ${corePackage.version} to ${updatedCorePackage?.version}`,
         );
         console.log(
             `   Changelog: ${chalk.underline.blueBright(
@@ -164,15 +159,12 @@ const devtoolsInstaller = async () => {
 
 export const devtoolsRunner = async () => {
     const corePackage = await getRefineCorePackage();
-    if (!corePackage) {
-        throw new Error("refine core package not found");
-    }
 
     if (await isCorePackageDeprecated({ pckg: corePackage })) {
         return;
     }
 
-    if (isCorePackageOld({ pckg: corePackage })) {
+    if (semver.lt(corePackage.version, minRefineCoreVersionForDevtools)) {
         console.log(
             `🚨 You're using an old version of refine(${corePackage.version}). refine version should be @4.42.0 or higher to use devtools.`,
         );
@@ -186,12 +178,19 @@ export const devtoolsRunner = async () => {
     server();
 };
 
-export const isCorePackageOld = ({
-    pckg,
-}: {
-    pckg: { name: string; version: string };
-}) => {
-    return semver.lt(pckg.version, minRefineCoreVersionForDevtools);
+const getRefineCorePackage = async () => {
+    const installedRefinePackages = await getInstalledRefinePackages();
+    const corePackage = installedRefinePackages?.find(
+        (pkg) =>
+            pkg.name === "@refinedev/core" ||
+            pkg.name === "@pankod/refine-core",
+    );
+
+    if (!corePackage) {
+        throw new Error("refine core package not found");
+    }
+
+    return corePackage;
 };
 
 export const isCorePackageDeprecated = async ({
