@@ -14,6 +14,7 @@ import { CloseIcon } from "../icons/close";
 import { MENU_ITEMS, NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
 import { MobileNavItem } from "./mobile-nav-item";
+import { openFigma } from "@site/src/utils/open-figma";
 
 type MobileMenuModalProps = {
     isModalOpen: boolean;
@@ -54,7 +55,10 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                 "landing-md:px-8",
                             )}
                         >
-                            <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                            <RefineLogoIcon
+                                className="dark:text-gray-0 text-gray-900"
+                                onContextMenu={openFigma}
+                            />
                             <button
                                 type="button"
                                 className={clsx(

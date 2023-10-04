@@ -14,6 +14,7 @@ import { DiscordIcon } from "./icons/discord";
 import { HamburgerIcon } from "./icons/hamburger";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { TopAnnouncement } from "./top-announcement";
+import { openFigma } from "../utils/open-figma";
 
 export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -60,17 +61,7 @@ export const LandingHeader = () => {
                 <div className={clsx("max-w-[1264px]", "mx-auto")}>
                     <div className={clsx("flex items-center")}>
                         <div className={clsx("flex items-center", "w-[240px]")}>
-                            <Link
-                                to="/"
-                                onContextMenu={() => {
-                                    window
-                                        .open(
-                                            "https://www.figma.com/file/y8lhTyumAN0zYI5nKKLoLN/refine.dev-brand-assets",
-                                            "_blank",
-                                        )
-                                        ?.focus();
-                                }}
-                            >
+                            <Link to="/" onContextMenu={openFigma}>
                                 <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
                             </Link>
                         </div>

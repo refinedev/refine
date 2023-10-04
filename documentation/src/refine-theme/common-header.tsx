@@ -14,6 +14,7 @@ import { Menu } from "./common-header/menu";
 import { CommonThemeToggle } from "./common-theme-toggle";
 import { CommonDocSearchButton } from "./common-doc-search-button";
 import { TopAnnouncement } from "./top-announcement";
+import { openFigma } from "../utils/open-figma";
 
 type Props = {
     hasSticky?: boolean;
@@ -56,7 +57,10 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                     <div className="flex items-center">
                         <div className={clsx("flex items-center", "w-[220px]")}>
                             <Link to="/">
-                                <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                                <RefineLogoIcon
+                                    className="dark:text-gray-0 text-gray-900"
+                                    onContextMenu={openFigma}
+                                />
                             </Link>
                         </div>
                         <div className="blog-lg:justify-between flex grow items-center justify-end">

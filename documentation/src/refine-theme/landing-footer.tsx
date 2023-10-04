@@ -4,6 +4,7 @@ import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { ProductHuntLogo } from "./product-hunt-logo";
+import { openFigma } from "../utils/open-figma";
 
 export const LandingFooter = () => {
     return (
@@ -34,7 +35,10 @@ export const LandingFooter = () => {
                     )}
                 >
                     <div className={clsx("flex items-center justify-between")}>
-                        <RefineLogoIcon className="text-gray-0" />
+                        <RefineLogoIcon
+                            className="text-gray-0"
+                            onContextMenu={openFigma}
+                        />
                         <ProductHuntLogo className="landing-md:block hidden" />
                     </div>
                     <div
