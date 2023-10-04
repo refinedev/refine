@@ -64,6 +64,7 @@
     "pluralize": "^8.0.0",
     "preferred-pm": "^3.0.3",
     "prettier": "^2.7.1",
+    "semver": "^v5.7.2",
     "semver-diff": "^3.1.1",
     "temp": "^0.9.4",
     "tslib": "^2.3.1"

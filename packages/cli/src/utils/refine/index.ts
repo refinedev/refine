@@ -1,4 +1,4 @@
-import { getPackageJson } from "@utils/package";
+import { getInstalledRefinePackages, getPackageJson } from "@utils/package";
 
 type ReturnType = {
     dev: boolean;
@@ -19,4 +19,15 @@ export const hasDefaultScript = (): ReturnType => {
     return {
         dev: isDefault,
     };
+};
+
+export const getRefineCorePackage = async () => {
+    const installedRefinePackages = await getInstalledRefinePackages();
+    const corePackage = installedRefinePackages?.find(
+        (pkg) =>
+            pkg.name === "@refinedev/core" ||
+            pkg.name === "@pankod/refine-core",
+    );
+
+    return corePackage;
 };

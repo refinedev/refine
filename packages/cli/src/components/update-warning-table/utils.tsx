@@ -34,5 +34,5 @@ export const getUpdateWarningTable = async (
 ) => {
     const command = await getCommand();
 
-    render(<UpdateWarningTable data={packages} command={command} />);
+    render(<UpdateWarningTable data={packages} command={command} />).unmount();
 };
