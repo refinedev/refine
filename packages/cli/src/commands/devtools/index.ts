@@ -68,7 +68,7 @@ const devtoolsInstaller = async () => {
         return;
     }
 
-    if (await isCorePackageDeprecated({ pckg: corePackage })) {
+    if (await isCorePackageDeprecated({ pkg: corePackage })) {
         return;
     }
 
@@ -160,7 +160,7 @@ const devtoolsInstaller = async () => {
 export const devtoolsRunner = async () => {
     const corePackage = await getRefineCorePackage();
 
-    if (await isCorePackageDeprecated({ pckg: corePackage })) {
+    if (await isCorePackageDeprecated({ pkg: corePackage })) {
         return;
     }
 
@@ -194,16 +194,13 @@ const getRefineCorePackage = async () => {
 };
 
 export const isCorePackageDeprecated = async ({
-    pckg,
+    pkg,
 }: {
-    pckg: { name: string; version: string };
+    pkg: { name: string; version: string };
 }) => {
-    if (
-        pckg.name === "@pankod/refine-core" ||
-        semver.lt(pckg.version, "4.0.0")
-    ) {
+    if (pkg.name === "@pankod/refine-core" || semver.lt(pkg.version, "4.0.0")) {
         console.log(
-            `🚨 You're using an old version of refine(${pckg.version}). refine version should be @4.42.0 or higher to use devtools.`,
+            `🚨 You're using an old version of refine(${pkg.version}). refine version should be @4.42.0 or higher to use devtools.`,
         );
         console.log("You can follow migration guide to update refine.");
         console.log(
