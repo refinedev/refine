@@ -61,16 +61,16 @@ const devtoolsInstaller = async () => {
         throw new Error("refine core package not found");
     }
 
-    if (await isCorePackageDeprecated({ pckg: corePackage })) {
-        return;
-    }
-
-    const isInstalledDevtools = await spinner(
+    const isInstalled = await spinner(
         isDevtoolsInstalled,
         "Checking if devtools is installed...",
     );
-    if (isInstalledDevtools) {
+    if (isInstalled) {
         console.log("🎉 refine devtools is already installed");
+        return;
+    }
+
+    if (await isCorePackageDeprecated({ pckg: corePackage })) {
         return;
     }
 
