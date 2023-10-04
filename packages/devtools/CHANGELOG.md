@@ -1,5 +1,15 @@
 # @refinedev/devtools
 
+## 1.1.8
+
+### Patch Changes
+
+-   [#5056](https://github.com/refinedev/refine/pull/5056) [`1fa531ebe89`](https://github.com/refinedev/refine/commit/1fa531ebe89bdab2af0dd57db121e2c0e72d44e8) Thanks [@aliemir](https://github.com/aliemir)! - Use the proper devtools url coming from the websocket handshake rather than using the hardcoded port.
+
+-   Updated dependencies [[`68f24d5b596`](https://github.com/refinedev/refine/commit/68f24d5b596eaf1b5b1690c7a57baf3e93fcf42b), [`1fa531ebe89`](https://github.com/refinedev/refine/commit/1fa531ebe89bdab2af0dd57db121e2c0e72d44e8)]:
+    -   @refinedev/cli@2.16.2
+    -   @refinedev/devtools-server@1.1.7
+
 ![refine devtools](https://github.com/refinedev/refine/assets/1110414/15ed6907-d0c8-4213-9024-2f6b0a09968f)
 
 ## 1.0.0
