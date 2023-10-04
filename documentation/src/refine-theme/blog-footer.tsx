@@ -5,6 +5,7 @@ import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { ProductHuntLogo } from "./product-hunt-logo";
+import { openFigma } from "../utils/open-figma";
 
 export const BlogFooter = () => {
     const { colorMode } = useColorMode();
@@ -39,7 +40,10 @@ export const BlogFooter = () => {
                     )}
                 >
                     <div className={clsx("flex items-center justify-between")}>
-                        <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                        <RefineLogoIcon
+                            className="dark:text-gray-0 text-gray-900"
+                            onContextMenu={openFigma}
+                        />
                         <ProductHuntLogo className="landing-md:block hidden" />
                     </div>
                     <div
