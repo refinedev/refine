@@ -98,6 +98,8 @@ This means you can use refine seamlessly in different platforms like React Nativ
 
 ⌛️ Built-in [CLI](https://refine.dev/docs/packages/documentation/cli/) with time-saving features
 
+💻 refine [Devtools](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md) - dive deeper into your app and provide useful insights
+
 ✅ Full **test coverage**
 
 ## Community
