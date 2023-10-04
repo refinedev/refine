@@ -68,7 +68,7 @@ const devtoolsInstaller = async () => {
         return;
     }
 
-    if (await isCorePackageDeprecated({ pkg: corePackage })) {
+    if (await validateCorePackageIsNotDeprecated({ pkg: corePackage })) {
         return;
     }
 
@@ -160,7 +160,7 @@ const devtoolsInstaller = async () => {
 export const devtoolsRunner = async () => {
     const corePackage = await getRefineCorePackage();
 
-    if (await isCorePackageDeprecated({ pkg: corePackage })) {
+    if (await validateCorePackageIsNotDeprecated({ pkg: corePackage })) {
         return;
     }
 
@@ -193,7 +193,7 @@ const getRefineCorePackage = async () => {
     return corePackage;
 };
 
-export const isCorePackageDeprecated = async ({
+export const validateCorePackageIsNotDeprecated = async ({
     pkg,
 }: {
     pkg: { name: string; version: string };
