@@ -1,6 +1,7 @@
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
+import { openFigma } from "../utils/open-figma";
 import { RefineLogoIcon } from "./icons/refine-logo";
 
 interface Props {
@@ -19,6 +20,7 @@ export const RefineLogo = ({ title, className }: Props) => {
                     "gap-3",
                     "no-underline",
                 )}
+                onContextMenu={openFigma}
             >
                 <RefineLogoIcon
                     className={clsx(

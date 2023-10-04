@@ -1,20 +1,27 @@
-import { Argument, Command } from "commander";
 import { server } from "@refinedev/devtools-server";
 import { addDevtoolsComponent } from "@transformers/add-devtools-component";
 import {
+    getInstalledRefinePackages,
     getPackageJson,
+    getPreferedPM,
     installPackagesSync,
     isDevtoolsInstalled,
 } from "@utils/package";
 import { hasDefaultScript } from "@utils/refine";
+import spinner from "@utils/spinner";
 import boxen from "boxen";
 import cardinal from "cardinal";
+import chalk from "chalk";
+import { Argument, Command } from "commander";
 import dedent from "dedent";
-import spinner from "@utils/spinner";
+import semver from "semver";
 
 type DevtoolsCommand = "start" | "init";
+
 const commands: DevtoolsCommand[] = ["start", "init"];
 const defaultCommand: DevtoolsCommand = "start";
+
+const minRefineCoreVersionForDevtools = "4.42.0";
 
 const load = (program: Command) => {
     return program
@@ -50,18 +57,29 @@ export const action = async (command: DevtoolsCommand) => {
 };
 
 const devtoolsInstaller = async () => {
+    const corePackage = await getRefineCorePackage();
+
     const isInstalled = await spinner(
         isDevtoolsInstalled,
         "Checking if devtools is installed...",
     );
-
     if (isInstalled) {
         console.log("🎉 refine devtools is already installed");
         return;
     }
 
+    if (await validateCorePackageIsNotDeprecated({ pkg: corePackage })) {
+        return;
+    }
+
     console.log("🌱 Installing refine devtools...");
-    await installPackagesSync(["@refinedev/devtools@latest"]);
+    const packagesToInstall = ["@refinedev/devtools@latest"];
+    // we should update core package if it is lower than minRefineCoreVersionForDevtools
+    if (semver.lt(corePackage.version, minRefineCoreVersionForDevtools)) {
+        packagesToInstall.push("@refinedev/core@latest");
+        console.log(`🌱 refine core package is being updated for devtools...`);
+    }
+    await installPackagesSync(packagesToInstall);
 
     // empty line
     console.log("");
@@ -72,6 +90,21 @@ const devtoolsInstaller = async () => {
     console.log(
         "✅ refine devtools package and components added to your project",
     );
+    // if core package is updated, we should show the updated version
+    if (packagesToInstall.includes("@refinedev/core@latest")) {
+        const updatedCorePackage = await getRefineCorePackage();
+        console.log(
+            `✅ refine core package updated from ${corePackage.version} to ${updatedCorePackage?.version}`,
+        );
+        console.log(
+            `   Changelog: ${chalk.underline.blueBright(
+                `https://c.refine.dev/core#${corePackage.version.replaceAll(
+                    ".",
+                    "",
+                )}`,
+            )}`,
+        );
+    }
 
     // empty line
     console.log("");
@@ -124,8 +157,59 @@ const devtoolsInstaller = async () => {
     }
 };
 
-export const devtoolsRunner = () => {
+export const devtoolsRunner = async () => {
+    const corePackage = await getRefineCorePackage();
+
+    if (await validateCorePackageIsNotDeprecated({ pkg: corePackage })) {
+        return;
+    }
+
+    if (semver.lt(corePackage.version, minRefineCoreVersionForDevtools)) {
+        console.log(
+            `🚨 You're using an old version of refine(${corePackage.version}). refine version should be @4.42.0 or higher to use devtools.`,
+        );
+        const pm = await getPreferedPM();
+        console.log(
+            `👉 You can update @refinedev/core package by running "${pm.name} run refine update"`,
+        );
+        return;
+    }
+
     server();
+};
+
+const getRefineCorePackage = async () => {
+    const installedRefinePackages = await getInstalledRefinePackages();
+    const corePackage = installedRefinePackages?.find(
+        (pkg) =>
+            pkg.name === "@refinedev/core" ||
+            pkg.name === "@pankod/refine-core",
+    );
+
+    if (!corePackage) {
+        throw new Error("refine core package not found");
+    }
+
+    return corePackage;
+};
+
+export const validateCorePackageIsNotDeprecated = async ({
+    pkg,
+}: {
+    pkg: { name: string; version: string };
+}) => {
+    if (pkg.name === "@pankod/refine-core" || semver.lt(pkg.version, "4.0.0")) {
+        console.log(
+            `🚨 You're using an old version of refine(${pkg.version}). refine version should be @4.42.0 or higher to use devtools.`,
+        );
+        console.log("You can follow migration guide to update refine.");
+        console.log(
+            chalk.blue("https://refine.dev/docs/migration-guide/3x-to-4x/"),
+        );
+        return true;
+    }
+
+    return false;
 };
 
 export default load;

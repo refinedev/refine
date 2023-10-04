@@ -1,16 +1,17 @@
-import React, { Fragment } from "react";
-import { Dialog, Transition, Disclosure } from "@headlessui/react";
-import clsx from "clsx";
 import Link from "@docusaurus/Link";
+import { Dialog, Disclosure, Transition } from "@headlessui/react";
+import clsx from "clsx";
+import React, { Fragment } from "react";
 
+import { openFigma } from "@site/src/utils/open-figma";
+import { CloseIcon } from "../icons/close";
 import {
-    GithubStarIcon,
-    GithubIcon,
     DiscordIcon,
+    GithubIcon,
+    GithubStarIcon,
     TwitterIcon,
 } from "../icons/popover";
 import { RefineLogoIcon } from "../icons/refine-logo";
-import { CloseIcon } from "../icons/close";
 import { MENU_ITEMS, NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
 import { MobileNavItem } from "./mobile-nav-item";
@@ -54,7 +55,10 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                 "landing-md:px-8",
                             )}
                         >
-                            <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                            <RefineLogoIcon
+                                className="dark:text-gray-0 text-gray-900"
+                                onContextMenu={openFigma}
+                            />
                             <button
                                 type="button"
                                 className={clsx(

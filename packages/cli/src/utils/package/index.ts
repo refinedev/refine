@@ -1,9 +1,9 @@
-import { readFileSync, existsSync, readJSON, pathExists } from "fs-extra";
+import spinner from "@utils/spinner";
 import execa from "execa";
+import { existsSync, pathExists, readFileSync, readJSON } from "fs-extra";
 import globby from "globby";
 import path from "path";
 import preferredPM from "preferred-pm";
-import spinner from "@utils/spinner";
 
 // TODO: Add package.json type
 export const getPackageJson = (): any => {
@@ -42,7 +42,9 @@ export const getInstalledRefinePackages = async () => {
 
         const dependencies = JSON.parse(execution.stdout)?.dependencies || {};
         const refineDependencies = Object.keys(dependencies).filter(
-            (dependency) => dependency.startsWith("@refinedev"),
+            (dependency) =>
+                dependency.startsWith("@refinedev") ||
+                dependency.startsWith("@pankod/refine-"),
         );
 
         const normalize: {

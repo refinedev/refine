@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
-import SearchBar from "@theme/SearchBar";
 import Link from "@docusaurus/Link";
+import SearchBar from "@theme/SearchBar";
 
 import { Menu } from "./common-header/menu";
 import { MobileMenuModal } from "./common-header/mobile-menu-modal";
@@ -10,6 +10,7 @@ import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 import { LandingDocSearchButton } from "./landing-doc-search-button";
 import { LandingGithubStarButton } from "./landing-github-star-button";
 
+import { openFigma } from "../utils/open-figma";
 import { DiscordIcon } from "./icons/discord";
 import { HamburgerIcon } from "./icons/hamburger";
 import { RefineLogoIcon } from "./icons/refine-logo";
@@ -60,7 +61,7 @@ export const LandingHeader = () => {
                 <div className={clsx("max-w-[1264px]", "mx-auto")}>
                     <div className={clsx("flex items-center")}>
                         <div className={clsx("flex items-center", "w-[240px]")}>
-                            <Link to="/">
+                            <Link to="/" onContextMenu={openFigma}>
                                 <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
                             </Link>
                         </div>

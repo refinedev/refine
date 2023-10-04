@@ -1,6 +1,6 @@
-import React from "react";
-import { render } from "ink";
 import { getDependencies, getPreferedPM, getScripts } from "@utils/package";
+import { render } from "ink";
+import React from "react";
 import UpdateWarningTable, { UpdateWarningTableProps } from "./table";
 
 export const getCommand = async () => {
@@ -34,5 +34,5 @@ export const getUpdateWarningTable = async (
 ) => {
     const command = await getCommand();
 
-    render(<UpdateWarningTable data={packages} command={command} />);
+    render(<UpdateWarningTable data={packages} command={command} />).unmount();
 };
