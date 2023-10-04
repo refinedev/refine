@@ -14,7 +14,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@refinedev/core": "^4.44.0",
-    "@refinedev/cli": "^2.16.3",
+    "@refinedev/cli": "^2.16.4",
     "@refinedev/nextjs-router": "^5.5.2",
     "@refinedev/strapi": "^4.1.2",
     "@refinedev/strapi-v4": "^5.2.2",
