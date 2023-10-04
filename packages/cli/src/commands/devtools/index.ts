@@ -75,13 +75,13 @@ const devtoolsInstaller = async () => {
     }
 
     console.log("🌱 Installing refine devtools...");
-    const installPackages = ["@refinedev/devtools@latest"];
+    const packagesToInstall = ["@refinedev/devtools@latest"];
     // we should update core package if it is lower than minRefineCoreVersionForDevtools
     if (isCorePackageOld({ pckg: corePackage })) {
-        installPackages.push("@refinedev/core@latest");
+        packagesToInstall.push("@refinedev/core@latest");
         console.log(`🌱 refine core package is updating for devtools...`);
     }
-    await installPackagesSync(installPackages);
+    await installPackagesSync(packagesToInstall);
 
     // empty line
     console.log("");
@@ -93,7 +93,7 @@ const devtoolsInstaller = async () => {
         "✅ refine devtools package and components added to your project",
     );
     // if core package is updated, we should show the updated version
-    if (installPackages.includes("@refinedev/core@latest")) {
+    if (packagesToInstall.includes("@refinedev/core@latest")) {
         const corePackageUpdated = await getRefineCorePackage();
         if (!corePackageUpdated) {
             throw new Error("refine core package not found");
