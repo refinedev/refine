@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
-import SearchBar from "@theme/SearchBar";
 import Link from "@docusaurus/Link";
+import SearchBar from "@theme/SearchBar";
 
 import { Menu } from "./common-header/menu";
 import { MobileMenuModal } from "./common-header/mobile-menu-modal";
@@ -10,11 +10,11 @@ import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 import { LandingDocSearchButton } from "./landing-doc-search-button";
 import { LandingGithubStarButton } from "./landing-github-star-button";
 
+import { openFigma } from "../utils/open-figma";
 import { DiscordIcon } from "./icons/discord";
 import { HamburgerIcon } from "./icons/hamburger";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { TopAnnouncement } from "./top-announcement";
-import { openFigma } from "../utils/open-figma";
 
 export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);

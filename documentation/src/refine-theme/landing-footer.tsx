@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import React from "react";
+import { openFigma } from "../utils/open-figma";
 import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { ProductHuntLogo } from "./product-hunt-logo";
-import { openFigma } from "../utils/open-figma";
 
 export const LandingFooter = () => {
     return (

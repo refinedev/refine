@@ -1,4 +1,3 @@
-import { Argument, Command } from "commander";
 import { server } from "@refinedev/devtools-server";
 import { addDevtoolsComponent } from "@transformers/add-devtools-component";
 import {
@@ -9,12 +8,13 @@ import {
     isDevtoolsInstalled,
 } from "@utils/package";
 import { hasDefaultScript } from "@utils/refine";
+import spinner from "@utils/spinner";
 import boxen from "boxen";
 import cardinal from "cardinal";
-import dedent from "dedent";
-import spinner from "@utils/spinner";
-import semver from "semver";
 import chalk from "chalk";
+import { Argument, Command } from "commander";
+import dedent from "dedent";
+import semver from "semver";
 
 type DevtoolsCommand = "start" | "init";
 

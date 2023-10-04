@@ -1,6 +1,6 @@
-import React from "react";
-import { render } from "ink";
 import { getDependencies, getPreferedPM, getScripts } from "@utils/package";
+import { render } from "ink";
+import React from "react";
 import UpdateWarningTable, { UpdateWarningTableProps } from "./table";
 
 export const getCommand = async () => {

@@ -1,5 +1,3 @@
-import React from "react";
-import debounce from "lodash/debounce";
 import {
     getElementFromFiber,
     getFiberFromElement,
@@ -9,6 +7,8 @@ import {
     getParentOfFiber,
 } from "@aliemir/dom-to-fiber-utils";
 import { DevToolsContext } from "@refinedev/devtools-shared";
+import debounce from "lodash/debounce";
+import React from "react";
 
 type Fiber = Exclude<ReturnType<typeof getFiberFromElement>, null>;
 

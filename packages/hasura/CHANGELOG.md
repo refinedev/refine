@@ -1,5 +1,14 @@
 # @refinedev/hasura
 
+## 6.4.10
+
+### Patch Changes
+
+-   [#5040](https://github.com/refinedev/refine/pull/5040) [`ca57048580a`](https://github.com/refinedev/refine/commit/ca57048580a0daceae5d6071bd52517527f7db45) Thanks [@IkumaTadokoro](https://github.com/IkumaTadokoro)! - fix: issue with #4972
+
+    When using the Hasura provider with the 'graphql-default' naming convention, snake-case graphql operators (e.g. \_is_null) were not converted to the correct case, causing query errors.
+    This problem is now fixed. Now the snake_case operator is converted according to the given naming convention (e.g. hasura-default: \_is_null, graphql-default: \_isNull).
+
 ## 6.4.9
 
 ### Patch Changes

@@ -1,5 +1,25 @@
 # @refinedev/devtools
 
+## 1.1.10
+
+### Patch Changes
+
+-   [#26](https://github.com/TheRakeshPurohit/refine/pull/26) [`7533e541739`](https://github.com/refinedev/refine/commit/7533e541739faadffb763feef8739ac46f62bd17) Thanks [@pull](https://github.com/apps/pull)! - Use the proper devtools url coming from the websocket handshake rather than using the hardcoded port.
+
+-   Updated dependencies [[`7533e541739`](https://github.com/refinedev/refine/commit/7533e541739faadffb763feef8739ac46f62bd17), [`7533e541739`](https://github.com/refinedev/refine/commit/7533e541739faadffb763feef8739ac46f62bd17)]:
+    -   @refinedev/cli@2.16.4
+    -   @refinedev/devtools-server@1.1.9
+
+## 1.1.9
+
+### Patch Changes
+
+-   [#5056](https://github.com/refinedev/refine/pull/5056) [`1fa531ebe89`](https://github.com/refinedev/refine/commit/1fa531ebe89bdab2af0dd57db121e2c0e72d44e8) Thanks [@aliemir](https://github.com/aliemir)! - Use the proper devtools url coming from the websocket handshake rather than using the hardcoded port.
+
+-   Updated dependencies [[`68f24d5b596`](https://github.com/refinedev/refine/commit/68f24d5b596eaf1b5b1690c7a57baf3e93fcf42b), [`1fa531ebe89`](https://github.com/refinedev/refine/commit/1fa531ebe89bdab2af0dd57db121e2c0e72d44e8)]:
+    -   @refinedev/cli@2.16.3
+    -   @refinedev/devtools-server@1.1.8
+
 ## 1.1.8
 
 ### Patch Changes
