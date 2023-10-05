@@ -88,6 +88,16 @@ export {
     FormWithSyncWithLocationParams,
     AutoSaveIndicatorProps,
     AutoSaveProps,
+    GetListParams,
+    GetManyParams,
+    GetOneParams,
+    CreateParams,
+    CreateManyParams,
+    UpdateParams,
+    UpdateManyParams,
+    DeleteOneParams,
+    DeleteManyParams,
+    CustomParams,
 } from "./interfaces";
 
 // all auth types
