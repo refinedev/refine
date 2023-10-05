@@ -3,7 +3,7 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
 <picture>
-  <source srcset="/logo-light.png" media="(prefers-color-scheme: dark)">
+  <source srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png" media="(prefers-color-scheme: dark)">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png"  style="width:350px;" align="center" />
 </picture>
 </a>
