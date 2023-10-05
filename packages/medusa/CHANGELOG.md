@@ -1,5 +1,11 @@
 # @refinedev/medusa
 
+## 2.4.7
+
+### Patch Changes
+
+-   [#5054](https://github.com/refinedev/refine/pull/5054) [`6ab41f88343`](https://github.com/refinedev/refine/commit/6ab41f88343955cc0a3d3a77fc4cc641fd11f05d) Thanks [@MahirMahdi](https://github.com/MahirMahdi)! - Now `useCustomMutation` can modify headers for each individual call, without setting the default headers. Previously the default headers was included in all subsequent API calls.
+
 ## 2.4.6
 
 ### Patch Changes
