@@ -1,5 +1,73 @@
 # @refinedev/core
 
+## 4.44.1
+
+### Patch Changes
+
+-   [#5050](https://github.com/refinedev/refine/pull/5050) [`613af0021f6`](https://github.com/refinedev/refine/commit/613af0021f6a48be3e048678102738c912ee981f) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: pass `dataProviderName` to `liveProvider.subscribe` method.
+    From now on, you can use `dataProviderName` to distinguish between different data providers in live provider.
+
+    [Refer to documentation for more info about multiple data providers ->](https://refine.dev/docs/api-reference/core/providers/data-provider/#multiple-data-providers)
+
+    #### Usage
+
+    ```ts
+    import { useForm, useList } from "@refinedev/core";
+
+    useList({
+        dataProviderName: "first-data-provider",
+    });
+
+    useForm({
+        dataProviderName: "second-data-provider",
+    });
+    ```
+
+    ```ts
+    import { LiveProvider } from "@refinedev/core";
+
+    export const liveProvider = (client: any): LiveProvider => {
+        return {
+            subscribe: ({
+                channel,
+                types,
+                params,
+                callback,
+                dataProviderName,
+            }) => {
+                console.log({ dataProviderName }); //  "second-data-provider"
+            },
+        };
+    };
+    ```
+
+-   [#5053](https://github.com/refinedev/refine/pull/5053) [`857d4020a30`](https://github.com/refinedev/refine/commit/857d4020a30d518178fa4f3bce8eeb509c9bb6d2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: The parameter types of data provider methods have been exported.
+    From now on, you can use the parameter types of Data Provider methods.
+
+    ```ts
+    import type {
+        DataProvider,
+        GetListResponse
+        // new exported types
+        GetListParams,
+        GetManyParams,
+        GetOneParams,
+        CreateParams,
+        CreateManyParams,
+        UpdateParams,
+        UpdateManyParams,
+        DeleteOneParams,
+        DeleteManyParams,
+        CustomParams,
+    } from "@refinedev/core";
+
+    const myDataProvider: DataProvider = {
+        getList: async (params: GetListParams): Promise<GetListResponse<any>> => {
+            return { data: [], total: 0 };
+        },
+    };
+    ```
+
 ## 4.44.0
 
 ### Minor Changes
