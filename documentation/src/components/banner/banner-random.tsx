@@ -10,7 +10,7 @@ const data = [
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
-            href: "https://twitter.com/refine_dev",
+            href: "https://github.com/refinedev/refine",
         },
         button: {
             text: "Learn more",
