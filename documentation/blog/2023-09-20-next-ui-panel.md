@@ -302,6 +302,12 @@ root.render(
 
 That is everything you need to start using NextUI in your refine application. You may need to restart the development server after making the above changes.
 
+---
+
+<BannerRandom />
+
+---
+
 ## How to build React admin dashboard with NextUI and refine
 
 In this section, we will use the refine app we created above as a template to build a simple React admin dashboard with NextUI and refine. This section assumes you have installed NextUI and its dependencies. We will install additional packages as we build this project.
