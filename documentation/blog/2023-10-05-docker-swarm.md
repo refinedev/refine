@@ -47,7 +47,7 @@ In order to set up your first Swarm and initialize the swarm mode, you can run t
 
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/swarm-init.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/swarm-init.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -62,7 +62,7 @@ This command will return you the full command of '**docker swarm join**' along w
 
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-1.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-1.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -71,7 +71,7 @@ Now, you need to copy and run the full command you get in the output of '**docke
 
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-2.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-2.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -97,7 +97,7 @@ We can deploy the '**nginx**' service in the docker swarm with 3 service replica
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/ngix-1.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/ngix-1.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -109,7 +109,7 @@ To ensure that the service is correctly deployed, you can list the services with
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/service-ls.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/service-ls.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -127,7 +127,7 @@ Where **SERVICE_NAME** is the name of the service to be scaled, and **REPLICA_CO
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/scaling-service-1.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/scaling-service-1.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -146,7 +146,7 @@ For Example, if we want to update the version of '**nginx-service**', we can uti
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-1.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-1.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -164,7 +164,7 @@ For Example, if there is any issue in an updated version, you can rollback to th
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-2.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-2.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -178,7 +178,7 @@ For monitoring purposes, you can run the command that will provide insights rela
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-1.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-1.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -191,7 +191,7 @@ Sometimes, while troubleshooting an issue, you might need to view detailed logs 
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-2.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-2.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -204,7 +204,7 @@ While administrating the docker swarm cluster, you may be required to restructur
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-1.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-1.png"  alt="docker swarm" />
 </div>
 
 <br/>
@@ -216,7 +216,7 @@ Managers can remove a node from the node list if it has left the Swarm or if it 
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-2.png"  alt="docker exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-2.png"  alt="docker swarm" />
 </div>
 
 <br/>
