@@ -12,7 +12,7 @@
   "dependencies": {
     "@refinedev/chakra-ui": "^2.26.16",
     "@tabler/icons": "^1.119.0",
-    "@refinedev/core": "^4.44.0",
+    "@refinedev/core": "^4.44.1",
     "@refinedev/cli": "^2.16.4",
     "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/simple-rest": "^4.5.4",
