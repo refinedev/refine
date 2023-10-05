@@ -211,6 +211,8 @@ module.exports = {
                 ],
                 "banner-examples-text":
                     "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
+                "top-announcement-text":
+                    "linear-gradient(90deg, rgba(31, 63, 72, 0.00) 0%, #1F3F48 10%, #1F3F48 90%, rgba(31, 63, 72, 0.00) 100%)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -227,6 +229,8 @@ module.exports = {
                     "hackathon-button-bg 2s ease-in-out infinite alternate",
                 "walkthrough-bounce":
                     "walkthrough-bounce 3s ease-in-out infinite",
+                "top-announcement-glow":
+                    "top-announcement-glow 1.5s ease-in-out infinite alternate",
             },
             keyframes: {
                 "walkthrough-bounce": {
@@ -307,6 +311,14 @@ module.exports = {
                     },
                     "100%": {
                         transform: "translateY(-3328px)",
+                    },
+                },
+                "top-announcement-glow": {
+                    "0%": {
+                        opacity: 1,
+                    },
+                    "100%": {
+                        opacity: 0,
                     },
                 },
             },
