@@ -100,7 +100,7 @@ export const TopAnnouncement = () => {
 const Text = () => {
     return (
         <a
-            href="https://github.com/refinedev/refine"
+            href="https://s.refine.dev/devtools-beta"
             target="_blank"
             rel="noreferrer"
             className={clsx(
