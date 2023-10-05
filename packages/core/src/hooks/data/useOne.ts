@@ -153,6 +153,7 @@ export const useOne = <
                   typeof id !== "undefined",
         liveMode,
         onLiveEvent,
+        dataProviderName: pickedDataProvider,
     });
 
     const queryResponse = useQuery<

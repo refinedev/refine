@@ -53,6 +53,11 @@ export type UseSubscriptionProps = {
         resource?: string;
         [key: string]: any;
     };
+    /**
+     * Name of the data provider to subscribe.
+     * @default "default"
+     */
+    dataProviderName?: string;
 };
 
 export const useSubscription = ({
@@ -61,6 +66,7 @@ export const useSubscription = ({
     types = ["*"],
     enabled = true,
     onLiveEvent,
+    dataProviderName = "default",
 }: UseSubscriptionProps): void => {
     const liveDataContext = useContext<ILiveContext>(LiveContext);
 
@@ -73,6 +79,7 @@ export const useSubscription = ({
                 params,
                 types,
                 callback: onLiveEvent,
+                dataProviderName,
             });
         }
 
