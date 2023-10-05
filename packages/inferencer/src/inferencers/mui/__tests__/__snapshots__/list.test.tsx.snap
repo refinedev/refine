@@ -120,7 +120,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":r3:"
+                          id=":r4:"
                           tabindex="-1"
                           type="button"
                         >
@@ -224,7 +224,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":r9:"
+                          id=":ra:"
                           tabindex="-1"
                           type="button"
                         >
@@ -328,7 +328,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":rf:"
+                          id=":rg:"
                           tabindex="-1"
                           type="button"
                         >
@@ -539,12 +539,13 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                   class="MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input css-16c50h-MuiInputBase-root-MuiTablePagination-select"
                 >
                   <div
+                    aria-controls=":r2:"
                     aria-expanded="false"
                     aria-haspopup="listbox"
                     aria-labelledby=":r1: :r0:"
                     class="MuiSelect-select MuiTablePagination-select MuiSelect-standard MuiInputBase-input css-194a1fa-MuiSelect-select-MuiInputBase-input"
                     id=":r0:"
-                    role="button"
+                    role="combobox"
                     tabindex="0"
                   >
                     25

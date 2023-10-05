@@ -145,6 +145,7 @@ export const useMany = <
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
+        dataProviderName: pickedDataProvider,
     });
 
     const queryResponse = useQuery<

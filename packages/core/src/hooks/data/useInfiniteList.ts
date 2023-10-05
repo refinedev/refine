@@ -220,6 +220,7 @@ export const useInfiniteList = <
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
+        dataProviderName: pickedDataProvider,
     });
 
     const queryResponse = useInfiniteQuery<
