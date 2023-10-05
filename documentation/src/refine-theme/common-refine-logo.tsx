@@ -1,8 +1,8 @@
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
-import { RefineLogoIcon } from "./icons/refine-logo";
 import { openFigma } from "../utils/open-figma";
+import { RefineLogoIcon } from "./icons/refine-logo";
 
 interface Props {
     title?: string;

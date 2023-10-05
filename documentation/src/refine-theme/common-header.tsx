@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import SearchBar from "@site/src/theme/SearchBar";
 import Link from "@docusaurus/Link";
+import SearchBar from "@site/src/theme/SearchBar";
 import clsx from "clsx";
 import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState } from "react";
 
+import { HamburgerIcon } from "./icons/hamburger";
 import { HeaderDiscordIcon } from "./icons/header-discord";
 import { RefineLogoIcon } from "./icons/refine-logo";
-import { HamburgerIcon } from "./icons/hamburger";
 
-import { GitHubStar } from "./common-header/github-star";
-import { MobileMenuModal } from "./common-header/mobile-menu-modal";
-import { Menu } from "./common-header/menu";
-import { CommonThemeToggle } from "./common-theme-toggle";
-import { CommonDocSearchButton } from "./common-doc-search-button";
-import { TopAnnouncement } from "./top-announcement";
 import { openFigma } from "../utils/open-figma";
+import { CommonDocSearchButton } from "./common-doc-search-button";
+import { GitHubStar } from "./common-header/github-star";
+import { Menu } from "./common-header/menu";
+import { MobileMenuModal } from "./common-header/mobile-menu-modal";
+import { CommonThemeToggle } from "./common-theme-toggle";
+import { TopAnnouncement } from "./top-announcement";
 
 type Props = {
     hasSticky?: boolean;
