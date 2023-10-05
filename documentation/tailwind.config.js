@@ -230,7 +230,7 @@ module.exports = {
                 "walkthrough-bounce":
                     "walkthrough-bounce 3s ease-in-out infinite",
                 "top-announcement-glow":
-                    "top-announcement-glow 1.5s ease-in-out infinite alternate",
+                    "top-announcement-glow 1s ease-in-out infinite alternate",
             },
             keyframes: {
                 "walkthrough-bounce": {

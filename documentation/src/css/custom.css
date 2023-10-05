@@ -1077,6 +1077,7 @@ html[data-theme="dark"] .sourcecode-badge {
 }
 
 .bg-top-announcement {
+    border-bottom: 1px solid rgba(71, 235, 235, 0.15);
     background: radial-gradient(
             218.19% 111.8% at 0% 0%,
             rgba(71, 235, 235, 0.1) 0%,

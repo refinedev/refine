@@ -7,7 +7,7 @@ export const TopAnnouncement = () => {
         <div className={clsx("w-full h-12", "relative", "bg-top-announcement")}>
             <div
                 className={clsx(
-                    "flex",
+                    "hidden lg:flex",
                     "w-full h-full",
                     "border-b border-solid border-[#47ebeb26]",
                     "top-announcement-mask",
@@ -104,12 +104,13 @@ const Text = () => {
             target="_blank"
             rel="noreferrer"
             className={clsx(
-                "absolute",
+                "relative lg:absolute",
+                "px-2 lg:px-0",
                 "top-0",
                 "left-[50%]",
                 "translate-x-[-50%]",
                 "bg-top-announcement-text",
-                "h-full w-[720px]",
+                "h-full w-full lg:w-[680px]",
                 "flex items-center justify-center",
                 "text-white",
                 "text-xs",
@@ -118,7 +119,7 @@ const Text = () => {
                 "hover:no-underline",
             )}
         >
-            <RefineLogoCyan />
+            <RefineLogoCyan className="flex-shrink-0" />
             <div className={clsx("ml-2")}>
                 Unlock the power of{" "}
                 <span className={clsx("font-semibold")}>refine Devtools</span>,

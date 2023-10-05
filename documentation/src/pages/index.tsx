@@ -32,8 +32,8 @@ function Home() {
                         className={clsx(
                             "top-section",
                             "bg-landing-stars",
-                            "mb-12 -mt-[80px] md:-mt-[100px]",
-                            "pt-[100px]",
+                            "mb-12 -mt-[100px] md:-mt-[110px] lg:-mt-[90px] xl:-mt-[110px]",
+                            "pt-[100px] lg:pt-[90px] xl:-pt-[110px]",
                             "landing-mask-image-hero-wide",
                         )}
                     >
