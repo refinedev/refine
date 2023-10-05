@@ -3,7 +3,7 @@
 ---
 
 feat: pass `dataProviderName` to `liveProvider.subscribe` method.
-From now on, you can use the `dataProviderName` to distinguish between different data providers.
+From now on, you can use `dataProviderName` to distinguish between different data providers in live provider.
 
 [Refer to documentation for more info about multiple data providers ->](https://refine.dev/docs/api-reference/core/providers/data-provider/#multiple-data-providers)
 
