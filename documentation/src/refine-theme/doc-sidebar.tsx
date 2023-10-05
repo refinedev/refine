@@ -12,6 +12,8 @@ import Link from "@docusaurus/Link";
 import { DashIcon } from "./icons/dash";
 import { ChevronDownIcon } from "./icons/chevron-down";
 import { HEADER_HEIGHT } from "./doc-header";
+import { NewBadgeShiny } from "./icons/new-badge-shiny";
+import { RefineLogoShiny } from "./icons/refine-logo-shiny";
 
 type Variant = "desktop" | "mobile";
 
@@ -30,6 +32,7 @@ type SidebarLinkItem = {
     label: string;
     href: string;
     docId: string;
+    className?: string;
 };
 
 type SidebarHtmlItem = {
@@ -223,8 +226,8 @@ const SidebarLink = ({
 }) => {
     const ref = React.useRef<HTMLAnchorElement>(null);
     const isActive = isActiveSidebarItem(item, path);
-
     const isSame = isSamePath(item.href, path);
+    const isShiny = item.className?.includes("sidebar-item-shiny") || false;
 
     // React.useEffect(() => {
     //     if (isActive) {
@@ -244,12 +247,17 @@ const SidebarLink = ({
             className={clsx(
                 "relative",
                 "min-h-[40px]",
-                isActive
+                isShiny &&
+                    "bg-sidebar-item-shiny-light dark:bg-sidebar-item-shiny-dark rounded-xl",
+                isShiny
+                    ? "text-refine-blue dark:text-refine-cyan-alt"
+                    : isActive
                     ? "dark:text-gray-0 text-gray-900"
                     : "text-gray-500 dark:text-gray-400",
+                !isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
+                isShiny ? "px-4 py-3" : "p-2",
                 "text-sm font-normal leading-6",
                 "flex items-start justify-start",
-                "p-2",
                 dashed && !line && "pl-0",
                 line && !dashed && "pl-5",
                 line && dashed && "pl-5",
@@ -257,33 +265,39 @@ const SidebarLink = ({
                 line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
                 "group",
                 "transition-colors duration-200 ease-in-out",
-                "hover:dark:text-gray-0 hover:text-gray-900",
                 "no-underline",
+                item.className,
             )}
         >
             {dashed && (
                 <DashIcon className="z-[1] h-6 w-6 flex-shrink-0 opacity-70" />
             )}
-            <span className="z-[1]">{item.label}</span>
-            <div
-                className={clsx(
-                    "absolute",
-                    "rounded-lg",
-                    "transition-opacity",
-                    "duration-200 ease-in-out",
-                    "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
-                    {
-                        "bg-gray-100/50 dark:bg-gray-700/50":
-                            isActive && isSame,
-                        "right-0": variant === "desktop",
-                        "-right-2": variant === "mobile",
-                        "w-[calc(280px-24px)]": variant === "desktop",
-                        "w-[calc(480px-16px)]": variant === "mobile",
-                    },
-                    "top-0",
-                    "h-full",
-                )}
-            />
+            <div className={"flex items-center"}>
+                {isShiny && <RefineLogoShiny className="mr-2 flex-shrink-0" />}
+                <span className="z-[1] flex-shrink-0">{item.label}</span>
+                {isShiny && <NewBadgeShiny className="ml-2 flex-shrink-0" />}
+            </div>
+            {!isShiny && (
+                <div
+                    className={clsx(
+                        "absolute",
+                        "rounded-lg",
+                        "transition-opacity",
+                        "duration-200 ease-in-out",
+                        "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
+                        {
+                            "bg-gray-100/50 dark:bg-gray-700/50":
+                                isActive && isSame,
+                            "right-0": variant === "desktop",
+                            "-right-2": variant === "mobile",
+                            "w-[calc(280px-24px)]": variant === "desktop",
+                            "w-[calc(480px-16px)]": variant === "mobile",
+                        },
+                        "top-0",
+                        "h-full",
+                    )}
+                />
+            )}
         </Link>
     );
 };

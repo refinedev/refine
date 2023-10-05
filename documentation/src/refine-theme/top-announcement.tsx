@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React, { SVGProps } from "react";
-import { RefineLogoCyan } from "./icons/refine-logo-cyan";
+import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
 
 export const TopAnnouncement = () => {
     return (
@@ -119,7 +119,7 @@ const Text = () => {
                 "hover:no-underline",
             )}
         >
-            <RefineLogoCyan className="flex-shrink-0" />
+            <RefineLogoShinyCyan className="flex-shrink-0" />
             <div className={clsx("ml-2")}>
                 Unlock the power of{" "}
                 <span className={clsx("font-semibold")}>refine Devtools</span>,
