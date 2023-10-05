@@ -19,6 +19,7 @@ useSubscription({
     channel: "channel-name",
     types: ["event-name", "another-event-name"]
     onLiveEvent: (event) => {},
+    dataProviderName: "default",
 });
 
 ```
@@ -54,6 +55,12 @@ You can pass any additional parameters to the [`liveProvider`][live-provider]'s 
 Hooks that use `useSubscription` internally send the query's parameters' (pagination, meta, sort, filters, etc.) information along with this prop.
 
 > For more information on which hooks use `useSubcription` internally, refer to the [LiveProvider's "Supported Hooks Subscription" section&#8594][supported-hooks-subscription]
+
+### dataProviderName
+
+> Default: `"default"`
+
+You can pass the name of the data provider to use for the subscription.
 
 ## API Reference
 

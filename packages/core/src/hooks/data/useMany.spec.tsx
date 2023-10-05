@@ -111,43 +111,52 @@ describe("useMany Hook", () => {
     });
 
     describe("useResourceSubscription", () => {
-        it("useSubscription", async () => {
-            const onSubscribeMock = jest.fn();
+        it.each(["default", "categories"])(
+            "useSubscription [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onSubscribeMock = jest.fn();
 
-            const { result } = renderHook(
-                () => useMany({ resource: "posts", ids: ["1", "2"] }),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                        liveProvider: {
-                            unsubscribe: jest.fn(),
-                            subscribe: onSubscribeMock,
-                        },
-                        refineProvider: {
-                            ...mockRefineProvider,
-                            liveMode: "auto",
-                        },
+                const { result } = renderHook(
+                    () =>
+                        useMany({
+                            resource: "posts",
+                            ids: ["1", "2"],
+                            dataProviderName,
+                        }),
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [{ name: "posts" }],
+                            liveProvider: {
+                                unsubscribe: jest.fn(),
+                                subscribe: onSubscribeMock,
+                            },
+                            refineProvider: {
+                                ...mockRefineProvider,
+                                liveMode: "auto",
+                            },
+                        }),
+                    },
+                );
+
+                await waitFor(() => {
+                    expect(!result.current.isLoading).toBeTruthy();
+                });
+
+                expect(onSubscribeMock).toBeCalled();
+                expect(onSubscribeMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    callback: expect.any(Function),
+                    params: expect.objectContaining({
+                        ids: ["1", "2"],
+                        resource: "posts",
+                        subscriptionType: "useMany",
                     }),
-                },
-            );
-
-            await waitFor(() => {
-                expect(!result.current.isLoading).toBeTruthy();
-            });
-
-            expect(onSubscribeMock).toBeCalled();
-            expect(onSubscribeMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                callback: expect.any(Function),
-                params: expect.objectContaining({
-                    ids: ["1", "2"],
-                    resource: "posts",
-                    subscriptionType: "useMany",
-                }),
-                types: ["*"],
-            });
-        });
+                    types: ["*"],
+                    dataProviderName,
+                });
+            },
+        );
 
         it("liveMode = Off useSubscription", async () => {
             const onSubscribeMock = jest.fn();

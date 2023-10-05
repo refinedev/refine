@@ -108,51 +108,56 @@ describe("useInfiniteList Hook", () => {
     });
 
     describe("useResourceSubscription", () => {
-        it("useSubscription", async () => {
-            const onSubscribeMock = jest.fn();
+        it.each(["default", "categories"])(
+            "useSubscription [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onSubscribeMock = jest.fn();
 
-            const { result } = renderHook(
-                () =>
-                    useInfiniteList({
-                        resource: "posts",
-                    }),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                        liveProvider: {
-                            unsubscribe: jest.fn(),
-                            subscribe: onSubscribeMock,
-                        },
-                        refineProvider: {
-                            ...mockRefineProvider,
-                            liveMode: "auto",
-                        },
-                    }),
-                },
-            );
-
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
-
-            expect(onSubscribeMock).toBeCalled();
-            expect(onSubscribeMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                callback: expect.any(Function),
-                params: expect.objectContaining({
-                    hasPagination: true,
-                    pagination: {
-                        current: 1,
-                        pageSize: 10,
-                        mode: "server",
+                const { result } = renderHook(
+                    () =>
+                        useInfiniteList({
+                            resource: "posts",
+                            dataProviderName,
+                        }),
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: MockJSONServer,
+                            resources: [{ name: "posts" }],
+                            liveProvider: {
+                                unsubscribe: jest.fn(),
+                                subscribe: onSubscribeMock,
+                            },
+                            refineProvider: {
+                                ...mockRefineProvider,
+                                liveMode: "auto",
+                            },
+                        }),
                     },
-                    resource: "posts",
-                    subscriptionType: "useList",
-                }),
-                types: ["*"],
-            });
-        });
+                );
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onSubscribeMock).toBeCalled();
+                expect(onSubscribeMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    callback: expect.any(Function),
+                    params: expect.objectContaining({
+                        hasPagination: true,
+                        pagination: {
+                            current: 1,
+                            pageSize: 10,
+                            mode: "server",
+                        },
+                        resource: "posts",
+                        subscriptionType: "useList",
+                    }),
+                    types: ["*"],
+                    dataProviderName,
+                });
+            },
+        );
 
         it("liveMode = Off useSubscription", async () => {
             const onSubscribeMock = jest.fn();

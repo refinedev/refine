@@ -217,6 +217,7 @@ export const useList = <
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
+        dataProviderName: pickedDataProvider,
     });
 
     const queryResponse = useQuery<
