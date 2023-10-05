@@ -3,7 +3,7 @@ hidden: false
 
 ---
 
-refine Devtools beta version is out! To install in your project, just run "$> npm run refine devtools init". More info: https://s.refine.dev/devtools-beta
+refine Devtools beta version is out! To install in your project, just run `npm run refine devtools init`. https://s.refine.dev/devtools-beta
 ---
 
 ---announcement
