@@ -135,146 +135,177 @@ export interface DeleteManyResponse<TData = BaseRecord> {
     data: TData[];
 }
 
+export interface GetListParams {
+    resource: string;
+    pagination?: Pagination;
+    /**
+     * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
+     */
+    hasPagination?: boolean;
+    /**
+     * @deprecated `sort` is deprecated, use `sorters` instead.
+     */
+    sort?: CrudSorting;
+    sorters?: CrudSorting;
+    filters?: CrudFilters;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+    dataProviderName?: string;
+}
+
+export interface GetManyParams {
+    resource: string;
+    ids: BaseKey[];
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+    dataProviderName?: string;
+}
+
+export interface GetOneParams {
+    resource: string;
+    id: BaseKey;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface CreateParams<TVariables = {}> {
+    resource: string;
+    variables: TVariables;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface CreateManyParams<TVariables = {}> {
+    resource: string;
+    variables: TVariables[];
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface UpdateParams<TVariables = {}> {
+    resource: string;
+    id: BaseKey;
+    variables: TVariables;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface UpdateManyParams<TVariables = {}> {
+    resource: string;
+    ids: BaseKey[];
+    variables: TVariables;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface DeleteOneParams<TVariables = {}> {
+    resource: string;
+    id: BaseKey;
+    variables?: TVariables;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface DeleteManyParams<TVariables = {}> {
+    resource: string;
+    ids: BaseKey[];
+    variables?: TVariables;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
+export interface CustomParams<TQuery = unknown, TPayload = unknown> {
+    url: string;
+    method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
+    /**
+     * @deprecated `sort` is deprecated, use `sorters` instead.
+     */
+    sort?: CrudSorting;
+    sorters?: CrudSorting;
+    filters?: CrudFilter[];
+    payload?: TPayload;
+    query?: TQuery;
+    headers?: {};
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+}
+
 export interface IDataContextProvider {
-    getList: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        pagination?: Pagination;
-        /**
-         * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
-         */
-        hasPagination?: boolean;
-        /**
-         * @deprecated `sort` is deprecated, use `sorters` instead.
-         */
-        sort?: CrudSorting;
-        sorters?: CrudSorting;
-        filters?: CrudFilters;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-        dataProviderName?: string;
-    }) => Promise<GetListResponse<TData>>;
-    getMany?: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        ids: BaseKey[];
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-        dataProviderName?: string;
-    }) => Promise<GetManyResponse<TData>>;
-    getOne: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        id: BaseKey;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<GetOneResponse<TData>>;
-    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        variables: TVariables;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<CreateResponse<TData>>;
-    createMany?: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        variables: TVariables[];
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<CreateManyResponse<TData>>;
-    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        id: BaseKey;
-        variables: TVariables;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<UpdateResponse<TData>>;
-    updateMany?: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        ids: BaseKey[];
-        variables: TVariables;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<UpdateManyResponse<TData>>;
-    deleteOne: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        id: BaseKey;
-        variables?: TVariables;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<DeleteOneResponse<TData>>;
-    deleteMany?: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        ids: BaseKey[];
-        variables?: TVariables;
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<DeleteManyResponse<TData>>;
+    getList: <TData extends BaseRecord = BaseRecord>(
+        params: GetListParams,
+    ) => Promise<GetListResponse<TData>>;
+
+    getMany?: <TData extends BaseRecord = BaseRecord>(
+        params: GetManyParams,
+    ) => Promise<GetManyResponse<TData>>;
+
+    getOne: <TData extends BaseRecord = BaseRecord>(
+        params: GetOneParams,
+    ) => Promise<GetOneResponse<TData>>;
+
+    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: CreateParams<TVariables>,
+    ) => Promise<CreateResponse<TData>>;
+
+    createMany?: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: CreateManyParams<TVariables>,
+    ) => Promise<CreateManyResponse<TData>>;
+
+    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: UpdateParams<TVariables>,
+    ) => Promise<UpdateResponse<TData>>;
+
+    updateMany?: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: UpdateManyParams<TVariables>,
+    ) => Promise<UpdateManyResponse<TData>>;
+
+    deleteOne: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: DeleteOneParams<TVariables>,
+    ) => Promise<DeleteOneResponse<TData>>;
+
+    deleteMany?: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: DeleteManyParams<TVariables>,
+    ) => Promise<DeleteManyResponse<TData>>;
+
     getApiUrl: () => string;
+
     custom?: <
         TData extends BaseRecord = BaseRecord,
         TQuery = unknown,
         TPayload = unknown,
-    >(params: {
-        url: string;
-        method:
-            | "get"
-            | "delete"
-            | "head"
-            | "options"
-            | "post"
-            | "put"
-            | "patch";
-        /**
-         * @deprecated `sort` is deprecated, use `sorters` instead.
-         */
-        sort?: CrudSorting;
-        sorters?: CrudSorting;
-        filters?: CrudFilter[];
-        payload?: TPayload;
-        query?: TQuery;
-        headers?: {};
-        meta?: MetaQuery;
-        /**
-         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-         */
-        metaData?: MetaQuery;
-    }) => Promise<CustomResponse<TData>>;
+    >(
+        params: CustomParams<TQuery, TPayload>,
+    ) => Promise<CustomResponse<TData>>;
 }
 
 export type IDataContext = IDataContextProvider;
