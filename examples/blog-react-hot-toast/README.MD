@@ -38,11 +38,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example blog-react-toastify
+npm create refine-app@latest -- --example blog-react-hot-toast
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open blog-react-toastify example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/blog-react-toastify?view=preview&theme=dark&codemirror=1)
+[![Open blog-react-hot-toast example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/blog-react-hot-toast?view=preview&theme=dark&codemirror=1)
