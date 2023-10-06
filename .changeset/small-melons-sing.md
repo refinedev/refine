@@ -6,11 +6,11 @@ fix: antd notificationProvider issue
 
 Antd notification component could not access theme context, now it's fixed.
 
-This release changes exported `notificationProvider` value from type `NotificationProvider` to `() => NotificationProvider`. If you previously had customizations applied to the `notificationProvider` object, you may need to update your code like the following:
+This release provides an alternative to exported `notificationProvider` value from type `NotificationProvider` to `() => NotificationProvider`. If you previously had customizations applied to the `notificationProvider` object, you may need to update your code like the following:
 
 ```diff
 - import { notificationProvider } from "@refinedev/antd";
-+ import { notificationProvider as useDefaultNotificationProvider } from "@refinedev/antd";
++ import { useNotificationProvider } from "@refinedev/antd";
 
 - const myNotificationProvider = {
 -    ...notificationProvider,
@@ -20,7 +20,7 @@ This release changes exported `notificationProvider` value from type `Notificati
 -    },
 - }
 + const myNotificationProvider = () => {
-+     const notificationProvider = useDefaultNotificationProvider();
++     const notificationProvider = useNotificationProvider();
 +     return {
 +          ...notificationProvider,
 +          open: (...args) => {
