@@ -164,7 +164,7 @@ const App: React.FC = () => {
 
 ### `useNotificationProvider` compatible with Theme
 
-The `notificationProvider` has been deprecated because it cannot consume the current `theme` context by default. To enable the `Notification` component to consume the current `theme` context, import the `App` package from `antd` and the `useNotificationProvider` package from `@refinedev/antd` and pass it as highlighted below:
+The `notificationProvider` export has been deprecated because it cannot consume the current `theme` context by default. To enable the `Notification` component to consume the current `theme` context, import the `App` component from `antd` and the `useNotificationProvider` export from `@refinedev/antd` and pass it as highlighted below:
 
 ```tsx
 import { Refine } from "@refinedev/core";
