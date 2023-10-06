@@ -1,21 +1,20 @@
 import React from "react";
-import Markdown from "ink-markdown";
 import dedent from "dedent";
-import { Box, Text } from "ink";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
-import { renderCodeMarkdown } from "@utils/swizzle/renderCodeMarkdown";
+import chalk from "chalk";
+import { markedTerminalRenderer } from "@utils/marked-terminal-renderer";
 
-type Props = {
+type Params = {
     label: string;
     files: [targetPath: string, statusCode: string][];
     message?: string;
 };
 
-const SwizzleMessage: React.FC<Props> = ({
+export const printSwizzleMessage = ({
     label,
     files,
     message = "**`Warning:`** You should use the component where you want to use it.",
-}) => {
+}: Params) => {
     const errors = files.filter(([, statusCode]) =>
         Object.values(SWIZZLE_CODES)
             .filter((code) => code !== SWIZZLE_CODES.SUCCESS)
@@ -40,25 +39,20 @@ const SwizzleMessage: React.FC<Props> = ({
     }
 
     const renderStatusMessage = () => {
+        chalk.blueBright("Successfully swizzled");
+
         switch (status) {
             case "success":
-                return (
-                    <Text color="blueBright">
-                        Successfully swizzled <Text bold>{label}</Text>
-                    </Text>
+                return chalk.blueBright(
+                    `Successfully swizzled ${chalk.bold(label)}`,
                 );
             case "warning":
-                return (
-                    <Text color="yellowBright">
-                        Swizzle completed with errors for{" "}
-                        <Text bold>{label}</Text>
-                    </Text>
+                return chalk.yellowBright(
+                    `Swizzle completed with errors for ${chalk.bold(label)}`,
                 );
             case "error":
-                return (
-                    <Text color="redBright">
-                        Swizzle failed for <Text bold>{label}</Text>
-                    </Text>
+                return chalk.redBright(
+                    `Swizzle failed for ${chalk.bold(label)}`,
                 );
         }
         return null;
@@ -77,82 +71,58 @@ const SwizzleMessage: React.FC<Props> = ({
     };
 
     const renderFiles = () => {
-        return (
-            <>
-                <Text dimColor>File{files.length > 1 ? "s" : ""} created:</Text>
-                {files.map(([targetPath, statusCode], index) => {
+        const chalks = [];
+
+        chalks.push(chalk.dim(`File${files.length > 1 ? "s" : ""} created:`));
+        chalks.push(
+            files
+                .map(([targetPath, statusCode]) => {
                     if (statusCode === SWIZZLE_CODES.SUCCESS) {
-                        return (
-                            <Text
-                                key={index}
-                                dimColor
-                                color="cyanBright"
-                            >{` - ${clearFilePath(targetPath)}`}</Text>
+                        return chalk.cyanBright.dim(
+                            ` - ${clearFilePath(targetPath)}`,
                         );
                     }
                     if (statusCode === SWIZZLE_CODES.TARGET_ALREADY_EXISTS) {
-                        return (
-                            <Text key={index} dimColor color="cyanBright">
-                                {` - `}
-                                <Text color="yellowBright" bold>
-                                    [FILE_ALREADY_EXISTS]{" "}
-                                </Text>
-                                {`${clearFilePath(targetPath)}`}
-                            </Text>
+                        return chalk.cyanBright.dim(
+                            ` - ${chalk.yellowBright.bold(
+                                "[FILE_ALREADY_EXISTS] ",
+                            )}
+                        ${clearFilePath(targetPath)}
+                        `,
                         );
                     }
                     if (statusCode === SWIZZLE_CODES.SOURCE_PATH_NOT_A_FILE) {
-                        return (
-                            <Text key={index} dimColor color="cyanBright">
-                                {` - `}
-                                <Text color="yellowBright" bold>
-                                    [SOURCE NOT FOUND]{" "}
-                                </Text>
-                                {`${clearFilePath(targetPath)}`}
-                            </Text>
+                        return chalk.cyanBright.dim(
+                            ` - ${chalk.yellowBright.bold(
+                                "[SOURCE NOT FOUND] ",
+                            )}
+                        ${clearFilePath(targetPath)}
+                        `,
                         );
                     }
-                    return (
-                        <Text key={index} dimColor color="cyanBright">
-                            {` - `}
-                            <Text color="yellowBright" bold>
-                                [{statusCode}]
-                            </Text>
-                        </Text>
+
+                    return chalk.cyanBright.dim(
+                        ` - ${chalk.yellowBright.bold(`[${statusCode}]`)}
+                        ${clearFilePath(targetPath)}
+                        `,
                     );
-                })}
-            </>
+                })
+                .join("\n"),
         );
+
+        return chalks.join("\n");
     };
 
     const renderSwizzleMessage = () => {
         if (message && status !== "error") {
-            return (
-                <>
-                    <Markdown code={renderCodeMarkdown}>
-                        {dedent("\n" + message)}
-                    </Markdown>
-                    <Text>&nbsp;</Text>
-                </>
-            );
+            return markedTerminalRenderer(dedent("\n" + message));
         }
         return null;
     };
 
-    return (
-        <Box
-            width={"100%"}
-            flexDirection="column"
-            alignItems="flex-start"
-            justifyContent="flex-start"
-        >
-            <Text>&nbsp;</Text>
-            {renderStatusMessage()}
-            {renderFiles()}
-            <Text>&nbsp;</Text>
-            {renderSwizzleMessage()}
-        </Box>
-    );
+    console.log("");
+    console.log(renderStatusMessage());
+    console.log(renderFiles());
+    console.log("");
+    console.log(renderSwizzleMessage());
 };
-
-export default SwizzleMessage;

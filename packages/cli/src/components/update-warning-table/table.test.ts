@@ -1,5 +1,5 @@
 import * as packageUtils from "@utils/package";
-import { getCommand } from ".";
+import { getInstallCommand } from "./table";
 
 test("Update warning npm command", async () => {
     const testCases: {
@@ -47,6 +47,6 @@ test("Update warning npm command", async () => {
             testCase.scripts,
         );
 
-        expect(await getCommand()).toBe(testCase.output);
+        expect(await getInstallCommand()).toBe(testCase.output);
     }
 });
