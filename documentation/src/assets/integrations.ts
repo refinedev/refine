@@ -26,6 +26,7 @@ import {
     React,
     Remix,
     Rest,
+    Sanity,
     Strapi,
     Supabase,
     UseGenerated,
@@ -241,6 +242,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "acomagu",
                     url: "https://github.com/acomagu",
+                },
+            ],
+        },
+        {
+            name: "Sanity Data Provider",
+            icon: Sanity,
+            description:
+                "Connector for backends created with <strong>Sanity</strong>",
+            url: "https://github.com/hirenf14/refine-sanity",
+            status: "stable",
+            contributors: [
+                {
+                    name: "hirenf14",
+                    url: "https://github.com/hirenf14/refine-sanity",
                 },
             ],
         },
