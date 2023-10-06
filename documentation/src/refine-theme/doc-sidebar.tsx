@@ -254,7 +254,7 @@ const SidebarLink = ({
                     : isActive
                     ? "dark:text-gray-0 text-gray-900"
                     : "text-gray-500 dark:text-gray-400",
-                !isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
+                isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
                 isShiny ? "px-4 py-3" : "p-2",
                 "text-sm font-normal leading-6",
                 "flex items-start justify-start",
@@ -275,7 +275,7 @@ const SidebarLink = ({
             <div className={"flex items-center"}>
                 {isShiny && <RefineLogoShiny className="mr-2 flex-shrink-0" />}
                 <span className="z-[1] flex-shrink-0">{item.label}</span>
-                {isShiny && <NewBadgeShiny className="ml-2 flex-shrink-0" />}
+                {isShiny && <NewBadgeShiny className="ml-3 flex-shrink-0" />}
             </div>
             {!isShiny && (
                 <div
