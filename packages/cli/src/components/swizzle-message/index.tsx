@@ -38,26 +38,6 @@ export const printSwizzleMessage = ({
             break;
     }
 
-    const renderStatusMessage = () => {
-        chalk.blueBright("Successfully swizzled");
-
-        switch (status) {
-            case "success":
-                return chalk.blueBright(
-                    `Successfully swizzled ${chalk.bold(label)}`,
-                );
-            case "warning":
-                return chalk.yellowBright(
-                    `Swizzle completed with errors for ${chalk.bold(label)}`,
-                );
-            case "error":
-                return chalk.redBright(
-                    `Swizzle failed for ${chalk.bold(label)}`,
-                );
-        }
-        return null;
-    };
-
     const clearFilePath = (filePath: string) => {
         const relative = filePath?.replace(process.cwd(), "");
 
@@ -70,7 +50,35 @@ export const printSwizzleMessage = ({
         return relative;
     };
 
-    const renderFiles = () => {
+    const printStatusMessage = () => {
+        switch (status) {
+            case "success":
+                console.log(
+                    chalk.blueBright(
+                        `Successfully swizzled ${chalk.bold(label)}`,
+                    ),
+                );
+                return;
+            case "warning":
+                console.log(
+                    chalk.yellowBright(
+                        `Swizzle completed with errors for ${chalk.bold(
+                            label,
+                        )}`,
+                    ),
+                );
+                return;
+            case "error":
+                console.log(
+                    chalk.redBright(`Swizzle failed for ${chalk.bold(label)}`),
+                );
+                return;
+            default:
+                return;
+        }
+    };
+
+    const printFiles = () => {
         const chalks = [];
 
         chalks.push(chalk.dim(`File${files.length > 1 ? "s" : ""} created:`));
@@ -86,43 +94,38 @@ export const printSwizzleMessage = ({
                         return chalk.cyanBright.dim(
                             ` - ${chalk.yellowBright.bold(
                                 "[FILE_ALREADY_EXISTS] ",
-                            )}
-                        ${clearFilePath(targetPath)}
-                        `,
+                            )}${clearFilePath(targetPath)}`,
                         );
                     }
                     if (statusCode === SWIZZLE_CODES.SOURCE_PATH_NOT_A_FILE) {
                         return chalk.cyanBright.dim(
                             ` - ${chalk.yellowBright.bold(
                                 "[SOURCE NOT FOUND] ",
-                            )}
-                        ${clearFilePath(targetPath)}
-                        `,
+                            )}${clearFilePath(targetPath)}`,
                         );
                     }
 
                     return chalk.cyanBright.dim(
-                        ` - ${chalk.yellowBright.bold(`[${statusCode}]`)}
-                        ${clearFilePath(targetPath)}
-                        `,
+                        ` - ${chalk.yellowBright.bold(
+                            `[${statusCode}]`,
+                        )}${clearFilePath(targetPath)}`,
                     );
                 })
                 .join("\n"),
         );
 
-        return chalks.join("\n");
+        console.log(chalks.join("\n"));
     };
 
-    const renderSwizzleMessage = () => {
+    const printSwizzleMessage = () => {
         if (message && status !== "error") {
-            return markedTerminalRenderer(dedent("\n" + message));
+            console.log(markedTerminalRenderer(dedent("\n" + message)));
         }
-        return null;
     };
 
     console.log("");
-    console.log(renderStatusMessage());
-    console.log(renderFiles());
+    printStatusMessage();
+    printFiles();
     console.log("");
-    console.log(renderSwizzleMessage());
+    printSwizzleMessage();
 };
