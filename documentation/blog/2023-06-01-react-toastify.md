@@ -204,7 +204,6 @@ Though the object passed to the `open` method has several properties, it has two
 The `message` property is the message to display on the notification. On the other hand, the `type` property describes the type of the notification. A refine notification can be of type `"success"`, `"error"`  or `"progress"`.
 
 The screenshot below shows a success notification with the message "Successfully edited Blog Posts" that refine displays after successfully editing a blog post.
-![](https://hackmd.io/_uploads/r10JNaHLn.png)
 
 <br/>
 
@@ -217,7 +216,6 @@ The screenshot below shows a success notification with the message "Successfully
 
 
 Similarly, the screenshot below shows an error message with the text "Oops failed to update blog post" that refine displays after failing to update a record.
-![](https://hackmd.io/_uploads/ryXlE6SUn.png)
 
 <br/>
 
