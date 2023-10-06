@@ -254,7 +254,7 @@ const SidebarLink = ({
                     : isActive
                     ? "dark:text-gray-0 text-gray-900"
                     : "text-gray-500 dark:text-gray-400",
-                isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
+                !isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
                 isShiny ? "px-4 py-3" : "p-2",
                 "text-sm font-normal leading-6",
                 "flex items-start justify-start",
