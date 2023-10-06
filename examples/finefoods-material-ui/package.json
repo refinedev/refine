@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
-    "@refinedev/core": "^4.44.0",
+    "@refinedev/core": "^4.44.3",
     "@refinedev/cli": "^2.16.4",
     "@refinedev/mui": "^5.13.15",
     "@refinedev/kbar": "1.3.4",

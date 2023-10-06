@@ -16,6 +16,12 @@ module.exports = {
             className: "category-as-header",
         },
         {
+            type: "link",
+            href: "https://s.refine.dev/devtools-beta",
+            label: "refine Developer Tools",
+            className: "sidebar-item-shiny mt-6 -ml-2",
+        },
+        {
             type: "category",
             collapsible: false,
             label: "API Reference",

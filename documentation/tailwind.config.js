@@ -18,6 +18,7 @@ module.exports = {
                     yellow: "#FFBF00",
                     green: "#1FAD66",
                     cyan: "#0FBDBD",
+                    "cyan-alt": "#47EBEB",
                     blue: "#0080FF",
                     indigo: "#3333FF",
                     purple: "#8000FF",
@@ -211,6 +212,12 @@ module.exports = {
                 ],
                 "banner-examples-text":
                     "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
+                "top-announcement-text":
+                    "linear-gradient(90deg, rgba(31, 63, 72, 0.00) 0%, #1F3F48 10%, #1F3F48 90%, rgba(31, 63, 72, 0.00) 100%)",
+                "sidebar-item-shiny-dark":
+                    "radial-gradient(457.67% 141.42% at 0% 0%, rgba(71, 235, 235, 0.10) 0%, rgba(71, 235, 235, 0.20) 100%)",
+                "sidebar-item-shiny-light":
+                    "radial-gradient(457.67% 141.42% at 0% 0%, rgba(0, 128, 255, 0.20) 0%, rgba(0, 128, 255, 0.10) 100%)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -227,6 +234,8 @@ module.exports = {
                     "hackathon-button-bg 2s ease-in-out infinite alternate",
                 "walkthrough-bounce":
                     "walkthrough-bounce 3s ease-in-out infinite",
+                "top-announcement-glow":
+                    "top-announcement-glow 1s ease-in-out infinite alternate",
             },
             keyframes: {
                 "walkthrough-bounce": {
@@ -307,6 +316,14 @@ module.exports = {
                     },
                     "100%": {
                         transform: "translateY(-3328px)",
+                    },
+                },
+                "top-announcement-glow": {
+                    "0%": {
+                        opacity: 1,
+                    },
+                    "100%": {
+                        opacity: 0,
                     },
                 },
             },
