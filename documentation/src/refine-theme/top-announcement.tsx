@@ -110,10 +110,10 @@ const Text = () => {
                 "left-[50%]",
                 "translate-x-[-50%]",
                 "bg-top-announcement-text",
-                "h-full w-full lg:w-[680px]",
+                "h-full w-full lg:w-[780px]",
                 "flex items-center justify-center",
                 "text-white",
-                "text-xs",
+                "text-sm",
                 "text-center",
                 "no-underline",
                 "hover:no-underline",
@@ -125,7 +125,11 @@ const Text = () => {
                 <span className={clsx("font-semibold")}>refine Devtools</span>,
                 your intelligent companion for development.
                 <span
-                    className={clsx("text-[#47EBEB]", "font-semibold", "ml-2")}
+                    className={clsx(
+                        "text-refine-cyan-alt hover:text-refine-cyan-alt",
+                        "font-semibold",
+                        "ml-2",
+                    )}
                 >
                     Learn More
                 </span>
