@@ -64,3 +64,5 @@ export type ShowProps = RefineCrudShowProps<
     RefreshButtonProps,
     ListButtonProps
 >;
+
+export type Type = "show" | "create" | "edit";

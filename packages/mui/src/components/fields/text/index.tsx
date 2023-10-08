@@ -1,18 +1,36 @@
 import React from "react";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useTranslate } from "@refinedev/core";
+import { useFormContext } from "../../useFormContext";
 
-import { TextFieldProps } from "../types";
+const TextField: React.FC<{
+    name: string;
+}> = (props: any) => {
+    const { name } = props;
+    const t = useTranslate();
+    const { resource, show, register, watch } = useFormContext();
+    const value = watch(name) || "";
+    const label = t(`${resource}.fields.${name.replaceAll(/\d/g, "num")}`);
 
-/**
- * This field lets you show basic text. It uses Materail UI {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>`} component.
- *
- * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/text} for more details.
- */
-const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
+    if (show) {
+        return (
+            <FormControl>
+                <FormLabel>{label}</FormLabel>
+                <Typography fontWeight="bold">{value}</Typography>
+            </FormControl>
+        );
+    }
+
     return (
-        <Typography variant="body2" {...rest}>
-            {value}
-        </Typography>
+        <TextField
+            {...register(name)}
+            label={t(`${resource}.fields.${name}`)}
+            fullWidth
+            value={value}
+        />
     );
 };
 
