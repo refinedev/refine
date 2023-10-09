@@ -178,15 +178,15 @@ const App: React.FC = () => {
     return (
         <ConfigProvider theme={RefineThemes.Blue}>
             {/* highlight-start */}
-            <Refine
-                //...
-                notificationProvider={useNotificationProvider}
-            >
-                <AntdApp>
+            <AntdApp>
+                <Refine
+                    //...
+                    notificationProvider={useNotificationProvider}
+                >
                     <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-                </AntdApp>
-                {/* highlight-end */}
-            </Refine>
+                    {/* highlight-end */}
+                </Refine>
+            </AntdApp>
         </ConfigProvider>
     );
 };

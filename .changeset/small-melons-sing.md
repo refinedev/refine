@@ -11,6 +11,7 @@ This release provides an alternative to exported `notificationProvider` value fr
 ```diff
 - import { notificationProvider } from "@refinedev/antd";
 + import { useNotificationProvider } from "@refinedev/antd";
++ import { App as AntdApp } from "antd";
 
 - const myNotificationProvider = {
 -    ...notificationProvider,
@@ -33,12 +34,14 @@ This release provides an alternative to exported `notificationProvider` value fr
 
 const App = () => {
     return (
-        <Refine
-            /* ... */
-            notificationProvider={myNotificationProvider}
-        >
-            /* ... */
-        </Refine>
+        <AntdApp>
+            <Refine
+                /* ... */
+                notificationProvider={myNotificationProvider}
+            >
+                /* ... */
+            </Refine>
+        </AntdApp>
     );
 }
 ```

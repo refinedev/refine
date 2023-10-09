@@ -6,6 +6,7 @@ import { UndoableNotification } from "@components/undoableNotification";
 
 /**
  * @deprecated `notificationProvider` is deprecated due to not being compatible with theme changes in Ant Design. Please use `useNotificationProvider` export as your notification provider.
+ * @see https://refine.dev/docs/api-reference/antd/theming/#usenotificationprovider-compatible-with-theme.
  */
 
 export const notificationProvider: NotificationProvider = {
