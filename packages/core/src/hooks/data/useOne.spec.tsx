@@ -114,6 +114,9 @@ describe("useOne Hook", () => {
                     }),
                     types: ["*"],
                     dataProviderName,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
         );

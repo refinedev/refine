@@ -221,6 +221,10 @@ export const useInfiniteList = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...combinedMeta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useInfiniteQuery<
