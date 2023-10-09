@@ -89,4 +89,5 @@ title: List of Packages
 - [`ent-refine`](https://github.com/diazoxide/entrefine) - A library that generates fully customizable UI based on [Entgo ORM](https://entgo.io/) and [GraphQL API](https://graphql.org/) with [refine](https://github.com/refinedev/refine)
 - [`refine-use-generated`](https://github.com/usegen/refine-use-generated) - Connector for GraphQL backends created with [useGenerated](https://usegenerated.com/)
 - [`refine-hygraph`](https://github.com/acomagu/refine-hygraph) - Connector for [Hygraph](https://hygraph.com/) backends(GraphQL) 
+- [`refine-sanity`](https://github.com/hirenf14/refine-sanity) - Connector for [Sanity](https://www.sanity.io/) backends
   
