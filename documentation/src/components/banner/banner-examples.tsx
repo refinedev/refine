@@ -22,6 +22,21 @@ export const BannerExamples: FC<Props> = ({
         onClick: undefined,
     },
 }) => {
+    React.useEffect(() => {
+        console.log("BANNER EXAMPLES ");
+        if (
+            typeof window !== "undefined" &&
+            typeof window.gtag !== "undefined" &&
+            title &&
+            description
+        ) {
+            window.gtag("event", "banner_view", {
+                banner_name: "banner-retool-alternative",
+                banner_text: title,
+                banner_description: description,
+            });
+        }
+    }, [title, description]);
     return (
         <div
             className={clsx(

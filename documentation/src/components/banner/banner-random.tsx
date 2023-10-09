@@ -16,6 +16,7 @@ const data = [
             text: "Learn more",
             href: "https://github.com/refinedev/refine?ref=banner-twitter",
         },
+        bannerName: "banner-twitter",
     },
     {
         title: "Save developer hours!",
@@ -30,6 +31,7 @@ const data = [
             text: "Learn more",
             href: "https://github.com/refinedev/refine?ref=banner-save-hours",
         },
+        bannerName: "banner-save-hours",
     },
     {
         description:
@@ -43,6 +45,7 @@ const data = [
             text: "Learn more",
             href: "https://github.com/refinedev/refine?ref=banner-oss-insight",
         },
+        bannerName: "banner-oss-insight",
     },
 ];
 
