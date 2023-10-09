@@ -25,7 +25,7 @@ export const BannerSidebar = () => {
             )}
         >
             <Link
-                to={"https://refine.dev/?playground=true"}
+                to={"https://refine.dev/?playground=true&ref=banner-sidebar"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={clsx(
@@ -47,7 +47,7 @@ export const BannerSidebar = () => {
             <LandingRainbowButton
                 className={clsx("w-max")}
                 buttonClassname={clsx("!px-4", "!py-2")}
-                href={"https://refine.dev/?playground=true"}
+                href={"https://refine.dev/?playground=true&ref=banner-sidebar"}
                 target="_blank"
                 rel="noopener noreferrer"
             >
