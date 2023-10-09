@@ -14,16 +14,15 @@ export const BannerSidebar = ({ shouldShowBanner }) => {
     React.useEffect(() => {
         if (
             typeof window !== "undefined" &&
-            typeof window.gtag !== "undefined"
+            typeof window.gtag !== "undefined" &&
+            shouldShowBanner
         ) {
-            if (shouldShowBanner) {
-                window.gtag("event", "banner_view", {
-                    banner_name: "banner-sidebar",
-                    banner_text: text,
-                    banner_description: description,
-                    banner_image: image,
-                });
-            }
+            window.gtag("event", "banner_view", {
+                banner_name: "banner-sidebar",
+                banner_text: text,
+                banner_description: description,
+                banner_image: image,
+            });
         }
     }, [shouldShowBanner]);
 
