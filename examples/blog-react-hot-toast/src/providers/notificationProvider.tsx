@@ -14,48 +14,6 @@ export const notificationProvider: NotificationProvider = {
                         color: "#fff",
                     },
                 });
-                toast.success("Successfully logged in", {
-                    position: "top-left",
-                    style: {
-                        background: "green",
-                        color: "#fff",
-                    },
-                });
-                toast.success("Successfully logged in", {
-                    position: "top-center",
-                    style: {
-                        background: "green",
-                        color: "#fff",
-                    },
-                });
-                toast.success("Successfully logged in", {
-                    position: "top-right",
-                    style: {
-                        background: "green",
-                        color: "#fff",
-                    },
-                });
-                toast.success("Successfully logged in", {
-                    position: "bottom-left",
-                    style: {
-                        background: "green",
-                        color: "#fff",
-                    },
-                });
-                toast.success("Successfully logged in", {
-                    position: "bottom-center",
-                    style: {
-                        background: "green",
-                        color: "#fff",
-                    },
-                });
-                toast.success("Successfully logged in", {
-                    position: "bottom-right",
-                    style: {
-                        background: "green",
-                        color: "#fff",
-                    },
-                });
                 break;
             case "error":
                 toast.error(message, {
