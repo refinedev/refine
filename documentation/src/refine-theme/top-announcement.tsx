@@ -113,7 +113,7 @@ const Text = () => {
                 "h-full w-full lg:w-[780px]",
                 "flex items-center justify-center",
                 "text-white",
-                "text-sm",
+                "text-xs sm:text-sm",
                 "text-center",
                 "no-underline",
                 "hover:no-underline",
