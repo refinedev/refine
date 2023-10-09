@@ -23,7 +23,6 @@ export const BannerExamples: FC<Props> = ({
     },
 }) => {
     React.useEffect(() => {
-        console.log("BANNER EXAMPLES ");
         if (
             typeof window !== "undefined" &&
             typeof window.gtag !== "undefined" &&

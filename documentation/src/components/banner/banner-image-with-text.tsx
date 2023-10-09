@@ -35,7 +35,6 @@ export const BannerImageWithText: FC<Props> = ({
     bannerName,
 }) => {
     React.useEffect(() => {
-        console.log("USE EFFECT BANNER", bannerName, title, description);
         if (
             typeof window !== "undefined" &&
             typeof window.gtag !== "undefined" &&
