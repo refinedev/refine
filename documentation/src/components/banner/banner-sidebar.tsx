@@ -2,7 +2,8 @@ import Link from "@docusaurus/Link";
 import { ArrowRightIcon } from "@site/src/refine-theme/icons/arrow-right";
 import { LandingRainbowButton } from "@site/src/refine-theme/landing-rainbow-button";
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect } from "react";
+import { gtag } from "ga-gtag";
 
 const text = "Struggling with internal tools?";
 const description =
@@ -10,7 +11,22 @@ const description =
 const image =
     "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/app-crm.png";
 
-export const BannerSidebar = () => {
+export const BannerSidebar = ({ shouldShowBanner }) => {
+    useEffect(() => {
+        try {
+            if (shouldShowBanner) {
+                gtag("event", "banner_view", {
+                    banner_name: "banner-sidebar",
+                    banner_text: text,
+                    banner_description: description,
+                    banner_image: image,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }, [shouldShowBanner]);
+
     return (
         <div
             className={clsx(
