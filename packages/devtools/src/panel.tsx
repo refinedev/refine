@@ -13,6 +13,7 @@ export const DevtoolsPanel =
     __DEV_CONDITION__ !== "development"
         ? () => null
         : () => {
+              const [browser, setBrowser] = React.useState<boolean>(false);
               const [visible, setVisible] = React.useState(false);
               const [placement] = React.useState<Placement>("bottom");
               const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
@@ -36,6 +37,16 @@ export const DevtoolsPanel =
               const onSelectorOpen = React.useCallback(() => {
                   setVisible(false);
               }, []);
+
+              React.useEffect(() => {
+                  if (typeof window !== "undefined") {
+                      setBrowser(true);
+                  }
+              }, []);
+
+              if (!browser) {
+                  return null;
+              }
 
               return (
                   <div
