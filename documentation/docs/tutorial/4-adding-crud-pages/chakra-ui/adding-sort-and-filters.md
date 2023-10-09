@@ -41,11 +41,9 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
         <IconButton
             aria-label="Sort"
             size="xs"
+            icon={sorted === "asc" ? <IconChevronDown size={18} /> : sorted === "desc" ? <IconChevronUp size={18} /> : <IconSelector size={18} />}
             onClick={column.getToggleSortingHandler()}
         >
-            {!sorted && <IconSelector size={18} />}
-            {sorted === "asc" && <IconChevronDown size={18} />}
-            {sorted === "desc" && <IconChevronUp size={18} />}
         </IconButton>
     );
 };
