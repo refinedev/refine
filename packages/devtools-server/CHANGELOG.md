@@ -1,5 +1,14 @@
 # @refinedev/devtools-server
 
+## 1.1.11
+
+### Patch Changes
+
+-   [#5082](https://github.com/refinedev/refine/pull/5082) [`61366ebd866`](https://github.com/refinedev/refine/commit/61366ebd86694328fe5a7f4dcf322db3c43bbc9d) Thanks [@aliemir](https://github.com/aliemir)! - Add `/open-in-editor/*` endpoint to server for opening files in vscode
+
+-   Updated dependencies [[`61366ebd866`](https://github.com/refinedev/refine/commit/61366ebd86694328fe5a7f4dcf322db3c43bbc9d)]:
+    -   @refinedev/devtools-ui@1.1.8
+
 ## 1.1.10
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @refinedev/devtools
 
+## 1.1.12
+
+### Patch Changes
+
+-   [#5082](https://github.com/refinedev/refine/pull/5082) [`61366ebd866`](https://github.com/refinedev/refine/commit/61366ebd86694328fe5a7f4dcf322db3c43bbc9d) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the server/client mismatch error due to `<DevtoolsPanel />` component.
+
+-   Updated dependencies [[`61366ebd866`](https://github.com/refinedev/refine/commit/61366ebd86694328fe5a7f4dcf322db3c43bbc9d), [`6c40a720140`](https://github.com/refinedev/refine/commit/6c40a720140a8fe7141033a282500d354b1e621f)]:
+    -   @refinedev/devtools-server@1.1.11
+    -   @refinedev/cli@2.16.6
+
 ## 1.1.11
 
 ### Patch Changes

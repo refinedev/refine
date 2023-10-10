@@ -8,7 +8,7 @@
     "refine": "refine"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.5",
+    "@refinedev/cli": "^2.16.6",
     "@refinedev/core": "^4.44.3",
     "@refinedev/kbar": "^1.3.4",
     "@refinedev/strapi-v4": "^5.2.5",
