@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/antd",
-  "version": "5.36.6",
+  "version": "5.36.7",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "sideEffects": [
@@ -26,7 +26,7 @@
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@refinedev/cli": "^2.16.1",
+    "@refinedev/cli": "^2.16.5",
     "@refinedev/ui-tests": "^1.13.0",
     "@refinedev/core": "^4.42.4",
     "@esbuild-plugins/node-resolve": "^0.1.4",
