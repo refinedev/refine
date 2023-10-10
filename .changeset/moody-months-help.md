@@ -2,7 +2,7 @@
 "@refinedev/core": patch
 ---
 
-feat: `meta` props addedo `liveProvider.subscribe` and `liveProvider.publish` methods.
+feat: `meta` props added `liveProvider.subscribe` and `liveProvider.publish` methods.
 From now on, you can use `meta` to distinguish between methods by `meta`.
 
 `meta` type:
