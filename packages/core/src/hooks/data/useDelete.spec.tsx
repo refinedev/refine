@@ -741,13 +741,15 @@ describe("useDelete Hook", () => {
                 expect(result.current.isSuccess).toBeTruthy();
             });
 
-            expect(deleteOneMock).toBeCalledWith(
-                expect.objectContaining({
-                    meta: expect.objectContaining({
-                        bar: "baz",
+            await waitFor(() => {
+                expect(deleteOneMock).toBeCalledWith(
+                    expect.objectContaining({
+                        meta: expect.objectContaining({
+                            bar: "baz",
+                        }),
                     }),
-                }),
-            );
+                );
+            });
         });
     });
 });
