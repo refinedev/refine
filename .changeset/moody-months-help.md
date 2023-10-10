@@ -35,18 +35,6 @@ type Meta = {
 #### Usage
 
 ```ts
-import { useForm, useList } from "@refinedev/core";
-
-useList({
-    dataProviderName: "first-data-provider",
-});
-
-useForm({
-    dataProviderName: "second-data-provider",
-});
-```
-
-```ts
 import { LiveProvider, LiveEvent } from "@refinedev/core";
 
 export const liveProvider = (client: any): LiveProvider => {
