@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.1.8
+
+### Patch Changes
+
+-   [#5082](https://github.com/refinedev/refine/pull/5082) [`61366ebd866`](https://github.com/refinedev/refine/commit/61366ebd86694328fe5a7f4dcf322db3c43bbc9d) Thanks [@aliemir](https://github.com/aliemir)! - Add open in vscode feature in monitor details tab
+
 ## 1.1.7
 
 ### Patch Changes
