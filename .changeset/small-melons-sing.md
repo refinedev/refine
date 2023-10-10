@@ -34,14 +34,14 @@ This release provides an alternative to exported `notificationProvider` value fr
 
 const App = () => {
     return (
-        <AntdApp>
++        <AntdApp>
             <Refine
                 /* ... */
-                notificationProvider={myNotificationProvider}
++                notificationProvider={myNotificationProvider}
             >
                 /* ... */
             </Refine>
-        </AntdApp>
++        </AntdApp>
     );
 }
 ```

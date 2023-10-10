@@ -177,15 +177,16 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ConfigProvider theme={RefineThemes.Blue}>
-            {/* highlight-start */}
+            {/* highlight-next-line */}
             <AntdApp>
                 <Refine
                     //...
+                    {/* highlight-next-line */}
                     notificationProvider={useNotificationProvider}
                 >
                     <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-                    {/* highlight-end */}
                 </Refine>
+                {/* highlight-next-line */}
             </AntdApp>
         </ConfigProvider>
     );
