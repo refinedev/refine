@@ -11,7 +11,6 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ConfigProvider } from "antd";
 
 import "./utilities/init-dayjs";
@@ -347,7 +346,6 @@ const App: React.FC = () => {
                             </Routes>
                             <UnsavedChangesNotifier />
                             <DocumentTitleHandler />
-                            <ReactQueryDevtools />
                         </Refine>
                         <DevtoolsPanel />
                     </DevtoolsProvider>
