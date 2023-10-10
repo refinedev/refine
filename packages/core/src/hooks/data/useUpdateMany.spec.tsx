@@ -292,10 +292,7 @@ describe("useUpdateMany Hook", () => {
                     date: expect.any(Date),
                     type: "updated",
                     payload: {
-                        ids:
-                            dataProviderName === "default"
-                                ? ["1", "2"]
-                                : [1, 2],
+                        ids: ["1", "2"],
                     },
                     meta: {
                         dataProviderName,
