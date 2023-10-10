@@ -1,9 +1,9 @@
 import React from "react";
-import { render } from "ink";
 import matter from "gray-matter";
+import boxen from "boxen";
 
 import { Announcement } from "@definitions/announcement";
-import AnnouncementMessage from "@components/announcement-message";
+import { markedTerminalRenderer } from "@utils/marked-terminal-renderer";
 
 const ANNOUNCEMENT_URL =
     "https://raw.githubusercontent.com/refinedev/refine/next/packages/cli/ANNOUNCEMENTS.md";
@@ -21,13 +21,15 @@ const splitAnnouncements = (feed: string) => {
 const parseAnnouncement = (raw: string): Announcement => {
     const fixed = raw.replace(ANNOUNCEMENT_DELIMITER, "---");
     const parsed = matter(fixed);
+    const content = (
+        parsed.content.length === 0
+            ? fixed.replace(/---/g, "")
+            : parsed.content.replace(/---/g, "")
+    ).trim();
 
     return {
         ...parsed.data,
-        content:
-            parsed.content.length === 0
-                ? fixed.replace(/---/g, "")
-                : parsed.content.replace(/---/g, ""),
+        content,
     } as Announcement;
 };
 
@@ -47,7 +49,7 @@ export const getAnnouncements = async () => {
     }
 };
 
-export const handleAnnouncements = async () => {
+export const printAnnouncements = async () => {
     const announcements = await getAnnouncements();
 
     const visibleAnnouncements = announcements.filter(
@@ -58,9 +60,22 @@ export const handleAnnouncements = async () => {
         return;
     }
 
-    const { unmount } = render(
-        <AnnouncementMessage announcements={visibleAnnouncements} />,
-    );
+    const stringAnnouncements = visibleAnnouncements
+        .map((a) => {
+            const dash = visibleAnnouncements.length > 1 ? "— " : "";
+            const content = markedTerminalRenderer(a.content);
+            return `${dash}${content}`;
+        })
+        .join("")
+        .trim();
 
-    unmount();
+    console.log(
+        boxen(stringAnnouncements, {
+            padding: 1,
+            margin: 0,
+            borderStyle: "round",
+            borderColor: "blueBright",
+            titleAlignment: "left",
+        }),
+    );
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "ink";
 import path from "path";
 import chalk from "chalk";
 import inquirer from "inquirer";
@@ -14,7 +13,7 @@ import {
     isPackageHaveRefineConfig,
 } from "@utils/package";
 
-import SwizzleMessage from "@components/swizzle-message";
+import { printSwizzleMessage } from "@components/swizzle-message";
 
 import { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
@@ -268,14 +267,11 @@ const action = async (_options: OptionValues) => {
     );
 
     if (createdFiles.length > 0) {
-        const { unmount } = render(
-            <SwizzleMessage
-                label={selectedComponent.label}
-                files={createdFiles}
-                message={selectedComponent.message}
-            />,
-        );
-        unmount();
+        printSwizzleMessage({
+            files: createdFiles,
+            label: selectedComponent.label,
+            message: selectedComponent.message,
+        });
 
         if (selectedComponent?.requiredPackages?.length) {
             await installRequiredPackages(selectedComponent.requiredPackages);
