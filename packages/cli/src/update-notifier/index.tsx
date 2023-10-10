@@ -1,7 +1,7 @@
 import Conf from "conf";
 import chalk from "chalk";
 import { isRefineUptoDate } from "@commands/check-updates";
-import { getUpdateWarningTable } from "@components/update-warning-table";
+import { printUpdateWarningTable } from "@components/update-warning-table";
 import { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getInstalledRefinePackages } from "@utils/package";
 import { ENV } from "@utils/env";
@@ -46,7 +46,7 @@ const showWarning = async () => {
     const packages = store.get("packages");
     if (!packages?.length) return;
 
-    await getUpdateWarningTable(packages);
+    await printUpdateWarningTable({ data: packages });
     console.log("\n");
 };
 

@@ -162,6 +162,37 @@ const App: React.FC = () => {
 };
 ```
 
+### `useNotificationProvider` compatible with Theme
+
+The `notificationProvider` export has been deprecated because it cannot consume the current `theme` context by default. To enable the `Notification` component to consume the current `theme` context, import the `App` component from `antd` and the `useNotificationProvider` export from `@refinedev/antd` and pass it as highlighted below:
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+
+import { ConfigProvider, App as AntdApp } from "antd";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <ConfigProvider theme={RefineThemes.Blue}>
+            {/* highlight-next-line */}
+            <AntdApp>
+                <Refine
+                    //...
+                    {/* highlight-next-line */}
+                    notificationProvider={useNotificationProvider}
+                >
+                    <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+                </Refine>
+                {/* highlight-next-line */}
+            </AntdApp>
+        </ConfigProvider>
+    );
+};
+```
+
 :::tip
 
 If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.

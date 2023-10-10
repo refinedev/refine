@@ -34,11 +34,11 @@ export const BannerModal: FC<Props> = ({
     image = {
         src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/playground.gif",
         alt: "refine App screenshot",
-        href: "https://refine.dev/?playground=true",
+        href: "https://refine.dev/?playground=true&ref=banner-modal",
     },
     button = {
         text: "Try online",
-        href: "https://refine.dev/?playground=true",
+        href: "https://refine.dev/?playground=true&ref=banner-modal",
         onClick: undefined,
     },
 }) => {

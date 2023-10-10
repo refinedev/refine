@@ -59,7 +59,7 @@ export const RefineBlogLayout = (props: any) => {
                             "left-0",
                         )}
                     >
-                        <BannerSidebar />
+                        <BannerSidebar shouldShowBanner={shouldShowBanner} />
                     </div>
                 </div>
                 <div

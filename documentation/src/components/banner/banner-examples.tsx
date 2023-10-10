@@ -18,10 +18,24 @@ export const BannerExamples: FC<Props> = ({
     description = "Built with flexibility in mind, for your internal tools, admin panels, dashboards, and B2B apps.",
     button = {
         text: "See real use-case examples",
-        href: "/docs/examples",
+        href: "/docs/examples?ref=banner-retool-alternative",
         onClick: undefined,
     },
 }) => {
+    React.useEffect(() => {
+        if (
+            typeof window !== "undefined" &&
+            typeof window.gtag !== "undefined" &&
+            title &&
+            description
+        ) {
+            window.gtag("event", "banner_view", {
+                banner_name: "banner-retool-alternative",
+                banner_text: title,
+                banner_description: description,
+            });
+        }
+    }, [title, description]);
     return (
         <div
             className={clsx(
