@@ -19,6 +19,7 @@ type Props = {
         href?: string;
         onClick?: () => void;
     };
+    bannerName: string;
 };
 
 export const BannerImageWithText: FC<Props> = ({
@@ -31,7 +32,23 @@ export const BannerImageWithText: FC<Props> = ({
         href: "https://refine.dev/",
         onClick: undefined,
     },
+    bannerName,
 }) => {
+    React.useEffect(() => {
+        if (
+            typeof window !== "undefined" &&
+            typeof window.gtag !== "undefined" &&
+            bannerName
+        ) {
+            window.gtag("event", "banner_view", {
+                banner_name: bannerName,
+                banner_text: title,
+                banner_description: description,
+                banner_image: image.src,
+            });
+        }
+    }, [bannerName]);
+
     return (
         <div
             className={clsx(

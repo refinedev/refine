@@ -10,7 +10,22 @@ const description =
 const image =
     "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/app-crm.png";
 
-export const BannerSidebar = () => {
+export const BannerSidebar = ({ shouldShowBanner }) => {
+    React.useEffect(() => {
+        if (
+            typeof window !== "undefined" &&
+            typeof window.gtag !== "undefined" &&
+            shouldShowBanner
+        ) {
+            window.gtag("event", "banner_view", {
+                banner_name: "banner-sidebar",
+                banner_text: text,
+                banner_description: description,
+                banner_image: image,
+            });
+        }
+    }, [shouldShowBanner]);
+
     return (
         <div
             className={clsx(
@@ -25,7 +40,7 @@ export const BannerSidebar = () => {
             )}
         >
             <Link
-                to={"https://refine.dev/?playground=true"}
+                to={"https://refine.dev/?playground=true&ref=banner-sidebar"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={clsx(
@@ -47,7 +62,7 @@ export const BannerSidebar = () => {
             <LandingRainbowButton
                 className={clsx("w-max")}
                 buttonClassname={clsx("!px-4", "!py-2")}
-                href={"https://refine.dev/?playground=true"}
+                href={"https://refine.dev/?playground=true&ref=banner-sidebar"}
                 target="_blank"
                 rel="noopener noreferrer"
             >

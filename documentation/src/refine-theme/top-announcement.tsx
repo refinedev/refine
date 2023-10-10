@@ -117,7 +117,7 @@ const Text = () => {
                 "text-center",
                 "no-underline",
                 "hover:no-underline",
-                "hover:text-inherit",
+                "hover:text-white",
             )}
         >
             <RefineLogoShinyCyan className="flex-shrink-0" />

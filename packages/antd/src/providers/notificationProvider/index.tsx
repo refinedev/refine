@@ -1,8 +1,13 @@
-import React from "react";
 import { NotificationProvider } from "@refinedev/core";
-import { notification } from "antd";
+import { App, notification as staticNotification } from "antd";
+import React from "react";
 
 import { UndoableNotification } from "@components/undoableNotification";
+
+/**
+ * @deprecated `notificationProvider` is deprecated due to not being compatible with theme changes in Ant Design. Please use `useNotificationProvider` export as your notification provider.
+ * @see https://refine.dev/docs/api-reference/antd/theming/#usenotificationprovider-compatible-with-theme
+ */
 
 export const notificationProvider: NotificationProvider = {
     open: ({
@@ -14,7 +19,7 @@ export const notificationProvider: NotificationProvider = {
         undoableTimeout,
     }) => {
         if (type === "progress") {
-            notification.open({
+            staticNotification.open({
                 key,
                 description: (
                     <UndoableNotification
@@ -29,7 +34,7 @@ export const notificationProvider: NotificationProvider = {
                 closeIcon: <></>,
             });
         } else {
-            notification.open({
+            staticNotification.open({
                 key,
                 description: message,
                 message: description ?? null,
@@ -37,5 +42,51 @@ export const notificationProvider: NotificationProvider = {
             });
         }
     },
-    close: (key) => notification.destroy(key),
+    close: (key) => staticNotification.destroy(key),
+};
+
+export const useNotificationProvider = (): NotificationProvider => {
+    const { notification: notificationFromContext } = App.useApp();
+    const notification =
+        "open" in notificationFromContext
+            ? notificationFromContext
+            : staticNotification;
+
+    const notificationProvider: NotificationProvider = {
+        open: ({
+            key,
+            message,
+            description,
+            type,
+            cancelMutation,
+            undoableTimeout,
+        }) => {
+            if (type === "progress") {
+                notification.open({
+                    key,
+                    description: (
+                        <UndoableNotification
+                            notificationKey={key}
+                            message={message}
+                            cancelMutation={cancelMutation}
+                            undoableTimeout={undoableTimeout}
+                        />
+                    ),
+                    message: null,
+                    duration: 0,
+                    closeIcon: <></>,
+                });
+            } else {
+                notification.open({
+                    key,
+                    description: message,
+                    message: description ?? null,
+                    type,
+                });
+            }
+        },
+        close: (key) => notification.destroy(key),
+    };
+
+    return notificationProvider;
 };
