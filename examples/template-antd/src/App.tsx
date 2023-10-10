@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     WelcomePage,
     ErrorComponent,
     RefineThemes,
@@ -12,7 +12,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,

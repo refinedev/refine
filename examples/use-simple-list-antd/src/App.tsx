@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayout,
     ErrorComponent,
     RefineThemes,
@@ -13,7 +13,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "./pages/posts";
@@ -34,7 +34,7 @@ const App: React.FC = () => {
                             list: "/posts",
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,

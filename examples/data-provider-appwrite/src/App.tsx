@@ -5,7 +5,7 @@ import {
     Authenticated,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
@@ -23,7 +23,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient, account } from "./utility";
@@ -114,86 +114,99 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "61c43ad33b857",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                label: "Post",
+                <AntdApp>
+                    <Refine
+                        dataProvider={dataProvider(appwriteClient, {
+                            databaseId: "default",
+                        })}
+                        liveProvider={liveProvider(appwriteClient, {
+                            databaseId: "default",
+                        })}
+                        authProvider={authProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "61c43ad33b857",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                                meta: {
+                                    label: "Post",
+                                },
                             },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            liveMode: "auto",
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="61c43ad33b857" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="61c43ad33b857" />
+                                    }
+                                />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
+                                </Route>
                             </Route>
-                        </Route>
 
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<Login />} />
-                        </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="61c43ad33b857" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<Login />} />
+                            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

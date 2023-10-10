@@ -5,7 +5,7 @@ import {
     AuthBindings,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     AuthPage,
     ThemedLayoutV2,
     ErrorComponent,
@@ -26,7 +26,7 @@ import {
     Navigate,
 } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
@@ -88,7 +88,7 @@ const App: React.FC = () => {
                             show: "/posts/show/:id",
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     options={{
                         warnWhenUnsavedChanges: true,
                         syncWithLocation: true,

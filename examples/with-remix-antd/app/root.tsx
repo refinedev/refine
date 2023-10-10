@@ -8,13 +8,13 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, RefineThemes } from "@refinedev/antd";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/remix-router";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import resetStyle from "@refinedev/antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";
@@ -40,7 +40,7 @@ export default function App(): JSX.Element {
                         dataProvider={dataProvider(API_URL)}
                         routerProvider={routerProvider}
                         authProvider={authProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

@@ -5,7 +5,7 @@ import {
     useParsed,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
@@ -20,7 +20,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient, resources } from "./utility";
@@ -74,7 +74,7 @@ function App() {
                             },
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                 >
                     <Routes>
                         <Route

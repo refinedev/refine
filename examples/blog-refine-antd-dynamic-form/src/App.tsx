@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
@@ -12,7 +12,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import UserCreate from "./pages/UserCreate";
 import UserEdit from "./pages/UserEdit";
@@ -23,46 +23,54 @@ function App() {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                            create: "/users/create",
-                            edit: "/users/edit/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        notificationProvider={useNotificationProvider}
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        resources={[
+                            {
+                                name: "users",
+                                list: "/users",
+                                create: "/users/create",
+                                edit: "/users/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="users" />
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
                                 }
-                            />
-                            <Route path="users">
-                                <Route index element={<UserList />} />
-                                <Route path="create" element={<UserCreate />} />
-                                <Route path="edit/:id" element={<UserEdit />} />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="users" />
+                                    }
+                                />
+                                <Route path="users">
+                                    <Route index element={<UserList />} />
+                                    <Route
+                                        path="create"
+                                        element={<UserCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<UserEdit />}
+                                    />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

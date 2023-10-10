@@ -1,6 +1,6 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
@@ -15,7 +15,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import { DashboardOutlined } from "@ant-design/icons";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";
@@ -51,7 +51,7 @@ function App() {
                             show: "/posts/show/:id",
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,

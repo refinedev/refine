@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
@@ -11,7 +11,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -27,7 +27,7 @@ const App: React.FC = () => {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     resources={[
                         {
                             name: "posts",

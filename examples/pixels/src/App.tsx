@@ -1,9 +1,9 @@
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
-import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 
 import { Layout } from "./components/layout";
@@ -45,7 +45,7 @@ function App() {
                             show: "/canvases/show/:id",
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                 >
                     <Routes>
                         <Route

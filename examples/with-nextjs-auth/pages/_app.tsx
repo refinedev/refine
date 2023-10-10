@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
@@ -14,7 +14,7 @@ import routerProvider, {
 } from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
                     }}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                 >
                     {renderComponent()}
                     <UnsavedChangesNotifier />

@@ -3,12 +3,12 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import { notificationProvider, RefineThemes } from "@refinedev/antd";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router/app";
 import "@refinedev/antd/dist/reset.css";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
@@ -42,7 +42,7 @@ export default function RootLayout({
                         options={{
                             syncWithLocation: true,
                         }}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                     >
                         {children}
                     </Refine>

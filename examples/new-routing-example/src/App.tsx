@@ -47,7 +47,7 @@ import routerBindings, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";

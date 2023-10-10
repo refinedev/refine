@@ -2,7 +2,7 @@ import {
     AuthPage,
     ErrorComponent,
     ThemedLayoutV2,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/antd";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
@@ -15,7 +15,7 @@ import routerProvider, {
 import { DataProvider } from "@refinedev/strapi-v4";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { OrderCreate, OrderEdit, OrderList } from "./pages/order";
@@ -54,7 +54,7 @@ const App: React.FC = () => {
                             },
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,

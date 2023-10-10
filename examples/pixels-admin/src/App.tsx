@@ -7,9 +7,9 @@ import {
 import {
     ErrorComponent,
     ThemedLayoutV2,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/antd";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
     NavigateToResource,
@@ -54,7 +54,7 @@ function App() {
                     authProvider={authProvider}
                     accessControlProvider={accessControlProvider}
                     routerProvider={routerBindings}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     resources={[
                         {
                             name: "users",

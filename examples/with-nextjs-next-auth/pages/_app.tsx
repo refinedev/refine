@@ -5,7 +5,7 @@ import { SessionProvider, useSession, signOut, signIn } from "next-auth/react";
 import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
@@ -15,7 +15,7 @@ import routerProvider, {
 } from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@styles/global.css";
 
 import { API_URL } from "src/constants";
@@ -215,7 +215,7 @@ const App = (props: React.PropsWithChildren) => {
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
                     }}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                 >
                     {props.children}
                     <UnsavedChangesNotifier />

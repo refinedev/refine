@@ -1,7 +1,7 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 
 import {
-    notificationProvider,
+    useNotificationProvider,
     AuthPage,
     ErrorComponent,
     RefineThemes,
@@ -15,7 +15,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
@@ -34,78 +34,82 @@ function App() {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider}
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "feedbacks",
-                            list: "/feedbacks",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout
-                                        Header={Header}
-                                        OffLayoutArea={OffLayoutArea}
-                                    >
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        dataProvider={dataProvider}
+                        authProvider={authProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "feedbacks",
+                                list: "/feedbacks",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="feedbacks" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <Layout
+                                            Header={Header}
+                                            OffLayoutArea={OffLayoutArea}
+                                        >
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="feedbacks" />
+                                    }
+                                />
+
+                                <Route
+                                    path="/feedbacks"
+                                    element={<FeedbackList />}
+                                />
+                            </Route>
 
                             <Route
-                                path="/feedbacks"
-                                element={<FeedbackList />}
-                            />
-                        </Route>
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="feedbacks" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={<AuthPage type="login" />}
+                                />
+                            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="feedbacks" />
-                                </Authenticated>
-                            }
-                        >
                             <Route
-                                path="/login"
-                                element={<AuthPage type="login" />}
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                                element={
+                                    <Authenticated>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

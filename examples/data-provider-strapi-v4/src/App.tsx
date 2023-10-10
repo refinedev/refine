@@ -5,7 +5,7 @@ import {
     Authenticated,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
@@ -32,7 +32,7 @@ import {
 } from "../src/pages/categories";
 
 import { TOKEN_KEY, API_URL } from "./constants";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 
 const App: React.FC = () => {
     const axiosInstance = axios.create();
@@ -135,117 +135,133 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    authProvider={authProvider}
-                    dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                canDelete: true,
+                <AntdApp>
+                    <Refine
+                        authProvider={authProvider}
+                        dataProvider={DataProvider(
+                            API_URL + "/api",
+                            axiosInstance,
+                        )}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                        },
-                        {
-                            name: "users",
-                            list: "/users",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
+                            {
+                                name: "categories",
+                                list: "/categories",
+                                create: "/categories/create",
+                                edit: "/categories/edit/:id",
+                            },
+                            {
+                                name: "users",
+                                list: "/users",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
-
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-
-                            <Route path="/categories">
-                                <Route index element={<CategoryList />} />
+                            >
                                 <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
                                 />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                            </Route>
 
-                            <Route path="/users" element={<UserList />} />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
                                     />
-                                }
-                            />
-                        </Route>
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
+                                </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                                <Route path="/categories">
+                                    <Route index element={<CategoryList />} />
+                                    <Route
+                                        path="create"
+                                        element={<CategoryCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CategoryEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="/users" element={<UserList />} />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="posts" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            formProps={{
+                                                initialValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    }
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );
