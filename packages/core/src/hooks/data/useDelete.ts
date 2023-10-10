@@ -384,15 +384,25 @@ export const useDelete = <
                     id,
                     resource: resourceName,
                     successNotification,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     meta,
                     metaData,
                 },
                 context,
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourceSingular = textTransformers.singular(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
@@ -425,26 +435,24 @@ export const useDelete = <
                         ids: [id],
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "delete",
                     resource: resource.name,
                     meta: {
                         id,
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ...rest,
                     },
                 });

@@ -195,40 +195,47 @@ describe("useDeleteMany Hook", () => {
     });
 
     describe("usePublish", () => {
-        it("publish live event on success", async () => {
-            const onPublishMock = jest.fn();
+        it.each(["default", "categories"])(
+            "publish event on success [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onPublishMock = jest.fn();
 
-            const { result } = renderHook(() => useDeleteMany(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: jest.fn(),
-                        publish: onPublishMock,
-                    },
-                }),
-            });
+                const { result } = renderHook(() => useDeleteMany(), {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
+                });
 
-            result.current.mutate({
-                resource: "posts",
-                ids: ["1", "2"],
-            });
-
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
-
-            expect(onPublishMock).toBeCalled();
-            expect(onPublishMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                date: expect.any(Date),
-                type: "deleted",
-                payload: {
+                result.current.mutate({
+                    resource: "posts",
                     ids: ["1", "2"],
-                },
-            });
-        });
+                    dataProviderName,
+                });
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onPublishMock).toBeCalled();
+                expect(onPublishMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    date: expect.any(Date),
+                    type: "deleted",
+                    payload: {
+                        ids: ["1", "2"],
+                    },
+                    meta: {
+                        dataProviderName,
+                    },
+                });
+            },
+        );
     });
 
     describe("useLog", () => {
