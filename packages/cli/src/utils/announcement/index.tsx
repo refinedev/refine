@@ -61,7 +61,11 @@ export const printAnnouncements = async () => {
     }
 
     const stringAnnouncements = visibleAnnouncements
-        .map((a) => `— ${markedTerminalRenderer(a.content)}`)
+        .map((a) => {
+            const dash = visibleAnnouncements.length > 1 ? "— " : "";
+            const content = markedTerminalRenderer(a.content);
+            return `${dash}${content}`;
+        })
         .join("")
         .trim();
 
