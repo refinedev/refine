@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+
 import { CommunityStatsProvider } from "../context/CommunityStats";
 
 const Root: FC = ({ children }) => {
