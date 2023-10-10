@@ -13,6 +13,7 @@ import { Activity, createDb } from "./create-db";
 import { serveApi } from "./serve-api";
 import { SERVER_PORT } from "./constants";
 import { serveProxy } from "./serve-proxy";
+import { serveOpenInEditor } from "./serve-open-in-editor";
 
 type Options = {
     projectPath?: string;
@@ -129,6 +130,7 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
     setupServer(app);
     serveApi(app, db);
     serveProxy(app);
+    serveOpenInEditor(app, projectPath);
 
     console.log(
         `\n${boxen(

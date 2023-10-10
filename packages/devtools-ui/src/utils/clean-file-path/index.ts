@@ -8,5 +8,8 @@ export const cleanFilePath = (filePath?: string) => {
     if (cleaned.includes("?")) {
         cleaned = cleaned.split("?")[0];
     }
+    if (cleaned.startsWith("webpack-internal:///")) {
+        cleaned = cleaned.replace("webpack-internal:///", "");
+    }
     return cleaned;
 };

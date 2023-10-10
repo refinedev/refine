@@ -1,6 +1,7 @@
-import { type Express } from "express";
+import { type Express, RequestHandler } from "express";
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { REFINE_API_URL, SERVER_PORT } from "./constants";
+import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-package-json";
 
 const onProxyRes: Options["onProxyRes"] | undefined = (proxyRes) => {
     if (proxyRes.headers["set-cookie"]) {
@@ -30,6 +31,19 @@ const restream: Options["onProxyReq"] = function (proxyReq, req) {
     }
 };
 
+let currentProjectId: string | null | false = null;
+const projectIdAppender: RequestHandler = async (req, res, next) => {
+    if (!currentProjectId) {
+        currentProjectId = await getProjectIdFromPackageJson();
+    }
+
+    if (currentProjectId) {
+        req.headers["x-project-id"] = currentProjectId;
+    }
+
+    next();
+};
+
 export const serveProxy = (app: Express) => {
     const authProxy = createProxyMiddleware({
         target: REFINE_API_URL,
@@ -57,5 +71,5 @@ export const serveProxy = (app: Express) => {
         onProxyReq: restream,
     });
 
-    app.use("/api/.refine", refineApiProxy);
+    app.use("/api/.refine", projectIdAppender, refineApiProxy);
 };
