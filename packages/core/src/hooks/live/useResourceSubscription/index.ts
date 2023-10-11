@@ -1,3 +1,7 @@
+import { LiveContext } from "@contexts/live";
+import { RefineContext } from "@contexts/refine";
+import { useInvalidate } from "@hooks/invalidate";
+import { useResource } from "@hooks/resource";
 import { useContext, useEffect } from "react";
 import {
     BaseKey,
@@ -10,16 +14,15 @@ import {
     MetaQuery,
     Pagination,
 } from "../../../interfaces";
-import { LiveContext } from "@contexts/live";
-import { RefineContext } from "@contexts/refine";
-import { useResource } from "@hooks/resource";
-import { useInvalidate } from "@hooks/invalidate";
 
 export type UseResourceSubscriptionProps = {
     channel: string;
     params?: {
         ids?: BaseKey[];
         id?: BaseKey;
+        /**
+         * @deprecated `params.meta` is depcerated. Use `meta` directly from the root level instead.
+         */
         meta?: MetaQuery;
         /**
          * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
@@ -42,7 +45,11 @@ export type UseResourceSubscriptionProps = {
     types: LiveEvent["type"][];
     resource?: string;
     enabled?: boolean;
+    /**
+     * @deprecated use `meta.dataProviderName` instead.
+     */
     dataProviderName?: string;
+    meta?: MetaQuery & { dataProviderName?: string };
 } & LiveModeProps;
 
 export type PublishType = {
@@ -57,7 +64,8 @@ export const useResourceSubscription = ({
     enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
-    dataProviderName,
+    dataProviderName: dataProviderNameFromProps,
+    meta,
 }: UseResourceSubscriptionProps): void => {
     const { resource, identifier } = useResource(resourceFromProp);
 
@@ -71,6 +79,11 @@ export const useResourceSubscription = ({
 
     const invalidate = useInvalidate();
 
+    const dataProviderName =
+        dataProviderNameFromProps ??
+        meta?.dataProviderName ??
+        resource?.meta?.dataProviderName;
+
     useEffect(() => {
         let subscription: any;
 
@@ -78,7 +91,7 @@ export const useResourceSubscription = ({
             if (liveMode === "auto") {
                 invalidate({
                     resource: identifier,
-                    dataProviderName: resource?.meta?.dataProviderName,
+                    dataProviderName,
                     invalidates: ["resourceAll"],
                     invalidationFilters: {
                         type: "active",
@@ -102,6 +115,10 @@ export const useResourceSubscription = ({
                 types,
                 callback,
                 dataProviderName,
+                meta: {
+                    ...meta,
+                    dataProviderName,
+                },
             });
         }
 

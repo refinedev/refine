@@ -1,16 +1,16 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useDelete } from "./useDelete";
-import * as UseInvalidate from "../invalidate/index";
 import {
-    renderUseList,
-    renderUseMany,
     assertList,
     assertListLength,
     assertMutationSuccess,
+    renderUseList,
+    renderUseMany,
 } from "@test/mutation-helpers";
+import * as UseInvalidate from "../invalidate/index";
+import { useDelete } from "./useDelete";
 
 describe("useDelete Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -205,41 +205,48 @@ describe("useDelete Hook", () => {
     });
 
     describe("usePublish", () => {
-        it("publish live event on success", async () => {
-            const onPublishMock = jest.fn();
+        it.each(["default", "categories"])(
+            "publish event on success [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onPublishMock = jest.fn();
 
-            const { result } = renderHook(() => useDelete(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: jest.fn(),
-                        publish: onPublishMock,
+                const { result } = renderHook(() => useDelete(), {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
+                });
+
+                result.current.mutate({
+                    id: "1",
+                    resource: "posts",
+                    mutationMode: "pessimistic",
+                    dataProviderName,
+                });
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onPublishMock).toBeCalled();
+                expect(onPublishMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    date: expect.any(Date),
+                    type: "deleted",
+                    payload: {
+                        ids: ["1"],
                     },
-                }),
-            });
-
-            result.current.mutate({
-                id: "1",
-                resource: "posts",
-                mutationMode: "pessimistic",
-            });
-
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
-
-            expect(onPublishMock).toBeCalled();
-            expect(onPublishMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                date: expect.any(Date),
-                type: "deleted",
-                payload: {
-                    ids: ["1"],
-                },
-            });
-        });
+                    meta: {
+                        dataProviderName,
+                    },
+                });
+            },
+        );
     });
 
     describe("useLog", () => {
@@ -734,13 +741,15 @@ describe("useDelete Hook", () => {
                 expect(result.current.isSuccess).toBeTruthy();
             });
 
-            expect(deleteOneMock).toBeCalledWith(
-                expect.objectContaining({
-                    meta: expect.objectContaining({
-                        bar: "baz",
+            await waitFor(() => {
+                expect(deleteOneMock).toBeCalledWith(
+                    expect.objectContaining({
+                        meta: expect.objectContaining({
+                            bar: "baz",
+                        }),
                     }),
-                }),
-            );
+                );
+            });
         });
     });
 });

@@ -1,54 +1,54 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     useMutation,
     UseMutationOptions,
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
-    BaseRecord,
-    BaseKey,
-    UpdateResponse,
-    MutationMode,
-    PrevContext as UpdateContext,
-    HttpError,
-    SuccessErrorNotification,
-    MetaQuery,
-    PreviousQuery,
-    GetListResponse,
-    IQueryKeys,
-    OptimisticUpdateMapType,
-    GetManyResponse,
-    GetOneResponse,
-} from "../../interfaces";
-import {
-    useResource,
-    useMutationMode,
-    useCancelNotification,
-    useTranslate,
-    usePublish,
-    useHandleNotification,
-    useDataProvider,
-    useLog,
-    useInvalidate,
-    useOnError,
-    useMeta,
-    useRefineContext,
-} from "@hooks";
-import {
-    queryKeysReplacement,
     pickDataProvider,
     pickNotDeprecated,
+    queryKeysReplacement,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useCancelNotification,
+    useDataProvider,
+    useHandleNotification,
+    useInvalidate,
+    useLog,
+    useMeta,
+    useMutationMode,
+    useOnError,
+    usePublish,
+    useRefineContext,
+    useResource,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseKey,
+    BaseRecord,
+    GetListResponse,
+    GetManyResponse,
+    GetOneResponse,
+    HttpError,
+    IQueryKeys,
+    MetaQuery,
+    MutationMode,
+    OptimisticUpdateMapType,
+    PrevContext as UpdateContext,
+    PreviousQuery,
+    SuccessErrorNotification,
+    UpdateResponse,
+} from "../../interfaces";
 import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 export type UpdateParams<TData, TError, TVariables> = {
     /**
@@ -480,7 +480,7 @@ export const useUpdate = <
                     id,
                     resource: resourceName,
                     successNotification,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     values,
                     meta,
                     metaData,
@@ -488,8 +488,18 @@ export const useUpdate = <
                 context,
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourceSingular = textTransformers.singular(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -522,6 +532,10 @@ export const useUpdate = <
                         ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
                 let previousData: any;
@@ -539,9 +553,12 @@ export const useUpdate = <
                     );
                 }
 
-                const { fields, operation, variables, ...rest } =
-                    pickNotDeprecated(meta, metaData) || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "update",
                     resource: resource.name,
@@ -549,11 +566,7 @@ export const useUpdate = <
                     previousData,
                     meta: {
                         id,
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ...rest,
                     },
                 });

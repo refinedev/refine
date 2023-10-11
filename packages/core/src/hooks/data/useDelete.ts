@@ -1,51 +1,51 @@
-import {
-    useQueryClient,
-    useMutation,
-    UseMutationResult,
-    UseMutationOptions,
-} from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
-
 import {
-    useResource,
-    useMutationMode,
-    useCancelNotification,
-    useTranslate,
-    usePublish,
-    useHandleNotification,
-    useDataProvider,
-    useLog,
-    useInvalidate,
-    useOnError,
-    useMeta,
-    useRefineContext,
-} from "@hooks";
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+    useQueryClient,
+} from "@tanstack/react-query";
+
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
-    DeleteOneResponse,
-    MutationMode,
-    PrevContext as DeleteContext,
-    BaseRecord,
-    BaseKey,
-    HttpError,
-    GetListResponse,
-    SuccessErrorNotification,
-    PreviousQuery,
-    IQueryKeys,
-    MetaQuery,
-} from "../../interfaces";
-import {
-    queryKeysReplacement,
     pickDataProvider,
     pickNotDeprecated,
+    queryKeysReplacement,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useCancelNotification,
+    useDataProvider,
+    useHandleNotification,
+    useInvalidate,
+    useLog,
+    useMeta,
+    useMutationMode,
+    useOnError,
+    usePublish,
+    useRefineContext,
+    useResource,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseKey,
+    BaseRecord,
+    DeleteOneResponse,
+    GetListResponse,
+    HttpError,
+    IQueryKeys,
+    MetaQuery,
+    MutationMode,
+    PrevContext as DeleteContext,
+    PreviousQuery,
+    SuccessErrorNotification,
+} from "../../interfaces";
 import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 export type DeleteParams<TData, TError, TVariables> = {
     /**
@@ -384,15 +384,25 @@ export const useDelete = <
                     id,
                     resource: resourceName,
                     successNotification,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     meta,
                     metaData,
                 },
                 context,
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourceSingular = textTransformers.singular(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
@@ -425,26 +435,24 @@ export const useDelete = <
                         ids: [id],
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "delete",
                     resource: resource.name,
                     meta: {
                         id,
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ...rest,
                     },
                 });

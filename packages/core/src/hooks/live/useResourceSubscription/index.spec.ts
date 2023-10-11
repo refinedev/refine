@@ -2,9 +2,9 @@ import { renderHook } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 
-import { useResourceSubscription } from "./";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../../interfaces";
+import { useResourceSubscription } from "./";
 
 const invalidateQueriesMock = jest.fn();
 jest.mock("@tanstack/react-query", () => ({
@@ -41,6 +41,14 @@ describe("useResourceSubscription Hook", () => {
                     channel: subscriptionParams.channel,
                     resource: "posts",
                     types: ["*"],
+                    meta: {
+                        fields: ["title"],
+                        operation: "update",
+                        variables: {
+                            id: "1",
+                        },
+                        dataProviderName: "dataProviderName",
+                    },
                 }),
             {
                 wrapper: TestWrapper({
@@ -57,7 +65,23 @@ describe("useResourceSubscription Hook", () => {
             },
         );
 
-        expect(onSubscribeMock).toBeCalled();
+        expect(onSubscribeMock).toBeCalledWith({
+            channel: subscriptionParams.channel,
+            params: {
+                resource: "posts",
+            },
+            types: ["*"],
+            callback: expect.any(Function),
+            dataProviderName: "dataProviderName",
+            meta: {
+                fields: ["title"],
+                operation: "update",
+                variables: {
+                    id: "1",
+                },
+                dataProviderName: "dataProviderName",
+            },
+        });
     });
 
     it("useResourceSubscription liveMode off", async () => {

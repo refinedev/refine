@@ -1,41 +1,40 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     QueryObserverResult,
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
 import {
-    GetOneResponse,
-    HttpError,
-    BaseRecord,
-    BaseKey,
-    LiveModeProps,
-    SuccessErrorNotification,
-    MetaQuery,
-    Prettify,
-} from "../../interfaces";
-import {
-    useResource,
-    useTranslate,
-    useResourceSubscription,
-    useHandleNotification,
-    useDataProvider,
-    useOnError,
-    useMeta,
-} from "@hooks";
-import {
-    queryKeys,
     pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions";
 import {
+    useDataProvider,
+    useHandleNotification,
+    useMeta,
+    useOnError,
+    useResource,
+    useResourceSubscription,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseKey,
+    BaseRecord,
+    GetOneResponse,
+    HttpError,
+    LiveModeProps,
+    MetaQuery,
+    Prettify,
+    SuccessErrorNotification,
+} from "../../interfaces";
+import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
     /**
@@ -154,6 +153,10 @@ export const useOne = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...meta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useQuery<

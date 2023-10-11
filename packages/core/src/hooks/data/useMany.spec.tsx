@@ -1,10 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useMany } from "./useMany";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../interfaces";
+import { useMany } from "./useMany";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
@@ -154,6 +154,9 @@ describe("useMany Hook", () => {
                     }),
                     types: ["*"],
                     dataProviderName,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
         );

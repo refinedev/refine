@@ -1,10 +1,10 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useList } from "./useList";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../interfaces";
+import { useList } from "./useList";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
@@ -318,6 +318,9 @@ describe("useList Hook", () => {
                         }),
                         types: ["*"],
                         dataProviderName,
+                        meta: {
+                            dataProviderName,
+                        },
                     }),
                 );
             },

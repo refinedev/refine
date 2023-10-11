@@ -1,48 +1,47 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
+    InfiniteData,
+    InfiniteQueryObserverResult,
     useInfiniteQuery,
     UseInfiniteQueryOptions,
-    InfiniteQueryObserverResult,
-    InfiniteData,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
 import {
-    CrudFilters,
-    Pagination,
-    BaseRecord,
-    HttpError,
-    CrudSorting,
-    MetaQuery,
-    SuccessErrorNotification,
-    LiveModeProps,
-    GetListResponse,
-    Prettify,
-} from "../../interfaces";
-import {
-    useResource,
-    useHandleNotification,
-    useResourceSubscription,
-    useTranslate,
-    useDataProvider,
-    useOnError,
-    useMeta,
-} from "@hooks";
-import {
-    queryKeys,
-    pickDataProvider,
     getNextPageParam,
     getPreviousPageParam,
+    handlePaginationParams,
+    pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
-    handlePaginationParams,
 } from "@definitions/helpers";
+import {
+    useDataProvider,
+    useHandleNotification,
+    useMeta,
+    useOnError,
+    useResource,
+    useResourceSubscription,
+    useTranslate,
+} from "@hooks";
+import {
+    BaseRecord,
+    CrudFilters,
+    CrudSorting,
+    GetListResponse,
+    HttpError,
+    LiveModeProps,
+    MetaQuery,
+    Pagination,
+    Prettify,
+    SuccessErrorNotification,
+} from "../../interfaces";
 
+import { useKeys } from "@hooks/useKeys";
 import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 export interface UseInfiniteListConfig {
     pagination?: Pagination;
@@ -221,6 +220,10 @@ export const useInfiniteList = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...combinedMeta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useInfiniteQuery<

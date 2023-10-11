@@ -1,13 +1,13 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
-import { useInfiniteList } from "./useInfiniteList";
 import { defaultRefineOptions } from "@contexts/refine";
 import {
     IDataMultipleContextProvider,
     IRefineContextProvider,
 } from "../../interfaces";
+import { useInfiniteList } from "./useInfiniteList";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
@@ -155,6 +155,9 @@ describe("useInfiniteList Hook", () => {
                     }),
                     types: ["*"],
                     dataProviderName,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
         );

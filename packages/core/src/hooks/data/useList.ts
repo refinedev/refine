@@ -1,44 +1,43 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     QueryObserverResult,
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
 import {
-    GetListResponse,
-    CrudFilters,
-    Pagination,
-    BaseRecord,
-    HttpError,
-    CrudSorting,
-    MetaQuery,
-    SuccessErrorNotification,
-    LiveModeProps,
-    Prettify,
-} from "../../interfaces";
-import {
-    useResource,
-    useHandleNotification,
-    useResourceSubscription,
-    useTranslate,
-    useDataProvider,
-    useOnError,
-    useMeta,
-} from "@hooks";
-import {
-    queryKeys,
+    handlePaginationParams,
     pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
-    handlePaginationParams,
 } from "@definitions/helpers";
+import {
+    useDataProvider,
+    useHandleNotification,
+    useMeta,
+    useOnError,
+    useResource,
+    useResourceSubscription,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseRecord,
+    CrudFilters,
+    CrudSorting,
+    GetListResponse,
+    HttpError,
+    LiveModeProps,
+    MetaQuery,
+    Pagination,
+    Prettify,
+    SuccessErrorNotification,
+} from "../../interfaces";
 import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 export interface UseListConfig {
     pagination?: Pagination;
@@ -218,6 +217,10 @@ export const useList = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...meta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useQuery<

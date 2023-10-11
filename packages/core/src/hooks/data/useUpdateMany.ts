@@ -1,55 +1,55 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     useMutation,
     UseMutationOptions,
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
-import {
-    useResource,
-    useCancelNotification,
-    useMutationMode,
-    useTranslate,
-    usePublish,
-    useHandleNotification,
-    useDataProvider,
-    useInvalidate,
-    useLog,
-    useOnError,
-    useMeta,
-    useRefineContext,
-} from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
-    BaseRecord,
-    BaseKey,
-    UpdateManyResponse,
-    HttpError,
-    MutationMode,
-    QueryResponse,
-    PrevContext as UpdateContext,
-    SuccessErrorNotification,
-    MetaQuery,
-    GetListResponse,
-    IQueryKeys,
-    OptimisticUpdateManyMapType,
-    GetManyResponse,
-    GetOneResponse,
-} from "../../interfaces";
-import {
-    queryKeysReplacement,
-    pickDataProvider,
     handleMultiple,
+    pickDataProvider,
     pickNotDeprecated,
+    queryKeysReplacement,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useCancelNotification,
+    useDataProvider,
+    useHandleNotification,
+    useInvalidate,
+    useLog,
+    useMeta,
+    useMutationMode,
+    useOnError,
+    usePublish,
+    useRefineContext,
+    useResource,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseKey,
+    BaseRecord,
+    GetListResponse,
+    GetManyResponse,
+    GetOneResponse,
+    HttpError,
+    IQueryKeys,
+    MetaQuery,
+    MutationMode,
+    OptimisticUpdateManyMapType,
+    PrevContext as UpdateContext,
+    QueryResponse,
+    SuccessErrorNotification,
+    UpdateManyResponse,
+} from "../../interfaces";
 import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 type UpdateManyParams<TData, TError, TVariables> = {
     /**
@@ -508,15 +508,25 @@ export const useUpdateMany = <
                     resource: resourceName,
                     meta,
                     metaData,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     successNotification,
                     values,
                 },
                 context,
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourceSingular = textTransformers.singular(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -549,6 +559,10 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
                 const previousData: any[] = [];
@@ -570,14 +584,12 @@ export const useUpdateMany = <
                     });
                 }
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "updateMany",
                     resource: resource.name,
@@ -585,11 +597,7 @@ export const useUpdateMany = <
                     previousData,
                     meta: {
                         ids,
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ...rest,
                     },
                 });

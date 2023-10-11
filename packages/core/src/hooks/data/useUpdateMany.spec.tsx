@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 import {
     assertList,
     assertMutationSuccess,
@@ -10,8 +10,8 @@ import {
     renderUseOne,
 } from "@test/mutation-helpers";
 
-import { useUpdateMany } from "./useUpdateMany";
 import * as UseInvalidate from "../invalidate/index";
+import { useUpdateMany } from "./useUpdateMany";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
@@ -256,43 +256,50 @@ describe("useUpdateMany Hook", () => {
     });
 
     describe("usePublish", () => {
-        it("publish live event on success", async () => {
-            const onPublishMock = jest.fn();
+        it.each(["default", "categories"])(
+            "publish event on success [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onPublishMock = jest.fn();
 
-            const { result } = renderHook(() => useUpdateMany(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: jest.fn(),
-                        publish: onPublishMock,
-                    },
-                }),
-            });
+                const { result } = renderHook(() => useUpdateMany(), {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
+                });
 
-            result.current.mutate({
-                resource: "posts",
-                mutationMode: "undoable",
-                undoableTimeout: 0,
-                ids: ["1", "2"],
-                values: { id: "1", title: "undoable test" },
-            });
-
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
-
-            expect(onPublishMock).toBeCalled();
-            expect(onPublishMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                date: expect.any(Date),
-                type: "updated",
-                payload: {
+                result.current.mutate({
+                    resource: "posts",
+                    mutationMode: "undoable",
+                    undoableTimeout: 0,
                     ids: ["1", "2"],
-                },
-            });
-        });
+                    values: { id: "1", title: "undoable test" },
+                    dataProviderName,
+                });
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onPublishMock).toBeCalled();
+                expect(onPublishMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    date: expect.any(Date),
+                    type: "updated",
+                    payload: {
+                        ids: ["1", "2"],
+                    },
+                    meta: {
+                        dataProviderName,
+                    },
+                });
+            },
+        );
     });
 
     describe("useLog", () => {

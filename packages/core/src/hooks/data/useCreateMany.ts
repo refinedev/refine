@@ -1,40 +1,40 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     useMutation,
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
-import {
-    BaseRecord,
-    CreateManyResponse,
-    HttpError,
-    SuccessErrorNotification,
-    MetaQuery,
-    IQueryKeys,
-} from "../../interfaces";
-import {
-    useResource,
-    useTranslate,
-    usePublish,
-    useHandleNotification,
-    useDataProvider,
-    useInvalidate,
-    useLog,
-    useMeta,
-    useRefineContext,
-} from "@hooks";
 import {
     handleMultiple,
     pickDataProvider,
     pickNotDeprecated,
 } from "@definitions";
 import {
+    useDataProvider,
+    useHandleNotification,
+    useInvalidate,
+    useLog,
+    useMeta,
+    usePublish,
+    useRefineContext,
+    useResource,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseRecord,
+    CreateManyResponse,
+    HttpError,
+    IQueryKeys,
+    MetaQuery,
+    SuccessErrorNotification,
+} from "../../interfaces";
+import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 type useCreateManyParams<TData, TError, TVariables> = {
     resource: string;
@@ -158,7 +158,7 @@ export const useCreateMany = <
                 {
                     resource: resourceName,
                     successNotification,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     invalidates = ["list", "many"],
                     values,
                     meta,
@@ -166,8 +166,18 @@ export const useCreateMany = <
                 },
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourcePlural = textTransformers.plural(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -192,18 +202,13 @@ export const useCreateMany = <
 
                 invalidateStore({
                     resource: identifier,
-                    dataProviderName: pickDataProvider(
-                        identifier,
-                        dataProviderName,
-                        resources,
-                    ),
+                    dataProviderName,
                     invalidates,
                 });
 
                 const ids = response?.data
                     .filter((item) => item?.id !== undefined)
                     .map((item) => item.id!);
-
                 publish?.({
                     channel: `resources/${resource.name}`,
                     type: "created",
@@ -211,26 +216,24 @@ export const useCreateMany = <
                         ids,
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "createMany",
                     resource: resource.name,
                     data: values,
                     meta: {
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ids,
                         ...rest,
                     },

@@ -38,6 +38,9 @@ describe("useSubscribe Hook", () => {
             params: undefined,
             types: ["*"],
             dataProviderName: "test",
+            meta: {
+                dataProviderName: "test",
+            },
         });
     });
 
@@ -98,6 +101,9 @@ describe("useSubscribe Hook", () => {
             params: undefined,
             types: ["test", "test2"],
             dataProviderName: "default",
+            meta: {
+                dataProviderName: "default",
+            },
         });
     });
 
@@ -133,6 +139,9 @@ describe("useSubscribe Hook", () => {
             params: undefined,
             types: ["*"],
             dataProviderName: "default",
+            meta: {
+                dataProviderName: "default",
+            },
         });
 
         unmount();
