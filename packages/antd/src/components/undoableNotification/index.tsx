@@ -12,8 +12,8 @@ export type UndoableNotificationProps = {
 
 export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
     message,
-    undoableTimeout,
     cancelMutation,
+    undoableTimeout,
 }) => (
     <div
         style={{
