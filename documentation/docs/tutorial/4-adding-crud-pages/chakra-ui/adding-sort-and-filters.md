@@ -26,7 +26,7 @@ We first need to create a `ColumnSorter/>` component to use in our table header,
 ```tsx title="src/components/table/ColumnSorter.tsx"
 import { IconButton } from "@chakra-ui/react";
 import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
-import type { Column } from "@tanstack/react-table";
+import type { Column, SortDirection } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
     column,
@@ -41,11 +41,16 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
         <IconButton
             aria-label="Sort"
             size="xs"
-            icon={sorted === "asc" ? <IconChevronDown size={18} /> : sorted === "desc" ? <IconChevronUp size={18} /> : <IconSelector size={18} />}
+            icon={<ColumnSorterIcon sorted={sorted} />}
             onClick={column.getToggleSortingHandler()}
-        >
-        </IconButton>
+        />
     );
+};
+
+const ColumnSorterIcon = ({ sorted }: { sorted: false | SortDirection }) => {
+    if (sorted === "asc") return <IconChevronDown size={18} />;
+    if (sorted === "desc") return <IconChevronUp size={18} />;
+    return <IconSelector size={18} />;
 };
 ```
 
