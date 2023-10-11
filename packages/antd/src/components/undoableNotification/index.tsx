@@ -8,13 +8,12 @@ export type UndoableNotificationProps = {
     message: OpenNotificationParams["message"];
     cancelMutation: OpenNotificationParams["cancelMutation"];
     undoableTimeout: OpenNotificationParams["undoableTimeout"];
-    onUndo?: () => void;
 };
 
 export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
     message,
     undoableTimeout,
-    onUndo,
+    cancelMutation,
 }) => (
     <div
         style={{
@@ -35,7 +34,7 @@ export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
         <span style={{ marginLeft: 8, width: "100%" }}>{message}</span>
         <Button
             style={{ flexShrink: 0 }}
-            onClick={onUndo}
+            onClick={cancelMutation}
             disabled={undoableTimeout === 0}
             icon={<UndoOutlined />}
         ></Button>

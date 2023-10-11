@@ -25,12 +25,11 @@ export const notificationProvider: NotificationProvider = {
                     <UndoableNotification
                         notificationKey={key}
                         message={message}
-                        cancelMutation={cancelMutation}
-                        undoableTimeout={undoableTimeout}
-                        onUndo={() => {
+                        cancelMutation={() => {
                             cancelMutation?.();
                             staticNotification.destroy(key ?? "");
                         }}
+                        undoableTimeout={undoableTimeout}
                     />
                 ),
                 message: null,
@@ -72,12 +71,11 @@ export const useNotificationProvider = (): NotificationProvider => {
                         <UndoableNotification
                             notificationKey={key}
                             message={message}
-                            cancelMutation={cancelMutation}
-                            undoableTimeout={undoableTimeout}
-                            onUndo={() => {
+                            cancelMutation={() => {
                                 cancelMutation?.();
                                 notification.destroy(key ?? "");
                             }}
+                            undoableTimeout={undoableTimeout}
                         />
                     ),
                     message: null,
