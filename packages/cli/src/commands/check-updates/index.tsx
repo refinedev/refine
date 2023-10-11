@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { getUpdateWarningTable } from "@components/update-warning-table";
+import { printUpdateWarningTable } from "@components/update-warning-table";
 import { pmCommands } from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
@@ -23,7 +23,7 @@ const action = async () => {
         return;
     }
 
-    await getUpdateWarningTable(packages);
+    await printUpdateWarningTable({ data: packages });
 };
 
 /**

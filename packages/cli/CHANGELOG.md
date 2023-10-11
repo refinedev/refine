@@ -1,5 +1,14 @@
 # @refinedev/cli
 
+## 2.16.5
+
+### Patch Changes
+
+-   [#5073](https://github.com/refinedev/refine/pull/5073) [`6c40a720140`](https://github.com/refinedev/refine/commit/6c40a720140a8fe7141033a282500d354b1e621f) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: The packages `ink`, `ink-markdown`, and `ink-table` have been replaced with `marked`, `marked-terminal`, and `cli-table3` packages.
+
+-   Updated dependencies [[`61366ebd866`](https://github.com/refinedev/refine/commit/61366ebd86694328fe5a7f4dcf322db3c43bbc9d)]:
+    -   @refinedev/devtools-server@1.1.10
+
 ## 2.16.4
 
 ### Patch Changes

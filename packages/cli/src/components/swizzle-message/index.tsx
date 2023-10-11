@@ -1,21 +1,20 @@
 import React from "react";
-import Markdown from "ink-markdown";
 import dedent from "dedent";
-import { Box, Text } from "ink";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
-import { renderCodeMarkdown } from "@utils/swizzle/renderCodeMarkdown";
+import chalk from "chalk";
+import { markedTerminalRenderer } from "@utils/marked-terminal-renderer";
 
-type Props = {
+type Params = {
     label: string;
     files: [targetPath: string, statusCode: string][];
     message?: string;
 };
 
-const SwizzleMessage: React.FC<Props> = ({
+export const printSwizzleMessage = ({
     label,
     files,
     message = "**`Warning:`** You should use the component where you want to use it.",
-}) => {
+}: Params) => {
     const errors = files.filter(([, statusCode]) =>
         Object.values(SWIZZLE_CODES)
             .filter((code) => code !== SWIZZLE_CODES.SUCCESS)
@@ -39,31 +38,6 @@ const SwizzleMessage: React.FC<Props> = ({
             break;
     }
 
-    const renderStatusMessage = () => {
-        switch (status) {
-            case "success":
-                return (
-                    <Text color="blueBright">
-                        Successfully swizzled <Text bold>{label}</Text>
-                    </Text>
-                );
-            case "warning":
-                return (
-                    <Text color="yellowBright">
-                        Swizzle completed with errors for{" "}
-                        <Text bold>{label}</Text>
-                    </Text>
-                );
-            case "error":
-                return (
-                    <Text color="redBright">
-                        Swizzle failed for <Text bold>{label}</Text>
-                    </Text>
-                );
-        }
-        return null;
-    };
-
     const clearFilePath = (filePath: string) => {
         const relative = filePath?.replace(process.cwd(), "");
 
@@ -76,83 +50,82 @@ const SwizzleMessage: React.FC<Props> = ({
         return relative;
     };
 
-    const renderFiles = () => {
-        return (
-            <>
-                <Text dimColor>File{files.length > 1 ? "s" : ""} created:</Text>
-                {files.map(([targetPath, statusCode], index) => {
+    const printStatusMessage = () => {
+        switch (status) {
+            case "success":
+                console.log(
+                    chalk.blueBright(
+                        `Successfully swizzled ${chalk.bold(label)}`,
+                    ),
+                );
+                return;
+            case "warning":
+                console.log(
+                    chalk.yellowBright(
+                        `Swizzle completed with errors for ${chalk.bold(
+                            label,
+                        )}`,
+                    ),
+                );
+                return;
+            case "error":
+                console.log(
+                    chalk.redBright(`Swizzle failed for ${chalk.bold(label)}`),
+                );
+                return;
+            default:
+                return;
+        }
+    };
+
+    const printFiles = () => {
+        const chalks = [];
+
+        chalks.push(chalk.dim(`File${files.length > 1 ? "s" : ""} created:`));
+        chalks.push(
+            files
+                .map(([targetPath, statusCode]) => {
                     if (statusCode === SWIZZLE_CODES.SUCCESS) {
-                        return (
-                            <Text
-                                key={index}
-                                dimColor
-                                color="cyanBright"
-                            >{` - ${clearFilePath(targetPath)}`}</Text>
+                        return chalk.cyanBright.dim(
+                            ` - ${clearFilePath(targetPath)}`,
                         );
                     }
                     if (statusCode === SWIZZLE_CODES.TARGET_ALREADY_EXISTS) {
-                        return (
-                            <Text key={index} dimColor color="cyanBright">
-                                {` - `}
-                                <Text color="yellowBright" bold>
-                                    [FILE_ALREADY_EXISTS]{" "}
-                                </Text>
-                                {`${clearFilePath(targetPath)}`}
-                            </Text>
+                        return chalk.cyanBright.dim(
+                            ` - ${chalk.yellowBright.bold(
+                                "[FILE_ALREADY_EXISTS] ",
+                            )}${clearFilePath(targetPath)}`,
                         );
                     }
                     if (statusCode === SWIZZLE_CODES.SOURCE_PATH_NOT_A_FILE) {
-                        return (
-                            <Text key={index} dimColor color="cyanBright">
-                                {` - `}
-                                <Text color="yellowBright" bold>
-                                    [SOURCE NOT FOUND]{" "}
-                                </Text>
-                                {`${clearFilePath(targetPath)}`}
-                            </Text>
+                        return chalk.cyanBright.dim(
+                            ` - ${chalk.yellowBright.bold(
+                                "[SOURCE NOT FOUND] ",
+                            )}${clearFilePath(targetPath)}`,
                         );
                     }
-                    return (
-                        <Text key={index} dimColor color="cyanBright">
-                            {` - `}
-                            <Text color="yellowBright" bold>
-                                [{statusCode}]
-                            </Text>
-                        </Text>
+
+                    return chalk.cyanBright.dim(
+                        ` - ${chalk.yellowBright.bold(
+                            `[${statusCode}]`,
+                        )}${clearFilePath(targetPath)}`,
                     );
-                })}
-            </>
+                })
+                .join("\n"),
         );
+
+        console.log(chalks.join("\n"));
     };
 
-    const renderSwizzleMessage = () => {
+    const printSwizzleMessage = () => {
         if (message && status !== "error") {
-            return (
-                <>
-                    <Markdown code={renderCodeMarkdown}>
-                        {dedent("\n" + message)}
-                    </Markdown>
-                    <Text>&nbsp;</Text>
-                </>
-            );
+            console.log(markedTerminalRenderer(dedent("\n" + message)));
         }
-        return null;
     };
 
-    return (
-        <Box
-            width={"100%"}
-            flexDirection="column"
-            alignItems="flex-start"
-            justifyContent="flex-start"
-        >
-            <Text>&nbsp;</Text>
-            {renderStatusMessage()}
-            {renderFiles()}
-            <Text>&nbsp;</Text>
-            {renderSwizzleMessage()}
-        </Box>
-    );
+    console.log("");
+    printStatusMessage();
+    printFiles();
+    console.log("");
+    printSwizzleMessage();
 };
-
-export default SwizzleMessage;

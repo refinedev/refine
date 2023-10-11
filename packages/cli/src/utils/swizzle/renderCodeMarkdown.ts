@@ -9,7 +9,7 @@ const getCodeData = (content: string): { title?: string; code: string } => {
 
     if (titleMatch) {
         const title = titleMatch.trim();
-        const code = content.replace(commentLine, "");
+        const code = content.replace(commentLine || "", "");
 
         return { title, code };
     }

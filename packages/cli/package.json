@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/cli",
-  "version": "2.16.4",
+  "version": "2.16.5",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "main": "dist/index.js",
@@ -28,6 +28,8 @@
     "@types/node-fetch": "^2.6.2",
     "@types/temp": "^0.9.1",
     "@types/express": "^4.17.17",
+    "@types/center-align": "^1.0.0",
+    "@types/marked-terminal": "^3.1.5",
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3",
     "tsup": "^6.7.0",
@@ -35,7 +37,7 @@
     "@refinedev/core": "^4.42.4"
   },
   "dependencies": {
-    "@refinedev/devtools-server": "1.1.9",
+    "@refinedev/devtools-server": "1.1.10",
     "boxen": "^5.1.2",
     "cardinal": "^2.1.1",
     "chalk": "^4.1.2",
@@ -52,9 +54,6 @@
     "gray-matter": "^4.0.3",
     "handlebars": "^4.7.7",
     "http-proxy-middleware": "^2.0.6",
-    "ink": "^3.2.0",
-    "ink-markdown": "^1.0.1",
-    "ink-table": "^3.0.0",
     "inquirer": "^8.2.5",
     "inquirer-autocomplete-prompt": "^2.0.0",
     "jscodeshift": "0.13.1",
@@ -67,7 +66,11 @@
     "semver": "7.3.8",
     "semver-diff": "^3.1.1",
     "temp": "^0.9.4",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "marked": "^4.3.0",
+    "marked-terminal": "^6.0.0",
+    "cli-table3": "^0.6.3",
+    "center-align": "1.0.1"
   },
   "author": "refine",
   "license": "MIT",
