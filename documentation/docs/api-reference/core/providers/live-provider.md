@@ -14,7 +14,7 @@ A live provider must include following methods:
 const liveProvider = {
     subscribe: ({ channel, params: { ids }, types, callback, meta }) => any,
     unsubscribe: (subscription) => void,
-    publish?: (event) => void,
+    publish?: ({ channel, type, payload, date, meta }) => void,
 };
 ```
 
@@ -173,10 +173,10 @@ This `publish` is used in [realated hooks](#publish-events-from-hooks). When `pu
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
         // highlight-start
-        publish: (event: LiveEvent) => {
-            const channelInstance = client.channels.get(event.channel);
+        publish: ({ channel, type, payload, date, meta }: LiveEvent) => {
+            const channelInstance = client.channels.get(channel);
 
-            channelInstance.publish(event.type, event);
+            channelInstance.publish(type, event);
         },
         // highlight-end
     };
@@ -285,10 +285,9 @@ const subscriptions = {
 
 export const liveProvider = (client: Client): LiveProvider => {
     return {
-        subscribe: ({ callback, params, dataProviderName }) => {
+        subscribe: ({ callback, params, meta }) => {
             const {
                 resource,
-                meta,
                 pagination,
                 sorters,
                 filters,
@@ -371,23 +370,23 @@ useSubscription({
     },
     params: {
         resource: "posts",
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-                "category_id",
-                "created_at",
-            ],
-        },
         pagination: {
             current: 1,
             pageSize: 10,
         },
         subscriptionType: "useList",
+    },
+    meta: {
+        fields: [
+            "id",
+            "title",
+            {
+                category: ["title"],
+            },
+            "content",
+            "category_id",
+            "created_at",
+        ],
     },
 });
 ```
