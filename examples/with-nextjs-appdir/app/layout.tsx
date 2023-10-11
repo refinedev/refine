@@ -3,12 +3,12 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { RefineThemes, notificationProvider } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router/app";
 import "@refinedev/antd/dist/reset.css";
 
-import { ConfigProvider, App as AntdApp } from "antd";
+import { ConfigProvider } from "antd";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
@@ -21,35 +21,33 @@ export default function RootLayout({
 }) {
     return (
         <ConfigProvider theme={RefineThemes.Blue}>
-            <AntdApp>
-                <html lang="en">
-                    <body>
-                        <Refine
-                            authProvider={authProvider}
-                            routerProvider={routerProvider}
-                            dataProvider={dataProvider(API_URL)}
-                            resources={[
-                                {
-                                    name: "posts",
-                                    list: "/posts",
-                                    create: "/posts/create",
-                                    edit: "/posts/edit/:id",
-                                    show: "/posts/show/:id",
-                                    meta: {
-                                        canDelete: true,
-                                    },
+            <html lang="en">
+                <body>
+                    <Refine
+                        authProvider={authProvider}
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                                meta: {
+                                    canDelete: true,
                                 },
-                            ]}
-                            options={{
-                                syncWithLocation: true,
-                            }}
-                            notificationProvider={useNotificationProvider}
-                        >
-                            {children}
-                        </Refine>
-                    </body>
-                </html>
-            </AntdApp>
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                        }}
+                        notificationProvider={notificationProvider}
+                    >
+                        {children}
+                    </Refine>
+                </body>
+            </html>
         </ConfigProvider>
     );
 }
