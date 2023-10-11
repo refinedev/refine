@@ -68,42 +68,52 @@ describe("useCreateMany Hook", () => {
     });
 
     describe("usePublish", () => {
-        it("publish live event on success", async () => {
-            const onPublishMock = jest.fn();
+        it.each(["default", "categories"])(
+            "publish event on success [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onPublishMock = jest.fn();
 
-            const { result } = renderHook(() => useCreateMany(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: jest.fn(),
-                        publish: onPublishMock,
-                    },
-                }),
-            });
-
-            await act(async () => {
-                result.current.mutate({
-                    resource: "posts",
-                    values: [{ id: 1 }, { id: 2 }],
+                const { result } = renderHook(() => useCreateMany(), {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
                 });
-            });
 
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
+                await act(async () => {
+                    result.current.mutate({
+                        resource: "posts",
+                        values: [{ id: 1 }, { id: 2 }],
+                        dataProviderName,
+                    });
+                });
 
-            expect(onPublishMock).toBeCalled();
-            expect(onPublishMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                date: expect.any(Date),
-                type: "created",
-                payload: {
-                    ids: ["1", "2"],
-                },
-            });
-        });
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onPublishMock).toBeCalled();
+                expect(onPublishMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    date: expect.any(Date),
+                    type: "created",
+                    payload: {
+                        ids:
+                            dataProviderName === "default"
+                                ? ["1", "2"]
+                                : [1, 2],
+                    },
+                    meta: {
+                        dataProviderName,
+                    },
+                });
+            },
+        );
     });
 
     describe("useLog", () => {

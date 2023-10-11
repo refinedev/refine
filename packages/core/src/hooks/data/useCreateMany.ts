@@ -158,7 +158,7 @@ export const useCreateMany = <
                 {
                     resource: resourceName,
                     successNotification,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     invalidates = ["list", "many"],
                     values,
                     meta,
@@ -166,8 +166,18 @@ export const useCreateMany = <
                 },
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourcePlural = textTransformers.plural(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -192,18 +202,13 @@ export const useCreateMany = <
 
                 invalidateStore({
                     resource: identifier,
-                    dataProviderName: pickDataProvider(
-                        identifier,
-                        dataProviderName,
-                        resources,
-                    ),
+                    dataProviderName,
                     invalidates,
                 });
 
                 const ids = response?.data
                     .filter((item) => item?.id !== undefined)
                     .map((item) => item.id!);
-
                 publish?.({
                     channel: `resources/${resource.name}`,
                     type: "created",
@@ -211,26 +216,24 @@ export const useCreateMany = <
                         ids,
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "createMany",
                     resource: resource.name,
                     data: values,
                     meta: {
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ids,
                         ...rest,
                     },

@@ -418,12 +418,23 @@ export const useDeleteMany = <
                     resource: resourceName,
                     meta,
                     metaData,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     successNotification,
                 },
                 context,
             ) => {
                 const { resource, identifier } = select(resourceName);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 // Remove the queries from the cache:
                 ids.forEach((id) =>
@@ -456,26 +467,24 @@ export const useDeleteMany = <
                     type: "deleted",
                     payload: { ids },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "deleteMany",
                     resource: resource.name,
                     meta: {
                         ids,
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ...rest,
                     },
                 });

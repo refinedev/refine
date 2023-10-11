@@ -154,6 +154,10 @@ export const useOne = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...meta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useQuery<

@@ -33,6 +33,9 @@ export type UseSubscriptionProps = {
     params?: {
         ids?: BaseKey[];
         id?: BaseKey;
+        /**
+         * @deprecated `params.meta` is depcerated. Use `meta` directly from the root level instead.
+         */
         meta?: MetaQuery;
         /**
          * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
@@ -54,10 +57,10 @@ export type UseSubscriptionProps = {
         [key: string]: any;
     };
     /**
-     * Name of the data provider to subscribe.
-     * @default "default"
+     * @deprecated use `meta.dataProviderName` instead.
      */
     dataProviderName?: string;
+    meta?: MetaQuery & { dataProviderName?: string };
 };
 
 export const useSubscription = ({
@@ -67,6 +70,7 @@ export const useSubscription = ({
     enabled = true,
     onLiveEvent,
     dataProviderName = "default",
+    meta,
 }: UseSubscriptionProps): void => {
     const liveDataContext = useContext<ILiveContext>(LiveContext);
 
@@ -80,6 +84,10 @@ export const useSubscription = ({
                 types,
                 callback: onLiveEvent,
                 dataProviderName,
+                meta: {
+                    ...meta,
+                    dataProviderName,
+                },
             });
         }
 

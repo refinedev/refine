@@ -15,6 +15,9 @@ export type ILiveContext =
               params?: {
                   ids?: BaseKey[];
                   id?: BaseKey;
+                  /**
+                   * @deprecated `params.meta` is depcerated. Use `meta` directly from the root level instead.
+                   */
                   meta?: MetaQuery;
                   /**
                    * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
@@ -36,7 +39,11 @@ export type ILiveContext =
                   [key: string]: any;
               };
               types: LiveEvent["type"][];
+              /**
+               * @deprecated use `meta.dataProviderName` instead.
+               */
               dataProviderName?: string;
+              meta?: MetaQuery & { dataProviderName?: string };
               callback: (event: LiveEvent) => void;
           }) => any;
           unsubscribe: (subscription: any) => void;

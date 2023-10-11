@@ -146,6 +146,10 @@ export const useMany = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...meta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useQuery<
