@@ -4,7 +4,15 @@ import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
 
 export const TopAnnouncement = () => {
     return (
-        <div className={clsx("w-full h-12", "relative", "bg-top-announcement")}>
+        <div
+            className={clsx(
+                "w-full h-12",
+                "relative",
+                "bg-top-announcement",
+                "not-prose",
+                "font-inter",
+            )}
+        >
             <div
                 className={clsx(
                     "hidden lg:flex",
@@ -118,10 +126,11 @@ const Text = () => {
                 "no-underline",
                 "hover:no-underline",
                 "hover:text-white",
+                "not-prose",
             )}
         >
             <RefineLogoShinyCyan className="flex-shrink-0" />
-            <div className={clsx("ml-2")}>
+            <div className={clsx("ml-2", "not-prose")}>
                 Unlock the power of{" "}
                 <span className={clsx("font-semibold")}>refine Devtools</span>,
                 your intelligent companion for development.
