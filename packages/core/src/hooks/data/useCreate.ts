@@ -170,7 +170,7 @@ export const useCreate = <
                 {
                     resource: resourceName,
                     successNotification: successNotificationFromProp,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     invalidates = ["list", "many"],
                     values,
                     meta,
@@ -178,8 +178,18 @@ export const useCreate = <
                 },
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourceSingular = textTransformers.singular(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 const notificationConfig =
                     typeof successNotificationFromProp === "function"
@@ -204,11 +214,7 @@ export const useCreate = <
 
                 invalidateStore({
                     resource: identifier,
-                    dataProviderName: pickDataProvider(
-                        identifier,
-                        dataProviderName,
-                        resources,
-                    ),
+                    dataProviderName,
                     invalidates,
                 });
 
@@ -219,26 +225,24 @@ export const useCreate = <
                         ids: data?.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "create",
                     resource: resource.name,
                     data: values,
                     meta: {
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         id: data?.data?.id ?? undefined,
                         ...rest,
                     },

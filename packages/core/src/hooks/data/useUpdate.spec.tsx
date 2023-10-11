@@ -227,43 +227,50 @@ describe("useUpdate Hook", () => {
     });
 
     describe("usePublish", () => {
-        it("publish live event on success", async () => {
-            const onPublishMock = jest.fn();
+        it.each(["default", "categories"])(
+            "publish event on success [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onPublishMock = jest.fn();
 
-            const { result } = renderHook(() => useUpdate(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: jest.fn(),
-                        publish: onPublishMock,
+                const { result } = renderHook(() => useUpdate(), {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
+                });
+
+                result.current.mutate({
+                    resource: "posts",
+                    mutationMode: "undoable",
+                    undoableTimeout: 0,
+                    id: "1",
+                    values: { id: "1", title: "undoable test" },
+                    dataProviderName,
+                });
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onPublishMock).toBeCalled();
+                expect(onPublishMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    date: expect.any(Date),
+                    type: "updated",
+                    payload: {
+                        ids: dataProviderName === "default" ? ["1"] : [1],
                     },
-                }),
-            });
-
-            result.current.mutate({
-                resource: "posts",
-                mutationMode: "undoable",
-                undoableTimeout: 0,
-                id: "1",
-                values: { id: "1", title: "undoable test" },
-            });
-
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
-
-            expect(onPublishMock).toBeCalled();
-            expect(onPublishMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                date: expect.any(Date),
-                type: "updated",
-                payload: {
-                    ids: ["1"],
-                },
-            });
-        });
+                    meta: {
+                        dataProviderName,
+                    },
+                });
+            },
+        );
 
         it("publish live event without `ids` if no `id` is returned from the dataProvider", async () => {
             const onPublishMock = jest.fn();
@@ -300,6 +307,9 @@ describe("useUpdate Hook", () => {
                 date: expect.any(Date),
                 type: "updated",
                 payload: {},
+                meta: {
+                    dataProviderName: "default",
+                },
             });
         });
     });

@@ -508,15 +508,25 @@ export const useUpdateMany = <
                     resource: resourceName,
                     meta,
                     metaData,
-                    dataProviderName,
+                    dataProviderName: dataProviderNameFromProp,
                     successNotification,
                     values,
                 },
                 context,
             ) => {
                 const { resource, identifier } = select(resourceName);
-
                 const resourceSingular = textTransformers.singular(identifier);
+
+                const dataProviderName = pickDataProvider(
+                    identifier,
+                    dataProviderNameFromProp,
+                    resources,
+                );
+
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
 
                 const notificationConfig =
                     typeof successNotification === "function"
@@ -549,6 +559,10 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
+                    meta: {
+                        ...combinedMeta,
+                        dataProviderName,
+                    },
                 });
 
                 const previousData: any[] = [];
@@ -570,14 +584,12 @@ export const useUpdateMany = <
                     });
                 }
 
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    combinedMeta || {};
-
+                const {
+                    fields: _fields,
+                    operation: _operation,
+                    variables: _variables,
+                    ...rest
+                } = combinedMeta || {};
                 log?.mutate({
                     action: "updateMany",
                     resource: resource.name,
@@ -585,11 +597,7 @@ export const useUpdateMany = <
                     previousData,
                     meta: {
                         ids,
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
+                        dataProviderName,
                         ...rest,
                     },
                 });

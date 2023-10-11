@@ -318,6 +318,9 @@ describe("useList Hook", () => {
                         }),
                         types: ["*"],
                         dataProviderName,
+                        meta: {
+                            dataProviderName,
+                        },
                     }),
                 );
             },

@@ -110,37 +110,47 @@ describe("useCreate Hook", () => {
     });
 
     describe("usePublish", () => {
-        it("publish live event on success", async () => {
-            const onPublishMock = jest.fn();
+        it.each(["default", "categories"])(
+            "publish event on success [dataProviderName: %s]",
+            async (dataProviderName) => {
+                const onPublishMock = jest.fn();
 
-            const { result } = renderHook(() => useCreate(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: jest.fn(),
-                        publish: onPublishMock,
+                const { result } = renderHook(() => useCreate(), {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
+                });
+
+                result.current.mutate({
+                    resource: "posts",
+                    values: { id: 1 },
+                    dataProviderName,
+                });
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(onPublishMock).toBeCalled();
+                expect(onPublishMock).toHaveBeenCalledWith({
+                    channel: "resources/posts",
+                    date: expect.any(Date),
+                    type: "created",
+                    payload: {
+                        ids: dataProviderName === "default" ? ["1"] : [1],
                     },
-                }),
-            });
-
-            result.current.mutate({ resource: "posts", values: { id: 1 } });
-
-            await waitFor(() => {
-                expect(result.current.isSuccess).toBeTruthy();
-            });
-
-            expect(onPublishMock).toBeCalled();
-            expect(onPublishMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                date: expect.any(Date),
-                type: "created",
-                payload: {
-                    ids: ["1"],
-                },
-            });
-        });
+                    meta: {
+                        dataProviderName,
+                    },
+                });
+            },
+        );
 
         it("publish live event without `ids` if no `id` is returned from the dataProvider", async () => {
             const onPublishMock = jest.fn();
@@ -176,6 +186,9 @@ describe("useCreate Hook", () => {
                 date: expect.any(Date),
                 type: "created",
                 payload: {},
+                meta: {
+                    dataProviderName: "default",
+                },
             });
         });
     });
