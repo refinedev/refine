@@ -154,6 +154,9 @@ describe("useMany Hook", () => {
                     }),
                     types: ["*"],
                     dataProviderName,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
         );

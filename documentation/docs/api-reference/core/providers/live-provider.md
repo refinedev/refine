@@ -12,9 +12,9 @@ A live provider must include following methods:
 
 ```ts
 const liveProvider = {
-    subscribe: ({ channel, params: { ids }, types, callback, dataProviderName }) => any,
+    subscribe: ({ channel, params: { ids }, types, callback, meta }) => any,
     unsubscribe: (subscription) => void,
-    publish?: (event) => void,
+    publish?: ({ channel, type, payload, date, meta }) => void,
 };
 ```
 
@@ -55,7 +55,7 @@ interface MessageType extends Types.Message {
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
         // highlight-start
-        subscribe: ({ channel, types, params, callback, dataProviderName }) => {
+        subscribe: ({ channel, types, params, callback, meta }) => {
             const channelInstance = client.channels.get(channel);
 
             const listener = function (message: MessageType) {
@@ -88,15 +88,17 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 
 #### Parameter Types
 
-| Name             | Type                                                                  | Default   |
-| ---------------- | --------------------------------------------------------------------- | --------- |
-| channel          | `string`                                                              |           |
-| types            | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> | `["*"]`   |
-| params           | `{ids?: string[]; [key: string]: any;}`                               |           |
-| callback         | `(event: LiveEvent) => void;`                                         |           |
-| dataProviderName | `string`                                                              | "default" |
+| Name     | Type                                                                  | Default |
+| -------- | --------------------------------------------------------------------- | ------- |
+| channel  | `string`                                                              |         |
+| types    | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> | `["*"]` |
+| params   | `{ids?: string[]; [key: string]: any;}`                               |         |
+| callback | `(event: LiveEvent) => void;`                                         |         |
+| meta     | `MetaQuery & { dataProviderName?: string }`                           |         |
 
-> For more information, refer to [`LiveEvent`](/api-reference/core/interfaces.md#liveevent)
+> For more information, refer to [`LiveEvent`](/docs/api-reference/core/interfaceReferences/#liveevent)
+
+> For more information, refer to [`MetaQuery`](/docs/api-reference/core/interfaceReferences/#metadataquery)
 
 #### Return Type
 
@@ -171,10 +173,10 @@ This `publish` is used in [realated hooks](#publish-events-from-hooks). When `pu
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
         // highlight-start
-        publish: (event: LiveEvent) => {
-            const channelInstance = client.channels.get(event.channel);
+        publish: ({ channel, type, payload, date, meta }: LiveEvent) => {
+            const channelInstance = client.channels.get(channel);
 
-            channelInstance.publish(event.type, event);
+            channelInstance.publish(type, event);
         },
         // highlight-end
     };
@@ -191,7 +193,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 | ----- | ----------- |
 | event | `LiveEvent` |
 
-> [`LiveEvent`](/api-reference/core/interfaces.md#liveevent)
+> For more information, refer to [`LiveEvent`](/docs/api-reference/core/interfaceReferences/#liveevent)
 
 #### Return Type
 
@@ -283,10 +285,9 @@ const subscriptions = {
 
 export const liveProvider = (client: Client): LiveProvider => {
     return {
-        subscribe: ({ callback, params, dataProviderName }) => {
+        subscribe: ({ callback, params, meta }) => {
             const {
                 resource,
-                meta,
                 pagination,
                 sorters,
                 filters,
@@ -369,23 +370,23 @@ useSubscription({
     },
     params: {
         resource: "posts",
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-                "category_id",
-                "created_at",
-            ],
-        },
         pagination: {
             current: 1,
             pageSize: 10,
         },
         subscriptionType: "useList",
+    },
+    meta: {
+        fields: [
+            "id",
+            "title",
+            {
+                category: ["title"],
+            },
+            "content",
+            "category_id",
+            "created_at",
+        ],
     },
 });
 ```

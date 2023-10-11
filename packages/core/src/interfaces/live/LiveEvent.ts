@@ -1,4 +1,4 @@
-import { BaseKey } from "..";
+import { BaseKey, MetaQuery } from "..";
 
 export type LiveEvent = {
     channel: string;
@@ -8,4 +8,7 @@ export type LiveEvent = {
         [x: string]: any;
     };
     date: Date;
+    meta?: MetaQuery & {
+        dataProviderName?: string;
+    };
 };

@@ -218,6 +218,10 @@ export const useList = <
         liveMode,
         onLiveEvent,
         dataProviderName: pickedDataProvider,
+        meta: {
+            ...meta,
+            dataProviderName,
+        },
     });
 
     const queryResponse = useQuery<
