@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/antd": "^5.36.8",
     "@refinedev/cli": "^2.16.6",
-    "@refinedev/core": "^4.44.3",
+    "@refinedev/core": "^4.44.5",
     "@refinedev/inferencer": "^4.5.14",
     "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/simple-rest": "^4.5.4",
