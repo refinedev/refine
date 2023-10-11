@@ -53,7 +53,7 @@
 
 ## What is refine?
 
-**refine** is a versatile **React** framework that enables the rapid✨ development of a wide range of web applications.
+**refine** is a meta **React** framework that enables the rapid✨ development of a wide range of web applications.
 
 From internal tools to admin panels, B2B apps, and dashboards, it serves as a comprehensive solution for building any type of **CRUD** application.
 

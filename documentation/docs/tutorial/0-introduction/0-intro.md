@@ -16,7 +16,7 @@ tutorial:
 </div>
 
 
-Since refine is a versatile framework designed for building all types of CRUD apps, such as *internal tools*, *admin panels*, *B2B apps*, and *dashboards*, this tutorial will focus on showcasing how refine simplifies the development process of creating a minimal yet fully functional admin panel app. 
+Since refine is a meta framework designed for building all types of CRUD apps, such as *internal tools*, *admin panels*, *B2B apps*, and *dashboards*, this tutorial will focus on showcasing how refine simplifies the development process of creating a minimal yet fully functional admin panel app. 
  
  You will be guided through the process of building a CRUD app, including authentication, CRUD operation components, and fully functional pages, all built using the **refine** framework
 
