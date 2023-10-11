@@ -21,33 +21,35 @@ export default function RootLayout({
 }) {
     return (
         <ConfigProvider theme={RefineThemes.Blue}>
-            <html lang="en">
-                <body>
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(API_URL)}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                                show: "/posts/show/:id",
-                                meta: {
-                                    canDelete: true,
+            <AntdApp>
+                <html lang="en">
+                    <body>
+                        <Refine
+                            authProvider={authProvider}
+                            routerProvider={routerProvider}
+                            dataProvider={dataProvider(API_URL)}
+                            resources={[
+                                {
+                                    name: "posts",
+                                    list: "/posts",
+                                    create: "/posts/create",
+                                    edit: "/posts/edit/:id",
+                                    show: "/posts/show/:id",
+                                    meta: {
+                                        canDelete: true,
+                                    },
                                 },
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                        }}
-                        notificationProvider={useNotificationProvider}
-                    >
-                        {children}
-                    </Refine>
-                </body>
-            </html>
+                            ]}
+                            options={{
+                                syncWithLocation: true,
+                            }}
+                            notificationProvider={useNotificationProvider}
+                        >
+                            {children}
+                        </Refine>
+                    </body>
+                </html>
+            </AntdApp>
         </ConfigProvider>
     );
 }

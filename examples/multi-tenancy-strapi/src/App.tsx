@@ -32,109 +32,119 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    authProvider={authProvider}
-                    dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/:tenant/products",
-                            meta: {
-                                tenant,
+                <AntdApp>
+                    <Refine
+                        authProvider={authProvider}
+                        dataProvider={DataProvider(
+                            API_URL + "/api",
+                            axiosInstance,
+                        )}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/:tenant/products",
+                                meta: {
+                                    tenant,
+                                },
                             },
-                        },
-                        {
-                            name: "orders",
-                            list: "/:tenant/orders",
-                            create: "/:tenant/orders/create",
-                            edit: "/:tenant/orders/edit/:id",
-                            meta: {
-                                tenant,
+                            {
+                                name: "orders",
+                                list: "/:tenant/orders",
+                                create: "/:tenant/orders/create",
+                                edit: "/:tenant/orders/edit/:id",
+                                meta: {
+                                    tenant,
+                                },
                             },
-                        },
-                    ]}
-                    notificationProvider={useNotificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2 Header={Header}>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="products" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2 Header={Header}>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
-                            <Route path="/:tenant">
-                                <Route path="products">
-                                    <Route index element={<ProductList />} />
-                                </Route>
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="products" />
+                                    }
+                                />
+                                <Route path="/:tenant">
+                                    <Route path="products">
+                                        <Route
+                                            index
+                                            element={<ProductList />}
+                                        />
+                                    </Route>
 
-                                <Route path="orders">
-                                    <Route index element={<OrderList />} />
-                                    <Route
-                                        path="create"
-                                        element={<OrderCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<OrderEdit />}
-                                    />
+                                    <Route path="orders">
+                                        <Route index element={<OrderList />} />
+                                        <Route
+                                            path="create"
+                                            element={<OrderCreate />}
+                                        />
+                                        <Route
+                                            path="edit/:id"
+                                            element={<OrderEdit />}
+                                        />
+                                    </Route>
                                 </Route>
                             </Route>
-                        </Route>
 
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
                             <Route
-                                path="/login"
                                 element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="posts" />
+                                    </Authenticated>
                                 }
-                            />
-                        </Route>
+                            >
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            formProps={{
+                                                initialValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    }
+                                />
+                            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2 Header={Header}>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2 Header={Header}>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

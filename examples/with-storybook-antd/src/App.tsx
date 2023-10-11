@@ -21,21 +21,23 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    notificationProvider={useNotificationProvider}
-                    options={{
-                        warnWhenUnsavedChanges: true,
-                        syncWithLocation: true,
-                    }}
-                >
-                    <Routes>
-                        <Route path="*" element={<WelcomePage />} />
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                <AntdApp>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            warnWhenUnsavedChanges: true,
+                            syncWithLocation: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route path="*" element={<WelcomePage />} />
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

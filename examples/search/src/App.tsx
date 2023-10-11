@@ -33,75 +33,86 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            show: "/categories/show/:id",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={useNotificationProvider}
-                    options={{
-                        warnWhenUnsavedChanges: true,
-                        syncWithLocation: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2 Header={Header}>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                show: "/posts/show/:id",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                            },
+                            {
+                                name: "categories",
+                                list: "/categories",
+                                show: "/categories/show/:id",
+                                create: "/categories/create",
+                                edit: "/categories/edit/:id",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            warnWhenUnsavedChanges: true,
+                            syncWithLocation: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <ThemedLayoutV2 Header={Header}>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
 
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="categories">
+                                    <Route index element={<CategoryList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<CategoryShow />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<CategoryCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CategoryEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
-
-                            <Route path="categories">
-                                <Route index element={<CategoryList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<CategoryShow />}
-                                />
-                                <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                            </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

@@ -47,86 +47,91 @@ function App() {
                     },
                 }}
             >
-                <Refine
-                    auditLogProvider={auditLogProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    accessControlProvider={accessControlProvider}
-                    routerProvider={routerBindings}
-                    notificationProvider={useNotificationProvider}
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                        },
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2 Title={Title}>
-                                        <CanAccess>
-                                            <Outlet />
-                                        </CanAccess>
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
-                            <Route path="/users" element={<UserList />} />
-                            <Route path="/canvases" element={<CanvasList />} />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="users" />
-                                </Authenticated>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        auditLogProvider={auditLogProvider}
+                        dataProvider={dataProvider(supabaseClient)}
+                        liveProvider={liveProvider(supabaseClient)}
+                        authProvider={authProvider}
+                        accessControlProvider={accessControlProvider}
+                        routerProvider={routerBindings}
+                        notificationProvider={useNotificationProvider}
+                        resources={[
+                            {
+                                name: "users",
+                                list: "/users",
+                            },
+                            {
+                                name: "canvases",
+                                list: "/canvases",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                path="/login"
                                 element={
-                                    <AuthPage
-                                        type="login"
-                                        registerLink={false}
-                                    />
+                                    <Authenticated>
+                                        <ThemedLayoutV2 Title={Title}>
+                                            <CanAccess>
+                                                <Outlet />
+                                            </CanAccess>
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                <Route path="/users" element={<UserList />} />
+                                <Route
+                                    path="/canvases"
+                                    element={<CanvasList />}
+                                />
+                            </Route>
                             <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="users" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            registerLink={false}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/forgot-password"
+                                    element={<AuthPage type="forgotPassword" />}
+                                />
+                                <Route
+                                    path="/update-password"
+                                    element={<AuthPage type="updatePassword" />}
+                                />
+                            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

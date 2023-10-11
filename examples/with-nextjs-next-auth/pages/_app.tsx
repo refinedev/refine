@@ -197,30 +197,32 @@ const App = (props: React.PropsWithChildren) => {
     return (
         <>
             <ConfigProvider theme={RefineThemes.Blue}>
-                <GitHubBanner />
-                <Refine
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: "/blog-posts",
-                            create: "/blog-posts/create",
-                            edit: "/blog-posts/edit/:id",
-                            show: "/blog-posts/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    notificationProvider={useNotificationProvider}
-                >
-                    {props.children}
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                <AntdApp>
+                    <GitHubBanner />
+                    <Refine
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        resources={[
+                            {
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                create: "/blog-posts/create",
+                                edit: "/blog-posts/edit/:id",
+                                show: "/blog-posts/show/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                        notificationProvider={useNotificationProvider}
+                    >
+                        {props.children}
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </>
     );

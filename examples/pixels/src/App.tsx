@@ -32,92 +32,95 @@ function App() {
                     },
                 }}
             >
-                <Refine
-                    authProvider={authProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    auditLogProvider={auditLogProvider}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                            show: "/canvases/show/:id",
-                        },
-                    ]}
-                    notificationProvider={useNotificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route index element={<CanvasFeaturedList />} />
+                <AntdApp>
+                    <Refine
+                        authProvider={authProvider}
+                        dataProvider={dataProvider(supabaseClient)}
+                        liveProvider={liveProvider(supabaseClient)}
+                        auditLogProvider={auditLogProvider}
+                        routerProvider={routerBindings}
+                        resources={[
+                            {
+                                name: "canvases",
+                                list: "/canvases",
+                                show: "/canvases/show/:id",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route index element={<CanvasFeaturedList />} />
 
-                            <Route path="/canvases">
-                                <Route index element={<CanvasList />} />
+                                <Route path="/canvases">
+                                    <Route index element={<CanvasList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<CanvasShow />}
+                                    />
+                                </Route>
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
                                 <Route
-                                    path="show/:id"
-                                    element={<CanvasShow />}
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            providers={[
+                                                {
+                                                    name: "github",
+                                                    icon: (
+                                                        <GithubOutlined
+                                                            style={{
+                                                                fontSize:
+                                                                    "18px",
+                                                            }}
+                                                        />
+                                                    ),
+                                                    label: "Sign in with GitHub",
+                                                },
+                                            ]}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/register"
+                                    element={<AuthPage type="register" />}
+                                />
+                                <Route
+                                    path="/forgot-password"
+                                    element={<AuthPage type="forgotPassword" />}
+                                />
+                                <Route
+                                    path="/update-password"
+                                    element={<AuthPage type="updatePassword" />}
                                 />
                             </Route>
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        providers={[
-                                            {
-                                                name: "github",
-                                                icon: (
-                                                    <GithubOutlined
-                                                        style={{
-                                                            fontSize: "18px",
-                                                        }}
-                                                    />
-                                                ),
-                                                label: "Sign in with GitHub",
-                                            },
-                                        ]}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={<AuthPage type="register" />}
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
 
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

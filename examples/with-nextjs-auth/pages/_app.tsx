@@ -46,30 +46,32 @@ function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
         <>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        { name: "users", list: "/users" },
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    notificationProvider={useNotificationProvider}
-                >
-                    {renderComponent()}
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                <AntdApp>
+                    <Refine
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        resources={[
+                            { name: "users", list: "/users" },
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                        notificationProvider={useNotificationProvider}
+                    >
+                        {renderComponent()}
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </>
     );

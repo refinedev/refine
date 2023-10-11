@@ -36,31 +36,33 @@ export default function App(): JSX.Element {
             <body>
                 <GitHubBanner />
                 <ConfigProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        dataProvider={dataProvider(API_URL)}
-                        routerProvider={routerProvider}
-                        authProvider={authProvider}
-                        notificationProvider={useNotificationProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                                show: "/posts/show/:id",
-                                meta: {
-                                    canDelete: true,
+                    <AntdApp>
+                        <Refine
+                            dataProvider={dataProvider(API_URL)}
+                            routerProvider={routerProvider}
+                            authProvider={authProvider}
+                            notificationProvider={useNotificationProvider}
+                            resources={[
+                                {
+                                    name: "posts",
+                                    list: "/posts",
+                                    create: "/posts/create",
+                                    edit: "/posts/edit/:id",
+                                    show: "/posts/show/:id",
+                                    meta: {
+                                        canDelete: true,
+                                    },
                                 },
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Outlet />
-                        <UnsavedChangesNotifier />
-                    </Refine>
+                            ]}
+                            options={{
+                                syncWithLocation: true,
+                                warnWhenUnsavedChanges: true,
+                            }}
+                        >
+                            <Outlet />
+                            <UnsavedChangesNotifier />
+                        </Refine>
+                    </AntdApp>
                 </ConfigProvider>
 
                 <ScrollRestoration />

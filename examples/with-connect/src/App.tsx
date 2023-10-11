@@ -52,122 +52,135 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <RefineWithConnect
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                        },
-                    ]}
-                    notificationProvider={useNotificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
+                <AntdApp>
+                    <RefineWithConnect
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                            },
+                            {
+                                name: "products",
+                                list: "/products",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                                show: "/products/show/:id",
+                            },
+                            {
+                                name: "categories",
+                                list: "/categories",
+                                create: "/categories/create",
+                                edit: "/categories/edit/:id",
+                                show: "/categories/show/:id",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
 
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
+                                <Route path="posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
+                                </Route>
+
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                    <Route
+                                        path="create"
+                                        element={<ProductCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<ProductEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<ProductShow />}
+                                    />
+                                </Route>
+
+                                <Route path="categories">
+                                    <Route index element={<CategoryList />} />
+                                    <Route
+                                        path="create"
+                                        element={<CategoryCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CategoryEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<CategoryShow />}
+                                    />
+                                </Route>
                             </Route>
 
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="create"
-                                    element={<ProductCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<ProductEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="posts" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<Login />} />
                             </Route>
 
-                            <Route path="categories">
-                                <Route index element={<CategoryList />} />
-                                <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<CategoryShow />}
-                                />
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<Login />} />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </RefineWithConnect>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </RefineWithConnect>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );
