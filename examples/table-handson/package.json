@@ -10,8 +10,8 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/core": "^4.44.4",
-    "@refinedev/cli": "^2.16.5",
+    "@refinedev/core": "^4.44.5",
+    "@refinedev/cli": "^2.16.6",
     "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/simple-rest": "^4.5.4",
     "@handsontable/react": "^12.1.2",

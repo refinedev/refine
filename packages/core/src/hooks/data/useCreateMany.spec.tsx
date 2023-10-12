@@ -1,9 +1,9 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useCreateMany } from "./useCreateMany";
 import * as UseInvalidate from "../invalidate/index";
+import { useCreateMany } from "./useCreateMany";
 
 describe("useCreateMany Hook", () => {
     it("should work with rest json server", async () => {

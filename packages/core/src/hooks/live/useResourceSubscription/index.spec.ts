@@ -2,9 +2,9 @@ import { renderHook } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 
-import { useResourceSubscription } from "./";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../../interfaces";
+import { useResourceSubscription } from "./";
 
 const invalidateQueriesMock = jest.fn();
 jest.mock("@tanstack/react-query", () => ({

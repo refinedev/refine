@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 import {
     assertList,
     assertMutationSuccess,
@@ -10,8 +10,8 @@ import {
     renderUseOne,
 } from "@test/mutation-helpers";
 
-import { useUpdateMany } from "./useUpdateMany";
 import * as UseInvalidate from "../invalidate/index";
+import { useUpdateMany } from "./useUpdateMany";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {

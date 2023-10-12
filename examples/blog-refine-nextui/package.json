@@ -6,8 +6,8 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@nextui-org/react": "^2.1.5",
-    "@refinedev/cli": "^2.16.5",
-    "@refinedev/core": "^4.44.4",
+    "@refinedev/cli": "^2.16.6",
+    "@refinedev/core": "^4.44.5",
     "@refinedev/inferencer": "^4.5.14",
     "@refinedev/kbar": "^1.3.4",
     "@refinedev/react-hook-form": "^4.8.10",

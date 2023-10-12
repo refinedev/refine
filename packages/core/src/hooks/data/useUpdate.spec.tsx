@@ -1,17 +1,17 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useUpdate } from "./useUpdate";
-import * as UseInvalidate from "../invalidate/index";
 import {
-    renderUseOne,
+    assertList,
+    assertMutationSuccess,
+    assertOne,
     renderUseList,
     renderUseMany,
-    assertList,
-    assertOne,
-    assertMutationSuccess,
+    renderUseOne,
 } from "@test/mutation-helpers";
+import * as UseInvalidate from "../invalidate/index";
+import { useUpdate } from "./useUpdate";
 
 describe("useUpdate Hook", () => {
     it("should work with pessimistic update", async () => {

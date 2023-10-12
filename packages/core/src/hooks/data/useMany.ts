@@ -1,41 +1,40 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
     QueryObserverResult,
     useQuery,
     UseQueryOptions,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
 import {
-    BaseRecord,
-    BaseKey,
-    GetManyResponse,
-    HttpError,
-    LiveModeProps,
-    SuccessErrorNotification,
-    MetaQuery,
-} from "../../interfaces";
-import {
-    useResource,
-    useTranslate,
-    useResourceSubscription,
-    useHandleNotification,
-    useDataProvider,
-    useOnError,
-    useMeta,
-} from "@hooks";
-import {
-    queryKeys,
-    pickDataProvider,
     handleMultiple,
+    pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useDataProvider,
+    useHandleNotification,
+    useMeta,
+    useOnError,
+    useResource,
+    useResourceSubscription,
+    useTranslate,
+} from "@hooks";
+import { useKeys } from "@hooks/useKeys";
+import {
+    BaseKey,
+    BaseRecord,
+    GetManyResponse,
+    HttpError,
+    LiveModeProps,
+    MetaQuery,
+    SuccessErrorNotification,
+} from "../../interfaces";
 import {
     useLoadingOvertime,
     UseLoadingOvertimeOptionsProps,
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
     /**

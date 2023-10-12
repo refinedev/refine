@@ -79,7 +79,7 @@ describe("Antd notificationProvider", () => {
                 <UndoableNotification
                     message="Test Notification Message"
                     notificationKey="test-notification"
-                    cancelMutation={cancelMutation}
+                    cancelMutation={expect.any(Function)}
                     undoableTimeout={5}
                 />
             ),
@@ -169,7 +169,7 @@ describe("Antd useNotificationProvider", () => {
                     <UndoableNotification
                         message="Test Notification Message"
                         notificationKey="test-notification"
-                        cancelMutation={cancelMutation}
+                        cancelMutation={expect.any(Function)}
                         undoableTimeout={5}
                     />
                 ),
@@ -284,7 +284,7 @@ describe("Antd useNotificationProvider", () => {
                         <UndoableNotification
                             message="Test Notification Message"
                             notificationKey="test-notification"
-                            cancelMutation={cancelMutation}
+                            cancelMutation={expect.any(Function)}
                             undoableTimeout={5}
                         />
                     ),

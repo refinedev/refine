@@ -1,17 +1,15 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useDeleteMany } from "./useDeleteMany";
-import * as UseInvalidate from "../invalidate/index";
-import { useList } from "./useList";
-import { useMany } from "./useMany";
 import {
     assertListLength,
     assertMutationSuccess,
     renderUseList,
     renderUseMany,
 } from "@test/mutation-helpers";
+import * as UseInvalidate from "../invalidate/index";
+import { useDeleteMany } from "./useDeleteMany";
 
 describe("useDeleteMany Hook", () => {
     it("should work with pessimistic update", async () => {
