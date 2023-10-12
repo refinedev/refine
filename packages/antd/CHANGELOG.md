@@ -1,5 +1,11 @@
 # @refinedev/antd
 
+## 5.36.9
+
+### Patch Changes
+
+-   [#5098](https://github.com/refinedev/refine/pull/5098) [`672f7916af7`](https://github.com/refinedev/refine/commit/672f7916af74ed0d62eb806fde35fd7e56000b23) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `undoableNotification` does not work when using `useNotificationProvider` due to a different `notification` instance.
+
 ## 5.36.8
 
 ### Patch Changes
