@@ -14,7 +14,7 @@
     "@refinedev/hasura": "^6.4.10",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
-    "@refinedev/antd": "^5.36.8",
+    "@refinedev/antd": "^5.36.9",
     "antd": "^5.0.5",
     "@ant-design/icons": "5.0.1",
     "@refinedev/react-router-v6": "^4.5.4"
