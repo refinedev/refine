@@ -3,7 +3,7 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import { notificationProvider, RefineThemes } from "@refinedev/antd";
+import { RefineThemes, notificationProvider } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router/app";
 import "@refinedev/antd/dist/reset.css";

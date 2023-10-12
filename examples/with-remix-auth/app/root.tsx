@@ -9,13 +9,13 @@ import {
     useLoaderData,
 } from "@remix-run/react";
 import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, RefineThemes } from "@refinedev/antd";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/remix-router";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import resetStyle from "@refinedev/antd/dist/reset.css";
 
 import { API_URL } from "./constants";
@@ -82,28 +82,30 @@ export default function App(): JSX.Element {
             <body>
                 <GitHubBanner />
                 <ConfigProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        dataProvider={dataProvider(API_URL)}
-                        routerProvider={routerProvider}
-                        authProvider={authProvider}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                                show: "/blog-posts/show/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Outlet />
-                        <UnsavedChangesNotifier />
-                    </Refine>
+                    <AntdApp>
+                        <Refine
+                            dataProvider={dataProvider(API_URL)}
+                            routerProvider={routerProvider}
+                            authProvider={authProvider}
+                            notificationProvider={useNotificationProvider}
+                            resources={[
+                                {
+                                    name: "blog_posts",
+                                    list: "/blog-posts",
+                                    create: "/blog-posts/create",
+                                    edit: "/blog-posts/edit/:id",
+                                    show: "/blog-posts/show/:id",
+                                },
+                            ]}
+                            options={{
+                                syncWithLocation: true,
+                                warnWhenUnsavedChanges: true,
+                            }}
+                        >
+                            <Outlet />
+                            <UnsavedChangesNotifier />
+                        </Refine>
+                    </AntdApp>
                 </ConfigProvider>
                 <ScrollRestoration />
                 <Scripts />

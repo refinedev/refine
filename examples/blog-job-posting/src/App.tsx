@@ -7,13 +7,13 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import nestjsxCrudDataProvider from "@refinedev/nestjsx-crud";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import {
@@ -32,69 +32,80 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider}
-                    resources={[
-                        {
-                            name: "companies",
-                            list: "/companies",
-                            show: "/companies/show/:id",
-                            create: "/companies/create",
-                            edit: "/companies/edit/:id",
-                        },
-                        {
-                            name: "jobs",
-                            list: "/jobs",
-                            create: "/jobs/create",
-                            edit: "/jobs/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider}
+                        resources={[
+                            {
+                                name: "companies",
+                                list: "/companies",
+                                show: "/companies/show/:id",
+                                create: "/companies/create",
+                                edit: "/companies/edit/:id",
+                            },
+                            {
+                                name: "jobs",
+                                list: "/jobs",
+                                create: "/jobs/create",
+                                edit: "/jobs/edit/:id",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="companies" />
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="companies" />
+                                    }
+                                />
 
-                            <Route path="/companies" element={<CompanyList />}>
-                                <Route index element={<CompanyList />} />
                                 <Route
-                                    path="show/:id"
-                                    element={<CompanyShow />}
-                                />
-                                <Route
-                                    path="create"
-                                    element={<CompanyCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CompanyEdit />}
-                                />
+                                    path="/companies"
+                                    element={<CompanyList />}
+                                >
+                                    <Route index element={<CompanyList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<CompanyShow />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<CompanyCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CompanyEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="/jobs" element={<JobList />}>
+                                    <Route index element={<JobList />} />
+                                    <Route
+                                        path="create"
+                                        element={<JobCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<JobEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
-
-                            <Route path="/jobs" element={<JobList />}>
-                                <Route index element={<JobList />} />
-                                <Route path="create" element={<JobCreate />} />
-                                <Route path="edit/:id" element={<JobEdit />} />
-                            </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

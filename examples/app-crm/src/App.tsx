@@ -1,7 +1,7 @@
 import { InstantSearch } from "react-instantsearch";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import { ErrorComponent, notificationProvider } from "@refinedev/antd";
+import { ErrorComponent, useNotificationProvider } from "@refinedev/antd";
 import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import routerProvider, {
@@ -11,7 +11,7 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 
 import "./utilities/init-dayjs";
 
@@ -79,105 +79,210 @@ const App: React.FC = () => {
         <InstantSearch searchClient={searchClient} indexName={indexName}>
             <BrowserRouter>
                 <ConfigProvider theme={themeConfig}>
-                    <DevtoolsProvider>
-                        <Refine
-                            authProvider={authProvider}
-                            dataProvider={dataProvider}
-                            liveProvider={liveProvider}
-                            routerProvider={routerProvider}
-                            resources={resources}
-                            notificationProvider={notificationProvider}
-                            options={{
-                                liveMode: "auto",
-                                syncWithLocation: true,
-                                warnWhenUnsavedChanges: true,
-                            }}
-                        >
-                            <Routes>
-                                <Route
-                                    element={
-                                        <Authenticated
-                                            key="authenticated-layout"
-                                            fallback={
-                                                <CatchAllNavigate to="/login" />
-                                            }
-                                        >
-                                            <Layout>
-                                                <Outlet />
-                                            </Layout>
-                                        </Authenticated>
-                                    }
-                                >
-                                    <Route index element={<DashboardPage />} />
+                    <AntdApp>
+                        <DevtoolsProvider>
+                            <Refine
+                                authProvider={authProvider}
+                                dataProvider={dataProvider}
+                                liveProvider={liveProvider}
+                                routerProvider={routerProvider}
+                                resources={resources}
+                                notificationProvider={useNotificationProvider}
+                                options={{
+                                    liveMode: "auto",
+                                    syncWithLocation: true,
+                                    warnWhenUnsavedChanges: true,
+                                }}
+                            >
+                                <Routes>
                                     <Route
-                                        path="/calendar"
                                         element={
-                                            <CalendarPageWrapper>
-                                                <Outlet />
-                                            </CalendarPageWrapper>
+                                            <Authenticated
+                                                key="authenticated-layout"
+                                                fallback={
+                                                    <CatchAllNavigate to="/login" />
+                                                }
+                                            >
+                                                <Layout>
+                                                    <Outlet />
+                                                </Layout>
+                                            </Authenticated>
                                         }
                                     >
-                                        <Route index element={null} />
                                         <Route
-                                            path="show/:id"
-                                            element={<CalendarShowPage />}
+                                            index
+                                            element={<DashboardPage />}
                                         />
                                         <Route
-                                            path="edit/:id"
-                                            element={<CalendarEditPage />}
-                                        />
-                                        <Route
-                                            path="create"
-                                            element={<CalendarCreatePage />}
-                                        />
-                                    </Route>
-                                    <Route
-                                        path="/scrumboard"
-                                        element={<Outlet />}
-                                    >
-                                        <Route
-                                            path="kanban"
+                                            path="/calendar"
                                             element={
-                                                <KanbanPage>
+                                                <CalendarPageWrapper>
                                                     <Outlet />
-                                                </KanbanPage>
+                                                </CalendarPageWrapper>
+                                            }
+                                        >
+                                            <Route index element={null} />
+                                            <Route
+                                                path="show/:id"
+                                                element={<CalendarShowPage />}
+                                            />
+                                            <Route
+                                                path="edit/:id"
+                                                element={<CalendarEditPage />}
+                                            />
+                                            <Route
+                                                path="create"
+                                                element={<CalendarCreatePage />}
+                                            />
+                                        </Route>
+                                        <Route
+                                            path="/scrumboard"
+                                            element={<Outlet />}
+                                        >
+                                            <Route
+                                                path="kanban"
+                                                element={
+                                                    <KanbanPage>
+                                                        <Outlet />
+                                                    </KanbanPage>
+                                                }
+                                            >
+                                                <Route
+                                                    path="create"
+                                                    element={
+                                                        <KanbanCreatePage />
+                                                    }
+                                                />
+                                                <Route
+                                                    path="edit/:id"
+                                                    element={<KanbanEditPage />}
+                                                />
+                                                <Route
+                                                    path="stages/create"
+                                                    element={
+                                                        <KanbanCreateStage />
+                                                    }
+                                                />
+                                                <Route
+                                                    path="stages/edit/:id"
+                                                    element={
+                                                        <KanbanEditStage />
+                                                    }
+                                                />
+                                            </Route>
+                                            <Route
+                                                path="sales"
+                                                element={
+                                                    <SalesPage>
+                                                        <Outlet />
+                                                    </SalesPage>
+                                                }
+                                            >
+                                                <Route
+                                                    path="create"
+                                                    element={
+                                                        <SalesCreatePage>
+                                                            <Outlet />
+                                                        </SalesCreatePage>
+                                                    }
+                                                >
+                                                    <Route
+                                                        path="company/create"
+                                                        element={
+                                                            <CompanyCreatePage
+                                                                isOverModal
+                                                            />
+                                                        }
+                                                    />
+                                                </Route>
+                                                <Route
+                                                    path="edit/:id"
+                                                    element={<SalesEditPage />}
+                                                />
+                                                <Route
+                                                    path="stages/create"
+                                                    element={
+                                                        <SalesCreateStage />
+                                                    }
+                                                />
+                                                <Route
+                                                    path="stages/edit/:id"
+                                                    element={<SalesEditStage />}
+                                                />
+                                                <Route
+                                                    path="details/edit/:id"
+                                                    element={
+                                                        <SalesCreateDetails />
+                                                    }
+                                                />
+                                            </Route>
+                                        </Route>
+                                        <Route
+                                            path="/companies"
+                                            element={
+                                                <CompanyListPage>
+                                                    <Outlet />
+                                                </CompanyListPage>
                                             }
                                         >
                                             <Route
                                                 path="create"
-                                                element={<KanbanCreatePage />}
-                                            />
-                                            <Route
-                                                path="edit/:id"
-                                                element={<KanbanEditPage />}
-                                            />
-                                            <Route
-                                                path="stages/create"
-                                                element={<KanbanCreateStage />}
-                                            />
-                                            <Route
-                                                path="stages/edit/:id"
-                                                element={<KanbanEditStage />}
+                                                element={<CompanyCreatePage />}
                                             />
                                         </Route>
                                         <Route
-                                            path="sales"
+                                            path="/companies/edit/:id"
+                                            element={<CompanyEditPage />}
+                                        />
+                                        <Route
+                                            path="/contacts"
                                             element={
-                                                <SalesPage>
+                                                <ContactsListPage>
                                                     <Outlet />
-                                                </SalesPage>
+                                                </ContactsListPage>
+                                            }
+                                        >
+                                            <Route index element={null} />
+                                            <Route
+                                                path="show/:id"
+                                                element={<ContactShowPage />}
+                                            />
+                                            <Route
+                                                path="create"
+                                                element={
+                                                    <ContactCreatePage>
+                                                        <Outlet />
+                                                    </ContactCreatePage>
+                                                }
+                                            >
+                                                <Route
+                                                    path="company-create"
+                                                    element={
+                                                        <CompanyCreatePage
+                                                            isOverModal
+                                                        />
+                                                    }
+                                                />
+                                            </Route>
+                                        </Route>
+                                        <Route
+                                            path="/quotes"
+                                            element={
+                                                <QuotesListPage>
+                                                    <Outlet />
+                                                </QuotesListPage>
                                             }
                                         >
                                             <Route
                                                 path="create"
                                                 element={
-                                                    <SalesCreatePage>
+                                                    <QuotesCreatePage>
                                                         <Outlet />
-                                                    </SalesCreatePage>
+                                                    </QuotesCreatePage>
                                                 }
                                             >
                                                 <Route
-                                                    path="company/create"
+                                                    path="company-create"
                                                     element={
                                                         <CompanyCreatePage
                                                             isOverModal
@@ -187,168 +292,78 @@ const App: React.FC = () => {
                                             </Route>
                                             <Route
                                                 path="edit/:id"
-                                                element={<SalesEditPage />}
+                                                element={
+                                                    <QuotesEditPage>
+                                                        <Outlet />
+                                                    </QuotesEditPage>
+                                                }
+                                            >
+                                                <Route
+                                                    path="company-create"
+                                                    element={
+                                                        <CompanyCreatePage
+                                                            isOverModal
+                                                        />
+                                                    }
+                                                />
+                                            </Route>
+                                        </Route>
+                                        <Route
+                                            path="/quotes/show/:id"
+                                            element={<QuotesShowPage />}
+                                        />
+                                        <Route
+                                            path="/administration"
+                                            element={<Outlet />}
+                                        >
+                                            <Route
+                                                path="settings"
+                                                element={<SettingsPage />}
                                             />
                                             <Route
-                                                path="stages/create"
-                                                element={<SalesCreateStage />}
-                                            />
-                                            <Route
-                                                path="stages/edit/:id"
-                                                element={<SalesEditStage />}
-                                            />
-                                            <Route
-                                                path="details/edit/:id"
-                                                element={<SalesCreateDetails />}
+                                                path="audit-log"
+                                                element={<AuditLogPage />}
                                             />
                                         </Route>
+                                        <Route
+                                            path="*"
+                                            element={<ErrorComponent />}
+                                        />
                                     </Route>
                                     <Route
-                                        path="/companies"
                                         element={
-                                            <CompanyListPage>
-                                                <Outlet />
-                                            </CompanyListPage>
+                                            <Authenticated
+                                                key="authenticated-auth"
+                                                fallback={<Outlet />}
+                                            >
+                                                <NavigateToResource resource="dashboard" />
+                                            </Authenticated>
                                         }
                                     >
                                         <Route
-                                            path="create"
-                                            element={<CompanyCreatePage />}
-                                        />
-                                    </Route>
-                                    <Route
-                                        path="/companies/edit/:id"
-                                        element={<CompanyEditPage />}
-                                    />
-                                    <Route
-                                        path="/contacts"
-                                        element={
-                                            <ContactsListPage>
-                                                <Outlet />
-                                            </ContactsListPage>
-                                        }
-                                    >
-                                        <Route index element={null} />
-                                        <Route
-                                            path="show/:id"
-                                            element={<ContactShowPage />}
+                                            path="/login"
+                                            element={<LoginPage />}
                                         />
                                         <Route
-                                            path="create"
-                                            element={
-                                                <ContactCreatePage>
-                                                    <Outlet />
-                                                </ContactCreatePage>
-                                            }
-                                        >
-                                            <Route
-                                                path="company-create"
-                                                element={
-                                                    <CompanyCreatePage
-                                                        isOverModal
-                                                    />
-                                                }
-                                            />
-                                        </Route>
-                                    </Route>
-                                    <Route
-                                        path="/quotes"
-                                        element={
-                                            <QuotesListPage>
-                                                <Outlet />
-                                            </QuotesListPage>
-                                        }
-                                    >
-                                        <Route
-                                            path="create"
-                                            element={
-                                                <QuotesCreatePage>
-                                                    <Outlet />
-                                                </QuotesCreatePage>
-                                            }
-                                        >
-                                            <Route
-                                                path="company-create"
-                                                element={
-                                                    <CompanyCreatePage
-                                                        isOverModal
-                                                    />
-                                                }
-                                            />
-                                        </Route>
-                                        <Route
-                                            path="edit/:id"
-                                            element={
-                                                <QuotesEditPage>
-                                                    <Outlet />
-                                                </QuotesEditPage>
-                                            }
-                                        >
-                                            <Route
-                                                path="company-create"
-                                                element={
-                                                    <CompanyCreatePage
-                                                        isOverModal
-                                                    />
-                                                }
-                                            />
-                                        </Route>
-                                    </Route>
-                                    <Route
-                                        path="/quotes/show/:id"
-                                        element={<QuotesShowPage />}
-                                    />
-                                    <Route
-                                        path="/administration"
-                                        element={<Outlet />}
-                                    >
-                                        <Route
-                                            path="settings"
-                                            element={<SettingsPage />}
+                                            path="/register"
+                                            element={<RegisterPage />}
                                         />
                                         <Route
-                                            path="audit-log"
-                                            element={<AuditLogPage />}
+                                            path="/forgot-password"
+                                            element={<ForgotPasswordPage />}
+                                        />
+                                        <Route
+                                            path="/update-password"
+                                            element={<UpdatePasswordPage />}
                                         />
                                     </Route>
-                                    <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
-                                    />
-                                </Route>
-                                <Route
-                                    element={
-                                        <Authenticated
-                                            key="authenticated-auth"
-                                            fallback={<Outlet />}
-                                        >
-                                            <NavigateToResource resource="dashboard" />
-                                        </Authenticated>
-                                    }
-                                >
-                                    <Route
-                                        path="/login"
-                                        element={<LoginPage />}
-                                    />
-                                    <Route
-                                        path="/register"
-                                        element={<RegisterPage />}
-                                    />
-                                    <Route
-                                        path="/forgot-password"
-                                        element={<ForgotPasswordPage />}
-                                    />
-                                    <Route
-                                        path="/update-password"
-                                        element={<UpdatePasswordPage />}
-                                    />
-                                </Route>
-                            </Routes>
-                            <UnsavedChangesNotifier />
-                            <DocumentTitleHandler />
-                        </Refine>
-                        <DevtoolsPanel />
-                    </DevtoolsProvider>
+                                </Routes>
+                                <UnsavedChangesNotifier />
+                                <DocumentTitleHandler />
+                            </Refine>
+                            <DevtoolsPanel />
+                        </DevtoolsProvider>
+                    </AntdApp>
                 </ConfigProvider>
             </BrowserRouter>
         </InstantSearch>

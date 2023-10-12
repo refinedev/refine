@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
@@ -13,7 +13,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { UserList, UserCreate, UserEdit, UserShow } from "./pages/users";
@@ -25,52 +25,63 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                            create: "/users/create",
-                            edit: "/users/edit/:id",
-                            show: "/users/show/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "users",
+                                list: "/users",
+                                create: "/users/create",
+                                edit: "/users/edit/:id",
+                                show: "/users/show/:id",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="users" />
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="users" />
+                                    }
+                                />
 
-                            <Route path="users">
-                                <Route index element={<UserList />} />
-                                <Route path="create" element={<UserCreate />} />
-                                <Route path="edit/:id" element={<UserEdit />} />
-                                <Route path="show/:id" element={<UserShow />} />
+                                <Route path="users">
+                                    <Route index element={<UserList />} />
+                                    <Route
+                                        path="create"
+                                        element={<UserCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<UserEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<UserShow />}
+                                    />
+                                </Route>
+
+                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );

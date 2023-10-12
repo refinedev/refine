@@ -5,7 +5,7 @@ import {
     Refine,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
@@ -18,7 +18,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -70,77 +70,90 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(API_URL)}
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                            create: "/posts/create",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
+                <AntdApp>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        authProvider={authProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                show: "/posts/show/:id",
+                                edit: "/posts/edit/:id",
+                                create: "/posts/create",
+                            },
+                        ]}
+                        notificationProvider={useNotificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
                             <Route
-                                index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
+                                </Route>
                             </Route>
-                        </Route>
 
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<Login />} />
-                        </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="posts" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<Login />} />
+                            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
+                    </Refine>
+                </AntdApp>
             </ConfigProvider>
         </BrowserRouter>
     );
