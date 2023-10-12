@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, notification, Progress } from "antd";
+import { Button, Progress } from "antd";
 import { OpenNotificationParams } from "@refinedev/core";
 import { UndoOutlined } from "@ant-design/icons";
 
@@ -11,7 +11,6 @@ export type UndoableNotificationProps = {
 };
 
 export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
-    notificationKey,
     message,
     cancelMutation,
     undoableTimeout,
@@ -35,10 +34,7 @@ export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
         <span style={{ marginLeft: 8, width: "100%" }}>{message}</span>
         <Button
             style={{ flexShrink: 0 }}
-            onClick={() => {
-                cancelMutation?.();
-                notification.destroy(notificationKey ?? "");
-            }}
+            onClick={cancelMutation}
             disabled={undoableTimeout === 0}
             icon={<UndoOutlined />}
         ></Button>
