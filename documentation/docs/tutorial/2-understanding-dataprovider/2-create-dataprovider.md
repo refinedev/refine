@@ -673,27 +673,25 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
             requestUrl = `${requestUrl}&${stringify(query)}`;
         }
 
-        if (headers) {
-            axiosInstance.defaults.headers = {
-                ...axiosInstance.defaults.headers,
-                ...headers,
-            };
-        }
-
         let axiosResponse;
         switch (method) {
             case "put":
             case "post":
             case "patch":
-                axiosResponse = await axiosInstance[method](url, payload);
+                axiosResponse = await axiosInstance[method](url, payload, {
+                    headers,
+                });
                 break;
             case "delete":
                 axiosResponse = await axiosInstance.delete(url, {
                     data: payload,
+                    headers: headers,
                 });
                 break;
             default:
-                axiosResponse = await axiosInstance.get(requestUrl);
+                axiosResponse = await axiosInstance.get(requestUrl, {
+                    headers,
+                });
                 break;
         }
 
