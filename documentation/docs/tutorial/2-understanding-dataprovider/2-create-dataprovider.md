@@ -199,7 +199,7 @@ Now let's add the sorting feature. The API expects the following parameters for 
 ```
 
 **refine** uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
-Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
+Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#crudsorting) type, it comes in the data provider as follows.
 
 ```bash
 [
