@@ -153,12 +153,10 @@ We can then add the pagination feature. For this, the API takes the following pa
 **refine** uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
 
 ```bash
-[
-    {
+{
     current: 1,
     pageSize: 10,
-    },
-]
+}
 ```
 
 ```ts title="src/data-provider.ts"
