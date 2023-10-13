@@ -267,7 +267,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
     },
     {
     field: "title"
-    operator: "contain"
+    operator: "contains"
     value: "Hello"
     },
 ]
