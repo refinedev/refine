@@ -29,7 +29,7 @@ export const client = new GraphQLClient(API_URL, {
 
             return response;
         } catch (error) {
-            console.log("fetch error", error);
+            throw error;
         }
     },
 
