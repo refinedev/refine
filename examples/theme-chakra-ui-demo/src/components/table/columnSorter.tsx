@@ -16,9 +16,6 @@ export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
             aria-label="Sort"
             size="xs"
             onClick={column.getToggleSortingHandler()}
-            style={{
-                transition: "transform 0.25s",
-            }}
             icon={<ColumnSorterIcon sorted={sorted} />}
             variant={sorted ? "light" : "transparent"}
             color={sorted ? "primary" : "gray"}
