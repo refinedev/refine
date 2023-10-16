@@ -153,12 +153,10 @@ We can then add the pagination feature. For this, the API takes the following pa
 **refine** uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
 
 ```bash
-[
-    {
+{
     current: 1,
     pageSize: 10,
-    },
-]
+}
 ```
 
 ```ts title="src/data-provider.ts"
@@ -201,7 +199,7 @@ Now let's add the sorting feature. The API expects the following parameters for 
 ```
 
 **refine** uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
-Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
+Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#crudsorting) type, it comes in the data provider as follows.
 
 ```bash
 [
@@ -269,7 +267,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
     },
     {
     field: "title"
-    operator: "contain"
+    operator: "contains"
     value: "Hello"
     },
 ]
@@ -675,27 +673,25 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
             requestUrl = `${requestUrl}&${stringify(query)}`;
         }
 
-        if (headers) {
-            axiosInstance.defaults.headers = {
-                ...axiosInstance.defaults.headers,
-                ...headers,
-            };
-        }
-
         let axiosResponse;
         switch (method) {
             case "put":
             case "post":
             case "patch":
-                axiosResponse = await axiosInstance[method](url, payload);
+                axiosResponse = await axiosInstance[method](url, payload, {
+                    headers,
+                });
                 break;
             case "delete":
                 axiosResponse = await axiosInstance.delete(url, {
                     data: payload,
+                    headers: headers,
                 });
                 break;
             default:
-                axiosResponse = await axiosInstance.get(requestUrl);
+                axiosResponse = await axiosInstance.get(requestUrl, {
+                    headers,
+                });
                 break;
         }
 

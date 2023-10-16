@@ -115,7 +115,7 @@ At this point, all/required packages are bootstrapped. You can add the packages 
 In the command example below, we are running the core and antd packages in `development mode` along with the example.
 
 ```bash
-npm run start -- --scope @refinedev/core --scope @refinedev/antd --scope refine-use-select-example
+npm run start -- --scope @refinedev/antd --scope refine-use-select-example
 ```
 
 This command starts the example named `refine-use-select-example` in dev mode. The value of the flag `--scope` is the name that is defined in it's `package.json` file. Note that `--scope` flag should be used for every package that should be filtered. If you should start two packages:
