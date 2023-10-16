@@ -18,12 +18,11 @@ export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
             onClick={column.getToggleSortingHandler()}
             style={{
                 transition: "transform 0.25s",
-                transform: `rotate(${sorted === "asc" ? "180" : "0"}deg)`,
             }}
             icon={<ColumnSorterIcon sorted={sorted} />}
             variant={sorted ? "light" : "transparent"}
             color={sorted ? "primary" : "gray"}
-        ></IconButton>
+        />
     );
 };
 
