@@ -153,16 +153,12 @@ export const authProvider: AuthBindings = {
     onError: async (error) => {
         return { error };
     },
-    check: async (ctx?: GetServerSidePropsContext) => {
-        console.log(ctx);
-        const accessToken = nookies.get(ctx).access_token;
-        if (!accessToken) return { authenticated: false, redirectTo: "/login" };
-
+    check: async (accessToken?: string) => {
         try {
             await dataProvider.custom({
                 url: API_URL,
                 method: "post",
-                headers: ctx
+                headers: accessToken
                     ? {
                           Authorization: `Bearer ${accessToken}`,
                       }

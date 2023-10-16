@@ -1,45 +1,32 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { API_URL, authProvider } from "./src/providers";
+import { authProvider } from "./src/providers";
 
 const AUTH_PAGES = ["/login", "/register", "/forgot-password"];
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
     const accessToken = request.cookies.get("access_token");
     if (!accessToken?.value && !AUTH_PAGES.includes(request.nextUrl.pathname)) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
-    const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Apollo-Require-Preflight": "true",
-            Authorization: `Bearer ${accessToken?.value}`,
-        },
-        body: JSON.stringify({
-            operationName: "Me",
-            query: `
-            query Me {
-                me {
-                  name
-                }
-              }
-            `,
-        }),
-    });
 
-    const data = await response.json();
-    const authenticated = !!data?.data?.me;
-    const redirectTo = new URL(authenticated ? "/" : "/login", request.url);
+    const { authenticated, redirectTo } = await authProvider.check(
+        accessToken?.value,
+    );
 
-    if (redirectTo.toString() === request.url) return;
-    if (authenticated && AUTH_PAGES.includes(request.nextUrl.pathname)) {
-        return NextResponse.redirect(redirectTo);
-    }
+    // not authenticated and not on an auth page
     if (!authenticated && !AUTH_PAGES.includes(request.nextUrl.pathname)) {
-        return NextResponse.redirect(redirectTo);
+        return NextResponse.redirect(
+            new URL(redirectTo || "/login", request.url),
+        );
     }
+
+    // authenticated and on an auth page
+    if (authenticated && AUTH_PAGES.includes(request.nextUrl.pathname)) {
+        return NextResponse.redirect(new URL(redirectTo || "/", request.url));
+    }
+
+    return NextResponse.next();
 }
 
 export const config = {

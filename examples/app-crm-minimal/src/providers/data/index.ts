@@ -20,8 +20,10 @@ export const client = new GraphQLClient(API_URL, {
             const response = await fetch(url, {
                 ...options,
                 headers: {
-                    ...options.headers,
                     Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                    "Apollo-Require-Preflight": "true",
+                    ...options.headers,
                 },
             });
 
