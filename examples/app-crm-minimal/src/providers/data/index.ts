@@ -26,24 +26,15 @@ export const client = new GraphQLClient(API_URL, {
                     ...options.headers,
                 },
             });
+            const responseClone = response.clone();
+            const body = await responseClone.json();
+            handleErrors(body);
 
             return response;
         } catch (error) {
-            throw error;
+            console.log("fetch error", error);
+            return Promise.reject(error);
         }
-    },
-
-    responseMiddleware: (ctx: any) => {
-        const errors = ctx?.response?.errors;
-        const messages = errors?.map((error: any) => error?.message)?.join("");
-        const code = errors?.[0]?.extensions?.code;
-
-        if (!errors) return ctx;
-
-        throw {
-            message: messages || JSON.stringify(errors),
-            statusCode: code || 500,
-        };
     },
 });
 
@@ -69,3 +60,19 @@ export const dataProvider = graphqlDataProvider(client);
 export const liveProvider = wsClient
     ? graphqlLiveProvider(wsClient)
     : undefined;
+
+const handleErrors = (body: any) => {
+    if (!body) return null;
+
+    if ("errors" in body) {
+        const errors = body?.errors;
+        const messages = errors?.map((error: any) => error?.message)?.join("");
+        const code = errors?.[0]?.extensions?.code;
+        if (!errors) return body;
+
+        throw {
+            message: messages || JSON.stringify(errors),
+            statusCode: code || 500,
+        };
+    }
+};
