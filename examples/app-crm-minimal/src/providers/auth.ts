@@ -2,7 +2,6 @@ import { AuthBindings } from "@refinedev/core";
 import nookies from "nookies";
 import { API_BASE_URL, API_URL, dataProvider } from "./data";
 import { User } from "@interfaces";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
 const emails = [
     "michael.scott@dundermifflin.com",
@@ -151,6 +150,13 @@ export const authProvider: AuthBindings = {
         };
     },
     onError: async (error) => {
+        if (error.statusCode === "UNAUTHENTICATED") {
+            return {
+                logout: true,
+                ...error,
+            };
+        }
+
         return { error };
     },
     check: async (accessToken?: string) => {
@@ -206,9 +212,11 @@ export const authProvider: AuthBindings = {
             const { data } = await dataProvider.custom<{ me: User }>({
                 url: API_URL,
                 method: "post",
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
+                headers: accessToken
+                    ? {
+                          Authorization: `Bearer ${accessToken}`,
+                      }
+                    : {},
                 meta: {
                     rawQuery: `
                     query Me {
@@ -231,49 +239,4 @@ export const authProvider: AuthBindings = {
             return undefined;
         }
     },
-};
-
-export const withAuth = (gssp: GetServerSideProps): GetServerSideProps => {
-    return async (context: GetServerSidePropsContext) => {
-        const { authenticated, redirectTo } = await authProvider.check(context);
-
-        console.log("fetch withAuth", {
-            authenticated,
-            redirectTo,
-            url: context.req.url,
-        });
-
-        if (!authenticated) {
-            return {
-                props: {},
-                redirect: {
-                    destination: `${redirectTo}?to=${encodeURIComponent(
-                        context.req.url || "/",
-                    )}`,
-                    permanent: false,
-                },
-            };
-        }
-
-        const gsspData = await gssp(context);
-        if (!("props" in gsspData)) {
-            throw new Error("invalid getSSP result");
-        }
-
-        if (authenticated) {
-            return {
-                props: {},
-                redirect: {
-                    destination: redirectTo || "/",
-                    permanent: false,
-                },
-            };
-        }
-
-        return {
-            props: {
-                ...gsspData.props,
-            },
-        };
-    };
 };
