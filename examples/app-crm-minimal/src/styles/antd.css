@@ -75,14 +75,6 @@
     margin-inline-end: auto !important;
 }
 
-.ant-color-picker {
-    .ant-popover-content {
-        .ant-collapse-header {
-            display: none;
-        }
-    }
-}
-
 .ant-table-cell {
     white-space: nowrap;
 }
@@ -95,15 +87,14 @@ td.ant-table-column-sort {
     background-color: #ffffff !important;
 }
 
-.ant-table-tbody>tr>td {
+.ant-table-tbody > tr > td {
     padding: 12px 11.25px 11px 16px !important;
 }
 
-.ant-table-tbody>tr:first-child>td {
+.ant-table-tbody > tr:first-child > td {
     padding: 0px !important;
 }
 
 .ant-page-header-content {
     padding-block-start: 8px;
 }
-
