@@ -29,7 +29,7 @@ export const BannerExamples: FC<Props> = ({
             title &&
             description
         ) {
-            window.gtag("event", "banner_view", {
+            window.gtag("event", "view_banner", {
                 banner_name: "banner-retool-alternative",
                 banner_text: title,
                 banner_description: description,
