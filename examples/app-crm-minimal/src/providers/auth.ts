@@ -177,8 +177,6 @@ export const authProvider: AuthBindings = {
                 redirectTo: "/",
             };
         } catch (error) {
-            console.log("fetch check error", error);
-
             return {
                 authenticated: false,
                 redirectTo: "/login",

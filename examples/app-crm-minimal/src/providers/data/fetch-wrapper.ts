@@ -11,12 +11,6 @@ const customFetch = async (url: string, options: RequestInit) => {
     const accessToken = cookies?.["access_token"];
     const headers = options.headers as Record<string, string>;
 
-    console.log("fetch", {
-        url: options.body,
-        bearer: headers?.Authorization || `Bearer ${accessToken})`,
-        headers,
-    });
-
     return await fetch(url, {
         ...options,
         headers: {
@@ -37,11 +31,6 @@ export const fetchWrapper = async (url: string, options: RequestInit) => {
 
     if (error) {
         if (shouldRefreshToken(error)) {
-            console.log(
-                "fetch shouldRefreshToken",
-                shouldRefreshToken(error),
-                error,
-            );
             const tokens = await refreshTokens();
             if (!tokens) {
                 throw error;
