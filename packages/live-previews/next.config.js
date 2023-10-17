@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    transpilePackages: ["@ant-design/icons"],
     reactStrictMode: true,
     // productionBrowserSourceMaps: true, // Disabled for now, as it causes build to hang on deploy
     swcMinify: false,
