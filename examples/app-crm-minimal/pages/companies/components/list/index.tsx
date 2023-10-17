@@ -1,97 +1,75 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import { List, useTable } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 
-import {
-    AppstoreOutlined,
-    SearchOutlined,
-    UnorderedListOutlined,
-} from "@ant-design/icons";
-import { Form, Grid, Input, Radio, Space, Spin } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Form, Grid, Input, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@components";
-import { CompaniesCardView, CompaniesTableView } from "..";
+import { CompaniesTableView } from "..";
 
 import { Company } from "@interfaces";
 
-type View = "card" | "table";
-
 export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
-    const [view, setView] = useState<View>("card");
     const screens = Grid.useBreakpoint();
 
-    const {
-        tableProps,
-        tableQueryResult,
-        searchFormProps,
-        filters,
-        sorters,
-        setCurrent,
-        setPageSize,
-        setFilters,
-    } = useTable<Company, HttpError, { name: string }>({
-        resource: "companies",
-        onSearch: (values) => {
-            return [
-                {
-                    field: "name",
-                    operator: "contains",
-                    value: values.name,
-                },
-            ];
-        },
-        sorters: {
-            initial: [
-                {
-                    field: "createdAt",
-                    order: "desc",
-                },
-            ],
-        },
-        filters: {
-            initial: [
-                {
-                    field: "name",
-                    operator: "contains",
-                    value: undefined,
-                },
-                {
-                    field: "contacts.id",
-                    operator: "in",
-                    value: undefined,
-                },
-            ],
-        },
-        pagination: {
-            pageSize: 12,
-        },
-        meta: {
-            to: "undefined",
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                {
-                    dealsAggregate: [
-                        {
-                            sum: ["value"],
-                        },
-                    ],
-                },
-                { salesOwner: ["id", "name", "avatarUrl"] },
-                { contacts: [{ nodes: ["id", "name", "avatarUrl"] }] },
-            ],
-        },
-    });
-
-    const onViewChange = (value: View) => {
-        setView(value);
-        setFilters([], "replace");
-        // TODO: useForm should handle this automatically. remove this when its fixed from antd useForm.
-        searchFormProps.form?.resetFields();
-    };
+    const { tableProps, tableQueryResult, searchFormProps, filters, sorters } =
+        useTable<Company, HttpError, { name: string }>({
+            resource: "companies",
+            onSearch: (values) => {
+                return [
+                    {
+                        field: "name",
+                        operator: "contains",
+                        value: values.name,
+                    },
+                ];
+            },
+            sorters: {
+                initial: [
+                    {
+                        field: "createdAt",
+                        order: "desc",
+                    },
+                ],
+            },
+            filters: {
+                initial: [
+                    {
+                        field: "name",
+                        operator: "contains",
+                        value: undefined,
+                    },
+                    {
+                        field: "contacts.id",
+                        operator: "in",
+                        value: undefined,
+                    },
+                ],
+            },
+            pagination: {
+                pageSize: 12,
+            },
+            meta: {
+                to: "undefined",
+                fields: [
+                    "id",
+                    "name",
+                    "avatarUrl",
+                    {
+                        dealsAggregate: [
+                            {
+                                sum: ["value"],
+                            },
+                        ],
+                    },
+                    { salesOwner: ["id", "name", "avatarUrl"] },
+                    { contacts: [{ nodes: ["id", "name", "avatarUrl"] }] },
+                ],
+            },
+        });
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         searchFormProps?.onFinish?.({
@@ -131,22 +109,6 @@ export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
                                     />
                                 </Form.Item>
                             </Form>
-                            {!screens.xs ? (
-                                <Radio.Group
-                                    size="large"
-                                    value={view}
-                                    onChange={(e) =>
-                                        onViewChange(e.target.value)
-                                    }
-                                >
-                                    <Radio.Button value="table">
-                                        <UnorderedListOutlined />
-                                    </Radio.Button>
-                                    <Radio.Button value="card">
-                                        <AppstoreOutlined />
-                                    </Radio.Button>
-                                </Radio.Group>
-                            ) : null}
                         </Space>
                     );
                 }}
@@ -162,19 +124,11 @@ export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
                     />
                 }
             >
-                {view === "table" ? (
-                    <CompaniesTableView
-                        tableProps={tableProps}
-                        filters={filters}
-                        sorters={sorters}
-                    />
-                ) : (
-                    <CompaniesCardView
-                        tableProps={tableProps}
-                        setPageSize={setPageSize}
-                        setCurrent={setCurrent}
-                    />
-                )}
+                <CompaniesTableView
+                    tableProps={tableProps}
+                    filters={filters}
+                    sorters={sorters}
+                />
             </List>
             {children}
         </div>

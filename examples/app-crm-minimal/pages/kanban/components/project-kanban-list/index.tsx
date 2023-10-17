@@ -9,15 +9,12 @@ import {
     useUpdateMany,
 } from "@refinedev/core";
 
-import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { DragEndEvent } from "@dnd-kit/core";
-import { MenuProps } from "antd";
 
 import { Task, TaskStage, TaskUpdateInput } from "@interfaces";
 
 import {
     KanbanAddCardButton,
-    KanbanAddStageButton,
     KanbanBoard,
     KanbanBoardSkeleton,
     KanbanColumn,
@@ -46,7 +43,7 @@ const taskFragment = [
 ];
 
 export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
-    const { create, edit, replace } = useNavigation();
+    const { replace } = useNavigation();
 
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
@@ -115,8 +112,6 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
         HttpError,
         TaskUpdateInput
     >();
-    const { mutate: updateManyTask } = useUpdateMany();
-    const { mutate: deleteStage } = useDelete();
 
     const handleOnDragEnd = (event: DragEndEvent) => {
         let stageId = event.over?.id as undefined | string | null;
@@ -142,27 +137,6 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
         });
     };
 
-    const handleAddStage = () => {
-        create("taskStages", "replace");
-    };
-
-    const handleEditStage = (args: { stageId: string }) => {
-        edit("taskStages", args.stageId);
-    };
-
-    const handleDeleteStage = (args: { stageId: string }) => {
-        deleteStage({
-            resource: "taskStage",
-            id: args.stageId,
-            successNotification: () => ({
-                key: "delete-stage",
-                type: "success",
-                message: "Successfully deleted stage",
-                description: "Successful",
-            }),
-        });
-    };
-
     const handleAddCard = (args: { stageId: string }) => {
         const path =
             args.stageId === "unassigned"
@@ -170,50 +144,6 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                 : `kanban/create?stageId=${args.stageId}`;
 
         replace(path);
-    };
-
-    const handleClearCards = (args: { taskIds: string[] }) => {
-        updateManyTask({
-            resource: "tasks",
-            ids: args.taskIds,
-            values: {
-                stageId: null,
-            },
-            successNotification: false,
-        });
-    };
-
-    const getContextMenuItems = ({ column }: { column: TaskStage }) => {
-        const hasItems = column.tasks.length > 0;
-
-        const items: MenuProps["items"] = [
-            {
-                label: "Edit status",
-                key: "1",
-                icon: <EditOutlined />,
-                onClick: () => handleEditStage({ stageId: column.id }),
-            },
-            {
-                label: "Clear all cards",
-                key: "2",
-                icon: <ClearOutlined />,
-                disabled: !hasItems,
-                onClick: () =>
-                    handleClearCards({
-                        taskIds: column.tasks.map((task) => task.id),
-                    }),
-            },
-            {
-                danger: true,
-                label: "Delete status",
-                key: "3",
-                icon: <DeleteOutlined />,
-                disabled: hasItems,
-                onClick: () => handleDeleteStage({ stageId: column.id }),
-            },
-        ];
-
-        return items;
     };
 
     const isLoading = isLoadingTasks || isLoadingStages;
@@ -249,15 +179,12 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                     )}
                 </KanbanColumn>
                 {taskStages.stages?.map((column) => {
-                    const contextMenuItems = getContextMenuItems({ column });
-
                     return (
                         <KanbanColumn
                             key={column.id}
                             id={column.id}
                             title={column.title}
                             count={column.tasks.length}
-                            contextMenuItems={contextMenuItems}
                             onAddClick={() =>
                                 handleAddCard({ stageId: column.id })
                             }
@@ -288,7 +215,6 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                         </KanbanColumn>
                     );
                 })}
-                <KanbanAddStageButton onClick={handleAddStage} />
             </KanbanBoard>
             {children}
         </>

@@ -8,7 +8,7 @@ import { Checkbox, Form, Select, Space } from "antd";
 
 import { Task } from "@interfaces";
 
-import { AccordionHeaderSkeleton } from "../accordion/accordion-header-skeleton";
+import { AccordionHeaderSkeleton } from "@components";
 
 type Props = {
     initialValues: {

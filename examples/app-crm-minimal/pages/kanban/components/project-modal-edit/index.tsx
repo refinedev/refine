@@ -11,12 +11,8 @@ import {
 import { Modal } from "antd";
 
 import { Task } from "@interfaces";
-
+import { Accordion } from "@components";
 import {
-    Accordion,
-    CheckListForm,
-    CommentForm,
-    CommentList,
     DescriptionForm,
     DescriptionHeader,
     DueDateForm,
@@ -48,7 +44,7 @@ export const ProjectModalEdit = () => {
         },
     });
 
-    const { description, completed, stage, dueDate, users, checklist, title } =
+    const { description, completed, stage, dueDate, users, title } =
         queryResult?.data?.data ?? {};
     const isLoading = queryResult?.isLoading ?? true;
 
@@ -126,24 +122,6 @@ export const ProjectModalEdit = () => {
                     cancelForm={() => setActiveKey(undefined)}
                 />
             </Accordion>
-            <CheckListForm
-                isLoading={isLoading}
-                initialValues={{ checklist }}
-            />
-
-            <div
-                style={{
-                    backgroundColor: "#f0f2f5",
-                    padding: "24px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "48px",
-                    borderBottom: "1px solid #d9d9d9",
-                }}
-            >
-                <CommentForm />
-                <CommentList />
-            </div>
         </Modal>
     );
 };

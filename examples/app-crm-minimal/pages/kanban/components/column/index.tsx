@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, ReactNode } from "react";
 
 import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
 import { useDroppable, UseDroppableArguments } from "@dnd-kit/core";
-import { Button, Dropdown, MenuProps, Skeleton } from "antd";
+import { Button, Skeleton } from "antd";
 import cn from "classnames";
 
 import { Text } from "@components";
@@ -18,7 +18,6 @@ type Props = {
     count: number;
     data?: UseDroppableArguments["data"];
     variant?: Variant;
-    contextMenuItems?: MenuProps["items"];
     onAddClick?: (args: { id: string }) => void;
 };
 
@@ -30,7 +29,6 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
     count,
     data,
     variant = "default",
-    contextMenuItems,
     onAddClick,
 }) => {
     const { isOver, setNodeRef, active } = useDroppable({
@@ -65,34 +63,6 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
                         )}
                     </div>
                     <div className={styles.actionContainer}>
-                        {contextMenuItems && (
-                            <Dropdown
-                                trigger={["click"]}
-                                menu={{
-                                    items: contextMenuItems,
-                                    onPointerDown: (e) => {
-                                        e.stopPropagation();
-                                    },
-                                    onClick: (e) => {
-                                        e.domEvent.stopPropagation();
-                                    },
-                                }}
-                                placement="bottom"
-                                arrow={{ pointAtCenter: true }}
-                            >
-                                <Button
-                                    type="text"
-                                    shape="circle"
-                                    icon={
-                                        <MoreOutlined
-                                            style={{
-                                                transform: "rotate(90deg)",
-                                            }}
-                                        />
-                                    }
-                                />
-                            </Dropdown>
-                        )}
                         <Button
                             shape="circle"
                             icon={<PlusOutlined />}

@@ -1,7 +1,4 @@
-import {
-    ProjectKanbanList,
-    ProjectModalCreate,
-} from "pages/scrumboard/components";
+import { ProjectKanbanList, ProjectModalCreate } from "../components";
 
 export default function ScrumboardKanbanCreatePage() {
     return (

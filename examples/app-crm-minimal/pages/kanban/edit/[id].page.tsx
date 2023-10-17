@@ -1,4 +1,4 @@
-import { ProjectModalEdit, ProjectKanbanList } from "../../components";
+import { ProjectModalEdit, ProjectKanbanList } from "../components";
 
 export default function ScrumboardKanbanEditPage() {
     return (

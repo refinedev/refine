@@ -1,5 +1,4 @@
 export { CompanyTitleForm } from "./title-form";
-export { CompaniesCardView } from "./card-view";
 export { CompanyContactsTable } from "./contacts-table";
 export { CompanyDealsTable } from "./deals-table";
 export { CompanyInfoForm } from "./info-form";

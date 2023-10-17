@@ -3,31 +3,6 @@ import nookies from "nookies";
 import { API_URL, dataProvider } from "./data";
 import { User } from "@interfaces";
 
-const emails = [
-    "michael.scott@dundermifflin.com",
-    "jim.halpert@dundermifflin.com",
-    "pam.beesly@dundermifflin.com",
-    "dwight.schrute@dundermifflin.com",
-    "angela.martin@dundermifflin.com",
-    "stanley.hudson@dundermifflin.com",
-    "phyllis.smith@dundermifflin.com",
-    "kevin.malone@dundermifflin.com",
-    "oscar.martinez@dundermifflin.com",
-    "creed.bratton@dundermifflin.com",
-    "meredith.palmer@dundermifflin.com",
-    "ryan.howard@dundermifflin.com",
-    "kelly.kapoor@dundermifflin.com",
-    "andy.bernard@dundermifflin.com",
-    "toby.flenderson@dundermifflin.com",
-];
-
-const randomEmail = emails[Math.floor(Math.random() * emails.length)];
-
-export const demoCredentials = {
-    email: randomEmail,
-    password: "demodemo",
-};
-
 export const authProvider: AuthBindings = {
     login: async ({ email, accessToken, refreshToken }) => {
         if (accessToken && refreshToken) {

@@ -1,12 +1,16 @@
 import { AuthPage } from "@refinedev/antd";
-import { demoCredentials } from "@providers";
+
+export const initialValues = {
+    email: "michael.scott@dundermifflin.com",
+    password: "demodemo",
+};
 
 export default function Login() {
     return (
         <AuthPage
             type="login"
             formProps={{
-                initialValues: demoCredentials,
+                initialValues,
             }}
         />
     );

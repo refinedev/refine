@@ -4,7 +4,7 @@ import { Space } from "antd";
 
 import { Text } from "@components";
 
-import { AccordionHeaderSkeleton } from "../accordion/accordion-header-skeleton";
+import { AccordionHeaderSkeleton } from "@components";
 
 type Props = PropsWithChildren<{
     icon: ReactNode;
