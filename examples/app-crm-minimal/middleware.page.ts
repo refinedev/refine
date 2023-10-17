@@ -30,6 +30,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
+    // "@refinedev/nestjs-query" uses lodash. lodash does not work on "edge".
+    // This is a workaround for the issue:
+    // https://nextjs.org/docs/messages/edge-dynamic-code-evaluation
+    unstable_allowDynamic: ["**/node_modules/lodash/_root.js"],
     matcher: [
         /*
          * Match all request paths except for the ones starting with:
