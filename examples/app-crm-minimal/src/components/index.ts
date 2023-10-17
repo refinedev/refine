@@ -11,5 +11,4 @@ export * from "./icon";
 export * from "./pagination-total";
 export * from "./avatar-group";
 export * from "./list-title-button";
-export * from "./markdown-editor";
 export * from "./accordion";

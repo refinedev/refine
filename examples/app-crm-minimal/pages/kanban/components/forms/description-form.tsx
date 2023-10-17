@@ -7,10 +7,7 @@ import { Button, Form, Space } from "antd";
 
 import { Task } from "@interfaces";
 
-const MDEditor = dynamic(
-    () => import("@uiw/react-md-editor").then((mod) => mod.default),
-    { ssr: false },
-);
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 type Props = {
     initialValues: {
