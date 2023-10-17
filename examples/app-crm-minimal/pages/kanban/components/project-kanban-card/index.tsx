@@ -3,11 +3,9 @@ import { memo, useMemo } from "react";
 import { useDelete, useNavigation } from "@refinedev/core";
 
 import {
-    CheckSquareOutlined,
     ClockCircleOutlined,
     DeleteOutlined,
     EyeOutlined,
-    MessageOutlined,
     MoreOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
@@ -212,7 +210,7 @@ export const ProjectCard = ({
     );
 };
 
-export const ProjectKanbanCardSkeleton = () => {
+export const ProjectCardSkeleton = () => {
     return (
         <Card
             size="small"
