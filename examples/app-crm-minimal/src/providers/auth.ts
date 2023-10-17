@@ -29,7 +29,7 @@ export const demoCredentials = {
 };
 
 export const authProvider: AuthBindings = {
-    login: async ({ email, providerName, accessToken, refreshToken }) => {
+    login: async ({ email, accessToken, refreshToken }) => {
         if (accessToken && refreshToken) {
             nookies.set(null, "access_token", accessToken, {
                 maxAge: 3 * 24 * 60 * 60, // 3 days
@@ -43,14 +43,6 @@ export const authProvider: AuthBindings = {
             return {
                 success: true,
                 redirectTo: "/",
-            };
-        }
-
-        if (providerName) {
-            window.location.href = `${API_BASE_URL}/auth/${providerName}`;
-
-            return {
-                success: true,
             };
         }
 
