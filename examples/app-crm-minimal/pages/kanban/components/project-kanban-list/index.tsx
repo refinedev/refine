@@ -1,13 +1,6 @@
 import { FC, PropsWithChildren, useMemo } from "react";
 
-import {
-    HttpError,
-    useDelete,
-    useList,
-    useNavigation,
-    useUpdate,
-    useUpdateMany,
-} from "@refinedev/core";
+import { HttpError, useList, useNavigation, useUpdate } from "@refinedev/core";
 
 import { DragEndEvent } from "@dnd-kit/core";
 
