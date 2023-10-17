@@ -306,7 +306,9 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             );
         },
         custom: async ({ url, method, headers, meta }) => {
-            client.setEndpoint(url);
+            if (url) {
+                client.setEndpoint(url);
+            }
             client.setHeaders(headers);
 
             if (meta?.rawQuery) {
