@@ -31,26 +31,18 @@ import { getDateColor } from "@utilities";
 type ProjectCardProps = {
     id: string;
     title: string;
-    comments: {
-        totalCount: number;
-    };
+
     dueDate?: string;
     users?: {
         id: string;
         name: string;
         avatarUrl?: User["avatarUrl"];
     }[];
-    checkList?: {
-        title: string;
-        checked: boolean;
-    }[];
 };
 
 export const ProjectCard = ({
     id,
     title,
-    checkList,
-    comments,
     dueDate,
     users,
 }: ProjectCardProps) => {
@@ -98,30 +90,6 @@ export const ProjectCard = ({
             text: date.format("MMM D"),
         };
     }, [dueDate]);
-
-    const checkListCompletionCountOptions = useMemo(() => {
-        const hasCheckList = checkList && checkList.length > 0;
-        if (!hasCheckList) {
-            return null;
-        }
-
-        const total = checkList.length;
-        const checked = checkList?.filter((item) => item.checked).length;
-
-        const defaulOptions = {
-            color: "default",
-            text: `${checked}/${total}`,
-            allCompleted: false,
-        };
-
-        if (checked === total) {
-            defaulOptions.color = "success";
-            defaulOptions.allCompleted = true;
-            return defaulOptions;
-        }
-
-        return defaulOptions;
-    }, [checkList]);
 
     return (
         <ConfigProvider
@@ -190,26 +158,6 @@ export const ProjectCard = ({
                             marginRight: "4px",
                         }}
                     />
-                    {!!comments?.totalCount && (
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "4px",
-                            }}
-                        >
-                            <MessageOutlined
-                                style={{
-                                    color: token.colorTextSecondary,
-                                    fontSize: "12px",
-                                }}
-                            />
-                            <Text size="xs" type="secondary">
-                                {comments.totalCount}
-                            </Text>
-                        </div>
-                    )}
                     {dueDateOptions && (
                         <Tag
                             icon={
@@ -231,33 +179,6 @@ export const ProjectCard = ({
                             bordered={dueDateOptions.color !== "default"}
                         >
                             {dueDateOptions.text}
-                        </Tag>
-                    )}
-                    {checkListCompletionCountOptions && (
-                        <Tag
-                            icon={
-                                <CheckSquareOutlined
-                                    style={{
-                                        fontSize: "12px",
-                                    }}
-                                />
-                            }
-                            style={{
-                                padding: "0 4px",
-                                marginInlineEnd: "0",
-                                backgroundColor:
-                                    checkListCompletionCountOptions.color ===
-                                    "default"
-                                        ? "transparent"
-                                        : "unset",
-                            }}
-                            color={checkListCompletionCountOptions.color}
-                            bordered={
-                                checkListCompletionCountOptions.color !==
-                                "default"
-                            }
-                        >
-                            {checkListCompletionCountOptions.text}
                         </Tag>
                     )}
                     {!!users?.length && (
@@ -328,8 +249,6 @@ export const ProjectCardMemo = memo(ProjectCard, (prev, next) => {
         prev.id === next.id &&
         prev.title === next.title &&
         prev.dueDate === next.dueDate &&
-        prev.comments.totalCount === next.comments.totalCount &&
-        prev.checkList?.length === next.checkList?.length &&
         prev.users?.length === next.users?.length
     );
 });

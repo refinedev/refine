@@ -25,13 +25,7 @@ const taskFragment = [
     "completed",
     "stageId",
     {
-        checklist: ["title", "checked"],
-    },
-    {
         users: ["id", "name", "avatarUrl"],
-    },
-    {
-        comments: ["totalCount"],
     },
 ];
 
