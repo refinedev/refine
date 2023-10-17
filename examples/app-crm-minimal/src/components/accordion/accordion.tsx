@@ -14,6 +14,11 @@ type Props = PropsWithChildren<{
     label: string;
 }>;
 
+/**
+ * when activeKey is equal to accordionKey, the children will be rendered. Otherwise, the fallback will be rendered
+ * when isLoading is true, the <AccordionHeaderSkeleton /> will be rendered
+ * when Accordion is clicked, setActive will be called with the accordionKey
+ */
 export const Accordion = ({
     accordionKey,
     activeKey,
