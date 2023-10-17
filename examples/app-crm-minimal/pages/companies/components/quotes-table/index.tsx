@@ -1,32 +1,19 @@
 import { FC, useMemo } from "react";
 import { useParams } from "next/navigation";
-import {
-    FilterDropdown,
-    ShowButton,
-    useSelect,
-    useTable,
-} from "@refinedev/antd";
-import { useNavigation } from "@refinedev/core";
+import { FilterDropdown, useSelect, useTable } from "@refinedev/antd";
 
-import {
-    ContainerOutlined,
-    ExportOutlined,
-    PlusCircleOutlined,
-    SearchOutlined,
-} from "@ant-design/icons";
+import { ContainerOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { Participants, QuoteStatusTag, Text } from "@components";
 import { Quote, QuoteStatus } from "@interfaces";
 import { currencyNumber } from "@utilities";
-import Link from "next/link";
 
 type Props = {
     style?: React.CSSProperties;
 };
 
 export const CompanyQuotesTable: FC<Props> = ({ style }) => {
-    const { listUrl } = useNavigation();
     const params = useParams();
 
     const { tableProps, filters, setFilters } = useTable<Quote>({

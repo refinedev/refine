@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from "react";
+import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
 
 import { useList, useNavigation } from "@refinedev/core";

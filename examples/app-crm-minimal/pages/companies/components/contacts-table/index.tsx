@@ -1,33 +1,14 @@
 import { FC, useMemo } from "react";
 import { useParams } from "next/navigation";
-import {
-    FilterDropdown,
-    SaveButton,
-    ShowButton,
-    useTable,
-} from "@refinedev/antd";
-import { HttpError, useCreateMany, useOne } from "@refinedev/core";
+import { FilterDropdown, useTable } from "@refinedev/antd";
 
 import {
-    DeleteOutlined,
-    ExportOutlined,
     MailOutlined,
     PhoneOutlined,
     SearchOutlined,
     TeamOutlined,
-    UserOutlined,
 } from "@ant-design/icons";
-import {
-    Button,
-    Card,
-    Col,
-    Form,
-    Input,
-    Row,
-    Select,
-    Space,
-    Table,
-} from "antd";
+import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@components";
 import { Contact } from "@interfaces";
