@@ -18,7 +18,7 @@ export { KanbanItem } from "./item";
 export {
     ProjectCard,
     ProjectCardMemo,
-    ProjectKanbanCardSkeleton,
+    ProjectCardSkeleton,
 } from "./project-kanban-card";
 export { KanbanAddCardButton } from "./button/add-card-button";
 export { KanbanAddStageButton } from "./button/add-stage-button";

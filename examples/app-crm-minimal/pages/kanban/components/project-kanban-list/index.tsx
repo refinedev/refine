@@ -14,7 +14,7 @@ import {
     KanbanColumnSkeleton,
     KanbanItem,
     ProjectCardMemo,
-    ProjectKanbanCardSkeleton,
+    ProjectCardSkeleton,
 } from "..";
 
 const taskFragment = [
@@ -67,7 +67,8 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
         },
     });
 
-    // its convert Task[] to TaskStage[] (group by stage) for kanban
+    // group tasks by stage
+    // it's convert Task[] to TaskStage[] (group by stage) for kanban
     // uses `stages` and `tasks` from useList hooks
     const taskStages = useMemo(() => {
         if (!tasks?.data || !stages?.data)
@@ -176,7 +177,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                                 handleAddCard({ stageId: column.id })
                             }
                         >
-                            {isLoading && <ProjectKanbanCardSkeleton />}
+                            {isLoading && <ProjectCardSkeleton />}
                             {!isLoading &&
                                 column.tasks.map((task) => {
                                     return (
@@ -218,7 +219,7 @@ const PageSkeleton = () => {
                 return (
                     <KanbanColumnSkeleton key={index} type="project">
                         {Array.from({ length: itemCount }).map((_, index) => {
-                            return <ProjectKanbanCardSkeleton key={index} />;
+                            return <ProjectCardSkeleton key={index} />;
                         })}
                     </KanbanColumnSkeleton>
                 );
