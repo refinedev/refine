@@ -80,11 +80,15 @@ export const transformFilterModelToCrudFilters = ({
     items,
     logicOperator,
 }: GridFilterModel): CrudFilters => {
-    const filters = items.map(({ field, value, operator }) => ({
-        field: field,
-        value: value ?? "",
-        operator: transformMuiOperatorToCrudOperator(operator),
-    }));
+    const filters = items.map(({ field, value, operator }) => {
+        return {
+            field: field,
+            value: ["isEmpty", "isNotEmpty"].includes(operator)
+                ? true
+                : value ?? "",
+            operator: transformMuiOperatorToCrudOperator(operator),
+        };
+    });
 
     if (logicOperator === GridLogicOperator.Or) {
         return [{ operator: "or", value: filters }];
@@ -115,6 +119,8 @@ export const transformCrudOperatorToMuiOperator = (
                     return "isEmpty";
                 case "nnull":
                     return "isNotEmpty";
+                case "in":
+                    return "isAnyOf";
                 default:
                     return operator;
             }
@@ -137,6 +143,12 @@ export const transformCrudOperatorToMuiOperator = (
                     return "isEmpty";
                 case "nnull":
                     return "isNotEmpty";
+                case "startswith":
+                    return "startsWith";
+                case "endswith":
+                    return "endsWith";
+                case "in":
+                    return "isAnyOf";
                 default:
                     return operator;
             }
