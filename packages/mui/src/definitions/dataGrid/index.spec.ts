@@ -226,6 +226,17 @@ describe("transformCrudOperatorToMuiOperator", () => {
         expect(transformCrudOperatorToMuiOperator("lte", "number")).toEqual(
             "<=",
         );
+
+        expect(transformCrudOperatorToMuiOperator("null", "number")).toEqual(
+            "isEmpty",
+        );
+        expect(transformCrudOperatorToMuiOperator("nnull", "number")).toEqual(
+            "isNotEmpty",
+        );
+
+        expect(transformCrudOperatorToMuiOperator("in", "number")).toEqual(
+            "isAnyOf",
+        );
     });
 
     it("transform crud operator to mui operator with 'boolean' value", () => {
@@ -243,6 +254,24 @@ describe("transformCrudOperatorToMuiOperator", () => {
         ).toEqual("contains");
         expect(transformCrudOperatorToMuiOperator("eq", "string")).toEqual(
             "equals",
+        );
+
+        expect(transformCrudOperatorToMuiOperator("null", "string")).toEqual(
+            "isEmpty",
+        );
+        expect(transformCrudOperatorToMuiOperator("nnull", "string")).toEqual(
+            "isNotEmpty",
+        );
+
+        expect(
+            transformCrudOperatorToMuiOperator("startswith", "string"),
+        ).toEqual("startsWith");
+        expect(
+            transformCrudOperatorToMuiOperator("endswith", "string"),
+        ).toEqual("endsWith");
+
+        expect(transformCrudOperatorToMuiOperator("in", "string")).toEqual(
+            "isAnyOf",
         );
     });
 
