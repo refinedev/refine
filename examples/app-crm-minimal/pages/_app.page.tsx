@@ -18,7 +18,6 @@ import "@utilities/init-dayjs";
 
 import "@refinedev/antd/dist/reset.css";
 import "@styles/antd.css";
-import "@styles/fc.css";
 import "@styles/index.css";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
