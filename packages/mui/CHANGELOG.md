@@ -1,5 +1,20 @@
 # @refinedev/mui
 
+## 5.13.16
+
+### Patch Changes
+
+-   [#5117](https://github.com/refinedev/refine/pull/5117) [`0b050f97b55`](https://github.com/refinedev/refine/commit/0b050f97b55eeb4fa5b2c74c3e79fc6b4ef7b0cb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: map missing operators for useDataGrid hook.
+
+    -   number field, added `isAnyOf` operator.
+    -   string field, added `startsWith`, `endsWith` and `isAnyOf` operators.
+
+    fix: `isNull` and `isNotNull` doesn't trigger request.
+
+    When filter has a value `""`, it's ignored and doesn't trigger request.
+    Previously `isNull` and `isNotNull` operators weren't handled correctly and had value `""` by default.
+    With this change, these operators has `true` value, so they won't be ignored.
+
 ## 5.13.15
 
 ### Patch Changes
