@@ -17,7 +17,7 @@ export const BannerSidebar = ({ shouldShowBanner }) => {
             typeof window.gtag !== "undefined" &&
             shouldShowBanner
         ) {
-            window.gtag("event", "banner_view", {
+            window.gtag("event", "view_banner", {
                 banner_name: "banner-sidebar",
                 banner_text: text,
                 banner_description: description,

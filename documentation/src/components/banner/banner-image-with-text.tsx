@@ -40,7 +40,7 @@ export const BannerImageWithText: FC<Props> = ({
             typeof window.gtag !== "undefined" &&
             bannerName
         ) {
-            window.gtag("event", "banner_view", {
+            window.gtag("event", "view_banner", {
                 banner_name: bannerName,
                 banner_text: title,
                 banner_description: description,
