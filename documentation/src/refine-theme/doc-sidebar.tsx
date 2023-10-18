@@ -125,7 +125,7 @@ const SidebarCategory = ({
                     isHeader ? "uppercase" : "",
                     "font-normal",
                     "flex items-center",
-                    "py-0.5",
+                    "py-1",
                     "pr-0.5",
                     isHeader
                         ? "text-xs leading-4 tracking-widest"
