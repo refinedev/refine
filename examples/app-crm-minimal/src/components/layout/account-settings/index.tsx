@@ -40,11 +40,13 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
             <Drawer
                 open={opened}
                 width={756}
-                bodyStyle={{
-                    background: "#f5f5f5",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                styles={{
+                    body: {
+                        background: "#f5f5f5",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    },
                 }}
             >
                 <Spin />
