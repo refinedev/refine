@@ -1,14 +1,5 @@
 import { useModalForm, useSelect } from "@refinedev/antd";
-import {
-    CreateResponse,
-    HttpError,
-    useCreateMany,
-    useGetToPath,
-    useGo,
-} from "@refinedev/core";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
-import { LeftOutlined } from "@ant-design/icons";
+import { HttpError, useGetToPath, useGo } from "@refinedev/core";
 import { Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@components";
@@ -25,11 +16,9 @@ type FormValues = {
 
 export const CompanyCreateModal = () => {
     const getToPath = useGetToPath();
-    const searchParams = useSearchParams();
-    const { pathname } = useRouter();
     const go = useGo();
 
-    const { formProps, modalProps, close, onFinish } = useModalForm<
+    const { formProps, modalProps, close } = useModalForm<
         Company,
         HttpError,
         FormValues
@@ -52,77 +41,30 @@ export const CompanyCreateModal = () => {
         optionLabel: "name",
     });
 
-    const { mutateAsync: createManyMutateAsync } = useCreateMany();
+    const closeModal = () => {
+        // modal is a opening from the url (/companies/create)
+        // to close modal we need to navigate to the list page (/companies)
+        close();
+        go({
+            to: getToPath({
+                action: "list",
+            }),
+            options: {
+                keepQuery: true,
+            },
+            type: "replace",
+        });
+    };
 
     return (
         <Modal
             {...modalProps}
             mask={true}
-            onCancel={() => {
-                close();
-                go({
-                    to:
-                        searchParams.get("to") ??
-                        getToPath({
-                            action: "list",
-                        }) ??
-                        "",
-                    query: {
-                        to: undefined,
-                    },
-                    options: {
-                        keepQuery: true,
-                    },
-                    type: "replace",
-                });
-            }}
+            onCancel={closeModal}
             title="Add new company"
             width={512}
-            closeIcon={<LeftOutlined />}
         >
-            <Form
-                {...formProps}
-                layout="vertical"
-                onFinish={async (values) => {
-                    try {
-                        const data = await onFinish({
-                            name: values.name,
-                            salesOwnerId: values.salesOwnerId,
-                        });
-
-                        const createdCompany = (data as CreateResponse<Company>)
-                            ?.data;
-
-                        if ((values.contacts ?? [])?.length > 0) {
-                            await createManyMutateAsync({
-                                resource: "contacts",
-                                values:
-                                    values.contacts?.map((contact) => ({
-                                        ...contact,
-                                        companyId: createdCompany.id,
-                                        salesOwnerId:
-                                            createdCompany.salesOwner.id,
-                                    })) ?? [],
-                                successNotification: false,
-                            });
-                        }
-
-                        go({
-                            to: searchParams.get("to") ?? pathname,
-                            query: {
-                                companyId: createdCompany.id,
-                                to: undefined,
-                            },
-                            options: {
-                                keepQuery: true,
-                            },
-                            type: "replace",
-                        });
-                    } catch (error) {
-                        Promise.reject(error);
-                    }
-                }}
-            >
+            <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Company name"
                     name="name"
