@@ -24,7 +24,7 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
         <ThemedLayoutContextProvider
             initialSiderCollapsed={initialSiderCollapsed}
         >
-            <AntdLayout style={{ minHeight: "100vh" }}>
+            <AntdLayout style={{ minHeight: "100vh" }} hasSider>
                 <SiderToRender Title={Title} />
                 <AntdLayout>
                     <HeaderToRender />
