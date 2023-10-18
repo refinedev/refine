@@ -8,7 +8,7 @@ tutorial:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import SharedComponents from "../../../partials/tutorial/headless-layout.md";
+import SharedComponents from "../../partial-headless-layout.md";
 
 <SharedComponents />
 
@@ -119,7 +119,12 @@ const App = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<NavigateToResource resource="blog_posts" />} />
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
                         {/* highlight-start */}
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
@@ -219,7 +224,12 @@ const App = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<NavigateToResource resource="blog_posts" />} />
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -292,7 +302,12 @@ const App = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<NavigateToResource resource="blog_posts" />} />
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -364,7 +379,12 @@ const App = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<NavigateToResource resource="blog_posts" />} />
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -438,7 +458,12 @@ const App = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<NavigateToResource resource="blog_posts" />} />
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route

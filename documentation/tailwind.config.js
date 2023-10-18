@@ -3,7 +3,8 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class", '[data-theme="dark"]'],
-    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+    content: ["./src/**/*.{js,jsx,ts,tsx}", "./docs/**/*.{md,mdx,tsx}"],
+    jit: true,
     theme: {
         extend: {
             zIndex: {
@@ -46,6 +47,7 @@ module.exports = {
                     200: "#DEE5ED",
                     300: "#CFD7E2",
                     400: "#A3ADC2",
+                    450: "#808080",
                     500: "#6C7793",
                     600: "#474E6B",
                     700: "#303450",
@@ -355,10 +357,7 @@ module.exports = {
             walkthrough: "976px",
         },
     },
-    plugins: [
-        require("@tailwindcss/line-clamp"),
-        require("@tailwindcss/typography"),
-    ],
+    plugins: [require("@tailwindcss/typography")],
     corePlugins: {
         // preflight: false,
     },

@@ -7,7 +7,7 @@ tutorial:
     next: tutorial/understanding-authprovider/index
 ---
 
-import SharedComponents from "../../../partials/tutorial/headless-layout.md";
+import SharedComponents from "../../partial-headless-layout.md";
 
 <SharedComponents />
 

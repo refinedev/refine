@@ -376,3 +376,35 @@ html[data-active-page="index"] body {
     backface-visibility: hidden;
     perspective: 1000;
 }
+
+.sp-preview .sp-loading {
+    display: none;
+}
+
+.sp-preview .sp-custom-loading {
+    display: none;
+}
+
+.sp-preview .sp-loading + .sp-custom-loading {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    /* background: white; */
+    z-index: calc(var(--sp-zIndices-top) + 1);
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.sp-icon-standalone[title="Open in CodeSandbox"] svg + span {
+    display: none;
+}
+button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(svg + span) {
+    padding-left: 0px;
+    padding-right: 4px;
+    width: 26px;
+}

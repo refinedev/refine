@@ -1,5 +1,4 @@
 ---
-id: examples
 priority: 100
 title: Examples
 sidebar_label: Examples

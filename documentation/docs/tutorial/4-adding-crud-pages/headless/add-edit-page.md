@@ -7,7 +7,7 @@ tutorial:
     next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
-import SharedComponents from "../../../partials/tutorial/headless-layout.md";
+import SharedComponents from "../../partial-headless-layout.md";
 
 <SharedComponents />
 

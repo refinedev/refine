@@ -1,4 +1,3 @@
-import React from "react";
 // @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
 // @ts-expect-error no types
@@ -7,9 +6,9 @@ import { useDocsVersion } from "@docusaurus/theme-common/internal";
 import useTutorialPagination from "./use-tutorial-pagination";
 
 // import { Doc } from "@docusaurus/types";
-import { useTutorialUIPackage } from "./use-tutorial-ui-package";
 import { availableUIPackages } from "../context/TutorialUIPackageContext/index";
 import { useTutorialConfig } from "./use-tutorial-config";
+import { useTutorialUIPackage } from "./use-tutorial-ui-package";
 
 type DocItem = {
     id: string;
@@ -57,6 +56,11 @@ export const useCurrentTutorial = () => {
 
     const separatedByUnit = allTutorialDocs.reduce((acc, [key, value]) => {
         const unit = key.split("/")[1];
+
+        if (unit.startsWith("partial-")) {
+            return acc;
+        }
+
         if (!acc[unit]) {
             acc[unit] = [];
         }

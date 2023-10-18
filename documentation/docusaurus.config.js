@@ -21,6 +21,7 @@ const siteConfig = {
     trailingSlash: true,
     favicon: "img/refine_favicon.png",
     scripts: ["https://platform.twitter.com/widgets.js"],
+    onBrokenLinks: "warn",
     presets: [
         [
             "@docusaurus/preset-classic",
@@ -74,12 +75,12 @@ const siteConfig = {
         ],
     ],
     plugins: [
-        [
-            "@docusaurus/plugin-client-redirects",
-            {
-                redirects: redirectJson.redirects,
-            },
-        ],
+        // [
+        //     "@docusaurus/plugin-client-redirects",
+        //     {
+        //         redirects: redirectJson.redirects,
+        //     },
+        // ],
         [
             "docusaurus-plugin-copy",
             {
@@ -125,8 +126,8 @@ const siteConfig = {
     ],
     themeConfig: {
         prism: {
-            theme: require("prism-react-renderer/themes/nightOwl"),
-            darkTheme: require("prism-react-renderer/themes/nightOwl"),
+            theme: require("prism-react-renderer/themes/nightOwlLight"),
+            darkTheme: require("prism-react-renderer/themes/vsDark"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!
                 {
