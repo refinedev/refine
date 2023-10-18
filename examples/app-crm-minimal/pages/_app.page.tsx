@@ -37,29 +37,27 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     };
 
     return (
-        <>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <App>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider}
-                        liveProvider={liveProvider}
-                        notificationProvider={useNotificationProvider}
-                        authProvider={authProvider}
-                        resources={resources}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                            liveMode: "auto",
-                        }}
-                    >
-                        {renderComponent()}
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </App>
-            </ConfigProvider>
-        </>
+        <ConfigProvider theme={RefineThemes.Blue}>
+            <App>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider}
+                    liveProvider={liveProvider}
+                    notificationProvider={useNotificationProvider}
+                    authProvider={authProvider}
+                    resources={resources}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                        liveMode: "auto",
+                    }}
+                >
+                    {renderComponent()}
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+            </App>
+        </ConfigProvider>
     );
 }
 
