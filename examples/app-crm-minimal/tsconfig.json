@@ -15,24 +15,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@components": ["src/components"],
-      "@contexts/*": ["src/contexts/*"],
-      "@contexts": ["src/contexts"],
-      "@providers/*": ["src/providers/*"],
-      "@providers": ["src/providers"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@interfaces": ["src/interfaces"],
-      "@config/*": ["src/config/*"],
-      "@config": ["src/config"],
-      "@utilities/*": ["src/utilities/*"],
-      "@utilities": ["src/utilities"],
-      "@enums/*": ["src/enums/*"],
-      "@enums": ["src/enums"],
-      "@styles/*": ["src/styles/*"],
-      "@styles": ["src/styles"],
       "@public/*": ["public/*"],
-      "@public": ["public"]
+      "@public": ["public"],
+      "@*": ["src/*"]
     },
     "incremental": true
   },

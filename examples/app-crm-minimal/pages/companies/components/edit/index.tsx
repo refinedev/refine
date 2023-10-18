@@ -1,44 +1,16 @@
 import { Col, Row } from "antd";
 
-import {
-    CompanyContactsTable,
-    CompanyDealsTable,
-    CompanyInfoForm,
-    CompanyNotes,
-    CompanyQuotesTable,
-    CompanyTitleForm,
-} from "..";
+import { CompanyContactsTable, CompanyForm } from "..";
 
 export const CompanyEdit = () => {
     return (
         <div className="page-container">
-            <CompanyTitleForm />
-            <Row
-                gutter={[32, 32]}
-                style={{
-                    marginTop: 32,
-                }}
-            >
-                <Col span={16}>
-                    <CompanyContactsTable />
-                    <CompanyDealsTable
-                        style={{
-                            marginTop: 32,
-                        }}
-                    />
-                    <CompanyQuotesTable
-                        style={{
-                            marginTop: 32,
-                        }}
-                    />
-                    <CompanyNotes
-                        style={{
-                            marginTop: 32,
-                        }}
-                    />
+            <Row gutter={[32, 32]}>
+                <Col xs={24} xl={12}>
+                    <CompanyForm />
                 </Col>
-                <Col span={8}>
-                    <CompanyInfoForm />
+                <Col xs={24} xl={12}>
+                    <CompanyContactsTable />
                 </Col>
             </Row>
         </div>

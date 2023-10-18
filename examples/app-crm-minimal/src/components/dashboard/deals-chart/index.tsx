@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
-import { useList, useNavigation } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
@@ -15,7 +15,6 @@ const Area = dynamic(() => import("@ant-design/plots/es/components/area"), {
 });
 
 export const DashboardDealsChart: React.FC<{}> = () => {
-    const { list } = useNavigation();
     const { data } = useList<DealStage>({
         resource: "dealStages",
         filters: [{ field: "title", operator: "in", value: ["WON", "LOST"] }],
@@ -120,14 +119,6 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                         Deals
                     </Text>
                 </div>
-            }
-            extra={
-                <Button
-                    onClick={() => list("deals")}
-                    icon={<RightCircleOutlined />}
-                >
-                    See sales pipeline
-                </Button>
             }
         >
             <Area {...config} height={325} />

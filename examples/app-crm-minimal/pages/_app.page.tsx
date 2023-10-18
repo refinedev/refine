@@ -1,4 +1,4 @@
-import { useNotificationProvider } from "@refinedev/antd";
+import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
 import routerProvider, {
     DocumentTitleHandler,
@@ -7,18 +7,13 @@ import routerProvider, {
 import type { NextPage } from "next";
 import { AppProps } from "next/app";
 import { App, ConfigProvider } from "antd";
-import { themeConfig } from "@config/antd";
 
 import { Layout } from "@components";
 
 import { authProvider, dataProvider, liveProvider } from "@providers";
 import { resources } from "@config/resources";
 
-import "@utilities/init-dayjs";
-
 import "@refinedev/antd/dist/reset.css";
-import "@styles/antd.css";
-import "@styles/index.css";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     noLayout?: boolean;
@@ -43,7 +38,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
 
     return (
         <>
-            <ConfigProvider theme={themeConfig}>
+            <ConfigProvider theme={RefineThemes.Blue}>
                 <App>
                     <Refine
                         routerProvider={routerProvider}

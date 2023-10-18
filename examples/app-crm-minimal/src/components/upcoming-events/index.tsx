@@ -1,10 +1,10 @@
 import React from "react";
 
-import { useList, useNavigation } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
-import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { CalendarOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
-import { Button, Card, Skeleton as AntdSkeleton } from "antd";
+import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
 import { Event } from "@interfaces";
@@ -69,8 +69,6 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     cardProps,
     showGoToListButton,
 }) => {
-    const { list } = useNavigation();
-
     const { data, isLoading } = useList<Event>({
         resource: "events",
         pagination: {
@@ -113,16 +111,6 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
                         Upcoming events
                     </Text>
                 </div>
-            }
-            extra={
-                showGoToListButton && (
-                    <Button
-                        onClick={() => list("events")}
-                        icon={<RightCircleOutlined />}
-                    >
-                        See calendar
-                    </Button>
-                )
             }
             {...cardProps}
         >

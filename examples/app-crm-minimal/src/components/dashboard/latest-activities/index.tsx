@@ -127,7 +127,9 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                             </div>
                             <div className={styles.action}>
                                 <Text type="secondary" size="xs">
-                                    {dayjs(createdAt).fromNow()}
+                                    {dayjs(createdAt).format(
+                                        "MMM DD, YYYY - HH:mm",
+                                    )}
                                 </Text>
 
                                 <Text className={styles.detail}>

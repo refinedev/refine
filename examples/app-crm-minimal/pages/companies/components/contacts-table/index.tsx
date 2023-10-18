@@ -1,4 +1,3 @@
-import { FC, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { FilterDropdown, useTable } from "@refinedev/antd";
 
@@ -13,14 +12,10 @@ import { Button, Card, Input, Select, Space, Table } from "antd";
 import { ContactStatusTag, CustomAvatar, Text } from "@components";
 import { Contact } from "@interfaces";
 
-type Props = {
-    style?: React.CSSProperties;
-};
-
-export const CompanyContactsTable: FC<Props> = ({ style }) => {
+export const CompanyContactsTable = () => {
     const params = useParams();
 
-    const { tableProps, filters, setFilters } = useTable<Contact>({
+    const { tableProps } = useTable<Contact>({
         resource: "contacts",
         syncWithLocation: false,
         sorters: {
@@ -74,23 +69,8 @@ export const CompanyContactsTable: FC<Props> = ({ style }) => {
         ? true
         : tableProps?.dataSource?.length || 0 > 0;
 
-    const showResetFilters = useMemo(() => {
-        return filters?.filter((filter) => {
-            if ("field" in filter && filter.field === "company.id") {
-                return false;
-            }
-
-            if (!filter.value) {
-                return false;
-            }
-
-            return true;
-        });
-    }, [filters]);
-
     return (
         <Card
-            style={style}
             headStyle={{
                 borderBottom: "1px solid #D9D9D9",
                 marginBottom: "1px",
@@ -100,15 +80,6 @@ export const CompanyContactsTable: FC<Props> = ({ style }) => {
                 <Space size="middle">
                     <TeamOutlined />
                     <Text>Contacts</Text>
-
-                    {showResetFilters?.length > 0 && (
-                        <Button
-                            size="small"
-                            onClick={() => setFilters([], "replace")}
-                        >
-                            Reset filters
-                        </Button>
-                    )}
                 </Space>
             }
             extra={

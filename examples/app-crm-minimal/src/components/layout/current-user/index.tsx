@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useGetIdentity, useLogout } from "@refinedev/core";
+import { useGetIdentity } from "@refinedev/core";
 
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { Button, Popover } from "antd";
@@ -14,7 +14,6 @@ import { AccountSettings } from "../account-settings";
 export const CurrentUser: React.FC = () => {
     const [opened, setOpened] = useState(false);
     const { data: user } = useGetIdentity<User>();
-    const { mutate: logout } = useLogout();
 
     const content = (
         <div
@@ -48,16 +47,6 @@ export const CurrentUser: React.FC = () => {
                     onClick={() => setOpened(true)}
                 >
                     Account settings
-                </Button>
-                <Button
-                    style={{ textAlign: "left" }}
-                    icon={<LogoutOutlined />}
-                    type="text"
-                    danger
-                    block
-                    onClick={() => logout()}
-                >
-                    Logout
                 </Button>
             </div>
         </div>

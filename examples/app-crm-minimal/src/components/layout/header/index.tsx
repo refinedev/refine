@@ -3,7 +3,6 @@ import React from "react";
 import { Layout, Space, theme } from "antd";
 
 import { CurrentUser } from "../current-user";
-import { Notifications } from "../notification/notifications";
 
 const { useToken } = theme;
 
@@ -25,7 +24,6 @@ export const Header: React.FC = () => {
     return (
         <Layout.Header style={headerStyles}>
             <Space align="center" size="middle">
-                <Notifications />
                 <CurrentUser />
             </Space>
         </Layout.Header>
