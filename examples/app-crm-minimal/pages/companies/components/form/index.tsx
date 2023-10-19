@@ -21,6 +21,7 @@ type FormVariables = CompanyUpdateInput & {
 export const CompanyForm = () => {
     const { saveButtonProps, formProps, formLoading, queryResult, onFinish } =
         useForm<Company, HttpError, FormVariables>({
+            redirect: false,
             meta: {
                 fields: [
                     "id",
