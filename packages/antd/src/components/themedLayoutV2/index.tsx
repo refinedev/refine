@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Grid, Layout as AntdLayout } from "antd";
 
 import { ThemedSiderV2 as DefaultSider } from "./sider";
@@ -17,16 +17,19 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
 }) => {
     const breakpoint = Grid.useBreakpoint();
     const SiderToRender = Sider ?? DefaultSider;
-    const sider = SiderToRender({ Title });
     const HeaderToRender = Header ?? DefaultHeader;
     const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
+
+    const hasSider = useMemo(() => {
+        return !!SiderToRender({ Title });
+    }, [SiderToRender, Title]);
 
     return (
         <ThemedLayoutContextProvider
             initialSiderCollapsed={initialSiderCollapsed}
         >
-            <AntdLayout style={{ minHeight: "100vh" }} hasSider={!!sider}>
-                {sider}
+            <AntdLayout style={{ minHeight: "100vh" }} hasSider={hasSider}>
+                <SiderToRender Title={Title} />
                 <AntdLayout>
                     <HeaderToRender />
                     <AntdLayout.Content>
