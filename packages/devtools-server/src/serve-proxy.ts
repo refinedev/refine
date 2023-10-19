@@ -1,24 +1,10 @@
-import { type Express, RequestHandler } from "express";
+import { readJSON, writeJSON } from "fs-extra";
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
+import path from "path";
 import { REFINE_API_URL, SERVER_PORT } from "./constants";
 import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-package-json";
 
-const onProxyRes: Options["onProxyRes"] | undefined = (proxyRes) => {
-    if (proxyRes.headers["set-cookie"]) {
-        proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
-            if (
-                proxyRes &&
-                proxyRes.headers &&
-                proxyRes.headers["set-cookie"]
-            ) {
-                proxyRes.headers["set-cookie"][i] = cookie.replace(
-                    "Secure;",
-                    "",
-                );
-            }
-        });
-    }
-};
+import type { Express, RequestHandler } from "express";
 
 const restream: Options["onProxyReq"] = function (proxyReq, req) {
     if (req.body) {
@@ -44,7 +30,18 @@ const projectIdAppender: RequestHandler = async (req, res, next) => {
     next();
 };
 
-export const serveProxy = (app: Express) => {
+export const serveProxy = async (app: Express) => {
+    let token: string | undefined = undefined;
+
+    try {
+        const persist = await readJSON(
+            path.join(__dirname, "..", ".persist.json"),
+        );
+        token = persist.auth_token;
+    } catch (error) {
+        //
+    }
+
     const authProxy = createProxyMiddleware({
         target: REFINE_API_URL,
         // secure: false,
@@ -57,7 +54,44 @@ export const serveProxy = (app: Express) => {
         headers: {
             "auth-base-url-rewrite": `http://localhost:${SERVER_PORT}/api/.auth`,
         },
-        onProxyRes,
+        selfHandleResponse: true,
+        onProxyReq: (proxyReq) => {
+            if (token) {
+                proxyReq.setHeader("X-Session-Token", token ?? "");
+            }
+        },
+        onProxyRes: (proxyRes, req, res) => {
+            if (req.url.includes("self-service/methods/oidc/callback")) {
+                let body = "";
+                proxyRes.on("data", (chunk) => {
+                    body += chunk;
+                });
+                proxyRes.on("end", () => {
+                    let sessionToken: string | undefined = undefined;
+                    try {
+                        const parsed = JSON.parse(body);
+                        sessionToken = parsed.session_token;
+                    } catch (err) {
+                        //
+                    }
+                    if (!sessionToken) {
+                        // Handle errors (e.g. invalid token, provider difference etc.)
+                        res.redirect(
+                            "/after-login?error=invalid-session-token",
+                        );
+                        return;
+                    }
+                    token = sessionToken;
+                    writeJSON(path.join(__dirname, "..", ".persist.json"), {
+                        auth_token: sessionToken,
+                    });
+                    res.redirect(`/after-login`);
+                });
+            } else {
+                res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+                proxyRes.pipe(res, { end: true });
+            }
+        },
     });
 
     app.use("/api/.auth", authProxy);
@@ -68,7 +102,13 @@ export const serveProxy = (app: Express) => {
         changeOrigin: true,
         logLevel: __DEVELOPMENT__ ? "debug" : "silent",
         pathRewrite: { "^/api/.refine": "/.refine" },
-        onProxyReq: restream,
+        onProxyReq: (proxyReq, ...rest) => {
+            if (token) {
+                proxyReq.setHeader("X-Session-Token", token ?? "");
+            }
+
+            restream(proxyReq, ...rest);
+        },
     });
 
     app.use("/api/.refine", projectIdAppender, refineApiProxy);
