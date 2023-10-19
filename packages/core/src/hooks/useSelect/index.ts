@@ -38,15 +38,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: keyof TQueryFnData extends string
-        ? keyof TQueryFnData
+    optionLabel?: keyof TData extends string
+        ? keyof TData
         : never;
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: keyof TQueryFnData extends string
-        ? keyof TQueryFnData
+    optionValue?: keyof TData extends string
+        ? keyof TData
         : never;
     /**
      * Allow us to sort the options
