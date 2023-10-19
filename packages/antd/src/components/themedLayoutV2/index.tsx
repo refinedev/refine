@@ -19,10 +19,7 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
     const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
-
-    const hasSider = useMemo(() => {
-        return !!SiderToRender({ Title });
-    }, [SiderToRender, Title]);
+    const hasSider = !!SiderToRender({ Title });
 
     return (
         <ThemedLayoutContextProvider
