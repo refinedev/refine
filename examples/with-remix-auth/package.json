@@ -16,7 +16,7 @@
     "@refinedev/cli": "^2.16.6",
     "@refinedev/simple-rest": "^4.5.4",
     "@refinedev/remix-router": "^2.3.0",
-    "@refinedev/antd": "^5.36.10",
+    "@refinedev/antd": "^5.36.11",
     "@refinedev/inferencer": "^4.5.14",
     "remix-auth": "^3.4.0",
     "remix-auth-form": "^1.3.0",

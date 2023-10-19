@@ -6,7 +6,7 @@
   "dependencies": {
     "@refinedev/cli": "^2.16.6",
     "@refinedev/core": "^4.44.5",
-    "@refinedev/devtools": "^1.1.12",
+    "@refinedev/devtools": "^1.1.13",
     "@refinedev/inferencer": "^4.3.2",
     "@refinedev/kbar": "^1.1.2",
     "react": "^18.0.0",
