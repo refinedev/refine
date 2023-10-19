@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.36.10",
+    "@refinedev/antd": "^5.36.11",
     "@refinedev/core": "^4.44.5",
     "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/supabase": "^5.7.2",

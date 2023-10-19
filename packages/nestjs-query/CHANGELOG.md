@@ -1,5 +1,12 @@
 # @refinedev/nestjs-query
 
+## 1.0.7
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `dataProvider.custom` uses diffrent client istance.
+    From now on, `dataProvider.custom` uses the same client istance as other `dataProvider` methods.
+
 ## 1.0.6
 
 ### Patch Changes
