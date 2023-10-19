@@ -75,16 +75,29 @@ export const serveProxy = async (app: Express) => {
                         //
                     }
                     if (!sessionToken) {
-                        // Handle errors (e.g. invalid token, provider difference etc.)
+                        if (
+                            body?.includes?.(
+                                "An+account+with+the+same+identifier",
+                            )
+                        ) {
+                            res.redirect(
+                                "/after-login?error=An+account+with+the+same+identifier+exists+already",
+                            );
+                            return;
+                        }
                         res.redirect(
-                            "/after-login?error=invalid-session-token",
+                            "/after-login?error=Invalid-session-token",
                         );
                         return;
                     }
                     token = sessionToken;
-                    writeJSON(path.join(__dirname, "..", ".persist.json"), {
-                        auth_token: sessionToken,
-                    });
+                    try {
+                        writeJSON(path.join(__dirname, "..", ".persist.json"), {
+                            auth_token: sessionToken,
+                        });
+                    } catch (error) {
+                        //
+                    }
                     res.redirect(`/after-login`);
                 });
             } else {
@@ -104,7 +117,10 @@ export const serveProxy = async (app: Express) => {
         pathRewrite: { "^/api/.refine": "/.refine" },
         onProxyReq: (proxyReq, ...rest) => {
             if (token) {
-                proxyReq.setHeader("X-Session-Token", token ?? "");
+                // proxyReq.setHeader("X-Session-Token", token ?? "");
+                proxyReq.setHeader("Authorization", `Bearer ${token}`);
+                // remove cookies just in case
+                proxyReq.removeHeader("cookie");
             }
 
             restream(proxyReq, ...rest);
