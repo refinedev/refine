@@ -34,7 +34,7 @@ docker network ls
 **The above command will return the following output:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/first.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/first.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -53,7 +53,7 @@ docker run --network=bridge [IMAGE_NAME]
 **The above command will return the following output:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/bridge-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/bridge-1.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -67,7 +67,7 @@ docker network inspect bridge
 **The above command will return the following output:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/bridge-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/bridge-2.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -91,7 +91,7 @@ docker run --network=host -d nginx
 **The above command will show the following output:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/host-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/host-1.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -116,7 +116,7 @@ docker network create -d overlay [NETWORK_NAME]
 **The output shows that by running the command above, we have created an overlay network with the name 'my_network':**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/overlay-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/overlay-1.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -137,7 +137,7 @@ docker service create --name nginx-service --network my_network -p 80:80 nginx
 **The below output shows that the 'nginx' service has been attached to 'my_network':**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/overlay-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/overlay-2.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -145,7 +145,7 @@ docker service create --name nginx-service --network my_network -p 80:80 nginx
 When we inspect the service '**nginx-service**', it will show the information about the networks that are attached to this service. This will verify that we have successfully attached our service to the overlay network. **Please see the output below:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/overlay-3.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/overlay-3.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -169,7 +169,7 @@ docker network create -d macvlan --subnet=192.168.0.0/24 --gateway=192.168.0.1 -
 **The output below demonstrates that the new 'demo-macvlan' network is set up with the subnet '192.168.0.0/24' gateway '192.168.0.1' and parent interface 'eth0'. Specifying 'eth0' as the parent interface indicates that the Macvlan network will use the physical network interface eth0 of the Docker host to connect to the external network:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/mcvilan.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/mcvilan.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -187,7 +187,7 @@ docker network create -d bridge my-custom-network
 **The above command will return the following output:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/custom-bridge-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/custom-bridge-1.png"  alt="docker networking" />
 </div>
 
 <br/>
@@ -201,7 +201,7 @@ docker run --network=my-custom-network nginx
 **The above command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/custom-bridge-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/custom-bridge-2.png"  alt="docker networking" />
 </div>
 
 <br/>
