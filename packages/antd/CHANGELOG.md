@@ -1,5 +1,11 @@
 # @refinedev/antd
 
+## 5.36.13
+
+### Patch Changes
+
+-   [#5134](https://github.com/refinedev/refine/pull/5134) [`e4769b23171`](https://github.com/refinedev/refine/commit/e4769b231716c63e5814718942025044e1a213c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd default `<ThemedSiderV2 />` is not collapsing.
+
 ## 5.36.12
 
 ### Patch Changes
