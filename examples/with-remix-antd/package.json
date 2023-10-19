@@ -18,7 +18,7 @@
     "@refinedev/cli": "^2.16.6",
     "@refinedev/simple-rest": "^4.5.4",
     "@refinedev/remix-router": "^2.3.0",
-    "@refinedev/antd": "^5.36.12",
+    "@refinedev/antd": "^5.36.13",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "react": "^18.0.0",
