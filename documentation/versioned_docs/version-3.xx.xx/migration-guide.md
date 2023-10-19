@@ -45,7 +45,6 @@ npm i @pankod/refine-core @pankod/refine-antd
 export const Packages = () => {
 const packages = [
 "@pankod/refine-airtable",
-"@pankod/refine-altogic",
 "@pankod/refine-graphql",
 "@pankod/refine-hasura",
 "@pankod/refine-nestjsx-crud",
