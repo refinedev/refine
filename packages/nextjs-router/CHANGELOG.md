@@ -1,5 +1,11 @@
 # @refinedev/nextjs-router
 
+## 5.5.4
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `next` updated to latest version.
+
 ## 5.5.3
 
 ### Patch Changes
