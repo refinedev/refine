@@ -5,7 +5,7 @@
   "type": "module",
   "dependencies": {
     "@ant-design/icons": "5.0.1",
-    "@refinedev/antd": "^5.36.11",
+    "@refinedev/antd": "^5.36.12",
     "@refinedev/cli": "^2.16.6",
     "@refinedev/core": "^4.44.5",
     "@refinedev/inferencer": "^4.5.14",

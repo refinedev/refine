@@ -1,5 +1,11 @@
 # @refinedev/devtools
 
+## 1.1.14
+
+### Patch Changes
+
+-   [#5127](https://github.com/refinedev/refine/pull/5127) [`4f89ca46ac4`](https://github.com/refinedev/refine/commit/4f89ca46ac4af5c1eddf842bddd3d981f0e47556) Thanks [@aliemir](https://github.com/aliemir)! - Update panel and pin positioning for rounded numbers to avoid subpixel blurry rendering
+
 ## 1.1.13
 
 ### Patch Changes

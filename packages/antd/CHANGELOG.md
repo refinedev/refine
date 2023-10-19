@@ -1,5 +1,12 @@
 # @refinedev/antd
 
+## 5.36.12
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<ThemedTitleV2 />` border-bottom removed.
+    fixed: `<ThemedLayoutV2 />` glitches on first render.
+
 ## 5.36.11
 
 ### Patch Changes
