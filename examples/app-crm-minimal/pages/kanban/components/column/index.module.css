@@ -1,0 +1,82 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 294px;
+
+    &.solid {
+        background-color: #fff;
+        margin-left: 16px;
+    }
+}
+
+.header {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.titleContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.title {
+    width: 168px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    flex: 0.5;
+}
+
+.count {
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.actionContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.columnScrollableContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 24px;
+    border: 2px dashed transparent;
+
+    &.active {
+        overflow-y: unset;
+    }
+}
+
+.childrenWrapper {
+    margin-top: 12px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.isOver {
+    border-radius: 4px;
+    border-color: rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.3);
+}

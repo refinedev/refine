@@ -1,0 +1,17 @@
+.container {
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overflow: scroll;
+    display: flex;
+    padding: 32px;
+}
+
+.wrapper {
+    width: calc(100% + 64px);
+    display: flex;
+    flex-direction: column;
+    margin: -32px;
+    height: calc(100vh - 64px);
+}

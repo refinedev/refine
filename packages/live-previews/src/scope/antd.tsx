@@ -6,13 +6,12 @@ import * as RefineAntd from "@refinedev/antd";
 import * as AntdCore from "antd";
 import axios from "axios";
 
-import {
+import Icon, {
     UnorderedListOutlined,
     GoogleOutlined,
     AppstoreAddOutlined,
     LoginOutlined,
     SearchOutlined,
-    default as Icon,
     DownOutlined,
     EditOutlined,
 } from "@ant-design/icons";
