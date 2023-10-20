@@ -1,5 +1,11 @@
 # @refinedev/core
 
+## 4.44.6
+
+### Patch Changes
+
+-   [#5138](https://github.com/refinedev/refine/pull/5138) [`0e22d5804b2`](https://github.com/refinedev/refine/commit/0e22d5804b260949c378bea98312c1c13f446642) Thanks [@aliemir](https://github.com/aliemir)! - Prevent `authProvider.getIdentity` to be called in `useLog` if `auditLogProvider` is not defined.
+
 ## 4.44.5
 
 ### Patch Changes

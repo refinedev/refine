@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@refinedev/antd": "^5.36.14",
-    "@refinedev/core": "^4.44.5",
-    "@refinedev/cli": "^2.16.6",
+    "@refinedev/core": "^4.44.6",
+    "@refinedev/cli": "^2.16.7",
     "@refinedev/nextjs-router": "^5.5.4",
     "@refinedev/simple-rest": "^4.5.4",
     "cross-env": "^7.0.3",
