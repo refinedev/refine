@@ -82,7 +82,7 @@ export const useLog = <
     } = useGetIdentity({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         queryOptions: {
-            enabled: !!auditLogContext,
+            enabled: !!auditLogContext?.create,
         },
     });
 
@@ -102,7 +102,7 @@ export const useLog = <
             }
 
             let authorData;
-            if (isLoading) {
+            if (isLoading && !!auditLogContext?.create) {
                 authorData = await refetch();
             }
 
