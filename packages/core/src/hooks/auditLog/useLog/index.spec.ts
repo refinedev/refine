@@ -133,6 +133,84 @@ describe("useLog Hook", () => {
             expect(auditLogProviderCreateMock).toBeCalled();
         });
 
+        it("should not invoke `useGetIdentity` if `auditLogProvider.create` is not defined", async () => {
+            const getUserIdentityMock = jest.fn();
+            const { result } = renderHook(() => useLog(), {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                    ],
+                    authProvider: {
+                        check: () => Promise.resolve({ authenticated: true }),
+                        login: () => Promise.resolve({ success: true }),
+                        logout: () => Promise.resolve({ success: true }),
+                        onError: () => Promise.resolve({}),
+                        getIdentity: getUserIdentityMock,
+                    },
+                    auditLogProvider: {},
+                }),
+            });
+
+            const logEventPayload: LogParams = {
+                action: "update",
+                resource: "posts",
+                data: { id: 1, title: "title" },
+                meta: {
+                    id: 1,
+                },
+            };
+
+            result.current.log.mutate(logEventPayload);
+
+            await waitFor(() => {
+                expect(result.current.log.isSuccess).toBeTruthy();
+            });
+
+            expect(getUserIdentityMock).not.toBeCalled();
+        });
+
+        it("should invoke `useGetIdentity` if `auditLogProvider.create` is defined", async () => {
+            const getUserIdentityMock = jest.fn();
+            const { result } = renderHook(() => useLog(), {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                    ],
+                    authProvider: {
+                        check: () => Promise.resolve({ authenticated: true }),
+                        login: () => Promise.resolve({ success: true }),
+                        logout: () => Promise.resolve({ success: true }),
+                        onError: () => Promise.resolve({}),
+                        getIdentity: getUserIdentityMock,
+                    },
+                    auditLogProvider: {
+                        create: auditLogProviderCreateMock,
+                    },
+                }),
+            });
+
+            const logEventPayload: LogParams = {
+                action: "update",
+                resource: "posts",
+                data: { id: 1, title: "title" },
+                meta: {
+                    id: 1,
+                },
+            };
+
+            result.current.log.mutate(logEventPayload);
+
+            await waitFor(() => {
+                expect(result.current.log.isSuccess).toBeTruthy();
+            });
+
+            expect(getUserIdentityMock).toBeCalled();
+        });
+
         it.each(["legacy", "new"])(
             "should work with %s auth provider",
             async (testCase) => {
