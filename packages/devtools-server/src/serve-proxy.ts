@@ -1,4 +1,5 @@
 import { readJSON, writeJSON } from "fs-extra";
+import { FrontendApi } from "@ory/client";
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import path from "path";
 import { REFINE_API_URL, SERVER_PORT } from "./constants";
@@ -30,17 +31,49 @@ const projectIdAppender: RequestHandler = async (req, res, next) => {
     next();
 };
 
+const tokenize = async (token: string) => {
+    try {
+        const ORY_URL = "https://develop.cloud.refine.dev/.auth";
+
+        const ory = new FrontendApi({
+            isJsonMime: () => true,
+            basePath: ORY_URL,
+            baseOptions: {
+                withCredentials: true,
+            },
+        });
+
+        const { data } = await ory.toSession({
+            xSessionToken: token,
+            tokenizeAs: "jwt_template_1",
+        });
+
+        console.log("**SESSION TOKEN TO JWT**", data?.tokenized);
+
+        return data?.tokenized;
+    } catch (err) {
+        console.log("Err", err);
+    }
+
+    return undefined;
+};
+
 export const serveProxy = async (app: Express) => {
     let token: string | undefined = undefined;
+    let jwt: string | undefined = undefined;
 
-    try {
-        const persist = await readJSON(
-            path.join(__dirname, "..", ".persist.json"),
-        );
-        token = persist.auth_token;
-    } catch (error) {
-        //
-    }
+    /**
+     * Disable this part in development
+     */
+    // try {
+    //     const persist = await readJSON(
+    //         path.join(__dirname, "..", ".persist.json"),
+    //     );
+    //     token = persist.auth_token;
+    //     jwt = persist.jwt;
+    // } catch (error) {
+    //     //
+    // }
 
     const authProxy = createProxyMiddleware({
         target: REFINE_API_URL,
@@ -91,14 +124,24 @@ export const serveProxy = async (app: Express) => {
                         return;
                     }
                     token = sessionToken;
-                    try {
-                        writeJSON(path.join(__dirname, "..", ".persist.json"), {
-                            auth_token: sessionToken,
-                        });
-                    } catch (error) {
-                        //
-                    }
-                    res.redirect(`/after-login`);
+
+                    // After grabbing the session_token, convert it to JWT, then redirect to /after-login
+                    tokenize(token).then((tokenized) => {
+                        jwt = tokenized;
+
+                        try {
+                            writeJSON(
+                                path.join(__dirname, "..", ".persist.json"),
+                                {
+                                    auth_token: sessionToken,
+                                    jwt: tokenized,
+                                },
+                            );
+                        } catch (error) {
+                            //
+                        }
+                        res.redirect(`/after-login`);
+                    });
                 });
             } else {
                 res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
@@ -116,9 +159,11 @@ export const serveProxy = async (app: Express) => {
         logLevel: __DEVELOPMENT__ ? "debug" : "silent",
         pathRewrite: { "^/api/.refine": "/.refine" },
         onProxyReq: (proxyReq, ...rest) => {
-            if (token) {
+            if (jwt) {
+                // Append JWT to Authorization header
+                console.log("**onProxyReq of /.refine/", jwt);
                 // proxyReq.setHeader("X-Session-Token", token ?? "");
-                proxyReq.setHeader("Authorization", `Bearer ${token}`);
+                proxyReq.setHeader("Authorization", `Bearer ${jwt}`);
                 // remove cookies just in case
                 proxyReq.removeHeader("cookie");
             }
