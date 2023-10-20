@@ -7,17 +7,6 @@ import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-pa
 
 import type { Express, RequestHandler } from "express";
 
-const restream: Options["onProxyReq"] = function (proxyReq, req) {
-    if (req.body) {
-        const bodyData = JSON.stringify(req.body);
-        // incase if content-type is application/x-www-form-urlencoded -> we need to change to application/json
-        proxyReq.setHeader("Content-Type", "application/json");
-        proxyReq.setHeader("Content-Length", Buffer.byteLength(bodyData));
-        // stream the content
-        proxyReq.write(bodyData);
-    }
-};
-
 let currentProjectId: string | null | false = null;
 const projectIdAppender: RequestHandler = async (req, res, next) => {
     if (!currentProjectId) {
@@ -29,6 +18,17 @@ const projectIdAppender: RequestHandler = async (req, res, next) => {
     }
 
     next();
+};
+
+const restream: Options["onProxyReq"] = function (proxyReq, req) {
+    if (req.body) {
+        const bodyData = JSON.stringify(req.body);
+        // incase if content-type is application/x-www-form-urlencoded -> we need to change to application/json
+        proxyReq.setHeader("Content-Type", "application/json");
+        proxyReq.setHeader("Content-Length", Buffer.byteLength(bodyData));
+        // stream the content
+        proxyReq.write(bodyData);
+    }
 };
 
 const tokenize = async (token: string) => {
@@ -48,32 +48,94 @@ const tokenize = async (token: string) => {
             tokenizeAs: "jwt_template_1",
         });
 
-        console.log("**SESSION TOKEN TO JWT**", data?.tokenized);
-
         return data?.tokenized;
     } catch (err) {
-        console.log("Err", err);
+        //
     }
 
     return undefined;
 };
 
-export const serveProxy = async (app: Express) => {
-    let token: string | undefined = undefined;
-    let jwt: string | undefined = undefined;
+const saveAuth = async (token?: string, jwt?: string) => {
+    try {
+        writeJSON(path.join(__dirname, "..", ".persist.json"), {
+            token: token,
+            jwt: jwt,
+        });
+    } catch (error) {
+        //
+    }
+};
 
-    /**
-     * Disable this part in development
-     */
-    // try {
-    //     const persist = await readJSON(
-    //         path.join(__dirname, "..", ".persist.json"),
-    //     );
-    //     token = persist.auth_token;
-    //     jwt = persist.jwt;
-    // } catch (error) {
-    //     //
-    // }
+const loadAuth = async () => {
+    try {
+        const persist = await readJSON(
+            path.join(__dirname, "..", ".persist.json"),
+        );
+        return persist as { token?: string; jwt?: string };
+    } catch (error) {
+        //
+    }
+
+    return {
+        token: undefined,
+        jwt: undefined,
+    };
+};
+
+const handleLogoutToken: (
+    token?: string,
+) => NonNullable<Options["onProxyReq"]> = (token) => {
+    return function (proxyReq, req) {
+        if (req.url.includes("self-service/logout/api")) {
+            const bodyData = JSON.stringify({
+                session_token: token,
+            });
+            proxyReq.setHeader("Content-Length", Buffer.byteLength(bodyData));
+            // stream the content
+            proxyReq.write(bodyData);
+        }
+    };
+};
+
+const handleSignInCallbacks: (
+    onToken: (token?: string, jwt?: string) => void,
+) => NonNullable<Options["onProxyRes"]> = (onToken) => {
+    return function (proxyRes, req, res) {
+        let body = "";
+        proxyRes.on("data", (chunk) => {
+            body += chunk;
+        });
+        proxyRes.on("end", () => {
+            let sessionToken: string | undefined = undefined;
+            try {
+                const parsed = JSON.parse(body);
+                sessionToken = parsed.session_token;
+            } catch (err) {
+                //
+            }
+            if (!sessionToken) {
+                if (body?.includes?.("An+account+with+the+same+identifier")) {
+                    res.redirect(
+                        "/after-login?error=An+account+with+the+same+identifier+exists+already",
+                    );
+                    return;
+                }
+                res.redirect("/after-login?error=Invalid-session-token");
+                return;
+            }
+
+            // After grabbing the session_token, convert it to JWT, then redirect to /after-login
+            tokenize(sessionToken).then((tokenized) => {
+                onToken(sessionToken, tokenized ?? "");
+                res.redirect(`/after-login`);
+            });
+        });
+    };
+};
+
+export const serveProxy = async (app: Express) => {
+    let { token, jwt } = await loadAuth();
 
     const authProxy = createProxyMiddleware({
         target: REFINE_API_URL,
@@ -88,61 +150,20 @@ export const serveProxy = async (app: Express) => {
             "auth-base-url-rewrite": `http://localhost:${SERVER_PORT}/api/.auth`,
         },
         selfHandleResponse: true,
-        onProxyReq: (proxyReq) => {
+        onProxyReq: (proxyReq, req, ...rest) => {
             if (token) {
                 proxyReq.setHeader("X-Session-Token", token ?? "");
+
+                handleLogoutToken(token)(proxyReq, req, ...rest);
             }
         },
         onProxyRes: (proxyRes, req, res) => {
             if (req.url.includes("self-service/methods/oidc/callback")) {
-                let body = "";
-                proxyRes.on("data", (chunk) => {
-                    body += chunk;
-                });
-                proxyRes.on("end", () => {
-                    let sessionToken: string | undefined = undefined;
-                    try {
-                        const parsed = JSON.parse(body);
-                        sessionToken = parsed.session_token;
-                    } catch (err) {
-                        //
-                    }
-                    if (!sessionToken) {
-                        if (
-                            body?.includes?.(
-                                "An+account+with+the+same+identifier",
-                            )
-                        ) {
-                            res.redirect(
-                                "/after-login?error=An+account+with+the+same+identifier+exists+already",
-                            );
-                            return;
-                        }
-                        res.redirect(
-                            "/after-login?error=Invalid-session-token",
-                        );
-                        return;
-                    }
-                    token = sessionToken;
-
-                    // After grabbing the session_token, convert it to JWT, then redirect to /after-login
-                    tokenize(token).then((tokenized) => {
-                        jwt = tokenized;
-
-                        try {
-                            writeJSON(
-                                path.join(__dirname, "..", ".persist.json"),
-                                {
-                                    auth_token: sessionToken,
-                                    jwt: tokenized,
-                                },
-                            );
-                        } catch (error) {
-                            //
-                        }
-                        res.redirect(`/after-login`);
-                    });
-                });
+                return handleSignInCallbacks((_token, _jwt) => {
+                    token = _token;
+                    jwt = _jwt;
+                    saveAuth(token, jwt);
+                })(proxyRes, req, res);
             } else {
                 res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
                 proxyRes.pipe(res, { end: true });
@@ -160,11 +181,7 @@ export const serveProxy = async (app: Express) => {
         pathRewrite: { "^/api/.refine": "/.refine" },
         onProxyReq: (proxyReq, ...rest) => {
             if (jwt) {
-                // Append JWT to Authorization header
-                console.log("**onProxyReq of /.refine/", jwt);
-                // proxyReq.setHeader("X-Session-Token", token ?? "");
                 proxyReq.setHeader("Authorization", `Bearer ${jwt}`);
-                // remove cookies just in case
                 proxyReq.removeHeader("cookie");
             }
 
