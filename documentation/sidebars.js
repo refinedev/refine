@@ -25,7 +25,7 @@ const GuidesConcepts = {
         "guides-concepts/data-fetching/index",
         {
             type: "category",
-            label: "Routing",
+            label: "Routing 🚧",
             link: {
                 type: "doc",
                 id: "guides-concepts/routing/index",
@@ -40,7 +40,7 @@ const GuidesConcepts = {
         "guides-concepts/authorization/index",
         {
             type: "category",
-            label: "UI Libraries",
+            label: "UI Libraries 🚧",
             link: {
                 type: "doc",
                 id: "guides-concepts/ui-libraries/index",
@@ -55,7 +55,7 @@ const GuidesConcepts = {
         },
         {
             type: "category",
-            label: "Tables",
+            label: "Tables 🚧",
             link: {
                 type: "doc",
                 id: "guides-concepts/tables/index",
@@ -68,7 +68,7 @@ const GuidesConcepts = {
         },
         {
             type: "category",
-            label: "Forms",
+            label: "Forms 🚧",
             link: {
                 type: "doc",
                 id: "guides-concepts/forms/index",
@@ -512,7 +512,7 @@ const RouterIntegrations = {
 /** @type {import('@docusaurus/plugin-content-docs/src/sidebars/types').SidebarItem} */
 const ReactTable = {
     type: "category",
-    label: "React Table",
+    label: "React Table 🚧",
     collapsible: false,
     link: {
         type: "doc",
@@ -524,7 +524,7 @@ const ReactTable = {
 /** @type {import('@docusaurus/plugin-content-docs/src/sidebars/types').SidebarItem} */
 const ReactHookForm = {
     type: "category",
-    label: "React Hook Form",
+    label: "React Hook Form 🚧",
     collapsible: false,
     link: {
         type: "doc",
@@ -540,7 +540,7 @@ const ReactHookForm = {
 /** @type {import('@docusaurus/plugin-content-docs/src/sidebars/types').SidebarItem} */
 const DataProviders = {
     type: "category",
-    label: "Data Providers",
+    label: "Data Providers 🚧",
     collapsible: false,
     link: {
         type: "doc",

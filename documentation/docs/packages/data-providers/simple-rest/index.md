@@ -1,5 +1,5 @@
 ---
-title: Simple Rest
+title: Simple Rest 🚧
 ---
 
 :::caution Work in progress

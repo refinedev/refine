@@ -1,5 +1,5 @@
 ---
-title: Command Palette
+title: Command Palette 🚧
 ---
 
 :::caution Work in progress

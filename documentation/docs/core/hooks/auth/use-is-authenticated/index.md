@@ -1,5 +1,5 @@
 ---
-title: useIsAuthenticated
+title: useIsAuthenticated 🚧
 ---
 
 :::caution Work in progress

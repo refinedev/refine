@@ -1,5 +1,5 @@
 ---
-title: useGetLocale
+title: useGetLocale 🚧
 ---
 
 :::caution Work in progress

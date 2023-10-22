@@ -1,5 +1,5 @@
 ---
-title: Appwrite
+title: Appwrite 🚧
 ---
 
 :::caution Work in progress

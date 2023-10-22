@@ -1,5 +1,5 @@
 ---
-title: Index
+title: Index 🚧
 ---
 
 :::caution Work in progress

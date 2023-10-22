@@ -1,5 +1,5 @@
 ---
-title: Authorization
+title: Authorization 🚧
 ---
 
 :::caution Work in progress

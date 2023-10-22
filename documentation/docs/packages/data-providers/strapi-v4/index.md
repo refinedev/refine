@@ -1,5 +1,5 @@
 ---
-title: Strapi V4
+title: Strapi V4 🚧
 ---
 
 :::caution Work in progress

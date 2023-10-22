@@ -397,8 +397,8 @@ const renderItems = ({
     const hasCategory = items?.some((item) => item.type === "category");
     const isDashed = !root && hasCategory;
 
-    const componentRegex = /^<.*>$/;
-    const hookRegex = /^use\w+$/;
+    const componentRegex = /^<.*>/;
+    const hookRegex = /^use\w+/;
 
     return (
         items?.map((item, index) => {

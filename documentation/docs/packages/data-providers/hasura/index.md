@@ -1,5 +1,5 @@
 ---
-title: Hasura
+title: Hasura 🚧
 ---
 
 :::caution Work in progress

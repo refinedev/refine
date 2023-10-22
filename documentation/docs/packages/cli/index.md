@@ -1,5 +1,5 @@
 ---
-title: CLI
+title: CLI 🚧
 ---
 
 :::caution Work in progress
