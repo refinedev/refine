@@ -6,7 +6,7 @@ import {
     RefineThemes,
 } from "@refinedev/antd";
 import { createClient } from "@sanity/client";
-import dataProvider, { liveProvider } from "refine-sanity";
+import dataProvider from "refine-sanity";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
@@ -39,7 +39,6 @@ const App: React.FC = () => {
                         <Refine
                             routerProvider={routerProvider}
                             dataProvider={dataProvider(client)}
-                            liveProvider={liveProvider(client)}
                             resources={[
                                 {
                                     name: "post",
