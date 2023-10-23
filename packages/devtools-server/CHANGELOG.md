@@ -1,5 +1,16 @@
 # @refinedev/devtools-server
 
+## 1.1.16
+
+### Patch Changes
+
+-   [#5149](https://github.com/refinedev/refine/pull/5149) [`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0) Thanks [@aliemir](https://github.com/aliemir)! - Add ability to force fetching the installed package versions
+
+-   [#5148](https://github.com/refinedev/refine/pull/5148) [`38f2a9b2e71`](https://github.com/refinedev/refine/commit/38f2a9b2e7149ad3d5e5c2780e05ddde0285ac3c) Thanks [@aliemir](https://github.com/aliemir)! - Use `node-fetch` to make feed requests to ensure older versions of Node.js are supported.
+
+-   Updated dependencies [[`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0)]:
+    -   @refinedev/devtools-ui@1.1.9
+
 ## 1.1.15
 
 ### Patch Changes
