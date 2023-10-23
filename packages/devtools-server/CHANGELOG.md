@@ -1,5 +1,17 @@
 # @refinedev/devtools-server
 
+## 1.1.15
+
+### Patch Changes
+
+-   [#5144](https://github.com/refinedev/refine/pull/5144) [`be419eb31bc`](https://github.com/refinedev/refine/commit/be419eb31bc7b7a3934f39bcfcbaaa0b9db60be8) Thanks [@aliemir](https://github.com/aliemir)! - Updated auth flows and auth management to cover wider use cases.
+
+## 1.1.14
+
+### Patch Changes
+
+-   [#5144](https://github.com/refinedev/refine/pull/5144) [`be419eb31bc`](https://github.com/refinedev/refine/commit/be419eb31bc7b7a3934f39bcfcbaaa0b9db60be8) Thanks [@aliemir](https://github.com/aliemir)! - Updated auth flows and auth management to cover wider use cases.
+
 ## 1.1.13
 
 ### Patch Changes
