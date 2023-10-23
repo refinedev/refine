@@ -46,6 +46,7 @@
     "gray-matter": "^4.0.3",
     "fs-extra": "^10.1.0",
     "marked": "^4.3.0",
+    "node-fetch": "^2.6.7",
     "globby": "^11.1.0",
     "sanitize-html": "^2.11.0",
     "preferred-pm": "^3.0.3",
