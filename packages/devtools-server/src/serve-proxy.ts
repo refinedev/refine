@@ -115,7 +115,7 @@ const handleSignInCallbacks: (
                 //
             }
             if (!sessionToken) {
-                if (body?.includes?.("An+account+with+the+same+identifier")) {
+                if (body?.includes?.("an+account+with+the+same+identifier")) {
                     res.redirect(
                         "/after-login?error=An+account+with+the+same+identifier+exists+already",
                     );
