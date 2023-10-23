@@ -68,7 +68,10 @@ const devtoolsInstaller = async () => {
         return;
     }
 
-    if (await validateCorePackageIsNotDeprecated({ pkg: corePackage })) {
+    if (
+        corePackage &&
+        (await validateCorePackageIsNotDeprecated({ pkg: corePackage }))
+    ) {
         return;
     }
 
