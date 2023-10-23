@@ -33,7 +33,7 @@ const restream: Options["onProxyReq"] = function (proxyReq, req) {
 
 const tokenize = async (token: string) => {
     try {
-        const ORY_URL = "https://develop.cloud.refine.dev/.auth";
+        const ORY_URL = `${REFINE_API_URL}/.auth`;
 
         const ory = new FrontendApi({
             isJsonMime: () => true,
