@@ -1,5 +1,33 @@
 # @refinedev/devtools
 
+## 1.1.16
+
+### Patch Changes
+
+-   Updated dependencies [[`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e)]:
+    -   @refinedev/devtools-server@1.1.13
+    -   @refinedev/cli@2.16.8
+
+## 1.1.15
+
+### Patch Changes
+
+-   Updated dependencies [[`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e)]:
+    -   @refinedev/devtools-server@1.1.12
+    -   @refinedev/cli@2.16.7
+
+## 1.1.14
+
+### Patch Changes
+
+-   [#5127](https://github.com/refinedev/refine/pull/5127) [`4f89ca46ac4`](https://github.com/refinedev/refine/commit/4f89ca46ac4af5c1eddf842bddd3d981f0e47556) Thanks [@aliemir](https://github.com/aliemir)! - Update panel and pin positioning for rounded numbers to avoid subpixel blurry rendering
+
+## 1.1.13
+
+### Patch Changes
+
+-   [#5127](https://github.com/refinedev/refine/pull/5127) [`4f89ca46ac4`](https://github.com/refinedev/refine/commit/4f89ca46ac4af5c1eddf842bddd3d981f0e47556) Thanks [@aliemir](https://github.com/aliemir)! - Update panel and pin positioning for rounded numbers to avoid subpixel blurry rendering
+
 ## 1.1.12
 
 ### Patch Changes

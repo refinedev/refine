@@ -1,5 +1,17 @@
 # @refinedev/devtools-server
 
+## 1.1.13
+
+### Patch Changes
+
+-   [#5140](https://github.com/refinedev/refine/pull/5140) [`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e) Thanks [@aliemir](https://github.com/aliemir)! - Updated the devtools running log on terminal to a less attractive one.
+
+## 1.1.12
+
+### Patch Changes
+
+-   [#5140](https://github.com/refinedev/refine/pull/5140) [`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e) Thanks [@aliemir](https://github.com/aliemir)! - Updated the devtools running log on terminal to a less attractive one.
+
 ## 1.1.11
 
 ### Patch Changes
