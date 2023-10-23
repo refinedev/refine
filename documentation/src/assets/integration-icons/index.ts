@@ -32,3 +32,4 @@ export { default as SupabaseWithText } from "./supabase-with-text";
 export { default as UseGenerated } from "./usegenerated";
 export { default as Hygraph } from "./hygraph";
 export { default as Sanity } from "./sanity";
+export { default as SQLite } from "./sqlite";
