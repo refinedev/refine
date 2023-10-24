@@ -15,8 +15,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
-    "refine-sanity": "^1.2.0",
-    "groqd": "0.15.9"
+    "refine-sanity": "^1.1.1"
   },
   "scripts": {
     "start": "refine dev",
