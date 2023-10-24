@@ -131,8 +131,7 @@ const Text = () => {
         >
             <RefineLogoShinyCyan className="flex-shrink-0" />
             <div className={clsx("ml-2", "not-prose")}>
-                Unlock powerful debugging, effortless query monitoring, and
-                seamless package management with
+                Unlock powerful debugging and effortless query monitoring with{" "}
                 <span className={clsx("font-semibold")}>refine Devtools</span>
                 <span
                     className={clsx(
