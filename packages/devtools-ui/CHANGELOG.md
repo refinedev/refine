@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.1.9
+
+### Patch Changes
+
+-   [#5149](https://github.com/refinedev/refine/pull/5149) [`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0) Thanks [@aliemir](https://github.com/aliemir)! - Add the ability to update all outdated packages with a single click
+
 ## 1.1.8
 
 ### Patch Changes

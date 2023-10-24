@@ -27,6 +27,7 @@ import {
     Remix,
     Rest,
     Sanity,
+    SQLite,
     Strapi,
     Supabase,
     UseGenerated,
@@ -162,8 +163,24 @@ export const integrations: IntegrationsType = {
             url: "https://www.npmjs.com/package/@refinedev/strapi-graphql",
             status: "stable",
         },
+    ],
+    "community-data-provider-packages": [
         {
-            name: "Firebase",
+            name: "Directus Data Provider",
+            icon: Directus,
+            description:
+                "Connector for backends created with <strong>Directus</strong>",
+            url: "https://www.npmjs.com/package/@tspvivek/refine-directus",
+            status: "stable",
+            contributors: [
+                {
+                    name: "tspvivek",
+                    url: "https://github.com/tspvivek",
+                },
+            ],
+        },
+        {
+            name: "Firebase Data Provider",
             icon: Firebase,
             description: "Support for <strong>Firebase</strong> services.",
             url: "https://www.npmjs.com/package/refine-firebase",
@@ -176,16 +193,30 @@ export const integrations: IntegrationsType = {
             ],
         },
         {
-            name: "Directus",
-            icon: Directus,
+            name: "Hygraph Data Provider",
+            icon: Hygraph,
             description:
-                "Connector for backends created with <strong>Directus</strong>",
-            url: "https://www.npmjs.com/package/@tspvivek/refine-directus",
+                "Connector for backends created with <strong>Hygraph</strong> (GraphQL)",
+            url: "https://github.com/acomagu/refine-hygraph",
             status: "stable",
             contributors: [
                 {
-                    name: "tspvivek",
-                    url: "https://github.com/tspvivek",
+                    name: "acomagu",
+                    url: "https://github.com/acomagu",
+                },
+            ],
+        },
+        {
+            name: "Sanity Data Provider",
+            icon: Sanity,
+            description:
+                "Connector for backends created with <strong>Sanity</strong>",
+            url: "https://github.com/hirenf14/refine-sanity",
+            status: "stable",
+            contributors: [
+                {
+                    name: "hirenf14",
+                    url: "https://github.com/hirenf14/refine-sanity",
                 },
             ],
         },
@@ -218,6 +249,20 @@ export const integrations: IntegrationsType = {
             ],
         },
         {
+            name: "Ent refine",
+            icon: EntRefine,
+            description:
+                "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with refine.",
+            url: "https://github.com/diazoxide/entrefine",
+            status: "stable",
+            contributors: [
+                {
+                    name: "diazoxide",
+                    url: "https://github.com/diazoxide",
+                },
+            ],
+        },
+        {
             name: "useGenerated Data Provider",
             icon: UseGenerated,
             description:
@@ -232,30 +277,16 @@ export const integrations: IntegrationsType = {
             ],
         },
         {
-            name: "Hygraph Data Provider",
-            icon: Hygraph,
+            name: "SQLite Data Provider",
+            icon: SQLite,
             description:
-                "Connector for backends created with <strong>Hygraph</strong> (GraphQL)",
-            url: "https://github.com/acomagu/refine-hygraph",
+                "Connector for backends created with <strong>SQLite</strong>",
+            url: "https://github.com/mateusabelli/refine-sqlite",
             status: "stable",
             contributors: [
                 {
-                    name: "acomagu",
-                    url: "https://github.com/acomagu",
-                },
-            ],
-        },
-        {
-            name: "Sanity Data Provider",
-            icon: Sanity,
-            description:
-                "Connector for backends created with <strong>Sanity</strong>",
-            url: "https://github.com/hirenf14/refine-sanity",
-            status: "stable",
-            contributors: [
-                {
-                    name: "hirenf14",
-                    url: "https://github.com/hirenf14/refine-sanity",
+                    name: "mateusabelli",
+                    url: "https://github.com/mateusabelli",
                 },
             ],
         },
@@ -322,76 +353,6 @@ export const integrations: IntegrationsType = {
                 {
                     name: "umutzd",
                     url: "https://github.com/umutzd",
-                },
-            ],
-        },
-        {
-            name: "Directus Data Provider",
-            icon: Directus,
-            description:
-                "Connector for backends created with <strong>Directus</strong>",
-            url: "https://www.npmjs.com/package/@tspvivek/refine-directus",
-            status: "stable",
-            contributors: [
-                {
-                    name: "tspvivek",
-                    url: "https://github.com/tspvivek",
-                },
-            ],
-        },
-        {
-            name: "Firebase Data Provider",
-            icon: Firebase,
-            description: "Support for <strong>Firebase</strong> services.",
-            url: "https://www.npmjs.com/package/refine-firebase",
-            status: "stable",
-            contributors: [
-                {
-                    name: "rturan29",
-                    url: "https://github.com/resulturan",
-                },
-            ],
-        },
-        {
-            name: "Elide Data Provider",
-            icon: Elide,
-            description:
-                "Connector for backends created with <strong>Elide</strong>",
-            url: "https://github.com/chirdeeptomar/refine-elide-rest",
-            status: "stable",
-            contributors: [
-                {
-                    name: "chirdeeptomar",
-                    url: "https://github.com/chirdeeptomar",
-                },
-            ],
-        },
-        {
-            name: "Ent refine",
-            icon: EntRefine,
-            description:
-                "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with refine.",
-            url: "https://github.com/diazoxide/entrefine",
-            status: "stable",
-            contributors: [
-                {
-                    name: "diazoxide",
-                    url: "https://github.com/diazoxide",
-                },
-            ],
-        },
-        ,
-        {
-            name: "useGenerated Data Provider",
-            icon: UseGenerated,
-            description:
-                "Connector for backends created with <strong>useGenerated</strong> (GraphQL)",
-            url: "https://github.com/usegen/refine-use-generated",
-            status: "stable",
-            contributors: [
-                {
-                    name: "usegen",
-                    url: "https://github.com/usegen",
                 },
             ],
         },
