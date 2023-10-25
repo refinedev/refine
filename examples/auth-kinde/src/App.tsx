@@ -1,8 +1,4 @@
-import {
-    GitHubBanner,
-    Refine,
-    Authenticated,
-} from "@refinedev/core";
+import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import {
     useNotificationProvider,
     ThemedLayoutV2,
@@ -31,9 +27,8 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const { isLoading, authProvider, token } = useAuthProvider();
-    console.log(isLoading, token);
     useEffect(() => {
-        if(token) {
+        if (token) {
             axios.defaults.headers.common = {
                 Authorization: `Bearer ${token}`,
             };
