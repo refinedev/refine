@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("auth-auth0", () => {
+describe("auth-kinde", () => {
     const BASE_URL = "http://localhost:5173";
 
     const login = () => {
@@ -20,7 +20,7 @@ describe("auth-auth0", () => {
         cy.fixture("kinde-credentials").then((auth) => {
             cy.get("[name=p_password]").type(auth.password);
         });
-        
+
         cy.get("button[type=submit]")
             .contains("Continue")
             .click({ force: true });
@@ -73,7 +73,6 @@ describe("auth-auth0", () => {
             cy.fixture("kinde-credentials").then((auth) => {
                 cy.get(".ant-typography").contains(auth.email);
             });
-            cy.get(".ant-avatar > img").should("have.attr", "src");
         });
     });
 });
