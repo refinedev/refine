@@ -33,3 +33,4 @@ export { default as UseGenerated } from "./usegenerated";
 export { default as Hygraph } from "./hygraph";
 export { default as Sanity } from "./sanity";
 export { default as SQLite } from "./sqlite";
+export { default as JSONApi } from "./json-api";
