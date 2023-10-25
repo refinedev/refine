@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@refine-auth/kinde-react": "^1.0.1",
+    "@refine-auth/kinde-react": "^1.0.2",
     "@refinedev/antd": "^5.36.14",
     "@refinedev/cli": "^2.16.10",
     "@refinedev/core": "^4.44.7",
