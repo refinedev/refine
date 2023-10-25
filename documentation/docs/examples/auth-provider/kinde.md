@@ -1,7 +1,7 @@
 ---
 id: kinde
 title: Kinde
-example-tags: [auth-provider]
+example-tags: [auth-provider, community]
 ---
 
 [Kinde](https://kinde.com/) is a service that makes authentication and authorization easy by providing a range of methods to choose from. In this example, you'll see how to use Kinde Login with **refine**.
