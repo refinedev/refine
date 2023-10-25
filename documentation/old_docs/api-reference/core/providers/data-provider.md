@@ -5,6 +5,7 @@ sidebar_label: Data Provider
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
+import DataHooks from "@site/src/partials/data-provider/data-hooks.md";
 
 Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks.
 
@@ -242,13 +243,7 @@ import { DataProvider } from "@refinedev/core";
 
 const dataProvider: DataProvider = {
     // required methods
-     ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        meta,
-    }) => Promise,
+    getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
     create: ({ resource, variables, meta }) => Promise,
     update: ({ resource, id, variables, meta }) => Promise,
     deleteOne: ({ resource, id, variables, meta }) => Promise,
@@ -720,17 +715,7 @@ The `meta` parameter can be used in all data, form, and table hooks.
 
 **refine** will consume:
 
--   [`getList`](#getlist-) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
--   [`create`](#create-) method using the [`useCreate`][use-create] data hook.
--   [`update`](#update-) method using the [`useUpdate`][use-update] data hook.
--   [`deleteOne`](#deleteone-) method using the [`useDeleteOne`][use-delete] data hook.
--   [`getOne`](#getone-) method using the [`useOne`][use-one] data hook.
--   [`getApiUrl`](#getapiurl-) method using the [`useApiUrl`][use-api-url] data hook.
--   [`custom`](#custom) method using the [`useCustom`][use-custom] data hook.
--   [`getMany`](#getmany) method using the [`useMany`][use-many] data hook.
--   [`createMany`](#createmany) method using the [`useCreateMany`][use-create-many] data hook.
--   [`deleteMany`](#deletemany) method using the [`useDeleteMany`][use-delete-many] data hook.
--   [`updateMany`](#updatemany) method using the [`useUpdateMany`][use-update-many] data hook.
+<DataHooks />
 
 ## FAQ
 
