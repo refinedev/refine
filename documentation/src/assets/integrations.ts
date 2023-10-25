@@ -15,6 +15,7 @@ import {
     Hasura,
     HookForm,
     Hygraph,
+    JSONApi,
     Kbar,
     Mantine,
     Medusa,
@@ -287,6 +288,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "mateusabelli",
                     url: "https://github.com/mateusabelli",
+                },
+            ],
+        },
+        {
+            name: "JSON:API Data Provider",
+            icon: JSONApi,
+            description:
+                "Connector for backends created with <strong>JSON:API</strong>",
+            url: "https://github.com/mahirmahdi/refine-jsonapi",
+            status: "stable",
+            contributors: [
+                {
+                    name: "mahirmahdi",
+                    url: "https://github.com/mahirmahdi",
                 },
             ],
         },
