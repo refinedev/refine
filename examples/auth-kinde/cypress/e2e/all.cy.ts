@@ -71,7 +71,7 @@ describe("auth-kinde", () => {
         it("should render getIdentity response on header", () => {
             login();
             cy.fixture("kinde-credentials").then((auth) => {
-                cy.get(".ant-typography").contains(auth.email);
+                cy.get(".ant-typography").contains(auth.name);
             });
         });
     });
