@@ -3,7 +3,6 @@ title: Data Fetching
 ---
 
 import UseOne from "./use-one";
-
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
 import DataHooks from "@site/src/partials/data-provider/data-hooks.md";
 import DataProviderInterface from "@site/src/partials/data-provider/data-provider-interface.md";
