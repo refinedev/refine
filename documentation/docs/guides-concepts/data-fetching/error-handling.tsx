@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function UseOne() {
+export default function ErrorHandling() {
     return (
         <Sandpack
             dependencies={{
@@ -57,6 +57,14 @@ export const dataProvider = (url: string): DataProvider => ({
     const response = await fetch(\`\${url}/\${resource}/\${id}\`);
       const data = await response.json();
 
+      if (!response.ok || !data) {
+        const error: HttpError = {
+            message: "Something went wrong while fetching data",
+            statusCode: 404,
+        };
+        return Promise.reject(error);
+      }
+
       return {
           data,
       };
@@ -85,14 +93,18 @@ import { useOne, BaseKey } from "@refinedev/core";
 export const Product: React.FC = () => {
     const { data, error, isError, isLoading } = useOne<IProduct>({
         resource: "products",
-        id: 123,
+        // intentionally set to null to trigger error
+        id: "null", 
+        queryOptions: {
+            retry: 0,
+        },
     });
 
     if (isError) {
         return (
             <div>
                 <h1>Error</h1>
-                <pre>{JSON.stringify(error)}</pre>
+                <p>{error.message}</p>
             </div>
         );
     }

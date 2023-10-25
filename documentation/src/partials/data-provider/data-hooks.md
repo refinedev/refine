@@ -1,6 +1,6 @@
 | Method                      | Hook                                                            | Description                 |
 | --------------------------- | --------------------------------------------------------------- | --------------------------- |
-| [`getList`](#getlist-)      | [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] | geta list of records.       |
+| [`getList`](#getlist-)      | [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] | get a list of records.      |
 | [`create`](#create-)        | [`useCreate`][use-create]                                       | create a new record.        |
 | [`update`](#update-)        | [`useUpdate`][use-update]                                       | update an existing record.  |
 | [`deleteOne`](#deleteone-)  | [`useDeleteOne`][use-delete]                                    | delete a single record.     |

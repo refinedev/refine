@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function UseOne() {
+export default function OneToOne() {
     return (
         <Sandpack
             dependencies={{
@@ -83,29 +83,31 @@ import React from "react";
 import { useOne, BaseKey } from "@refinedev/core";
 
 export const Product: React.FC = () => {
-    const { data, error, isError, isLoading } = useOne<IProduct>({
+    const { data: productData, isLoading: productLoading } = useOne<IProduct>({
         resource: "products",
         id: 123,
     });
 
-    if (isError) {
-        return (
-            <div>
-                <h1>Error</h1>
-                <pre>{JSON.stringify(error)}</pre>
-            </div>
-        );
-    }
+    const { data: categoryData, isLoading: categoryLoading }  = useOne<ICategory>({
+        resource: "categories",
+        id: productData?.data?.category?.id,
+        queryOptions: {
+            enabled: !!productData?.data?.category?.id,
+        },
+    });
 
-    if (isLoading) {
+    loading = productLoading || categoryLoading;
+
+    if (loading) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
-            <h4>{data?.data?.name}</h4>
-            <p>Material: {data?.data?.material}</p>
-            <p>Price {data?.data?.price}</p>
+            <h4>{productData?.data?.name}</h4>
+            <p>Material: {productData?.data?.material}</p>
+            <p>Price {productData?.data?.price}</p>
+            <p>Category: {categoryData?.data?.title}</p>
         </div>
     );
 };
@@ -116,5 +118,13 @@ interface IProduct {
     name: string;
     material: string;
     price: string;
+    category: {
+        id: BaseKey;
+    }
+}
+
+interface ICategory {
+    id: BaseKey;
+    title: string;
 }
 `.trim();
