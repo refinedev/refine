@@ -19,7 +19,7 @@ import { useAuthProvider } from "@refine-auth/kinde-react";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { PostList } from "./pages/posts";
 import { Login } from "./pages/login";
 import { useEffect } from "react";
 
@@ -52,9 +52,6 @@ const App: React.FC = () => {
                             {
                                 name: "posts",
                                 list: "/posts",
-                                show: "/posts/show/:id",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
                             },
                         ]}
                         notificationProvider={useNotificationProvider}
@@ -86,18 +83,6 @@ const App: React.FC = () => {
 
                                 <Route path="/posts">
                                     <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<PostShow />}
-                                    />
                                 </Route>
                             </Route>
 

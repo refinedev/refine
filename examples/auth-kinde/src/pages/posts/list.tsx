@@ -1,14 +1,8 @@
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
 
-import {
-    List,
-    TextField,
-    useTable,
-    EditButton,
-    ShowButton,
-} from "@refinedev/antd";
+import { List, TextField, useTable } from "@refinedev/antd";
 
-import { Table, Space } from "antd";
+import { Table } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
@@ -55,24 +49,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             />
                         );
                     }}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
                 />
             </Table>
         </List>
