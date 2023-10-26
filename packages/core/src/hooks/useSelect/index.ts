@@ -38,15 +38,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: keyof TQueryFnData extends string
-        ? keyof TQueryFnData
+    optionLabel?: keyof TData extends string
+        ? keyof TData
         : never;
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: keyof TQueryFnData extends string
-        ? keyof TQueryFnData
+    optionValue?: keyof TData extends string
+        ? keyof TData
         : never;
     /**
      * Allow us to sort the options
@@ -214,8 +214,8 @@ export const useSelect = <
         (data: GetManyResponse<TData>) => {
             setSelectedOptions(
                 data.data.map((item) => ({
-                    label: get(item, optionLabel) as string,
-                    value: get(item, optionValue) as string,
+                    label: String(get(item, optionLabel)),
+                    value: String(get(item, optionValue)),
                 })),
             );
         },
@@ -249,8 +249,8 @@ export const useSelect = <
             {
                 setOptions(
                     data.data.map((item) => ({
-                        label: get(item, optionLabel) as string,
-                        value: get(item, optionValue) as string,
+                        label: String(get(item, optionLabel)),
+                        value: String(get(item, optionValue)),
                     })),
                 );
             }

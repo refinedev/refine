@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.1.12
+
+### Patch Changes
+
+-   [#5167](https://github.com/refinedev/refine/pull/5167) [`be899901d0e`](https://github.com/refinedev/refine/commit/be899901d0ed7f9a336ab737b0b8a699f2e58ed3) Thanks [@aliemir](https://github.com/aliemir)! - 🎃 halloween update: devtools panel is temporarily welcoming a group of ghosts 👻, don't worry they are harmless. 👻
+
 ## 1.1.11
 
 ### Patch Changes
