@@ -18,7 +18,7 @@
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
     "@refinedev/antd": "^5.36.14",
-    "@refinedev/cli": "^2.16.8",
+    "@refinedev/cli": "^2.16.14",
     "@refinedev/core": "^4.44.7",
     "@refinedev/nestjs-query": "^1.0.8",
     "@refinedev/nextjs-router": "^5.5.4",

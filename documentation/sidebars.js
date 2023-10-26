@@ -747,6 +747,7 @@ module.exports = {
                                 "examples/data-provider/strapi-graphql",
                                 "examples/data-provider/strapi-v4",
                                 "examples/data-provider/supabase",
+                                "examples/data-provider/sanity",
                             ],
                         },
                         {

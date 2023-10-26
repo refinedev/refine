@@ -6,7 +6,7 @@
   "dependencies": {
     "@ant-design/icons": "5.0.1",
     "@refinedev/antd": "^5.36.14",
-    "@refinedev/cli": "^2.16.8",
+    "@refinedev/cli": "^2.16.14",
     "@refinedev/core": "^4.44.7",
     "@refinedev/inferencer": "^4.5.14",
     "@refinedev/kbar": "^1.3.4",

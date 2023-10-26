@@ -4,12 +4,14 @@ import clsx from "clsx";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import { ProjectIdFixBanner } from "./project-id-fix-banner";
+import { HalloweenGhosts } from "./halloween-ghosts";
 
 type Props = React.PropsWithChildren<{}>;
 
 export const Layout = ({ children }: Props) => {
     return (
         <div
+            id="re-devtools-ui-layout"
             className={clsx(
                 "re-bg-gray-900",
                 "re-flex",
@@ -48,6 +50,7 @@ export const Layout = ({ children }: Props) => {
                     {children}
                 </div>
             </div>
+            <HalloweenGhosts />
         </div>
     );
 };

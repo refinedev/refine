@@ -11,11 +11,11 @@ export const isAuthenticated = async () => {
 
 export const logoutUser = async () => {
     try {
-        const {
-            data: { logout_token },
-        } = await ory.createBrowserLogoutFlow();
-
-        await ory.updateLogoutFlow({ token: logout_token });
+        await ory.performNativeLogout({
+            performNativeLogoutBody: {
+                session_token: "",
+            },
+        });
 
         return true;
     } catch (_) {

@@ -4,8 +4,12 @@ import {
     PackageType,
 } from "@refinedev/devtools-shared";
 
-export const getInstalledPackages = async () => {
-    const response = await fetch("api/installed-packages");
+export const getInstalledPackages = async ({
+    force,
+}: { force?: boolean } = {}) => {
+    const response = await fetch(
+        `api/installed-packages${force ? "?force=true" : ""}`,
+    );
 
     const data = (await response.json()) as { data: PackageType[] };
 

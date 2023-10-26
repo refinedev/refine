@@ -90,4 +90,6 @@ title: List of Packages
 - [`refine-use-generated`](https://github.com/usegen/refine-use-generated) - Connector for GraphQL backends created with [useGenerated](https://usegenerated.com/)
 - [`refine-hygraph`](https://github.com/acomagu/refine-hygraph) - Connector for [Hygraph](https://hygraph.com/) backends(GraphQL) 
 - [`refine-sanity`](https://github.com/hirenf14/refine-sanity) - Connector for [Sanity](https://www.sanity.io/) backends
+- [`refine-sqlite`](https://github.com/mateusabelli/refine-sqlite) - Connector for [SQLite](https://www.sqlite.org/index.html) backends
+- [`refine-jsonapi`](https://github.com/MahirMahdi/refine-jsonapi) - Connector for [JSON:API](https://jsonapi.org/) backends
   
