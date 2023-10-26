@@ -45,7 +45,7 @@ Used for editing an existing record. This action mode requires an `id` prop to b
 
 Used for cloning an existing record. This action mode requires an `id` prop to be passed to the form. The record with the given `id` will be fetched and the values will be used as the initial values for the form fields and the mutation will be performed to create a new record.
 
-## Mutation Modes
+## Mutation Modes <GlobalConfigBadge />
 
 `useForm` provides 3 mutation modes to choose from, you may need each of them in different scenarios throughout your application.
 
@@ -83,9 +83,7 @@ All three modes have their own use cases and benefits, you'll be able to choose 
 />
 ```
 
-## Invalidation
-
-<GuideBadge id="guides-concepts/general-concepts#caching" description="To learn more about caching, refer to General Concepts guide" />
+## Invalidation <GuideBadge id="guides-concepts/general-concepts#caching" description="To learn more about caching, refer to General Concepts guide" />
 
 All the queries made by refine's data hooks and their derivatives are cached for a certain amount of time. This means that if you perform a query for a resource, the result will be cached and the next time you perform the same query, the results will be returned immediately from the cache and then if the data is considered stale, the query will be refetched in the background.
 
@@ -209,9 +207,7 @@ const error: HttpError = {
 };
 ```
 
-## Notifications
-
-<GuideBadge id="guides-concepts/notifications" />
+## Notifications <GuideBadge id="guides-concepts/notifications" />
 
 When forms are submitted, it is a good practice to notify the user about the result of the submission. `useForm` handles this for you, when the mutation succeeds or fails it will show a notification to the user with a proper message. This behavior can be customized or disabled using the `successNotification` and `errorNotification` props.
 
@@ -240,6 +236,8 @@ useForm({
 
 ## Auto Save
 
+// TODO: Update this section when core has the `AutoSaveIndicator` component.
+
 In many forms, it is a good practice to save the form data automatically as the user types to avoid losing the data in case of an unexpected event. This is especially useful in long forms where the user may spend a lot of time filling the form. `useForm` is packed with this feature out-of-the-box.
 
 While `@refinedev/core`'s `useForm` packs this feature, the auto save is not triggered automatically. In the extensions of the `useForm` hook in the other libraries, the auto save is handled internally and is triggered automatically.
@@ -265,20 +263,20 @@ return (
 );
 ```
 
-## Redirections
+## Redirections <GlobalConfigBadge />
 
-:::caution Work in progress
-This page is currently being rewritten and is not complete or may have missing information.
-:::
+In many of the cases, you'll want to redirect the user to a different page after a successful mutation. `useForm` handles this for you, when the mutation succeeds it will redirect the user to the desired page. This behavior can be customized or disabled using the `redirect` prop.
+
+By default, all the form actions will redirect the user to the list page of the resource after a successful mutation. This behavior can be customized or disabled by passing a `redirect` prop. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](core/refine-component/index.md).
+
+Redirection feature enables implementations such as **Save and Continue**; where the user in a create form can save the record and continue editing it in the edit form by simply defining the `redirect` prop of the `useForm` hook.
 
 ## Altering Data Before Submission
 
-:::caution Work in progress
-This page is currently being rewritten and is not complete or may have missing information.
-:::
+In some cases, you might want to alter the data before submitting it to the backend. For example, you might want to add a `full_name` field to the form data of a user resource by combining the `first_name` and `last_name` fields. While the `useForm` from the `@refinedev/core` has the natural support for this, the `useForm` derivatives from the other libraries of refine has a different approach.
 
-## Save and Continue
+Each of these form implementations have a way to alter the data before submission with a slightly different approach. To learn more about how to alter the data before submission, check out the reference pages for each library:
 
-:::caution Work in progress
-This page is currently being rewritten and is not complete or may have missing information.
-:::
+-   [Using `useForm` of `@refinedev/antd`](/ui-integrations/ant-design/forms/index.md)
+-   [Using `useForm` of `@refinedev/mantine`](/ui-integrations/mantine/forms/index.md)
+-   [Using `useForm` of `@refinedev/react-hook-form`](/packages/react-hook-form/index.md)
