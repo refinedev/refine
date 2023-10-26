@@ -1,5 +1,5 @@
 ---
-title: Material UI 🚧
+title: Introduction 🚧
 ---
 
 a brief explanation of the Material UI framework and how refine integrates with it.

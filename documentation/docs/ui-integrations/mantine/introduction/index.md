@@ -1,5 +1,5 @@
 ---
-title: Mantine 🚧
+title: Introduction 🚧
 ---
 
 a brief explanation of the Mantine framework and how refine integrates with it.

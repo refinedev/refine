@@ -1,5 +1,5 @@
 ---
-title: Ant Design 🚧
+title: Introduction 🚧
 ---
 
 a brief explanation of the Ant design UI framework and how refine integrates with it.

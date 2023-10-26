@@ -1,5 +1,5 @@
 ---
-title: Chakra UI 🚧
+title: Introduction 🚧
 ---
 
 a brief explanation of the Chakra UI framework and how refine integrates with it.
