@@ -11,8 +11,8 @@ const root = createRoot(container!);
 root.render(
     <React.StrictMode>
         <KindeProvider
-            clientId="4a1272d4861a46eb9a14c97b3b66c096"
-            domain="https://hirenf.kinde.com"
+            clientId="1b29435f50084bbd91c4fe423d7586a6"
+            domain="https://refine.kinde.com"
             logoutUri={window.location.origin}
             redirectUri={window.location.origin}
             // Local Storage is necessary to keep auth persistent
