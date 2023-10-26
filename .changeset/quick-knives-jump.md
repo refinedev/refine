@@ -2,4 +2,4 @@
 "@refinedev/core": patch
 ---
 
-convert type of an option's value to string
+fix: convert type of an option's `value` to `string`
