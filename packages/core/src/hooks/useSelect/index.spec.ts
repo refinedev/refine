@@ -1,14 +1,14 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, act, mockRouterBindings } from "@test";
+import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useSelect } from "./";
 import * as pickResource from "../../definitions/helpers/pick-resource";
 import {
     CrudFilters,
     IDataContext,
     IDataMultipleContextProvider,
 } from "../../interfaces";
+import { useSelect } from "./";
 
 describe("useSelect Hook", () => {
     it("default", async () => {
@@ -1034,5 +1034,45 @@ describe("useSelect Hook", () => {
             expect(!result.current.queryResult.isLoading).toBeTruthy();
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
+    });
+
+    it("an option should have both value and label converted to string", async () => {
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    optionValue: "userId",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
+        const { options } = result.current;
+
+        await waitFor(() => expect(options).toHaveLength(2), { timeout: 2000 });
+        /*
+            Original data in dataMocks.ts:
+            const posts = [
+                { userId: 5, title: "Necessitatibus necessitatibus id et cupiditate provident est qui amet." },
+                { userId: 36, name: "Recusandae consectetur aut atque est." },
+            ];
+        */
+        expect(options).toEqual([
+            {
+                value: "5",
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+            },
+            { value: "36", label: "Recusandae consectetur aut atque est." },
+        ]);
+        expect(typeof options[0].value).toBe("string");
+        expect(typeof options[0].label).toBe("string");
     });
 });

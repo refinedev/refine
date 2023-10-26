@@ -214,8 +214,8 @@ export const useSelect = <
         (data: GetManyResponse<TData>) => {
             setSelectedOptions(
                 data.data.map((item) => ({
-                    label: get(item, optionLabel) as string,
-                    value: get(item, optionValue) as string,
+                    label: String(get(item, optionLabel)),
+                    value: String(get(item, optionValue)),
                 })),
             );
         },
@@ -249,8 +249,8 @@ export const useSelect = <
             {
                 setOptions(
                     data.data.map((item) => ({
-                        label: get(item, optionLabel) as string,
-                        value: get(item, optionValue) as string,
+                        label: String(get(item, optionLabel)),
+                        value: String(get(item, optionValue)),
                     })),
                 );
             }
