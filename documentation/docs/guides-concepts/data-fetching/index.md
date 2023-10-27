@@ -353,6 +353,8 @@ To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/refer
 
 <DataProviderInterface />
 
+[To learn more about the `dataProvider` interface, check out the reference page.](/docs/api-reference/core/providers/data-provider/)
+
 ## Supported data providers
 
 <SupportedDataProviders/>
