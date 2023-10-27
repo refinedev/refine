@@ -1,5 +1,15 @@
 # @refinedev/core
 
+## 4.44.9
+
+### Patch Changes
+
+-   [#5177](https://github.com/refinedev/refine/pull/5177) [`4e0f6f9a69f`](https://github.com/refinedev/refine/commit/4e0f6f9a69f7613ef9b1b249ae21d2f0dba38f57) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of `useList` hook requiring an empty object as prop even if there was no parameter passed to it.
+
+-   [#5132](https://github.com/refinedev/refine/pull/5132) [`f616d6ffd94`](https://github.com/refinedev/refine/commit/f616d6ffd94e0c38eea56f5850898892551231f6) Thanks [@mlukasik-dev](https://github.com/mlukasik-dev)! - fix: `useSelect`'s `optionLabel` and `optionValue` types are wrong.
+
+-   [#5160](https://github.com/refinedev/refine/pull/5160) [`9b9d5032b3a`](https://github.com/refinedev/refine/commit/9b9d5032b3ab1598eabc8e78ab2c70839929b775) Thanks [@an-tran511](https://github.com/an-tran511)! - fix: convert type of an option's `value` to `string`
+
 ## 4.44.8
 
 ### Patch Changes
