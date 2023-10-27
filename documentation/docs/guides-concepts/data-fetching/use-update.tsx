@@ -97,14 +97,12 @@ import React from "react";
 import { useOne, BaseKey, useUpdate } from "@refinedev/core";
 
 export const Product: React.FC = () => {
-    const { data, error, isError, isLoading: isLoadingUseOne } = useOne<IProduct>({
+    const { data, error, isError, isLoading, isFetching } = useOne<IProduct>({
         resource: "products",
-        id: "10",
+        id: 10,
     });
 
-    const { mutate, isLoading: isLoadingUseUpdate } = useUpdate();
-
-    const loading = isLoadingUseOne || isLoadingUseUpdate;
+    const { mutate, isLoading: isUpdating } = useUpdate();
 
     if (isError) {
         return (
@@ -115,26 +113,26 @@ export const Product: React.FC = () => {
         );
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    if (isLoading)  return <div>Loading...</div>;
 
     const incrementPrice = async () => {
         await mutate({
             resource: "products",
-            id: "10",
+            id: 10,
             values: {
-                price: Number(data?.data?.price) * 2,
+                price: Math.random() * 100,
             },
         });
     };
 
+    const product = data?.data;
+
     return (
         <div>
-            <h4>{data?.data?.name}</h4>
-            <p>Material: {data?.data?.material}</p>
-            <p>Price {data?.data?.price}</p>
-            <button onClick={incrementPrice}>Increment Price</button>
+            <h4>{product?.name}</h4>
+            <p>Material: {product?.material}</p>
+            <p>Price {product?.price}</p>
+            <button onClick={incrementPrice} disabled={isUpdating || isFetching}>Update Price</button>
         </div>
     );
 };

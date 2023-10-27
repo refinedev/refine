@@ -88,24 +88,17 @@ export const Product: React.FC = () => {
         id: 123,
     });
 
-    if (isError) {
-        return (
-            <div>
-                <h1>Error</h1>
-                <pre>{JSON.stringify(error)}</pre>
-            </div>
-        );
-    }
+    if (isError) <div>{error?.message}</div>;
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    if (isLoading) <div>Loading...</div>;
+
+    const product = data?.data;
 
     return (
         <div>
-            <h4>{data?.data?.name}</h4>
-            <p>Material: {data?.data?.material}</p>
-            <p>Price {data?.data?.price}</p>
+            <h4>{product?.name}</h4>
+            <p>Material: {product?.material}</p>
+            <p>Price {product?.price}</p>
         </div>
     );
 };

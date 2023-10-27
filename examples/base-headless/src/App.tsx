@@ -1,35 +1,41 @@
-import {
-    GitHubBanner,
-    Refine,
-    ErrorComponent,
-    DataProvider,
-} from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+import { Refine, DataProvider, useList } from "@refinedev/core";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { PostList, PostCreate, PostEdit } from "./pages/posts";
+const HomePage = () => {
+    const { data: products } = useList({
+        resource: "products",
+    });
 
-import "./App.css";
+    return (
+        <div>
+            <h2>Products</h2>
+            <ul>
+                {products?.data?.map((product) => (
+                    <li key={product.id}>{product.name}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
-export const dataProvider2 = (url: string): DataProvider => ({
-    getOne: async () => {
-        throw new Error("Not implemented");
-    },
+const API_URL = "https://api.fake-rest.refine.dev";
 
-    getMany: async ({ ids, resource }) => {
-        // converting array to query-string (eg. [1,2,3] => id=1&id=2&id=3)
-        const idQuery = ids.map((id) => `id=${id}`).join("&");
-        const response = await fetch(`${url}/${resource}?${idQuery}`);
+export const dataProvider = (url: string): DataProvider => ({
+    getList: async ({ resource }) => {
+        const response = await fetch(`${url}/${resource}`);
         const data = await response.json();
 
         return {
             data,
+            total: data.length,
         };
+    },
+
+    getOne: async () => {
+        throw new Error("Not implemented");
+    },
+
+    getMany: async () => {
+        throw new Error("Not implemented");
     },
 
     create: async () => {
@@ -41,70 +47,14 @@ export const dataProvider2 = (url: string): DataProvider => ({
     deleteOne: async () => {
         throw new Error("Not implemented");
     },
-    getList: async () => {
-        throw new Error("Not implemented");
-    },
+
     getApiUrl: () => url,
 });
 
-const App: React.FC = () => {
+export default function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <Refine
-                dataProvider={{
-                    ...dataProvider("https://api.fake-rest.refine.dev"),
-                    update: async ({ resource, id, variables }) => {
-                        const response = await fetch(
-                            `https://api.fake-rest.refine.dev/${resource}/${id}`,
-                            {
-                                method: "PATCH",
-                                body: JSON.stringify(variables),
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                            },
-                        );
-                        const data = await response.json();
-
-                        return {
-                            data,
-                        };
-                    },
-                }}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "products",
-                        list: "/products",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        index
-                        element={<NavigateToResource resource="products" />}
-                    />
-
-                    <Route path="/products">
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
-                        <Route path="edit/:id" element={<PostEdit />} />
-                    </Route>
-
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
+        <Refine dataProvider={dataProvider(API_URL)}>
+            <HomePage />
+        </Refine>
     );
-};
-
-export default App;
+}

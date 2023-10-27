@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function ErrorHandling() {
+export default function MultipleDataProvider() {
     return (
         <Sandpack
             dependencies={{
@@ -15,8 +15,8 @@ export default function ErrorHandling() {
                     code: AppTsxCode,
                     hidden: false,
                 },
-                "/product.tsx": {
-                    code: ProductTsxCode,
+                "/home-page.tsx": {
+                    code: HomePageTsxCode,
                     hidden: false,
                     active: true,
                 },
@@ -33,17 +33,23 @@ const AppTsxCode = `
 import React from "react";
 import { Refine } from "@refinedev/core";
 
-import { Product } from "./product.tsx";
+import { HomePage } from "./home-page.tsx";
 import { dataProvider } from "./data-provider.ts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 
 
 export default function App() {
     return (
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            >
-                <Product />
-            </Refine>
+        <Refine
+            dataProvider={{
+                default: dataProvider(API_URL),
+                fineFoods: dataProvider(FINE_FOODS_API_URL),
+            }}
+        >
+            <HomePage />
+        </Refine>
     );
 }
 `.trim();
@@ -56,14 +62,6 @@ export const dataProvider = (url: string): DataProvider => ({
   getOne: async ({ id, resource }) => {
     const response = await fetch(\`\${url}/\${resource}/\${id}\`);
       const data = await response.json();
-
-      if (!response.ok || !data) {
-        const error: HttpError = {
-            message: "Something went wrong while fetching data",
-            statusCode: 404,
-        };
-        return Promise.reject(error);
-      }
 
       return {
           data,
@@ -86,48 +84,53 @@ export const dataProvider = (url: string): DataProvider => ({
 });
 `.trim();
 
-const ProductTsxCode = `
-import React from "react";
-import { useOne, BaseKey } from "@refinedev/core";
+const HomePageTsxCode = `
+import { useOne } from "@refinedev/core";
 
-export const Product: React.FC = () => {
-    const { data, error, isError, isLoading } = useOne<IProduct>({
+export const HomePage = () => {
+    const { data: product, isLoading: isLoadingProduct } = useOne<IProducts>({
         resource: "products",
-        id: "non-existing-id", 
-        queryOptions: {
-            retry: 0,
-        },
+        id: 123,
+        dataProviderName: "default",
     });
 
-    if (isError) {
-        return (
-            <div>
-                <h1>Error</h1>
-                <p>{error.message}</p>
-            </div>
-        );
-    }
+    const { data: user, isLoading: isLoadingUser } = useOne<IUser>({
+        resource: "users",
+        id: 123,
+        dataProviderName: "fineFoods",
+    });
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    const product = data?.data;
+    if (isLoadingProduct || isLoadingUser) return <div>Loading...</div>;
 
     return (
         <div>
-            <h4>{product?.name}</h4>
-            <p>Material: {product?.material}</p>
-            <p>Price {product?.price}</p>
+            <h2>Product</h2>
+            <h4>{product?.data?.name}</h4>
+            <p>Material: {product?.data?.material}</p>
+            <p>Price {product?.data?.price}</p>
+
+            <br />
+
+            <h2>User</h2>
+            <h4>
+                {user?.data?.firstName} {user?.data?.lastName}
+            </h4>
+            <p>Phone: {user?.data?.gsm}</p>
         </div>
     );
 };
 
-
-interface IProduct {
+interface IProducts {
     id: BaseKey;
     name: string;
     material: string;
     price: string;
+}
+
+interface IUser {
+    id: BaseKey;
+    firstName: string;
+    lastName: string;
+    gsm: string;
 }
 `.trim();

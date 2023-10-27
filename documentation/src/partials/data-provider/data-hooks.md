@@ -1,16 +1,16 @@
-| Method                      | Hook                                                            | Description                 |
-| --------------------------- | --------------------------------------------------------------- | --------------------------- |
-| [`getList`](#getlist-)      | [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] | get a list of records.      |
-| [`create`](#create-)        | [`useCreate`][use-create]                                       | create a new record.        |
-| [`update`](#update-)        | [`useUpdate`][use-update]                                       | update an existing record.  |
-| [`deleteOne`](#deleteone-)  | [`useDeleteOne`][use-delete]                                    | delete a single record.     |
-| [`getOne`](#getone-)        | [`useOne`][use-one]                                             | get a single record.        |
-| [`getApiUrl`](#getapiurl-)  | [`useApiUrl`][use-api-url]                                      | get the API URL.            |
-| [`custom`](#custom)         | [`useCustom`][use-custom]                                       | making custom API requests. |
-| [`getMany`](#getmany)       | [`useMany`][use-many]                                           | get multiple records.       |
-| [`createMany`](#createmany) | [`useCreateMany`][use-create-many]                              | create multiple records.    |
-| [`deleteMany`](#deletemany) | [`useDeleteMany`][use-delete-many]                              | delete multiple records.    |
-| [`updateMany`](#updatemany) | [`useUpdateMany`][use-update-many]                              | update multiple records.    |
+| Hook                                                            | Method                      | Description                 |
+| --------------------------------------------------------------- | --------------------------- | --------------------------- |
+| [`useOne`][use-one]                                             | [`getOne`](#getone-)        | get a single record.        |
+| [`useCreate`][use-create]                                       | [`create`](#create-)        | create a new record.        |
+| [`useUpdate`][use-update]                                       | [`update`](#update-)        | update an existing record.  |
+| [`useDeleteOne`][use-delete]                                    | [`deleteOne`](#deleteone-)  | delete a single record.     |
+| [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] | [`getList`](#getlist-)      | get a list of records.      |
+| [`useApiUrl`][use-api-url]                                      | [`getApiUrl`](#getapiurl-)  | get the API URL.            |
+| [`useCustom`][use-custom]                                       | [`custom`](#custom)         | making custom API requests. |
+| [`useMany`][use-many]                                           | [`getMany`](#getmany)       | get multiple records.       |
+| [`useCreateMany`][use-create-many]                              | [`createMany`](#createmany) | create multiple records.    |
+| [`useDeleteMany`][use-delete-many]                              | [`deleteMany`](#deletemany) | delete multiple records.    |
+| [`useUpdateMany`][use-update-many]                              | [`updateMany`](#updatemany) | update multiple records.    |
 
 [use-api-url]: /docs/api-reference/core/hooks/data/useApiUrl/
 [use-create]: /docs/api-reference/core/hooks/data/useCreate/

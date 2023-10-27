@@ -4,6 +4,8 @@ title: Data Fetching
 
 import UseOne from "./use-one";
 import UseUpdate from "./use-update";
+import UseList from "./use-list";
+import MultipleDataProvider from "./multiple-data-provider";
 import OneToOne from "./one-to-one";
 import OneToMany from "./one-to-many";
 import ErrorHandling from "./error-handling";
@@ -11,7 +13,7 @@ import SupportedDataProviders from "@site/src/partials/data-provider/supported-d
 import DataHooks from "@site/src/partials/data-provider/data-hooks.md";
 import DataProviderInterface from "@site/src/partials/data-provider/data-provider-interface.md";
 
-Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks (`useOne`, `useUpdate`, `useList` etc.) which are used for actions like creating, reading, and deleting a record, etc.
+Data provider acts as a data layer for your app, making requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks (`useOne`, `useUpdate`, `useList` etc.) which are used for actions like creating, reading, updating, and deleting a record.
 
 Data providers are versatile and can communicate with a variety of API types, such as `REST`, `GraphQL`, `RPC`, and `SOAP`. Think of a data provider as a bridge connecting **refine** to the your API, adapting and translating the data exchange.
 
@@ -25,19 +27,21 @@ Moreover, **refine** offers support for multiple data providers, allowing you to
 
 ## Fetching Data
 
-Let's imagine we need to fetch a record from the `products` resource using the `useOne` data hook in **refine**, it internally utilizes the `dataProvider.getOne` method from your data provider. This method is called with the necessary parameters to fetch data from the API.
+Let's imagine we need to fetch a record from the `products` resource using the `useOne` data hook in **refine**, it internally utilizes the `dataProvider.getOne` method from your data provider.
+
+Imagine we want to fetch a record with the ID 123 from the "products" endpoint. For this, we will use the `useOne` hook. Under the hood, it calls the `dataProvider.getOne` method from your data provider.
 
 <UseOne />
 
 ## Updating Data
 
-To update a record, we can use the `useUpdate` data hook. It internally utilizes the `dataProvider.update` method from your data provider.
+In the example above we saw how to fetch a record from the `products` resource. To update the record, we can use the `useUpdate` data hook. It internally utilizes the `dataProvider.update` method from your data provider.
 
-`useUpdate` automatically invalidates the `products` resource after a successful mutation. This means you don't need to refresh the page to see the updated data.
+Also, `useUpdate` automatically invalidates the `products` resource after a successful mutation. This means you don't need to refresh the page to see the updated data.
 
 <UseUpdate />
 
-**refine** offers various data hooks for CRUD operations. You can use these hooks to interact with your API.
+**refine** offers various data hooks for CRUD operations.
 
 <DataHooks />
 
@@ -51,25 +55,25 @@ Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It 
 
 2. **Invalidation:** Automatically invalidates data after a successful mutation (e.g., creating, updating, or deleting a resource), ensuring that the UI is updated with the latest data.
 
-3. **Caching:** Caches data to improve performance and reduce API calls.
+3. **Caching:** Caches data to improve performance and reduce deduplicated API calls.
 
 4. **Optimistic Updates:** Supports optimistic updates, which means it will update the UI optimistically before the actual API call is complete. This enhances the user experience by reducing perceived latency.
 
-5. **Hooks for CRUD Operations:** offers a collection of hooks that align with common data operations like listing, creating, updating, and deleting data (`useList`, `useCreate`, `useUpdate`, `useDelete`). In addition to these basic hooks, **refine** provides advanced hooks that are a composition of these fundamental ones for handling more intricate tasks (`useForm`, `useTable`, `useSelect`). These advanced hooks use the core CRUD hooks under the hood to handle complex operations.
+5. **Hooks for CRUD Operations:** Offers a collection of hooks that align with common data operations like listing, creating, updating, and deleting data (`useList`, `useCreate`, `useUpdate`, `useDelete`). In addition to these basic hooks, **refine** provides advanced hooks that are a composition of these fundamental ones for handling more complex tasks (`useForm`, `useTable`, `useSelect`).
 
-6. **Integration with UI Libraries:** Works seamlessly with popular UI libraries like Ant Design, Material-UI, Mantine and, Chakra UI providing well-integrated components and hooks to easily build data-intensive applications.
+6. **Integration with UI Libraries:** Works seamlessly with popular UI libraries. It provides a structured approach to handling data within these libraries.
 
-7. **Realtime Updates**: Supports [realtime](/docs/guides-concepts/realtime/) updates, allowing your application to reflect changes in data as they occur, making it suitable for interactive and dynamic applications.
+7. **Realtime Updates**: Allowing your application to reflect changes in data as they occur.
 
 ## Meta usage
 
-[`meta`][meta] is a special property that can be used to pass additional information to data provider method from data hooks. Meta can be used to anywhere across your application.
+[`meta`][meta] is a special property that can be used to pass additional information to data provider method from data hooks. Meta can be used from anywhere accros your application.
 
-`meta` can be used for:
+The capabilities of `meta` properties depend on your data provider's implementation. While some may use additional features through `meta`, others may not use them or follow a different approach.
 
--   Changing the fetch method (GET, POST, PUT, DELETE, etc.).
--   Passing additional headers or query parameter to the request.
--   Selecting and populating specific fields.
+Here are some examples of `meta` usage:
+
+-   Passing additional headers or parameters to the request.
 -   Generate GraphQL queries
 -   Multi-tenancy support (passing the tenant id to the request)
 
@@ -79,8 +83,8 @@ Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It 
 import { DataProvider, useOne } from "@refinedev/core";
 
 useOne({
-    resource: "posts",
-    id: "1",
+    resource: "products",
+    id: 1,
     meta: {
         foo: "bar",
     },
@@ -105,9 +109,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## GraphQL
 
-The [`meta.fields`][meta] parameter provides an interface for seamless integration with the [gql-query-builder](https://github.com/atulmy/gql-query-builder). By utilizing the `meta.fields`, you can easily generate GraphQL queries in your data provider.
-
-Also, **refine** offers [GraphQL providers](#supported-data-providers) to handle generating GraphQL queries.
+**refine** provides GraphQL support using [gql-query-builder](https://github.com/atulmy/gql-query-builder). `meta` interface is extended from `gql-query-builder` to create GraphQL queries using this package.
 
 ```tsx
 import { DataProvider, useOne } from "@refinedev/core";
@@ -115,8 +117,8 @@ import * as gql from "gql-query-builder";
 import { GraphQLClient } from "graphql-request";
 
 useOne({
-    resource: "posts",
-    id: "1",
+    resource: "products",
+    id: 1,
     meta: {
         fields: [
             "id",
@@ -130,13 +132,18 @@ useOne({
 
 const dataProvider = (client: GraphQLClient): DataProvider => {
     getOne: async ({ resource, id, meta }) => {
+        const operation = meta?.operation || resource;
+
         const { query, variables } = gql.query({
-            operation: resource,
+            operation,
             variables: {
                 id: { value: id, type: "ID", required: true },
             },
             fields: meta?.fields,
+            variables: meta?.variables,
         });
+
+        console.log(query); // "query ($id: ID!) { products (id: $id) { id, title, category { title } } }"
 
         const response = await client.request(query, variables);
 
@@ -147,11 +154,15 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 };
 ```
 
+Also, **refine** offers [GraphQL providers](#supported-data-providers) to handle generating GraphQL queries.
+
 ## Multiple Data Provider
 
 Using multiple data providers in **refine** allows you to work with various APIs or data sources in a single application. You might use different data providers for different parts of your app, like one for user data and another for product information. This flexibility is handy when dealing with various data structures and APIs. Each data provider can have its own configuration, making it easier to manage complex data scenarios within a single application.
 
-## Error handling
+<MultipleDataProvider />
+
+## Handling errors
 
 **refine** expects errors to be extended from [HttpError](/docs/api-reference/core/interfaceReferences/#httperror). We believe that having consistent error interface makes it easier to handle errors coming from your API.
 
@@ -163,18 +174,17 @@ When implemented correctly, **refine** offers several advantages in error handli
 
 <ErrorHandling />
 
-## List
+## Listing Data
 
-The [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] hook is used to fetch a list of records from the API. It calls the `dataProvider.getList` method of the data provider under the hood.
+For example, let's say we need to fetch all the records from the products resource. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list]. It calls `dataProvider.getList` method from your data provider.
 
-The `getList` method is used to get a list of resources with sorting, filtering and pagination features.
-It takes `resource`, `sorters`, `pagination` and `filters` as parameters and returns `data` and `total`.
+Also, `useList` and `useInfiniteList` takes `sorters`, `pagination` and `filters` parameters to customize the request.
 
 ```tsx
-import { DataProvider } from "@refinedev/core";
+import { DataProvider, useList } from "@refinedev/core";
 
 useList({
-    resource: "posts",
+    resource: "products",
 });
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -190,37 +200,36 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
+<UseList />
+
 ## Filters and Sorters
 
-Filters and sorters are tools for refining and organizing data. Filters help you find specific data, while sorters arrange data in a particular order. These are essential for effective data management and presentation.
+Imagine you're shopping online for items. You're in a section with hundreds of options. Filters act as your shopping criteria, allowing you to choose size, color or price range so you can find products that match your preferences.
 
-**refine** provides a filter and sorter interface to streamline data management. Interfaces offer a structured way to apply filters and sorters to your data provider, enhancing the organization and efficiency of your application.
+In **refine**, with [filters](/docs/api-reference/core/interfaceReferences/#crudfilters) and [sorters](/docs/api-reference/core/interfaceReferences/#crudfilters) interface you can specify and arrange what data you want.
+
+For instance, let's say we want to fetch all the products that are in the "t-shirt" category with "red" or "yellow" color and sort them by "price" in ascending order.
 
 ```tsx
 import { DataProvider, useList } from "@refinedev/core";
 
 useList({
-    resource: "posts",
+    resource: "porducts",
     pagination: {
         current: 1,
         pageSize: 10,
     },
-    sorters: [{ field: "age", order: "asc" }],
+    sorters: [{ field: "price", order: "asc" }],
     filters: [
+        { field: "category", operator: "eq", value: "t-shirt" },
         {
-            field: "name",
-            operator: "contains",
-            value: "John",
-        },
-        {
-            field: "age",
-            operator: "gt",
-            value: 20,
+            operator: "or",
+            value: [
+                { field: "color", operator: "eq", value: "red" },
+                { field: "color", operator: "eq", value: "yellow" },
+            ],
         },
     ],
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
 });
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -242,28 +251,30 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Relationships
 
-**refine** handles data relations with data hooks(eg: `useOne`, `useMany`, etc.). This compositional design empowers you to flexibly and efficiently manage data relationships to suit your specific requirements.
+**refine** handles data relations with data hooks(eg: `useOne`, `useMany`, etc.). This compositional design allows you to flexibly and efficiently manage data relationships to suit your specific requirements.
 
 ### One-to-One
 
 In a one-to-one relationship, each thing matches with just one other thing. It's like a unique partnership.
 
-For instance, a product can have only one category.
+For instance, a product can have only one product detail.
 
 <!-- prettier-ignore-start -->
 ```md
 ┌──────────────┐       ┌────────────────┐
-│ products     │       │ categories     │
+│ Products     │       │ ProductDetails │
 │--------------│       │----------------│
-│ id           │   ┌───│ id             │
-│ name         │   │   │ title          │
-│ price        │   │   │                │
-│ category     │╾──┘   │                │
+│ id           │   ┌──╾│ id             │
+│ name         │   │   │ description    │
+│ price        │   │   │ manufacturer   │
+│ description  │   │   │                │
+│ detail       │╾──┘   │                │
+│ reviews      │       │                │
 └──────────────┘       └────────────────┘
 ```
 <!-- prettier-ignore-end -->
 
-We can use the `useOne` hook to fetch the category of a product.
+We can use the `useOne` hook to fetch the detail of a product.
 
 <OneToOne />
 
@@ -276,12 +287,14 @@ For instance, a post can have many tags.
 <!-- prettier-ignore-start -->
 ```md
 ┌──────────────┐       ┌────────────────┐
-│ posts        │       │ tags           │
+│ Products     │       │ Reviews        │
 │--------------│       │----------------│
-│ id           │   ┌───│ id             │
-│ title        │   │   │ title          │
-│ content      │   │   │                │
-│ tags         │╾──┘   │                │
+│ id           │   ┌──╾│ id             │
+│ name         │   │   │ rating         │
+│ price        │   │   │ comment        │
+│ description  │   │   │                │
+│ detail       │   │   │                │
+│ reviews      │╾──┘   │                │
 └──────────────┘       └────────────────┘
 ```
 <!-- prettier-ignore-end -->
@@ -294,16 +307,21 @@ We can use the `useMany` hook to fetch the tags of a post.
 
 In a many-to-many relationship, each resource matches with many other resources, and each of those resources matches with many other resources.
 
-For instance, books can have many authors, and authors can have many books.
+For instance, products can have many categories, and categories can have many products.
 
 <!-- prettier-ignore-start -->
 ```md
-┌───────────┐       ┌────────────┐       ┌───────────────┐
-│ Books     │       │ BookAuthors│       │ Authors       │
-│-----------│       │------------│       |---------------|
-│ id        │╾─────╾│ book_id    │   ┌──╾│ id            │
-│ title     │       │ author_id  │╾──┘   │ name          │
-└───────────┘       └────────────┘       └───────────────┘
+┌──────────────┐       ┌───────────────────┐       ┌──────────────┐
+│ Products     │       │ ProductCategories │       │ Categories   │
+│--------------│       │----------------───│       │--------------│
+│ id           │╾──┐   │ id                │   ┌──╾│ id           │
+│ name         │   └──╾│ product_id        │   │   │ name         │
+│ price        │       │ category_id       │╾──┘   │ description  │
+│ description  │       │                   │       │              │
+│ detail       │       │                   │       │              │
+│ reviews      │       │                   │       │              │
+│ reviews      │       │                   │       │              │
+└──────────────┘       └───────────────────┘       └──────────────┘
 
 ```
 <!-- prettier-ignore-end -->
