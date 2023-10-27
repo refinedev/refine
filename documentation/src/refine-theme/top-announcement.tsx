@@ -22,7 +22,7 @@ export const TopAnnouncement = () => {
                     "font-inter",
                     "bg-[#A81818]",
                     "bg-top-announcement-bg-tr",
-                    "bg-contain",
+                    "bg-cover xl:bg-contain",
                     "bg-center",
                     "bg-no-repeat",
                     "flex",
