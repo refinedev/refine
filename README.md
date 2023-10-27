@@ -97,6 +97,7 @@ This allows you to preview, modify, and download the project immediately, thereb
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
+-   [Fully-functional CRM Application](https://example.crm.refine.dev/)
 -   [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
 -   [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
 -   [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
