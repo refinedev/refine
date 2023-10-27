@@ -105,6 +105,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
             data,
         };
     },
+    ...
 });
 ```
 
@@ -152,6 +153,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             data: response[resource],
         };
     };
+    ...
 };
 ```
 
@@ -180,26 +182,6 @@ When implemented correctly, **refine** offers several advantages in error handli
 For example, let's say we need to fetch all the records from the products resource. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list]. It calls `dataProvider.getList` method from your data provider.
 
 Also, `useList` and `useInfiniteList` takes `sorters`, `pagination` and `filters` parameters to customize the request.
-
-```tsx
-import { DataProvider, useList } from "@refinedev/core";
-
-useList({
-    resource: "products",
-});
-
-export const dataProvider = (apiUrl: string): DataProvider => ({
-    getList: async ({ resource }) => {
-        const response = await fetch(`${apiUrl}/${resource}`);
-        const { data, total } = await response.json();
-
-        return {
-            data,
-            total,
-        };
-    },
-});
-```
 
 <UseList />
 
@@ -247,6 +229,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
             total,
         };
     },
+    ...
 });
 ```
 

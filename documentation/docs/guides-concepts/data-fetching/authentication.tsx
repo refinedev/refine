@@ -39,7 +39,7 @@ import { HomePage } from "./home-page.tsx";
 import { dataProvider } from "./data-provider.ts";
 import { authProvider } from "./auth-provider.ts";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+const API_URL = "http://localhost:3001";
 
 
 export default function App() {
