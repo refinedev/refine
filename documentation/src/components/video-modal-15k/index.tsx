@@ -108,139 +108,149 @@ export const Video = () => {
                         "top-1/2",
                         "left-0",
                         "-translate-y-1/2",
-                        "aspect-video",
                         "max-w-2xl",
                         "w-full",
+                        "bg-gray-0",
+                        "p-8",
+                        "rounded-[32px]",
+                        "flex",
+                        "flex-col",
+                        "gap-4",
                     )}
                     onClick={(event) => {
                         event.preventDefault();
                         event.stopPropagation();
                     }}
                 >
-                    <div
+                    <button
+                        type="button"
+                        name="close-video"
                         className={clsx(
                             "absolute",
-                            "right-0",
-                            "-top-12",
-                            "w-full",
+                            "-right-8",
+                            "-top-8",
+                            "w-8",
+                            "h-8",
+                            "bg-gray-0",
+                            "rounded-full",
+                            "p-1",
+                            "text-gray-1000",
+                            "transition-colors",
+                            "duration-200",
+                            "ease-in-out",
+                            "group",
                             "flex",
                             "items-center",
-                            "justify-between",
+                            "justify-center",
                         )}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            onClose();
+                        }}
                     >
-                        <div
+                        <CloseIcon
                             className={clsx(
-                                "flex items-center",
-                                "gap-2 pl-2 pr-1 py-1",
-                                "bg-gray-600",
-                                "rounded-2xl",
-                            )}
-                        >
-                            <span className="text-gray-200 text-xs">
-                                Share on
-                            </span>
-                            <TwitterShareButton
-                                windowWidth={750}
-                                windowHeight={800}
-                                url={window.location.href}
-                                title={`Take a look at @refine_dev's fun journey to 15K GitHub stars - `}
-                                className="flex"
-                            >
-                                <Twitter
-                                    className={clsx(
-                                        "bg-gray-0",
-                                        "rounded-full",
-                                        "p-1",
-                                        "transition-transform",
-                                        "duration-200",
-                                        "ease-in-out",
-                                        "hover:scale-110",
-                                    )}
-                                />
-                            </TwitterShareButton>
-                            <RedditShareButton
-                                className="flex"
-                                windowWidth={750}
-                                windowHeight={600}
-                                url={window.location.href}
-                                title={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
-                            >
-                                <RedditIcon
-                                    size={26}
-                                    round
-                                    className={clsx(
-                                        "transition-transform",
-                                        "duration-200",
-                                        "ease-in-out",
-                                        "hover:scale-110",
-                                    )}
-                                />
-                            </RedditShareButton>
-                            <LinkedinShareButton
-                                url={window.location.href}
-                                source={window.location.href}
-                                className="flex"
-                                summary={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
-                                title={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
-                            >
-                                <LinkedinIcon
-                                    size={26}
-                                    round
-                                    className={clsx(
-                                        "transition-transform",
-                                        "duration-200",
-                                        "ease-in-out",
-                                        "hover:scale-110",
-                                    )}
-                                />
-                            </LinkedinShareButton>
-                        </div>
-                        <button
-                            type="button"
-                            name="close-video"
-                            className={clsx(
-                                "bg-gray-600",
-                                "rounded-full",
-                                "p-1",
-                                "hover:bg-gray-500",
-                                "text-gray-200",
-                                "transition-colors",
+                                "w-3 h-3",
+                                "group-hover:scale-150",
+                                "transition-transform",
                                 "duration-200",
                                 "ease-in-out",
-                                "group",
                             )}
-                            onClick={(event) => {
-                                event.stopPropagation();
-                                onClose();
-                            }}
-                        >
-                            <CloseIcon
-                                className={clsx(
-                                    "w-6 h-6",
-                                    "group-hover:scale-125",
-                                    "transition-transform",
-                                    "duration-200",
-                                    "ease-in-out",
-                                )}
-                            />
-                        </button>
-                    </div>
+                        />
+                    </button>
                     <iframe
-                        className={clsx(
-                            "w-full",
-                            "h-full",
-                            "drop-shadow-md",
-                            "border-solid",
-                            "border",
-                            "border-gray-300",
-                            "border-opacity-20",
-                        )}
+                        className={clsx("w-full", "h-full", "aspect-video")}
                         src="https://www.youtube.com/embed/w_3c7_szYuU?si=SJ7gHH4A8ZHHJO1q"
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                     ></iframe>
+                    <div
+                        className={clsx(
+                            "flex",
+                            "items-center",
+                            "gap-4",
+                            "ml-auto",
+                        )}
+                    >
+                        <span className="text-gray-900 text-sm">Share on</span>
+                        <TwitterShareButton
+                            windowWidth={750}
+                            windowHeight={800}
+                            url={window.location.href}
+                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars - `}
+                            className="flex"
+                        >
+                            <Twitter
+                                className={clsx(
+                                    "bg-gray-1000",
+                                    "fill-gray-0",
+                                    "rounded-full",
+                                    "w-8",
+                                    "h-8",
+                                    "flex",
+                                    "items-center",
+                                    "justify-center",
+                                    "p-2",
+                                    "transition-transform",
+                                    "duration-200",
+                                    "ease-in-out",
+                                    "hover:scale-110",
+                                )}
+                            />
+                        </TwitterShareButton>
+                        <RedditShareButton
+                            className="flex"
+                            windowWidth={750}
+                            windowHeight={600}
+                            url={window.location.href}
+                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
+                        >
+                            <div
+                                className={clsx(
+                                    "rounded-full",
+                                    "h-8",
+                                    "w-8",
+                                    "flex",
+                                    "items-center",
+                                    "justify-center",
+                                    "bg-[#ff4500]",
+                                    "transition-transform",
+                                    "duration-200",
+                                    "ease-in-out",
+                                    "hover:scale-110",
+                                )}
+                            >
+                                <RedditIcon size={28} round />
+                            </div>
+                        </RedditShareButton>
+                        <LinkedinShareButton
+                            url={window.location.href}
+                            source={window.location.href}
+                            className="flex"
+                            summary={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
+                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
+                        >
+                            <div
+                                className={clsx(
+                                    "rounded-full",
+                                    "h-8",
+                                    "w-8",
+                                    "flex",
+                                    "items-center",
+                                    "justify-center",
+                                    "bg-[#007fb1]",
+                                    "transition-transform",
+                                    "duration-200",
+                                    "ease-in-out",
+                                    "hover:scale-110",
+                                )}
+                            >
+                                <LinkedinIcon size={32} round />
+                            </div>
+                        </LinkedinShareButton>
+                    </div>
                 </div>
             )}
         </div>
