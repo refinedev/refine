@@ -111,11 +111,14 @@ export const Video = () => {
                         "max-w-2xl",
                         "w-full",
                         "bg-gray-0",
-                        "p-8",
-                        "rounded-[32px]",
+                        "p-2",
+                        "md:p-8",
+                        "rounded-2xl",
+                        "md:rounded-[32px]",
                         "flex",
                         "flex-col",
-                        "gap-4",
+                        "gap-2",
+                        "md:gap-4",
                     )}
                     onClick={(event) => {
                         event.preventDefault();
@@ -127,8 +130,10 @@ export const Video = () => {
                         name="close-video"
                         className={clsx(
                             "absolute",
-                            "-right-8",
-                            "-top-8",
+                            "right-0",
+                            "-top-12",
+                            "md:-right-8",
+                            "md:-top-8",
                             "w-8",
                             "h-8",
                             "bg-gray-0",
