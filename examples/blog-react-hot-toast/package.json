@@ -5,7 +5,7 @@
   "type": "module",
   "dependencies": {
     "@refinedev/cli": "^2.16.14",
-    "@refinedev/core": "^4.44.7",
+    "@refinedev/core": "^4.44.8",
     "@refinedev/devtools": "^1.1.22",
     "@refinedev/inferencer": "^4.3.2",
     "@refinedev/kbar": "^1.1.2",
