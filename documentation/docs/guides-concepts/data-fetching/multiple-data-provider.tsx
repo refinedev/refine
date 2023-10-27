@@ -6,8 +6,6 @@ export default function MultipleDataProvider() {
         <Sandpack
             dependencies={{
                 "@refinedev/core": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
             }}
             startRoute="/"
             files={{

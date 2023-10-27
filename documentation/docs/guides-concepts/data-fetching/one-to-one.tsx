@@ -6,8 +6,6 @@ export default function OneToOne() {
         <Sandpack
             dependencies={{
                 "@refinedev/core": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
             }}
             startRoute="/"
             files={{
@@ -87,16 +85,18 @@ export const Product: React.FC = () => {
         resource: "products",
         id: 123,
     });
+    const product = productData?.data;
 
-    const { data: categoryData, isLoading: categoryLoading }  = useOne<ICategory>({
-        resource: "categories",
-        id: productData?.data?.category?.id,
+    const { data: productDetailData, isLoading: productDetailLoading }  = useOne<IProductDetail>({
+        resource: "product-detail",
+        id: product?.detail?.id,
         queryOptions: {
-            enabled: !!productData?.data?.category?.id,
+            enabled: !!product?.detail?.id,
         },
     });
+    const productDetail = productDetailData?.data;
 
-    loading = productLoading || categoryLoading;
+    loading = productLoading || productDetailLoading;
 
     if (loading) {
         return <div>Loading...</div>;
@@ -104,10 +104,11 @@ export const Product: React.FC = () => {
 
     return (
         <div>
-            <h4>{productData?.data?.name}</h4>
-            <p>Material: {productData?.data?.material}</p>
-            <p>Price {productData?.data?.price}</p>
-            <p>Category: {categoryData?.data?.title}</p>
+            <h4>{product?.name}</h4>
+            <p>Material: {product?.material}</p>
+            <p>Price {product?.price}</p>
+            <p>Weight: {productDetail?.weight}</p>
+            <p>Dimensions: {productDetail?.dimensions?.width} x {productDetail?.dimensions?.height} x {productDetail?.dimensions?.depth}</p>
         </div>
     );
 };
@@ -118,13 +119,22 @@ interface IProduct {
     name: string;
     material: string;
     price: string;
-    category: {
+    description: string;
+    reviews: {
         id: BaseKey;
-    }
+    }[];
+    detail: {
+        id: BaseKey;
+    };
 }
 
-interface ICategory {
+interface IProductDetail {
     id: BaseKey;
-    title: string;
+    weight: number;
+    dimensions: {
+        width: number;
+        height: number;
+        depth: number;
+    };
 }
 `.trim();

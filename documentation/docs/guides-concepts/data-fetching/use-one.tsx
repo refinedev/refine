@@ -6,8 +6,6 @@ export default function UseOne() {
         <Sandpack
             dependencies={{
                 "@refinedev/core": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
             }}
             startRoute="/"
             files={{

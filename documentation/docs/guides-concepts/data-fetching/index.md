@@ -262,11 +262,11 @@ For instance, a product can have only one product detail.
 <!-- prettier-ignore-start -->
 ```md
 ┌──────────────┐       ┌────────────────┐
-│ Products     │       │ ProductDetails │
+│ Products     │       │ ProductDetail  │
 │--------------│       │----------------│
 │ id           │   ┌──╾│ id             │
-│ name         │   │   │ description    │
-│ price        │   │   │ manufacturer   │
+│ name         │   │   │ weight         │
+│ price        │   │   │ dimensions     │
 │ description  │   │   │                │
 │ detail       │╾──┘   │                │
 │ reviews      │       │                │
@@ -282,7 +282,7 @@ We can use the `useOne` hook to fetch the detail of a product.
 
 In a one-to-many relationship, each resource matches with many other resource. It's like a parent with many children.
 
-For instance, a post can have many tags.
+For instance, a products can have many reviews.
 
 <!-- prettier-ignore-start -->
 ```md
@@ -292,14 +292,14 @@ For instance, a post can have many tags.
 │ id           │   ┌──╾│ id             │
 │ name         │   │   │ rating         │
 │ price        │   │   │ comment        │
-│ description  │   │   │                │
+│ description  │   │   │ user           │
 │ detail       │   │   │                │
 │ reviews      │╾──┘   │                │
 └──────────────┘       └────────────────┘
 ```
 <!-- prettier-ignore-end -->
 
-We can use the `useMany` hook to fetch the tags of a post.
+We can use the `useMany` hook to fetch the categories of a products.
 
 <OneToMany />
 
@@ -315,39 +315,38 @@ For instance, products can have many categories, and categories can have many pr
 │ Products     │       │ ProductCategories │       │ Categories   │
 │--------------│       │----------------───│       │--------------│
 │ id           │╾──┐   │ id                │   ┌──╾│ id           │
-│ name         │   └──╾│ product_id        │   │   │ name         │
-│ price        │       │ category_id       │╾──┘   │ description  │
+│ name         │   └──╾│ productId         │   │   │ name         │
+│ price        │       │ categoryId        │╾──┘   │ description  │
 │ description  │       │                   │       │              │
 │ detail       │       │                   │       │              │
-│ reviews      │       │                   │       │              │
 │ reviews      │       │                   │       │              │
 └──────────────┘       └───────────────────┘       └──────────────┘
 
 ```
 <!-- prettier-ignore-end -->
 
-In this case, we can use the `useMany` hook to fetch the authors of a book and the `useMany` hook to fetch the books of an author.
+In this case, we can use the `useMany` hook to fetch the categories of a product and the `useMany` hook to fetch the products of a category.
 
 ```tsx
 import { DataProvider, useMany } from "@refinedev/core";
 
-const { data: bookAuthors } = useList({
-    resource: "bookAuthors",
+const { data: productCategories } = useList({
+    resource: "productCategories",
 });
 
-const { data: authors } = useMany({
-    resource: "authors",
-    ids: bookAuthors.map((bookAuthor) => bookAuthor.author_id),
+const { data: products } = useMany({
+    resource: "products",
+    ids: productCategories.map((productCategory) => productCategory.productId),
     queryOptions: {
-        enabled: bookAuthors.length > 0,
+        enabled: productCategories.length > 0,
     },
 });
 
-const { data: books } = useMany({
-    resource: "books",
-    ids: bookAuthors.map((bookAuthor) => bookAuthor.book_id),
+const { data: categories } = useMany({
+    resource: "categories",
+    ids: productCategories.map((productCategory) => productCategory.categoryId),
     queryOptions: {
-        enabled: bookAuthors.length > 0,
+        enabled: productCategories.length > 0,
     },
 });
 ```

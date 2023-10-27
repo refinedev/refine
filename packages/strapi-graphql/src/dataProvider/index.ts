@@ -284,8 +284,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 fields: meta?.fields,
             });
 
-            console.log(query);
-
             const response = await client.request<BaseRecord>(query, variables);
 
             return {

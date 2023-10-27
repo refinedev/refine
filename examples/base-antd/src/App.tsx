@@ -5,8 +5,6 @@ import {
     GetListResponse,
     GitHubBanner,
     Refine,
-    useOne,
-    useUpdate,
 } from "@refinedev/core";
 import {
     useNotificationProvider,
@@ -28,6 +26,21 @@ import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+
+const myDataProvider: Partial<DataProvider> = {
+    getList: async (params: GetListParams): Promise<GetListResponse<any>> => {
+        return { data: [], total: 0 };
+    },
+};
+
+const myDataProvider2: Partial<DataProvider> = {
+    getList: async (params: GetListParams): Promise<GetListResponse<any>> => {
+        return {
+            data: [{ name: "tom" }],
+            total: 3,
+        };
+    },
+};
 
 const App: React.FC = () => {
     return (

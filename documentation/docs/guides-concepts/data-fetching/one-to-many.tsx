@@ -6,8 +6,6 @@ export default function OneToMany() {
         <Sandpack
             dependencies={{
                 "@refinedev/core": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
             }}
             startRoute="/"
             files={{
@@ -15,8 +13,8 @@ export default function OneToMany() {
                     code: AppTsxCode,
                     hidden: false,
                 },
-                "/post.tsx": {
-                    code: PostTsxCode,
+                "/product.tsx": {
+                    code: ProductTsxCode,
                     hidden: false,
                     active: true,
                 },
@@ -33,16 +31,16 @@ const AppTsxCode = `
 import React from "react";
 import { Refine } from "@refinedev/core";
 
-import { Post } from "./post.tsx";
+import { Product } from "./product.tsx";
 import { dataProvider } from "./data-provider.ts";
 
 
 export default function App() {
     return (
             <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                   dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             >
-                <Post />
+                <Product />
             </Refine>
     );
 }
@@ -90,25 +88,28 @@ export const dataProvider = (url: string): DataProvider => ({
 });
 `.trim();
 
-const PostTsxCode = `
+const ProductTsxCode = `
 import React from "react";
 import { useOne, useMany, BaseKey } from "@refinedev/core";
 
-export const Post: React.FC = () => {
-    const { data: postData, isLoading: postLoading } = useOne<IPost>({
-        resource: "posts",
+export const Product: React.FC = () => {
+    const { data: productData, isLoading: productLoading } = useOne<IProduct>({
+        resource: "products",
         id: 123,
     });
+    const product = productData?.data;
 
-    const { data: tagData, isLoading: tagLoading } = useMany<ITag>({
-        resource: "tags",
-        ids:  postData?.data?.tags || [],
-        queryOptions: {
-            enabled: !!postData?.data?.tags?.length,
-        },
-    });
+    const { data: reviewsData, isLoading: reviewsLoading } =
+        useMany<IProductReview>({
+            resource: "product-reviews",
+            ids: product?.reviews?.map((review) => review.id) || [],
+            queryOptions: {
+                enabled: !!product?.reviews?.length,
+            },
+        });
+    const rewiews = reviewsData?.data;
 
-    const loading = postLoading || tagLoading;
+    const loading = productLoading || reviewsLoading;
 
     if (loading) {
         return <div>Loading...</div>;
@@ -116,12 +117,17 @@ export const Post: React.FC = () => {
 
     return (
         <div>
-            <h4>{postData?.data?.title}</h4>
-            <pre>Content: {postData?.data?.content}</pre>
-            <h4>Tags</h4>
+            <h4>{product?.name}</h4>
+            <p>Material: {product?.material}</p>
+            <p>Price {product?.price}</p>
+
+            <h5>Reviews</h5>
             <ul>
-                {tagData?.data?.map((tag) => (
-                    <li key={tag.id}>{tag.title}</li>
+                {rewiews?.map((review) => (
+                    <li key={review.id}>
+                        <p>Rating: {review.rating}</p>
+                        <p>{review.comment}</p>
+                    </li>
                 ))}
             </ul>
         </div>
@@ -129,15 +135,26 @@ export const Post: React.FC = () => {
 };
 
 
-interface IPost {
+interface IProduct {
     id: BaseKey;
-    title: string;
-    content: string;
-    tags: BaseKey[];
+    name: string;
+    material: string;
+    price: string;
+    description: string;
+    reviews: {
+        id: BaseKey;
+    }[];
+    detail: {
+        id: BaseKey;
+    };
 }
 
-interface ITag {
+interface IProductReview {
     id: BaseKey;
-    title: string;
+    rating: number;
+    comment: string;
+    user: {
+        id: BaseKey;
+    }
 }
 `.trim();
