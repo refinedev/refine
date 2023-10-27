@@ -136,7 +136,7 @@ const Text = () => {
             {/* <RefineLogoShinyCyan className="flex-shrink-0" /> */}
             <div className={clsx("ml-2", "not-prose")}>
                 <span className={clsx("font-semibold")}>
-                    {`We've reached 15K GitHub stars! Thank you 🌟`}
+                    {`🌟 We've reached 15K GitHub stars! Thank you 🌟`}
                 </span>
             </div>
         </button>
