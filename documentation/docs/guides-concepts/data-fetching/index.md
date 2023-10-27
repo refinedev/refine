@@ -66,7 +66,7 @@ Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It 
 
 7. **Realtime Updates**: Allowing your application to reflect changes in data as they occur.
 
-## Meta usage
+## Meta usage <GuideBadge id="guides-concepts/general-concepts#meta" />
 
 [`meta`][meta] is a special property that can be used to pass additional information to data provider method from data hooks. Meta can be used from anywhere accros your application.
 
@@ -77,8 +77,6 @@ Here are some examples of `meta` usage:
 -   Passing additional headers or parameters to the request.
 -   Generate GraphQL queries
 -   Multi-tenancy support (passing the tenant id to the request)
-
-[To learn more about the meta, check out the general concepts documentation.](/docs/api-reference/general-concepts/#meta)
 
 ```tsx
 import { DataProvider, useOne } from "@refinedev/core";
@@ -335,7 +333,7 @@ const { data: categories } = useMany({
 });
 ```
 
-## Authentication
+## Authentication <GuideBadge id="guides-concepts/authentication/" />
 
 **refine** handles [authentication](/docs/guides-concepts/authentication/) by [Auth Provider](/docs/core/providers/auth-provider/). Once implemented, the data provider should be able to handle authentication in the same way as any other API request.
 
@@ -344,8 +342,6 @@ We will access the authentication provider methods with authentication hooks ([u
 Let's imagine we want to fetch a list of animals from a protected API. To do this, we will first obtain our authentication token using `authProvider.login`, and then, we will verify the authorization with the `authProvider.check` method. Based on this authorization check, we will render the appropriate components.
 
 > We kept the example concise by implementing only essential auth provider methods and storing the token in localStorage. Auth provider have flexible structure. You can write cleaner and more secure code by creating your own auth provider using axios interceptors and storing the token in cookies.
-
-[To learn more about the Auth provider, check out the Authentication guide.](/docs/guides-concepts/authentication/)
 
 <Authentication />
 
