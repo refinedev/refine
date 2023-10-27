@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { SVGProps } from "react";
-import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
+// import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
+import { useHistory } from "@docusaurus/router";
 
 export const TopAnnouncement = () => {
     return (
@@ -106,11 +107,14 @@ export const TopAnnouncement = () => {
 };
 
 const Text = () => {
+    const { replace } = useHistory();
     return (
-        <a
-            href="https://s.refine.dev/devtools-beta"
-            target="_blank"
-            rel="noreferrer"
+        <button
+            onClick={() => {
+                replace({
+                    search: "?15k_modal=1",
+                });
+            }}
             className={clsx(
                 "relative lg:absolute",
                 "px-2 lg:px-0",
@@ -129,21 +133,13 @@ const Text = () => {
                 "not-prose",
             )}
         >
-            <RefineLogoShinyCyan className="flex-shrink-0" />
+            {/* <RefineLogoShinyCyan className="flex-shrink-0" /> */}
             <div className={clsx("ml-2", "not-prose")}>
-                Unlock powerful debugging and effortless query monitoring with{" "}
-                <span className={clsx("font-semibold")}>refine Devtools</span>
-                <span
-                    className={clsx(
-                        "text-refine-cyan-alt hover:text-refine-cyan-alt",
-                        "font-semibold",
-                        "ml-2",
-                    )}
-                >
-                    Learn More
+                <span className={clsx("font-semibold")}>
+                    We&apos;ve reached 15K GitHub stars! Thank you ❤️
                 </span>
             </div>
-        </a>
+        </button>
     );
 };
 
