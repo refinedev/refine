@@ -1,13 +1,13 @@
-import React from "react";
-import clsx from "clsx";
+import { useHistory, useLocation } from "@docusaurus/router";
 import { CloseIcon } from "@site/src/refine-theme/icons/close";
-import { useLocation, useHistory } from "@docusaurus/router";
+import clsx from "clsx";
+import React from "react";
 import {
+    LinkedinIcon,
     LinkedinShareButton,
+    RedditIcon,
     RedditShareButton,
     TwitterShareButton,
-    RedditIcon,
-    LinkedinIcon,
 } from "react-share";
 import { Twitter } from "../blog/icons";
 
@@ -178,8 +178,10 @@ export const Video = () => {
                         <TwitterShareButton
                             windowWidth={750}
                             windowHeight={800}
-                            url={window.location.href}
-                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars - `}
+                            url={
+                                "https://youtu.be/w_3c7_szYuU?si=DSDqz3q1VzyrAHKE"
+                            }
+                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars 🌟`}
                             className="flex"
                         >
                             <Twitter
@@ -204,8 +206,10 @@ export const Video = () => {
                             className="flex"
                             windowWidth={750}
                             windowHeight={600}
-                            url={window.location.href}
-                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
+                            url={
+                                "https://youtu.be/w_3c7_szYuU?si=DSDqz3q1VzyrAHKE"
+                            }
+                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars 🌟`}
                         >
                             <div
                                 className={clsx(
@@ -226,11 +230,15 @@ export const Video = () => {
                             </div>
                         </RedditShareButton>
                         <LinkedinShareButton
-                            url={window.location.href}
-                            source={window.location.href}
+                            url={
+                                "https://youtu.be/w_3c7_szYuU?si=DSDqz3q1VzyrAHKE"
+                            }
+                            source={
+                                "https://youtu.be/w_3c7_szYuU?si=DSDqz3q1VzyrAHKE"
+                            }
                             className="flex"
-                            summary={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
-                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars`}
+                            summary={`Take a look at @refine_dev's fun journey to 15K GitHub stars 🌟`}
+                            title={`Take a look at @refine_dev's fun journey to 15K GitHub stars 🌟`}
                         >
                             <div
                                 className={clsx(
