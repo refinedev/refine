@@ -2,8 +2,60 @@ import clsx from "clsx";
 import React, { SVGProps } from "react";
 // import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
 import { useHistory } from "@docusaurus/router";
+import { TR100 } from "./icons/tr-100";
+import { useUserCountry } from "../context/UserCountry";
+
+type AnnouncementType = "refine" | "tr";
 
 export const TopAnnouncement = () => {
+    const { country } = useUserCountry();
+    const announcementType: AnnouncementType =
+        country === "tr" ? "tr" : "refine";
+
+    if (announcementType === "tr") {
+        return (
+            <div
+                className={clsx(
+                    "w-full h-12",
+                    "relative",
+                    "not-prose",
+                    "font-inter",
+                    "bg-[#A81818]",
+                    "bg-top-announcement-bg-tr",
+                    "bg-cover xl:bg-contain",
+                    "bg-center",
+                    "bg-no-repeat",
+                    "flex",
+                    "items-center",
+                    "justify-center",
+                )}
+            >
+                <img
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/ataturk.png"
+                    alt="Atatürk"
+                    className={clsx(
+                        "mix-blend-screen",
+                        "w-[40px] h-[48px]",
+                        "object-cover",
+                        "py-[2px]",
+                    )}
+                />
+                <TR100 />
+                <h2
+                    className={clsx(
+                        "ml-4",
+                        "text-white",
+                        "font-inter",
+                        "text-base",
+                    )}
+                >
+                    Cumhuriyet <span className={clsx("font-bold")}>100</span>{" "}
+                    yaşında!
+                </h2>
+            </div>
+        );
+    }
+
     return (
         <div
             className={clsx(
