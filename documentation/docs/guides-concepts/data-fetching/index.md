@@ -6,6 +6,7 @@ import UseOne from "./use-one";
 import UseUpdate from "./use-update";
 import UseList from "./use-list";
 import MultipleDataProvider from "./multiple-data-provider";
+import Authentication from "./authentication";
 import OneToOne from "./one-to-one";
 import OneToMany from "./one-to-many";
 import ErrorHandling from "./error-handling";
@@ -77,7 +78,7 @@ Here are some examples of `meta` usage:
 -   Generate GraphQL queries
 -   Multi-tenancy support (passing the tenant id to the request)
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+[To learn more about the meta, check out the general concepts documentation.](/docs/api-reference/general-concepts/#meta)
 
 ```tsx
 import { DataProvider, useOne } from "@refinedev/core";
@@ -355,29 +356,15 @@ const { data: categories } = useMany({
 
 **refine** handles [authentication](/docs/guides-concepts/authentication/) by [Auth Provider](/docs/core/providers/auth-provider/). Once implemented, the data provider should be able to handle authentication in the same way as any other API request.
 
-For instance, imagine we stored the `accessToken` in the `localStorage` and we want to use it in the data provider.
+We will access the authentication provider methods with authentication hooks ([useLogin][use-login], [useRegister][use-register] etc.) just like in the data provider.
 
-```tsx
-import { DataProvider } from "@refinedev/core";
+Let's imagine we want to fetch a list of animals from a protected API. To do this, we will first obtain our authentication token using `authProvider.login`, and then, we will verify the authorization with the `authProvider.check` method. Based on this authorization check, we will render the appropriate components.
 
-export const dataProvider = (apiUrl: string): DataProvider => ({
-    getOne: async ({ resource, id, meta }) => {
-        const accessToken = localStorage.getItem("accessToken");
+> We kept the example concise by implementing only essential auth provider methods and storing the token in localStorage. Auth provider have flexible structure. You can write cleaner and more secure code by creating your own auth provider using axios interceptors and storing the token in cookies.
 
-        const response = await fetch(`${apiUrl}/${resource}/${id}`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
+[To learn more about the Auth provider, check out the Authentication guide.](/docs/guides-concepts/authentication/)
 
-        const data = await response.json();
-
-        return {
-            data,
-        };
-    },
-});
-```
+<Authentication />
 
 ## TanStack Query `QueryClient`
 
@@ -417,3 +404,5 @@ To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/refer
 [http-error]: /docs/api-reference/core/interfaceReferences/#httperror
 [meta-data]: /docs/api-reference/core/interfaceReferences/#metadataquery
 [meta]: /docs/api-reference/core/interfaceReferences/#metadataquery
+[use-login]: /docs/api-reference/core/hooks/authentication/useLogin/
+[use-register]: /docs/api-reference/core/hooks/authentication/useRegister/
