@@ -28,17 +28,13 @@ Moreover, **refine** offers support for multiple data providers, allowing you to
 
 ## Fetching Data
 
-Let's imagine we need to fetch a record from the `products` resource using the `useOne` data hook in **refine**, it internally utilizes the `dataProvider.getOne` method from your data provider.
-
-Imagine we want to fetch a record with the ID 123 from the "products" endpoint. For this, we will use the `useOne` hook. Under the hood, it calls the `dataProvider.getOne` method from your data provider.
+Imagine we want to fetch a record with the ID `123` from the `products` endpoint. For this, we will use the `useOne` hook. Under the hood, it calls the `dataProvider.getOne` method from your data provider.
 
 <UseOne />
 
 ## Updating Data
 
-In the example above we saw how to fetch a record from the `products` resource. To update the record, we can use the `useUpdate` data hook. It internally utilizes the `dataProvider.update` method from your data provider.
-
-Also, `useUpdate` automatically invalidates the `products` resource after a successful mutation. This means you don't need to refresh the page to see the updated data.
+Now, let's update this record from `products` resource. To do this, we can use `useUpdate` hook which calls `dataProvider.update` method under the hood.
 
 <UseUpdate />
 
@@ -109,7 +105,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## GraphQL
 
-**refine** provides GraphQL support using [gql-query-builder](https://github.com/atulmy/gql-query-builder). `meta` interface is extended from `gql-query-builder` to create GraphQL queries using this package.
+**refine** supports GraphQL by utilizing the [`meta`][meta]. Which is extened from [gql-query-builder](https://github.com/atulmy/gql-query-builder) interface.
+
+You can use `meta.fields`, `meta.variables`, and `meta.operation` to create GraphQL queries using the `gql-query-builder`.
 
 ```tsx
 import { DataProvider, useOne } from "@refinedev/core";
@@ -177,19 +175,17 @@ When implemented correctly, **refine** offers several advantages in error handli
 
 ## Listing Data
 
-For example, let's say we need to fetch all the records from the products resource. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list]. It calls `dataProvider.getList` method from your data provider.
+Imagine we need to fetch all the records from the `products` endpoint. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list]. It calls `dataProvider.getList` method from your data provider.
 
-Also, `useList` and `useInfiniteList` takes `sorters`, `pagination` and `filters` parameters to customize the request.
+## Filters, Sorters and Pagination
+
+Let's say we want to fetch five `products` with wooden material, and the prices should be in ascending order. To do this, we can use the `useList` hook with the [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination] parameters.
+
+`useList` calls the `dataProvider.getList` method under the hood with the given parameters. We will use this parameters to create a query string and send it to the API.
 
 <UseList />
 
-## Filters and Sorters
-
-Imagine you're shopping online for items. You're in a section with hundreds of options. Filters act as your shopping criteria, allowing you to choose size, color or price range so you can find products that match your preferences.
-
-In **refine**, with [filters](/docs/api-reference/core/interfaceReferences/#crudfilters) and [sorters](/docs/api-reference/core/interfaceReferences/#crudfilters) interface you can specify and arrange what data you want.
-
-For instance, let's say we want to fetch all the products that are in the "t-shirt" category with "red" or "yellow" color and sort them by "price" in ascending order.
+[`filters`][crud-filters], [`sorters`][crud-sorting] interface also supports complex queries. For instance, We can fetch products that have a wooden material, belong to category ID 45, and have a price between 1000 and 2000.
 
 ```tsx
 import { DataProvider, useList } from "@refinedev/core";
@@ -200,34 +196,22 @@ useList({
         current: 1,
         pageSize: 10,
     },
-    sorters: [{ field: "price", order: "asc" }],
     filters: [
-        { field: "category", operator: "eq", value: "t-shirt" },
+        {
+            operator: "and",
+            value: [
+                { field: "material", operator: "eq", value: "wooden" },
+                { field: "cateogry.id", operator: "eq", value: 45 },
+            ],
+        },
         {
             operator: "or",
             value: [
-                { field: "color", operator: "eq", value: "red" },
-                { field: "color", operator: "eq", value: "yellow" },
+                { field: "price", operator: "gte", value: 1000 },
+                { field: "price", operator: "lte", value: 2000 },
             ],
         },
     ],
-});
-
-export const dataProvider = (apiUrl: string): DataProvider => ({
-    getList: async ({ resource, pagination, sorters, filters, meta }) => {
-        const { current, pageSize, mode } = pagination;
-        const { field, order } = sorters;
-        const { field, operator, value } = filters;
-        const { headers } = meta;
-
-        // handle the request according to your API requirements.
-
-        return {
-            data,
-            total,
-        };
-    },
-    ...
 });
 ```
 
@@ -335,13 +319,11 @@ const { data: categories } = useMany({
 
 ## Authentication <GuideBadge id="guides-concepts/authentication/" />
 
-**refine** handles [authentication](/docs/guides-concepts/authentication/) by [Auth Provider](/docs/core/providers/auth-provider/). Once implemented, the data provider should be able to handle authentication in the same way as any other API request.
+Imagine you want to fetch a data from a protected API. To do this, you will first need to obtain your authentication token and you will need to send this token with every request.
 
-We will access the authentication provider methods with authentication hooks ([useLogin][use-login], [useRegister][use-register] etc.) just like in the data provider.
+In **refine** we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/core/providers/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/api-reference/core/components/auth/authenticated/) component to to render the appropriate components.
 
-Let's imagine we want to fetch a list of animals from a protected API. To do this, we will first obtain our authentication token using `authProvider.login`, and then, we will verify the authorization with the `authProvider.check` method. Based on this authorization check, we will render the appropriate components.
-
-> We kept the example concise by implementing only essential auth provider methods and storing the token in localStorage. Auth provider have flexible structure. You can write cleaner and more secure code by creating your own auth provider using axios interceptors and storing the token in cookies.
+After obtaining the token, we'll use Axios interceptors to include the token in the headers of all requests.
 
 <Authentication />
 

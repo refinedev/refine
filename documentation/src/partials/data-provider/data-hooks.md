@@ -1,9 +1,9 @@
 | Hook                                                            | Method                      | Description                 |
 | --------------------------------------------------------------- | --------------------------- | --------------------------- |
 | [`useOne`][use-one]                                             | [`getOne`](#getone-)        | get a single record.        |
-| [`useCreate`][use-create]                                       | [`create`](#create-)        | create a new record.        |
 | [`useUpdate`][use-update]                                       | [`update`](#update-)        | update an existing record.  |
-| [`useDeleteOne`][use-delete]                                    | [`deleteOne`](#deleteone-)  | delete a single record.     |
+| [`useCreate`][use-create]                                       | [`create`](#create-)        | create a new record.        |
+| [`useDelete`][use-delete]                                       | [`deleteOne`](#deleteone-)  | delete a single record.     |
 | [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] | [`getList`](#getlist-)      | get a list of records.      |
 | [`useApiUrl`][use-api-url]                                      | [`getApiUrl`](#getapiurl-)  | get the API URL.            |
 | [`useCustom`][use-custom]                                       | [`custom`](#custom)         | making custom API requests. |

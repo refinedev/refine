@@ -6,6 +6,7 @@ export default function Authentication() {
         <Sandpack
             dependencies={{
                 "@refinedev/core": "latest",
+                axios: "^0.26.1",
             }}
             startRoute="/"
             files={{
@@ -61,15 +62,13 @@ import { AuthBindings } from "@refinedev/core";
 
 export const authProvider = (url: string): AuthBindings => ({
     login: async ({ email, password }) => {
-        const response = await fetch(\`\${url}\/login\`, {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-        });
-        const data = await response.json();
+        // To keep the example short and simple, 
+        // we didn't send a request, and we save the token in localStorage.
+        localStorage.setItem("token", JSON.stringify({ email, password }));
 
-        localStorage.setItem("token", data.token);
-
-        return data;
+        return {
+            success: true,
+        };
     },
 
     check: async () => {
@@ -96,22 +95,28 @@ export const authProvider = (url: string): AuthBindings => ({
 const DataProviderCode = `
 import React from "react";
 import { DataProvider } from "@refinedev/core";
+import axios from "axios";
 
-const fetchWrapper = (url: string, options?: RequestInit) => {
-    const token = localStorage.getItem("token");
-    return fetch(url, {
-        ...options,
-        headers: {
-            ...options?.headers,
-            Authorization: \`Bearer \${token}\`,
-        },
-    });
-};
+const axiosInstance = axios.create();
+
+// add token to every request
+axiosInstance.interceptors.request.use(
+    async (config) => {
+        const token = localStorage.getItem("token");
+        if (token && config?.headers) {
+            config.headers.Authorization = \`Bearer \${token}\`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    },
+);
 
 export const dataProvider = (url: string): DataProvider => ({
     getList: async ({ resource }) => {
-        const response = await fetchWrapper(\`\${url}\/\${resource}\`);
-        const data = await response.json();
+        const response = await axiosInstance.get(\`\${url}/$\{resource}\`);
+        const data = response.data;
 
         return {
             data,
@@ -120,10 +125,6 @@ export const dataProvider = (url: string): DataProvider => ({
     },
 
     getOne: async () => {
-        throw new Error("Not implemented");
-    },
-
-    getMany: async () => {
         throw new Error("Not implemented");
     },
 
@@ -139,14 +140,15 @@ export const dataProvider = (url: string): DataProvider => ({
 
     getApiUrl: () => url,
 });
+
 `.trim();
 
 const HomePageTsxCode = `
 import React from "react";
 import {
     BaseKey,
+    Authenticated,
     useList,
-    useIsAuthenticated,
     useLogin,
     useLogout,
 } from "@refinedev/core";
@@ -158,45 +160,43 @@ export const HomePage = () => {
         });
     const animals = animalsData?.data;
 
-    const { data: authenticatedData, isLoading: isLoadingAuthentication } =
-        useIsAuthenticated();
-    const isAuthenticated = authenticatedData?.authenticated;
-
     const { mutate: login, isLoading: isLoadingLogin } = useLogin();
     const { mutate: logout } = useLogout();
 
-    if (isLoadingAuthentication || isLoadingAnimals) {
-        return <div>Loading...</div>;
-    }
-
-    if (!isAuthenticated) {
-        return (
-            <div>
-                <h4>You are not authenticated</h4>
-                <button
-                    disabled={isLoadingLogin}
-                    onClick={() =>
-                        login({ email: "refine@demo.com", password: "refine" })
-                    }
-                >
-                    Login
-                </button>
-            </div>
-        );
-    }
+    const loading = isLoadingAnimals || isLoadingLogin;
 
     return (
-        <div>
-            <button onClick={() => logout()}>Logout</button>
-            <h4>Animals</h4>
-            <ul>
-                {animals?.map((animal) => (
-                    <li key={animal.id}>
-                        <p>Name: {animal.name}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Authenticated
+            loading={loading}
+            fallback={
+                <div>
+                    <h4>You are not authenticated</h4>
+                    <button
+                        disabled={isLoadingLogin}
+                        onClick={() =>
+                            login({
+                                email: "refine@demo.com",
+                                password: "refine",
+                            })
+                        }
+                    >
+                        Login
+                    </button>
+                </div>
+            }
+        >
+            <div>
+                <button onClick={() => logout()}>Logout</button>
+                <h4>Animals</h4>
+                <ul>
+                    {animals?.map((animal) => (
+                        <li key={animal.id}>
+                            <p>Name: {animal.name}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </Authenticated>
     );
 };
 

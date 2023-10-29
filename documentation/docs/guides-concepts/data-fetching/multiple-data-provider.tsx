@@ -34,7 +34,7 @@ import { Refine } from "@refinedev/core";
 import { HomePage } from "./home-page.tsx";
 import { dataProvider } from "./data-provider.ts";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+const API_URL = "http://localhost:3001";
 const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 
 

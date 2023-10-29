@@ -38,7 +38,7 @@ import { dataProvider } from "./data-provider.ts";
 export default function App() {
     return (
             <Refine
-                   dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                   dataProvider={dataProvider("http://localhost:3001")}
             >
                 <Product />
             </Refine>
