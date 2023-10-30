@@ -57,7 +57,7 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 ## Installation & Usage
 
 ```
-npm install @refinedev/mantine @refinedev/react-table @mantine/core @mantine/hooks @mantine/form @mantine/notifications @emotion/react @tabler/icons
+npm install @refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react @tabler/icons
 ```
 
 
