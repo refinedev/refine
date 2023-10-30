@@ -34,11 +34,11 @@ Imagine we want to fetch a record with the ID `123` from the `products` endpoint
 
 ## Updating Data
 
-Now, let's update this record from `products` resource. To do this, we can use `useUpdate` hook which calls `dataProvider.update` method under the hood.
+Now, let's update record from `products` resource. To do this, we can use `useUpdate` hook which calls `dataProvider.update` method under the hood.
 
 <UseUpdate />
 
-**refine** offers various data hooks for CRUD operations.
+**refine** offers various data hooks for CRUD operations:
 
 <DataHooks />
 
@@ -230,7 +230,7 @@ For instance, a product can have only one product detail.
 ┌──────────────┐       ┌────────────────┐
 │ Products     │       │ ProductDetail  │
 │--------------│       │----------------│
-│ id           │──────╾│ id             │
+│ id           │───────│ id             │
 │ name         │       │ weight         │
 │ price        │       │ dimensions     │
 │ description  │       │ productId      │
@@ -256,11 +256,11 @@ For instance, a products can have many reviews.
 ┌──────────────┐       ┌────────────────┐
 │ Products     │       │ Reviews        │
 │--------------│       │----------------│
-│ id           │╾──┐   │ id             │
+│ id           │───┐   │ id             │
 │ name         │   │   │ rating         │
 │ price        │   │   │ comment        │
 │ description  │   │   │ user           │
-│ detail       │   └──╾│ product        │
+│ detail       │   └───│ product        │
 │              │       │                │
 └──────────────┘       └────────────────┘
 ```
@@ -281,9 +281,9 @@ For instance, products can have many categories, and categories can have many pr
 ┌──────────────┐       ┌───────────────────┐       ┌──────────────┐
 │ Products     │       │ ProductCategories │       │ Categories   │
 │--------------│       │----------------───│       │--------------│
-│ id           │╾──┐   │ id                │   ┌──╾│ id           │
-│ name         │   └──╾│ productId         │   │   │ name         │
-│ price        │       │ categoryId        │╾──┘   │ description  │
+│ id           │───┐   │ id                │   ┌───│ id           │
+│ name         │   └───│ productId         │   │   │ name         │
+│ price        │       │ categoryId        │───┘   │ description  │
 │ description  │       │                   │       │              │
 │ detail       │       │                   │       │              │
 │              │       │                   │       │              │

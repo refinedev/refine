@@ -97,7 +97,7 @@ import { useOne, BaseKey, useUpdate } from "@refinedev/core";
 export const Product: React.FC = () => {
     const { data, error, isError, isLoading, isFetching } = useOne<IProduct>({
         resource: "products",
-        id: 10,
+        id: 124,
     });
 
     const { mutate, isLoading: isUpdating } = useUpdate();
@@ -116,7 +116,7 @@ export const Product: React.FC = () => {
     const incrementPrice = async () => {
         await mutate({
             resource: "products",
-            id: 10,
+            id: 124,
             values: {
                 price: Math.random() * 100,
             },
