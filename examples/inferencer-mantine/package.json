@@ -12,7 +12,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@refinedev/simple-rest": "^4.5.4",
-    "@refinedev/mantine": "^2.28.17",
+    "@refinedev/mantine": "^2.28.18",
     "@refinedev/react-table": "^5.6.4",
     "@tabler/icons": "^1.119.0",
     "@emotion/react": "^11.8.2",

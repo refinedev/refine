@@ -1,5 +1,11 @@
 # @refinedev/mantine
 
+## 2.28.18
+
+### Patch Changes
+
+-   [#5188](https://github.com/refinedev/refine/pull/5188) [`fc276fe53db`](https://github.com/refinedev/refine/commit/fc276fe53dbd048915bfa9fccea836359b1e5b70) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update README installation command
+
 ## 2.28.17
 
 ### Patch Changes
