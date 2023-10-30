@@ -50,11 +50,13 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                 "!my-0",
                 "list-none",
                 "m-0 mb-0 mt-0",
-                "px-4",
-                "flex items-end gap-4",
+                "px-2",
+                "py-[7px]",
+                "flex gap-2",
                 "border-b border-b-gray-200 dark:border-b-gray-700",
                 "bg-gray-50 dark:bg-gray-800",
-                "rounded-tl-lg rounded-tr-lg",
+                "rounded-tl-md rounded-tr-md",
+                "items-stretch",
             )}
         >
             {tabValues.map(({ value, label, attributes }) => (
@@ -69,28 +71,28 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                     {...attributes}
                     className={clsx(
                         "!my-0",
-                        "m-0 mt-0",
-                        "px-2 py-3",
+                        "mx-0 mt-0",
+                        "px-2 py-1",
                         "flex items-center justify-center",
-                        "border-b border-b-transparent",
-                        "-mb-px",
-                        "2xl:text-leading-7 text-xs md:text-base 2xl:text-base",
+                        "leading-5",
+                        "text-[13px]",
                         "min-w-[60px]",
                         "cursor-pointer",
                         "transition-all duration-200 ease-in-out",
+                        "rounded",
+                        "border border-solid",
+                        "select-none",
+                        selectedValue !== value && "border-transparent",
+                        selectedValue === value &&
+                            "border-gray-300 dark:border-gray-700",
+                        selectedValue === value && "bg-gray-0 dark:bg-gray-900",
+                        selectedValue === value &&
+                            "text-gray-900 dark:text-gray-0",
                         selectedValue !== value &&
-                            "text-gray-500 dark:text-gray-500",
-                        selectedValue === value && "border-b-refine-blue",
-                        selectedValue === value &&
-                            "dark:text-gray-0 text-gray-900",
-                        selectedValue === value &&
-                            "bg-selected-tab-light dark:bg-selected-tab-dark",
-                        "bg-no-repeat",
+                            "hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-900 dark:hover:text-gray-0",
+                        selectedValue !== value &&
+                            "text-gray-500 dark:text-gray-400",
                     )}
-                    style={{
-                        backgroundPosition:
-                            selectedValue === value ? "center" : "center 30px",
-                    }}
                 >
                     {label ?? value}
                 </li>
@@ -111,7 +113,9 @@ function TabContent({ lazy, children, selectedValue }) {
             // fail-safe or fail-fast? not sure what's best here
             return null;
         }
-        return cloneElement(selectedTabItem, { className: "margin-top--md" });
+        return cloneElement(selectedTabItem, {
+            className: "margin-top--md refine-tab-content",
+        });
     }
     return (
         <div className="p-4">
@@ -119,6 +123,10 @@ function TabContent({ lazy, children, selectedValue }) {
                 cloneElement(tabItem, {
                     key: i,
                     hidden: tabItem.props.value !== selectedValue,
+                    className: clsx(
+                        tabItem.props.className ?? [],
+                        "refine-tab-content",
+                    ),
                 }),
             )}
         </div>
@@ -132,7 +140,7 @@ function TabsComponent(props) {
         <div
             className={clsx(
                 "tabs-container",
-                "rounded-lg",
+                "rounded-md",
                 "border",
                 "border-gray-200 dark:border-gray-700",
                 "mb-6",
