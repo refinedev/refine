@@ -92,4 +92,5 @@ title: List of Packages
 - [`refine-sanity`](https://github.com/hirenf14/refine-sanity) - Connector for [Sanity](https://www.sanity.io/) backends
 - [`refine-sqlite`](https://github.com/mateusabelli/refine-sqlite) - Connector for [SQLite](https://www.sqlite.org/index.html) backends
 - [`refine-jsonapi`](https://github.com/MahirMahdi/refine-jsonapi) - Connector for [JSON:API](https://jsonapi.org/) backends
+- [`@refine-auth/kinde-react`](https://github.com/hirenf14/refine-auth-kinde-react) - Support for [Kinde](https://kinde.com) authentication.
 
