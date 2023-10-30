@@ -1,41 +1,90 @@
 <div align="center" style="margin: 30px;">
-<a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
-</picture>
-
-<br />
-<br />
-</a>
-
-<br />
-<br />
-
-<div align="center">
-    <a href="https://refine.dev">Home Page</a> |
-    <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
-    <a href="https://refine.dev/docs/">Documentation</a>
-</div>
-</div>
-
-<br />
-
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
-
-<br />
-<br />
-
-[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
-[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
-
-<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 </div>
+
+
+
+
+## A minimal refine app witH Sanity 
+
+
+This example shows how to integrate your [Sanity](https://www.sanity.io/) CMS with **refine** app using the [Sanity Data Provider](https://github.com/hirenf14/refine-sanity). 
+
+You can use this template to create your own **refine** app with Sanity CMS.
+
+
+## About 
+
+[Sanity](https://www.sanity.io/)  is the modern headless CMS that uses structured content to endlessly re-use content across any channel. It lets you use your content many times across different places. Plus, it easily connects with any third-party technology, data source, and front end framework.
+
+
+[refine](https://refine.dev/) is a React meta-framework for building enterprise B2B app like such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts.
+
+In this template, we build a simple app that consumes Sanity backend and performs CRUD operations.
+
+
+![List Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/list.png "Cover Image")
+
+
+![Edit Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/edit.png "Cover Image")
+
+
+![Show Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/show.png "Cover Image")
+
+
+## Fetching Sanity Data
+
+To fetch data from Sanity, we registered the Sanity data provider in the `dataProvider` of the `App.tsx` file.
+
+A data provider serves as a foundational data layer for your application, handling HTTP requests and encapsulating the data retrieval process. refine leverages data hooks to seamlessly utilize the methods provided by these requests. This ensures efficient data management within your app.
+
+Refer to docs for more information on [data providers](https://refine.dev/docs/tutorial/understanding-dataprovider/index/#what-is-data-provider).
+
+### Install refine-sanity data provider package
+
+```bash
+npm install @sanity/client refine-sanity
+```
+
+
+### Register Sanity dashboard in refine app
+
+```tsx
+import dataProvider from "refine-sanity";
+import { createClient } from "@sanity/client";
+
+const client = createClient({
+    token: "EDITOR_SANITY_ACCESS_TOKEN",
+    projectId: "SANITY_PROJECT_ID",
+    dataset: "SANITY_DATASET"
+});
+
+const App = () => {
+  return (
+    <Refine
+      dataProvider={dataProvider(client)}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
+};
+```
+
+After this step, we can use refine data hooks to [interacting with data](https://refine.dev/docs/tutorial/understanding-dataprovider/index/#how-are-data-provider-methods-used-in-the-app) from Sanity.
+
+```tsx
+import { useTable } from "@refinedev/antd";
+
+const { tableProps, filters, sorters } = useTable<IPost>({
+      ...
+});
+```
+
 
 ## Try it out on your local
+
+Simply run the following command to create your app with this example:
 
 ```bash
 npm create refine-app@latest -- --example data-provider-sanity
