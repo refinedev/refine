@@ -10,15 +10,15 @@ const data = [
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
-            href: "https://github.com/refinedev/refine?ref=banner-twitter",
+            href: "https://s.refine.dev/blog-twitter",
         },
         button: {
             text: "Learn more",
-            href: "https://github.com/refinedev/refine?ref=banner-twitter",
+            href: "https://s.refine.dev/blog-twitter",
         },
         bannerName: "banner-twitter",
     },
-    {
+    /*    {
         title: "Save developer hours!",
         description:
             "An open-source, industry-standard codebase designed for building enterprise-grade internal tools, admin panels, and CRUD apps.",
@@ -46,7 +46,7 @@ const data = [
             href: "https://github.com/refinedev/refine?ref=banner-oss-insight",
         },
         bannerName: "banner-oss-insight",
-    },
+    }, */
 ];
 
 // +1 for BannerExamples
