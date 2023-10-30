@@ -15,7 +15,7 @@ export const team = [
         name: "Eren Erkalkan",
         avatar: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/eren.png",
         role1: "Co-Founder",
-        role2: "Head of Product",
+        role2: "CPO",
     },
     {
         name: "Batuhan Özgür Özdemir",
