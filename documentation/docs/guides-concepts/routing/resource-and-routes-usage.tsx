@@ -4,7 +4,7 @@ import React from "react";
 export default function ResourcesAndRoutesUsage() {
     return (
         <Sandpack
-            // showNavigator
+            showNavigator
             dependencies={{
                 "@refinedev/core": "latest",
                 "@refinedev/simple-rest": "latest",
@@ -141,20 +141,26 @@ interface IProduct {
 `.trim();
 
 const ShowTsxCode = `
-import { useShow, BaseKey } from "@refinedev/core";
+import { useShow, BaseKey, useNavigation } from "@refinedev/core";
 
 export const Show: React.FC = () => {
     // We're inferring the resource and the id from the route params
     const { queryResult: { data, isLoading, isError } } = useShow<IProduct>();
 
+    // \`useNavigation\` is a hook that provides navigation methods, you can find more information about it in the documentation
+    const { list } = useNavigation();
+
     if (isLoading) return <div>Loading...</div>;
 
     return (
-        <div>
-            <h1>{data?.data?.name}</h1>
-            <p>Material: {data?.data?.material}</p>
-            <small>ID: {data?.data?.id}</small>
-        </div>
+        <>
+            <div>
+                <h1>{data?.data?.name}</h1>
+                <p>Material: {data?.data?.material}</p>
+                <small>ID: {data?.data?.id}</small>
+            </div>
+            <button onClick={() => list("products")}>Go to Products list</button>
+        </>
     );
 };
 
