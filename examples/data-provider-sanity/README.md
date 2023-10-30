@@ -3,9 +3,10 @@
 </div>
 
 
+![Edit Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/cover.png "Cover Image")
 
 
-## A minimal refine app witH Sanity 
+## A minimal refine app with Sanity 
 
 
 This example shows how to integrate your [Sanity](https://www.sanity.io/) CMS with **refine** app using the [Sanity Data Provider](https://github.com/hirenf14/refine-sanity). 
@@ -20,16 +21,13 @@ You can use this template to create your own **refine** app with Sanity CMS.
 
 [refine](https://refine.dev/) is a React meta-framework for building enterprise B2B app like such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts.
 
-In this template, we build a simple app that consumes Sanity backend and performs CRUD operations.
+In this example, we build a simple app that consumes Sanity backend and performs CRUD operations.
 
+<br/>
+<br/>
 
 ![List Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/list.png "Cover Image")
 
-
-![Edit Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/edit.png "Cover Image")
-
-
-![Show Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/show.png "Cover Image")
 
 
 ## Fetching Sanity Data
@@ -40,14 +38,14 @@ A data provider serves as a foundational data layer for your application, handli
 
 Refer to docs for more information on [data providers](https://refine.dev/docs/tutorial/understanding-dataprovider/index/#what-is-data-provider).
 
-### Install refine-sanity data provider package
+### Install refine-sanity data provider package
 
 ```bash
 npm install @sanity/client refine-sanity
 ```
 
 
-### Register Sanity dashboard in refine app
+### Register Sanity dashboard in refine app
 
 ```tsx
 import dataProvider from "refine-sanity";
@@ -84,7 +82,7 @@ const { tableProps, filters, sorters } = useTable<IPost>({
 
 ## Try it out on your local
 
-Simply run the following command to create your app with this example:
+Run the following command to get this example app.
 
 ```bash
 npm create refine-app@latest -- --example data-provider-sanity
