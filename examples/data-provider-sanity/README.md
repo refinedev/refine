@@ -17,7 +17,7 @@
 
 <br/>
 
-This example shows how to integrate your [Sanity](https://www.sanity.io/) CMS with **refine** app using the [Sanity Data Provider](https://github.com/hirenf14/refine-sanity). 
+This example shows how to integrate your [Sanity](https://www.sanity.io/) CMS with [refine](https://github.com/refinedev/refine) app using the [Sanity Data Provider](https://github.com/hirenf14/refine-sanity). 
 
 You can use this template to create your own **refine** app with Sanity CMS.
 
