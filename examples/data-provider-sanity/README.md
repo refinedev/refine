@@ -1,14 +1,18 @@
 <div align="center" style="margin: 30px;">
 
-</div>
+
 
 
 
 
 # A Minimal CRUD app with refine and Sanity 
 
+<br/>
+
 
 ![Edit Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/cover.png "Cover Image")
+
+</div>
 
 
 <br/>
@@ -16,6 +20,7 @@
 This example shows how to integrate your [Sanity](https://www.sanity.io/) CMS with **refine** app using the [Sanity Data Provider](https://github.com/hirenf14/refine-sanity). 
 
 You can use this template to create your own **refine** app with Sanity CMS.
+
 
 
 ## About 
