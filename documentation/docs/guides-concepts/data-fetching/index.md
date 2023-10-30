@@ -334,6 +334,10 @@ To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/refer
 
 ## `dataProvider` interface
 
+To better understand the data provider interface, we have created an example that demonstrates how the required methods are implemented. For more comprehensive and diverse examples, you can refer to the [supported data providers](#supported-data-providers) section.
+
+> In this example, we implemented data provider to support [JSON placeholder API](https://jsonplaceholder.typicode.com/).
+
 <DataProviderInterface />
 
 [To learn more about the `dataProvider` interface, check out the reference page.](/docs/api-reference/core/providers/data-provider/)
