@@ -32,6 +32,7 @@ import {
     Strapi,
     Supabase,
     UseGenerated,
+    Kinde,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -368,6 +369,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "umutzd",
                     url: "https://github.com/umutzd",
+                },
+            ],
+        },
+        {
+            name: "Kinde Auth Provider",
+            icon: Kinde,
+            description:
+                "Auth provider for refine to integrate <strong>Kinde</strong> authentication",
+            url: "https://github.com/hirenf14/refine-auth-kinde-react",
+            status: "stable",
+            contributors: [
+                {
+                    name: "hirenf14",
+                    url: "https://github.com/hirenf14/refine-auth-kinde-react",
                 },
             ],
         },
