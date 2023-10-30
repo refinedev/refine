@@ -10,11 +10,11 @@ const data = [
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
-            href: "https://s.refine.dev/blog-twitter",
+            href: "https://s.refine.dev/blog-twitter?ref=banner-twitter",
         },
         button: {
             text: "Learn more",
-            href: "https://s.refine.dev/blog-twitter",
+            href: "https://s.refine.dev/blog-twitter?ref=banner-twitter",
         },
         bannerName: "banner-twitter",
     },

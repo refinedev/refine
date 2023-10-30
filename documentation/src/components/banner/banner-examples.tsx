@@ -18,7 +18,7 @@ export const BannerExamples: FC<Props> = ({
     description = "Built with flexibility in mind, for your internal tools, admin panels, dashboards, and B2B apps.",
     button = {
         text: "See real use-case examples",
-        href: "https://s.refine.dev/blog-retool",
+        href: "https://s.refine.dev/blog-retool?ref=banner-retool-alternative",
         onClick: undefined,
     },
 }) => {
