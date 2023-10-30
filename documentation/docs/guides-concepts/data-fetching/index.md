@@ -5,6 +5,7 @@ title: Data Fetching
 import UseOne from "./use-one";
 import UseUpdate from "./use-update";
 import UseList from "./use-list";
+import UseListWithFilters from "./use-list-with-filters";
 import MultipleDataProvider from "./multiple-data-provider";
 import Authentication from "./authentication";
 import OneToOne from "./one-to-one";
@@ -175,15 +176,17 @@ When implemented correctly, **refine** offers several advantages in error handli
 
 ## Listing Data
 
-Imagine we need to fetch all the records from the `products` endpoint. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list]. It calls `dataProvider.getList` method from your data provider.
+Imagine we need to fetch all the records from the `products` endpoint. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] hook. It calls `dataProvider.getList` method from your data provider.
 
-## Filters, Sorters and Pagination
+<UseList />
+
+### Filters, Sorters and Pagination
 
 Let's say we want to fetch five `products` with wooden material, and the prices should be in ascending order. To do this, we can use the `useList` hook with the [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination] parameters.
 
 `useList` calls the `dataProvider.getList` method under the hood with the given parameters. We will use this parameters to create a query string and send it to the API.
 
-<UseList />
+<UseListWithFilters />
 
 [`filters`][crud-filters], [`sorters`][crud-sorting] interface also supports complex queries. For instance, We can fetch products that have a wooden material, belong to category ID 45, and have a price between 1000 and 2000.
 
@@ -191,7 +194,7 @@ Let's say we want to fetch five `products` with wooden material, and the prices 
 import { DataProvider, useList } from "@refinedev/core";
 
 useList({
-    resource: "porducts",
+    resource: "products",
     pagination: {
         current: 1,
         pageSize: 10,
@@ -201,7 +204,7 @@ useList({
             operator: "and",
             value: [
                 { field: "material", operator: "eq", value: "wooden" },
-                { field: "cateogry.id", operator: "eq", value: 45 },
+                { field: "category.id", operator: "eq", value: 45 },
             ],
         },
         {
