@@ -1,4 +1,4 @@
-<div align="center" style="margin: 30px;">
+
 
 
 
@@ -9,6 +9,7 @@
 
 <br/>
 
+<div align="center" style="margin: 30px;">
 
 ![Edit Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/sanity-data-provider/cover.png "Cover Image")
 
