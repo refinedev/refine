@@ -60,18 +60,37 @@ export const dataProvider = (url: string): DataProvider => ({
       };
   },
 
-  getMany: async ({ ids, resource }) => {
-    // converting array to query-string (eg. [1,2,3] => id=1&id=2&id=3)
-    const idQuery = ids.map((id) => \`id=\${id}\`).join("&");
-    const response = await fetch(\`\${url}/\${resource}?\${idQuery}\`);
+  getList: async ({ resource, filters }) => {
+    // We simplified query string generation to keep the example application short and straightforward.
+    // For more detailed and complex implementation examples, you can refer to the source code of the data provider packages.
+    // https://github.com/refinedev/refine/blob/next/packages/simple-rest/src/provider.ts
+
+    // we know that we only have one filter in this example.
+    const filter = filters?.[0];
+
+    const params = [];
+
+    if (filter && "field" in filter) {
+        params.push(\`\${filter.field}=\${filter.value}\`);
+    }
+
+    // combine all params with "&" character to create query string.
+    const query = params.join("&");
+
+    const response = await fetch(\`\${url}/\${resource}?\${query}\`);
     const data = await response.json();
 
     return {
         data,
+        total: data.length,
     };
   },
 
+  
 
+  getMany: async ({ ids, resource }) => {
+    throw new Error("Not implemented");
+  },
   create: async () => {
       throw new Error("Not implemented");
   },
@@ -81,16 +100,13 @@ export const dataProvider = (url: string): DataProvider => ({
   deleteOne: async () => {
       throw new Error("Not implemented");
   },
-  getList: async () => {
-      throw new Error("Not implemented");
-  },
   getApiUrl: () => url,
 });
 `.trim();
 
 const ProductTsxCode = `
 import React from "react";
-import { useOne, useMany, BaseKey } from "@refinedev/core";
+import { useOne, useList, BaseKey } from "@refinedev/core";
 
 export const Product: React.FC = () => {
     const { data: productData, isLoading: productLoading } = useOne<IProduct>({
@@ -100,11 +116,11 @@ export const Product: React.FC = () => {
     const product = productData?.data;
 
     const { data: reviewsData, isLoading: reviewsLoading } =
-        useMany<IProductReview>({
+        useList<IProductReview>({
             resource: "product-reviews",
-            ids: product?.reviews?.map((review) => review.id) || [],
+            filters: [{ field: "product.id", operator: "eq", value: product?.id }],
             queryOptions: {
-                enabled: !!product?.reviews?.length,
+                enabled: !!product,
             },
         });
     const rewiews = reviewsData?.data;
@@ -141,18 +157,15 @@ interface IProduct {
     material: string;
     price: string;
     description: string;
-    reviews: {
-        id: BaseKey;
-    }[];
-    detail: {
-        id: BaseKey;
-    };
 }
 
 interface IProductReview {
     id: BaseKey;
     rating: number;
     comment: string;
+    product: {
+        id: BaseKey;
+    }
     user: {
         id: BaseKey;
     }

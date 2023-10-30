@@ -12,7 +12,7 @@ import OneToMany from "./one-to-many";
 import ErrorHandling from "./error-handling";
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
 import DataHooks from "@site/src/partials/data-provider/data-hooks.md";
-import DataProviderInterface from "@site/src/partials/data-provider/data-provider-interface.md";
+import DataProviderInterface from "./data-provider-interface.md";
 
 Data provider acts as a data layer for your app, making requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks (`useOne`, `useUpdate`, `useList` etc.) which are used for actions like creating, reading, updating, and deleting a record.
 
@@ -230,12 +230,12 @@ For instance, a product can have only one product detail.
 ┌──────────────┐       ┌────────────────┐
 │ Products     │       │ ProductDetail  │
 │--------------│       │----------------│
-│ id           │   ┌──╾│ id             │
-│ name         │   │   │ weight         │
-│ price        │   │   │ dimensions     │
-│ description  │   │   │                │
-│ detail       │╾──┘   │                │
-│ reviews      │       │                │
+│ id           │──────╾│ id             │
+│ name         │       │ weight         │
+│ price        │       │ dimensions     │
+│ description  │       │ productId      │
+│ detail       │       │                │
+│              │       │                │
 └──────────────┘       └────────────────┘
 ```
 <!-- prettier-ignore-end -->
@@ -251,21 +251,22 @@ In a one-to-many relationship, each resource matches with many other resource. I
 For instance, a products can have many reviews.
 
 <!-- prettier-ignore-start -->
+
 ```md
 ┌──────────────┐       ┌────────────────┐
 │ Products     │       │ Reviews        │
 │--------------│       │----------------│
-│ id           │   ┌──╾│ id             │
+│ id           │╾──┐   │ id             │
 │ name         │   │   │ rating         │
 │ price        │   │   │ comment        │
 │ description  │   │   │ user           │
-│ detail       │   │   │                │
-│ reviews      │╾──┘   │                │
+│ detail       │   └──╾│ product        │
+│              │       │                │
 └──────────────┘       └────────────────┘
 ```
 <!-- prettier-ignore-end -->
 
-We can use the `useMany` hook to fetch the categories of a products.
+We can use the `useList` hook and filter by the product ID to fetch the reviews of a product.
 
 <OneToMany />
 
@@ -285,7 +286,7 @@ For instance, products can have many categories, and categories can have many pr
 │ price        │       │ categoryId        │╾──┘   │ description  │
 │ description  │       │                   │       │              │
 │ detail       │       │                   │       │              │
-│ reviews      │       │                   │       │              │
+│              │       │                   │       │              │
 └──────────────┘       └───────────────────┘       └──────────────┘
 
 ```

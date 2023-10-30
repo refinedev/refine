@@ -89,9 +89,9 @@ export const Product: React.FC = () => {
 
     const { data: productDetailData, isLoading: productDetailLoading }  = useOne<IProductDetail>({
         resource: "product-detail",
-        id: product?.detail?.id,
+        id: product?.id,
         queryOptions: {
-            enabled: !!product?.detail?.id,
+            enabled: !!product,
         },
     });
     const productDetail = productDetailData?.data;
@@ -120,12 +120,6 @@ interface IProduct {
     material: string;
     price: string;
     description: string;
-    reviews: {
-        id: BaseKey;
-    }[];
-    detail: {
-        id: BaseKey;
-    };
 }
 
 interface IProductDetail {

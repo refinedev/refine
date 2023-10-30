@@ -77,7 +77,7 @@ export const dataProvider = (url: string): DataProvider => ({
         params.push(\`_end=\${current * pageSize}\`);
 
         // combine all params with "&" character to create query string.
-        const query = params.join("&");
+        const query = params.join("&"); 
 
         const response = await fetch(\`\${url}/\${resource}?\${query}\`);
         const data = await response.json();

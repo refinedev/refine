@@ -86,7 +86,7 @@ const HomePageTsxCode = `
 import { useOne } from "@refinedev/core";
 
 export const HomePage = () => {
-    const { data: product, isLoading: isLoadingProduct } = useOne<IProducts>({
+    const { data: product, isLoading: isLoadingProduct } = useOne<IProduct>({
         resource: "products",
         id: 123,
         dataProviderName: "default",
@@ -118,7 +118,7 @@ export const HomePage = () => {
     );
 };
 
-interface IProducts {
+interface IProduct {
     id: BaseKey;
     name: string;
     material: string;
