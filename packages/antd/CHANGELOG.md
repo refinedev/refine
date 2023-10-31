@@ -1,5 +1,13 @@
 # @refinedev/antd
 
+## 5.36.16
+
+### Patch Changes
+
+-   [#5189](https://github.com/refinedev/refine/pull/5189) [`34b5741289f`](https://github.com/refinedev/refine/commit/34b5741289fec9f1bf1e06b101d1c0965fc5c7e7) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: bump @ant-design/pro-layout dependency to `v7.17.12`.
+
+    Fixes https://github.com/refinedev/refine/issues/5172
+
 ## 5.36.15
 
 ### Patch Changes
