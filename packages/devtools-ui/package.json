@@ -1,5 +1,5 @@
 {
-  "version": "1.1.8",
+  "version": "1.1.12",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -45,6 +45,7 @@
     "react-json-view": "^1.21.3",
     "react-router-dom": "^6.8.1",
     "@fireworks-js/react": "^2.10.7",
+    "use-is-in-viewport": "^1.0.9",
     "semver-diff": "^3.1.1"
   },
   "peerDependencies": {

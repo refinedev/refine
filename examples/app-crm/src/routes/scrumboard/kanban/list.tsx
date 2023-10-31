@@ -24,7 +24,7 @@ import {
     KanbanColumnSkeleton,
     KanbanItem,
     ProjectCardMemo,
-    ProjectKanbanCardSkeleton,
+    ProjectCardSkeleton,
 } from "../components";
 
 const taskFragment = [
@@ -262,7 +262,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                                 handleAddCard({ stageId: column.id })
                             }
                         >
-                            {isLoading && <ProjectKanbanCardSkeleton />}
+                            {isLoading && <ProjectCardSkeleton />}
                             {!isLoading &&
                                 column.tasks.map((task) => {
                                     return (
@@ -305,7 +305,7 @@ const PageSkeleton = () => {
                 return (
                     <KanbanColumnSkeleton key={index} type="project">
                         {Array.from({ length: itemCount }).map((_, index) => {
-                            return <ProjectKanbanCardSkeleton key={index} />;
+                            return <ProjectCardSkeleton key={index} />;
                         })}
                     </KanbanColumnSkeleton>
                 );

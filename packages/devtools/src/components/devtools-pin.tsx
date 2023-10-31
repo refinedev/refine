@@ -28,6 +28,7 @@ export const DevtoolsPin = ({
                 background: "none",
                 border: "none",
                 padding: 0,
+                paddingRight: "1px",
                 margin: 0,
                 display: "flex",
                 alignItems: "center",

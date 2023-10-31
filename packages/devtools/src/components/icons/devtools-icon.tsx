@@ -10,7 +10,7 @@ export const DevtoolsIcon = (props: SVGProps<SVGSVGElement>) => (
         fill="none"
         {...props}
     >
-        <g filter="url(#devtools-panel)">
+        <g>
             <path fill="#1D1E30" d="M17 1h123v24H17z" />
             <path
                 fill="#1D1E30"

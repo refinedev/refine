@@ -9,11 +9,15 @@ import { PackageItem } from "src/components/package-item";
 import { Button } from "./button";
 import { AddPackageDrawer } from "./add-package-drawer";
 import { PlusCircleIcon } from "./icons/plus-circle";
+import { UpdateIcon } from "./icons/update";
 
 export const Packages = () => {
     const ref = React.useRef<FireworksHandlers>(null);
     const [packages, setPackages] = React.useState<PackageType[]>([]);
     const [visible, setVisible] = React.useState(false);
+    const [outdatedPackages, setOutdatedPackages] = React.useState<string[]>(
+        [],
+    );
 
     React.useEffect(() => {
         getInstalledPackages().then((data) => {
@@ -30,22 +34,40 @@ export const Packages = () => {
         }
     }, []);
 
+    const [installingAll, setInstallingAll] = React.useState(false);
     const [installInProgress, setInstallInProgress] = React.useState(false);
+
     const onInstall = React.useCallback(async (packagesToInstall: string[]) => {
         setInstallInProgress(true);
         const state = await installPackages(packagesToInstall);
 
         if (state) {
             fireworks();
-            getInstalledPackages().then((data) => {
+            getInstalledPackages({ force: true }).then((data) => {
                 setPackages(data);
             });
+            setOutdatedPackages((p) =>
+                p.filter((item) => !packagesToInstall.includes(item)),
+            );
         }
 
         setInstallInProgress(false);
 
         return state;
     }, []);
+
+    const onOutdated = React.useCallback((packages: string[]) => {
+        setOutdatedPackages((p) => [...p, ...packages]);
+    }, []);
+
+    const onUpdateAll = React.useCallback(async () => {
+        if (installingAll) {
+            return;
+        }
+        setInstallingAll(true);
+        await onInstall(outdatedPackages);
+        setInstallingAll(false);
+    }, [outdatedPackages, installingAll, onInstall]);
 
     return (
         <>
@@ -78,7 +100,13 @@ export const Packages = () => {
                     >
                         Package Overview
                     </div>
-                    <div>
+                    <div
+                        className={clsx(
+                            "re-flex",
+                            "re-items-center",
+                            "re-gap-4",
+                        )}
+                    >
                         <Button
                             onClick={() => setVisible(true)}
                             className={clsx(
@@ -98,6 +126,31 @@ export const Packages = () => {
                                 More packages
                             </span>
                         </Button>
+                        {outdatedPackages.length > 0 && (
+                            <Button
+                                onClick={() => onUpdateAll()}
+                                className={clsx(
+                                    "re-gap-2",
+                                    "re-text-gray-0",
+                                    "re-bg-alt-blue",
+                                    "re-flex-nowrap",
+                                    "re-flex",
+                                    "re-items-center",
+                                    "re-justify-between",
+                                    "!re-px-2",
+                                )}
+                            >
+                                <UpdateIcon
+                                    className={clsx(
+                                        "re-text-gray-0",
+                                        installingAll ? "re-animate-spin" : "",
+                                    )}
+                                />
+                                <span className="re-text-gray-0">
+                                    Update all
+                                </span>
+                            </Button>
+                        )}
                     </div>
                 </div>
                 <div className={clsx("re-flex-1", "re-overflow-auto")}>
@@ -113,6 +166,7 @@ export const Packages = () => {
                                 key={item.name}
                                 item={item}
                                 onUpdate={(v) => onInstall([v])}
+                                onOutdated={(v) => onOutdated([v])}
                                 blocked={installInProgress}
                             />
                         ))}

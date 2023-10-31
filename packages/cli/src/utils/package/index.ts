@@ -89,7 +89,11 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
             }
         });
 
-        const refinePackages: Array<{ name: string; path: string }> = [];
+        const refinePackages: Array<{
+            name: string;
+            path: string;
+            version: string;
+        }> = [];
 
         await Promise.all(
             [...packageDirsFromModules, ...packagesFromGlobbySearch].map(
@@ -104,6 +108,7 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
 
                         refinePackages.push({
                             name: packageJson.name,
+                            version: packageJson.version,
                             path: packageDir,
                         });
                     }

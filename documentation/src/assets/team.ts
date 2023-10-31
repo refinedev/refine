@@ -15,7 +15,7 @@ export const team = [
         name: "Eren Erkalkan",
         avatar: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/eren.png",
         role1: "Co-Founder",
-        role2: "Head of Product",
+        role2: "CPO",
     },
     {
         name: "Batuhan Özgür Özdemir",
@@ -25,17 +25,7 @@ export const team = [
     {
         name: "Ali Emir Şen",
         avatar: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/ali.png",
-        role1: "Frontend Team Lead",
-    },
-    {
-        name: "Yıldıray Ünlü",
-        avatar: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/yildiray.png",
-        role1: "Backend Team Lead",
-    },
-    {
-        name: "Salih Özdemir",
-        avatar: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/salih.png",
-        role1: "Software Developer",
+        role1: "Senior Software Developer",
     },
     {
         name: "Alican Erdurmaz",
