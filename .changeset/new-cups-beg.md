@@ -2,7 +2,7 @@
 "@refinedev/mantine": patch
 ---
 
-Now `useSelect` hook accepts 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `DefaultOption` type which is `{ label: string; value: any; }`. If you want to change the type of options, you can do it like this:
+Now `useSelect` hook accepts 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
 
 In PR #5160 the type convertion of the options are tried to be resolved by string conversion. This is not correct due to the fact that the `value` property of the option can be of any type. This was breaking the connection between the forms and the select inputs.
 

@@ -2,7 +2,7 @@
 "@refinedev/antd": patch
 ---
 
-Now `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks accept 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `DefaultOption` type which is `{ label: string; value: any; }`. If you want to change the type of options, you can do it like this:
+Now `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks accept 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
 
 ```tsx
 import { useSelect } from "@refinedev/antd";
