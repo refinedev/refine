@@ -2,7 +2,7 @@
 "@refinedev/core": patch
 ---
 
-Reverted the faulty assumption on option values of `useSelect` hook to be of type `string`. Now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook.
+Reverted the faulty assumption on option values of `useSelect` hook to be of type `string`. Now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook. (Reverted PR #5160)
 
 By default `TOption` will be equal to `DefaultOption` type which is `{ label: string; value: any; }`. If you want to change the type of options, you can do it like this:
 
