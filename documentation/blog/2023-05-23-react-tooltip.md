@@ -132,7 +132,7 @@ If we were to create a custom tooltip for the sidebar navigation, the markup ins
   <ul>
     {menuItems.map((item) => (
       <li key={item.key} className="tooltip_element">
-        <NavLink to={item.route}>{item.label}</NavLink>
+        <NavLink to={item.route ?? "/"}>{item.label}</NavLink>
         <span className="tooltip">navigate to {item.label}</span>
       </li>
     ))}
@@ -240,7 +240,7 @@ export const Menu = () => {
       <ul>
         {menuItems.map((item) => (
           <li key={item.key} className="tooltip_element">
-            <NavLink to={item.route}>{item.label}</NavLink>
+            <NavLink to={item.route ?? "/"}>{item.label}</NavLink>
             <Tooltip message={`route to ${item.label}`} position="bottom" />
           </li>
         ))}
