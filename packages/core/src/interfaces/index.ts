@@ -66,16 +66,11 @@ export type BaseOption = {
     value: any;
 };
 
-export type DefaultOption = {
-    label: string;
-    value: any;
-};
-
 /**
- * @deprecated Use `DefaultOption` or `BaseOption` instead.
+ * @deprecated Use `BaseOption` instead.
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Option extends DefaultOption {}
+export interface Option extends BaseOption {}
 
 /* Backward compatible version of 'TreeMenuItem' */
 export type ITreeMenu = IResourceItem & {

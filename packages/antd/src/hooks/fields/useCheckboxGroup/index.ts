@@ -9,20 +9,19 @@ import {
     useSelect,
     BaseKey,
     pickNotDeprecated,
-    Prettify,
     BaseOption,
-    DefaultOption,
 } from "@refinedev/core";
 
 export type UseCheckboxGroupReturnType<
     TData extends BaseRecord = BaseRecord,
-    TOption extends BaseOption = DefaultOption,
+    TOption extends BaseOption = BaseOption,
 > = {
-    checkboxGroupProps: Prettify<
-        Pick<React.ComponentProps<typeof Checkbox.Group>, "defaultValue"> & {
-            options: TOption[];
-        }
-    >;
+    checkboxGroupProps: Omit<
+        React.ComponentProps<typeof Checkbox.Group>,
+        "options"
+    > & {
+        options: TOption[];
+    };
     queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -51,7 +50,7 @@ export const useCheckboxGroup = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
-    TOption extends BaseOption = DefaultOption,
+    TOption extends BaseOption = BaseOption,
 >({
     resource,
     sort,

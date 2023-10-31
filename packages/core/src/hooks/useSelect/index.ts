@@ -7,7 +7,6 @@ import get from "lodash/get";
 import { useList, useMany, useMeta } from "@hooks";
 import {
     CrudSorting,
-    DefaultOption,
     BaseOption,
     BaseRecord,
     GetManyResponse,
@@ -139,7 +138,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
 
 export type UseSelectReturnType<
     TData extends BaseRecord = BaseRecord,
-    TOption extends BaseOption = DefaultOption,
+    TOption extends BaseOption = BaseOption,
 > = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
@@ -165,7 +164,7 @@ export const useSelect = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
-    TOption extends BaseOption = DefaultOption,
+    TOption extends BaseOption = BaseOption,
 >(
     props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TOption> => {

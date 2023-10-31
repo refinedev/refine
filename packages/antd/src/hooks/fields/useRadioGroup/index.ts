@@ -5,24 +5,23 @@ import {
     BaseKey,
     BaseOption,
     BaseRecord,
-    DefaultOption,
     GetListResponse,
     HttpError,
     pickNotDeprecated,
-    Prettify,
     useSelect,
     UseSelectProps,
 } from "@refinedev/core";
 
 export type UseRadioGroupReturnType<
     TData extends BaseRecord = BaseRecord,
-    TOption extends BaseOption = DefaultOption,
+    TOption extends BaseOption = BaseOption,
 > = {
-    radioGroupProps: Prettify<
-        Pick<React.ComponentProps<typeof Radio.Group>, "defaultValue"> & {
-            options: TOption[];
-        }
-    >;
+    radioGroupProps: Omit<
+        React.ComponentProps<typeof Radio.Group>,
+        "options"
+    > & {
+        options: TOption[];
+    };
     queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -51,7 +50,7 @@ export const useRadioGroup = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
-    TOption extends BaseOption = DefaultOption,
+    TOption extends BaseOption = BaseOption,
 >({
     resource,
     sort,
