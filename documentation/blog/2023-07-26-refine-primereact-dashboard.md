@@ -2926,7 +2926,7 @@ export const Menu = () => {
         template: (item, options) => {
             return (
                 <div onClick={options.onClick}>
-                    <Link to={menuItem.route} className={options.className}>
+                    <Link to={menuItem.route ?? "/"} className={options.className}>
                         {item.icon}
                         <span
                             className={classNames(

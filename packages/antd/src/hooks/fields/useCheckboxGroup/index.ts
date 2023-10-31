@@ -1,6 +1,6 @@
 import { QueryObserverResult } from "@tanstack/react-query";
+import type { Checkbox } from "antd";
 
-import { CheckboxGroupProps } from "antd/lib/checkbox";
 import {
     BaseRecord,
     GetListResponse,
@@ -9,13 +9,21 @@ import {
     useSelect,
     BaseKey,
     pickNotDeprecated,
+    BaseOption,
 } from "@refinedev/core";
 
-export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
-    {
-        checkboxGroupProps: CheckboxGroupProps;
-        queryResult: QueryObserverResult<GetListResponse<TData>>;
+export type UseCheckboxGroupReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TOption extends BaseOption = BaseOption,
+> = {
+    checkboxGroupProps: Omit<
+        React.ComponentProps<typeof Checkbox.Group>,
+        "options"
+    > & {
+        options: TOption[];
     };
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
+};
 
 type UseCheckboxGroupProps<TQueryFnData, TError, TData> = Omit<
     UseSelectProps<TQueryFnData, TError, TData>,
@@ -42,6 +50,7 @@ export const useCheckboxGroup = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
+    TOption extends BaseOption = BaseOption,
 >({
     resource,
     sort,
@@ -63,8 +72,13 @@ export const useCheckboxGroup = <
     TQueryFnData,
     TError,
     TData
->): UseCheckboxGroupReturnType<TData> => {
-    const { queryResult, options } = useSelect({
+>): UseCheckboxGroupReturnType<TData, TOption> => {
+    const { queryResult, options } = useSelect<
+        TQueryFnData,
+        TError,
+        TData,
+        TOption
+    >({
         resource,
         sort,
         sorters,
