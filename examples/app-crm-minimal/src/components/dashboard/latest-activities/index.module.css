@@ -1,0 +1,30 @@
+.item {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow: auto;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .avatar {
+        margin-right: 1rem;
+    }
+
+    .action {
+        display: flex;
+        flex-direction: column;
+
+        .detail {
+            white-space: nowrap;
+            display: flex;
+            gap: 0.3rem;
+
+            .name {
+                font-weight: 500;
+            }
+        }
+    }
+}

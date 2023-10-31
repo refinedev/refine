@@ -1,5 +1,39 @@
 # @refinedev/antd
 
+## 5.36.15
+
+### Patch Changes
+
+-   [#5189](https://github.com/refinedev/refine/pull/5189) [`34b5741289f`](https://github.com/refinedev/refine/commit/34b5741289fec9f1bf1e06b101d1c0965fc5c7e7) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: bump @ant-design/pro-layout dependency to `v7.17.12`.
+
+    Fixes https://github.com/refinedev/refine/issues/5172
+
+## 5.36.14
+
+### Patch Changes
+
+-   [#5134](https://github.com/refinedev/refine/pull/5134) [`e4769b23171`](https://github.com/refinedev/refine/commit/e4769b231716c63e5814718942025044e1a213c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd default `<ThemedSiderV2 />` is not collapsing.
+
+## 5.36.13
+
+### Patch Changes
+
+-   [#5134](https://github.com/refinedev/refine/pull/5134) [`e4769b23171`](https://github.com/refinedev/refine/commit/e4769b231716c63e5814718942025044e1a213c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd default `<ThemedSiderV2 />` is not collapsing.
+
+## 5.36.12
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<ThemedTitleV2 />` border-bottom removed.
+    fixed: `<ThemedLayoutV2 />` glitches on first render.
+
+## 5.36.11
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<ThemedTitleV2 />` border-bottom removed.
+    fixed: `<ThemedLayoutV2 />` glitches on first render.
+
 ## 5.36.10
 
 ### Patch Changes

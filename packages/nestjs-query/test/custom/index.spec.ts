@@ -1,3 +1,4 @@
+import { BaseRecord } from "@refinedev/core";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
@@ -23,7 +24,7 @@ describe("custom", () => {
     });
 
     it("custom graphql query", async () => {
-        const response = await dataProvider(client).custom<any>({
+        const response = await dataProvider(client).custom<BaseRecord>({
             url: "",
             method: "get",
             meta: {

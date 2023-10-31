@@ -57,8 +57,10 @@ export const serveApi = (app: Express, db: Data) => {
     });
 
     let cachedInstalledPackages: PackageType[] | null = null;
-    app.get("/api/installed-packages", async (_, res) => {
-        if (!cachedInstalledPackages) {
+    app.get("/api/installed-packages", async (req, res) => {
+        const { force } = req.query ?? {};
+
+        if (!cachedInstalledPackages || force) {
             cachedInstalledPackages = await getAllPackages();
         }
 

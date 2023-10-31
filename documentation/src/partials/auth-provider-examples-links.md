@@ -12,3 +12,4 @@ You can use the following auth provider examples as a starting point for your ow
 -   [Nhost](/docs/examples/data-provider/nhost) - An auth provider example with Nhost.
 -   [Basic with Nextjs](/docs/examples/next-js/) - A basic auth provider example with Nextjs.
 -   [Basic with Remix](/docs/examples/remix/remix-headless) - A basic auth provider example with Remix.
+-   [Kinde](/docs/examples/auth-provider/kinde) - An auth provider example with Kinde.

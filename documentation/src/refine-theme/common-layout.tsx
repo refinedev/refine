@@ -9,6 +9,7 @@ import SkipToContent from "@theme/SkipToContent";
 import { LivePreviewProvider } from "../components/live-preview-context";
 import useIsMobile from "../hooks/use-is-mobile";
 import clsx from "clsx";
+import { VideoModal15K } from "../components/video-modal-15k";
 
 declare global {
     interface Window {
@@ -61,6 +62,7 @@ export const CommonLayout = (props: any) => {
                 >
                     <LivePreviewProvider>{children}</LivePreviewProvider>
                 </ErrorBoundary>
+                <VideoModal15K />
             </div>
         </LayoutProvider>
     );

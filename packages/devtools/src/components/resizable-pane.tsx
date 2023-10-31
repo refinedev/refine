@@ -1,13 +1,14 @@
 import React from "react";
 import { Placement } from "src/interfaces/placement";
 import {
-    MIN_PANEL_HEIGHT,
-    MIN_PANEL_WIDTH,
     getDefaultPanelSize,
     getMaxPanelHeight,
     getMaxPanelWidth,
     getPanelPosition,
     getPanelToggleTransforms,
+    MIN_PANEL_HEIGHT,
+    MIN_PANEL_WIDTH,
+    roundToEven,
 } from "src/utilities";
 import { ResizeHandleIcon } from "./icons/resize-handle-icon";
 
@@ -35,11 +36,25 @@ export const ResizablePane = ({ placement, visible, children }: Props) => {
     } | null>(null);
     const [panelSize, setPanelSize] = React.useState<
         Record<"width" | "height", number>
-    >(getDefaultPanelSize(placement));
+    >(() => {
+        const defaultSize = getDefaultPanelSize(placement);
+
+        return {
+            width: roundToEven(defaultSize.width),
+            height: roundToEven(defaultSize.height),
+        };
+    });
 
     React.useEffect(() => {
         const handleResize = () => {
-            setPanelSize((p) => getDefaultPanelSize(placement, p));
+            setPanelSize((p) => {
+                const defaultSize = getDefaultPanelSize(placement, p);
+
+                return {
+                    width: roundToEven(defaultSize.width),
+                    height: roundToEven(defaultSize.height),
+                };
+            });
         };
 
         handleResize();
@@ -90,9 +105,11 @@ export const ResizablePane = ({ placement, visible, children }: Props) => {
 
                 setPanelSize((p) => ({
                     ...p,
-                    width: Math.min(
-                        getMaxPanelWidth(placement),
-                        Math.max(MIN_PANEL_WIDTH, newWidth),
+                    width: roundToEven(
+                        Math.min(
+                            getMaxPanelWidth(placement),
+                            Math.max(MIN_PANEL_WIDTH, newWidth),
+                        ),
                     ),
                 }));
             } else if (resizing?.[1] === "y") {
@@ -102,9 +119,11 @@ export const ResizablePane = ({ placement, visible, children }: Props) => {
 
                 setPanelSize((p) => ({
                     ...p,
-                    height: Math.min(
-                        getMaxPanelHeight(placement),
-                        Math.max(MIN_PANEL_HEIGHT, newHeight),
+                    height: roundToEven(
+                        Math.min(
+                            getMaxPanelHeight(placement),
+                            Math.max(MIN_PANEL_HEIGHT, newHeight),
+                        ),
                     ),
                 }));
             }

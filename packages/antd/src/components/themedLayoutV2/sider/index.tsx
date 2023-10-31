@@ -249,7 +249,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                     alignItems: "center",
                                     height: "64px",
                                     backgroundColor: token.colorBgElevated,
-                                    borderBottom: `1px solid ${token.colorBorder}`,
                                 }}
                             >
                                 <RenderToTitle collapsed={false} />
@@ -343,7 +342,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         height: "64px",
                         backgroundColor: token.colorBgElevated,
                         fontSize: "14px",
-                        borderBottom: `1px solid ${token.colorBorder}`,
                     }}
                 >
                     <RenderToTitle collapsed={siderCollapsed} />
