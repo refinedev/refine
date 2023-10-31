@@ -61,10 +61,21 @@ export type BaseRecord = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };
-export interface Option {
+export type BaseOption = {
+    label: any;
+    value: any;
+};
+
+export type DefaultOption = {
     label: string;
-    value: string;
-}
+    value: any;
+};
+
+/**
+ * @deprecated Use `DefaultOption` or `BaseOption` instead.
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Option extends DefaultOption {}
 
 /* Backward compatible version of 'TreeMenuItem' */
 export type ITreeMenu = IResourceItem & {

@@ -40,6 +40,8 @@ export {
     NotificationProvider,
     OpenNotificationParams,
     Option,
+    BaseOption,
+    DefaultOption,
     Pagination,
     PromptProps,
     RedirectionTypes,

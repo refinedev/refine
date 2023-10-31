@@ -8,10 +8,21 @@ import {
     GetListResponse,
     HttpError,
     UseSelectProps,
+    BaseOption,
+    DefaultOption,
+    Prettify,
 } from "@refinedev/core";
 
-export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
-    selectProps: SelectProps<{ value: string; label: string }>;
+export type UseSelectReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TOption extends BaseOption = DefaultOption,
+> = {
+    selectProps: Prettify<
+        Pick<
+            SelectProps<TOption, TOption>,
+            "options" | "onSearch" | "loading" | "showSearch" | "filterOption"
+        >
+    >;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
@@ -31,11 +42,12 @@ export const useSelect = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
+    TOption extends BaseOption = DefaultOption,
 >(
     props: UseSelectProps<TQueryFnData, TError, TData>,
-): UseSelectReturnType<TData> => {
+): UseSelectReturnType<TData, TOption> => {
     const { queryResult, defaultValueQueryResult, onSearch, options } =
-        useSelectCore(props);
+        useSelectCore<TQueryFnData, TError, TData, TOption>(props);
 
     return {
         selectProps: {
