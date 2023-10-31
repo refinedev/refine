@@ -319,7 +319,7 @@ export const Menu = () => {
               data-tooltip-id="my-tooltip"
               data-tooltip-content="Hello world!"
               data-tooltip-place="top"
-              to={item.route}
+              to={item.route ?? "/"}
             >
               {item.label}
             </NavLink>
@@ -340,7 +340,7 @@ Next, we will define the `<Tooltip>` component next to the anchor element and gi
       data-tooltip-id="my-tooltip"
       data-tooltip-content={`route to ${item.label}`}
       data-tooltip-place="top"
-      to={item.route}
+      to={item.route ?? "/"}
     >
       {item.label}
     </NavLink>
@@ -372,7 +372,7 @@ In contrast to the previous method, this technique employs CSS selectors to bind
 ```tsx
 <li key={item.key} className="tooltip_element">
   <>
-    <NavLink className="my-tooltip" to={item.route}>
+    <NavLink className="my-tooltip" to={item.route ?? "/"}>
       {item.label}
     </NavLink>
     <Tooltip anchorSelect=".my-tooltip" place="left">
@@ -389,7 +389,7 @@ Notice that the `anchorSelect` property is prefixed with a dot, which is necessa
 ```tsx
 <li key={item.key} className="tooltip_element">
   <>
-    <NavLink className="my-tooltip" to={item.route}>
+    <NavLink className="my-tooltip" to={item.route ?? "/"}>
       {item.label}
     </NavLink>
     <Tooltip anchorSelect=".my-tooltip" place="left">
@@ -477,7 +477,7 @@ The `tooltip-delay-show` attribute adds a delay before the tooltip appears when 
       data-tooltip-content={`route to ${item.label}`}
       data-tooltip-place="top"
       data-tooltip-delay-show={1000}
-      to={item.route}
+      to={item.route ?? "/"}
     >
       {item.label}
     </NavLink>
@@ -506,7 +506,7 @@ This attribute does the opposite of the former, as it adds a delay to when the t
       data-tooltip-content={`route to ${item.label}`}
       data-tooltip-place="top"
       data-tooltip-delay-hide={1000}
-      to={item.route}
+      to={item.route ?? "/"}
     >
       {item.label}
     </NavLink>
@@ -531,7 +531,7 @@ react-tooltip also provides a feature that allows you to create clickable toolti
 ```tsx
 <li key={item.key} className="tooltip_element">
   <>
-    <NavLink id="my-tooltip" to={item.route}>
+    <NavLink id="my-tooltip" to={item.route ?? "/"}>
       {item.label}
     </NavLink>
     <Tooltip anchorSelect="#my-tooltip" place="right" clickable>
