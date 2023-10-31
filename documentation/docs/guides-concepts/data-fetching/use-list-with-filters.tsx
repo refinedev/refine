@@ -77,7 +77,7 @@ export const dataProvider = (url: string): DataProvider => ({
         params.push(\`_end=\${current * pageSize}\`);
 
         // combine all params with "&" character to create query string.
-        const query = params.join("&"); 
+        const query = params.join("&");
 
         const response = await fetch(\`\${url}/\${resource}?\${query}\`);
         const data = await response.json();
@@ -117,7 +117,7 @@ export const HomePage = () => {
     const { data: products } = useList({
         resource: "products",
         pagination: { current: 1, pageSize: 5 },
-        sorters: [{ field: "price", order: "asc" }],
+        sorters: [{ field: "id", order: "DESC" }],
         filters: [{ field: "material", operator: "eq", value: "Wooden" }],
     });
 
@@ -128,11 +128,13 @@ export const HomePage = () => {
                 {products?.data?.map((product) => (
                     <li key={product.id}>
                        <p>
+                            {product.id}
+                            <br />
                             {product.name}
                             <br />
                             Price: {product.price}
                             <br />
-                            Material: {product.material} 
+                            Material: {product.material}
                        </p>
                     </li>
                 ))}

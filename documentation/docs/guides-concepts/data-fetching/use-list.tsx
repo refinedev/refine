@@ -94,6 +94,7 @@ export const HomePage = () => {
     return (
         <div>
             <h2>Products</h2>
+            <p> Showing {products?.total} records in total. </p>
             <ul>
                 {products?.data?.map((product) => (
                     <li key={product.id}>
@@ -102,7 +103,7 @@ export const HomePage = () => {
                             <br />
                             Price: {product.price}
                             <br />
-                            Material: {product.material} 
+                            Material: {product.material}
                         </p>
                     </li>
                 ))}

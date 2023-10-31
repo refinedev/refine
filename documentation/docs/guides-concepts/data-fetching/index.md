@@ -15,13 +15,15 @@ import SupportedDataProviders from "@site/src/partials/data-provider/supported-d
 import DataHooks from "@site/src/partials/data-provider/data-hooks.md";
 import DataProviderInterface from "./data-provider-interface.md";
 
-Data provider acts as a data layer for your app, making requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks (`useOne`, `useUpdate`, `useList` etc.) which are used for actions like creating, reading, updating, and deleting a record.
+Data is essential for any UI Application and these applications are a bridge between users and the underlying data source(s), making it possible for users to interact with data in a meaningful way.
 
-Data providers are versatile and can communicate with a variety of API types, such as `REST`, `GraphQL`, `RPC`, and `SOAP`. Think of a data provider as a bridge connecting **refine** to the your API, adapting and translating the data exchange.
+To manage data, **refine** needs a `data provider`, which is a function that implements the [`DataProvider`](/docs/api-reference/core/interfaceReferences/#dataprovider) interface. It is responsible for communicating with your API and making data available to **refine** applications. While you can use one of our built-in data providers, you can also easily create your own data provider matching your API.
 
-You can [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) or **refine** offers built-in data provider support for the most popular [API's](#supported-data-providers).
+**refine** passes relevant parameters like `resource` name, or the `id` of the record to your data provider, so data provider can make API calls to appropriate endpoints.
 
-Moreover, **refine** offers support for multiple data providers, allowing you to use different data providers for different resources. For instance, you can use `REST` for the `posts` resource and `GraphQL` for the `users` resource.
+Once you provide `data provider` to **refine**, you can utilize our data hooks (`useOne`, `useList`, `useUpdate`) to easily manage your data from various sources, including REST, GraphQL, RPC, and SOAP.
+
+Moreover, refine offers support for multiple data providers, allowing you to use different data providers for different resources. For instance, you can use **REST** for the `posts` endpoint and **GraphQL** for the `users` query.
 
 <div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
@@ -35,11 +37,13 @@ Imagine we want to fetch a record with the ID `123` from the `products` endpoint
 
 ## Updating Data
 
-Now, let's update record from `products` resource. To do this, we can use `useUpdate` hook which calls `dataProvider.update` method under the hood.
+Now, let's update the record with the ID `124` from `products` endpoint. To do this, we can use `useUpdate` hook, which calls `dataProvider.update` method under the hood.
+
+In this example, we are updating product's price with a random value.
 
 <UseUpdate />
 
-**refine** offers various data hooks for CRUD operations:
+**refine** offers various data hooks for CRUD operations, you can see the list of these hooks below:
 
 <DataHooks />
 
@@ -53,27 +57,29 @@ Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It 
 
 2. **Invalidation:** Automatically invalidates data after a successful mutation (e.g., creating, updating, or deleting a resource), ensuring that the UI is updated with the latest data.
 
-3. **Caching:** Caches data to improve performance and reduce deduplicated API calls.
+3. **Caching:** Caches data to improve performance and deduplicates API calls.
 
 4. **Optimistic Updates:** Supports optimistic updates, which means it will update the UI optimistically before the actual API call is complete. This enhances the user experience by reducing perceived latency.
 
 5. **Hooks for CRUD Operations:** Offers a collection of hooks that align with common data operations like listing, creating, updating, and deleting data (`useList`, `useCreate`, `useUpdate`, `useDelete`). In addition to these basic hooks, **refine** provides advanced hooks that are a composition of these fundamental ones for handling more complex tasks (`useForm`, `useTable`, `useSelect`).
 
-6. **Integration with UI Libraries:** Works seamlessly with popular UI libraries. It provides a structured approach to handling data within these libraries.
+6. **Integration with UI Libraries:** Works seamlessly with popular UI libraries. It provides a structured approach to represent data within these libraries.
 
 7. **Realtime Updates**: Allowing your application to reflect changes in data as they occur.
 
 ## Meta usage <GuideBadge id="guides-concepts/general-concepts#meta" />
 
-[`meta`][meta] is a special property that can be used to pass additional information to data provider method from data hooks. Meta can be used from anywhere accros your application.
+[`meta`][meta] is a special property that can be used to pass additional information to your data provider methods through data hooks like `useOne`, `useList`, `useForm` from anywhere accros your application.
 
 The capabilities of `meta` properties depend on your data provider's implementation. While some may use additional features through `meta`, others may not use them or follow a different approach.
 
 Here are some examples of `meta` usage:
 
 -   Passing additional headers or parameters to the request.
--   Generate GraphQL queries
--   Multi-tenancy support (passing the tenant id to the request)
+-   Generate GraphQL queries.
+-   Multi-tenancy support (passing the tenant id to the request).
+
+In the example below, we are passing `meta.foo` property to the `useOne` hook. Then, we are using this property to pass additional headers to the request.
 
 ```tsx
 import { DataProvider, useOne } from "@refinedev/core";
@@ -106,9 +112,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## GraphQL
 
-**refine** supports GraphQL by utilizing the [`meta`][meta]. Which is extened from [gql-query-builder](https://github.com/atulmy/gql-query-builder) interface.
+As mentioned above, `meta` property can also be used to generate GraphQL queries.
 
-You can use `meta.fields`, `meta.variables`, and `meta.operation` to create GraphQL queries using the `gql-query-builder`.
+`meta.fields`, `meta.variables`, and `meta.operation` fields implements [gql-query-builder](https://github.com/atulmy/gql-query-builder) interface, so this interface can be used to easily generate GraphQL queries.
 
 ```tsx
 import { DataProvider, useOne } from "@refinedev/core";
@@ -142,7 +148,8 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             variables: meta?.variables,
         });
 
-        console.log(query); // "query ($id: ID!) { products (id: $id) { id, title, category { title } } }"
+        console.log(query);
+        // "query ($id: ID!) { products (id: $id) { id, title, category { title } } }"
 
         const response = await client.request(query, variables);
 
@@ -154,11 +161,24 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 };
 ```
 
-Also, **refine** offers [GraphQL providers](#supported-data-providers) to handle generating GraphQL queries.
+Also, you can check **refine**'s built-in [GraphQL data providers](#supported-data-providers) to handle communication with your GraphQL APIs or use them as a starting point.
 
-## Multiple Data Provider
+## Multiple Data Providers
 
-Using multiple data providers in **refine** allows you to work with various APIs or data sources in a single application. You might use different data providers for different parts of your app, like one for user data and another for product information. This flexibility is handy when dealing with various data structures and APIs. Each data provider can have its own configuration, making it easier to manage complex data scenarios within a single application.
+Using multiple data providers in **refine** allows you to work with various APIs or data sources in a single application. You might use different data providers for different parts of your app.
+
+Each data provider can have its own configuration, making it easier to manage complex data scenarios within a single application.
+This flexibility is handy when dealing with various data structures and APIs.
+
+For example, we want to fetch:
+
+-   `products` from `https://api.finefoods.refine.dev`
+-   `user` from `https://api.fake-rest.refine.dev`.
+
+As you can see the example below:
+
+-   We are defining multiple data providers in `App.tsx`.
+-   Using `dataProviderName` field to specify which data provider to use in data hooks in `home-page.tsx`.
 
 <MultipleDataProvider />
 
@@ -170,25 +190,43 @@ When implemented correctly, **refine** offers several advantages in error handli
 
 -   **Notification**: If you have [`notificationProvider` ](/docs/api-reference/core/providers/notification-provider/), **refine** will automatically show a notification when an error occurs.
 -   **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
--   **Optimistic Updates**: Automatically reverts the changes when an error occurs during a mutation.
+-   **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
 <ErrorHandling />
 
 ## Listing Data
 
-Imagine we need to fetch all the records from the `products` endpoint. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] hook. It calls `dataProvider.getList` method from your data provider.
+Imagine we need to fetch a list of records from the `products` endpoint. For this, we can use [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] hooks. It calls `dataProvider.getList` method from your data provider, returns `data` and `total` fields from the response.
 
 <UseList />
 
 ### Filters, Sorters and Pagination
 
-Let's say we want to fetch five `products` with wooden material, and the prices should be in ascending order. To do this, we can use the `useList` hook with the [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination] parameters.
+We fetched all the products from the `products` endpoint in the previous example. But in real world, we usually need to fetch a subset of the data.
 
-`useList` calls the `dataProvider.getList` method under the hood with the given parameters. We will use this parameters to create a query string and send it to the API.
+**refine** provides a unified [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination] parameters in data hooks to pass your `data provider` methods, making it possible to fetch the data you need with any complexity. It's data provider's responsibility to handle these parameters and modify the request sent to your API.
+
+Now let's make it more realistic example by adding filters, sorters, and pagination.
+
+We want to:
+
+-   Fetch 5 products
+-   With `material` field equals to `wooden`
+-   Sorted by `ID` field in `descending` order
+
+For this purpose, we can pass additional parameters to `useList` hook like [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination].
+
+`useList` calls the `dataProvider.getList` method under the hood with the given parameters. We will use these parameters modify our request sent to our API.
 
 <UseListWithFilters />
 
-[`filters`][crud-filters], [`sorters`][crud-sorting] interface also supports complex queries. For instance, We can fetch products that have a wooden material, belong to category ID 45, and have a price between 1000 and 2000.
+While the example above is simple, it's also possible to build more complex queries with [`filters`][crud-filters] and [`sorters`][crud-sorting].
+
+For instance, we can fetch products:
+
+-   With wooden material
+-   Belongs to category ID 45
+-   **OR** have a price between 1000 and 2000.
 
 ```tsx
 import { DataProvider, useList } from "@refinedev/core";
