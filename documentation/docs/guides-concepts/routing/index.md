@@ -20,9 +20,29 @@ The pre-built router integrations of refine will cover for all the use-cases you
 All you need to do is to import the router integration of your choice and pass it to the `<Refine />` component within the `routerProvider` prop.
 
 <Tabs>
-<TabItem value="next-js" label="Next.js" default>
+<TabItem value="react-router-v6" label="React Router v6" default>
 
-Next.js integration works with both the App router and the Pages router. While using it with refine, you won't be missing out any features of both refine and Next.js such as SSR and ISR.
+React Router integration works smoothly with refine without missing out any features of both refine and React Router.
+
+[Check out React Router documentation for detailed information](router-integrations/react-router/index)
+
+```tsx title="App.tsx"
+import routerProvider from "@refinedev/react-router-v6";
+
+const App = () => (
+    <Refine
+        // highlight-next-line
+        routerProvider={routerProvider}
+    >
+        {/* ... */}
+    </Refine>
+);
+```
+
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+Next.js integration works with both the App router and the Pages router. While using it with refine, you won't be missing out any features of both refine and Next.js such as **SSR** and ISR.
 
 [Check out Next.js Router documentation for detailed information](router-integrations/next-js/index)
 
@@ -67,26 +87,6 @@ export default function App() {
         </html>
     );
 }
-```
-
-</TabItem>
-<TabItem value="react-router-v6" label="React Router v6">
-
-React Router integration works smoothly with refine without missing out any features of both refine and React Router.
-
-[Check out React Router documentation for detailed information](router-integrations/react-router/index)
-
-```tsx title="App.tsx"
-import routerProvider from "@refinedev/react-router-v6";
-
-const App = () => (
-    <Refine
-        // highlight-next-line
-        routerProvider={routerProvider}
-    >
-        {/* ... */}
-    </Refine>
-);
 ```
 
 </TabItem>

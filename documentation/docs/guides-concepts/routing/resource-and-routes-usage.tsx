@@ -46,31 +46,31 @@ import { List } from "./list.tsx";
 import { Show } from "./show.tsx";
 
 export default function App() {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "products",
-                        // We're defining the routes and assigning them to an action of a resource
-                        list: "/products",
-                        show: "/products/:id",
-                        // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                        // create: "/products/create",
-                        // edit: "/products/edit/:id",
-                        // clone: "/products/clone/:id",
-                    }
-                ]}
-            >
-                <Routes>
-                    <Route path="/products" element={<List />} />
-                    <Route path="/products/:id" element={<Show />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "products",
+            // We're defining the routes and assigning them to an action of a resource
+            list: "/products",
+            show: "/products/:id",
+            // For sake of simplicity, we are not defining other routes here but the implementation is the same
+            // create: "/products/create",
+            // edit: "/products/edit/:id",
+            // clone: "/products/clone/:id",
+          }
+        ]}
+      >
+        <Routes>
+          <Route path="/products" element={<List />} />
+          <Route path="/products/:id" element={<Show />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 }
 `.trim();
 
@@ -103,70 +103,72 @@ ul > li {
 `.trim();
 
 const ListTsxCode = `
-import { useList, BaseKey, useNavigation } from "@refinedev/core";
+import { useList, useGo } from "@refinedev/core";
 
 export const List: React.FC = () => {
-    // We're inferring the resource from the route
-    // TODO: REMOVE EMPTY BRACES
-    const {
-        data,
-        isLoading,
-        isError
-    } = useList<IProduct>({});
+  // We're inferring the resource from the route
+  // So we call \`useList\` hook without any arguments.
+  const { data, isLoading } = useList();
 
-    // \`useNavigation\` is a hook that provides navigation methods, you can find more information about it in the documentation
-    const { show } = useNavigation();
+  const go = useGo();
 
-    if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-    return (
-        <ul>
-            {data?.data?.map((product) => (
-                <li
-                    key={product.id}
-                >
-                    <span>{product.name}</span>
-                    <button onClick={() => show("products", product.id)}>show</button>
-                </li>
-            ))}
-        </ul>
-    );
+  return (
+    <ul>
+      {data?.data?.map((product) => (
+        <li key={product.id}>
+          <span>{product.name}</span>
+          <button
+            onClick={() => {
+              go({
+                to: {
+                  resource: "products",
+                  action: "show",
+                  id: product.id,
+                },
+              });
+            }}
+          >
+            show
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 };
-
-interface IProduct {
-    id: BaseKey;
-    name: string;
-    material: string;
-}
 `.trim();
 
 const ShowTsxCode = `
-import { useShow, BaseKey, useNavigation } from "@refinedev/core";
+import { useShow, useGo } from "@refinedev/core";
 
 export const Show: React.FC = () => {
+  const {
+    queryResult: { data, isLoading },
     // We're inferring the resource and the id from the route params
-    const { queryResult: { data, isLoading, isError } } = useShow<IProduct>();
+    // So we can call useShow hook without any arguments.
+  } = useShow();
 
-    // \`useNavigation\` is a hook that provides navigation methods, you can find more information about it in the documentation
-    const { list } = useNavigation();
+  const go = useGo();
 
-    if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-    return (
-        <>
-            <div>
-                <h1>{data?.data?.name}</h1>
-                <p>Material: {data?.data?.material}</p>
-                <small>ID: {data?.data?.id}</small>
-            </div>
-            <button onClick={() => list("products")}>Go to Products list</button>
-        </>
-    );
+  return (
+    <>
+      <div>
+        <h1>{data?.data?.name}</h1>
+        <p>Material: {data?.data?.material}</p>
+        <small>ID: {data?.data?.id}</small>
+      </div>
+      <button onClick={() => {
+        go({
+          to: {
+            resource: "products",
+            action: "list",
+          },
+        });
+      }}>Go to Products list</button>
+    </>
+  );
 };
-
-interface IProduct {
-    id: BaseKey;
-    name: string;
-    material: string;
-}
 `.trim();
