@@ -9,7 +9,7 @@ describe("custom", () => {
     const API_URL = "https://api.fake-rest.refine.dev";
 
     it("correct get response", async () => {
-        const response = await JsonServer(API_URL, axios).custom!({
+        const response = await JsonServer(API_URL, axios).custom({
             url: `${API_URL}/users`,
             method: "get",
         });
@@ -19,7 +19,7 @@ describe("custom", () => {
     });
 
     it("correct filter response", async () => {
-        const response = await JsonServer(API_URL, axios).custom!({
+        const response = await JsonServer(API_URL, axios).custom({
             url: `${API_URL}/users`,
             method: "get",
             filters: [
@@ -36,7 +36,7 @@ describe("custom", () => {
     });
 
     it("correct sort response", async () => {
-        const response = await JsonServer(API_URL, axios).custom!({
+        const response = await JsonServer(API_URL, axios).custom({
             url: `${API_URL}/users`,
             method: "get",
             sorters: [
@@ -51,7 +51,7 @@ describe("custom", () => {
     });
 
     it("correct post request", async () => {
-        const response = await JsonServer(API_URL, axios).custom!({
+        const response = await JsonServer(API_URL, axios).custom({
             url: `${API_URL}/users`,
             method: "post",
             payload: {

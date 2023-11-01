@@ -12,7 +12,7 @@ import {
     FilterDropdown,
     ShowButton,
 } from "@refinedev/antd";
-import { Form, Input, Select, Table, Space } from "antd";
+import { Select, Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 

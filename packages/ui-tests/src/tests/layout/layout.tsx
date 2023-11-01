@@ -1,7 +1,7 @@
 import React from "react";
 import { RefineLayoutLayoutProps } from "@refinedev/ui-types";
 
-import { act, render, TestWrapper } from "@test";
+import { render, TestWrapper } from "@test";
 
 export const layoutLayoutTests = function (
     LayoutElement: React.ComponentType<RefineLayoutLayoutProps>,

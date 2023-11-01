@@ -32,8 +32,10 @@ describe("dataProvider", () => {
     // deleteMany
     describe("deleteMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance)
-                .deleteMany!({ resource: "posts", ids: ["20"] });
+            const { data } = await DataProvider(
+                API_URL,
+                axiosInstance,
+            ).deleteMany({ resource: "posts", ids: ["20"] });
 
             expect(data[0].data.id).toBe(20);
             expect(data[0].data.attributes.title).toBe("foo");
@@ -185,12 +187,13 @@ describe("dataProvider", () => {
     // getMany
     describe("getMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance)
-                .getMany!({
-                resource: "posts",
-                ids: ["30", "29"],
-                meta: { populate: ["category"] },
-            });
+            const { data } = await DataProvider(API_URL, axiosInstance).getMany(
+                {
+                    resource: "posts",
+                    ids: ["30", "29"],
+                    meta: { populate: ["category"] },
+                },
+            );
 
             expect(data[0].id).toBe(29);
             expect(data[0].title).toBe("Hello");
@@ -233,8 +236,10 @@ describe("dataProvider", () => {
     // updateMany
     describe("updateMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance)
-                .updateMany!({
+            const { data } = await DataProvider(
+                API_URL,
+                axiosInstance,
+            ).updateMany({
                 resource: "posts",
                 ids: ["8", "17"],
                 variables: {
@@ -253,8 +258,10 @@ describe("dataProvider", () => {
     // createMany
     describe("createMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance)
-                .createMany!({
+            const { data } = await DataProvider(
+                API_URL,
+                axiosInstance,
+            ).createMany({
                 resource: "posts",
                 variables: [
                     {
@@ -278,12 +285,10 @@ describe("dataProvider", () => {
 
     describe("custom", () => {
         it("correct get response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).custom!(
-                {
-                    url: `${API_URL}/posts`,
-                    method: "get",
-                },
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance).custom({
+                url: `${API_URL}/posts`,
+                method: "get",
+            });
 
             expect(data.data[0].id).toBe(5);
             expect(data.data[0].attributes.title).toBe(
@@ -292,55 +297,49 @@ describe("dataProvider", () => {
         });
 
         it("correct filter response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).custom!(
-                {
-                    url: `${API_URL}/posts`,
-                    method: "get",
-                    filters: [
-                        {
-                            field: "title",
-                            operator: "eq",
-                            value: "foo",
-                        },
-                    ],
-                },
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance).custom({
+                url: `${API_URL}/posts`,
+                method: "get",
+                filters: [
+                    {
+                        field: "title",
+                        operator: "eq",
+                        value: "foo",
+                    },
+                ],
+            });
 
             expect(data.data[0].id).toBe(19);
             expect(data.data[0].attributes.title).toBe("foo");
         });
 
         it("correct sort response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).custom!(
-                {
-                    url: `${API_URL}/posts`,
-                    method: "get",
-                    sorters: [
-                        {
-                            field: "id",
-                            order: "desc",
-                        },
-                    ],
-                },
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance).custom({
+                url: `${API_URL}/posts`,
+                method: "get",
+                sorters: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
+            });
 
             expect(data.data[0].id).toBe(37);
             expect(data.data[0].attributes.title).toBe("New Post Two");
         });
 
         it("correct post request", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).custom!(
-                {
-                    url: `${API_URL}/posts`,
-                    method: "post",
-                    payload: {
-                        data: {
-                            title: "test",
-                            content: "test",
-                        },
+            const { data } = await DataProvider(API_URL, axiosInstance).custom({
+                url: `${API_URL}/posts`,
+                method: "post",
+                payload: {
+                    data: {
+                        title: "test",
+                        content: "test",
                     },
                 },
-            );
+            });
 
             expect(data.data).toEqual({
                 id: 39,

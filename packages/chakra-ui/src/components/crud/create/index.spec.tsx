@@ -2,7 +2,7 @@ import React from "react";
 
 import { Route, Routes } from "react-router-dom";
 
-import { act, render, TestWrapper } from "@test";
+import { render, TestWrapper } from "@test";
 import { Create } from "./";
 import { crudCreateTests } from "@refinedev/ui-tests";
 import { SaveButton } from "@components/buttons";

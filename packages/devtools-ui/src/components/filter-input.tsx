@@ -1,7 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { ChevronDownIcon } from "./icons/chevron-down";
-import { CloseIcon } from "./icons/close";
 
 type FilterInputProps = {
     placeholder?: string;

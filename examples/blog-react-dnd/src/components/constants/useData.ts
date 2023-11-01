@@ -1,4 +1,3 @@
-import React from "react";
 import { ColumnTypes } from "./enums";
 import { IProduct } from "components/constants/models";
 import { useList } from "@refinedev/core";

@@ -1,11 +1,10 @@
-import nock from "nock";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("getMany", () => {
     it("correct response", async () => {
-        const response = await dataProvider(supabaseClient).getMany!({
+        const response = await dataProvider(supabaseClient).getMany({
             resource: "posts",
             ids: ["2", "3"],
         });
@@ -18,7 +17,7 @@ describe("getMany", () => {
     });
 
     it("correct response with select metadata", async () => {
-        const { data } = await dataProvider(supabaseClient).getMany!({
+        const { data } = await dataProvider(supabaseClient).getMany({
             resource: "posts",
             ids: ["3", "61"],
             meta: {

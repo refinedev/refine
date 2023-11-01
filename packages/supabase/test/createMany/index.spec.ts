@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("createMany", () => {
     it("correct response with `select`", async () => {
-        const { data } = await dataProvider(supabaseClient).createMany!({
+        const { data } = await dataProvider(supabaseClient).createMany({
             resource: "posts",
             variables: [
                 {

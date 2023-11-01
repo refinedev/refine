@@ -1,4 +1,3 @@
-import { Models } from "appwrite";
 import nock from "nock";
 import { account } from "./appwriteClient";
 

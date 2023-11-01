@@ -60,6 +60,6 @@ const PostCreate: React.FC = () => {
 
 export default PostCreate;
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader(_args: LoaderArgs) {
     return {};
 }

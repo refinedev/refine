@@ -9,7 +9,7 @@ describe("custom", () => {
     const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 
     it("correct get response", async () => {
-        const response = await DataProvider(API_URL, axios).custom!({
+        const response = await DataProvider(API_URL, axios).custom({
             url: `${API_URL}/customers/me`,
             method: "get",
         });
@@ -21,7 +21,7 @@ describe("custom", () => {
     });
 
     it("correct filter response", async () => {
-        const response = await DataProvider(API_URL, axios).custom!({
+        const response = await DataProvider(API_URL, axios).custom({
             url: `${API_URL}/products`,
             method: "get",
             filters: [
@@ -39,7 +39,7 @@ describe("custom", () => {
     });
 
     it("correct post request", async () => {
-        const response = await DataProvider(API_URL, axios).custom!({
+        const response = await DataProvider(API_URL, axios).custom({
             url: `${API_URL}/customers/me/addresses`,
             method: "post",
             payload: {
@@ -65,7 +65,7 @@ describe("custom", () => {
     });
 
     it("correct filter response", async () => {
-        const response = await DataProvider(API_URL, axios).custom!({
+        const response = await DataProvider(API_URL, axios).custom({
             url: `${API_URL}/customers/me/addresses/addr_01G8ZR6E99AGX7VJPFH4ATJF88`,
             method: "delete",
         });

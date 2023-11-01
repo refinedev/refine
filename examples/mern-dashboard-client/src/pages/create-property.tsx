@@ -19,7 +19,7 @@ const CreateProperty = () => {
 
     const handleImageChange = (file: File) => {
         const reader = (readFile: File) =>
-            new Promise<string>((resolve, reject) => {
+            new Promise<string>((resolve, _reject) => {
                 const fileReader = new FileReader();
                 fileReader.onload = () => resolve(fileReader.result as string);
                 fileReader.readAsDataURL(readFile);

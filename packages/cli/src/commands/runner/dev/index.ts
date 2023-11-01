@@ -1,5 +1,3 @@
-import boxen from "boxen";
-
 import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
 import { Command, Option } from "commander";

@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, Suspense } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import dynamic from "next/dynamic";
 
 import { useList } from "@refinedev/core";

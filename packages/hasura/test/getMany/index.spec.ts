@@ -51,7 +51,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response with meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).getMany!({
+            }).getMany({
                 resource: "posts",
                 ids,
                 meta: {

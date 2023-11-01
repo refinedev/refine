@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("updateMany", () => {
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(client).updateMany!({
+        const { data } = await dataProvider(client).updateMany({
             resource: "blog_posts",
             ids: ["1", "2"],
             variables: {
@@ -39,7 +39,7 @@ describe("updateMany", () => {
     });
 
     it("correct response without meta", async () => {
-        const { data } = await dataProvider(client).updateMany!({
+        const { data } = await dataProvider(client).updateMany({
             resource: "blog_posts",
             ids: ["1", "2"],
             variables: {

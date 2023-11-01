@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("updateMany", () => {
     it("correct response with `select`", async () => {
-        const { data } = await dataProvider(supabaseClient).updateMany!({
+        const { data } = await dataProvider(supabaseClient).updateMany({
             resource: "posts",
             ids: [1246],
             variables: {

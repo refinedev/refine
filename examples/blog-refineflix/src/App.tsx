@@ -24,7 +24,6 @@ import {
     AdminMovieShow,
     AdminMovieEdit,
 } from "./pages/admin/movies";
-import { MoviesList, MovieShow } from "./pages/movies";
 import { Login } from "./pages/login";
 
 function App() {

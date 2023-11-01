@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import * as util from "util";
 
 /** Antd mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {

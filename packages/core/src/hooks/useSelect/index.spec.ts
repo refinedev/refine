@@ -215,7 +215,7 @@ describe("useSelect Hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: {
                         default: {
-                            ...MockJSONServer.default!,
+                            ...MockJSONServer.default,
                             getList: getListMock,
                         },
                     },
@@ -330,7 +330,7 @@ describe("useSelect Hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: {
                         default: {
-                            ...MockJSONServer.default!,
+                            ...MockJSONServer.default,
                             getList: getListMock,
                         },
                     },

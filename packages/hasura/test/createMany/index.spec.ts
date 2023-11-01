@@ -14,7 +14,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response with meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).createMany!({
+            }).createMany({
                 resource: "posts",
                 variables: [
                     {
@@ -57,7 +57,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response without meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).createMany!({
+            }).createMany({
                 resource: "posts",
                 variables: [
                     {

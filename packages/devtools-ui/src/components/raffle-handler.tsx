@@ -4,8 +4,6 @@ import { Modal } from "./modal";
 import clsx from "clsx";
 import { CalendarIcon } from "./icons/calendar";
 
-const CALENDLY_URL = "#";
-
 export const RaffleHandler = () => {
     const [ran, setRan] = React.useState(false);
     const [calendlyURL, setCalendlyURL] = React.useState("");

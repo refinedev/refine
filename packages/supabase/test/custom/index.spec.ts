@@ -4,7 +4,7 @@ import supabaseClient from "../supabaseClient";
 describe("custom", () => {
     it("correct get response", async () => {
         try {
-            await dataProvider(supabaseClient).custom!({
+            await dataProvider(supabaseClient).custom({
                 url: "posts",
                 method: "get",
             });

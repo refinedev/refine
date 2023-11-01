@@ -29,7 +29,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response with meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).deleteMany!({
+            }).deleteMany({
                 resource: "posts",
                 ids: withMetaIds,
                 meta: {
@@ -44,7 +44,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response without meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).deleteMany!({
+            }).deleteMany({
                 resource: "posts",
                 ids: withoutMetaIds,
             });

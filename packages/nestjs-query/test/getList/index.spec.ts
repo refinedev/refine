@@ -63,7 +63,7 @@ describe("getList", () => {
     describe("pagination", () => {
         describe("server mode", () => {
             it("should return paginated results", async () => {
-                const { data, total } = await dataProvider(client).getList({
+                const { data } = await dataProvider(client).getList({
                     resource: "blog_posts",
                     meta: {
                         fields: ["id"],
@@ -105,7 +105,7 @@ describe("getList", () => {
 
         describe("multiple filters", () => {
             it("should return filtered data", async () => {
-                const { data, total } = await dataProvider(client).getList({
+                const { data } = await dataProvider(client).getList({
                     resource: "blog_posts",
                     filters: [
                         { field: "id", operator: "lt", value: 10 },

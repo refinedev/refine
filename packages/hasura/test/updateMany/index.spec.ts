@@ -53,7 +53,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response with meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).updateMany!({
+            }).updateMany({
                 resource: "posts",
                 ids: postsWithMeta.map((post) => post.id),
                 variables: {
@@ -76,7 +76,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
         it("correct response without meta", async () => {
             const { data } = await dataProvider(client, {
                 namingConvention,
-            }).updateMany!({
+            }).updateMany({
                 resource: "posts",
                 ids: postsWithoutMeta.map((post) => post.id),
                 variables: {

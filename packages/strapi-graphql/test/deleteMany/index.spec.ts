@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("deleteMany", () => {
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(client).deleteMany!({
+        const { data } = await dataProvider(client).deleteMany({
             resource: "posts",
             ids: ["37", "38"],
             meta: {
@@ -26,7 +26,7 @@ describe("deleteMany", () => {
     });
 
     it("correct response without meta", async () => {
-        const { data } = await dataProvider(client).deleteMany!({
+        const { data } = await dataProvider(client).deleteMany({
             resource: "posts",
             ids: ["34", "35"],
         });

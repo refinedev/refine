@@ -1,4 +1,3 @@
-import React from "react";
 import { NotificationProvider } from "@refinedev/core";
 import toast from "react-hot-toast";
 

@@ -49,8 +49,7 @@ const generateSubscription = (
 export const liveProvider = (client: Client): LiveProvider => {
     return {
         subscribe({ callback, params }) {
-            const { resource, meta, filters, subscriptionType, id, ids } =
-                params ?? {};
+            const { resource, meta, subscriptionType } = params ?? {};
 
             if (!meta) {
                 throw new Error(
