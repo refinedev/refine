@@ -32,6 +32,11 @@ Examples:
 -   `fix: array parsing issue when multiple spaces were contained in string`
 -   `docs: correct spelling of CHANGELOG`
 
+## Git branches
+
+-   `next` – contains next version (1.x.0), most likely you would want to create a PR to this branch
+-   `master` – current stable version
+
 ## Changeset
 
 [Changesets](https://github.com/changesets/changesets) are designed to make your workflows easier, by allowing the person making contributions to make key decisions when they are making their contribution. Changesets hold two key bits of information: a version type (following semver), and change information to be added to a changelog.

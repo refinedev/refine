@@ -29,6 +29,7 @@ It also syncs the pagination state with the URL if you enable the [`syncWithLoca
 
 If you want to make a change in the pagination of the `<List>`. You should pass the pagination object of the `listProps` to the pagination property of the `<List>` as below. You can override the values of the pagination object as your need.
 
+
 ```tsx
 // ...
 const { listProps } = useSimpleList<IProduct>();
@@ -653,17 +654,14 @@ const { overtime } = useSimpleList({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    },
+    }
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
-}
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
-
 ## Return Values
 
 ### `queryResult`
@@ -802,7 +800,6 @@ const { overtime } = useSimpleList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
-
 ### ~~`sorter`~~
 
 :::caution Deprecated

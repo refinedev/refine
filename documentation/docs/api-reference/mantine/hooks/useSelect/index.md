@@ -214,6 +214,7 @@ const { options } = useSelect({
 
 `onSearch` allows us to `AutoComplete` the `options`.
 
+
 <OnSearchLivePreview />
 
 :::info
@@ -347,6 +348,7 @@ useSelect({
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
+
 ```tsx
 useSelect({
     liveMode: "auto",
@@ -394,17 +396,14 @@ const { overtime } = useSelect({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    },
+    }
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
-}
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
 ```
-
 ### ~~`sort`~~
 
 :::caution Deprecated

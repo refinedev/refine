@@ -376,7 +376,6 @@ const App = () => {
 // visible-block-end
 render(<App />);
 ```
-
 > For more information, refer to the [Mantine colors documentation &#8594](https://mantine.dev/theming/colors/)
 
 ## Theme switching

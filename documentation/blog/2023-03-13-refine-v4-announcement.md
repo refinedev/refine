@@ -7,7 +7,11 @@ tags: [community, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-13-refine-v4-announcement%2Frefinev4.png
 hide_table_of_contents: false
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-13-refine-v4-announcement%2Ffeatured.png
+
 ---
+
+
+
 
 We are thrilled to announce that the **refine v4** is now officially released!
 
@@ -17,7 +21,8 @@ Throughout the development process, we have carefully analyzed feedback, discuss
 
 We would like to express our gratitude to our community for their support in bringing refine this far! Please feel free to share your requests for refine v5 with us:)
 
-In this article, we will discuss some of the most significant changes, and we encourage developers to [refer to our comprehensive guide](https://refine.dev/docs/migration-guide/3x-to-4x/) to help them migrate their applications.
+In this article, we will discuss some of the most significant changes, and we encourage developers to  [refer to our comprehensive guide](https://refine.dev/docs/migration-guide/3x-to-4x/) to help them migrate their applications.
+
 
 ## What is new in v4?
 
@@ -27,13 +32,17 @@ One of the best things about v4 is that it provides **100% backward** compatibil
 
 Thanks to full codemod support, the entire upgrade process will be automatically updated when you migrate your refine project to v4.
 
+
 ## New NPM organization
 
+
 refine has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
+
 
 :::success Thanks to codemod support 🎉
 With complete codemod support, updating package names will be effortless when migrating your refine project to v4.
 :::
+
 
 ### Package Name Changes
 
@@ -42,6 +51,7 @@ The following package names have been changed:
  <details>
 <summary>Show the table </summary>
 <p>
+
 
 | Old                            | New                        |
 | ------------------------------ | -------------------------- |
@@ -69,12 +79,16 @@ The following package names have been changed:
 | @pankod/refine-ably            | @refinedev/ably            |
 | @pankod/refine-kbar            | @refinedev/kbar            |
 
+
 </p>
 </details>
 
+
 ## Bring your own router
 
+
 Routes is now completely detached from refine.
+
 
 We have made significant changes to the [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) and route handling to improve flexibility and provide unlimited customization options, in response to requests from our community.
 
@@ -82,13 +96,17 @@ We have simplified the `routerProvider` to act solely as a link between refine a
 
 With its flexible structure, refine now has enterprise-grade router support for Next.js, and Remix platforms, providing a seamless experience for developers. This is also a promising sign that refine will soon provide support for React Native.
 
+
 [Refer to new enterprise-grade router provider migration guide to React Router v6, Next.js, Remix routers. ](https://refine.dev/docs/migration-guide/router-provider/#motivation-behind-the-changes)
 
-## Enterprise-grade routing
 
-We now offer top-notch support for routes for [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/). With this new feature, you have complete freedom to create routes that can be tailored to meet the specific needs of your advanced and enterprise use cases. There are no limits or restrictions, so you can create routes that truly fit your unique requirements.
 
-Changes to the `resources` prop in refine v4 have made it possible for the prop to act as a connection point between your app and API, rather than being mandatory for the router to work. As a result, your router can work without resources, and your resources can work without a router.
+ ## Enterprise-grade routing
+
+
+ We now offer top-notch support for routes for [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/). With this new feature, you have complete freedom to create routes that can be tailored to meet the specific needs of your advanced and enterprise use cases. There are no limits or restrictions, so you can create routes that truly fit your unique requirements.
+
+ Changes to the `resources` prop in refine v4 have made it possible for the prop to act as a connection point between your app and API, rather than being mandatory for the router to work. As a result, your router can work without resources, and your resources can work without a router.
 
 In refine v4, you can define your actions (`list`, `create`, `edit`, `show`, `clone`) as paths instead of components. This will allow you to define custom routes for actions and take advantage of the full potential of your router without being restricted to the routes created automatically.
 
@@ -106,6 +124,7 @@ resources={[
 
 As you can see, the new enterprise-grade routing structure allows for effortless handling of multi-tenant structures.
 
+
 ## Reduced bundle size
 
 To improve performance and optimize bundle size, we have removed re-exported packages from refine.
@@ -116,10 +135,10 @@ In response to feedback from the community, we made this change as bundle size h
 
 Removing re-exported packages enables you to achieve the same bundle size as a vanilla React project.
 
+
 ### How it works?
 
 For example the `@refinedev/antd` and package exports have been removed and updated as described in the migration guide.
-
 ```diff
 - import { useTable, SaveButton, Button, Form, Input } from "@pankod/refine-antd";
 
@@ -129,16 +148,18 @@ For example the `@refinedev/antd` and package exports have been removed and upda
 
 The following packages are affected:
 
--   @refinedev/antd
--   @refinedev/mui
--   @refinedev/chakra-ui
--   @refinedev/mantine
--   @refinedev/react-hook-form
--   @refinedev/react-table
+- @refinedev/antd
+- @refinedev/mui
+- @refinedev/chakra-ui
+- @refinedev/mantine
+- @refinedev/react-hook-form
+- @refinedev/react-table
+
 
 Thanks to full codemod support, imports and exports will be automatically updated when you migrate your refine project to v4.
 
 [You can find more details on the migration guide](https://refine.dev/docs/migration-guide/3x-to-4x).
+
 
 ### New Auth Provider
 
@@ -150,6 +171,7 @@ With the latest update, `authProvider` methods in refine v4 will always return a
 
 [Refer to Auth Provider Migration Guide for all implemented updates.](https://refine.dev/docs/migration-guide/auth-provider/)
 
+
 ## 🪄 Migrating your project automatically with refine-codemod ✨
 
 We are putting an end to the developer effort that would take hours.
@@ -158,11 +180,12 @@ As the refine team, we use many open-source projects and we are sensitive to bre
 
 [Refer to Migration guide for details.](https://refine.dev/docs/migration-guide/3x-to-4x/#-migrating-your-project-automatically-with-refine-codemod--recommended)
 
+
 `@refinedev/codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x.`
 
 ```
 npx @refinedev/codemod@latest refine3-to-refine4
-```
+````
 
 The process is complete, and your project now uses `refine@4.x.x.` 🚀
 
@@ -170,18 +193,21 @@ The process is complete, and your project now uses `refine@4.x.x.` 🚀
 
 The following refine packages includes component and hook updates. You can view the details on migration guide by clicking to each one.
 
--   [@refinedev/core](https://github.com/refinedev/refine/blob/master/packages/core/CHANGELOG.md)
--   [@refinedev/antd](https://github.com/refinedev/refine/blob/master/packages/antd/CHANGELOG.md)
--   [@refinedev/mui](https://github.com/refinedev/refine/blob/master/packages/mui/CHANGELOG.md)
--   [@refinedev/mantine](https://github.com/refinedev/refine/blob/master/packages/mantine/CHANGELOG.md)
--   [@refinedev/chakra-ui](https://github.com/refinedev/refine/blob/master/packages/chakra-ui/CHANGELOG.md)
--   [@refinedev/react-table](https://github.com/refinedev/refine/blob/master/packages/react-table/CHANGELOG.md)
--   [@refinedev/react-hook-form](https://github.com/refinedev/refine/blob/master/packages/react-hook-form/CHANGELOG.md)
--   [@refinedev/react-router-v6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/CHANGELOG.md)
--   [@refinedev/nextjs-router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/CHANGELOG.md)
--   [@refinedev/remix](https://github.com/refinedev/refine/blob/master/packages/remix/CHANGELOG.md)
+
+- [@refinedev/core](https://github.com/refinedev/refine/blob/master/packages/core/CHANGELOG.md)
+- [@refinedev/antd](https://github.com/refinedev/refine/blob/master/packages/antd/CHANGELOG.md)
+- [@refinedev/mui](https://github.com/refinedev/refine/blob/master/packages/mui/CHANGELOG.md)
+- [@refinedev/mantine](https://github.com/refinedev/refine/blob/master/packages/mantine/CHANGELOG.md)
+- [@refinedev/chakra-ui](https://github.com/refinedev/refine/blob/master/packages/chakra-ui/CHANGELOG.md)
+- [@refinedev/react-table](https://github.com/refinedev/refine/blob/master/packages/react-table/CHANGELOG.md)
+- [@refinedev/react-hook-form](https://github.com/refinedev/refine/blob/master/packages/react-hook-form/CHANGELOG.md)
+- [@refinedev/react-router-v6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/CHANGELOG.md)
+- [@refinedev/nextjs-router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/CHANGELOG.md)
+- [@refinedev/remix](https://github.com/refinedev/refine/blob/master/packages/remix/CHANGELOG.md)
+
 
 ## Conclusion
+
 
 Based on the updates mentioned, it is evident that refine is continuously improving to provide a better experience for developers.
 
@@ -191,10 +217,15 @@ In addition, the new common interface for `authProvider` methods allows for easy
 
 The support for full codemod provides an effortless upgrade experience for projects. These updates reflect refine's commitment to listening to its community and enhancing its performance.
 
+
 We extend our gratitude to our community for supporting us throughout this journey, and we hope that refine v4 will continue to be a valuable tool for developers worldwide.
+
 
 If you appreciate refine and want to see it continue to grow, please don't forget to [give us a star on GitHub](https://github.com/refinedev/refine). Every star counts!⭐
 
+
 Also, don't forget to join our [community Discord](https://discord.gg/refine) for support and feedback on the latest release.
 
+
 [To learn more about the new features and changes in refine v4, check out the full migration guide on GitHub.](https://refine.dev/docs/migration-guide/3x-to-4x/)
+
