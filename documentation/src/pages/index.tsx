@@ -5,11 +5,6 @@ import React from "react";
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
 import { LandingHeader } from "../refine-theme/landing-header";
-import { LandingHero } from "../refine-theme/landing-hero";
-import { LandingPlayground } from "../refine-theme/landing-playground";
-import { LandingStats } from "../refine-theme/landing-stats";
-import { LandingTiles } from "../refine-theme/landing-tiles";
-import { LandingWalkthrough } from "../refine-theme/landing-walkthrough";
 
 function Home() {
     return (
@@ -26,24 +21,16 @@ function Home() {
                 title={`refine | Build your React-based CRUD applications, without constraints!`}
                 description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design, an enterprise-level UI toolkit."
             >
-                <div className={clsx("bg-refine-bg")}>
+                <div className={clsx()}>
                     <LandingHeader />
                     <div
                         className={clsx(
-                            "top-section",
-                            "bg-landing-stars",
-                            "mb-12 -mt-[100px] md:-mt-[110px] lg:-mt-[90px] xl:-mt-[110px]",
-                            "pt-[100px] lg:pt-[90px] xl:-pt-[110px]",
-                            "landing-mask-image-hero-wide",
+                            "max-w-[1296px]",
+                            "w-full",
+                            "p-2 landing-sm:p-12",
+                            "mx-auto",
                         )}
-                    >
-                        <LandingHero />
-                    </div>
-                    <LandingWalkthrough />
-                    <LandingTiles />
-                    <LandingPlayground />
-                    <LandingStats />
-                    <div className="h-[96px] landing-lg:h-[160px]" />
+                    ></div>
                     <LandingFooter />
                 </div>
             </CommonLayout>
