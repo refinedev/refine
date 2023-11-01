@@ -1,5 +1,5 @@
 {
-  "version": "4.8.10",
+  "version": "4.8.11",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@refinedev/core": "^4.42.4",
+    "@refinedev/core": "^4.44.10",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
