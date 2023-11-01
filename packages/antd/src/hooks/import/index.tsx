@@ -1,15 +1,15 @@
-import React from "react";
-import { ButtonProps, notification, UploadProps, Progress } from "antd";
 import {
-    useTranslate,
-    useResource,
     BaseRecord,
     HttpError,
-    useImport as useImportCore,
-    UseImportReturnType,
     ImportOptions,
     pickNotDeprecated,
+    useImport as useImportCore,
+    UseImportReturnType,
+    useResource,
+    useTranslate,
 } from "@refinedev/core";
+import { ButtonProps, notification, Progress, UploadProps } from "antd";
+import React from "react";
 
 /**
  * `useImport` hook allows you to handle your csv import logic easily.
@@ -81,7 +81,7 @@ export const useImport = <
                                 percent={Math.floor(
                                     (processedAmount / totalAmount) * 100,
                                 )}
-                                width={50}
+                                size={50}
                                 strokeColor="#1890ff"
                                 status="normal"
                             />

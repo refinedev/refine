@@ -1,7 +1,7 @@
-import React from "react";
-import { Button, Progress } from "antd";
-import { OpenNotificationParams } from "@refinedev/core";
 import { UndoOutlined } from "@ant-design/icons";
+import { OpenNotificationParams } from "@refinedev/core";
+import { Button, Progress } from "antd";
+import React from "react";
 
 export type UndoableNotificationProps = {
     notificationKey: OpenNotificationParams["key"];
@@ -27,7 +27,7 @@ export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
             type="circle"
             percent={(undoableTimeout ?? 0) * 20}
             format={(time) => time && time / 20}
-            width={50}
+            size={50}
             strokeColor="#1890ff"
             status="normal"
         />
