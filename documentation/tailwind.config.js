@@ -163,6 +163,13 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-left.svg')",
                 "landing-playground-slide-right-bg":
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
+                "landing-trusted-by-developers-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(40% 100% at 110% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "landing-trusted-by-developers": [
+                    "radial-gradient(40% 100% at 110% 20%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
+                ],
                 "hackathon-button-bg":
                     "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
                 "refine-week-supabase-timeline-item-bg":
