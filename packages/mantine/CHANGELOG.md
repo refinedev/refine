@@ -1,5 +1,56 @@
 # @refinedev/mantine
 
+## 2.28.19
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Updated the return type of the `useSelect` hook to only include properties that actually being returned from the hook. Previously, the return type included all properties of the `Select` component, which was not correct.
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Now `useSelect` hook accepts 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    In PR #5160 the type convertion of the options are tried to be resolved by string conversion. This is not correct due to the fact that the `value` property of the option can be of any type. This was breaking the connection between the forms and the select inputs.
+
+    This change is reverted in the `@refinedev/core`, now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook.
+
+    Mantine's `<Select />` component only allows values to be `string`. In a case of a `value` not being `string`, you'll be able to manipulate the options via mapping the options before using them.
+
+    Here's how to get the proper types for the options and fix the value type issue:
+
+    ```tsx
+    import { Select } from "@mantine/core";
+    import { HttpError } from "@refinedev/core";
+    import { useSelect } from "@refinedev/mantine";
+
+    type IPost = {
+        id: number;
+        title: string;
+        description: string;
+    };
+
+    type IOption = { value: IPost["id"]; label: IPost["title"] };
+
+    const MyComponent = () => {
+        const { selectProps } = useSelect<IPost, HttpError, IPost, IOption>({
+            resource: "posts",
+        });
+
+        // This will result in `selectProps.data` to be of type `IOption[]`.
+        // <Select /> will not accept `value` as `number` so you'll have to map the options.
+
+        return (
+            <Select
+                {...selectProps}
+                data={selectProps.data.map((option) => ({
+                    ...option,
+                    value: option.value.toString(),
+                }))}
+            />
+        );
+    };
+    ```
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Updated initial value setting logic in `useForm` to handle nested objects properly.
+
 ## 2.28.18
 
 ### Patch Changes
