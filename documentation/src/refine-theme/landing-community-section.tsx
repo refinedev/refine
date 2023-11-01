@@ -127,7 +127,7 @@ const LandingComunitySection: FC<Props> = ({ className }) => {
                 >
                     <img
                         className={clsx("w-full", "object-cover")}
-                        src="/img/investors.png"
+                        src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors.png"
                         alt="investors"
                         loading="lazy"
                     />
