@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import get from "lodash/get";
+import has from "lodash/has";
+
 import {
     useForm as useHookForm,
     UseFormProps as UseHookFormProps,
@@ -16,6 +19,7 @@ import {
     UseFormReturnType as UseFormReturnTypeCore,
     useTranslate,
     useRefineContext,
+    flattenObjectKeys,
 } from "@refinedev/core";
 
 export type UseFormReturnType<
@@ -149,9 +153,10 @@ export const useForm = <
 
             for (const key in errors) {
                 // when the key is not registered in the form, react-hook-form not working
-                const isKeyInVariables = Object.keys(_variables).includes(
-                    key.split(".")[0],
-                );
+                const isKeyInVariables = Object.keys(
+                    flattenObjectKeys(_variables),
+                ).includes(key);
+
                 if (!isKeyInVariables) {
                     continue;
                 }
@@ -197,13 +202,23 @@ export const useForm = <
         const data = queryResult?.data?.data;
         if (!data) return;
 
-        const registeredFields = Object.keys(getValues());
+        /**
+         * get registered fields from react-hook-form
+         */
+        const registeredFields = Object.keys(flattenObjectKeys(getValues()));
 
-        Object.entries(data).forEach(([key, value]) => {
-            const name = key as Path<TVariables>;
+        /**
+         * set values from query result as default values
+         */
+        registeredFields.forEach((path) => {
+            const hasValue = has(data, path);
+            const dataValue = get(data, path);
 
-            if (registeredFields.includes(name)) {
-                setValue(name, value);
+            /**
+             * set value if the path exists in the query result even if the value is null
+             */
+            if (hasValue) {
+                setValue(path as Path<TVariables>, dataValue);
             }
         });
     }, [queryResult?.data, setValue, getValues]);

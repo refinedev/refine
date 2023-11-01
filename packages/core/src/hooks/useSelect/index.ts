@@ -7,7 +7,7 @@ import get from "lodash/get";
 import { useList, useMany, useMeta } from "@hooks";
 import {
     CrudSorting,
-    Option,
+    BaseOption,
     BaseRecord,
     GetManyResponse,
     GetListResponse,
@@ -38,16 +38,12 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: keyof TData extends string
-        ? keyof TData
-        : never;
+    optionLabel?: keyof TData extends string ? keyof TData : never;
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: keyof TData extends string
-        ? keyof TData
-        : never;
+    optionValue?: keyof TData extends string ? keyof TData : never;
     /**
      * Allow us to sort the options
      * @deprecated Use `sorters` instead
@@ -139,11 +135,14 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
     LiveModeProps &
     UseLoadingOvertimeOptionsProps;
 
-export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
+export type UseSelectReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TOption extends BaseOption = BaseOption,
+> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
     onSearch: (value: string) => void;
-    options: Option[];
+    options: TOption[];
 } & UseLoadingOvertimeReturnType;
 
 /**
@@ -164,12 +163,13 @@ export const useSelect = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
+    TOption extends BaseOption = BaseOption,
 >(
     props: UseSelectProps<TQueryFnData, TError, TData>,
-): UseSelectReturnType<TData> => {
+): UseSelectReturnType<TData, TOption> => {
     const [search, setSearch] = useState<CrudFilters>([]);
-    const [options, setOptions] = useState<Option[]>([]);
-    const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+    const [options, setOptions] = useState<TOption[]>([]);
+    const [selectedOptions, setSelectedOptions] = useState<TOption[]>([]);
 
     const {
         resource: resourceFromProps,
@@ -213,10 +213,13 @@ export const useSelect = <
     const defaultValueQueryOnSuccess = useCallback(
         (data: GetManyResponse<TData>) => {
             setSelectedOptions(
-                data.data.map((item) => ({
-                    label: String(get(item, optionLabel)),
-                    value: String(get(item, optionValue)),
-                })),
+                data.data.map(
+                    (item) =>
+                        ({
+                            label: get(item, optionLabel),
+                            value: get(item, optionValue),
+                        } as TOption),
+                ),
             );
         },
         [optionLabel, optionValue],
@@ -248,10 +251,13 @@ export const useSelect = <
         (data: GetListResponse<TData>) => {
             {
                 setOptions(
-                    data.data.map((item) => ({
-                        label: String(get(item, optionLabel)),
-                        value: String(get(item, optionValue)),
-                    })),
+                    data.data.map(
+                        (item) =>
+                            ({
+                                label: get(item, optionLabel),
+                                value: get(item, optionValue),
+                            } as TOption),
+                    ),
                 );
             }
         },
@@ -311,13 +317,15 @@ export const useSelect = <
         onInterval: overtimeOptions?.onInterval,
     });
 
+    const combinedOptions = useMemo(
+        () => uniqBy([...options, ...selectedOptions], "value"),
+        [options, selectedOptions],
+    );
+
     return {
         queryResult,
         defaultValueQueryResult,
-        options: useMemo(
-            () => uniqBy([...options, ...selectedOptions], "value"),
-            [options, selectedOptions],
-        ),
+        options: combinedOptions,
         onSearch: debounce(onSearch, debounceValue),
         overtime: { elapsedTime },
     };

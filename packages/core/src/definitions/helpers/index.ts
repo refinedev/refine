@@ -28,3 +28,5 @@ export { generateDefaultDocumentTitle } from "./generateDocumentTitle";
 export { useUserFriendlyName } from "./useUserFriendlyName";
 export { keys, stripUndefined } from "./keys";
 export { KeyBuilder } from "./keys";
+export { flattenObjectKeys } from "./flatten-object-keys";
+export { propertyPathToArray } from "./property-path-to-array";
