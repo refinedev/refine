@@ -1043,10 +1043,10 @@ So far, we have implemented the followings:
 
 ## Supabase Real Time Support
 
-**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
-Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
+**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.
+Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/v3/packages/supabase)` data provider.
 
-[You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
+[You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts#L325)
 
 We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
@@ -1095,11 +1095,11 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 :::tip
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+-   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts#L187)
+-   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/appwrite/src/index.ts#L252)
+-   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/hasura/src/liveProvider/index.ts#L16)
+-   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/nhost/src/liveProvider/index.ts#L16)
 :::
 
 ## Using `metaData` to pass values to data provider
@@ -1112,7 +1112,7 @@ Take a look at the useTable hook in List page we created on the [previous sectio
 
 ### `select` - Handling one-to-many relationship
 
-We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
+We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
 
 In this way, we can get the `title` data from the `categories` table and display it on the List page.
 

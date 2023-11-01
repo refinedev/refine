@@ -15,7 +15,7 @@ import PropResource from "@site/src/partials/prop-resource";
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
 :::info
-`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/v3/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
 ## Installation
@@ -528,7 +528,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 <CodeSandboxExample path="table-react-table-basic" />
 
 [tanstack-table]: https://tanstack.com/table/v8
-[refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
+[refine-react-table]: https://github.com/refinedev/refine/tree/v3/packages/react-table
 [use-table-core]: /docs/api-reference/core/hooks/useTable
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
