@@ -827,7 +827,7 @@ export default App;
   </div>
 </details>
 
-[You can use this CodeSandbox link to access this example &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
+[You can use this CodeSandbox link to access this example &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
 
 ```tsx live previewOnly previewHeight=450px disableScroll
 setInitialRoutes(["/samples"]);
