@@ -1091,3 +1091,14 @@ html[data-theme="dark"] .sourcecode-badge {
     mask-repeat: repeat;
     background: rgba(71, 235, 235, 0.25);
 }
+.landing-packages-mask {
+    mask-image: linear-gradient(
+        92.03deg,
+        rgba(0, 0, 0, 0) 3.05%,
+        #000000 25%,
+        #000000 50%,
+        #000000 75%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    mask-repeat: no-repeat;
+}
