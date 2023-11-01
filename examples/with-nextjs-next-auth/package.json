@@ -11,8 +11,8 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.36.17",
-    "@refinedev/core": "^4.44.10",
+    "@refinedev/antd": "^5.36.18",
+    "@refinedev/core": "^4.44.11",
     "@refinedev/cli": "^2.16.14",
     "@refinedev/nextjs-router": "^5.5.4",
     "@refinedev/simple-rest": "^4.5.4",
