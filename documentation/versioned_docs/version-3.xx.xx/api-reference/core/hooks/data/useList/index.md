@@ -1,7 +1,7 @@
 ---
 title: useList
 siderbar_label: useList
-source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useList.ts
+source: https://github.com/refinedev/refine/blob/v3/packages/core/src/hooks/data/useList.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -300,7 +300,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useList" 
+<PropsTable module="@pankod/refine-core/useList"
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/next/packages/mantine/src/hooks/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/v3/packages/mantine/src/hooks/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -31,9 +31,9 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider) 
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
 
-When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
+When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
@@ -51,7 +51,7 @@ useSelect({
 
 ### `optionLabel` and `optionValue`
 
-Allows you to change the `value` and `label` of your options.  
+Allows you to change the `value` and `label` of your options.
 Default values are `optionLabel = "title"` and `optionValue = "id"`
 
 ```tsx
@@ -126,7 +126,7 @@ useSelect({
 
 ### `debounce`
 
-It allows us to `debounce` the `onSearch` function.  
+It allows us to `debounce` the `onSearch` function.
 
 ```tsx
 useSelect({
@@ -202,7 +202,7 @@ const { options } = useSelect({
 
 ### `onSearch`
 
-It allows us to `AutoComplete` the `options`.  
+It allows us to `AutoComplete` the `options`.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
@@ -290,7 +290,7 @@ useSelect({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -308,7 +308,7 @@ useSelect({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -326,7 +326,7 @@ useSelect({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
@@ -339,7 +339,7 @@ useSelect({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -352,7 +352,7 @@ useSelect({
 ```
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 

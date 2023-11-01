@@ -114,9 +114,9 @@ render(<App />);
 
 Example above shows how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
 
--   [React Router v6](https://github.com/refinedev/refine/blob/next/examples/auth-chakra-ui/src/App.tsx#L171)
--   [Next.js](https://github.com/refinedev/refine/blob/next/examples/with-nextjs-auth/pages/_app.tsx#L31)
--   [Remix](https://github.com/refinedev/refine/blob/next/examples/with-remix-auth/app/routes/_protected.tsx)
+-   [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-chakra-ui/src/App.tsx#L171)
+-   [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
+-   [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
 
 > ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/chakra-ui` as same.
 
@@ -988,9 +988,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/api-reference/core/hooks/ui/useMenu/
 [refine-component]: /docs/api-reference/core/components/refine-config/
 [chakra-ui-drawer]: https://chakra-ui.com/docs/components/drawer
