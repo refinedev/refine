@@ -360,17 +360,17 @@ const listOne = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Directus {...props} />,
         label: "Directus",
-        tooltip: "npm i @refinedev/directus",
+        tooltip: "npm i @tspvivek/refine-directus",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Dp {...props} />,
         label: "Dp",
-        tooltip: "npm i @refinedev/dp",
+        tooltip: "npm i data-provider-customizer",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Elide {...props} />,
         label: "Elide",
-        tooltip: "npm i @refinedev/elide",
+        tooltip: "npm i elide-simple-graphql",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <ElideGraphql {...props} />,
@@ -380,12 +380,12 @@ const listOne = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <EntRefine {...props} />,
         label: "EntRefine",
-        tooltip: "npm i @refinedev/entrefine",
+        tooltip: "npm i entrefine",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Gatsby {...props} />,
         label: "Gatsby",
-        tooltip: "npm i @refinedev/gatsby",
+        tooltip: "npm i @refinedev/gatsby-router",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Hasura {...props} />,
@@ -395,12 +395,12 @@ const listOne = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Headless {...props} />,
         label: "Headless",
-        tooltip: "npm i @refinedev/headless",
+        tooltip: "npm i tailwindcss",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <HookForm {...props} />,
         label: "Hook Form",
-        tooltip: "npm i @refinedev/hook-form",
+        tooltip: "npm i @refinedev/react-hook-form",
     },
 ];
 
@@ -433,7 +433,7 @@ const listTwo = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Nextjs {...props} />,
         label: "Next.js",
-        tooltip: "npm i @refinedev/nextjs",
+        tooltip: "npm i @refinedev/nextjs-router",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Nhost {...props} />,
@@ -448,22 +448,17 @@ const listTwo = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Remix {...props} />,
         label: "Remix",
-        tooltip: "npm i @refinedev/remix",
+        tooltip: "npm i @refinedev/remix-router",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Rest {...props} />,
         label: "REST",
-        tooltip: "npm i @refinedev/rest",
+        tooltip: "npm i @refinedev/simple-rest",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Strapi {...props} />,
         label: "Strapi",
-        tooltip: "npm i @refinedev/strapi",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <StrapiWithText {...props} />,
-        label: "Strapi with Text",
-        tooltip: "npm i @refinedev/strapi-with-text",
+        tooltip: "npm i @refinedev/strapi-v4",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Supabase {...props} />,
@@ -473,26 +468,26 @@ const listTwo = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <UseGenerated {...props} />,
         label: "Use Generated",
-        tooltip: "npm i @refinedev/usegenerated",
+        tooltip: "npm i refine-use-generated",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Hygraph {...props} />,
         label: "Hygraph",
-        tooltip: "npm i @refinedev/hygraph",
+        tooltip: "npm i @acomagu/refine-hygraph",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Sanity {...props} />,
         label: "Sanity",
-        tooltip: "npm i @refinedev/sanity",
+        tooltip: "npm i refine-sanity",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <SQLite {...props} />,
         label: "SQLite",
-        tooltip: "npm i @refinedev/sqlite",
+        tooltip: "npm i refine-sqlite",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <JSONApi {...props} />,
         label: "JSON API",
-        tooltip: "npm i @refinedev/json-api",
+        tooltip: "npm i refine-jsonapi",
     },
 ];
