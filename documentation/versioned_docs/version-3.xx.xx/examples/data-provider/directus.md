@@ -13,7 +13,7 @@ Directus Data Provider is developed by the community. We would like to thank [ts
 -   `Username`: demo@demo.com
 -   `Password`: 123456
 
-<iframe loading="lazy" src="https://codesandbox.io/embed/github/tspvivek/refine-directus/tree/master/example?view=preview&theme=dark&codemirror=1"
+<iframe loading="lazy" src="https://codesandbox.io/embed/github/tspvivek/refine-directus/tree/v3/example?view=preview&theme=dark&codemirror=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-directus"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

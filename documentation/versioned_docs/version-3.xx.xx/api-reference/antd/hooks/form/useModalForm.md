@@ -737,7 +737,7 @@ return (
 
    <CodeSandboxExample path="form-antd-use-modal-form" />
 
-[@pankod/refine-antd]: https://github.com/refinedev/refine/tree/master/packages/antd
+[@pankod/refine-antd]: https://github.com/refinedev/refine/tree/v3/packages/antd
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [basekey]: /api-reference/core/interfaces.md#basekey

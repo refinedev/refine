@@ -238,7 +238,7 @@ The `Button` component gives you an implemention ready component compatible with
 :::
 
 :::tip
-[Refer to how the sider items are used in the default `Sider` component. &#8594](https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/components/layout/sider/index.tsx#L68-L155)
+[Refer to how the sider items are used in the default `Sider` component. &#8594](https://github.com/refinedev/refine/blob/v3/packages/chakra-ui/src/components/layout/sider/index.tsx#L68-L155)
 :::
 
 ## Recreating the Default Sider Menu

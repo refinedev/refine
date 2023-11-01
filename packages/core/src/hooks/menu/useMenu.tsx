@@ -8,7 +8,7 @@ import { getParentResource } from "@definitions/helpers/router";
 import {
     FlatTreeItem,
     createTree,
-} from "@definitions/helpers/menu/create-tree";
+} from "../../definitions/helpers/menu/create-tree";
 
 type UseMenuReturnType = {
     defaultOpenKeys: string[];

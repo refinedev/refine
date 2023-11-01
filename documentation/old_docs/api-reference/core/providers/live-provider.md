@@ -27,7 +27,7 @@ const liveProvider = {
 :::tip
 **refine** includes some out-of-the-box live providers to use in your projects such as:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 -   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
@@ -350,7 +350,7 @@ export const liveProvider = (client: Client): LiveProvider => {
 
 :::info
 
-`genareteUseListSubscription`, `genareteUseOneSubscription` and `genareteUseManySubscription` are helper functions that generate subscription queries. They are same as the methods in the data provider of `@refinedev/hasura`. You can check them out [here](https://github.com/refinedev/refine/tree/next/packages/hasura/src/utils).
+`genareteUseListSubscription`, `genareteUseOneSubscription` and `genareteUseManySubscription` are helper functions that generate subscription queries. They are same as the methods in the data provider of `@refinedev/hasura`. You can check them out [here](https://github.com/refinedev/refine/tree/master/packages/hasura/src/utils).
 
 :::
 

@@ -15,7 +15,7 @@ export const Menu = () => {
                         <div className="text-gray-600">
                             <NavLink
                                 className="text-lg flex items-center"
-                                to={item?.route}
+                                to={item?.route ?? "/"}
                             >
                                 <span className="mr-2">{item?.icon}</span>
                                 {item?.label}
