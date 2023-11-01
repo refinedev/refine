@@ -5,6 +5,7 @@ import React from "react";
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
 import { LandingHeader } from "../refine-theme/landing-header";
+import LandingComunitySection from "../refine-theme/landing-community-section";
 
 function Home() {
     return (
@@ -25,12 +26,18 @@ function Home() {
                     <LandingHeader />
                     <div
                         className={clsx(
-                            "max-w-[1296px]",
-                            "w-full",
-                            "p-2 landing-sm:p-12",
+                            "w-full landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1296px]",
+                            "px-8 landing-sm:px-0",
+                            "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
                             "mx-auto",
                         )}
-                    ></div>
+                    >
+                        <LandingComunitySection
+                            className={clsx(
+                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                            )}
+                        />
+                    </div>
                     <LandingFooter />
                 </div>
             </CommonLayout>
