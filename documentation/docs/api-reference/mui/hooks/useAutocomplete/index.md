@@ -1,7 +1,7 @@
 ---
 title: useAutocomplete
 siderbar_label: useAutocomplete
-source: https://github.com/refinedev/refine/blob/next/packages/mui/src/hooks/useAutocomplete/index.ts
+source: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useAutocomplete/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -80,7 +80,6 @@ useAutocomplete({
 `filters` is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
 
 > For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
-
 
 ```tsx
 useAutocomplete({
@@ -378,7 +377,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -390,14 +389,17 @@ const { overtime } = useAutocomplete({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`sort`~~
 
 :::caution Deprecated

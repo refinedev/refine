@@ -1,7 +1,7 @@
 ---
 id: useSimpleList
 title: useSimpleList
-source: https://github.com/refinedev/refine/blob/next/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
+source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -28,7 +28,6 @@ This feature comes out of the box with the `listProps.pagination`. It generates 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 If you want to make a change in the pagination of the `<List>`. You should pass the pagination object of the `listProps` to the pagination property of the `<List>` as below. You can override the values of the pagination object as your need.
-
 
 ```tsx
 // ...
@@ -91,7 +90,7 @@ When the `useSimpleList` hook is mounted, it will call the `subscribe` method fr
 
 ### `resource`
 
-The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`. 
+The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`.
 
 Refer to the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) documentation for an example of how resources are handled.
 
@@ -149,7 +148,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `pagination.current`
 
-Sets the initial value of the page index. It is `1` by default. 
+Sets the initial value of the page index. It is `1` by default.
 
 ```tsx
 useSimpleList({
@@ -654,14 +653,17 @@ const { overtime } = useSimpleList({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Return Values
 
 ### `queryResult`
@@ -800,6 +802,7 @@ const { overtime } = useSimpleList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### ~~`sorter`~~
 
 :::caution Deprecated

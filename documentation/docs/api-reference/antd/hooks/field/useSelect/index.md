@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/next/packages/antd/src/hooks/fields/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/fields/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -127,7 +127,7 @@ useSelect({
 
 The `defaultValue` is a property that can be used to not only set default options for a `<select>` component but also add extra options.
 
-However, issues may arise when the `<select>` component has many entries and    pagination is required. In such cases, the `defaultValue` might not be visible among the currently displayed options, which could cause the `<select>` component to malfunction.
+However, issues may arise when the `<select>` component has many entries and pagination is required. In such cases, the `defaultValue` might not be visible among the currently displayed options, which could cause the `<select>` component to malfunction.
 
 To prevent this, a separate `useMany` query is sent to the backend carrying the `defaultValue` and added to the options of the `<select>` component, ensuring that the default values are always present in the current array of options.
 
@@ -410,7 +410,9 @@ const { overtime } = useSelect({
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ### ~~`sort`~~

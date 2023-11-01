@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/next/packages/mantine/src/hooks/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/master/packages/mantine/src/hooks/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -58,7 +58,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `optionLabel` and `optionValue`
 
-Allows you to change the `value` and `label` of your options.  
+Allows you to change the `value` and `label` of your options.
 Default values are `optionLabel = "title"` and `optionValue = "id"`
 
 ```tsx
@@ -214,7 +214,6 @@ const { options } = useSelect({
 
 `onSearch` allows us to `AutoComplete` the `options`.
 
-
 <OnSearchLivePreview />
 
 :::info
@@ -348,7 +347,6 @@ useSelect({
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-
 ```tsx
 useSelect({
     liveMode: "auto",
@@ -384,7 +382,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -396,14 +394,17 @@ const { overtime } = useSelect({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`sort`~~
 
 :::caution Deprecated

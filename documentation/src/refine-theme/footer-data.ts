@@ -68,7 +68,7 @@ export const menuItems = [
             },
             {
                 label: "License",
-                href: "https://github.com/refinedev/refine/blob/next/LICENSE",
+                href: "https://github.com/refinedev/refine/blob/master/LICENSE",
             },
         ],
     },

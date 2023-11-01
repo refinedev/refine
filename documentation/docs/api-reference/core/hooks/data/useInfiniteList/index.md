@@ -1,7 +1,7 @@
 ---
 title: useInfiniteList
 siderbar_label: useInfiniteList
-source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useInfiniteList.ts
+source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/data/useInfiniteList.ts
 description: useInfiniteList data hook from refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
@@ -310,7 +310,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -322,14 +322,17 @@ const { overtime } = useInfiniteList({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`config`~~
 
 :::caution Deprecated
@@ -357,6 +360,7 @@ Returns an object with TanStack Query's `useInfiniteQuery` return values.
 > For more information, refer to the [`useInfiniteQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery)
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -366,6 +370,7 @@ const { overtime } = useInfiniteList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ## FAQ
 
 ### How to use cursor-based pagination?
