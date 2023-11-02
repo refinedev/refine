@@ -57,11 +57,11 @@ export const CommunityStatsProvider: FC = ({ children }) => {
     }, [fetchGithubCount]);
 
     const githubStarCountText = useMemo(() => {
-        return convertToText(githubStarCount);
+        return convertStatToText(githubStarCount);
     }, [githubStarCount]);
 
     const discordMemberCountText = useMemo(() => {
-        return convertToText(discordMemberCount);
+        return convertStatToText(discordMemberCount);
     }, [discordMemberCount]);
 
     const value = {
@@ -91,7 +91,7 @@ export const useCommunityStatsContext = () => {
     return context;
 };
 
-const convertToText = (num: number) => {
+export const convertStatToText = (num: number) => {
     const hasIntlSupport =
         typeof Intl == "object" &&
         Intl &&

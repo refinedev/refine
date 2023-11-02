@@ -1,39 +1,44 @@
 import clsx from "clsx";
 import React, { FC, useMemo } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
-import { useCommunityStatsContext } from "../context/CommunityStats";
+import {
+    convertStatToText,
+    useCommunityStatsContext,
+} from "../context/CommunityStats";
+import { useAnimatedCounter } from "../hooks/use-animated-counter";
+import { useInView } from "framer-motion";
+import { CountingNumber } from "../components/counting-number";
 
 type Props = {
     className?: string;
 };
 
-const LandingCommunity: FC<Props> = ({ className }) => {
+export const LandingCommunity: FC<Props> = ({ className }) => {
     const { colorMode } = useColorMode();
 
-    const { discordMemberCountText, githubStarCountText } =
-        useCommunityStatsContext();
+    const { discordMemberCount, githubStarCount } = useCommunityStatsContext();
 
     const list = useMemo(() => {
         return [
             {
-                title: `${githubStarCountText}+`,
+                stat: githubStarCount,
                 description: "Stars on GitHub",
             },
             {
-                title: "5K+",
+                stat: 5_000,
                 description:
                     "Projects on production, including large enterprises",
             },
             {
-                title: `${discordMemberCountText}+`,
+                stat: discordMemberCount,
                 description: "Active developers in our open-source community",
             },
             {
-                title: "200K+",
+                stat: 200_000,
                 description: "End users are using apps built with refine",
             },
         ];
-    }, [discordMemberCountText, githubStarCountText]);
+    }, [discordMemberCount, githubStarCount]);
 
     return (
         <div className={clsx(className, "w-full")}>
@@ -90,19 +95,7 @@ const LandingCommunity: FC<Props> = ({ className }) => {
                                     "rounded-3xl",
                                 )}
                             >
-                                <div
-                                    className={clsx(
-                                        "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
-                                        "-tracking-tighter",
-                                        "dark:bg-landing-stats-text-dark bg-landing-stats-text",
-                                        "bg-clip-text",
-                                        "text-transparent",
-                                        "font-bold",
-                                        "drop-shadow-2xl",
-                                    )}
-                                >
-                                    {item.title}
-                                </div>
+                                <StatText stat={item.stat} />
                                 <div
                                     className={clsx(
                                         "mt-2 landing-sm:mt-6",
@@ -164,4 +157,22 @@ const LandingCommunity: FC<Props> = ({ className }) => {
     );
 };
 
-export default LandingCommunity;
+const StatText: FC<{ stat: number }> = ({ stat }) => {
+    return (
+        <CountingNumber
+            to={stat}
+            from={0}
+            duration={1}
+            format={(value) => `${convertStatToText(value)}+`}
+            className={clsx(
+                "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
+                "-tracking-tighter",
+                "dark:bg-landing-stats-text-dark bg-landing-stats-text",
+                "bg-clip-text",
+                "text-transparent",
+                "font-bold",
+                "drop-shadow-2xl",
+            )}
+        />
+    );
+};
