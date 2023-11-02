@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.1.13
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update T&C link from next to master branch.
+
 ## 1.1.12
 
 ### Patch Changes

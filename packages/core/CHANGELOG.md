@@ -1,5 +1,11 @@
 # @refinedev/core
 
+## 4.44.12
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update commit frequency branch from next to master in README.
+
 ## 4.44.11
 
 ### Patch Changes
