@@ -5,8 +5,6 @@ import {
     convertStatToText,
     useCommunityStatsContext,
 } from "../context/CommunityStats";
-import { useAnimatedCounter } from "../hooks/use-animated-counter";
-import { useInView } from "framer-motion";
 import { CountingNumber } from "../components/counting-number";
 
 type Props = {
@@ -95,7 +93,23 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                     "rounded-3xl",
                                 )}
                             >
-                                <StatText stat={item.stat} />
+                                <CountingNumber
+                                    to={item.stat}
+                                    from={0}
+                                    duration={1}
+                                    format={(value) =>
+                                        `${convertStatToText(value)}+`
+                                    }
+                                    className={clsx(
+                                        "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
+                                        "-tracking-tighter",
+                                        "dark:bg-landing-stats-text-dark bg-landing-stats-text",
+                                        "bg-clip-text",
+                                        "text-transparent",
+                                        "font-bold",
+                                        "drop-shadow-2xl",
+                                    )}
+                                />
                                 <div
                                     className={clsx(
                                         "mt-2 landing-sm:mt-6",
@@ -154,25 +168,5 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                 </div>
             </div>
         </div>
-    );
-};
-
-const StatText: FC<{ stat: number }> = ({ stat }) => {
-    return (
-        <CountingNumber
-            to={stat}
-            from={0}
-            duration={1}
-            format={(value) => `${convertStatToText(value)}+`}
-            className={clsx(
-                "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
-                "-tracking-tighter",
-                "dark:bg-landing-stats-text-dark bg-landing-stats-text",
-                "bg-clip-text",
-                "text-transparent",
-                "font-bold",
-                "drop-shadow-2xl",
-            )}
-        />
     );
 };
