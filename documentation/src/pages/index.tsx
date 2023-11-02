@@ -6,6 +6,7 @@ import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
 import { LandingHeader } from "../refine-theme/landing-header";
 import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-developers";
+import { LandingPackages } from "../refine-theme/landing-packages";
 
 function Home() {
     return (
@@ -33,6 +34,11 @@ function Home() {
                         )}
                     >
                         <LandingTrustedByDevelopers
+                          className={clsx(
+                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                            )}
+                        />
+                        <LandingPackages
                             className={clsx(
                                 "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
                             )}
