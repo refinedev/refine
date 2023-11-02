@@ -39,6 +39,13 @@
         mask-size: 1920px 288px;
         mask-position: center;
     }
+    .scrollbar-hidden {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+    }
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
 
     .landing-image-bottom-mobile-bg {
         mask-image: url("../../static/assets/hero-video-bottom-mobile.svg");
