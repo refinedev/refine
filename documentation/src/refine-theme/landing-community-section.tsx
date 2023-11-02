@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { FC, useMemo } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "../context/CommunityStats";
 
 type Props = {
@@ -7,6 +8,8 @@ type Props = {
 };
 
 const LandingComunitySection: FC<Props> = ({ className }) => {
+    const { colorMode } = useColorMode();
+
     const { discordMemberCountText, githubStarCountText } =
         useCommunityStatsContext();
 
@@ -51,7 +54,7 @@ const LandingComunitySection: FC<Props> = ({ className }) => {
                         className={clsx(
                             "font-semibold",
                             "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
-                            "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
+                            "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
                         )}
                     >
                         great community
@@ -83,7 +86,7 @@ const LandingComunitySection: FC<Props> = ({ className }) => {
                                     "not-prose",
                                     "p-4 landing-sm:py-4 landing-sm:px-10",
                                     "dark:bg-landing-noise",
-                                    "dark:bg-gray-800 bg-gray-600",
+                                    "dark:bg-gray-800 bg-gray-50",
                                     "rounded-3xl",
                                 )}
                             >
@@ -122,12 +125,14 @@ const LandingComunitySection: FC<Props> = ({ className }) => {
                         "p-4",
                         "rounded-3xl",
                         "dark:bg-landing-noise",
-                        "dark:bg-gray-800 bg-gray-600",
+                        "dark:bg-gray-800 bg-gray-50",
                     )}
                 >
                     <img
                         className={clsx("w-full", "object-cover")}
-                        src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors.png"
+                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors${
+                            colorMode === "dark" ? "-dark" : ""
+                        }.png`}
                         alt="investors"
                         loading="lazy"
                     />
