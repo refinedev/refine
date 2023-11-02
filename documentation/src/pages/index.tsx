@@ -5,7 +5,7 @@ import React from "react";
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
 import { LandingHeader } from "../refine-theme/landing-header";
-import LandingComunitySection from "../refine-theme/landing-community-section";
+import LandingCommunity from "../refine-theme/landing-community";
 
 function Home() {
     return (
@@ -32,7 +32,7 @@ function Home() {
                             "mx-auto",
                         )}
                     >
-                        <LandingComunitySection
+                        <LandingCommunity
                             className={clsx(
                                 "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
                             )}

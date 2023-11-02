@@ -7,7 +7,7 @@ type Props = {
     className?: string;
 };
 
-const LandingComunitySection: FC<Props> = ({ className }) => {
+const LandingCommunity: FC<Props> = ({ className }) => {
     const { colorMode } = useColorMode();
 
     const { discordMemberCountText, githubStarCountText } =
@@ -164,4 +164,4 @@ const LandingComunitySection: FC<Props> = ({ className }) => {
     );
 };
 
-export default LandingComunitySection;
+export default LandingCommunity;
