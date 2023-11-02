@@ -5,6 +5,7 @@ import React from "react";
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
 import { LandingHeader } from "../refine-theme/landing-header";
+import { LandingCommunity } from "../refine-theme/landing-community";
 import LandingEnterpriseDevelopers from "../refine-theme/landing-enterprise-developers";
 import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-developers";
 import { LandingPackages } from "../refine-theme/landing-packages";
@@ -28,9 +29,9 @@ function Home() {
                     <LandingHeader />
                     <div
                         className={clsx(
-                            "max-w-[1296px]",
-                            "w-full",
-                            "p-2 landing-sm:p-12",
+                            "w-full landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1296px]",
+                            "px-8 landing-sm:px-0",
+                            "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
                             "mx-auto",
                         )}
                     >
@@ -44,6 +45,7 @@ function Home() {
                                 "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
                             )}
                         />
+                        <LandingCommunity
                         <LandingEnterpriseDevelopers
                             className={clsx(
                                 "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",

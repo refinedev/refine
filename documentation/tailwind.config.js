@@ -159,6 +159,10 @@ module.exports = {
                 ],
                 "landing-stats-border-bg":
                     "conic-gradient(from -90deg at 50% 50%, rgba(77, 77, 179, 0) 0deg, #4D4DB3 39.37deg, rgba(77, 77, 179, 0) 86.25deg, rgba(77, 77, 179, 0) 198.75deg, #4D4DB3 232.5deg, rgba(77, 77, 179, 0) 275.62deg, rgba(77, 77, 179, 0) 360deg)",
+                "landing-stats-text-dark":
+                    "linear-gradient(180deg, #FFF 25%, rgba(255, 255, 255, 0.25) 100%)",
+                "landing-stats-text":
+                    "linear-gradient(180deg, #14141F 25%, rgba(20, 20, 31, 0.50) 100%)",
                 "landing-playground-bg": [
                     "linear-gradient(90deg, rgba(23, 23, 79, 0) 0%, #17174F 100%)",
                     "linear-gradient(180deg, rgba(0, 0, 0, 0.165) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.165) 100%)",
