@@ -38,11 +38,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example blog-heroicons-example
+npm create refine-app@latest -- --example blog-refine-mui
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open blog-heroicons-example example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/blog-heroicons-example?view=preview&theme=dark&codemirror=1)
+[![Open blog-refine-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/blog-refine-mui?view=preview&theme=dark&codemirror=1)
