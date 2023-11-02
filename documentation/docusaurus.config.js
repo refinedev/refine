@@ -140,6 +140,14 @@ const siteConfig = {
                     line: "hide-next-line",
                     block: { start: "hide-start", end: "hide-end" },
                 },
+                {
+                    className: "theme-code-block-added-line",
+                    line: "added-line",
+                },
+                {
+                    className: "theme-code-block-removed-line",
+                    line: "removed-line",
+                },
             ],
         },
         image: "img/refine_social_new.png",

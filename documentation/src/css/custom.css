@@ -1076,6 +1076,16 @@ html[data-theme="dark"] .sourcecode-badge {
     margin: 0;
 }
 
+.theme-code-block-added-line {
+    background-color: #d2fd20;
+    display: block;
+}
+
+.theme-code-block-removed-line {
+  background-color: #ff000020;
+  display: block;
+}
+
 .bg-top-announcement {
     border-bottom: 1px solid rgba(71, 235, 235, 0.15);
     background: radial-gradient(
