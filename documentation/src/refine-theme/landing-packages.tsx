@@ -181,7 +181,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                             Out-of-the box integrations for 15+ services
                             including custom REST and GraphQL API’s.
                         </p>
-                        <LandingSectionCtaButton to="/docs/integrations/">
+                        <LandingSectionCtaButton to="/integrations">
                             All integrations
                         </LandingSectionCtaButton>
                     </div>
