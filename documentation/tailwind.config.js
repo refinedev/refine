@@ -163,6 +163,17 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-left.svg')",
                 "landing-playground-slide-right-bg":
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
+                "landing-packages-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 100% at 50% -40%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "landing-packages": [
+                    "radial-gradient(50% 100% at 50% -60%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
+                ],
+                "landing-packages-text":
+                    "linear-gradient(180deg, #14141F 0%, #474E6B 100%)",
+                "landing-packages-text-dark":
+                    "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
                 "hackathon-button-bg":
                     "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
                 "refine-week-supabase-timeline-item-bg":
@@ -239,6 +250,10 @@ module.exports = {
                     "walkthrough-bounce 3s ease-in-out infinite",
                 "top-announcement-glow":
                     "top-announcement-glow 1s ease-in-out infinite alternate",
+                "landing-packages-left":
+                    "landing-packages-left 20s linear infinite",
+                "landing-packages-right":
+                    "landing-packages-right 20s linear infinite",
             },
             keyframes: {
                 "walkthrough-bounce": {
@@ -328,6 +343,14 @@ module.exports = {
                     "100%": {
                         opacity: 0,
                     },
+                },
+                "landing-packages-left": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-50%)" },
+                },
+                "landing-packages-right": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(50%)" },
                 },
             },
         },
