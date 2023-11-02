@@ -48,14 +48,15 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                     <Popover.Button
                         className={clsx(
                             "inline-flex items-center",
-                            "text-base",
-                            "font-medium",
+                            "text-sm leading-6",
+                            "font-normal",
                         )}
                     >
                         <span
                             className={clsx(
-                                "text-gray-900 dark:text-white",
-                                isPermanentDark && "!text-white",
+                                "text-gray-900 dark:text-gray-300",
+                                "transition-colors duration-150 ease-in-out inline-block",
+                                // isPermanentDark && "!text-gray-300",
                             )}
                         >
                             {item.label}
@@ -63,27 +64,19 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                         <ChevronDownIcon
                             aria-hidden="true"
                             className={clsx(
-                                "transition duration-150 ease-in-out",
+                                "transition duration-150 ease-out",
                                 "-mr-2",
-                                "text-gray-400 dark:text-gray-500",
-                                isShowing ? "translate-y-1" : "",
-                                isShowing && isPermanentDark
-                                    ? "!text-gray-0 opacity-100"
-                                    : isPermanentDark
-                                    ? "!text-gray-0 opacity-50"
-                                    : "",
-                                {
-                                    "dark:text-gray-0 text-gray-900": isShowing,
-                                },
+                                "text-gray-500 dark:text-gray-400",
+                                isShowing ? "translate-y-0.5" : "",
                             )}
                         />
                     </Popover.Button>
                     <Transition
                         as={Fragment}
-                        enter="transition ease-in duration-200"
+                        enter="transition ease-in duration-150"
                         enterFrom="opacity-0 translate-y-3"
                         enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-out duration-200"
+                        leave="transition ease-out duration-150"
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-3"
                         show={isShowing}

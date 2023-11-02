@@ -74,6 +74,7 @@ module.exports = {
                 ],
                 mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
+                disket: ["Disket Mono", ...defaultTheme.fontFamily.mono],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
             boxShadow: {
