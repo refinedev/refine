@@ -23,15 +23,15 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show isLoading={isLoading}>
             <Stack gap={1}>
-                <Typography variant="body1" fontWeight="bold">
+                <Typography component="div" fontWeight="bold">
                     {translate("categories.fields.id")}
                 </Typography>
                 <NumberField value={record?.id ?? ""} />
-                <Typography variant="body1" fontWeight="bold">
+                <Typography component="div" fontWeight="bold">
                     {translate("categories.fields.title")}
                 </Typography>
                 <TextField value={record?.title} />
-                <Typography variant="body1" fontWeight="bold">
+                <Typography component="div" fontWeight="bold">
                     {translate("isActive")}
                 </Typography>
                 <BooleanField value={record?.isActive} />
