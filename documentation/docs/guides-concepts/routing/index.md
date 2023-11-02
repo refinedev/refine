@@ -202,7 +202,7 @@ To enable automatic parameter detection feature, you need to pass `syncWithLocat
 Once `syncWithLocation` is enabled, you can use `useTable` hook without passing any parameters as shown in the example below.
 
 ```tsx
-const { tableQueryResult, current, pageSize, filters, sorters } = useTable()
+const { ... } = useTable()
 ```
 
 And then navigate the following route:
@@ -211,12 +211,35 @@ And then navigate the following route:
 /products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
 ```
 
-Then you will get the following values:
-- `tableQueryResult`: List of products, already paginated, filtered and sorted.
-- `current`: current page number.
-- `pageSize`: current page size.
-- `filters`: current filters.
-- `sorters`: current sorters.
+You will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
+
+TODO: We can use this paragraph:
+
+You can use fields like, tableQueryResult, current, pageSize, filters and sorters to present the data in your UI.
+
+OR SOMETHING LIKE
+
+```ts
+
+const { tableQueryResult, current, pageSize, filters, sorters } = useTable()
+
+console.log(tableQueryResult.data.data) // [{...}, {...}]
+console.log(tableQueryResult.data.total) // 32 - total number of unpaginated records
+console.log(current) // 1 - current page
+console.log(pageSize) // 2 - page size
+console.log(filters) // [{ field: "category.id", operator: "eq", value: "1" }]
+console.log(sorters) // [{ field: "id", order: "asc" }]
+```
+
+Also, `setFilters`, `setSorters`, `setCurrent`, and `setPageSize` can be used to modify these parameters.
+
+```ts
+const { current, setCurrent } = useTable()
+
+<button onClick={() => { setCurrent(current + 1) }}>Next Page</button>
+```
+Clicking the button will **update the current route** and **fetch the next page** of the table automatically.
+
 
 import UseTableUsage from "./use-table-usage";
 
