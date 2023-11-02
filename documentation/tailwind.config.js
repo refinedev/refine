@@ -21,8 +21,10 @@ module.exports = {
                     cyan: "#0FBDBD",
                     "cyan-alt": "#47EBEB",
                     blue: "#0080FF",
+                    "blue-alt": "#6EB3F7",
                     indigo: "#3333FF",
                     purple: "#8000FF",
+                    "purple-alt": "#B366FF",
                     pink: "#ED5EC9",
                     bg: "#0A0A29",
                     kdb: "#DBDBF0",
@@ -94,6 +96,8 @@ module.exports = {
                 "header-blur": "12px",
             },
             backgroundImage: {
+                "landing-noise":
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 "walkthrough-button-shadow":
                     "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",
                 "walkthrough-button-alt-shadow":
