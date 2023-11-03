@@ -1,6 +1,3 @@
-
-
-
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
 <picture  style="display: inline-block;" >
@@ -18,8 +15,8 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
@@ -38,32 +35,14 @@
 
 </div>
 
-
-## About
-
-Starter Files for Navbar with Heroicons Post.
-
-You can reach the post from [here](https://refine.dev/blog/heroicons-with-tailwind).
-
-
-## Local Deployment
-
-Open it in your code editor and run:
+## Try it out on your local
 
 ```bash
-npm install
-npm run start
+npm create refine-app@latest -- --example blog-heroicons-example
 ```
 
-### Install Heroicons
+## Try it out on CodeSandbox
 
-```bash
-npm install @heroicons/react
-```
+<br/>
 
-### Compile TailwindCSS
-
-And then to compile newly added TailwindCSS classes, run the CSS compiler in `watch` mode:
-
-```bash
-npx tailwindcss -i ./src/styles/styles.css -o ./public/styles/styles.css --watch
+[![Open blog-heroicons-example example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/blog-heroicons-example?view=preview&theme=dark&codemirror=1)
