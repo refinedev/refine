@@ -21,8 +21,10 @@ module.exports = {
                     cyan: "#0FBDBD",
                     "cyan-alt": "#47EBEB",
                     blue: "#0080FF",
+                    "blue-alt": "#6EB3F7",
                     indigo: "#3333FF",
                     purple: "#8000FF",
+                    "purple-alt": "#B366FF",
                     pink: "#ED5EC9",
                     bg: "#0A0A29",
                     kdb: "#DBDBF0",
@@ -96,6 +98,8 @@ module.exports = {
             },
             backgroundImage: {
                 noise: "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                "landing-noise":
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 "walkthrough-button-shadow":
                     "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",
                 "walkthrough-button-alt-shadow":
@@ -157,6 +161,10 @@ module.exports = {
                 ],
                 "landing-stats-border-bg":
                     "conic-gradient(from -90deg at 50% 50%, rgba(77, 77, 179, 0) 0deg, #4D4DB3 39.37deg, rgba(77, 77, 179, 0) 86.25deg, rgba(77, 77, 179, 0) 198.75deg, #4D4DB3 232.5deg, rgba(77, 77, 179, 0) 275.62deg, rgba(77, 77, 179, 0) 360deg)",
+                "landing-stats-text-dark":
+                    "linear-gradient(180deg, #FFF 25%, rgba(255, 255, 255, 0.25) 100%)",
+                "landing-stats-text":
+                    "linear-gradient(180deg, #14141F 25%, rgba(20, 20, 31, 0.50) 100%)",
                 "landing-playground-bg": [
                     "linear-gradient(90deg, rgba(23, 23, 79, 0) 0%, #17174F 100%)",
                     "linear-gradient(180deg, rgba(0, 0, 0, 0.165) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.165) 100%)",
@@ -165,6 +173,24 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-left.svg')",
                 "landing-playground-slide-right-bg":
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
+                "landing-trusted-by-developers-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(40% 100% at 110% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "landing-trusted-by-developers": [
+                    "radial-gradient(40% 100% at 110% 20%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
+                ],
+                "landing-packages-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 100% at 50% -40%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "landing-packages": [
+                    "radial-gradient(50% 100% at 50% -60%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
+                ],
+                "landing-packages-text":
+                    "linear-gradient(180deg, #14141F 0%, #474E6B 100%)",
+                "landing-packages-text-dark":
+                    "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
                 "hackathon-button-bg":
                     "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
                 "refine-week-supabase-timeline-item-bg":
@@ -262,6 +288,10 @@ module.exports = {
                     "text-change-indicator 1s ease-in-out 1",
                 "mini-bounce": "mini-bounce 3s ease-in-out infinite",
                 "dot-waves": "dot-waves 2.5s linear infinite",
+                "landing-packages-left":
+                    "landing-packages-left 20s linear infinite",
+                "landing-packages-right":
+                    "landing-packages-right 20s linear infinite",
             },
             keyframes: {
                 "walkthrough-bounce": {
@@ -415,6 +445,14 @@ module.exports = {
                         height: "4px",
                         opacity: 0,
                     },
+                },
+                "landing-packages-left": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-50%)" },
+                },
+                "landing-packages-right": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(50%)" },
                 },
             },
         },
