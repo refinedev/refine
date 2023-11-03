@@ -36,7 +36,6 @@ import {
     Remix,
     Rest,
     Strapi,
-    StrapiWithText,
     Supabase,
     Hygraph,
     UseGenerated,
@@ -108,12 +107,12 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                     "dark:bg-landing-packages-dark bg-landing-packages",
                     "dark:bg-gray-800 bg-gray-50",
                     "rounded-3xl",
+                    "overflow-hidden",
                 )}
             >
                 <div
                     className={clsx(
                         "landing-packages-mask",
-                        "mt-8 landing-sm:mt-12 landing-lg:mt-20",
                         "pt-4 landing-md:pt-10",
                     )}
                 >

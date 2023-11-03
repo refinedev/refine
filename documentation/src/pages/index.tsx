@@ -46,6 +46,10 @@ function Home() {
                             )}
                         />
                         <LandingCommunity
+                            className={clsx(
+                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                            )}
+                        />
                         <LandingEnterpriseDevelopers
                             className={clsx(
                                 "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
