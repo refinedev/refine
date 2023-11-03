@@ -48,7 +48,7 @@ type Props = {
     className?: string;
 };
 
-const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
+export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
     return (
         <div className={clsx(className, "w-full")}>
             <div
@@ -134,5 +134,3 @@ const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
         </div>
     );
 };
-
-export default LandingEnterpriseDevelopers;
