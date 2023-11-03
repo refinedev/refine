@@ -159,10 +159,6 @@ const list: IList = [
         id: 5,
     },
     {
-        icon: <AutodeskIcon />,
-        id: 6,
-    },
-    {
         icon: <JpMorganIcon />,
         id: 7,
     },
