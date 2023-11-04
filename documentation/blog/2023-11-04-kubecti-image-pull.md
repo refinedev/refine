@@ -25,7 +25,7 @@ When creating a pod, Kubernetes will attempt to obtain container images defined 
 A variety of reasons, such as network connectivity problems, incorrect image names or tags, and invalid credentials and permissions, are responsible for causing this error.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/1.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/1.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -35,7 +35,7 @@ A variety of reasons, such as network connectivity problems, incorrect image nam
 Kubernetes will keep trying to pull an image if the initial attempt fails, delaying and increasing amounts of time between attempts. If five minutes have passed since the last try, it gives up. Kubernetes gradually '**backs off**' of attempts to pull the image, which is why ImagePullBackOff gets its name from this interval-based method of retrying the pulls.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/2.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/2.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -59,7 +59,7 @@ If every Pod is in the state of Running or Completed and every container in a Ru
 `kubectl get nodes`
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/3.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/3.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -73,7 +73,7 @@ An incorrect image name is one of the most common causes of the ImagePullBackOff
 
 **The Following Output Shows the Above Cause:**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/4.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/4.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -83,7 +83,7 @@ To retrieve images from private container registries, Kubernetes needs valid log
 
 **The Following Output Shows the Above Cause:**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/5.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/5.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -93,7 +93,7 @@ Connectivity problems between the Kubernetes cluster and the container registry 
 
 **The Following Output Shows the Above Cause:**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/6.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/6.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -103,7 +103,7 @@ Another cause of ImagePullBackOff is an unavailable or down registry that contai
 
 **The Following Output Shows the Above Cause:**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/7.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/7.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -127,7 +127,7 @@ Executing '**kubectl describe pod [NAME_OF_POD]**' unveils a plethora of informa
 **The below output portrays the detailed information rendered, serving as a diagnostic cornerstone:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/8.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/8.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -140,7 +140,7 @@ Utilizing the command below enables the extraction of runtime logs for a specifi
 
 **This alternative promotes a Kubernetes-native way of accessing crucial log data, as depicted in the following output:**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/9.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/9.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -150,7 +150,7 @@ Invoking '**kubectl get events --namespace [NAME_OF_NAMESPACE]**' enumerates a l
 
 **The below output shows the list of events in the specified namespace(i.e., default). It is important to note that 'docker-desktop' is the name of the node to which the Pod is assigned:**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/10.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/10.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -172,7 +172,7 @@ In order to address the imagePullbackOff error due to authentication failure, th
 
 **The above command will return the output below once it creates a secret with the name 'my-docker-credentials':**
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/11.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/11.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
@@ -180,7 +180,7 @@ In order to address the imagePullbackOff error due to authentication failure, th
 **When the secret is created, you can reference it in your pod specification like this:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/12.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/12.png"  alt="kuberneste imagepullbackoff" />
 </div>
 
 <br/>
