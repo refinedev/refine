@@ -11,7 +11,7 @@ export const LandingPlaygroundModal = ({ visible, close }) => {
     const [isActive, setIsActive] = React.useState(false);
 
     React.useEffect(() => {
-        const mediaQuery = window.matchMedia("(max-width: 960px)");
+        const mediaQuery = window.matchMedia("(max-width: 959px)");
 
         setIsActive(mediaQuery.matches);
 
@@ -146,7 +146,7 @@ export const LandingPlaygroundModal = ({ visible, close }) => {
                         >
                             <div className={clsx("w-full", "h-full")}>
                                 <iframe
-                                    src="https://refine.new/embed-form"
+                                    src="http://localhost:7313/embed-form"
                                     className={clsx(
                                         "max-w-[830px]",
                                         "mx-auto",

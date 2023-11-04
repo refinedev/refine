@@ -10,7 +10,11 @@ import { LandingCopySuccessIcon } from "./icons/landing-copy-success";
 const installText = "npm create refine@latest";
 const copiedText = "copied to clipboard!";
 
-export const LandingCopyCommandButton = () => {
+export const LandingCopyCommandButton = ({
+    className,
+}: {
+    className?: string;
+}) => {
     const changingTextRef = React.useRef<ChangingTextElementRef>(null);
     const copyTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
     const [copied, setCopied] = React.useState(false);
@@ -38,8 +42,7 @@ export const LandingCopyCommandButton = () => {
             type="button"
             onClick={onCopy}
             className={clsx(
-                "hidden",
-                "landing-sm:block",
+                "self-start",
                 "appearance-none",
                 "focus:outline-none",
                 "border-none",
@@ -54,6 +57,7 @@ export const LandingCopyCommandButton = () => {
                 "font-mono",
                 "overflow-hidden",
                 "relative",
+                className,
             )}
         >
             <ChangingTextElement

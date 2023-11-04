@@ -263,6 +263,22 @@ module.exports = {
                     "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
                 "landing-hero-xray-dot-center-bg":
                     "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0FBDBD 50%, #0FBDBD 100%)",
+                "landing-wizard-option-bg-dark": [
+                    "radial-gradient(50% 50% at 50% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0) 100%)",
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                ],
+                "landing-wizard-option-bg-light": [
+                    "radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0) 100%)",
+                ],
+            },
+            backgroundPosition: {
+                "landing-wizard-option-right":
+                    "top -350px right -350px, center",
+                "landing-wizard-option-left":
+                    "bottom -350px left -350px, center",
+            },
+            backgroundSize: {
+                "landing-wizard-option": "600px 600px, auto",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
