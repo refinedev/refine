@@ -99,6 +99,10 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
                     "rounded-2xl landing-md:rounded-3xl",
                     "relative",
                     "overflow-hidden",
+                    "transition-[min-height,height]",
+                    "duration-300",
+                    "ease-out",
+                    wizardOpen && "min-h-[515px]",
                 )}
             >
                 <LandingTryItWizardSection visible={wizardOpen} />
@@ -313,6 +317,7 @@ const LandingTryItWizardSection = ({
                     "mx-auto",
                     "duration-300",
                     "ease-in-out",
+                    "overflow-hidden",
                     !visible && ["pointer-events-none", "select-none"],
                     !visible && ["landing-md:border-transparent"],
                     visible && [
@@ -327,7 +332,8 @@ const LandingTryItWizardSection = ({
                     visible && [
                         "landing-md:opacity-100",
                         "landing-md:h-[512px]",
-                        "landing-md:w-[896px]",
+                        "landing-md:w-[894px]",
+                        "landing-lg:w-[944px]",
                     ],
                 )}
             >
