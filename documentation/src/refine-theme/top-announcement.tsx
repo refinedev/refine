@@ -1,61 +1,8 @@
 import clsx from "clsx";
 import React, { SVGProps } from "react";
-// import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
-import { useHistory } from "@docusaurus/router";
-import { TR100 } from "./icons/tr-100";
-import { useUserCountry } from "../context/UserCountry";
-
-type AnnouncementType = "refine" | "tr";
+import { RefineLogoShinyCyan } from "./icons/refine-logo-shiny-cyan";
 
 export const TopAnnouncement = () => {
-    const { country } = useUserCountry();
-    const announcementType: AnnouncementType =
-        country === "tr" ? "tr" : "refine";
-
-    if (announcementType === "tr") {
-        return (
-            <div
-                className={clsx(
-                    "w-full h-12",
-                    "relative",
-                    "not-prose",
-                    "font-inter",
-                    "bg-[#A81818]",
-                    "bg-top-announcement-bg-tr",
-                    "bg-cover xl:bg-contain",
-                    "bg-center",
-                    "bg-no-repeat",
-                    "flex",
-                    "items-center",
-                    "justify-center",
-                )}
-            >
-                <img
-                    src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/ataturk.png"
-                    alt="Atatürk"
-                    className={clsx(
-                        "mix-blend-screen",
-                        "w-[40px] h-[48px]",
-                        "object-cover",
-                        "py-[2px]",
-                    )}
-                />
-                <TR100 />
-                <h2
-                    className={clsx(
-                        "ml-4",
-                        "text-white",
-                        "font-inter",
-                        "text-base",
-                    )}
-                >
-                    Cumhuriyet <span className={clsx("font-bold")}>100</span>{" "}
-                    yaşında!
-                </h2>
-            </div>
-        );
-    }
-
     return (
         <div
             className={clsx(
@@ -159,14 +106,11 @@ export const TopAnnouncement = () => {
 };
 
 const Text = () => {
-    const { replace } = useHistory();
     return (
-        <button
-            onClick={() => {
-                replace({
-                    search: "?15k_modal=1",
-                });
-            }}
+        <a
+            href="https://s.refine.dev/devtools-beta"
+            target="_blank"
+            rel="noreferrer"
             className={clsx(
                 "relative lg:absolute",
                 "px-2 lg:px-0",
@@ -185,13 +129,21 @@ const Text = () => {
                 "not-prose",
             )}
         >
-            {/* <RefineLogoShinyCyan className="flex-shrink-0" /> */}
+            <RefineLogoShinyCyan className="flex-shrink-0" />
             <div className={clsx("ml-2", "not-prose")}>
-                <span className={clsx("font-semibold")}>
-                    {`🌟 We've reached 15K GitHub stars! Thank you 🌟`}
+                Unlock powerful debugging and effortless query monitoring with{" "}
+                <span className={clsx("font-semibold")}>refine Devtools</span>
+                <span
+                    className={clsx(
+                        "text-refine-cyan-alt hover:text-refine-cyan-alt",
+                        "font-semibold",
+                        "ml-2",
+                    )}
+                >
+                    Learn More
                 </span>
             </div>
-        </button>
+        </a>
     );
 };
 
