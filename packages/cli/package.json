@@ -62,7 +62,7 @@
     "ora": "^5.4.1",
     "pluralize": "^8.0.0",
     "preferred-pm": "^3.0.3",
-    "prettier": "^3.0.3",
+    "prettier": "^2.7.1",
     "semver": "7.3.8",
     "semver-diff": "^3.1.1",
     "temp": "^0.9.4",

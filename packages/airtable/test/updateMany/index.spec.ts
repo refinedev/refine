@@ -6,7 +6,7 @@ describe("updateMany", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).updateMany({
+        ).updateMany!({
             resource: "posts",
             ids: ["recLKRioqifTrPUIz", "rec9GbXLzd6dxn4Il"],
             variables: {

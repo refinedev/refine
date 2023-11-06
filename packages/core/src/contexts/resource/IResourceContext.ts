@@ -6,6 +6,7 @@ import {
     ResourceMeta,
     ResourceProps,
 } from "../../interfaces/bindings/resource";
+const auditLogPermissions = ["create", "update", "delete"] as const;
 
 export type ResourceRouteComponent = ComponentType<
     IResourceComponentsProps<any, any>

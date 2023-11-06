@@ -94,7 +94,7 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
         });
 
         // close connected app if client disconnects
-        client.on("close", (_, _reason) => {
+        client.on("close", (_, reason) => {
             if (__DEVELOPMENT__) {
                 console.log("Client disconnected", ws.clients.size);
             }

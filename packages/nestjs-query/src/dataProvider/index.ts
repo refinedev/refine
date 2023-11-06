@@ -271,7 +271,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-        deleteMany: async ({ resource, ids }) => {
+        deleteMany: async ({ resource, ids, meta }) => {
             const operation = `deleteMany${camelcase(resource, {
                 pascalCase: true,
             })}`;

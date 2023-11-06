@@ -32,10 +32,8 @@ describe("dataProvider", () => {
     // deleteMany
     describe("deleteMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                API_URL,
-                axiosInstance,
-            ).deleteMany({ resource: "posts", ids: ["46"] });
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .deleteMany!({ resource: "posts", ids: ["46"] });
 
             expect(data[0]["id"]).toBe(46);
             expect(data[0]["title"]).toBe("tiger");
@@ -134,9 +132,8 @@ describe("dataProvider", () => {
     // getMany
     describe("getMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).getMany(
-                { resource: "posts", ids: ["49"] },
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .getMany!({ resource: "posts", ids: ["49"] });
 
             expect(data[0]["id"]).toBe(49);
             expect(data[0]["title"]).toBe("0001");
@@ -176,10 +173,8 @@ describe("dataProvider", () => {
     // updateMany
     describe("updateMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                API_URL,
-                axiosInstance,
-            ).updateMany({
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .updateMany!({
                 resource: "posts",
                 ids: ["50", "51"],
                 variables: {
@@ -197,7 +192,7 @@ describe("dataProvider", () => {
 
     describe("custom", () => {
         it("correct get response", async () => {
-            const response = await DataProvider(API_URL, axios).custom({
+            const response = await DataProvider(API_URL, axios).custom!({
                 url: `${API_URL}/posts`,
                 method: "get",
             });
@@ -207,7 +202,7 @@ describe("dataProvider", () => {
         });
 
         it("correct filter response", async () => {
-            const response = await DataProvider(API_URL, axios).custom({
+            const response = await DataProvider(API_URL, axios).custom!({
                 url: `${API_URL}/posts`,
                 method: "get",
                 filters: [
@@ -224,7 +219,7 @@ describe("dataProvider", () => {
         });
 
         it("correct sort response", async () => {
-            const response = await DataProvider(API_URL, axios).custom({
+            const response = await DataProvider(API_URL, axios).custom!({
                 url: `${API_URL}/posts`,
                 method: "get",
                 sorters: [
@@ -240,7 +235,7 @@ describe("dataProvider", () => {
         });
 
         it("correct post request", async () => {
-            const response = await DataProvider(API_URL, axios).custom({
+            const response = await DataProvider(API_URL, axios).custom!({
                 url: `${API_URL}/posts`,
                 method: "post",
                 payload: {

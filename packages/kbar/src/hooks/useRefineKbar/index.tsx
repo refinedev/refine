@@ -41,7 +41,13 @@ export const useRefineKbar = (): void => {
     const getToPath = useGetToPath();
     const go = useGo();
     const { mutate } = useDelete();
-    const { push } = useNavigation();
+    const {
+        push,
+        list: goToList,
+        create: goToCreate,
+        show: goToShow,
+        edit: goToEdit,
+    } = useNavigation();
     const getUserFriendlyName = useUserFriendlyName();
 
     const kbarContext = useContext(KBarContext);

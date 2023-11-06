@@ -6,7 +6,7 @@ describe("getMany", () => {
     it("correct response", async () => {
         const { data } = await dataProvider(client, {
             databaseId: "632455a0b8d017403ce9",
-        }).getMany({
+        }).getMany!({
             resource: "632455a55dc72e1aa016",
             ids: ["63245b3987e0f40c7988", "632456bf1eeb69a71a78"],
         });

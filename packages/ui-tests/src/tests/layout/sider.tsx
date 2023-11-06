@@ -3,6 +3,7 @@ import { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
 
 import { act, mockRouterBindings, render, TestWrapper, waitFor } from "@test";
 import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
+import { Route, Router, Routes } from "react-router-dom";
 
 const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
     login: () => Promise.resolve(),

@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("deleteMany", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(supabaseClient).deleteMany({
+        const { data } = await dataProvider(supabaseClient).deleteMany!({
             resource: "posts",
             ids: ["43"],
         });
