@@ -7,7 +7,7 @@ import {
 } from "./changing-text-element";
 import { LandingCopySuccessIcon } from "./icons/landing-copy-success";
 
-const installText = "npm create refine@latest";
+const installText = "npm create refine-app@latest";
 const copiedText = "copied to clipboard!";
 
 export const LandingCopyCommandButton = ({
@@ -52,7 +52,7 @@ export const LandingCopyCommandButton = ({
                 "bg-refine-blue dark:bg-refine-cyan-alt",
                 "bg-opacity-10 dark:bg-opacity-10",
                 "text-refine-blue dark:text-refine-cyan-alt",
-                "text-sm",
+                "text-[13px] leading-5",
                 "leading-6",
                 "font-mono",
                 "overflow-hidden",

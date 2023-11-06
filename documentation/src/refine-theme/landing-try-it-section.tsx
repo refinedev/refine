@@ -4,6 +4,7 @@ import { LandingStartActionIcon } from "./icons/landing-start-action";
 import { LandingCopyCommandButton } from "./landing-copy-command-button";
 import { LandingPlaygroundModal } from "./landing-playground-modal";
 import { useLocation } from "@docusaurus/router";
+import { useColorMode } from "@docusaurus/theme-common";
 
 export const LandingTryItSection = ({ className }: { className?: string }) => {
     const [wizardOpen, setWizardOpen] = React.useState(false);
@@ -295,6 +296,23 @@ const LandingTryItWizardSection = ({
     className?: string;
     visible: boolean;
 }) => {
+    const iframeRef = React.useRef<HTMLIFrameElement>(null);
+    const { colorMode } = useColorMode();
+
+    React.useEffect(() => {
+        // when color mode changes, post a message to the iframe
+        // to update its color mode
+        if (iframeRef.current) {
+            iframeRef.current.contentWindow?.postMessage(
+                {
+                    type: "colorMode",
+                    colorMode,
+                },
+                "*",
+            );
+        }
+    }, [colorMode, visible]);
+
     return (
         <div
             className={clsx(
@@ -305,7 +323,15 @@ const LandingTryItWizardSection = ({
                 "landing-md:flex",
             )}
         >
-            <div className={clsx("flex-1", "bg-gray-0 dark:bg-gray-900")} />
+            <div
+                className={clsx(
+                    "flex-1",
+                    "bg-gray-0 dark:bg-gray-900",
+                    "transition-colors",
+                    "duration-150",
+                    "ease-in-out",
+                )}
+            />
             <div
                 className={clsx(
                     "box-content",
@@ -318,6 +344,7 @@ const LandingTryItWizardSection = ({
                     "duration-300",
                     "ease-in-out",
                     "overflow-hidden",
+                    "scrollbar-hidden",
                     !visible && ["pointer-events-none", "select-none"],
                     !visible && ["landing-md:border-transparent"],
                     visible && [
@@ -338,8 +365,10 @@ const LandingTryItWizardSection = ({
                 )}
             >
                 <iframe
+                    ref={iframeRef}
                     src="http://localhost:7313/embed-form"
                     className={clsx(
+                        "scrollbar-hidden",
                         "transition-opacity",
                         "duration-300",
                         "delay-300",
@@ -352,7 +381,15 @@ const LandingTryItWizardSection = ({
                     )}
                 />
             </div>
-            <div className={clsx("flex-1", "bg-gray-0 dark:bg-gray-900")} />
+            <div
+                className={clsx(
+                    "flex-1",
+                    "bg-gray-0 dark:bg-gray-900",
+                    "transition-colors",
+                    "duration-150",
+                    "ease-in-out",
+                )}
+            />
         </div>
     );
 };
