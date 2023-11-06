@@ -1,7 +1,7 @@
 ---
 id: useSimpleList
 title: useSimpleList
-source: https://github.com/refinedev/refine/blob/next/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
+source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -91,7 +91,7 @@ When the `useSimpleList` hook is mounted, it will call the `subscribe` method fr
 
 ### `resource`
 
-The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`. 
+The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`.
 
 Refer to the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) documentation for an example of how resources are handled.
 
@@ -149,7 +149,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `pagination.current`
 
-Sets the initial value of the page index. It is `1` by default. 
+Sets the initial value of the page index. It is `1` by default.
 
 ```tsx
 useSimpleList({

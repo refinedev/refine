@@ -5,7 +5,7 @@ import { GithubIcon } from "./icons/github";
 export const SourceCodeBadge = ({ path }: { path?: string }) => {
     const sourcePath = path.startsWith("https://")
         ? path
-        : `https://github.com/refinedev/refine/blob/next${
+        : `https://github.com/refinedev/refine/blob/master${
               path.startsWith("/") ? "" : "/"
           }${path}`;
 

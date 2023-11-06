@@ -1,0 +1,21 @@
+.item {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+
+    .date {
+        margin-bottom: 0.25rem;
+    }
+
+    .badge {
+        margin-right: 1.1rem;
+    }
+
+    .title {
+        padding-left: 1.5rem;
+    }
+}
+
+.item:last-child {
+    border-bottom: none;
+}

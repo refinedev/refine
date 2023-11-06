@@ -1,5 +1,74 @@
 # @refinedev/devtools-server
 
+## 1.1.20
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update feed URL from next to master branch.
+
+-   Updated dependencies [[`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88)]:
+    -   @refinedev/devtools-ui@1.1.13
+
+## 1.1.19
+
+### Patch Changes
+
+-   Updated dependencies [[`be899901d0e`](https://github.com/refinedev/refine/commit/be899901d0ed7f9a336ab737b0b8a699f2e58ed3)]:
+    -   @refinedev/devtools-ui@1.1.12
+
+## 1.1.18
+
+### Patch Changes
+
+-   Updated dependencies [[`be899901d0e`](https://github.com/refinedev/refine/commit/be899901d0ed7f9a336ab737b0b8a699f2e58ed3)]:
+    -   @refinedev/devtools-ui@1.1.11
+
+## 1.1.17
+
+### Patch Changes
+
+-   [#5149](https://github.com/refinedev/refine/pull/5149) [`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0) Thanks [@aliemir](https://github.com/aliemir)! - Add ability to force fetching the installed package versions
+
+-   [#5148](https://github.com/refinedev/refine/pull/5148) [`38f2a9b2e71`](https://github.com/refinedev/refine/commit/38f2a9b2e7149ad3d5e5c2780e05ddde0285ac3c) Thanks [@aliemir](https://github.com/aliemir)! - Use `node-fetch` to make feed requests to ensure older versions of Node.js are supported.
+
+-   Updated dependencies [[`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0)]:
+    -   @refinedev/devtools-ui@1.1.10
+
+## 1.1.16
+
+### Patch Changes
+
+-   [#5149](https://github.com/refinedev/refine/pull/5149) [`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0) Thanks [@aliemir](https://github.com/aliemir)! - Add ability to force fetching the installed package versions
+
+-   [#5148](https://github.com/refinedev/refine/pull/5148) [`38f2a9b2e71`](https://github.com/refinedev/refine/commit/38f2a9b2e7149ad3d5e5c2780e05ddde0285ac3c) Thanks [@aliemir](https://github.com/aliemir)! - Use `node-fetch` to make feed requests to ensure older versions of Node.js are supported.
+
+-   Updated dependencies [[`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0)]:
+    -   @refinedev/devtools-ui@1.1.9
+
+## 1.1.15
+
+### Patch Changes
+
+-   [#5144](https://github.com/refinedev/refine/pull/5144) [`be419eb31bc`](https://github.com/refinedev/refine/commit/be419eb31bc7b7a3934f39bcfcbaaa0b9db60be8) Thanks [@aliemir](https://github.com/aliemir)! - Updated auth flows and auth management to cover wider use cases.
+
+## 1.1.14
+
+### Patch Changes
+
+-   [#5144](https://github.com/refinedev/refine/pull/5144) [`be419eb31bc`](https://github.com/refinedev/refine/commit/be419eb31bc7b7a3934f39bcfcbaaa0b9db60be8) Thanks [@aliemir](https://github.com/aliemir)! - Updated auth flows and auth management to cover wider use cases.
+
+## 1.1.13
+
+### Patch Changes
+
+-   [#5140](https://github.com/refinedev/refine/pull/5140) [`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e) Thanks [@aliemir](https://github.com/aliemir)! - Updated the devtools running log on terminal to a less attractive one.
+
+## 1.1.12
+
+### Patch Changes
+
+-   [#5140](https://github.com/refinedev/refine/pull/5140) [`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e) Thanks [@aliemir](https://github.com/aliemir)! - Updated the devtools running log on terminal to a less attractive one.
+
 ## 1.1.11
 
 ### Patch Changes

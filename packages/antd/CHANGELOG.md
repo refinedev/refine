@@ -1,5 +1,103 @@
 # @refinedev/antd
 
+## 5.36.18
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Now `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks accept 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { useSelect } from "@refinedev/antd";
+    import { HttpError } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Updated return types of `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks to only include properties that actually being returned from the hook. Previously, the return types included all properties of the respective components, which was not correct.
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Handle nested server side validation errors properly in `useForm`
+
+## 5.36.17
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Now `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks accept 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { useSelect } from "@refinedev/antd";
+    import { HttpError } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Updated return types of `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks to only include properties that actually being returned from the hook. Previously, the return types included all properties of the respective components, which was not correct.
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Handle nested server side validation errors properly in `useForm`
+
+## 5.36.16
+
+### Patch Changes
+
+-   [#5189](https://github.com/refinedev/refine/pull/5189) [`34b5741289f`](https://github.com/refinedev/refine/commit/34b5741289fec9f1bf1e06b101d1c0965fc5c7e7) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: bump @ant-design/pro-layout dependency to `v7.17.12`.
+
+    Fixes https://github.com/refinedev/refine/issues/5172
+
+## 5.36.15
+
+### Patch Changes
+
+-   [#5189](https://github.com/refinedev/refine/pull/5189) [`34b5741289f`](https://github.com/refinedev/refine/commit/34b5741289fec9f1bf1e06b101d1c0965fc5c7e7) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: bump @ant-design/pro-layout dependency to `v7.17.12`.
+
+    Fixes https://github.com/refinedev/refine/issues/5172
+
+## 5.36.14
+
+### Patch Changes
+
+-   [#5134](https://github.com/refinedev/refine/pull/5134) [`e4769b23171`](https://github.com/refinedev/refine/commit/e4769b231716c63e5814718942025044e1a213c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd default `<ThemedSiderV2 />` is not collapsing.
+
+## 5.36.13
+
+### Patch Changes
+
+-   [#5134](https://github.com/refinedev/refine/pull/5134) [`e4769b23171`](https://github.com/refinedev/refine/commit/e4769b231716c63e5814718942025044e1a213c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: antd default `<ThemedSiderV2 />` is not collapsing.
+
+## 5.36.12
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<ThemedTitleV2 />` border-bottom removed.
+    fixed: `<ThemedLayoutV2 />` glitches on first render.
+
+## 5.36.11
+
+### Patch Changes
+
+-   [#5114](https://github.com/refinedev/refine/pull/5114) [`00a9252c5de`](https://github.com/refinedev/refine/commit/00a9252c5de86aad544b0ca7d087c532c6d561fa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `<ThemedTitleV2 />` border-bottom removed.
+    fixed: `<ThemedLayoutV2 />` glitches on first render.
+
 ## 5.36.10
 
 ### Patch Changes

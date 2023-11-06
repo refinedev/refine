@@ -142,7 +142,7 @@ export const useList = <
     liveParams,
     dataProviderName,
     overtimeOptions,
-}: UseListProps<TQueryFnData, TError, TData>): QueryObserverResult<
+}: UseListProps<TQueryFnData, TError, TData> = {}): QueryObserverResult<
     GetListResponse<TData>,
     TError
 > &

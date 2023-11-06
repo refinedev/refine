@@ -223,7 +223,6 @@ const moveResources = (j: JSCodeshift, root: Collection<any>) => {
 
 const packagesToUpdate = [
     "@pankod/refine-airtable",
-    "@pankod/refine-altogic",
     "@pankod/refine-graphql",
     "@pankod/refine-hasura",
     "@pankod/refine-nestjsx-crud",

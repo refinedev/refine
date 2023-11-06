@@ -291,7 +291,7 @@ export const ProjectCard = ({
     );
 };
 
-export const ProjectKanbanCardSkeleton = () => {
+export const ProjectCardSkeleton = () => {
     return (
         <Card
             size="small"

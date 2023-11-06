@@ -1,5 +1,89 @@
 # @refinedev/devtools
 
+## 1.1.23
+
+### Patch Changes
+
+-   Updated dependencies [[`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88), [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88)]:
+    -   @refinedev/devtools-server@1.1.20
+    -   @refinedev/cli@2.16.15
+
+## 1.1.22
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @refinedev/devtools-server@1.1.19
+    -   @refinedev/cli@2.16.14
+
+## 1.1.21
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @refinedev/devtools-server@1.1.18
+    -   @refinedev/cli@2.16.13
+
+## 1.1.20
+
+### Patch Changes
+
+-   Updated dependencies [[`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0), [`b5f93f60f1d`](https://github.com/refinedev/refine/commit/b5f93f60f1d9d7ed105cf50512b090337a4dde2d), [`38f2a9b2e71`](https://github.com/refinedev/refine/commit/38f2a9b2e7149ad3d5e5c2780e05ddde0285ac3c)]:
+    -   @refinedev/devtools-server@1.1.17
+    -   @refinedev/cli@2.16.12
+
+## 1.1.19
+
+### Patch Changes
+
+-   Updated dependencies [[`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0), [`b5f93f60f1d`](https://github.com/refinedev/refine/commit/b5f93f60f1d9d7ed105cf50512b090337a4dde2d), [`38f2a9b2e71`](https://github.com/refinedev/refine/commit/38f2a9b2e7149ad3d5e5c2780e05ddde0285ac3c)]:
+    -   @refinedev/devtools-server@1.1.16
+    -   @refinedev/cli@2.16.11
+
+## 1.1.18
+
+### Patch Changes
+
+-   Updated dependencies [[`be419eb31bc`](https://github.com/refinedev/refine/commit/be419eb31bc7b7a3934f39bcfcbaaa0b9db60be8)]:
+    -   @refinedev/devtools-server@1.1.15
+    -   @refinedev/cli@2.16.10
+
+## 1.1.17
+
+### Patch Changes
+
+-   Updated dependencies [[`be419eb31bc`](https://github.com/refinedev/refine/commit/be419eb31bc7b7a3934f39bcfcbaaa0b9db60be8)]:
+    -   @refinedev/devtools-server@1.1.14
+    -   @refinedev/cli@2.16.9
+
+## 1.1.16
+
+### Patch Changes
+
+-   Updated dependencies [[`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e)]:
+    -   @refinedev/devtools-server@1.1.13
+    -   @refinedev/cli@2.16.8
+
+## 1.1.15
+
+### Patch Changes
+
+-   Updated dependencies [[`78117485899`](https://github.com/refinedev/refine/commit/781174858992bb1d077069d2858a37b44344879e)]:
+    -   @refinedev/devtools-server@1.1.12
+    -   @refinedev/cli@2.16.7
+
+## 1.1.14
+
+### Patch Changes
+
+-   [#5127](https://github.com/refinedev/refine/pull/5127) [`4f89ca46ac4`](https://github.com/refinedev/refine/commit/4f89ca46ac4af5c1eddf842bddd3d981f0e47556) Thanks [@aliemir](https://github.com/aliemir)! - Update panel and pin positioning for rounded numbers to avoid subpixel blurry rendering
+
+## 1.1.13
+
+### Patch Changes
+
+-   [#5127](https://github.com/refinedev/refine/pull/5127) [`4f89ca46ac4`](https://github.com/refinedev/refine/commit/4f89ca46ac4af5c1eddf842bddd3d981f0e47556) Thanks [@aliemir](https://github.com/aliemir)! - Update panel and pin positioning for rounded numbers to avoid subpixel blurry rendering
+
 ## 1.1.12
 
 ### Patch Changes

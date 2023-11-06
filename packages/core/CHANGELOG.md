@@ -1,5 +1,113 @@
 # @refinedev/core
 
+## 4.44.12
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update commit frequency branch from next to master in README.
+
+## 4.44.11
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Exported `BaseOption` type as successor of the deprecated `Option` type. `BaseOption` is `{ label: any; value: any; }`.
+
+    Usage of the deprecated `Option` type was correctly assuming that the `value` property of the option is of type `string`. This assumption was wrong and now the types are changed to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook.
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Reverted the faulty assumption on option values of `useSelect` hook to be of type `string`. Now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook. (Reverted PR #5160)
+
+    By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { HttpError, useSelect } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5194](https://github.com/refinedev/refine/pull/5194) [`9df999ca643`](https://github.com/refinedev/refine/commit/9df999ca6431fb0465c294207309fe32e58eb85f) Thanks [@fitrahfm](https://github.com/fitrahfm)! - fix: use relative path instead of path alias to import FlatTreeItem
+
+    Using path alias causes imported types being any during build/compilation process which should be TreeMenuItem[]
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Exported the `flattenObjectKeys` and `propertyPathToArray` helpers from `@refinedev/core` package.
+
+## 4.44.10
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Exported `BaseOption` type as successor of the deprecated `Option` type. `BaseOption` is `{ label: any; value: any; }`.
+
+    Usage of the deprecated `Option` type was correctly assuming that the `value` property of the option is of type `string`. This assumption was wrong and now the types are changed to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook.
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Reverted the faulty assumption on option values of `useSelect` hook to be of type `string`. Now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook. (Reverted PR #5160)
+
+    By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { HttpError, useSelect } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5194](https://github.com/refinedev/refine/pull/5194) [`9df999ca643`](https://github.com/refinedev/refine/commit/9df999ca6431fb0465c294207309fe32e58eb85f) Thanks [@fitrahfm](https://github.com/fitrahfm)! - fix: use relative path instead of path alias to import FlatTreeItem
+
+    Using path alias causes imported types being any during build/compilation process which should be TreeMenuItem[]
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Exported the `flattenObjectKeys` and `propertyPathToArray` helpers from `@refinedev/core` package.
+
+## 4.44.9
+
+### Patch Changes
+
+-   [#5177](https://github.com/refinedev/refine/pull/5177) [`4e0f6f9a69f`](https://github.com/refinedev/refine/commit/4e0f6f9a69f7613ef9b1b249ae21d2f0dba38f57) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of `useList` hook requiring an empty object as prop even if there was no parameter passed to it.
+
+-   [#5132](https://github.com/refinedev/refine/pull/5132) [`f616d6ffd94`](https://github.com/refinedev/refine/commit/f616d6ffd94e0c38eea56f5850898892551231f6) Thanks [@mlukasik-dev](https://github.com/mlukasik-dev)! - fix: `useSelect`'s `optionLabel` and `optionValue` types are wrong.
+
+-   [#5160](https://github.com/refinedev/refine/pull/5160) [`9b9d5032b3a`](https://github.com/refinedev/refine/commit/9b9d5032b3ab1598eabc8e78ab2c70839929b775) Thanks [@an-tran511](https://github.com/an-tran511)! - fix: convert type of an option's `value` to `string`
+
+## 4.44.8
+
+### Patch Changes
+
+-   [#5177](https://github.com/refinedev/refine/pull/5177) [`4e0f6f9a69f`](https://github.com/refinedev/refine/commit/4e0f6f9a69f7613ef9b1b249ae21d2f0dba38f57) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of `useList` hook requiring an empty object as prop even if there was no parameter passed to it.
+
+-   [#5132](https://github.com/refinedev/refine/pull/5132) [`f616d6ffd94`](https://github.com/refinedev/refine/commit/f616d6ffd94e0c38eea56f5850898892551231f6) Thanks [@mlukasik-dev](https://github.com/mlukasik-dev)! - fix: `useSelect`'s `optionLabel` and `optionValue` types are wrong.
+
+-   [#5160](https://github.com/refinedev/refine/pull/5160) [`9b9d5032b3a`](https://github.com/refinedev/refine/commit/9b9d5032b3ab1598eabc8e78ab2c70839929b775) Thanks [@an-tran511](https://github.com/an-tran511)! - fix: convert type of an option's `value` to `string`
+
+## 4.44.7
+
+### Patch Changes
+
+-   [#5138](https://github.com/refinedev/refine/pull/5138) [`0e22d5804b2`](https://github.com/refinedev/refine/commit/0e22d5804b260949c378bea98312c1c13f446642) Thanks [@aliemir](https://github.com/aliemir)! - Prevent `authProvider.getIdentity` to be called in `useLog` if `auditLogProvider` is not defined.
+
+## 4.44.6
+
+### Patch Changes
+
+-   [#5138](https://github.com/refinedev/refine/pull/5138) [`0e22d5804b2`](https://github.com/refinedev/refine/commit/0e22d5804b260949c378bea98312c1c13f446642) Thanks [@aliemir](https://github.com/aliemir)! - Prevent `authProvider.getIdentity` to be called in `useLog` if `auditLogProvider` is not defined.
+
 ## 4.44.5
 
 ### Patch Changes

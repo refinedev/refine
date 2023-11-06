@@ -9,7 +9,7 @@ export const Menu = () => {
         {menuItems.map((item) => (
           <li key={item.key} className="mr-4">
             <NavLink
-              to={item.route}
+              to={item.route ?? "/"}
               className={({ isActive, isPending }) => {
                 if (isActive) {
                   return "text-center block text-blue-500 rounded hover:bg-gray-200 p-2";

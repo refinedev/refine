@@ -1,5 +1,35 @@
 # @refinedev/devtools-ui
 
+## 1.1.13
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update T&C link from next to master branch.
+
+## 1.1.12
+
+### Patch Changes
+
+-   [#5167](https://github.com/refinedev/refine/pull/5167) [`be899901d0e`](https://github.com/refinedev/refine/commit/be899901d0ed7f9a336ab737b0b8a699f2e58ed3) Thanks [@aliemir](https://github.com/aliemir)! - 🎃 halloween update: devtools panel is temporarily welcoming a group of ghosts 👻, don't worry they are harmless. 👻
+
+## 1.1.11
+
+### Patch Changes
+
+-   [#5167](https://github.com/refinedev/refine/pull/5167) [`be899901d0e`](https://github.com/refinedev/refine/commit/be899901d0ed7f9a336ab737b0b8a699f2e58ed3) Thanks [@aliemir](https://github.com/aliemir)! - 🎃 halloween update: devtools panel is temporarily welcoming a group of ghosts 👻, don't worry they are harmless. 👻
+
+## 1.1.10
+
+### Patch Changes
+
+-   [#5149](https://github.com/refinedev/refine/pull/5149) [`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0) Thanks [@aliemir](https://github.com/aliemir)! - Add the ability to update all outdated packages with a single click
+
+## 1.1.9
+
+### Patch Changes
+
+-   [#5149](https://github.com/refinedev/refine/pull/5149) [`2bd813f62bf`](https://github.com/refinedev/refine/commit/2bd813f62bf55eb1be55ffe5b2c1c7079d7a93f0) Thanks [@aliemir](https://github.com/aliemir)! - Add the ability to update all outdated packages with a single click
+
 ## 1.1.8
 
 ### Patch Changes

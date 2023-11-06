@@ -244,7 +244,7 @@ The `NavLink` component gives you an implemention ready component compatible wit
 :::
 
 :::tip
-[Refer to how the `NavLink` component is used in the default `Sider` component. &#8594](https://github.com/pankod/refine/blob/next/packages/mantine/src/components/layout/sider/index.tsx#L119-L132)
+[Refer to how the `NavLink` component is used in the default `Sider` component. &#8594](https://github.com/pankod/refine/blob/v3/packages/mantine/src/components/layout/sider/index.tsx#L119-L132)
 :::
 
 ## Recreating the Default Sider Menu

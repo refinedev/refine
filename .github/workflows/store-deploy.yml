@@ -3,7 +3,7 @@ name: store Release
 on:
   push:
     branches:
-      - next
+      - master
     paths:
       - "examples/store/**"
       - ".github/workflows/store-deploy.yml"

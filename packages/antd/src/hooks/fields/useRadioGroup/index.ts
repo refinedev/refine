@@ -1,8 +1,9 @@
 import { QueryObserverResult } from "@tanstack/react-query";
+import type { Radio } from "antd";
 
-import { RadioGroupProps } from "antd/lib/radio";
 import {
     BaseKey,
+    BaseOption,
     BaseRecord,
     GetListResponse,
     HttpError,
@@ -11,8 +12,16 @@ import {
     UseSelectProps,
 } from "@refinedev/core";
 
-export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
-    radioGroupProps: RadioGroupProps;
+export type UseRadioGroupReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TOption extends BaseOption = BaseOption,
+> = {
+    radioGroupProps: Omit<
+        React.ComponentProps<typeof Radio.Group>,
+        "options"
+    > & {
+        options: TOption[];
+    };
     queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -41,6 +50,7 @@ export const useRadioGroup = <
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
+    TOption extends BaseOption = BaseOption,
 >({
     resource,
     sort,
@@ -58,12 +68,16 @@ export const useRadioGroup = <
     meta,
     metaData,
     dataProviderName,
-}: UseRadioGroupProps<
-    TQueryFnData,
-    TError,
-    TData
->): UseRadioGroupReturnType<TData> => {
-    const { queryResult, options } = useSelect({
+}: UseRadioGroupProps<TQueryFnData, TError, TData>): UseRadioGroupReturnType<
+    TData,
+    TOption
+> => {
+    const { queryResult, options } = useSelect<
+        TQueryFnData,
+        TError,
+        TData,
+        TOption
+    >({
         resource,
         sort,
         sorters,

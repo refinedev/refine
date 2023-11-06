@@ -220,6 +220,8 @@ module.exports = {
                     "radial-gradient(457.67% 141.42% at 0% 0%, rgba(71, 235, 235, 0.10) 0%, rgba(71, 235, 235, 0.20) 100%)",
                 "sidebar-item-shiny-light":
                     "radial-gradient(457.67% 141.42% at 0% 0%, rgba(0, 128, 255, 0.20) 0%, rgba(0, 128, 255, 0.10) 100%)",
+                "top-announcement-bg-tr":
+                    "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/top-announcement-tr.png')",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",

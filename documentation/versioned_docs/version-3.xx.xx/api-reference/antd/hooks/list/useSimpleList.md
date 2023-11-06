@@ -1,7 +1,7 @@
 ---
 id: useSimpleList
 title: useSimpleList
-source: https://github.com/refinedev/refine/blob/next/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
+source: https://github.com/refinedev/refine/blob/v3/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";

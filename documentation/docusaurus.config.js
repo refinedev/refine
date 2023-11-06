@@ -251,7 +251,7 @@ const siteConfig = {
                     items: [
                         {
                             label: "License",
-                            to: "https://github.com/refinedev/refine/blob/next/LICENSE",
+                            to: "https://github.com/refinedev/refine/blob/master/LICENSE",
                         },
                         // {
                         //     label: "Terms",

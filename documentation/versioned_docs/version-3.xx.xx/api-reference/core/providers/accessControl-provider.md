@@ -78,8 +78,8 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 :::tip
 You can find access control examples made with **refine**
 
--   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-casbin/?view=preview&theme=dark&codemirror=1)
--   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-cerbos/?view=preview&theme=dark&codemirror=1)
+-   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/v3/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/access-control-casbin/?view=preview&theme=dark&codemirror=1)
+-   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/v3/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/access-control-cerbos/?view=preview&theme=dark&codemirror=1)
 
 :::
 

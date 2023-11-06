@@ -9,15 +9,15 @@
     "svgr": "npx @svgr/cli src/icons -d src/components/icons --typescript --no-svgo"
   },
   "dependencies": {
-    "@refinedev/core": "^4.44.5",
-    "@refinedev/cli": "^2.16.6",
-    "@refinedev/nextjs-router": "^5.5.2",
+    "@refinedev/core": "^4.44.12",
+    "@refinedev/cli": "^2.16.15",
+    "@refinedev/nextjs-router": "^5.5.4",
     "@refinedev/react-table": "^5.6.4",
     "@tanstack/react-table": "^8.2.6",
     "@refinedev/simple-rest": "^4.5.4",
     "gsap": "^3.8.0",
     "js-confetti": "^0.9.0",
-    "next": "13.0.6",
+    "next": "^13.5.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
