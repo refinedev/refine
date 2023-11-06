@@ -281,7 +281,7 @@ module.exports = {
                 "top-announcement-glow":
                     "top-announcement-glow 1s ease-in-out infinite alternate",
                 "landing-packages-left":
-                    "landing-packages-left 70s linear infinite",
+                    "landing-packages-left 60s linear infinite",
                 "landing-packages-right":
                     "landing-packages-right 60s linear infinite",
                 "code-scroll": "code-scroll 35s linear infinite",
