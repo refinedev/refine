@@ -23,7 +23,7 @@ If you are using **Remix**, you'll be defining your routes in the `app/routes` d
 Once you created your routes, you can use one of our router integrations.
 
 
-## Routing Integrations
+## Router Integrations
 
 To integrate a router provider with **refine**, all you need to do is to import the router integration of your choice and pass it to the `<Refine />`'s `routerProvider` prop.
 
@@ -207,7 +207,6 @@ And then navigate the following route:
 You will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
 ```ts
-
 const { tableQueryResult, current, pageSize, filters, sorters } = useTable()
 
 console.log(tableQueryResult.data.data) // [{...}, {...}]

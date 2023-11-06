@@ -246,7 +246,7 @@ export const Sandpack = ({
                             }
                             showRefreshButton={options.showRefreshButton}
                             style={{
-                                display : hidePreview ? "none" : "block",
+                                display : hidePreview ? "none" : "flex",
                                 ...(layout?.includes("col")
                                     ? { flex: "initial", width: "100%" }
                                     : {
