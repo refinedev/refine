@@ -18,7 +18,6 @@ import {
     ElideGraphql,
     EntRefine,
     Firebase,
-    Gatsby,
     Graphql,
     Hasura,
     Headless,
@@ -50,8 +49,6 @@ type Props = {
 };
 
 export const LandingPackages: FC<Props> = ({ className }) => {
-    console.log({ l1: listOne.length, l2: listTwo.length });
-
     return (
         <div className={clsx(className, "w-full")}>
             <div
