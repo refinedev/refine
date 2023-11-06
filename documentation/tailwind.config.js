@@ -79,6 +79,18 @@ module.exports = {
                 disket: ["Disket Mono", ...defaultTheme.fontFamily.mono],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
+            dropShadow: {
+                "showcase-highlight": [
+                    "0px 3px 7px rgba(108, 119, 147, 0.141)",
+
+                    "0px 13px 13px rgba(108, 119, 147, 0.141)",
+
+                    "0px 20px 18px rgba(108, 119, 147, 0.18)",
+
+                    "0px 34px 21px rgba(108, 119, 147, 0.2)",
+                    "0px 54px 23px rgba(108, 119, 147, 0)",
+                ],
+            },
             boxShadow: {
                 modal: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 tile: "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
@@ -498,10 +510,7 @@ module.exports = {
             walkthrough: "976px",
         },
     },
-    plugins: [
-        require("@tailwindcss/line-clamp"),
-        require("@tailwindcss/typography"),
-    ],
+    plugins: [require("@tailwindcss/typography")],
     corePlugins: {
         // preflight: false,
     },
