@@ -1,11 +1,7 @@
 import clsx from "clsx";
 import React, { FC, useMemo } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
-import {
-    convertStatToText,
-    useCommunityStatsContext,
-} from "../context/CommunityStats";
-import { CountingNumber } from "../components/counting-number";
+import { useCommunityStatsContext } from "../context/CommunityStats";
 
 type Props = {
     className?: string;
@@ -14,29 +10,30 @@ type Props = {
 export const LandingCommunity: FC<Props> = ({ className }) => {
     const { colorMode } = useColorMode();
 
-    const { discordMemberCount, githubStarCount } = useCommunityStatsContext();
+    const { discordMemberCountText, githubStarCountText } =
+        useCommunityStatsContext();
 
     const list = useMemo(() => {
         return [
             {
-                stat: githubStarCount,
+                stat: githubStarCountText,
                 description: "Stars on GitHub",
             },
             {
-                stat: 5_000,
+                stat: "5K+",
                 description:
                     "Projects on production, including large enterprises",
             },
             {
-                stat: discordMemberCount,
+                stat: discordMemberCountText,
                 description: "Active developers in our open-source community",
             },
             {
-                stat: 200_000,
+                stat: "200K+",
                 description: "End users are using apps built with refine",
             },
         ];
-    }, [discordMemberCount, githubStarCount]);
+    }, [discordMemberCountText, githubStarCountText]);
 
     return (
         <div className={clsx(className, "w-full")}>
@@ -93,13 +90,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                     "rounded-3xl",
                                 )}
                             >
-                                <CountingNumber
-                                    to={item.stat}
-                                    from={0}
-                                    duration={1}
-                                    format={(value) =>
-                                        `${convertStatToText(value)}+`
-                                    }
+                                <div
                                     className={clsx(
                                         "tabular-nums",
                                         "whitespace-nowrap",
@@ -111,7 +102,9 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                         "font-bold",
                                         "drop-shadow-2xl",
                                     )}
-                                />
+                                >
+                                    {item.stat}
+                                </div>
                                 <div
                                     className={clsx(
                                         "mt-2 landing-sm:mt-6",

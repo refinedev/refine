@@ -50,6 +50,8 @@ type Props = {
 };
 
 export const LandingPackages: FC<Props> = ({ className }) => {
+    console.log({ l1: listOne.length, l2: listTwo.length });
+
     return (
         <div className={clsx(className, "w-full")}>
             <div
@@ -202,24 +204,37 @@ const PackagesContainer = ({
 
     return (
         <div
-            onMouseEnter={() => setAnimate(false)}
-            onMouseLeave={() => setAnimate(true)}
             className={clsx(
-                className,
-                animate ? "animation-running" : "animation-paused",
-                animDirection === "left"
-                    ? "animate-landing-packages-left"
-                    : "animate-landing-packages-right",
+                "relative",
                 "flex",
                 "items-center",
-                "justify-center",
-                "gap-[18px]",
-                "mt-6",
-                "relative",
+                animDirection === "left" ? "justify-start" : "justify-end",
             )}
-            {...props}
         >
-            {children}
+            <div
+                onMouseEnter={() => setAnimate(false)}
+                onMouseLeave={() => setAnimate(true)}
+                className={clsx(
+                    className,
+                    animate ? "animation-running" : "animation-paused",
+                    animDirection === "left"
+                        ? "animate-landing-packages-left"
+                        : "animate-landing-packages-right",
+                    "absolute",
+                    "left-0",
+                    "top-0",
+                    "pr-4",
+                    "w-auto",
+                    "flex",
+                    "items-center",
+                    "gap-[18px]",
+                    "mt-6",
+                    "relative",
+                )}
+                {...props}
+            >
+                {children}
+            </div>
         </div>
     );
 };
@@ -327,6 +342,11 @@ const listOne = [
         tooltip: "npm i @refinedev/mantine",
     },
     {
+        icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
+        label: "Mantine",
+        tooltip: "npm i @refinedev/mantine",
+    },
+    {
         icon: (props: SVGProps<SVGSVGElement>) => <Chakra {...props} />,
         label: "Chakra UI",
         tooltip: "npm i @refinedev/chakra-ui",
@@ -380,11 +400,6 @@ const listOne = [
         icon: (props: SVGProps<SVGSVGElement>) => <EntRefine {...props} />,
         label: "EntRefine",
         tooltip: "npm i entrefine",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Gatsby {...props} />,
-        label: "Gatsby",
-        tooltip: "npm i @refinedev/gatsby-router",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Hasura {...props} />,
@@ -488,5 +503,10 @@ const listTwo = [
         icon: (props: SVGProps<SVGSVGElement>) => <JSONApi {...props} />,
         label: "JSON API",
         tooltip: "npm i refine-jsonapi",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Nest {...props} />,
+        label: "Nest",
+        tooltip: "npm i @refinedev/nest",
     },
 ];

@@ -77,6 +77,10 @@ module.exports = {
                 mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
+                "jetBrains-mono": [
+                    "JetBrains Mono",
+                    ...defaultTheme.fontFamily.mono,
+                ],
             },
             boxShadow: {
                 modal: "4px 8px 16px rgba(42, 42, 66, 0.25)",
@@ -111,6 +115,17 @@ module.exports = {
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-stars.webp)",
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 ],
+                "landing-component-divider-dark":
+                    "linear-gradient(90deg, rgba(48, 52, 80, 0) 0%, #303450 12.5%, #303450 87.5%, rgba(48, 52, 80, 0) 100%)",
+                "landing-component-divider":
+                    "linear-gradient(270deg, rgba(31, 173, 102, 0) 0%, rgba(31, 173, 102, 0.5) 12.5%, rgba(31, 173, 102, 0.5) 87.5%, rgba(31, 173, 102, 0) 100%)",
+                "landing-component-badge": [
+                    "linear-gradient(306deg, #303450 0%, rgba(20, 20, 31, 0.5) 100%)",
+                    "linear-gradient(168deg, rgba(38, 217, 127, 0.9) 15%, rgba(71, 235, 235, 0) 50%)",
+                    "linear-gradient(0deg, #303450, #303450)",
+                ],
+                "landing-component-badge-glow":
+                    "radial-gradient(50% 50% at 50% 50%, rgba(38, 217, 127, 0.1) 0%, rgba(71, 235, 235, 0) 100%)",
                 "landing-text-bg":
                     "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%)",
                 "landing-text-bg-alt":
@@ -266,11 +281,20 @@ module.exports = {
                 "top-announcement-glow":
                     "top-announcement-glow 1s ease-in-out infinite alternate",
                 "landing-packages-left":
-                    "landing-packages-left 20s linear infinite",
+                    "landing-packages-left 70s linear infinite",
                 "landing-packages-right":
-                    "landing-packages-right 20s linear infinite",
+                    "landing-packages-right 60s linear infinite",
+                "code-scroll": "code-scroll 35s linear infinite",
             },
             keyframes: {
+                "code-scroll": {
+                    "0%": {
+                        transform: "translateY(0)",
+                    },
+                    "100%": {
+                        transform: "translateY(-576px)",
+                    },
+                },
                 "walkthrough-bounce": {
                     "0%": {
                         transform: "translateY(8%)",

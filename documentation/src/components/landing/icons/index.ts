@@ -19,3 +19,8 @@ export * from "./no-vendor-lockin-icon";
 export * from "./self-hosted-icon";
 export * from "./best-practices-icon";
 export * from "./pro-services-icon";
+export * from "./components-icon";
+export * from "./interfaces-icon";
+export * from "./routes-icon";
+export * from "./utilities-icon.tsx";
+export * from "./providers-icon";

@@ -6,9 +6,11 @@ import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
 import { LandingHeader } from "../refine-theme/landing-header";
 import { LandingCommunity } from "../refine-theme/landing-community";
-import LandingEnterpriseDevelopers from "../refine-theme/landing-enterprise-developers";
+import { LandingEnterpriseDevelopers } from "../refine-theme/landing-enterprise-developers";
 import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-developers";
 import { LandingPackages } from "../refine-theme/landing-packages";
+import { LandingAlreadyInvented } from "../refine-theme/landing-already-invented";
+import { LandingPureReactCode } from "../refine-theme/landing-pure-react-code";
 
 function Home() {
     return (
@@ -29,32 +31,37 @@ function Home() {
                     <LandingHeader />
                     <div
                         className={clsx(
-                            "w-full landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1296px]",
+                            "flex flex-col",
+                            "gap-16 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-40",
+                            "w-full landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                             "px-8 landing-sm:px-0",
                             "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
                             "mx-auto",
                         )}
                     >
-                        <LandingTrustedByDevelopers
-                            className={clsx(
-                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                            )}
-                        />
-                        <LandingPackages
-                            className={clsx(
-                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                            )}
-                        />
-                        <LandingCommunity
-                            className={clsx(
-                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                            )}
-                        />
-                        <LandingEnterpriseDevelopers
-                            className={clsx(
-                                "mt-16 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                            )}
-                        />
+                        <LandingTrustedByDevelopers />
+                        <div className={clsx("flex flex-col", "gap-6")}>
+                            <LandingPackages />
+                            <div
+                                className={clsx(
+                                    "flex flex-col landing-md:flex-row",
+                                    "gap-6",
+                                )}
+                            >
+                                <LandingAlreadyInvented
+                                    className={clsx(
+                                        "w-full landing-md:w-[50%] landing-lg:w-[538px]",
+                                    )}
+                                />
+                                <LandingPureReactCode
+                                    className={clsx(
+                                        "w-full landing-md:w-[50%] landing-lg:w-[640px]",
+                                    )}
+                                />
+                            </div>
+                        </div>
+                        <LandingCommunity />
+                        <LandingEnterpriseDevelopers />
                     </div>
                     <LandingFooter />
                 </div>
