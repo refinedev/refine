@@ -13,7 +13,6 @@ export { default as Dp } from "./dp";
 export { default as Elide } from "./elide";
 export { default as ElideGraphql } from "./elide-graphql";
 export { default as EntRefine } from "./entrefine";
-export { default as Gatsby } from "./gatsby";
 export { default as Graphql } from "./graphql";
 export { default as Hasura } from "./hasura";
 export { default as Headless } from "./headless";
