@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sandpack } from "@site/src/components/sandpack";
 
-export default function NextJSRouteDefinition() {
+export default function NextJSRouteDefinitions() {
     return (
         <Sandpack hidePreview showFiles files={{
             '/pages/_app.tsx': {
@@ -19,65 +19,31 @@ export default function NextJSRouteDefinition() {
 }
 
 const AppTsxCode = /* tsx */ `
-import React from "react";
 import type { NextPage } from "next";
+impoty type { AppProps } from "next/app";
 
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
-
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps): NextPage {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    list: "/my-products",
-                    show: "/my-products/:id",
-                },
-            ]}
-            options={{ syncWithLocation: true }}
-        >
-            <Component {...pageProps} />
-        </Refine>
+        <Component {...pageProps} />
     )
 }
 `.trim()
 
-const ListTsxCode = /* jsx */ `
-import { useList } from "@refinedev/core";
-
+const ListTsxCode = /* tsx */ `
 const ProductList = () => {
-    const { data } = useList()
-
     return (
-        <ul>
-            {data.map((record) => (
-                <li key={record.id}>{record.name}</li>
-            ))}
-        </ul>
+        <h1>Product List Page</h1>
     )
 };
 
 export default ProductList;
 `.trim()
 
-const ShowTsxCode = /* jsx */ `
-import { useShow } from "@refinedev/core";
+const ShowTsxCode = /* tsx */ `
 
 const ProductShow = () => {
-    const { queryResult: { data, isLoading } } = useShow()
-
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
-
     return (
-        <div>
-            <h1>{data.name}</h1>
-            <p>{data.description}</p>
-        </div>
+        <h1>Product Show Page</h1>
     )
 };
 
