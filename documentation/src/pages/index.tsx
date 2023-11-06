@@ -12,20 +12,20 @@ import { LandingTiles } from "../refine-theme/landing-tiles";
 import { LandingWalkthrough } from "../refine-theme/landing-walkthrough";
 
 function Home() {
+    const title = "refine | Open-source Retool for Enterprise";
     return (
         <>
             <Head>
                 <html data-active-page="index" />
+                <title>{title}</title>
+                <meta property="og:title" content={title} />
                 <link
                     rel="preload"
                     href="https://refine.new/embed-form"
                     as="document"
                 />
             </Head>
-            <CommonLayout
-                title={`refine | Open-source Retool for Enterprise`}
-                description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty."
-            >
+            <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty.">
                 <div className={clsx("bg-refine-bg")}>
                     <LandingHeader />
                     <div
