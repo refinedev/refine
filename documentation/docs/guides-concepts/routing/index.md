@@ -134,8 +134,11 @@ One of the most practical features of refine is the ability to infer current `re
 
 This is made possible by the relationship between the resources and the routes. Using this feature, you can easily use the current route's resource, action and id in your components and hooks without explicitly passing them down to hooks.
 
-As you can see in the example below, by providing **list** and **show** routes to the **products** resource, we can eliminate the need to pass **resource** and **id** props to the `useList` and `useShow` hooks.
+import NextJSRouteDefinitions from './nextjs-route-definitions';
 
+<NextJSRouteDefinitions />
+
+As you can see in the example below, by providing **list** and **show** routes to the **products** resource, we can eliminate the need to pass **resource** and **id** props to the `useList` and `useShow` hooks.
 
 ```tsx
 import { Refine, useList } from "@refinedev/core";
@@ -230,6 +233,72 @@ Clicking the button will **update the current route** and **fetch the next page*
 import UseTableUsage from "./use-table-usage";
 
 <UseTableUsage />
+
+#### Next.JS
+
+If you want to fetch products on the server-side with NextJS, you will need to modify your `pages/products/index.tsx` page.
+
+
+- Export a function caleld `getServerSideProps`.
+- Import **parseTableParams** from **@refinedev/nextjs-router** to parse the query parameters of the current route and pass them to the **dataProvider**'s **getList** method.
+- Return the data as `props.initialData` to your client side component.
+- Pass `props.initialData` to the `useTable` hook's `queryOptions.initialData` prop.
+
+```tsx title="pages/products.index.tsx"
+import { useTable } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+// highlight-next-line
+import { parseTableParams } from "@refinedev/nextjs-router";
+
+import { API_URL } from "src/constants";
+
+export const getServerSideProps = async (context) => {
+    const { pagination, filters, sorters } = parseTableParams(
+        context.resolvedUrl?.split("?")[1] ?? "",
+    );
+
+    const data = await dataProvider(API_URL).getList({
+        resource: "products",
+        filters,
+        pagination,
+        sorters,
+    });
+
+    return {
+        // highlight-next-line
+        props: { initialData: data },
+    };
+};
+
+const ProductList = (props) => {
+    // highlight-next-line
+    const { initialData } = props
+
+    const result = useTable({
+        // highlight-next-line
+        queryOptions: { initialData }
+    });
+
+    const { tableQueryResult, current, pageSize, filters, sorters } = result;
+
+    console.log(tableQueryResult.data.data) // [{...}, {...}]
+    console.log(tableQueryResult.data.total) // 32 - total number of unpaginated records
+    console.log(current) // 1 - current page
+    console.log(pageSize) // 2 - page size
+    console.log(filters) // [{ field: "category.id", operator: "eq", value: "1" }]
+    console.log(sorters) // [{ field: "id", order: "asc" }]
+
+    return (
+        // ...
+    )
+}
+
+
+```
+
+#### Remix
+
+TBA...
 
 ## The `routerProvider` Interface
 
