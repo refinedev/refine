@@ -54,6 +54,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
     return (
         <div className={clsx(className)}>
             <div
+                ref={ref}
                 className={clsx(
                     "not-prose",
                     "flex-shrink-0",
@@ -91,7 +92,6 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                             >
                                 <div className={clsx("absolute", "w-[160px]")}>
                                     <motion.div
-                                        ref={ref}
                                         initial={{
                                             x: 450 - leftOffset,
                                             opacity: 0,
