@@ -5,6 +5,7 @@ import { ThemedLayoutV2, notificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, {
+    DocumentTitleHandler,
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";

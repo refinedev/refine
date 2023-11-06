@@ -2,11 +2,12 @@ import { useShow, useOne } from "@refinedev/core";
 import {
     Show,
     NumberField,
+    TagField,
     TextField,
     MarkdownField,
     DateField,
 } from "@refinedev/chakra-ui";
-import { Heading } from "@chakra-ui/react";
+import { Heading, HStack } from "@chakra-ui/react";
 
 export const BlogPostShow = () => {
     const { queryResult } = useShow();

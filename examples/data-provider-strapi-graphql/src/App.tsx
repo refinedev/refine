@@ -34,7 +34,7 @@ const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             // eslint-disable-next-line
-            const { data } = await gqlDataProvider.custom({
+            const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "post",
                 meta: {
@@ -99,7 +99,7 @@ const authProvider: AuthBindings = {
     getPermissions: async () => {
         try {
             // eslint-disable-next-line
-            const { data } = await gqlDataProvider.custom({
+            const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
                 meta: {
@@ -121,7 +121,7 @@ const authProvider: AuthBindings = {
     getIdentity: async () => {
         try {
             // eslint-disable-next-line
-            const { data } = await gqlDataProvider.custom({
+            const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
                 meta: {

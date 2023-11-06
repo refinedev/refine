@@ -10,11 +10,11 @@ const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 
 root.render(
-    <React.StrictMode>
-        <NextUIProvider>
-            <React.Suspense fallback="loading">
-                <App />
-            </React.Suspense>
-        </NextUIProvider>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <NextUIProvider>
+      <React.Suspense fallback="loading">
+        <App />
+      </React.Suspense>
+    </NextUIProvider>
+  </React.StrictMode>
 );

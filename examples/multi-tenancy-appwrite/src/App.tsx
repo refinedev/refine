@@ -1,4 +1,9 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import {
+    Authenticated,
+    GitHubBanner,
+    Refine,
+    useParsed,
+} from "@refinedev/core";
 import {
     useNotificationProvider,
     ThemedLayoutV2,

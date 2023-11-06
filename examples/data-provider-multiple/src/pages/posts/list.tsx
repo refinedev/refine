@@ -7,6 +7,8 @@ import {
 import {
     List,
     TextField,
+    EditButton,
+    ShowButton,
     FilterDropdown,
     TagField,
     useTable,

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "refine dev --devtools false",
+    "start": "refine dev",
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
     "test": "jest --passWithNoTests --runInBand",
     "preview": "refine start",
@@ -70,7 +70,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "postcss": "^8.1.4",
     "postcss-nesting": "^12.0.1",
-    "prettier": "^3.0.3",
+    "prettier": "^2.7.1",
     "ts-jest": "^29.0.3",
     "typescript": "^4.7.4",
     "vite": "^4.3.1",

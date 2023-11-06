@@ -1,4 +1,4 @@
-import { Layout, Button, Space, Typography } from "antd";
+import { Layout, Button, Space, Typography, } from "antd";
 import { ThemedTitle } from "@refinedev/antd";
 import { useLogin } from "@refinedev/core";
 
@@ -23,7 +23,7 @@ export const Login: React.FC = () => {
                 <Button
                     type="primary"
                     size="middle"
-                    onClick={() => login({ redirectPath: "/" })}
+                    onClick={() => login({redirectPath: "/"})}
                     style={{ width: "240px" }}
                 >
                     Sign in
