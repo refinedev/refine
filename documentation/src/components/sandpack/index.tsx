@@ -41,6 +41,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
     wrapperClassName?: string;
     showFiles?: boolean;
     showConsole?: boolean;
+    hidePreview?: boolean;
 };
 /**
  * We're using a custom sandpack component and customized some of its features and props.
@@ -79,6 +80,7 @@ export const Sandpack = ({
     className,
     showFiles = false,
     showConsole = false,
+    hidePreview = false,
     ...props
 }: Props) => {
     const { colorMode } = useColorMode();
@@ -244,6 +246,7 @@ export const Sandpack = ({
                             }
                             showRefreshButton={options.showRefreshButton}
                             style={{
+                                display : hidePreview ? "none" : "block",
                                 ...(layout?.includes("col")
                                     ? { flex: "initial", width: "100%" }
                                     : {
