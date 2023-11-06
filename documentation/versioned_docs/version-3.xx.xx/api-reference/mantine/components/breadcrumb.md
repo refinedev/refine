@@ -228,4 +228,4 @@ render(
 <PropsTable module="@pankod/refine-mantine/Breadcrumb" />
 
 [mantine-breadcrumb]: https://mantine.dev/core/breadcrumbs/
-[source-code]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/breadcrumb/index.tsx
+[source-code]: https://github.com/refinedev/refine/blob/v3/packages/mantine/src/components/breadcrumb/index.tsx

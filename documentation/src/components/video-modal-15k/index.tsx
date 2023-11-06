@@ -276,17 +276,6 @@ export const VideoModal15K = () => {
     const { search } = useLocation();
     const [settled, setSettled] = React.useState(false);
 
-    // Mount video modal after 15 seconds
-    React.useEffect(() => {
-        const timeout = setTimeout(() => {
-            setSettled(true);
-        }, 15 * 1000);
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, []);
-
     // Mount modal immediately if search includes 15k_modal
     React.useEffect(() => {
         if (search?.includes("15k_modal")) {

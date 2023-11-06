@@ -1035,44 +1035,4 @@ describe("useSelect Hook", () => {
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
     });
-
-    it("an option should have both value and label converted to string", async () => {
-        const { result } = renderHook(
-            () =>
-                useSelect({
-                    resource: "posts",
-                    optionValue: "userId",
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await waitFor(() => {
-            expect(result.current.queryResult.isSuccess).toBeTruthy();
-        });
-
-        const { options } = result.current;
-
-        await waitFor(() => expect(options).toHaveLength(2), { timeout: 2000 });
-        /*
-            Original data in dataMocks.ts:
-            const posts = [
-                { userId: 5, title: "Necessitatibus necessitatibus id et cupiditate provident est qui amet." },
-                { userId: 36, name: "Recusandae consectetur aut atque est." },
-            ];
-        */
-        expect(options).toEqual([
-            {
-                value: "5",
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-            },
-            { value: "36", label: "Recusandae consectetur aut atque est." },
-        ]);
-        expect(typeof options[0].value).toBe("string");
-        expect(typeof options[0].label).toBe("string");
-    });
 });

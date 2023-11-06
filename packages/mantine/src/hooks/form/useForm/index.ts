@@ -3,6 +3,9 @@ import {
     useForm as useMantineForm,
     UseFormReturnType as UseMantineFormReturnType,
 } from "@mantine/form";
+import get from "lodash/get";
+import has from "lodash/has";
+import set from "lodash/set";
 import { UseFormInput } from "@mantine/form/lib/types";
 import {
     BaseRecord,
@@ -13,6 +16,7 @@ import {
     UseFormReturnType as UseFormReturnTypeCore,
     useTranslate,
     useRefineContext,
+    flattenObjectKeys,
 } from "@refinedev/core";
 
 type FormVariableType<TVariables, TTransformed> = ReturnType<
@@ -193,14 +197,22 @@ export const useForm = <
     useEffect(() => {
         if (typeof queryResult?.data !== "undefined") {
             const fields: any = {};
-            const registeredFields = Object.keys(rest.initialValues ?? {});
-            Object.entries(queryResult?.data?.data || {}).forEach(
-                ([key, value]) => {
-                    if (registeredFields.includes(key)) {
-                        fields[key] = value;
-                    }
-                },
+
+            const registeredFields = flattenObjectKeys(
+                rest.initialValues ?? {},
             );
+
+            const data = queryResult?.data?.data ?? {};
+
+            Object.keys(registeredFields).forEach((key) => {
+                const hasValue = has(data, key);
+                const dataValue = get(data, key);
+
+                if (hasValue) {
+                    set(fields, key, dataValue);
+                }
+            });
+
             setValues(fields);
             resetDirty(fields);
         }

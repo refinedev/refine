@@ -1377,7 +1377,7 @@ const App: React.FC = () => {
                                 {
                                     name: "google",
                                     label: "Sign in with Google",
-                                    icon: 
+                                    icon:
                                         <GoogleOutlined
                                             style={{
                                                 fontSize: 18,
@@ -1430,7 +1430,7 @@ So far, we have implemented the followings:
 
 ## Supabase Real Time Support
 
-**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
+**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.
 Required Supabase Real Time setup is already done in the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
 
 [You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
@@ -1478,7 +1478,7 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 :::tip
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 -   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)

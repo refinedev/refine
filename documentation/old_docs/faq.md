@@ -500,7 +500,7 @@ useMany({
 
 In some cases, you may need to override functions of refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
+For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
 ```tsx
 import dataProvider from "@refinedev/simple-rest";
@@ -744,9 +744,9 @@ To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` 
 
 Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
 
--   Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/next/examples/auth-antd/src/App.tsx#L161)
--   Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-nextjs/pages/_app.tsx#L47)
--   Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-remix-antd/app/root.tsx#L37)
+-   Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
+-   Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/pages/_app.tsx#L47)
+-   Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
 
 ## Module "X" has no exported member "Y"
 

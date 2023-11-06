@@ -1,7 +1,7 @@
 ---
 title: useAutocomplete
 siderbar_label: useAutocomplete
-source: https://github.com/refinedev/refine/blob/next/packages/mui/src/hooks/useAutocomplete/index.ts
+source: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useAutocomplete/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -378,7 +378,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 

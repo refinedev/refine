@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/next/packages/antd/src/hooks/fields/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/v3/packages/antd/src/hooks/fields/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -52,7 +52,7 @@ useSelect({
 
 ### `optionLabel` and `optionValue`
 
-Allows you to change the `value` and `label` of your options.  
+Allows you to change the `value` and `label` of your options.
 Default values are `optionLabel = "title"` and `optionValue = "id"`
 
 ```tsx
