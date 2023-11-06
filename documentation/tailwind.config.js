@@ -275,6 +275,8 @@ module.exports = {
                     "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
                 "landing-hero-xray-dot-center-bg":
                     "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0FBDBD 50%, #0FBDBD 100%)",
+                "landing-hero-xray-dot-center-bg-light":
+                    "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0080FF 50%, #0080FF 100%)",
                 "landing-wizard-option-bg-dark": [
                     "radial-gradient(50% 50% at 50% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0) 100%)",
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
@@ -312,8 +314,6 @@ module.exports = {
                 "landing-hero-grid-beats":
                     "landing-hero-grid-beats 2s ease-in-out infinite",
                 "hero-logo-pulse": "hero-logo-pulse 4s ease-in-out infinite",
-                "text-change-indicator":
-                    "text-change-indicator 1s ease-in-out 1",
                 "mini-bounce": "mini-bounce 3s ease-in-out infinite",
                 "dot-waves": "dot-waves 2.5s linear infinite",
                 "landing-packages-left":
@@ -414,11 +414,8 @@ module.exports = {
                     "0%": {
                         fillOpacity: 0,
                     },
-                    "10%": {
+                    "50%": {
                         fillOpacity: 0.8,
-                    },
-                    "20%": {
-                        fillOpacity: 0,
                     },
                     "100%": {
                         fillOpacity: 0,
@@ -433,17 +430,6 @@ module.exports = {
                     },
                     "100%": {
                         fillOpacity: 1,
-                    },
-                },
-                "text-change-indicator": {
-                    "0%": {
-                        transform: ["scale(1)"],
-                    },
-                    "50%": {
-                        transform: ["scale(1.1)"],
-                    },
-                    "100%": {
-                        transform: ["scale(1)"],
                     },
                 },
                 "mini-bounce": {

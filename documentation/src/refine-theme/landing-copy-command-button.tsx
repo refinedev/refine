@@ -75,15 +75,13 @@ export const LandingCopyCommandButton = ({
                     "inline-block",
                     "whitespace-pre",
                     "duration-150",
-                    "transition-all",
+                    "transition-opacity",
+                    "will-change-contents",
                     "ease-in-out",
                     fadedOut && "opacity-0",
                     !fadedOut && "opacity-100",
                 )}
-                activeClassName={clsx(
-                    "text-gray-500 dark:text-gray-0",
-                    "animate-text-change-indicator",
-                )}
+                activeClassName={clsx("text-gray-500 dark:text-gray-0")}
             />
             <div
                 className={clsx(
@@ -91,10 +89,11 @@ export const LandingCopyCommandButton = ({
                     "pr-4",
                     "absolute",
                     "top-0",
-                    copied ? "right-0" : "-right-8",
+                    "-right-8",
+                    copied && "-translate-x-8",
                     "duration-150",
                     "ease-out",
-                    "transition-all",
+                    "transition-transform",
                 )}
             >
                 <LandingCopySuccessIcon className={clsx()} />

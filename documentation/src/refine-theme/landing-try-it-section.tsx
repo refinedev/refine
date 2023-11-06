@@ -339,7 +339,7 @@ const LandingTryItWizardSection = ({
                     "rounded-2xl landing-md:rounded-3xl",
                     "bg-gray-50 dark:bg-gray-800",
                     "border border-solid",
-                    "transition-all",
+                    "transition-[border-color,width,height,opacity,background-color]",
                     "mx-auto",
                     "duration-300",
                     "ease-in-out",

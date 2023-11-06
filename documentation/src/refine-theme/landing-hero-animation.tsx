@@ -10,7 +10,7 @@ type ItemProps = {
     vertical: "top" | "bottom";
     horizontal: "left" | "right";
 };
-const Item = ({ vertical, horizontal }: ItemProps) => {
+const Item = React.memo(function ItemBase({ vertical, horizontal }: ItemProps) {
     return (
         <div
             className={clsx(
@@ -71,7 +71,7 @@ const Item = ({ vertical, horizontal }: ItemProps) => {
             />
         </div>
     );
-};
+});
 
 export const LandingHeroAnimation = React.memo(function HeroAnimation() {
     return (

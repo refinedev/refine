@@ -49,7 +49,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                             "absolute",
                             "left-0",
                             "top-0",
-                            "transition-[background-color,transform]",
+                            "transition-transform",
                             "duration-150",
                             "ease-out",
                         )}
@@ -59,7 +59,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                                     (f) => f.name === activeApp.name,
                                 ) *
                                 (244 + 8)
-                            }px)`,
+                            }px) translateZ(0px)`,
                         }}
                     />
                     {apps.map((app, index) => (
@@ -158,7 +158,16 @@ export const LandingHeroShowcaseSection = ({}) => {
                 />
                 <AnimatePresence>
                     <ShowcaseComponent
-                        className={clsx("absolute", "left-0", "top-0")}
+                        className={clsx(
+                            "absolute",
+                            "left-0",
+                            "top-0",
+                            "w-full",
+                            "rounded-lg",
+                            "landing-md:rounded-xl",
+                            "landing-lg:rounded-2xl",
+                            "overflow-hidden",
+                        )}
                         key={activeApp.name}
                     />
                 </AnimatePresence>
@@ -176,6 +185,9 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "via-gray-0",
                         "to-transparent",
                         "bg-gradient-to-t",
+                        "rounded-bl-lg rounded-br-lg",
+                        "landing-md:rounded-bl-xl landing-md:rounded-br-xl",
+                        "landing-lg:rounded-bl-2xl landing-lg:rounded-br-2xl",
                     )}
                 />
             </div>
