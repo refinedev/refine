@@ -20,6 +20,36 @@ If you are using **React Router**, you'll be defining your routes under the `Rou
 If you are using **Next.js**, you'll be defining your routes in the `pages` or `app` directory.<br />
 If you are using **Remix**, you'll be defining your routes in the `app/routes` directory.
 
+Let's start defining our routes for the `products` resource.
+
+## Defining Routes
+
+Let's start defining our routes for our application.
+
+We will define following routes:
+- `my-products` for the list page.
+- `my-products/:id` for the show page.
+
+For now, these pages will be empty, but we will add the necessary components and hooks later on.
+
+#### React Router
+
+import ReactRouterRouteDefinitions from './react-router-route-definitions';
+
+<ReactRouterRouteDefinitions />
+
+#### NextJS
+
+import NextJSRouteDefinitions from './nextjs-route-definitions';
+
+<NextJSRouteDefinitions />
+
+#### Remix
+
+import RemixRouteDefinitions from './remix-route-definitions';
+
+<RemixRouteDefinitions />
+
 Once you created your routes, you can use one of our router integrations.
 
 
@@ -133,10 +163,6 @@ As a next step, we'll add `products` resource to help **refine** understand the 
 One of the most practical features of refine is the ability to infer current `resource`, `action` and it's `id` from the **current route**.
 
 This is made possible by the relationship between the resources and the routes. Using this feature, you can easily use the current route's resource, action and id in your components and hooks without explicitly passing them down to hooks.
-
-import NextJSRouteDefinitions from './nextjs-route-definitions';
-
-<NextJSRouteDefinitions />
 
 As you can see in the example below, by providing **list** and **show** routes to the **products** resource, we can eliminate the need to pass **resource** and **id** props to the `useList` and `useShow` hooks.
 
