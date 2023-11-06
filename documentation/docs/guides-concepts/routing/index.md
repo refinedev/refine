@@ -2,53 +2,48 @@
 title: Routing
 ---
 
-refine's approach to routing is all about flexibility and adaptability. It gives you freedom to decide how you want to handle routing in your application. This means you are not locked into a specific router, so you can decide your routing strategy based on your project's needs, not **refine**'s.
+Routing is essential for any CRUD application. **refine**'s headless architecture allows you to use any router solution, without being locked into a specific router/framework.
 
-**refine**'s headless architecture allow it's **core** to be completely detached from your routing logic and doesn't interfere with the way you are defining or handling routes in your application.
+**refine** also offers built-in router integrations for the most popular frameworks such as **React Router**, **Next.js** and **Remix**.
 
-This means you are responsible for creating your routes as you would normally do.
+These integrations makes it easier to use **refine** with these frameworks and offers a lot of benefits such as:
+- Automatic parameter detection in hooks/components.
+- Generate menu items from your route definitions.
+- Breadcrumbs.
+- Automatic redirections after mutation or authentication.
+- Passing query parameters to your data provider.
+- Set of router agnostic utility components and hooks which can be used to navigate between pages/routes.
+
+Since **refine** is router agnostic, you are responsible for creating your routes.
 
 If you are using **React Router**, you'll be defining your routes under the `Routes` component.<br />
-If you are using **Next.js**, you'll be defining your routes in the `pages` directory.<br />
+If you are using **Next.js**, you'll be defining your routes in the `pages` or `app` directory.<br />
 If you are using **Remix**, you'll be defining your routes in the `app/routes` directory.
 
-After defining your routes and creating your page components, the next step involves integrating **refine** with your application's routing strategy through a router integration.
+Once you created your routes, you can use one of our router integrations.
 
-While it's entirely optional to use a router integration, it will significantly simplify using **refine**'s features such as hooks, components, providers and utilities.
-
-<!-- Automatic parameter detection, redirections, utilities bla bla. We need to mention high level benefits, without going technical details. We'll explain technically in the next sections. -->
-
-<!-- While using a router integration is optional, there are a lot of benefits of using one. Some of these benefits are: -->
-
-<!-- -   Inferring the `resource`, the `action` and the `id` from the current route without explicitly passing them to the hooks.
--   Your table's pagination, sorting and filtering parameters can be populated from the current route's query parameters.
--   Using the query strings and parameters of the current route in your data fetching logic.
--   Navigating between pages/routes after a successful mutation or after a failed authentication.
--   Syncing your modals and drawers with the current route.
--   A set of utility components and hooks that let's you easily navigate between defined routes and pages. -->
 
 ## Routing Integrations
 
-**refine** offers built-in router integrations for the most popular frameworks such as **React Router**, **Next.js** and **Remix**.
-
-These pre-built router integrations of refine will cover for all the use-cases you'll need without having to worry about the implementation details.
-
-All you need to do is to import the router integration of your choice and pass it to the `<Refine />` component within the `routerProvider` prop.
+To integrate a router provider with **refine**, all you need to do is to import the router integration of your choice and pass it to the `<Refine />`'s `routerProvider` prop.
 
 <Tabs>
 <TabItem value="react-router-v6" label="React Router v6" default>
 
 ```tsx title="App.tsx"
+import { BrowserRouter, Routes } from "react-router-dom";
 // highlight-next-line
 import routerProvider from "@refinedev/react-router-v6";
 
 const App = () => (
-    <Refine
+    <BrowserRouter>
         // highlight-next-line
-        routerProvider={routerProvider}
-    >
-        {/* ... */}
-    </Refine>
+        <Refine routerProvider={routerProvider}>
+            <Routes>
+                {/* Your route definitions */}
+            </Routes>
+        </Refine>
+    </BrowserRouter>
 );
 ```
 
@@ -128,8 +123,6 @@ refine is able to work on React Native apps and with the help of the community p
 
 </TabItem>
 </Tabs>
-
-As you can see in the examples above, the only difference between the router integrations is the import path of the router provider and where you define `<Refine />` component.
 
 Once you passed router provider to `<Refine />` component, you can use all the features of refine in a same way, regardless of your application's framework/router.
 
