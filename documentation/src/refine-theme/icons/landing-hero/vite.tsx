@@ -8,10 +8,6 @@ export const LandingHeroViteIcon = (props: React.SVGProps<SVGSVGElement>) => (
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
-        style={{
-            filter: "drop-shadow(0 0 10px rgba(255, 168, 0, 0.5)) drop-shadow(0 0 20px rgba(255, 168, 0, 0.5))",
-            ...props.style,
-        }}
     >
         <g opacity={0.5} filter="url(#filter0_f_1305_2584)">
             <path

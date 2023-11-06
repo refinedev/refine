@@ -284,6 +284,8 @@ module.exports = {
                 "landing-wizard-option-bg-light": [
                     "radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0) 100%)",
                 ],
+                "landing-hero-beam-bg":
+                    "conic-gradient(from 280deg, currentColor 6%, transparent 14%, transparent 100%)",
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
@@ -320,6 +322,11 @@ module.exports = {
                     "landing-packages-left 20s linear infinite",
                 "landing-packages-right":
                     "landing-packages-right 20s linear infinite",
+                "beam-spin": "beam-spin 3s linear 1 forwards",
+                "landing-hero-beam-line":
+                    "landing-hero-beam-line 7.5s ease-in-out infinite",
+                "landing-hero-beam-bottom":
+                    "landing-hero-beam-bottom 7.5s ease-in-out infinite",
             },
             keyframes: {
                 "walkthrough-bounce": {
@@ -467,6 +474,38 @@ module.exports = {
                 "landing-packages-right": {
                     "0%": { transform: "translateX(0)" },
                     "100%": { transform: "translateX(50%)" },
+                },
+                "beam-spin": {
+                    "0%": {
+                        transform:
+                            "translateX(-45px) translateY(-190px) rotate(0deg)",
+                    },
+                    "100%": {
+                        transform:
+                            "translateX(-45px) translateY(-190px) rotate(-360deg)",
+                    },
+                },
+                "landing-hero-beam-line": {
+                    "0%": {
+                        opacity: 0,
+                    },
+                    "50%": {
+                        opacity: 1,
+                    },
+                    "100%": {
+                        opacity: 0,
+                    },
+                },
+                "landing-hero-beam-bottom": {
+                    "0%": {
+                        opacity: 0.25,
+                    },
+                    "50%": {
+                        opacity: 1,
+                    },
+                    "100%": {
+                        opacity: 0.25,
+                    },
                 },
             },
         },
