@@ -17,6 +17,7 @@ import {
     SandpackCodeEditor,
     SandpackLayout,
     SandpackPreview,
+    SandpackFileExplorer,
     SandpackProvider,
 } from "@codesandbox/sandpack-react";
 
@@ -37,6 +38,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
     layout?: "row" | "col" | "col-reverse";
     className?: string;
     wrapperClassName?: string;
+    showFiles?: boolean;
 };
 /**
  * We're using a custom sandpack component and customized some of its features and props.
@@ -73,6 +75,7 @@ export const Sandpack = ({
     height = 420,
     wrapperClassName,
     className,
+    showFiles = false,
     ...props
 }: Props) => {
     const { colorMode } = useColorMode();
@@ -182,6 +185,9 @@ export const Sandpack = ({
                             layout === "col-reverse" && "!flex-col-reverse",
                         )}
                     >
+                        {showFiles && (
+                            <SandpackFileExplorer autoHiddenFiles />
+                        )}
                         {!previewOnly && (
                             <SandpackCodeEditor
                                 {...codeEditorOptions}
