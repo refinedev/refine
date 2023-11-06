@@ -191,7 +191,7 @@ export const Sandpack = ({
                         )}
                     >
                         {showFiles && (
-                            <SandpackFileExplorer autoHiddenFiles />
+                            <SandpackFileExplorer autoHiddenFiles style={{ height: options.editorHeight ?? height }} />
                         )}
                         {!previewOnly && (
                             <SandpackCodeEditor
