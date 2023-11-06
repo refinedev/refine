@@ -167,7 +167,7 @@ export const LandingPlaygroundModal = ({ visible, close }) => {
                             <div className={clsx("w-full", "h-full")}>
                                 <iframe
                                     ref={iframeRef}
-                                    src={`http://localhost:7313/embed-form?theme=${colorMode}`}
+                                    src={`https://refine.new/embed-form?theme=${colorMode}`}
                                     className={clsx(
                                         "bg-gray-100",
                                         "dark:bg-gray-900",
