@@ -59,7 +59,7 @@
     "lint-staged": "^10.5.4",
     "patch-package": "^6.4.7",
     "port-pid": "^0.0.7",
-    "prettier": "^3.0.3",
+    "prettier": "^2.7.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
