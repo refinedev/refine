@@ -206,7 +206,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                     className={clsx(
                         "landing-lg:animate-mini-bounce",
                         "landing-lg:mt-[-104px]",
-                        "z-[10]",
+                        "z-[3]",
                         "py-2 landing-sm:py-4",
                         "pl-4 pr-4 landing-sm:pl-6 landing-sm:pr-4",
                         "rounded-[32px] landing-sm:rounded-[48px]",
