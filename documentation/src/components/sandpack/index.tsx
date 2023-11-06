@@ -19,6 +19,7 @@ import {
     SandpackPreview,
     SandpackFileExplorer,
     SandpackProvider,
+    SandpackConsole,
 } from "@codesandbox/sandpack-react";
 
 import { useColorMode } from "@docusaurus/theme-common";
@@ -39,6 +40,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
     className?: string;
     wrapperClassName?: string;
     showFiles?: boolean;
+    showConsole?: boolean;
 };
 /**
  * We're using a custom sandpack component and customized some of its features and props.
@@ -76,6 +78,7 @@ export const Sandpack = ({
     wrapperClassName,
     className,
     showFiles = false,
+    showConsole = false,
     ...props
 }: Props) => {
     const { colorMode } = useColorMode();
@@ -202,8 +205,25 @@ export const Sandpack = ({
                                           }),
                                     overflow: "hidden",
                                 }}
-                            />
+                          />
                         )}
+                        {
+                            showConsole ?
+                                <SandpackConsole style={
+                                    {
+                                            height: options.editorHeight ?? height,
+                                            ...(layout?.includes("col")
+                                                ? { flex: "initial" }
+                                                : {
+                                                    flexGrow: horizontalSize,
+                                                    flexShrink: horizontalSize,
+                                                    flexBasis: 0,
+                                                }),
+                                            overflow: "hidden",
+                                        }
+                                    }
+                                /> : null
+                        }
                         {showHandle ? (
                             <DragHandle
                                 onMouseDown={onHandleMouseDown}

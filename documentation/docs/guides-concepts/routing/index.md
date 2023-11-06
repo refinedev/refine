@@ -206,12 +206,6 @@ And then navigate the following route:
 
 You will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
-TODO: We can use this paragraph:
-
-You can use fields like, tableQueryResult, current, pageSize, filters and sorters to present the data in your UI.
-
-OR SOMETHING LIKE
-
 ```ts
 
 const { tableQueryResult, current, pageSize, filters, sorters } = useTable()
@@ -231,8 +225,8 @@ const { current, setCurrent } = useTable()
 
 <button onClick={() => { setCurrent(current + 1) }}>Next Page</button>
 ```
-Clicking the button will **update the current route** and **fetch the next page** of the table automatically.
 
+Clicking the button will **update the current route** and **fetch the next page** of the table automatically.
 
 import UseTableUsage from "./use-table-usage";
 
