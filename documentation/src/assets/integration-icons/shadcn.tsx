@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import * as React from "react";
 import { SVGProps } from "react";
 
@@ -9,9 +10,10 @@ const ShadCn = (props: SVGProps<SVGSVGElement>) => (
         viewBox="0 0 25 24"
         fill="none"
         {...props}
+        className={clsx(props.className, "dark:text-gray-1000 text-white")}
     >
         <path
-            stroke="#fff"
+            stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.5}
