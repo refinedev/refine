@@ -421,7 +421,6 @@ module.exports = {
                 "landing-packages-right":
                     "landing-packages-right 60s linear infinite",
                 "code-scroll": "code-scroll 35s linear infinite",
-                    "landing-packages-right 20s linear infinite",
                 "beam-spin": "beam-spin 3s linear 1 forwards",
                 "landing-hero-beam-line":
                     "landing-hero-beam-line 7.5s ease-in-out infinite",
