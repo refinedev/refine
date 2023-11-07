@@ -5,6 +5,7 @@ export default function UseTableUsage() {
     return (
         <Sandpack
             showNavigator
+            showFiles
             dependencies={{
                 "@refinedev/core": "latest",
                 "@refinedev/simple-rest": "latest",
@@ -22,9 +23,12 @@ export default function UseTableUsage() {
                     code: StyleCssCode,
                     hidden: true,
                 },
-                "/list.tsx": {
-                    code: ListTsxCode,
+                "/pages/products/list.tsx": {
+                    code: ListPageTsxCode,
                     active: true,
+                },
+                "/components/products/list.tsx": {
+                    code: ListTsxCode,
                 },
             }}
         />
@@ -41,7 +45,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./style.css";
 
-import { List } from "./list.tsx";
+import { ListPage } from "./pages/products/list.tsx";
 
 export default function App() {
     return (
@@ -58,7 +62,7 @@ export default function App() {
                 options={{ syncWithLocation: true }}
             >
                 <Routes>
-                    <Route path="/my-products" element={<List />} />
+                    <Route path="/my-products" element={<ListPage />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -96,12 +100,26 @@ ul > li {
 }
 `.trim();
 
-const ListTsxCode = `
+const ListPageTsxCode = `
 import React from "react";
 
 import { useTable } from "@refinedev/core";
 
-export const List: React.FC = () => {
+import { ProductList } from "../../components/products/list"
+
+export const ListPage: React.FC = () => {
+    const tableProps = useTable();
+
+    return (
+        <ProductList tableProps={tableProps} />
+    );
+};
+`.trim();
+
+const ListTsxCode = `
+import React from "react";
+
+export const ProductList: React.FC = ({ tableProps }) => {
     const {
         tableQueryResult,
         isLoading,
@@ -113,7 +131,7 @@ export const List: React.FC = () => {
         setFilters,
         sorters,
         setSorters,
-    } = useTable();
+    } = tableProps
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -139,7 +157,7 @@ export const List: React.FC = () => {
                 </tbody>
             </table>
             <hr />
-            Sorting by field:{" "}
+            Sorting by field:
             <b>
                 {sorters[0].field}, order {sorters[0].order}
             </b>
@@ -157,9 +175,9 @@ export const List: React.FC = () => {
                 Toggle Sort
             </button>
             <hr />
-            Filtering by field:{" "}
+            Filtering by field:
             <b>
-                {filters[0].field}, operator {filters[0].operator}, value{" "}
+                {filters[0].field}, operator {filters[0].operator}, value
                 {filters[0].value}
             </b>
             <br />
