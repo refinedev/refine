@@ -327,9 +327,15 @@ const LandingTryItWizardSection = ({
                 className={clsx(
                     "flex-1",
                     "bg-gray-0 dark:bg-gray-900",
-                    "transition-colors",
+                    "opacity-0",
+                    visible && "opacity-100",
+                    "transition-[background-color,background,opacity]",
                     "duration-150",
                     "ease-in-out",
+                    "bg-landing-wizard-side-bg-light dark:bg-landing-wizard-side-bg",
+                    "bg-landing-wizard-side-left-position",
+                    "bg-landing-wizard-side-size",
+                    "bg-no-repeat",
                 )}
             />
             <div
@@ -385,9 +391,15 @@ const LandingTryItWizardSection = ({
                 className={clsx(
                     "flex-1",
                     "bg-gray-0 dark:bg-gray-900",
-                    "transition-colors",
+                    "opacity-0",
+                    visible && "opacity-100",
+                    "transition-[background-color,background,opacity]",
                     "duration-150",
                     "ease-in-out",
+                    "bg-landing-wizard-side-bg-light dark:bg-landing-wizard-side-bg",
+                    "bg-landing-wizard-side-right-position",
+                    "bg-landing-wizard-side-size",
+                    "bg-no-repeat",
                 )}
             />
         </div>

@@ -289,15 +289,24 @@ module.exports = {
                 "footer-dark-bg": [
                     "linear-gradient(180deg, rgba(29, 30, 48, 0.5) 0%, #14141F 100%)",
                 ],
+                "landing-wizard-side-bg": [
+                    "radial-gradient(rgb(190 190 190 / 25%) 0%, transparent 50%, transparent 100%)",
+                ],
+                "landing-wizard-side-bg-light": [
+                    "radial-gradient(rgb(45 45 45 / 15%) 0%, transparent 50%, transparent 100%)",
+                ],
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
                     "top -350px right -350px, center",
                 "landing-wizard-option-left":
                     "bottom -350px left -350px, center",
+                "landing-wizard-side-left-position": "center right -144px",
+                "landing-wizard-side-right-position": "center left -144px",
             },
             backgroundSize: {
                 "landing-wizard-option": "600px 600px, auto",
+                "landing-wizard-side-size": "250px 550px",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
