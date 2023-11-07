@@ -213,7 +213,7 @@ const PackagesContainer = ({
                 onMouseLeave={() => setAnimate(true)}
                 className={clsx(
                     className,
-                    animate ? "animation-paused" : "animation-paused",
+                    animate ? "animation-running" : "animation-paused",
                     animDirection === "left"
                         ? "animate-landing-packages-left"
                         : "animate-landing-packages-right",
