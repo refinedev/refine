@@ -1,7 +1,11 @@
 import React from "react";
 import { FormInstance, FormProps, Form, ButtonProps } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
-import { AutoSaveProps } from "@refinedev/core";
+import {
+    AutoSaveProps,
+    flattenObjectKeys,
+    propertyPathToArray,
+} from "@refinedev/core";
 
 import {
     HttpError,
@@ -172,13 +176,16 @@ export const useForm = <
 
             // reset antd errors before setting new errors
             const fieldsValue = form.getFieldsValue() as unknown as object;
-            const fields = Object.keys(fieldsValue);
+
+            const fields = Object.keys(flattenObjectKeys(fieldsValue));
+
             parsedErrors = fields.map((field) => {
                 return {
-                    name: field,
+                    name: propertyPathToArray(field),
                     errors: undefined,
                 };
             });
+
             form.setFields(parsedErrors);
 
             const errors = error?.errors;
@@ -209,18 +216,8 @@ export const useForm = <
                     newError = [translatedMessage];
                 }
 
-                // antd form expects the key to be an array.
-                // if the key is a number, it will be parsed to a number because.
-                const newKey = key.split(".").map((item) => {
-                    // check if item is a number
-                    if (!isNaN(Number(item))) {
-                        return Number(item);
-                    }
-                    return item;
-                });
-
                 parsedErrors.push({
-                    name: newKey,
+                    name: propertyPathToArray(key),
                     errors: newError,
                 });
             }

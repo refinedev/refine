@@ -12,14 +12,14 @@ hide_table_of_contents: false
 
 Admin dashboards play a crucial role in the success of B2B businesses. These dashboards are designed to provide a personalized overview of key performance indicators, data accuracy, and administrative actions, all of which have a significant impact on the decision-making process of a business administration, either positively or negatively.
 
-Due to the crucial role played by admin dashboards in the success of any serious business, developers are often tasked with integrating these tools into websites. However, creating effective React admin dashboards is no small feat, as it requires extensive use of advanced data management, data visualization, and routing systems to ensure proper functionality. For those with limited time on their hands, using a library to quickly bootstrap a dashboard application may be the preferred option. 
+Due to the crucial role played by admin dashboards in the success of any serious business, developers are often tasked with integrating these tools into websites. However, creating effective React admin dashboards is no small feat, as it requires extensive use of advanced data management, data visualization, and routing systems to ensure proper functionality. For those with limited time on their hands, using a library to quickly bootstrap a dashboard application may be the preferred option.
 
 This leads us to the next challenge: selecting the appropriate React admin dashboard library for your application. Choosing a React admin dashboard library involves many considerations, and while visualization is important, it is not the only critical factor. A quality dashboard library should not only be visually attractive, but also integrate seamlessly with various backend technologies, be responsive, and possess other essential features.
 
 In this article, we've curated a compilation of the 5 best React admin dashboard libraries that encompass all the essential features needed to create modern and feature-rich dashboards with minimal effort.
 
 ## refine
-At the top of the list is [refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries. 
+At the top of the list is [refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries.
 
 
 <div className="centered-image"  >
@@ -62,7 +62,7 @@ npm create refine-app#latest my-project
 ### Stats
 - GitHub stars: 13+k
 - License: MIT
-- Links: [Demo](https://example.admin.refine.dev/) | [Documentation](https://refine.dev/docs/tutorial/introduction/index/) | [GitHub](https://github.com/refinedev/refine/tree/next/examples/finefoods-antd)
+- Links: [Demo](https://example.admin.refine.dev/) | [Documentation](https://refine.dev/docs/tutorial/introduction/index/) | [GitHub](https://github.com/refinedev/refine/tree/master/examples/finefoods-antd)
 
 ## Ant Design pro
 Ant design pro is an open-source UI library for building production-ready enterprise-level web applications and React admin dashboards.
@@ -85,8 +85,8 @@ Since Ant Design is owned and managed by the Alibaba Group, the library undergoe
 - Responsiveness
 - Typescript support
 - Open-source
-- Easy learning curve 
-  
+- Easy learning curve
+
 ### Quick start
 
 ```
@@ -118,7 +118,7 @@ As one of the first dashboard libraries to adopt Tailwind as its primary theming
 
 ### Features
 - Fast workflow
-- Responsiveness 
+- Responsiveness
 - Easy learning curve
 - Open source
 
@@ -128,7 +128,7 @@ As one of the first dashboard libraries to adopt Tailwind as its primary theming
 ```
 npm install @tremor/react
 //install tailwind and it’s peer dependencies
-npm install -D tailwindcss postcss autoprefixer 
+npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 
 ```
@@ -146,7 +146,7 @@ Links: [Demo](https://demo.tremor.so/) | [Documentation](https://www.tremor.so/d
 ---
 
 ## Material Dashboard React
-Material Dashboard React is an open-source admin dashboard template built using React and the material design framework. 
+Material Dashboard React is an open-source admin dashboard template built using React and the material design framework.
 
 
 <div className="centered-image"  >
@@ -201,8 +201,8 @@ Volt’s structural design simplifies the visualization of data acquired from ba
 
 ```
 //clone the repo
-git clone https://github.com/themesberg/volt-react-dashboard.git 
-//then 
+git clone https://github.com/themesberg/volt-react-dashboard.git
+//then
 Yarn start
 Or
 npm run start

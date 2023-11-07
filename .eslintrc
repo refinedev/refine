@@ -8,11 +8,11 @@
     },
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "prettier"],
+    "plugins": ["@typescript-eslint"],
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
+        "prettier"
     ],
     "overrides": [
         {
@@ -26,9 +26,9 @@
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
-        "prettier/prettier": "error",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": [
             "warn",

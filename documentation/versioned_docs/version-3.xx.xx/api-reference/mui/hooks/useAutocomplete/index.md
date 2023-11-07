@@ -1,7 +1,7 @@
 ---
 title: useAutocomplete
 siderbar_label: useAutocomplete
-source: https://github.com/refinedev/refine/blob/next/packages/mui/src/hooks/useAutocomplete/index.ts
+source: https://github.com/refinedev/refine/blob/v3/packages/mui/src/hooks/useAutocomplete/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -30,9 +30,9 @@ Here is a basic example of how to use `useAutocomplete` hook.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider) 
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
 
-When `useAutocomplete` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
+When `useAutocomplete` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
@@ -100,7 +100,7 @@ useAutocomplete({
 
 ### `debounce`
 
-It allows us to `debounce` the `onSearch` function.  
+It allows us to `debounce` the `onSearch` function.
 
 ```tsx
 useAutocomplete({
@@ -152,7 +152,7 @@ useAutocomplete({
 
 ### `hasPagination`
 
-> Default: `false` 
+> Default: `false`
 
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
 
@@ -179,7 +179,7 @@ useAutocomplete({
 
 ### `onSearch`
 
-It allows us to `AutoComplete` the `options`.  
+It allows us to `AutoComplete` the `options`.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
@@ -191,7 +191,7 @@ If `onSearch` is used, it will override the existing `filters`.
 
 #### Client-side filtering
 
-Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined`. This will disable the server-side filtering and will filter the options on the client-side. 
+Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined`. This will disable the server-side filtering and will filter the options on the client-side.
 
 ```tsx
 // highlight-next-line
@@ -227,7 +227,7 @@ const filterOptions = createFilterOptions({
             variant="outlined"
             required
         />
-    )}  
+    )}
 />
 ```
 
@@ -287,7 +287,7 @@ useAutocomplete({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useAutocomplete` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -305,7 +305,7 @@ useAutocomplete({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useAutocomplete` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -323,7 +323,7 @@ useAutocomplete({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
@@ -336,7 +336,7 @@ useAutocomplete({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -349,13 +349,13 @@ useAutocomplete({
 ```
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## FAQ
 
-### How to ensure `defaultValue` is included in the options? 
+### How to ensure `defaultValue` is included in the options?
 
 In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 

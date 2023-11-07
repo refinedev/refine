@@ -175,7 +175,7 @@ export const EXAMPLES: Examples = [
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
-        source: "https://github.com/refinedev/refine/tree/next/examples/multi-tenancy-strapi",
+        source: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
     },
     {
         title: "Multi-Tenancy Example with Appwrite",
@@ -195,6 +195,6 @@ export const EXAMPLES: Examples = [
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
-        source: "https://github.com/refinedev/refine/tree/next/examples/multi-tenancy-appwrite",
+        source: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-appwrite",
     },
 ];

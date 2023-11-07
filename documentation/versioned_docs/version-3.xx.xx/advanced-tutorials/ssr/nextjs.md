@@ -23,7 +23,7 @@ npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
 :::
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -486,7 +486,7 @@ Note that we're importing `NextRouteComponent` from `@pankod/refine-nextjs-route
 :::
 
 :::info
-You can find the `app/` directory example with **refine** in [examples/nextjs/appdir](https://github.com/refinedev/refine/tree/master/examples/remix/antd)
+You can find the `app/` directory example with **refine** in [examples/nextjs/appdir](https://github.com/refinedev/refine/tree/v3/examples/remix/antd)
 :::
 
 ## Example

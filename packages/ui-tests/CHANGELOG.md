@@ -1,5 +1,15 @@
 # @refinedev/ui-tests
 
+## 1.13.3
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update commit frequency branch from next to master on README.
+
+-   Updated dependencies [[`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88), [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88)]:
+    -   @refinedev/ui-types@1.22.3
+    -   @refinedev/core@4.44.12
+
 ## 1.13.2
 
 ### Patch Changes

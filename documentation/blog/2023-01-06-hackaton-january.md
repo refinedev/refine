@@ -9,16 +9,16 @@ social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hac
 hide_table_of_contents: false
 ---
 
-**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
+**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts.
 
 We're proud to have reached thousands of developers who used **[refine](https://github.com/refinedev/refine)**  in our first year, and we couldn't have done it without an open source community!
  To celebrate this achievement with the community, we are excited to announce the launch of the first hackathon event.
 
-This hackathon is an excellent opportunity for developers to showcase their skills and learn **refine**! 
+This hackathon is an excellent opportunity for developers to showcase their skills and learn **refine**!
 
 You can win **$1500** and a special gifts along with **limited edition** swag kits!
 
-We can't wait to see what amazing projects the participants will build projects using **refine**. 
+We can't wait to see what amazing projects the participants will build projects using **refine**.
 
 
 [👉 Please submit your project on refine Devpost Hackathon platform](https://refine-open-source-hackathon.devpost.com/)
@@ -29,7 +29,7 @@ We can't wait to see what amazing projects the participants will build projects 
 
 
 
-refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), [Medusa](https://medusajs.com/), and [Meilisearch](https://www.meilisearch.com/) which has significant contributions to the open source community.  
+refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), [Medusa](https://medusajs.com/), and [Meilisearch](https://www.meilisearch.com/) which has significant contributions to the open source community.
 
 It's worth noting that refine has built-in data provider support for Strapi, Appwrite, and Medusa. So we believe they will be excellent backend solutions for your hackathon project.
 
@@ -60,9 +60,9 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 ### Prizes
 There are 3 chances to win, there will be prizes for:
 
-- **Best Overall Project** => **$1500** in GitHub Sponsorship  
-- **Most Visually Pleasing** => **$300** in GitHub Sponsorship 
-- **Most Technically Impressive** => **$300** in GitHub Sponsorship 
+- **Best Overall Project** => **$1500** in GitHub Sponsorship
+- **Most Visually Pleasing** => **$300** in GitHub Sponsorship
+- **Most Technically Impressive** => **$300** in GitHub Sponsorship
 
 The all winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
@@ -75,7 +75,7 @@ The all winners will get [refine Special Swag Kit](https://store.refine.dev/prod
 
 ## Submission
 - **Submissions link:**  [Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
-- **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/next/hackathon/readme-guideline.md)
+- **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/master/hackathon/readme-guideline.md)
 
 
 ## Rules
@@ -88,7 +88,7 @@ The all winners will get [refine Special Swag Kit](https://store.refine.dev/prod
 
 ## Community
 
-The **refine** team will be taking part in the Hackathon and you'll find us live building in our Discord all week. 
+The **refine** team will be taking part in the Hackathon and you'll find us live building in our Discord all week.
 
 - Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress.
   - Forum channel: **hackathon**
@@ -113,7 +113,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - You can step up to complete CRUD app tutorials to learn **refine** and how it works.
    - :point_right: https://refine.dev/docs/tutorial/introduction/index/
 - You can take a look at real use case example projects built with **refine** to get an inspiration.
-   - :point_right: https://refine.dev/docs/examples/  
+   - :point_right: https://refine.dev/docs/examples/
    - :point_right: https://refine.dev/examples/
 - [refine 7/24 Discord Support Channel](https://discord.gg/refine)
 

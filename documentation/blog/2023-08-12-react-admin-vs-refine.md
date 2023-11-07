@@ -10,11 +10,11 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admi
 ---
 
 
-## Introduction 
+## Introduction
 
-In this article, we compare the architectural structures of two web development frameworks: refine and React-admin. Both frameworks simplifies the development process and offer features for building any type of CRUD apps like internals tools and admin panels. 
+In this article, we compare the architectural structures of two web development frameworks: refine and React-admin. Both frameworks simplifies the development process and offer features for building any type of CRUD apps like internals tools and admin panels.
 
-While code examples could help illustrate our points, directly comparing code might not give an accurate picture. During the app development process, developers write code with a particular purpose and design in mind, which renders our intervention unnecessary in this aspect.  Also, the code you write in refine is closely resembles regular vanilla React code and doesn't deviate significantly from it's configuration. 
+While code examples could help illustrate our points, directly comparing code might not give an accurate picture. During the app development process, developers write code with a particular purpose and design in mind, which renders our intervention unnecessary in this aspect.  Also, the code you write in refine is closely resembles regular vanilla React code and doesn't deviate significantly from it's configuration.
 
 This is why you won't find explicit code examples. refine's philosophy fully embraces this approach, ensuring that the maximum point of customization is achieved.
 
@@ -33,7 +33,7 @@ With the start of the refine project in 2021, it received significant interest f
 
 This traction from the open-source community led to the establishment of refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
 
-In 2023, refine also backed by YCombinator, solidifying its position as a promising venture. 
+In 2023, refine also backed by YCombinator, solidifying its position as a promising venture.
 
 With over 15K monthly active developers using it and an impressive 13,500 GitHub stars earned in just a year and a half, refine has gained significant popularity within the developer community.
 
@@ -68,9 +68,9 @@ refine provides simple interfaces for users to integrate to their use cases, thi
 
 The headless approach of refine makes it possible to use it with any UI library and implementation. It enables endless possibilities for customization and extensibility. This possibilities is not limiting encapsulation and refine is still able to provide complex logic and features out of the box with no extra effort but also provides the ability to customize and extend these features with no hassle and annoying workarounds.
 
-JavaScript community is evolving rapidly and new libraries and approaches are being introduced every day. refine is aware of the fact that there will be better solutions for the problems of today and tomorrow and it is designed to be flexible and extensible to adapt to these changes with ease. 
+JavaScript community is evolving rapidly and new libraries and approaches are being introduced every day. refine is aware of the fact that there will be better solutions for the problems of today and tomorrow and it is designed to be flexible and extensible to adapt to these changes with ease.
 
-While not enforcing users to a single way of doing things, refine's approach is to empower the other libraries and approaches and provide interfaces for them to work together. 
+While not enforcing users to a single way of doing things, refine's approach is to empower the other libraries and approaches and provide interfaces for them to work together.
 
 For example, if you're using Next.js or Remix, you won't be missing any of the features they offer, on the contrary, you'll be able to use them with refine and get the best of both worlds.
 
@@ -95,7 +95,7 @@ Even with the UI package, refine bundle size is still more than 50% smaller than
 - [`@refinedev/mantine`](https://bundlephobia.com/package/@refinedev/mantine@2.24.0)
 - [`react-admin`](https://bundlephobia.com/package/react-admin@4.12.2)
 
-### Performance 
+### Performance
 
 
 - Data fetching without blocking the rendering
@@ -122,9 +122,9 @@ This makes it possible to use refine in any platform you want. It can be used in
 
 ### Routing
 
-This is one of the unique features of refine that makes it possible to use any of the advantages and the approaches offered by the routing framework or the library without any limitations or workarounds. 
+This is one of the unique features of refine that makes it possible to use any of the advantages and the approaches offered by the routing framework or the library without any limitations or workarounds.
 
-You won't be missing any of the features that React Router,  Next.js or Remix offers, on the contrary, you'll be able to use them with refine and get the best of both worlds. 
+You won't be missing any of the features that React Router,  Next.js or Remix offers, on the contrary, you'll be able to use them with refine and get the best of both worlds.
 
 refine won't interfere with your routing method or library, it will only provide the necessary interfaces for you to integrate with refine and use it with ease.This makes it possible to use refine in any platform you want. It can be used in React Native, Electron, Next.js, Remix etc. without requiring any extra steps for the setup.
 
@@ -138,7 +138,7 @@ The difference between the two frameworks starts with the handling of the routin
 
 Like it's mentioned in the previous section, refine can be used in any platform you want with any routing method you prefer. It can even be used with React Native and Electron.
 
-While SSR and custom routing frameworks are an option with refine, react-admin does not provide such support for them. 
+While SSR and custom routing frameworks are an option with refine, react-admin does not provide such support for them.
 
 React-admin's way of Next.js integration is actually a workaround and it is not a real integration considering the fact that it needs to be rendered in a route with `react-router` and rather than providing a way to use Next.js features, it actually prevents you from using them properly.
 
@@ -146,9 +146,9 @@ React-admin's way of Next.js integration is actually a workaround and it is not 
 
 Check out these basic examples from refine's documentation:
 
-- [refine + next.js](https://github.com/refinedev/refine/tree/next/examples/with-nextjs)
-- [refine + remix](https://github.com/refinedev/refine/tree/next/examples/with-remix-antd)
-- [refine + next.js and the `/app` dir](https://github.com/refinedev/refine/tree/next/examples/with-nextjs-appdir)
+- [refine + next.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs)
+- [refine + remix](https://github.com/refinedev/refine/tree/master/examples/with-remix-antd)
+- [refine + next.js and the `/app` dir](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-appdir)
 - [refine + React Native](https://github.com/abdellah711/refinenative) (Community Package ❤️)
 
 ## Multitenancy
@@ -162,9 +162,9 @@ You can define such routes like the following and combine these routes with the 
 - `/admin/:tenantId/posts`
 - `/admin/:tenantId/posts/:id`
 
-The `tenantId` parameter will be available in the data provider and you can use it while interacting with your backend. 
+The `tenantId` parameter will be available in the data provider and you can use it while interacting with your backend.
 
-These small features lead to a huge difference in the development experience, you won't be needing any workarounds or hacks to make refine work for your case. On the contrary, refine's philosophy is to provide the best developer experience for any use case without interfering the developer's way of doing things but providing critical solutions for the common problems. 
+These small features lead to a huge difference in the development experience, you won't be needing any workarounds or hacks to make refine work for your case. On the contrary, refine's philosophy is to provide the best developer experience for any use case without interfering the developer's way of doing things but providing critical solutions for the common problems.
 
 **Examples**
 
@@ -178,13 +178,13 @@ Check out the following examples of multitenant apps built with refine:
 
 ### refine has built-in support for four UI Frameworks:
 
-refine comes with a wide array of ready-made integrations for popular UI frameworks, including  [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience. This out-of-the-box support offers developers the convenience of building any type of CRUD app like internal tools and admin panels with their preferred UI libraries without the need for extensive manual configurations. 
+refine comes with a wide array of ready-made integrations for popular UI frameworks, including  [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience. This out-of-the-box support offers developers the convenience of building any type of CRUD app like internal tools and admin panels with their preferred UI libraries without the need for extensive manual configurations.
 
 As we mentioned before, refine is headless by default, which means developers can implement any UI framework or use custom CSS to style their apps. This nature provides unparalleled flexibility, making it easy to integrate popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) seamlessly.
 
 For example, with refine's [PrimeReact](https://primereact.org/) UI library [example](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/), we showed how effortlessly integrate external UI libraries and tailor the apps to their exact requirements. This level of customization enables developers to craft apps that align perfectly with their design preferences and project needs.
 
-### React-admin's Limitations: 
+### React-admin's Limitations:
 
 #### Supporting Only Material-UI:
 In contrast, react-admin only supports Material UI. While Material-UI is a robust and feature-rich library, being confined to a single UI framework may restrict developers' design choices and flexibility. Developers who prefer working with other UI frameworks may face challenges in integrating their preferred components seamlessly.
@@ -207,7 +207,7 @@ This architecture enables endless possibilities for implementations, customizati
 
 2. **Using in existing projects**
 
-refine's philosophy to be a companion for the developer not only comes when you start a new project but also when you need to integrate it to an existing project. refine integrates with the UI libraries, authentication and routing but it does not interfere with them and is actually detached from them. This makes it possible to integrate refine to an existing project without needing to change anything in your project or tackle with any conflicts. 
+refine's philosophy to be a companion for the developer not only comes when you start a new project but also when you need to integrate it to an existing project. refine integrates with the UI libraries, authentication and routing but it does not interfere with them and is actually detached from them. This makes it possible to integrate refine to an existing project without needing to change anything in your project or tackle with any conflicts.
 
 You can do incremental adoption of refine to your project and start using it for the parts you need or just use it for the parts you need and keep using your existing libraries for the other parts. This is as simple as adding a `<Refine>` component to your project.
 
@@ -225,12 +225,12 @@ Refer to this [section](#server-side-rendering) for details.
 
 5. **Advanced Access Control Provider:**
 
-While both react-admin and refine offer access control features, refine takes it a step further with additional options like LDAP (Lightweight Directory Access Protocol), ACL (Access Control List), and ABAC (Attribute-Based Access Control). 
+While both react-admin and refine offer access control features, refine takes it a step further with additional options like LDAP (Lightweight Directory Access Protocol), ACL (Access Control List), and ABAC (Attribute-Based Access Control).
 
 
 6. **Multitenancy Support:**
 
-refine provides built-in support for [multitenancy](https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/#what-is-multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings. 
+refine provides built-in support for [multitenancy](https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/#what-is-multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings.
 
 Refer to [this](#multitenancy) section for details.
 
@@ -268,7 +268,7 @@ refine offers a range of powerful features that are available for free. In contr
 
  ✅ Indicates that the feature is available in refine for free,
  🟡 Indicates that the same feature is available in react-admin but requires the purchase of an Enterprise Package.
- 
+
 *refine takes it a step further with additional options like LDAP (Lightweight Directory Access Protocol), ACL (Access Control List), and ABAC (Attribute-Based Access Control) for free to use.
 
 **In refine, the real-time feature offers two modes: auto and manual, giving developers flexibility in how they handle real-time updates. However, react-admin does not have such modes, and real-time updates may need to be handled differently.
@@ -295,7 +295,7 @@ For the CLI-based scaffolder, with `npm create refine-app@latest` command you ca
 
 The generated application comes with fully working authentication, CRUD operation components, and pages with fully functional code. You can download the complete project code and use as a starting point for your project.
 
-React-admin only provides a basic project scaffolder CLI with small set of options to choose from. 
+React-admin only provides a basic project scaffolder CLI with small set of options to choose from.
 
 ## CLI
 
@@ -309,7 +309,7 @@ Here's the main features of the `@refinedev/cli`:
 
 ### Check and Update refine Packages
 
-You can use the `check-updates` command to check if there are any updates for the refine packages you're using. It will list the packages that have newer versions and you can update them with the `update` command. The check will also done automatically when you start your development server or build your application. 
+You can use the `check-updates` command to check if there are any updates for the refine packages you're using. It will list the packages that have newer versions and you can update them with the `update` command. The check will also done automatically when you start your development server or build your application.
 
 ### Creating Resources
 
@@ -317,7 +317,7 @@ You can use the `create-resource` command to create a new resource in your proje
 
 ### Swizzling Built-in Components
 
-Sometimes you may need to customize the functionality of the built-in components of refine or use them as a starting point for your own components and extend them. In such cases, you can use the `swizzle` command to export the built-in components of refine and customize them as you need. This command will show you the installed packages and available components in them for you to export, after you select the package and the component, the source code will be exported to your project. 
+Sometimes you may need to customize the functionality of the built-in components of refine or use them as a starting point for your own components and extend them. In such cases, you can use the `swizzle` command to export the built-in components of refine and customize them as you need. This command will show you the installed packages and available components in them for you to export, after you select the package and the component, the source code will be exported to your project.
 
 While there are many options to customize the built-in components through props, this command will give you the ability to customize the components as you wish or use them as a starting point for your own components.
 
@@ -337,7 +337,7 @@ More info on refine devtools can be found [here](https://github.com/refinedev/re
 
 ## Customization
 
-Like it's mentioned in the previous sections, refine's approach is to be a companion for the developers and provide the best developer experience for any use case. It provides many customization options for you to customize your project as you wish. 
+Like it's mentioned in the previous sections, refine's approach is to be a companion for the developers and provide the best developer experience for any use case. It provides many customization options for you to customize your project as you wish.
 
 This approach is supported by the flexibility of the framework. You won't have to worry about the custom styling or the complex logic you need to implement, refine will be there to help you for any use case you have without limiting you to a specific way of doing things or forcing you to use a specific library or method just to fit in the framework. Instead, it will not interfere with the libraries or frameworks you use along with it and let you use them and their advantages to the fullest.
 
@@ -347,7 +347,7 @@ React-admin's nature is to provide a way of doing things without giving you the 
 
 ## Backward Compatibility
 
-Both refine and react-admin are in active development and are in their version 4. While refine is a relatively new framework, it does not mean that it is not providing backward compatibility. On the contrary, it provides backward compatibility for the major versions and provides migration guides and tools for migrating to the newer versions with ease. 
+Both refine and react-admin are in active development and are in their version 4. While refine is a relatively new framework, it does not mean that it is not providing backward compatibility. On the contrary, it provides backward compatibility for the major versions and provides migration guides and tools for migrating to the newer versions with ease.
 
 refine offered seamless migration from each major version to the next one from the beginning. The major changes are all covered in codemods and can be applied with a single command.
 
@@ -425,7 +425,7 @@ Additionally, refine organized two world-wide online hackathons, which were open
 ## Enterprise features
 
 refine empowers the advancement of a frontend stack solution into a comprehensive enterprise-level feature set.
-    
+
 Both refine and React-admin offer open-source versions with additional enterprise features available for more advanced needs.
 
 refine's open-source edition provides nearly all the features found in react-admin's enterprise package, completely free of charge.
@@ -433,7 +433,7 @@ refine's open-source edition provides nearly all the features found in react-adm
 On the other hand, React-admin does not have the exclusive enterprise features that refine offers.
 
 Take a look into some of refine's exclusive enterprise features that are not available in react-admin:
-    
+
 - Identity Provider
 - Identity Management
 - Social Sign-in
@@ -446,19 +446,19 @@ Take a look into some of refine's exclusive enterprise features that are not ava
 - Secure Deployments
 - VPN-less Remote Access
 - Anomaly Detection
-    
+
 You can find more detail about refine enterprise features [here](https://refine.dev/pricing/)
 
 
 
 ## Conclusion
 
-When choosing between the two, developers should consider their specific project requirements, scalability needs, and desired level of customization. 
+When choosing between the two, developers should consider their specific project requirements, scalability needs, and desired level of customization.
 
 To sum it up:
 - refine is not only an open-core solution but also a performance-driven framework with it's architecture.
 - Its headless nature keeps your project well within the realm of vanilla React, making integration seamless.This architecture ensures that your project remains firmly rooted in vanilla React, simplifying integration.
-- One of the most importatnt aspect is that refine empowers you with free enterprise-level features, similar to those found in react-admin's enterprise package, without any additional financial commitment. 
+- One of the most importatnt aspect is that refine empowers you with free enterprise-level features, similar to those found in react-admin's enterprise package, without any additional financial commitment.
 
 
 From our point of view, this combination of capabilities, coupled with its user-friendly nature and and remarkably small bundle size positions refine as an perfect choice for web developers.
@@ -470,9 +470,9 @@ In the end, the choice between refine and React-admin comes down to individual p
 
 Both frameworks provide many useful features and common cases that you may need in your project. Let's take a look at some of those features provided by refine:
 
-### Sorting and Filtering 
+### Sorting and Filtering
 
-refine provides a simple and easy to use interface for sorting and filtering your data. In the list hooks such as `useList` or its derivatives like `useTable` or `useSelect` etc. you can provide the `sorters` and `filters` properties to provide the sorting and filtering functionality to your data. 
+refine provides a simple and easy to use interface for sorting and filtering your data. In the list hooks such as `useList` or its derivatives like `useTable` or `useSelect` etc. you can provide the `sorters` and `filters` properties to provide the sorting and filtering functionality to your data.
 
 #### Sorting
 
@@ -559,7 +559,7 @@ Check out the [Realtime](https://refine.dev/docs/advanced-tutorials/real-time/) 
 
 ### Undoable mode
 
-Depending on your use case, the way you mutate the data and how you want to handle the mutations for the user may differ. For example, you may want the mutations to be applied immediately or you may want to give the user the ability to undo the mutations. refine provides multiple mutation modes for you to choose from, `optimistic`, `pessimistic` and `undoable`. You can either set one for the whole application or set it for each mutation separately. 
+Depending on your use case, the way you mutate the data and how you want to handle the mutations for the user may differ. For example, you may want the mutations to be applied immediately or you may want to give the user the ability to undo the mutations. refine provides multiple mutation modes for you to choose from, `optimistic`, `pessimistic` and `undoable`. You can either set one for the whole application or set it for each mutation separately.
 
 #### `optimistic` mode
 
@@ -678,7 +678,7 @@ Check out the [GraphQL](https://refine.dev/docs/packages/documentation/data-prov
 
 ### Forms
 
-Forms are one of the most essential features of a web framework with a claim of simplifying the development process of data intensive applications. Yet, other than basic forms, react-admin does not provide any support for complex forms and form layouts unless you're using the enterprise edition. 
+Forms are one of the most essential features of a web framework with a claim of simplifying the development process of data intensive applications. Yet, other than basic forms, react-admin does not provide any support for complex forms and form layouts unless you're using the enterprise edition.
 
 Features such as modal forms or stepper forms are only available in the enterprise edition of react-admin.
 
@@ -690,7 +690,7 @@ refine's core package provides `useImport` and `useExport` hooks that can be use
 
 #### Export
 
-refine's `useExport` hook will let you define your resource and options like sorting, filtering, pagination and also lets you modify the data before exporting it just like using the `useList` hook. 
+refine's `useExport` hook will let you define your resource and options like sorting, filtering, pagination and also lets you modify the data before exporting it just like using the `useList` hook.
 
 ```tsx
 import { useExport } from "@refinedev/core";
@@ -704,7 +704,7 @@ const MyComponent = () => {
 
 #### Import
 
-The other side of the CSV import/export feature is the import. refine's `useImport` hook will let you import CSV files, parse them and save them to your data provider in batches. It also provides a way to modify the data before saving it to the data provider. 
+The other side of the CSV import/export feature is the import. refine's `useImport` hook will let you import CSV files, parse them and save them to your data provider in batches. It also provides a way to modify the data before saving it to the data provider.
 
 ```tsx
 import { useImport } from "@refinedev/core";
@@ -716,7 +716,7 @@ export const MyComponent = () => {
 };
 ```
 
-In React-admin, you'll be able to export the data to a CSV file but there's no built-in way to import CSV files. 
+In React-admin, you'll be able to export the data to a CSV file but there's no built-in way to import CSV files.
 
 Check out the [CSV Import](https://refine.dev/docs/advanced-tutorials/import-export/csv-import/) documentation for more information about refine's import/export features.
 
@@ -789,7 +789,7 @@ React-admin also provides a similar feature but it does not have the i18n suppor
 
 Check out the [Server Side Validation](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/) documentation for more information about refine's server side validation features.
 
-### Auto Save 
+### Auto Save
 
 In some cases, you may want to save the data automatically when the user changes the field in a form to make sure that no data is lost even if the user forgets to save the data. refine provides a way to do this with the `autoSave` prop of its form hooks. This feature has a complementary component in the UI integration packages; `<AutoSaveIndicator>`.
 

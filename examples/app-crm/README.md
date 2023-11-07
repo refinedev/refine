@@ -15,8 +15,8 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
@@ -49,13 +49,13 @@ refine is a React-based powerful framework for building low-code applications. I
 
 ## Features
 
-**Dashboard**: Gain insights into your business with interactive charts and analytics.  
- **Calendar**: Schedule and manage appointments, meetings, and events.  
- **Scrumboard**: Organize and track tasks using a Kanban-style board.  
- **Companies**: Create, update, and delete company records.  
- **Contacts**: Manage your customer contacts efficiently.  
- **Quotes**: Generate and manage quotes for your clients.  
- **Administration**: Configure application settings and user roles.
+**Dashboard**: Gain insights into your business with interactive charts and analytics.
+**Calendar**: Schedule and manage appointments, meetings, and events.
+**Scrumboard**: Organize and track tasks using a Kanban-style board.
+**Companies**: Create, update, and delete company records.
+**Contacts**: Manage your customer contacts efficiently.
+**Quotes**: Generate and manage quotes for your clients.
+**Administration**: Configure application settings and user roles.
 
 <br>
 
@@ -86,4 +86,4 @@ npm create refine-app@latest -- --example app-crm
 
 <br/>
 
-[![Open app-crm example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/app-crm?view=preview&theme=dark&codemirror=1)
+[![Open app-crm example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/app-crm?view=preview&theme=dark&codemirror=1)
