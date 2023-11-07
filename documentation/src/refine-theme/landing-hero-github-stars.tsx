@@ -1,8 +1,12 @@
 import React from "react";
 import clsx from "clsx";
+import { useCommunityStatsContext } from "../context/CommunityStats";
 import { OrangeStarIcon } from "./icons/orange-star";
+import { Spinner } from "./spinner";
 
 export const LandingHeroGithubStars = () => {
+    const { loading, githubStarCountText } = useCommunityStatsContext();
+
     return (
         <a
             href="https://github.com/refinedev/refine"
@@ -40,7 +44,22 @@ export const LandingHeroGithubStars = () => {
                     "dark:bg-landing-hero-github-stars-text-dark",
                 )}
             >
-                <span className={clsx("font-semibold")}>16.5K</span>{" "}
+                <span className={clsx("font-semibold")}>
+                    {loading ? (
+                        <Spinner
+                            className={clsx("w-3.5 h-3.5", "inline")}
+                            wrapperProps={{
+                                className: clsx(
+                                    "h-3.5",
+                                    "inline-block",
+                                    "w-[4ch]",
+                                ),
+                            }}
+                        />
+                    ) : (
+                        <span>{githubStarCountText}</span>
+                    )}
+                </span>{" "}
                 <span>GitHub stars so far</span>
             </span>
         </a>
