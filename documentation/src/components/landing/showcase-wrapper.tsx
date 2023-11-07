@@ -13,6 +13,7 @@ type HighlightProps = {
     y: string | number;
     width: string | number;
     height: string | number;
+    codeClassName?: string;
     codePosition: "top" | "bottom" | "left" | "right";
 };
 
@@ -29,6 +30,7 @@ const HighlightItem = React.memo(function HighlightBase({
     y,
     width,
     height,
+    codeClassName,
     codePosition,
 }: HighlightProps) {
     return (
@@ -66,8 +68,8 @@ const HighlightItem = React.memo(function HighlightBase({
             />
             <ShowcaseIndicator
                 key={`${x}-${y}`}
-                x={Number(0) - 20}
-                y={Number(0) - 20}
+                x={Number(0) - 16}
+                y={Number(0) - 16}
                 className={clsx(
                     "z-[2]",
                     "duration-200 ease-in-out transition-opacity",
@@ -91,6 +93,7 @@ const HighlightItem = React.memo(function HighlightBase({
                         "origin-bottom-left": codePosition === "top",
                         "origin-top-right": codePosition === "left",
                     },
+                    codeClassName,
                 )}
                 style={{
                     ...(codePosition === "bottom"

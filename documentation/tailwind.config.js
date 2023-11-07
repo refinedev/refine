@@ -422,6 +422,8 @@ module.exports = {
                     "landing-hero-beam-line 7.5s ease-in-out infinite",
                 "landing-hero-beam-bottom":
                     "landing-hero-beam-bottom 7.5s ease-in-out infinite",
+                "showcase-bottom-fade-reveal":
+                    "showcase-bottom-fade-reveal 1s ease-in-out forwards",
             },
             keyframes: {
                 "code-scroll": {
@@ -608,6 +610,16 @@ module.exports = {
                     },
                     "100%": {
                         opacity: 0.25,
+                    },
+                },
+                "showcase-bottom-fade-reveal": {
+                    "0%": {
+                        opacity: 0,
+                        transform: "translateY(64px)",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "translateY(0)",
                     },
                 },
             },

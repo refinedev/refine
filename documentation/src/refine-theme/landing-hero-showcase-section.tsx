@@ -180,6 +180,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                     />
                 </AnimatePresence>
                 <div
+                    key={activeApp.name}
                     className={clsx(
                         "hidden",
                         "landing-lg:block",
@@ -195,10 +196,13 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "right-0",
                         "w-full",
                         "h-24",
-                        "from-gray-0",
-                        "via-gray-0",
-                        "to-transparent",
-                        "bg-gradient-to-t",
+                        "opacity-0",
+                        "translate-y-16",
+                        activeApp.dark &&
+                            "bg-[linear-gradient(0deg,_#14141F_30%,_transparent_90%,_transparent_100%)]",
+                        !activeApp.dark &&
+                            "bg-[linear-gradient(0deg,_#FFFFFF_30%,_transparent_90%,_transparent_100%)]",
+                        "animate-showcase-bottom-fade-reveal",
                         "rounded-bl-lg rounded-br-lg",
                         "landing-md:rounded-bl-xl landing-md:rounded-br-xl",
                         "landing-lg:rounded-bl-2xl landing-lg:rounded-br-2xl",
@@ -275,38 +279,11 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/crm/number_of_companies.png",
                     codePosition: "right",
                     code: `
-                                import { useOne } from "@refinedev/core";
-                                const { data } = useOne({
+                                import { useList } from "@refinedev/core";
+
+                                const { data: { total } } = useList({
                                     resource: "companies"
                                 });
-                                `,
-                },
-                {
-                    x: 536,
-                    y: 88,
-                    width: 296,
-                    height: 136,
-                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/crm/number_of_contacts.png",
-                    codePosition: "bottom",
-                    code: `
-                                import { useOne } from "@refinedev/core";
-                                const { data } = useOne({
-                                    resource: "contacts"
-                                });
-                                `,
-                },
-                {
-                    x: 848,
-                    y: 88,
-                    width: 296,
-                    height: 136,
-                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/crm/total_deals.png",
-                    codePosition: "bottom",
-                    code: `
-                                    import { useOne } from "@refinedev/core";
-                                    const { data } = useOne({
-                                        resource: "deals"
-                                    });
                                 `,
                 },
                 {
@@ -317,15 +294,17 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/crm/sidebar_navigation.png",
                     codePosition: "right",
                     code: `
-                                import { Routes } from "react-router-dom";
-                                
-                                <Routes path="Dashboard" element={<Dashboard />} />
-                                <Routes path="Calendar" element={<Calendar />} />
-                                <Routes path="Scrumboard" element={<Scrumboard />} />
-                                <Routes path="Companies" element={<Companies />} />
-                                <Routes path="Contacts" element={<Contacts />} />
-                                <Routes path="Quotes" element={<Quotes />} />
-                                <Routes path="Administration" element={<Administration />} />
+                    import { useMenu } from "@refinedev/core";
+                    import { Link } from "react-router-dom";
+
+                    const { menuItems } = useMenu();
+
+                    return menuItems.map((item) => (
+                        <Link to={item.route}>
+                            {item.icon}
+                            {item.label}
+                        </Link>
+                    ));
                                 `,
                 },
                 {
@@ -337,8 +316,12 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     codePosition: "right",
                     code: `
                     import { useList } from "@refinedev/core";
+
                     const { data } = useList({    
                         resource: "events",
+                        sorters: [
+                            { field: "start_date", order: "asc" },
+                        ],
                     });
                                 `,
                 },
@@ -351,8 +334,13 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     codePosition: "left",
                     code: `
                     import { useTable } from "@refinedev/core";
+
                     const { data } = useTable({
-                        resource: "activities"
+                        resource: "activities",
+                        pagination: {
+                            current: 1,
+                            pageSize: 5,
+                        },
                     });
                                 `,
                 },
@@ -365,6 +353,8 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     codePosition: "bottom",
                     code: `
                     import { RefineKbar } from "@refinedev/kbar";
+
+                    <RefineKbar />
                                 `,
                 },
                 {
@@ -376,6 +366,7 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     codePosition: "left",
                     code: `
                     import { useGetIdentity } from "@refinedev/core";
+
                     const { data: identity } = useGetIdentity();
                                 `,
                 },
@@ -385,21 +376,226 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
 };
 
 const ShowcaseHR = ({ className }: { className?: string }) => {
-    return <ShowcaseCRM className={className} />;
+    return (
+        <ShowcaseWrapper
+            className={className}
+            render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/base_render.png"
+            highlights={[
+                {
+                    x: 268,
+                    y: 184,
+                    width: 496,
+                    height: 260,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/inbox.png",
+                    codePosition: "right",
+                    code: `
+                                import { useList } from "@refinedev/core";
+
+                                const { data } = useList({
+                                    resource: "notifications",
+                                    filters: [
+                                        { field: "is_read", operator: "eq", value: false },
+                                    ]
+                                });
+                                `,
+                },
+                {
+                    x: 12,
+                    y: 174,
+                    width: 200,
+                    height: 344,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/sider.png",
+                    codePosition: "right",
+                    code: `
+                                import { useMenu } from "@refinedev/core";
+                                import Link from "next/link";
+
+                                const { menuItems } = useMenu();
+
+                                return menuItems.map((item) => (
+                                    <Link to={item.route}>
+                                        {item.icon}
+                                        {item.label}
+                                    </Link>
+                                ));
+                                `,
+                },
+                {
+                    x: 788,
+                    y: 184,
+                    width: 332,
+                    height: 260,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/poll.png",
+                    codePosition: "left",
+                    code: `
+                                import { useList } from "@refinedev/core";
+
+                                const { data } = useList({
+                                    resource: "polls",
+                                    filters: [
+                                        { field: "is_active", operator: "eq", value: true },
+                                    ],
+                                    pagination: { current: 1, pageSize: 1 }
+                                });
+                                `,
+                },
+                {
+                    x: 736,
+                    y: 24,
+                    width: 384,
+                    height: 112,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/timer.png",
+                    codePosition: "left",
+                    code: `
+                                import { useGetIdentity, useUpdate } from "@refinedev/core";
+
+                                const { data: { activeTaskId } } = useGetIdentity();
+
+                                const { mutate } = useUpdate();
+
+                                const onBreak = () => mutate({
+                                    resource: "tasks",
+                                    id: activeTaskId,
+                                    values: { is_paused: true },
+                                });
+                                `,
+                },
+            ]}
+        />
+    );
 };
 
 const ShowcaseECommerce = ({ className }: { className?: string }) => {
-    return <ShowcaseCRM className={className} />;
+    return (
+        <ShowcaseWrapper
+            className={className}
+            render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/base_render.png"
+            highlights={[
+                {
+                    x: 843,
+                    y: 8,
+                    width: 142,
+                    height: 48,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/language.png",
+                    codePosition: "left",
+                    code: `
+                            import { useList } from "@refinedev/core";
+
+                            const { data } = useList({
+                                resource: "notifications",
+                                filters: [
+                                    { field: "is_read", operator: "eq", value: false },
+                                ]
+                            });
+                            `,
+                },
+                {
+                    x: 211,
+                    y: 131,
+                    width: 618,
+                    height: 354,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/map.png",
+                    codePosition: "right",
+                    codeClassName: "!pl-2",
+                    code: `
+                            import { useShow } from "@refinedev/core";
+
+                            const { data } = useShow({
+                                liveMode: "auto"
+                            });
+                            
+                            return <Map {...data} />;
+                            `,
+                },
+                {
+                    x: 950,
+                    y: 72,
+                    width: 210,
+                    height: 48,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/actions.png",
+                    codePosition: "left",
+                    code: `
+                            import { useList } from "@refinedev/core";
+                            `,
+                },
+                {
+                    x: 8,
+                    y: 216,
+                    width: 184,
+                    height: 120,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/menu.png",
+                    codePosition: "bottom",
+                    code: `
+                            import { useList } from "@refinedev/core";
+                            `,
+                },
+            ]}
+        />
+    );
 };
 
 const ShowcaseDevOps = ({ className }: { className?: string }) => {
-    return <ShowcaseCRM className={className} />;
+    return (
+        <ShowcaseWrapper
+            className={className}
+            render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/base_render.png"
+            highlights={[
+                {
+                    x: 264,
+                    y: 16,
+                    width: 392,
+                    height: 709,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/table.png",
+                    codePosition: "right",
+                    code: `
+                        import { useList } from "@refinedev/core";
+
+                        const { data } = useList({
+                            resource: "notifications",
+                            filters: [
+                                { field: "is_read", operator: "eq", value: false },
+                            ]
+                        });
+                        `,
+                },
+                {
+                    x: 656,
+                    y: 16,
+                    width: 496,
+                    height: 56,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/actions.png",
+                    codePosition: "left",
+                    code: `
+                        import { useList } from "@refinedev/core";
+
+                        const { data } = useList({
+                            resource: "notifications",
+                            filters: [
+                                { field: "is_read", operator: "eq", value: false },
+                            ]
+                        });
+                        `,
+                },
+                {
+                    x: 656,
+                    y: 72,
+                    width: 496,
+                    height: 648,
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/form.png",
+                    codePosition: "left",
+                    code: `
+                        import { useList } from "@refinedev/core";
+                        `,
+                },
+            ]}
+        />
+    );
 };
 
 const apps = [
     {
         name: "CRM Application",
-        link: "https://refine.dev/docs",
+        link: "https://example.crm.refine.dev/",
         showcase: ShowcaseCRM,
     },
     {
@@ -416,5 +612,6 @@ const apps = [
         name: "DevOps Dashboard",
         link: "https://refine.dev/docs",
         showcase: ShowcaseDevOps,
+        dark: true,
     },
 ];
