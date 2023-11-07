@@ -118,9 +118,9 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                 >
                     <PackagesContainer animDirection="right">
                         {[...listOne, ...listOne].map(
-                            ({ icon: Icon, label, tooltip }) => (
+                            ({ icon: Icon, label, tooltip }, index) => (
                                 <PackageItem
-                                    key={label}
+                                    key={index}
                                     label={label}
                                     tooltip={tooltip}
                                     icon={<Icon width="24" height="24" />}
@@ -130,9 +130,9 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                     </PackagesContainer>
                     <PackagesContainer animDirection="left">
                         {[...listTwo, ...listTwo].map(
-                            ({ icon: Icon, label, tooltip }) => (
+                            ({ icon: Icon, label, tooltip }, index) => (
                                 <PackageItem
-                                    key={label}
+                                    key={index}
                                     label={label}
                                     tooltip={tooltip}
                                     icon={<Icon width="24" height="24" />}
