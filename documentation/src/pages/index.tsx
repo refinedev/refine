@@ -11,6 +11,7 @@ import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-d
 import { LandingPackages } from "../refine-theme/landing-packages";
 import { LandingAlreadyInvented } from "../refine-theme/landing-already-invented";
 import { LandingPureReactCode } from "../refine-theme/landing-pure-react-code";
+import { LandingSweetSpot } from "../refine-theme/landing-sweet-spot";
 
 function Home() {
     return (
@@ -34,7 +35,7 @@ function Home() {
                             "flex flex-col",
                             "gap-16 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-40",
                             "w-full landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
-                            "px-8 landing-sm:px-0",
+                            "px-2 landing-sm:px-0",
                             "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
                             "mx-auto",
                         )}
@@ -61,6 +62,7 @@ function Home() {
                             </div>
                         </div>
                         <LandingCommunity />
+                        <LandingSweetSpot />
                         <LandingEnterpriseDevelopers />
                     </div>
                     <LandingFooter />
