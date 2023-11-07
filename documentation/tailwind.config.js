@@ -377,12 +377,6 @@ module.exports = {
                     "bottom -350px left -350px, center",
                 "landing-wizard-side-left-position": "center right -144px",
                 "landing-wizard-side-right-position": "center left -144px",
-            },
-            backgroundSize: {
-                "landing-wizard-option": "600px 600px, auto",
-                "landing-wizard-side-size": "250px 550px",
-            },
-            backgroundPosition: {
                 "landing-sweet-spot-glow-position-lg":
                     "center, calc(50% + 800px) calc(50% - 300px)",
                 "landing-sweet-spot-glow-position-md":
@@ -391,6 +385,8 @@ module.exports = {
                     "center, calc(50% - 30px) calc(50% + 300px)",
             },
             backgroundSize: {
+                "landing-wizard-option": "600px 600px, auto",
+                "landing-wizard-side-size": "250px 550px",
                 "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
                 "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
             },
