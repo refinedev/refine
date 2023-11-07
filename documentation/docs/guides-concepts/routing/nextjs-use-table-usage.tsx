@@ -2,22 +2,57 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function NextJSRouteDefinitions() {
+    const isDevelop = process.env.NODE_ENV === "development";
+    const extraProps = isDevelop
+        ? {
+              hidePreview: false,
+              showConsole: true,
+              dependencies: {
+                  "@refinedev/core": "latest",
+                  "@refinedev/simple-rest": "latest",
+                  "@refinedev/nextjs-router": "latest",
+                  "@types/react": "^18.0.0",
+                  "@types/node": "^16.0.0",
+                  typescript: "^4.7.4",
+              },
+              template: "nextjs",
+          }
+        : {};
+
     return (
         <Sandpack
-            hidePreview
+            {...extraProps}
+            template={isDevelop ? "nextjs" : "react-ts"}
             showFiles
+            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
             files={{
+                "/pages/index.tsx": {
+                    code: PagesIndexTsxCode,
+                },
                 "/pages/_app.tsx": {
                     code: AppTsxCode,
                 },
                 "/pages/my-products/index.tsx": {
-                    code: ListTsxCode,
+                    code: ListPageTsxCode,
                     active: true,
+                },
+                "/components/products/list.tsx": {
+                    code: ListTsxCode,
                 },
             }}
         />
     );
 }
+
+const PagesIndexTsxCode = /* tsx */ `
+import { NavigateToResource } from "@refinedev/nextjs-router";
+
+const Home = () => {
+    return <NavigateToResource resource="products" />;
+};
+
+export default Home;
+`.trim();
 
 const AppTsxCode = /* tsx */ `
 import React from "react";
@@ -47,16 +82,18 @@ function App({ Component, pageProps }: AppProps) {
 export default App;
 `.trim();
 
-const ListTsxCode = /* tsx */ `
+const ListPageTsxCode = /* tsx */ `
 import React from "react";
 
 import { useTable } from "@refinedev/core";
 import { parseTableParams } from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
 
+import { ProductList } from "../../components/products/list";
+
 export const getServerSideProps = async (context) => {
     const { pagination, filters, sorters } = parseTableParams(
-        new URL(context.resolvedUrl).searchParams.toString(),
+        context.resolvedUrl?.split("?")[1] ?? "",
     );
 
     const data = await dataProvider("https://api.fake-rest.refine.dev").getList(
@@ -69,12 +106,36 @@ export const getServerSideProps = async (context) => {
     );
 
     return {
-        props: { initialData: data },
+        props: {
+            initialData: data,
+            initialProps: { pagination, filters, sorters },
+        },
     };
 };
 
-const ProductList = (props) => {
-    const { initialData } = props;
+const ProductListPage = (props) => {
+    const {
+        initialData,
+        initialProps: { filters, sorters, pagination },
+    } = props;
+
+    const tableProps = useTable({
+        queryOptions: { initialData },
+        filters: { initial: filters },
+        sorters: { initial: sorters },
+        pagination,
+    });
+
+    return <ProductList tableProps={tableProps} />;
+};
+
+export default ProductListPage;
+`.trim();
+
+const ListTsxCode = `
+import React from "react";
+
+export const ProductList: React.FC = ({ tableProps }) => {
     const {
         tableQueryResult,
         isLoading,
@@ -86,7 +147,7 @@ const ProductList = (props) => {
         setFilters,
         sorters,
         setSorters,
-    } = useTable({ queryOptions: { initialData } });
+    } = tableProps;
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -112,9 +173,9 @@ const ProductList = (props) => {
                 </tbody>
             </table>
             <hr />
-            Sorting by field:{" "}
+            Sorting by field:
             <b>
-                {sorters[0].field}, order {sorters[0].order}
+                {sorters[0]?.field}, order {sorters[0]?.order}
             </b>
             <br />
             <button
@@ -122,7 +183,7 @@ const ProductList = (props) => {
                     setSorters([
                         {
                             field: "id",
-                            order: sorters[0].order === "asc" ? "desc" : "asc",
+                            order: sorters[0]?.order === "asc" ? "desc" : "asc",
                         },
                     ]);
                 }}
@@ -130,10 +191,10 @@ const ProductList = (props) => {
                 Toggle Sort
             </button>
             <hr />
-            Filtering by field:{" "}
+            Filtering by field:
             <b>
-                {filters[0].field}, operator {filters[0].operator}, value{" "}
-                {filters[0].value}
+                {filters[0]?.field}, operator {filters[0]?.operator}, value:{" "}
+                {filters[0]?.value}
             </b>
             <br />
             <button
@@ -142,7 +203,7 @@ const ProductList = (props) => {
                         {
                             field: "category.id",
                             operator: "eq",
-                            value: filters[0].value === "1" ? "2" : "1",
+                            value: filters[0]?.value === "1" ? "2" : "1",
                         },
                     ]);
                 }}
@@ -154,15 +215,15 @@ const ProductList = (props) => {
             <p>Page Size: {pageSize}</p>
             <button
                 onClick={() => {
-                    setCurrent(current - 1);
+                    setCurrent(+current - 1);
                 }}
-                disabled={current < 2}
+                disabled={+current < 2}
             >
                 Previous Page
             </button>
             <button
                 onClick={() => {
-                    setCurrent(current + 1);
+                    setCurrent(+current + 1);
                 }}
                 disabled={current === pageCount}
             >
@@ -171,6 +232,4 @@ const ProductList = (props) => {
         </div>
     );
 };
-
-export default ProductList;
 `.trim();
