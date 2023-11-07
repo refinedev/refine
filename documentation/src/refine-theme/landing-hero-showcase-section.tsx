@@ -22,6 +22,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                 "gap-2 landing-sm:gap-4",
                 "p-2 landing-sm:p-4",
                 "relative",
+                "group/showcase",
             )}
         >
             <div className={clsx("flex", "w-full", "gap-2")}>
@@ -175,6 +176,12 @@ export const LandingHeroShowcaseSection = ({}) => {
                     className={clsx(
                         "hidden",
                         "landing-lg:block",
+                        "landing-lg:opacity-0",
+                        "landing-lg:translate-y-8",
+                        "landing-lg:group-hover/showcase:opacity-100 landing-lg:group-hover/showcase:translate-y-0",
+                        "duration-150",
+                        "ease-in-out",
+                        "transition-[opacity,transform,background-color,color]",
                         "absolute",
                         "left-0",
                         "bottom-0",
@@ -204,8 +211,14 @@ export const LandingHeroShowcaseSection = ({}) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={clsx(
-                        "landing-lg:animate-mini-bounce",
-                        "landing-lg:mt-[-104px]",
+                        "landing-lg:opacity-0",
+                        "landing-lg:translate-y-8",
+                        "landing-lg:group-hover/showcase:opacity-100 landing-lg:group-hover/showcase:translate-y-0",
+                        "duration-150",
+                        "ease-in-out",
+                        "transition-[opacity,transform,background-color,color]",
+                        "landing-lg:mt-[-110px]",
+                        "hover:no-underline",
                         "z-[3]",
                         "py-2 landing-sm:py-4",
                         "pl-4 pr-4 landing-sm:pl-6 landing-sm:pr-4",
