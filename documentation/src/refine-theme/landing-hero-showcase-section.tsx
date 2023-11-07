@@ -151,8 +151,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                     "landing-md:rounded-xl",
                     "landing-lg:rounded-2xl",
                     "overflow-hidden",
-                    "outline outline-solid",
-                    "outline-gray-200 dark:outline-transparent",
+                    "shadow-sm shadow-gray-200 dark:shadow-none",
                     "relative",
                 )}
             >

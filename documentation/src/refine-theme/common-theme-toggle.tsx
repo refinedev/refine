@@ -42,44 +42,15 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-auto",
-                    "h-auto",
-                    "flex",
-                    "-left-2",
-                    "top-[14.5px]",
-                    "items-start",
-                    "rotate-[-21deg]",
-                    "dark:rotate-[23deg]",
-                    "origin-[center_53px]",
-                    "group-hover:rotate-[1deg]",
-                    "dark:group-active:rotate-[23deg]",
-                    "group-active:rotate-[-21deg]",
-                    "transition-transform",
-                    "duration-150",
-                    "ease-in-out",
-                    "gap-5",
-                )}
-            >
-                <LightModeIcon
-                    className={clsx("flex-shrink-0", "pointer-events-none")}
-                />
-                <DarkModeIcon
-                    className={clsx("flex-shrink-0", "pointer-events-none")}
-                />
-            </div>
-            {/* <div
-                className={clsx(
-                    "absolute",
                     "w-full h-full",
                     "flex items-center justify-center",
                     "flex-shrink-0",
                     "top-10",
-                    "dark:top-0",
+                    "translate-y-0",
+                    "dark:-translate-y-10",
                     "duration-200",
                     "ease-in-out",
-                    "transition-[top,transform]",
-                    // "dark:group-hover:scale-125",
-                    "dark:group-hover:top-10",
+                    "transition-transform",
                 )}
             >
                 <LightModeIcon />
@@ -90,18 +61,16 @@ export const CommonThemeToggle = ({ className }: Props) => {
                     "w-full h-full",
                     "flex items-center justify-center",
                     "flex-shrink-0",
-                    "top-0",
-                    "dark:top-10",
+                    "top-10",
+                    "-translate-y-10",
+                    "dark:translate-y-0",
                     "duration-200",
                     "ease-in-out",
-                    "transition-[top,transform]",
-                    // "group-hover:scale-125",
-                    "dark:group-hover:top-2",
-                    // "dark:group-hover:scale-100",
+                    "transition-transform",
                 )}
             >
                 <DarkModeIcon />
-            </div> */}
+            </div>
         </button>
     );
 };

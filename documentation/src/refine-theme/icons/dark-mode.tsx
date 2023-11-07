@@ -7,9 +7,6 @@ export const DarkModeIcon = (props: React.SVGProps<SVGSVGElement>) => (
         height={16}
         viewBox="0 0 16 16"
         fill="none"
-        style={{
-            transform: "rotate(30deg)",
-        }}
         {...props}
     >
         <path

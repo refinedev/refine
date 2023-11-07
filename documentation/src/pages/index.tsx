@@ -4,7 +4,6 @@ import React from "react";
 
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
-import { LandingHeader } from "../refine-theme/landing-header";
 import { LandingCommunity } from "../refine-theme/landing-community";
 import { LandingEnterpriseDevelopers } from "../refine-theme/landing-enterprise-developers";
 import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-developers";
@@ -14,6 +13,7 @@ import { LandingPureReactCode } from "../refine-theme/landing-pure-react-code";
 import { LandingSweetSpot } from "../refine-theme/landing-sweet-spot";
 import { LandingHeroSection } from "../refine-theme/landing-hero-section";
 import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
+import { CommonHeader } from "../refine-theme/common-header";
 
 function Home() {
     const title = "refine | Open-source Retool for Enterprise";
@@ -29,11 +29,9 @@ function Home() {
                     as="document"
                 />
             </Head>
-            <CommonLayout
-                description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty."
-            >
+            <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty.">
                 <div className={clsx()}>
-                    <LandingHeader />
+                    <CommonHeader />
                     <div
                         className={clsx(
                             "flex flex-col",
