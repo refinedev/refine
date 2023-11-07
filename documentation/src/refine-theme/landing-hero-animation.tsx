@@ -221,7 +221,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         <LandingHeroAnimationItem
                             vertical="bottom"
                             horizontal="right"
-                            section="backend"
+                            section="authentication"
                             {...authItems[activeAuth]}
                             previousName={
                                 authItems[
