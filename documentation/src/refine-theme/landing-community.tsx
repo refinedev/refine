@@ -142,6 +142,9 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                         src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors${
                             colorMode === "dark" ? "-dark" : ""
                         }.png`}
+                        style={{
+                            aspectRatio: "908/544",
+                        }}
                         alt="investors"
                         loading="lazy"
                     />

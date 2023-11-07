@@ -45,7 +45,8 @@ export const NavbarItem: React.FC<NavbarItemProps> = ({
             to={item.href}
             className={clsx(
                 "inline-flex items-center gap-2",
-                "text-base font-medium text-gray-900 dark:text-white",
+                "text-sm leading-6 font-normal text-gray-900 dark:text-gray-300",
+                "transition-colors duration-150 ease-in-out",
                 "no-underline",
                 isPermanentDark && "!text-white",
                 item.label === "Hackathon"
