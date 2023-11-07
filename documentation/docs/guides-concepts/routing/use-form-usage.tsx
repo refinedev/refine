@@ -1,10 +1,12 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function UseTableUsage() {
+export default function UseTableUsage({showConsole}) {
     return (
         <Sandpack
             showNavigator
+            showConsole={showConsole}
+            hidePreview={showConsole}
             dependencies={{
                 "@refinedev/core": "latest",
                 "@refinedev/simple-rest": "latest",
@@ -53,7 +55,7 @@ export default function App() {
           {
             name: "products",
             list: "/products",
-
+            edit: "/products/:id/edit",
           }
         ]}
         options={{syncWithLocation: true}}
@@ -96,6 +98,8 @@ ul > li {
     margin-bottom: 6px;
 }
 `.trim();
+
+const EditTsxCode = ``.trim()
 
 const ListTsxCode = `
 import { useList, useGo, useTable } from "@refinedev/core";
@@ -159,3 +163,5 @@ export const List: React.FC = () => {
   );
 };
 `.trim();
+
+

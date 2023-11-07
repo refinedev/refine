@@ -7,51 +7,18 @@ Routing is essential for any CRUD application. **refine**'s headless architectur
 **refine** also offers built-in router integrations for the most popular frameworks such as **React Router**, **Next.js** and **Remix**.
 
 These integrations makes it easier to use **refine** with these frameworks and offers a lot of benefits such as:
-- Automatic parameter detection in hooks/components.
-- Generate menu items from your route definitions.
-- Breadcrumbs.
-- Automatic redirections after mutation or authentication.
-- Passing query parameters to your data provider.
-- Set of router agnostic utility components and hooks which can be used to navigate between pages/routes.
 
-Since **refine** is router agnostic, you are responsible for creating your routes.
+-   Automatic parameter detection in hooks/components.
+-   Generate menu items from your route definitions.
+-   Breadcrumbs.
+-   Automatic redirections after mutation or authentication.
+-   Set of utility components & hooks which can be used to navigate between pages/routes.
+
+Since **refine** is router agnostic, you are responsible for creating your own routes.
 
 If you are using **React Router**, you'll be defining your routes under the `Routes` component.<br />
 If you are using **Next.js**, you'll be defining your routes in the `pages` or `app` directory.<br />
 If you are using **Remix**, you'll be defining your routes in the `app/routes` directory.
-
-Let's start defining our routes for the `products` resource.
-
-## Defining Routes
-
-Let's start defining our routes for our application.
-
-We will define following routes:
-- `my-products` for the list page.
-- `my-products/:id` for the show page.
-
-For now, these pages will be empty, but we will add the necessary components and hooks later on.
-
-#### React Router
-
-import ReactRouterRouteDefinitions from './react-router-route-definitions';
-
-<ReactRouterRouteDefinitions />
-
-#### NextJS
-
-import NextJSRouteDefinitions from './nextjs-route-definitions';
-
-<NextJSRouteDefinitions />
-
-#### Remix
-
-import RemixRouteDefinitions from './remix-route-definitions';
-
-<RemixRouteDefinitions />
-
-Once you created your routes, you can use one of our router integrations.
-
 
 ## Router Integrations
 
@@ -69,9 +36,7 @@ const App = () => (
     <BrowserRouter>
         // highlight-next-line
         <Refine routerProvider={routerProvider}>
-            <Routes>
-                {/* Your route definitions */}
-            </Routes>
+            <Routes>{/* Your route definitions */}</Routes>
         </Refine>
     </BrowserRouter>
 );
@@ -99,7 +64,6 @@ export function MyApp({ Component, pageProps }) {
 ```
 
 > While using this integration, you won't be missing out Next.js features such as **SSR** and **ISR**.
-
 
 [Check out Next.js Router documentation for detailed information](router-integrations/next-js/index)
 
@@ -164,47 +128,23 @@ One of the most practical features of refine is the ability to infer current `re
 
 This is made possible by the relationship between the resources and the routes. Using this feature, you can easily use the current route's resource, action and id in your components and hooks without explicitly passing them down to hooks.
 
-As you can see in the example below, by providing **list** and **show** routes to the **products** resource, we can eliminate the need to pass **resource** and **id** props to the `useList` and `useShow` hooks.
+#### React Router
 
-```tsx
-import { Refine, useList } from "@refinedev/core";
+import ReactRouterResourceAndRoutesUsage from "./react-router-resource-and-routes-usage";
 
-export const App = () => {
-    <Refine resources={[
-            {
-                name: "products",
-                // added-line
-                list: "/my-products",
-                // added-line
-                show: "/my-products/:id",
-            },
-        ]}
-    >
-        {/* ... */}
-    </Refine>
-}
+<ReactRouterResourceAndRoutesUsage />
 
-// http://localhost:5173/my-products
-export const ProductList = () => {
-    // removed-line
-    const { data } = useList({ resource: "products" })
-    // added-line
-    const { data } = useList()
-}
+#### Next.JS
 
-// http://localhost:5173/my-products/123
-export const ProductShow = () => {
-    // removed-line
-    const { queryResult: { data } } = useShow({ resource: "products", id: "123" })
-    // added-line
-    const { queryResult: { data } } = useShow()
-    // ...
-}
-```
+import NextJSResourceAndRoutesUsage from "./nextjs-resource-and-routes-usage";
 
-import ResourceAndRoutesUsage from "./resource-and-routes-usage";
+<NextJSResourceAndRoutesUsage />
 
-<ResourceAndRoutesUsage />
+#### Remix
+
+import RemixResourceAndRoutesUsage from "./remix-resource-and-routes-usage";
+
+<RemixResourceAndRoutesUsage />
 
 ## Hook Integrations
 
@@ -236,14 +176,14 @@ And then navigate the following route:
 You will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
 ```ts
-const { tableQueryResult, current, pageSize, filters, sorters } = useTable()
+const { tableQueryResult, current, pageSize, filters, sorters } = useTable();
 
-console.log(tableQueryResult.data.data) // [{...}, {...}]
-console.log(tableQueryResult.data.total) // 32 - total number of unpaginated records
-console.log(current) // 1 - current page
-console.log(pageSize) // 2 - page size
-console.log(filters) // [{ field: "category.id", operator: "eq", value: "1" }]
-console.log(sorters) // [{ field: "id", order: "asc" }]
+console.log(tableQueryResult.data.data); // [{...}, {...}]
+console.log(tableQueryResult.data.total); // 32 - total number of unpaginated records
+console.log(current); // 1 - current page
+console.log(pageSize); // 2 - page size
+console.log(filters); // [{ field: "category.id", operator: "eq", value: "1" }]
+console.log(sorters); // [{ field: "id", order: "asc" }]
 ```
 
 Also, `setFilters`, `setSorters`, `setCurrent`, and `setPageSize` can be used to modify these parameters.
@@ -256,75 +196,23 @@ const { current, setCurrent } = useTable()
 
 Clicking the button will **update the current route** and **fetch the next page** of the table automatically.
 
-import UseTableUsage from "./use-table-usage";
+#### React Router
 
-<UseTableUsage />
+import ReactRouterUseTableUsage from "./react-router-use-table-usage";
+
+<ReactRouterUseTableUsage />
 
 #### Next.JS
 
-If you want to fetch products on the server-side with NextJS, you will need to modify your `pages/products/index.tsx` page.
+import NextJSUseTableUsage from "./nextjs-use-table-usage";
 
-
-- Export a function caleld `getServerSideProps`.
-- Import **parseTableParams** from **@refinedev/nextjs-router** to parse the query parameters of the current route and pass them to the **dataProvider**'s **getList** method.
-- Return the data as `props.initialData` to your client side component.
-- Pass `props.initialData` to the `useTable` hook's `queryOptions.initialData` prop.
-
-```tsx title="pages/products.index.tsx"
-import { useTable } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-// highlight-next-line
-import { parseTableParams } from "@refinedev/nextjs-router";
-
-import { API_URL } from "src/constants";
-
-export const getServerSideProps = async (context) => {
-    const { pagination, filters, sorters } = parseTableParams(
-        context.resolvedUrl?.split("?")[1] ?? "",
-    );
-
-    const data = await dataProvider(API_URL).getList({
-        resource: "products",
-        filters,
-        pagination,
-        sorters,
-    });
-
-    return {
-        // highlight-next-line
-        props: { initialData: data },
-    };
-};
-
-const ProductList = (props) => {
-    // highlight-next-line
-    const { initialData } = props
-
-    const result = useTable({
-        // highlight-next-line
-        queryOptions: { initialData }
-    });
-
-    const { tableQueryResult, current, pageSize, filters, sorters } = result;
-
-    console.log(tableQueryResult.data.data) // [{...}, {...}]
-    console.log(tableQueryResult.data.total) // 32 - total number of unpaginated records
-    console.log(current) // 1 - current page
-    console.log(pageSize) // 2 - page size
-    console.log(filters) // [{ field: "category.id", operator: "eq", value: "1" }]
-    console.log(sorters) // [{ field: "id", order: "asc" }]
-
-    return (
-        // ...
-    )
-}
-
-
-```
+<NextJSUseTableUsage />
 
 #### Remix
 
-TBA...
+import RemixUseTableUsage from "./remix-use-table-usage";
+
+<RemixUseTableUsage />
 
 ## The `routerProvider` Interface
 
