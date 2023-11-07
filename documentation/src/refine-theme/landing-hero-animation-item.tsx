@@ -105,7 +105,7 @@ export const LandingHeroAnimationItem = function ItemBase({
                         )}
                     >
                         <Icon
-                            onClick={() => console.log("AAAA")}
+                            className="text-gray-1000 dark:text-gray-0"
                             style={{
                                 filter: `drop-shadow(0 0 8px ${hexToRgba(
                                     color,

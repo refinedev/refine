@@ -12,7 +12,7 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <g opacity={0.5} filter="url(#filter0_f_1305_2573)">
             <path
                 d="M32 44C34.4668 44 36.7598 43.2556 38.6666 41.9793L28.8153 29.2511V36.796H27.2001V27.2H29.2191L35.3336 35.0762V27.2H36.9336V36.8H36.6719L39.9345 41.0026C42.4275 38.8037 44 35.5855 44 32C44 25.3726 38.6274 20 32 20C25.3726 20 20 25.3726 20 32C20 38.6274 25.3726 44 32 44Z"
-                fill="white"
+                fill="currentColor"
             />
             <path
                 d="M36.6719 36.8002L35.3336 35.0764V27.2002H36.9336V36.8002H36.6719Z"
@@ -25,7 +25,7 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
         </g>
         <path
             d="M32 44C34.4668 44 36.7598 43.2556 38.6666 41.9793L28.8153 29.2511V36.796H27.2001V27.2H29.2191L35.3336 35.0762V27.2H36.9336V36.8H36.6719L39.9345 41.0026C42.4275 38.8037 44 35.5855 44 32C44 25.3726 38.6274 20 32 20C25.3726 20 20 25.3726 20 32C20 38.6274 25.3726 44 32 44Z"
-            fill="white"
+            fill="currentColor"
         />
         <path
             d="M36.6719 36.8002L35.3336 35.0764V27.2002H36.9336V36.8002H36.6719Z"
@@ -65,8 +65,8 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
                 y2={34.2502}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="white" stopOpacity={0} />
-                <stop offset={1} stopColor="white" />
+                <stop stopColor="currentColor" stopOpacity={0} />
+                <stop offset={1} stopColor="currentColor" />
             </linearGradient>
             <linearGradient
                 id="paint1_linear_1305_2573"
@@ -76,8 +76,8 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
                 y2={41.4002}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="white" stopOpacity={0} />
-                <stop offset={1} stopColor="white" />
+                <stop stopColor="currentColor" stopOpacity={0} />
+                <stop offset={1} stopColor="currentColor" />
             </linearGradient>
             <linearGradient
                 id="paint2_linear_1305_2573"
@@ -87,8 +87,8 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
                 y2={34.2502}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="white" stopOpacity={0} />
-                <stop offset={1} stopColor="white" />
+                <stop stopColor="currentColor" stopOpacity={0} />
+                <stop offset={1} stopColor="currentColor" />
             </linearGradient>
             <linearGradient
                 id="paint3_linear_1305_2573"
@@ -98,8 +98,8 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
                 y2={41.4002}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stopColor="white" stopOpacity={0} />
-                <stop offset={1} stopColor="white" />
+                <stop stopColor="currentColor" stopOpacity={0} />
+                <stop offset={1} stopColor="currentColor" />
             </linearGradient>
         </defs>
     </svg>
