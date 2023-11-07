@@ -22,9 +22,14 @@ export const LandingHeroGithubStars = () => {
                 "border-gray-200 dark:border-gray-700",
                 "bg-gray-50 dark:bg-gray-900",
                 "dark:bg-landing-hero-github-stars-gradient",
+                "hover:no-underline",
             )}
         >
-            <OrangeStarIcon />
+            <OrangeStarIcon
+                style={{
+                    filter: "drop-shadow(0px 0px 3px #FF993330) drop-shadow(0px 0px 6px #FF9933A0) drop-shadow(0px 0px 16px #FF9933A0) drop-shadow(0px 0px 16px #FF9933)",
+                }}
+            />
             <span
                 className={clsx(
                     "font-normal",
