@@ -138,7 +138,7 @@ const ProductList = () => {
                 </tbody>
             </table>
             <hr />
-            Sorting by field:{" "}
+            Sorting by field: {" "}
             <b>
                 {sorters[0].field}, order {sorters[0].order}
             </b>
@@ -158,7 +158,7 @@ const ProductList = () => {
             <hr />
             Filtering by field:{" "}
             <b>
-                {filters[0].field}, operator {filters[0].operator}, value{" "}
+                {filters[0].field}, operator {filters[0].operator}, value: {" "}
                 {filters[0].value}
             </b>
             <br />

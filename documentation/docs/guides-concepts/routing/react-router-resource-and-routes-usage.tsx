@@ -5,6 +5,7 @@ export default function ResourcesAndRoutesUsage() {
     return (
         <Sandpack
             showNavigator
+            showFiles
             dependencies={{
                 "@refinedev/core": "latest",
                 "@refinedev/simple-rest": "latest",
