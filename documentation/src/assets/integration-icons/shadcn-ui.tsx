@@ -2,7 +2,7 @@ import clsx from "clsx";
 import * as React from "react";
 import { SVGProps } from "react";
 
-const ShadCn = (props: SVGProps<SVGSVGElement>) => (
+const ShadCnUI = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={25}
@@ -10,7 +10,7 @@ const ShadCn = (props: SVGProps<SVGSVGElement>) => (
         viewBox="0 0 25 24"
         fill="none"
         {...props}
-        className={clsx(props.className, "dark:text-gray-1000 text-white")}
+        className={clsx(props.className, "dark:text-white text-gray-1000")}
     >
         <path
             stroke="currentColor"
@@ -22,4 +22,4 @@ const ShadCn = (props: SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-export default ShadCn;
+export default ShadCnUI;

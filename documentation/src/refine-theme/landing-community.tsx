@@ -18,6 +18,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             {
                 stat: githubStarCountText,
                 description: "Stars on GitHub",
+                href: "https://github.com/refinedev/refine",
             },
             {
                 stat: "5K+",
@@ -80,14 +81,19 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                 >
                     {list.map((item, index) => {
                         return (
-                            <div
+                            <a
+                                href={item?.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 key={index}
                                 className={clsx(
+                                    "block",
                                     "not-prose",
                                     "p-4 landing-sm:py-4 landing-sm:px-10",
                                     "dark:bg-landing-noise",
                                     "dark:bg-gray-800 bg-gray-50",
                                     "rounded-3xl",
+                                    "no-underline",
                                 )}
                             >
                                 <div
@@ -114,7 +120,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                 >
                                     {item.description}
                                 </div>
-                            </div>
+                            </a>
                         );
                     })}
                 </div>
@@ -144,7 +150,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                     <div
                         className={clsx(
                             "mt-6",
-                            "landing-lg:w-[300px]",
+                            "landing-lg:w-[260px]",
                             "px-0 landing-sm:px-6",
                             "text-base",
                             "not-prose",
@@ -152,17 +158,27 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                         )}
                     >
                         Backed by{" "}
-                        <span
-                            className={clsx("dark:text-gray-0 text-gray-900")}
+                        <a
+                            href="https://www.ycombinator.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={clsx(
+                                "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline",
+                            )}
                         >
                             Y Combinator
-                        </span>{" "}
-                        (YC S23) and{" "}
-                        <span
-                            className={clsx("dark:text-gray-0 text-gray-900")}
+                        </a>{" "}
+                        and{" "}
+                        <a
+                            href="https://ee.500.co/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={clsx(
+                                "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline ",
+                            )}
                         >
                             500 Emerging Europe
-                        </span>
+                        </a>
                         .
                     </div>
                 </div>

@@ -9,17 +9,20 @@ import {
     ListIcon,
     WizardsIcon,
 } from "../components/landing/icons";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 
 type Props = {
     className?: string;
 };
 
 export const LandingSweetSpot: FC<Props> = ({ className }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const activeListItem = list[activeIndex];
+    const isBrowser = useIsBrowser();
 
     const { colorMode } = useColorMode();
     const isDarkTheme = colorMode === "dark";
+
+    const [activeIndex, setActiveIndex] = useState(0);
+    const activeListItem = list[activeIndex];
 
     return (
         <div className={clsx(className, "w-full")}>
@@ -162,98 +165,102 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         </div>
                     </div>
 
-                    <div
-                        className={clsx(
-                            "relative",
-                            "h-full",
-                            "mt-4 landing-sm:mt-[72px] landing-lg:mt-0",
-                            "flex",
-                            "landing-lg:col-start-7 landing-lg:col-end-13",
-                        )}
-                    >
+                    {isBrowser && (
                         <div
                             className={clsx(
-                                "w-full",
+                                "relative",
                                 "h-full",
-                                "landing-sweet-spot-mask",
-                                "z-[1]",
-                                "landing-lg:absolute",
-                                "top-0 right-0",
+                                "mt-4 landing-sm:mt-[72px] landing-lg:mt-0",
+                                "flex",
+                                "landing-lg:col-start-7 landing-lg:col-end-13",
                             )}
                         >
+                            <div
+                                className={clsx(
+                                    "w-full",
+                                    "h-full",
+                                    "landing-sweet-spot-mask",
+                                    "z-[1]",
+                                    "landing-lg:absolute",
+                                    "top-0 right-0",
+                                )}
+                            >
+                                {list.map((item, index) => {
+                                    const active = index === activeIndex;
+
+                                    return (
+                                        <img
+                                            key={index}
+                                            src={
+                                                isDarkTheme
+                                                    ? item.image1Dark
+                                                    : item.image1Light
+                                            }
+                                            alt="UI of refine"
+                                            loading="lazy"
+                                            className={clsx(
+                                                "object-cover",
+                                                "object-left-top",
+                                                "w-full landing-md:w-[874px] landing-lg:w-full",
+                                                "h-full landing-lg:h-[464px]",
+                                                "landing-md:pl-20 landing-lg:pl-0",
+                                                "absolute",
+                                                "top-0 right-0",
+                                                active && "delay-300",
+                                                active
+                                                    ? "translate-x-0"
+                                                    : "translate-x-full",
+                                                active
+                                                    ? "opacity-100"
+                                                    : "opacity-0",
+                                                "transition-[transform,opacity] duration-500 ease-in-out",
+                                            )}
+                                        />
+                                    );
+                                })}
+                            </div>
+
                             {list.map((item, index) => {
                                 const active = index === activeIndex;
 
                                 return (
-                                    <img
+                                    <div
                                         key={index}
-                                        src={
-                                            isDarkTheme
-                                                ? item.image1Dark
-                                                : item.image1Light
-                                        }
-                                        alt="UI of refine"
-                                        loading="lazy"
                                         className={clsx(
-                                            "object-cover",
-                                            "object-left-top",
-                                            "w-full landing-md:w-[874px] landing-lg:w-full",
-                                            "h-full landing-lg:h-[464px]",
-                                            "landing-md:pl-20 landing-lg:pl-0",
+                                            "hidden landing-md:block",
+                                            "z-[2]",
+                                            "w-[488px]",
                                             "absolute",
-                                            "top-0 right-0",
+                                            "landing-md:bottom-[112px] landing-lg:bottom-[78px]",
+                                            "landing-md:left-[8px] landing-lg:-left-20",
+                                            "rounded-xl",
+                                            "dark:bg-gray-900 bg-gray-0",
+                                            "dark:shadow-landing-sweet-spot-code-dark",
+                                            "shadow-landing-sweet-spot-code-light",
                                             active && "delay-300",
                                             active
-                                                ? "translate-x-0"
-                                                : "translate-x-full",
+                                                ? "translate-y-0"
+                                                : "translate-y-full",
                                             active
                                                 ? "opacity-100"
                                                 : "opacity-0",
                                             "transition-[transform,opacity] duration-500 ease-in-out",
                                         )}
-                                    />
+                                    >
+                                        <img
+                                            src={
+                                                isDarkTheme
+                                                    ? item.image2Dark
+                                                    : item.image2Light
+                                            }
+                                            alt="Code of refine"
+                                            loading="lazy"
+                                        />
+                                    </div>
                                 );
                             })}
                         </div>
-
-                        {list.map((item, index) => {
-                            const active = index === activeIndex;
-
-                            return (
-                                <div
-                                    key={index}
-                                    className={clsx(
-                                        "hidden landing-md:block",
-                                        "z-[2]",
-                                        "w-[488px]",
-                                        "absolute",
-                                        "landing-md:bottom-[112px] landing-lg:bottom-[78px]",
-                                        "landing-md:left-[8px] landing-lg:-left-20",
-                                        "rounded-xl",
-                                        "dark:bg-gray-900 bg-gray-0",
-                                        "dark:shadow-landing-sweet-spot-code-dark",
-                                        "shadow-landing-sweet-spot-code-light",
-                                        active && "delay-300",
-                                        active
-                                            ? "translate-y-0"
-                                            : "translate-y-full",
-                                        active ? "opacity-100" : "opacity-0",
-                                        "transition-[transform,opacity] duration-500 ease-in-out",
-                                    )}
-                                >
-                                    <img
-                                        src={
-                                            isDarkTheme
-                                                ? item.image2Dark
-                                                : item.image2Light
-                                        }
-                                        alt="Code of refine"
-                                        loading="lazy"
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

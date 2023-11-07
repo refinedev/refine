@@ -30,7 +30,7 @@ import {
     NestQuery,
     Nextjs,
     Nhost,
-    ShadCn,
+    ShadCnUI,
     React as ReactIcon,
     Remix,
     Rest,
@@ -352,9 +352,9 @@ const listOne = [
         tooltip: "npm i @refinedev/chakra-ui",
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <ShadCn {...props} />,
-        label: "Shadcn",
-        tooltip: "npm i @refinedev/shadcn",
+        icon: (props: SVGProps<SVGSVGElement>) => <ShadCnUI {...props} />,
+        label: "shadcn/ui",
+        tooltip: "npx shadcn-ui init",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Firebase {...props} />,

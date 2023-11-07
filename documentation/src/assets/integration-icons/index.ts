@@ -2,7 +2,7 @@ export { default as Antd } from "./antd";
 export { default as Mui } from "./mui";
 export { default as Mantine } from "./mantine";
 export { default as Chakra } from "./chakra";
-export { default as ShadCn } from "./shadcn";
+export { default as ShadCnUI } from "./shadcn-ui";
 export { default as Firebase } from "./firebase";
 
 export { default as Ably } from "./ably";
