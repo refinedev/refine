@@ -20,20 +20,21 @@ export const CommonThemeToggle = ({ className }: Props) => {
         <button
             type="button"
             className={clsx(
-                "w-8 h-8 sm:w-10 sm:h-10",
-                "bg-gray-200 dark:bg-gray-700",
-                "rounded-full",
-                "border-0",
                 "appearance-none",
                 "focus:outline-none",
                 "relative",
-                "text-gray-500 dark:text-gray-400",
-                "hover:brightness-110",
-                "transition-[filter]",
-                "duration-200",
+                "w-10 h-10",
+                "rounded-full",
+                "border",
+                "border-solid",
+                "border-gray-300 dark:border-gray-700",
+                "text-gray-500",
+                "transition-colors",
+                "duration-150",
                 "ease-in-out",
                 "overflow-hidden",
                 "flex-shrink-0",
+                "group",
                 className,
             )}
             onClick={toggle}
@@ -41,14 +42,44 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-8 h-8 sm:w-10 sm:h-10",
+                    "w-auto",
+                    "h-auto",
+                    "flex",
+                    "-left-2",
+                    "top-[14.5px]",
+                    "items-start",
+                    "rotate-[-21deg]",
+                    "dark:rotate-[23deg]",
+                    "origin-[center_53px]",
+                    "group-hover:rotate-[1deg]",
+                    "dark:group-active:rotate-[23deg]",
+                    "group-active:rotate-[-21deg]",
+                    "transition-transform",
+                    "duration-150",
+                    "ease-in-out",
+                    "gap-5",
+                )}
+            >
+                <LightModeIcon
+                    className={clsx("flex-shrink-0", "pointer-events-none")}
+                />
+                <DarkModeIcon
+                    className={clsx("flex-shrink-0", "pointer-events-none")}
+                />
+            </div>
+            {/* <div
+                className={clsx(
+                    "absolute",
+                    "w-full h-full",
                     "flex items-center justify-center",
                     "flex-shrink-0",
                     "top-10",
                     "dark:top-0",
                     "duration-200",
                     "ease-in-out",
-                    "transition-[top]",
+                    "transition-[top,transform]",
+                    // "dark:group-hover:scale-125",
+                    "dark:group-hover:top-10",
                 )}
             >
                 <LightModeIcon />
@@ -56,18 +87,21 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-8 h-8 sm:w-10 sm:h-10",
+                    "w-full h-full",
                     "flex items-center justify-center",
                     "flex-shrink-0",
                     "top-0",
                     "dark:top-10",
                     "duration-200",
                     "ease-in-out",
-                    "transition-[top]",
+                    "transition-[top,transform]",
+                    // "group-hover:scale-125",
+                    "dark:group-hover:top-2",
+                    // "dark:group-hover:scale-100",
                 )}
             >
                 <DarkModeIcon />
-            </div>
+            </div> */}
         </button>
     );
 };

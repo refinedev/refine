@@ -1,124 +1,108 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
-import SearchBar from "@theme/SearchBar";
 
 import { Menu } from "./common-header/menu";
 import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 
-import { LandingDocSearchButton } from "./landing-doc-search-button";
 import { LandingGithubStarButton } from "./landing-github-star-button";
 
 import { openFigma } from "../utils/open-figma";
-import { DiscordIcon } from "./icons/discord";
 import { HamburgerIcon } from "./icons/hamburger";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { TopAnnouncement } from "./top-announcement";
+import { CommonThemeToggle } from "./common-theme-toggle";
 
 export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-    const [offset, setOffset] = useState(false);
-
-    useEffect(() => {
-        const onScroll = () => {
-            const scrollY = window.scrollY;
-
-            if (scrollY > 24) {
-                return setOffset(true);
-            }
-
-            return setOffset(false);
-        };
-
-        window.removeEventListener("scroll", onScroll);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
-
     return (
         <>
             <TopAnnouncement />
-            <div
-                className={clsx("h-2 header-sm:h-4 blog-lg:h-6", "w-full", {
-                    "bg-landing-header-bg": offset,
-                    "backdrop-blur-header-blur": offset,
-                })}
-            />
             <header
                 className={clsx(
-                    "w-full",
-                    {
-                        "bg-landing-header-bg": offset,
-                        "backdrop-blur-header-blur": offset,
-                    },
-                    "px-4 blog-lg:px-8",
-                    "py-4",
-                    "sticky top-0 z-10",
+                    "sticky",
+                    "top-0",
+                    "z-10",
+                    "p-4",
+                    "landing-sm:px-8",
+                    "landing-md:py-5",
+                    "backdrop-blur-sm",
                 )}
             >
-                <div className={clsx("max-w-[1264px]", "mx-auto")}>
-                    <div className={clsx("flex items-center")}>
-                        <div className={clsx("flex items-center", "w-[240px]")}>
-                            <Link to="/" onContextMenu={openFigma}>
-                                <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
-                            </Link>
-                        </div>
-                        <div className="flex items-center justify-end blog-lg:justify-between grow">
-                            <div className={clsx("hidden blog-lg:flex gap-8")}>
-                                <Menu isPermanentDark />
-                            </div>
-                            <div className="hidden blog-lg:flex items-center justify-end gap-8">
-                                <SearchBar
-                                    CustomButton={LandingDocSearchButton}
-                                />
-                                <div className="flex items-center gap-3">
-                                    <LandingGithubStarButton />
-                                    <Link
-                                        to="https://discord.gg/refine"
-                                        className={clsx(
-                                            "no-underline, hover:text-inherit",
-                                        )}
-                                    >
-                                        <DiscordIcon className="text-gray-0" />
-                                    </Link>
-                                </div>
-                            </div>
-                            <button
-                                type="button"
-                                className="block blog-lg:hidden text-gray-0"
-                                onClick={() => setIsModalOpen(true)}
-                            >
-                                <HamburgerIcon />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <MobileMenuModal
-                    isModalOpen={isModalOpen}
-                    setIsModalOpen={setIsModalOpen}
-                />
-            </header>
-            {offset && (
                 <div
-                    className={clsx("w-full", "z-[3]", "sticky", "top-[64px]")}
+                    className={clsx(
+                        "w-full",
+                        "h-full",
+                        "z-[-1]",
+                        "absolute",
+                        "pointer-events-none",
+                        "left-0",
+                        "right-0",
+                        "top-0",
+                        "bottom-0",
+                        "bg-gray-0 dark:bg-gray-900",
+                        "transition-colors",
+                        "duration-150",
+                        "ease-in-out",
+                        "opacity-60",
+                    )}
+                />
+                <div
+                    className={clsx(
+                        "mx-auto",
+                        "flex",
+                        "items-center",
+                        "justify-between",
+                        "max-w-[896px]",
+                        "landing-lg:max-w-[1200px]",
+                    )}
                 >
+                    <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
+                        <Link to="/" onContextMenu={openFigma}>
+                            <RefineLogoIcon className="text-gray-900 dark:text-gray-0" />
+                        </Link>
+                    </div>
+                    <button
+                        type="button"
+                        className={clsx(
+                            "text-gray-900 dark:text-gray-0",
+                            "block landing-md:hidden",
+                        )}
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        <HamburgerIcon />
+                    </button>
                     <div
                         className={clsx(
-                            "w-full",
-                            "h-px",
-                            "bg-landing-header-border",
+                            "hidden landing-md:flex",
+                            "flex-1",
+                            "items-center",
+                            "gap-8",
                         )}
+                    >
+                        <Menu />
+                    </div>
+                    <div
+                        className={clsx(
+                            "hidden landing-md:flex",
+                            "items-center",
+                            "justify-end",
+                            "gap-4",
+                            "w-[130px]",
+                            "landing-lg:w-[200px]",
+                        )}
+                    >
+                        <LandingGithubStarButton />
+                        <CommonThemeToggle />
+                    </div>
+                    <MobileMenuModal
+                        isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen}
                     />
                 </div>
-            )}
-            <div
-                className={clsx("h-2 header-sm:h-4 blog-lg:h-6", "w-full", {
-                    "bg-landing-header-bg": offset,
-                    "backdrop-blur-header-blur": offset,
-                })}
-            />
+            </header>
         </>
     );
 };

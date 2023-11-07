@@ -220,9 +220,9 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ### Source Code for the Existing Router Providers
 
--   [React Router V6](https://github.com/refinedev/refine/blob/next/packages/react-router-v6/src/bindings.tsx)
--   [Next.js Router](https://github.com/refinedev/refine/blob/next/packages/nextjs-router/src/pages/bindings.tsx)
--   [Remix Router](https://github.com/refinedev/refine/blob/next/packages/remix/src/bindings.tsx)
+-   [React Router V6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/src/bindings.tsx)
+-   [Next.js Router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/src/pages/bindings.tsx)
+-   [Remix Router](https://github.com/refinedev/refine/blob/master/packages/remix/src/bindings.tsx)
 
 ## Legacy Router Provider
 

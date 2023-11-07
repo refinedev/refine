@@ -57,7 +57,7 @@ These methods are used to perform data operations by **refine**.
 
 **refine** comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the `refine-simple-rest` data provider, a data provider for communicating with RESTful APIs.
 
-[Refer to the `refine-simple-rest` source code &#8594](https://github.com/refinedev/refine/tree/next/packages/simple-rest)
+[Refer to the `refine-simple-rest` source code &#8594](https://github.com/refinedev/refine/tree/v3/packages/simple-rest)
 
 ## Using Data Providers in refine
 

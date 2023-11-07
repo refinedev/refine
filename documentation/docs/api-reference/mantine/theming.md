@@ -156,7 +156,7 @@ Mantine theme is an object where your application's colors, fonts, spacing, bord
 
 ## Predefined Themes
 
-If you don't want to use the default Mantine theme, [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts#L186) has predefined themes for you. You can import predefined themes from the `@refinedev/mantine` package.
+If you don't want to use the default Mantine theme, [`RefineThemes`](https://github.com/refinedev/refine/blob/master/packages/mantine/src/theme/index.ts#L186) has predefined themes for you. You can import predefined themes from the `@refinedev/mantine` package.
 
 ```ts
 const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;

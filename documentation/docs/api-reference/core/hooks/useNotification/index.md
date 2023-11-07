@@ -1,7 +1,7 @@
 ---
 title: useNotification
 siderbar_label: useNotification
-source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/notification/useNotification/index.ts
+source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/notification/useNotification/index.ts
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,4 +1,3 @@
-
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
 <picture  style="display: inline-block;" >
@@ -16,8 +15,8 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
@@ -40,22 +39,13 @@
 
 ## About
 
-⭐  You can view the live demo off the application [here](https://crm-app-kmmmo.ondigitalocean.app/).
+⭐ You can view the live demo off the application [here](https://crm-app-kmmmo.ondigitalocean.app/).
 
-
-
-This is a  CRM (Customer Relationship Management) example project built using [refine](https://refine.dev/) and [Ant Design](https://ant.design/). It provides a set of tools and features to manage customer data, track interactions, and streamline business processes. 
-
+This is a CRM (Customer Relationship Management) example project built using [refine](https://refine.dev/) and [Ant Design](https://ant.design/). It provides a set of tools and features to manage customer data, track interactions, and streamline business processes.
 
 The application includes features such as dashboard analytics, a calendar for scheduling appointments, a scrum board for task management, and CRUD operations for managing companies, contacts, and quotes.
 
-
 refine is a React-based powerful framework for building low-code applications. It is primarily focused on implementing data-heavy apps such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems such and UI frameworks. It is highly customizable and extensible.
-
-
-
-
-
 
 ## Try it out on your local
 
@@ -67,4 +57,4 @@ npm create refine-app@latest -- --example blog-refine-digital-ocean
 
 <br/>
 
-[![Open auth-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/auth-antd?view=preview&theme=dark&codemirror=1)
+[![Open auth-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-antd?view=preview&theme=dark&codemirror=1)

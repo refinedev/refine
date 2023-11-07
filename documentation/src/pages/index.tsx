@@ -12,12 +12,17 @@ import { LandingPackages } from "../refine-theme/landing-packages";
 import { LandingAlreadyInvented } from "../refine-theme/landing-already-invented";
 import { LandingPureReactCode } from "../refine-theme/landing-pure-react-code";
 import { LandingSweetSpot } from "../refine-theme/landing-sweet-spot";
+import { LandingHeroSection } from "../refine-theme/landing-hero-section";
+import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
 
 function Home() {
+    const title = "refine | Open-source Retool for Enterprise";
     return (
         <>
             <Head>
                 <html data-active-page="index" />
+                <title>{title}</title>
+                <meta property="og:title" content={title} />
                 <link
                     rel="preload"
                     href="https://refine.new/embed-form"
@@ -25,8 +30,7 @@ function Home() {
                 />
             </Head>
             <CommonLayout
-                title={`refine | Build your React-based CRUD applications, without constraints!`}
-                description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design, an enterprise-level UI toolkit."
+                description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty."
             >
                 <div className={clsx()}>
                     <LandingHeader />
@@ -34,12 +38,19 @@ function Home() {
                         className={clsx(
                             "flex flex-col",
                             "gap-16 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-40",
-                            "w-full landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
+                            "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                             "px-2 landing-sm:px-0",
                             "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
                             "mx-auto",
                         )}
                     >
+                        <LandingHeroSection
+                            className={clsx(
+                                "mt-0",
+                                "landing-sm:mt-8",
+                                "landing-lg:mt-20",
+                            )}
+                        />
                         <LandingTrustedByDevelopers />
                         <div className={clsx("flex flex-col", "gap-6")}>
                             <LandingPackages />
@@ -64,6 +75,7 @@ function Home() {
                         <LandingCommunity />
                         <LandingSweetSpot />
                         <LandingEnterpriseDevelopers />
+                        <LandingTryItSection />
                     </div>
                     <LandingFooter />
                 </div>

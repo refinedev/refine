@@ -90,24 +90,6 @@ export const FeaturedBlogPostItem = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Link
-                        href={`/blog/author/${author?.key}`}
-                        itemProp="url"
-                        className={clsx(
-                            "text-gray-600 hover:text-gray-600",
-                            "dark:text-gray-400 hover:dark:text-gray-400",
-                            "text-xs 2xl:text-base",
-                            "no-underline",
-                        )}
-                    >
-                        {author?.name}
-                    </Link>
-                    <span
-                        className={clsx(
-                            "h-[4px] w-[4px] rounded-full",
-                            "bg-gray-600 dark:bg-gray-500",
-                        )}
-                    ></span>
                     <span
                         className={clsx(
                             "text-gray-600 hover:text-gray-600",

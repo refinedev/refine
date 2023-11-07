@@ -76,10 +76,23 @@ module.exports = {
                 ],
                 mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
+                disket: ["Disket Mono", ...defaultTheme.fontFamily.mono],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
                 "jetBrains-mono": [
                     "JetBrains Mono",
                     ...defaultTheme.fontFamily.mono,
+                ],
+            },
+            dropShadow: {
+                "showcase-highlight": [
+                    "0px 3px 7px rgba(108, 119, 147, 0.141)",
+
+                    "0px 13px 13px rgba(108, 119, 147, 0.141)",
+
+                    "0px 20px 18px rgba(108, 119, 147, 0.18)",
+
+                    "0px 34px 21px rgba(108, 119, 147, 0.2)",
+                    "0px 54px 23px rgba(108, 119, 147, 0)",
                 ],
             },
             boxShadow: {
@@ -107,6 +120,7 @@ module.exports = {
                 "landing-noise": [
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 ],
+                noise: "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 "walkthrough-button-shadow":
                     "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",
                 "walkthrough-button-alt-shadow":
@@ -315,6 +329,58 @@ module.exports = {
                     "radial-gradient(457.67% 141.42% at 0% 0%, rgba(0, 128, 255, 0.20) 0%, rgba(0, 128, 255, 0.10) 100%)",
                 "top-announcement-bg-tr":
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/top-announcement-tr.png')",
+                "landing-hero-item-name-gradient":
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.5) 100%)",
+                "landing-hero-item-background":
+                    "radial-gradient(104% 104% at 0% 0%, rgba(249, 210, 54, 0.10) 0%, rgba(249, 210, 54, 0.00) 100%)",
+                "landing-hero-beam-bottom":
+                    "linear-gradient(90deg, rgba(255,255,255,0), #47EBEB, rgba(255,255,255,0))",
+                "landing-hero-github-stars-gradient":
+                    "radial-gradient(260.41% 41.87% at 8.38% 50%, rgba(255, 153, 51, 0.10) 0%, rgba(255, 153, 51, 0.00) 100%)",
+                "landing-hero-github-stars-text-light":
+                    "linear-gradient(180deg, #14141F 0%, #6C7793 100%)",
+                "landing-hero-github-stars-text-dark":
+                    "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
+                "landing-hero-xray-dot-center-bg":
+                    "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0FBDBD 50%, #0FBDBD 100%)",
+                "landing-hero-xray-dot-center-bg-light":
+                    "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0080FF 50%, #0080FF 100%)",
+                "landing-wizard-option-bg-dark": [
+                    "radial-gradient(50% 50% at 50% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0) 100%)",
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                ],
+                "landing-wizard-option-bg-light": [
+                    "radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0) 100%)",
+                ],
+                "landing-hero-beam-bg":
+                    "conic-gradient(from 280deg, currentColor 6%, transparent 14%, transparent 100%)",
+                "footer-dark-bg": [
+                    "linear-gradient(180deg, rgba(29, 30, 48, 0.5) 0%, #14141F 100%)",
+                ],
+                "landing-wizard-side-bg": [
+                    "radial-gradient(rgb(190 190 190 / 25%) 0%, transparent 50%, transparent 100%)",
+                ],
+                "landing-wizard-side-bg-light": [
+                    "radial-gradient(rgb(45 45 45 / 15%) 0%, transparent 50%, transparent 100%)",
+                ],
+                "landing-copy-command-hover-bg-dark": [
+                    "radial-gradient(transparent 30%, rgba(71, 235, 235, 0.25))",
+                ],
+                "landing-copy-command-hover-bg-light": [
+                    "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
+                ],
+            },
+            backgroundPosition: {
+                "landing-wizard-option-right":
+                    "top -350px right -350px, center",
+                "landing-wizard-option-left":
+                    "bottom -350px left -350px, center",
+                "landing-wizard-side-left-position": "center right -144px",
+                "landing-wizard-side-right-position": "center left -144px",
+            },
+            backgroundSize: {
+                "landing-wizard-option": "600px 600px, auto",
+                "landing-wizard-side-size": "250px 550px",
             },
             backgroundPosition: {
                 "landing-sweet-spot-glow-position-lg":
@@ -345,11 +411,22 @@ module.exports = {
                     "walkthrough-bounce 3s ease-in-out infinite",
                 "top-announcement-glow":
                     "top-announcement-glow 1s ease-in-out infinite alternate",
+                "landing-hero-grid-beats":
+                    "landing-hero-grid-beats 2s ease-in-out infinite",
+                "hero-logo-pulse": "hero-logo-pulse 4s ease-in-out infinite",
+                "mini-bounce": "mini-bounce 3s ease-in-out infinite",
+                "dot-waves": "dot-waves 2.5s linear infinite",
                 "landing-packages-left":
                     "landing-packages-left 65s linear infinite",
                 "landing-packages-right":
                     "landing-packages-right 60s linear infinite",
                 "code-scroll": "code-scroll 35s linear infinite",
+                    "landing-packages-right 20s linear infinite",
+                "beam-spin": "beam-spin 3s linear 1 forwards",
+                "landing-hero-beam-line":
+                    "landing-hero-beam-line 7.5s ease-in-out infinite",
+                "landing-hero-beam-bottom":
+                    "landing-hero-beam-bottom 7.5s ease-in-out infinite",
             },
             keyframes: {
                 "code-scroll": {
@@ -362,13 +439,13 @@ module.exports = {
                 },
                 "walkthrough-bounce": {
                     "0%": {
-                        transform: "translateY(8%)",
+                        transform: "translateY(4%)",
                     },
                     "50%": {
                         transform: "none",
                     },
                     "100%": {
-                        transform: "translateY(8%)",
+                        transform: "translateY(4%)",
                     },
                 },
                 "hackathon-button-bg": {
@@ -448,6 +525,56 @@ module.exports = {
                         opacity: 0,
                     },
                 },
+                "landing-hero-grid-beats": {
+                    "0%": {
+                        fillOpacity: 0,
+                    },
+                    "50%": {
+                        fillOpacity: 0.8,
+                    },
+                    "100%": {
+                        fillOpacity: 0,
+                    },
+                },
+                "hero-logo-pulse": {
+                    "0%": {
+                        fillOpacity: 1,
+                    },
+                    "50%": {
+                        fillOpacity: 0.75,
+                    },
+                    "100%": {
+                        fillOpacity: 1,
+                    },
+                },
+                "mini-bounce": {
+                    "0%": {
+                        transform: "translateY(0%)",
+                    },
+                    "50%": {
+                        transform: "translateY(-8%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0%)",
+                    },
+                },
+                "dot-waves": {
+                    "0%": {
+                        width: "4px",
+                        height: "4px",
+                        opacity: 1,
+                    },
+                    "75%": {
+                        width: "36px",
+                        height: "36px",
+                        opacity: 0,
+                    },
+                    "100%": {
+                        width: "4px",
+                        height: "4px",
+                        opacity: 0,
+                    },
+                },
                 "landing-packages-left": {
                     "0%": { transform: "translateX(0)" },
                     "100%": { transform: "translateX(-50%)" },
@@ -455,6 +582,38 @@ module.exports = {
                 "landing-packages-right": {
                     "0%": { transform: "translateX(0)" },
                     "100%": { transform: "translateX(50%)" },
+                },
+                "beam-spin": {
+                    "0%": {
+                        transform:
+                            "translateX(-45px) translateY(-190px) rotate(0deg)",
+                    },
+                    "100%": {
+                        transform:
+                            "translateX(-45px) translateY(-190px) rotate(-360deg)",
+                    },
+                },
+                "landing-hero-beam-line": {
+                    "0%": {
+                        opacity: 0,
+                    },
+                    "50%": {
+                        opacity: 1,
+                    },
+                    "100%": {
+                        opacity: 0,
+                    },
+                },
+                "landing-hero-beam-bottom": {
+                    "0%": {
+                        opacity: 0.25,
+                    },
+                    "50%": {
+                        opacity: 1,
+                    },
+                    "100%": {
+                        opacity: 0.25,
+                    },
                 },
             },
         },
@@ -484,10 +643,7 @@ module.exports = {
             walkthrough: "976px",
         },
     },
-    plugins: [
-        require("@tailwindcss/line-clamp"),
-        require("@tailwindcss/typography"),
-    ],
+    plugins: [require("@tailwindcss/typography")],
     corePlugins: {
         // preflight: false,
     },

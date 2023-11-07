@@ -58,19 +58,26 @@ export const menuItems = [
                 label: "Store",
                 href: "https://store.refine.dev",
             },
-            // {
-            //     label: "Terms & Conditions",
-            //     href: "/terms-and-conditions",
-            // },
             {
-                label: "Privacy Policy",
-                href: "/privacy-policy",
-            },
-            {
-                label: "License",
-                href: "https://github.com/refinedev/refine/blob/next/LICENSE",
+                label: "Contact Us",
+                href: "#",
             },
         ],
+    },
+];
+
+export const secondaryMenuItems = [
+    {
+        label: "Terms & Conditions",
+        href: "#",
+    },
+    {
+        label: "Privacy Policy",
+        href: "/privacy-policy",
+    },
+    {
+        label: "License",
+        href: "https://github.com/refinedev/refine/blob/next/LICENSE",
     },
 ];
 

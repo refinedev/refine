@@ -407,7 +407,7 @@ View the details of the development environment.
 
 ## How to add to an existing project?
 
-If you want to add the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/next/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
+If you want to add the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/v3/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
 
 <Tabs
 defaultValue="npm"

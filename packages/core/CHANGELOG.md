@@ -1,5 +1,81 @@
 # @refinedev/core
 
+## 4.44.12
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update commit frequency branch from next to master in README.
+
+## 4.44.11
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Exported `BaseOption` type as successor of the deprecated `Option` type. `BaseOption` is `{ label: any; value: any; }`.
+
+    Usage of the deprecated `Option` type was correctly assuming that the `value` property of the option is of type `string`. This assumption was wrong and now the types are changed to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook.
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Reverted the faulty assumption on option values of `useSelect` hook to be of type `string`. Now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook. (Reverted PR #5160)
+
+    By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { HttpError, useSelect } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5194](https://github.com/refinedev/refine/pull/5194) [`9df999ca643`](https://github.com/refinedev/refine/commit/9df999ca6431fb0465c294207309fe32e58eb85f) Thanks [@fitrahfm](https://github.com/fitrahfm)! - fix: use relative path instead of path alias to import FlatTreeItem
+
+    Using path alias causes imported types being any during build/compilation process which should be TreeMenuItem[]
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Exported the `flattenObjectKeys` and `propertyPathToArray` helpers from `@refinedev/core` package.
+
+## 4.44.10
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Exported `BaseOption` type as successor of the deprecated `Option` type. `BaseOption` is `{ label: any; value: any; }`.
+
+    Usage of the deprecated `Option` type was correctly assuming that the `value` property of the option is of type `string`. This assumption was wrong and now the types are changed to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook.
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Reverted the faulty assumption on option values of `useSelect` hook to be of type `string`. Now changed the types and the logic to reflect the correct values of options with the ability to change it via 4th generic type `TOption` of `useSelect` hook. (Reverted PR #5160)
+
+    By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { HttpError, useSelect } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5194](https://github.com/refinedev/refine/pull/5194) [`9df999ca643`](https://github.com/refinedev/refine/commit/9df999ca6431fb0465c294207309fe32e58eb85f) Thanks [@fitrahfm](https://github.com/fitrahfm)! - fix: use relative path instead of path alias to import FlatTreeItem
+
+    Using path alias causes imported types being any during build/compilation process which should be TreeMenuItem[]
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Exported the `flattenObjectKeys` and `propertyPathToArray` helpers from `@refinedev/core` package.
+
 ## 4.44.9
 
 ### Patch Changes

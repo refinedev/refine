@@ -3,7 +3,7 @@ name: Build All Examples
 on:
   pull_request:
     branches:
-      - next
+      - master
     types:
       - synchronize
       - opened
@@ -13,7 +13,7 @@ on:
       - "examples/**"
   push:
     branches:
-      - next
+      - master
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:

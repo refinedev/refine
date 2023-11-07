@@ -74,7 +74,7 @@ const links = [
     },
     {
         name: "Terms and conditions",
-        url: "https://github.com/refinedev/refine/blob/next/LICENSE",
+        url: "https://github.com/refinedev/refine/blob/master/LICENSE",
     },
 ];
 
