@@ -15,11 +15,11 @@ import { nightOwl } from "@codesandbox/sandpack-themes";
 import {
     defaultLight,
     SandpackCodeEditor,
+    SandpackConsole,
+    SandpackFileExplorer,
     SandpackLayout,
     SandpackPreview,
-    SandpackFileExplorer,
     SandpackProvider,
-    SandpackConsole,
 } from "@codesandbox/sandpack-react";
 
 import { useColorMode } from "@docusaurus/theme-common";
@@ -191,7 +191,12 @@ export const Sandpack = ({
                         )}
                     >
                         {showFiles && (
-                            <SandpackFileExplorer autoHiddenFiles style={{ height: options.editorHeight ?? height }} />
+                            <SandpackFileExplorer
+                                autoHiddenFiles
+                                style={{
+                                    height: options.editorHeight ?? height,
+                                }}
+                            />
                         )}
                         {!previewOnly && (
                             <SandpackCodeEditor
@@ -207,25 +212,23 @@ export const Sandpack = ({
                                           }),
                                     overflow: "hidden",
                                 }}
-                          />
+                            />
                         )}
-                        {
-                            showConsole ?
-                                <SandpackConsole style={
-                                    {
-                                            height: options.editorHeight ?? height,
-                                            ...(layout?.includes("col")
-                                                ? { flex: "initial" }
-                                                : {
-                                                    flexGrow: horizontalSize,
-                                                    flexShrink: horizontalSize,
-                                                    flexBasis: 0,
-                                                }),
-                                            overflow: "hidden",
-                                        }
-                                    }
-                                /> : null
-                        }
+                        {showConsole ? (
+                            <SandpackConsole
+                                style={{
+                                    height: options.editorHeight ?? height,
+                                    ...(layout?.includes("col")
+                                        ? { flex: "initial" }
+                                        : {
+                                              flexGrow: horizontalSize,
+                                              flexShrink: horizontalSize,
+                                              flexBasis: 0,
+                                          }),
+                                    overflow: "hidden",
+                                }}
+                            />
+                        ) : null}
                         {showHandle ? (
                             <DragHandle
                                 onMouseDown={onHandleMouseDown}
@@ -246,7 +249,7 @@ export const Sandpack = ({
                             }
                             showRefreshButton={options.showRefreshButton}
                             style={{
-                                display : hidePreview ? "none" : "flex",
+                                display: hidePreview ? "none" : "flex",
                                 ...(layout?.includes("col")
                                     ? { flex: "initial", width: "100%" }
                                     : {
@@ -296,3 +299,47 @@ export const Sandpack = ({
         </div>
     );
 };
+
+export const SandpackNextJS = (props: Props) => {
+    const isDevelop = process.env.NODE_ENV === "development";
+    const extraProps = isDevelop
+        ? {
+              hidePreview: false,
+              showConsole: true,
+              dependencies: {
+                  ...props.dependencies,
+                  "@refinedev/core": "latest",
+                  "@refinedev/simple-rest": "latest",
+                  "@refinedev/nextjs-router": "latest",
+                  "@types/react": "^18.0.0",
+                  "@types/node": "^16.0.0",
+                  typescript: "^4.7.4",
+              },
+              files: {
+                  "/pages/index.tsx": {
+                      code: NextJSPagesIndexTsxCode,
+                  },
+                  ...(props.files as any),
+              },
+              template: "nextjs",
+          }
+        : { hidePreview: true };
+
+    return (
+        <Sandpack
+            {...extraProps}
+            {...props}
+            template={isDevelop ? "nextjs" : "react-ts"}
+        />
+    );
+};
+
+const NextJSPagesIndexTsxCode = /* tsx */ `
+import { NavigateToResource } from "@refinedev/nextjs-router";
+
+const Home = () => {
+    return <NavigateToResource resource="products" />;
+};
+
+export default Home;
+`.trim();

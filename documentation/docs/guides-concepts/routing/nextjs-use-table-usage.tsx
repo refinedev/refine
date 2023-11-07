@@ -1,34 +1,12 @@
-import { Sandpack } from "@site/src/components/sandpack";
+import { SandpackNextJS } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function NextJSRouteDefinitions() {
-    const isDevelop = process.env.NODE_ENV === "development";
-    const extraProps = isDevelop
-        ? {
-              hidePreview: false,
-              showConsole: true,
-              dependencies: {
-                  "@refinedev/core": "latest",
-                  "@refinedev/simple-rest": "latest",
-                  "@refinedev/nextjs-router": "latest",
-                  "@types/react": "^18.0.0",
-                  "@types/node": "^16.0.0",
-                  typescript: "^4.7.4",
-              },
-              template: "nextjs",
-          }
-        : {};
-
     return (
-        <Sandpack
-            {...extraProps}
-            template={isDevelop ? "nextjs" : "react-ts"}
+        <SandpackNextJS
             showFiles
             startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
             files={{
-                "/pages/index.tsx": {
-                    code: PagesIndexTsxCode,
-                },
                 "/pages/_app.tsx": {
                     code: AppTsxCode,
                 },
@@ -43,16 +21,6 @@ export default function NextJSRouteDefinitions() {
         />
     );
 }
-
-const PagesIndexTsxCode = /* tsx */ `
-import { NavigateToResource } from "@refinedev/nextjs-router";
-
-const Home = () => {
-    return <NavigateToResource resource="products" />;
-};
-
-export default Home;
-`.trim();
 
 const AppTsxCode = /* tsx */ `
 import React from "react";
