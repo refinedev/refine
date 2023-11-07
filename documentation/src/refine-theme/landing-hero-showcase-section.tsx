@@ -413,7 +413,7 @@ const apps = [
         showcase: ShowcaseECommerce,
     },
     {
-        name: "Dev-Ops Dashboard",
+        name: "DevOps Dashboard",
         link: "https://refine.dev/docs",
         showcase: ShowcaseDevOps,
     },
