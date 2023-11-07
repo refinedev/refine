@@ -147,7 +147,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                     className={clsx(
                         "not-prose",
                         "mt-4 landing-sm:mt-6 landing-lg:mt-10",
-                        "px-4 landing-md:px-10",
+                        "px-4 landing-sm:px-6",
                     )}
                 >
                     <h6

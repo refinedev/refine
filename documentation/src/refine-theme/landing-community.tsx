@@ -124,7 +124,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                         "w-full landing-lg:w-[486px]",
                         "not-prose",
                         "flex-shrink-0",
-                        "p-4",
+                        "p-4 ",
                         "rounded-3xl",
                         "dark:bg-landing-noise",
                         "dark:bg-gray-800 bg-gray-50",
@@ -141,6 +141,8 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                     <div
                         className={clsx(
                             "mt-6",
+                            "landing-lg:w-[300px]",
+                            "px-0 landing-sm:px-6",
                             "text-base",
                             "not-prose",
                             "dark:text-gray-400 text-gray-600",
