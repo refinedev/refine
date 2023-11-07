@@ -115,7 +115,9 @@ export const LandingHeroShowcaseSection = ({}) => {
                     ))}
                 </div>
                 <a
-                    href="#"
+                    href="/docs/examples"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={clsx(
                         "hover:!no-underline",
                         "w-40",
@@ -130,8 +132,13 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "gap-4",
                         "bg-transparent",
                         "border border-solid",
+                        "hover:bg-gray-200 dark:hover:bg-gray-700",
+                        "duration-150",
+                        "transition-colors",
+                        "ease-in-out",
                         "border-gray-200 dark:border-gray-700",
                         "text-gray-900 dark:text-gray-0",
+                        "hover:text-gray-900 dark:hover:text-gray-0",
                     )}
                 >
                     <span className="text-sm">See more</span>
@@ -232,6 +239,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "landing-lg:bg-opacity-100 dark:landing-lg:bg-opacity-100",
                         "text-refine-blue dark:text-refine-cyan-alt",
                         "landing-lg:text-gray-0 dark:landing-lg:text-gray-900",
+                        "hover:scale-105",
                     )}
                 >
                     <span
