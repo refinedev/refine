@@ -57,9 +57,30 @@ export const LandingCopyCommandButton = ({
                 "font-mono",
                 "overflow-hidden",
                 "relative",
+                "group/copy-button",
                 className,
             )}
         >
+            <div
+                className={clsx(
+                    "rounded-3xl",
+                    "absolute",
+                    "left-0",
+                    "top-0",
+                    "w-full",
+                    "h-full",
+                    "scale-[2]",
+                    "origin-center",
+                    "transition-[opacity,transform]",
+                    "duration-300",
+                    "ease-in-out",
+                    "opacity-0",
+                    "group-hover/copy-button:opacity-100",
+                    "group-hover/copy-button:scale-100",
+                    "pointer-events-none",
+                    "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+                )}
+            />
             <ChangingTextElement
                 ref={changingTextRef}
                 first={installText}
@@ -81,10 +102,15 @@ export const LandingCopyCommandButton = ({
                     fadedOut && "opacity-0",
                     !fadedOut && "opacity-100",
                 )}
-                activeClassName={clsx("text-gray-500 dark:text-gray-0")}
+                activeClassName={clsx(
+                    "text-gray-500 dark:text-gray-0",
+                    "relative",
+                    "z-[1]",
+                )}
             />
             <div
                 className={clsx(
+                    "z-[1]",
                     "py-4",
                     "pr-4",
                     "absolute",

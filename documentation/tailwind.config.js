@@ -295,6 +295,12 @@ module.exports = {
                 "landing-wizard-side-bg-light": [
                     "radial-gradient(rgb(45 45 45 / 15%) 0%, transparent 50%, transparent 100%)",
                 ],
+                "landing-copy-command-hover-bg-dark": [
+                    "radial-gradient(transparent 30%, rgba(71, 235, 235, 0.25))",
+                ],
+                "landing-copy-command-hover-bg-light": [
+                    "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
+                ],
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
