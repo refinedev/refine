@@ -239,7 +239,11 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "landing-lg:bg-opacity-100 dark:landing-lg:bg-opacity-100",
                         "text-refine-blue dark:text-refine-cyan-alt",
                         "landing-lg:text-gray-0 dark:landing-lg:text-gray-900",
-                        "hover:scale-105",
+                        "hover:brightness-125",
+                        "landing-lg:hover:scale-105 landing-lg:hover:brightness-100",
+                        "hover:text-refine-blue dark:hover:text-refine-cyan-alt",
+                        "landing-lg:hover:text-gray-0 dark:landing-lg:hover:text-gray-900",
+                        "duration-150 transition-transform ease-in-out",
                     )}
                 >
                     <span
