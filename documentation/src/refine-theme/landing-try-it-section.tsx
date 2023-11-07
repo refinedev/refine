@@ -196,6 +196,10 @@ const LandingTryItOptionsSection = ({
                         "justify-center",
                         "gap-2",
                         "hover:!no-underline",
+                        "hover:brightness-110",
+                        "transition-[filter]",
+                        "duration-150",
+                        "ease-in-out",
                     )}
                 >
                     <LandingStartActionIcon />
