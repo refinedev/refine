@@ -1,11 +1,12 @@
-import { Sandpack } from "@site/src/components/sandpack";
+import { SandpackNextJS } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function NextJSRouteDefinitions() {
     return (
-        <Sandpack
-            hidePreview
+        <SandpackNextJS
             showFiles
+            showNavigator
+            startRoute="/my-products"
             files={{
                 "/pages/_app.tsx": {
                     code: AppTsxCode,
