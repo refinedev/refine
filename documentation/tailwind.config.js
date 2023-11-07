@@ -286,6 +286,9 @@ module.exports = {
                 ],
                 "landing-hero-beam-bg":
                     "conic-gradient(from 280deg, currentColor 6%, transparent 14%, transparent 100%)",
+                "footer-dark-bg": [
+                    "linear-gradient(180deg, rgba(29, 30, 48, 0.5) 0%, #14141F 100%)",
+                ],
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
