@@ -170,7 +170,7 @@ const { ... } = useTable()
 And then navigate the following route:
 
 ```
-/products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
+/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
 ```
 
 You will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.

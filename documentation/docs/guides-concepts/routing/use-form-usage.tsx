@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function UseTableUsage({showConsole}) {
+export default function UseTableUsage({ showConsole }) {
     return (
         <Sandpack
             showNavigator
@@ -14,7 +14,7 @@ export default function UseTableUsage({showConsole}) {
                 "react-router-dom": "latest",
                 "react-router": "latest",
             }}
-            startRoute="/products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
+            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
             theme={{}}
             files={{
                 "/App.tsx": {
@@ -54,14 +54,14 @@ export default function App() {
         resources={[
           {
             name: "products",
-            list: "/products",
-            edit: "/products/:id/edit",
+            list: "/my-products",
+            edit: "/my-products/:id/edit",
           }
         ]}
         options={{syncWithLocation: true}}
       >
         <Routes>
-          <Route path="/products" element={<List />} />
+          <Route path="/my-products" element={<List />} />
         </Routes>
       </Refine>
     </BrowserRouter>
@@ -99,7 +99,7 @@ ul > li {
 }
 `.trim();
 
-const EditTsxCode = ``.trim()
+const EditTsxCode = ``.trim();
 
 const ListTsxCode = `
 import { useList, useGo, useTable } from "@refinedev/core";
@@ -163,5 +163,3 @@ export const List: React.FC = () => {
   );
 };
 `.trim();
-
-

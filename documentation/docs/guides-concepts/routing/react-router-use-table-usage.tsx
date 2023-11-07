@@ -12,7 +12,7 @@ export default function UseTableUsage() {
                 "react-router-dom": "latest",
                 "react-router": "latest",
             }}
-            startRoute="/products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
+            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
             theme={{}}
             files={{
                 "/App.tsx": {
@@ -52,13 +52,13 @@ export default function App() {
                 resources={[
                     {
                         name: "products",
-                        list: "/products",
+                        list: "/my-products",
                     },
                 ]}
                 options={{ syncWithLocation: true }}
             >
                 <Routes>
-                    <Route path="/products" element={<List />} />
+                    <Route path="/my-products" element={<List />} />
                 </Routes>
             </Refine>
         </BrowserRouter>

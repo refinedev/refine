@@ -35,7 +35,7 @@ function App({ Component, pageProps }: AppProps) {
             resources={[
                 {
                     name: "products",
-                    list: "/products",
+                    list: "/my-products",
                 },
             ]}
         >

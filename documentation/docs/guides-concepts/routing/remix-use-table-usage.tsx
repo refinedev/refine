@@ -52,12 +52,12 @@ export default function App() {
                         {
                             name: "products",
                             // We're defining the routes and assigning them to an action of a resource
-                            list: "/products",
-                            show: "/products/:id",
+                            list: "/my-products",
+                            show: "/my-products/:id",
                             // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                            // create: "/products/create",
-                            // edit: "/products/edit/:id",
-                            // clone: "/products/clone/:id",
+                            // create: "/my-products/create",
+                            // edit: "/my-products/edit/:id",
+                            // clone: "/my-products/clone/:id",
                         },
                     ]}
                 >
