@@ -213,7 +213,7 @@ const PackagesContainer = ({
                 onMouseLeave={() => setAnimate(true)}
                 className={clsx(
                     className,
-                    animate ? "animation-running" : "animation-paused",
+                    animate ? "animation-paused" : "animation-paused",
                     animDirection === "left"
                         ? "animate-landing-packages-left"
                         : "animate-landing-packages-right",
@@ -285,6 +285,7 @@ const PackageItem = (props: {
             >
                 <div
                     className={clsx(
+                        "relative",
                         "text-sm",
                         "dark:bg-gray-0 bg-gray-900",
                         "dark:text-gray-700 text-gray-300",
@@ -296,28 +297,30 @@ const PackageItem = (props: {
                 >
                     {tooltip}
                 </div>
-            </div>
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={40}
-                height={15}
-                fill="none"
-                className={clsx(
-                    "absolute",
-                    "scale-0",
-                    "top-[-12px]",
-                    "group-hover:scale-100",
-                    "transition-transform",
-                    "origin-bottom",
-                    "dark:text-gray-0 text-gray-900",
-                )}
-            >
-                <path
-                    fill="currentColor"
-                    d="M17.73 13.664C18.238 14.5 19.089 15 20 15c.912 0 1.763-.501 2.27-1.336l3.025-4.992C26.306 7.002 28.01 7 29.833 7H40V0H0v7h10.167c1.823 0 3.527.003 4.538 1.672l3.026 4.992Z"
-                />
-            </svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={40}
+                    height={15}
+                    fill="none"
+                    className={clsx(
+                        "absolute",
+                        "scale-0",
+                        "-bottom-2",
+                        "left-1/2",
+                        "-translate-x-1/2",
+                        "group-hover:scale-100",
+                        "transition-transform",
+                        "origin-bottom",
+                        "dark:text-gray-0 text-gray-900",
+                    )}
+                >
+                    <path
+                        fill="currentColor"
+                        d="M17.73 13.664C18.238 14.5 19.089 15 20 15c.912 0 1.763-.501 2.27-1.336l3.025-4.992C26.306 7.002 28.01 7 29.833 7H40V0H0v7h10.167c1.823 0 3.527.003 4.538 1.672l3.026 4.992Z"
+                    />
+                </svg>
+            </div>
         </div>
     );
 };
