@@ -78,6 +78,10 @@ module.exports = {
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
                 disket: ["Disket Mono", ...defaultTheme.fontFamily.mono],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
+                "jetBrains-mono": [
+                    "JetBrains Mono",
+                    ...defaultTheme.fontFamily.mono,
+                ],
             },
             dropShadow: {
                 "showcase-highlight": [
@@ -98,6 +102,10 @@ module.exports = {
                 tagTile: "3px -2px 8px 0 rgba(42, 42, 66, 0.25)",
                 startTiles: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
+                "landing-sweet-spot-code-dark":
+                    "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.11), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.13), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.15), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.19), 0px 82px 80px 0px rgba(0, 0, 0, 0.26)",
+                "landing-sweet-spot-code-light":
+                    "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.02), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.04), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.04), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.05), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.06), 0px 82px 80px 0px rgba(0, 0, 0, 0.09)",
             },
             backgroundColor: {
                 "landing-header-bg": "rgba(10, 10, 41, 0.70)",
@@ -109,9 +117,10 @@ module.exports = {
                 "header-blur": "12px",
             },
             backgroundImage: {
-                noise: "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-                "landing-noise":
+                "landing-noise": [
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                ],
+                noise: "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 "walkthrough-button-shadow":
                     "conic-gradient(from 231deg at 50% 50%, #A3A3F5 0%, #4D4DB2 6%, #4D4DB2 44%, #A3A3F5 50%, #4D4DB2 56%, #4D4DB2 94%, #A3A3F5 100%)",
                 "walkthrough-button-alt-shadow":
@@ -125,6 +134,17 @@ module.exports = {
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-stars.webp)",
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
                 ],
+                "landing-component-divider-dark":
+                    "linear-gradient(90deg, rgba(48, 52, 80, 0) 0%, #303450 12.5%, #303450 87.5%, rgba(48, 52, 80, 0) 100%)",
+                "landing-component-divider":
+                    "linear-gradient(270deg, rgba(31, 173, 102, 0) 0%, rgba(31, 173, 102, 0.5) 12.5%, rgba(31, 173, 102, 0.5) 87.5%, rgba(31, 173, 102, 0) 100%)",
+                "landing-component-badge": [
+                    "linear-gradient(306deg, #303450 0%, rgba(20, 20, 31, 0.5) 100%)",
+                    "linear-gradient(168deg, rgba(38, 217, 127, 0.9) 15%, rgba(71, 235, 235, 0) 50%)",
+                    "linear-gradient(0deg, #303450, #303450)",
+                ],
+                "landing-component-badge-glow":
+                    "radial-gradient(50% 50% at 50% 50%, rgba(38, 217, 127, 0.1) 0%, rgba(71, 235, 235, 0) 100%)",
                 "landing-text-bg":
                     "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%)",
                 "landing-text-bg-alt":
@@ -198,6 +218,54 @@ module.exports = {
                 ],
                 "landing-packages": [
                     "radial-gradient(50% 100% at 50% -60%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
+                ],
+                "landing-sweet-spot-glow-red-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(250, 56, 82, 0.15) 0%, rgba(250, 56, 82, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-yellow-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(249, 213, 31, 0.15) 0%, rgba(249, 213, 31, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-orange-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(249, 140, 31, 0.15) 0%, rgba(249, 140, 31, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-cyan-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(71, 209, 191, 0.15) 0%, rgba(71, 209, 191, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-blue-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(61, 184, 245, 0.15) 0%, rgba(61, 184, 245, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-indigo-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-red-light": [
+                    "url('')",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(250, 56, 82, 0.15) 0%, rgba(250, 56, 82, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-yellow-light": [
+                    "url('')",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(249, 213, 31, 0.15) 0%, rgba(249, 213, 31, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-orange-light": [
+                    "url('')",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(249, 140, 31, 0.15) 0%, rgba(249, 140, 31, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-cyan-light": [
+                    "url('')",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(71, 209, 191, 0.15) 0%, rgba(71, 209, 191, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-blue-light": [
+                    "url('')",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(61, 184, 245, 0.15) 0%, rgba(61, 184, 245, 0.00) 100%)",
+                ],
+                "landing-sweet-spot-glow-indigo-light": [
+                    "url('')",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
                 ],
                 "landing-packages-text":
                     "linear-gradient(180deg, #14141F 0%, #474E6B 100%)",
@@ -314,6 +382,18 @@ module.exports = {
                 "landing-wizard-option": "600px 600px, auto",
                 "landing-wizard-side-size": "250px 550px",
             },
+            backgroundPosition: {
+                "landing-sweet-spot-glow-position-lg":
+                    "center, calc(50% + 800px) calc(50% - 300px)",
+                "landing-sweet-spot-glow-position-md":
+                    "center, calc(50% + 490px) calc(50% + 180px)",
+                "landing-sweet-spot-glow-position-xs":
+                    "center, calc(50% - 30px) calc(50% + 300px)",
+            },
+            backgroundSize: {
+                "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
+                "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
+            },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
                 beat: "2s ease-in-out 1.5s infinite normal forwards running landing-hero-beat",
@@ -337,8 +417,10 @@ module.exports = {
                 "mini-bounce": "mini-bounce 3s ease-in-out infinite",
                 "dot-waves": "dot-waves 2.5s linear infinite",
                 "landing-packages-left":
-                    "landing-packages-left 20s linear infinite",
+                    "landing-packages-left 65s linear infinite",
                 "landing-packages-right":
+                    "landing-packages-right 60s linear infinite",
+                "code-scroll": "code-scroll 35s linear infinite",
                     "landing-packages-right 20s linear infinite",
                 "beam-spin": "beam-spin 3s linear 1 forwards",
                 "landing-hero-beam-line":
@@ -347,6 +429,14 @@ module.exports = {
                     "landing-hero-beam-bottom 7.5s ease-in-out infinite",
             },
             keyframes: {
+                "code-scroll": {
+                    "0%": {
+                        transform: "translateY(0)",
+                    },
+                    "100%": {
+                        transform: "translateY(-576px)",
+                    },
+                },
                 "walkthrough-bounce": {
                     "0%": {
                         transform: "translateY(4%)",

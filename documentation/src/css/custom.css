@@ -97,6 +97,40 @@
         mask-position: center;
         mask-repeat: no-repeat;
     }
+
+    .bg-landing-component-dark {
+        background: radial-gradient(
+                66.67% 50% at 50% 0%,
+                rgba(108, 119, 147, 0.15) 0%,
+                rgba(108, 119, 147, 0) 100%
+            ),
+            radial-gradient(
+                66.67% 50% at 50% 100%,
+                rgba(108, 119, 147, 0.05) 0%,
+                rgba(108, 119, 147, 0) 100%
+            ),
+            var(--900, #14141f);
+    }
+
+    .bg-landing-component {
+        border-radius: 8px;
+        background: radial-gradient(
+                66.67% 50% at 50% 0%,
+                rgba(31, 173, 102, 0.25) 0%,
+                rgba(31, 173, 102, 0) 100%
+            ),
+            radial-gradient(
+                66.67% 50% at 50% 100%,
+                rgba(31, 173, 102, 0.1) 0%,
+                rgba(31, 173, 102, 0) 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(31, 173, 102, 0.03) 0%,
+                rgba(31, 173, 102, 0.03) 100%
+            ),
+            #fff;
+    }
 }
 
 .landing-mask-image-hero-wide {
@@ -1109,4 +1143,35 @@ html[data-theme="dark"] .sourcecode-badge {
         rgba(0, 0, 0, 0) 100%
     );
     mask-repeat: no-repeat;
+}
+
+.landing-react-code-mask-dark {
+    mask-image: radial-gradient(
+        100% 100% at 0% 0%,
+        rgba(217, 217, 217, 0.5) 0%,
+        rgba(217, 217, 217, 0.5) 25%,
+        rgba(217, 217, 217, 0.5) 50%,
+        #d9d9d9 75%,
+        rgba(217, 217, 217, 0) 100%
+    );
+}
+
+.landing-react-code-mask {
+    mask-image: radial-gradient(
+        100% 100% at 0% 0%,
+        rgba(217, 217, 217, 0.5) 0%,
+        rgba(217, 217, 217, 0.5) 25%,
+        #d9d9d9 50%,
+        #d9d9d9 75%,
+        rgba(217, 217, 217, 0) 100%
+    );
+}
+
+.landing-sweet-spot-mask {
+    mask-image: linear-gradient(
+        90deg,
+        #fff 0%,
+        rgba(255, 255, 255, 0.25) 80%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useLayoutEffect } from "react";
 import {
     OracleIcon,
     SalesforceIcon,
@@ -23,11 +23,11 @@ type Props = {
 export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
     const lastChangedIndex = React.useRef<number>(0);
 
-    const [randomIcons, setRandomIcons] = React.useState<IList>(() => {
-        // get random 6 icon from the list.
-        const randomIcons = list.sort(() => 0.5 - Math.random()).slice(0, 6);
-        return randomIcons;
-    });
+    const [randomIcons, setRandomIcons] = React.useState<IList>([]);
+
+    useLayoutEffect(() => {
+        setRandomIcons(list.sort(() => 0.5 - Math.random()).slice(0, 6));
+    }, []);
 
     useEffect(() => {
         // change one random icon in the list every X seconds.
@@ -73,6 +73,7 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
                     className={clsx(
                         "grid",
                         "grid-cols-3 landing-lg:grid-cols-6",
+                        "min-h-[160px] landing-lg:min-h-[80px]",
                         "justify-center",
                         "items-center",
                         "mt-6",

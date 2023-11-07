@@ -18,7 +18,6 @@ import {
     ElideGraphql,
     EntRefine,
     Firebase,
-    Gatsby,
     Graphql,
     Hasura,
     Headless,
@@ -146,7 +145,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                     className={clsx(
                         "not-prose",
                         "mt-4 landing-sm:mt-6 landing-lg:mt-10",
-                        "px-4 landing-md:px-10",
+                        "px-4 landing-sm:px-10",
                     )}
                 >
                     <h6
@@ -202,24 +201,37 @@ const PackagesContainer = ({
 
     return (
         <div
-            onMouseEnter={() => setAnimate(false)}
-            onMouseLeave={() => setAnimate(true)}
             className={clsx(
-                className,
-                animate ? "animation-running" : "animation-paused",
-                animDirection === "left"
-                    ? "animate-landing-packages-left"
-                    : "animate-landing-packages-right",
+                "relative",
                 "flex",
                 "items-center",
-                "justify-center",
-                "gap-[18px]",
-                "mt-6",
-                "relative",
+                animDirection === "left" ? "justify-start" : "justify-end",
             )}
-            {...props}
         >
-            {children}
+            <div
+                onMouseEnter={() => setAnimate(false)}
+                onMouseLeave={() => setAnimate(true)}
+                className={clsx(
+                    className,
+                    animate ? "animation-running" : "animation-paused",
+                    animDirection === "left"
+                        ? "animate-landing-packages-left"
+                        : "animate-landing-packages-right",
+                    "absolute",
+                    "left-0",
+                    "top-0",
+                    "pr-4",
+                    "w-auto",
+                    "flex",
+                    "items-center",
+                    "gap-[18px]",
+                    "mt-6",
+                    "relative",
+                )}
+                {...props}
+            >
+                {children}
+            </div>
         </div>
     );
 };
@@ -273,6 +285,7 @@ const PackageItem = (props: {
             >
                 <div
                     className={clsx(
+                        "relative",
                         "text-sm",
                         "dark:bg-gray-0 bg-gray-900",
                         "dark:text-gray-700 text-gray-300",
@@ -284,28 +297,30 @@ const PackageItem = (props: {
                 >
                     {tooltip}
                 </div>
-            </div>
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={40}
-                height={15}
-                fill="none"
-                className={clsx(
-                    "absolute",
-                    "scale-0",
-                    "top-[-12px]",
-                    "group-hover:scale-100",
-                    "transition-transform",
-                    "origin-bottom",
-                    "dark:text-gray-0 text-gray-900",
-                )}
-            >
-                <path
-                    fill="currentColor"
-                    d="M17.73 13.664C18.238 14.5 19.089 15 20 15c.912 0 1.763-.501 2.27-1.336l3.025-4.992C26.306 7.002 28.01 7 29.833 7H40V0H0v7h10.167c1.823 0 3.527.003 4.538 1.672l3.026 4.992Z"
-                />
-            </svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={40}
+                    height={15}
+                    fill="none"
+                    className={clsx(
+                        "absolute",
+                        "scale-0",
+                        "-bottom-2",
+                        "left-1/2",
+                        "-translate-x-1/2",
+                        "group-hover:scale-100",
+                        "transition-transform",
+                        "origin-bottom",
+                        "dark:text-gray-0 text-gray-900",
+                    )}
+                >
+                    <path
+                        fill="currentColor"
+                        d="M17.73 13.664C18.238 14.5 19.089 15 20 15c.912 0 1.763-.501 2.27-1.336l3.025-4.992C26.306 7.002 28.01 7 29.833 7H40V0H0v7h10.167c1.823 0 3.527.003 4.538 1.672l3.026 4.992Z"
+                    />
+                </svg>
+            </div>
         </div>
     );
 };
@@ -320,6 +335,11 @@ const listOne = [
         icon: (props: SVGProps<SVGSVGElement>) => <Mui {...props} />,
         label: "Material UI",
         tooltip: "npm i @refinedev/mui",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
+        label: "Mantine",
+        tooltip: "npm i @refinedev/mantine",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
@@ -380,11 +400,6 @@ const listOne = [
         icon: (props: SVGProps<SVGSVGElement>) => <EntRefine {...props} />,
         label: "EntRefine",
         tooltip: "npm i entrefine",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Gatsby {...props} />,
-        label: "Gatsby",
-        tooltip: "npm i @refinedev/gatsby-router",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Hasura {...props} />,
@@ -488,5 +503,10 @@ const listTwo = [
         icon: (props: SVGProps<SVGSVGElement>) => <JSONApi {...props} />,
         label: "JSON API",
         tooltip: "npm i refine-jsonapi",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Nest {...props} />,
+        label: "Nest",
+        tooltip: "npm i @refinedev/nest",
     },
 ];
