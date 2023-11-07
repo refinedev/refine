@@ -101,7 +101,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                         "tabular-nums",
                                         "whitespace-nowrap",
                                         "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
-                                        "-tracking-tighter",
                                         "dark:bg-landing-stats-text-dark bg-landing-stats-text",
                                         "bg-clip-text",
                                         "text-transparent",
