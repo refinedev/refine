@@ -164,7 +164,10 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "w-full",
                         "h-auto",
                         "aspect-[1168/736]",
-                        "bg-gray-0",
+                        "transition-colors",
+                        "duration-150",
+                        "ease-in-out",
+                        activeApp.dark ? "bg-gray-900" : "bg-gray-0",
                     )}
                     ref={ref}
                 />
