@@ -400,7 +400,11 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
                                 const { data } = useList({
                                     resource: "notifications",
                                     filters: [
-                                        { field: "is_read", operator: "eq", value: false },
+                                        {
+                                            field: "is_read",
+                                            operator: "eq",
+                                            value: false 
+                                        },
                                     ]
                                 });
                                 `,

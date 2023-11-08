@@ -557,18 +557,15 @@ module.exports = {
                 },
                 "dot-waves": {
                     "0%": {
-                        width: "4px",
-                        height: "4px",
+                        transform: "scale(0)",
                         opacity: 1,
                     },
                     "75%": {
-                        width: "36px",
-                        height: "36px",
+                        transform: "scale(2)",
                         opacity: 0,
                     },
                     "100%": {
-                        width: "4px",
-                        height: "4px",
+                        transform: "scale(0)",
                         opacity: 0,
                     },
                 },
@@ -583,11 +580,11 @@ module.exports = {
                 "beam-spin": {
                     "0%": {
                         transform:
-                            "translateX(-45px) translateY(-190px) rotate(0deg)",
+                            "translateX(-45px) translateY(-190px) translateZ(0) rotate(0deg)",
                     },
                     "100%": {
                         transform:
-                            "translateX(-45px) translateY(-190px) rotate(-360deg)",
+                            "translateX(-45px) translateY(-190px) translateZ(0) rotate(-360deg)",
                     },
                 },
                 "landing-hero-beam-line": {

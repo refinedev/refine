@@ -17,17 +17,17 @@ export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
             className={className}
             style={{
                 position: "absolute",
-                left: x,
-                top: y,
-                width: 40,
-                height: 40,
+                left: Number(x) + 10,
+                top: Number(y) + 10,
+                width: 16,
+                height: 16,
             }}
         >
             <div
                 className={clsx(
                     "absolute",
-                    "w-10",
-                    "h-10",
+                    "w-4",
+                    "h-4",
                     "flex",
                     "items-center",
                     "justify-center",
@@ -53,8 +53,8 @@ export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
                     <div
                         key={d}
                         className={clsx(
-                            "w-10",
-                            "h-10",
+                            "w-4",
+                            "h-4",
                             "absolute",
                             "left-0",
                             "top-0",
@@ -67,7 +67,10 @@ export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
                     >
                         <div
                             className={clsx(
+                                "opacity-0",
                                 "animate-dot-waves",
+                                "w-4",
+                                "h-4",
                                 "rounded-full",
                                 "border-2",
                                 "border-refine-blue",
@@ -82,62 +85,4 @@ export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
             </div>
         </div>
     );
-    // return (
-    //     <foreignObject x={x} y={y} width={40} height={40}>
-    //         <div
-    //             className={clsx(
-    //                 "absolute",
-    //                 "w-10",
-    //                 "h-10",
-    //                 "flex",
-    //                 "items-center",
-    //                 "justify-center",
-    //                 "pointer-events-none",
-    //             )}
-    //         >
-    //             <div
-    //                 className={clsx(
-    //                     "absolute",
-    //                     "w-3",
-    //                     "h-3",
-    //                     "rounded-full",
-    //                     "left-1/2",
-    //                     "top-1/2",
-    //                     "-translate-x-1/2",
-    //                     "-translate-y-1/2",
-    //                     "bg-landing-hero-xray-dot-center-bg",
-    //                 )}
-    //             />
-    //             {[0, 400, 800].map((d) => (
-    //                 <div
-    //                     key={d}
-    //                     className={clsx(
-    //                         "w-10",
-    //                         "h-10",
-    //                         "absolute",
-    //                         "left-0",
-    //                         "top-0",
-    //                         "right-0",
-    //                         "bottom-0",
-    //                         "flex",
-    //                         "items-center",
-    //                         "justify-center",
-    //                     )}
-    //                 >
-    //                     <div
-    //                         className={clsx(
-    //                             "animate-dot-waves",
-    //                             "rounded-full",
-    //                             "border-2",
-    //                             "border-refine-cyan",
-    //                         )}
-    //                         style={{
-    //                             animationDelay: `${d}ms`,
-    //                         }}
-    //                     />
-    //                 </div>
-    //             ))}
-    //         </div>
-    //     </foreignObject>
-    // );
 });
