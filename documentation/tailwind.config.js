@@ -429,6 +429,7 @@ module.exports = {
                 "opacity-reveal": "opacity-reveal 1s ease-in-out forwards",
                 "wheel-already-invented-reveal":
                     "wheel-already-invented-reveal 0.6s cubic-bezier(.23,.95,.64,1.24) forwards",
+                "showcase-reveal": "showcase-reveal 0.3s ease-in-out forwards",
             },
             keyframes: {
                 "code-scroll": {
@@ -636,6 +637,16 @@ module.exports = {
                     "0%": {},
                     "100%": {
                         transform: "translateX(0)",
+                    },
+                },
+                "showcase-reveal": {
+                    "0%": {
+                        transform: "translateY(-100px)",
+                        opacity: 0,
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                        opacity: 1,
                     },
                 },
             },

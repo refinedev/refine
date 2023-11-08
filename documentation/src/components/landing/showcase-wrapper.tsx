@@ -4,7 +4,7 @@ import { ShowcaseIndicator } from "./showcase-indicator";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/nightOwl";
 import dedent from "dedent";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 type HighlightProps = {
     render: string;
@@ -192,43 +192,24 @@ const HighlightItem = React.memo(function HighlightBase({
 
 export const ShowcaseWrapper = React.memo(
     function ShowcaseWrapperBase({ className, render, highlights }: Props) {
+        const ref = React.useRef<HTMLDivElement>(null);
+        const inView = useInView(ref);
         const [mounted, setMounted] = React.useState(false);
 
         React.useEffect(() => {
-            const t = setTimeout(() => {
-                setMounted(true);
-            }, 500);
+            if (inView) {
+                const t = setTimeout(() => {
+                    setMounted(true);
+                }, 500);
 
-            return () => {
-                clearTimeout(t);
-            };
-        }, []);
+                return () => {
+                    clearTimeout(t);
+                };
+            }
+        }, [inView]);
 
         return (
-            <motion.div
-                className={clsx(className)}
-                initial={{
-                    opacity: 0,
-                    y: "-100%",
-                    // z: 0,
-                }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                    // z: 0,
-                }}
-                transition={{
-                    duration: 0.2,
-                    type: "spring",
-                    damping: 10,
-                    stiffness: 50,
-                }}
-                exit={{
-                    opacity: 0,
-                    y: "100%",
-                    // z: 0,
-                }}
-            >
+            <div ref={ref} className={clsx(className)}>
                 <svg
                     width={1168}
                     height={736}
@@ -288,7 +269,7 @@ export const ShowcaseWrapper = React.memo(
                         </motion.foreignObject>
                     )}
                 </svg>
-            </motion.div>
+            </div>
         );
     },
     (prev, next) =>

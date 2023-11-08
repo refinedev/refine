@@ -1,14 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import { AnimatePresence, useInView } from "framer-motion";
 import { LandingArrowRightIcon } from "./icons/landing-arrow-right";
 import { ShowcaseWrapper } from "../components/landing/showcase-wrapper";
 
 export const LandingHeroShowcaseSection = ({}) => {
-    const ref = React.useRef<HTMLDivElement>(null);
-    const inView = useInView(ref, {
-        margin: "150px",
-    });
     const [activeApp, setActiveApp] = React.useState(apps[0]);
 
     const ShowcaseComponent = React.useMemo(() => {
@@ -169,25 +164,20 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "ease-in-out",
                         activeApp.dark ? "bg-gray-900" : "bg-gray-0",
                     )}
-                    ref={ref}
                 />
-                <AnimatePresence>
-                    {inView ? (
-                        <ShowcaseComponent
-                            className={clsx(
-                                "absolute",
-                                "left-0",
-                                "top-0",
-                                "w-full",
-                                "rounded-lg",
-                                "landing-md:rounded-xl",
-                                "landing-lg:rounded-2xl",
-                                "overflow-hidden",
-                            )}
-                            key={activeApp.name}
-                        />
-                    ) : null}
-                </AnimatePresence>
+                <ShowcaseComponent
+                    className={clsx(
+                        "animate-showcase-reveal",
+                        "absolute",
+                        "left-0",
+                        "top-0",
+                        "w-full",
+                        "rounded-lg",
+                        "landing-md:rounded-xl",
+                        "landing-lg:rounded-2xl",
+                        "overflow-hidden",
+                    )}
+                />
                 <div
                     key={activeApp.name}
                     className={clsx(
