@@ -42,14 +42,23 @@ function Home() {
                             "mx-auto",
                         )}
                     >
-                        <LandingHeroSection
+                        <div
                             className={clsx(
                                 "mt-0",
                                 "landing-sm:mt-8",
                                 "landing-lg:mt-20",
                             )}
-                        />
-                        <LandingTrustedByDevelopers />
+                        >
+                            <LandingHeroSection />
+                            <LandingTrustedByDevelopers
+                                className={clsx(
+                                    "mt-12",
+                                    "landing-sm:mt-20",
+                                    "landing-md:mt-28",
+                                    "landing-lg:mt-10",
+                                )}
+                            />
+                        </div>
                         <div className={clsx("flex flex-col", "gap-6")}>
                             <LandingPackages />
                             <div
