@@ -153,7 +153,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                             "dark:text-gray-300 text-gray-900",
                         )}
                     >
-                        Wheel? already invented.
+                        Wheel? Already invented.
                     </h6>
                     <div
                         className={clsx(
