@@ -10,6 +10,7 @@ import {
 } from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
+import camelCase from "camelcase";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -57,34 +58,34 @@ export type HasuraFilterCondition =
     | "_iregex";
 
 const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
-    {
-        eq: "_eq",
-        ne: "_neq",
-        lt: "_lt",
-        gt: "_gt",
-        lte: "_lte",
-        gte: "_gte",
-        in: "_in",
-        nin: "_nin",
-        contains: "_ilike",
-        ncontains: "_nilike",
-        containss: "_like",
-        ncontainss: "_nlike",
-        null: "_is_null",
-        or: "_or",
-        and: "_and",
-        between: undefined,
-        nbetween: undefined,
-        nnull: "_is_null",
-        startswith: "_iregex",
-        nstartswith: "_iregex",
-        endswith: "_iregex",
-        nendswith: "_iregex",
-        startswiths: "_similar",
-        nstartswiths: "_nsimilar",
-        endswiths: "_similar",
-        nendswiths: "_nsimilar",
-    };
+{
+    eq: "_eq",
+    ne: "_neq",
+    lt: "_lt",
+    gt: "_gt",
+    lte: "_lte",
+    gte: "_gte",
+    in: "_in",
+    nin: "_nin",
+    contains: "_ilike",
+    ncontains: "_nilike",
+    containss: "_like",
+    ncontainss: "_nlike",
+    null: "_is_null",
+    or: "_or",
+    and: "_and",
+    between: undefined,
+    nbetween: undefined,
+    nnull: "_is_null",
+    startswith: "_iregex",
+    nstartswith: "_iregex",
+    endswith: "_iregex",
+    nendswith: "_iregex",
+    startswiths: "_similar",
+    nstartswiths: "_nsimilar",
+    endswiths: "_similar",
+    nendswiths: "_nsimilar",
+};
 
 export const handleFilterValue = (operator: CrudOperators, value: any) => {
     switch (operator) {
@@ -159,15 +160,20 @@ const handleError = (error: object | Error) => {
     return Promise.reject(customError);
 };
 
+export type NamingConvention = "hasura-default" | "graphql-default";
+
 export type NHostDataProviderOptions = {
     idType?: "uuid" | "Int" | ((resource: string) => "uuid" | "Int");
+    namingConvention?: NamingConvention
 };
 
 const dataProvider = (
     client: NhostClient,
     options?: NHostDataProviderOptions,
 ): Required<DataProvider> => {
-    const { idType } = options ?? {};
+    const { idType, namingConvention = 'hasura-default' } = options ?? {};
+    const defaultNamingConvention = namingConvention === 'hasura-default'
+
     const getIdType = (resource: string) => {
         if (typeof idType === "function") {
             return idType(resource);
@@ -176,7 +182,9 @@ const dataProvider = (
     };
     return {
         getOne: async ({ resource, id, meta }) => {
-            const operation = `${meta?.operation ?? resource}_by_pk`;
+            const operation = defaultNamingConvention ?
+                `${meta?.operation ?? resource}_by_pk`
+                : camelCase(`${meta?.operation ?? resource}_by_pk`)
 
             const { query, variables } = gql.query({
                 operation,
@@ -261,9 +269,9 @@ const dataProvider = (
                     variables: {
                         ...(mode === "server"
                             ? {
-                                  limit,
-                                  offset: (current - 1) * limit,
-                              }
+                                limit,
+                                offset: (current - 1) * limit,
+                            }
                             : {}),
                         ...(hasuraSorting && {
                             order_by: {
