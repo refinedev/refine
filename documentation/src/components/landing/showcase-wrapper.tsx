@@ -14,6 +14,7 @@ type HighlightProps = {
     width: string | number;
     height: string | number;
     codeClassName?: string;
+    overlap?: boolean;
     codePosition: "top" | "bottom" | "left" | "right";
 };
 
@@ -32,6 +33,7 @@ const HighlightItem = React.memo(function HighlightBase({
     height,
     codeClassName,
     codePosition,
+    overlap,
 }: HighlightProps) {
     return (
         <div
@@ -93,6 +95,14 @@ const HighlightItem = React.memo(function HighlightBase({
                         "origin-bottom-left": codePosition === "top",
                         "origin-top-right": codePosition === "left",
                     },
+                    overlap && {
+                        "-translate-y-12 translate-x-6":
+                            codePosition === "bottom",
+                        "translate-y-12 translate-x-6": codePosition === "top",
+                        "translate-x-12 translate-y-6": codePosition === "left",
+                        "-translate-x-12 translate-y-6":
+                            codePosition === "right",
+                    },
                     codeClassName,
                 )}
                 style={{
@@ -129,12 +139,12 @@ const HighlightItem = React.memo(function HighlightBase({
                 <div
                     className={clsx(
                         "bg-gray-900",
-                        "py-4 px-3",
+                        "py-4 px-4",
                         "rounded-xl",
                         "text-gray-0",
                         "whitespace-nowrap",
                         "break-keep",
-                        "text-xs leading-5",
+                        "text-sm leading-5",
                         "tracking-tight",
                         "font-mono",
                     )}

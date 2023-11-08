@@ -482,14 +482,14 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/language.png",
                     codePosition: "left",
                     code: `
-                            import { useList } from "@refinedev/core";
+                            import { useSetLocale, useGetLocale } from "@refinedev/core";
 
-                            const { data } = useList({
-                                resource: "notifications",
-                                filters: [
-                                    { field: "is_read", operator: "eq", value: false },
-                                ]
-                            });
+                            const currentLanguage = useGetLocale();
+                            const setLanguage = useSetLocale();
+
+                            const onChange = (language: string) => {
+                                setLanguage(language);
+                            };
                             `,
                 },
                 {
@@ -500,6 +500,7 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/map.png",
                     codePosition: "right",
                     codeClassName: "!pl-2",
+                    overlap: true,
                     code: `
                             import { useShow } from "@refinedev/core";
 
@@ -518,8 +519,19 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/actions.png",
                     codePosition: "left",
                     code: `
-                            import { useList } from "@refinedev/core";
-                            `,
+                    import { useResource, useUpdate } from "@refinedev/core";
+
+                    const { id }  = useResource();
+                    const { mutate } = useUpdate();
+
+                    const onReject = () => mutate({
+                        resource: “orders”,
+                        id,
+                        values: {
+                            status: “rejected”,
+                        },
+                    });
+                    `,
                 },
                 {
                     x: 8,
@@ -527,10 +539,31 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     width: 184,
                     height: 120,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/menu.png",
-                    codePosition: "bottom",
+                    codePosition: "right",
                     code: `
-                            import { useList } from "@refinedev/core";
-                            `,
+                    
+                    import { Refine } from "@refinedev/core";
+
+                    <Refine
+                        resources={[
+                            {
+                                name: "stores",
+                                meta: { ... },
+                            }
+                            {
+                                name: "products",
+                                meta: { parent: "stores", },  
+                            },
+                            {
+                                name: "categories",
+                                meta: { parent: "stores", },  
+                            }
+                        ]}
+                    >   
+                        ...
+                    </Refine>
+                    
+                    `,
                 },
             ]}
         />
@@ -551,13 +584,27 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/table.png",
                     codePosition: "right",
                     code: `
-                        import { useList } from "@refinedev/core";
+                        import { useTable } from "@refinedev/react-table";
 
-                        const { data } = useList({
-                            resource: "notifications",
-                            filters: [
-                                { field: "is_read", operator: "eq", value: false },
-                            ]
+                        const columns = [
+                            {
+                                id: "name",
+                                header: "Name",
+                                accessorKey: "name",
+                            },
+                            {
+                                id: "cpu",
+                                header: "CPU(cores)",
+                                accessorKey: "cpu",
+                            },
+                            // ...
+                        ];
+
+                        const table = useTable({
+                            columns,
+                            refineCoreProps: {
+                                liveMode: "auto",
+                            }
                         });
                         `,
                 },
@@ -569,14 +616,17 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/actions.png",
                     codePosition: "left",
                     code: `
-                        import { useList } from "@refinedev/core";
+                        import { useDelete, useResource } from "@refinedev/core";
 
-                        const { data } = useList({
-                            resource: "notifications",
-                            filters: [
-                                { field: "is_read", operator: "eq", value: false },
-                            ]
-                        });
+                        const { id } = useResource();
+                        const { mutate } = useDelete();
+
+                        const onDelete = () => {
+                            mutate({
+                                resource: "pods",
+                                id,
+                            });
+                        }
                         `,
                 },
                 {
@@ -587,7 +637,20 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/form.png",
                     codePosition: "left",
                     code: `
-                        import { useList } from "@refinedev/core";
+                        import { useModalForm } from "@refinedev/react-hook-form";
+
+                        useModalForm({
+                            refineCoreProps: {
+                                resource: “pods”,
+                                liveMode: “manual”,
+                                queryMeta: {
+                                    populate: [
+                                        "labels",
+                                        "conditions",
+                                    ],
+                                },
+                            }
+                        });
                         `,
                 },
             ]}
