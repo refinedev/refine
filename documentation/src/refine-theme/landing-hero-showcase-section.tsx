@@ -22,6 +22,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                 "p-2 landing-sm:p-4",
                 "relative",
                 "group/showcase",
+                "landing-lg:overflow-hidden",
             )}
         >
             <div className={clsx("flex", "w-full", "gap-2")}>
@@ -184,9 +185,9 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "hidden",
                         "landing-lg:block",
                         "landing-lg:opacity-0",
-                        "landing-lg:translate-y-8",
+                        "landing-lg:translate-y-24",
                         "landing-lg:group-hover/showcase:opacity-100 landing-lg:group-hover/showcase:translate-y-0",
-                        "duration-150",
+                        "duration-300",
                         "ease-in-out",
                         "transition-[opacity,transform,background-color,color]",
                         "absolute",
@@ -196,12 +197,10 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "w-full",
                         "h-24",
                         "opacity-0",
-                        "translate-y-16",
                         activeApp.dark &&
                             "bg-[linear-gradient(0deg,_#14141F_30%,_transparent_90%,_transparent_100%)]",
                         !activeApp.dark &&
                             "bg-[linear-gradient(0deg,_#FFFFFF_30%,_transparent_90%,_transparent_100%)]",
-                        "animate-showcase-bottom-fade-reveal",
                         "rounded-bl-lg rounded-br-lg",
                         "landing-md:rounded-bl-xl landing-md:rounded-br-xl",
                         "landing-lg:rounded-bl-2xl landing-lg:rounded-br-2xl",
@@ -225,8 +224,9 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "landing-lg:translate-y-8",
                         "landing-lg:group-hover/showcase:opacity-100 landing-lg:group-hover/showcase:translate-y-0",
                         "duration-150",
+                        "delay-75",
                         "ease-in-out",
-                        "transition-[opacity,transform,background-color,color]",
+                        "transition-all",
                         "landing-lg:mt-[-110px]",
                         "hover:no-underline",
                         "z-[3]",
@@ -246,7 +246,10 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "landing-lg:hover:scale-105 landing-lg:hover:brightness-100",
                         "hover:text-refine-blue dark:hover:text-refine-cyan-alt",
                         "landing-lg:hover:text-gray-0 dark:landing-lg:hover:text-gray-900",
-                        "duration-150 transition-transform ease-in-out",
+                        "landing-lg:border-8 landing-lg:border-solid",
+                        activeApp.dark
+                            ? "landing-lg:border-gray-900"
+                            : "landing-lg:border-gray-0",
                     )}
                 >
                     <span
@@ -574,6 +577,7 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
     return (
         <ShowcaseWrapper
             className={className}
+            dark
             render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/base_render.png"
             highlights={[
                 {

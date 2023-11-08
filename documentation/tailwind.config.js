@@ -428,7 +428,7 @@ module.exports = {
                 "landing-hero-beam-bottom":
                     "landing-hero-beam-bottom 7.5s ease-in-out infinite",
                 "showcase-bottom-fade-reveal":
-                    "showcase-bottom-fade-reveal 1s ease-in-out forwards",
+                    "showcase-bottom-fade-reveal 0.3s ease-in-out forwards",
                 "opacity-reveal": "opacity-reveal 1s ease-in-out forwards",
                 "wheel-already-invented-reveal":
                     "wheel-already-invented-reveal 0.6s cubic-bezier(.23,.95,.64,1.24) forwards",
@@ -601,7 +601,7 @@ module.exports = {
                         opacity: 0,
                     },
                     "50%": {
-                        opacity: 1,
+                        opacity: 0.5,
                     },
                     "100%": {
                         opacity: 0,
@@ -609,19 +609,19 @@ module.exports = {
                 },
                 "landing-hero-beam-bottom": {
                     "0%": {
-                        opacity: 0.25,
+                        transform: "scaleX(0.5)",
                     },
                     "50%": {
-                        opacity: 1,
+                        transform: "scaleX(1)",
                     },
                     "100%": {
-                        opacity: 0.25,
+                        transform: "scaleX(0.5)",
                     },
                 },
                 "showcase-bottom-fade-reveal": {
                     "0%": {
                         opacity: 0,
-                        transform: "translateY(64px)",
+                        transform: "translateY(96px)",
                     },
                     "100%": {
                         opacity: 1,
@@ -644,7 +644,7 @@ module.exports = {
                 },
                 "showcase-reveal": {
                     "0%": {
-                        transform: "translateY(-100px)",
+                        // transform: "translateY(-100px)",
                         opacity: 0,
                     },
                     "100%": {

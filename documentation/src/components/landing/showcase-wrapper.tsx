@@ -22,6 +22,7 @@ type Props = {
     className?: string;
     render: string;
     highlights?: Array<HighlightProps>;
+    dark?: boolean;
 };
 
 const HighlightItem = React.memo(function HighlightBase({
@@ -201,7 +202,12 @@ const HighlightItem = React.memo(function HighlightBase({
 });
 
 export const ShowcaseWrapper = React.memo(
-    function ShowcaseWrapperBase({ className, render, highlights }: Props) {
+    function ShowcaseWrapperBase({
+        className,
+        render,
+        highlights,
+        dark,
+    }: Props) {
         const ref = React.useRef<HTMLDivElement>(null);
         const inView = useInView(ref);
         const [mounted, setMounted] = React.useState(false);
@@ -266,7 +272,7 @@ export const ShowcaseWrapper = React.memo(
                                     "transition-opacity",
                                     "group-hover/all:opacity-100",
                                     "group-hover/all:z-[3]",
-                                    "bg-gray-0",
+                                    dark ? "bg-gray-900" : "bg-gray-0",
                                     "bg-opacity-20",
                                     "backdrop-blur-sm",
                                     "w-full",

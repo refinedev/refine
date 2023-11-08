@@ -143,6 +143,7 @@ export const LandingHeroAnimationItem = React.memo(
                     }}
                 >
                     <div
+                        key={name}
                         className={clsx(
                             "w-[calc(172px*2)]",
                             "h-[calc(172px*2)]",
