@@ -1,25 +1,25 @@
 import { SandpackNextJS } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function NextJSRouteDefinitions() {
+export default function NextJSUseFormUsage() {
     return (
         <SandpackNextJS
             showFiles
             startRoute="/my-products"
             files={{
-                "/pages/_app.tsx": {
-                    code: AppTsxCode,
-                    active: true,
-                },
                 "/style.css": {
                     code: StyleCssCode,
                     hidden: true,
                 },
+                "/pages/_app.tsx": {
+                    code: AppTsxCode,
+                },
                 "/pages/my-products/index.tsx": {
                     code: ListTsxCode,
                 },
-                "/pages/my-products/[id].tsx": {
-                    code: ShowTsxCode,
+                "/pages/my-products/[id]/edit.tsx": {
+                    code: EditTsxCode,
+                    active: true,
                 },
             }}
         />
@@ -72,13 +72,8 @@ function App({ Component, pageProps }: AppProps) {
             resources={[
                 {
                     name: "products",
-                    // We're defining the routes and assigning them to an action of a resource
                     list: "/my-products",
-                    show: "/my-products/:id",
-                    // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                    // create: "/my-products/create",
-                    // edit: "/my-products/edit/:id",
-                    // clone: "/my-products/clone/:id",
+                    edit: "/my-products/:id/edit",
                 },
             ]}
         >
@@ -95,9 +90,7 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 const ProductList = () => {
-    // We're inferring the resource from the route
-    // So we call \`useList\` hook without any arguments.
-    const { data, isLoading } = useList();
+    const { data, isLoading } = useList({resource: "products"});
 
     const go = useGo();
 
@@ -113,13 +106,13 @@ const ProductList = () => {
                             go({
                                 to: {
                                     resource: "products",
-                                    action: "show",
+                                    action: "edit",
                                     id: product.id,
                                 },
                             });
                         }}
                     >
-                        show
+                        edit
                     </button>
                 </li>
             ))}
@@ -130,38 +123,43 @@ const ProductList = () => {
 export default ProductList;
 `.trim();
 
-const ShowTsxCode = /* tsx */ `
+const EditTsxCode = /* tsx */ `
 import React from "react";
-import { useGo, useShow } from "@refinedev/core";
+import { useGo, useForm } from "@refinedev/core";
 
-const ProductShow = () => {
-    const {
-        queryResult: { data, isLoading },
-        // We're inferring the resource and the id from the route params
-        // So we can call useShow hook without any arguments.
-    } = useShow();
+const ProductEdit = () => {
+    const { formLoading, onFinish, queryResult } = useForm();
+    const defaultValues = queryResult?.data?.data;
 
-    const go = useGo();
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target).entries());
 
-    if (isLoading) return <div>Loading...</div>;
+        onFinish(data);
+    };
 
     return (
-        <>
-            <div>
-                <h1>{data?.data?.name}</h1>
-                <p>Material: {data?.data?.material}</p>
-                <small>ID: {data?.data?.id}</small>
-            </div>
-            <button
-                onClick={() => {
-                    go({ to: { resource: "products", action: "list" } });
-                }}
-            >
-                Go to Products list
-            </button>
-        </>
+        <div>
+            <br />
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="name">name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="name"
+                        defaultValue={defaultValues?.name}
+                    />
+                </div>
+                <button type="submit" disabled={formLoading}>
+                    {formLoading && <div>Loading...</div>}
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
     );
 };
 
-export default ProductShow;
+export default ProductEdit;
 `.trim();

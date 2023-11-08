@@ -148,6 +148,29 @@ import RemixResourceAndRoutesUsage from "./remix-resource-and-routes-usage";
 
 ## Hook Integrations
 
+### useForm
+
+Router integration of **refine** allows you to use `useForm` without passing any parameters.
+It will also redirect you to the correct route after a successful form submission.
+
+#### React Router
+
+import ReactRouterUseFormUsage from "./react-router-use-form-usage";
+
+<ReactRouterUseFormUsage />
+
+#### NextJS
+
+import NextJSUseFormUsage from "./nextjs-use-form-usage";
+
+<NextJSUseFormUsage />
+
+#### Remix
+
+import RemixUseFormUsage from "./remix-use-form-usage";
+
+<RemixUseFormUsage />
+
 ### useTable
 
 To enable automatic parameter detection feature, you need to pass `syncWithLocation` to `<Refine />` component's `options` prop.
