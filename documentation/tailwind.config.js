@@ -358,10 +358,10 @@ module.exports = {
                     "linear-gradient(180deg, rgba(29, 30, 48, 0.5) 0%, #14141F 100%)",
                 ],
                 "landing-wizard-side-bg": [
-                    "radial-gradient(rgb(190 190 190 / 25%) 0%, transparent 50%, transparent 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.38) 50%, rgba(48, 52, 80, 0.00) 100%)",
                 ],
                 "landing-wizard-side-bg-light": [
-                    "radial-gradient(rgb(45 45 45 / 15%) 0%, transparent 50%, transparent 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.1) 50%, rgba(48, 52, 80, 0.00) 100%)",
                 ],
                 "landing-copy-command-hover-bg-dark": [
                     "radial-gradient(transparent 30%, rgba(71, 235, 235, 0.25))",
@@ -375,8 +375,8 @@ module.exports = {
                     "top -350px right -350px, center",
                 "landing-wizard-option-left":
                     "bottom -350px left -350px, center",
-                "landing-wizard-side-left-position": "center right -144px",
-                "landing-wizard-side-right-position": "center left -144px",
+                "landing-wizard-side-left-position": "center left",
+                "landing-wizard-side-right-position": "center right",
                 "landing-sweet-spot-glow-position-lg":
                     "center, calc(50% + 800px) calc(50% - 300px)",
                 "landing-sweet-spot-glow-position-md":
@@ -386,7 +386,7 @@ module.exports = {
             },
             backgroundSize: {
                 "landing-wizard-option": "600px 600px, auto",
-                "landing-wizard-side-size": "250px 550px",
+                "landing-wizard-side-size": "512px 512px",
                 "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
                 "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
             },
