@@ -193,20 +193,31 @@ import { RemixUseFormUsage } from "./remix/use-form-usage";
 
 ### useTable
 
+useTable hook can automatically detect the parameters from the current route and use them to fetch the data.
+
 To enable automatic parameter detection feature, you need to pass `syncWithLocation` to `<Refine />` component's `options` prop.
 
 ```tsx
-<Refine
-    // ...
-    options={{ syncWithLocation: true }}
->
-    // ...
-</Refine>
+<Refine {...} options={{ syncWithLocation: true }}>
+
 ```
 
 Once `syncWithLocation` is enabled, you can use `useTable` hook without passing any parameters as shown in the example below.
 
 ```tsx
+// removed-start
+const { ... } = useTable(
+    {
+        resource: "products",
+        current: 1,
+        pageSize: 2,
+        filters: { initial: [{...}] },
+        sorters: { initial: [{...}] }
+    }
+)
+// removed-end
+
+// added-line
 const { ... } = useTable()
 ```
 
@@ -247,11 +258,15 @@ import { ReactRouterUseTableUsage } from "./react-router/use-table-usage";
 
 #### Next.JS
 
+You can use SSR feature with Next.js to fetch initial data on the server side.
+
 import { NextJSUseTableUsage } from "./nextjs/use-table-usage";
 
 <NextJSUseTableUsage />
 
 #### Remix
+
+You can use SSR feature with Remix to fetch initial data on the server side.
 
 import { RemixUseTableUsage } from "./remix/use-table-usage";
 

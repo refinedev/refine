@@ -143,10 +143,12 @@ const siteConfig = {
                 {
                     className: "theme-code-block-added-line",
                     line: "added-line",
+                    block: { start: "added-start", end: "added-end" },
                 },
                 {
                     className: "theme-code-block-removed-line",
                     line: "removed-line",
+                    block: { start: "removed-start", end: "removed-end" },
                 },
             ],
         },
