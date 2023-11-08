@@ -124,7 +124,7 @@ As a next step, we'll add `products` resource to help **refine** understand the 
 
 ## Relationship Between Resources and Routes <GuideBadge id="guides-concepts/general-concepts" />
 
-**refine** can infer current `resource`, `action` and it's `id` from the **current route**.
+**refine** can infer current `resource`, `action` and it's `id` from the **current route** based on your **resource definitions**.
 
 This eliminates the need of passing these parameters to the components/hooks manually.
 
@@ -145,6 +145,8 @@ All you have to do is to define your resource and their browser routes.
 >
 
 ```
+
+You can see how we omit parameters for `useList`, and `useShow` hooks in the examples below.
 
 #### React Router
 
