@@ -1,10 +1,14 @@
 import React from "react";
 import clsx from "clsx";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useInView } from "framer-motion";
 import { LandingArrowRightIcon } from "./icons/landing-arrow-right";
 import { ShowcaseWrapper } from "../components/landing/showcase-wrapper";
 
 export const LandingHeroShowcaseSection = ({}) => {
+    const ref = React.useRef<HTMLDivElement>(null);
+    const inView = useInView(ref, {
+        margin: "150px",
+    });
     const [activeApp, setActiveApp] = React.useState(apps[0]);
 
     const ShowcaseComponent = React.useMemo(() => {
@@ -162,21 +166,24 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "aspect-[1168/736]",
                         "bg-gray-0",
                     )}
+                    ref={ref}
                 />
                 <AnimatePresence>
-                    <ShowcaseComponent
-                        className={clsx(
-                            "absolute",
-                            "left-0",
-                            "top-0",
-                            "w-full",
-                            "rounded-lg",
-                            "landing-md:rounded-xl",
-                            "landing-lg:rounded-2xl",
-                            "overflow-hidden",
-                        )}
-                        key={activeApp.name}
-                    />
+                    {inView ? (
+                        <ShowcaseComponent
+                            className={clsx(
+                                "absolute",
+                                "left-0",
+                                "top-0",
+                                "w-full",
+                                "rounded-lg",
+                                "landing-md:rounded-xl",
+                                "landing-lg:rounded-2xl",
+                                "overflow-hidden",
+                            )}
+                            key={activeApp.name}
+                        />
+                    ) : null}
                 </AnimatePresence>
                 <div
                     key={activeApp.name}

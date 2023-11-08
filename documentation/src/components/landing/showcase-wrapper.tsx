@@ -129,12 +129,14 @@ const HighlightItem = React.memo(function HighlightBase({
                 <div
                     className={clsx(
                         "bg-gray-900",
-                        "p-4",
+                        "py-4 px-3",
                         "rounded-xl",
                         "text-gray-0",
                         "whitespace-nowrap",
                         "break-keep",
-                        "text-sm leading-6",
+                        "text-xs leading-5",
+                        "tracking-tighter",
+                        "font-jetBrains-mono",
                     )}
                 >
                     <Highlight

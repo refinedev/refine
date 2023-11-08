@@ -5,6 +5,7 @@ import { LandingCopyCommandButton } from "./landing-copy-command-button";
 import { LandingPlaygroundModal } from "./landing-playground-modal";
 import { useLocation } from "@docusaurus/router";
 import { useColorMode } from "@docusaurus/theme-common";
+import { useInView } from "framer-motion";
 
 export const LandingTryItSection = ({ className }: { className?: string }) => {
     const [wizardOpen, setWizardOpen] = React.useState(false);
@@ -300,6 +301,11 @@ const LandingTryItWizardSection = ({
     className?: string;
     visible: boolean;
 }) => {
+    const ref = React.useRef<HTMLDivElement>(null);
+    const inView = useInView(ref, {
+        margin: "100px",
+    });
+
     const iframeRef = React.useRef<HTMLIFrameElement>(null);
     const { colorMode } = useColorMode();
 
@@ -343,6 +349,7 @@ const LandingTryItWizardSection = ({
                 )}
             />
             <div
+                ref={ref}
                 className={clsx(
                     "box-content",
                     "flex-shrink-0",
@@ -374,22 +381,24 @@ const LandingTryItWizardSection = ({
                     ],
                 )}
             >
-                <iframe
-                    ref={iframeRef}
-                    src="https://refine.new/embed-form"
-                    className={clsx(
-                        "scrollbar-hidden",
-                        "transition-opacity",
-                        "duration-300",
-                        "delay-300",
-                        visible && "opacity-100",
-                        !visible && "opacity-0",
-                        "w-full",
-                        "h-full",
-                        "border-none",
-                        "rounded-2xl landing-md:rounded-3xl",
-                    )}
-                />
+                {inView ? (
+                    <iframe
+                        ref={iframeRef}
+                        src="https://refine.new/embed-form"
+                        className={clsx(
+                            "scrollbar-hidden",
+                            "transition-opacity",
+                            "duration-300",
+                            "delay-300",
+                            visible && "opacity-100",
+                            !visible && "opacity-0",
+                            "w-full",
+                            "h-full",
+                            "border-none",
+                            "rounded-2xl landing-md:rounded-3xl",
+                        )}
+                    />
+                ) : null}
             </div>
             <div
                 className={clsx(

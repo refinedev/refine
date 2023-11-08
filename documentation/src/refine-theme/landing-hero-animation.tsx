@@ -16,6 +16,7 @@ import { LandingHeroAppwriteIcon } from "./icons/landing-hero/appwrite";
 import { LandingHeroGoogleIcon } from "./icons/landing-hero/google";
 import { LandingHeroAuth0Icon } from "./icons/landing-hero/auth0";
 import { LandingHeroStrapiIcon } from "./icons/landing-hero/strapi";
+import { useInView } from "framer-motion";
 
 type ItemType = {
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -96,30 +97,36 @@ const authItems: ItemType[] = [
 ];
 
 export const LandingHeroAnimation = React.memo(function HeroAnimation() {
+    const ref = React.useRef<HTMLDivElement>(null);
+    const inView = useInView(ref);
     const [activePlatform, setActivePlatform] = React.useState(0);
     const [activeUI, setActiveUI] = React.useState(0);
     const [activeBackend, setActiveBackend] = React.useState(0);
     const [activeAuth, setActiveAuth] = React.useState(0);
 
     React.useEffect(() => {
-        const interval = setInterval(() => {
-            setActivePlatform((prev) => (prev + 1) % platformItems.length);
-            setTimeout(() => {
-                setActiveUI((prev) => (prev + 1) % uiItems.length);
-            }, 1500);
-            setTimeout(() => {
-                setActiveBackend((prev) => (prev + 1) % backendItems.length);
-            }, 3000);
-            setTimeout(() => {
-                setActiveAuth((prev) => (prev + 1) % authItems.length);
-            }, 4500);
-        }, 7500);
+        if (inView) {
+            const interval = setInterval(() => {
+                setActivePlatform((prev) => (prev + 1) % platformItems.length);
+                setTimeout(() => {
+                    setActiveUI((prev) => (prev + 1) % uiItems.length);
+                }, 1500);
+                setTimeout(() => {
+                    setActiveBackend(
+                        (prev) => (prev + 1) % backendItems.length,
+                    );
+                }, 3000);
+                setTimeout(() => {
+                    setActiveAuth((prev) => (prev + 1) % authItems.length);
+                }, 4500);
+            }, 7500);
 
-        return () => clearInterval(interval);
-    }, []);
+            return () => clearInterval(interval);
+        }
+    }, [inView]);
 
     return (
-        <div className={clsx()}>
+        <div ref={ref} className={clsx()}>
             <div className={clsx("relative", "w-min")}>
                 <LandingHeroGridSvg
                     className={clsx(
