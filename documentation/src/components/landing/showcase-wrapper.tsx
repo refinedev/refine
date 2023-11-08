@@ -136,7 +136,7 @@ const HighlightItem = React.memo(function HighlightBase({
                         "break-keep",
                         "text-xs leading-5",
                         "tracking-tighter",
-                        "font-jetBrains-mono",
+                        "font-mono",
                     )}
                 >
                     <Highlight
@@ -195,9 +195,13 @@ export const ShowcaseWrapper = React.memo(
         const [mounted, setMounted] = React.useState(false);
 
         React.useEffect(() => {
-            setTimeout(() => {
+            const t = setTimeout(() => {
                 setMounted(true);
             }, 500);
+
+            return () => {
+                clearTimeout(t);
+            };
         }, []);
 
         return (
