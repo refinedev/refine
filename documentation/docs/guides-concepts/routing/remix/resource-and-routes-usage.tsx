@@ -1,23 +1,19 @@
-import { SandpackNextJS } from "@site/src/components/sandpack";
+import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function NextJSRouteDefinitions() {
+export function RemixResourceAndRoutesUsage() {
     return (
-        <SandpackNextJS
+        <Sandpack
+            hidePreview
             showFiles
-            startRoute="/my-products"
             files={{
-                "/pages/_app.tsx": {
-                    code: AppTsxCode,
+                "/app/root.tsx": {
+                    code: RootTsxCode,
                 },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "/pages/my-products/index.tsx": {
+                "/app/routes/my-products._index.tsx": {
                     code: ListTsxCode,
                 },
-                "/pages/my-products/[id].tsx": {
+                "/app/routes/my-products.$id.tsx": {
                     code: ShowTsxCode,
                     active: true,
                 },
@@ -26,68 +22,57 @@ export default function NextJSRouteDefinitions() {
     );
 }
 
-const StyleCssCode = `
-html {
-    margin: 0;
-    padding: 0;
-}
-body {
-    margin: 0;
-    padding: 12px;
-}
-* {
-    box-sizing: border-box;
-}
-body {
-    font-family: sans-serif;
-}
-form label, form input, form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 6px;
-}
-span + button {
-    margin-left: 6px;
-}
-ul > li {
-    margin-bottom: 6px;
-}
-`.trim();
-
-const AppTsxCode = /* tsx */ `
+const RootTsxCode = /* tsx */ `
 import React from "react";
+
+import {
+    Links,
+    LiveReload,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+} from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
-import type { AppProps } from "next/app";
 
-import "../style.css";
-
-function App({ Component, pageProps }: AppProps) {
+export default function App() {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    // We're defining the routes and assigning them to an action of a resource
-                    list: "/my-products",
-                    show: "/my-products/:id",
-                    // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                    // create: "/my-products/new",
-                    // edit: "/my-products/:id/edit",
-                    // clone: "/my-products/:id/clone",
-                },
-            ]}
-        >
-            <Component {...pageProps} />
-        </Refine>
+        <html lang="en">
+            <head>
+                <Meta />
+                <Links />
+            </head>
+            <body>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "products",
+                            // We're defining the routes and assigning them to an action of a resource
+                            list: "/my-products",
+                            show: "/my-products/:id",
+                            // For sake of simplicity, we are not defining other routes here but the implementation is the same
+                            // create: "/my-products/new",
+                            // edit: "/my-products/:id/edit",
+                            // clone: "/my-products/:id/clone",
+                        },
+                    ]}
+                >
+                    <Outlet />
+                </Refine>
+                <ScrollRestoration />
+                <Scripts />
+                <LiveReload />
+            </body>
+        </html>
     );
 }
-
-export default App;
 `.trim();
 
 const ListTsxCode = /* tsx */ `

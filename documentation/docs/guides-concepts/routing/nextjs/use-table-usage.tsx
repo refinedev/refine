@@ -1,90 +1,69 @@
-import { Sandpack } from "@site/src/components/sandpack";
+import { SandpackNextJS } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function RemixUseTableUsage() {
+export function NextJSUseTableUsage() {
     return (
-        <Sandpack
-            hidePreview
+        <SandpackNextJS
             showFiles
+            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
             files={{
-                "/app/root.tsx": {
-                    code: RootTsxCode,
+                "/pages/_app.tsx": {
+                    code: AppTsxCode,
                 },
-                "/app/components/products/list.tsx": {
-                    code: ListTsxCode,
-                },
-                "/app/routes/my-products._index.tsx": {
+                "/pages/my-products/index.tsx": {
                     code: ListPageTsxCode,
                     active: true,
+                },
+                "/components/products/list.tsx": {
+                    code: ListTsxCode,
                 },
             }}
         />
     );
 }
 
-const RootTsxCode = /* tsx */ `
+const AppTsxCode = /* tsx */ `
 import React from "react";
-
-import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
+import type { AppProps } from "next/app";
 
-export default function App() {
+function App({ Component, pageProps }: AppProps) {
     return (
-        <html lang="en">
-            <head>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/my-products",
-                        },
-                    ]}
-                >
-                    <Outlet />
-                </Refine>
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "products",
+                    list: "/my-products",
+                },
+            ]}
+            options={{ syncWithLocation: true }}
+        >
+            <Component {...pageProps} />
+        </Refine>
     );
 }
+
+export default App;
 `.trim();
 
 const ListPageTsxCode = /* tsx */ `
 import React from "react";
 
-import { json, LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-
 import { useTable } from "@refinedev/core";
-import { parseTableParams } from "@refinedev/remix-router";
+import { parseTableParams } from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { ProductList } from "../components/products/list";
+import { ProductList } from "../../components/products/list";
 
-export async function loader({ request }: LoaderArgs) {
-    const url = new URL(request.url);
-
-    const { pagination, filters, sorters } = parseTableParams(url.search);
+export const getServerSideProps = async (context) => {
+    const { pagination, filters, sorters } = parseTableParams(
+        context.resolvedUrl?.split("?")[1] ?? "",
+    );
 
     const data = await dataProvider("https://api.fake-rest.refine.dev").getList(
         {
@@ -95,17 +74,20 @@ export async function loader({ request }: LoaderArgs) {
         },
     );
 
-    return json({
-        initialData: data,
-        initialProps: { pagination, filters, sorters },
-    });
-}
+    return {
+        props: {
+            initialData: data,
+            initialProps: { pagination, filters, sorters },
+        },
+    };
+};
 
-const ProductList = () => {
+const ProductListPage = (props) => {
     const {
         initialData,
         initialProps: { filters, sorters, pagination },
-    } = useLoaderData<typeof loader>();
+    } = props;
+
     const tableProps = useTable({
         queryOptions: { initialData },
         filters: { initial: filters },
@@ -116,10 +98,10 @@ const ProductList = () => {
     return <ProductList tableProps={tableProps} />;
 };
 
-export default ProductList;
+export default ProductListPage;
 `.trim();
 
-const ListTsxCode = /* tsx */ `
+const ListTsxCode = `
 import React from "react";
 
 export const ProductList: React.FC = ({ tableProps }) => {

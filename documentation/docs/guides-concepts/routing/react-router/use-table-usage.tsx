@@ -1,16 +1,29 @@
-import { SandpackNextJS } from "@site/src/components/sandpack";
+import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function NextJSUseTableUsage() {
+export function ReactRouterUseTableUsage() {
     return (
-        <SandpackNextJS
+        <Sandpack
+            showNavigator
             showFiles
+            dependencies={{
+                "@refinedev/core": "latest",
+                "@refinedev/simple-rest": "latest",
+                "@refinedev/react-router-v6": "latest",
+                "react-router-dom": "latest",
+                "react-router": "latest",
+            }}
             startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
+            theme={{}}
             files={{
-                "/pages/_app.tsx": {
+                "/App.tsx": {
                     code: AppTsxCode,
                 },
-                "/pages/my-products/index.tsx": {
+                "/style.css": {
+                    code: StyleCssCode,
+                    hidden: true,
+                },
+                "/pages/products/list.tsx": {
                     code: ListPageTsxCode,
                     active: true,
                 },
@@ -22,83 +35,85 @@ export default function NextJSUseTableUsage() {
     );
 }
 
-const AppTsxCode = /* tsx */ `
+const AppTsxCode = /* jsx */ `
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import type { AppProps } from "next/app";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App({ Component, pageProps }: AppProps) {
+import "./style.css";
+
+import { ListPage } from "./pages/products/list.tsx";
+
+export default function App() {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    list: "/my-products",
-                },
-            ]}
-            options={{ syncWithLocation: true }}
-        >
-            <Component {...pageProps} />
-        </Refine>
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/my-products",
+                    },
+                ]}
+                options={{ syncWithLocation: true }}
+            >
+                <Routes>
+                    <Route path="/my-products" element={<ListPage />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
-
-export default App;
 `.trim();
 
-const ListPageTsxCode = /* tsx */ `
+const StyleCssCode = `
+
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+body {
+    margin: 0;
+    padding: 12px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+}
+form label, form input, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+}
+span, button {
+    margin: 6px 0;
+}
+ul > li {
+    margin-bottom: 6px;
+}
+`.trim();
+
+const ListPageTsxCode = `
 import React from "react";
 
 import { useTable } from "@refinedev/core";
-import { parseTableParams } from "@refinedev/nextjs-router";
-import dataProvider from "@refinedev/simple-rest";
 
-import { ProductList } from "../../components/products/list";
+import { ProductList } from "../../components/products/list"
 
-export const getServerSideProps = async (context) => {
-    const { pagination, filters, sorters } = parseTableParams(
-        context.resolvedUrl?.split("?")[1] ?? "",
+export const ListPage: React.FC = () => {
+    const tableProps = useTable();
+
+    return (
+        <ProductList tableProps={tableProps} />
     );
-
-    const data = await dataProvider("https://api.fake-rest.refine.dev").getList(
-        {
-            resource: "products",
-            filters,
-            pagination,
-            sorters,
-        },
-    );
-
-    return {
-        props: {
-            initialData: data,
-            initialProps: { pagination, filters, sorters },
-        },
-    };
 };
-
-const ProductListPage = (props) => {
-    const {
-        initialData,
-        initialProps: { filters, sorters, pagination },
-    } = props;
-
-    const tableProps = useTable({
-        queryOptions: { initialData },
-        filters: { initial: filters },
-        sorters: { initial: sorters },
-        pagination,
-    });
-
-    return <ProductList tableProps={tableProps} />;
-};
-
-export default ProductListPage;
 `.trim();
 
 const ListTsxCode = `
@@ -116,7 +131,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
         setFilters,
         sorters,
         setSorters,
-    } = tableProps;
+    } = tableProps
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -144,7 +159,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
             <hr />
             Sorting by field:
             <b>
-                {sorters[0]?.field}, order {sorters[0]?.order}
+                {sorters[0].field}, order {sorters[0].order}
             </b>
             <br />
             <button
@@ -152,7 +167,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
                     setSorters([
                         {
                             field: "id",
-                            order: sorters[0]?.order === "asc" ? "desc" : "asc",
+                            order: sorters[0].order === "asc" ? "desc" : "asc",
                         },
                     ]);
                 }}
@@ -162,8 +177,8 @@ export const ProductList: React.FC = ({ tableProps }) => {
             <hr />
             Filtering by field:
             <b>
-                {filters[0]?.field}, operator {filters[0]?.operator}, value:{" "}
-                {filters[0]?.value}
+                {filters[0].field}, operator {filters[0].operator}, value
+                {filters[0].value}
             </b>
             <br />
             <button
@@ -172,7 +187,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
                         {
                             field: "category.id",
                             operator: "eq",
-                            value: filters[0]?.value === "1" ? "2" : "1",
+                            value: filters[0].value === "1" ? "2" : "1",
                         },
                     ]);
                 }}
@@ -184,15 +199,15 @@ export const ProductList: React.FC = ({ tableProps }) => {
             <p>Page Size: {pageSize}</p>
             <button
                 onClick={() => {
-                    setCurrent(+current - 1);
+                    setCurrent(current - 1);
                 }}
-                disabled={+current < 2}
+                disabled={current < 2}
             >
                 Previous Page
             </button>
             <button
                 onClick={() => {
-                    setCurrent(+current + 1);
+                    setCurrent(current + 1);
                 }}
                 disabled={current === pageCount}
             >

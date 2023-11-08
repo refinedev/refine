@@ -1,19 +1,23 @@
-import { Sandpack } from "@site/src/components/sandpack";
+import { SandpackNextJS } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function RemixRouteDefinitions() {
+export function NextJSUseFormUsage() {
     return (
-        <Sandpack
-            hidePreview
+        <SandpackNextJS
             showFiles
+            startRoute="/my-products"
             files={{
-                "/app/root.tsx": {
-                    code: RootTsxCode,
+                "/style.css": {
+                    code: StyleCssCode,
+                    hidden: true,
                 },
-                "/app/routes/my-products._index.tsx": {
+                "/pages/_app.tsx": {
+                    code: AppTsxCode,
+                },
+                "/pages/my-products/index.tsx": {
                     code: ListTsxCode,
                 },
-                "/app/routes/my-products.$id.edit.tsx": {
+                "/pages/my-products/[id]/edit.tsx": {
                     code: EditTsxCode,
                     active: true,
                 },
@@ -22,52 +26,63 @@ export default function RemixRouteDefinitions() {
     );
 }
 
-const RootTsxCode = /* tsx */ `
-import React from "react";
+const StyleCssCode = `
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 12px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+}
+form label, form input, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+}
+span + button {
+    margin-left: 6px;
+}
+ul > li {
+    margin-bottom: 6px;
+}
+`.trim();
 
-import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from "@remix-run/react";
+const AppTsxCode = /* tsx */ `
+import React from "react";
 
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
+import type { AppProps } from "next/app";
 
-export default function App() {
+import "../style.css";
+
+function App({ Component, pageProps }: AppProps) {
     return (
-        <html lang="en">
-            <head>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/my-products",
-                            edit: "/my-products/:id/edit",
-                        },
-                    ]}
-                >
-                    <Outlet />
-                </Refine>
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "products",
+                    list: "/my-products",
+                    edit: "/my-products/:id/edit",
+                },
+            ]}
+        >
+            <Component {...pageProps} />
+        </Refine>
     );
 }
+
+export default App;
 `.trim();
 
 const ListTsxCode = /* tsx */ `
@@ -75,7 +90,7 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 const ProductList = () => {
-    const { data, isLoading } = useList();
+    const { data, isLoading } = useList({resource: "products"});
 
     const go = useGo();
 
@@ -97,7 +112,7 @@ const ProductList = () => {
                             });
                         }}
                     >
-                        show
+                        edit
                     </button>
                 </li>
             ))}
@@ -110,10 +125,9 @@ export default ProductList;
 
 const EditTsxCode = /* tsx */ `
 import React from "react";
+import { useGo, useForm } from "@refinedev/core";
 
-import { useForm } from "@refinedev/core";
-
-const ProductEdit: React.FC = () => {
+const ProductEdit = () => {
     const { formLoading, onFinish, queryResult } = useForm();
     const defaultValues = queryResult?.data?.data;
 

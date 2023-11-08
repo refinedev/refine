@@ -150,19 +150,19 @@ You can see how we omit parameters for `useList`, and `useShow` hooks in the exa
 
 #### React Router
 
-import ReactRouterResourceAndRoutesUsage from "./react-router-resource-and-routes-usage";
+import { ReactRouterResourceAndRoutesUsage } from "./react-router/resource-and-routes-usage";
 
 <ReactRouterResourceAndRoutesUsage />
 
 #### Next.JS
 
-import NextJSResourceAndRoutesUsage from "./nextjs-resource-and-routes-usage";
+import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage";
 
 <NextJSResourceAndRoutesUsage />
 
 #### Remix
 
-import RemixResourceAndRoutesUsage from "./remix-resource-and-routes-usage";
+import { RemixResourceAndRoutesUsage } from "./remix/resource-and-routes-usage";
 
 <RemixResourceAndRoutesUsage />
 
@@ -175,19 +175,19 @@ It will also redirect you to the correct route after a successful form submissio
 
 #### React Router
 
-import ReactRouterUseFormUsage from "./react-router-use-form-usage";
+import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 
 <ReactRouterUseFormUsage />
 
 #### NextJS
 
-import NextJSUseFormUsage from "./nextjs-use-form-usage";
+import { NextJSUseFormUsage } from "./nextjs/use-form-usage";
 
 <NextJSUseFormUsage />
 
 #### Remix
 
-import RemixUseFormUsage from "./remix-use-form-usage";
+import { RemixUseFormUsage } from "./remix/use-form-usage";
 
 <RemixUseFormUsage />
 
@@ -241,19 +241,19 @@ Clicking the button will **update the current route** and **fetch the next page*
 
 #### React Router
 
-import ReactRouterUseTableUsage from "./react-router-use-table-usage";
+import { ReactRouterUseTableUsage } from "./react-router/use-table-usage";
 
 <ReactRouterUseTableUsage />
 
 #### Next.JS
 
-import NextJSUseTableUsage from "./nextjs-use-table-usage";
+import { NextJSUseTableUsage } from "./nextjs/use-table-usage";
 
 <NextJSUseTableUsage />
 
 #### Remix
 
-import RemixUseTableUsage from "./remix-use-table-usage";
+import { RemixUseTableUsage } from "./remix/use-table-usage";
 
 <RemixUseTableUsage />
 

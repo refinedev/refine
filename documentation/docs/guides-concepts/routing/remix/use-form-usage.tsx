@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function RemixRouteDefinitions() {
+export function RemixUseFormUsage() {
     return (
         <Sandpack
             hidePreview
@@ -13,8 +13,8 @@ export default function RemixRouteDefinitions() {
                 "/app/routes/my-products._index.tsx": {
                     code: ListTsxCode,
                 },
-                "/app/routes/my-products.$id.tsx": {
-                    code: ShowTsxCode,
+                "/app/routes/my-products.$id.edit.tsx": {
+                    code: EditTsxCode,
                     active: true,
                 },
             }}
@@ -54,13 +54,8 @@ export default function App() {
                     resources={[
                         {
                             name: "products",
-                            // We're defining the routes and assigning them to an action of a resource
                             list: "/my-products",
-                            show: "/my-products/:id",
-                            // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                            // create: "/my-products/new",
-                            // edit: "/my-products/:id/edit",
-                            // clone: "/my-products/:id/clone",
+                            edit: "/my-products/:id/edit",
                         },
                     ]}
                 >
@@ -80,8 +75,6 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 const ProductList = () => {
-    // We're inferring the resource from the route
-    // So we call \`useList\` hook without any arguments.
     const { data, isLoading } = useList();
 
     const go = useGo();
@@ -98,7 +91,7 @@ const ProductList = () => {
                             go({
                                 to: {
                                     resource: "products",
-                                    action: "show",
+                                    action: "edit",
                                     id: product.id,
                                 },
                             });
@@ -115,39 +108,44 @@ const ProductList = () => {
 export default ProductList;
 `.trim();
 
-const ShowTsxCode = /* tsx */ `
+const EditTsxCode = /* tsx */ `
 import React from "react";
-import { useGo, useShow } from "@refinedev/core";
 
-const ProductShow = () => {
-    // We're inferring the resource and the id from the route params
-    // So we can call useShow hook without any arguments.
-    // const result = useShow({ resource: "products", id: "xxx" })
-    const result = useShow();
+import { useForm } from "@refinedev/core";
 
-    const {  queryResult: { data, isLoading } } = result
+const ProductEdit: React.FC = () => {
+    const { formLoading, onFinish, queryResult } = useForm();
+    const defaultValues = queryResult?.data?.data;
 
-    const go = useGo();
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target).entries());
 
-    if (isLoading) return <div>Loading...</div>;
+        onFinish(data);
+    };
 
     return (
-        <>
-            <div>
-                <h1>{data?.data?.name}</h1>
-                <p>Material: {data?.data?.material}</p>
-                <small>ID: {data?.data?.id}</small>
-            </div>
-            <button
-                onClick={() => {
-                    go({ to: { resource: "products", action: "list" } });
-                }}
-            >
-                Go to Products list
-            </button>
-        </>
+        <div>
+            <br />
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="name">name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="name"
+                        defaultValue={defaultValues?.name}
+                    />
+                </div>
+                <button type="submit" disabled={formLoading}>
+                    {formLoading && <div>Loading...</div>}
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
     );
 };
 
-export default ProductShow;
+export default ProductEdit;
 `.trim();

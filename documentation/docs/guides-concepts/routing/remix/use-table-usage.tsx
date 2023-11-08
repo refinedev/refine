@@ -1,122 +1,125 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function ReactRouterUseTableUsage() {
+export function RemixUseTableUsage() {
     return (
         <Sandpack
-            showNavigator
+            hidePreview
             showFiles
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
-            theme={{}}
             files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
+                "/app/root.tsx": {
+                    code: RootTsxCode,
                 },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
+                "/app/components/products/list.tsx": {
+                    code: ListTsxCode,
                 },
-                "/pages/products/list.tsx": {
+                "/app/routes/my-products._index.tsx": {
                     code: ListPageTsxCode,
                     active: true,
-                },
-                "/components/products/list.tsx": {
-                    code: ListTsxCode,
                 },
             }}
         />
     );
 }
 
-const AppTsxCode = /* jsx */ `
+const RootTsxCode = /* tsx */ `
 import React from "react";
 
+import {
+    Links,
+    LiveReload,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+} from "@remix-run/react";
+
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import "./style.css";
-
-import { ListPage } from "./pages/products/list.tsx";
 
 export default function App() {
     return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "products",
-                        list: "/my-products",
-                    },
-                ]}
-                options={{ syncWithLocation: true }}
-            >
-                <Routes>
-                    <Route path="/my-products" element={<ListPage />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
+        <html lang="en">
+            <head>
+                <Meta />
+                <Links />
+            </head>
+            <body>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/my-products",
+                        },
+                    ]}
+                >
+                    <Outlet />
+                </Refine>
+                <ScrollRestoration />
+                <Scripts />
+                <LiveReload />
+            </body>
+        </html>
     );
 }
 `.trim();
 
-const StyleCssCode = `
-
-html {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-}
-body {
-    margin: 0;
-    padding: 12px;
-}
-* {
-    box-sizing: border-box;
-}
-body {
-    font-family: sans-serif;
-}
-form label, form input, form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 6px;
-}
-span, button {
-    margin: 6px 0;
-}
-ul > li {
-    margin-bottom: 6px;
-}
-`.trim();
-
-const ListPageTsxCode = `
+const ListPageTsxCode = /* tsx */ `
 import React from "react";
 
+import { json, LoaderArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
 import { useTable } from "@refinedev/core";
+import { parseTableParams } from "@refinedev/remix-router";
+import dataProvider from "@refinedev/simple-rest";
 
-import { ProductList } from "../../components/products/list"
+import { ProductList } from "../components/products/list";
 
-export const ListPage: React.FC = () => {
-    const tableProps = useTable();
+export async function loader({ request }: LoaderArgs) {
+    const url = new URL(request.url);
 
-    return (
-        <ProductList tableProps={tableProps} />
+    const { pagination, filters, sorters } = parseTableParams(url.search);
+
+    const data = await dataProvider("https://api.fake-rest.refine.dev").getList(
+        {
+            resource: "products",
+            filters,
+            pagination,
+            sorters,
+        },
     );
+
+    return json({
+        initialData: data,
+        initialProps: { pagination, filters, sorters },
+    });
+}
+
+const ProductList = () => {
+    const {
+        initialData,
+        initialProps: { filters, sorters, pagination },
+    } = useLoaderData<typeof loader>();
+    const tableProps = useTable({
+        queryOptions: { initialData },
+        filters: { initial: filters },
+        sorters: { initial: sorters },
+        pagination,
+    });
+
+    return <ProductList tableProps={tableProps} />;
 };
+
+export default ProductList;
 `.trim();
 
-const ListTsxCode = `
+const ListTsxCode = /* tsx */ `
 import React from "react";
 
 export const ProductList: React.FC = ({ tableProps }) => {
@@ -131,7 +134,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
         setFilters,
         sorters,
         setSorters,
-    } = tableProps
+    } = tableProps;
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -159,7 +162,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
             <hr />
             Sorting by field:
             <b>
-                {sorters[0].field}, order {sorters[0].order}
+                {sorters[0]?.field}, order {sorters[0]?.order}
             </b>
             <br />
             <button
@@ -167,7 +170,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
                     setSorters([
                         {
                             field: "id",
-                            order: sorters[0].order === "asc" ? "desc" : "asc",
+                            order: sorters[0]?.order === "asc" ? "desc" : "asc",
                         },
                     ]);
                 }}
@@ -177,8 +180,8 @@ export const ProductList: React.FC = ({ tableProps }) => {
             <hr />
             Filtering by field:
             <b>
-                {filters[0].field}, operator {filters[0].operator}, value
-                {filters[0].value}
+                {filters[0]?.field}, operator {filters[0]?.operator}, value:{" "}
+                {filters[0]?.value}
             </b>
             <br />
             <button
@@ -187,7 +190,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
                         {
                             field: "category.id",
                             operator: "eq",
-                            value: filters[0].value === "1" ? "2" : "1",
+                            value: filters[0]?.value === "1" ? "2" : "1",
                         },
                     ]);
                 }}
@@ -199,15 +202,15 @@ export const ProductList: React.FC = ({ tableProps }) => {
             <p>Page Size: {pageSize}</p>
             <button
                 onClick={() => {
-                    setCurrent(current - 1);
+                    setCurrent(+current - 1);
                 }}
-                disabled={current < 2}
+                disabled={+current < 2}
             >
                 Previous Page
             </button>
             <button
                 onClick={() => {
-                    setCurrent(current + 1);
+                    setCurrent(+current + 1);
                 }}
                 disabled={current === pageCount}
             >

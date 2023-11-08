@@ -1,10 +1,9 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function ReactRouterUseFormUsage() {
+export function ReactRouterResourceAndRoutesUsage() {
     return (
         <Sandpack
-            showConsole
             showNavigator
             showFiles
             dependencies={{
@@ -26,8 +25,8 @@ export default function ReactRouterUseFormUsage() {
                 "/pages/products/list.tsx": {
                     code: ListTsxCode,
                 },
-                "/pages/products/edit.tsx": {
-                    code: EditTsxCode,
+                "/pages/products/show.tsx": {
+                    code: ShowTsxCode,
                     active: true,
                 },
             }}
@@ -46,7 +45,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./style.css";
 
 import { ProductList } from "./pages/products/list.tsx";
-import { ProductEdit } from "./pages/products/edit.tsx";
+import { ProductShow } from "./pages/products/show.tsx";
 
 export default function App() {
     return (
@@ -57,14 +56,19 @@ export default function App() {
                 resources={[
                     {
                         name: "products",
+                        // We're defining the routes and assigning them to an action of a resource
                         list: "/my-products",
-                        edit: "/my-products/:id/edit",
+                        show: "/my-products/:id",
+                        // For sake of simplicity, we are not defining other routes here but the implementation is the same
+                        // create: "/my-products/new",
+                        // edit: "/my-products/:id/edit",
+                        // clone: "/my-products/:id/clone",
                     },
                 ]}
             >
                 <Routes>
                     <Route path="/my-products" element={<ProductList />} />
-                    <Route path="/my-products/:id/edit" element={<ProductEdit />} />
+                    <Route path="/my-products/:id" element={<ProductShow />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -106,6 +110,8 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 export const ProductList: React.FC = () => {
+    // We're inferring the resource from the route
+    // So we call \`useList\` hook without any arguments.
     const { data, isLoading } = useList();
 
     const go = useGo();
@@ -122,13 +128,13 @@ export const ProductList: React.FC = () => {
                             go({
                                 to: {
                                     resource: "products",
-                                    action: "edit",
+                                    action: "show",
                                     id: product.id,
                                 },
                             });
                         }}
                     >
-                        edit
+                        show
                     </button>
                 </li>
             ))}
@@ -137,42 +143,43 @@ export const ProductList: React.FC = () => {
 };
 `.trim();
 
-const EditTsxCode = `
+const ShowTsxCode = `
 import React from "react";
 
-import { useForm } from "@refinedev/core";
+import { useGo, useShow } from "@refinedev/core";
 
-export const ProductEdit: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm();
-    const defaultValues = queryResult?.data?.data;
+export const ProductShow: React.FC = () => {
+    // We're inferring the resource and the id from the route params
+    // So we can call useShow hook without any arguments.
+    // const result = useShow({ resource: "products", id: "xxx" })
+    const result = useShow();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(e.target).entries());
+    const {  queryResult: { data, isLoading } } = result
 
-        onFinish(data);
-    };
+    const go = useGo();
+
+    if (isLoading) return <div>Loading...</div>;
 
     return (
-        <div>
-            <br />
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="name">name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="name"
-                        defaultValue={defaultValues?.name}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
-                    <span>Save</span>
-                </button>
-            </form>
-        </div>
+        <>
+            <div>
+                <h1>{data?.data?.name}</h1>
+                <p>Material: {data?.data?.material}</p>
+                <small>ID: {data?.data?.id}</small>
+            </div>
+            <button
+                onClick={() => {
+                    go({
+                        to: {
+                            resource: "products",
+                            action: "list",
+                        },
+                    });
+                }}
+            >
+                Go to Products list
+            </button>
+        </>
     );
 };
 `.trim();
