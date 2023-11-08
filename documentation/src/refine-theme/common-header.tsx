@@ -35,30 +35,36 @@ export const CommonHeader = ({ trackProgress }: Props) => {
             <header className={clsx("sticky", "top-0", "z-10")}>
                 <div
                     className={clsx(
+                        "absolute",
+                        "top-0 left-0 right-0",
+                        "backdrop-blur-[6px]",
+                        "landing-md:backdrop-blur-[12px]",
+                        "z-[-1]",
+                        "bg-gray-0 dark:bg-gray-900",
+                        "bg-opacity-50 dark:bg-opacity-50",
+                        "pointer-events-none",
+                        "transition-colors",
+                        "duration-150",
+                        "ease-in-out",
+                    )}
+                    style={{
+                        top: "-20px",
+                        bottom: "-80px",
+                        WebkitMaskImage:
+                            "linear-gradient(to bottom, transparent 0, transparent calc(0% + 20px), black calc(0% + 20px), black calc(100% - 80px), transparent calc(100% - 80px))",
+                        maskImage:
+                            "linear-gradient(to bottom, transparent 0, transparent calc(0% + 20px), black calc(0% + 20px), black calc(100% - 80px), transparent calc(100% - 80px))",
+                    }}
+                />
+                <div
+                    className={clsx(
+                        "relative",
+                        "z-[1]",
                         "p-4",
                         "landing-sm:px-8",
                         "landing-md:py-5",
-                        "backdrop-blur-sm",
                     )}
                 >
-                    <div
-                        className={clsx(
-                            "w-full",
-                            "h-full",
-                            "z-[-1]",
-                            "absolute",
-                            "pointer-events-none",
-                            "left-0",
-                            "right-0",
-                            "top-0",
-                            "bottom-0",
-                            "bg-gray-0 dark:bg-gray-900",
-                            "transition-colors",
-                            "duration-150",
-                            "ease-in-out",
-                            "opacity-60",
-                        )}
-                    />
                     <div
                         className={clsx(
                             "mx-auto",
