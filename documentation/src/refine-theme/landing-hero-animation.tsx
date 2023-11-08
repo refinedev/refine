@@ -106,22 +106,35 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
 
     React.useEffect(() => {
         if (inView) {
+            let t1: NodeJS.Timeout | null = null;
+            let t2: NodeJS.Timeout | null = null;
+            let t3: NodeJS.Timeout | null = null;
+
             const interval = setInterval(() => {
+                if (t1) clearTimeout(t1);
+                if (t2) clearTimeout(t2);
+                if (t3) clearTimeout(t3);
+
                 setActivePlatform((prev) => (prev + 1) % platformItems.length);
-                setTimeout(() => {
+                t1 = setTimeout(() => {
                     setActiveUI((prev) => (prev + 1) % uiItems.length);
-                }, 1500);
-                setTimeout(() => {
+                }, 2000);
+                t2 = setTimeout(() => {
                     setActiveBackend(
                         (prev) => (prev + 1) % backendItems.length,
                     );
-                }, 3000);
-                setTimeout(() => {
+                }, 4000);
+                t3 = setTimeout(() => {
                     setActiveAuth((prev) => (prev + 1) % authItems.length);
-                }, 4500);
-            }, 7500);
+                }, 6000);
+            }, 8000);
 
-            return () => clearInterval(interval);
+            return () => {
+                clearInterval(interval);
+                if (t1) clearTimeout(t1);
+                if (t2) clearTimeout(t2);
+                if (t3) clearTimeout(t3);
+            };
         }
     }, [inView]);
 

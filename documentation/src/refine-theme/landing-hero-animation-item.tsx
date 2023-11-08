@@ -204,6 +204,7 @@ export const LandingHeroAnimationItem = function ItemBase({
                         "top-0",
                         "absolute",
                         "animate-beam-spin",
+                        "will-change-transform",
                         "bg-landing-hero-beam-bg",
                     )}
                     style={{

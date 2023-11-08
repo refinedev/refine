@@ -97,7 +97,7 @@ export const LandingCopyCommandButton = ({
                     "whitespace-pre",
                     "duration-150",
                     "transition-opacity",
-                    "will-change-contents",
+                    "will-change-[contents,opacity]",
                     "ease-in-out",
                     fadedOut && "opacity-0",
                     !fadedOut && "opacity-100",

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 type Props = {
@@ -81,33 +82,27 @@ export const ChangingTextElement = React.forwardRef<
     }, [status]);
 
     return (
-        <span className={className}>
-            {next
-                .split("")
-                .slice(0, Math.max(pos, 0))
+        <span className={clsx("will-change-contents", className)}>
+            <span className={clsx("will-change-contents", prevClassName)}>
+                {next
+                    .split("")
+                    .slice(0, Math.max(pos, 0))
 
-                .map((letter, index) => {
-                    return (
-                        <span key={`next-${index}`} className={prevClassName}>
-                            {letter}
-                        </span>
-                    );
-                })}
-            {next.split("")[pos] && (
-                <span key={`${pos}-${next[pos]}`} className={activeClassName}>
-                    {next.split("")[pos]}
-                </span>
-            )}
-            {prev
-                .split("")
-                .slice(pos + 1)
-                .map((letter, index) => {
-                    return (
-                        <span key={`prev-${index}`} className={nextClassName}>
-                            {letter}
-                        </span>
-                    );
-                })}
+                    .map((letter) => {
+                        return letter;
+                    })}
+            </span>
+            <span className={clsx("will-change-contents", activeClassName)}>
+                {next.split("")[pos] ?? ""}
+            </span>
+            <span className={clsx("will-change-contents", nextClassName)}>
+                {prev
+                    .split("")
+                    .slice(pos + 1)
+                    .map((letter) => {
+                        return letter;
+                    })}
+            </span>
         </span>
     );
 });
