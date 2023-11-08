@@ -77,7 +77,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                                     "py-1.5",
                                     "h-[54px]",
                                     "relative",
-                                    "flex items-center justify-start",
+                                    "flex items-center justify-center",
                                     "dark:bg-landing-component-divider-dark bg-landing-component-divider",
                                     "bg-no-repeat",
                                     "bg-wheel-already-invented-size",
@@ -96,12 +96,14 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                                         "p-[1px]",
                                         "dark:bg-landing-component-badge bg-refine-green",
                                         "relative",
+                                        "-ml-[calc(108px*1.5)] landing-sm:-ml-[calc(108px*2)]",
+
                                         inView &&
                                             "animate-wheel-already-invented-reveal",
                                     )}
                                     style={{
                                         transform: `translateX(${
-                                            40 * (10 - index)
+                                            40 * (11 - index)
                                         }px)`,
                                         animationDelay: `${
                                             0.15 + index * 0.15
