@@ -124,9 +124,27 @@ As a next step, we'll add `products` resource to help **refine** understand the 
 
 ## Relationship Between Resources and Routes <GuideBadge id="guides-concepts/general-concepts" />
 
-One of the most practical features of refine is the ability to infer current `resource`, `action` and it's `id` from the **current route**.
+**refine** can infer current `resource`, `action` and it's `id` from the **current route**.
 
-This is made possible by the relationship between the resources and the routes. Using this feature, you can easily use the current route's resource, action and id in your components and hooks without explicitly passing them down to hooks.
+This eliminates the need of passing these parameters to the components/hooks manually.
+
+All you have to do is to define your resource and their browser routes.
+
+```tsx
+<Refine
+    resources={[
+        {
+            name: "products",
+            list: "/my-products", // http://localhost:3000/my-products
+            show: "my-products/:id", // http://localhost:3000/my-products/1
+            create: "/my-products/new", // http://localhost:3000/my-products/new
+            edit: "/my-products/:id/edit", // http://localhost:3000/my-products/1/edit
+            clone: "/my-products/:id/clone" // http://localhost:3000/my-products/1/clone
+        }
+    ]}
+>
+
+```
 
 #### React Router
 

@@ -17,7 +17,6 @@ export default function ReactRouterRouteDefinitions() {
             files={{
                 "/App.tsx": {
                     code: AppTsxCode,
-                    active: true,
                 },
                 "/style.css": {
                     code: StyleCssCode,
@@ -28,6 +27,7 @@ export default function ReactRouterRouteDefinitions() {
                 },
                 "/pages/products/show.tsx": {
                     code: ShowTsxCode,
+                    active: true,
                 },
             }}
         />
@@ -149,11 +149,12 @@ import React from "react";
 import { useGo, useShow } from "@refinedev/core";
 
 export const ProductShow: React.FC = () => {
-    const {
-        queryResult: { data, isLoading },
-        // We're inferring the resource and the id from the route params
-        // So we can call useShow hook without any arguments.
-    } = useShow();
+    // We're inferring the resource and the id from the route params
+    // So we can call useShow hook without any arguments.
+    // const result = useShow({ resource: "products", id: "xxx" })
+    const result = useShow();
+
+    const {  queryResult: { data, isLoading } } = result
 
     const go = useGo();
 
