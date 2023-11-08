@@ -30,6 +30,7 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                         "flex",
                         "flex-col",
                         "rounded-lg",
+                        "landing-sm:aspect-[560/240] landing-md:aspect-[624/240]  landing-lg:aspect-[607/293]",
                         "dark:bg-landing-component-dark bg-landing-component",
                     )}
                 >
