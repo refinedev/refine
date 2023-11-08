@@ -10,13 +10,16 @@ import {
     WizardsIcon,
 } from "../components/landing/icons";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 
 type Props = {
     className?: string;
 };
 
 export const LandingSweetSpot: FC<Props> = ({ className }) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref);
+
     const isBrowser = useIsBrowser();
 
     const { colorMode } = useColorMode();
@@ -32,15 +35,18 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             return;
         }
 
-        const interval = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % list.length);
-        }, 3000);
+        let interval: NodeJS.Timeout;
+        if (inView) {
+            interval = setInterval(() => {
+                setActiveIndex((prev) => (prev + 1) % list.length);
+            }, 3000);
+        }
 
         return () => clearInterval(interval);
-    }, [shouldIncrement]);
+    }, [shouldIncrement, inView]);
 
     return (
-        <div className={clsx(className, "w-full")}>
+        <div ref={ref} className={clsx(className, "w-full")}>
             <div
                 className={clsx("not-prose", "w-full", "px-4 landing-md:px-10")}
             >
@@ -82,6 +88,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             <div className={clsx("mt-8 landing-sm:mt-12 landing-lg:mt-20")}>
                 <div
                     className={clsx(
+                        "select-none",
                         "relative",
                         "h-[752px] landing-sm:h-[874px] landing-md:h-[984px] landing-lg:h-[688px]",
                         "not-prose",

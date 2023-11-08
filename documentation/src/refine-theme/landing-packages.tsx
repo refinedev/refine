@@ -4,6 +4,7 @@ import React, {
     FC,
     ReactNode,
     SVGProps,
+    useRef,
     useState,
 } from "react";
 import {
@@ -38,6 +39,7 @@ import {
     JSONApi,
 } from "../assets/integration-icons";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
+import { useInView } from "framer-motion";
 
 type Props = {
     className?: string;
@@ -192,10 +194,14 @@ const PackagesContainer = ({
 }: DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     animDirection: "left" | "right";
 }) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref);
+
     const [animate, setAnimate] = useState(true);
 
     return (
         <div
+            ref={ref}
             className={clsx(
                 "relative",
                 "flex",
@@ -209,9 +215,11 @@ const PackagesContainer = ({
                 className={clsx(
                     className,
                     animate ? "animation-running" : "animation-paused",
-                    animDirection === "left"
-                        ? "animate-landing-packages-left"
-                        : "animate-landing-packages-right",
+                    inView
+                        ? animDirection === "left"
+                            ? "animate-landing-packages-left"
+                            : "animate-landing-packages-right"
+                        : "",
                     "absolute",
                     "left-0",
                     "top-0",

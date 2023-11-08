@@ -1,11 +1,12 @@
 import clsx from "clsx";
-import React, { FC, memo } from "react";
+import React, { FC, memo, useRef } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import nightOwlDark from "prism-react-renderer/themes/nightOwl";
 import nightOwlLight from "prism-react-renderer/themes/nightOwlLight";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
+import { useInView } from "framer-motion";
 type Props = {
     className?: string;
 };
@@ -121,8 +122,14 @@ const ReactLogo = () => {
 };
 
 const CodeSlide = () => {
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref);
+
     return (
-        <div className={clsx("rounded-lg", "dark:bg-gray-900 bg-gray-0")}>
+        <div
+            ref={ref}
+            className={clsx("rounded-lg", "dark:bg-gray-900 bg-gray-0")}
+        >
             <div
                 className={clsx(
                     "text-[10px] leading-[16px]",
@@ -138,7 +145,8 @@ const CodeSlide = () => {
             >
                 <div
                     className={clsx(
-                        "will-change-transform animate-code-scroll p-2",
+                        "will-change-transform p-2",
+                        inView && "animate-code-scroll",
                     )}
                 >
                     <HighlightCode />

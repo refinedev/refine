@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, useEffect, useLayoutEffect } from "react";
+import React, { FC, useEffect, useLayoutEffect, useRef } from "react";
 import {
     OracleIcon,
     SalesforceIcon,
@@ -14,13 +14,16 @@ import {
     UpworkIcon,
     AmazonIcon,
 } from "../components/landing/icons";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 
 type Props = {
     className?: string;
 };
 
 export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref);
+
     const lastChangedIndex = React.useRef<number>(0);
 
     const [randomIcons, setRandomIcons] = React.useState<IList>([]);
@@ -30,24 +33,27 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
     }, []);
 
     useEffect(() => {
+        let interval: NodeJS.Timeout;
         // change one random icon in the list every X seconds.
-        const interval = setInterval(() => {
-            setRandomIcons((prev) => {
-                const { changedIndex, newList } = changeOneRandomIcon(
-                    prev,
-                    list,
-                    lastChangedIndex.current,
-                );
-                lastChangedIndex.current = changedIndex;
-                return newList;
-            });
-        }, 2000);
+        if (inView) {
+            interval = setInterval(() => {
+                setRandomIcons((prev) => {
+                    const { changedIndex, newList } = changeOneRandomIcon(
+                        prev,
+                        list,
+                        lastChangedIndex.current,
+                    );
+                    lastChangedIndex.current = changedIndex;
+                    return newList;
+                });
+            }, 2000);
+        }
 
         return () => clearInterval(interval);
-    }, [randomIcons]);
+    }, [randomIcons, inView]);
 
     return (
-        <div className={clsx(className, "w-full")}>
+        <div className={clsx(className, "w-full")} ref={ref}>
             <div
                 className={clsx(
                     "not-prose",
