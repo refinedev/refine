@@ -184,6 +184,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                             }}
                                             className={clsx(
                                                 "appearance-none",
+                                                "focus:outline-none",
+                                                "cursor-pointer",
                                                 active
                                                     ? "dark:bg-gray-900 bg-gray-0"
                                                     : "dark:bg-gray-900/50 bg-gray-0/50",
