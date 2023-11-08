@@ -95,7 +95,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                     "p-4 landing-sm:py-4 landing-sm:px-10",
                                     "dark:bg-landing-noise",
                                     "dark:bg-gray-800 bg-gray-50",
-                                    "rounded-3xl",
+                                    "rounded-2xl landing-sm:rounded-3xl",
                                     "no-underline",
                                 )}
                             >
@@ -132,7 +132,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                         "not-prose",
                         "flex-shrink-0",
                         "p-4 ",
-                        "rounded-3xl",
+                        "rounded-2xl landing-sm:rounded-3xl",
                         "dark:bg-landing-noise",
                         "dark:bg-gray-800 bg-gray-50",
                     )}

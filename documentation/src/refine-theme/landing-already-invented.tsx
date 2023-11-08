@@ -49,7 +49,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                     "not-prose",
                     "flex-shrink-0",
                     "p-2 landing-sm:p-4",
-                    "rounded-3xl",
+                    "rounded-2xl landing-sm:rounded-3xl",
                     "dark:bg-landing-noise",
                     "dark:bg-gray-800 bg-gray-50",
                 )}

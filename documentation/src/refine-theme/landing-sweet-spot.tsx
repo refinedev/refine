@@ -96,7 +96,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "pb-4 landing-lg:pb-0",
                         "pl-4 landing-sm:pl-10",
                         "dark:bg-gray-800 bg-gray-50",
-                        "rounded-3xl",
+                        "rounded-2xl landing-sm:rounded-3xl",
                         "overflow-hidden",
                         "dark:bg-noise",
                     )}
@@ -279,12 +279,12 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                         <div
                                             key={index}
                                             className={clsx(
-                                                "hidden landing-md:block",
+                                                "block",
                                                 "z-[2]",
-                                                "w-[488px]",
+                                                "w-[340px] landing-sm:w-[488px]",
                                                 "absolute",
-                                                "landing-md:bottom-[112px] landing-lg:bottom-[78px]",
-                                                "landing-md:left-[8px] landing-lg:-left-20",
+                                                "bottom-[112px] landing-lg:bottom-[78px]",
+                                                "left-2 landing-lg:-left-20",
                                                 "rounded-xl",
                                                 "dark:bg-gray-900 bg-gray-0",
                                                 "dark:shadow-landing-sweet-spot-code-dark",
@@ -456,7 +456,7 @@ your UI elements to enterprise-grade:`,
   state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
-            <AuthenticationIcon
+            <WizardsIcon
                 className={clsx(
                     props.active
                         ? "dark:text-[#5959FF] text-[#5959FF]"

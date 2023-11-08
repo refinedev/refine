@@ -62,7 +62,7 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
                     "p-4 landing-md:p-10",
                     "dark:bg-landing-trusted-by-developers-dark bg-landing-trusted-by-developers",
                     "dark:bg-gray-800 bg-gray-50",
-                    "rounded-3xl",
+                    "rounded-2xl landing-sm:rounded-3xl",
                 )}
             >
                 <p

@@ -19,7 +19,7 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                     "not-prose",
                     "flex-shrink-0",
                     "p-2 landing-sm:p-4",
-                    "rounded-3xl",
+                    "rounded-2xl landing-sm:rounded-3xl",
                     "dark:bg-landing-noise",
                     "dark:bg-gray-800 bg-gray-50",
                 )}
@@ -110,7 +110,7 @@ const ReactLogo = () => {
             <video autoPlay loop muted playsInline className="w-full h-full">
                 <source
                     src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/react-${colorMode}.mov`}
-                    type="video/mov"
+                    type="video/mp4"
                 />
                 <source
                     key={colorMode}
