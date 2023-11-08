@@ -5,7 +5,6 @@ export default function NextJSRouteDefinitions() {
     return (
         <SandpackNextJS
             showFiles
-            showNavigator
             startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
             files={{
                 "/pages/_app.tsx": {

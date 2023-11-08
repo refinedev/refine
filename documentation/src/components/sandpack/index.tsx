@@ -302,10 +302,12 @@ export const Sandpack = ({
 
 export const SandpackNextJS = (props: Props) => {
     const isDevelop = process.env.NODE_ENV === "development";
+
     const extraProps = isDevelop
         ? {
               hidePreview: false,
               showConsole: true,
+              showNavigator: true,
               dependencies: {
                   ...props.dependencies,
                   "@refinedev/core": "latest",
@@ -321,14 +323,13 @@ export const SandpackNextJS = (props: Props) => {
                   },
                   ...(props.files as any),
               },
-              template: "nextjs",
           }
         : { hidePreview: true };
 
     return (
         <Sandpack
-            {...extraProps}
             {...props}
+            {...extraProps}
             template={isDevelop ? "nextjs" : "react-ts"}
         />
     );
