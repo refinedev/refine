@@ -80,7 +80,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                     )}
                 >
                     Drag-and-drop tools shine initially, but collapse under the
-                    weight of complexity. refine offers comparable speed at the
+                    weight of complexity. Refine offers comparable speed at the
                     start and infinite scaling in the long run.
                 </p>
             </div>
@@ -324,7 +324,7 @@ const list = [
     {
         title: "Business applications not only share fundemental UI elements, but also the underlying logic.",
         description: `Stop writing repetitive code for CRUD, security and
-        state management. Let refine automatically transform
+        state management. Let Refine automatically transform
         your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
             <DataTablesIcon
@@ -350,7 +350,7 @@ const list = [
     {
         title: "Business applications not only share fundemental UI elements, but also the underlying logic.",
         description: `Stop writing repetitive code for CRUD, security and
-      state management. Let refine automatically transform
+      state management. Let Refine automatically transform
       your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
             <ListIcon
@@ -376,7 +376,7 @@ const list = [
     {
         title: "Business applications not only share fundemental UI elements, but also the underlying logic.",
         description: `Stop writing repetitive code for CRUD, security and
-state management. Let refine automatically transform
+state management. Let Refine automatically transform
 your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
             <ChartsIcon
@@ -402,7 +402,7 @@ your UI elements to enterprise-grade:`,
     {
         title: "Business applications not only share fundemental UI elements, but also the underlying logic.",
         description: `Stop writing repetitive code for CRUD, security and
-  state management. Let refine automatically transform
+  state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
             <FormsIcon
@@ -428,7 +428,7 @@ your UI elements to enterprise-grade:`,
     {
         title: "Business applications not only share fundemental UI elements, but also the underlying logic.",
         description: `Stop writing repetitive code for CRUD, security and
-  state management. Let refine automatically transform
+  state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
             <WizardsIcon
@@ -454,7 +454,7 @@ your UI elements to enterprise-grade:`,
     {
         title: "Business applications not only share fundemental UI elements, but also the underlying logic.",
         description: `Stop writing repetitive code for CRUD, security and
-  state management. Let refine automatically transform
+  state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
             <AuthenticationIcon

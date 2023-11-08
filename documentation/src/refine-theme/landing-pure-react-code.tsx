@@ -79,11 +79,11 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                             )}
                         >
                             Don’t get locked-in to proprietary, black-box
-                            solutions. With refine you have always 100% control
+                            solutions. With Refine you have always 100% control
                             over your project.
                         </p>
                         <LandingSectionCtaButton to="https://github.com/refinedev/refine">
-                            refine on GitHub
+                            Refine on GitHub
                         </LandingSectionCtaButton>
                     </div>
                 </div>

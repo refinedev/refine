@@ -30,7 +30,7 @@ const list = [
     {
         icon: <NoVendorLockinIcon />,
         title: "No vendor lock-in",
-        description: "Open source solution with open architecture.",
+        description: "Open-source solution with open architecture.",
     },
     {
         icon: <ProServicesIcon />,
@@ -72,7 +72,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                             "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
                         )}
                     >
-                        refine
+                        Refine
                     </span>
                     .
                 </h2>
@@ -84,7 +84,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                         "dark:text-gray-400 text-gray-600",
                     )}
                 >
-                    refine is designed to target the specific pain points of
+                    Refine is designed to target the specific pain points of
                     larger organizations for internal tooling.
                 </p>
             </div>
