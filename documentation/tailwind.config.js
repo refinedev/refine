@@ -428,11 +428,11 @@ module.exports = {
                 "landing-hero-beam-bottom":
                     "landing-hero-beam-bottom 7.5s ease-in-out infinite",
                 "showcase-bottom-fade-reveal":
-                    "showcase-bottom-fade-reveal 1s ease-in-out forwards",
+                    "showcase-bottom-fade-reveal 0.3s ease-in-out forwards",
                 "opacity-reveal": "opacity-reveal 1s ease-in-out forwards",
                 "wheel-already-invented-reveal":
                     "wheel-already-invented-reveal 0.6s cubic-bezier(.23,.95,.64,1.24) forwards",
-                "showcase-reveal": "showcase-reveal 0.3s ease-in-out forwards",
+                "showcase-reveal": "showcase-reveal 0.2s ease-in-out forwards",
             },
             keyframes: {
                 "code-scroll": {
@@ -621,7 +621,7 @@ module.exports = {
                 "showcase-bottom-fade-reveal": {
                     "0%": {
                         opacity: 0,
-                        transform: "translateY(64px)",
+                        transform: "translateY(96px)",
                     },
                     "100%": {
                         opacity: 1,
