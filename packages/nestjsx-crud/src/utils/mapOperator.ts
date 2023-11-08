@@ -39,6 +39,8 @@ export const mapOperator = (operator: CrudOperators): ComparisonOperator => {
             return CondOperator.ENDS_LOW;
         case "endswiths":
             return CondOperator.ENDS;
+        case "nnull":
+            return CondOperator.NOT_NULL
     }
 
     return CondOperator.EQUALS;
