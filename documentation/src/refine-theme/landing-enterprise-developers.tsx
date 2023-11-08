@@ -63,7 +63,8 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                         "dark:text-gray-0 text-gray-900",
                     )}
                 >
-                    Enterprise developers 💖{" "}
+                    Enterprise developers{" "}
+                    <span className="font-sans text-[#FE251B]">❤️</span>{" "}
                     <span
                         className={clsx(
                             "font-semibold",

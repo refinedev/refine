@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { useColorMode } from "@docusaurus/theme-common";
 import {
@@ -23,6 +23,20 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const activeListItem = list[activeIndex];
+
+    const shouldIncrement = useRef(true);
+
+    useEffect(() => {
+        if (!shouldIncrement.current) {
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % list.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className={clsx(className, "w-full")}>
@@ -130,7 +144,10 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                 return (
                                     <button
                                         key={item.iconText}
-                                        onClick={() => setActiveIndex(index)}
+                                        onClick={() => {
+                                            shouldIncrement.current = false;
+                                            setActiveIndex(index);
+                                        }}
                                         className={clsx(
                                             "appearance-none",
                                             active

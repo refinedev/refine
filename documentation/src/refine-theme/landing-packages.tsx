@@ -30,6 +30,7 @@ import {
     NestQuery,
     Nextjs,
     Nhost,
+    UseGenerated,
     ShadCnUI,
     React as ReactIcon,
     Remix,
@@ -37,7 +38,6 @@ import {
     Strapi,
     Supabase,
     Hygraph,
-    UseGenerated,
     Sanity,
     SQLite,
     JSONApi,
@@ -327,36 +327,6 @@ const PackageItem = (props: {
 
 const listOne = [
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Antd {...props} />,
-        label: "Ant Design",
-        tooltip: "npm i @refinedev/antd",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Mui {...props} />,
-        label: "Material UI",
-        tooltip: "npm i @refinedev/mui",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
-        label: "Mantine",
-        tooltip: "npm i @refinedev/mantine",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
-        label: "Mantine",
-        tooltip: "npm i @refinedev/mantine",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Chakra {...props} />,
-        label: "Chakra UI",
-        tooltip: "npm i @refinedev/chakra-ui",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <ShadCnUI {...props} />,
-        label: "shadcn/ui",
-        tooltip: "npx shadcn-ui init",
-    },
-    {
         icon: (props: SVGProps<SVGSVGElement>) => <Firebase {...props} />,
         label: "Firebase",
         tooltip: "npm i refine-firebase",
@@ -382,11 +352,6 @@ const listOne = [
         tooltip: "npm i @tspvivek/refine-directus",
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Dp {...props} />,
-        label: "Dp",
-        tooltip: "npm i data-provider-customizer",
-    },
-    {
         icon: (props: SVGProps<SVGSVGElement>) => <Elide {...props} />,
         label: "Elide",
         tooltip: "npm i elide-simple-graphql",
@@ -397,24 +362,49 @@ const listOne = [
         tooltip: "npm i @refinedev/elide-graphql",
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <EntRefine {...props} />,
-        label: "EntRefine",
-        tooltip: "npm i entrefine",
-    },
-    {
         icon: (props: SVGProps<SVGSVGElement>) => <Hasura {...props} />,
         label: "Hasura",
         tooltip: "npm i @refinedev/hasura",
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Headless {...props} />,
-        label: "Headless",
-        tooltip: "npm i tailwindcss",
-    },
-    {
         icon: (props: SVGProps<SVGSVGElement>) => <HookForm {...props} />,
         label: "Hook Form",
         tooltip: "npm i @refinedev/react-hook-form",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Antd {...props} />,
+        label: "Ant Design",
+        tooltip: "npm i @refinedev/antd",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Mui {...props} />,
+        label: "Material UI",
+        tooltip: "npm i @refinedev/mui",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
+        label: "Mantine",
+        tooltip: "npm i @refinedev/mantine",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Chakra {...props} />,
+        label: "Chakra UI",
+        tooltip: "npm i @refinedev/chakra-ui",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <ShadCnUI {...props} />,
+        label: "shadcn/ui",
+        tooltip: "npx shadcn-ui init",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Headless {...props} />,
+        label: "Tailwind CSS",
+        tooltip: "npx tailwindcss init",
+    },
+    {
+        icon: (props: SVGProps<SVGSVGElement>) => <Headless {...props} />,
+        label: "Headless UI",
+        tooltip: "npm i @headlessui/react",
     },
 ];
 
@@ -436,23 +426,18 @@ const listTwo = [
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Nest {...props} />,
-        label: "Nest",
-        tooltip: "npm i @refinedev/nest",
+        label: "NestJs CRUD",
+        tooltip: "npm i @refinedev/nestjsx-crud",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <NestQuery {...props} />,
-        label: "Nest Query",
-        tooltip: "npm i @refinedev/nest-query",
+        label: "Nestjs-query",
+        tooltip: "npm i @refinedev/nestjs-query",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Nextjs {...props} />,
         label: "Next.js",
         tooltip: "npm i @refinedev/nextjs-router",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Nhost {...props} />,
-        label: "Nhost",
-        tooltip: "npm i @refinedev/nhost",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <ReactIcon {...props} />,
@@ -478,11 +463,6 @@ const listTwo = [
         icon: (props: SVGProps<SVGSVGElement>) => <Supabase {...props} />,
         label: "Supabase",
         tooltip: "npm i @refinedev/supabase",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <UseGenerated {...props} />,
-        label: "Use Generated",
-        tooltip: "npm i refine-use-generated",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Hygraph {...props} />,
