@@ -32,6 +32,11 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                         "rounded-lg",
                         "landing-sm:aspect-[560/240] landing-md:aspect-[624/240]  landing-lg:aspect-[607/293]",
                         "dark:bg-landing-component-dark bg-landing-component",
+                        "border-t-solid border-t",
+                        "border-t-gray-200 dark:border-t-gray-700",
+                        "border-opacity-60 dark:border-opacity-60",
+                        "shadow-[0px_-1.5px_0px_rgba(237,242,247,0.5)] dark:shadow-[0px_-1.5px_0px_rgba(20,20,31,0.5)]",
+                        "drop-shadow-sm",
                     )}
                 >
                     <BrowserOnly>{() => <CodeSlide />}</BrowserOnly>

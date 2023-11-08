@@ -16,6 +16,9 @@
     .animation-running {
         animation-play-state: running;
     }
+    .animation-initial {
+        animation-play-state: initial;
+    }
     .animation-paused {
         animation-play-state: paused;
     }

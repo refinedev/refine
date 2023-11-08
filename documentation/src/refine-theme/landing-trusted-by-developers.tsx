@@ -14,7 +14,7 @@ import {
     UpworkIcon,
     AmazonIcon,
 } from "../components/landing/icons";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 
 type Props = {
     className?: string;
@@ -85,13 +85,17 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
                         "mt-6",
                     )}
                 >
-                    <AnimatePresence>
-                        {randomIcons.map((item) => (
-                            <motion.div
-                                key={item.id}
-                                animate={{ opacity: 1, display: "flex" }}
-                                initial={{ opacity: 0, display: "none" }}
+                    {randomIcons.map((item) => (
+                        <div
+                            key={item.id}
+                            className={clsx(
+                                "max-w-[187px] w-full",
+                                "overflow-hidden",
+                            )}
+                        >
+                            <div
                                 className={clsx(
+                                    "animate-opacity-reveal",
                                     "flex",
                                     "items-center",
                                     "justify-center",
@@ -99,9 +103,9 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
                                 )}
                             >
                                 {item.icon}
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

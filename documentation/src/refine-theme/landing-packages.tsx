@@ -5,7 +5,6 @@ import React, {
     ReactNode,
     SVGProps,
     useRef,
-    useState,
 } from "react";
 import {
     Ably,
@@ -197,8 +196,6 @@ const PackagesContainer = ({
     const ref = useRef<HTMLDivElement>(null);
     const inView = useInView(ref);
 
-    const [animate, setAnimate] = useState(true);
-
     return (
         <div
             ref={ref}
@@ -210,11 +207,9 @@ const PackagesContainer = ({
             )}
         >
             <div
-                onMouseEnter={() => setAnimate(false)}
-                onMouseLeave={() => setAnimate(true)}
                 className={clsx(
                     className,
-                    animate ? "animation-running" : "animation-paused",
+                    "hover:animation-paused",
                     inView
                         ? animDirection === "left"
                             ? "animate-landing-packages-left"

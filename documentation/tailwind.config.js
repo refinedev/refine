@@ -383,12 +383,14 @@ module.exports = {
                     "center, calc(50% + 490px) calc(50% + 180px)",
                 "landing-sweet-spot-glow-position-xs":
                     "center, calc(50% - 30px) calc(50% + 300px)",
+                "wheel-already-invented-position": "center",
             },
             backgroundSize: {
                 "landing-wizard-option": "600px 600px, auto",
                 "landing-wizard-side-size": "512px 512px",
                 "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
                 "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
+                "wheel-already-invented-size": "100% 1px",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -425,6 +427,8 @@ module.exports = {
                 "showcase-bottom-fade-reveal":
                     "showcase-bottom-fade-reveal 1s ease-in-out forwards",
                 "opacity-reveal": "opacity-reveal 1s ease-in-out forwards",
+                "wheel-already-invented-reveal":
+                    "wheel-already-invented-reveal 0.6s cubic-bezier(.23,.95,.64,1.24) forwards",
             },
             keyframes: {
                 "code-scroll": {
@@ -626,6 +630,12 @@ module.exports = {
                     },
                     "100%": {
                         opacity: 1,
+                    },
+                },
+                "wheel-already-invented-reveal": {
+                    "0%": {},
+                    "100%": {
+                        transform: "translateX(0)",
                     },
                 },
             },

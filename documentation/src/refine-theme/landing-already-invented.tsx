@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import {
     ComponentsIcon,
     RoutesIcon,
@@ -7,7 +7,7 @@ import {
     InterfacesIcon,
     ProvidersIcon,
 } from "../components/landing/icons";
-import { motion, useAnimationControls, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
 
 const list = [
@@ -40,16 +40,6 @@ type Props = {
 export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const inView = useInView(ref, { once: true });
-    const controls = useAnimationControls();
-
-    useEffect(() => {
-        if (inView) {
-            controls.start({
-                x: 0,
-                opacity: 1,
-            });
-        }
-    }, [inView, controls]);
 
     return (
         <div className={clsx(className)}>
@@ -70,74 +60,77 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                         "flex-col",
                         "rounded-lg",
                         "dark:bg-landing-component-dark bg-landing-component",
+                        "py-3.5",
+                        "border-t-solid border-t",
+                        "border-t-gray-200 dark:border-t-gray-700",
+                        "border-opacity-60 dark:border-opacity-60",
+                        "shadow-[0px_-1.5px_0px_rgba(237,242,247,0.5)] dark:shadow-[0px_-1.5px_0px_rgba(20,20,31,0.5)]",
+                        "drop-shadow-sm",
                     )}
                 >
                     {list.map((item, index) => {
-                        const isLast = index === list.length - 1;
-                        const isFirst = index === 0;
-
-                        const leftOffset = index * 32 - 32;
+                        const paddingLeft = 108 + index * 40;
 
                         return (
                             <div
                                 className={clsx(
+                                    "py-1.5",
+                                    "h-[54px]",
                                     "relative",
-                                    "flex items-center justify-center",
-                                    "h-[1px]",
+                                    "flex items-center justify-start",
                                     "dark:bg-landing-component-divider-dark bg-landing-component-divider",
-                                    isFirst ? "mt-10" : "mt-[52px]",
-                                    isLast && "mb-10",
+                                    "bg-no-repeat",
+                                    "bg-wheel-already-invented-size",
+                                    "bg-wheel-already-invented-position",
+                                    "overflow-hidden",
                                 )}
+                                style={{
+                                    paddingLeft,
+                                }}
                                 key={index}
                             >
-                                <div className={clsx("absolute", "w-[160px]")}>
-                                    <motion.div
-                                        initial={{
-                                            x: 450 - leftOffset,
-                                            opacity: 0,
-                                        }}
-                                        animate={controls}
-                                        transition={{
-                                            type: "spring",
-                                            bounce: 0.5,
-                                            duration: 0.6,
-                                            delay: 0.85 * index,
-                                        }}
-                                        style={{
-                                            marginLeft: `${leftOffset}px`,
-                                        }}
+                                <div
+                                    className={clsx(
+                                        "w-max",
+                                        "rounded-full",
+                                        "p-[1px]",
+                                        "dark:bg-landing-component-badge bg-refine-green",
+                                        "relative",
+                                        inView &&
+                                            "animate-wheel-already-invented-reveal",
+                                    )}
+                                    style={{
+                                        transform: `translateX(${
+                                            40 * (10 - index)
+                                        }px)`,
+                                        animationDelay: `${
+                                            0.15 + index * 0.15
+                                        }s`,
+                                    }}
+                                >
+                                    <div
                                         className={clsx(
-                                            "w-max",
                                             "rounded-full",
-                                            "p-[1px]",
-                                            "dark:bg-landing-component-badge bg-refine-green",
-                                            "relative",
+                                            "py-2 pr-6 pl-[10px]",
+                                            "flex items-center justify-center gap-2",
+                                            "dark:bg-gray-900 bg-gray-0",
                                         )}
                                     >
-                                        <div
-                                            className={clsx(
-                                                "rounded-full",
-                                                "py-2 pr-6 pl-[10px]",
-                                                "flex items-center justify-center gap-2",
-                                                "dark:bg-gray-900 bg-gray-0",
-                                            )}
-                                        >
-                                            <div>{item.icon}</div>
-                                            <div>{item.label}</div>
-                                        </div>
-                                        <div
-                                            className={clsx(
-                                                "dark:block hidden",
-                                                "absolute",
-                                                "-top-6 -left-6",
-                                                "rounded-full",
-                                                "w-20 h-20",
-                                                "z-10",
-                                                "blur-md",
-                                                "bg-landing-component-badge-glow",
-                                            )}
-                                        />
-                                    </motion.div>
+                                        <div>{item.icon}</div>
+                                        <div>{item.label}</div>
+                                    </div>
+                                    <div
+                                        className={clsx(
+                                            "dark:block hidden",
+                                            "absolute",
+                                            "-top-6 -left-6",
+                                            "rounded-full",
+                                            "w-20 h-20",
+                                            "z-10",
+                                            "blur-md",
+                                            "bg-landing-component-badge-glow",
+                                        )}
+                                    />
                                 </div>
                             </div>
                         );
