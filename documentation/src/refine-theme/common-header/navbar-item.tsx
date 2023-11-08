@@ -7,13 +7,9 @@ import { TwoTonedCloudIcon } from "../icons/popover";
 
 type NavbarItemProps = {
     item: NavbarItemType;
-    isPermanentDark?: boolean;
 };
 
-export const NavbarItem: React.FC<NavbarItemProps> = ({
-    item,
-    isPermanentDark,
-}) => {
+export const NavbarItem: React.FC<NavbarItemProps> = ({ item }) => {
     const [theme, setTheme] = useState(null);
 
     useEffect(() => {
@@ -35,10 +31,6 @@ export const NavbarItem: React.FC<NavbarItemProps> = ({
         Icon = theme === "light" ? TwoTonedCloudIcon : item.icon;
     }
 
-    if (isPermanentDark) {
-        Icon = item.icon;
-    }
-
     return (
         <Link
             key={item.label}
@@ -48,7 +40,6 @@ export const NavbarItem: React.FC<NavbarItemProps> = ({
                 "text-sm leading-6 font-normal text-gray-900 dark:text-gray-300",
                 "transition-colors duration-150 ease-in-out",
                 "no-underline",
-                isPermanentDark && "!text-white",
                 item.label === "Hackathon"
                     ? [
                           "py-1",

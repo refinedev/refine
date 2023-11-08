@@ -1,8 +1,8 @@
 import Link from "@docusaurus/Link";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import clsx from "clsx";
-import React, { Fragment } from "react";
-
+import React, { FC, Fragment, PropsWithChildren } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 import { openFigma } from "@site/src/utils/open-figma";
 import { CloseIcon } from "../icons/close";
 import {
@@ -16,6 +16,9 @@ import { MENU_ITEMS, NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
 import { MobileNavItem } from "./mobile-nav-item";
 import { TopAnnouncement } from "../top-announcement";
+import { DarkModeIcon } from "../icons/dark-mode";
+import { LightModeIcon } from "../icons/light-mode";
+import { useLocation } from "@docusaurus/router";
 
 type MobileMenuModalProps = {
     isModalOpen: boolean;
@@ -25,6 +28,25 @@ type MobileMenuModalProps = {
 export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
     isModalOpen,
     setIsModalOpen,
+}) => {
+    const location = useLocation();
+
+    React.useEffect(() => {
+        setIsModalOpen(false);
+    }, [location]);
+
+    return (
+        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+            <Tablet className="hidden landing-sm:block" />
+            <Phone className="block landing-sm:hidden" />
+        </Modal>
+    );
+};
+
+const Modal: FC<PropsWithChildren<MobileMenuModalProps>> = ({
+    isModalOpen,
+    setIsModalOpen,
+    children,
 }) => {
     return (
         <Transition appear show={isModalOpen} as={Fragment}>
@@ -55,8 +77,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                             className={clsx(
                                 "flex items-center justify-between",
                                 "p-4",
-                                "landing-sm:px-6",
-                                "landing-md:px-8",
+                                "landing-sm:px-8",
                             )}
                         >
                             <RefineLogoIcon
@@ -95,47 +116,78 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                     "pb-4",
                                 )}
                             >
-                                <MenuSection />
+                                {children}
                             </div>
                         </Transition.Child>
                     </div>
                 </Transition.Child>
-
-                {/* <div
-                    className={clsx(
-                        "fixed top-16 left-0 right-0",
-                        "overflow-y-auto",
-                    )}
-                >
-                    <div
-                        className={clsx(
-                            "flex items-start justify-center",
-                            "min-h-full h-[calc(100vh-80px)]",
-                            "p-4",
-                            "text-center",
-                            "overflow-auto",
-                        )}
-                    >
-
-                    </div>
-                </div> */}
             </Dialog>
         </Transition>
     );
 };
 
-const MenuSection = () => {
+const Tablet = (props: { className?: string }) => {
     return (
         <div
             className={clsx(
-                "mx-auto",
-                "w-full header-sm:max-w-[624px] max-h-full",
                 "overflow-auto",
-                "border border-gray-200 dark:border-gray-600 rounded-lg",
-                "bg-white dark:bg-gray-900",
-                "text-left",
-                "align-middle",
-                "flex flex-col header-sm:flex-row",
+                "border border-gray-200 dark:border-gray-700 rounded-lg",
+                props.className,
+            )}
+        >
+            {MENU_ITEMS.map((item, i) => {
+                return (
+                    <div
+                        key={i}
+                        className={clsx(
+                            "not-prose",
+                            "p-4",
+                            "border-t dark:border-gray-700 border-gray-200",
+                        )}
+                    >
+                        <Link
+                            to={"href" in item ? item.href : undefined}
+                            className={clsx(
+                                "appearance-none",
+                                "block",
+                                "no-underline",
+                                "dark:text-gray-0 text-gray-900",
+                                "font-bold",
+                            )}
+                        >
+                            {item.label}
+                        </Link>
+                        {"items" in item && (
+                            <div
+                                className={clsx(
+                                    "mt-2",
+                                    "grid grid-cols-2 min-[800px]:grid-cols-3",
+                                    "gap-x-8 gap-y-4",
+                                )}
+                            >
+                                {item.items.map((subItem) => (
+                                    <MenuItem
+                                        key={subItem.label}
+                                        item={subItem}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                );
+            })}
+            <ThemeToggle />
+        </div>
+    );
+};
+
+const Phone = (props: { className?: string }) => {
+    return (
+        <div
+            className={clsx(
+                "overflow-auto",
+                "border border-gray-200 dark:border-gray-700 rounded-lg",
+                props.className,
             )}
         >
             <div className="flex-grow">
@@ -174,62 +226,74 @@ const MenuSection = () => {
                     );
                 })}
             </div>
+            <ThemeToggle />
+        </div>
+    );
+};
+
+const ThemeToggle = () => {
+    const { colorMode, setColorMode } = useColorMode();
+
+    const toggle = () => {
+        setColorMode(colorMode === "dark" ? "light" : "dark");
+    };
+
+    const isDarkSelected = colorMode === "dark";
+    const isLightSelected = colorMode === "light";
+
+    return (
+        <div
+            className={clsx(
+                "not-prose",
+                "p-4",
+                "flex items-center",
+                "border-t dark:border-gray-700 border-gray-200",
+            )}
+        >
             <div
                 className={clsx(
-                    "header-sm:w-[288px] max-h-[calc(100vh-97px)]",
-                    "header-sm:bg-gray-50 header-sm:dark:bg-gray-700",
-                    "header-sm:flex header-sm:flex-col header-sm:justify-between",
-                    "sticky top-0",
+                    "text-sm",
+                    "mr-10",
+                    "dark:text-gray-400 text-gray-600",
                 )}
             >
-                <div
-                    className={clsx(
-                        "bg-white dark:bg-gray-700 header-sm:bg-inherit",
-                        "flex justify-between items-center",
-                        "header-sm:flex-col header-sm:gap-4",
-                        "header-sm:border-b border-gray-200 dark:border-gray-600",
-                        "py-3 px-4",
-                    )}
-                >
-                    <p className="text-gray-500 dark:text-gray-300 font-semibold">
-                        Join the party!
-                    </p>
-                    <div className="flex gap-4">
-                        <Link to="https://github.com/refinedev/refine">
-                            <GithubIcon className="h-10 w-10" />
-                        </Link>
-                        <Link to="https://discord.com/invite/refine">
-                            <DiscordIcon className="h-10 w-10" />
-                        </Link>
-                        <Link to="https://twitter.com/refine_dev">
-                            <TwitterIcon className="h-10 w-10" />
-                        </Link>
-                    </div>
-                </div>
-                <Link
-                    to="https://github.com/refinedev/refine"
-                    className="no-underline"
-                >
-                    <div
-                        className={clsx(
-                            "bg-gray-50 dark:bg-gray-700",
-                            "flex items-center",
-                            "p-4",
-                        )}
-                    >
-                        <GithubStarIcon className="shrink-0" />
-                        <p
-                            className={clsx(
-                                "ml-4",
-                                "text-gray-600 dark:text-gray-400 text-xs",
-                            )}
-                        >
-                            If you like refine, don’t forget to star us on
-                            GitHub!
-                        </p>
-                    </div>
-                </Link>
+                Apperance
             </div>
+            <button
+                onClick={toggle}
+                className={clsx(
+                    "mr-4",
+                    "rounded-full",
+                    "appearance-none",
+                    "select-none",
+                    "flex items-center gap-2",
+                    "h-[40px] px-3",
+                    "text-sm",
+                    "border dark:border-gray-700 border-gray-200",
+                    "text-gray-500",
+                    isLightSelected && "bg-gray-50",
+                )}
+            >
+                <LightModeIcon />
+                Light
+            </button>
+            <button
+                onClick={toggle}
+                className={clsx(
+                    "rounded-full",
+                    "appearance-none",
+                    "select-none",
+                    "flex items-center gap-2",
+                    "h-[40px] px-3",
+                    "text-sm",
+                    "border dark:border-gray-700 border-gray-200",
+                    isDarkSelected ? "text-gray-400" : "text-gray-500",
+                    isDarkSelected && "bg-gray-700",
+                )}
+            >
+                <DarkModeIcon />
+                Dark
+            </button>
         </div>
     );
 };

@@ -9,12 +9,10 @@ import { PointIcon } from "../icons/popover";
 
 type NavbarPopoverItemProps = {
     item: NavbarPopoverItemType;
-    isPermanentDark?: boolean;
 };
 
 export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
     item,
-    isPermanentDark,
     children,
 }) => {
     const [isShowing, setIsShowing] = useState(false);
@@ -90,17 +88,24 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                             })}
                         >
                             <PointIcon
-                                className={clsx("absolute", "top-[-9px]", {
-                                    "left-1/2": item.label !== "Open-source",
-                                    "left-12": item.label === "Open-source",
-                                })}
+                                className={clsx(
+                                    "absolute",
+                                    "dark:text-gray-900 text-white",
+                                    "top-[-9px]",
+                                    {
+                                        "left-1/2":
+                                            item.label !== "Open-source",
+                                        "left-12": item.label === "Open-source",
+                                    },
+                                )}
                                 style={{ transform: "translateX(-50%)" }}
                             />
                             <div
                                 className={clsx(
                                     "overflow-hidden",
                                     "rounded-xl",
-                                    "border border-gray-200",
+                                    "border dark:border-gray-700 border-gray-200",
+                                    "dark:shadow-menu-dark shadow-menu-light",
                                 )}
                             >
                                 {children}
