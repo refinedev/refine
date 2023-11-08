@@ -20,6 +20,8 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
             rel="noopener noreferrer"
             className={clsx(
                 className,
+                "group/cta-button",
+                "relative",
                 "no-underline",
                 "rounded-full",
                 "flex",
@@ -32,10 +34,33 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
                 "font-semibold",
                 "dark:text-refine-cyan-alt text-refine-blue",
                 "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
+                "overflow-hidden",
             )}
         >
             {children}
             <DefaultIcon />
+
+            <div
+                className={clsx(
+                    "select-none",
+                    "rounded-3xl",
+                    "absolute",
+                    "left-0",
+                    "top-0",
+                    "w-full",
+                    "h-full",
+                    "scale-[2]",
+                    "origin-center",
+                    "transition-[opacity,transform]",
+                    "duration-300",
+                    "ease-in-out",
+                    "opacity-0",
+                    "group-hover/cta-button:opacity-100",
+                    "group-hover/cta-button:scale-100",
+                    "pointer-events-none",
+                    "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+                )}
+            />
         </Link>
     );
 };
