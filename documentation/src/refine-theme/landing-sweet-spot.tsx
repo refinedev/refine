@@ -335,7 +335,7 @@ const list = [
                 )}
             />
         ),
-        iconText: "Datatables",
+        iconText: "Tables",
         image1Dark:
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-ui-dark.png",
         image1Light:
