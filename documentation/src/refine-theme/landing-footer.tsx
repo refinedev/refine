@@ -211,6 +211,12 @@ export const LandingFooter = () => {
                                         <a
                                             href={item.href}
                                             key={item.label}
+                                            {...(item.href.startsWith("http")
+                                                ? {
+                                                      target: "_blank",
+                                                      rel: "noopener noreferrer",
+                                                  }
+                                                : {})}
                                             className={clsx(
                                                 "text-sm",
                                                 "leading-5",
@@ -284,6 +290,12 @@ export const LandingFooter = () => {
                             <a
                                 href={menu.href}
                                 key={menu.label}
+                                {...(menu.href.startsWith("http")
+                                    ? {
+                                          target: "_blank",
+                                          rel: "noopener noreferrer",
+                                      }
+                                    : {})}
                                 className={clsx(
                                     "text-sm",
                                     "leading-5",

@@ -60,17 +60,17 @@ export const menuItems = [
             },
             {
                 label: "Contact Us",
-                href: "#",
+                href: "https://form.typeform.com/to/H54hLD9r",
             },
         ],
     },
 ];
 
 export const secondaryMenuItems = [
-    {
-        label: "Terms & Conditions",
-        href: "#",
-    },
+    // {
+    //     label: "Terms & Conditions",
+    //     href: "#",
+    // },
     {
         label: "Privacy Policy",
         href: "/privacy-policy",
