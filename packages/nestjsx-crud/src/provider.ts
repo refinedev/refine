@@ -134,7 +134,7 @@ export const dataProvider = (
         }
     },
 
-    getOne: async ({ resource, id }) => {
+    getOne: async ({ resource, id, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         let query = RequestQueryBuilder.create()
