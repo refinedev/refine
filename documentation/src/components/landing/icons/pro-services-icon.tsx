@@ -12,7 +12,13 @@ export const ProServicesIcon = (props: SVGProps<SVGSVGElement>) => (
         {...props}
         className={clsx(props.className, "text-refine-red")}
     >
-        <rect width={64} height={64} fill="url(#a)" fillOpacity={0.3} rx={16} />
+        <rect
+            width={64}
+            height={64}
+            fill="url(#pro-services-a)"
+            fillOpacity={0.3}
+            rx={16}
+        />
         <path
             fill="currentColor"
             fillRule="evenodd"
@@ -24,13 +30,13 @@ export const ProServicesIcon = (props: SVGProps<SVGSVGElement>) => (
             height={63}
             x={0.5}
             y={0.5}
-            stroke="url(#b)"
+            stroke="url(#pro-services-b)"
             strokeOpacity={0.5}
             rx={15.5}
         />
         <defs>
             <radialGradient
-                id="a"
+                id="pro-services-a"
                 cx={0}
                 cy={0}
                 r={1}
@@ -41,7 +47,7 @@ export const ProServicesIcon = (props: SVGProps<SVGSVGElement>) => (
                 <stop offset={1} stopColor="currentColor" stopOpacity={0.25} />
             </radialGradient>
             <radialGradient
-                id="b"
+                id="pro-services-b"
                 cx={0}
                 cy={0}
                 r={1}

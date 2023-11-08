@@ -10,6 +10,7 @@ import {
     WizardsIcon,
 } from "../components/landing/icons";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
     className?: string;
@@ -81,6 +82,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             <div className={clsx("mt-8 landing-sm:mt-12 landing-lg:mt-20")}>
                 <div
                     className={clsx(
+                        "relative",
                         "h-[752px] landing-sm:h-[874px] landing-md:h-[984px] landing-lg:h-[688px]",
                         "not-prose",
                         "pt-4 landing-sm:pt-10 landing-lg:pt-20",
@@ -88,196 +90,221 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "pl-4 landing-sm:pl-10",
                         "dark:bg-gray-800 bg-gray-50",
                         "rounded-3xl",
-                        "flex flex-col landing-lg:grid landing-lg:grid-cols-12",
                         "overflow-hidden",
-                        "landing-xs:bg-landing-sweet-spot-glow-position-xs",
-                        "landing-lg:bg-landing-sweet-spot-glow-position-lg",
-                        "landing-md:bg-landing-sweet-spot-glow-position-md",
-                        "landing-xs:bg-landing-sweet-spot-glow-size-xs",
-                        "landing-lg:bg-landing-sweet-spot-glow-size-lg",
-                        activeListItem.backgroundImage,
+                        "dark:bg-noise",
                     )}
-                    style={{
-                        backgroundRepeat: "repeat, no-repeat",
-                    }}
                 >
+                    <AnimatePresence>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{
+                                duration: 0.5,
+                                ease: "easeInOut",
+                            }}
+                            key={activeIndex}
+                            className={clsx(
+                                "absolute",
+                                "inset-0",
+                                "z-0",
+                                "landing-xs:bg-landing-sweet-spot-glow-position-xs",
+                                "landing-lg:bg-landing-sweet-spot-glow-position-lg",
+                                "landing-md:bg-landing-sweet-spot-glow-position-md",
+                                "landing-xs:bg-landing-sweet-spot-glow-size-xs",
+                                "landing-lg:bg-landing-sweet-spot-glow-size-lg",
+                                activeListItem.backgroundImage,
+                            )}
+                            style={{
+                                backgroundRepeat: "repeat, no-repeat",
+                            }}
+                        />
+                    </AnimatePresence>
                     <div
                         className={clsx(
-                            "not-prose",
-                            "pr-6 landing-sm:pr-0",
-                            "landing-sm:max-w-[540px] landing-md:max-w-[760px] landing-lg:max-w-[416px]",
-                            "landing-lg:col-span-5",
-                            "landing-lg:mt-16",
+                            "relative",
+                            "z-[1]",
+                            "h-full w-full",
+                            "flex flex-col landing-lg:grid landing-lg:grid-cols-12",
                         )}
                     >
-                        <h3
-                            className={clsx(
-                                "text-base landing-sm:text-xl font-semibold",
-                                "dark:text-gray-300 text-gray-700",
-                            )}
-                        >
-                            {activeListItem.title}
-                        </h3>
-                        <p
-                            className={clsx(
-                                "mt-6",
-                                "text-base",
-                                "dark:text-gray-400 text-gray-600",
-                            )}
-                        >
-                            {activeListItem.description}
-                        </p>
                         <div
                             className={clsx(
-                                "mt-4 landing-sm:mt-10",
-                                "w-max",
-                                "grid",
-                                "grid-cols-2 landing-sm:grid-cols-3 landing-lg:grid-cols-2",
-                                "landing-sm:gap-x-2 gap-y-4",
                                 "not-prose",
+                                "pr-6 landing-sm:pr-0",
+                                "landing-sm:max-w-[540px] landing-md:max-w-[760px] landing-lg:max-w-[416px]",
+                                "landing-lg:col-span-5",
+                                "landing-lg:mt-16",
                             )}
                         >
-                            {list.map((item, index) => {
-                                const active = index === activeIndex;
-                                const Icon = item.icon;
-
-                                return (
-                                    <button
-                                        key={item.iconText}
-                                        onClick={() => {
-                                            setShouldIncrement(false);
-                                            setActiveIndex(index);
-                                        }}
-                                        className={clsx(
-                                            "appearance-none",
-                                            active
-                                                ? "dark:bg-gray-900 bg-gray-0"
-                                                : "dark:bg-gray-900/50 bg-gray-0/50",
-
-                                            "w-max",
-                                            "flex",
-                                            "items-center",
-                                            "justify-start",
-                                            "gap-1",
-                                            "px-4 py-2",
-                                            "rounded-full",
-                                            "text-sm landing-sm:text-base",
-                                        )}
-                                    >
-                                        <div>
-                                            <Icon active={active} />
-                                        </div>
-                                        <div
-                                            className={clsx(
-                                                active
-                                                    ? "dark:text-gray-0 text-gray-900"
-                                                    : "dark:text-gray-400 text-gray-600",
-                                            )}
-                                        >
-                                            {item.iconText}
-                                        </div>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-
-                    {isBrowser && (
-                        <div
-                            className={clsx(
-                                "relative",
-                                "h-full",
-                                "mt-4 landing-sm:mt-[72px] landing-lg:mt-0",
-                                "flex",
-                                "landing-lg:col-start-7 landing-lg:col-end-13",
-                            )}
-                        >
+                            <h3
+                                className={clsx(
+                                    "text-base landing-sm:text-xl font-semibold",
+                                    "dark:text-gray-300 text-gray-700",
+                                )}
+                            >
+                                {activeListItem.title}
+                            </h3>
+                            <p
+                                className={clsx(
+                                    "mt-6",
+                                    "text-base",
+                                    "dark:text-gray-400 text-gray-600",
+                                )}
+                            >
+                                {activeListItem.description}
+                            </p>
                             <div
                                 className={clsx(
-                                    "w-full",
-                                    "h-full",
-                                    "landing-sweet-spot-mask",
-                                    "z-[1]",
-                                    "landing-lg:absolute",
-                                    "top-0 right-0",
+                                    "mt-4 landing-sm:mt-10",
+                                    "w-max",
+                                    "grid",
+                                    "grid-cols-2 landing-sm:grid-cols-3 landing-lg:grid-cols-2",
+                                    "landing-sm:gap-x-2 gap-y-4",
+                                    "not-prose",
                                 )}
                             >
                                 {list.map((item, index) => {
                                     const active = index === activeIndex;
+                                    const Icon = item.icon;
 
                                     return (
-                                        <img
-                                            key={index}
-                                            src={
-                                                isDarkTheme
-                                                    ? item.image1Dark
-                                                    : item.image1Light
-                                            }
-                                            alt="UI of refine"
-                                            loading="lazy"
+                                        <button
+                                            key={item.iconText}
+                                            onClick={() => {
+                                                setShouldIncrement(false);
+                                                setActiveIndex(index);
+                                            }}
                                             className={clsx(
-                                                "object-cover",
-                                                "object-left-top",
-                                                "w-full landing-md:w-[874px] landing-lg:w-full",
-                                                "h-full landing-lg:h-[464px]",
-                                                "landing-md:pl-20 landing-lg:pl-0",
+                                                "appearance-none",
+                                                active
+                                                    ? "dark:bg-gray-900 bg-gray-0"
+                                                    : "dark:bg-gray-900/50 bg-gray-0/50",
+
+                                                "w-max",
+                                                "flex",
+                                                "items-center",
+                                                "justify-start",
+                                                "gap-1",
+                                                "px-4 py-2",
+                                                "rounded-full",
+                                                "text-sm landing-sm:text-base",
+                                            )}
+                                        >
+                                            <div>
+                                                <Icon active={active} />
+                                            </div>
+                                            <div
+                                                className={clsx(
+                                                    active
+                                                        ? "dark:text-gray-0 text-gray-900"
+                                                        : "dark:text-gray-400 text-gray-600",
+                                                )}
+                                            >
+                                                {item.iconText}
+                                            </div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        {isBrowser && (
+                            <div
+                                className={clsx(
+                                    "relative",
+                                    "h-full",
+                                    "mt-4 landing-sm:mt-[72px] landing-lg:mt-0",
+                                    "flex",
+                                    "landing-lg:col-start-7 landing-lg:col-end-13",
+                                )}
+                            >
+                                <div
+                                    className={clsx(
+                                        "w-full",
+                                        "h-full",
+                                        "landing-sweet-spot-mask",
+                                        "z-[1]",
+                                        "landing-lg:absolute",
+                                        "top-0 right-0",
+                                    )}
+                                >
+                                    {list.map((item, index) => {
+                                        const active = index === activeIndex;
+
+                                        return (
+                                            <img
+                                                key={index}
+                                                src={
+                                                    isDarkTheme
+                                                        ? item.image1Dark
+                                                        : item.image1Light
+                                                }
+                                                alt="UI of refine"
+                                                loading="lazy"
+                                                className={clsx(
+                                                    "object-cover",
+                                                    "object-left-top",
+                                                    "w-full landing-md:w-[874px] landing-lg:w-full",
+                                                    "h-full landing-lg:h-[464px]",
+                                                    "landing-md:pl-20 landing-lg:pl-0",
+                                                    "absolute",
+                                                    "top-0 right-0",
+                                                    active && "delay-300",
+                                                    active
+                                                        ? "translate-x-0"
+                                                        : "translate-x-full",
+                                                    active
+                                                        ? "opacity-100"
+                                                        : "opacity-0",
+                                                    "transition-[transform,opacity] duration-500 ease-in-out",
+                                                )}
+                                            />
+                                        );
+                                    })}
+                                </div>
+
+                                {list.map((item, index) => {
+                                    const active = index === activeIndex;
+
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={clsx(
+                                                "hidden landing-md:block",
+                                                "z-[2]",
+                                                "w-[488px]",
                                                 "absolute",
-                                                "top-0 right-0",
+                                                "landing-md:bottom-[112px] landing-lg:bottom-[78px]",
+                                                "landing-md:left-[8px] landing-lg:-left-20",
+                                                "rounded-xl",
+                                                "dark:bg-gray-900 bg-gray-0",
+                                                "dark:shadow-landing-sweet-spot-code-dark",
+                                                "shadow-landing-sweet-spot-code-light",
                                                 active && "delay-300",
                                                 active
-                                                    ? "translate-x-0"
-                                                    : "translate-x-full",
+                                                    ? "translate-y-0"
+                                                    : "translate-y-full",
                                                 active
                                                     ? "opacity-100"
                                                     : "opacity-0",
                                                 "transition-[transform,opacity] duration-500 ease-in-out",
                                             )}
-                                        />
+                                        >
+                                            <img
+                                                src={
+                                                    isDarkTheme
+                                                        ? item.image2Dark
+                                                        : item.image2Light
+                                                }
+                                                alt="Code of refine"
+                                                loading="lazy"
+                                            />
+                                        </div>
                                     );
                                 })}
                             </div>
-
-                            {list.map((item, index) => {
-                                const active = index === activeIndex;
-
-                                return (
-                                    <div
-                                        key={index}
-                                        className={clsx(
-                                            "hidden landing-md:block",
-                                            "z-[2]",
-                                            "w-[488px]",
-                                            "absolute",
-                                            "landing-md:bottom-[112px] landing-lg:bottom-[78px]",
-                                            "landing-md:left-[8px] landing-lg:-left-20",
-                                            "rounded-xl",
-                                            "dark:bg-gray-900 bg-gray-0",
-                                            "dark:shadow-landing-sweet-spot-code-dark",
-                                            "shadow-landing-sweet-spot-code-light",
-                                            active && "delay-300",
-                                            active
-                                                ? "translate-y-0"
-                                                : "translate-y-full",
-                                            active
-                                                ? "opacity-100"
-                                                : "opacity-0",
-                                            "transition-[transform,opacity] duration-500 ease-in-out",
-                                        )}
-                                    >
-                                        <img
-                                            src={
-                                                isDarkTheme
-                                                    ? item.image2Dark
-                                                    : item.image2Light
-                                            }
-                                            alt="Code of refine"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

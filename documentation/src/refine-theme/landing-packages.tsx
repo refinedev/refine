@@ -13,10 +13,8 @@ import {
     Appwrite,
     Chakra,
     Directus,
-    Dp,
     Elide,
     ElideGraphql,
-    EntRefine,
     Firebase,
     Graphql,
     Hasura,
@@ -29,10 +27,7 @@ import {
     Nest,
     NestQuery,
     Nextjs,
-    Nhost,
-    UseGenerated,
     ShadCnUI,
-    React as ReactIcon,
     Remix,
     Rest,
     Strapi,
@@ -256,6 +251,7 @@ const PackageItem = (props: {
                 "pl-4 pt-4 pb-4 pr-6",
                 "dark:bg-gray-900 bg-gray-0",
                 "rounded-full",
+                "cursor-pointer",
             )}
         >
             <div>{icon}</div>
@@ -354,12 +350,12 @@ const listOne = [
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Elide {...props} />,
         label: "Elide",
-        tooltip: "npm i elide-simple-graphql",
+        tooltip: "npm i elide-simple-rest",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <ElideGraphql {...props} />,
         label: "Elide GraphQL",
-        tooltip: "npm i @refinedev/elide-graphql",
+        tooltip: "npm i elide-simple-graphql",
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Hasura {...props} />,
@@ -440,11 +436,6 @@ const listTwo = [
         tooltip: "npm i @refinedev/nextjs-router",
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <ReactIcon {...props} />,
-        label: "React",
-        tooltip: "npm i @refinedev/react",
-    },
-    {
         icon: (props: SVGProps<SVGSVGElement>) => <Remix {...props} />,
         label: "Remix",
         tooltip: "npm i @refinedev/remix-router",
@@ -481,12 +472,7 @@ const listTwo = [
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <JSONApi {...props} />,
-        label: "JSON API",
+        label: "JSON:API",
         tooltip: "npm i refine-jsonapi",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Nest {...props} />,
-        label: "Nest",
-        tooltip: "npm i @refinedev/nest",
     },
 ];

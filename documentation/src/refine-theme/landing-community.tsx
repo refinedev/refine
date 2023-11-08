@@ -2,12 +2,15 @@ import clsx from "clsx";
 import React, { FC, useMemo } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "../context/CommunityStats";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 
 type Props = {
     className?: string;
 };
 
 export const LandingCommunity: FC<Props> = ({ className }) => {
+    const isBrowser = useIsBrowser();
+
     const { colorMode } = useColorMode();
 
     const { discordMemberCountText, githubStarCountText } =
@@ -98,7 +101,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                             >
                                 <div
                                     className={clsx(
-                                        "tabular-nums",
                                         "whitespace-nowrap",
                                         "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
                                         "dark:bg-landing-stats-text-dark bg-landing-stats-text",
@@ -135,17 +137,19 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                         "dark:bg-gray-800 bg-gray-50",
                     )}
                 >
-                    <img
-                        className={clsx("w-full", "object-cover")}
-                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors${
-                            colorMode === "dark" ? "-dark" : ""
-                        }.png`}
-                        style={{
-                            aspectRatio: "908/544",
-                        }}
-                        alt="investors"
-                        loading="lazy"
-                    />
+                    {isBrowser && (
+                        <img
+                            className={clsx("w-full", "object-cover")}
+                            src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors${
+                                colorMode === "dark" ? "-dark" : ""
+                            }.png`}
+                            style={{
+                                aspectRatio: "908/544",
+                            }}
+                            alt="investors"
+                            loading="lazy"
+                        />
+                    )}
                     <div
                         className={clsx(
                             "mt-6",
