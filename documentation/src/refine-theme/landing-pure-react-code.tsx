@@ -35,7 +35,7 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                     )}
                 >
                     <BrowserOnly>{() => <CodeSlide />}</BrowserOnly>
-                    <ReactLogo />
+                    <BrowserOnly>{() => <ReactLogo />}</BrowserOnly>
                 </div>
                 <div
                     className={clsx(
@@ -92,6 +92,7 @@ const ReactLogo = () => {
 
     return (
         <div
+            key={colorMode}
             className={clsx(
                 "w-[48px] h-[48px]",
                 "absolute",
@@ -101,19 +102,13 @@ const ReactLogo = () => {
                 "z-0",
             )}
         >
-            <video
-                key={colorMode}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full"
-            >
+            <video autoPlay loop muted playsInline className="w-full h-full">
                 <source
                     src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/react-${colorMode}.mov`}
                     type="video/mov"
                 />
                 <source
+                    key={colorMode}
                     src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/react-${colorMode}.webm`}
                     type="video/webm"
                 />
