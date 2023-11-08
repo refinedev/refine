@@ -219,35 +219,40 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 export const List: React.FC = () => {
-    const { data, isLoading } = useList();
+  const {
+    data: { data, total },
+    isLoading,
+  } = useList();
 
-    const go = useGo();
+  const go = useGo();
 
-    if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-    return (
-        <ul>
-            {data?.data?.map((product) => (
-                <li key={product.id}>
-                    <span>{product.name}</span>
-                    <button
-                        onClick={() => {
-                            go({
-                                to: {
-                                    resource: "products",
-                                    action: "show",
-                                    id: product.id,
-                                },
-                            });
-                        }}
-                    >
-                        show
-                    </button>
-                </li>
-            ))}
-        </ul>
-    );
+  return (
+    <div>
+      <h1>Products</h1>
+      <h3>Showing {total} products in total.</h3>
+      <ul>
+        {data?.data?.map((product) => (
+          <li key={product.id}>
+            <span>{product.name}</span>
+            <button 
+                onClick={() => {
+                go({
+                  to: {
+                    resource: "products",
+                    action: "show",
+                    id: product.id,
+                  },
+                });
+              }}
+            >
+              show
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
-
-
 `;

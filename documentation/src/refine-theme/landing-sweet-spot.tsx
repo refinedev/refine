@@ -249,8 +249,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                                         : item.image1Light
                                                 }
                                                 alt="UI of refine"
-                                                loading="lazy"
                                                 className={clsx(
+                                                    "block",
                                                     "object-cover",
                                                     "object-left-top",
                                                     "w-full landing-md:w-[874px] landing-lg:w-full",
@@ -306,7 +306,6 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                                         : item.image2Light
                                                 }
                                                 alt="Code of refine"
-                                                loading="lazy"
                                             />
                                         </div>
                                     );
