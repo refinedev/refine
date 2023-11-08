@@ -23,6 +23,7 @@ module.exports = {
                     blue: "#0080FF",
                     "blue-alt": "#6EB3F7",
                     indigo: "#3333FF",
+                    "indigo-alt": "#8080FF",
                     purple: "#8000FF",
                     "purple-alt": "#B366FF",
                     pink: "#ED5EC9",
@@ -102,6 +103,8 @@ module.exports = {
                 tagTile: "3px -2px 8px 0 rgba(42, 42, 66, 0.25)",
                 startTiles: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
+                "menu-dark": "0px 0px 0px 4px rgba(48, 52, 80, 0.25)",
+                "menu-light": "0px 0px 0px 4px rgba(222, 229, 237, 0.25)",
                 "landing-sweet-spot-code-dark":
                     "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.11), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.13), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.15), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.19), 0px 82px 80px 0px rgba(0, 0, 0, 0.26)",
                 "landing-sweet-spot-code-light":
@@ -418,7 +421,7 @@ module.exports = {
                     "landing-packages-left 65s linear infinite",
                 "landing-packages-right":
                     "landing-packages-right 60s linear infinite",
-                "code-scroll": "code-scroll 35s linear infinite",
+                "code-scroll": "code-scroll 25s linear infinite",
                 "beam-spin": "beam-spin 3s linear 1 forwards",
                 "landing-hero-beam-line":
                     "landing-hero-beam-line 7.5s ease-in-out infinite",
@@ -437,7 +440,7 @@ module.exports = {
                         transform: "translateY(0)",
                     },
                     "100%": {
-                        transform: "translateY(-576px)",
+                        transform: "translateY(-448px)",
                     },
                 },
                 "walkthrough-bounce": {

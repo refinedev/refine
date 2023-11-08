@@ -216,15 +216,13 @@ const HighlightCode = memo(function HighlightCodeBase() {
 const code = `
 import React from "react";
 
-import { useGo, useList } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 export const List: React.FC = () => {
   const {
     data: { data, total },
     isLoading,
   } = useList();
-
-  const go = useGo();
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -233,22 +231,9 @@ export const List: React.FC = () => {
       <h1>Products</h1>
       <h3>Showing {total} products in total.</h3>
       <ul>
-        {data?.data?.map((product) => (
+        {data?.map((product) => (
           <li key={product.id}>
             <span>{product.name}</span>
-            <button 
-                onClick={() => {
-                go({
-                  to: {
-                    resource: "products",
-                    action: "show",
-                    id: product.id,
-                  },
-                });
-              }}
-            >
-              show
-            </button>
           </li>
         ))}
       </ul>
