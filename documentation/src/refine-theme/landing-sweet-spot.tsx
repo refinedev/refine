@@ -24,10 +24,10 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const activeListItem = list[activeIndex];
 
-    const shouldIncrement = useRef(true);
+    const [shouldIncrement, setShouldIncrement] = useState(true);
 
     useEffect(() => {
-        if (!shouldIncrement.current) {
+        if (!shouldIncrement) {
             return;
         }
 
@@ -36,7 +36,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
         }, 3000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [shouldIncrement]);
 
     return (
         <div className={clsx(className, "w-full")}>
@@ -145,7 +145,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                     <button
                                         key={item.iconText}
                                         onClick={() => {
-                                            shouldIncrement.current = false;
+                                            setShouldIncrement(false);
                                             setActiveIndex(index);
                                         }}
                                         className={clsx(
