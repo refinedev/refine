@@ -73,7 +73,7 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
                         "dark:text-gray-400 text-gray-600",
                     )}
                 >
-                    Trusted by developers working at
+                    Trusted by developers from
                 </p>
                 <div
                     className={clsx(
