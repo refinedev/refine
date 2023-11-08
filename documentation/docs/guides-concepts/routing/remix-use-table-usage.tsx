@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function RemixRouteDefinitions() {
+export default function RemixUseTableUsage() {
     return (
         <Sandpack
             hidePreview
@@ -10,8 +10,11 @@ export default function RemixRouteDefinitions() {
                 "/app/root.tsx": {
                     code: RootTsxCode,
                 },
-                "/app/routes/my-products._index.tsx": {
+                "/app/components/products/list.tsx": {
                     code: ListTsxCode,
+                },
+                "/app/routes/my-products._index.tsx": {
+                    code: ListPageTsxCode,
                     active: true,
                 },
             }}
@@ -72,7 +75,7 @@ export default function App() {
 }
 `.trim();
 
-const ListTsxCode = /* tsx */ `
+const ListPageTsxCode = /* tsx */ `
 import React from "react";
 
 import { json, LoaderArgs } from "@remix-run/node";
@@ -81,6 +84,8 @@ import { useLoaderData } from "@remix-run/react";
 import { useTable } from "@refinedev/core";
 import { parseTableParams } from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
+
+import { ProductList } from "../components/products/list";
 
 export async function loader({ request }: LoaderArgs) {
     const url = new URL(request.url);
@@ -96,11 +101,34 @@ export async function loader({ request }: LoaderArgs) {
         },
     );
 
-    return json({ initialData: data });
+    return json({
+        initialData: data,
+        initialProps: { pagination, filters, sorters },
+    });
 }
 
 const ProductList = () => {
-    const { initialData } = useLoaderData<typeof loader>();
+    const {
+        initialData,
+        initialProps: { filters, sorters, pagination },
+    } = useLoaderData<typeof loader>();
+    const tableProps = useTable({
+        queryOptions: { initialData },
+        filters: { initial: filters },
+        sorters: { initial: sorters },
+        pagination,
+    });
+
+    return <ProductList tableProps={tableProps} />;
+};
+
+export default ProductList;
+`.trim();
+
+const ListTsxCode = /* tsx */ `
+import React from "react";
+
+export const ProductList: React.FC = ({ tableProps }) => {
     const {
         tableQueryResult,
         isLoading,
@@ -112,7 +140,7 @@ const ProductList = () => {
         setFilters,
         sorters,
         setSorters,
-    } = useTable({ queryOptions: { initialData } });
+    } = tableProps;
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -138,9 +166,9 @@ const ProductList = () => {
                 </tbody>
             </table>
             <hr />
-            Sorting by field: {" "}
+            Sorting by field:
             <b>
-                {sorters[0].field}, order {sorters[0].order}
+                {sorters[0]?.field}, order {sorters[0]?.order}
             </b>
             <br />
             <button
@@ -148,7 +176,7 @@ const ProductList = () => {
                     setSorters([
                         {
                             field: "id",
-                            order: sorters[0].order === "asc" ? "desc" : "asc",
+                            order: sorters[0]?.order === "asc" ? "desc" : "asc",
                         },
                     ]);
                 }}
@@ -156,10 +184,10 @@ const ProductList = () => {
                 Toggle Sort
             </button>
             <hr />
-            Filtering by field:{" "}
+            Filtering by field:
             <b>
-                {filters[0].field}, operator {filters[0].operator}, value: {" "}
-                {filters[0].value}
+                {filters[0]?.field}, operator {filters[0]?.operator}, value:{" "}
+                {filters[0]?.value}
             </b>
             <br />
             <button
@@ -168,7 +196,7 @@ const ProductList = () => {
                         {
                             field: "category.id",
                             operator: "eq",
-                            value: filters[0].value === "1" ? "2" : "1",
+                            value: filters[0]?.value === "1" ? "2" : "1",
                         },
                     ]);
                 }}
@@ -180,15 +208,15 @@ const ProductList = () => {
             <p>Page Size: {pageSize}</p>
             <button
                 onClick={() => {
-                    setCurrent(current - 1);
+                    setCurrent(+current - 1);
                 }}
-                disabled={current < 2}
+                disabled={+current < 2}
             >
                 Previous Page
             </button>
             <button
                 onClick={() => {
-                    setCurrent(current + 1);
+                    setCurrent(+current + 1);
                 }}
                 disabled={current === pageCount}
             >
@@ -197,6 +225,4 @@ const ProductList = () => {
         </div>
     );
 };
-
-export default ProductList;
 `.trim();

@@ -1,7 +1,7 @@
 import { SandpackNextJS } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function NextJSRouteDefinitions() {
+export default function NextJSUseTableUsage() {
     return (
         <SandpackNextJS
             showFiles
