@@ -19,7 +19,7 @@ import { LandingHeroStrapiIcon } from "./icons/landing-hero/strapi";
 import { useInView } from "framer-motion";
 
 type ItemType = {
-    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    icon: React.ReactNode;
     name: string;
     color: string;
 };
@@ -27,17 +27,23 @@ type ItemType = {
 const platformItems: ItemType[] = [
     {
         name: "Vite",
-        icon: LandingHeroViteIcon,
+        icon: (
+            <LandingHeroViteIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#ffa800",
     },
     {
         name: "Next.js",
-        icon: LandingHeroNextjsIcon,
+        icon: (
+            <LandingHeroNextjsIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#ffffff",
     },
     {
         name: "Remix",
-        icon: LandingHeroRemixIcon,
+        icon: (
+            <LandingHeroRemixIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#ffffff",
     },
 ];
@@ -45,17 +51,23 @@ const platformItems: ItemType[] = [
 const uiItems: ItemType[] = [
     {
         name: "Material UI",
-        icon: LandingHeroMaterialUIIcon,
+        icon: (
+            <LandingHeroMaterialUIIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#007FFF",
     },
     {
         name: "Ant Design",
-        icon: LandingHeroAntdIcon,
+        icon: (
+            <LandingHeroAntdIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#148EFF",
     },
     {
         name: "Chakra UI",
-        icon: LandingHeroChakraUIIcon,
+        icon: (
+            <LandingHeroChakraUIIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#29C6B7",
     },
 ];
@@ -63,17 +75,23 @@ const uiItems: ItemType[] = [
 const backendItems: ItemType[] = [
     {
         name: "Supabase",
-        icon: LandingHeroSupabaseIcon,
+        icon: (
+            <LandingHeroSupabaseIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#3ECF8E",
     },
     {
         name: "NestJS",
-        icon: LandingHeroNestjsIcon,
+        icon: (
+            <LandingHeroNestjsIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#E0234E",
     },
     {
         name: "Appwrite",
-        icon: LandingHeroAppwriteIcon,
+        icon: (
+            <LandingHeroAppwriteIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#FD366E",
     },
 ];
@@ -81,17 +99,23 @@ const backendItems: ItemType[] = [
 const authItems: ItemType[] = [
     {
         name: "Google",
-        icon: LandingHeroGoogleIcon,
+        icon: (
+            <LandingHeroGoogleIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#EA4335",
     },
     {
         name: "Auth0",
-        icon: LandingHeroAuth0Icon,
+        icon: (
+            <LandingHeroAuth0Icon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#EB5424",
     },
     {
         name: "Strapi",
-        icon: LandingHeroStrapiIcon,
+        icon: (
+            <LandingHeroStrapiIcon className="text-gray-1000 dark:text-gray-0" />
+        ),
         color: "#4945FF",
     },
 ];
@@ -200,7 +224,6 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                                         platformItems.length
                                 ].name ?? platformItems[activePlatform].name
                             }
-                            key={platformItems[activePlatform].name}
                         />
                         <LandingHeroAnimationItem
                             vertical="top"
@@ -213,7 +236,6 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                                         uiItems.length
                                 ].name ?? uiItems[activeUI].name
                             }
-                            key={uiItems[activeUI].name}
                         />
                     </div>
                     <div
@@ -236,7 +258,6 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                                         backendItems.length
                                 ].name ?? backendItems[activeBackend].name
                             }
-                            key={backendItems[activeBackend].name}
                         />
                         <LandingHeroAnimationItem
                             vertical="bottom"
@@ -249,7 +270,6 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                                         authItems.length
                                 ].name ?? authItems[activeAuth].name
                             }
-                            key={authItems[activeAuth].name}
                         />
                     </div>
                 </div>
