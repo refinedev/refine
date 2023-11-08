@@ -293,11 +293,12 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         "-translate-x-1/2",
                         "translate-y-0",
                         "landing-lg:translate-y-16",
+                        "blur-sm",
                         "animate-landing-hero-beam-line",
                     )}
                     style={{
-                        fillOpacity: 0.2,
-                        filter: "drop-shadow(rgb(71, 235, 235) 0px 0px 3px) drop-shadow(rgb(71, 235, 235) 0px 0px 8px)",
+                        fillOpacity: 0,
+                        filter: "drop-shadow(rgba(71, 235, 235,0.1) 0px 0px 0px) drop-shadow(rgba(71, 235, 235,0.15) 0px 0px 10px)",
                     }}
                 />
                 <div
@@ -318,25 +319,12 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         className={clsx(
                             "relative",
                             "w-40",
-                            "h-px",
+                            "h-0.5",
+                            "-mt-px",
                             "bg-landing-hero-beam-bottom",
+                            "animate-landing-hero-beam-bottom",
                         )}
-                    >
-                        <div
-                            className={clsx(
-                                "animate-landing-hero-beam-bottom",
-                                "absolute",
-                                "-top-2",
-                                "-translate-x-1/2",
-                                "left-1/2",
-                                "w-full",
-                                "pb-[50%]",
-                                "rounded-full",
-                                "blur-[8px]",
-                                "bg-refine-cyan-alt",
-                            )}
-                        />
-                    </div>
+                    ></div>
                 </div>
             </div>
         </div>

@@ -601,7 +601,7 @@ module.exports = {
                         opacity: 0,
                     },
                     "50%": {
-                        opacity: 1,
+                        opacity: 0.5,
                     },
                     "100%": {
                         opacity: 0,
@@ -609,13 +609,13 @@ module.exports = {
                 },
                 "landing-hero-beam-bottom": {
                     "0%": {
-                        opacity: 0.25,
+                        transform: "scaleX(0.5)",
                     },
                     "50%": {
-                        opacity: 1,
+                        transform: "scaleX(1)",
                     },
                     "100%": {
-                        opacity: 0.25,
+                        transform: "scaleX(0.5)",
                     },
                 },
                 "showcase-bottom-fade-reveal": {
