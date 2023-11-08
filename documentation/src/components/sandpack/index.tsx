@@ -320,6 +320,7 @@ export const SandpackNextJS = (props: Props) => {
               files: {
                   "/pages/index.tsx": {
                       code: NextJSPagesIndexTsxCode,
+                      hidden: true,
                   },
                   ...(props.files as any),
               },

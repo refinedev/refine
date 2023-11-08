@@ -191,41 +191,54 @@ import { RemixUseFormUsage } from "./remix/use-form-usage";
 
 ### useTable
 
-useTable hook can automatically detect the parameters from the current route and use them to fetch the data.
+`useTable` can synchronize current it's parameters (filters, pagination, sorting) with the current route.
 
-To enable automatic parameter detection feature, you need to pass `syncWithLocation` to `<Refine />` component's `options` prop.
+To enable synchronization, you need to pass `syncWithLocation: true` to `<Refine />` component's `options` prop.
 
 ```tsx
 <Refine {...} options={{ syncWithLocation: true }}>
 
 ```
 
-Once `syncWithLocation` is enabled, you can use `useTable` hook without passing any parameters as shown in the example below.
+Once you pass `syncWithLocation: true` to `<Refine />` component's `options` prop, `useTable` will:
+
+-   Read the current route and update it's parameters (filters, pagination, sorting) accordingly.
+-   Update the current route when it's parameters (filters, pagination, sorting) change.
+
+Let's say we have a `products` list page with the following route:
+
+```
+/my-products
+```
+
+And we want to filter products by `category.id` and sort them by `id` in `asc` order.
+
+We can pass these parameters to `useTable` hook as follows:
 
 ```tsx
-// removed-start
 const { ... } = useTable(
     {
-        resource: "products",
         current: 1,
         pageSize: 2,
-        filters: { initial: [{...}] },
-        sorters: { initial: [{...}] }
+        filters: { initial: [{ field: "category.id", operator: "eq", value: 1 }]},
+        sorters: { initial: [{ field: "id", direction: "asc" }] }
     }
 )
-// removed-end
-
-// added-line
-const { ... } = useTable()
 ```
 
 And then navigate the following route:
 
 ```
+/my-products
+```
+
+`useTable` will automatically update the route to:
+
+```
 /my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
 ```
 
-You will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
+And you will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
 ```ts
 const { tableQueryResult, current, pageSize, filters, sorters } = useTable();
@@ -237,6 +250,10 @@ console.log(pageSize); // 2 - page size
 console.log(filters); // [{ field: "category.id", operator: "eq", value: "1" }]
 console.log(sorters); // [{ field: "id", order: "asc" }]
 ```
+
+Check the examples below to see how you can use `useTable` with router integration.
+
+Notice how `components/products/list.tsx` is the same, regardless of the router integration.
 
 #### React Router
 

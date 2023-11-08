@@ -84,7 +84,26 @@ import { ProductList } from "../components/products/list";
 export async function loader({ request }: LoaderArgs) {
     const url = new URL(request.url);
 
-    const { pagination, filters, sorters } = parseTableParams(url.search);
+    const {
+        pagination: queryPagination,
+        filters: queryFilters,
+        sorters: querySorters,
+    } = parseTableParams(url.search);
+
+    const pagination = {
+        current: queryPagination.current ?? 1,
+        pageSize: queryPagination.pageSize ?? 2,
+    };
+
+    const filters = queryFilters ?? [
+        {
+            field: "category.id",
+            operator: "eq",
+            value: "1",
+        },
+    ];
+
+    const sorters = querySorters ?? [{ field: "id", order: "asc" }];
 
     const data = await dataProvider("https://api.fake-rest.refine.dev").getList(
         {

@@ -13,7 +13,7 @@ export function ReactRouterUseTableUsage() {
                 "react-router-dom": "latest",
                 "react-router": "latest",
             }}
-            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
+            startRoute="/my-products"
             theme={{}}
             files={{
                 "/App.tsx": {
@@ -105,14 +105,18 @@ import React from "react";
 
 import { useTable } from "@refinedev/core";
 
-import { ProductList } from "../../components/products/list"
+import { ProductList } from "../../components/products/list";
 
 export const ListPage: React.FC = () => {
-    const tableProps = useTable();
+    const tableProps = useTable({
+        pagination: { current: 1, pageSize: 2 },
+        filters: {
+            initial: [{ field: "category.id", operator: "eq", value: "1" }],
+        },
+        sorters: { initial: [{ field: "id", order: "asc" }] },
+    });
 
-    return (
-        <ProductList tableProps={tableProps} />
-    );
+    return <ProductList tableProps={tableProps} />;
 };
 `.trim();
 

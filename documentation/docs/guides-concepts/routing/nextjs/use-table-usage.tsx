@@ -5,7 +5,7 @@ export function NextJSUseTableUsage() {
     return (
         <SandpackNextJS
             showFiles
-            startRoute="/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1"
+            startRoute="/my-products"
             files={{
                 "/pages/_app.tsx": {
                     code: AppTsxCode,
@@ -61,9 +61,26 @@ import dataProvider from "@refinedev/simple-rest";
 import { ProductList } from "../../components/products/list";
 
 export const getServerSideProps = async (context) => {
-    const { pagination, filters, sorters } = parseTableParams(
-        context.resolvedUrl?.split("?")[1] ?? "",
-    );
+    const {
+        pagination: queryPagination,
+        filters: queryFilters,
+        sorters: querySorters,
+    } = parseTableParams(context.resolvedUrl?.split("?")[1] ?? "");
+
+    const pagination = {
+        current: queryPagination.current ?? 1,
+        pageSize: queryPagination.pageSize ?? 2,
+    };
+
+    const filters = queryFilters ?? [
+        {
+            field: "category.id",
+            operator: "eq",
+            value: "1",
+        },
+    ];
+
+    const sorters = querySorters ?? [{ field: "id", order: "asc" }];
 
     const data = await dataProvider("https://api.fake-rest.refine.dev").getList(
         {
