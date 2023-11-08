@@ -321,7 +321,7 @@ export const LandingFooter = () => {
                         )}
                     >
                         {
-                            "© 2023, Refine from Delaware to wherever you're with "
+                            "© 2023, Refine from San Francisco to wherever you're with "
                         }
                         <HeartOutlinedIcon
                             className={clsx(
