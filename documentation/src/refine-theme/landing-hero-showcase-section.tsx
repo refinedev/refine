@@ -255,7 +255,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                             "font-semibold",
                         )}
                     >
-                        See live demo
+                        {activeApp.label}
                     </span>
                     <LandingArrowRightIcon />
                 </a>
@@ -663,21 +663,25 @@ const apps = [
         name: "CRM Application",
         link: "https://example.crm.refine.dev/",
         showcase: ShowcaseCRM,
+        label: "See live demo",
     },
     {
         name: "HR Application",
-        link: "https://refine.dev/docs",
+        link: "https://refine.dev/docs/examples",
         showcase: ShowcaseHR,
+        label: "Examples",
     },
     {
         name: "E-Commerce Application",
-        link: "https://refine.dev/docs",
+        link: "https://refine.dev/docs/examples",
         showcase: ShowcaseECommerce,
+        label: "Examples",
     },
     {
         name: "DevOps Dashboard",
-        link: "https://refine.dev/docs",
+        link: "https://refine.dev/docs/examples",
         showcase: ShowcaseDevOps,
         dark: true,
+        label: "Examples",
     },
 ];
