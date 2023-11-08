@@ -41,6 +41,7 @@ function App({ Component, pageProps }: AppProps) {
                     list: "/my-products",
                 },
             ]}
+            options={{ syncWithLocation: true }}
         >
             <Component {...pageProps} />
         </Refine>

@@ -58,9 +58,9 @@ export default function App() {
                             list: "/my-products",
                             show: "/my-products/:id",
                             // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                            // create: "/my-products/create",
-                            // edit: "/my-products/edit/:id",
-                            // clone: "/my-products/clone/:id",
+                            // create: "/my-products/new",
+                            // edit: "/my-products/:id/edit",
+                            // clone: "/my-products/:id/clone",
                         },
                     ]}
                 >
