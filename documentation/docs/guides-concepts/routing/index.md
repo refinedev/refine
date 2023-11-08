@@ -9,8 +9,6 @@ Routing is essential for any CRUD application. **refine**'s headless architectur
 These integrations makes it easier to use **refine** with these frameworks and offers a lot of benefits such as:
 
 -   Automatic parameter detection in hooks/components.
--   Generate menu items from your route definitions.
--   Breadcrumbs.
 -   Automatic redirections after mutation or authentication.
 -   Set of utility components & hooks which can be used to navigate between pages/routes.
 
@@ -239,16 +237,6 @@ console.log(pageSize); // 2 - page size
 console.log(filters); // [{ field: "category.id", operator: "eq", value: "1" }]
 console.log(sorters); // [{ field: "id", order: "asc" }]
 ```
-
-Also, `setFilters`, `setSorters`, `setCurrent`, and `setPageSize` can be used to modify these parameters.
-
-```ts
-const { current, setCurrent } = useTable()
-
-<button onClick={() => { setCurrent(current + 1) }}>Next Page</button>
-```
-
-Clicking the button will **update the current route** and **fetch the next page** of the table automatically.
 
 #### React Router
 
