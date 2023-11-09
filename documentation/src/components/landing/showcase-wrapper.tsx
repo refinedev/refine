@@ -147,7 +147,7 @@ const HighlightItem = React.memo(function HighlightBase({
                         "break-keep",
                         "text-sm leading-5",
                         "tracking-tight",
-                        "font-mono",
+                        "font-jetBrains-mono",
                     )}
                 >
                     <Highlight

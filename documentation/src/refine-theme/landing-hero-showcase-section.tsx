@@ -606,7 +606,7 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                     x: 264,
                     y: 16,
                     width: 392,
-                    height: 709,
+                    height: 704,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/table.png",
                     codePosition: "right",
                     code: `
@@ -635,10 +635,10 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                         `,
                 },
                 {
-                    x: 656,
-                    y: 16,
-                    width: 496,
-                    height: 56,
+                    x: 655,
+                    y: 15,
+                    width: 497.5,
+                    height: 57.5,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/actions.png",
                     codePosition: "left",
                     code: `
@@ -656,10 +656,10 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                         `,
                 },
                 {
-                    x: 656,
-                    y: 72,
-                    width: 496,
-                    height: 648,
+                    x: 655,
+                    y: 71,
+                    width: 497.5,
+                    height: 649.5,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/form.png",
                     codePosition: "left",
                     code: `

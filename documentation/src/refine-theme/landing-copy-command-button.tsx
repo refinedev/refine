@@ -54,7 +54,7 @@ export const LandingCopyCommandButton = ({
                 "text-refine-blue dark:text-refine-cyan-alt",
                 "text-[13px] leading-5",
                 "leading-6",
-                "font-mono",
+                "font-jetBrains-mono",
                 "overflow-hidden",
                 "relative",
                 "group/copy-button",
