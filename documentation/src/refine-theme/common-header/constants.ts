@@ -49,19 +49,19 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
             {
                 label: "Tutorial",
-                description: "Create your first refine application.",
+                description: "Create your first Refine application.",
                 link: "/docs/tutorial/introduction/index/",
                 icon: TutorialIcon,
             },
             {
-                label: "Awesome refine",
+                label: "Awesome Refine",
                 description: "Repository of awesome things.",
                 link: "https://github.com/refinedev/awesome-refine",
                 icon: AwesomeIcon,
             },
             {
                 label: "Integrations",
-                description: "Discover the refine ecosystem.",
+                description: "Discover the Refine ecosystem.",
                 link: "/integrations",
                 icon: IntegrationsIcon,
             },
@@ -120,7 +120,7 @@ export const MENU_ITEMS: MenuItemType[] = [
         label: "Company",
         items: [
             {
-                label: "About refine",
+                label: "About Refine",
                 description: "Team & company information.",
                 link: "/about",
                 icon: AboutUsIcon,
@@ -132,7 +132,7 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: StoreIcon,
             },
             {
-                label: "Meet refine",
+                label: "Meet Refine",
                 description: "Call us for any questions",
                 link: "https://refinedev.typeform.com/to/Z9wS06kE",
                 icon: MeetIcon,
