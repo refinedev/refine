@@ -59,12 +59,17 @@ function Home() {
                                 )}
                             />
                         </div>
-                        <div className={clsx("flex flex-col", "gap-6")}>
+                        <div
+                            className={clsx(
+                                "flex flex-col",
+                                "gap-12 landing-md:gap-6",
+                            )}
+                        >
                             <LandingPackages />
                             <div
                                 className={clsx(
                                     "flex flex-col landing-md:flex-row",
-                                    "gap-6",
+                                    "gap-12 landing-md:gap-6",
                                 )}
                             >
                                 <LandingAlreadyInvented
