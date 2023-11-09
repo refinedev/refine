@@ -144,7 +144,7 @@ export const LandingHeroAnimationItem = React.memo(
                         "h-[100px]",
                         "absolute",
                         "overflow-hidden",
-                        "z-[10]",
+                        "z-[1]",
                         horizontal === "right"
                             ? "-scale-x-100 right-7"
                             : "scale-x-100 left-7",
