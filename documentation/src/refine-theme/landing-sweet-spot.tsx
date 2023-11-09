@@ -281,10 +281,10 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                             className={clsx(
                                                 "block",
                                                 "z-[2]",
-                                                "w-[340px] landing-sm:w-[488px]",
+                                                "w-[328px] landing-sm:w-[488px]",
                                                 "absolute",
-                                                "bottom-[112px] landing-lg:bottom-[78px]",
-                                                "left-2 landing-lg:-left-20",
+                                                "bottom-0 landing-sm:bottom-[4px] landing-lg:bottom-[78px]",
+                                                "-left-2 landing-lg:-left-20",
                                                 "rounded-xl",
                                                 "dark:bg-gray-900 bg-gray-0",
                                                 "dark:shadow-landing-sweet-spot-code-dark",
