@@ -13,8 +13,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
 
     const { colorMode } = useColorMode();
 
-    const { discordMemberCountText, githubStarCountText } =
-        useCommunityStatsContext();
+    const { githubStarCountText } = useCommunityStatsContext();
 
     const list = useMemo(() => {
         return [
@@ -24,20 +23,20 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                 href: "https://github.com/refinedev/refine",
             },
             {
-                stat: "5K+",
+                stat: "8K+",
                 description:
                     "Projects on production, including large enterprises",
             },
             {
-                stat: discordMemberCountText,
+                stat: "32K+",
                 description: "Active developers in our open-source community",
             },
             {
                 stat: "200K+",
-                description: "End users are using apps built with Refine",
+                description: "End users are using apps built with refine",
             },
         ];
-    }, [discordMemberCountText, githubStarCountText]);
+    }, [githubStarCountText]);
 
     return (
         <div className={clsx(className, "w-full")}>
