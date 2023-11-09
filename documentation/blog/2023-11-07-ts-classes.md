@@ -197,6 +197,13 @@ As it happens in JavaScript, static fields in TypeScript represent class propert
 'public' modifier must precede 'static' modifier.(1029)
 ```
 
+---
+
+<BannerRandom />
+
+---
+
+
 **TypeScript Classes - `readonly` Fields**
 
 TypeScript allows fields to be `readonly`. As it implies, `readonly` fields tempt not be assigned from an instance, even with a setter. They are legal to be initialized at the top declaration and also assigned inside the constructor:
