@@ -2,7 +2,13 @@ import * as React from "react";
 import { SVGProps } from "react";
 
 const SvgUseGenerated = (props: SVGProps<SVGSVGElement>) => (
-    <svg width={50} height={50} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+        width={50}
+        height={50}
+        viewBox="0 0 50 50"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+    >
         <defs>
             <clipPath id="a">
                 <path d="M35.348 21.133h2.062v7.738h-2.062zm0 0" />

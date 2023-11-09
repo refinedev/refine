@@ -19,7 +19,7 @@ const siteConfig = {
     projectName: "refine",
     organizationName: "refinedev",
     trailingSlash: true,
-    favicon: "img/refine_favicon.png",
+    favicon: "img/refine_favicon.svg",
     scripts: ["https://platform.twitter.com/widgets.js"],
     presets: [
         [
@@ -289,6 +289,9 @@ const siteConfig = {
             sidebar: {
                 autoCollapseCategories: true,
             },
+        },
+        colorMode: {
+            respectPrefersColorScheme: true,
         },
     },
     customFields: {

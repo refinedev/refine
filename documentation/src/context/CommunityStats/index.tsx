@@ -13,6 +13,7 @@ interface ICommunityStatsContext {
     githubStarCountText: string;
     githubCommitCount: number;
     discordMemberCount: number;
+    discordMemberCountText: string;
     loading: boolean;
     refetch: () => Promise<void>;
 }
@@ -56,28 +57,19 @@ export const CommunityStatsProvider: FC = ({ children }) => {
     }, [fetchGithubCount]);
 
     const githubStarCountText = useMemo(() => {
-        const hasIntlSupport =
-            typeof Intl == "object" &&
-            Intl &&
-            typeof Intl.NumberFormat == "function";
-
-        if (!hasIntlSupport) {
-            return `${(githubStarCount / 1000).toFixed(1)}k`;
-        }
-
-        const formatter = new Intl.NumberFormat("en-US", {
-            notation: "compact",
-            compactDisplay: "short",
-            maximumSignificantDigits: 3,
-        });
-        return formatter.format(githubStarCount);
+        return convertStatToText(githubStarCount);
     }, [githubStarCount]);
+
+    const discordMemberCountText = useMemo(() => {
+        return convertStatToText(discordMemberCount);
+    }, [discordMemberCount]);
 
     const value = {
         githubStarCount,
         githubStarCountText,
         githubCommitCount,
         discordMemberCount,
+        discordMemberCountText,
         loading,
         refetch: fetchGithubCount,
     };
@@ -97,4 +89,22 @@ export const useCommunityStatsContext = () => {
         );
     }
     return context;
+};
+
+export const convertStatToText = (num: number) => {
+    const hasIntlSupport =
+        typeof Intl == "object" &&
+        Intl &&
+        typeof Intl.NumberFormat == "function";
+
+    if (!hasIntlSupport) {
+        return `${(num / 1000).toFixed(1)}k`;
+    }
+
+    const formatter = new Intl.NumberFormat("en-US", {
+        notation: "compact",
+        compactDisplay: "short",
+        maximumSignificantDigits: 3,
+    });
+    return formatter.format(num);
 };
