@@ -14,7 +14,7 @@ export const LandingHeroGithubStars = () => {
             rel="noopener noreferrer"
             className={clsx(
                 "self-start",
-                "py-2",
+                "py-[7px]",
                 "pl-2",
                 "pr-4",
                 "flex",

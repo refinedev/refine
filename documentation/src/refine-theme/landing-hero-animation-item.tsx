@@ -63,8 +63,8 @@ export const LandingHeroAnimationItem = React.memo(
                 <div
                     className={clsx(
                         "flex-shrink-0",
-                        "w-16",
-                        "h-16",
+                        "w-[64px]",
+                        "h-[62px]",
                         "relative",
                         "animate-opacity-reveal",
                     )}
@@ -85,8 +85,9 @@ export const LandingHeroAnimationItem = React.memo(
                 <div
                     className={clsx(
                         "flex-1",
-                        horizontal === "left" && ["py-3.5", "pr-6"],
-                        horizontal === "right" && ["py-3.5", "pl-6"],
+                        "py-[14px]",
+                        horizontal === "left" && ["pr-6"],
+                        horizontal === "right" && ["pl-6"],
                     )}
                 >
                     <div

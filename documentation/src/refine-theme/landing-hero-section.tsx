@@ -41,39 +41,44 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                         "justify-center",
                         "gap-6",
                         "z-[1]",
+                        "landing-lg:justify-between",
+                        "landing-lg:py-8",
                     )}
                 >
                     <LandingHeroGithubStars />
-                    <h1
-                        className={clsx(
-                            "text-[32px] leading-[40px]",
-                            "tracking-[-0.5%]",
-                            "landing-sm:text-[56px] landing-sm:leading-[72px]",
-                            "landing-sm:max-w-[588px]",
-                            "landing-sm:tracking-[-2%]",
-                            "font-extrabold",
-                            "text-gray-900 dark:text-gray-0",
-                        )}
-                    >
-                        Open-source Retool for Enterprise
-                    </h1>
-                    <p
-                        className={clsx(
-                            "font-normal",
-                            "text-base",
-                            "text-gray-600 dark:text-gray-300",
-                            "landing-xs:max-w-[384px]",
-                        )}
-                    >
-                        Build React-based internal tools, admin panels,
-                        dashboards & B2B apps with unmatched flexibilty.
-                    </p>
+                    <div className={clsx("flex", "flex-col", "gap-6")}>
+                        <h1
+                            className={clsx(
+                                "text-[32px] leading-[40px]",
+                                "tracking-[-0.5%]",
+                                "landing-sm:text-[56px] landing-sm:leading-[72px]",
+                                "landing-sm:max-w-[588px]",
+                                "landing-sm:tracking-[-2%]",
+                                "font-extrabold",
+                                "text-gray-900 dark:text-gray-0",
+                            )}
+                        >
+                            Open-source Retool for Enterprise
+                        </h1>
+                        <p
+                            className={clsx(
+                                "font-normal",
+                                "text-base",
+                                "text-gray-600 dark:text-gray-300",
+                                "landing-xs:max-w-[384px]",
+                            )}
+                        >
+                            Build React-based internal tools, admin panels,
+                            dashboards & B2B apps with unmatched flexibilty.
+                        </p>
+                    </div>
                     <div
                         className={clsx(
                             "flex",
                             "items-center",
                             "justify-start",
-                            "gap-6",
+                            "gap-4",
+                            "landing-lg:gap-6",
                         )}
                     >
                         <Link
@@ -89,6 +94,8 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                                 "hover:brightness-110",
                                 "py-3",
                                 "px-10",
+                                "landing-md:px-8",
+                                "landing-lg:px-10",
                                 "flex",
                                 "items-center",
                                 "justify-center",
