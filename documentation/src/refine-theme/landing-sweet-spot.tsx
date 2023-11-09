@@ -456,7 +456,7 @@ your UI elements to enterprise-grade:`,
   state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
         icon: (props: { active: boolean }) => (
-            <WizardsIcon
+            <AuthenticationIcon
                 className={clsx(
                     props.active
                         ? "dark:text-[#5959FF] text-[#5959FF]"
