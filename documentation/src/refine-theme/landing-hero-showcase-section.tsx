@@ -635,10 +635,10 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                         `,
                 },
                 {
-                    x: 655,
-                    y: 15,
-                    width: 497.5,
-                    height: 57.5,
+                    x: 656,
+                    y: 16,
+                    width: 496,
+                    height: 55,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/actions.png",
                     codePosition: "left",
                     code: `
@@ -656,10 +656,10 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
                         `,
                 },
                 {
-                    x: 655,
+                    x: 656,
                     y: 71,
-                    width: 497.5,
-                    height: 649.5,
+                    width: 496,
+                    height: 649,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/form.png",
                     codePosition: "left",
                     code: `
@@ -687,7 +687,7 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
 const apps = [
     {
         name: "CRM Application",
-        link: "https://example.crm.refine.dev/",
+        link: "https://example.crm.refine.dev",
         showcase: ShowcaseCRM,
         label: "See live demo",
     },
@@ -699,9 +699,9 @@ const apps = [
     },
     {
         name: "E-Commerce Application",
-        link: "https://refine.dev/docs/examples",
+        link: "https://example.admin.refine.dev",
         showcase: ShowcaseECommerce,
-        label: "Examples",
+        label: "See live demo",
     },
     {
         name: "DevOps Dashboard",
