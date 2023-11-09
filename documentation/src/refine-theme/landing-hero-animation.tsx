@@ -15,7 +15,7 @@ import { LandingHeroNestjsIcon } from "./icons/landing-hero/nestjs";
 import { LandingHeroAppwriteIcon } from "./icons/landing-hero/appwrite";
 import { LandingHeroGoogleIcon } from "./icons/landing-hero/google";
 import { LandingHeroAuth0Icon } from "./icons/landing-hero/auth0";
-import { LandingHeroStrapiIcon } from "./icons/landing-hero/strapi";
+import { LandingHeroOktaIcon } from "./icons/landing-hero/okta";
 import { useInView } from "framer-motion";
 
 type ItemType = {
@@ -109,9 +109,22 @@ const authItems: ItemType[] = [
         color: "#EB5424",
     },
     {
-        name: "Strapi",
-        icon: LandingHeroStrapiIcon,
-        color: "#4945FF",
+        name: "Okta",
+        icon: (props: React.SVGProps<SVGSVGElement>) => (
+            <div className={clsx("p-5", props.className)}>
+                <LandingHeroOktaIcon
+                    {...props}
+                    className={clsx(
+                        "w-6",
+                        "h-6",
+                        "text-gray-1000 dark:text-gray-0",
+                        props.className,
+                    )}
+                />
+            </div>
+        ),
+        color: "#ffffff",
+        rayClassName: "!text-gray-1000 dark:!text-gray-0",
     },
 ];
 

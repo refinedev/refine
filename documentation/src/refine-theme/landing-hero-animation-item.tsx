@@ -71,6 +71,7 @@ export const LandingHeroAnimationItem = React.memo(
                     key={name}
                 >
                     <Icon
+                        className="light:!drop-shadow-none"
                         style={{
                             transform: "translateZ(0)",
                             filter: `drop-shadow(0px 0px 20px ${hexToAlpha(

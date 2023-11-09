@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -713,7 +714,12 @@ module.exports = {
             walkthrough: "976px",
         },
     },
-    plugins: [require("@tailwindcss/typography")],
+    plugins: [
+        require("@tailwindcss/typography"),
+        plugin(({ addVariant }) => {
+            addVariant("light", `[data-theme="light"] &`);
+        }),
+    ],
     corePlugins: {
         // preflight: false,
     },
