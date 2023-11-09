@@ -30,120 +30,142 @@ export const LandingHeroShowcaseSection = ({}) => {
                     className={clsx(
                         "rounded-3xl",
                         "overflow-y-auto",
-                        "scrollbar-hidden",
                         "flex",
-                        "items-center",
-                        "justify-start",
+                        "w-full",
                         "gap-2",
+                        "scrollbar-hidden",
                         "snap snap-x snap-mandatory",
                         "snap-mandatory",
-                        "relative",
                     )}
                 >
                     <div
                         className={clsx(
-                            "hidden landing-sm:block",
-                            "w-[244px]",
                             "rounded-3xl",
-                            "h-full",
-                            "bg-gray-200 dark:bg-gray-700",
-                            "absolute",
-                            "left-0",
-                            "top-0",
-                            "transition-transform",
-                            "duration-150",
-                            "ease-out",
+                            "flex",
+                            "items-center",
+                            "justify-start",
+                            "gap-2",
+                            "relative",
+                            "bg-gray-0 dark:bg-gray-900",
                         )}
-                        style={{
-                            transform: `translateX(${
-                                apps.findIndex(
-                                    (f) => f.name === activeApp.name,
-                                ) *
-                                (244 + 8)
-                            }px) translateZ(0px)`,
-                        }}
-                    />
-                    {apps.map((app, index) => (
-                        <button
-                            key={app.name}
-                            type="button"
-                            onClick={(event) => {
-                                setActiveApp(app);
-                                // if index i >= 2
-                                // then scroll to the right
-                                event.currentTarget.parentElement?.scrollTo({
-                                    left: index >= 2 ? index * (244 + 8) : 0,
-                                    behavior: "smooth",
-                                });
-                            }}
+                    >
+                        <div
                             className={clsx(
-                                "z-[1]",
-                                "snap-start",
-                                "last:snap-end",
-                                "appearance-none",
-                                "focus:outline-none",
-                                "border-none",
-                                "flex-1",
-                                "break-keep",
-                                "whitespace-nowrap",
-                                "landing-sm:min-w-[244px]",
-                                "py-2",
-                                "landing-sm:py-3.5",
-                                "px-4",
+                                "hidden landing-sm:block",
+                                "w-[244px]",
                                 "rounded-3xl",
-                                "transition-colors",
-                                "ease-in-out",
-                                "duration-150",
-                                activeApp.name !== app.name && "bg-transparent",
-                                activeApp.name === app.name &&
-                                    "bg-gray-200 dark:bg-gray-700",
-                                activeApp.name !== app.name &&
-                                    "text-gray-600 dark:text-gray-400",
-                                activeApp.name === app.name &&
-                                    "text-gray-900 dark:text-gray-0",
-                                "landing-sm:bg-transparent",
-                                "dark:landing-sm:bg-transparent",
-                                "transition-colors",
+                                "h-full",
+                                "bg-gray-200 dark:bg-gray-700",
+                                "absolute",
+                                "left-0",
+                                "top-0",
+                                "transition-transform",
                                 "duration-150",
                                 "ease-out",
-                                "text-xs",
-                                "landing-sm:text-sm",
                             )}
-                        >
-                            {app.name}
-                        </button>
-                    ))}
+                            style={{
+                                transform: `translateX(${
+                                    apps.findIndex(
+                                        (f) => f.name === activeApp.name,
+                                    ) *
+                                    (244 + 8)
+                                }px) translateZ(0px)`,
+                            }}
+                        />
+                        {apps.map((app, index) => (
+                            <button
+                                key={app.name}
+                                type="button"
+                                onClick={(event) => {
+                                    setActiveApp(app);
+                                    // if index i >= 2
+                                    // then scroll to the right
+                                    event.currentTarget.parentElement?.parentElement?.scrollTo(
+                                        {
+                                            left:
+                                                index >= 2
+                                                    ? index * (244 + 8)
+                                                    : 0,
+                                            behavior: "smooth",
+                                        },
+                                    );
+                                }}
+                                className={clsx(
+                                    "z-[1]",
+                                    "snap-start",
+                                    "appearance-none",
+                                    "focus:outline-none",
+                                    "border-none",
+                                    "flex-1",
+                                    "break-keep",
+                                    "whitespace-nowrap",
+                                    "landing-sm:min-w-[244px]",
+                                    "py-2",
+                                    "landing-sm:py-3.5",
+                                    "px-4",
+                                    "rounded-3xl",
+                                    "transition-colors",
+                                    "ease-in-out",
+                                    "duration-150",
+                                    activeApp.name !== app.name &&
+                                        "bg-transparent",
+                                    activeApp.name === app.name &&
+                                        "bg-gray-200 dark:bg-gray-700",
+                                    activeApp.name !== app.name &&
+                                        "text-gray-600 dark:text-gray-400",
+                                    activeApp.name === app.name &&
+                                        "text-gray-900 dark:text-gray-0",
+                                    "landing-sm:bg-transparent",
+                                    "dark:landing-sm:bg-transparent",
+                                    "transition-colors",
+                                    "duration-150",
+                                    "ease-out",
+                                    "text-xs",
+                                    "landing-sm:text-sm",
+                                )}
+                            >
+                                {app.name}
+                            </button>
+                        ))}
+                    </div>
+                    <a
+                        href="/docs/examples"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={clsx(
+                            "box-content",
+                            "snap-start",
+                            "snap-end",
+                            "whitespace-nowrap",
+                            "break-keep",
+                            "hover:!no-underline",
+                            "w-40",
+                            "py-[5px]",
+                            "landing-sm:py-3.5",
+                            "pl-7",
+                            "pr-4",
+                            "rounded-3xl",
+                            "flex",
+                            "items-center",
+                            "justify-center",
+                            "gap-4",
+                            "bg-transparent",
+                            "border border-solid",
+                            "hover:bg-gray-200 dark:hover:bg-gray-700",
+                            "duration-150",
+                            "transition-colors",
+                            "ease-in-out",
+                            "text-sm",
+                            "landing-sm:text-base",
+                            "border-gray-200 dark:border-gray-700",
+                            "text-gray-900 dark:text-gray-0",
+                            "hover:text-gray-900 dark:hover:text-gray-0",
+                        )}
+                    >
+                        <span className="text-sm">See more</span>
+                        <LandingArrowRightIcon />
+                    </a>
                 </div>
-                <a
-                    href="/docs/examples"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={clsx(
-                        "hover:!no-underline",
-                        "w-40",
-                        "hidden landing-lg:flex",
-                        "py-3.5",
-                        "pl-7",
-                        "pr-4",
-                        "rounded-3xl",
-                        "flex",
-                        "items-center",
-                        "justify-center",
-                        "gap-4",
-                        "bg-transparent",
-                        "border border-solid",
-                        "hover:bg-gray-200 dark:hover:bg-gray-700",
-                        "duration-150",
-                        "transition-colors",
-                        "ease-in-out",
-                        "border-gray-200 dark:border-gray-700",
-                        "text-gray-900 dark:text-gray-0",
-                        "hover:text-gray-900 dark:hover:text-gray-0",
-                    )}
-                >
-                    <span className="text-sm">See more</span>
-                    <LandingArrowRightIcon />
-                </a>
             </div>
             <div
                 className={clsx(
