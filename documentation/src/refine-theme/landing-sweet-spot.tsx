@@ -355,7 +355,7 @@ const list = [
             <ListIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#F98C1F] text-[#F98C1F]"
+                        ? "dark:text-[#F98C1F] text-[#F46A25]"
                         : "text-gray-500",
                 )}
             />
@@ -381,7 +381,7 @@ your UI elements to enterprise-grade:`,
             <ChartsIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#F9D51F] text-[#F9D51F]"
+                        ? "dark:text-[#F9D51F] text-[#FF9F1A]"
                         : "text-gray-500",
                 )}
             />
@@ -407,7 +407,7 @@ your UI elements to enterprise-grade:`,
             <FormsIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#47D1BF] text-[#47D1BF]"
+                        ? "dark:text-[#47D1BF] text-[#089191]"
                         : "text-gray-500",
                 )}
             />
@@ -433,7 +433,7 @@ your UI elements to enterprise-grade:`,
             <WizardsIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#3DB8F5] text-[#3DB8F5]"
+                        ? "dark:text-[#3DB8F5] text-[#1F80E0]"
                         : "text-gray-500",
                 )}
             />
@@ -459,7 +459,7 @@ your UI elements to enterprise-grade:`,
             <AuthenticationIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#5959FF] text-[#5959FF]"
+                        ? "dark:text-[#5959FF] text-[#693BC6]"
                         : "text-gray-500",
                 )}
             />

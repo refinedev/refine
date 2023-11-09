@@ -72,14 +72,14 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                     "mt-8 landing-sm:mt-12 landing-lg:mt-20",
                     "flex",
                     "flex-col landing-lg:flex-row",
-                    "gap-4 landing-sm:gap-6 landing-md:gap-12 landing-lg:gap-6",
+                    "gap-4 landing-sm:gap-6",
                 )}
             >
                 <div
                     className={clsx(
                         "grid",
                         "grid-cols-1 landing-sm:grid-cols-2",
-                        "gap-4 landing-sm:gap-6 landing-md:gap-12 landing-lg:gap-6",
+                        "gap-4 landing-sm:gap-6",
                     )}
                 >
                     {list.map((item, index) => {
