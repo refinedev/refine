@@ -169,7 +169,7 @@ export const ProductList: React.FC = () => {
         saveButtonProps,
     } = useModalForm({
         refineCoreProps: { action: "edit" },
-        syncWithLocation: { key: "edit-product", syncId: true },
+        syncWithLocation: true,
     });
 
     if (isLoading) return <div>Loading...</div>;
@@ -183,7 +183,6 @@ export const ProductList: React.FC = () => {
                         <input {...register("name")} />
                     </div>
                     <button type="submit" {...saveButtonProps}>
-                        {formLoading && <div>Loading...</div>}
                         <span>Save</span>
                     </button>
                 </form>

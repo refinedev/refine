@@ -112,6 +112,7 @@ import { useGo, useList } from "@refinedev/core";
 export const ProductList: React.FC = () => {
     // We're inferring the resource from the route
     // So we call \`useList\` hook without any arguments.
+    // const { ... } = useList({ resource: "products" })
     const { data, isLoading } = useList();
 
     const go = useGo();

@@ -4,7 +4,6 @@ import React from "react";
 export function ReactRouterUseFormUsage() {
     return (
         <Sandpack
-            showConsole
             showNavigator
             showFiles
             dependencies={{
@@ -168,7 +167,6 @@ export const ProductEdit: React.FC = () => {
                     />
                 </div>
                 <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
                     <span>Save</span>
                 </button>
             </form>

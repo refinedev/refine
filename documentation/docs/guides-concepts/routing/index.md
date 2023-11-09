@@ -118,15 +118,13 @@ refine is able to work on React Native apps and with the help of the community p
 
 Once you passed router provider to `<Refine />` component, you can use all the features of refine in a same way, regardless of your application's framework/router.
 
-As a next step, we'll add `products` resource to help **refine** understand the relationship between resources their routes.
-
 ## Relationship Between Resources and Routes <GuideBadge id="guides-concepts/general-concepts" />
 
 **refine** can infer current `resource`, `action` and it's `id` from the **current route** based on your **resource definitions**.
 
 This eliminates the need of passing these parameters to the components/hooks manually.
 
-All you have to do is to define your resource and their browser routes.
+All you have to do is to define your resource and their routes.
 
 ```tsx
 <Refine
@@ -144,7 +142,7 @@ All you have to do is to define your resource and their browser routes.
 
 ```
 
-You can see how we omit parameters for `useList`, and `useShow` hooks in the examples below.
+You can see how we omit **resource** and **id** parameters for `useList`, and `useShow` hooks in the examples below.
 
 #### React Router
 
@@ -157,6 +155,10 @@ import { ReactRouterResourceAndRoutesUsage } from "./react-router/resource-and-r
 import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage";
 
 <NextJSResourceAndRoutesUsage />
+
+:::info Usage with App Router
+You can see the example here: https://github.com/refinedev/refine/tree/master/examples/with-nextjs-appdir
+:::
 
 #### Remix
 
@@ -226,15 +228,13 @@ const { ... } = useTable(
 )
 ```
 
-And then navigate the following route:
-
-```
-/my-products
-```
-
 `useTable` will automatically update the route to:
 
-```
+```tsx title=http://localhost:3000/my-products
+// removed-line
+/my-products
+
+// added-line
 /my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
 ```
 
@@ -277,11 +277,33 @@ import { RemixUseTableUsage } from "./remix/use-table-usage";
 
 <RemixUseTableUsage />
 
+### useModalForm
+
+`useModalForm` can automatically detect `resource` parameter from the current route.
+
+It can also sync it's parameters with the current route.
+
+```tsx
+const { ... } = useModalForm({ syncWithLocation: true })
+```
+
+Once the modal is visible, current route will look like this:
+
+```
+/my-products?modal-products-edit[open]=true&modal-products-edit[id]=1
+```
+
+You can see the example below for usage.
+
+import { ReactRouterUseModalFormUsage } from "./react-router/use-modal-form-usage";
+
+<ReactRouterUseModalFormUsage />
+
 ### useOne
 
 `useOne` can automatically detect `resource` and `id` parameters from the current route.
 
-```tsx
+```tsx title=components/products/show.tsx
 import { useOne } from "@refinedev/core";
 
 // removed-line
@@ -295,33 +317,11 @@ const { data: productResponse } = useOne();
 console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
 ```
 
-### useModalForm
-
-`useModalForm` can automatically detect `resource` parameter from the current route.
-
-It can also sync it's parameters with the current route.
-
-```tsx
-const { ... } = useModalForm({ syncWithLocation: { key: "edit-product", syncId: true } })
-```
-
-Once the modal is visible, current route will look like this:
-
-```
-/my-products?edit-product[open]=true&edit-product[id]=1
-```
-
-You can see the example below for usage.
-
-import { ReactRouterUseModalFormUsage } from "./react-router/use-modal-form-usage";
-
-<ReactRouterUseModalFormUsage />
-
 ### useShow
 
 `useShow` can automatically detect `resource` and `id` parameters from the current route.
 
-```tsx
+```tsx title=components/products/show.tsx
 import { useShow } from "@refinedev/core";
 
 const { queryResult: showResponse } = useShow({
@@ -343,7 +343,7 @@ console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
 
 `useList` can automatically detect `resource` parameter from the current route.
 
-```tsx
+```tsx title=components/products/list.tsx
 import { useList } from "@refinedev/core";
 
 // removed-line
@@ -359,7 +359,9 @@ console.log(listResponse.data); // [{ id: "1", title: "Product 1", ... }, { id: 
 console.log(listResponse.total); // 32 - total number of unpaginated records
 ```
 
-Note: `config.pagination`, `config.filters`, `config.sorters` will not be automatically detected from the current route.
+:::caution
+`config.pagination`, `config.filters`, `config.sorters` will not be automatically detected from the current route.
+:::
 
 ## The `routerProvider` Interface
 

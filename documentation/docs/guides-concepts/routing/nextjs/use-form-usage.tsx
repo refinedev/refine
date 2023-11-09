@@ -153,7 +153,6 @@ const ProductEdit = () => {
                     />
                 </div>
                 <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
                     <span>Save</span>
                 </button>
             </form>

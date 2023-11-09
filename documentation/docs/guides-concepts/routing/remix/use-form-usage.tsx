@@ -139,7 +139,6 @@ const ProductEdit: React.FC = () => {
                     />
                 </div>
                 <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
                     <span>Save</span>
                 </button>
             </form>
