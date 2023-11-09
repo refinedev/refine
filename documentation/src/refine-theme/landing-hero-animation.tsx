@@ -281,6 +281,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                 />
                 <LandingHeroBeamSvg
                     className={clsx(
+                        "hidden dark:block",
                         "z-[0]",
                         "absolute",
                         "left-1/2",
@@ -289,7 +290,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         "translate-y-0",
                         "landing-lg:translate-y-16",
                         "blur-sm",
-                        "animate-landing-hero-beam-line",
+                        "dark:animate-landing-hero-beam-line",
                     )}
                     style={{
                         fillOpacity: 0,
@@ -316,7 +317,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                             "relative",
                             "w-40",
                             "h-px",
-                            "bg-landing-hero-beam-bottom",
+                            "bg-landing-hero-beam-bottom-light dark:bg-landing-hero-beam-bottom",
                             "animate-landing-hero-beam-bottom",
                         )}
                     ></div>

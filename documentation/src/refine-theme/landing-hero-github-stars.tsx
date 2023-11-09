@@ -33,6 +33,7 @@ export const LandingHeroGithubStars = () => {
             >
                 <div
                     className={clsx(
+                        "hidden dark:block",
                         "absolute",
                         "-top-8",
                         "-left-8",
@@ -48,6 +49,7 @@ export const LandingHeroGithubStars = () => {
             </div>
             <div
                 className={clsx(
+                    "hidden dark:block",
                     "absolute",
                     "-left-3",
                     "-top-3",
@@ -58,7 +60,7 @@ export const LandingHeroGithubStars = () => {
                     "bg-refine-orange",
                     "rounded-full",
                     "opacity-[0.15]",
-                    "animate-github-stars-glow",
+                    "dark:animate-github-stars-glow",
                 )}
             />
             <div
@@ -77,11 +79,7 @@ export const LandingHeroGithubStars = () => {
                     "dark:bg-landing-hero-github-stars-gradient",
                 )}
             >
-                <OrangeStarIcon
-                    style={{
-                        filter: "drop-shadow(0px 0px 3px #FF993330) drop-shadow(0px 0px 6px #FF9933A0) drop-shadow(0px 0px 16px #FF9933A0) drop-shadow(0px 0px 16px #FF9933)",
-                    }}
-                />
+                <OrangeStarIcon className="drop-shadow-none dark:drop-shadow-github-stars-glow" />
                 <span
                     className={clsx(
                         "font-normal",

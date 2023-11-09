@@ -95,6 +95,12 @@ module.exports = {
                     "0px 34px 21px rgba(108, 119, 147, 0.2)",
                     "0px 54px 23px rgba(108, 119, 147, 0)",
                 ],
+                "github-stars-glow": [
+                    "0px 0px 3px #FF993330",
+                    "0px 0px 6px #FF9933A0",
+                    "0px 0px 16px #FF9933A0",
+                    "0px 0px 16px #FF9933",
+                ],
             },
             boxShadow: {
                 modal: "4px 8px 16px rgba(42, 42, 66, 0.25)",
@@ -338,6 +344,8 @@ module.exports = {
                     "radial-gradient(104% 104% at 0% 0%, rgba(249, 210, 54, 0.10) 0%, rgba(249, 210, 54, 0.00) 100%)",
                 "landing-hero-beam-bottom":
                     "linear-gradient(90deg, rgba(255,255,255,0), #47EBEB, rgba(255,255,255,0))",
+                "landing-hero-beam-bottom-light":
+                    "linear-gradient(90deg, rgba(255,255,255,0), #0080FF, rgba(255,255,255,0))",
                 "landing-hero-github-stars-gradient":
                     "radial-gradient(260.41% 41.87% at 8.38% 50%, rgba(255, 153, 51, 0.10) 0%, rgba(255, 153, 51, 0.00) 100%)",
                 "landing-hero-github-stars-text-light":

@@ -126,8 +126,8 @@ export const LandingHeroAnimationItem = React.memo(
                 </div>
                 <LandingHeroItemNodeSvg
                     className={clsx(
-                        "fill-gray-300",
-                        "stroke-gray-400",
+                        "stroke-gray-300",
+                        "fill-gray-400",
                         "dark:fill-gray-500",
                         "dark:stroke-gray-700",
                         "absolute",

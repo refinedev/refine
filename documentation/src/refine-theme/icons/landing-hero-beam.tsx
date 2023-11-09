@@ -10,7 +10,16 @@ export const LandingHeroBeamSvg = (props: React.SVGProps<SVGSVGElement>) => (
         {...props}
     >
         <image
+            className="invisible dark:visible"
             href="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-hero-connection-ray.png"
+            width={128}
+            height={256}
+            x={0}
+            y={0}
+        />
+        <image
+            className="visible dark:invisible"
+            href="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-hero-connection-ray-light.png"
             width={128}
             height={256}
             x={0}
