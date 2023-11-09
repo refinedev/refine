@@ -394,6 +394,7 @@ module.exports = {
                 "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
                 "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
                 "wheel-already-invented-size": "100% 1px",
+                "landing-github-stars-border-bg-size": "72px 72px",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -433,6 +434,10 @@ module.exports = {
                 "wheel-already-invented-reveal":
                     "wheel-already-invented-reveal 0.6s cubic-bezier(.23,.95,.64,1.24) forwards",
                 "showcase-reveal": "showcase-reveal 0.3s ease-in-out forwards",
+                "github-stars-border":
+                    "github-stars-border 10s linear infinite alternate",
+                "github-stars-glow":
+                    "github-stars-glow 10s linear infinite alternate",
             },
             keyframes: {
                 "code-scroll": {
@@ -650,6 +655,26 @@ module.exports = {
                     "100%": {
                         transform: "translateY(0)",
                         opacity: 1,
+                    },
+                },
+                "github-stars-border": {
+                    "0%": {
+                        transform: "translateX(-72px)",
+                    },
+                    "100%": {
+                        transform: "translateX(216px)",
+                    },
+                },
+
+                "github-stars-glow": {
+                    "0%": {
+                        transform: "translateX(0) scale(0.5)",
+                    },
+                    "50%": {
+                        transform: "translateX(78px) scale(1)",
+                    },
+                    "100%": {
+                        transform: "translateX(156px) scale(0.5)",
                     },
                 },
             },
