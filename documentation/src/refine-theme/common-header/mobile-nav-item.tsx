@@ -41,7 +41,7 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
                 "w-full",
                 "flex justify-between items-center",
                 "p-4",
-                "border-b border-gray-100 dark:border-gray-700",
+                "border-b border-gray-200 dark:border-gray-700",
                 "no-underline",
             )}
             {...(href ? { to: href } : {})}

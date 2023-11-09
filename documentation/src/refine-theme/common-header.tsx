@@ -20,7 +20,7 @@ type Props = {
 };
 
 export const CommonHeader = ({ trackProgress }: Props) => {
-    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const { scrollYProgress } = useScroll();
 
     const progressPercentage = useTransform(

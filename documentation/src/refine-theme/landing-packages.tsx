@@ -425,7 +425,7 @@ const listTwo = [
     },
     {
         icon: (props: SVGProps<SVGSVGElement>) => <Nest {...props} />,
-        label: "NestJs CRUD",
+        label: "NestJS CRUD",
         tooltip: "npm i @refinedev/nestjsx-crud",
     },
     {

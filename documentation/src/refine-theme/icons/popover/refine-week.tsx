@@ -21,7 +21,7 @@ export const RefineWeekIcon = (props: React.SVGProps<SVGSVGElement>) => (
             height="40"
             rx="20"
             fill="currentColor"
-            className="text-white dark:text-refine-indigo-alt/10"
+            className="text-refine-indigo-alt"
             fillOpacity="0.1"
         />
         <path

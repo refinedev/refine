@@ -5,12 +5,7 @@ import React, { FC, Fragment, PropsWithChildren } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { openFigma } from "@site/src/utils/open-figma";
 import { CloseIcon } from "../icons/close";
-import {
-    DiscordIcon,
-    GithubIcon,
-    GithubStarIcon,
-    TwitterIcon,
-} from "../icons/popover";
+import { GithubStarIcon } from "../icons/popover";
 import { RefineLogoIcon } from "../icons/refine-logo";
 import { MENU_ITEMS, NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
@@ -37,8 +32,20 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
 
     return (
         <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
-            <Tablet className="hidden landing-sm:block" />
-            <Phone className="block landing-sm:hidden" />
+            <Tablet
+                className={clsx(
+                    "hidden landing-sm:block",
+                    "overflow-auto",
+                    "border border-gray-200 dark:border-gray-700 rounded-lg",
+                )}
+            />
+            <Phone
+                className={clsx(
+                    "block landing-sm:hidden",
+                    "overflow-auto",
+                    "border border-gray-200 dark:border-gray-700 rounded-lg",
+                )}
+            />
         </Modal>
     );
 };
@@ -94,7 +101,7 @@ const Modal: FC<PropsWithChildren<MobileMenuModalProps>> = ({
                                 )}
                             >
                                 <CloseIcon
-                                    className="text-gray-900 dark:text-gray-400"
+                                    className="text-gray-900 dark:text-white"
                                     onClick={() => setIsModalOpen(false)}
                                 />
                             </button>
@@ -128,13 +135,7 @@ const Modal: FC<PropsWithChildren<MobileMenuModalProps>> = ({
 
 const Tablet = (props: { className?: string }) => {
     return (
-        <div
-            className={clsx(
-                "overflow-auto",
-                "border border-gray-200 dark:border-gray-700 rounded-lg",
-                props.className,
-            )}
-        >
+        <div className={clsx(props.className)}>
             {MENU_ITEMS.map((item, i) => {
                 return (
                     <div
@@ -177,19 +178,14 @@ const Tablet = (props: { className?: string }) => {
                 );
             })}
             <ThemeToggle />
+            <Github id="tablet" />
         </div>
     );
 };
 
 const Phone = (props: { className?: string }) => {
     return (
-        <div
-            className={clsx(
-                "overflow-auto",
-                "border border-gray-200 dark:border-gray-700 rounded-lg",
-                props.className,
-            )}
-        >
+        <div className={clsx(props.className)}>
             <div className="flex-grow">
                 {MENU_ITEMS.map((item) => {
                     if (item.isPopover) {
@@ -227,7 +223,30 @@ const Phone = (props: { className?: string }) => {
                 })}
             </div>
             <ThemeToggle />
+            <Github id="phone" />
         </div>
+    );
+};
+
+const Github = (props: { id?: string }) => {
+    return (
+        <Link to="https://github.com/refinedev/refine" className="no-underline">
+            <div
+                className={clsx(
+                    "border-t dark:border-gray-700 border-gray-300",
+                    "dark:bg-gray-800 bg-gray-100",
+                    "flex items-center",
+                    "p-4",
+                )}
+            >
+                <GithubStarIcon id={props?.id || ""} />
+                <div
+                    className={clsx("ml-4", "dark:text-gray-400 text-gray-600")}
+                >
+                    If you like refine, don’t forget to star us on GitHub!
+                </div>
+            </div>
+        </Link>
     );
 };
 
@@ -242,14 +261,7 @@ const ThemeToggle = () => {
     const isLightSelected = colorMode === "light";
 
     return (
-        <div
-            className={clsx(
-                "not-prose",
-                "p-4",
-                "flex items-center",
-                "border-t dark:border-gray-700 border-gray-200",
-            )}
-        >
+        <div className={clsx("not-prose", "p-4", "flex items-center")}>
             <div
                 className={clsx(
                     "text-sm",
