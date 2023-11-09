@@ -33,7 +33,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             },
             {
                 stat: "200K+",
-                description: "End users are using apps built with refine",
+                description: "End users are using apps built with Refine",
             },
         ];
     }, [githubStarCountText]);

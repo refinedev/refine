@@ -72,7 +72,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                             "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
                         )}
                     >
-                        refine
+                        Refine
                     </span>
                     .
                 </h2>
