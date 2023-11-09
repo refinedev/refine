@@ -191,7 +191,7 @@ import { RemixUseFormUsage } from "./remix/use-form-usage";
 
 ### useTable
 
-`useTable` can synchronize current it's parameters (filters, pagination, sorting) with the current route.
+`useTable` can synchronize it's parameters (filters, pagination, sorting) with the current route.
 
 To enable synchronization, you need to pass `syncWithLocation: true` to `<Refine />` component's `options` prop.
 
@@ -276,6 +276,90 @@ You can use SSR feature with Remix to fetch initial data on the server side.
 import { RemixUseTableUsage } from "./remix/use-table-usage";
 
 <RemixUseTableUsage />
+
+### useOne
+
+`useOne` can automatically detect `resource` and `id` parameters from the current route.
+
+```tsx
+import { useOne } from "@refinedev/core";
+
+// removed-line
+const { data: productResponse } = useOne({ resource: "products", id: "1" });
+
+console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
+
+// added-line
+const { data: productResponse } = useOne();
+
+console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
+```
+
+### useModalForm
+
+`useModalForm` can automatically detect `resource` parameter from the current route.
+
+It can also sync it's parameters with the current route.
+
+```tsx
+const { ... } = useModalForm({ syncWithLocation: { key: "edit-product", syncId: true } })
+```
+
+Once the modal is visible, current route will look like this:
+
+```
+/my-products?edit-product[open]=true&edit-product[id]=1
+```
+
+You can see the example below for usage.
+
+import { ReactRouterUseModalFormUsage } from "./react-router/use-modal-form-usage";
+
+<ReactRouterUseModalFormUsage />
+
+### useShow
+
+`useShow` can automatically detect `resource` and `id` parameters from the current route.
+
+```tsx
+import { useShow } from "@refinedev/core";
+
+const { queryResult: showResponse } = useShow({
+    // removed-start
+    resource: "products",
+    id: "1",
+    // removed-end
+});
+
+console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
+
+// added-line
+const { queryResult: showResponse } = useShow();
+
+console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
+```
+
+### useList
+
+`useList` can automatically detect `resource` parameter from the current route.
+
+```tsx
+import { useList } from "@refinedev/core";
+
+// removed-line
+const { data: listResponse } = useList({ resource: "products" });
+
+console.log(listResponse.data); // [{ id: "1", title: "Product 1", ... }, { id: "2", title: "Product 2", ... }]
+console.log(listResponse.total); // 32 - total number of unpaginated records
+
+// added-line
+const { data: listResponse } = useList();
+
+console.log(listResponse.data); // [{ id: "1", title: "Product 1", ... }, { id: "2", title: "Product 2", ... }]
+console.log(listResponse.total); // 32 - total number of unpaginated records
+```
+
+Note: `config.pagination`, `config.filters`, `config.sorters` will not be automatically detected from the current route.
 
 ## The `routerProvider` Interface
 
