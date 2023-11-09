@@ -72,6 +72,7 @@ export const LandingHeroAnimationItem = React.memo(
                 >
                     <Icon
                         style={{
+                            transform: "translateZ(0)",
                             filter: `drop-shadow(0px 0px 20px ${hexToAlpha(
                                 color,
                                 0.75,
