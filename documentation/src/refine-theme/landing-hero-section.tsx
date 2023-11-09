@@ -114,7 +114,6 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                         "absolute",
                         "top-0",
                         "right-0",
-                        "z-[0]",
                     )}
                 >
                     <LandingHeroAnimation />

@@ -313,6 +313,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         "top-1/2",
                         "landing-lg:top-[calc(50%+64px)]",
                         "translate-y-64",
+                        "z-[1]",
                     )}
                 >
                     <div
@@ -320,7 +321,6 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                             "relative",
                             "w-40",
                             "h-0.5",
-                            "-mt-px",
                             "bg-landing-hero-beam-bottom",
                             "animate-landing-hero-beam-bottom",
                         )}
