@@ -17,9 +17,10 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
             <div
                 className={clsx(
                     "not-prose",
+                    "h-full",
                     "flex-shrink-0",
                     "p-2 landing-sm:p-4",
-                    "rounded-3xl",
+                    "rounded-2xl landing-sm:rounded-3xl",
                     "dark:bg-landing-noise",
                     "dark:bg-gray-800 bg-gray-50",
                 )}
@@ -30,7 +31,7 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                         "flex",
                         "flex-col",
                         "rounded-lg",
-                        "landing-sm:aspect-[560/240] landing-md:aspect-[624/240]  landing-lg:aspect-[607/293]",
+                        "landing-sm:aspect-[560/240] landing-md:aspect-[624/240]  landing-lg:aspect-[607/299]",
                         "dark:bg-landing-component-dark bg-landing-component",
                         "border-t-solid border-t",
                         "border-t-gray-200 dark:border-t-gray-700",
@@ -110,7 +111,7 @@ const ReactLogo = () => {
             <video autoPlay loop muted playsInline className="w-full h-full">
                 <source
                     src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/react-${colorMode}.mov`}
-                    type="video/mov"
+                    type="video/mp4"
                 />
                 <source
                     key={colorMode}
@@ -134,7 +135,7 @@ const CodeSlide = () => {
             <div
                 className={clsx(
                     "text-[10px] leading-[16px]",
-                    "h-[240px] landing-md:h-[293px]",
+                    "h-[268px] landing-md:h-[299px]",
                     "font-jetBrains-mono",
                     "select-none",
                     "overflow-hidden",

@@ -96,7 +96,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "pb-4 landing-lg:pb-0",
                         "pl-4 landing-sm:pl-10",
                         "dark:bg-gray-800 bg-gray-50",
-                        "rounded-3xl",
+                        "rounded-2xl landing-sm:rounded-3xl",
                         "overflow-hidden",
                         "dark:bg-noise",
                     )}
@@ -279,12 +279,12 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                                         <div
                                             key={index}
                                             className={clsx(
-                                                "hidden landing-md:block",
+                                                "block",
                                                 "z-[2]",
-                                                "w-[488px]",
+                                                "w-[340px] landing-sm:w-[488px]",
                                                 "absolute",
-                                                "landing-md:bottom-[112px] landing-lg:bottom-[78px]",
-                                                "landing-md:left-[8px] landing-lg:-left-20",
+                                                "bottom-[112px] landing-lg:bottom-[78px]",
+                                                "left-2 landing-lg:-left-20",
                                                 "rounded-xl",
                                                 "dark:bg-gray-900 bg-gray-0",
                                                 "dark:shadow-landing-sweet-spot-code-dark",
@@ -355,7 +355,7 @@ const list = [
             <ListIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#F98C1F] text-[#F98C1F]"
+                        ? "dark:text-[#F98C1F] text-[#F46A25]"
                         : "text-gray-500",
                 )}
             />
@@ -381,7 +381,7 @@ your UI elements to enterprise-grade:`,
             <ChartsIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#F9D51F] text-[#F9D51F]"
+                        ? "dark:text-[#F9D51F] text-[#FF9F1A]"
                         : "text-gray-500",
                 )}
             />
@@ -407,7 +407,7 @@ your UI elements to enterprise-grade:`,
             <FormsIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#47D1BF] text-[#47D1BF]"
+                        ? "dark:text-[#47D1BF] text-[#089191]"
                         : "text-gray-500",
                 )}
             />
@@ -433,7 +433,7 @@ your UI elements to enterprise-grade:`,
             <WizardsIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#3DB8F5] text-[#3DB8F5]"
+                        ? "dark:text-[#3DB8F5] text-[#1F80E0]"
                         : "text-gray-500",
                 )}
             />
@@ -459,7 +459,7 @@ your UI elements to enterprise-grade:`,
             <AuthenticationIcon
                 className={clsx(
                     props.active
-                        ? "dark:text-[#5959FF] text-[#5959FF]"
+                        ? "dark:text-[#5959FF] text-[#693BC6]"
                         : "text-gray-500",
                 )}
             />

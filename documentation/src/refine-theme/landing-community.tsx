@@ -72,14 +72,14 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                     "mt-8 landing-sm:mt-12 landing-lg:mt-20",
                     "flex",
                     "flex-col landing-lg:flex-row",
-                    "gap-4 landing-sm:gap-6 landing-md:gap-12 landing-lg:gap-6",
+                    "gap-4 landing-sm:gap-6",
                 )}
             >
                 <div
                     className={clsx(
                         "grid",
                         "grid-cols-1 landing-sm:grid-cols-2",
-                        "gap-4 landing-sm:gap-6 landing-md:gap-12 landing-lg:gap-6",
+                        "gap-4 landing-sm:gap-6",
                     )}
                 >
                     {list.map((item, index) => {
@@ -95,7 +95,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                                     "p-4 landing-sm:py-4 landing-sm:px-10",
                                     "dark:bg-landing-noise",
                                     "dark:bg-gray-800 bg-gray-50",
-                                    "rounded-3xl",
+                                    "rounded-2xl landing-sm:rounded-3xl",
                                     "no-underline",
                                 )}
                             >
@@ -132,7 +132,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                         "not-prose",
                         "flex-shrink-0",
                         "p-4 ",
-                        "rounded-3xl",
+                        "rounded-2xl landing-sm:rounded-3xl",
                         "dark:bg-landing-noise",
                         "dark:bg-gray-800 bg-gray-50",
                     )}

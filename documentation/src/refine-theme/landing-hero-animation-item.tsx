@@ -10,10 +10,16 @@ type ItemProps = {
     vertical: "top" | "bottom";
     horizontal: "left" | "right";
     previousName?: string;
-    icon: React.ReactNode;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     section: string;
     name: string;
     color: string;
+    rayClassName?: string;
+};
+
+const hexToAlpha = (hex: string, alpha: number) => {
+    const alphaHex = Math.round(alpha * 255).toString(16);
+    return hex + alphaHex;
 };
 
 export const LandingHeroAnimationItem = React.memo(
@@ -21,10 +27,11 @@ export const LandingHeroAnimationItem = React.memo(
         vertical,
         horizontal,
         previousName,
-        icon,
+        icon: Icon,
         section,
         name,
         color,
+        rayClassName,
     }: ItemProps) {
         const ref = React.useRef<ChangingTextElementRef>(null);
 
@@ -56,20 +63,31 @@ export const LandingHeroAnimationItem = React.memo(
                 <div
                     className={clsx(
                         "flex-shrink-0",
-                        "w-16",
-                        "h-16",
+                        "w-[64px]",
+                        "h-[62px]",
                         "relative",
                         "animate-opacity-reveal",
                     )}
                     key={name}
                 >
-                    {icon}
+                    <Icon
+                        style={{
+                            filter: `drop-shadow(0px 0px 20px ${hexToAlpha(
+                                color,
+                                0.75,
+                            )}) drop-shadow(0px 0px 30px ${hexToAlpha(
+                                color,
+                                0.5,
+                            )})`,
+                        }}
+                    />
                 </div>
                 <div
                     className={clsx(
                         "flex-1",
-                        horizontal === "left" && ["py-3.5", "pr-6"],
-                        horizontal === "right" && ["py-3.5", "pl-6"],
+                        "py-[14px]",
+                        horizontal === "left" && ["pr-6"],
+                        horizontal === "right" && ["pl-6"],
                     )}
                 >
                     <div
@@ -153,6 +171,7 @@ export const LandingHeroAnimationItem = React.memo(
                             "animate-beam-spin",
                             "will-change-transform",
                             "bg-landing-hero-beam-bg",
+                            rayClassName,
                         )}
                         style={{
                             color,

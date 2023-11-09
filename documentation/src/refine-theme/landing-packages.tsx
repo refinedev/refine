@@ -101,7 +101,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                     "pb-4 landing-md:pb-10",
                     "dark:bg-landing-packages-dark bg-landing-packages",
                     "dark:bg-gray-800 bg-gray-50",
-                    "rounded-3xl",
+                    "rounded-2xl landing-sm:rounded-3xl",
                     "overflow-hidden",
                 )}
             >

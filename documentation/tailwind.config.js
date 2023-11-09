@@ -247,28 +247,28 @@ module.exports = {
                     "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
                 ],
                 "landing-sweet-spot-glow-red-light": [
-                    "url('')",
-                    "radial-gradient(50% 50% at 50% 50%, rgba(250, 56, 82, 0.15) 0%, rgba(250, 56, 82, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 70% 0%, rgba(210, 45, 45, 0.05) 0%, rgba(210, 45, 45, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(210, 45, 45, 0.15) 0%, rgba(210, 45, 45, 0.00) 100%)",
                 ],
                 "landing-sweet-spot-glow-yellow-light": [
-                    "url('')",
-                    "radial-gradient(50% 50% at 50% 50%, rgba(249, 213, 31, 0.15) 0%, rgba(249, 213, 31, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 70% 0%, rgba(244, 106, 37, 0.05) 0%, rgba(244, 106, 37, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(244, 106, 37, 0.15) 0%, rgba(244, 106, 37, 0.00) 100%)",
                 ],
                 "landing-sweet-spot-glow-orange-light": [
-                    "url('')",
-                    "radial-gradient(50% 50% at 50% 50%, rgba(249, 140, 31, 0.15) 0%, rgba(249, 140, 31, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 70% 0%, rgba(255, 159, 26, 0.05) 0%, rgba(255, 159, 26, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(255, 159, 26, 0.15) 0%, rgba(255, 159, 26, 0.00) 100%)",
                 ],
                 "landing-sweet-spot-glow-cyan-light": [
-                    "url('')",
-                    "radial-gradient(50% 50% at 50% 50%, rgba(71, 209, 191, 0.15) 0%, rgba(71, 209, 191, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 70% 0%, rgba(8, 145, 145, 0.05) 0%, rgba(8, 145, 145, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(8, 145, 145, 0.15) 0%, rgba(8, 145, 145, 0.00) 100%)",
                 ],
                 "landing-sweet-spot-glow-blue-light": [
-                    "url('')",
-                    "radial-gradient(50% 50% at 50% 50%, rgba(61, 184, 245, 0.15) 0%, rgba(61, 184, 245, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 70% 0%, rgba(31, 128, 224, 0.05) 0%, rgba(31, 128, 224, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(31, 128, 224, 0.15) 0%, rgba(31, 128, 224, 0.00) 100%)",
                 ],
                 "landing-sweet-spot-glow-indigo-light": [
-                    "url('')",
-                    "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 70% 0%, rgba(105, 59, 198, 0.05) 0%, rgba(105, 59, 198, 0.00) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, rgba(105, 59, 198, 0.15) 0%, rgba(105, 59, 198, 0.00) 100%)",
                 ],
                 "landing-packages-text":
                     "linear-gradient(180deg, #14141F 0%, #474E6B 100%)",

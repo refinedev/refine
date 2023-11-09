@@ -19,55 +19,62 @@ import { LandingHeroStrapiIcon } from "./icons/landing-hero/strapi";
 import { useInView } from "framer-motion";
 
 type ItemType = {
-    icon: React.ReactNode;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     name: string;
     color: string;
+    rayClassName?: string;
 };
 
 const platformItems: ItemType[] = [
     {
         name: "Vite",
-        icon: (
-            <LandingHeroViteIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroViteIcon,
         color: "#ffa800",
     },
     {
         name: "Next.js",
-        icon: (
-            <LandingHeroNextjsIcon className="text-gray-1000 dark:text-gray-0" />
+        icon: (props: React.SVGProps<SVGSVGElement>) => (
+            <LandingHeroNextjsIcon
+                {...props}
+                className={clsx(
+                    "text-gray-1000 dark:text-gray-0",
+                    props.className,
+                )}
+            />
         ),
         color: "#ffffff",
+        rayClassName: "!text-gray-1000 dark:!text-gray-0",
     },
     {
         name: "Remix",
-        icon: (
-            <LandingHeroRemixIcon className="text-gray-1000 dark:text-gray-0" />
+        icon: (props: React.SVGProps<SVGSVGElement>) => (
+            <LandingHeroRemixIcon
+                {...props}
+                className={clsx(
+                    "text-gray-1000 dark:text-gray-0",
+                    props.className,
+                )}
+            />
         ),
         color: "#ffffff",
+        rayClassName: "!text-gray-1000 dark:!text-gray-0",
     },
 ];
 
 const uiItems: ItemType[] = [
     {
         name: "Material UI",
-        icon: (
-            <LandingHeroMaterialUIIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroMaterialUIIcon,
         color: "#007FFF",
     },
     {
         name: "Ant Design",
-        icon: (
-            <LandingHeroAntdIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroAntdIcon,
         color: "#148EFF",
     },
     {
         name: "Chakra UI",
-        icon: (
-            <LandingHeroChakraUIIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroChakraUIIcon,
         color: "#29C6B7",
     },
 ];
@@ -75,23 +82,17 @@ const uiItems: ItemType[] = [
 const backendItems: ItemType[] = [
     {
         name: "Supabase",
-        icon: (
-            <LandingHeroSupabaseIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroSupabaseIcon,
         color: "#3ECF8E",
     },
     {
         name: "NestJS",
-        icon: (
-            <LandingHeroNestjsIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroNestjsIcon,
         color: "#E0234E",
     },
     {
         name: "Appwrite",
-        icon: (
-            <LandingHeroAppwriteIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroAppwriteIcon,
         color: "#FD366E",
     },
 ];
@@ -99,23 +100,17 @@ const backendItems: ItemType[] = [
 const authItems: ItemType[] = [
     {
         name: "Google",
-        icon: (
-            <LandingHeroGoogleIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroGoogleIcon,
         color: "#EA4335",
     },
     {
         name: "Auth0",
-        icon: (
-            <LandingHeroAuth0Icon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroAuth0Icon,
         color: "#EB5424",
     },
     {
         name: "Strapi",
-        icon: (
-            <LandingHeroStrapiIcon className="text-gray-1000 dark:text-gray-0" />
-        ),
+        icon: LandingHeroStrapiIcon,
         color: "#4945FF",
     },
 ];
@@ -313,6 +308,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         "top-1/2",
                         "landing-lg:top-[calc(50%+64px)]",
                         "translate-y-64",
+                        "z-[1]",
                     )}
                 >
                     <div
@@ -320,7 +316,6 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                             "relative",
                             "w-40",
                             "h-0.5",
-                            "-mt-px",
                             "bg-landing-hero-beam-bottom",
                             "animate-landing-hero-beam-bottom",
                         )}

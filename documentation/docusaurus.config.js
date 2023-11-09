@@ -290,6 +290,9 @@ const siteConfig = {
                 autoCollapseCategories: true,
             },
         },
+        colorMode: {
+            respectPrefersColorScheme: true,
+        },
     },
     customFields: {
         /** Footer Fields */

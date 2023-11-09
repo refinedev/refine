@@ -4,20 +4,20 @@ import React from "react";
 const BgGridMask = React.memo(function GridMask() {
     return (
         <g mask="url(#bgMask)" className="heroAnimationBG">
-            {Array.from({ length: 20 })
+            {Array.from({ length: 19 })
                 .fill(null)
                 .map((_, i) => {
-                    return Array.from({ length: 16 })
+                    return Array.from({ length: 14 })
                         .fill(null)
                         .map((_, j) => {
                             return (
                                 <rect
                                     key={`${i}-${j}`}
                                     id={`hero-animation-grid-${i}-${j}`}
-                                    x={31 + 32 * i}
-                                    y={12 + 32 * j}
-                                    width="32"
-                                    height="32"
+                                    x={10 + 36 * i}
+                                    y={17 + 36 * j}
+                                    width="36"
+                                    height="36"
                                     fill="none"
                                     className={clsx(
                                         "stroke-[#EAEFF4] dark:stroke-[#26283D]",

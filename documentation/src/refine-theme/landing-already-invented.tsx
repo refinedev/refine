@@ -48,8 +48,9 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                 className={clsx(
                     "not-prose",
                     "flex-shrink-0",
+                    "h-full",
                     "p-2 landing-sm:p-4",
-                    "rounded-3xl",
+                    "rounded-2xl landing-sm:rounded-3xl",
                     "dark:bg-landing-noise",
                     "dark:bg-gray-800 bg-gray-50",
                 )}
@@ -69,7 +70,9 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                     )}
                 >
                     {list.map((item, index) => {
-                        const paddingLeft = 108 + index * 40;
+                        const paddingHorizontal = `calc((100% - 160px - ${
+                            (list.length - 1) * 36
+                        }px) / 2)`;
 
                         return (
                             <div
@@ -77,7 +80,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                                     "py-1.5",
                                     "h-[54px]",
                                     "relative",
-                                    "flex items-center justify-center",
+                                    "flex items-center justify-start",
                                     "dark:bg-landing-component-divider-dark bg-landing-component-divider",
                                     "bg-no-repeat",
                                     "bg-wheel-already-invented-size",
@@ -85,54 +88,60 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                                     "overflow-hidden",
                                 )}
                                 style={{
-                                    paddingLeft,
+                                    paddingLeft: paddingHorizontal,
+                                    paddingRight: paddingHorizontal,
                                 }}
                                 key={index}
                             >
                                 <div
-                                    className={clsx(
-                                        "w-max",
-                                        "rounded-full",
-                                        "p-[1px]",
-                                        "dark:bg-landing-component-badge bg-refine-green",
-                                        "relative",
-                                        "-ml-[calc(108px*1.5)] landing-sm:-ml-[calc(108px*2)]",
-
-                                        inView &&
-                                            "animate-wheel-already-invented-reveal",
-                                    )}
+                                    className={clsx("min-w-[160px]")}
                                     style={{
-                                        transform: `translateX(${
-                                            40 * (11 - index)
-                                        }px)`,
-                                        animationDelay: `${
-                                            0.15 + index * 0.15
-                                        }s`,
+                                        marginLeft: 36 * index,
                                     }}
                                 >
                                     <div
                                         className={clsx(
+                                            "w-max",
                                             "rounded-full",
-                                            "py-2 pr-6 pl-[10px]",
-                                            "flex items-center justify-center gap-2",
-                                            "dark:bg-gray-900 bg-gray-0",
+                                            "p-[1px]",
+                                            "dark:bg-landing-component-badge bg-refine-green",
+                                            "relative",
+                                            inView &&
+                                                "animate-wheel-already-invented-reveal",
                                         )}
+                                        style={{
+                                            transform: `translateX(${
+                                                40 * (11 - index)
+                                            }px)`,
+                                            animationDelay: `${
+                                                0.15 + index * 0.15
+                                            }s`,
+                                        }}
                                     >
-                                        <div>{item.icon}</div>
-                                        <div>{item.label}</div>
+                                        <div
+                                            className={clsx(
+                                                "rounded-full",
+                                                "py-2 pr-6 pl-[10px]",
+                                                "flex items-center justify-center gap-2",
+                                                "dark:bg-gray-900 bg-gray-0",
+                                            )}
+                                        >
+                                            <div>{item.icon}</div>
+                                            <div>{item.label}</div>
+                                        </div>
+                                        <div
+                                            className={clsx(
+                                                "dark:block hidden",
+                                                "absolute",
+                                                "-top-6 -left-6",
+                                                "rounded-full",
+                                                "w-20 h-20",
+                                                "z-10",
+                                                "blur-md",
+                                                "bg-landing-component-badge-glow",
+                                            )}
+                                        />
                                     </div>
-                                    <div
-                                        className={clsx(
-                                            "dark:block hidden",
-                                            "absolute",
-                                            "-top-6 -left-6",
-                                            "rounded-full",
-                                            "w-20 h-20",
-                                            "z-10",
-                                            "blur-md",
-                                            "bg-landing-component-badge-glow",
-                                        )}
-                                    />
                                 </div>
                             </div>
                         );
