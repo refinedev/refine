@@ -315,7 +315,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         className={clsx(
                             "relative",
                             "w-40",
-                            "h-0.5",
+                            "h-px",
                             "bg-landing-hero-beam-bottom",
                             "animate-landing-hero-beam-bottom",
                         )}
