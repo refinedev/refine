@@ -80,7 +80,7 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                         show={isShowing}
                     >
                         <Popover.Panel
-                            className={clsx("absolute", "z-[999px]", "top-12", {
+                            className={clsx("absolute", "z-50", "top-12", {
                                 "-left-32 center-point":
                                     item.label === "Community" ||
                                     item.label === "Company",
