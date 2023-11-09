@@ -14,54 +14,103 @@ export const LandingHeroGithubStars = () => {
             rel="noopener noreferrer"
             className={clsx(
                 "self-start",
-                "py-[7px]",
-                "pl-2",
-                "pr-4",
-                "flex",
-                "gap-2",
-                "items-center",
-                "justify-center",
+                "relative",
                 "rounded-3xl",
-                "border border-solid",
-                "border-gray-200 dark:border-gray-700",
-                "bg-gray-50 dark:bg-gray-900",
-                "dark:bg-landing-hero-github-stars-gradient",
+                "p-px",
                 "hover:no-underline",
+                "w-auto",
+                "bg-gray-200 dark:bg-gray-700",
             )}
         >
-            <OrangeStarIcon
-                style={{
-                    filter: "drop-shadow(0px 0px 3px #FF993330) drop-shadow(0px 0px 6px #FF9933A0) drop-shadow(0px 0px 16px #FF9933A0) drop-shadow(0px 0px 16px #FF9933)",
-                }}
-            />
-            <span
+            <div
                 className={clsx(
-                    "font-normal",
-                    "text-xs",
-                    "text-transparent",
-                    "bg-clip-text",
-                    "bg-landing-hero-github-stars-text-light",
-                    "dark:bg-landing-hero-github-stars-text-dark",
+                    "absolute",
+                    "inset-0",
+                    "overflow-hidden",
+                    "rounded-3xl",
+                    "",
                 )}
             >
-                <span className={clsx("font-semibold")}>
-                    {loading ? (
-                        <Spinner
-                            className={clsx("w-3.5 h-3.5", "inline")}
-                            wrapperProps={{
-                                className: clsx(
-                                    "h-3.5",
-                                    "inline-block",
-                                    "w-[4ch]",
-                                ),
-                            }}
-                        />
-                    ) : (
-                        <span>{githubStarCountText}</span>
+                <div
+                    className={clsx(
+                        "absolute",
+                        "-top-8",
+                        "-left-8",
+                        "animate-github-stars-border",
+                        "w-24",
+                        "h-24",
+                        "rounded-full",
+                        "bg-refine-orange",
+                        "opacity-40",
+                        "blur-xl",
                     )}
-                </span>{" "}
-                <span>GitHub stars so far</span>
-            </span>
+                />
+            </div>
+            <div
+                className={clsx(
+                    "absolute",
+                    "-left-3",
+                    "-top-3",
+                    "z-[0]",
+                    "w-12",
+                    "h-12",
+                    "blur-lg",
+                    "bg-refine-orange",
+                    "rounded-full",
+                    "opacity-[0.15]",
+                    "animate-github-stars-glow",
+                )}
+            />
+            <div
+                className={clsx(
+                    "relative",
+                    "z-[1]",
+                    "rounded-[23px]",
+                    "py-[7px]",
+                    "pl-2",
+                    "pr-4",
+                    "flex",
+                    "gap-2",
+                    "items-center",
+                    "justify-center",
+                    "bg-gray-50 dark:bg-gray-900",
+                    "dark:bg-landing-hero-github-stars-gradient",
+                )}
+            >
+                <OrangeStarIcon
+                    style={{
+                        filter: "drop-shadow(0px 0px 3px #FF993330) drop-shadow(0px 0px 6px #FF9933A0) drop-shadow(0px 0px 16px #FF9933A0) drop-shadow(0px 0px 16px #FF9933)",
+                    }}
+                />
+                <span
+                    className={clsx(
+                        "font-normal",
+                        "text-xs",
+                        "text-transparent",
+                        "bg-clip-text",
+                        "bg-landing-hero-github-stars-text-light",
+                        "dark:bg-landing-hero-github-stars-text-dark",
+                    )}
+                >
+                    <span className={clsx("font-semibold")}>
+                        {loading ? (
+                            <Spinner
+                                className={clsx("w-3.5 h-3.5", "inline")}
+                                wrapperProps={{
+                                    className: clsx(
+                                        "h-3.5",
+                                        "inline-block",
+                                        "w-[4ch]",
+                                    ),
+                                }}
+                            />
+                        ) : (
+                            <span>{githubStarCountText}</span>
+                        )}
+                    </span>{" "}
+                    <span>GitHub stars so far</span>
+                </span>
+            </div>
         </a>
     );
 };
