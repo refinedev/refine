@@ -52,8 +52,19 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
                 )}
                 {label}
             </div>
-            {isCollapseble &&
-                (open ? <ChevronDownIcon /> : <ChevronRightIcon />)}
+            {isCollapseble && (
+                <div
+                    className={clsx(
+                        "w-4 h-4",
+                        "flex justify-center items-center",
+                        "text-gray-500",
+                        "border border-gray-500 rounded-full",
+                    )}
+                >
+                    {open ? <ChevronDownIcon /> : <ChevronRightIcon />}
+                </div>
+            )}
+
             {label === "Cloud" &&
                 (theme === "light" ? <TwoTonedCloudIcon /> : <CloudIcon />)}
         </Component>
