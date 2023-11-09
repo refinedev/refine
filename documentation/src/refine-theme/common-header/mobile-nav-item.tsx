@@ -41,7 +41,7 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
                 "w-full",
                 "flex justify-between items-center",
                 "p-4",
-                "border-b border-gray-100 dark:border-gray-700",
+                "border-b border-gray-200 dark:border-gray-700",
                 "no-underline",
             )}
             {...(href ? { to: href } : {})}
@@ -52,8 +52,19 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
                 )}
                 {label}
             </div>
-            {isCollapseble &&
-                (open ? <ChevronDownIcon /> : <ChevronRightIcon />)}
+            {isCollapseble && (
+                <div
+                    className={clsx(
+                        "w-4 h-4",
+                        "flex justify-center items-center",
+                        "text-gray-500",
+                        "border border-gray-500 rounded-full",
+                    )}
+                >
+                    {open ? <ChevronDownIcon /> : <ChevronRightIcon />}
+                </div>
+            )}
+
             {label === "Cloud" &&
                 (theme === "light" ? <TwoTonedCloudIcon /> : <CloudIcon />)}
         </Component>
