@@ -1,5 +1,7 @@
 import clsx from "clsx";
 import React, { FC } from "react";
+import { CommonCircleChevronDown } from "./common-circle-chevron-down";
+import { CommonCircleChevronUp } from "./common-circle-chevron-up";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
 
 type Props = {
@@ -131,6 +133,13 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
             <LandingSectionCtaButton
                 className={clsx("cursor-pointer", "mt-6")}
                 onClick={() => setShowMore((prev) => !prev)}
+                icon={
+                    showMore ? (
+                        <CommonCircleChevronUp />
+                    ) : (
+                        <CommonCircleChevronDown />
+                    )
+                }
             >
                 Show {showMore ? "less" : "more"}
             </LandingSectionCtaButton>
@@ -147,13 +156,8 @@ const TestimonialCard = ({
     className,
 }) => {
     return (
-        <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div
             className={clsx(
-                "appearance-none",
-                "no-underline",
                 "border dark:border-gray-700 border-gray-200",
                 "rounded-3xl",
                 className,
@@ -177,7 +181,17 @@ const TestimonialCard = ({
                 >
                     {description}
                 </div>
-                <div className={clsx("flex gap-4", "items-center")}>
+                <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={clsx(
+                        "flex gap-4",
+                        "items-center",
+                        "appearance-none",
+                        "no-underline",
+                    )}
+                >
                     <img
                         src={img}
                         alt={name}
@@ -201,9 +215,9 @@ const TestimonialCard = ({
                             {title}
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-        </a>
+        </div>
     );
 };
 
