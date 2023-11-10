@@ -21,7 +21,7 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "apexcharts": "^3.36.3",
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "cross-env": "^7.0.3",
     "react": "^18.0.0",
     "react-apexcharts": "^1.4.0",

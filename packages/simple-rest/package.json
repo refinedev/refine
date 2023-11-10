@@ -36,7 +36,7 @@
     "warn-once": "^0.1.0"
   },
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "query-string": "^7.1.1"
   },
   "peerDependencies": {

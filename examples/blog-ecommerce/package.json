@@ -18,7 +18,7 @@
     "@refinedev/nextjs-router": "^5.5.4",
     "@refinedev/strapi": "^4.1.5",
     "@refinedev/strapi-v4": "^5.2.5",
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "framer-motion": "^7.5.3",
     "next": "^13.5.4",
     "cross-env": "^7.0.3",

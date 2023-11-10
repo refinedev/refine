@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@nestjsx/crud-request": "^5.0.0-alpha.3",
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "query-string": "^7.1.1"
   },
   "peerDependencies": {

@@ -18,7 +18,7 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "dayjs": "^1.10.7",
     "google-map-react": "^2.1.10",
     "i18next": "^20.1.0",

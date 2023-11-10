@@ -24,7 +24,7 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "react-hook-form": "^7.30.0"
   },
   "devDependencies": {

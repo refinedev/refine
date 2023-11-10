@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "tslib": "^2.3.1",
-    "axios": "^0.26.1",
+    "axios": "^1.6.0",
     "axios-auth-refresh": "^3.2.2",
     "query-string": "^7.1.1"
   },
