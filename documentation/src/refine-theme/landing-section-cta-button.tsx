@@ -14,6 +14,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
     className,
     to,
     onClick,
+    icon,
 }) => {
     return (
         <Link
@@ -23,6 +24,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
             onClick={onClick}
             className={clsx(
                 className,
+                "select-none",
                 "group/cta-button",
                 "relative",
                 "no-underline",
@@ -41,8 +43,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
             )}
         >
             {children}
-            <DefaultIcon />
-
+            {icon || <DefaultIcon />}
             <div
                 className={clsx(
                     "select-none",

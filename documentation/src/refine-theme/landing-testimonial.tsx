@@ -1,5 +1,7 @@
 import clsx from "clsx";
 import React, { FC } from "react";
+import { CommonCircleChevronDown } from "./common-circle-chevron-down";
+import { CommonCircleChevronUp } from "./common-circle-chevron-up";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
 
 type Props = {
@@ -131,6 +133,13 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
             <LandingSectionCtaButton
                 className={clsx("cursor-pointer", "mt-6")}
                 onClick={() => setShowMore((prev) => !prev)}
+                icon={
+                    showMore ? (
+                        <CommonCircleChevronUp />
+                    ) : (
+                        <CommonCircleChevronDown />
+                    )
+                }
             >
                 Show {showMore ? "less" : "more"}
             </LandingSectionCtaButton>
