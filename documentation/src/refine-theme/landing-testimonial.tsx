@@ -46,7 +46,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
                             "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
                         )}
                     >
-                        in their words...
+                        in their words
                     </span>
                     .
                 </h2>
