@@ -214,7 +214,7 @@ const testimonials = [
         link: "https://twitter.com/zenorocha",
         description:
             "I find CRUD boring, but Refine makes it fun for developers again!",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/zeno-rocha.png",
     },
     {
         title: "Author of React Hook Form",
@@ -222,7 +222,7 @@ const testimonials = [
         link: "https://twitter.com/HookForm",
         description:
             "Refine perfectly aligns with the philosophy of React Hook Form, and they work seamlessly together.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/beier-luo.png",
     },
     {
         title: "Sr. Software Engineer at Atlassian",
@@ -230,7 +230,7 @@ const testimonials = [
         link: "https://twitter.com/danieldelcore",
         description:
             "Refine has codemod support for major version transitions, making it easy for users to integrate new versions into their existing codebases seamlessly.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/daniel-del-core.png",
     },
     {
         title: "Founder - Tremor",
@@ -238,7 +238,7 @@ const testimonials = [
         link: "https://twitter.com/kindlaar",
         description:
             "Refine has one of the most convenient developer experiences (DX), giving me superpowers when it comes to developing modern web apps with security and flexibility in mind.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/christopher-kindl.png",
     },
     {
         title: "CEO - Medusa",
@@ -246,7 +246,7 @@ const testimonials = [
         link: "https://twitter.com/NicklasGellner",
         description:
             "Medusa and Refine is a match for all developers looking for a strong open-source foundation. Check out the Refine SWAG store for a great Medusa implementation!",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/nicklas-gellner.png",
     },
     {
         title: "CEO - cerbos.dev",
@@ -254,14 +254,14 @@ const testimonials = [
         link: "https://cerbos.dev/about",
         description:
             "No enterprise or development team want to be confined by the limitation of a framework. Refine is one of those rare frameworks that strikes the balance perfectly right. Low code, easy to use but when needed fully customizable with a perfect escape hatch.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/emre-baran.png",
     },
     {
         title: "Founder - Cohorence",
         name: "Zachary Zaro",
         link: "https://twitter.com/ZacharyZaro",
         description: "npm create refine-app@latest => Boom!",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/zachary-zaro.png",
     },
     {
         title: "Daisy UI - Founder",
@@ -269,7 +269,7 @@ const testimonials = [
         link: "https://twitter.com/Saadeghi",
         description:
             "I really like how refine gives the freedom to choose different stacks for back-end, front-end, and even UI libraries.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/pouya-saadeghi.png",
     },
     {
         title: "Founder - Next UI",
@@ -277,14 +277,14 @@ const testimonials = [
         link: "https://twitter.com/jrgarciadev",
         description:
             "In Refine's headless way, the flexibility of the UI is impressive. The implementation of NextUI in Refine demonstrates this.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/junior-garcia.png",
     },
     {
         title: "Founder - JS Mastery",
-        name: "Adrian",
+        name: "Adrian Hajdin",
         link: "https://twitter.com/jsmasterypro/status/1721977998436675703?s=20",
         description:
             "Refine has truly transformed the app development process, making it incredibly efficient and hassle-free. With Refine, you can focus on your app's core features, not on the time-consuming tools setup, allowing you to do things that matter the most.",
-        img: "https://pbs.twimg.com/profile_images/1403788917862719493/Sh07Etuf_400x400.jpg",
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/adrian-hajdin.png",
     },
 ];
