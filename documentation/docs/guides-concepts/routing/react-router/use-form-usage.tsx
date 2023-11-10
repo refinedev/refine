@@ -17,15 +17,16 @@ export function ReactRouterUseFormUsage() {
             files={{
                 "/App.tsx": {
                     code: AppTsxCode,
+                    hidden: true,
                 },
                 "/style.css": {
                     code: StyleCssCode,
                     hidden: true,
                 },
-                "/pages/products/list.tsx": {
+                "list.tsx": {
                     code: ListTsxCode,
                 },
-                "/pages/products/edit.tsx": {
+                "edit.tsx": {
                     code: EditTsxCode,
                     active: true,
                 },
@@ -44,8 +45,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./style.css";
 
-import { ProductList } from "./pages/products/list.tsx";
-import { ProductEdit } from "./pages/products/edit.tsx";
+import { ProductList } from "./list.tsx";
+import { ProductEdit } from "./edit.tsx";
 
 export default function App() {
     return (

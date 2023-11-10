@@ -1,9 +1,10 @@
-import { SandpackNextJS } from "@site/src/components/sandpack";
+import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function NextJSUseTableUsage() {
     return (
-        <SandpackNextJS
+        <Sandpack
+            template="nextjs"
             showFiles
             startRoute="/my-products"
             files={{

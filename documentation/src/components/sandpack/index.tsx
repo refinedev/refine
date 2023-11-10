@@ -43,6 +43,14 @@ type Props = React.ComponentProps<SandpackInternal> & {
     showConsole?: boolean;
     hidePreview?: boolean;
 };
+
+export const Sandpack = (props: Props) => {
+    if (props?.template === "nextjs") {
+        return <SandpackNextJS {...props} />;
+    }
+
+    return <SandpackBase {...props} />;
+};
 /**
  * We're using a custom sandpack component and customized some of its features and props.
  *
@@ -58,7 +66,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
  *
  * Set `startRoute` to set the initial route of the preview.
  */
-export const Sandpack = ({
+const SandpackBase = ({
     startRoute,
     showNavigator,
     initialPercentage = 50,
@@ -300,7 +308,7 @@ export const Sandpack = ({
     );
 };
 
-export const SandpackNextJS = (props: Props) => {
+const SandpackNextJS = (props: Props) => {
     const isDevelop = process.env.NODE_ENV === "development";
 
     const extraProps = isDevelop
@@ -328,7 +336,7 @@ export const SandpackNextJS = (props: Props) => {
         : { hidePreview: true };
 
     return (
-        <Sandpack
+        <SandpackBase
             {...props}
             {...extraProps}
             template={isDevelop ? "nextjs" : "react-ts"}
