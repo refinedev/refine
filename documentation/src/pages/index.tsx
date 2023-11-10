@@ -14,6 +14,7 @@ import { LandingSweetSpot } from "../refine-theme/landing-sweet-spot";
 import { LandingHeroSection } from "../refine-theme/landing-hero-section";
 import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
 import { CommonHeader } from "../refine-theme/common-header";
+import { LandingTestimonial } from "../refine-theme/landing-testimonial";
 
 function Home() {
     const title = "refine | Open-source Retool for Enterprise";
@@ -59,6 +60,7 @@ function Home() {
                                 )}
                             />
                         </div>
+                        <LandingTestimonial />
                         <div
                             className={clsx(
                                 "flex flex-col",

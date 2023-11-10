@@ -5,19 +5,22 @@ import React, { FC, PropsWithChildren, SVGProps } from "react";
 type Props = {
     className?: string;
     icon?: React.ReactNode;
-    to: string;
+    to?: string;
+    onClick?: () => void;
 };
 
 export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
     children,
     className,
     to,
+    onClick,
 }) => {
     return (
         <Link
             to={to}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={onClick}
             className={clsx(
                 className,
                 "group/cta-button",
