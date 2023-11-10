@@ -60,6 +60,7 @@ function Home() {
                                 )}
                             />
                         </div>
+                        <LandingSweetSpot />
                         <LandingTestimonial />
                         <div
                             className={clsx(
@@ -87,7 +88,6 @@ function Home() {
                             </div>
                         </div>
                         <LandingCommunity />
-                        <LandingSweetSpot />
                         <LandingEnterpriseDevelopers />
                         <LandingTryItSection />
                     </div>
