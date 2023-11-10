@@ -1,46 +1,50 @@
 import clsx from "clsx";
 import React, { FC } from "react";
 import {
-    SecurityIcon,
-    BestPracticeIcon,
-    InfiniteScalabilityIcon,
-    NoVendorLockinIcon,
-    ProServicesIcon,
+    AccessControlIcon,
+    BlackBoxIcon,
+    IdentityIcon,
+    MonitorIcon,
     SelfHostedIcon,
+    SupportIcon,
 } from "../components/landing/icons";
 
 const list = [
     {
-        icon: <SecurityIcon />,
-        title: "Security",
-        description: "Zero Trust model with SSO and SCIM directory sync.",
-    },
-    {
-        icon: <InfiniteScalabilityIcon />,
-        title: "Infinite Scalability",
-        description:
-            "Built with the most complex business applications in mind.",
-    },
-    {
         icon: <SelfHostedIcon />,
-        title: "Self-hosted",
+        title: "Self-host for compliance",
         description:
-            "Deploy to your own infrastructure and always stay in control.",
+            "Deploy to your own infrastructure without worrying about regulations, performance, and stability. Maintain your current security best practices with no compromises.",
     },
     {
-        icon: <NoVendorLockinIcon />,
-        title: "No vendor lock-in",
-        description: "Open-source solution with open architecture.",
+        icon: <IdentityIcon />,
+        title: "Leverage the power of your existing Identity Provider",
+        description:
+            "Native support for Okta, Azure AD, Amazon Cognito & Google Cloud Identity.",
     },
     {
-        icon: <ProServicesIcon />,
-        title: "Professional services",
-        description: "Plans for priority support, training and transformation.",
+        icon: <AccessControlIcon />,
+        title: "Achieve fine-grained access control",
+        description:
+            "Out-of-the-box support for widely accepted authorization models including ACL, RBAC & ABAC.",
     },
     {
-        icon: <BestPracticeIcon />,
-        title: "Industry best practices",
-        description: "Standardize how teams build across the organization.",
+        icon: <BlackBoxIcon />,
+        title: "Unlock the black box",
+        description:
+            "Implement an open-source solution with an open architecture. Save yourself from the hassle of adding another proprietary component to your stack.",
+    },
+    {
+        icon: <MonitorIcon />,
+        title: "Effortlessly monitor your application",
+        description:
+            "Ready-made providers and components for audit logging and usage analytics.",
+    },
+    {
+        icon: <SupportIcon />,
+        title: "Get supported by the experts",
+        description:
+            "Enroll in plans that provide priority support, trainings and consulting.",
     },
 ];
 
@@ -56,7 +60,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
             >
                 <h2
                     className={clsx(
-                        "text-2xl landing-sm:text-[32px]",
+                        "text-2xl landing-sm:text-[32px] landing-sm:leading-[40px]",
                         "tracking-tight",
                         "text-start",
                         "p-0",
@@ -64,7 +68,9 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                     )}
                 >
                     Enterprise developers{" "}
-                    <span className="font-sans text-[#FE251B]">❤️</span>{" "}
+                    <span className="font-sans text-[#FE251B] drop-shadow-[0_0_30px_rgba(254,37,27,0.3)]">
+                        ❤️
+                    </span>{" "}
                     <span
                         className={clsx(
                             "font-semibold",
@@ -85,7 +91,11 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                     )}
                 >
                     Refine is designed to target the specific pain points of
-                    larger organizations for internal tooling.
+                    larger organizations by giving top priority to{" "}
+                    <span className="font-semibold text-gray-900 dark:text-gray-0">
+                        security
+                    </span>
+                    .
                 </p>
             </div>
 
@@ -93,8 +103,8 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                 className={clsx(
                     "mt-8 landing-sm:mt-12 landing-lg:mt-20",
                     "grid",
-                    "grid-cols-1 landing-sm:grid-cols-2 landing-lg:grid-cols-3",
-                    "gap-4 landing-sm:gap-6",
+                    "grid-cols-1 landing-md:grid-cols-2 landing-lg:grid-cols-3",
+                    "gap-4 landing-sm:gap-12 landing-md:gap-6",
                 )}
             >
                 {list.map((item, index) => {
@@ -104,29 +114,34 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                             className={clsx(
                                 "not-prose",
                                 "p-4 landing-sm:p-10",
+                                "flex",
+                                "flex-col landing-sm:flex-row landing-md:flex-col",
+                                "items-start",
+                                "gap-6",
                                 "dark:bg-landing-noise",
                                 "dark:bg-gray-800 bg-gray-50",
                                 "rounded-2xl landing-sm:rounded-3xl",
                             )}
                         >
                             <div>{item.icon}</div>
-                            <div
-                                className={clsx(
-                                    "mt-6",
-                                    "text-2xl",
-                                    "font-semibold",
-                                )}
-                            >
-                                {item.title}
-                            </div>
-                            <div
-                                className={clsx(
-                                    "mt-4",
-                                    "text-base",
-                                    "dark:text-gray-400 text-gray-600",
-                                )}
-                            >
-                                {item.description}
+                            <div className={clsx("flex", "flex-col", "gap-4")}>
+                                <div
+                                    className={clsx(
+                                        "text-xl",
+                                        "font-semibold",
+                                        "text-gray-900 dark:text-gray-0",
+                                    )}
+                                >
+                                    {item.title}
+                                </div>
+                                <div
+                                    className={clsx(
+                                        "text-base",
+                                        "dark:text-gray-400 text-gray-600",
+                                    )}
+                                >
+                                    {item.description}
+                                </div>
                             </div>
                         </div>
                     );
