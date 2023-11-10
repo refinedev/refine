@@ -1,22 +1,25 @@
-import React from "react";
 import clsx from "clsx";
-import { LandingHeroViteIcon } from "./icons/landing-hero/vite";
-import { LandingHeroGridSvg } from "./icons/landing-hero-grid";
-import { LandingHeroCenterSvg } from "./icons/landing-hero-center";
-import { LandingHeroBeamSvg } from "./icons/landing-hero-beam";
-import { LandingHeroAnimationItem } from "./landing-hero-animation-item";
-import { LandingHeroNextjsIcon } from "./icons/landing-hero/nextjs";
-import { LandingHeroRemixIcon } from "./icons/landing-hero/remix";
-import { LandingHeroMaterialUIIcon } from "./icons/landing-hero/material-ui";
-import { LandingHeroAntdIcon } from "./icons/landing-hero/antd";
-import { LandingHeroChakraUIIcon } from "./icons/landing-hero/chakra";
-import { LandingHeroSupabaseIcon } from "./icons/landing-hero/supabase";
-import { LandingHeroNestjsIcon } from "./icons/landing-hero/nestjs";
-import { LandingHeroAppwriteIcon } from "./icons/landing-hero/appwrite";
-import { LandingHeroGoogleIcon } from "./icons/landing-hero/google";
-import { LandingHeroAuth0Icon } from "./icons/landing-hero/auth0";
-import { LandingHeroStrapiIcon } from "./icons/landing-hero/strapi";
 import { useInView } from "framer-motion";
+import React from "react";
+import {
+    LandingHeroBeamGlowSvg,
+    LandingHeroBeamSvg,
+} from "./icons/landing-hero-beam";
+import { LandingHeroCenterSvg } from "./icons/landing-hero-center";
+import { LandingHeroGridSvg } from "./icons/landing-hero-grid";
+import { LandingHeroAntdIcon } from "./icons/landing-hero/antd";
+import { LandingHeroAppwriteIcon } from "./icons/landing-hero/appwrite";
+import { LandingHeroAuth0Icon } from "./icons/landing-hero/auth0";
+import { LandingHeroChakraUIIcon } from "./icons/landing-hero/chakra";
+import { LandingHeroGoogleIcon } from "./icons/landing-hero/google";
+import { LandingHeroMaterialUIIcon } from "./icons/landing-hero/material-ui";
+import { LandingHeroNestjsIcon } from "./icons/landing-hero/nestjs";
+import { LandingHeroNextjsIcon } from "./icons/landing-hero/nextjs";
+import { LandingHeroOktaIcon } from "./icons/landing-hero/okta";
+import { LandingHeroRemixIcon } from "./icons/landing-hero/remix";
+import { LandingHeroSupabaseIcon } from "./icons/landing-hero/supabase";
+import { LandingHeroViteIcon } from "./icons/landing-hero/vite";
+import { LandingHeroAnimationItem } from "./landing-hero-animation-item";
 
 type ItemType = {
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -109,9 +112,22 @@ const authItems: ItemType[] = [
         color: "#EB5424",
     },
     {
-        name: "Strapi",
-        icon: LandingHeroStrapiIcon,
-        color: "#4945FF",
+        name: "Okta",
+        icon: (props: React.SVGProps<SVGSVGElement>) => (
+            <div className={clsx("p-5", props.className)}>
+                <LandingHeroOktaIcon
+                    {...props}
+                    className={clsx(
+                        "w-6",
+                        "h-6",
+                        "text-gray-1000 dark:text-gray-0",
+                        props.className,
+                    )}
+                />
+            </div>
+        ),
+        color: "#ffffff",
+        rayClassName: "!text-gray-1000 dark:!text-gray-0",
     },
 ];
 
@@ -277,9 +293,10 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         "-translate-x-1/2",
                         "translate-y-0",
                         "landing-lg:translate-y-16",
+                        "dark:animate-landing-hero-beam-line",
                     )}
                 />
-                <LandingHeroBeamSvg
+                <LandingHeroBeamGlowSvg
                     className={clsx(
                         "z-[0]",
                         "absolute",
@@ -289,7 +306,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                         "translate-y-0",
                         "landing-lg:translate-y-16",
                         "blur-sm",
-                        "animate-landing-hero-beam-line",
+                        "dark:animate-landing-hero-beam-glow",
                     )}
                     style={{
                         fillOpacity: 0,
@@ -313,10 +330,11 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
                 >
                     <div
                         className={clsx(
+                            "-mt-px landing-lg:mt-0",
                             "relative",
                             "w-40",
                             "h-px",
-                            "bg-landing-hero-beam-bottom",
+                            "bg-landing-hero-beam-bottom-light dark:bg-landing-hero-beam-bottom",
                             "animate-landing-hero-beam-bottom",
                         )}
                     ></div>

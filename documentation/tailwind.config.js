@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -94,6 +95,12 @@ module.exports = {
 
                     "0px 34px 21px rgba(108, 119, 147, 0.2)",
                     "0px 54px 23px rgba(108, 119, 147, 0)",
+                ],
+                "github-stars-glow": [
+                    "0px 0px 3px #FF993330",
+                    "0px 0px 6px #FF9933A0",
+                    "0px 0px 16px #FF9933A0",
+                    "0px 0px 16px #FF9933",
                 ],
             },
             boxShadow: {
@@ -338,6 +345,8 @@ module.exports = {
                     "radial-gradient(104% 104% at 0% 0%, rgba(249, 210, 54, 0.10) 0%, rgba(249, 210, 54, 0.00) 100%)",
                 "landing-hero-beam-bottom":
                     "linear-gradient(90deg, rgba(255,255,255,0), #47EBEB, rgba(255,255,255,0))",
+                "landing-hero-beam-bottom-light":
+                    "linear-gradient(90deg, rgba(255,255,255,0), #0080FF, rgba(255,255,255,0))",
                 "landing-hero-github-stars-gradient":
                     "radial-gradient(260.41% 41.87% at 8.38% 50%, rgba(255, 153, 51, 0.10) 0%, rgba(255, 153, 51, 0.00) 100%)",
                 "landing-hero-github-stars-text-light":
@@ -426,6 +435,8 @@ module.exports = {
                 "beam-spin": "beam-spin 3s linear 1 forwards",
                 "landing-hero-beam-line":
                     "landing-hero-beam-line 7.5s ease-in-out infinite",
+                "landing-hero-beam-glow":
+                    "landing-hero-beam-glow 7.5s ease-in-out infinite",
                 "landing-hero-beam-bottom":
                     "landing-hero-beam-bottom 7.5s ease-in-out infinite",
                 "showcase-bottom-fade-reveal":
@@ -603,24 +614,38 @@ module.exports = {
                 },
                 "landing-hero-beam-line": {
                     "0%": {
-                        opacity: 0,
+                        opacity: 1,
                     },
                     "50%": {
                         opacity: 0.5,
                     },
                     "100%": {
-                        opacity: 0,
+                        opacity: 1,
+                    },
+                },
+                "landing-hero-beam-glow": {
+                    "0%": {
+                        opacity: 1,
+                    },
+                    "50%": {
+                        opacity: 0.25,
+                    },
+                    "100%": {
+                        opacity: 1,
                     },
                 },
                 "landing-hero-beam-bottom": {
                     "0%": {
-                        transform: "scaleX(0.5)",
-                    },
-                    "50%": {
+                        opacity: 1,
                         transform: "scaleX(1)",
                     },
-                    "100%": {
+                    "50%": {
+                        opacity: 0.5,
                         transform: "scaleX(0.5)",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "scaleX(1)",
                     },
                 },
                 "showcase-bottom-fade-reveal": {
@@ -705,7 +730,12 @@ module.exports = {
             walkthrough: "976px",
         },
     },
-    plugins: [require("@tailwindcss/typography")],
+    plugins: [
+        require("@tailwindcss/typography"),
+        plugin(({ addVariant }) => {
+            addVariant("light", `[data-theme="light"] &`);
+        }),
+    ],
     corePlugins: {
         // preflight: false,
     },

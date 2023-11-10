@@ -71,6 +71,7 @@ export const LandingHeroAnimationItem = React.memo(
                     key={name}
                 >
                     <Icon
+                        className="light:!drop-shadow-none"
                         style={{
                             transform: "translateZ(0)",
                             filter: `drop-shadow(0px 0px 20px ${hexToAlpha(
@@ -126,8 +127,8 @@ export const LandingHeroAnimationItem = React.memo(
                 </div>
                 <LandingHeroItemNodeSvg
                     className={clsx(
-                        "fill-gray-300",
-                        "stroke-gray-400",
+                        "stroke-gray-300",
+                        "fill-gray-400",
                         "dark:fill-gray-500",
                         "dark:stroke-gray-700",
                         "absolute",
