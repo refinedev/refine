@@ -435,6 +435,8 @@ module.exports = {
                 "beam-spin": "beam-spin 3s linear 1 forwards",
                 "landing-hero-beam-line":
                     "landing-hero-beam-line 7.5s ease-in-out infinite",
+                "landing-hero-beam-glow":
+                    "landing-hero-beam-glow 7.5s ease-in-out infinite",
                 "landing-hero-beam-bottom":
                     "landing-hero-beam-bottom 7.5s ease-in-out infinite",
                 "showcase-bottom-fade-reveal":
@@ -612,24 +614,38 @@ module.exports = {
                 },
                 "landing-hero-beam-line": {
                     "0%": {
-                        opacity: 0,
+                        opacity: 1,
                     },
                     "50%": {
                         opacity: 0.5,
                     },
                     "100%": {
-                        opacity: 0,
+                        opacity: 1,
+                    },
+                },
+                "landing-hero-beam-glow": {
+                    "0%": {
+                        opacity: 1,
+                    },
+                    "50%": {
+                        opacity: 0.25,
+                    },
+                    "100%": {
+                        opacity: 1,
                     },
                 },
                 "landing-hero-beam-bottom": {
                     "0%": {
-                        transform: "scaleX(0.5)",
-                    },
-                    "50%": {
+                        opacity: 1,
                         transform: "scaleX(1)",
                     },
-                    "100%": {
+                    "50%": {
+                        opacity: 0.5,
                         transform: "scaleX(0.5)",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "scaleX(1)",
                     },
                 },
                 "showcase-bottom-fade-reveal": {
