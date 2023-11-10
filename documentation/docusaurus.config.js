@@ -141,7 +141,7 @@ const siteConfig = {
                 },
             ],
         },
-        image: "img/refine_social_new.png",
+        image: "img/refine_social.png",
         algolia: {
             appId: "KRR9VEUPCT",
             apiKey: "cd0188125dcd31fb4b011b5e536d963a",
