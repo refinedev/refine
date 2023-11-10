@@ -257,7 +257,7 @@ const testimonials = [
     {
         title: "CEO - Medusa",
         name: "Nicklas Gellner",
-        link: "https://twitter.com/NicklasGellner",
+        link: "https://medusajs.com/",
         description:
             "Medusa and Refine is a match for all developers looking for a strong open-source foundation. Check out the Refine SWAG store for a great Medusa implementation!",
         img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/nicklas-gellner.png",
@@ -273,14 +273,14 @@ const testimonials = [
     {
         title: "Founder - Cohorence",
         name: "Zachary Zaro",
-        link: "https://twitter.com/ZacharyZaro",
+        link: "https://www.withcoherence.com",
         description: "npm create refine-app@latest => Boom!",
         img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/zachary-zaro.png",
     },
     {
         title: "Daisy UI - Founder",
         name: "Pouya Saadeghi",
-        link: "https://twitter.com/Saadeghi",
+        link: "https://daisyui.com",
         description:
             "I really like how refine gives the freedom to choose different stacks for back-end, front-end, and even UI libraries.",
         img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/pouya-saadeghi.png",
