@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { useInView } from "framer-motion";
 import React, {
     DetailedHTMLProps,
     FC,
@@ -21,8 +20,6 @@ import {
     Hasura,
     Headless,
     HookForm,
-    Hygraph,
-    JSONApi,
     Kbar,
     Mantine,
     Medusa,
@@ -30,16 +27,18 @@ import {
     Nest,
     NestQuery,
     Nextjs,
+    ShadCnUI,
     Remix,
     Rest,
-    Sanity,
-    ShadCnUI,
-    SQLite,
     Strapi,
     Supabase,
-    TailwindCSS,
+    Hygraph,
+    Sanity,
+    SQLite,
+    JSONApi,
 } from "../assets/integration-icons";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
+import { useInView } from "framer-motion";
 
 type Props = {
     className?: string;
@@ -210,7 +209,7 @@ const PackagesContainer = ({
             <div
                 className={clsx(
                     className,
-                    "animation-paused",
+                    "hover:animation-paused",
                     inView
                         ? animDirection === "left"
                             ? "animate-landing-packages-left"
@@ -397,7 +396,7 @@ const listOne = [
         tooltip: "npx shadcn-ui init",
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <TailwindCSS {...props} />,
+        icon: (props: SVGProps<SVGSVGElement>) => <Headless {...props} />,
         label: "Tailwind CSS",
         tooltip: "npx tailwindcss init",
     },
