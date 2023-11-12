@@ -5,6 +5,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
         email: "salih@pankod.com",
         password: "refine-nhost",
     })
+    .twice()
     .reply(
         200,
         {
@@ -123,7 +124,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .options("/v1/graphql")
-    .times(4)
+    .times(8)
     .reply(204, "", [
         "Date",
         "Fri, 25 Feb 2022 08:29:53 GMT",
@@ -155,6 +156,74 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
         200,
         [
             "1f8b080019b6066402ffab564a492c4954b2aa562a2d4e2d2a8e4faa8c2fc80671335394ac0c7594f212735395ac948252d332f3521542816a947494527313337380a229a9650e456019bde4fc5ca5dada5a00ab4e01a54f000000",
+        ],
+        [
+            "Date",
+            "Fri, 25 Feb 2022 08:19:25 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+            "x-request-id",
+            "97c060dad7f9fb8c7b4b58720bc45b0a",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($id: uuid!) { postsByPk (id: $id) { id, title, content, category { id } } }",
+        variables: { id: "72fab741-2352-49cb-8b31-06ae4be2f1d1" },
+    })
+    .twice()
+    .reply(
+        200,
+        [
+            "1f8b080000000000000a4d4e4b0e823010dd738aa66b27a1a5b4e2d2b870658cf102fd4c9588d448378470778b11643399f7cd1b3242a8d351d31d19d29fd02b74b1dbf7e7c74225b2760951c5bd364a30e045c94154d6c0d6140c72a95118e49e3946377326d6b1c12976415fb7484ef7d44c0ef80ce4fa9516a70d6dc4364ede23364dd2b18b2b5947bc8577bf1af49f545826ac11a0cbad05a198834ab01cbcad146ae9b49592fe426336df311b3fb57c8caffa000000",
+        ],
+        [
+            "Date",
+            "Fri, 25 Feb 2022 08:19:25 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+            "x-request-id",
+            "97c060dad7f9fb8c7b4b58720bc45b0a",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($id: Int!) { usersByPk (id: $id) { id, name, email } }",
+        variables: { id: 1 },
+    })
+     .twice()
+    .reply(
+        200,
+        [
+            "1f8b080000000000000aabe65250504a492c4954b252a806b281bcd2e2d4a262a7ca806cb81050303305c833d48171f312735381024a41a9699979a90aa1402d4a70c9d4dcc4cc1c906c4a6a99431158855e727eae1258be960b846b0172dd4e4078000000",
         ],
         [
             "Date",

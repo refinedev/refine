@@ -5,6 +5,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
         email: "salih@pankod.com",
         password: "refine-nhost",
     })
+    .twice()
     .reply(
         200,
         {
@@ -67,6 +68,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .options("/v1/graphql")
+    .twice()
     .reply(204, "", [
         "Date",
         "Fri, 25 Feb 2022 12:51:12 GMT",
@@ -103,6 +105,45 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
         200,
         [
             "1f8b08000000000004036d8d410ec2201444af42fe5a4c89148a67f00e0d7c3e86a485a67c17a6f1eea20b57ce6ee6cd640e889e3d5c0fc8a5d1cef3561bb7b916fa6611ae4088c95370d226b4528fc9c8306a233118525a0d6e982c9c80332f7d04b7bad32af2d61eab8875e9ae43ac85a9f03f2c5a66e157e2f3a7e799ee757ffeceed0595c6a0a51f2794daaa285dff94099d256fa24763e0d5f50643a764d9c9000000",
+        ],
+        [
+            "Date",
+            "Fri, 25 Feb 2022 12:51:12 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+            "x-request-id",
+            "ced1c2acc08f7ab0a311db81a8677f94",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "mutation ($object: PostsInsertInput!) {\n      insertPostsOne (object: $object) {\n    id, title, content, category { id }\n  }\n    }",
+        variables: {
+            object: {
+                content: "Lorem ipsum dolor sit amet.",
+                title: "Lorem ipsum dolore",
+                categoryId: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
+            },
+        },
+    })
+    .reply(
+        200,
+        [
+            "1f8b080000000000000a6d8e410ac2301045f73d45c8da88c534693c83a05748271309b48934e3424aef6e0ab676e166983ff3fee74f1563dc59b2fcc2a6b2171562c691ee2953be45dceecbc715c511c05bec8cd01eb4908d57a26ba412d029ac657d32a756f3c3eaa140fd12c2af69c48185677e0dcca5bea81f04291246fa8bb11c88d901e9b8e32de1238def5db9ad9e3e432da193c2362d08a96b274c69253c188d56390b4af1af69aed63957f307255960660b010000",
         ],
         [
             "Date",

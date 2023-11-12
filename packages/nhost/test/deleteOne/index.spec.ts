@@ -2,7 +2,9 @@ import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
 
-describe("deleteOne", () => {
+describe.each(["hasura-default", "graphql-default"] as const)
+    ("deleteOne with %s naming convention",
+        (namingConvention) => {
     beforeAll(async () => {
         await nhost.auth.signIn({
             email: "salih@pankod.com",
@@ -11,7 +13,9 @@ describe("deleteOne", () => {
     });
 
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(nhost).deleteOne({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).deleteOne({
             resource: "posts",
             id: "92bbb942-a5a7-4cd9-8232-d7aa544a0c40",
             meta: {
@@ -26,6 +30,7 @@ describe("deleteOne", () => {
     it("correct response with meta and Int idType", async () => {
         const { data } = await dataProvider(nhost, {
             idType: "Int",
+            namingConvention
         }).deleteOne({
             resource: "users",
             id: 1,
@@ -39,7 +44,9 @@ describe("deleteOne", () => {
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(nhost).deleteOne({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).deleteOne({
             resource: "posts",
             id: "2d0c792c-4d28-4dff-a5b8-37858d0faa54",
         });

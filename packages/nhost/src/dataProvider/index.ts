@@ -11,6 +11,7 @@ import {
 import setWith from "lodash/setWith";
 import set from "lodash/set";
 import camelCase from "camelcase";
+import { mapValues, mapKeys } from "lodash";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -34,6 +35,17 @@ export const generateSorting: GenerateSortingType = (sorters?: CrudSorting) => {
 
     return sortingQueryResult as HasuraSortingType;
 };
+
+export const camelizeKeys = (obj: any): any => {
+    if (!obj) return undefined;
+    return mapKeys(obj, (_v, k) => camelCase(k));
+};
+
+export const upperCaseValues = (obj: any): any => {
+    if (!obj) return undefined;
+    return mapValues(obj, (v: string) => v.toUpperCase());
+};
+
 
 export type HasuraFilterCondition =
     | "_and"
@@ -110,13 +122,31 @@ export const handleFilterValue = (operator: CrudOperators, value: any) => {
     }
 };
 
-const generateNestedFilterQuery = (filter: CrudFilter): any => {
+const convertHasuraOperatorToGraphqlDefaultNaming = (
+    hasuraOperator?: HasuraFilterCondition,
+) => {
+    return hasuraOperator
+        ? `_${camelCase(hasuraOperator)}`
+        : undefined;
+};
+
+const generateNestedFilterQuery = (
+    filter: CrudFilter,
+    namingConvention: NamingConvention = 'hasura-default'
+): any => {
     const { operator } = filter;
 
     if (operator !== "or" && operator !== "and" && "field" in filter) {
         const { field, value } = filter;
 
-        const hasuraOperator = hasuraFilters[filter.operator];
+        const defaultNamingConvention = namingConvention === "hasura-default";
+
+        const hasuraOperator = defaultNamingConvention
+            ? hasuraFilters[filter.operator]
+            : convertHasuraOperatorToGraphqlDefaultNaming
+                (hasuraFilters[filter.operator]
+                );
+
         if (!hasuraOperator) {
             throw new Error(`Operator ${operator} is not supported`);
         }
@@ -135,7 +165,10 @@ const generateNestedFilterQuery = (filter: CrudFilter): any => {
     };
 };
 
-export const generateFilters: any = (filters?: CrudFilters) => {
+export const generateFilters: any = (
+    filters?: CrudFilters,
+    namingConvention: NamingConvention = "hasura-default"
+) => {
     if (!filters) {
         return undefined;
     }
@@ -143,7 +176,7 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     const nestedQuery = generateNestedFilterQuery({
         operator: "and",
         value: filters,
-    });
+    }, namingConvention);
 
     return nestedQuery;
 };
@@ -214,14 +247,20 @@ const dataProvider = (
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            const operation = meta?.operation ?? resource;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource)
+
+            const type = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true })
 
             const { query, variables } = gql.query({
                 operation,
                 fields: meta?.fields,
                 variables: meta?.variables ?? {
                     where: {
-                        type: `${operation}_bool_exp`,
+                        type: type,
                         value: {
                             id: {
                                 _in: ids,
@@ -252,15 +291,29 @@ const dataProvider = (
                 mode = "server",
             } = pagination ?? {};
 
-            const hasuraSorting = generateSorting(sorters);
-            const hasuraFilters = generateFilters(filters);
+            const hasuraSorting = defaultNamingConvention
+                ? generateSorting(sorters)
+                : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
-            const operation = meta?.operation ?? resource;
+            const hasuraFilters = generateFilters(filters, namingConvention);
 
-            const aggregateOperation = `${operation}_aggregate`;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
 
-            const hasuraSortingType = `[${operation}_order_by!]`;
-            const hasuraFiltersType = `${operation}_bool_exp`;
+            const aggregateOperation = defaultNamingConvention
+                ? `${operation}_aggregate`
+                : camelCase(`${operation}_aggregate`);
+
+            const hasuraSortingType = defaultNamingConvention
+                ? `[${operation}_order_by!]`
+                : `[${camelCase(`${operation}_order_by!`, {
+                    pascalCase: true
+                })}]`;
+
+            const hasuraFiltersType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.query([
                 {
@@ -273,12 +326,20 @@ const dataProvider = (
                                 offset: (current - 1) * limit,
                             }
                             : {}),
-                        ...(hasuraSorting && {
-                            order_by: {
-                                value: hasuraSorting,
-                                type: hasuraSortingType,
-                            },
-                        }),
+                        ...(hasuraSorting &&
+                            (namingConvention === 'graphql-default'
+                                ? {
+                                    orderBy: {
+                                        value: hasuraSorting,
+                                        type: hasuraSortingType,
+                                    },
+                                }
+                                : {
+                                    order_by: {
+                                        value: hasuraSorting,
+                                        type: hasuraSortingType,
+                                    },
+                                })),
                         ...(hasuraFilters && {
                             where: {
                                 value: hasuraFilters,
@@ -317,8 +378,13 @@ const dataProvider = (
         create: async ({ resource, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const insertOperation = `insert_${operation}_one`;
-            const insertType = `${operation}_insert_input`;
+            const insertOperation = defaultNamingConvention
+                ? `insert_${operation}_one`
+                : camelCase(`insert_${operation}_one`)
+
+            const insertType = defaultNamingConvention
+                ? `${operation}_insert_input`
+                : camelCase(`${operation}_insert_input`, { pascalCase: true })
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation: insertOperation,
@@ -348,8 +414,15 @@ const dataProvider = (
         createMany: async ({ resource, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const insertOperation = `insert_${operation}`;
-            const insertType = `[${operation}_insert_input!]`;
+            const insertOperation = defaultNamingConvention
+                ? `insert_${operation}`
+                : camelCase(`insert_${operation}`)
+
+            const insertType = defaultNamingConvention
+                ? `[${operation}_insert_input!]`
+                : `[${camelCase(`${operation}_insert_input!`, {
+                    pascalCase: true,
+                })}]`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation: insertOperation,
@@ -384,21 +457,42 @@ const dataProvider = (
         update: async ({ resource, id, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const updateOperation = `update_${operation}_by_pk`;
+            const updateOperation = defaultNamingConvention
+                ? `update_${operation}_by_pk`
+                : camelCase(`update_${operation}_by_pk`)
 
-            const pkColumnsType = `${operation}_pk_columns_input`;
-            const setInputType = `${operation}_set_input`;
+            const pkColumnsType = defaultNamingConvention
+                ? `${operation}_pk_columns_input`
+                : camelCase(`${operation}_pk_columns_input!`, {
+                    pascalCase: true
+                })
+
+            const setInputType = defaultNamingConvention
+                ? `${operation}_set_input`
+                : camelCase(`${operation}_set_input`, { pascalCase: true })
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation: updateOperation,
                 variables: {
-                    pk_columns: {
-                        type: pkColumnsType,
-                        value: {
-                            id: id,
-                        },
-                        required: true,
-                    },
+                    ...(defaultNamingConvention
+                        ? {
+                            pk_columns: {
+                                type: pkColumnsType,
+                                value: {
+                                    id: id,
+                                },
+                                required: true,
+                            }
+                        }
+                        : {
+                            pkColumns: {
+                                type: pkColumnsType,
+                                value: {
+                                    id: id,
+                                },
+                            }
+                        }
+                    ),
                     _set: {
                         type: setInputType,
                         value: variables,
@@ -424,10 +518,17 @@ const dataProvider = (
         updateMany: async ({ resource, ids, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const updateOperation = `update_${operation}`;
+            const updateOperation = defaultNamingConvention
+                ? `update_${operation}`
+                : camelCase(`update_${operation}`)
 
-            const whereType = `${operation}_bool_exp`;
-            const setInputType = `${operation}_set_input`;
+            const whereType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true })
+
+            const setInputType = defaultNamingConvention
+                ? `${operation}_set_input`
+                : camelCase(`${operation}_set_input`, { pascalCase: true })
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation: updateOperation,
@@ -471,7 +572,9 @@ const dataProvider = (
         deleteOne: async ({ resource, id, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const deleteOperation = `delete_${operation}_by_pk`;
+            const deleteOperation = defaultNamingConvention
+                ? `delete_${operation}_by_pk`
+                : camelCase(`delete_${operation}_by_pk`)
 
             const { query, variables } = gql.mutation({
                 operation: deleteOperation,
@@ -503,9 +606,13 @@ const dataProvider = (
         deleteMany: async ({ resource, ids, meta }) => {
             const operation = meta?.operation ?? resource;
 
-            const deleteOperation = `delete_${operation}`;
+            const deleteOperation = defaultNamingConvention
+                ? `delete_${operation}`
+                : camelCase(`delete_${operation}`)
 
-            const whereType = `${operation}_bool_exp`;
+            const whereType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true })
 
             const { query, variables } = gql.mutation({
                 operation: deleteOperation,

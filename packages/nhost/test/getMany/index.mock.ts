@@ -5,6 +5,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
         email: "salih@pankod.com",
         password: "refine-nhost",
     })
+    .twice()
     .reply(
         200,
         {
@@ -67,6 +68,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .options("/v1/graphql")
+    .twice()
     .reply(204, "", [
         "Date",
         "Fri, 25 Feb 2022 08:38:31 GMT",
@@ -91,6 +93,47 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($where: posts_bool_exp) { posts (where: $where) { id, title, content, category { id } } }",
+        variables: {
+            where: {
+                id: {
+                    _in: [
+                        "72fab741-2352-49cb-8b31-06ae4be2f1d1",
+                        "acfff044-c728-4030-8d50-330b9224d99b",
+                    ],
+                },
+            },
+        },
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000004036d8f4b4bc4401084ffca30e76d98472733b357453c29c8dec4c33cba351033b2998b84fc7793e841c15335d505f5d5224b6c519e17f951e736cbf3f3228722cf3266665688909df180ca2af0a55360ad4ac1182c212479926d68236df1cbaee271a2cdcb756a34b5cdbdf9bec45dbd8a5b7aaffb33367aadd7cfbdf228b2d431637010d912a0b108def5051427977352ce7327d7f5247ef2ce704c0e3518db19c09013f86435a83e122632ac8bfe05f6443c4c241edeb67907833850ff60ded3385671a1b9fd07e86cd6981342ec7c0674ba4040ad80737014fb1273df6f802febfa05046024634d010000",
+        ],
+        [
+            "Date",
+            "Fri, 25 Feb 2022 08:38:50 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+            "x-request-id",
+            "fdf7e1235aae623b3952cc4ab35ec2af",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($where: PostsBoolExp) { posts (where: $where) { id, title, content, category { id } } }",
         variables: {
             where: {
                 id: {

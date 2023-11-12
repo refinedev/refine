@@ -2,16 +2,19 @@ import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
 
-describe("useOne", () => {
-    beforeAll(async () => {
-        await nhost.auth.signIn({
-            email: "salih@pankod.com",
-            password: "refine-nhost",
-        });
+describe.each(["hasura-default","graphql-default"] as const)
+    ("useOne with %s naming convention", (namingConvention) => {
+        beforeAll(async () => {
+            await nhost.auth.signIn({
+                email: "salih@pankod.com",
+                password: "refine-nhost",
+            });
     });
 
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(nhost).getOne({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).getOne({
             resource: "posts",
             id: "72fab741-2352-49cb-8b31-06ae4be2f1d1",
             meta: {
@@ -28,7 +31,10 @@ describe("useOne", () => {
     });
 
     it("correct response with meta and custom idType", async () => {
-        const { data } = await dataProvider(nhost, { idType: "Int" }).getOne({
+        const { data } = await dataProvider(nhost,
+            {
+                idType: "Int", namingConvention
+            }).getOne({
             resource: "users",
             id: 1,
             meta: {
@@ -48,6 +54,7 @@ describe("useOne", () => {
         };
         const cDataProvider = dataProvider(nhost, {
             idType: (resource) => idTypeMap[resource] ?? "uuid",
+            namingConvention
         });
         const { data: userData } = await cDataProvider.getOne({
             resource: "users",

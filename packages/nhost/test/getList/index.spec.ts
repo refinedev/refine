@@ -2,16 +2,24 @@ import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
 
-describe("getList", () => {
-    beforeAll(async () => {
-        await nhost.auth.signIn({
-            email: "salih@pankod.com",
-            password: "refine-nhost",
+describe.each(["hasura-default", "graphql-default"] as const)
+    ("getList with %s naming convention", (namingConvention) => {
+        beforeAll(async () => {
+            await nhost.auth.signIn({
+                email: "salih@pankod.com",
+                password: "refine-nhost",
+            });
         });
-    });
+
+        const categoryFieldName =
+            namingConvention === "hasura-default"
+                ? "category_id"
+                : "categoryId";
 
     it("correct response", async () => {
-        const { data, total } = await dataProvider(nhost).getList({
+        const { data, total } = await dataProvider(nhost, {
+            namingConvention
+        }).getList({
             resource: "posts",
             meta: {
                 fields: ["id", "title"],
@@ -24,7 +32,9 @@ describe("getList", () => {
     });
 
     it("correct sorting response", async () => {
-        const { data, total } = await dataProvider(nhost).getList({
+        const { data, total } = await dataProvider(nhost, { 
+            namingConvention 
+        }).getList({
             resource: "posts",
             sorters: [
                 {
@@ -43,17 +53,19 @@ describe("getList", () => {
     });
 
     it("correct filter response", async () => {
-        const { data, total } = await dataProvider(nhost).getList({
+        const { data, total } = await dataProvider(nhost, {
+            namingConvention
+        }).getList({
             resource: "posts",
             filters: [
                 {
-                    field: "category_id",
+                    field: categoryFieldName,
                     operator: "eq",
                     value: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
             ],
             meta: {
-                fields: ["id", "title", "category_id"],
+                fields: ["id", "title", categoryFieldName],
             },
         });
 
@@ -63,11 +75,13 @@ describe("getList", () => {
     });
 
     it("correct filter and sort response", async () => {
-        const { data, total } = await dataProvider(nhost).getList({
+        const { data, total } = await dataProvider(nhost, {
+            namingConvention
+        }).getList({
             resource: "posts",
             filters: [
                 {
-                    field: "category_id",
+                    field: categoryFieldName,
                     operator: "eq",
                     value: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },

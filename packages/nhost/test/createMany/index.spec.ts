@@ -2,27 +2,35 @@ import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
 
-describe("createMany", () => {
-    beforeAll(async () => {
-        await nhost.auth.signIn({
-            email: "salih@pankod.com",
-            password: "refine-nhost",
+describe.each(["hasura-default", "graphql-default"] as const)
+    ("createMany with %s naming convention",
+     (namingConvention) => {
+        beforeAll(async () => {
+            await nhost.auth.signIn({
+                email: "salih@pankod.com",
+                password: "refine-nhost",
+            });
         });
-    });
+        const categoryFieldName =
+            namingConvention === "hasura-default"
+                ? "category_id"
+                : "categoryId";
 
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(nhost).createMany!({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).createMany!({
             resource: "posts",
             variables: [
                 {
                     content: "Vestibulum vulputate sapien arcu.",
                     title: "Aenean ultricies non libero sit amet pellentesque",
-                    category_id: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
+                    [categoryFieldName]: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
                 {
                     content: "Aliquam nibh erat.",
                     title: "Etiam tincidunt ex ut auctor faucibus",
-                    category_id: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
+                    [categoryFieldName]: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
                 },
             ],
             meta: {
@@ -48,18 +56,20 @@ describe("createMany", () => {
     });
 
     it("correct response without meta", async () => {
-        const { data } = await dataProvider(nhost).createMany!({
+        const { data } = await dataProvider(nhost, { 
+            namingConvention
+        }).createMany!({
             resource: "posts",
             variables: [
                 {
                     content: "Vestibulum vulputate sapien arcu.",
                     title: "Aenean ultricies non libero sit amet pellentesque",
-                    category_id: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
+                    [categoryFieldName]: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
                 {
                     content: "Aliquam nibh erat.",
                     title: "Etiam tincidunt ex ut auctor faucibus",
-                    category_id: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
+                    [categoryFieldName]: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
                 },
             ],
         });

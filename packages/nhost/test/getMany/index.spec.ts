@@ -2,7 +2,8 @@ import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
 
-describe("getMany", () => {
+describe.each(["hasura-default", "graphql-default"] as const)
+    ("getMany with %s naming convention", (namingConvention) => {
     beforeAll(async () => {
         await nhost.auth.signIn({
             email: "salih@pankod.com",
@@ -11,7 +12,9 @@ describe("getMany", () => {
     });
 
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(nhost).getMany!({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).getMany!({
             resource: "posts",
             ids: [
                 "72fab741-2352-49cb-8b31-06ae4be2f1d1",

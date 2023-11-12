@@ -2,7 +2,8 @@ import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
 
-describe("updateMany", () => {
+describe.each(["hasura-default", "graphql-default"] as const)
+    ("updateMany  with %s naming convention", (namingConvention) => {
     beforeAll(async () => {
         await nhost.auth.signIn({
             email: "salih@pankod.com",
@@ -11,7 +12,9 @@ describe("updateMany", () => {
     });
 
     it("correct response with meta", async () => {
-        const { data } = await dataProvider(nhost).updateMany!({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).updateMany!({
             resource: "posts",
             ids: [
                 "6a117e72-9446-4413-9760-30d66b9a27dc",
@@ -35,7 +38,9 @@ describe("updateMany", () => {
     });
 
     it("correct response without meta", async () => {
-        const { data } = await dataProvider(nhost).updateMany!({
+        const { data } = await dataProvider(nhost, {
+            namingConvention
+        }).updateMany!({
             resource: "posts",
             ids: [
                 "6a117e72-9446-4413-9760-30d66b9a27dc",
