@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.1.14
+
+### Patch Changes
+
+-   [#5248](https://github.com/refinedev/refine/pull/5248) [`e29a3d37064`](https://github.com/refinedev/refine/commit/e29a3d37064500710dfa588ed5ca9074b93512c5) Thanks [@aliemir](https://github.com/aliemir)! - Removed the halloween decorations from the UI.
+
 ## 1.1.13
 
 ### Patch Changes
