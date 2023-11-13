@@ -5,9 +5,9 @@ import { useNavigation } from "@refinedev/core";
 import { Badge } from "antd";
 import dayjs from "dayjs";
 
-import type { Event } from "@interfaces";
+import type { Event } from "@/interfaces";
 
-import { Text } from "@components";
+import { Text } from "@/components";
 
 import styles from "../index.module.css";
 

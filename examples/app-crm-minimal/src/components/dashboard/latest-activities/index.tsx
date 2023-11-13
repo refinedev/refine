@@ -6,8 +6,8 @@ import { UnorderedListOutlined } from "@ant-design/icons";
 import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { CustomAvatar, Text } from "@components";
-import { Audit, Deal } from "@interfaces";
+import { CustomAvatar, Text } from "@/components";
+import { Audit, Deal } from "@/interfaces";
 
 import styles from "./index.module.css";
 

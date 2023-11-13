@@ -1,7 +1,7 @@
 import { AuthBindings } from "@refinedev/core";
 import nookies from "nookies";
 import { API_URL, dataProvider } from "./data";
-import { User } from "@interfaces";
+import { User } from "@/interfaces";
 
 export const authProvider: AuthBindings = {
     login: async ({ email, accessToken, refreshToken }) => {
@@ -41,14 +41,8 @@ export const authProvider: AuthBindings = {
                 },
             });
 
-            nookies.set(null, "access_token", data.login.accessToken, {
-                maxAge: 3 * 24 * 60 * 60, // 3 days
-                path: "/",
-            });
-            nookies.set(null, "refresh_token", data.login.refreshToken, {
-                maxAge: 7 * 24 * 60 * 60, // 7 days
-                path: "/",
-            });
+            localStorage.setItem("access_token", data.login.accessToken);
+            localStorage.setItem("refresh_token", data.login.refreshToken);
 
             return {
                 success: true,
@@ -108,8 +102,8 @@ export const authProvider: AuthBindings = {
         }
     },
     logout: async () => {
-        nookies.destroy(null, "access_token");
-        nookies.destroy(null, "refresh_token");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
 
         return {
             success: true,
@@ -171,7 +165,7 @@ export const authProvider: AuthBindings = {
         };
     },
     getIdentity: async () => {
-        const accessToken = nookies.get().access_token;
+        const accessToken = localStorage.getItem("access_token");
 
         try {
             const { data } = await dataProvider.custom<{ me: User }>({

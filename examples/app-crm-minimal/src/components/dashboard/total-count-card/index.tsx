@@ -1,20 +1,17 @@
 import React, { FC, PropsWithChildren, Suspense } from "react";
-import dynamic from "next/dynamic";
 
 import { useList } from "@refinedev/core";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
-import { Company, Contact, Deal } from "@interfaces";
+import { Company, Contact, Deal } from "@/interfaces";
 
-import { Text } from "@components";
+import { Text } from "@/components";
 
 import styles from "./index.module.css";
 
-const Area = dynamic(() => import("@ant-design/plots/es/components/area"), {
-    ssr: false,
-});
+const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
 
@@ -119,7 +116,9 @@ export const DashboardTotalCountCard: React.FC<{
                         data?.total
                     )}
                 </Text>
-                <Area {...config} />
+                <Suspense>
+                    <Area {...config} />
+                </Suspense>
             </div>
         </Card>
     );

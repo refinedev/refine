@@ -7,10 +7,10 @@ import type { CardProps } from "antd";
 import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@interfaces";
+import { Event } from "@/interfaces";
 
 import { CalendarUpcomingEvent } from "./event";
-import { Text } from "@components";
+import { Text } from "@/components";
 
 import styles from "./index.module.css";
 
