@@ -1,26 +1,17 @@
 import { AuthBindings } from "@refinedev/core";
-import nookies from "nookies";
 import { API_URL, dataProvider } from "./data";
 import { User } from "@/interfaces";
 
+/**
+ * For demo purposes and to make it easier to test the app, you can use the following credentials:
+ */
+export const authCredentials = {
+    email: "michael.scott@dundermifflin.com",
+    password: "demodemo",
+};
+
 export const authProvider: AuthBindings = {
-    login: async ({ email, accessToken, refreshToken }) => {
-        if (accessToken && refreshToken) {
-            nookies.set(null, "access_token", accessToken, {
-                maxAge: 3 * 24 * 60 * 60, // 3 days
-                path: "/",
-            });
-            nookies.set(null, "refresh_token", refreshToken, {
-                maxAge: 7 * 24 * 60 * 60, // 7 days
-                path: "/",
-            });
-
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
-
+    login: async ({ email }) => {
         try {
             const { data } = await dataProvider.custom({
                 url: API_URL,
@@ -34,7 +25,6 @@ export const authProvider: AuthBindings = {
                       email: $email
                     }) {
                       accessToken,
-                      refreshToken
                     }
                   }
                 `,
@@ -42,7 +32,6 @@ export const authProvider: AuthBindings = {
             });
 
             localStorage.setItem("access_token", data.login.accessToken);
-            localStorage.setItem("refresh_token", data.login.refreshToken);
 
             return {
                 success: true,
@@ -102,6 +91,10 @@ export const authProvider: AuthBindings = {
         }
     },
     logout: async () => {
+        // In this app, we are using <AutoLogin /> component to automatically login the user.
+        // <AutoLogin /> will check for this key perform the login.
+        // After logout, we are setting this key to "false" here to prevent <AutoLogin /> from automatically logging in the user.
+        localStorage.setItem("auto_login", "false");
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
 

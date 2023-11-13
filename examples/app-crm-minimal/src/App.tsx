@@ -27,6 +27,7 @@ import {
 } from "@/routes";
 
 import "@refinedev/antd/dist/reset.css";
+import { AutoLogin } from "@/components/auto-login";
 
 const App: React.FC = () => {
     return (
@@ -47,93 +48,99 @@ const App: React.FC = () => {
                                 liveMode: "auto",
                             }}
                         >
-                            <Routes>
-                                <Route
-                                    element={
-                                        <Authenticated
-                                            key="authenticated-layout"
-                                            fallback={
-                                                <CatchAllNavigate to="/login" />
+                            <AutoLogin>
+                                <Routes>
+                                    <Route
+                                        element={
+                                            <Authenticated
+                                                key="authenticated-layout"
+                                                fallback={
+                                                    <CatchAllNavigate to="/login" />
+                                                }
+                                            >
+                                                <Layout>
+                                                    <Outlet />
+                                                </Layout>
+                                            </Authenticated>
+                                        }
+                                    >
+                                        <Route
+                                            index
+                                            element={<DashboardPage />}
+                                        />
+
+                                        <Route
+                                            path="/kanban"
+                                            element={
+                                                <KanbanListPage>
+                                                    <Outlet />
+                                                </KanbanListPage>
                                             }
                                         >
-                                            <Layout>
-                                                <Outlet />
-                                            </Layout>
-                                        </Authenticated>
-                                    }
-                                >
-                                    <Route index element={<DashboardPage />} />
+                                            <Route
+                                                path="create"
+                                                element={<KanbanCreatePage />}
+                                            />
+                                            <Route
+                                                path="edit/:id"
+                                                element={<KanbanEditPage />}
+                                            />
+                                        </Route>
 
-                                    <Route
-                                        path="/kanban"
-                                        element={
-                                            <KanbanListPage>
-                                                <Outlet />
-                                            </KanbanListPage>
-                                        }
-                                    >
                                         <Route
-                                            path="create"
-                                            element={<KanbanCreatePage />}
-                                        />
-                                        <Route
-                                            path="edit/:id"
-                                            element={<KanbanEditPage />}
-                                        />
-                                    </Route>
-
-                                    <Route
-                                        path="/companies"
-                                        element={
-                                            <CompanyListPage>
-                                                <Outlet />
-                                            </CompanyListPage>
-                                        }
-                                    >
-                                        <Route
-                                            path="list"
-                                            element={<CompanyListPage />}
-                                        />
-                                        <Route
-                                            path="create"
-                                            element={<CompanyCreatePage />}
-                                        />
-                                        <Route
-                                            path="edit/:id"
-                                            element={<CompanyEditPage />}
-                                        />
-                                    </Route>
-
-                                    <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
-                                    />
-                                </Route>
-
-                                <Route
-                                    element={
-                                        <Authenticated
-                                            key="authenticated-auth"
-                                            fallback={<Outlet />}
+                                            path="/companies"
+                                            element={
+                                                <CompanyListPage>
+                                                    <Outlet />
+                                                </CompanyListPage>
+                                            }
                                         >
-                                            <NavigateToResource resource="dashboard" />
-                                        </Authenticated>
-                                    }
-                                >
+                                            <Route
+                                                path="list"
+                                                element={<CompanyListPage />}
+                                            />
+                                            <Route
+                                                path="create"
+                                                element={<CompanyCreatePage />}
+                                            />
+                                            <Route
+                                                path="edit/:id"
+                                                element={<CompanyEditPage />}
+                                            />
+                                        </Route>
+
+                                        <Route
+                                            path="*"
+                                            element={<ErrorComponent />}
+                                        />
+                                    </Route>
+
                                     <Route
-                                        path="/login"
-                                        element={<LoginPage />}
-                                    />
-                                    <Route
-                                        path="/register"
-                                        element={<RegisterPage />}
-                                    />
-                                    <Route
-                                        path="/forgot-password"
-                                        element={<ForgotPasswordPage />}
-                                    />
-                                </Route>
-                            </Routes>
+                                        element={
+                                            <Authenticated
+                                                key="authenticated-auth"
+                                                fallback={<Outlet />}
+                                            >
+                                                <NavigateToResource resource="dashboard" />
+                                            </Authenticated>
+                                        }
+                                    >
+                                        <Route
+                                            path="/login"
+                                            element={<LoginPage />}
+                                        />
+                                        <Route
+                                            path="/register"
+                                            element={<RegisterPage />}
+                                        />
+                                        <Route
+                                            path="/forgot-password"
+                                            element={<ForgotPasswordPage />}
+                                        />
+                                    </Route>
+                                </Routes>
+                            </AutoLogin>
+
                             <UnsavedChangesNotifier />
                             <DocumentTitleHandler />
                         </Refine>
