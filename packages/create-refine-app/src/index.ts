@@ -3,6 +3,7 @@ import { Command } from "commander";
 import execa from "execa";
 import { readFileSync } from "fs";
 import handleExample from "./example";
+import { greeting } from "./greeting";
 
 const bootstrap = () => {
     const packageJson = JSON.parse(
@@ -47,8 +48,10 @@ const bootstrap = () => {
         .option("--disable-telemetry", "disable telemetry data collection")
         .allowUnknownOption(true)
         .allowExcessArguments(true)
-        .action((_, command: Command) => {
+        .action(async (_, command: Command) => {
             try {
+                await greeting();
+
                 // --example
                 if (command.getOptionValue("example")) {
                     handleExample(

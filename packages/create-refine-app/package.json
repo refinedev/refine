@@ -26,6 +26,7 @@
     "@types/which-pm-runs": "^1.0.0"
   },
   "dependencies": {
+    "cowrizz": "^1.0.4",
     "boxen": "^5.1.2",
     "tslib": "^2.3.1",
     "commander": "9.4.1",
