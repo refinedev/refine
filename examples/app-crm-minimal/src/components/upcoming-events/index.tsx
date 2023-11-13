@@ -4,15 +4,12 @@ import { useList } from "@refinedev/core";
 
 import { CalendarOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
-import { Card, Skeleton as AntdSkeleton } from "antd";
+import { Card, Skeleton as AntdSkeleton, List, Badge } from "antd";
 import dayjs from "dayjs";
 
 import { Event } from "@/interfaces";
 
-import { CalendarUpcomingEvent } from "./event";
 import { Text } from "@/components";
-
-import styles from "./index.module.css";
 
 type CalendarUpcomingEventsProps = {
     limit?: number;
@@ -20,54 +17,9 @@ type CalendarUpcomingEventsProps = {
     showGoToListButton?: boolean;
 };
 
-const NoEvent: React.FC = () => (
-    <span
-        style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "220px",
-        }}
-    >
-        No Upcoming Event
-    </span>
-);
-
-const Skeleton: React.FC = () => {
-    return (
-        <div className={styles.item}>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    marginLeft: "24px",
-                    padding: "1px 0",
-                }}
-            >
-                <AntdSkeleton.Button
-                    active
-                    style={{
-                        height: "14px",
-                    }}
-                />
-                <AntdSkeleton.Button
-                    active
-                    style={{
-                        width: "90%",
-                        marginTop: "8px",
-                        height: "16px",
-                    }}
-                />
-            </div>
-        </div>
-    );
-};
-
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
     cardProps,
-    showGoToListButton,
 }) => {
     const { data, isLoading } = useList<Event>({
         resource: "events",
@@ -94,6 +46,9 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
 
     return (
         <Card
+            style={{
+                height: "100%",
+            }}
             headStyle={{ padding: "8px 16px" }}
             bodyStyle={{
                 padding: "0 1rem",
@@ -114,15 +69,94 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             }
             {...cardProps}
         >
-            {isLoading &&
-                Array.from({ length: limit }).map((_, index) => (
-                    <Skeleton key={index} />
-                ))}
-            {!isLoading &&
-                data?.data.map((item) => (
-                    <CalendarUpcomingEvent key={item.id} item={item} />
-                ))}
+            {isLoading ? (
+                <List
+                    itemLayout="horizontal"
+                    dataSource={Array.from({ length: limit }).map(
+                        (_, index) => ({
+                            id: index,
+                        }),
+                    )}
+                    renderItem={() => {
+                        return (
+                            <List.Item>
+                                <List.Item.Meta
+                                    avatar={<Badge color="transparent" />}
+                                    title={
+                                        <AntdSkeleton.Button
+                                            active
+                                            style={{
+                                                height: "14px",
+                                            }}
+                                        />
+                                    }
+                                    description={
+                                        <AntdSkeleton.Button
+                                            active
+                                            style={{
+                                                width: "300px",
+                                                marginTop: "8px",
+                                                height: "16px",
+                                            }}
+                                        />
+                                    }
+                                />
+                            </List.Item>
+                        );
+                    }}
+                />
+            ) : (
+                <List
+                    itemLayout="horizontal"
+                    dataSource={data?.data || []}
+                    renderItem={(item) => {
+                        const renderDate = () => {
+                            const start = dayjs(item.startDate).format(
+                                "MMM DD, YYYY - HH:mm",
+                            );
+                            const end = dayjs(item.endDate).format(
+                                "MMM DD, YYYY - HH:mm",
+                            );
+
+                            return `${start} - ${end}`;
+                        };
+
+                        return (
+                            <List.Item>
+                                <List.Item.Meta
+                                    avatar={<Badge color={item.color} />}
+                                    title={
+                                        <Text size="xs">{`${renderDate()}`}</Text>
+                                    }
+                                    description={
+                                        <Text
+                                            ellipsis={{ tooltip: true }}
+                                            strong
+                                        >
+                                            {item.title}
+                                        </Text>
+                                    }
+                                />
+                            </List.Item>
+                        );
+                    }}
+                />
+            )}
+
             {!isLoading && data?.data.length === 0 && <NoEvent />}
         </Card>
     );
 };
+
+const NoEvent: React.FC = () => (
+    <span
+        style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "220px",
+        }}
+    >
+        No Upcoming Event
+    </span>
+);
