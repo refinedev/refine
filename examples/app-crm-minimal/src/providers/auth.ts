@@ -51,45 +51,6 @@ export const authProvider: AuthBindings = {
             };
         }
     },
-    register: async ({ email, password }) => {
-        try {
-            await dataProvider.custom({
-                url: API_URL,
-                method: "post",
-                headers: {},
-                meta: {
-                    variables: { email, password },
-                    rawQuery: `
-                mutation register($email: String!, $password: String!) {
-                    register(registerInput: {
-                      email: $email
-                        password: $password
-                    }) {
-                        id
-                        email
-                    }
-                  }
-                `,
-                },
-            });
-            return {
-                success: true,
-                redirectTo: `/login?email=${email}`,
-            };
-        } catch (error: any) {
-            return {
-                success: false,
-                error: {
-                    message:
-                        "message" in error ? error.message : "Register failed",
-                    name:
-                        "name" in error
-                            ? error.name
-                            : "Invalid email or password",
-                },
-            };
-        }
-    },
     logout: async () => {
         // In this app, we are using <AutoLogin /> component to automatically login the user.
         // <AutoLogin /> will check for this key perform the login.
@@ -144,18 +105,6 @@ export const authProvider: AuthBindings = {
                 redirectTo: "/login",
             };
         }
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-            redirectTo: "/update-password",
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
     },
     getIdentity: async () => {
         const accessToken = localStorage.getItem("access_token");

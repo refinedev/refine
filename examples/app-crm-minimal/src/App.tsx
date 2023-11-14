@@ -22,8 +22,6 @@ import {
     KanbanEditPage,
     KanbanListPage,
     LoginPage,
-    RegisterPage,
-    ForgotPasswordPage,
 } from "@/routes";
 
 import "@refinedev/antd/dist/reset.css";
@@ -128,14 +126,6 @@ const App: React.FC = () => {
                                         <Route
                                             path="/login"
                                             element={<LoginPage />}
-                                        />
-                                        <Route
-                                            path="/register"
-                                            element={<RegisterPage />}
-                                        />
-                                        <Route
-                                            path="/forgot-password"
-                                            element={<ForgotPasswordPage />}
                                         />
                                     </Route>
                                 </Routes>

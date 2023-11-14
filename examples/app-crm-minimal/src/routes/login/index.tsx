@@ -6,6 +6,8 @@ export const LoginPage: React.FC = () => {
     return (
         <AuthPage
             type="login"
+            registerLink={false}
+            forgotPasswordLink={false}
             formProps={{
                 initialValues: authCredentials,
             }}
