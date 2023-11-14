@@ -1,5 +1,9 @@
 import React from "react";
-import { AutoSaveIndicatorProps, useTranslate } from "@refinedev/core";
+import {
+    AutoSaveIndicatorProps,
+    useTranslate,
+    AutoSaveIndicator as AutoSaveIndicatorCore,
+} from "@refinedev/core";
 import Typography from "@mui/material/Typography";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
@@ -8,30 +12,60 @@ import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
+    elements: {
+        success = (
+            <Message
+                key="autoSave.success"
+                defaultMessage="saved"
+                icon={<TaskAltOutlinedIcon fontSize="small" />}
+            />
+        ),
+        error = (
+            <Message
+                key="autoSave.error"
+                defaultMessage="auto save failure"
+                icon={<ErrorOutlineOutlinedIcon fontSize="small" />}
+            />
+        ),
+        loading = (
+            <Message
+                key="autoSave.loading"
+                defaultMessage="saving..."
+                icon={<SyncOutlinedIcon fontSize="small" />}
+            />
+        ),
+        idle = (
+            <Message
+                key="autoSave.idle"
+                defaultMessage="waiting for changes"
+                icon={<MoreHorizOutlinedIcon fontSize="small" />}
+            />
+        ),
+    } = {},
+}) => {
+    return (
+        <AutoSaveIndicatorCore
+            status={status}
+            elements={{
+                success,
+                error,
+                loading,
+                idle,
+            }}
+        />
+    );
+};
+
+const Message = ({
+    key,
+    defaultMessage,
+    icon,
+}: {
+    key: string;
+    defaultMessage: string;
+    icon: React.ReactNode;
 }) => {
     const translate = useTranslate();
-    let message = null;
-    let icon = <MoreHorizOutlinedIcon fontSize="small" />;
-
-    switch (status) {
-        case "success":
-            message = translate("autoSave.success", "saved");
-            icon = <TaskAltOutlinedIcon fontSize="small" />;
-            break;
-        case "error":
-            message = translate("autoSave.error", "auto save failure");
-            icon = <ErrorOutlineOutlinedIcon fontSize="small" />;
-
-            break;
-        case "loading":
-            message = translate("autoSave.loading", "saving...");
-            icon = <SyncOutlinedIcon fontSize="small" />;
-            break;
-        default:
-            // for idle
-            message = translate("autoSave.idle", "waiting for changes");
-            break;
-    }
 
     return (
         <Typography
@@ -43,7 +77,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
             flexWrap="wrap"
             marginRight=".3rem"
         >
-            {message}
+            {translate(key, defaultMessage)}
             <span
                 style={{ position: "relative", top: "3px", marginLeft: "3px" }}
             >
