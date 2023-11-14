@@ -52,7 +52,7 @@ const dataProvider: DataProvider = {
 
 **refine** comes with various data providers out of the box, but for this tutorial, will be using the `refine-simple-rest` data provider to communicate with RESTful APIs.
 
-> For more information, refer to the [`refine-simple-rest` source code&#8594](https://github.com/refinedev/refine/tree/next/packages/simple-rest)
+> For more information, refer to the [`refine-simple-rest` source code&#8594](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 
 ## Using data providers in refine
 

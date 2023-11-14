@@ -188,16 +188,6 @@ const App = () => {
                     redirectTo: "/login",
                     logout: true,
                 };
-            }
-
-            return {
-                authenticated: false,
-                error: {
-                    message: "Check failed",
-                    name: "Token not found",
-                },
-                redirectTo: "/login",
-                logout: true,
             };
         },
         getPermissions: async () => null,

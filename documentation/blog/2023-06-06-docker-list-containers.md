@@ -121,11 +121,7 @@ Most of the time, in the ‘**docker ps**’ command output, the additional info
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 
 ## Suitable for scenarios where only the container IDs are required:

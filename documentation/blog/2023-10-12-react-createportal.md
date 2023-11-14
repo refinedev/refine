@@ -60,11 +60,7 @@ When you render a component using the `createPortal` API, only the rendering of 
 Though a portal is rendered in a different location in the DOM, it is still a child of the parent React Component that renders it. It re-renders whenever the props or context passed to it changes, and its parent re-renders.
 
 
----
 
-<BannerRandom />
-
----
 
 ## Pros of the `createPortal` API
 

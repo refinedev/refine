@@ -6,19 +6,19 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 const data = [
     {
         description:
-            "refine is a React framework preferred by over 15,000 active developers each month for streamlining the development of enterprise-grade internal tools, admin panels. ",
+            "Refine is a React Framework preferred by over 15K active developers each month for streamlining the development of enterprise-grade internal tools, dashboards, and B2B apps",
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
-            href: "https://github.com/refinedev/refine?ref=banner-twitter",
+            href: "https://s.refine.dev/blog-twitter?ref=banner-twitter",
         },
         button: {
             text: "Learn more",
-            href: "https://github.com/refinedev/refine?ref=banner-twitter",
+            href: "https://s.refine.dev/blog-twitter?ref=banner-twitter",
         },
         bannerName: "banner-twitter",
     },
-    {
+    /*    {
         title: "Save developer hours!",
         description:
             "An open-source, industry-standard codebase designed for building enterprise-grade internal tools, admin panels, and CRUD apps.",
@@ -46,7 +46,7 @@ const data = [
             href: "https://github.com/refinedev/refine?ref=banner-oss-insight",
         },
         bannerName: "banner-oss-insight",
-    },
+    }, */
 ];
 
 // +1 for BannerExamples

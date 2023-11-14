@@ -124,9 +124,9 @@ render(<App />);
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
 
--   [React Router v6](https://github.com/refinedev/refine/blob/next/examples/auth-mantine/src/App.tsx#L180)
--   [Next.js](https://github.com/refinedev/refine/blob/next/examples/with-nextjs-auth/pages/_app.tsx#L31)
--   [Remix](https://github.com/refinedev/refine/blob/next/examples/with-remix-auth/app/routes/_protected.tsx)
+-   [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-mantine/src/App.tsx#L180)
+-   [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
+-   [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
 
 > ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayout>` from `@refinedev/mantine` as same.
 
@@ -987,9 +987,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/next/packages/mantine/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/next/packages/mantine/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/next/packages/mantine/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/api-reference/core/hooks/ui/useMenu/
 [refine-component]: /docs/api-reference/core/components/refine-config/
 [mantine-drawer]: https://mantine.dev/core/drawer/

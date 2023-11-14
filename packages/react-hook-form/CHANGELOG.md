@@ -1,5 +1,17 @@
 # @refinedev/react-hook-form
 
+## 4.8.12
+
+### Patch Changes
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Updated initial value setting logic in `useForm` to handle nested objects properly.
+
+## 4.8.11
+
+### Patch Changes
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Updated initial value setting logic in `useForm` to handle nested objects properly.
+
 ## 4.8.10
 
 ### Patch Changes

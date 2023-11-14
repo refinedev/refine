@@ -17,6 +17,8 @@ export const TopAnnouncement = () => {
                 className={clsx(
                     "hidden lg:flex",
                     "w-full h-full",
+                    "max-w-screen",
+                    "overflow-hidden",
                     "border-b border-solid border-[#47ebeb26]",
                     "top-announcement-mask",
                 )}
@@ -131,9 +133,8 @@ const Text = () => {
         >
             <RefineLogoShinyCyan className="flex-shrink-0" />
             <div className={clsx("ml-2", "not-prose")}>
-                Unlock the power of{" "}
-                <span className={clsx("font-semibold")}>refine Devtools</span>,
-                your intelligent companion for development.
+                Unlock powerful debugging and effortless query monitoring with{" "}
+                <span className={clsx("font-semibold")}>refine Devtools</span>
                 <span
                     className={clsx(
                         "text-refine-cyan-alt hover:text-refine-cyan-alt",

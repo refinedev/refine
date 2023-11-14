@@ -2,12 +2,13 @@ import React from "react";
 import { DevtoolsPin } from "./components/devtools-pin";
 import { ResizablePane } from "./components/resizable-pane";
 
-import { Placement } from "./interfaces/placement";
 import {
     DevToolsContext,
     DevtoolsEvent,
     send,
 } from "@refinedev/devtools-shared";
+
+import { Placement } from "./interfaces/placement";
 
 export const DevtoolsPanel =
     __DEV_CONDITION__ !== "development"
@@ -17,6 +18,7 @@ export const DevtoolsPanel =
               const [visible, setVisible] = React.useState(false);
               const [placement] = React.useState<Placement>("bottom");
               const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
+              const [width, setWidth] = React.useState<number>(0);
 
               const onSelectorHighlight = React.useCallback(
                   (name: string) => {
@@ -44,6 +46,25 @@ export const DevtoolsPanel =
                   }
               }, []);
 
+              React.useEffect(() => {
+                  if (browser) {
+                      // set width by window size dynamically
+                      setWidth(window.innerWidth);
+
+                      const onResize = () => {
+                          setWidth(window.innerWidth);
+                      };
+
+                      window.addEventListener("resize", onResize);
+
+                      return () => {
+                          window.removeEventListener("resize", onResize);
+                      };
+                  }
+
+                  return () => undefined;
+              }, [browser]);
+
               if (!browser) {
                   return null;
               }
@@ -52,7 +73,7 @@ export const DevtoolsPanel =
                   <div
                       style={{
                           position: "fixed",
-                          left: "50%",
+                          left: `${Math.round(width / 2)}px`,
                           transform: "translateX(-50%)",
                           bottom: 0,
                           zIndex: 99999,

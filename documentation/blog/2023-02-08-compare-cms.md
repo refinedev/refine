@@ -147,14 +147,7 @@ Check the [refine documentation](https://refine.dev/docs/api-reference/core/prov
 - Hasura doesn't support NoSQL databases while writing this article. Though, there are plans to include them in the future.
 - Hasura is tailored towards exposing databases via GraphQL API. It doesn't have content management capabilities like the other headless CMS.
 
----
 
-
-<BannerRandom />
-
-
-
----
  
 
 ### Hygraph

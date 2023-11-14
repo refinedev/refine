@@ -163,14 +163,7 @@ export default function handler(req, res) {
   res.status(200).json({ message: "Post created successfully" });
 }
 ```
----
 
-
-<BannerRandom />
-
-
-
----
 ## Dynamic API Routes
 
 API Routes in Next.js can also be dynamic. This is similar to how regular dynamic pages work in Next.js. You can read more about dynamic routes [here](https://nextjs.org/docs/routing/dynamic-routes) to understand their syntax.

@@ -519,11 +519,7 @@ We can also add a basic validation to both fields by passing an array of objects
 
 In the subsequent sections, we'll learn how to add a more complex validation to our form. For now, this will do.
 
----
 
-<BannerRandom />
-
----
 
 ## Adding form list
 

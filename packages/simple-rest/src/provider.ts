@@ -176,18 +176,18 @@ export const dataProvider = (
             case "post":
             case "patch":
                 axiosResponse = await httpClient[method](url, payload, {
-                    headers
+                    headers,
                 });
                 break;
             case "delete":
                 axiosResponse = await httpClient.delete(url, {
                     data: payload,
-                    headers: headers
+                    headers: headers,
                 });
                 break;
             default:
-                axiosResponse = await httpClient.get(requestUrl,{
-                    headers
+                axiosResponse = await httpClient.get(requestUrl, {
+                    headers,
                 });
                 break;
         }

@@ -65,15 +65,6 @@ export const PostPaginator = ({ posts, title }) => {
                                 id="post-info"
                                 className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
                             >
-                                <Link
-                                    to={`/blog/author/${post.authors[0]?.key}`}
-                                    itemProp="url"
-                                    id="author-name"
-                                    className="text-gray-600 no-underline hover:text-gray-600 hover:no-underline dark:text-gray-400"
-                                >
-                                    {post.authors[0]?.name}
-                                </Link>
-                                <span className="h-[4px] w-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
                                 <Date
                                     date={post.date}
                                     formattedDate={post.formattedDate}

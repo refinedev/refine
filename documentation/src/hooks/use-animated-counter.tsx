@@ -22,6 +22,7 @@ export const useAnimatedCounter: UseAnimatedCounter = (
                 setCounter(value);
             },
         });
+
         return () => controls.stop();
     }, [initialValue, maxValue, duration]);
 

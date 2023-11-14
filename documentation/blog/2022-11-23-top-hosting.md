@@ -87,14 +87,7 @@ Apart from the platforms listed above, several equally good platforms you can us
 - Cloudflare
 - Firebase hosting
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ### Vercel
 

@@ -1,7 +1,7 @@
 ---
 title: useInfiniteList
 siderbar_label: useInfiniteList
-source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useInfiniteList.ts
+source: https://github.com/refinedev/refine/blob/v3/packages/core/src/hooks/data/useInfiniteList.ts
 description: useInfiniteList data hook from refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
@@ -390,7 +390,7 @@ When you override this method, you can access the `lastPage` and `allPages`.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useInfiniteList" 
+<PropsTable module="@pankod/refine-core/useInfiniteList"
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

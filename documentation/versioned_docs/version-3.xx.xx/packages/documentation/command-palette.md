@@ -118,7 +118,7 @@ useRegisterActions(customAction);
 
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
-[refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
+[refine-kbar]: https://github.com/refinedev/refine/tree/v3/packages/kbar
 [access-contol]: https://refine.dev/docs/core/providers/accessControl-provider/
-[usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
-[refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx
+[usecanwithoutcache]: https://github.com/refinedev/refine/blob/v3/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
+[refine-finefoods]: https://github.com/refinedev/refine/blob/v3/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx

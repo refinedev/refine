@@ -82,7 +82,9 @@ const Desktop = () => {
                     <Divider />
                     <CommonHomeButton />
                     <Divider />
-                    <CommonThemeToggle />
+                    <CommonThemeToggle
+                        className={clsx("scale-75", "sm:scale-100")}
+                    />
                 </div>
             </div>
         </div>
@@ -111,7 +113,9 @@ export const Mobile = () => {
                         );
                     })}
                 />
-                <CommonThemeToggle />
+                <CommonThemeToggle
+                    className={clsx("scale-75", "sm:scale-100")}
+                />
                 <CommonHamburgerIcon
                     onClick={() => setIsSidebarOpen(true)}
                     active={isSidebarOpen}

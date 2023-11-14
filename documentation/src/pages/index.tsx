@@ -4,46 +4,93 @@ import React from "react";
 
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingFooter } from "../refine-theme/landing-footer";
-import { LandingHeader } from "../refine-theme/landing-header";
-import { LandingHero } from "../refine-theme/landing-hero";
-import { LandingPlayground } from "../refine-theme/landing-playground";
-import { LandingStats } from "../refine-theme/landing-stats";
-import { LandingTiles } from "../refine-theme/landing-tiles";
-import { LandingWalkthrough } from "../refine-theme/landing-walkthrough";
+import { LandingCommunity } from "../refine-theme/landing-community";
+import { LandingEnterpriseDevelopers } from "../refine-theme/landing-enterprise-developers";
+import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-developers";
+import { LandingPackages } from "../refine-theme/landing-packages";
+import { LandingAlreadyInvented } from "../refine-theme/landing-already-invented";
+import { LandingPureReactCode } from "../refine-theme/landing-pure-react-code";
+import { LandingSweetSpot } from "../refine-theme/landing-sweet-spot";
+import { LandingHeroSection } from "../refine-theme/landing-hero-section";
+import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
+import { CommonHeader } from "../refine-theme/common-header";
+import { LandingTestimonial } from "../refine-theme/landing-testimonial";
 
 function Home() {
+    const title = "refine | Open-source Retool for Enterprise";
     return (
         <>
             <Head>
                 <html data-active-page="index" />
+                <title>{title}</title>
+                <meta property="og:title" content={title} />
                 <link
                     rel="preload"
                     href="https://refine.new/embed-form"
                     as="document"
                 />
             </Head>
-            <CommonLayout
-                title={`refine | Build your React-based CRUD applications, without constraints!`}
-                description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design, an enterprise-level UI toolkit."
-            >
-                <div className={clsx("bg-refine-bg")}>
-                    <LandingHeader />
+            <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty.">
+                <div className={clsx()}>
+                    <CommonHeader />
                     <div
                         className={clsx(
-                            "top-section",
-                            "bg-landing-stars",
-                            "mb-12 -mt-[100px] md:-mt-[110px] lg:-mt-[90px] xl:-mt-[110px]",
-                            "pt-[100px] lg:pt-[90px] xl:-pt-[110px]",
-                            "landing-mask-image-hero-wide",
+                            "flex flex-col",
+                            "gap-16 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-40",
+                            "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
+                            "px-2 landing-sm:px-0",
+                            "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
+                            "mx-auto",
                         )}
                     >
-                        <LandingHero />
+                        <div
+                            className={clsx(
+                                "mt-0",
+                                "landing-sm:mt-8",
+                                "landing-lg:mt-20",
+                            )}
+                        >
+                            <LandingHeroSection />
+                            <LandingTrustedByDevelopers
+                                className={clsx(
+                                    "mt-12",
+                                    "landing-sm:mt-20",
+                                    "landing-md:mt-28",
+                                    "landing-lg:mt-10",
+                                )}
+                            />
+                        </div>
+                        <LandingSweetSpot />
+                        <LandingTestimonial />
+                        <div
+                            className={clsx(
+                                "flex flex-col",
+                                "gap-12 landing-md:gap-6",
+                            )}
+                        >
+                            <LandingPackages />
+                            <div
+                                className={clsx(
+                                    "flex flex-col landing-md:flex-row",
+                                    "gap-12 landing-md:gap-6",
+                                )}
+                            >
+                                <LandingAlreadyInvented
+                                    className={clsx(
+                                        "w-full landing-md:w-[50%] landing-lg:w-[538px]",
+                                    )}
+                                />
+                                <LandingPureReactCode
+                                    className={clsx(
+                                        "w-full landing-md:w-[50%] landing-lg:w-[640px]",
+                                    )}
+                                />
+                            </div>
+                        </div>
+                        <LandingCommunity />
+                        <LandingEnterpriseDevelopers />
+                        <LandingTryItSection />
                     </div>
-                    <LandingWalkthrough />
-                    <LandingTiles />
-                    <LandingPlayground />
-                    <LandingStats />
-                    <div className="h-[96px] landing-lg:h-[160px]" />
                     <LandingFooter />
                 </div>
             </CommonLayout>

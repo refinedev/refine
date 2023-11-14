@@ -1,7 +1,6 @@
 import express from "express";
 
-import boxen from "boxen";
-import chalk from "chalk";
+import { cyanBright, bold } from "chalk";
 
 import { DevtoolsEvent, receive, send } from "@refinedev/devtools-shared";
 
@@ -133,19 +132,8 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
     serveOpenInEditor(app, projectPath);
 
     console.log(
-        `\n${boxen(
-            `refine devtools is running on ${chalk.blueBright.bold(
-                `http://localhost:${SERVER_PORT}`,
-            )}`,
-            {
-                padding: 1,
-                title: "refine devtools",
-                titleAlignment: "center",
-                textAlignment: "center",
-                dimBorder: true,
-                borderColor: "blueBright",
-                borderStyle: "round",
-            },
-        )}\n`,
+        `\n${cyanBright.bold("\u2713 ")}${bold(
+            "refine devtools",
+        )} is running at port ${cyanBright.bold(SERVER_PORT)}\n`,
     );
 };

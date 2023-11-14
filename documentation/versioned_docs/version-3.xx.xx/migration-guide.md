@@ -45,7 +45,6 @@ npm i @pankod/refine-core @pankod/refine-antd
 export const Packages = () => {
 const packages = [
 "@pankod/refine-airtable",
-"@pankod/refine-altogic",
 "@pankod/refine-graphql",
 "@pankod/refine-hasura",
 "@pankod/refine-nestjsx-crud",
@@ -712,7 +711,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-[refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
+[refine-codemod]: https://github.com/refinedev/refine/tree/v3/packages/codemod
 [refine]: /api-reference/core/components/refine-config.md
 [resources]: /api-reference/core/components/refine-config.md#resources
 [routerprovider]: /api-reference/core/providers/router-provider.md

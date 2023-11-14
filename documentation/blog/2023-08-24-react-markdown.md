@@ -344,11 +344,7 @@ In this example, the `EditorContext` is employed to dispatch an action that comb
 
 
 
----
 
-<BannerRandom />
-
----
 
 ## Adding custom preview
 

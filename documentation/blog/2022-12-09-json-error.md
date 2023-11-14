@@ -158,11 +158,7 @@ Spelling errors do not apply only to API endpoints, they can also occur while at
 - Use the try-and-catch method in your function to prevent your app from crashing.
     
 
----
 
-<BannerRandom />
-
----
 
 
 ## Forgetting to stringify your object:

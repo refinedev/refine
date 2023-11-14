@@ -118,11 +118,7 @@ The requests we created to send files by JavaScript will now be sent to our loca
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/overview.gif" alt="upload overview" />
 <br />
 
----
 
-<BannerRandom />
-
----
 ## How to Multipart Upload with Refine?
 The Multipart file upload process with **refine** is very simple. How to use it is explained step by step in the guide and example. 
 

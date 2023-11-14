@@ -15,9 +15,10 @@ type Props = {
     item: PackageType;
     blocked?: boolean;
     onUpdate: (packageName: string) => Promise<boolean>;
+    onOutdated: (packageName: string) => void;
 };
 
-export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
+export const PackageItem = ({ item, blocked, onUpdate, onOutdated }: Props) => {
     const [latestLoading, setLatestLoading] = React.useState(true);
     const [latestData, setLatestData] =
         React.useState<PackageLatestVersionType | null>(null);
@@ -90,6 +91,12 @@ export const PackageItem = ({ item, blocked, onUpdate }: Props) => {
             //
         }
     }, [item.name, status]);
+
+    React.useEffect(() => {
+        if (hasUpdate) {
+            onOutdated(item.name);
+        }
+    }, [hasUpdate]);
 
     return (
         <div

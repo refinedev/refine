@@ -1,17 +1,18 @@
-import clsx from "clsx";
-import React from "react";
-import { useSearchParams } from "react-router-dom";
 import { LoginFlow } from "@ory/client";
-import { ory } from "src/utils/ory";
 import {
     DevToolsContext,
     DevtoolsEvent,
     receive,
 } from "@refinedev/devtools-shared";
+import clsx from "clsx";
+import React from "react";
+import { useSearchParams } from "react-router-dom";
+
+import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
 import { GithubIcon } from "src/components/icons/github";
 import { GoogleIcon } from "src/components/icons/google";
 import { LogoIcon } from "src/components/icons/logo";
-import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
+import { ory } from "src/utils/ory";
 
 export const Login = () => {
     return (
@@ -77,7 +78,7 @@ const LoginForm = (props: { className?: string }) => {
         try {
             const redirectUrl = `${window.location.origin}/after-login`;
 
-            const { data } = await ory.createBrowserLoginFlow({
+            const { data } = await ory.createNativeLoginFlow({
                 refresh: true,
                 returnTo: redirectUrl,
             });

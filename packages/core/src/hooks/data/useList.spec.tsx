@@ -1076,4 +1076,46 @@ describe("useList Hook", () => {
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
     });
+
+    it("should infer resource from the route", async () => {
+        const getListMock = jest.fn().mockResolvedValue({
+            data: [{ id: 1, title: "foo" }],
+        });
+
+        const { result } = renderHook(() => useList(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        getList: getListMock,
+                    },
+                },
+                routerProvider: mockRouterBindings({
+                    action: "list",
+                    params: {},
+                    pathname: "/posts",
+                    resource: {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                }),
+                resources: [
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ],
+            }),
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(getListMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+    });
 });

@@ -13,11 +13,7 @@ import { MenuItem } from "./menu-item";
 import { NavbarItem } from "./navbar-item";
 import { NavbarPopoverItem } from "./navbar-popover-item";
 
-type MenuProps = {
-    isPermanentDark?: boolean;
-};
-
-export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
+export const Menu: React.FC = () => {
     return (
         <>
             {MENU_ITEMS.map((item) => {
@@ -25,7 +21,6 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                     return (
                         <NavbarPopoverItem
                             key={`navbar-${item.label}`}
-                            isPermanentDark={isPermanentDark}
                             item={item}
                         >
                             {item.label === "Open-source" && (
@@ -35,13 +30,12 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                             "grid grid-cols-2 gap-4",
                                             "p-4",
                                             "w-[672px]",
-                                            "bg-white",
+                                            "dark:bg-gray-900 bg-white",
                                         )}
                                     >
                                         {item.items.map((subItem) => (
                                             <MenuItem
                                                 key={subItem.label}
-                                                isPermanentLight
                                                 item={subItem}
                                             />
                                         ))}
@@ -52,7 +46,8 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                     >
                                         <div
                                             className={clsx(
-                                                "bg-gray-100",
+                                                "border-t dark:border-gray-700 border-gray-300",
+                                                "dark:bg-gray-800 bg-gray-100",
                                                 "flex items-center",
                                                 "py-4 px-7",
                                             )}
@@ -61,7 +56,7 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                             <div
                                                 className={clsx(
                                                     "ml-4",
-                                                    "text-gray-600",
+                                                    "dark:text-gray-400 text-gray-600",
                                                 )}
                                             >
                                                 If you like refine, don’t forget
@@ -79,25 +74,25 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                             "grid gap-4",
                                             "p-4",
                                             "w-[336px]",
-                                            " bg-white",
+                                            "dark:bg-gray-900 bg-white",
                                         )}
                                     >
                                         {item.items.map((subItem) => (
                                             <MenuItem
                                                 key={subItem.label}
-                                                isPermanentLight
                                                 item={subItem}
                                             />
                                         ))}
                                     </div>
                                     <div
                                         className={clsx(
-                                            "bg-gray-100",
+                                            "border-t dark:border-gray-700 border-gray-300",
+                                            "dark:bg-gray-800 bg-gray-100",
                                             "flex justify-between items-center",
                                             "py-4 px-7",
                                         )}
                                     >
-                                        <div className="text-gray-600">
+                                        <div className="dark:text-gray-400 text-gray-600">
                                             Join the party!
                                         </div>
                                         <div className="flex gap-4">
@@ -108,7 +103,7 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                                     "hover:text-inherit",
                                                 )}
                                             >
-                                                <GithubIcon className="text-[#333333]" />
+                                                <GithubIcon className="dark:text-gray-400 text-gray-500" />
                                             </Link>
                                             <Link to="https://discord.com/invite/refine">
                                                 <DiscordIcon />
@@ -127,13 +122,12 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                                         "grid gap-4",
                                         "p-4",
                                         "w-[336px]",
-                                        "bg-white",
+                                        "dark:bg-gray-900 bg-white",
                                     )}
                                 >
                                     {item.items.map((subItem) => (
                                         <MenuItem
                                             key={subItem.label}
-                                            isPermanentLight
                                             item={subItem}
                                         />
                                     ))}
@@ -147,7 +141,6 @@ export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
                     <NavbarItem
                         key={`navbar-${item.label}`}
                         item={item as NavbarItemType}
-                        isPermanentDark={isPermanentDark}
                     />
                 );
             })}

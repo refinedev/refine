@@ -287,11 +287,7 @@ With the help of control structures, Linux commands can be controlled during exe
 
 
 
----
 
-<BannerRandom />
-
----
 
 ### Job Control:
 

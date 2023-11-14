@@ -116,11 +116,7 @@ In this section, we'll look at how Bun compares to Node and do some benchmarking
 4. **Tooling**: Bun provides an integrated toolkit for JavaScript development, including a bundler, transpiler, and package manager. Node.js, on the other hand, boasts a rich ecosystem of third-party tools and libraries for diverse development tasks, such as popular bundlers like Webpack and package managers like npm or Yarn.
 5. **Community and Ecosystem**: Node.js benefits from a mature and extensive community, offering substantial support, well-documented resources, and a vast ecosystem of modules and libraries. In contrast, Bun, being relatively newer, may have a smaller community and a more focused ecosystem.
 
----
 
-<BannerRandom />
-
----
 
 ## Benchmarking Bun
 

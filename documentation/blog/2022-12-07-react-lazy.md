@@ -119,14 +119,7 @@ This is because a lazily loaded component with `React.lazy` must be wrapped insi
 
 What is Suspense?
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ## Suspense

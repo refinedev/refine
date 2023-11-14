@@ -536,11 +536,7 @@ So, with these changes, we have been able to achieve a good shape for the vertic
 
 We need to now fix things with the brand item, which should be on the left of the other items on larger screens.
 
----
 
-<BannerRandom />
-
----
 
 
 ### Positioning Navbar Logo with Tailwind Flex

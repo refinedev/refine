@@ -111,11 +111,7 @@ Next.js also provides other data fetching options, such as `getInitialProps` for
 
 Next.js simplifies the process of data fetching by seamlessly integrating it into the rendering pipeline. Whether you need to fetch data on the client-side or during server-side rendering, Next.js provides the necessary tools to make data fetching efficient and straightforward.
 
----
 
-<BannerRandom />
-
----
 
 
 ## Server Actions in Next.js

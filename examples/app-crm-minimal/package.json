@@ -1,0 +1,54 @@
+{
+  "name": "app-crm-minimal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
+    "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
+    "build": "refine build",
+    "start:prod": "refine start",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "refine": "refine"
+  },
+  "dependencies": {
+    "@ant-design/cssinjs": "^1.17.2",
+    "@ant-design/icons": "5.0.1",
+    "@ant-design/plots": "^1.2.5",
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/modifiers": "^6.0.1",
+    "@dnd-kit/sortable": "^7.0.2",
+    "@refinedev/antd": "^5.36.19",
+    "@refinedev/cli": "^2.16.16",
+    "@refinedev/core": "^4.45.0",
+    "@refinedev/nestjs-query": "^1.0.8",
+    "@refinedev/nextjs-router": "^5.5.4",
+    "@uiw/react-md-editor": "^3.19.5",
+    "antd": "^5.0.5",
+    "classnames": "^2.3.2",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.10.7",
+    "graphql-ws": "^5.9.1",
+    "next": "^13.5.4",
+    "nookies": "^2.5.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/parser": "5.48.0",
+    "autoprefixer": "^10.4.1",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.1.4",
+    "postcss-nesting": "^12.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "refine": {
+    "projectId": "V7c2E1-MNc7Pr-7HlSQV"
+  }
+}
