@@ -36,6 +36,438 @@ export const App = () => {
 };
 ```
 
+## Provider Concept
+
+Providers are the building blocks of Refine, used to manage different aspects of your application, such as data fetching, routing, access control, and more.
+
+They are pluggable, which means you can use the **built-in providers** or **create your own**. This allows you to customize the behavior of your application to suit your needs.
+
+- **Data Provider**: Communication with the backend data source, handling data operations such as fetching, creating, updating, deleting records, caching, and invalidation.
+- **Authentication Provider**: Manages user authentication and authorization processes. Handles redirection, error cases.
+- **Access Control Provider**: Handles authorization and access control. Used to hide/disable buttons and menu items, or to protect routes and components.
+- **Notification Provider**: Enables notification features like showing notification after successful mutations or errors.
+- **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
+- **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
+- **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
+
+## Hook Concept
+
+refine adopts a hook-based architecture, a modern and powerful pattern in React development, which significantly enhances the development experience and application performance.
+
+## Providers
+
+### Data Provider
+
+The Data Provider is the bridge between your frontend and your backend data source. It is responsible for handling all data-related operations such as fetching, caching, creating, updating, and deleting records.
+
+Each data operation in the Data Provider is typically associated with a specific resource. For example, when fetching data for a `products` resource, the Data Provider will know which endpoint to hit and how to handle the response.
+
+```tsx title=data-provider.ts
+import { DataProvider } from "@refinedev/core";
+
+const myDataProvider: DataProvider = {
+  getOne: ({ resource, id }) => {
+    fetch(`https://example.com/api/v1/${resource}/${id}`);
+  },
+  // other methods...
+};
+```
+
+#### Hooks
+
+You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetch data in your components.
+
+```tsx title=show.tsx
+export const ShowPage = () => {
+  const { data, isLoading } = useOne({ resource: "products", id: 1 });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  return <>{data.name}</>;
+};
+```
+
+> See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
+
+### Authentication Provider
+
+The Authentication Provider centralizes the authentication and authorization processes in **refine** applications.
+
+It handles authentication and authorization processes such as login, logout, redirection, error handling, and more.
+
+```tsx title=auth-provider.ts
+import { AuthProvider } from "@refinedev/core'";
+
+export const authProvider: AuthProvider = {
+  login: async ({ email, password }) => {
+    const { status } = handleLogin(email, password);
+
+    if (status === 200) {
+      return { success: true, redirectTo: "/dashboard" };
+    } else {
+      return {
+        success: false,
+        error: { name: "Login Error", message: "Invalid credentials" },
+      };
+    }
+  },
+  check: async (params) => ({}),
+  logout: async (params) => ({}),
+  onError: async (params) => ({}),
+  register: async (params) => ({}),
+  forgotPassword: async (params) => ({}),
+  updatePassword: async (params) => ({}),
+  getPermissions: async (params) => ({}),
+  getIdentity: async (params) => ({}),
+};
+```
+
+> See the [Authentication](/docs/guides-concepts/authentication/) guide for more information.
+
+#### UI Integrations
+
+Our UI Integrations works out-of-the-box with Authentication Provider.
+
+When provided, their Layout components can automatically render current user information on the header and add logout button to appropriate places.
+
+You can also use `AuthPage` component of these integrations for `Login`, `Register`, `Forgot Password`, `Reset Password` pages.
+
+```tsx title=auth.tsx
+import { AuthPage } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+
+export const Auth = () => {
+  return (
+    <AuthPage
+      type="login" // register, forgot-password, reset-password
+    />
+  );
+};
+```
+
+#### Components
+
+You can use `Authenticated` component from `@refinedev/core` to protect your routes, components with authentication.
+
+```tsx title=show.tsx
+import { Authenticated } from "@refinedev/core";
+
+export const ShowPage = () => {
+  return (
+    <>
+      Product Details Page
+      <Authenticated>
+        // Only authenticated users can see this.
+        <DeleteButton />
+      </Authenticated>
+    </>
+  );
+};
+```
+
+#### Hooks
+
+You can use `useGetIdentity` hook to get current user.
+
+```tsx title=show.tsx
+import { useGetIdentity } from "@refinedev/core";
+
+export const DashboardPage = () => {
+  const {
+    data: { name },
+  } = useGetIdentity();
+
+  return <>Welcome {name}!</>;
+};
+```
+
+### Access Control Provider
+
+The Access Control Provider manages what users can access or perform within the application based on their permissions.
+
+It uses the resource definition to determine access rights. For instance, it can decide whether a user can edit or delete record for `products` resource based on the current user's information and resource definition.
+
+```tsx title=App.tsx
+import { AccessControlProvider, Refine } from "@refinedev/core";
+
+const myAccessControlProvider: AccessControlProvider = {
+  can: async ({ resource, action, user }) => {
+    if (user.role === "admin" && action === "delete") {
+      return { can: true };
+    }
+  },
+};
+
+export const App = () => {
+  return (
+    <Refine accessControlProvider={myAccessControlProvider} {/* ...*/}>
+      {/* ... */}
+    </Refine>
+  )
+}
+```
+
+> See the [Authorization](/docs/guides-concepts/authorization/) guide for more information.
+
+#### UI Integrations
+
+When provided, our UI Integrations works out-of-the-box with Access Control Provider.
+
+For example if user isn't authorized to see `orders` resource, it will be hidden on the sidebar menu automatically.
+
+Or if the current user isn't authorized to delete a product, the delete button will be disabled or hidden automatically.
+
+```tsx title=example.tsx
+import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+
+export const ShowPage = () => {
+  return (
+    <>
+      Product Details Page
+      <DeleteButton /> // Only admins can see this.
+    </>
+  );
+};
+```
+
+This applies to all buttons like `CreateButton`, `EditButton`, `ShowButton`, `ListButton`.
+
+#### Components
+
+You can wrap `CanAccess` component to wrap relevant parts of your application to control access.
+
+```tsx title=show.tsx
+import { CanAccess } from "@refinedev/core";
+
+export const ShowPage = () => {
+  return (
+    <>
+      User Page
+      <CanAccess resource="users" action="block">
+        // Only admins can see this.
+        <BlockUserButton />
+      </CanAccess>
+    </>
+  );
+};
+```
+
+#### Hooks
+
+You can use `useCan` hook to control access in your components.
+
+```tsx title=show.tsx
+import { useCan } from "@refinedev/core";
+
+export const ShowPage = () => {
+  const canBlock = useCan({ resource: "users", action: "block" });
+
+  return (
+    <>
+      User Page
+      {canBlock && <BlockUserButton />}
+    </>
+  );
+};
+```
+
+### Notification Provider
+
+**refine** can automatically show notifications for CRUD operations and errors.
+
+For example, after creating, updating, or deleting a record for `products` resource, or when an error occurs on form submission.
+
+**refine** has out-of-the-box notification providers for popular UI libraries like **AntD**, **Material UI**, **Chakra UI**, and **Mantine**.
+
+> See the [Notifications](/docs/guides-concepts/notifications/) guide for more information.
+
+#### Hooks
+
+You can use `useNotification` hook to show notifications in your components.
+
+```tsx title=show.tsx
+import { useNotification } from "@refinedev/core";
+
+export const ShowPage = () => {
+  const { open } = useNotification();
+
+  return (
+    <Button
+      onClick={() => {
+        open({
+          message: "Test Notification",
+          description: "This is a test notification.",
+          type: "success", // success | error | progress
+        });
+      }}
+    >
+      Show notification
+    </Button>
+  );
+};
+```
+
+### I18n Provider
+
+I18n provider centralizes localization process in **refine** applications.
+
+```tsx title=App.tsx
+import { Refine, I18nProvider } from "@refinedev/core";
+
+const i18nProvider: I18nProvider = {
+    translate: (key: string, options?: any, defaultMessage?: string) => string,
+    changeLocale: (lang: string, options?: any) => Promise,
+    getLocale: () => string,
+};
+
+export const App = () => {
+  return (
+    <Refine i18nProvider={i18nProvider} {/* ...*/}>
+      {/* ... */}
+    </Refine>
+  )
+}
+```
+
+#### UI Integrations
+
+When provided, our UI Integrations works out-of-the-box with I18n Provider.
+
+For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
+
+#### Hooks
+
+You can use `useTranslate`, `useSetLocale`, `useGetLocale` hooks to handle i18n in your components.
+
+```tsx title=show.tsx
+import { useTranslate, useSetLocale, useGetLocale } from "@refinedev/core";
+
+export const ShowPage = () => {
+  const translate = useTranslate();
+  const setLocale = useSetLocale();
+  const getLocale = useGetLocale();
+
+  return (
+    <>
+      Current Locale: {getLocale()}
+      <Button onClick={() => setLocale("tr")}>Set Locale to Turkish</Button>
+      <Button onClick={() => setLocale("en")}>Set Locale to English</Button>
+
+      <Button>{translate('Hello')</Button>
+    </>
+  );
+};
+
+```
+
+### Router Provider
+
+Router provider helps **refine** understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
+
+We have built-in router integrations for the following packages:
+
+- React Router V6
+- NextJS
+- Remix
+
+> See the [Routing](/docs/guides-concepts/routing/) page for more information.
+
+#### Hooks
+
+You can use `useGo` hook to navigate in your components.
+
+```tsx title=show.tsx
+import { useGo } from "@refinedev/core";
+
+export const ListPage = () => {
+  const go = useGo();
+
+  const navigateToCreate = () => {
+    go({ to: { resource: "products", action: "create" } });
+  };
+
+  return (
+    <>
+      <List />
+      <CreateButton onClick={navigateToCreate} />
+    </>
+  );
+};
+```
+
+## UI Integrations
+
+While **refine** itself is headless, it offers UI Integrations for popular UI libraries for **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
+
+These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
+
+import { AntdLayout } from './layout/antd'
+
+<AntdLayout />
+
+### Layout
+
+UI Integrations provides a `ThemedLayout` component, which renders the `sidebar menu`, `header`, and `content` area of your application.
+
+It automatically renders the sidebar menu based on the resource definitions, and the header based on the current user.
+
+### CRUD Pages
+
+`List`, `Create`, `Edit`, `Show` components.
+
+These components provides layout view based on the resource information automatically like:
+
+- Header with title
+- Breadcrumb
+- Translated texts
+- CRUD Buttons for redirection.
+
+On top of that, **refine** adds some features to these layouts:
+
+- Translation: buttons, titles, columns will be translated to the current language of the user.
+- Access Control: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
+
+### Buttons
+
+For example, `@refinedev/antd` package exports `CreateButton`, for redirecting the user to the create page of the resource.
+
+While the button itself is imported from `antd` package, **refine** adds some capabilities to it:
+
+- Routing: when the button is clicked, the user will be redirected to the create page of the resource.
+- Access Control: if current user isn't authorized, this button will be disabled or hidden automatically.
+- Translation: the button's text will be translated to the current language of the user.
+
+### Auth Pages
+
+Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset Password` integrated with `AuthProvider` automatically.
+
+### UI Integration Hooks
+
+UI Integration hooks uses `@refinedev/core` hooks under the hood, making it easier to use them in your UI specific components.
+
+One example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `antd`'s `Table` component. So you don't need to manually map the props.
+
+Make a list of hooks exported by UI Integrations.
+
+#### AntD
+
+<Tabs>
+
+<TabItem value="antd">
+
+- useTable
+
+</TabItem>
+
+<TabItem value="Material UI">
+
+- useDataGrid
+
+</TabItem>
+
+</Tabs>
+
 ## Meta Concept
 
 `meta` is a special property that can be used to add additional information to a resource definition. This information then can be used by **providers** and **UI integrations** to enhance the application.
@@ -71,7 +503,7 @@ export const App = () => {
         },
       ]}
       dataProvider={{
-        getList: async ({ meta }) => {
+        getOne: async ({ meta }) => {
           console.log(meta.filter); // { isListed: false }
         },
       }}
@@ -87,196 +519,9 @@ export const App = () => {
 };
 ```
 
-## Provider Concept
+These are some but not all examples of how you can use the `meta` property.
 
-Providers are the building blocks of Refine, used to manage different aspects of your application, such as data fetching, routing, access control, and more.
-
-They are pluggable, which means you can use the **built-in providers** or **create your own**. This allows you to customize the behavior of your application to suit your needs.
-
-- **Data Provider**: Communication with the backend data source, handling data operations such as fetching, creating, updating, deleting records, caching, and invalidation.
-- **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
-- **Access Control Provider**: Handles authorization and access control. Used to hide/disable buttons and menu items, or to protect routes and components.
-- **Notification Provider**: Enables notification features like showing notification after successful mutations or errors.
-- **Authentication Provider**: Manages user authentication and authorization processes. Handles redirection, error cases.
-- **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
-- **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
-
-### Router Provider
-
-Router provider helps **refine** understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
-
-We have built-in router integrations for the following packages:
-
-- React Router V6
-- NextJS
-- Remix
-
-See the [Routing](/docs/guides-concepts/routing/) page for more information.
-
-### Data Provider
-
-The Data Provider is the bridge between your frontend and your backend data source. It is responsible for handling all data-related operations such as fetching, creating, updating, and deleting records.
-
-Each data operation in the Data Provider is typically associated with a specific resource. For example, when fetching data for a `products` resource, the Data Provider will know which endpoint to hit and how to handle the response.
-
-```tsx title=data-provider.ts
-import { DataProvider } from "@refinedev/core";
-
-const myDataProvider: DataProvider = {
-  getList: ({ resource }) => {
-    fetch(`https://example.com/api/v1/${resource}`);
-  },
-  // other methods...
-};
-```
-
-### Access Control Provider
-
-The Access Control Provider manages what users can access or perform within the application based on their permissions.
-
-It uses the resource definition to determine access rights. For instance, it can decide whether a user can edit or delete record for `products` resource based on the current user's information and resource definition.
-
-```tsx title=App.tsx
-import { AccessControlProvider, Refine } from "@refinedev/core";
-
-const myAccessControlProvider: AccessControlProvider = {
-  can: async ({ resource, action, user }) => {
-    if (user.role === "admin" && action === "delete") {
-      return { can: true };
-    }
-  },
-};
-
-export const App = () => {
-  return (
-    <Refine accessControlProvider={myAccessControlProvider} {/* ...*/}>
-      {/* ... */}
-    </Refine>
-  )
-}
-```
-
-You can wrap `CanAccess` component to wrap relevant parts of your application to control access.
-
-```tsx title=show.tsx
-import { CanAccess } from "@refinedev/core";
-
-export const ShowPage = () => {
-  return (
-    <>
-      Product Details Page
-      <CanAccess resource="products" action="delete">
-        // Only admins can see this.
-        <DeleteButton />
-      </CanAccess>
-    </>
-  );
-};
-```
-
-### Notification Provider
-
-**refine** can automatically show notifications for CRUD operations and errors. For examples after creating a record for `products` resource, or when an error on form submission.
-
-**refine** has out-of-the-box notification providers for popular UI libraries like `antd`, `material-ui`, `chakra-ui`, and `mantine`.
-
-### Authentication Provider
-
-The Authentication Provider manages user authentication and authorization processes. Handles redirection, error cases.
-
-You can use `Authenticated` component from `@refinedev/core` to protect your routes, components with authentication.
-
-```tsx title=auth-provider.ts
-import { AuthProvider } from "@refinedev/core'";
-
-export const authProvider: AuthProvider = () => {
-  login: async ({ email, password }) => {
-    const response = await fetch("https://example.com/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (response.status === 200) {
-      localStorage.setItem("token", response.token);
-
-      return { success: true, redirectTo: "/dashboard" };
-    } else {
-      return {
-        success: false,
-        error: { name: "Login Error", message: "Invalid credentials" },
-      };
-    }
-  };
-};
-```
-
-## Hooks
-
-refine adopts a hook-based architecture, a modern and powerful pattern in React development, which significantly enhances the development experience and application performance.
-
-### Data Hooks
-
-useList, useOne, useForm...
-
-### UI Hooks
-
-useTable, useModal, useDrawerForm etc..
-
-### Provider Hooks
-
-`useCan`, `useIsAuthenticated`, `useNotification`
-
-### Utility Hooks
-
-`useTranslate`, `useResource`, `useResourceDefinition`, `useMenu`,
-
-## UI Integrations
-
-While **refine** itself is headless, it offers UI Integrations for popular UI libraries for **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
-
-These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
-
-### Layout
-
-UI Integrations provides a `ThemedLayout` component, which renders the `sidebar menu`, `header`, and `content` area of your application.
-
-It automatically renders the sidebar menu based on the resource definitions, and the header based on the current user.
-
-Add sandbox example. 4 Tabs, 4 different UI libraries.
-
-#### CRUD Pages
-
-`List`, `Create`, `Edit`, `Show` components.
-
-These components provides layout view based on the resource information automatically like:
-
-- Header with title
-- Breadcrumb
-- Translated texts
-- CRUD Buttons for redirection.
-
-On top of that, **refine** adds some features to these layouts:
-
-- Translation: buttons, titles, columns will be translated to the current language of the user.
-- Access Control: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
-
-### Auth Pages
-
-Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset Password` integrated with `AuthProvider` automatically.
-
-### Buttons
-
-For example, `@refinedev/antd` package exports `CreateButton`, for redirecting the user to the create page of the resource.
-
-While the button itself is imported from `antd` package, **refine** adds some capabilities to it:
-
-- Routing: when the button is clicked, the user will be redirected to the create page of the resource.
-- Access Control: if current user isn't authorized, this button will be disabled or hidden automatically.
-- Translation: the button's text will be translated to the current language of the user.
-
-### Hooks
-
-Another example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `antd`'s `Table` component. So you don't need to manually map the props.
+See the [Refine Component](/docs/core/refine-component) page for more information.
 
 ## State Management
 
@@ -299,5 +544,9 @@ Key Aspects of State Management in refine:
 TBA.
 
 ### Dev Tools
+
+TBA.
+
+### Inferencer
 
 TBA.
