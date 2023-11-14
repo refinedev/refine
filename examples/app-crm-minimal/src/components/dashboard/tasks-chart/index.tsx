@@ -1,5 +1,4 @@
-import React, { useMemo } from "react";
-import dynamic from "next/dynamic";
+import React, { Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
 
@@ -7,12 +6,10 @@ import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 
-import { Text } from "@components";
-import { TaskStage } from "@interfaces";
+import { Text } from "@/components";
+import { TaskStage } from "@/interfaces";
 
-const Pie = dynamic(() => import("@ant-design/plots/es/components/pie"), {
-    ssr: false,
-});
+const Pie = React.lazy(() => import("@ant-design/plots/es/components/pie"));
 
 export const DashboardTasksChart: React.FC<{}> = () => {
     const { list } = useNavigation();
@@ -113,7 +110,9 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                     alignItems: "center",
                 }}
             >
-                <Pie {...config} />
+                <Suspense>
+                    <Pie {...config} />
+                </Suspense>
             </div>
             <div
                 style={{

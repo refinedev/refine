@@ -1,13 +1,10 @@
-import nookies from "nookies";
-
 type Error = {
     message: string;
     statusCode: string;
 };
 
 const customFetch = async (url: string, options: RequestInit) => {
-    const cookies = nookies.get();
-    const accessToken = cookies?.["access_token"];
+    const accessToken = localStorage.getItem("access_token");
     const headers = options.headers as Record<string, string>;
 
     return await fetch(url, {

@@ -1,26 +1,17 @@
 import { AuthBindings } from "@refinedev/core";
-import nookies from "nookies";
 import { API_URL, dataProvider } from "./data";
-import { User } from "@interfaces";
+import { User } from "@/interfaces";
+
+/**
+ * For demo purposes and to make it easier to test the app, you can use the following credentials:
+ */
+export const authCredentials = {
+    email: "michael.scott@dundermifflin.com",
+    password: "demodemo",
+};
 
 export const authProvider: AuthBindings = {
-    login: async ({ email, accessToken, refreshToken }) => {
-        if (accessToken && refreshToken) {
-            nookies.set(null, "access_token", accessToken, {
-                maxAge: 3 * 24 * 60 * 60, // 3 days
-                path: "/",
-            });
-            nookies.set(null, "refresh_token", refreshToken, {
-                maxAge: 7 * 24 * 60 * 60, // 7 days
-                path: "/",
-            });
-
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
-
+    login: async ({ email }) => {
         try {
             const { data } = await dataProvider.custom({
                 url: API_URL,
@@ -34,21 +25,13 @@ export const authProvider: AuthBindings = {
                       email: $email
                     }) {
                       accessToken,
-                      refreshToken
                     }
                   }
                 `,
                 },
             });
 
-            nookies.set(null, "access_token", data.login.accessToken, {
-                maxAge: 3 * 24 * 60 * 60, // 3 days
-                path: "/",
-            });
-            nookies.set(null, "refresh_token", data.login.refreshToken, {
-                maxAge: 7 * 24 * 60 * 60, // 7 days
-                path: "/",
-            });
+            localStorage.setItem("access_token", data.login.accessToken);
 
             return {
                 success: true,
@@ -68,48 +51,8 @@ export const authProvider: AuthBindings = {
             };
         }
     },
-    register: async ({ email, password }) => {
-        try {
-            await dataProvider.custom({
-                url: API_URL,
-                method: "post",
-                headers: {},
-                meta: {
-                    variables: { email, password },
-                    rawQuery: `
-                mutation register($email: String!, $password: String!) {
-                    register(registerInput: {
-                      email: $email
-                        password: $password
-                    }) {
-                        id
-                        email
-                    }
-                  }
-                `,
-                },
-            });
-            return {
-                success: true,
-                redirectTo: `/login?email=${email}`,
-            };
-        } catch (error: any) {
-            return {
-                success: false,
-                error: {
-                    message:
-                        "message" in error ? error.message : "Register failed",
-                    name:
-                        "name" in error
-                            ? error.name
-                            : "Invalid email or password",
-                },
-            };
-        }
-    },
     logout: async () => {
-        nookies.destroy(null, "access_token");
-        nookies.destroy(null, "refresh_token");
+        localStorage.removeItem("access_token");
 
         return {
             success: true,
@@ -126,16 +69,12 @@ export const authProvider: AuthBindings = {
 
         return { error };
     },
-    check: async (accessToken?: string) => {
+    check: async () => {
         try {
             await dataProvider.custom({
                 url: API_URL,
                 method: "post",
-                headers: accessToken
-                    ? {
-                          Authorization: `Bearer ${accessToken}`,
-                      }
-                    : {},
+                headers: {},
                 meta: {
                     rawQuery: `
                     query Me {
@@ -158,20 +97,8 @@ export const authProvider: AuthBindings = {
             };
         }
     },
-    forgotPassword: async () => {
-        return {
-            success: true,
-            redirectTo: "/update-password",
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
     getIdentity: async () => {
-        const accessToken = nookies.get().access_token;
+        const accessToken = localStorage.getItem("access_token");
 
         try {
             const { data } = await dataProvider.custom<{ me: User }>({
