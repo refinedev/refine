@@ -52,12 +52,7 @@ export const authProvider: AuthBindings = {
         }
     },
     logout: async () => {
-        // In this app, we are using <AutoLogin /> component to automatically login the user.
-        // <AutoLogin /> will check for this key perform the login.
-        // After logout, we are setting this key to "false" here to prevent <AutoLogin /> from automatically logging in the user.
-        localStorage.setItem("auto_login", "false");
         localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
 
         return {
             success: true,
