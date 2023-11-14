@@ -291,7 +291,7 @@ const siteConfig = {
             },
         },
         colorMode: {
-            respectPrefersColorScheme: true,
+            defaultMode: "dark",
         },
     },
     customFields: {

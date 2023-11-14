@@ -1,5 +1,15 @@
 # create-refine-app
 
+## 1.12.0
+
+### Minor Changes
+
+-   [#5250](https://github.com/refinedev/refine/pull/5250) [`fa74264284d`](https://github.com/refinedev/refine/commit/fa74264284d2d3e8bff51301a592068be70193e4) Thanks [@aliemir](https://github.com/aliemir)! - Added a small intro animation when `create-refine-app` starts.
+
+### Patch Changes
+
+-   [#5250](https://github.com/refinedev/refine/pull/5250) [`fa74264284d`](https://github.com/refinedev/refine/commit/fa74264284d2d3e8bff51301a592068be70193e4) Thanks [@aliemir](https://github.com/aliemir)! - Bumped `superplate-cli` version to latest
+
 ## 1.11.12
 
 ### Patch Changes
