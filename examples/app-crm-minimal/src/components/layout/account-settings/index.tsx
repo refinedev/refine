@@ -3,8 +3,8 @@ import { CloseOutlined } from "@ant-design/icons";
 import { SaveButton, useForm } from "@refinedev/antd";
 import { Button, Card, Drawer, Form, Input, Spin } from "antd";
 
-import { getNameInitials } from "@utilities";
-import { User, UserUpdateInput } from "@interfaces";
+import { getNameInitials } from "@/utilities";
+import { User, UserUpdateInput } from "@/interfaces";
 
 import { CustomAvatar } from "../../custom-avatar";
 import { Text } from "../../text";

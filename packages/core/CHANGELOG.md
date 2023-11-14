@@ -1,5 +1,19 @@
 # @refinedev/core
 
+## 4.45.0
+
+### Minor Changes
+
+-   [#5259](https://github.com/refinedev/refine/pull/5259) [`eac3df87ffb`](https://github.com/refinedev/refine/commit/eac3df87ffbf61c913a6c8ea584e1d8c61e8d82e) Thanks [@aliemir](https://github.com/aliemir)! - Added `<AutoSaveIndicator />` component and updated the `AutoSaveIndicatorProps` type to allow `elements` to be passed in.
+
+    `elements` prop is an object with `success`, `error`, `loading` and `idle` keys. Each key is a React element that will be rendered when the corresponding state is active.
+
+    By default every state will render a `span` with the translated text of the `autoSave.${state}` key.
+
+### Patch Changes
+
+-   [#5257](https://github.com/refinedev/refine/pull/5257) [`c35fdda7c61`](https://github.com/refinedev/refine/commit/c35fdda7c6176d885bdd9302b1cbf4651b4a3327) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: update GitHub support banner text
+
 ## 4.44.12
 
 ### Patch Changes

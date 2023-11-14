@@ -4,7 +4,6 @@ import graphqlDataProvider, {
 } from "@refinedev/nestjs-query";
 
 import { createClient } from "graphql-ws";
-import nookies from "nookies";
 
 import { fetchWrapper } from "./fetch-wrapper";
 
@@ -27,8 +26,7 @@ export const wsClient =
         ? createClient({
               url: WS_URL,
               connectionParams: () => {
-                  const cookies = nookies.get();
-                  const accessToken = cookies?.["access_token"];
+                  const accessToken = localStorage.getItem("access_token");
 
                   return {
                       headers: {

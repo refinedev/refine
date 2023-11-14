@@ -1,5 +1,13 @@
 # create-refine-app
 
+## 1.12.1
+
+### Patch Changes
+
+-   [#5254](https://github.com/refinedev/refine/pull/5254) [`f7e396bdd05`](https://github.com/refinedev/refine/commit/f7e396bdd05c003823bf97eab4c2c40f35f1ec9a) Thanks [@aliemir](https://github.com/aliemir)! - Bump `superplate-cli` to latest
+
+-   [#5254](https://github.com/refinedev/refine/pull/5254) [`f7e396bdd05`](https://github.com/refinedev/refine/commit/f7e396bdd05c003823bf97eab4c2c40f35f1ec9a) Thanks [@aliemir](https://github.com/aliemir)! - Updated greeting message to persist after wizard is open
+
 ## 1.12.0
 
 ### Minor Changes

@@ -1,20 +1,15 @@
 import React, { FC, PropsWithChildren, Suspense } from "react";
-import dynamic from "next/dynamic";
 
 import { useList } from "@refinedev/core";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
-import { Company, Contact, Deal } from "@interfaces";
+import { Company, Contact, Deal } from "@/interfaces";
 
-import { Text } from "@components";
+import { Text } from "@/components";
 
-import styles from "./index.module.css";
-
-const Area = dynamic(() => import("@ant-design/plots/es/components/area"), {
-    ssr: false,
-});
+const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
 
@@ -31,7 +26,6 @@ export const DashboardTotalCountCard: React.FC<{
     const { primaryColor, secondaryColor, icon, title } = variants[resource];
 
     const config: AreaConfig = {
-        className: styles.area,
         appendPadding: [1, 0, 0, 0],
         padding: 0,
         syncViewPadding: true,
@@ -103,6 +97,9 @@ export const DashboardTotalCountCard: React.FC<{
                     size="xxxl"
                     strong
                     style={{
+                        flex: 1,
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
                         textAlign: "start",
                         marginLeft: "48px",
                         fontVariantNumeric: "tabular-nums",
@@ -119,7 +116,14 @@ export const DashboardTotalCountCard: React.FC<{
                         data?.total
                     )}
                 </Text>
-                <Area {...config} />
+                <Suspense>
+                    <Area
+                        {...config}
+                        style={{
+                            width: "50%",
+                        }}
+                    />
+                </Suspense>
             </div>
         </Card>
     );
