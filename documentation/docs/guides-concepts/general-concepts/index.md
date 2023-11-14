@@ -27,10 +27,6 @@ export const App = () => {
           show: "/my-products/:id",
           edit: "/my-products/:id/edit",
           create: "/my-products/new",
-          meta: {
-            label: "Products",
-            icon: <ProductIcon />,
-          },
         },
       ]}
     >
@@ -42,11 +38,60 @@ export const App = () => {
 
 ## Meta Concept
 
-xxx
+`meta` is a special property that can be used to add additional information to a resource definition. This information then can be used by **providers** and **UI integrations** to enhance the application.
 
-## Providers
+For **UI Integrations**:
 
-Refine offers a pluggable system of providers, works in pair with **resource** definitions. These providers can be used to manage different aspects of your application:
+- Adding a label and icon to a resource definition to render the sidebar menu item.
+
+For **data provider** or **access control provider**:
+
+- pass a filter to your **data provider** to fetch only unlisted products
+- pass a role to your **access control provider** to allow only category managers to access the resource.
+
+```tsx title=App.tsx
+import { Refine } from "@refinedev/core";
+
+export const App = () => {
+  return (
+    <Refine
+      resources={[
+        {
+          name: "unlistedProducts",
+          list: "/unlisted-products",
+          meta: {
+            // for data provider
+            filter: { isListed: false },
+            // for access control provider
+            role: "category-manager",
+            // for UI integrations
+            label: "Unlisted Products",
+            icon: <ProductIcon />,
+          },
+        },
+      ]}
+      dataProvider={{
+        getList: async ({ meta }) => {
+          console.log(meta.filter); // { isListed: false }
+        },
+      }}
+      accessControlProvider={{
+        can: async ({ meta }) => {
+          console.log(meta.role); // "category-manager"
+        },
+      }}
+    >
+      {/* ... */}
+    </Refine>
+  );
+};
+```
+
+## Provider Concept
+
+Providers are the building blocks of Refine, used to manage different aspects of your application, such as data fetching, routing, access control, and more.
+
+They are pluggable, which means you can use the **built-in providers** or **create your own**. This allows you to customize the behavior of your application to suit your needs.
 
 - **Data Provider**: Communication with the backend data source, handling data operations such as fetching, creating, updating, deleting records, caching, and invalidation.
 - **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
@@ -91,8 +136,8 @@ The Access Control Provider manages what users can access or perform within the 
 
 It uses the resource definition to determine access rights. For instance, it can decide whether a user can edit or delete record for `products` resource based on the current user's information and resource definition.
 
-```tsx title=access-control-provider.ts
-import { AccessControlProvider } from "@refinedev/core";
+```tsx title=App.tsx
+import { AccessControlProvider, Refine } from "@refinedev/core";
 
 const myAccessControlProvider: AccessControlProvider = {
   can: async ({ resource, action, user }) => {
@@ -101,6 +146,14 @@ const myAccessControlProvider: AccessControlProvider = {
     }
   },
 };
+
+export const App = () => {
+  return (
+    <Refine accessControlProvider={myAccessControlProvider} {/* ...*/}>
+      {/* ... */}
+    </Refine>
+  )
+}
 ```
 
 You can wrap `CanAccess` component to wrap relevant parts of your application to control access.
