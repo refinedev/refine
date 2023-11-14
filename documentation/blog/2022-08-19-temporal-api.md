@@ -97,14 +97,6 @@ import { Temporal } from '@js-temporal/polyfill';
 
 Now, we are able to inspect the browser console when testing the following cases.
 
----
-
-
-<BannerRandom />
-
-
-
----
 ## Temporal API Data Types
 
 ### Temporal.Now

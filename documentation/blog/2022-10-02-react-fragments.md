@@ -111,12 +111,7 @@ function TableData () {
 }
 ```
 
----
 
-<BannerRandom />
-
-
----
 
 ## Using shortcut version
 Aside from using React Fragment, React also provides a shorthand notation `<></>` to wrap multiple elements together that works similarly to React Fragment but with a lower memory load. In a react application, the shorthand notation `<></>` is implemented as follows.

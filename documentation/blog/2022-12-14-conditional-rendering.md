@@ -44,14 +44,7 @@ React provides users with a much more functional approach to development, along 
 To begin, create a new React application on your [codesandbox](https://codesandbox.io/).
 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ## Using If-else

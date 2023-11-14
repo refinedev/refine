@@ -295,14 +295,7 @@ Here’s the result:
 
 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Material UI Autocomplete features
 

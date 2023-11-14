@@ -99,12 +99,7 @@ startTransition(() => {
 ```
 States updates tagged as non-urgent inside of `startTransition` are interrupted if an urgent update is made while the non-urgent state is still updating. This process continues until no new urgent updates are made.
 
----
 
-<BannerRandom />
-
-
----
 
 ## Use cases of Suspense
 As was discussed in the previous section, it is simple to mistake the React Suspense API for Transition and vice versa. Therefore, it's crucial to know when to use and when to forgot them.

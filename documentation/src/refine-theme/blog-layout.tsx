@@ -16,11 +16,14 @@ export const RefineBlogLayout = (props: any) => {
     const tracker = useScrollTracker();
 
     useEffect(() => {
-        if (shouldShowBanner) return;
         if (pathname === "/blog/" || pathname === "/blog") return;
 
-        if (tracker.scrollY > 30) {
+        if (tracker.scrollY > 20) {
             setShouldShowBanner(true);
+        }
+
+        if (tracker.scrollY < 20) {
+            setShouldShowBanner(false);
         }
     }, [tracker.scrollY]);
 

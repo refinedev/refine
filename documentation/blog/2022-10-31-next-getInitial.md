@@ -183,14 +183,7 @@ Note that caching doesn't work when your application is running in development m
 
 You can learn more about configuration options for the HTTP header field `Cache-Control` on [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control).
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## `getInitialProps` vs `getServerSideProps`
 

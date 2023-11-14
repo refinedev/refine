@@ -196,11 +196,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 2.  As a result, I can access the Friendica installation page from the host system(localhost) at port 8080.
 
----
 
-<BannerRandom />
-
----
 
 ## Advanced examples
 

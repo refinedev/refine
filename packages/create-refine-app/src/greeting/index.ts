@@ -13,8 +13,8 @@ const texts = [
 export const greeting = async () => {
     await cowrizz({
         text: texts[Math.floor(Math.random() * texts.length)],
-        startPause: 300,
-        endPause: 2000,
+        startPause: 500,
+        endPause: 300,
         interval: 40,
     });
 };

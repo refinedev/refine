@@ -198,11 +198,7 @@ function App() {
 
 We formatted the CSV file that came in plain text format, using Javascript [slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) and [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) methods, and created two separate array. Then we converted Header and Rows arrays to Array of Object format as Key, Value.
 
----
 
-<BannerRandom />
-
----
 
 ## Live Codesandbox Example
 

@@ -617,11 +617,7 @@ In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/ta
 
 We also use the [`useNavigation()`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
----
 
-<BannerRandom />
-
----
 
 #### Handling relationships
 
