@@ -6,7 +6,7 @@ In almost every user facing application, forms are a necessity. They are the pri
 
 ## Handling Data
 
-refine's `useForm` hook orchestrates [`useOne`](#), [`useUpdate`](#) and [`useCreate`](#) hooks internally to provide a single interface for form handling.
+`useForm` hook orchestrates Refine's [`useOne`](/core/hooks/data/use-one/index.md), [`useUpdate`](/core/hooks/data/use-update/index.md) and [`useCreate`](/core/hooks/data/use-create/index.md) hooks internally to provide a single interface for form handling.
 
 While editing or cloning a record, `useOne` will be used to fetch the record to provide values for the form. When creating a new record, `useCreate` will be used for the mutation. When updating a record, `useUpdate` will be used for the mutation.
 
@@ -14,14 +14,111 @@ This means that the `useForm` hook will handle all of the data fetching and muta
 
 ## Basic Usage
 
-refine's core has the `useForm` hook which is the foundation of all the other extensions and `useForm` implementations in the other helper libraries. While the usage of the `useForm` hooks may slightly differ between libraries, the core functionality is provided by the `@refinedev/core`'s `useForm` hook and is the same across all implementations.
+The usage of the `useForm` hooks may slightly differ between libraries, the core functionality is provided by the `@refinedev/core`'s `useForm` hook and is the same across all implementations. Refine's core has the `useForm` hook which is the foundation of all the other extensions and `useForm` implementations in the other helper libraries.
 
 To learn more about the usage and see `useForm` in action, check out the reference pages for each library:
 
--   [Using `@refinedev/core`'s `useForm`](#)
--   [Using `@refinedev/antd`'s `useForm`](#)
--   [Using `@refinedev/mantine`'s `useForm`](#)
--   [Using `@refinedev/react-hook-form`'s `useForm`](#)
+<Tabs>
+<TabItem value="core" label="Refine's Core">
+
+[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/core/use-form/index.md)
+
+```tsx title="edit.tsx"
+import { useForm } from "@refinedev/core";
+
+const EditPage = () => {
+    const { queryResult, formLoading, onFinish } = useForm<
+        IProduct,
+        HttpError,
+        FormValues
+    >({
+        resource: "products",
+        action: "edit",
+        id: 123,
+    });
+};
+```
+
+</TabItem>
+<TabItem value="hook-form" label="React Hook Form" default>
+
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/packages/react-hook-form/use-form/index.md)
+
+```tsx title="edit.tsx"
+import { useForm } from "@refinedev/react-hook-form";
+
+const EditPage = () => {
+    const {
+        refineCore: { onFinish, formLoading, queryResult },
+        register,
+        handleSubmit,
+        formState: { errors },
+        saveButtonProps,
+    } = useForm<IProduct, HttpError, FormValues>({
+        refineCoreProps: {
+            resource: "products",
+            action: "edit",
+            id: 123,
+        },
+    });
+};
+```
+
+</TabItem>
+<TabItem value="antd" label="Ant Design">
+
+[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/ui-integrations/ant-design/hooks/use-form/index.md)
+
+```tsx title="edit.tsx"
+import { useForm } from "@refinedev/antd";
+
+const EditPage = () => {
+    const { formProps, saveButtonProps, queryResult } = useForm<
+        IProduct,
+        HttpError,
+        FormValues
+    >({
+        resource: "products",
+        action: "edit",
+        id: 123,
+    });
+};
+```
+
+</TabItem>
+<TabItem value="mantine" label="Mantine">
+
+[Check out Mantine Form'ss `useForm` reference page to learn more about the usage and see it in action.](/ui-integrations/mantine/hooks/use-form/index.md)
+
+```tsx title="edit.tsx"
+import { useForm } from "@refinedev/react-hook-form";
+
+const EditPage = () => {
+    const {
+        refineCore: { onFinish, formLoading, queryResult },
+        register,
+        handleSubmit,
+        formState: { errors },
+        saveButtonProps,
+    } = useForm<IProduct, HttpError, FormValues>({
+        refineCoreProps: {
+            resource: "products",
+            action: "edit",
+            id: 123,
+        },
+        initialValues: {
+            name: "",
+            description: "",
+            category: {
+                id: "",
+            },
+        },
+    });
+};
+```
+
+</TabItem>
+</Tabs>
 
 ## Integration with Routers
 
@@ -29,7 +126,7 @@ To get the most out of refine's hooks and implementations, you'll also want to i
 
 To learn more about the routing, check out the [Routing](#) guide and the [General Concepts](#) guide to learn more about how it benefits the development experience.
 
-## Actions
+## Actions <RouterBadge />
 
 In `useForm`, you'll have 3 action modes to choose from:
 
@@ -236,18 +333,16 @@ useForm({
 
 ## Auto Save
 
-// TODO: Update this section when core has the `AutoSaveIndicator` component.
-
 In many forms, it is a good practice to save the form data automatically as the user types to avoid losing the data in case of an unexpected event. This is especially useful in long forms where the user may spend a lot of time filling the form. `useForm` is packed with this feature out-of-the-box.
 
 While `@refinedev/core`'s `useForm` packs this feature, the auto save is not triggered automatically. In the extensions of the `useForm` hook in the other libraries, the auto save is handled internally and is triggered automatically.
 
-### Using with `<AutoSaveIndicator />`
+### `<AutoSaveIndicator />`
 
-refine's UI integrations are shipped with an `<AutoSaveIndicator />` component that can be used to show the auto save status to the user. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
+refine's corea nd ui integrations are shipped with an `<AutoSaveIndicator />` component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
 
-```tsx
-import { AutoSaveIndicator } from "@refinedev/antd"; // or other UI packages
+```tsx title="edit.tsx"
+import { AutoSaveIndicator } from "@refinedev/core";
 
 const { autoSaveProps } = useForm({
     resource: "posts",
@@ -271,12 +366,140 @@ By default, all the form actions will redirect the user to the list page of the 
 
 Redirection feature enables implementations such as **Save and Continue**; where the user in a create form can save the record and continue editing it in the edit form by simply defining the `redirect` prop of the `useForm` hook.
 
-## Altering Data Before Submission
+## Modifying Data Before Submission
 
-In some cases, you might want to alter the data before submitting it to the backend. For example, you might want to add a `full_name` field to the form data of a user resource by combining the `first_name` and `last_name` fields. While the `useForm` from the `@refinedev/core` has the natural support for this, the `useForm` derivatives from the other libraries of refine has a different approach.
+In some cases, you might want to change the data before submitting it to the backend. For example, you might want to add a `full_name` field to the form data of a user resource by combining the `first_name` and `last_name` fields. While the `useForm` from the `@refinedev/core` has the natural support for this, the `useForm` derivatives from the other libraries of refine has a different approach.
 
-Each of these form implementations have a way to alter the data before submission with a slightly different approach. To learn more about how to alter the data before submission, check out the reference pages for each library:
+Each of these form implementations have a way to modify the data before submission with a slightly different approach. To learn more about how to modify the data before submission, check out the usage examples of each library:
 
--   [Using `useForm` of `@refinedev/antd`](/ui-integrations/ant-design/forms/index.md)
--   [Using `useForm` of `@refinedev/mantine`](/ui-integrations/mantine/forms/index.md)
--   [Using `useForm` of `@refinedev/react-hook-form`](/packages/react-hook-form/index.md)
+<Tabs>
+<TabItem value="react-hook-form" label="React Hook Form" default>
+
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/react-hook-form`](/packages/react-hook-form/use-form/index.md#modifying-data-before-submission) reference page.
+
+```tsx title="edit.tsx"
+import { useForm } from "@refinedev/react-hook-form";
+import { FieldValues } from "react-hook-form";
+
+const EditPage = () => {
+    const {
+        refineCore: { onFinish },
+        register,
+        handleSubmit,
+    } = useForm();
+
+    // highlight-start
+    const onFinishHandler = (data: FieldValues) => {
+        onFinish({
+            fullName: `${data.name} ${data.surname}`,
+        });
+    };
+    // highlight-end
+
+    return (
+        // highlight-next-line
+        <form onSubmit={handleSubmit(onFinishHandler)}>
+            <label>Name: </label>
+            <input {...register("name")} />
+            <br />
+
+            <label>Surname: </label>
+            <input {...register("surname")} />
+            <br />
+
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
+```
+
+</TabItem>
+<TabItem value="antd" label="Ant Design">
+
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/antd`](/ui-integrations/ant-design/hooks/use-form/index.md#modifying-data-before-submission) reference page.
+
+```tsx title="edit.tsx"
+import { useForm, Create } from "@refinedev/antd";
+import { Form, Input } from "antd";
+
+const EditPage = () => {
+    const { formProps, saveButtonProps, onFinish } = useForm();
+
+    // highlight-start
+    const handleOnFinish = (values) => {
+        onFinish({
+            fullName: `${values.name} ${values.surname}`,
+        });
+    };
+    // highlight-end
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+                <Form.Item label="Name" name="name">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Surname" name="surname">
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+```
+
+</TabItem>
+<TabItem value="mantine" label="Mantine">
+
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/mantine`](/ui-integrations/mantine/hooks/use-form/index.md#modifying-data-before-submission) reference page.
+
+```tsx title="edit.tsx"
+import { useForm, Create } from "@refinedev/mantine";
+import { TextInput } from "@mantine/core";
+
+const CreatePage = () => {
+    const { saveButtonProps, getInputProps } = useForm({
+        initialValues: {
+            name: "",
+            surname: "",
+        },
+        // highlight-start
+        transformValues: (values) => ({
+            fullName: `${values.name} ${values.surname}`,
+        }),
+        // highlight-end
+    });
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <form>
+                <TextInput
+                    mt={8}
+                    label="Name"
+                    placeholder="Name"
+                    {...getInputProps("name")}
+                />
+                <TextInput
+                    mt={8}
+                    label="Surname"
+                    placeholder="Surname"
+                    {...getInputProps("surname")}
+                />
+            </form>
+        </Create>
+    );
+};
+```
+
+</TabItem>
+</Tabs>
+
+## Save and Continue
+
+In many cases, you may want to redirect the user to the edit page of the record after creating it. This is especially useful in cases where the user needs to fill a long form and you don't want to lose the data in case of an unexpected event.
+
+In the example below, we'll create multiple options for the user to choose from after creating a record. The user will be able to choose between redirecting to the list page, edit page or staying in the create page in order to continue creating records.
+
+import SaveAndContinue from "./save-and-continue";
+
+<SaveAndContinue />
