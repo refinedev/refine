@@ -11,7 +11,7 @@ export const GitHubBanner = () => {
     }, []);
 
 
-    const texts = ["⭐️ Be a part of our journey. Star Refine on GitHub! ⭐️", "⭐️ Join our community. Star Refine on GitHub! ⭐️", "⭐️ Let's elevate Refine together. Star us on GitHub! ⭐️", "⭐️ Enhance Refine's reach. Give us a star on GitHub! ⭐️"];
+    const texts = ["Be a part of our journey. Star Refine on GitHub!", "Join our community. Star Refine on GitHub!", "Let's elevate Refine together. Star us on GitHub!", "Enhance Refine's reach. Give us a star on GitHub!"]
 
     return (
         <div
@@ -50,6 +50,17 @@ export const GitHubBanner = () => {
                     }}
                 >
                     <span
+                        className="wizard"
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        ⭐️
+                    </span>
+                    <span
                         className="text"
                         style={{
                             padding: "4px 0",
@@ -59,6 +70,17 @@ export const GitHubBanner = () => {
                         }}
                     >
                         {texts[Math.floor(Math.random() * texts.length)]}
+                    </span>
+                    <span
+                        className="wizard"
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        ⭐️
                     </span>
                 </div>
             </a>
