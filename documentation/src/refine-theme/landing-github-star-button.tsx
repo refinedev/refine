@@ -13,17 +13,18 @@ export const LandingGithubStarButton = () => {
             target="_blank"
             rel="noreferrer"
             className={clsx(
-                "text-base",
-                "text-gray-0",
-                "flex gap-2.5 items-center",
+                "flex gap-2 items-center",
+                "font-normal",
+                "text-sm leading-6",
+                "text-gray-500 dark:text-gray-400",
+                "hover:text-gray-400 dark:hover:text-gray-300",
                 "hover:no-underline",
-                "hover:text-gray-0",
                 "transition-colors",
                 "duration-200",
                 "ease-in-out",
             )}
         >
-            <GithubIcon className={clsx("w-4 h-4")} />
+            <GithubIcon className={clsx("w-5 h-5")} />
             <div className={clsx("flex items-center", "w-10 h-6")}>
                 {loading ? (
                     <Spinner
@@ -33,9 +34,7 @@ export const LandingGithubStarButton = () => {
                         }}
                     />
                 ) : (
-                    <span className={clsx("tabular-nums")}>
-                        {githubStarCountText}
-                    </span>
+                    <span>{githubStarCountText}</span>
                 )}
             </div>
         </a>

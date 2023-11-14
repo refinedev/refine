@@ -41,11 +41,7 @@ You can override the entrypoint instruction when initiating the container using 
 
 
 
----
 
-<BannerRandom />
-
----
  
 ## Docker entrypoint example commands
 The following example shows an entrypoint instruction that launches the benchmarking tool to evaluate the Google website. Note that the website URL of "Google.com" is hardcoded inside the dockerfile. We will also show an example where the URL will be passed from the ```Docker run``` command as an argument. 

@@ -25,15 +25,14 @@ export const RefineLogo = ({ title, className }: Props) => {
                 <RefineLogoIcon
                     className={clsx(
                         "text-gray-900 dark:text-gray-0",
-                        "w-[58px] h-[16px] sm:w-[88px] sm:h-[24px]",
+                        "w-[64px] h-[20px] sm:w-[88px] sm:h-[24px]",
                     )}
                 />
                 {title && (
                     <span
                         className={clsx(
                             "text-gray-500 dark:text-gray-0",
-                            "text-xs sm:text-base leading-none font-normal",
-                            "mt-1.5",
+                            "mt-px sm:mt-0 text-[11px] sm:text-base leading-none font-normal",
                         )}
                     >
                         Documentation

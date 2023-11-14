@@ -96,11 +96,7 @@ docker run --network=host -d nginx
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 
 ## Overlay Networking 

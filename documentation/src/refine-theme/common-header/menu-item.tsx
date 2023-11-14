@@ -6,25 +6,20 @@ import { NavbarPopoverItemType } from "./constants";
 
 type MenuItemProps = {
     item: NavbarPopoverItemType["items"][0];
-    isPermanentLight?: boolean;
 };
 
-export const MenuItem: React.FC<MenuItemProps> = ({
-    item,
-    isPermanentLight,
-}) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
     const Icon = item.icon;
 
     return (
         <Link to={item.link} className="no-underline">
             <div
                 className={clsx(
-                    "flex items-center",
+                    "flex items-start",
                     "p-4",
                     "transition duration-150 ease-in-out",
                     "rounded-lg",
-                    "hover:bg-gray-50 dark:hover:bg-gray-700",
-                    isPermanentLight && "hover:!bg-gray-50",
+                    "hover:bg-gray-50 dark:hover:bg-gray-800",
                 )}
             >
                 <div className="shrink-0">
@@ -35,7 +30,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                         className={clsx(
                             "text-gray-900 dark:text-white",
                             "font-semibold",
-                            isPermanentLight && "!text-gray-900",
                         )}
                     >
                         {item.label}
@@ -44,7 +38,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                         className={clsx(
                             "text-gray-500 dark:text-gray-400",
                             "text-xs",
-                            isPermanentLight && "!text-gray-500",
                         )}
                     >
                         {item.description}

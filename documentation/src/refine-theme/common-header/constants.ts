@@ -13,6 +13,7 @@ import {
     AboutUsIcon,
     StoreIcon,
     MeetIcon,
+    BlogIcon,
 } from "../icons/popover";
 
 export type NavbarPopoverItemType = {
@@ -47,16 +48,22 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: DocumentsIcon,
             },
             {
-                label: "Integrations",
-                description: "Discover the refine ecosystem.",
-                link: "/integrations",
-                icon: IntegrationsIcon,
-            },
-            {
                 label: "Tutorial",
-                description: "Create your first refine application.",
+                description: "Create your first Refine application.",
                 link: "/docs/tutorial/introduction/index/",
                 icon: TutorialIcon,
+            },
+            {
+                label: "Awesome Refine",
+                description: "Repository of awesome things.",
+                link: "https://github.com/refinedev/awesome-refine",
+                icon: AwesomeIcon,
+            },
+            {
+                label: "Integrations",
+                description: "Discover the Refine ecosystem.",
+                link: "/integrations",
+                icon: IntegrationsIcon,
             },
             {
                 label: "Examples",
@@ -65,17 +72,12 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: ExamplesIcon,
             },
             {
-                label: "Awesome refine",
-                description: "Repository of awesome things.",
-                link: "https://github.com/refinedev/awesome-refine",
-                icon: AwesomeIcon,
+                label: "Blog",
+                description: "Articles about web development.",
+                link: "/blog",
+                icon: BlogIcon,
             },
         ],
-    },
-    {
-        isPopover: false,
-        label: "Pricing",
-        href: "/pricing",
     },
     // {
     //     isPopover: false,
@@ -118,7 +120,7 @@ export const MENU_ITEMS: MenuItemType[] = [
         label: "Company",
         items: [
             {
-                label: "About refine",
+                label: "About Refine",
                 description: "Team & company information.",
                 link: "/about",
                 icon: AboutUsIcon,
@@ -130,7 +132,7 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: StoreIcon,
             },
             {
-                label: "Meet refine",
+                label: "Meet Refine",
                 description: "Call us for any questions",
                 link: "https://refinedev.typeform.com/to/Z9wS06kE",
                 icon: MeetIcon,
@@ -139,8 +141,8 @@ export const MENU_ITEMS: MenuItemType[] = [
     },
     {
         isPopover: false,
-        label: "Blog",
-        href: "/blog",
+        label: "Pricing",
+        href: "/pricing",
     },
     /*    {
         isPopover: false,

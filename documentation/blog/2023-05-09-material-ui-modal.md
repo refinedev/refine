@@ -97,11 +97,7 @@ The following is a list of the various props that you can use with the Material 
 `disableBackdropClick`: This prop disables the backdrop click, which is the click on the Modal's outside to close it. It only accepts Boolean values
 E.t.c.
 
----
 
-<BannerRandom />
-
----
 
 ## Customizing your Material UI Modal
 Customizing your Material UI Modal is a great way to make your website more user-friendly and visually appealing. With Material UI Modal, you can customize the look and feel of your website with a few simple steps. You can change the size, color, and other elements of the modal to match the overall design of your website. You can also add custom animations and transitions to the modal, making it more interactive and enjoyable for your users. With Material UI Modal, you can create an engaging and interactive experience for your website visitors. 

@@ -80,7 +80,7 @@ export const ChangingTextElement = React.memo(
         }, [status]);
 
         return (
-            <span className={clsx("will-change-contents", "group-", className)}>
+            <span className={clsx("will-change-contents", className)}>
                 <span className={clsx("will-change-contents", prevClassName)}>
                     {next
                         .split("")

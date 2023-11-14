@@ -14,10 +14,10 @@ type Props = {
 };
 
 export const BannerExamples: FC<Props> = ({
-    title = "Open-source Retool alternative for enterprise.",
-    description = "Built with flexibility in mind, for your internal tools, admin panels, dashboards, and B2B apps.",
+    title = "Open-source Retool alternative for enterprise",
+    description = "Build React-based internal tools, dashboards & B2B apps with unmatched flexibilty",
     button = {
-        text: "See real use-case examples",
+        text: "Discover Refine",
         href: "https://s.refine.dev/blog-retool?ref=banner-retool-alternative",
         onClick: undefined,
     },

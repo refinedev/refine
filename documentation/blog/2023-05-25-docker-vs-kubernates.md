@@ -90,11 +90,7 @@ Using Docker Containers, developers don’t need to install any service directly
 
 The process in the above use case will be simplified using docker containers. Because of docker containers, the development and operations teams use one packaged container containing all configurations and dependencies encapsulated in one environment. The operations team doesn’t need to configure or install anything directly on the server. The only thing that the operations team needs to do is run a single docker command that pulls the container that the development team has stored in the container repository and then runs it. This way, the docker containers make the traditional deployment process simplified.
 
----
 
-<BannerRandom />
-
----
 
 ## What is Kubernetes?
 

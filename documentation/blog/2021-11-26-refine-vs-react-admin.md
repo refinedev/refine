@@ -639,13 +639,6 @@ If you want to get information about the Enterprise, refine ready to help you fo
 
 refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
 
----
-
-<BannerRandom />
-
-
----
-
 ## Conclusion
 
 With the pricing, customization and flexibility that **refine** offers you, you will be able to meet all your business demands. In addition, you can easily develop both B2B and B2C applications using a single framework with the support of SSR - Next.js.

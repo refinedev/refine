@@ -74,11 +74,7 @@ console.log(mnemonic.substring(29)); // "and, zebras, in, large, cages, make, su
 console.log(mnemonic.substring(72)); // "padlocked."
 ```
 
----
 
-<BannerRandom />
-
----
 
 ### JavaScript `String.prototype.substring()` - Extract a Substring Between Two Points
 

@@ -126,11 +126,7 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 
 
 
----
 
-<BannerRandom />
-
----
 
 ## CRUD operations
 

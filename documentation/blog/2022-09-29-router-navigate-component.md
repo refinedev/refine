@@ -89,14 +89,7 @@ function App() {
 }
 ```
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## How to use the  `Navigate` component
 

@@ -351,14 +351,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ```
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Responsive Navbar with Bootstrap
 I've already walked you through [setting up refine app](#refine-setup). Now, we'll create navbar inside `Layout.tsx` and pass it as a prop to `<Refine />` component.

@@ -17,6 +17,8 @@ export const TopAnnouncement = () => {
                 className={clsx(
                     "hidden lg:flex",
                     "w-full h-full",
+                    "max-w-screen",
+                    "overflow-hidden",
                     "border-b border-solid border-[#47ebeb26]",
                     "top-announcement-mask",
                 )}
