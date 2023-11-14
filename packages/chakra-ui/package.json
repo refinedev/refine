@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/chakra-ui",
-  "version": "2.26.16",
+  "version": "2.26.17",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "sideEffects": false,
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@refinedev/cli": "^2.16.1",
     "@refinedev/ui-tests": "^1.13.2",
-    "@refinedev/core": "^4.42.4",
+    "@refinedev/core": "^4.45.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

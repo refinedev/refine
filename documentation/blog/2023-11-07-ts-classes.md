@@ -197,11 +197,7 @@ As it happens in JavaScript, static fields in TypeScript represent class propert
 'public' modifier must precede 'static' modifier.(1029)
 ```
 
----
 
-<BannerRandom />
-
----
 
 
 **TypeScript Classes - `readonly` Fields**

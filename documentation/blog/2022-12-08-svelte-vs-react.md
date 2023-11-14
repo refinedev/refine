@@ -24,14 +24,7 @@ React was designed with performance in mind. It is designed to be declarative an
 
 React has become one of the most popular JavaScript libraries for building user interfaces. It is used by some of the world’s largest companies, such as Facebook, Netflix, and Airbnb. It is also used by many smaller companies, such as startups and independent developers. React’s popularity is due to its powerful features and flexibility, which allow developers to create highly interactive and responsive UIs.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## What is Svelte?
 Svelte is a modern JavaScript framework that was created in 2016 by Rich Harris. It is a component-based JavaScript framework that is used to create user interfaces. Unlike other frameworks, Svelte takes a different approach to building user interfaces. Instead of running in the browser, Svelte runs at build time, generating highly optimized vanilla JavaScript that updates the DOM. This approach means that Svelte apps are fast and use less code than traditional frameworks.

@@ -181,11 +181,7 @@ In the code above, the `useLayoutEffect` hook is used to add smooth scrolling fu
 The `useLayoutEffect` hook will perform the initial scroll to the top when the component is mounted. A clean-up function is added to remove the event listener when the component is unmounted.
 
 
----
 
-<BannerRandom />
-
----
 
 
 

@@ -94,12 +94,7 @@ Neumorphism's top accessibility rule is to comply with the [Web Content Accessib
 
 Another issue is with clickable items; even though you're aiming for minimalism, don't abuse the flat design idea. When users interact with clickable objects like buttons and links, they need to change their appearance and should be obvious.
 
----
 
-<BannerRandom />
-
-
----
 
 ## Neumorphism in CSS
 Now that you know how Neumorphism affects UI/UX let's look at how you as a developer might use it in actual projects.

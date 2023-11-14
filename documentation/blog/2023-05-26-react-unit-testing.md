@@ -268,11 +268,7 @@ test("increments count on button click", () => {
 
 Here, we rendered the `Counter` component passing a value of 9 via its `count` props. Then, we got hold of the `p` element where the props will be rendered. Then, we expect it to be the value 9.
 
----
 
-<BannerRandom />
-
----
 
 ## Mocking function calls
 

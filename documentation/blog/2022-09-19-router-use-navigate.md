@@ -95,14 +95,7 @@ function App() {
 
 That is just about everything you need to do to start using React router version 6.
 
----
 
-
-<BannerRandom />
-
-
-
----
 ## How to use the `useNavigate` hook
 
 As mentioned above, the **`useNavigate`** hook became part of React router in version 6. It is useful when navigating programmatically in your React project. The **`useNavigate`** hook returns an imperative method that you can use for changing location.

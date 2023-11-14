@@ -611,11 +611,7 @@ If you save your progress and go back to the browser, you should see a nicely re
 
 That’s it! We’ve successfully built a storefront using refine and Next.js SSR. Next, we’ll demonstrate how to generate a PWA manifest for our app, and how to turn it into a PWA.
 
----
 
-<BannerRandom />
-
----
 
 ## Generating PWA manifest
 

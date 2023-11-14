@@ -117,11 +117,7 @@ You can specify the networks that link the services and enable communication bet
 The volume key mapping is utilized like that of docker volume create. Volumes can be referred to inside the services section in their configuration keys. Additionally, external volumes that were created by using the docker volume create command, or another compose file can also be declared.
 
 
----
 
-<BannerRandom />
-
----
 
 ##  Step-by-step guide on writing a basic Docker Compose file 
 

@@ -145,11 +145,7 @@ In the last step, we need to retrieve a URL through which we can access the serv
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 ## Kubectl Port Forward in Action
 ### Detailed steps on how to use kubectl port-forward

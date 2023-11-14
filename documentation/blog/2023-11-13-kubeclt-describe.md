@@ -102,11 +102,7 @@ This part consists of different key-value pairs, which are used to identify and 
 <br/>
 
 
----
 
-<BannerRandom />
-
----
 
 ## Limitations and Alternatives
 

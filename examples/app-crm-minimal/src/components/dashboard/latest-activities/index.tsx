@@ -3,13 +3,11 @@ import React from "react";
 import { useList } from "@refinedev/core";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
-import { Card, Skeleton as AntdSkeleton } from "antd";
+import { Card, Skeleton as AntdSkeleton, List, Space } from "antd";
 import dayjs from "dayjs";
 
-import { CustomAvatar, Text } from "@components";
-import { Audit, Deal } from "@interfaces";
-
-import styles from "./index.module.css";
+import { CustomAvatar, Text } from "@/components";
+import { Audit, Deal } from "@/interfaces";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
@@ -105,92 +103,102 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                 </div>
             }
         >
-            {isLoading &&
-                Array.from({ length: limit }).map((_, index) => (
-                    <Skeleton key={index} />
-                ))}
-            {!isLoading &&
-                audit?.data.map(({ id, user, createdAt, action, targetId }) => {
-                    const deal =
-                        deals?.data.find((task) => task.id === `${targetId}`) ||
-                        undefined;
-
-                    return (
-                        <div key={id} className={styles.item}>
-                            <div className={styles.avatar}>
-                                <CustomAvatar
-                                    shape="square"
-                                    size={48}
-                                    src={deal?.company.avatarUrl}
-                                    name={deal?.company.name}
+            {isLoading ? (
+                <List
+                    itemLayout="horizontal"
+                    dataSource={Array.from({ length: limit }).map(
+                        (_, index) => ({ id: index }),
+                    )}
+                    renderItem={(_item, index) => {
+                        return (
+                            <List.Item key={index}>
+                                <List.Item.Meta
+                                    avatar={
+                                        <AntdSkeleton.Avatar
+                                            active
+                                            size={48}
+                                            shape="square"
+                                            style={{
+                                                borderRadius: "4px",
+                                            }}
+                                        />
+                                    }
+                                    title={
+                                        <AntdSkeleton.Button
+                                            active
+                                            style={{
+                                                height: "16px",
+                                            }}
+                                        />
+                                    }
+                                    description={
+                                        <AntdSkeleton.Button
+                                            active
+                                            style={{
+                                                width: "300px",
+                                                height: "16px",
+                                            }}
+                                        />
+                                    }
                                 />
-                            </div>
-                            <div className={styles.action}>
-                                <Text type="secondary" size="xs">
-                                    {dayjs(createdAt).format(
+                            </List.Item>
+                        );
+                    }}
+                />
+            ) : (
+                <List
+                    itemLayout="horizontal"
+                    dataSource={audit?.data || []}
+                    renderItem={(item) => {
+                        const deal =
+                            deals?.data.find(
+                                (task) => task.id === `${item.targetId}`,
+                            ) || undefined;
+
+                        return (
+                            <List.Item>
+                                <List.Item.Meta
+                                    avatar={
+                                        <CustomAvatar
+                                            shape="square"
+                                            size={48}
+                                            src={deal?.company.avatarUrl}
+                                            name={deal?.company.name}
+                                        />
+                                    }
+                                    title={dayjs(deal?.createdAt).format(
                                         "MMM DD, YYYY - HH:mm",
                                     )}
-                                </Text>
-
-                                <Text className={styles.detail}>
-                                    <Text className={styles.name} strong>
-                                        {user?.name}
-                                    </Text>
-                                    <Text>
-                                        {action === "CREATE"
-                                            ? "created"
-                                            : "moved"}
-                                    </Text>
-                                    <Text strong>{deal?.title}</Text>
-                                    <Text>deal</Text>
-                                    <Text>
-                                        {action === "CREATE" ? "in" : "to"}
-                                    </Text>
-                                    <Text strong>
-                                        {deal?.stage?.title || "Unassigned"}.
-                                    </Text>
-                                </Text>
-                            </div>
-                        </div>
-                    );
-                })}
+                                    description={
+                                        <Space size={4}>
+                                            <Text strong>
+                                                {item.user?.name}
+                                            </Text>
+                                            <Text>
+                                                {item.action === "CREATE"
+                                                    ? "created"
+                                                    : "moved"}
+                                            </Text>
+                                            <Text strong>{deal?.title}</Text>
+                                            <Text>deal</Text>
+                                            <Text>
+                                                {item.action === "CREATE"
+                                                    ? "in"
+                                                    : "to"}
+                                            </Text>
+                                            <Text strong>
+                                                {deal?.stage?.title ||
+                                                    "Unassigned"}
+                                                .
+                                            </Text>
+                                        </Space>
+                                    }
+                                />
+                            </List.Item>
+                        );
+                    }}
+                />
+            )}
         </Card>
-    );
-};
-
-const Skeleton = () => {
-    return (
-        <div className={styles.item}>
-            <AntdSkeleton.Avatar
-                active
-                size={48}
-                shape="square"
-                style={{
-                    borderRadius: "4px",
-                    marginRight: "16px",
-                }}
-            />
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
-            >
-                <AntdSkeleton.Button
-                    active
-                    style={{
-                        height: "16px",
-                    }}
-                />
-                <AntdSkeleton.Button
-                    active
-                    style={{
-                        width: "300px",
-                        height: "16px",
-                    }}
-                />
-            </div>
-        </div>
     );
 };
