@@ -50,7 +50,6 @@ export const GitHubBanner = () => {
                     }}
                 >
                     <span
-                        className="wizard"
                         style={{
                             display: "flex",
                             flexDirection: "row",
@@ -72,7 +71,6 @@ export const GitHubBanner = () => {
                         {texts[Math.floor(Math.random() * texts.length)]}
                     </span>
                     <span
-                        className="wizard"
                         style={{
                             display: "flex",
                             flexDirection: "row",
