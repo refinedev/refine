@@ -256,11 +256,7 @@ close?.("notification-key");
 
 
 
----
 
-<BannerRandom />
-
----
 
 
 ## Create a notification provider with react-toastify

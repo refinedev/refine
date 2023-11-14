@@ -50,11 +50,7 @@ We are going to break this article into two sections first, the text animation, 
 :::
   
 
----
 
-<BannerRandom />
-
----
 
 
 ## Getting started with text animation

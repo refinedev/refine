@@ -148,14 +148,7 @@ We already memoized `<UserPostsList />` with `React.memo()`. We don't see any re
  Does `deletePost()` change ?
 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Referential Integrity
 Well, `deletePost()` changes, and it changes due to breaking of **referential integrity**. And this change triggers a re-render in `<UserPostsList />` which we don't expect to see.

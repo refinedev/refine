@@ -252,11 +252,7 @@ export default App;
 ```
 From the code above, you can see that we used the props provided by the React Slick APIs, which we discussed earlier in this article. And we set the props to their respective values, which we used to customize our carousel. You can play around with it by using any values of your choice.
 
----
 
-<BannerRandom />
-
----
 
 ### Adding Style to our Carousel Component
 Let’s style our carousel component in our **index.css** file with the following:

@@ -132,15 +132,6 @@ export default function SizeCheckboxes() {
 <br/>
 
 
----
-
-<BannerRandom />
-
-
-
----
-
-
 ### Controlling the Checkbox Color
 You can customise the color of your Material UI Checkbox with the `color` prop like this: 
 

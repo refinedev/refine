@@ -119,11 +119,7 @@ enum BillingSchedule {
 
 Here, `BillingSchedule` has the first member initialized to a number, and the subsequent ones are uninitialized but TypeScript's enum defaults auto-increment them by `1`. So, all members here are numerical and ` BillingSchedule` is a numerical enum. We discuss this more in the next section on enum member initialization.
 
----
 
-<BannerRandom />
-
----
 
 
 ## Enum Member Initialization in TypeScript

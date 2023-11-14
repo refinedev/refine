@@ -52,11 +52,7 @@ Here is a non-exhaustive list of things you should consider before serving your 
 
 Once you're done optimizing your images manually, you can now proceed to use the NextJS Image component for maximum image optimization benefits. 
 
----
 
-<BannerRandom />
-
----
 ## The NextJS image component
 
 The [`<Image />`](https://nextjs.org/docs/api-reference/next/image) component is a batteries-included modern solution for serving images in NextJS applications. It's similar to the native HTML `<img/>` element but has a few differences.
@@ -116,12 +112,7 @@ const Profile = () => {
 You **should** always add the `width` and `height` props in the image component when using remote images because NextJS cannot determine the images dimension during the build process for proper page rendering to prevent layout shifts.
 :::
 
----
 
-<BannerRandom />
-
-
----
 
 ## The image component properties
 

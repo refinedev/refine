@@ -107,14 +107,7 @@ There are only two optional arguments for this command:
 
 You can also use the `docker cp` command to copy files between two containers. Just use the container name or ID in the source and destination paths. 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ## Copy through Dockerfile

@@ -136,11 +136,7 @@ The key you provide ('postsData') is used as the identifier for this cache. If `
 
 When you run this on your browser you will get the list of post titles displayed.
 
----
 
-<BannerRandom />
-
----
 
 
 ## Mutating Data

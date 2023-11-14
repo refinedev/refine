@@ -159,11 +159,7 @@ Here, `@` invokes the `decoratorName` function on the `itemToBeDecorated` subjec
 Let's explicate the idea by focusing on the `@frozen` decorator call which is a class decorator.
 
 
----
 
-<BannerRandom />
-
----
 
 
 ## Class Decoration in TypeScript

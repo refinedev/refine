@@ -460,11 +460,7 @@ In the code above, we created routes for login, register using the the `AuthPage
 In the previous code, we added the `<Authenticated/>` component to our login and register routes but did not include a fallback because the fallback for the `<Authenticated/>` component is to be redirected to the dashboard page (an authenticated user should be redirected to the dashboard page). We are still in the process of building the dashboard page and we will go in depth into it in the next section.
 
 
----
 
-<BannerRandom />
-
----
 
 ## Creating The Dashboard Page
 

@@ -328,11 +328,7 @@ The `useTable` hook returns several methods and properties that you can use to r
 The above example retrieves the data and displays it in a simple table. However, a typical table will need additional features such as pagination, sorting, and filtering. Let us explore how to add them in the sub-sections below.
 
 
----
 
-<BannerRandom />
-
----
 
 ### Pagination
 

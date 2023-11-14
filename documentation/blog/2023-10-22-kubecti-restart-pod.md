@@ -62,11 +62,7 @@ The unknown pod status typically denotes an issue with the Pod's connection to t
 
 **Diagram Reference:** https://millionvisit.blogspot.com/2021/03/kubernetes-for-developers-9-Kubernetes-Pod-Lifecycle.html
 
----
 
-<BannerRandom />
-
----
 
 ## Methods to Restart a Pod
 ### Using kubectl delete pod method

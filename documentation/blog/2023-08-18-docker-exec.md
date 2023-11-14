@@ -174,11 +174,7 @@ docker exec test-container whomami
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 ## Running a Background Process in a Docker Container
 

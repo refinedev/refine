@@ -142,11 +142,7 @@ Here’s the result:
 
 
 
----
 
-<BannerRandom />
-
----
 
 ## How to use Material UI Button Component in your React project
 

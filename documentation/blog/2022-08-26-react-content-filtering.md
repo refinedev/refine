@@ -275,11 +275,7 @@ To style the component, we will add the following code to the `src/components/se
 
 To style the search bar, we made it use all the available width of the parent wrapper, added margin and padding, removed the default border, made the search box rounded, and defined a specific font size.
 
----
 
-<BannerRandom />
-
----
 
 ### Content card
 

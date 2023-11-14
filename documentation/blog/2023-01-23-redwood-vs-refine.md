@@ -306,12 +306,7 @@ To test it out, run [http://localhost:8910/test](http://localhost:8910/test) in 
 
 <br/>
 
----
 
-<BannerRandom />
-
-
----
 
 ## Data sources
 

@@ -82,11 +82,7 @@ We have another configuration with the current-context set to '**docker-desktop*
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 
 

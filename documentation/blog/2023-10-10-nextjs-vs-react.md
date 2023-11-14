@@ -179,11 +179,7 @@ Next.js also introduces the `getStaticProps` function, allowing developers to fe
 The terminal provides clear logs showing which pages are being statically generated. With `**next export**`, developers can generate a fully static site suitable for hosting on static platforms.
  
 
----
 
-<BannerRandom />
-
----
 
 ## Routing
 

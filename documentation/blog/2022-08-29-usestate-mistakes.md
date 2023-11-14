@@ -120,12 +120,7 @@ function App() {
 export default App;
 ```
 
----
 
-<BannerRandom />
-
-
----
 
 ## Not Using Optional Chaining
 Sometimes just initializing the useState with the expected data type is often not enough to prevent the unexpected blank page error. This is especially true when trying to access the property of a deeply nested object buried deep inside a chain of related objects. 

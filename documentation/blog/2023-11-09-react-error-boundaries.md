@@ -83,11 +83,7 @@ Here, the error boundary is `COMP III`. It catches the error that occurred in `C
 
 Error Boundaries are React components that implement the `componentDidCatch` lifecycle method. This method is invoked after an error has been thrown by a descendant component. It receives two arguments: `error` and `info`. The `error` argument is the error that was thrown, while the `info` argument is an object that contains a component stack trace.
 
----
 
-<BannerRandom />
-
----
 
 
 ## Basic Usage of Error Boundaries

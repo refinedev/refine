@@ -180,14 +180,7 @@ Note that you will use reset to undo the staging of a modified file.
 
 If your HEAD is currently set to the master branch, running `git reset 8e3f6r5` will point the master to "9e5e6a4". `Checkout` on the other hand, changes the head itself. 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Difference between git checkout and git restore
 `git restore` was introduced when the functionality of `git checkout` was broken into two separate commands `git switch` and `git restore`. Apart from switching branches, `git checkout` can also restore files to a specific commit state. This latter functionality has been extracted into `git restore`.

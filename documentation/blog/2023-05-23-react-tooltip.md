@@ -359,11 +359,7 @@ This will bind the `<Tooltip/>` component to the navigations and display the spe
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 
 ## Using React Tooltip component
