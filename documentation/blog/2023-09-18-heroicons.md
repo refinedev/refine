@@ -440,11 +440,7 @@ Notice also that we are applying `stroke` and `strokeWidth` to `<UserIcon />`:
 Native `<svg>` properties passed to Heroicons also get relayed to the `<svg>` element inside.
 
 
----
 
-<BannerRandom />
-
----
 
 ### Applying Responsive TailwindCSS Utils to Heroicons
 

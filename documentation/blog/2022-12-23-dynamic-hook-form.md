@@ -184,14 +184,7 @@ Notice the link being passed to the `<Refine>`'s `dataProvider` prop. This is th
 
 Refer to the documentation to learn more about the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and [`dataProvider`](https://refine.dev/docs/api-reference/core/components/refine-config/#dataprovider) properties.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Listing Records
 

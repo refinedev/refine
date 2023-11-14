@@ -112,11 +112,7 @@ npm run dev
 
 Your Next.js application with Mantine is now set up and ready to go! You can continue to explore Mantine's Hooks and components and integrate them into your project as needed
 
----
 
-<BannerRandom />
-
----
 
 
 ## Mantine UI Hooks

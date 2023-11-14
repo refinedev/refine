@@ -818,11 +818,7 @@ At this point, the `Show` page looks like this:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100 rounded"  alt="react admin tutorial" />
 
----
 
-<BannerRandom />
-
----
 
 ### Creating a record
 

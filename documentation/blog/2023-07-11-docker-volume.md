@@ -154,11 +154,7 @@ To eliminate all unused volumes, you can also use the docker volume prune comman
 
 
 
----
 
-<BannerRandom />
-
----
 
 ## Backup and Restore Docker Volumes (Screenshots of commands) 
 

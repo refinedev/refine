@@ -139,11 +139,7 @@ License: MIT
 Links: [Demo](https://demo.tremor.so/) | [Documentation](https://www.tremor.so/docs/getting-started/installation) | [GitHub](https://github.com/tremorlabs/tremor)
 
 
----
 
-<BannerRandom />
-
----
 
 ## Material Dashboard React
 Material Dashboard React is an open-source admin dashboard template built using React and the material design framework.

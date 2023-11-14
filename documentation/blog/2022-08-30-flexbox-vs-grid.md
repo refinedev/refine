@@ -125,12 +125,7 @@ Nothing will happen if we change `display: flex` to `display: grid` You have to 
 <br/>
 
 
----
 
-<BannerRandom />
-
-
----
 
 ## Intrinsic and Extrinsic Sizing
 In CSS, you have intrinsic and extrinsic sizing, like:

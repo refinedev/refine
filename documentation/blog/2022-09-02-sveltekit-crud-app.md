@@ -305,12 +305,7 @@ In the above code snippets, we attached an event handler to change the value of 
 
 <br/>
 
----
 
-<BannerRandom />
-
-
----
 
 ## Update Blog
 To update the blog post, we'll create a Sveltekit dynamic route. This route will use the `id` of each blog as a param. Sveltekit implements `file-system-based` routing, which means that your application routes are defined by your directories, and version 3 requires you to have a `+page.svelte` and a `+page.js` or `+page.server` file in each of the directories. 

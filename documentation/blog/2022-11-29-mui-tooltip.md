@@ -201,15 +201,6 @@ Here’s what it looks like:
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="Material UI tooltip " />
 </div>
 
----
-
-<BannerRandom />
-
-
-
----
-
-
 ### Width variations
 The Material UI Tooltip component wraps long text by default, but you can adjust its width to suit your preferences and how well it fits that aspect of your application.
 
