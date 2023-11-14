@@ -1,4 +1,4 @@
-export { KanbanBoard, KanbanBoardSkeleton } from "./board";
+export { KanbanBoard, KanbanBoardContainer } from "./board";
 export { KanbanColumn, KanbanColumnSkeleton } from "./column";
 export {
     DescriptionForm,

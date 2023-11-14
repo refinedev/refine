@@ -9,7 +9,7 @@ import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
 import {
     KanbanAddCardButton,
     KanbanBoard,
-    KanbanBoardSkeleton,
+    KanbanBoardContainer,
     KanbanColumn,
     KanbanColumnSkeleton,
     KanbanItem,
@@ -140,70 +140,76 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <>
-            <KanbanBoard onDragEnd={handleOnDragEnd}>
-                <KanbanColumn
-                    id={"unassigned"}
-                    title={"unassigned"}
-                    count={taskStages?.unassignedStage?.length || 0}
-                    onAddClick={() => handleAddCard({ stageId: "unassigned" })}
-                >
-                    {taskStages.unassignedStage?.map((task) => {
+            <KanbanBoardContainer>
+                <KanbanBoard onDragEnd={handleOnDragEnd}>
+                    <KanbanColumn
+                        id={"unassigned"}
+                        title={"unassigned"}
+                        count={taskStages?.unassignedStage?.length || 0}
+                        onAddClick={() =>
+                            handleAddCard({ stageId: "unassigned" })
+                        }
+                    >
+                        {taskStages.unassignedStage?.map((task) => {
+                            return (
+                                <KanbanItem
+                                    key={task.id}
+                                    id={task.id}
+                                    data={{ ...task, stageId: "unassigned" }}
+                                >
+                                    <ProjectCardMemo {...task} />
+                                </KanbanItem>
+                            );
+                        })}
+                        {!taskStages.unassignedStage?.length && (
+                            <KanbanAddCardButton
+                                onClick={() =>
+                                    handleAddCard({ stageId: "unassigned" })
+                                }
+                            />
+                        )}
+                    </KanbanColumn>
+                    {taskStages.stages?.map((column) => {
                         return (
-                            <KanbanItem
-                                key={task.id}
-                                id={task.id}
-                                data={{ ...task, stageId: "unassigned" }}
+                            <KanbanColumn
+                                key={column.id}
+                                id={column.id}
+                                title={column.title}
+                                count={column.tasks.length}
+                                onAddClick={() =>
+                                    handleAddCard({ stageId: column.id })
+                                }
                             >
-                                <ProjectCardMemo {...task} />
-                            </KanbanItem>
+                                {isLoading && <ProjectCardSkeleton />}
+                                {!isLoading &&
+                                    column.tasks.map((task) => {
+                                        return (
+                                            <KanbanItem
+                                                key={task.id}
+                                                id={task.id}
+                                                data={{
+                                                    ...task,
+                                                    stageId: column.id,
+                                                }}
+                                            >
+                                                <ProjectCardMemo {...task} />
+                                            </KanbanItem>
+                                        );
+                                    })}
+                                {!column.tasks.length && (
+                                    <KanbanAddCardButton
+                                        onClick={() =>
+                                            handleAddCard({
+                                                stageId: column.id,
+                                            })
+                                        }
+                                    />
+                                )}
+                            </KanbanColumn>
                         );
                     })}
-                    {!taskStages.unassignedStage?.length && (
-                        <KanbanAddCardButton
-                            onClick={() =>
-                                handleAddCard({ stageId: "unassigned" })
-                            }
-                        />
-                    )}
-                </KanbanColumn>
-                {taskStages.stages?.map((column) => {
-                    return (
-                        <KanbanColumn
-                            key={column.id}
-                            id={column.id}
-                            title={column.title}
-                            count={column.tasks.length}
-                            onAddClick={() =>
-                                handleAddCard({ stageId: column.id })
-                            }
-                        >
-                            {isLoading && <ProjectCardSkeleton />}
-                            {!isLoading &&
-                                column.tasks.map((task) => {
-                                    return (
-                                        <KanbanItem
-                                            key={task.id}
-                                            id={task.id}
-                                            data={{
-                                                ...task,
-                                                stageId: column.id,
-                                            }}
-                                        >
-                                            <ProjectCardMemo {...task} />
-                                        </KanbanItem>
-                                    );
-                                })}
-                            {!column.tasks.length && (
-                                <KanbanAddCardButton
-                                    onClick={() =>
-                                        handleAddCard({ stageId: column.id })
-                                    }
-                                />
-                            )}
-                        </KanbanColumn>
-                    );
-                })}
-            </KanbanBoard>
+                </KanbanBoard>
+            </KanbanBoardContainer>
             {children}
         </>
     );
@@ -214,16 +220,16 @@ const PageSkeleton = () => {
     const itemCount = 4;
 
     return (
-        <KanbanBoardSkeleton>
+        <KanbanBoardContainer>
             {Array.from({ length: columnCount }).map((_, index) => {
                 return (
-                    <KanbanColumnSkeleton key={index} type="project">
+                    <KanbanColumnSkeleton key={index}>
                         {Array.from({ length: itemCount }).map((_, index) => {
                             return <ProjectCardSkeleton key={index} />;
                         })}
                     </KanbanColumnSkeleton>
                 );
             })}
-        </KanbanBoardSkeleton>
+        </KanbanBoardContainer>
     );
 };

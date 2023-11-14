@@ -9,8 +9,6 @@ import {
     useSensors,
 } from "@dnd-kit/core";
 
-import styles from "./index.module.css";
-
 type Props = {
     onDragEnd: (event: DragEndEvent) => void;
 };
@@ -41,20 +39,36 @@ export const KanbanBoard: FC<PropsWithChildren<Props>> = ({
     };
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
-                    {children}
-                </DndContext>
-            </div>
-        </div>
+        <KanbanBoardContainer>
+            <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+                {children}
+            </DndContext>
+        </KanbanBoardContainer>
     );
 };
 
-export const KanbanBoardSkeleton: FC<PropsWithChildren> = ({ children }) => {
+export const KanbanBoardContainer: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>{children}</div>
+        <div
+            style={{
+                width: "calc(100% + 64px)",
+                height: "calc(100vh - 64px)",
+                display: "flex",
+                justifyContent: "column",
+                margin: "-32px",
+            }}
+        >
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    padding: "32px",
+                    overflow: "scroll",
+                }}
+            >
+                {children}
+            </div>
         </div>
     );
 };

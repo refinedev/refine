@@ -9,8 +9,6 @@ import { Company, Contact, Deal } from "@/interfaces";
 
 import { Text } from "@/components";
 
-import styles from "./index.module.css";
-
 const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
@@ -28,7 +26,6 @@ export const DashboardTotalCountCard: React.FC<{
     const { primaryColor, secondaryColor, icon, title } = variants[resource];
 
     const config: AreaConfig = {
-        className: styles.area,
         appendPadding: [1, 0, 0, 0],
         padding: 0,
         syncViewPadding: true,
@@ -100,6 +97,9 @@ export const DashboardTotalCountCard: React.FC<{
                     size="xxxl"
                     strong
                     style={{
+                        flex: 1,
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
                         textAlign: "start",
                         marginLeft: "48px",
                         fontVariantNumeric: "tabular-nums",
@@ -117,7 +117,12 @@ export const DashboardTotalCountCard: React.FC<{
                     )}
                 </Text>
                 <Suspense>
-                    <Area {...config} />
+                    <Area
+                        {...config}
+                        style={{
+                            width: "50%",
+                        }}
+                    />
                 </Suspense>
             </div>
         </Card>
