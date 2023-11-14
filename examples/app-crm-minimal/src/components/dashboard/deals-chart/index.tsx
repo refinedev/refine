@@ -119,7 +119,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
             }
         >
             <Suspense>
-                <Area {...config} />
+                <Area {...config} height={325} />
             </Suspense>
         </Card>
     );

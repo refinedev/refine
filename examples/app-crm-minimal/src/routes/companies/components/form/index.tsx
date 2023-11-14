@@ -9,7 +9,7 @@ import {
     CompanyUpdateInput,
     Industry,
     User,
-} from "@interfaces";
+} from "@/interfaces";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { getNameInitials } from "@/utilities";
