@@ -69,16 +69,12 @@ export const authProvider: AuthBindings = {
 
         return { error };
     },
-    check: async (accessToken?: string) => {
+    check: async () => {
         try {
             await dataProvider.custom({
                 url: API_URL,
                 method: "post",
-                headers: accessToken
-                    ? {
-                          Authorization: `Bearer ${accessToken}`,
-                      }
-                    : {},
+                headers: {},
                 meta: {
                     rawQuery: `
                     query Me {
