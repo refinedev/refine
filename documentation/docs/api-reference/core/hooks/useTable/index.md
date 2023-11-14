@@ -94,7 +94,7 @@ method={{
 />
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     resource: "categories",
 });
@@ -109,7 +109,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. It is useful when you want to use a different `dataProvider` for a specific resource.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     dataProviderName: "second-data-provider",
 });
@@ -122,7 +122,7 @@ useTable({
 Sets the initial value of the page index.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     pagination: {
         current: 2,
@@ -137,7 +137,7 @@ useTable({
 Sets the initial value of the page size.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     pagination: {
         pageSize: 20,
@@ -156,7 +156,7 @@ It can be `"off"`, `"server"` or `"client"`.
 -   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     pagination: {
         mode: "client",
@@ -174,7 +174,7 @@ It can be `"off"`, or `"server"`.
 -   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     sorters: {
         mode: "server",
@@ -187,7 +187,7 @@ useTable({
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     sorters: {
         initial: [
@@ -207,7 +207,7 @@ useTable({
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     sorters: {
         permanent: [
@@ -232,7 +232,7 @@ It can be `"off"` or `"server"`.
 -   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     filters: {
         mode: "off",
@@ -245,7 +245,7 @@ useTable({
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     filters: {
         initial: [
@@ -266,7 +266,7 @@ useTable({
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     filters: {
         permanent: [
@@ -295,7 +295,7 @@ The filtering behavior can be set to either `"merge"` or `"replace"`.
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     filters: {
         defaultBehavior: "replace",
@@ -312,7 +312,7 @@ When you use the `syncWithLocation` feature, the `useTable`'s state (e.g., sort 
 Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     syncWithLocation: true,
 });
@@ -323,7 +323,7 @@ useTable({
 `useTable` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     queryOptions: {
         retry: 3,
@@ -341,7 +341,7 @@ useTable({
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     // highlight-start
     meta: {
@@ -389,7 +389,7 @@ const myDataProvider = {
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     successNotification: (data, values, resource) => {
         return {
@@ -410,7 +410,7 @@ useTable({
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     errorNotification: (data, values, resource) => {
         return {
@@ -431,7 +431,7 @@ useTable({
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     liveMode: "auto",
 });
@@ -448,7 +448,7 @@ useTable({
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     onLiveEvent: (event) => {
         console.log(event);
@@ -472,7 +472,7 @@ If you want loading overtime for the request, you can pass the `overtimeOptions`
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 const { overtime } = useTable({
     //...
     overtimeOptions: {
@@ -499,7 +499,7 @@ Use `pagination.current` instead.
 Sets the initial value of the page index.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
 });
@@ -516,7 +516,7 @@ Use `pagination.pageSize` instead.
 Sets the initial value of the page size.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
 });
@@ -533,7 +533,7 @@ Use `pagination.mode` instead.
 Determines whether to use server-side pagination or not.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     hasPagination: false,
 });
@@ -550,7 +550,7 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 [Refer to the `CrudSorting` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     initialSorter: [
         {
@@ -570,7 +570,7 @@ Use `sorters.permanent` instead.
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     permanentSorter: [
         {
@@ -592,7 +592,7 @@ Use `filters.initial` instead.
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     initialFilter: [
         {
@@ -615,7 +615,7 @@ Use `filters.permanent` instead.
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     permanentFilter: [
         {
@@ -646,7 +646,7 @@ The filtering behavior can be set to either `"merge"` or `"replace"`.
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 useTable({
     defaultSetFilterBehavior: "replace",
 });
@@ -723,7 +723,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 const { overtime } = useTable();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
@@ -761,7 +761,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 First, you need to set `filters.mode: "off"`
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 const { tableQueryResult, filters, setFilters } = useTable({
     filters: {
         mode: "off",
@@ -819,7 +819,7 @@ return (
 First, you need to set `sorters.mode: "off"`
 
 ```tsx
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 const { tableQueryResult, sorters, setSorters } = useTable({
     sorters: {
         mode: "off",
@@ -831,7 +831,7 @@ Then, you can use the `sorters` state to sort your data.
 
 ```tsx
 // ...
-import { useTable } from "@refinedev/core"
+import { useTable } from "@refinedev/core";
 const List = () => {
     const { tableQueryResult, sorters } = useTable();
 
