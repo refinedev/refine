@@ -26,7 +26,7 @@ describe("mapOperator", () => {
             between: CondOperator.EQUALS,
             eq: CondOperator.EQUALS,
             nbetween: CondOperator.EQUALS,
-            nnull: CondOperator.EQUALS,
+            nnull: CondOperator.NOT_NULL,
             nendswith: CondOperator.EQUALS,
             nendswiths: CondOperator.EQUALS,
             nstartswith: CondOperator.EQUALS,
