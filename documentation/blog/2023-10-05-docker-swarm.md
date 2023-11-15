@@ -76,11 +76,7 @@ Now, you need to copy and run the full command you get in the output of '**docke
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 ## Deploying Services in Swarm
 Swarm containers are started via services, and service is the definition of tasks to be executed by nodes. When creating a service, you must specify the container image you intend to utilize. A global service will operate on all Swarm nodes, but a replicated service would have the manager node for distributing tasks to worker nodes.

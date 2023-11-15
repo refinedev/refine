@@ -108,14 +108,7 @@ let arguments = "an argument";
  
 x = 500;
 ```
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## What’s new in React v18.0?
 Strict Mode plays a significant role in the incremental adoption of Concurrent rendering, a new implementation detail that, in simple terms, allows rendering UI to be interruptible. While in development, Strict Mode can be used to help expose concurrency-related bugs.

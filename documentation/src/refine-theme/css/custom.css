@@ -289,7 +289,7 @@ html .no-underline {
 
 html[data-active-page="index"],
 html[data-active-page="index"] body {
-    @apply bg-refine-bg;
+    @apply bg-gray-800;
 }
 
 @keyframes element-animation {

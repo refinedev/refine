@@ -114,11 +114,7 @@ basePath - can be either false or undefined - if set to false, the basePath will
 
 
 
----
 
-<BannerRandom />
-
----
 
 
 ## Methods of Redirecting in Next.js

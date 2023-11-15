@@ -232,11 +232,7 @@ Now, when user joins, the web socket connection is established at client level. 
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/handshake.png"  alt="react-websocket-nodejs" />
 </div>
 
----
 
-<BannerRandom />
-
----
 
 ### Real-time Message Transmission
 

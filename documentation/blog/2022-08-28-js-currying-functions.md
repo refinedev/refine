@@ -100,12 +100,7 @@ So basically, what we've done is allow the accumulator to take multiple argument
 
 But now our `curry()` function is much more powerful. We can pass any number of arguments to an accumulator, as long as that is returned. And it is common to implement this with native JavaScript `Function.prototype` methods.
 
----
 
-<BannerRandom />
-
-
----
 
 ### Using `Function.prototype` Methods
 We can re-write the `curry()` function with `Function.prototype.apply`, and with `Function.prototype.bind`:

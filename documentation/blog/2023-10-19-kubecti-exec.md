@@ -74,11 +74,7 @@ In the above command, `my-demo-pod` remains the pod name and `/bin/bash` runs in
 
 <br/>
 
----
 
-<BannerRandom />
-
----
 
 
 ## Executing specific shell commands

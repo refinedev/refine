@@ -92,14 +92,7 @@ function App() {
 }
 ```
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## What are URL parameters in React router
 

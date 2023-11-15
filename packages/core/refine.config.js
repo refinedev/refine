@@ -73,6 +73,16 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "AutoSaveIndicator",
+                files: [
+                    {
+                        src: "./src/components/autoSaveIndicator/index.tsx",
+                        dest: "./components/autoSaveIndicator.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;

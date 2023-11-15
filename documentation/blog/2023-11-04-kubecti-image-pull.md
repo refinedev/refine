@@ -111,11 +111,7 @@ Another cause of ImagePullBackOff is an unavailable or down registry that contai
 #### Quota exceedances
 You will be blocked on Docker Hub if you exceed your maximum download limit, which could be the reason for your ImagePullBackOff error. The number of requests sent to an API during a specific time frame can also be restricted by other container registries.  The Kubernetes cluster can exceed this rate limit, which could also result in the ImagePullBackOff error.
 
----
 
-<BannerRandom />
-
----
 
 
 ## Advanced Troubleshooting Techniques

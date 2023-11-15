@@ -165,12 +165,7 @@ Here’s the result:
 
 
 
----
 
-<BannerRandom />
-
-
----
 
 ## Other Material UI Select features
 

@@ -118,14 +118,7 @@ export default Profile;
 ```
 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## How to use Typescript with Next.js data fetching methods
 

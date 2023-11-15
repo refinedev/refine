@@ -14,7 +14,7 @@ export const IntegrationsIcon = (props: React.SVGProps<SVGSVGElement>) => (
             height="40"
             rx="20"
             fill="currentColor"
-            className="text-white dark:text-refine-pink/20"
+            className="text-white dark:text-refine-pink/10"
         />
         <rect
             width="40"

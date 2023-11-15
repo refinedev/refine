@@ -18,20 +18,23 @@ Material UI is a React UI component library with a rich set of components and to
 
 Steps we’ll cover:
 
--   [Create a new `refine` app](#create-a-new-refine-app)
--   [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
--   [Material UI DataGrid component](#material-ui-datagrid-component)
--   [Adding styled-components](#adding-styled-components)
--   [refine's `useDataGrid` hook](#refines-usedatagrid-hook)
--   [Rendering data with the `<DataGrid />` component](#rendering-data-with-the-datagrid--component)
--   [Pagination, Filtering, and Sorting using the `useDataGrid` hook](#pagination-filtering-and-sorting-using-the-usedatagrid-hook)
-    -   [Pagination](#pagination)
-    -   [Sorting](#sorting)
-        -   [Initial sort order](#initial-sort-order)
-        -   [Controlled sorting](#controlled-sorting)
-    -   [Filtering](#filtering)
-        -   [Controlled filtering](#controlled-filtering)
--   [Live CodeSandbox Example](#live-codesandbox-example)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Create a new refine app](#create-a-new-refine-app)
+- [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
+- [Material UI DataGrid component](#material-ui-datagrid-component)
+- [Adding styled-components](#adding-styled-components)
+- [refine's `useDataGrid` hook](#refines-usedatagrid-hook)
+- [Rendering data with the `<DataGrid />` component](#rendering-data-with-the-datagrid--component)
+- [Pagination, Filtering, and Sorting using the `useDataGrid` hook](#pagination-filtering-and-sorting-using-the-usedatagrid-hook)
+  - [Pagination](#pagination)
+  - [Sorting](#sorting)
+    - [Initial sort order](#initial-sort-order)
+    - [Controlled sorting](#controlled-sorting)
+  - [Filtering](#filtering)
+    - [Controlled filtering](#controlled-filtering)
+- [Conclusion](#conclusion)
+- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## Prerequisites
 
@@ -426,7 +429,6 @@ By default, `syncWithLocation` is set to `true` in the `<Refine />` component. T
 
 You can refer to the MU X DataGrid [documentation](https://mui.com/x/react-data-grid/pagination/) for more information on the pagination feature.
 
-<BannerRandom />
 
 ### Sorting
 

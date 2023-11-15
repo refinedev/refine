@@ -20,20 +20,21 @@ export const CommonThemeToggle = ({ className }: Props) => {
         <button
             type="button"
             className={clsx(
-                "w-8 h-8 sm:w-10 sm:h-10",
-                "bg-gray-200 dark:bg-gray-700",
-                "rounded-full",
-                "border-0",
                 "appearance-none",
                 "focus:outline-none",
                 "relative",
-                "text-gray-500 dark:text-gray-400",
-                "hover:brightness-110",
-                "transition-[filter]",
-                "duration-200",
+                "w-10 h-10",
+                "rounded-full",
+                "border",
+                "border-solid",
+                "border-gray-300 dark:border-gray-700",
+                "text-gray-500",
+                "transition-colors",
+                "duration-150",
                 "ease-in-out",
                 "overflow-hidden",
                 "flex-shrink-0",
+                "group",
                 className,
             )}
             onClick={toggle}
@@ -41,14 +42,15 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-8 h-8 sm:w-10 sm:h-10",
+                    "w-full h-full",
                     "flex items-center justify-center",
                     "flex-shrink-0",
                     "top-10",
-                    "dark:top-0",
+                    "translate-y-0",
+                    "dark:-translate-y-10",
                     "duration-200",
                     "ease-in-out",
-                    "transition-[top]",
+                    "transition-transform",
                 )}
             >
                 <LightModeIcon />
@@ -56,14 +58,15 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-8 h-8 sm:w-10 sm:h-10",
+                    "w-full h-full",
                     "flex items-center justify-center",
                     "flex-shrink-0",
-                    "top-0",
-                    "dark:top-10",
+                    "top-10",
+                    "-translate-y-10",
+                    "dark:translate-y-0",
                     "duration-200",
                     "ease-in-out",
-                    "transition-[top]",
+                    "transition-transform",
                 )}
             >
                 <DarkModeIcon />

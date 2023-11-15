@@ -272,14 +272,7 @@ function DisplayUser(props) {
 ```
 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Passing Array to React Component
 
