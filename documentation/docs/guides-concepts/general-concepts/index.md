@@ -384,34 +384,11 @@ We have built-in router integrations for the following packages:
 
 #### Components
 
-Router provider infers resource and the action for certain components bla bla.
+**UI Integration** components can infer resource information from the current URL.
 
 #### Hooks
 
-Router Provider eliminates the need of passing resource idxx hooks with automatic parameter detection based on the current route. Fo
-
-useTable, useShow, useForm
-
-You can use `useGo` hook to navigate in your components.
-
-```tsx title=show.tsx
-import { useGo } from "@refinedev/core";
-
-export const ListPage = () => {
-  const go = useGo();
-
-  const navigateToCreate = () => {
-    go({ to: { resource: "products", action: "create" } });
-  };
-
-  return (
-    <>
-      <List />
-      <CreateButton onClick={navigateToCreate} />
-    </>
-  );
-};
-```
+**refine** hooks can infer certain parameters from the current URL.
 
 ## UI Integrations
 
@@ -419,7 +396,7 @@ While **refine** itself is headless, it offers UI Integrations for popular UI li
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
-import { AntdLayout } from './layout/antd'
+import { AntdLayout } from './layout/antd';
 
 <AntdLayout />
 
@@ -451,9 +428,9 @@ For example, `@refinedev/antd` package exports `CreateButton`, for redirecting t
 
 While the button itself is imported from `antd` package, **refine** adds some capabilities to it:
 
-- Routing: when the button is clicked, the user will be redirected to the create page of the resource.
-- Access Control: if current user isn't authorized, this button will be disabled or hidden automatically.
-- Translation: the button's text will be translated to the current language of the user.
+- **Routing**: when the button is clicked, the user will be redirected to the create page of the resource.
+- **Access Control**: if current user isn't authorized, this button will be disabled or hidden automatically.
+- **Translation**: the button's text will be translated to the current language of the user.
 
 ### Auth Pages
 
@@ -465,21 +442,51 @@ UI Integration hooks uses `@refinedev/core` hooks under the hood, making it easi
 
 One example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `antd`'s `Table` component. So you don't need to manually map the props.
 
-Make a list of hooks exported by UI Integrations.
-
-#### AntD
+You can see the list of hooks for each UI Integration listed below:
 
 <Tabs>
 
 <TabItem value="antd">
 
+- useForm
+- useModalForm
+- useDrawerForm
+- useStepsForm
 - useTable
+- useSelect
+- useCheckboxGroup
+- useRadioGroup
+- useImport
+- useSimpleList
+- useFileUploadState
+- useModal
+- useThemedLayoutContext
 
 </TabItem>
 
 <TabItem value="Material UI">
 
+- useAutoComplete
 - useDataGrid
+- useSiderVisible
+- useThemedLayoutContext
+
+</TabItem>
+
+<TabItem value="Chakra UI">
+
+- usePagination
+- useThemedLayoutContext
+
+</TabItem>
+
+<TabItem value="Mantine">
+
+- useForm
+- useModalForm
+- useStepsForm
+- useSelect
+- useThemedLayoutContext
 
 </TabItem>
 
@@ -487,9 +494,91 @@ Make a list of hooks exported by UI Integrations.
 
 ## Meta Concept
 
-`meta` is a special property that can be used to add additional information to a resource definition. This information then can be used by **providers** and **UI integrations** to enhance the application.
+`meta` is a special property that can be used to provide additional information to **providers** and **UI Integrations**.
 
-Mention enriched meta, `resource.meta`, `hook.meta`, `meta from URL` are merged.
+There are 3 ways to populate meta, they all will be merged into meta property and will be available to providers and UI integrations.
+
+<Tabs>
+<TabItem value="resource.meta property">
+
+```tsx title=App.tsx
+import { Refine } from "@refinedev/core";
+
+export const App = () => {
+  return (
+    <Refine
+      resources={[
+        {
+          name: "products",
+          list: "/my-products",
+          // highlight-start
+          meta: {
+            fromResource: "Hello from resource.meta",
+          },
+          // highlight-end
+        },
+      ]}
+    >
+      {/* ... */}
+    </Refine>
+  );
+};
+```
+
+</TabItem>
+<TabItem value="hook.meta property">
+
+```tsx title=show.tsx
+import { useOne } from "@refinedev/core";
+
+export const ShowPage = () => {
+  const { data, isLoading } = useOne({
+    resource: "products",
+    id: 1,
+    // highlight-start
+    meta: {
+      fromHook: "Hello from hook.meta",
+    },
+    // highlight-end
+  });
+};
+```
+
+</TabItem>
+<TabItem value="meta from URL">
+
+Navigate to the following URL:
+
+```
+https://example.com/products?fromURL=Hello%20from%20URL
+```
+
+</TabItem>
+</Tabs>
+
+Given the above examples, meta fields from 3 different sources will be available in the providers:
+
+```tsx title=providers.tsx
+import { AccessControlProvider, DataProvider } from "@refinedev/core";
+
+export const myDataProvider = {
+  getOne: async ({ meta }) => {
+    console.log(meta.fromResource); // "Hello from resource.meta"
+    console.log(meta.fromHook); // "Hello from hook.meta"
+    console.log(meta.fromURL); // "Hello from URL"
+  },
+};
+
+export const myAccessControlProvider = {
+  can: async ({ meta }) => {
+    console.log(meta.fromResource); // "Hello from resource.meta"
+    console.log(meta.fromHook); // "Hello from hook.meta"
+    console.log(meta.fromURL); // "Hello from URL"
+  },
+};
+```
+
+### Example Use Case
 
 For **UI Integrations**:
 
@@ -569,3 +658,7 @@ TBA.
 ### Inferencer
 
 TBA.
+
+```
+
+```

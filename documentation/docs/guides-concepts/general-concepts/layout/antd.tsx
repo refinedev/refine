@@ -6,7 +6,6 @@ export function AntdLayout() {
     <Sandpack
       showNavigator
       previewOnly
-      // showFiles
       dependencies={{
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
@@ -34,7 +33,7 @@ export function AntdLayout() {
   );
 }
 
-const AppTsxCode = /* jsx */ `
+const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { App as AntdApp, ConfigProvider } from "antd";
@@ -92,7 +91,7 @@ export default function App() {
       </ConfigProvider>
     </BrowserRouter>
   );
-}
+};
 `.trim();
 
 const ListTsxCode = `
