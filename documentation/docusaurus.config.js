@@ -122,6 +122,7 @@ const siteConfig = {
                   ],
               ]),
         "./plugins/intercom.js",
+        "./plugins/clarity.js",
     ],
     themeConfig: {
         prism: {
