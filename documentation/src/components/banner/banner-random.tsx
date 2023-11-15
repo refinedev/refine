@@ -6,7 +6,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 const data = [
     {
         description:
-            "Refine is a React Framework preferred by over 15K active developers each month for streamlining the development of enterprise-grade internal tools, dashboards, and B2B apps",
+            "Refine is a React Framework used by over monthly 15K developers for building enterprise internal tools, dashboards, and B2B apps",
         image: {
             src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
             alt: "X tweet about Refine",
