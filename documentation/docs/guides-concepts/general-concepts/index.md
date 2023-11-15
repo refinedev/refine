@@ -371,7 +371,7 @@ For example, it will automatically translate menu items, button texts, table col
 
 ### Router Provider
 
-Router provider helps **refine** understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
+Router provider helps **refine** understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items, inferring hook parameters, and more.
 
 We have built-in router integrations for the following packages:
 
@@ -380,15 +380,62 @@ We have built-in router integrations for the following packages:
 - Remix
 - Expo Router (Community Package)
 
-> See the [Routing](/docs/guides-concepts/routing/) page for more information.
+> See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
 #### Components
 
 **UI Integration** components can infer resource information from the current URL.
 
+For example, we are in the list page of `products` resource, we have `List` layout component and we are adding `CreateButton` from one of our UI Integrations to redirect user to the create page of the resource.
+
+With **router provider** current resource information will be inferred from the current URL.
+
+```tsx title=products.tsx
+import { List, CreateButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+
+export const ProductsListPage = () => {
+  return (
+    // removed-line
+    <List resource="products">
+    // added-line
+    <List> // Infers "title" from the current route.
+      // removed-line
+      <CreateButton resource="products" />
+      // added-line
+      <CreateButton /> // Redirects to /products/new
+    </List>
+  );
+};
+```
+
+> This is just one example, see the [Routing](/docs/guides-concepts/routing/) guide for more information.
+
 #### Hooks
 
-**refine** hooks can infer certain parameters from the current URL.
+**refine** hooks can synchronize certain parameters from the current URL eliminates the need to pass them manually.
+
+Or `useOne` hook can infer `resource` and `id` parameters from the current URL.
+
+```tsx title=show.tsx
+import { useOne } from "@refinedev/core";
+
+export const ShowPage = () => {
+  // removed-line
+  const { data, isLoading } = useOne({ resource: "products", id: 1 });
+  // added-line
+  const { data, isLoading } = useOne();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  return <>{data.name}</>;
+};
+```
+
+Another example is `useTable` hook. While it can infer **resource**, **pagination**, **filters**, and **sorters** parameters from the current route, it can also update the current route if any of these parameters changes.
+
+> See more examples in the [Routing](/docs/guides-concepts/routing/) guide.
 
 ## UI Integrations
 
