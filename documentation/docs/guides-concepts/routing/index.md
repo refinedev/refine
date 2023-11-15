@@ -128,18 +128,17 @@ All you have to do is to define your resource and their routes.
 
 ```tsx
 <Refine
-    resources={[
-        {
-            name: "products",
-            list: "/my-products", // http://localhost:3000/my-products
-            show: "my-products/:id", // http://localhost:3000/my-products/1
-            create: "/my-products/new", // http://localhost:3000/my-products/new
-            edit: "/my-products/:id/edit", // http://localhost:3000/my-products/1/edit
-            clone: "/my-products/:id/clone" // http://localhost:3000/my-products/1/clone
-        }
-    ]}
->
-
+  resources={[
+    {
+      name: "products",
+      list: "/my-products", // http://localhost:3000/my-products
+      show: "my-products/:id", // http://localhost:3000/my-products/1
+      create: "/my-products/new", // http://localhost:3000/my-products/new
+      edit: "/my-products/:id/edit", // http://localhost:3000/my-products/1/edit
+      clone: "/my-products/:id/clone", // http://localhost:3000/my-products/1/clone
+    },
+  ]}
+/>
 ```
 
 You can see how we omit **resource** and **id** parameters for `useList`, and `useShow` hooks in the examples below.
@@ -203,7 +202,7 @@ And we want to filter products by `category.id` and sort them by `id` in `asc` o
 
 We can pass these parameters to `useTable` hook as follows:
 
-```tsx
+```ts
 const { ... } = useTable(
     {
         current: 1,
@@ -211,7 +210,7 @@ const { ... } = useTable(
         filters: { initial: [{ field: "category.id", operator: "eq", value: 1 }]},
         sorters: { initial: [{ field: "id", direction: "asc" }] }
     }
-)
+);
 ```
 
 `useTable` will automatically update the route to:

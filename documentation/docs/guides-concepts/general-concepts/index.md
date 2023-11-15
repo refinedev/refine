@@ -488,7 +488,12 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 ## UI Integrations
 
-While **refine** itself is headless, it offers UI Integrations for popular UI libraries for **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
+While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
+
+- [Ant Design](/docs/)
+- [Material UI](/docs/)
+- [Chakra UI](/docs/)
+- [Mantine](/docs)
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
@@ -547,14 +552,14 @@ These components provides layout view based on the resource information automati
 
 On top of that, **refine** adds some features to these layouts:
 
-- Translation: buttons, titles, columns will be translated to the current language of the user.
-- Access Control: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
+- **Access Control**: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
+- **Translation**: buttons, titles, columns will be translated to the current language of the user.
 
 ### Buttons
 
-For example, `@refinedev/antd` package exports `CreateButton`, for redirecting the user to the create page of the resource.
+For example, our **UI Integrations** exports `CreateButton`, for redirecting the user to the create page of the resource.
 
-While the button itself is imported from `antd` package, **refine** adds some capabilities to it:
+While the button itself is imported from underlying UI package, **refine** adds some capabilities to it:
 
 - **Routing**: when the button is clicked, the user will be redirected to the create page of the resource.
 - **Access Control**: if current user isn't authorized, this button will be disabled or hidden automatically.
@@ -570,64 +575,14 @@ UI Integration hooks uses `@refinedev/core` hooks under the hood, making it easi
 
 One example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `Ant Design`'s `Table` component. So you don't need to manually map the props.
 
-You can see the list of hooks for each UI Integration listed below:
-
-<Tabs>
-
-<TabItem value="antd">
-
-- useForm
-- useModalForm
-- useDrawerForm
-- useStepsForm
-- useTable
-- useSelect
-- useCheckboxGroup
-- useRadioGroup
-- useImport
-- useSimpleList
-- useFileUploadState
-- useModal
-- useThemedLayoutContext
-
-</TabItem>
-
-<TabItem value="Material UI">
-
-- useAutoComplete
-- useDataGrid
-- useSiderVisible
-- useThemedLayoutContext
-
-</TabItem>
-
-<TabItem value="Chakra UI">
-
-- usePagination
-- useThemedLayoutContext
-
-</TabItem>
-
-<TabItem value="Mantine">
-
-- useForm
-- useModalForm
-- useStepsForm
-- useSelect
-- useThemedLayoutContext
-
-</TabItem>
-
-</Tabs>
-
 ## Meta Concept
 
 `meta` is a special property that can be used to provide additional information to **providers** and **UI Integrations**.
 
-There are 3 ways to populate meta, they all will be merged into meta property and will be available to providers and UI integrations.
+There are 3 ways to populate meta, they all will be **merged into a single meta property** and will be available to **providers** and **UI integrations**.
 
 <Tabs>
-<TabItem value="resource.meta property">
+<TabItem value="Meta from resource">
 
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
@@ -654,7 +609,7 @@ export const App = () => {
 ```
 
 </TabItem>
-<TabItem value="hook.meta property">
+<TabItem value="Meta from hook">
 
 ```tsx title=show.tsx
 import { useOne } from "@refinedev/core";
@@ -673,7 +628,7 @@ export const ShowPage = () => {
 ```
 
 </TabItem>
-<TabItem value="meta from URL">
+<TabItem value="Meta from URL">
 
 Navigate to the following URL:
 
@@ -684,7 +639,7 @@ https://example.com/products?fromURL=Hello%20from%20URL
 </TabItem>
 </Tabs>
 
-Given the above examples, meta fields from 3 different sources will be available in the providers:
+Given the above examples, meta fields from **3 different sources** will be available in the providers:
 
 ```tsx title=providers.tsx
 import { AccessControlProvider, DataProvider } from "@refinedev/core";
@@ -706,54 +661,12 @@ export const myAccessControlProvider = {
 };
 ```
 
-### Example Use Case
+### Example Use Cases
 
-For **UI Integrations**:
-
-- Adding a label and icon to a resource definition to render the sidebar menu item.
-
-For **data provider** or **access control provider**:
-
-- pass a filter to your **data provider** to fetch only unlisted products
-- pass a role to your **access control provider** to allow only category managers to access the resource.
-
-```tsx title=App.tsx
-import { Refine } from "@refinedev/core";
-
-export const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "unlistedProducts",
-          list: "/unlisted-products",
-          meta: {
-            // for data provider
-            filter: { isListed: false },
-            // for access control provider
-            role: "category-manager",
-            // for UI integrations
-            label: "Unlisted Products",
-            icon: <ProductIcon />,
-          },
-        },
-      ]}
-      dataProvider={{
-        getOne: async ({ meta }) => {
-          console.log(meta.filter); // { isListed: false }
-        },
-      }}
-      accessControlProvider={{
-        can: async ({ meta }) => {
-          console.log(meta.role); // "category-manager"
-        },
-      }}
-    >
-      {/* ... */}
-    </Refine>
-  );
-};
-```
+- **Global filters**: pass a filter to your **data provider**.
+- **Multi-tenancy**: make current tenant available id to providers.
+- **Advanced Access Control**: configuration per resource.
+- **Customize UI**: manage sidebar label and icon per resource.
 
 These are some but not all examples of how you can use the `meta` property.
 
@@ -761,11 +674,11 @@ These are some but not all examples of how you can use the `meta` property.
 
 ## State Management
 
-refine leverages React Query for data fetching and caching, which enhances the performance and user experience of applications. React Query provides efficient data synchronization between your server and UI, making it easier to handle background updates, cache management, and data invalidation.
+**refine** leverages **React Query** for data fetching and caching, which enhances the performance and user experience of applications. React Query provides efficient data synchronization between your server and UI, making it easier to handle background updates, cache management, and data invalidation.
 
 Key Aspects of State Management in refine:
 
-- **Data Fetching and Caching**: refine handles data fetching with built-in hooks that automatically manage the loading states, caching, and updating of data. This integration means fewer boilerplate codes and a more streamlined approach to handling server-state.
+- **Data Fetching and Caching**: **refine** handles data fetching with **built-in hooks** that automatically manage the loading states, caching, and updating of data. This integration means fewer boilerplate codes and a more streamlined approach to handling server-state.
 
 - **Invalidation and Refetching**: One of the challenges in state management is knowing when to invalidate and refetch data. refine, through React Query, provides simple yet powerful mechanisms to control data refetching. This ensures that the UI always reflects the most current data.
 
@@ -785,11 +698,11 @@ refine CLI allows you to interact with your **refine** project and perform certa
 
 **refine devtools** is designed to help you debug and develop your refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating refine packages from the UI and more.
 
-> See the [Devtools](/docs/packages/devtools/) page for more information.
+> See the [Devtools](https://github.com/refinedev/refine/tree/master/packages/devtools) package for more information.
 
 ### Inferencer
 
-`@refinedev/inferencer` is a package that **scaffolfs** code for your application based on your resource definitions.
+`@refinedev/inferencer` is a package that **scaffolds** code **on the fly** for your application based on your **API responses**.
 
 :::caution
 Inferencer **scaffolds** some basic boilerplate code to be used as a **starting point** to save some time.
@@ -802,14 +715,31 @@ It's not **guaranteed** to work in all cases, and it's not meant to be used on *
 For example, the following code:
 
 ```tsx title="list.tsx"
-import { AntdListInferencer } from "@refinedev/inferencer/antd";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
+// or @refinedev/inferencer/mui, @refinedev/inferencer/chakra, @refinedev/inferencer/mantine, @refinedev/inferencer/headless
 
 export const ProductList = () => {
-  return <AntdListInferencer />;
+  // Scaffolds List page.
+  return <AntdInferencer />;
+};
+
+export const ProductShow = () => {
+  // Scaffolds Show page.
+  return <AntdInferencer />;
+};
+
+export const ProductEdit = () => {
+  // Scaffolds Edit page with form.
+  return <AntdInferencer />;
+};
+
+export const ProductCreate = () => {
+  // Scaffolds Create page with form.
+  return <AntdInferencer />;
 };
 ```
 
-Will generate the following code:
+An example of **List Page** scaffolded by inferencer looks like this;
 
 ```tsx title="generated-list.tsx"
 import { List, ShowButton, useTable } from "@refinedev/antd";
