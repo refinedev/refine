@@ -505,9 +505,41 @@ While **refine** itself is headless, it offers UI Integrations for popular UI li
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
+<Tabs>
+
+<TabItem value="AntD">
+
 import { AntdLayout } from './layout/antd';
 
 <AntdLayout />
+
+</TabItem>
+
+<TabItem value="Material UI">
+
+import { MaterialUILayout } from './layout/mui';
+
+<MaterialUILayout />
+
+</TabItem>
+
+<TabItem value="Chakra UI">
+
+import { ChakraUILayout } from './layout/chakra';
+
+<ChakraUILayout />
+
+</TabItem>
+
+<TabItem value="Mantine">
+
+import { MantineLayout } from './layout/mantine';
+
+<MantineLayout />
+
+</TabItem>
+
+</Tabs>
 
 ### Layout
 

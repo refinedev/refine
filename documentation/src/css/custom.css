@@ -1121,12 +1121,12 @@ html[data-theme="dark"] .sourcecode-badge {
 }
 
 .theme-code-block-added-line {
-    background-color: #d2fd20;
+    background-color: #57ab5aa8;
     display: block;
 }
 
 .theme-code-block-removed-line {
-  background-color: #ff000020;
+  background-color: #e5534b99;
   display: block;
 }
 

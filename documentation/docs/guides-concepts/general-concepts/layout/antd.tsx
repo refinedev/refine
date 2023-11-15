@@ -63,13 +63,8 @@ export default function App() {
             resources={[
               {
                 name: "products",
-                // We're defining the routes and assigning them to an action of a resource
                 list: "/my-products",
                 show: "/my-products/:id"
-                // For sake of simplicity, we are not defining other routes here but the implementation is the same
-                // create: "/my-products/new",
-                // edit: "/my-products/:id/edit",
-                // clone: "/my-products/:id/clone",
               }
             ]}
           >
@@ -127,42 +122,33 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 `.trim();
 
 const ShowTsxCode = `
+import { MarkdownField, NumberField, Show, TextField } from "@refinedev/antd";
+import { IResourceComponentsProps, useShow } from "@refinedev/core";
+import { Typography } from "antd";
 import React from "react";
 
-import { useGo, useShow } from "@refinedev/core";
+const { Title } = Typography;
 
-export const ProductShow: React.FC = () => {
-    // We're inferring the resource and the id from the route params
-    // So we can call useShow hook without any arguments.
-    // const result = useShow({ resource: "products", id: "xxx" })
-    const result = useShow();
+export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+  const { queryResult } = useShow();
+  const { data, isLoading } = queryResult;
 
-    const {  queryResult: { data, isLoading } } = result
+  const record = data?.data;
 
-    const go = useGo();
-
-    if (isLoading) return <div>Loading...</div>;
-
-    return (
-        <>
-            <div>
-                <h1>{data?.data?.name}</h1>
-                <p>Material: {data?.data?.material}</p>
-                <small>ID: {data?.data?.id}</small>
-            </div>
-            <button
-                onClick={() => {
-                    go({
-                        to: {
-                            resource: "products",
-                            action: "list",
-                        },
-                    });
-                }}
-            >
-                Go to Products list
-            </button>
-        </>
-    );
+  return (
+    <Show isLoading={isLoading}>
+      <Title level={5}>Id</Title>
+      <NumberField value={record?.id ?? ""} />
+      <Title level={5}>Name</Title>
+      <TextField value={record?.name} />
+      <Title level={5}>Material</Title>
+      <TextField value={record?.material} />
+      <Title level={5}>Description</Title>
+      <MarkdownField value={record?.description} />
+      <Title level={5}>Price</Title>
+      <NumberField value={record?.price ?? ""} />
+    </Show>
+  );
 };
+
 `.trim();
