@@ -790,16 +790,66 @@ Key Aspects of State Management in refine:
 
 ### CLI
 
-TBA.
+refine CLI allows you to interact with your **refine** project and perform certain tasks such as creating a new resource, managing version updates, swizzling components, running your project (build, start, dev).
+
+> See the [CLI](/docs/packages/cli/) page for more information.
 
 ### Dev Tools
 
-TBA.
+**refine devtools** is designed to help you debug and develop your refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating refine packages from the UI and more.
+
+> See the [Dev Tools](/docs/packages/devtools/) page for more information.
 
 ### Inferencer
 
-TBA.
+`@refinedev/inferencer` is a package that **scaffolfs** code for your application based on your resource definitions.
 
+:::caution
+Inferencer **scaffolds** some basic boilerplate code to be used as a **starting point**.
+
+It's not meant to be used on **production**.
+:::
+
+It has support for our **UI Integrations**.
+
+```tsx title="list.tsx"
+import { AntdListInferencer } from "@refinedev/inferencer/antd";
+
+export const ProductList = () => {
+  return <AntdListInferencer />;
+};
 ```
 
+Will generate the following code:
+
+```tsx title="generated-list.tsx"
+import { List, ShowButton, useTable } from "@refinedev/antd";
+import { BaseRecord, IResourceComponentsProps } from "@refinedev/core";
+import { Space, Table } from "antd";
+import React from "react";
+
+export const ProductList: React.FC<IResourceComponentsProps> = () => {
+  const { tableProps } = useTable({
+    syncWithLocation: true,
+  });
+
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="Id" />
+        <Table.Column dataIndex="name" title="Name" />
+        <Table.Column dataIndex="price" title="Price" />
+        <Table.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record: BaseRecord) => (
+            <Space>
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
+};
 ```
