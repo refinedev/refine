@@ -54,6 +54,8 @@ They are pluggable, which means you can use the **built-in providers** or **crea
 
 refine adopts a hook-based architecture, a modern and powerful pattern in React development, which significantly enhances the development experience and application performance.
 
+Burayi uzatalim
+
 ## Providers
 
 ### Data Provider
@@ -73,6 +75,10 @@ const myDataProvider: DataProvider = {
 };
 ```
 
+Refine offers various built-in data providers, such as xxxx.
+
+> See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
+
 #### Hooks
 
 You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetch data in your components.
@@ -88,8 +94,6 @@ export const ShowPage = () => {
   return <>{data.name}</>;
 };
 ```
-
-> See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
 
 ### Authentication Provider
 
@@ -126,26 +130,6 @@ export const authProvider: AuthProvider = {
 
 > See the [Authentication](/docs/guides-concepts/authentication/) guide for more information.
 
-#### UI Integrations
-
-Our UI Integrations works out-of-the-box with Authentication Provider.
-
-When provided, their Layout components can automatically render current user information on the header and add logout button to appropriate places.
-
-You can also use `AuthPage` component of these integrations for `Login`, `Register`, `Forgot Password`, `Reset Password` pages.
-
-```tsx title=auth.tsx
-import { AuthPage } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
-
-export const Auth = () => {
-  return (
-    <AuthPage
-      type="login" // register, forgot-password, reset-password
-    />
-  );
-};
-```
-
 #### Components
 
 You can use `Authenticated` component from `@refinedev/core` to protect your routes, components with authentication.
@@ -155,13 +139,11 @@ import { Authenticated } from "@refinedev/core";
 
 export const ShowPage = () => {
   return (
-    <>
+    // Unauthenticated users will be redirected to login page.
+    <Authenticated>
       Product Details Page
-      <Authenticated>
-        // Only authenticated users can see this.
-        <DeleteButton />
-      </Authenticated>
-    </>
+      <DeleteButton />
+    </Authenticated>
   );
 };
 ```
@@ -179,6 +161,28 @@ export const DashboardPage = () => {
   } = useGetIdentity();
 
   return <>Welcome {name}!</>;
+};
+```
+
+> Mention we have more hooks
+
+#### UI Integrations
+
+We have pre-built components which works with Auth Provider out-of-the-box.
+
+When provided, their Layout components can automatically render current user information on the header and add logout button to appropriate places.
+
+You can also use `AuthPage` component of these integrations for `Login`, `Register`, `Forgot Password`, `Reset Password` pages.
+
+```tsx title=auth.tsx
+import { AuthPage } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+
+export const Auth = () => {
+  return (
+    <AuthPage
+      type="login" // register, forgot-password, reset-password
+    />
+  );
 };
 ```
 
@@ -209,29 +213,6 @@ export const App = () => {
 ```
 
 > See the [Authorization](/docs/guides-concepts/authorization/) guide for more information.
-
-#### UI Integrations
-
-When provided, our UI Integrations works out-of-the-box with Access Control Provider.
-
-For example if user isn't authorized to see `orders` resource, it will be hidden on the sidebar menu automatically.
-
-Or if the current user isn't authorized to delete a product, the delete button will be disabled or hidden automatically.
-
-```tsx title=example.tsx
-import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
-
-export const ShowPage = () => {
-  return (
-    <>
-      Product Details Page
-      <DeleteButton /> // Only admins can see this.
-    </>
-  );
-};
-```
-
-This applies to all buttons like `CreateButton`, `EditButton`, `ShowButton`, `ListButton`.
 
 #### Components
 
@@ -272,6 +253,29 @@ export const ShowPage = () => {
 };
 ```
 
+#### UI Integrations
+
+When provided, our UI Integrations works out-of-the-box with Access Control Provider.
+
+For example if user isn't authorized to see `orders` resource, it will be hidden on the sidebar menu automatically.
+
+Or if the current user isn't authorized to delete a product, the delete button will be disabled or hidden automatically.
+
+```tsx title=example.tsx
+import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+
+export const ShowPage = () => {
+  return (
+    <>
+      Product Details Page
+      <DeleteButton /> // Only admins can see this.
+    </>
+  );
+};
+```
+
+This applies to all buttons like `CreateButton`, `EditButton`, `ShowButton`, `ListButton`.
+
 ### Notification Provider
 
 **refine** can automatically show notifications for CRUD operations and errors.
@@ -284,7 +288,9 @@ For example, after creating, updating, or deleting a record for `products` resou
 
 #### Hooks
 
-You can use `useNotification` hook to show notifications in your components.
+Mention data hooks and mutation hooks shows notification also accepts successNotificationParams, errorNotificationParams vs vs.
+
+If you still have use-case we haven't covered, you can use `useNotification` hook to show notifications in your components.
 
 ```tsx title=show.tsx
 import { useNotification } from "@refinedev/core";
@@ -330,12 +336,6 @@ export const App = () => {
 }
 ```
 
-#### UI Integrations
-
-When provided, our UI Integrations works out-of-the-box with I18n Provider.
-
-For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
-
 #### Hooks
 
 You can use `useTranslate`, `useSetLocale`, `useGetLocale` hooks to handle i18n in your components.
@@ -361,6 +361,14 @@ export const ShowPage = () => {
 
 ```
 
+#### UI Integrations
+
+When provided, our UI Integrations works out-of-the-box with I18n Provider.
+
+For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
+
+> See the [Internationalization](/docs/guides-concepts/internationalization/) guide for more information.
+
 ### Router Provider
 
 Router provider helps **refine** understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
@@ -370,10 +378,19 @@ We have built-in router integrations for the following packages:
 - React Router V6
 - NextJS
 - Remix
+- Expo Router (Community Package)
 
 > See the [Routing](/docs/guides-concepts/routing/) page for more information.
 
+#### Components
+
+Router provider infers resource and the action for certain components bla bla.
+
 #### Hooks
+
+Router Provider eliminates the need of passing resource idxx hooks with automatic parameter detection based on the current route. Fo
+
+useTable, useShow, useForm
 
 You can use `useGo` hook to navigate in your components.
 
@@ -408,7 +425,7 @@ import { AntdLayout } from './layout/antd'
 
 ### Layout
 
-UI Integrations provides a `ThemedLayout` component, which renders the `sidebar menu`, `header`, and `content` area of your application.
+UI Integrations provides a Layout components, which renders the `sidebar menu`, `header`, and `content` area of your application.
 
 It automatically renders the sidebar menu based on the resource definitions, and the header based on the current user.
 
@@ -421,7 +438,7 @@ These components provides layout view based on the resource information automati
 - Header with title
 - Breadcrumb
 - Translated texts
-- CRUD Buttons for redirection.
+- CRUD Buttons
 
 On top of that, **refine** adds some features to these layouts:
 
@@ -471,6 +488,8 @@ Make a list of hooks exported by UI Integrations.
 ## Meta Concept
 
 `meta` is a special property that can be used to add additional information to a resource definition. This information then can be used by **providers** and **UI integrations** to enhance the application.
+
+Mention enriched meta, `resource.meta`, `hook.meta`, `meta from URL` are merged.
 
 For **UI Integrations**:
 

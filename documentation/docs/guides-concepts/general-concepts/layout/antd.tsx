@@ -39,6 +39,7 @@ import React from "react";
 
 import { App as AntdApp, ConfigProvider } from "antd";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import "@refinedev/antd/dist/reset.css";
 
 import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
