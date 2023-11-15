@@ -109,7 +109,7 @@ export const ShowPage = () => {
 };
 ```
 
-> See the [Data Hooks](/docs/core/hooks/data-hooks) page for more information.
+> See the [Data Fetching](/docs/guides-concepts/data-fetching) page for more information.
 
 ### Authentication Provider
 
@@ -160,7 +160,7 @@ const MyPage = () => (
 );
 ```
 
-> See the [Authentication Components](/docs/core/components/authentication) page for more information.
+> See the [Authentication Components](/docs/guides-concepts/authentication#components) page for more information.
 
 #### Hooks
 
@@ -178,7 +178,7 @@ export const DashboardPage = () => {
 };
 ```
 
-> See the [Authentication Hooks](/docs/core/hooks/authentication) page for more information.
+> See the [Authentication Hooks](/docs/guides-concepts/authentication#hooks) page for more information.
 
 #### UI Integrations
 
@@ -568,6 +568,42 @@ While the button itself is imported from underlying UI package, **refine** adds 
 ### Auth Pages
 
 Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset Password` integrated with `AuthProvider` automatically.
+
+<Tabs>
+
+<TabItem value="Ant Design">
+
+import { AntdAuth } from "./auth-pages/antd";
+
+<AntdAuth />
+
+</TabItem>
+
+<TabItem value="Material UI">
+
+import { MaterialUIAuth } from "./auth-pages/mui";
+
+<MaterialUIAuth />
+
+</TabItem>
+
+<TabItem value="Chakra UI">
+
+import { ChakraUIAuth } from "./auth-pages/chakra";
+
+<ChakraUIAuth />
+
+</TabItem>
+
+<TabItem value="Mantine">
+
+import { MantineAuth } from "./auth-pages/mantine";
+
+<MantineAuth />
+
+</TabItem>
+
+</Tabs>
 
 ### UI Integration Hooks
 

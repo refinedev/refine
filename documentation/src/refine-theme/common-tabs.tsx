@@ -1,10 +1,10 @@
-import React, { cloneElement } from "react";
-import clsx from "clsx";
 import {
     useScrollPositionBlocker,
     useTabs,
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import clsx from "clsx";
+import React, { cloneElement } from "react";
 
 function TabList({
     className,
@@ -14,9 +14,6 @@ function TabList({
     tabValues,
     wrapContent = true,
 }) {
-    console.log({
-        wrapContent,
-    });
     const tabRefs = [];
     const { blockElementScrollPositionUntilNextRender } =
         useScrollPositionBlocker();
