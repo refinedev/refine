@@ -12,11 +12,11 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 -   🔶 &nbsp;Supported and documented, but requires extra user-code to implement
 -   🛑 &nbsp;Not officially supported or documented.
 
-| Features                             | refine                                                                                               | React-Admin [_(Website)_][react-admin]     | AdminBro[_(Website)_][adminjs]   | Retool[_(Website)_][retool] | Redwood[_(Website)_][redwood]                         |
+| Features                             | Refine                                                                                               | React-Admin     | AdminBro  | Retool | Redwood                         |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------- | --------------------------- | ----------------------------------------------------- |
 | Github Repo / Stars                  | [![][stars-refine]][gh-refine]                                                                       | [![][stars-react-admin]][gh-react-admin]   | [![][stars-adminjs]][gh-adminjs] | -                           | [![][stars-redwood]][gh-redwood]                      |
 | Bundle Size                          | [![][bp-refine]][bpl-refine] 🚀 🚀                                                                     | [![][bp-react-admin]][bpl-react-admin]     | [![][bp-adminjs]][bpl-adminjs]   | -                           | [![][bp-redwood]][bpl-redwood]                        |
-| Pricing                              | Open Source                                                                                          | Open Source / Enterprise Edition           | Open Source                      | [_Pricing_][retool-pricing] | Open Source                                           |
+| Pricing                              | Open Source                                                                                          | Open Source / Enterprise Edition           | Open Source                      | SaaS | Open Source                                           |
 | Platform Requirements                | React                                                                                                | React                                      | Node.js - React                  | Cloud / Self-hosted         | React - Node                                          |
 | Supported UI Frameworks              | **Ant Design, Material UI, Tailwind, Mantine, Chakra UI, anything...**🚀                              | Material UI                                | Own UIs                          | Own UIs                     | Tailwind, Chakra, Mantine, WindiCSS and custom styles |
 | Headless                             | **Yes**🚀                                                                                             | No                                         | No                               | No                          | No                                                    |
@@ -65,8 +65,6 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 <!-- -->
 
-[react-admin]: https://marmelab.com/react-admin/
-[react-enterprise]: https://marmelab.com/ra-enterprise/
 [stars-react-admin]: https://img.shields.io/github/stars/marmelab/react-admin?label=%F0%9F%8C%9F
 [gh-react-admin]: https://github.com/marmelab/react-admin
 [bpl-react-admin]: https://bundlephobia.com/result?p=react-admin
@@ -82,12 +80,6 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 <!-- -->
 
-[retool]: https://retool.com/
-[retool-pricing]: https://retool.com/pricing/
-
-<!-- -->
-
-[redwood]: https://redwoodjs.com/
 [stars-redwood]: https://img.shields.io/github/stars/redwoodjs/redwood?label=%F0%9F%8C%9F
 [gh-redwood]: https://github.com/redwoodjs/redwood
 [bpl-redwood]: https://bundlephobia.com/result?p=@redwoodjs/core
