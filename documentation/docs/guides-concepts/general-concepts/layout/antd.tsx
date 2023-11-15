@@ -67,6 +67,7 @@ export default function App() {
                 show: "/my-products/:id"
               }
             ]}
+            options={{ syncWithLocation: true }}
           >
             <Routes>
               <Route
@@ -96,9 +97,7 @@ import { Space, Table } from "antd";
 import React from "react";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps } = useTable({
-    syncWithLocation: true
-  });
+  const { tableProps } = useTable();
 
   return (
     <List>

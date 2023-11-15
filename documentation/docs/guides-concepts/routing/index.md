@@ -150,7 +150,7 @@ import { ReactRouterResourceAndRoutesUsage } from "./react-router/resource-and-r
 
 <ReactRouterResourceAndRoutesUsage />
 
-#### Next.JS
+#### Next.js
 
 import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage";
 
@@ -247,7 +247,7 @@ import { ReactRouterUseTableUsage } from "./react-router/use-table-usage";
 
 <ReactRouterUseTableUsage />
 
-#### Next.JS
+#### Next.js
 
 You can use SSR feature with Next.js to fetch initial data on the server side.
 

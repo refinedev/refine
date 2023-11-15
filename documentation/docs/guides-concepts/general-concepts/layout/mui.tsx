@@ -78,6 +78,7 @@ export default function App() {
               show: "/my-products/:id",
             },
           ]}
+          options={{ syncWithLocation: true }}
         >
           <Routes>
             <Route

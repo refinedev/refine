@@ -56,7 +56,7 @@ refine adopts a hook-based architecture, a modern and powerful pattern in React 
 
 **refine**'s hooks are **headless**, which means they are library agnostic, provides **a unified interface** for your needs regardless of your library or framework of your choice.
 
-For example, we have different built-in router providers for **React Router v6**, **NextJS**, **Remix**, **Expo** that handles routing in your application.
+For example, we have different built-in router providers for **React Router v6**, **Next.js**, **Remix**, **Expo** that handles routing in your application.
 
 But we have a single `useGo` hook, exported from `@refinedev/core` package, can be used to navigate to a specific resource's page in your application **regardless of your routing solution**.
 
@@ -96,11 +96,13 @@ const myDataProvider: DataProvider = {
 You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetch data in your components.
 
 ```tsx title=show.tsx
+import { useOne } from "@refinedev/core";
+
 export const ShowPage = () => {
   const { data, isLoading } = useOne({ resource: "products", id: 1 });
 
   if (isLoading) {
-    return <Loading />;
+    return <p>Loading...</p>;
   }
 
   return <>{data.name}</>;
@@ -148,18 +150,14 @@ export const authProvider: AuthProvider = {
 
 You can use `Authenticated` component from `@refinedev/core` to protect your routes, components with authentication.
 
-```tsx title=show.tsx
+```tsx title=my-page.tsx
 import { Authenticated } from "@refinedev/core";
 
-export const ShowPage = () => {
-  return (
-    // Unauthenticated users will be redirected to login page.
-    <Authenticated>
-      Product Details Page
-      <DeleteButton />
-    </Authenticated>
-  );
-};
+const MyPage = () => (
+  <Authenticated>
+    <YourComponent />
+  </Authenticated>
+);
 ```
 
 > See the [Authentication Components](/docs/core/components/authentication) page for more information.
@@ -190,17 +188,7 @@ When provided, their Layout components can automatically render current user inf
 
 You can also use `AuthPage` component of these integrations for `Login`, `Register`, `Forgot Password`, `Reset Password` pages.
 
-```tsx title=auth.tsx
-import { AuthPage } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
-
-export const Auth = () => {
-  return (
-    <AuthPage
-      type="login" // or register, forgot-password, reset-password
-    />
-  );
-};
-```
+See the [Auth Pages](#auth-pages) section below for more information.
 
 ### Access Control Provider
 
@@ -213,9 +201,11 @@ import { AccessControlProvider, Refine } from "@refinedev/core";
 
 const myAccessControlProvider: AccessControlProvider = {
   can: async ({ resource, action, user }) => {
-    if (user.role === "admin" && action === "delete") {
-      return { can: true };
+    if (user.role === "user" && action === "delete") {
+      return { can: false };
     }
+
+    return { can: true }
   },
 };
 
@@ -239,14 +229,15 @@ import { CanAccess } from "@refinedev/core";
 
 export const ShowPage = () => {
   return (
-    // Unauthorized users will be redirected.
     <CanAccess resource="users" action="show">
-      User Page
-      <CanAccess resource="users" action="block">
-        // Only authorized users can see this.
-        <BlockUserButton />
-      </CanAccess>
-    </>
+      <>
+        User Page
+        <CanAccess resource="users" action="block">
+          // Only authorized users can see this.
+          <BlockUserButton />
+        </CanAccess>
+      </>
+    </CanAccess>
   );
 };
 ```
@@ -304,13 +295,13 @@ This applies to all buttons like `CreateButton`, `EditButton`, `ShowButton`, `Li
 
 For example, after creating, updating, or deleting a record for `products` resource, or when an error occurs on form submission.
 
-**refine** has out-of-the-box notification providers for popular UI libraries like **AntD**, **Material UI**, **Chakra UI**, and **Mantine**.
+**refine** has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
 
 > See the [Notifications](/docs/guides-concepts/notifications/) guide for more information.
 
 #### Hooks
 
-Our **data hooks** and **mutation hooks** can automatically show notifications for CRUD operations and errors.
+Our **data hooks**, **mutation hooks**, and **auth hooks** can automatically show notifications for actions and errors.
 
 It's also possible to modify these notifications per hook.
 
@@ -355,7 +346,8 @@ export const ShowPage = () => {
     <>
       <Button
         onClick={() => {
-          open({
+          open?.({
+            key: "my-notification",
             message: "Test Notification",
             description: "This is a test notification.",
             type: "success", // success | error | progress
@@ -366,7 +358,7 @@ export const ShowPage = () => {
       </Button>
       <Button
         onClick={() => {
-          close();
+          close?.("my-notification");
         }}
       >
         Close Notification
@@ -413,8 +405,8 @@ export const ShowPage = () => {
   return (
     <>
       Current Locale: {getLocale()}
-      <Button onClick={() => setLocale("tr")}>Set Locale to Turkish</Button>
       <Button onClick={() => setLocale("en")}>Set Locale to English</Button>
+      <Button onClick={() => setLocale("de")}>Set Locale to German</Button>
 
       <Button>{translate('Hello')</Button>
     </>
@@ -437,10 +429,10 @@ Router provider helps **refine** understand the relationship between resources a
 
 We have built-in router integrations for the following packages:
 
-- React Router V6
-- NextJS
+- React Router v6
+- Next.js
 - Remix
-- Expo Router (Community Package)
+- Expo Router (React Native)
 
 > See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
@@ -457,20 +449,16 @@ import { List, CreateButton } from "@refinedev/antd"; // or @refinedev/mui, @ref
 
 export const ProductsListPage = () => {
   return (
-    // removed-line
-    <List resource="products">
-    // added-line
-    <List> // Infers "title" from the current route.
-      // removed-line
-      <CreateButton resource="products" />
-      // added-line
+    // Instead of <List resource="products">
+    <List>
+      {/* Instead of <CreateButton resource="products" /> */}
       <CreateButton /> // Redirects to /products/new
     </List>
   );
 };
 ```
 
-> This is just one example, see the [Routing](/docs/guides-concepts/routing/) guide for more information.
+> See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
 #### Hooks
 
@@ -482,9 +470,8 @@ Or `useOne` hook can infer `resource` and `id` parameters from the current URL.
 import { useOne } from "@refinedev/core";
 
 export const ShowPage = () => {
-  // removed-line
-  const { data, isLoading } = useOne({ resource: "products", id: 1 });
-  // added-line
+  //   const { data, isLoading } = useOne({ resource: "products", id: 1 });
+  //   We don't need to pass "resource" and "id" parameters manually.
   const { data, isLoading } = useOne();
 
   if (isLoading) {
@@ -497,7 +484,7 @@ export const ShowPage = () => {
 
 Another example is `useTable` hook. While it can infer **resource**, **pagination**, **filters**, and **sorters** parameters from the current route, it can also update the current route if any of these parameters changes.
 
-> See more examples in the [Routing](/docs/guides-concepts/routing/) guide.
+> See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
 ## UI Integrations
 
@@ -507,7 +494,7 @@ These integrations use `@refinedev/core` under the hood, becomes a bridge betwee
 
 <Tabs wrapContent={false}>
 
-<TabItem value="AntD">
+<TabItem value="Ant Design">
 
 import { AntdLayout } from './layout/antd';
 
@@ -543,9 +530,9 @@ import { MantineLayout } from './layout/mantine';
 
 ### Layout
 
-UI Integrations provides a Layout components, which renders the `sidebar menu`, `header`, and `content` area of your application.
+UI Integrations provides a Layout components, which renders the **sidebar menu**, **header**, and **content** area of your application.
 
-It automatically renders the sidebar menu based on the resource definitions, and the header based on the current user.
+It automatically renders the sidebar menu based on the **resource definitions**, and the header based on the **current user**.
 
 ### CRUD Pages
 
@@ -581,7 +568,7 @@ Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset 
 
 UI Integration hooks uses `@refinedev/core` hooks under the hood, making it easier to use them in your UI specific components.
 
-One example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `antd`'s `Table` component. So you don't need to manually map the props.
+One example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `Ant Design`'s `Table` component. So you don't need to manually map the props.
 
 You can see the list of hooks for each UI Integration listed below:
 
@@ -794,11 +781,11 @@ refine CLI allows you to interact with your **refine** project and perform certa
 
 > See the [CLI](/docs/packages/cli/) page for more information.
 
-### Dev Tools
+### Devtools
 
 **refine devtools** is designed to help you debug and develop your refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating refine packages from the UI and more.
 
-> See the [Dev Tools](/docs/packages/devtools/) page for more information.
+> See the [Devtools](/docs/packages/devtools/) page for more information.
 
 ### Inferencer
 
