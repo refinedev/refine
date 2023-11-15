@@ -77,7 +77,7 @@ export const BlogPostPageView = ({ children }) => {
                         title={title}
                         hashtags={tags.map((tag) => tag.label)}
                     >
-                        <Twitter />
+                        <Twitter width={26} height={26} />
                     </TwitterShareButton>
                     <RedditShareButton
                         className="flex"
