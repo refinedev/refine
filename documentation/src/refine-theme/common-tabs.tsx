@@ -6,7 +6,17 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
-function TabList({ className, block, selectedValue, selectValue, tabValues }) {
+function TabList({
+    className,
+    block,
+    selectedValue,
+    selectValue,
+    tabValues,
+    wrapContent = true,
+}) {
+    console.log({
+        wrapContent,
+    });
     const tabRefs = [];
     const { blockElementScrollPositionUntilNextRender } =
         useScrollPositionBlocker();
@@ -53,9 +63,12 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                 "px-2",
                 "py-[7px]",
                 "flex gap-2",
-                "border-b border-b-gray-200 dark:border-b-gray-700",
+                wrapContent
+                    ? "border-b border-b-gray-200 dark:border-b-gray-700"
+                    : "border border-gray-200 dark:border-gray-700",
                 "bg-gray-50 dark:bg-gray-800",
                 "rounded-tl-md rounded-tr-md",
+                !wrapContent && "rounded-bl-md rounded-br-md",
                 "items-stretch",
             )}
         >
@@ -136,13 +149,15 @@ function TabContent({ lazy, children, selectedValue }) {
 function TabsComponent(props) {
     const tabs = useTabs(props);
 
+    const { wrapContent = true } = props;
+
     return (
         <div
             className={clsx(
                 "tabs-container",
                 "rounded-md",
-                "border",
                 "border-gray-200 dark:border-gray-700",
+                wrapContent ? "border" : "border-0",
                 "mb-6",
             )}
         >
