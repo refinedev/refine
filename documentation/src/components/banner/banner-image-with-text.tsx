@@ -56,9 +56,9 @@ export const BannerImageWithText: FC<Props> = ({
                 "rounded-2xl",
                 "p-6",
                 "flex",
-                "flex-col md:flex-row",
+                "flex-col 2xl:flex-row",
                 "items-center",
-                "gap-4 md:gap-10",
+                "gap-4 2xl:gap-10",
                 "not-prose",
                 variant === "gray" && "bg-banner-examples-gray",
                 variant === "purple" && "bg-banner-examples-purple",
@@ -85,13 +85,12 @@ export const BannerImageWithText: FC<Props> = ({
             </Link>
             <div
                 className={clsx(
-                    "w-[360px] md:w-max",
                     "flex",
                     "flex-col",
                     "gap-6",
-                    "justify-center md:justify-start",
-                    "items-center md:items-start",
-                    "text-center md:text-start",
+                    "justify-center 2xl:justify-start",
+                    "items-center 2xl:items-start",
+                    "text-center 2xl:text-start",
                     "not-prose",
                 )}
             >
