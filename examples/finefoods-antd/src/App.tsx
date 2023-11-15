@@ -43,10 +43,15 @@ import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "./components";
 import { BikeWhiteIcon, PizzaIcon } from "./components/icons";
 import { ConfigProvider } from "./context";
+import { useAutoLoginForDemo } from "./hooks";
 
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
+    // This hook is used to automatically login the user.
+    // We use this hook to skip the login page and demonstrate the application more quickly.
+    const { loading } = useAutoLoginForDemo();
+
     const API_URL = "https://api.finefoods.refine.dev";
     const dataProvider = jsonServerDataProvider(API_URL);
 
@@ -57,6 +62,10 @@ const App: React.FC = () => {
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
+
+    if (loading) {
+        return null;
+    }
 
     return (
         <BrowserRouter>

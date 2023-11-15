@@ -24,7 +24,7 @@ import {
     searchClient,
 } from "@/providers";
 
-import { Layout } from "./components";
+import { FullScreenLoading, Layout } from "./components";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
     CalendarCreatePage,
@@ -68,6 +68,7 @@ import {
     SalesPage,
 } from "./routes/scrumboard/sales";
 import { UpdatePasswordPage } from "./routes/update-password";
+import { useAutoLoginForDemo } from "./hooks";
 
 import "@refinedev/antd/dist/reset.css";
 import "./styles/antd.css";
@@ -75,6 +76,14 @@ import "./styles/fc.css";
 import "./styles/index.css";
 
 const App: React.FC = () => {
+    // This hook is used to automatically login the user.
+    // We use this hook to skip the login page and demonstrate the application more quickly.
+    const { loading } = useAutoLoginForDemo();
+
+    if (loading) {
+        return <FullScreenLoading />;
+    }
+
     return (
         <InstantSearch searchClient={searchClient} indexName={indexName}>
             <BrowserRouter>
