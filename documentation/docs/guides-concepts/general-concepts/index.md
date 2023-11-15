@@ -54,7 +54,19 @@ They are pluggable, which means you can use the **built-in providers** or **crea
 
 refine adopts a hook-based architecture, a modern and powerful pattern in React development, which significantly enhances the development experience and application performance.
 
-Burayi uzatalim
+**refine**'s hooks are **headless**, which means they are library agnostic, provides **a unified interface** for your needs regardless of your library or framework of your choice.
+
+For example, we have different built-in router providers for **React Router v6**, **NextJS**, **Remix**, **Expo** that handles routing in your application.
+
+But we have a single `useGo` hook, exported from `@refinedev/core` package, can be used to navigate to a specific resource's page in your application **regardless of your routing solution**.
+
+This is just one example, we have many other hooks for data fetching, authentication, access control, notifications, i18n and more.
+
+They are all **headless**, **library agnostic**, and **unified**.
+
+You might be using **Casbin** or **Cerbos** for authorization, we have a single `useCan` hook to control access in your components.
+
+Or you may prefer either `next-i18next` or `react-i18next` for i18n, we have a single `useTranslate` hook to handle translation.
 
 ## Providers
 
@@ -75,7 +87,7 @@ const myDataProvider: DataProvider = {
 };
 ```
 
-Refine offers various built-in data providers, such as xxxx.
+> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/core/providers/data-provider) page for more information.
 
 > See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
 
@@ -94,6 +106,8 @@ export const ShowPage = () => {
   return <>{data.name}</>;
 };
 ```
+
+> See the [Data Hooks](/docs/core/hooks/data-hooks) page for more information.
 
 ### Authentication Provider
 
@@ -148,6 +162,8 @@ export const ShowPage = () => {
 };
 ```
 
+> See the [Authentication Components](/docs/core/components/authentication) page for more information.
+
 #### Hooks
 
 You can use `useGetIdentity` hook to get current user.
@@ -164,7 +180,7 @@ export const DashboardPage = () => {
 };
 ```
 
-> Mention we have more hooks
+> See the [Authentication Hooks](/docs/core/hooks/authentication) page for more information.
 
 #### UI Integrations
 
@@ -180,7 +196,7 @@ import { AuthPage } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/cha
 export const Auth = () => {
   return (
     <AuthPage
-      type="login" // register, forgot-password, reset-password
+      type="login" // or register, forgot-password, reset-password
     />
   );
 };
@@ -223,10 +239,11 @@ import { CanAccess } from "@refinedev/core";
 
 export const ShowPage = () => {
   return (
-    <>
+    // Unauthorized users will be redirected.
+    <CanAccess resource="users" action="show">
       User Page
       <CanAccess resource="users" action="block">
-        // Only admins can see this.
+        // Only authorized users can see this.
         <BlockUserButton />
       </CanAccess>
     </>
@@ -239,14 +256,19 @@ export const ShowPage = () => {
 You can use `useCan` hook to control access in your components.
 
 ```tsx title=show.tsx
-import { useCan } from "@refinedev/core";
+import { ErrorComponent, useCan } from "@refinedev/core";
 
 export const ShowPage = () => {
+  const canSee = useCan({ resource: "users", action: "show" });
   const canBlock = useCan({ resource: "users", action: "block" });
+
+  if (!canSee) {
+    return <ErrorComponent />;
+  }
 
   return (
     <>
-      User Page
+      User Details Page
       {canBlock && <BlockUserButton />}
     </>
   );
@@ -288,28 +310,68 @@ For example, after creating, updating, or deleting a record for `products` resou
 
 #### Hooks
 
-Mention data hooks and mutation hooks shows notification also accepts successNotificationParams, errorNotificationParams vs vs.
+Our **data hooks** and **mutation hooks** can automatically show notifications for CRUD operations and errors.
 
-If you still have use-case we haven't covered, you can use `useNotification` hook to show notifications in your components.
+It's also possible to modify these notifications per hook.
+
+```tsx title=show.tsx
+import { useDelete } from "@refinedev/core";
+
+export const ShowPage = () => {
+  const { mutate } = useDelete({ resource: "products" });
+
+  return (
+    <Button
+      onClick={() => {
+        mutate({
+          successNotification: () => ({
+            message: "Product Deleted",
+            description: "Product has been deleted successfully.",
+            type: "success",
+          }),
+          errorNotification: () => ({
+            message: "Product Delete Error",
+            description: "An error occurred while deleting the product.",
+            type: "error",
+          }),
+        });
+      }}
+    >
+      Delete Product
+    </Button>
+  );
+};
+```
+
+If you have a use-case that isn't covered, you can use `useNotification` hook to show notifications in your application.
 
 ```tsx title=show.tsx
 import { useNotification } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { open } = useNotification();
+  const { open, close } = useNotification();
 
   return (
-    <Button
-      onClick={() => {
-        open({
-          message: "Test Notification",
-          description: "This is a test notification.",
-          type: "success", // success | error | progress
-        });
-      }}
-    >
-      Show notification
-    </Button>
+    <>
+      <Button
+        onClick={() => {
+          open({
+            message: "Test Notification",
+            description: "This is a test notification.",
+            type: "success", // success | error | progress
+          });
+        }}
+      >
+        Show notification
+      </Button>
+      <Button
+        onClick={() => {
+          close();
+        }}
+      >
+        Close Notification
+      </Button>
+    </>
   );
 };
 ```
@@ -676,7 +738,7 @@ export const App = () => {
 
 These are some but not all examples of how you can use the `meta` property.
 
-See the [Refine Component](/docs/core/refine-component) page for more information.
+> See the [Refine Component](/docs/core/refine-component) page for more information.
 
 ## State Management
 
