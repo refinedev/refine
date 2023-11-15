@@ -505,7 +505,7 @@ While **refine** itself is headless, it offers UI Integrations for popular UI li
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
-<Tabs>
+<Tabs wrapContent={false}>
 
 <TabItem value="AntD">
 
