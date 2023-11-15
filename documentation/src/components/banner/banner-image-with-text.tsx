@@ -95,9 +95,11 @@ export const BannerImageWithText: FC<Props> = ({
                 )}
             >
                 {title && (
-                    <h2 className={clsx("text-2xl", "text-gray-0")}>{title}</h2>
+                    <h2 className={clsx("text-xl md:text-2xl", "text-gray-0")}>
+                        {title}
+                    </h2>
                 )}
-                <p className={clsx("text-base", "text-gray-100")}>
+                <p className={clsx("text-sm md:text-base", "text-gray-100")}>
                     {description}
                 </p>
                 <LandingRainbowButton
@@ -111,13 +113,19 @@ export const BannerImageWithText: FC<Props> = ({
                     <div
                         className={clsx(
                             "text-gray-900",
-                            "text-base",
+                            "text-sm md:text-base",
                             "font-bold",
                         )}
                     >
                         {button.text}
                     </div>
-                    <ArrowRightIcon className={clsx("ml-2", "w-4", "h-4")} />
+                    <ArrowRightIcon
+                        className={clsx(
+                            "ml-1 md:ml-2",
+                            "w-[14px] h-[14px]",
+                            "md:w-4 md:h-4",
+                        )}
+                    />
                 </LandingRainbowButton>
             </div>
             <RefineLogoSeal
