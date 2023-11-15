@@ -36,24 +36,26 @@ export function ReactRouterUseModalFormUsage() {
 }
 
 const ModalComponentTsxCode = /* tsx */ `
-export const Modal: React.FC<ModalPropsType> = ({ isOpen, onClose, children }) => {
-    if (!isOpen) return null;
+import React from "react";
 
-    return (
-        <>
-            <div className="overlay" onClick={onClose}></div>
-            <div className="modal">
-                <div className="modal-title">
-                    <button className="close-button" onClick={onClose}>
-                        &times;
-                    </button>
-                </div>
-                <div className="modal-content">{children}</div>
-            </div>
-        </>
-    );
+export const Modal: React.FC = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div className="overlay" onClick={onClose}></div>
+      <div className="modal">
+        <div className="modal-title">
+          <button className="close-button" onClick={onClose}>
+            &times;
+          </button>
+        </div>
+        <div className="modal-content">{children}</div>
+      </div>
+    </>
+  );
 };
-`;
+`.trim();
 
 const AppTsxCode = /* tsx */ `
 import React from "react";
@@ -66,27 +68,26 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./style.css";
 
 import { ProductList } from "./pages/products/list.tsx";
-import { ProductEdit } from "./pages/products/edit.tsx";
 
 export default function App() {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "products",
-                        list: "/my-products",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/my-products" element={<ProductList />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "products",
+            list: "/my-products",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/my-products" element={<ProductList />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 }
 `.trim();
 
@@ -159,49 +160,49 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "../../components/modal.tsx";
 
 export const ProductList: React.FC = () => {
-    const { data, isLoading } = useList();
+  const { data, isLoading } = useList();
 
-    const {
-        modal: { visible, close, show },
-        refineCore: { onFinish, formLoading },
-        handleSubmit,
-        register,
-        saveButtonProps,
-    } = useModalForm({
-        refineCoreProps: { action: "edit" },
-        syncWithLocation: true,
-    });
+  const {
+    modal: { visible, close, show },
+    refineCore: { onFinish, formLoading },
+    handleSubmit,
+    register,
+    saveButtonProps,
+  } = useModalForm({
+    refineCoreProps: { action: "edit" },
+    syncWithLocation: true,
+  });
 
-    if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-    return (
-        <>
-            <Modal isOpen={visible} onClose={close}>
-                <form onSubmit={handleSubmit(onFinish)}>
-                    <div>
-                        <label htmlFor="name">name</label>
-                        <input {...register("name")} />
-                    </div>
-                    <button type="submit" {...saveButtonProps}>
-                        <span>Save</span>
-                    </button>
-                </form>
-            </Modal>
-            <ul>
-                {data?.data?.map((product) => (
-                    <li key={product.id}>
-                        <span>{product.name}</span>
-                        <button
-                            onClick={() => {
-                                show(product.id);
-                            }}
-                        >
-                            edit
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </>
-    );
+  return (
+    <>
+      <Modal isOpen={visible} onClose={close}>
+        <form onSubmit={handleSubmit(onFinish)}>
+          <div>
+            <label htmlFor="name">name</label>
+            <input {...register("name")} />
+          </div>
+          <button type="submit" {...saveButtonProps}>
+            <span>Save</span>
+          </button>
+        </form>
+      </Modal>
+      <ul>
+        {data?.data?.map((product) => (
+          <li key={product.id}>
+            <span>{product.name}</span>
+            <button
+              onClick={() => {
+                show(product.id);
+              }}
+            >
+              edit
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };
 `.trim();

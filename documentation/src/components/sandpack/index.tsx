@@ -324,7 +324,6 @@ const SandpackBase = ({
                     </div>
                 ))}
             </section>
-            ;
         </>
     );
 };

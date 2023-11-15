@@ -8,9 +8,9 @@ Routing is essential for any CRUD application. **refine**'s headless architectur
 
 These integrations makes it easier to use **refine** with these frameworks and offers a lot of benefits such as:
 
--   Automatic parameter detection in hooks/components.
--   Automatic redirections after mutation or authentication.
--   Set of utility components & hooks which can be used to navigate between pages/routes.
+- Automatic parameter detection in hooks/components.
+- Automatic redirections after mutation or authentication.
+- Set of utility components & hooks which can be used to navigate between pages/routes.
 
 Since **refine** is router agnostic, you are responsible for creating your own routes.
 
@@ -31,12 +31,12 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import routerProvider from "@refinedev/react-router-v6";
 
 const App = () => (
-    <BrowserRouter>
-        // highlight-next-line
-        <Refine routerProvider={routerProvider}>
-            <Routes>{/* Your route definitions */}</Routes>
-        </Refine>
-    </BrowserRouter>
+  <BrowserRouter>
+    // highlight-next-line
+    <Refine routerProvider={routerProvider}>
+      <Routes>{/* Your route definitions */}</Routes>
+    </Refine>
+  </BrowserRouter>
 );
 ```
 
@@ -50,14 +50,14 @@ const App = () => (
 import routerProvider from "@refinedev/nextjs-router";
 
 export function MyApp({ Component, pageProps }) {
-    return (
-        <Refine
-            // highlight-next-line
-            routerProvider={routerProvider}
-        >
-            <Component {...pageProps} />
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      routerProvider={routerProvider}
+    >
+      <Component {...pageProps} />
+    </Refine>
+  );
 }
 ```
 
@@ -73,18 +73,18 @@ export function MyApp({ Component, pageProps }) {
 import routerProvider from "@refinedev/remix-router";
 
 export default function App() {
-    return (
-        <html>
-            <body>
-                <Refine
-                    // highlight-next-line
-                    routerProvider={routerProvider}
-                >
-                    <Outlet />
-                </Refine>
-            </body>
-        </html>
-    );
+  return (
+    <html>
+      <body>
+        <Refine
+          // highlight-next-line
+          routerProvider={routerProvider}
+        >
+          <Outlet />
+        </Refine>
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -100,12 +100,12 @@ export default function App() {
 import routerProvider from "@refinenative/expo-router";
 
 const App = () => (
-    <Refine
-        // highlight-next-line
-        routerProvider={routerProvider}
-    >
-        {/* ... */}
-    </Refine>
+  <Refine
+    // highlight-next-line
+    routerProvider={routerProvider}
+  >
+    {/* ... */}
+  </Refine>
 );
 ```
 
@@ -190,8 +190,8 @@ To enable synchronization, you need to pass `syncWithLocation: true` to `<Refine
 
 Once you pass `syncWithLocation: true` to `<Refine />` component's `options` prop, `useTable` will:
 
--   Read the current route and update it's parameters (filters, pagination, sorting) accordingly.
--   Update the current route when it's parameters (filters, pagination, sorting) change.
+- Read the current route and update it's parameters (filters, pagination, sorting) accordingly.
+- Update the current route when it's parameters (filters, pagination, sorting) change.
 
 Let's say we have a `products` list page with the following route:
 
@@ -311,10 +311,10 @@ console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
 import { useShow } from "@refinedev/core";
 
 const { queryResult: showResponse } = useShow({
-    // removed-start
-    resource: "products",
-    id: "1",
-    // removed-end
+  // removed-start
+  resource: "products",
+  id: "1",
+  // removed-end
 });
 
 console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
@@ -353,17 +353,17 @@ console.log(listResponse.total); // 32 - total number of unpaginated records
 
 A router integration of refine consists of a set of basic implementations for:
 
--   Ability to navigate between pages/routes
--   An interface to interact with the parameters and query strings of the current route
--   An utility to navigate back in the history
--   A simple component to use for anchor tags
+- Ability to navigate between pages/routes
+- An interface to interact with the parameters and query strings of the current route
+- An utility to navigate back in the history
+- A simple component to use for anchor tags
 
 These implementations will be provided via `routerProvider` which expects an object with the following methods:
 
--   `go`: A function that accepts an object and returns a function that handles the navigation.
--   `back`: A function that returns a function that handles the navigation back in the history.
--   `parse`: A function that returns a function that parses the current route and returns an object.
--   `Link`: A React component that accepts a `to` prop and renders a component that handles the navigation to the given `to` prop.
+- `go`: A function that accepts an object and returns a function that handles the navigation.
+- `back`: A function that returns a function that handles the navigation back in the history.
+- `parse`: A function that returns a function that parses the current route and returns an object.
+- `Link`: A React component that accepts a `to` prop and renders a component that handles the navigation to the given `to` prop.
 
 While all these methods are optional, if you're working on creating a custom router integration, you'll be able to incrementally add more features and adopt more of refine's features by implementing more of these methods.
 

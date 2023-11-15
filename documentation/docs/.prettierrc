@@ -1,3 +1,16 @@
 {
-  "tabWidth": 2
+    "arrowParens": "always",
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": false,
+    "printWidth": 80,
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": ["*.yml", "*.yaml", "*.json", "*.md", "**/format.tsx"],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
 }

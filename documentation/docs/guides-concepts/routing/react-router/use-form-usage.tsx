@@ -45,30 +45,30 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./style.css";
 
-import { ProductList } from "./list.tsx";
 import { ProductEdit } from "./edit.tsx";
+import { ProductList } from "./list.tsx";
 
 export default function App() {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "products",
-                        list: "/my-products",
-                        edit: "/my-products/:id/edit",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/my-products" element={<ProductList />} />
-                    <Route path="/my-products/:id/edit" element={<ProductEdit />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "products",
+            list: "/my-products",
+            edit: "/my-products/:id/edit",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/my-products" element={<ProductList />} />
+          <Route path="/my-products/:id/edit" element={<ProductEdit />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 }
 `.trim();
 
@@ -106,34 +106,34 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 export const ProductList: React.FC = () => {
-    const { data, isLoading } = useList();
+  const { data, isLoading } = useList();
 
-    const go = useGo();
+  const go = useGo();
 
-    if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-    return (
-        <ul>
-            {data?.data?.map((product) => (
-                <li key={product.id}>
-                    <span>{product.name}</span>
-                    <button
-                        onClick={() => {
-                            go({
-                                to: {
-                                    resource: "products",
-                                    action: "edit",
-                                    id: product.id,
-                                },
-                            });
-                        }}
-                    >
-                        edit
-                    </button>
-                </li>
-            ))}
-        </ul>
-    );
+  return (
+    <ul>
+      {data?.data?.map((product) => (
+        <li key={product.id}>
+          <span>{product.name}</span>
+          <button
+            onClick={() => {
+              go({
+                to: {
+                  resource: "products",
+                  action: "edit",
+                  id: product.id,
+                },
+              });
+            }}
+          >
+            edit
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 };
 `.trim();
 
@@ -143,35 +143,35 @@ import React from "react";
 import { useForm } from "@refinedev/core";
 
 export const ProductEdit: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm();
-    const defaultValues = queryResult?.data?.data;
+  const { formLoading, onFinish, queryResult } = useForm();
+  const defaultValues = queryResult?.data?.data;
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(e.target).entries());
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
 
-        onFinish(data);
-    };
+    onFinish(data);
+  };
 
-    return (
+  return (
+    <div>
+      <br />
+      <form onSubmit={onSubmit}>
         <div>
-            <br />
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="name">name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="name"
-                        defaultValue={defaultValues?.name}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    <span>Save</span>
-                </button>
-            </form>
+          <label htmlFor="name">name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="name"
+            defaultValue={defaultValues?.name}
+          />
         </div>
-    );
+        <button type="submit" disabled={formLoading}>
+          <span>Save</span>
+        </button>
+      </form>
+    </div>
+  );
 };
 `.trim();

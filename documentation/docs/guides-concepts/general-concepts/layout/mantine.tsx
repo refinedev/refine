@@ -2,52 +2,55 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function MantineLayout() {
-  return (
-    <Sandpack
-      showNavigator
-      previewOnly
-      dependencies={{
-        "@refinedev/mantine": "latest",
-        "@refinedev/core": "latest",
-        "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
-        "@refinedev/inferencer": "latest",
-        "@refinedev/react-table": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
-        "@tabler/icons": "^1.119.0",
-        "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/notifications": "^5.10.4"
-      }}
-      startRoute="/my-products"
-      files={{
-        "/App.tsx": {
-          code: AppTsxCode
-        },
-        "/pages/products/list.tsx": {
-          code: ListTsxCode
-        },
-        "/pages/products/show.tsx": {
-          code: ShowTsxCode,
-          active: true
-        }
-      }}
-    />
-  );
+    return (
+        <Sandpack
+            showNavigator
+            previewOnly
+            dependencies={{
+                "@refinedev/mantine": "latest",
+                "@refinedev/core": "latest",
+                "@refinedev/simple-rest": "latest",
+                "@refinedev/react-router-v6": "latest",
+                "@refinedev/inferencer": "latest",
+                "@refinedev/react-table": "latest",
+                "react-router-dom": "latest",
+                "react-router": "latest",
+                "@tabler/icons": "^1.119.0",
+                "@emotion/react": "^11.8.2",
+                "@mantine/core": "^5.10.4",
+                "@mantine/hooks": "^5.10.4",
+                "@mantine/notifications": "^5.10.4",
+            }}
+            startRoute="/my-products"
+            files={{
+                "/App.tsx": {
+                    code: AppTsxCode,
+                },
+                "/pages/products/list.tsx": {
+                    code: ListTsxCode,
+                },
+                "/pages/products/show.tsx": {
+                    code: ShowTsxCode,
+                    active: true,
+                },
+            }}
+        />
+    );
 }
 
 const AppTsxCode = /* tsx */ `
 import React from "react";
 
-import { App as AntdApp, ConfigProvider } from "antd";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
 import { Refine } from "@refinedev/core";
+import {
+  ErrorComponent,
+  RefineThemes,
+  ThemedLayoutV2,
+} from "@refinedev/mantine";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -57,26 +60,30 @@ import { ProductShow } from "./pages/products/show.tsx";
 export default function App() {
   return (
     <BrowserRouter>
-    <MantineProvider
-    theme={RefineThemes.Blue}
-    withNormalizeCSS
-    withGlobalStyles
->
-    <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-    <NotificationsProvider position="top-right">
+      <MantineProvider
+        theme={RefineThemes.Blue}
+        withNormalizeCSS
+        withGlobalStyles
+      >
+        <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+        <NotificationsProvider position="top-right">
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             authProvider={{
-              check: async () => ({  authenticated: true }),
-              getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300"})
+              check: async () => ({ authenticated: true }),
+              getIdentity: async () => ({
+                id: 1,
+                name: "John Doe",
+                avatar: "https://i.pravatar.cc/300",
+              }),
             }}
             resources={[
               {
                 name: "products",
                 list: "/my-products",
-                show: "/my-products/:id"
-              }
+                show: "/my-products/:id",
+              },
             ]}
           >
             <Routes>
@@ -93,11 +100,11 @@ export default function App() {
               </Route>
             </Routes>
           </Refine>
-          </NotificationsProvider>
-          </MantineProvider>
+        </NotificationsProvider>
+      </MantineProvider>
     </BrowserRouter>
   );
-};
+}
 `.trim();
 
 const ListTsxCode = `
@@ -114,12 +121,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
       {
         id: "id",
         accessorKey: "id",
-        header: "Id"
+        header: "Id",
       },
       {
         id: "name",
         accessorKey: "name",
-        header: "Name"
+        header: "Name",
       },
 
       {
@@ -132,10 +139,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
               <ShowButton hideText recordItemId={getValue() as string} />
             </Group>
           );
-        }
-      }
+        },
+      },
     ],
-    []
+    [],
   );
 
   const {
@@ -146,10 +153,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
       setCurrent,
       pageCount,
       current,
-      tableQueryResult: { data: tableData }
-    }
+      tableQueryResult: { data: tableData },
+    },
   } = useTable({
-    columns
+    columns,
   });
 
   return (
@@ -165,7 +172,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                       {!header.isPlaceholder &&
                         flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                     </th>
                   );
@@ -182,7 +189,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                       <td key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </td>
                     );
@@ -212,7 +219,7 @@ import {
   MarkdownField,
   NumberField,
   Show,
-  TextField
+  TextField,
 } from "@refinedev/mantine";
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {

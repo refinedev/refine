@@ -2,40 +2,40 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function MaterialUILayout() {
-  return (
-    <Sandpack
-      showNavigator
-      previewOnly
-      dependencies={{
-        "@refinedev/antd": "latest",
-        "@refinedev/core": "latest",
-        "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
-        "@refinedev/inferencer": "latest",
-        "@refinedev/mui": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
-        "@emotion/react": "^11.8.2",
-        "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.14.2",
-        "@mui/x-data-grid": "^6.6.0"
-      }}
-      startRoute="/my-products"
-      files={{
-        "/App.tsx": {
-          code: AppTsxCode
-        },
-        "/pages/products/list.tsx": {
-          code: ListTsxCode
-        },
-        "/pages/products/show.tsx": {
-          code: ShowTsxCode,
-          active: true
-        }
-      }}
-    />
-  );
+    return (
+        <Sandpack
+            showNavigator
+            previewOnly
+            dependencies={{
+                "@refinedev/antd": "latest",
+                "@refinedev/core": "latest",
+                "@refinedev/simple-rest": "latest",
+                "@refinedev/react-router-v6": "latest",
+                "@refinedev/inferencer": "latest",
+                "@refinedev/mui": "latest",
+                "react-router-dom": "latest",
+                "react-router": "latest",
+                "@emotion/react": "^11.8.2",
+                "@emotion/styled": "^11.8.1",
+                "@mui/lab": "^5.0.0-alpha.85",
+                "@mui/material": "^5.14.2",
+                "@mui/x-data-grid": "^6.6.0",
+            }}
+            startRoute="/my-products"
+            files={{
+                "/App.tsx": {
+                    code: AppTsxCode,
+                },
+                "/pages/products/list.tsx": {
+                    code: ListTsxCode,
+                },
+                "/pages/products/show.tsx": {
+                    code: ShowTsxCode,
+                    active: true,
+                },
+            }}
+        />
+    );
 }
 
 const AppTsxCode = /* tsx */ `
@@ -68,15 +68,15 @@ export default function App() {
             getIdentity: async () => ({
               id: 1,
               name: "John Doe",
-              avatar: "https://i.pravatar.cc/300"
-            })
+              avatar: "https://i.pravatar.cc/300",
+            }),
           }}
           resources={[
             {
               name: "products",
               list: "/my-products",
-              show: "/my-products/:id"
-            }
+              show: "/my-products/:id",
+            },
           ]}
         >
           <Routes>
@@ -114,19 +114,19 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         field: "id",
         headerName: "Id",
         type: "number",
-        minWidth: 50
+        minWidth: 50,
       },
       {
         field: "name",
         flex: 1,
         headerName: "Name",
-        minWidth: 200
+        minWidth: 200,
       },
       {
         field: "material",
         flex: 1,
         headerName: "Material",
-        minWidth: 200
+        minWidth: 200,
       },
       {
         field: "actions",
@@ -141,10 +141,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         },
         align: "center",
         headerAlign: "center",
-        minWidth: 80
-      }
+        minWidth: 80,
+      },
     ],
-    []
+    [],
   );
 
   return (
@@ -162,7 +162,7 @@ import {
   MarkdownField,
   NumberField,
   Show,
-  TextFieldComponent as TextField
+  TextFieldComponent as TextField,
 } from "@refinedev/mui";
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {

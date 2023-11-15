@@ -2,46 +2,50 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function ChakraUILayout() {
-  return (
-    <Sandpack
-      showNavigator
-      previewOnly
-      dependencies={{
-        "@refinedev/chakra-ui": "latest",
-        "@refinedev/core": "latest",
-        "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
-        "@refinedev/inferencer": "latest",
-        "@refinedev/react-table": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
-        "@tabler/icons": "^1.119.0",
-        "@chakra-ui/react": "^2.5.1"
-      }}
-      startRoute="/my-products"
-      files={{
-        "/App.tsx": {
-          code: AppTsxCode
-        },
-        "/pages/products/list.tsx": {
-          code: ListTsxCode
-        },
-        "/pages/products/show.tsx": {
-          code: ShowTsxCode,
-          active: true
-        }
-      }}
-    />
-  );
+    return (
+        <Sandpack
+            showNavigator
+            previewOnly
+            dependencies={{
+                "@refinedev/chakra-ui": "latest",
+                "@refinedev/core": "latest",
+                "@refinedev/simple-rest": "latest",
+                "@refinedev/react-router-v6": "latest",
+                "@refinedev/inferencer": "latest",
+                "@refinedev/react-table": "latest",
+                "react-router-dom": "latest",
+                "react-router": "latest",
+                "@tabler/icons": "^1.119.0",
+                "@chakra-ui/react": "^2.5.1",
+            }}
+            startRoute="/my-products"
+            files={{
+                "/App.tsx": {
+                    code: AppTsxCode,
+                },
+                "/pages/products/list.tsx": {
+                    code: ListTsxCode,
+                },
+                "/pages/products/show.tsx": {
+                    code: ShowTsxCode,
+                    active: true,
+                },
+            }}
+        />
+    );
 }
 
 const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/chakra-ui";
+import {
+  ErrorComponent,
+  RefineThemes,
+  ThemedLayoutV2,
+} from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -52,43 +56,49 @@ import { ProductShow } from "./pages/products/show.tsx";
 export default function App() {
   return (
     <BrowserRouter>
-    <ChakraProvider theme={RefineThemes.Blue}>
-          <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={{
-              check: async () => ({  authenticated: true }),
-              getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300"})
-            }}
-            resources={[
-              {
-                name: "products",
-                list: "/my-products",
-                show: "/my-products/:id"
+      <ChakraProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          authProvider={{
+            check: async () => ({ authenticated: true }),
+            getIdentity: async () => ({
+              id: 1,
+              name: "John Doe",
+              avatar: "https://i.pravatar.cc/300",
+            }),
+          }}
+          resources={[
+            {
+              name: "products",
+              list: "/my-products",
+              show: "/my-products/:id",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
               }
-            ]}
-          >
-            <Routes>
-              <Route
-                element={
-                  <ThemedLayoutV2>
-                    <Outlet />
-                  </ThemedLayoutV2>
-                }
-              >
-                <Route path="/my-products" element={<ProductList />} />
-                <Route path="/my-products/:id" element={<ProductShow />} />
-                <Route path="*" element={<ErrorComponent />} />
-              </Route>
-            </Routes>
-          </Refine>
-          </ChakraProvider>
+            >
+              <Route path="/my-products" element={<ProductList />} />
+              <Route path="/my-products/:id" element={<ProductShow />} />
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ChakraProvider>
     </BrowserRouter>
   );
-};
+}
 `.trim();
 
 const ListTsxCode = `
+import React from "react";
+
 import {
   Box,
   Button,
@@ -100,14 +110,13 @@ import {
   Td,
   Th,
   Thead,
-  Tr
+  Tr,
 } from "@chakra-ui/react";
 import { List, ShowButton, usePagination } from "@refinedev/chakra-ui";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import React from "react";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
   const columns = React.useMemo<ColumnDef<any>[]>(
@@ -115,17 +124,17 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
       {
         id: "id",
         accessorKey: "id",
-        header: "Id"
+        header: "Id",
       },
       {
         id: "name",
         accessorKey: "name",
-        header: "Name"
+        header: "Name",
       },
       {
         id: "material",
         accessorKey: "material",
-        header: "Material"
+        header: "Material",
       },
 
       {
@@ -138,24 +147,18 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
               <ShowButton hideText recordItemId={getValue() as string} />
             </HStack>
           );
-        }
-      }
+        },
+      },
     ],
-    []
+    [],
   );
 
   const {
     getHeaderGroups,
     getRowModel,
-    setOptions,
-    refineCore: {
-      setCurrent,
-      pageCount,
-      current,
-      tableQueryResult: { data: tableData }
-    }
+    refineCore: { setCurrent, pageCount, current },
   } = useTable({
-    columns
+    columns,
   });
 
   return (
@@ -170,7 +173,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     {!header.isPlaceholder &&
                       flexRender(
                         header.column.columnDef.header,
-                        header.getContext()
+                        header.getContext(),
                       )}
                   </Th>
                 ))}
@@ -208,11 +211,11 @@ type PaginationProps = {
 const Pagination: React.FC<PaginationProps> = ({
   current,
   pageCount,
-  setCurrent
+  setCurrent,
 }) => {
   const pagination = usePagination({
     current,
-    pageCount
+    pageCount,
   });
 
   return (
@@ -255,7 +258,6 @@ const Pagination: React.FC<PaginationProps> = ({
     </Box>
   );
 };
-
 `.trim();
 
 const ShowTsxCode = `
@@ -264,7 +266,7 @@ import {
   MarkdownField,
   NumberField,
   Show,
-  TextField
+  TextField,
 } from "@refinedev/chakra-ui";
 import { IResourceComponentsProps, useShow } from "@refinedev/core";
 
