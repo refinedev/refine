@@ -18,7 +18,7 @@ function MyForm(){
 :::info Extended Versions
 `@refinedev/antd`, `@refinedev/mantine` and `@refinedev/react-hook-form` packages provide their own extended versions of `useForm` hook with full support for their respective form implementations including validation, error handling, form values, and more.
 
-Refer to their respective documentation for more information and check out the [Forms in refine](guides-concenpts/forms/index.md) guide for detailed information on how to handle forms in refine.
+Refer to their respective documentation for more information and check out the [Forms in refine](guides-concepts/forms/index.md) guide for detailed information on how to handle forms in refine.
 
 -   [`@refinedev/antd`'s `useForm`](#)
 -   [`@refinedev/mantine`'s `useForm`](#)

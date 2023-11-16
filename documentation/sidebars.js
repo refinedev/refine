@@ -23,36 +23,10 @@ const GuidesConcepts = {
     items: [
         "guides-concepts/general-concepts/index",
         "guides-concepts/data-fetching/index",
-        {
-            type: "category",
-            label: "Routing 🚧",
-            link: {
-                type: "doc",
-                id: "guides-concepts/routing/index",
-            },
-            items: [
-                "guides-concepts/routing/nextjs/index",
-                "guides-concepts/routing/remix/index",
-                "guides-concepts/routing/react-router/index",
-            ],
-        },
+        "guides-concepts/routing/index",
         "guides-concepts/authentication/index",
         "guides-concepts/authorization/index",
-        {
-            type: "category",
-            label: "UI Libraries 🚧",
-            link: {
-                type: "doc",
-                id: "guides-concepts/ui-libraries/index",
-            },
-            items: [
-                "guides-concepts/ui-libraries/ant-design/index",
-                "guides-concepts/ui-libraries/material-ui/index",
-                "guides-concepts/ui-libraries/chakra-ui/index",
-                "guides-concepts/ui-libraries/mantine/index",
-                "guides-concepts/ui-libraries/custom/index",
-            ],
-        },
+        "guides-concepts/ui-libraries/index",
         {
             type: "category",
             label: "Tables 🚧",
@@ -66,19 +40,7 @@ const GuidesConcepts = {
                 "guides-concepts/tables/react-table/index",
             ],
         },
-        {
-            type: "category",
-            label: "Forms 🚧",
-            link: {
-                type: "doc",
-                id: "guides-concepts/forms/index",
-            },
-            items: [
-                "guides-concepts/forms/ant-design/index",
-                "guides-concepts/forms/mantine/index",
-                "guides-concepts/forms/react-hook-form/index",
-            ],
-        },
+        "guides-concepts/forms/index",
         "guides-concepts/internationalization/index",
         "guides-concepts/realtime/index",
         "guides-concepts/notifications/index",
@@ -203,6 +165,7 @@ const AntDesign = {
     collapsible: false,
     // className: "category-as-header",
     items: [
+        "ui-integrations/ant-design/introduction/index",
         {
             type: "category",
             label: "Components",
@@ -288,6 +251,7 @@ const MaterialUI = {
     collapsible: false,
     // className: "category-as-header",
     items: [
+        "ui-integrations/material-ui/introduction/index",
         {
             type: "category",
             label: "Components",
@@ -359,6 +323,7 @@ const ChakraUI = {
     collapsible: false,
     // className: "category-as-header",
     items: [
+        "ui-integrations/chakra-ui/introduction/index",
         {
             type: "category",
             label: "Components",
@@ -422,6 +387,7 @@ const MantineUI = {
     collapsible: false,
     // className: "category-as-header",
     items: [
+        "ui-integrations/mantine/introduction/index",
         {
             type: "category",
             label: "Components",
