@@ -194,28 +194,26 @@ See the [Auth Pages](#auth-pages) section below for live examples.
 
 The Access Control Provider manages what users can access or perform within the application based on their permissions.
 
-It uses the resource definition to determine access rights. For instance, it can decide whether a user can edit or delete record for `products` resource based on the current user's information and resource definition.
+It uses the resource definition to determine access rights. For instance, it can decide whether a user can edit or delete record for `products` resource based on the resource definition.
 
 ```tsx title=App.tsx
 import { AccessControlProvider, Refine } from "@refinedev/core";
 
 const myAccessControlProvider: AccessControlProvider = {
-  can: async ({ resource, action, user }) => {
-    if (user.role === "user" && action === "delete") {
+  can: async ({ resource, action }) => {
+    if (resource === "products" && action === "delete") {
       return { can: false };
     }
 
-    return { can: true }
+    return { can: true };
   },
 };
 
 export const App = () => {
   return (
-    <Refine accessControlProvider={myAccessControlProvider} {/* ...*/}>
-      {/* ... */}
-    </Refine>
-  )
-}
+    <Refine accessControlProvider={myAccessControlProvider}>{/* ... */}</Refine>
+  );
+};
 ```
 
 > See the [Authorization](/docs/guides-concepts/authorization/) guide for more information.
@@ -224,7 +222,7 @@ export const App = () => {
 
 You can wrap `CanAccess` component to wrap relevant parts of your application to control access.
 
-```tsx title=show.tsx
+```tsx title=show-page.tsx
 import { CanAccess } from "@refinedev/core";
 
 export const ShowPage = () => {
@@ -250,17 +248,17 @@ You can use `useCan` hook to control access in your components.
 import { ErrorComponent, useCan } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const canSee = useCan({ resource: "users", action: "show" });
-  const canBlock = useCan({ resource: "users", action: "block" });
+  const { data: show } = useCan({ resource: "users", action: "show" });
+  const { data: block } = useCan({ resource: "users", action: "block" });
 
-  if (!canSee) {
+  if (!show?.can) {
     return <ErrorComponent />;
   }
 
   return (
     <>
       User Details Page
-      {canBlock && <BlockUserButton />}
+      {block?.can && <BlockUserButton />}
     </>
   );
 };

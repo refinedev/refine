@@ -96,10 +96,11 @@ export default function App() {
 <TabItem value="expo-router" label="Expo Router (React Native)">
 
 ```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
 // highlight-next-line
 import routerProvider from "@refinenative/expo-router";
 
-const App = () => (
+export const App = () => (
   <Refine
     // highlight-next-line
     routerProvider={routerProvider}
