@@ -54,19 +54,7 @@ const GuidesConcepts = {
                 "guides-concepts/tables/react-table/index",
             ],
         },
-        {
-            type: "category",
-            label: "Forms 🚧",
-            link: {
-                type: "doc",
-                id: "guides-concepts/forms/index",
-            },
-            items: [
-                "guides-concepts/forms/ant-design/index",
-                "guides-concepts/forms/mantine/index",
-                "guides-concepts/forms/react-hook-form/index",
-            ],
-        },
+        "guides-concepts/forms/index",
         "guides-concepts/internationalization/index",
         "guides-concepts/realtime/index",
         "guides-concepts/notifications/index",
