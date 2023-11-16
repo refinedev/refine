@@ -64,7 +64,7 @@ This is just one example, we have many other hooks for data fetching, authentica
 
 They are all **headless**, **library agnostic**, and **unified**.
 
-You might be using **Casbin** or **Cerbos** for authorization, we have a single `useCan` hook to control access in your components.
+You might be using [Casbin](https://casbin.org) or [Cerbos](https://cerbos.dev) for authorization, we have a single `useCan` hook to control access in your components.
 
 Or you may prefer either `next-i18next` or `react-i18next` for i18n, we have a single `useTranslate` hook to handle translation.
 
@@ -109,7 +109,7 @@ export const ShowPage = () => {
 };
 ```
 
-> See the [Data Fetching](/docs/guides-concepts/data-fetching) page for more information.
+> See the [Data Fetching](/docs/guides-concepts/data-fetching) guide for more information.
 
 ### Authentication Provider
 
@@ -188,7 +188,7 @@ When provided, their Layout components can automatically render current user inf
 
 You can also use `AuthPage` component of these integrations for `Login`, `Register`, `Forgot Password`, `Reset Password` pages.
 
-See the [Auth Pages](#auth-pages) section below for more information.
+See the [Auth Pages](#auth-pages) section below for live examples.
 
 ### Access Control Provider
 
@@ -464,7 +464,7 @@ export const ProductsListPage = () => {
 
 **refine** hooks can synchronize certain parameters from the current URL eliminates the need to pass them manually.
 
-Or `useOne` hook can infer `resource` and `id` parameters from the current URL.
+For example, `useOne` hook can infer `resource` and `id` parameters from the current URL.
 
 ```tsx title=show.tsx
 import { useOne } from "@refinedev/core";
@@ -569,7 +569,7 @@ While the button itself is imported from underlying UI package, **refine** adds 
 
 Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset Password` integrated with `AuthProvider` automatically.
 
-<Tabs>
+<Tabs wrapContent={false}>
 
 <TabItem value="Ant Design">
 
