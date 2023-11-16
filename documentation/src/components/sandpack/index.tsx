@@ -15,6 +15,8 @@ import { nightOwl } from "@codesandbox/sandpack-themes";
 import {
     defaultLight,
     SandpackCodeEditor,
+    SandpackConsole,
+    SandpackFileExplorer,
     SandpackLayout,
     SandpackPreview,
     SandpackProvider,
@@ -37,6 +39,17 @@ type Props = React.ComponentProps<SandpackInternal> & {
     layout?: "row" | "col" | "col-reverse";
     className?: string;
     wrapperClassName?: string;
+    showFiles?: boolean;
+    showConsole?: boolean;
+    hidePreview?: boolean;
+};
+
+export const Sandpack = (props: Props) => {
+    if (props?.template === "nextjs") {
+        return <SandpackNextJS {...props} />;
+    }
+
+    return <SandpackBase {...props} />;
 };
 /**
  * We're using a custom sandpack component and customized some of its features and props.
@@ -53,7 +66,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
  *
  * Set `startRoute` to set the initial route of the preview.
  */
-export const Sandpack = ({
+const SandpackBase = ({
     startRoute,
     showNavigator,
     initialPercentage = 50,
@@ -73,6 +86,9 @@ export const Sandpack = ({
     height = 420,
     wrapperClassName,
     className,
+    showFiles = false,
+    showConsole = false,
+    hidePreview = false,
     ...props
 }: Props) => {
     const { colorMode } = useColorMode();
@@ -185,6 +201,14 @@ export const Sandpack = ({
                                 layout === "col-reverse" && "!flex-col-reverse",
                             )}
                         >
+                            {showFiles && (
+                                <SandpackFileExplorer
+                                    autoHiddenFiles
+                                    style={{
+                                        height: options.editorHeight ?? height,
+                                    }}
+                                />
+                            )}
                             {!previewOnly && (
                                 <SandpackCodeEditor
                                     {...codeEditorOptions}
@@ -201,6 +225,21 @@ export const Sandpack = ({
                                     }}
                                 />
                             )}
+                            {showConsole ? (
+                                <SandpackConsole
+                                    style={{
+                                        height: options.editorHeight ?? height,
+                                        ...(layout?.includes("col")
+                                            ? { flex: "initial" }
+                                            : {
+                                                  flexGrow: horizontalSize,
+                                                  flexShrink: horizontalSize,
+                                                  flexBasis: 0,
+                                              }),
+                                        overflow: "hidden",
+                                    }}
+                                />
+                            ) : null}
                             {showHandle ? (
                                 <DragHandle
                                     onMouseDown={onHandleMouseDown}
@@ -221,6 +260,7 @@ export const Sandpack = ({
                                 }
                                 showRefreshButton={options.showRefreshButton}
                                 style={{
+                                    display: hidePreview ? "none" : "flex",
                                     ...(layout?.includes("col")
                                         ? { flex: "initial", width: "100%" }
                                         : {
@@ -269,11 +309,11 @@ export const Sandpack = ({
                 />
             </div>
             <section className="hidden max-w-0 max-h-0">
-                <p>{`Dependencies: ${Object.keys(dependencies).map(
+                <p>{`Dependencies: ${Object.keys(dependencies ?? {}).map(
                     (k) => `${k}@${dependencies[k]}`,
                 )}`}</p>
                 <h3>{`Code Files`}</h3>
-                {Object.keys(files).map((f) => (
+                {Object.keys(files ?? {}).map((f) => (
                     <div key={f}>
                         <div>{`File: ${f}`}</div>
                         <div>
@@ -287,3 +327,49 @@ export const Sandpack = ({
         </>
     );
 };
+
+const SandpackNextJS = (props: Props) => {
+    const isDevelop = process.env.NODE_ENV === "development";
+
+    const extraProps = isDevelop
+        ? {
+              hidePreview: false,
+              showConsole: true,
+              showNavigator: true,
+              dependencies: {
+                  ...props.dependencies,
+                  "@refinedev/core": "latest",
+                  "@refinedev/simple-rest": "latest",
+                  "@refinedev/nextjs-router": "latest",
+                  "@types/react": "^18.0.0",
+                  "@types/node": "^16.0.0",
+                  typescript: "^4.7.4",
+              },
+              files: {
+                  "/pages/index.tsx": {
+                      code: NextJSPagesIndexTsxCode,
+                      hidden: true,
+                  },
+                  ...(props.files as any),
+              },
+          }
+        : { hidePreview: true };
+
+    return (
+        <SandpackBase
+            {...props}
+            {...extraProps}
+            template={isDevelop ? "nextjs" : "react-ts"}
+        />
+    );
+};
+
+const NextJSPagesIndexTsxCode = /* tsx */ `
+import { NavigateToResource } from "@refinedev/nextjs-router";
+
+const Home = () => {
+    return <NavigateToResource resource="products" />;
+};
+
+export default Home;
+`.trim();
