@@ -238,7 +238,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 -   Headless
 -   Next.js/SSR Support 🚀🚀🚀
 -   Realtime
--   Access Control (RBAC, LDAP, ACL, ABAC, etc.)
+-   Access Control (RBAC, ACL, ABAC, etc.)
 -   i18n (internationalization)
 -   Audit Log(Comming Soon)
 -   Material UI Support(Comming Soon)

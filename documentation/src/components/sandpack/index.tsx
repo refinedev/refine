@@ -15,6 +15,8 @@ import { nightOwl } from "@codesandbox/sandpack-themes";
 import {
     defaultLight,
     SandpackCodeEditor,
+    SandpackConsole,
+    SandpackFileExplorer,
     SandpackLayout,
     SandpackPreview,
     SandpackProvider,
@@ -37,6 +39,17 @@ type Props = React.ComponentProps<SandpackInternal> & {
     layout?: "row" | "col" | "col-reverse";
     className?: string;
     wrapperClassName?: string;
+    showFiles?: boolean;
+    showConsole?: boolean;
+    hidePreview?: boolean;
+};
+
+export const Sandpack = (props: Props) => {
+    if (props?.template === "nextjs") {
+        return <SandpackNextJS {...props} />;
+    }
+
+    return <SandpackBase {...props} />;
 };
 /**
  * We're using a custom sandpack component and customized some of its features and props.
@@ -53,7 +66,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
  *
  * Set `startRoute` to set the initial route of the preview.
  */
-export const Sandpack = ({
+const SandpackBase = ({
     startRoute,
     showNavigator,
     initialPercentage = 50,
@@ -73,6 +86,9 @@ export const Sandpack = ({
     height = 420,
     wrapperClassName,
     className,
+    showFiles = false,
+    showConsole = false,
+    hidePreview = false,
     ...props
 }: Props) => {
     const { colorMode } = useColorMode();
@@ -128,142 +144,232 @@ export const Sandpack = ({
     const showHandle = !previewOnly && !layout?.includes("col");
 
     return (
-        <div className={clsx("pb-6", wrapperClassName)}>
-            <div
-                className={clsx(
-                    "absolute",
-                    "left-0",
-                    "right-0",
-                    "w-full",
-                    "px-2",
-                    "md:px-4",
-                    "xl:px-6",
-                    "max-w-screen-xl",
-                    "mx-auto",
-                    className,
-                )}
-            >
-                <SandpackProvider
-                    key={template}
-                    customSetup={{ dependencies, ...customSetup }}
-                    files={files as TemplateFiles<SandpackPredefinedTemplate>}
-                    options={providerOptions}
-                    template={template}
-                    theme={
-                        colorMode === "light"
-                            ? {
-                                  ...defaultLight,
-                                  colors: {
-                                      ...defaultLight.colors,
-                                      surface1: "#F4F8FB",
-                                      surface2: "rgb(222, 229, 237)",
-                                      surface3: "rgb(222, 229, 237)",
-                                  },
-                              }
-                            : {
-                                  ...nightOwl,
-                                  colors: {
-                                      ...nightOwl.colors,
-                                      surface1: "#1D1E30",
-                                      surface2: "#303450",
-                                      surface3: "#303450",
-                                  },
-                              }
-                    }
+        <>
+            <div className={clsx("pb-6", wrapperClassName)}>
+                <div
                     className={clsx(
-                        "not-prose sandpack-container",
+                        "absolute",
+                        "left-0",
+                        "right-0",
+                        "w-full",
+                        "px-2",
+                        "md:px-4",
+                        "xl:px-6",
                         "max-w-screen-xl",
+                        "mx-auto",
+                        className,
                     )}
-                    {...props}
                 >
-                    <SandpackLayout
+                    <SandpackProvider
+                        key={template}
+                        customSetup={{ dependencies, ...customSetup }}
+                        files={
+                            files as TemplateFiles<SandpackPredefinedTemplate>
+                        }
+                        options={providerOptions}
+                        template={template}
+                        theme={
+                            colorMode === "light"
+                                ? {
+                                      ...defaultLight,
+                                      colors: {
+                                          ...defaultLight.colors,
+                                          surface1: "#F4F8FB",
+                                          surface2: "rgb(222, 229, 237)",
+                                          surface3: "rgb(222, 229, 237)",
+                                      },
+                                  }
+                                : {
+                                      ...nightOwl,
+                                      colors: {
+                                          ...nightOwl.colors,
+                                          surface1: "#1D1E30",
+                                          surface2: "#303450",
+                                          surface3: "#303450",
+                                      },
+                                  }
+                        }
                         className={clsx(
-                            layout === "col" && "!flex-col",
-                            layout === "col-reverse" && "!flex-col-reverse",
+                            "not-prose sandpack-container",
+                            "max-w-screen-xl",
                         )}
+                        {...props}
                     >
-                        {!previewOnly && (
-                            <SandpackCodeEditor
-                                {...codeEditorOptions}
-                                style={{
-                                    height: options.editorHeight ?? height,
-                                    ...(layout?.includes("col")
-                                        ? { flex: "initial" }
-                                        : {
-                                              flexGrow: horizontalSize,
-                                              flexShrink: horizontalSize,
-                                              flexBasis: 0,
-                                          }),
-                                    overflow: "hidden",
-                                }}
-                            />
-                        )}
-                        {showHandle ? (
-                            <DragHandle
-                                onMouseDown={onHandleMouseDown}
-                                horizontalSize={horizontalSize}
-                            />
-                        ) : null}
-                        <SandpackPreview
-                            actionsChildren={
-                                <BugReportButton
-                                    onClick={() =>
-                                        setBugReportModalVisible(true)
-                                    }
-                                />
-                            }
-                            startRoute={startRoute}
-                            showNavigator={
-                                showNavigator ?? options.showNavigator
-                            }
-                            showRefreshButton={options.showRefreshButton}
-                            style={{
-                                ...(layout?.includes("col")
-                                    ? { flex: "initial", width: "100%" }
-                                    : {
-                                          flexGrow: 100 - horizontalSize,
-                                          flexShrink: 100 - horizontalSize,
-                                          flexBasis: 0,
-                                          width: previewOnly
-                                              ? "100%"
-                                              : 100 - horizontalSize + "%",
-                                      }),
-                                gap: 0,
-                                height: options.editorHeight ?? height, // use the original editor height
-                            }}
+                        <SandpackLayout
+                            className={clsx(
+                                layout === "col" && "!flex-col",
+                                layout === "col-reverse" && "!flex-col-reverse",
+                            )}
                         >
-                            <div className="sp-custom-loading">
-                                <img
-                                    src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/spinner.gif"
-                                    className={clsx(
-                                        "w-12",
-                                        "h-12",
-                                        "rounded-full",
-                                    )}
+                            {showFiles && (
+                                <SandpackFileExplorer
+                                    autoHiddenFiles
+                                    style={{
+                                        height: options.editorHeight ?? height,
+                                    }}
                                 />
-                            </div>
-                        </SandpackPreview>
-                        <BugReportModal
-                            visible={bugReportModalVisible}
-                            onClose={() => setBugReportModalVisible(false)}
-                        />
-                    </SandpackLayout>
-                </SandpackProvider>
+                            )}
+                            {!previewOnly && (
+                                <SandpackCodeEditor
+                                    {...codeEditorOptions}
+                                    style={{
+                                        height: options.editorHeight ?? height,
+                                        ...(layout?.includes("col")
+                                            ? { flex: "initial" }
+                                            : {
+                                                  flexGrow: horizontalSize,
+                                                  flexShrink: horizontalSize,
+                                                  flexBasis: 0,
+                                              }),
+                                        overflow: "hidden",
+                                    }}
+                                />
+                            )}
+                            {showConsole ? (
+                                <SandpackConsole
+                                    style={{
+                                        height: options.editorHeight ?? height,
+                                        ...(layout?.includes("col")
+                                            ? { flex: "initial" }
+                                            : {
+                                                  flexGrow: horizontalSize,
+                                                  flexShrink: horizontalSize,
+                                                  flexBasis: 0,
+                                              }),
+                                        overflow: "hidden",
+                                    }}
+                                />
+                            ) : null}
+                            {showHandle ? (
+                                <DragHandle
+                                    onMouseDown={onHandleMouseDown}
+                                    horizontalSize={horizontalSize}
+                                />
+                            ) : null}
+                            <SandpackPreview
+                                actionsChildren={
+                                    <BugReportButton
+                                        onClick={() =>
+                                            setBugReportModalVisible(true)
+                                        }
+                                    />
+                                }
+                                startRoute={startRoute}
+                                showNavigator={
+                                    showNavigator ?? options.showNavigator
+                                }
+                                showRefreshButton={options.showRefreshButton}
+                                style={{
+                                    display: hidePreview ? "none" : "flex",
+                                    ...(layout?.includes("col")
+                                        ? { flex: "initial", width: "100%" }
+                                        : {
+                                              flexGrow: 100 - horizontalSize,
+                                              flexShrink: 100 - horizontalSize,
+                                              flexBasis: 0,
+                                              width: previewOnly
+                                                  ? "100%"
+                                                  : 100 - horizontalSize + "%",
+                                          }),
+                                    gap: 0,
+                                    height: options.editorHeight ?? height, // use the original editor height
+                                }}
+                            >
+                                <div className="sp-custom-loading">
+                                    <img
+                                        src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/spinner.gif"
+                                        className={clsx(
+                                            "w-12",
+                                            "h-12",
+                                            "rounded-full",
+                                        )}
+                                    />
+                                </div>
+                            </SandpackPreview>
+                            <BugReportModal
+                                visible={bugReportModalVisible}
+                                onClose={() => setBugReportModalVisible(false)}
+                            />
+                        </SandpackLayout>
+                    </SandpackProvider>
+                </div>
+                <div
+                    className={clsx("")}
+                    style={{
+                        height: Number(options.editorHeight ?? height) + 2,
+                    }}
+                />
+                <div
+                    className={clsx(
+                        layout?.includes("col") ? "block" : "block md:hidden",
+                    )}
+                    style={{
+                        height: Number(options.editorHeight ?? height) + 2,
+                    }}
+                />
             </div>
-            <div
-                className={clsx("")}
-                style={{
-                    height: Number(options.editorHeight ?? height) + 2,
-                }}
-            />
-            <div
-                className={clsx(
-                    layout?.includes("col") ? "block" : "block md:hidden",
-                )}
-                style={{
-                    height: Number(options.editorHeight ?? height) + 2,
-                }}
-            />
-        </div>
+            <section className="hidden max-w-0 max-h-0">
+                <p>{`Dependencies: ${Object.keys(dependencies ?? {}).map(
+                    (k) => `${k}@${dependencies[k]}`,
+                )}`}</p>
+                <h3>{`Code Files`}</h3>
+                {Object.keys(files ?? {}).map((f) => (
+                    <div key={f}>
+                        <div>{`File: ${f}`}</div>
+                        <div>
+                            {`Content: ${
+                                "code" in files[f] ? files[f].code : files[f]
+                            }`}
+                        </div>
+                    </div>
+                ))}
+            </section>
+        </>
     );
 };
+
+const SandpackNextJS = (props: Props) => {
+    const isDevelop = process.env.NODE_ENV === "development";
+
+    const extraProps = isDevelop
+        ? {
+              hidePreview: false,
+              showConsole: true,
+              showNavigator: true,
+              dependencies: {
+                  ...props.dependencies,
+                  "@refinedev/core": "latest",
+                  "@refinedev/simple-rest": "latest",
+                  "@refinedev/nextjs-router": "latest",
+                  "@types/react": "^18.0.0",
+                  "@types/node": "^16.0.0",
+                  typescript: "^4.7.4",
+              },
+              files: {
+                  "/pages/index.tsx": {
+                      code: NextJSPagesIndexTsxCode,
+                      hidden: true,
+                  },
+                  ...(props.files as any),
+              },
+          }
+        : { hidePreview: true };
+
+    return (
+        <SandpackBase
+            {...props}
+            {...extraProps}
+            template={isDevelop ? "nextjs" : "react-ts"}
+        />
+    );
+};
+
+const NextJSPagesIndexTsxCode = /* tsx */ `
+import { NavigateToResource } from "@refinedev/nextjs-router";
+
+const Home = () => {
+    return <NavigateToResource resource="products" />;
+};
+
+export default Home;
+`.trim();

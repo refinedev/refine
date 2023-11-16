@@ -16,6 +16,8 @@ import {
 import clsx from "clsx";
 
 import { Date, ReadingTime } from "@site/src/components/blog/common";
+import { BannerRandom } from "@site/src/components/banner/banner-random";
+
 import { Twitter } from "../icons";
 
 export const BlogPostPageView = ({ children }) => {
@@ -116,36 +118,7 @@ export const BlogPostPageView = ({ children }) => {
                             "sm:flex-row flex-col",
                         )}
                     >
-                        <div className="flex justify-center items-center gap-2">
-                            <Link
-                                to={`/blog/author/${author?.key}`}
-                                itemProp="url"
-                            >
-                                <img
-                                    src={author?.imageURL}
-                                    alt={author?.name}
-                                    loading="lazy"
-                                    className="flex h-[32px] w-[32px] rounded-full object-cover"
-                                />
-                            </Link>
-                            <Link
-                                to={`/blog/author/${author?.key}`}
-                                itemProp="url"
-                                className={clsx(
-                                    "flex-1",
-                                    "text-gray-900 dark:text-gray-200",
-                                    "text-sm",
-                                    "no-underline",
-                                    "hover:no-underline",
-                                )}
-                            >
-                                {author?.name}
-                            </Link>
-                            <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
-                            <span className="text-gray-600 dark:text-gray-400">
-                                {author?.title}
-                            </span>
-                        </div>
+                        <div className="flex justify-center items-center gap-2"></div>
                         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                             <Date date={date} formattedDate={formattedDate} />
                             {typeof readingTime !== "undefined" && (
@@ -155,6 +128,9 @@ export const BlogPostPageView = ({ children }) => {
                                 </>
                             )}
                         </div>
+                    </div>
+                    <div className="m-6 mb-12">
+                        <BannerRandom />
                     </div>
                 </div>
                 <h1 className="text-xl md:text-4xl" itemProp="headline">

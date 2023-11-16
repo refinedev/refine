@@ -21,7 +21,7 @@ refine accelerates development by creating a higher abstraction of most function
 
 With refine, you have the choice to build your application with a custom design (a headless approach) or a UI component library. refine includes integrations for some component libraries and design systems, like Material UI, Chakra UI, Ant Design, and Mantime.
 
-It can also be integrated into any REST or GraphQL backend service and includes out-of-the-box support for popular BAAS (backend as a service) such as NestJs CRUD, Airtable, Strapi, Supabase, Altogic, and others.
+It can also be integrated into any REST or GraphQL backend service and includes out-of-the-box support for popular BAAS (backend as a service) such as NestJs CRUD, Airtable, Strapi, Supabase, and others.
 
 A peculiarity of refine is that it provides a lot of out-of-the-box functionality for rapid development while still allowing for extreme customization. You can build a variety of applications with refine, and it isn't limited to major use cases like React admin panels, B2B applications, and dashboards. In this React admin tutorial, we will be illustrating how to build a CRUD app with refine.
 
@@ -818,11 +818,7 @@ At this point, the `Show` page looks like this:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100 rounded"  alt="react admin tutorial" />
 
----
 
-<BannerRandom />
-
----
 
 ### Creating a record
 

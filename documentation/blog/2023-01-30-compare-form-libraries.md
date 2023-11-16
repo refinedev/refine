@@ -97,14 +97,7 @@ The example above is a basic illustration of React Hook Form. Do check out the R
 
 - React Hook Form uses React hooks. Therefore, you can't use it directly in class components.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ### Formik

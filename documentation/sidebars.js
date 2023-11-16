@@ -23,19 +23,7 @@ const GuidesConcepts = {
     items: [
         "guides-concepts/general-concepts/index",
         "guides-concepts/data-fetching/index",
-        {
-            type: "category",
-            label: "Routing 🚧",
-            link: {
-                type: "doc",
-                id: "guides-concepts/routing/index",
-            },
-            items: [
-                "guides-concepts/routing/nextjs/index",
-                "guides-concepts/routing/remix/index",
-                "guides-concepts/routing/react-router/index",
-            ],
-        },
+        "guides-concepts/routing/index",
         "guides-concepts/authentication/index",
         "guides-concepts/authorization/index",
         {

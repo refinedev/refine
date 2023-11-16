@@ -56,14 +56,7 @@ So, what we will do is use TypeScript's transformation utilities to generate the
 
 For example, in this article we will consider the use case for `Pick<Type, Keys>`.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## What is TypeScript Pick?
 

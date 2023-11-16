@@ -40,6 +40,7 @@ export {
     NotificationProvider,
     OpenNotificationParams,
     Option,
+    BaseOption,
     Pagination,
     PromptProps,
     RedirectionTypes,
@@ -131,6 +132,8 @@ export {
     pickDataProvider,
     keys,
     KeyBuilder,
+    flattenObjectKeys,
+    propertyPathToArray,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
 export { generateDefaultDocumentTitle } from "./definitions";

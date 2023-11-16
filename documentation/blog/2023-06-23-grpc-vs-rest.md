@@ -114,11 +114,7 @@ Additionally, take note of the included **Content-Type** header, which provides 
 ### Step 5
 This is where your BookFinder application receives the HTTP response from the database service's API and extracts the information needed to perform necessary operations or display it to users. 
 
----
 
-<BannerRandom />
-
----
 
 ## Explanation of gRPC APIs
 

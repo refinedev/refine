@@ -38,14 +38,7 @@ In this article, we get into the details of what the `try`, `catch` and `finally
 
 Let's start with how `try/catch/finally` works first.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## How `try/catch/finally` Blocks Work
 

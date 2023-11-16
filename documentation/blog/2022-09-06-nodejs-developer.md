@@ -46,12 +46,7 @@ This asynchronous approach significantly reduces the waiting time for requests b
 Luckily, ES6 solved some of these problems by introducing Promises as a new way of writing asynchronous JavaScript code. With promises and callbacks, JavaScript's async nature becomes more predictable and easier to deal with as they help you better understand how your code is structured by offering consistency in how future events are handled. As such, having a proper understanding of the asynchronous first-class nature of Node.js, promises, and callbacks will help you avoid some of the problems associated with asynchronous programming.
 
 
----
 
-<BannerRandom />
-
-
----
 
 
 ## Understanding of Event-Driven Programming in Node

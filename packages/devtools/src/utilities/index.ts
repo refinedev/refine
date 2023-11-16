@@ -117,3 +117,8 @@ export const getDefaultPanelSize = (
         height: height,
     };
 };
+
+export const roundToEven = (num: number) => {
+    const rounded = Math.round(num);
+    return rounded % 2 === 0 ? rounded : rounded + 1;
+};

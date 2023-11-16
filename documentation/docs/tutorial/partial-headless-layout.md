@@ -120,7 +120,7 @@ const Menu = () => {
             <ul>
                 {menuItems.map((item) => (
                     <li key={item.key}>
-                        <NavLink to={item.route}>{item.label}</NavLink>
+                        <NavLink to={item.route ?? "/"}>{item.label}</NavLink>
                     </li>
                 ))}
             </ul>

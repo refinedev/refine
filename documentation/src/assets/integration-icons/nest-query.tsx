@@ -13,6 +13,8 @@ const SvgNestQuery = (props: SVGProps<SVGSVGElement>) => (
         height={48}
         version="1.1"
         viewBox="0 0 500 500"
+        {...props}
+        className={props.className}
     >
         <g id="Layer 2">
             <path

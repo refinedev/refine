@@ -1,20 +1,19 @@
 import Link from "@docusaurus/Link";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import clsx from "clsx";
-import React, { Fragment } from "react";
-
+import React, { FC, Fragment, PropsWithChildren } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 import { openFigma } from "@site/src/utils/open-figma";
 import { CloseIcon } from "../icons/close";
-import {
-    DiscordIcon,
-    GithubIcon,
-    GithubStarIcon,
-    TwitterIcon,
-} from "../icons/popover";
+import { GithubStarIcon } from "../icons/popover";
 import { RefineLogoIcon } from "../icons/refine-logo";
 import { MENU_ITEMS, NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
 import { MobileNavItem } from "./mobile-nav-item";
+import { TopAnnouncement } from "../top-announcement";
+import { DarkModeIcon } from "../icons/dark-mode";
+import { LightModeIcon } from "../icons/light-mode";
+import { useLocation } from "@docusaurus/router";
 
 type MobileMenuModalProps = {
     isModalOpen: boolean;
@@ -24,6 +23,37 @@ type MobileMenuModalProps = {
 export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
     isModalOpen,
     setIsModalOpen,
+}) => {
+    const location = useLocation();
+
+    React.useEffect(() => {
+        setIsModalOpen(false);
+    }, [location]);
+
+    return (
+        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+            <Tablet
+                className={clsx(
+                    "hidden landing-sm:block",
+                    "overflow-auto",
+                    "border border-gray-200 dark:border-gray-700 rounded-lg",
+                )}
+            />
+            <Phone
+                className={clsx(
+                    "block landing-sm:hidden",
+                    "overflow-auto",
+                    "border border-gray-200 dark:border-gray-700 rounded-lg",
+                )}
+            />
+        </Modal>
+    );
+};
+
+const Modal: FC<PropsWithChildren<MobileMenuModalProps>> = ({
+    isModalOpen,
+    setIsModalOpen,
+    children,
 }) => {
     return (
         <Transition appear show={isModalOpen} as={Fragment}>
@@ -44,15 +74,17 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                     <div
                         className={clsx(
                             "fixed inset-0",
-                            "bg-gray-100 dark:bg-gray-800",
+                            "bg-gray-0 dark:bg-gray-900",
+                            "flex",
+                            "flex-col",
                         )}
                     >
+                        <TopAnnouncement />
                         <div
                             className={clsx(
                                 "flex items-center justify-between",
-                                "px-4 py-3",
-                                "landing-sm:px-6",
-                                "landing-md:px-8",
+                                "p-4",
+                                "landing-sm:px-8",
                             )}
                         >
                             <RefineLogoIcon
@@ -69,29 +101,11 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                 )}
                             >
                                 <CloseIcon
-                                    className="text-gray-900 dark:text-gray-400"
+                                    className="text-gray-900 dark:text-white"
                                     onClick={() => setIsModalOpen(false)}
                                 />
                             </button>
                         </div>
-                    </div>
-                </Transition.Child>
-
-                <div
-                    className={clsx(
-                        "fixed top-16 left-0 right-0",
-                        "overflow-y-auto",
-                    )}
-                >
-                    <div
-                        className={clsx(
-                            "flex items-start justify-center",
-                            "min-h-full h-[calc(100vh-80px)]",
-                            "p-4",
-                            "text-center",
-                            "overflow-auto",
-                        )}
-                    >
                         <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-75"
@@ -103,129 +117,195 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                         >
                             <div
                                 className={clsx(
-                                    "w-full max-w-[336px] header-sm:max-w-[624px] max-h-full",
-                                    "overflow-auto",
-                                    "border border-gray-200 dark:border-gray-600 rounded-lg",
-                                    "bg-white dark:bg-gray-900",
-                                    "text-left",
-                                    "align-middle",
-                                    "flex flex-col header-sm:flex-row",
+                                    "flex-1",
+                                    "overflow-y-auto",
+                                    "px-4",
+                                    "pb-4",
                                 )}
                             >
-                                <div className="flex-grow">
-                                    {MENU_ITEMS.map((item) => {
-                                        if (item.isPopover) {
-                                            return (
-                                                <Disclosure
-                                                    key={`modal-${item.label}`}
-                                                >
-                                                    {({ open }) => (
-                                                        <>
-                                                            <MobileNavItem
-                                                                component={
-                                                                    Disclosure.Button
-                                                                }
-                                                                label={
-                                                                    item.label
-                                                                }
-                                                                open={open}
-                                                            />
-
-                                                            <Disclosure.Panel>
-                                                                {item.items.map(
-                                                                    (
-                                                                        subItem,
-                                                                    ) => (
-                                                                        <MenuItem
-                                                                            key={
-                                                                                subItem.label
-                                                                            }
-                                                                            item={
-                                                                                subItem
-                                                                            }
-                                                                        />
-                                                                    ),
-                                                                )}
-                                                            </Disclosure.Panel>
-                                                        </>
-                                                    )}
-                                                </Disclosure>
-                                            );
-                                        }
-
-                                        return (
-                                            <MobileNavItem
-                                                key={`modal-${item.label}`}
-                                                label={item.label}
-                                                href={
-                                                    (item as NavbarItemType)
-                                                        .href
-                                                }
-                                            />
-                                        );
-                                    })}
-                                </div>
-                                <div
-                                    className={clsx(
-                                        "header-sm:w-[288px] max-h-[calc(100vh-97px)]",
-                                        "header-sm:bg-gray-50 header-sm:dark:bg-gray-700",
-                                        "header-sm:flex header-sm:flex-col header-sm:justify-between",
-                                        "sticky top-0",
-                                    )}
-                                >
-                                    <div
-                                        className={clsx(
-                                            "bg-white dark:bg-gray-700 header-sm:bg-inherit",
-                                            "flex justify-between items-center",
-                                            "header-sm:flex-col header-sm:gap-4",
-                                            "header-sm:border-b border-gray-200 dark:border-gray-600",
-                                            "py-3 px-4",
-                                        )}
-                                    >
-                                        <p className="text-gray-500 dark:text-gray-300 font-semibold">
-                                            Join the party!
-                                        </p>
-                                        <div className="flex gap-4">
-                                            <Link to="https://github.com/refinedev/refine">
-                                                <GithubIcon className="h-10 w-10" />
-                                            </Link>
-                                            <Link to="https://discord.com/invite/refine">
-                                                <DiscordIcon className="h-10 w-10" />
-                                            </Link>
-                                            <Link to="https://twitter.com/refine_dev">
-                                                <TwitterIcon className="h-10 w-10" />
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    <Link
-                                        to="https://github.com/refinedev/refine"
-                                        className="no-underline"
-                                    >
-                                        <div
-                                            className={clsx(
-                                                "bg-gray-50 dark:bg-gray-700",
-                                                "flex items-center",
-                                                "p-4",
-                                            )}
-                                        >
-                                            <GithubStarIcon className="shrink-0" />
-                                            <p
-                                                className={clsx(
-                                                    "ml-4",
-                                                    "text-gray-600 dark:text-gray-400 text-xs",
-                                                )}
-                                            >
-                                                If you like refine, don’t forget
-                                                to star us on GitHub!
-                                            </p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {children}
                             </div>
                         </Transition.Child>
                     </div>
-                </div>
+                </Transition.Child>
             </Dialog>
         </Transition>
+    );
+};
+
+const Tablet = (props: { className?: string }) => {
+    return (
+        <div className={clsx(props.className)}>
+            {MENU_ITEMS.map((item, i) => {
+                return (
+                    <div
+                        key={i}
+                        className={clsx(
+                            "not-prose",
+                            "p-4",
+                            "border-t dark:border-gray-700 border-gray-200",
+                        )}
+                    >
+                        <Link
+                            to={"href" in item ? item.href : undefined}
+                            className={clsx(
+                                "appearance-none",
+                                "block",
+                                "no-underline",
+                                "dark:text-gray-0 text-gray-900",
+                                "font-bold",
+                            )}
+                        >
+                            {item.label}
+                        </Link>
+                        {"items" in item && (
+                            <div
+                                className={clsx(
+                                    "mt-2",
+                                    "grid grid-cols-2 min-[800px]:grid-cols-3",
+                                    "gap-x-8 gap-y-4",
+                                )}
+                            >
+                                {item.items.map((subItem) => (
+                                    <MenuItem
+                                        key={subItem.label}
+                                        item={subItem}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                );
+            })}
+            <ThemeToggle />
+            <Github id="tablet" />
+        </div>
+    );
+};
+
+const Phone = (props: { className?: string }) => {
+    return (
+        <div className={clsx(props.className)}>
+            <div className="flex-grow">
+                {MENU_ITEMS.map((item) => {
+                    if (item.isPopover) {
+                        return (
+                            <Disclosure key={`modal-${item.label}`}>
+                                {({ open }) => (
+                                    <>
+                                        <MobileNavItem
+                                            component={Disclosure.Button}
+                                            label={item.label}
+                                            open={open}
+                                        />
+
+                                        <Disclosure.Panel>
+                                            {item.items.map((subItem) => (
+                                                <MenuItem
+                                                    key={subItem.label}
+                                                    item={subItem}
+                                                />
+                                            ))}
+                                        </Disclosure.Panel>
+                                    </>
+                                )}
+                            </Disclosure>
+                        );
+                    }
+
+                    return (
+                        <MobileNavItem
+                            key={`modal-${item.label}`}
+                            label={item.label}
+                            href={(item as NavbarItemType).href}
+                        />
+                    );
+                })}
+            </div>
+            <ThemeToggle />
+            <Github id="phone" />
+        </div>
+    );
+};
+
+const Github = (props: { id?: string }) => {
+    return (
+        <Link to="https://github.com/refinedev/refine" className="no-underline">
+            <div
+                className={clsx(
+                    "border-t dark:border-gray-700 border-gray-300",
+                    "dark:bg-gray-800 bg-gray-100",
+                    "flex items-center",
+                    "p-4",
+                )}
+            >
+                <GithubStarIcon id={props?.id || ""} />
+                <div
+                    className={clsx("ml-4", "dark:text-gray-400 text-gray-600")}
+                >
+                    If you like refine, don’t forget to star us on GitHub!
+                </div>
+            </div>
+        </Link>
+    );
+};
+
+const ThemeToggle = () => {
+    const { colorMode, setColorMode } = useColorMode();
+
+    const toggle = () => {
+        setColorMode(colorMode === "dark" ? "light" : "dark");
+    };
+
+    const isDarkSelected = colorMode === "dark";
+    const isLightSelected = colorMode === "light";
+
+    return (
+        <div className={clsx("not-prose", "p-4", "flex items-center")}>
+            <div
+                className={clsx(
+                    "text-sm",
+                    "mr-10",
+                    "dark:text-gray-400 text-gray-600",
+                )}
+            >
+                Apperance
+            </div>
+            <button
+                onClick={toggle}
+                className={clsx(
+                    "mr-4",
+                    "rounded-full",
+                    "appearance-none",
+                    "select-none",
+                    "flex items-center gap-2",
+                    "h-[40px] px-3",
+                    "text-sm",
+                    "border dark:border-gray-700 border-gray-200",
+                    "text-gray-500",
+                    isLightSelected && "bg-gray-50",
+                )}
+            >
+                <LightModeIcon />
+                Light
+            </button>
+            <button
+                onClick={toggle}
+                className={clsx(
+                    "rounded-full",
+                    "appearance-none",
+                    "select-none",
+                    "flex items-center gap-2",
+                    "h-[40px] px-3",
+                    "text-sm",
+                    "border dark:border-gray-700 border-gray-200",
+                    isDarkSelected ? "text-gray-400" : "text-gray-500",
+                    isDarkSelected && "bg-gray-700",
+                )}
+            >
+                <DarkModeIcon />
+                Dark
+            </button>
+        </div>
     );
 };

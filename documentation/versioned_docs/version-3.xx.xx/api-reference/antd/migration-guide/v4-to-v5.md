@@ -28,7 +28,7 @@ Some of the changes are:
 
 ## Updating the packages
 
-[`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) must be updated to `4.x.x`
+[`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/antd) must be updated to `4.x.x`
 
 <Tabs
 defaultValue="refine-cli"
@@ -61,7 +61,7 @@ npm i @pankod/refine-antd@latest
 
 ## 🪄 Migrating your project automatically with Codemod ✨ (recommended)
 
-`@pankod/refine-codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) version from 3.x.x to 4.x.x.
+`@pankod/refine-codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/antd) version from 3.x.x to 4.x.x.
 
 Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
 

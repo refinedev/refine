@@ -1,14 +1,14 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, act, mockRouterBindings } from "@test";
+import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
-import { useSelect } from "./";
 import * as pickResource from "../../definitions/helpers/pick-resource";
 import {
     CrudFilters,
     IDataContext,
     IDataMultipleContextProvider,
 } from "../../interfaces";
+import { useSelect } from "./";
 
 describe("useSelect Hook", () => {
     it("default", async () => {

@@ -15,7 +15,7 @@ For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid]
 > 💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
 
 :::info
-This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/v3/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
 ## Basic usage
@@ -774,7 +774,7 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
 [use-table-core]: /docs/api-reference/core/hooks/useTable
-[source-code]: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts
+[source-code]: https://github.com/refinedev/refine/blob/v3/packages/mui/src/hooks/useDataGrid/index.ts
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters

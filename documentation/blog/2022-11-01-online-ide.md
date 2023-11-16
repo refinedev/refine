@@ -158,14 +158,7 @@ You can open one of the tutorial examples in StackBlitz by following [this link]
 
 - Not all web browsers fully support WebContainers. You might run into some errors if you intend to embed StackBlitz projects in documentation or blog posts
   
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## CodeSandbox
 

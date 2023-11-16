@@ -213,11 +213,7 @@ const user: Record<ActiveUserIds, TUser | TProjectManager> = {
 };
 ```
 
----
 
-<BannerRandom />
-
----
 
 ### Other Quirks
 

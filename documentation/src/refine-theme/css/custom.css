@@ -52,8 +52,8 @@
 
     @apply prose-h4:font-semibold;
     @apply prose-h4:text-gray-600 prose-h4:dark:text-gray-300;
-    @apply prose-h4:text-[0.75rem] prose-h4:leading-[1rem];
-    @apply sm:prose-h4:text-[1rem] sm:prose-h4:leading-[1.75rem];
+    @apply prose-h4:text-[0.75rem] prose-h4:leading-[1.33rem];
+    @apply sm:prose-h4:text-[1.33rem] sm:prose-h4:leading-[1.75rem];
     @apply prose-h4:mb-4 sm:prose-h4:mb-6;
 
     @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-5 prose-p:mt-0;
@@ -289,7 +289,7 @@ html .no-underline {
 
 html[data-active-page="index"],
 html[data-active-page="index"] body {
-    @apply bg-refine-bg;
+    @apply bg-gray-800;
 }
 
 @keyframes element-animation {
@@ -407,4 +407,8 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(svg + span)
     padding-left: 0px;
     padding-right: 4px;
     width: 26px;
+}
+
+.refine-tab-content > *:last-child {
+    @apply mb-0;
 }

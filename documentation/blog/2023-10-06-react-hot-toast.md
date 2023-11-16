@@ -92,11 +92,7 @@ Refer to the [react-hot-toast documentation](https://react-hot-toast.com/docs/to
 
 ## What is refine 
 
----
 
-<BannerRandom />
-
----
 
 [refine](https://github.com/refinedev/refine) is an open-source, React-based framework that facilitates the development of enterprise web applications, such as admin panels, dashboards, and B2B applications. It is a feature-rich library that prioritizes simplicity by eliminating repetitive tasks for CRUD, routing, internalization, and networking.
 

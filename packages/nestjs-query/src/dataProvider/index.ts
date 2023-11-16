@@ -306,11 +306,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             );
         },
         custom: async ({ url, method, headers, meta }) => {
-            let gqlClient = client;
-
             if (url) {
-                gqlClient = new GraphQLClient(url, { headers });
+                client.setEndpoint(url);
             }
+            client.setHeaders(headers);
 
             if (meta?.rawQuery) {
                 const response = await client.request<BaseRecord>(
@@ -330,7 +329,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             variables: meta.variables,
                         });
 
-                        const response = await gqlClient.request<BaseRecord>(
+                        const response = await client.request<BaseRecord>(
                             query,
                             variables,
                         );
@@ -345,7 +344,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             variables: meta.variables,
                         });
 
-                        const response = await gqlClient.request<BaseRecord>(
+                        const response = await client.request<BaseRecord>(
                             query,
                             variables,
                         );
