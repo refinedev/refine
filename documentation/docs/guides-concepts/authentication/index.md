@@ -27,8 +27,8 @@ import { Refine } from "@refinedev/core";
 import authProvider from "./auth-provider";
 
 const App = () => {
-    // highlight-next-line
-    return <Refine authProvider={authProvider}>...</Refine>;
+  // highlight-next-line
+  return <Refine authProvider={authProvider}>...</Refine>;
 };
 ```
 
@@ -50,11 +50,11 @@ After registering a new user, we will implement `authProvider.login` method to l
 
 ### Is Authenticated
 
-We setup registration and login process. Now we need to check if the user is authenticated or not. We will implement `authProvider.check` method and we will call this method with `useIsAuthenticated` hook to check if the user is authenticated or not.
+In the previous examples, the registration and login process were set up. Next, we need to check if the user is authenticated or not. This will be done by using the `authProvider.check` method together with the `useIsAuthenticated` hook.
 
-By using `useIsAuthenticated` hook, we can easily check if the user is authenticated or not. If the user is authenticated, we will show the user profile, otherwise we will show the `<Login />` component.
+By using `useIsAuthenticated` hook, we can easily check if the user is authenticated or not. If they are, the user's profile will be shown. If not, the `<Login />` component will appear.
 
-Also in this example, we will implement `authProvider.logout` and `authProvider.getIdentity` methods. We will call these methods with `useLogout` and `useGetIdentity` hooks respectively. With help of this hooks, we can easily logout the user and get the user identity.
+Additionally, in this example, we will implement `authProvider.logout` and `authProvider.getIdentity` methods. We will call these methods with `useLogout` and `useGetIdentity` hooks. These hooks make it easy to log out users and get their identity information.
 
 <IsAuthentcated />
 
@@ -66,14 +66,14 @@ Refine also provides `<Auhtenticated />` component to easily handle authenticati
 import { Authenticated } from "@refinedev/core";
 
 const Page = () => {
-    return (
-        <Authenticated
-            loading={<div>loading...</div>}
-            fallback={<div>You cannot access this section</div>}
-        >
-            <h1>Welcome to your dashboard</h1>
-        </Authenticated>
-    );
+  return (
+    <Authenticated
+      loading={<div>loading...</div>}
+      fallback={<div>You cannot access this section</div>}
+    >
+      <h1>Welcome to your dashboard</h1>
+    </Authenticated>
+  );
 };
 ```
 
@@ -103,8 +103,8 @@ import { useOnError } from "@refinedev/core";
 const { mutate: onError } = useOnError();
 
 fetch("http://example.com/payment")
-    .then(() => console.log("Success"))
-    .catch((error) => onError(error));
+  .then(() => console.log("Success"))
+  .catch((error) => onError(error));
 ```
 
 We can handle this error by implementing `authProvider.onError` method. If the error status code is 418, we will logout the user and redirect to the login page. Otherwise we will do nothing. Refine will automatically handles redirection and logout process.
@@ -113,26 +113,26 @@ We can handle this error by implementing `authProvider.onError` method. If the e
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  logout: () => {
     // ---
-    logout: () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    onError: (error) => {
-        const status = error.status;
-        if (status === 418) {
-            return {
-                logout: true,
-                redirectTo: "/login",
-                error: new Error(error),
-            };
-        }
-        return {};
-    },
-    // ---
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  onError: (error) => {
+    const status = error.status;
+    if (status === 418) {
+      return {
+        logout: true,
+        redirectTo: "/login",
+        error: new Error(error),
+      };
+    }
+    return {};
+  },
+  // ---
 };
 ```
 
@@ -144,26 +144,26 @@ Refine provides `<AuthPage />` components to easily handle authentication pages 
 import { Refine, AuthPage } from "@refinedev/core";
 
 const App = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <AuthPage type="login" />
-            <AuthPage type="register" />
-            <AuthPage type="updatePassword" />
-            <AuthPage type="forgotPassword" />
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <AuthPage type="login" />
+      <AuthPage type="register" />
+      <AuthPage type="updatePassword" />
+      <AuthPage type="forgotPassword" />
+    </Refine>
+  );
 };
 ```
 
 To learn more information about `<AuthPage />` component and see the detailed examples, check out the following reference pages:
 
--   [Headless](/docs/api-reference/core/components/auth-page)
--   [Ant Design](/docs/api-reference/antd/components/antd-auth-page/)
--   [Material UI](/docs/api-reference/mui/components/mui-auth-page/)
--   [Chakra UI](/docs/api-reference/chakra-ui/components/chakra-auth-page/)
--   [Mantine](/docs/api-reference/mantine/components/mantine-auth-page/)
+- [Headless](/docs/api-reference/core/components/auth-page)
+- [Ant Design](/docs/api-reference/antd/components/antd-auth-page/)
+- [Material UI](/docs/api-reference/mui/components/mui-auth-page/)
+- [Chakra UI](/docs/api-reference/chakra-ui/components/chakra-auth-page/)
+- [Mantine](/docs/api-reference/mantine/components/mantine-auth-page/)
 
 <AuthPage />
 
@@ -173,14 +173,14 @@ Flexible architecture of auth provider allows you to integrate your **own** or [
 
 You can use the following oAuth provider implementations as a starting point for your own auth provider or you can use them as it is.
 
--   [Google](https://github.com/refinedev/refine/tree/master/examples/auth-google-login)
--   [Auth0](https://github.com/refinedev/refine/tree/master/examples/auth-auth0)
--   [Kinde](https://github.com/refinedev/refine/tree/master/examples/auth-kinde)
--   [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
--   [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
--   [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
--   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
--   [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
+- [Google](https://github.com/refinedev/refine/tree/master/examples/auth-google-login)
+- [Auth0](https://github.com/refinedev/refine/tree/master/examples/auth-auth0)
+- [Kinde](https://github.com/refinedev/refine/tree/master/examples/auth-kinde)
+- [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
+- [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
+- [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
+- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
+- [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
 
 ## `authProvider` interface
 
