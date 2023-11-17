@@ -156,6 +156,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             "Email",
                         )}
                         {...getInputProps("email")}
+                        autoComplete="email"
                     />
                     <PasswordInput
                         name="password"
@@ -166,6 +167,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         )}
                         placeholder="●●●●●●●●"
                         {...getInputProps("password")}
+                        autoComplete="current-password"
                     />
                     <Box
                         mt="md"

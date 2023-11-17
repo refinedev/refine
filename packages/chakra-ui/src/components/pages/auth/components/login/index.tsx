@@ -163,6 +163,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 ),
                             },
                         })}
+                        autoComplete="email"
                     />
                     <FormErrorMessage>
                         {`${errors.email?.message}`}
@@ -180,6 +181,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {...register("password", {
                             required: true,
                         })}
+                        autoComplete="current-password"
                     />
                     <FormErrorMessage>
                         {`${errors.password?.message}`}

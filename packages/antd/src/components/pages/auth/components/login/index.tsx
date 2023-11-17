@@ -178,6 +178,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             "pages.login.fields.email",
                             "Email",
                         )}
+                        autoComplete="email"
                     />
                 </Form.Item>
                 <Form.Item
@@ -189,6 +190,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         type="password"
                         placeholder="●●●●●●●●"
                         size="large"
+                        autoComplete="current-password"
                     />
                 </Form.Item>
                 <div
