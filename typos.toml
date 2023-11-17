@@ -1,0 +1,11 @@
+[default]
+locale = "en-us"
+
+[files]
+extend-exclude = ["i18n-provider.md"]
+
+[default.extend-words]
+nin = "nin"
+OT = "OT"
+prev = "prev"
+prepended = "prepended"

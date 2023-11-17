@@ -10,23 +10,16 @@ on:
 jobs:
   misspell:
     concurrency:
-      group: ${{ github.ref }}-misspell-lint
+      group: ${{ github.ref }}-typos-lint
       cancel-in-progress: true
-    name: Check spelling using misspell
+    name: Check spelling using typos
     runs-on: ubuntu-latest
     steps:
       - name: Check out code.
         uses: actions/checkout@v4
-      - name: misspell
+      - name: typos
         id: check_for_typos
-        uses: reviewdog/action-misspell@v1
+        uses: crate-ci/typos@master
         with:
-          reporter: github-pr-check
-          fail_on_error: true
-          filter_mode: nofilter
-          path: documentation
-          locale: "US"
-          level: "error"
-          pattern: |
-            *.md
-            *.mdx
+          files: ./documentation/docs
+          config: ./typos.toml
