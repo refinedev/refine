@@ -1,19 +1,24 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export function AntdAuth() {
+export function MantineAuth() {
     return (
         <Sandpack
             showNavigator
             previewOnly
             dependencies={{
-                "@refinedev/antd": "latest",
+                "@refinedev/mantine": "latest",
                 "@refinedev/core": "latest",
                 "@refinedev/simple-rest": "latest",
                 "@refinedev/react-router-v6": "latest",
+                "@refinedev/react-table": "latest",
                 "react-router-dom": "latest",
                 "react-router": "latest",
-                antd: "^5.0.5",
+                "@tabler/icons": "^1.119.0",
+                "@emotion/react": "^11.8.2",
+                "@mantine/core": "^5.10.4",
+                "@mantine/hooks": "^5.10.4",
+                "@mantine/notifications": "^5.10.4",
             }}
             startRoute="/login"
             files={{
@@ -28,17 +33,17 @@ export function AntdAuth() {
 const AppTsxCode = /* tsx */ `
 import React from "react";
 
-import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
+import { Global, MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
+import { Authenticated, Refine } from "@refinedev/core";
 import {
     AuthPage,
     ErrorComponent,
     RefineThemes,
     ThemedLayoutV2,
-} from "@refinedev/antd";
-import { Authenticated, Refine } from "@refinedev/core";
+} from "@refinedev/mantine";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
@@ -48,8 +53,13 @@ import dataProvider from "@refinedev/simple-rest";
 export default function App() {
     return (
         <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <AntdApp>
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
+            >
+                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+                <NotificationsProvider position="top-right">
                     <Refine
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(
@@ -99,7 +109,7 @@ export default function App() {
                                     </Authenticated>
                                 }
                             >
-                                <Route index element={<div>Welcome!</div>} />
+                                <Route index element={<div>Welcome</div>} />
                             </Route>
                             <Route
                                 element={
@@ -115,7 +125,12 @@ export default function App() {
                                             type="login"
                                             wrapperProps={{
                                                 style: {
-                                                    paddingTop: 24,
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    minHeight: "100vh",
+                                                    margin: "24px auto",
                                                 },
                                             }}
                                         />
@@ -128,7 +143,12 @@ export default function App() {
                                             type="register"
                                             wrapperProps={{
                                                 style: {
-                                                    paddingTop: 24,
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    minHeight: "100vh",
+                                                    margin: "24px auto",
                                                 },
                                             }}
                                         />
@@ -141,7 +161,12 @@ export default function App() {
                                             type="forgotPassword"
                                             wrapperProps={{
                                                 style: {
-                                                    paddingTop: 24,
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    minHeight: "100vh",
+                                                    margin: "24px auto",
                                                 },
                                             }}
                                         />
@@ -154,7 +179,12 @@ export default function App() {
                                             type="updatePassword"
                                             wrapperProps={{
                                                 style: {
-                                                    paddingTop: 24,
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    minHeight: "100vh",
+                                                    margin: "24px auto",
                                                 },
                                             }}
                                         />
@@ -174,8 +204,8 @@ export default function App() {
                             </Route>
                         </Routes>
                     </Refine>
-                </AntdApp>
-            </ConfigProvider>
+                </NotificationsProvider>
+            </MantineProvider>
         </BrowserRouter>
     );
 }

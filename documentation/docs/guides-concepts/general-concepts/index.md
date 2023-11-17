@@ -118,9 +118,9 @@ The Authentication Provider centralizes the authentication and authorization pro
 It handles authentication and authorization processes such as login, logout, redirection, error handling, and more.
 
 ```tsx title=auth-provider.ts
-import { AuthProvider } from "@refinedev/core'";
+import { AuthBindings } from "@refinedev/core'";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
 
@@ -488,6 +488,7 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
 
+- [Headless](/docs/api-reference/core/components/auth-page)
 - [Ant Design](/docs/)
 - [Material UI](/docs/)
 - [Chakra UI](/docs/)
@@ -496,6 +497,14 @@ While **refine** itself is headless, it offers UI Integrations for popular UI li
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
 <Tabs wrapContent={false}>
+
+<TabItem value="Headless">
+
+import { HeadlessAuth } from './auth-pages/headless';
+
+<HeadlessAuth/>
+
+</TabItem>
 
 <TabItem value="Ant Design">
 

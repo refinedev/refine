@@ -7,7 +7,7 @@ tutorial:
     next: tutorial/understanding-authprovider/create-authprovider
 ---
 
-import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
+import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
 ## What is auth provider?
 

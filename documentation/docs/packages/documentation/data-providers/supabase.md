@@ -169,7 +169,7 @@ Let's head over to `App.tsx` file where all magic happens. This is the entry poi
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
- // highlight-start
+// highlight-start
 import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 // highlight-end
@@ -468,8 +468,8 @@ Auth provider needed to be registered in `<Refine>` component to activate auth f
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
- // highlight-start
-import authProvider from './authProvider';
+// highlight-start
+import authProvider from "./authProvider";
 // highlight-end
 
 function App() {
@@ -1488,7 +1488,7 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 
 ## Using `meta` to pass values to data provider
 
-The [`meta`](/docs/api-reference/general-concepts.md/#meta) property is used to pass additional information that can be read by data provider methods.
+The [`meta`](/docs/guides-concepts/general-concepts/#meta-concept) property is used to pass additional information that can be read by data provider methods.
 
 We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
@@ -1639,7 +1639,6 @@ useList({
 By default the `exact` count is used.
 
 [Refer to the PostgREST docs for more information about the count property &#8594](https://postgrest.org/en/stable/references/api/tables_views.html#exact-count)
-
 
 ## Example
 
