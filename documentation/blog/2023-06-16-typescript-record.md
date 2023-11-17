@@ -147,7 +147,7 @@ const activeUsers: Record<ActiveUserIds, TUser> = {
 console.log(activeUsers[ "3xamp1eUSERIdSTOR3DinAdb"].email); // example@example.com
 console.log(activeUsers["amongOther3xamp1eUSERIdsSTOR3DinAdb"].email);
 /*
-Property 'amonganother3xamp1eUSERIdSTOR3DinAdb' does not exist on type 'Record<activeUserIds, TUSer>'. Did you mean 'another3xamp1eUSERIdSTOR3DinAdb'?(2551)
+Property 'amonganother3xamp1eUSERIdSTOR3DinAdb' does not exist on type 'Record<activeUserIds, TUser>'. Did you mean 'another3xamp1eUSERIdSTOR3DinAdb'?(2551)
 */
 ```
 
@@ -175,7 +175,7 @@ const activeUsers: Record<ActiveUserIds, TUser> = {
 };
 
 /*
-Property 'another3xamp1eUSERIdSTOR3DinAdb' is missing in type '{ "3xamp1eUSERIdSTOR3DinAdb": { email: string; password: string; }; yetAnother3xamp1eUSERIdSTOR3DinAdb: { email: string; password: string; }; }' but required in type 'Record<activeUserIds, TUSer>'.(2741)
+Property 'another3xamp1eUSERIdSTOR3DinAdb' is missing in type '{ "3xamp1eUSERIdSTOR3DinAdb": { email: string; password: string; }; yetAnother3xamp1eUSERIdSTOR3DinAdb: { email: string; password: string; }; }' but required in type 'Record<activeUserIds, TUser>'.(2741)
 */
 ```
 

@@ -51,7 +51,7 @@ const UsersList: React.FC = () => {
     );
 };
 
-interface IUSer {
+interface IUser {
     id: number;
     firstName: string;
     lastName: string;
