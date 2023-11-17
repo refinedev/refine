@@ -128,6 +128,8 @@ Once you implement `authProvider.onError` method, you can call this method with 
 
 ## UI Integrations
 
+### `<AuthPage />`
+
 While Refine itself is headless, it offers `<AuthPage />` Integrations for popular UI libraries for:
 
 - [Headless](/docs/api-reference/core/components/auth-page)
@@ -181,6 +183,56 @@ import { MantineAuth } from './auth-pages/mantine';
 </TabItem>
 
 </Tabs>
+
+### Notification <GuideBadge id="guides-concepts/notifications/" />
+
+Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/docs/api-reference/core/providers/notification-provider) to the `<Refine />` component.
+
+Once you provide `notificationProvider`, Refine will automatically notify users about the authentication errors.
+
+For example, when you return `error` object from the `authProvider.login` method, Refine will automatically notify users about the error.
+
+```tsx
+import { Refine, AuthBindings } from "@refinedev/core";
+import { handleLogin } from "./utils";
+
+export const authProvider: AuthBindings = {
+  login: async ({ email, password }) => {
+    const { status } = handleLogin(email, password);
+    if (status === 401) {
+      return {
+        success: false,
+        error: { name: "Login Error", message: "Invalid credentials" },
+      };
+    }
+  },
+  ...
+};
+```
+
+## Router Integrations <GuideBadge id="guides-concepts/routing/" />
+
+Refine provides a automatic routing system to redirect users to the desired page after the authentication process. To use this feature, you need to pass [`routerProvider`](/docs/api-reference/core/providers/router-provider) to the `<Refine />` component.
+
+For example, when you return `redirectTo` object from the `authProvider.register` method, Refine will automatically redirect users to the desired page.
+
+```tsx
+import { Refine, AuthBindings } from "@refinedev/core";
+import { handleLogin } from "./utils";
+
+export const authProvider: AuthBindings = {
+  register: async ({ email, password }) => {
+    const { status } = handleLogin(email, password);
+    if (status === 409) {
+      return {
+        success: false,
+        redirectTo: "/forgot-password",
+        error: { name: "Register Error", message: "User already exists" },
+      };
+    }
+  },
+};
+```
 
 ## Auth hooks
 
