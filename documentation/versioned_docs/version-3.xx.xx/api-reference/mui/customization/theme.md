@@ -169,7 +169,7 @@ The best way to customize your theme is by changing the configuration variables.
 ```tsx title="src/App.tsx"
 import { LightTheme } from "@pankod/refine-mui";
 
-const overriddenLightTheme = {
+const overridedLightTheme = {
     ...LightTheme,
     // highlight-start
     palette: {
@@ -206,7 +206,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-const overriddenLightTheme = {
+const overridedLightTheme = {
     ...LightTheme,
     // highlight-start
     palette: {
@@ -224,7 +224,7 @@ const overriddenLightTheme = {
 const App: React.FC = () => {
     return (
         // highlight-next-line
-        <ThemeProvider theme={overriddenLightTheme}>
+        <ThemeProvider theme={overridedLightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
@@ -276,7 +276,7 @@ const typography: TypographyVariantsOptions = {
 };
 // highlight-end
 
-const overriddenLightTheme = {
+const overridedLightTheme = {
     ...LightTheme,
     // highlight-start
     ...typography,

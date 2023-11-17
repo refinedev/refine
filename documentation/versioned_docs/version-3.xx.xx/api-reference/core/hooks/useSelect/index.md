@@ -51,7 +51,7 @@ useSelect({
 
 ### `optionLabel` and `optionValue`
 
-Allows you to change the `value` and `label` of your options.
+Allows you to change the `value` and `label` of your options.  
 Default values are `optionLabel = "title"` and `optionValue = "id"`
 
 ```tsx
@@ -358,7 +358,7 @@ You may want to get all the data without pagination. In this case you should use
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
 <DefaultValueLivePreview />
 
