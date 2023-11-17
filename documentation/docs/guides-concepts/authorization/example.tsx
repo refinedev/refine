@@ -25,10 +25,10 @@ export function AccessControlExample() {
                 },
                 "/access-control.ts": {
                     code: AccessControlCode,
+                    active: true,
                 },
                 "/show.tsx": {
                     code: ShowTsxCode,
-                    active: true,
                 },
             }}
         />
@@ -38,7 +38,9 @@ export function AccessControlExample() {
 const AccessControlCode = /* ts */ `
 import { AccessControlProvider } from "@refinedev/core";
 
-import { role } from "./show.tsx";
+const role = "editor";
+// Uncomment this line and refresh to see difference.
+// const role = "admin";
 
 export const accessControlProvider: AccessControlProvider = {
   can: async ({ action, resource, params }) => {
@@ -127,10 +129,6 @@ ul > li {
 
 const ShowTsxCode = `
 import { CanAccess, useCan } from "@refinedev/core";
-
-export const role = "editor";
-// Uncomment this line and refresh to see difference.
-// export const role = "admin";
 
 export const PaymentShow: React.FC = () => {
   const { data } = useCan({

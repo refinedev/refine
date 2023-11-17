@@ -105,11 +105,7 @@ export const ListPage = () => {
 
 This means you can wrap all of your routes with a single `<CanAccess />` component, instead of wrapping each page individually.
 
-> See [React Router](/docs/router-integrations/react-router) integration page for more information.
-
-> See [Next.js](/docs/router-integrations/next-js) integration page for more information.
-
-> See [Remix](/docs/router-integreations/remix) integration page for more information.
+See [React Router](/docs/router-integrations/react-router), [Next.js](/docs/router-integrations/next-js), [Remix](/docs/router-integreations/remix) integration pages for more information.
 
 ## useCan Hook
 
