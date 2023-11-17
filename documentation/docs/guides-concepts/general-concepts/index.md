@@ -1,5 +1,5 @@
 ---
-title: General Concepts 🚧
+title: General Concepts
 ---
 
 Refine is an extensible framework designed for rapidly building web applications. It offers a modern, **hook-based architecture**, a **pluggable system of providers**, and a robust **state management** solution. This section provides an overview of the key concepts in Refine.

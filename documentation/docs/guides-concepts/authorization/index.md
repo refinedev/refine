@@ -1,8 +1,8 @@
 ---
-title: Authorization 🚧
+title: Authorization
 ---
 
-Authorization is a key aspect of security and user experience in web applications. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, **refine**'s authorization system provides the necessary infrastructure to protect your resources and ensure that users interact with your application in a secure and controlled manner.
+Authorization is a key aspect of security and user experience in web applications. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, **Refine**'s authorization system provides the necessary infrastructure to protect your resources and ensure that users interact with your application in a secure and controlled manner.
 
 refine's **flexible architecture** allows you to easily implement various authorization strategies:
 
@@ -14,15 +14,15 @@ With **any** authorization solution. (i.e. [Okta](https://help.okta.com/wf/en-us
 
 Refine offers several features to help you implement authorization in your application:
 
-- **CanAccess** component: Conditionally renders child components based on the user's access to a resource.
-- **useCan hook**: Returns a value indicating whether the user has access to a resource based on the given parameters.
+- `<CanAccess />` component: Conditionally renders child components based on the user's access to a resource.
+- `useCan` hook: Returns a value indicating whether the user has access to a resource based on the given parameters.
 - **UI Integrations**: Conditionally renders UI elements such as **buttons**, **menu items**, etc. based on the user's access to a resource.
 
 In order to enable these features, Refine uses the **Access Control Provider** as an interface to connect your application with your authorization solution and provides necessary parameters to make access control decisions.
 
 ## Access Control Provider
 
-The **Access Control Provider** is an object that contains a `can` method. This method is called by **refine** to understand if the user can see a certain resource or perform an action.
+The **Access Control Provider** is an object that contains a `can` method. This method is called by **Refine** to understand if the user can see a certain resource or perform an action.
 
 A basic **Access Control Provider** looks like this:
 
@@ -66,6 +66,8 @@ export const App = () => {
 };
 ```
 
+> See [Access Control Provider](/docs/core/providers/access-control-provider) page for more information.
+
 ## CanAccess Component
 
 The `CanAccess` component can be used to wrap your **pages** or **components** to hide them from unauthorized users.
@@ -99,9 +101,9 @@ export const ListPage = () => {
 
 ### Router Integration
 
-**refine**'s router integrations can automatically infer `resource`, `action`, and `params.id` props from the current route and pass them to the `CanAccess` component automatically.
+**Refine**'s router integrations can infer `resource`, `action`, and `params.id` props from the current route and pass them to the `<CanAccess />` component.
 
-This means you can wrap all of your routes with a single **CanAccess** component, instead of wrapping each page individually.
+This means you can wrap all of your routes with a single `<CanAccess />` component, instead of wrapping each page individually.
 
 > See [React Router](/docs/router-integrations/react-router) integration page for more information.
 
@@ -138,9 +140,9 @@ export const ListPage = () => {
 
 ## UI Integrations
 
-When **Access Control Provider** is provided, **refine**'s **UI Integrations** automatically manages the **visibility** of their components like **buttons** and **menu items**, simplifying the management of UI.
+When Access Control Provider is provided, **Refine**'s UI Integrations automatically manages the **visibility** of their components like **buttons** and **menu items**, simplifying the management of UI.
 
-These **UI Integrations** uses the **AccessControlProvider** to check if a user has the necessary permissions. This check is performed **without requiring manual implementation** for each component, streamlining the development process.
+These UI Integrations uses the Access Control Provider to check if a user has the necessary permissions. This check is performed without requiring manual implementation for each component, streamlining the development process.
 
 ### Sider
 
@@ -158,7 +160,7 @@ And if user isn't allowed to `list` products, menu item will be hidden.
 
 ### Buttons
 
-If you are using one of our buttons from our **UI Integrations** in your application, **you don't need to** wrap it with **CanAccess** or use **useCan** every time. These buttons will **automatically be shown or hidden**.
+If you are using one of our buttons from our UI Integrations in your application, you don't need to wrap it with `<CanAccess />` or use `useCan` every time. These buttons will automatically be shown or hidden.
 
 ```tsx title=button-example.ts
 // Following buttons call `can` method with commented parameters.
@@ -177,5 +179,3 @@ import {
 import { AccessControlExample } from "./example";
 
 <AccessControlExample />
-
-## Performance
