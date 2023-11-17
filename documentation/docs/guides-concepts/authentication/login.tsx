@@ -25,7 +25,7 @@ export default function Login() {
                 },
                 "/data-provider.ts": {
                     code: DataProviderCode,
-                    hidden: false,
+                    hidden: true,
                 },
             }}
         />
@@ -65,6 +65,7 @@ export const authProvider: AuthBindings = {
         // to keep the example short and simple, we didn't send a request, and we save the token in localStorage.
         // in real world, you should send a request and token should be saved in more secure place.
         localStorage.setItem("token", email);
+        alert("You are logged in!");
 
         return {
             success: true,
@@ -116,35 +117,31 @@ import React from "react";
 import { useLogin } from "@refinedev/core";
 
 export const LoginPage = () => {
-    const [formData, setFormData] = React.useState({ email: "" });
-
     const { mutate: login } = useLogin();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // get form data
+        const formData = Object.fromEntries(
+            new FormData(e.currentTarget).entries(),
+        );
+
+        // call login mutation
         login(formData);
-        setFormData({ email: "" });
+
+        // reset form data
+        e.currentTarget.reset();
     };
 
     return (
         <div>
             <h1>Login</h1>
             <form onSubmit={(e) => onSubmit(e)}>
-                <input
-                    type="email"
-                    placeholder="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                        setFormData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                        }))
-                    }
-                />
+                <input type="email" placeholder="email" />
                 <button type="submit">Submit</button>
             </form>
         </div>
     );
 };
-
 `.trim();

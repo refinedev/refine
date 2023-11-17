@@ -25,7 +25,7 @@ export default function Login() {
                 },
                 "/data-provider.ts": {
                     code: DataProviderCode,
-                    hidden: false,
+                    hidden: true,
                 },
             }}
         />
@@ -65,6 +65,7 @@ export const authProvider: AuthBindings = {
         // to keep the example short and simple, we didn't send a request, and we save the token in localStorage.
         // in real world, you should send a request and token should be saved in more secure place.
         localStorage.setItem("token", email);
+        alert("You have successfully registered!");
 
         return {
             success: true,
@@ -115,14 +116,21 @@ import React from "react";
 import { useRegister } from "@refinedev/core";
 
 export const RegisterPage = () => {
-    const [formData, setFormData] = React.useState({ email: "" });
-
     const { mutate: register } = useRegister();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // get form data
+        const formData = Object.fromEntries(
+            new FormData(e.currentTarget).entries(),
+        );
+
+        // call register mutation
         register(formData);
-        setFormData({ email: "" });
+
+        // reset form data
+        e.currentTarget.reset();
     };
 
     return (
@@ -131,14 +139,7 @@ export const RegisterPage = () => {
             <form onSubmit={(e) => onSubmit(e)}>
                 <input
                     type="email"
-                    placeholder="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                        setFormData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                        }))
-                    }
+                    placeholder="email"                  
                 />
                 <button type="submit">Submit</button>
             </form>

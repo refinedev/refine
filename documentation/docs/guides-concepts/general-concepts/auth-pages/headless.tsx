@@ -37,72 +37,98 @@ import dataProvider from "@refinedev/simple-rest";
 
 export default function App() {
   return (
-    <BrowserRouter>
+      <BrowserRouter>
           <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={{
-              check: async () => ({
-                authenticated: false,
-                redirectTo: "/login",
-              }),
-              getIdentity: async () => ({
-                id: 1,
-                name: "John Doe",
-                avatar: "https://i.pravatar.cc/300",
-              }),
-            }}
-            resources={[
-              {
-                name: "dashboard",
-                list: "/",
-              },
-            ]}
-            options={{ syncWithLocation: true }}
+              routerProvider={routerProvider}
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              authProvider={{
+                  check: async () => ({
+                      authenticated: false,
+                      redirectTo: "/login",
+                  }),
+                  login: async () => {
+                      return {
+                          success: false,
+                      };
+                  },
+                  logout: async () => {
+                      return {
+                          success: false,
+                      };
+                  },
+                  onError: async () => ({}),
+                  getIdentity: async () => ({
+                      id: 1,
+                      name: "John Doe",
+                      avatar: "https://i.pravatar.cc/300",
+                  }),
+              }}
+              resources={[
+                  {
+                      name: "dashboard",
+                      list: "/",
+                  },
+              ]}
           >
-            <Routes>
-              <Route
-                element={
-                  <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                      <Outlet />
-                  </Authenticated>
-                }
-              >
-                <Route index element={<div>Welcome!</div>} />
-              </Route>
-              <Route
-                element={
-                  <Authenticated fallback={<Outlet />}>
-                    <NavigateToResource resource="dashboard" />
-                  </Authenticated>
-                }
-              >
-                <Route path="/login" element={<AuthPage type="login" />} />
-                <Route
-                  path="/register"
-                  element={<AuthPage type="register" />}
-                />
-                <Route
-                  path="/forgot-password"
-                  element={<AuthPage type="forgotPassword" />}
-                />
-                <Route
-                  path="/update-password"
-                  element={<AuthPage type="updatePassword" />}
-                />
-              </Route>
-              <Route
-                element={
-                  <Authenticated>
-                      <Outlet />
-                  </Authenticated>
-                }
-              >
-                <Route path="*" element={<ErrorComponent />} />
-              </Route>
-            </Routes>
+              <Routes>
+                  <Route
+                      element={
+                          <Authenticated
+                              fallback={<CatchAllNavigate to="/login" />}
+                          >
+                              <Outlet />
+                          </Authenticated>
+                      }
+                  >
+                      <Route index element={<div>Welcome!</div>} />
+                  </Route>
+                  <Route
+                      element={
+                          <Authenticated
+                              fallback={
+                                  <div
+                                      style={{
+                                          margin: "24px auto",
+                                          maxWidth: "400px",
+                                      }}
+                                  >
+                                      <Outlet />
+                                  </div>
+                              }
+                          >
+                              <NavigateToResource resource="dashboard" />
+                          </Authenticated>
+                      }
+                  >
+                      <Route
+                          path="/login"
+                          element={<AuthPage type="login" />}
+                      />
+                      <Route
+                          path="/register"
+                          element={<AuthPage type="register" />}
+                      />
+                      <Route
+                          path="/forgot-password"
+                          element={<AuthPage type="forgotPassword" />}
+                      />
+                      <Route
+                          path="/update-password"
+                          element={<AuthPage type="updatePassword" />}
+                      />
+                  </Route>
+                  <Route
+                      element={
+                          <Authenticated>
+                              <Outlet />
+                          </Authenticated>
+                      }
+                  >
+                      <Route path="*" element={<ErrorComponent />} />
+                  </Route>
+              </Routes>
           </Refine>
-    </BrowserRouter>
+      </BrowserRouter>
   );
 }
 `.trim();

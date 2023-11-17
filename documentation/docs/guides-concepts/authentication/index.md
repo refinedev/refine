@@ -95,47 +95,6 @@ Let's say wan't to get product from the API with [`useOne`][use-one] hook. If th
 
 Once you implement `authProvider.onError` method, you can call this method with [`useOnError`][use-on-error] hook. This will help you to handle errors in single place.
 
-For example imagine a payment request was declined by the API. If the error status code is 418, the user should be logged out for security reasons:
-
-```tsx
-import { useOnError } from "@refinedev/core";
-
-const { mutate: onError } = useOnError();
-
-fetch("http://example.com/payment")
-  .then(() => console.log("Success"))
-  .catch((error) => onError(error));
-```
-
-We can handle this error by implementing `authProvider.onError` method. If the error status code is 418, we will logout the user and redirect to the login page. Otherwise we will do nothing. Refine will automatically handles redirection and logout process.
-
-```tsx
-import type { AuthBindings } from "@refinedev/core";
-
-const authProvider: AuthBindings = {
-  // ---
-  logout: () => {
-    // ---
-    return {
-      success: true,
-      redirectTo: "/login",
-    };
-  },
-  onError: (error) => {
-    const status = error.status;
-    if (status === 418) {
-      return {
-        logout: true,
-        redirectTo: "/login",
-        error: new Error(error),
-      };
-    }
-    return {};
-  },
-  // ---
-};
-```
-
 ## UI Integrations
 
 While Refine itself is headless, it offers `<AuthPage />` Integrations for popular UI libraries for:
