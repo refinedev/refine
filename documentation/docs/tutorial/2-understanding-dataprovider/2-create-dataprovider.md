@@ -924,7 +924,7 @@ mutate({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 For example, let's say that we want to pass a custom header to the `getOne` method. We can do this by passing the `meta` parameter to the `useOne` data hook.
 

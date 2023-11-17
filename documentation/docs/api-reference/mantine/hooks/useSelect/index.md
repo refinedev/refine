@@ -214,7 +214,6 @@ const { options } = useSelect({
 
 `onSearch` allows us to `AutoComplete` the `options`.
 
-
 <OnSearchLivePreview />
 
 :::info
@@ -252,7 +251,7 @@ const [searchValue, onSearchChange] = useState("");
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -348,7 +347,6 @@ useSelect({
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-
 ```tsx
 useSelect({
     liveMode: "auto",
@@ -396,14 +394,17 @@ const { overtime } = useSelect({
         onInterval(elapsedInterval) {
             console.log(elapsedInterval);
         },
-    }
+    },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`sort`~~
 
 :::caution Deprecated

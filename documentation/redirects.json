@@ -844,6 +844,10 @@
     {
       "from": "/docs/examples/next-js/NextAuth.js/",
       "to": "/docs/examples/next-js/NextAuth-js/"
+    },
+    {
+      "from": "/docs/api-reference/general-concepts/",
+      "to": "/docs/guides-concepts/general-concepts"
     }
   ]
 }
