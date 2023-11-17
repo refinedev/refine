@@ -32,7 +32,7 @@ const App = () => {
 };
 ```
 
-## Handling authentication
+## Handling Authentication
 
 Refine provides a set of hooks to handle authentication. You can use these hooks to manage your authentication process. You can find the [list of hooks](#auth-hooks) below.
 
@@ -48,7 +48,7 @@ After registering a new user, we will implement `authProvider.login` method to l
 
 <Login />
 
-### Is Authenticated
+### Checking Authentication
 
 In the previous examples, the registration and login process were set up. Next, we need to check if the user is authenticated or not. This will be done by using the `authProvider.check` method together with the `useIsAuthenticated` hook.
 
@@ -58,7 +58,7 @@ Additionally, in this example, we will implement `authProvider.logout` and `auth
 
 <IsAuthentcated />
 
-Refine also provides `<Auhtenticated />` component to easily handle authentication state. You can use this component for conditionally render your components.
+Refine also provides `<Auhtenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
 
 [To learn more about the `<Auhtenticated />` component, check out the reference page.](/docs/api-reference/core/components/auth/authenticated)
 
@@ -83,11 +83,11 @@ After implementing the authentication process, we need to inform data provider a
 
 [To learn more about the how to use authentication with data provider and working example, check out data fetching guide.](/docs/guides-concepts/data-fetching/#authentication-)
 
-## Error handling
+## Error Handling
 
 `authProvider.onError` method is used to handle errors that occur during the http request.
 
-Under the hood, Refine utilizes the [`useOnError`][use-on-error] hook on every data hooks. This means that when a promise is rejected from the `dataProvider` or when you get you get an error response from the API, Refine automatically calls `authProvider.onError` by using the `useOnError` hook.
+Under the hood, Refine utilizes the [`useOnError`][use-on-error] hook for all data hooks. This means that when a promise is rejected from the `dataProvider` or when you get an error response from the API, Refine automatically calls `authProvider.onError` by using the `useOnError` hook.
 
 Let's say wan't to get product from the API with [`useOne`][use-one] hook. If the user is not authenticated, the API will return an error response. You can handle this error by implementing `authProvider.onError` method and Refine will automatically call this method when the error occurs.
 
@@ -136,28 +136,9 @@ const authProvider: AuthBindings = {
 };
 ```
 
-## `<AuthPage />`
+## UI Integrations
 
-Refine provides `<AuthPage />` components to easily handle authentication pages (login, register, update password, forgot passowrd). Simply you can import and use `<AuthPage />` component to speed up your development process.
-
-```tsx
-import { Refine, AuthPage } from "@refinedev/core";
-
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <AuthPage type="login" />
-      <AuthPage type="register" />
-      <AuthPage type="updatePassword" />
-      <AuthPage type="forgotPassword" />
-    </Refine>
-  );
-};
-```
-
-To learn more information about `<AuthPage />` component and see the detailed examples, check out the following reference pages:
+While Refine itself is headless, it offers `<AuthPage />` Integrations for popular UI libraries for:
 
 - [Headless](/docs/api-reference/core/components/auth-page)
 - [Ant Design](/docs/api-reference/antd/components/antd-auth-page/)
@@ -165,9 +146,57 @@ To learn more information about `<AuthPage />` component and see the detailed ex
 - [Chakra UI](/docs/api-reference/chakra-ui/components/chakra-auth-page/)
 - [Mantine](/docs/api-reference/mantine/components/mantine-auth-page/)
 
-<AuthPage />
+With `<AuthPage />` component you can easily handle authentication pages (login, register, update password, forgot passowrd) and speed up your development process.
 
-## oAuth services
+<Tabs wrapContent={false}>
+
+<TabItem value="Headless">
+
+import { HeadlessAuth } from './auth-pages/headless';
+
+<HeadlessAuth/>
+
+</TabItem>
+
+<TabItem value="Ant Design">
+
+import { AntdAuth } from './auth-pages/antd';
+
+<AntdAuth/>
+
+</TabItem>
+
+<TabItem value="Material UI">
+
+import { MaterialUIAuth } from './auth-pages/mui';
+
+<MaterialUIAuth/>
+
+</TabItem>
+
+<TabItem value="Chakra UI">
+
+import { ChakraUIAuth } from './auth-pages/chakra';
+
+<ChakraUIAuth/>
+
+</TabItem>
+
+<TabItem value="Mantine">
+
+import { MantineAuth } from './auth-pages/mantine';
+
+<MantineAuth/>
+
+</TabItem>
+
+</Tabs>
+
+## Auth hooks
+
+<AuthHooks />
+
+## OAuth Integrations
 
 Flexible architecture of auth provider allows you to integrate your **own** or [third-party authentication systems](#supported-auth-provider) into Refine.
 
@@ -182,23 +211,21 @@ You can use the following oAuth provider implementations as a starting point for
 - [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
 - [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
 
-## `authProvider` interface
-
-To better understand the auth provider interface, we have created an example that demonstrates how the required methods are implemented. For more comprehensive and diverse examples, you can refer to the [supported auth providers](#supported-auth-providers) section.
-
-<AuthProviderInterface />
-
 [To learn more about the `authProvider` interface, check out the reference page.](/docs/api-reference/core/providers/auth-provider/)
 
-## Auth hooks
-
-<AuthHooks />
-
-## Supported auth providers
+## Supported Auth Providers
 
 <AuthProviderExamplesLinks />
 
 > For more information on how you can create your own auth providers, refer to the [Create a Auth Provider tutorial &#8594][create-auth-provider-tutorial]
+
+## `authProvider` Interface
+
+To better understand the auth provider interface, we have created an example that demonstrates how the required methods are implemented. For more comprehensive and diverse examples, you can refer to the [supported auth providers](#supported-auth-providers) section.
+
+[To learn more about the `authProvider` interface, check out the reference page.](/docs/api-reference/core/providers/auth-provider/)
+
+<AuthProviderInterface />
 
 [use-login]: /docs/api-reference/core/hooks/authentication/useLogin/
 [use-logout]: /docs/api-reference/core/hooks/authentication/useLogout/

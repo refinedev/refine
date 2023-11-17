@@ -490,6 +490,7 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
 
+- [Headless](/docs/api-reference/core/components/auth-page)
 - [Ant Design](/docs/)
 - [Material UI](/docs/)
 - [Chakra UI](/docs/)
@@ -498,6 +499,14 @@ While **refine** itself is headless, it offers UI Integrations for popular UI li
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
 <Tabs wrapContent={false}>
+
+<TabItem value="Headless">
+
+import { HeadlessAuth } from './auth-pages/headless';
+
+<HeadlessAuth/>
+
+</TabItem>
 
 <TabItem value="Ant Design">
 

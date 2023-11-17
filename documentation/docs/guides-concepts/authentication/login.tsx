@@ -63,7 +63,7 @@ import { AuthBindings } from "@refinedev/core";
 export const authProvider: AuthBindings = {
     login: async ({ email }) => {
         // to keep the example short and simple, we didn't send a request, and we save the token in localStorage.
-        // in real world, you should send a request and token should save in more secure place.
+        // in real world, you should send a request and token should be saved in more secure place.
         localStorage.setItem("token", email);
 
         return {

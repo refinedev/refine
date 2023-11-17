@@ -67,20 +67,18 @@ import { AuthBindings } from "@refinedev/core";
 
 
 // to keep the example short and simple, we didn't send a request, and we save the token in localStorage.
-// in real world, you should send a request and token should save in more secure place.
+// in real world, you should send a request and token should be saved in more secure place.
 export const authProvider: AuthBindings = {
     login: async ({ email }) => {
-        // to keep the example short and simple, we didn't send a request, and we save the token in localStorage.
-        // in real world, you should send a request and token should save in more secure place.
-        localStorage.setItem("token", email);
+        localStorage.setItem("email", email);
 
         return {
             success: true,
         };
     },
     check: async () => {
-        const token = localStorage.getItem("token");
-        if (!token) {
+        const email = localStorage.getItem("email");
+        if (!email) {
             return {
                 authenticated: false,
             };
@@ -91,15 +89,15 @@ export const authProvider: AuthBindings = {
         };
     },
     logout: async () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("email");
         return {
             success: true,
         };
     },
     getIdentity: async () => {
-        const token = localStorage.getItem("token");
+        const email = localStorage.getItem("email");
         return {
-            user: token,
+            email,
         };
     },
     register: async () => {
@@ -181,13 +179,13 @@ import { LoginPage } from "./login-page.tsx";
 
 export const HomePage = () => {
     const { data: authenticated } = useIsAuthenticated();
-    const { data: identity } = useGetIdentity<{ user: string }>();
+    const { data: identity } = useGetIdentity<{ email: string }>();
     const { mutate: logout } = useLogout();
 
     if (authenticated?.authenticated) {
         return (
             <div>
-                <h1>Hello,  {identity?.user}</h1>
+                <h1>Hello,  {identity?.email}</h1>
                 <button onClick={() => logout()}>Logout</button>
             </div>
         );
