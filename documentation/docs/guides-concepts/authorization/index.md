@@ -99,7 +99,7 @@ export const ListPage = () => {
 
 `CanAccess` component accepts more props such as `fallback` on `onUnauthorized`. To learn more about these props, please refer to the [API Reference](/docs/core/components/can-access).
 
-### Router Integration
+### Router Integrations
 
 **Refine**'s router integrations can infer `resource`, `action`, and `params.id` props from the current route and pass them to the `<CanAccess />` component.
 
@@ -138,6 +138,12 @@ export const ListPage = () => {
 };
 ```
 
+## Handling Authorization
+
+import { AccessControlExample } from "./example";
+
+<AccessControlExample />
+
 ## UI Integrations
 
 When Access Control Provider is provided, **Refine**'s UI Integrations automatically manages the **visibility** of their components like **buttons** and **menu items**, simplifying the management of UI.
@@ -173,9 +179,3 @@ import {
   CloneButton, //   { resource: "products", action: "clone", params: { id: 1, resource } }
 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
 ```
-
-## Example
-
-import { AccessControlExample } from "./example";
-
-<AccessControlExample />
