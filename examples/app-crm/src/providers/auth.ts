@@ -3,8 +3,9 @@ import { AuthBindings } from "@refinedev/core";
 import type { User } from "@/interfaces";
 
 import { API_BASE_URL, API_URL, client, dataProvider } from "./data";
+import { disableAutoLogin, enableAutoLogin } from "@/hooks";
 
-const emails = [
+export const emails = [
     "michael.scott@dundermifflin.com",
     "jim.halpert@dundermifflin.com",
     "pam.beesly@dundermifflin.com",
@@ -77,6 +78,7 @@ export const authProvider: AuthBindings = {
                 Authorization: `Bearer ${data.login.accessToken}`,
             });
 
+            enableAutoLogin(email);
             localStorage.setItem("access_token", data.login.accessToken);
             localStorage.setItem("refresh_token", data.login.refreshToken);
 
@@ -119,6 +121,9 @@ export const authProvider: AuthBindings = {
                 `,
                 },
             });
+
+            enableAutoLogin(email);
+
             return {
                 success: true,
                 redirectTo: `/login?email=${email}`,
@@ -142,6 +147,7 @@ export const authProvider: AuthBindings = {
             Authorization: "",
         });
 
+        disableAutoLogin();
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
 

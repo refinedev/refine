@@ -5,7 +5,7 @@ export const FullScreenLoading = () => {
         <Spin
             size="large"
             style={{
-                height: "100%",
+                height: "100vh",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
