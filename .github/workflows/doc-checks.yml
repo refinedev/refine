@@ -16,16 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code.
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
       - name: misspell
         id: check_for_typos
         uses: reviewdog/action-misspell@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          path: "./documentation"
+          reporter: github-pr-check
+          path: documentation
           locale: "US"
-          level: "warning"
+          level: "error"
           pattern: |
             *.md
             *.mdx
