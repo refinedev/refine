@@ -1,9 +1,11 @@
 import { AuthBindings } from "@refinedev/core";
+import { disableAutoLogin, enableAutoLogin } from "./hooks";
 
 export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
+        enableAutoLogin();
         localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
         return {
             success: true,
@@ -37,6 +39,7 @@ export const authProvider: AuthBindings = {
         };
     },
     logout: async () => {
+        disableAutoLogin();
         localStorage.removeItem(TOKEN_KEY);
         return {
             success: true,

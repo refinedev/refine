@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Tag, TagProps } from "antd";
 
-import { ContactStatus } from "@interfaces";
+import { ContactStatus } from "@/interfaces";
 
 export const ContactStatusTag: React.FC<{ status: ContactStatus }> = ({
     status,

@@ -1,18 +1,15 @@
-import React, { useMemo } from "react";
-import dynamic from "next/dynamic";
+import React, { Suspense, useMemo } from "react";
 import { useList } from "@refinedev/core";
 
-import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { DollarOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
-import { Button, Card } from "antd";
+import { Card } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "@components";
-import { DealStage } from "@interfaces";
+import { Text } from "@/components";
+import { DealStage } from "@/interfaces";
 
-const Area = dynamic(() => import("@ant-design/plots/es/components/area"), {
-    ssr: false,
-});
+const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 export const DashboardDealsChart: React.FC<{}> = () => {
     const { data } = useList<DealStage>({
@@ -121,7 +118,9 @@ export const DashboardDealsChart: React.FC<{}> = () => {
                 </div>
             }
         >
-            <Area {...config} height={325} />
+            <Suspense>
+                <Area {...config} height={325} />
+            </Suspense>
         </Card>
     );
 };
