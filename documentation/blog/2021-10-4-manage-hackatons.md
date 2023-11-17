@@ -18,7 +18,7 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 :::
 
 
-We'll be building a demo app to manage hackathons with [refine](https://refine.dev/). We'll be able to create new hackathons, new project entries for a hackathon and criterias for a hackathon.
+We'll be building a demo app to manage hackathons with [refine](https://refine.dev/). We'll be able to create new hackathons, new project entries for a hackathon and criteria for a hackathon.
 
 <!--truncate-->
 
@@ -29,13 +29,13 @@ We'll use [supabase](https://supabase.io/) as the backend service. **refine** co
 
 ## Creating tables
 Our app will have these tables in supabase
-* criterias
+* criteria
 * hackathons
 * hackathoners
 * projects
-* projectscores  
+* projectscores
 
-These are reflected in our app as 
+These are reflected in our app as
 ```ts
 export type HackathonerType = {
   id: string;
@@ -72,7 +72,7 @@ export type ProjectScoreType = {
 
 ```
 
-## Craeting CRUD pages
+## Creating CRUD pages
 Creating crud pages is as easy like this:
 
 List page:

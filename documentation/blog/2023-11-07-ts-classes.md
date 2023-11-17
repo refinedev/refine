@@ -702,7 +702,7 @@ In this example, `joe`, is still compliant to `User` because the `Admin` has all
 
 ## Summary
 
-In this post, we have traversed a long way in our exploration of classes in TypeScript. We have covered the essentials of type annotation in TS classes. We began with how to type class fields, their initialization options and visibilty modifiers. We touched on `static` fields, and with an example covered the concept of `readonly` fields that TypeScript implements. We have went through in depth how class constructor, method and accessor parameters, and their return values are annotated. We saw how `readonly` properties can be assigned from a constructor function, and how to implement parameter properties.
+In this post, we have traversed a long way in our exploration of classes in TypeScript. We have covered the essentials of type annotation in TS classes. We began with how to type class fields, their initialization options and visibility modifiers. We touched on `static` fields, and with an example covered the concept of `readonly` fields that TypeScript implements. We have went through in depth how class constructor, method and accessor parameters, and their return values are annotated. We saw how `readonly` properties can be assigned from a constructor function, and how to implement parameter properties.
 
 We also expounded on how arrow functions are used to bind a method permanently to an instance and discovered how the `this` parameter in TypeScript methods allows us to bind an instance more selectively to its methods.
 

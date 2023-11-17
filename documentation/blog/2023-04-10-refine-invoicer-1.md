@@ -288,6 +288,6 @@ We then wrap up the series by discussing the accomplishments we are about to ach
 
 In this post, we introduced the **refine** framework and the [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
-We layed out the plans for building a **React Pdf Invoice Generator** app in considerable depth.
+We laid out the plans for building a **React Pdf Invoice Generator** app in considerable depth.
 
 Tomorrow, on Day Two, we are ready to start **Setting Up the App**. See you soon!

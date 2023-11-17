@@ -349,13 +349,13 @@ As discussed below, we are using three types of CSS classes.
 
 ### Using Regular TailwindCSS Utilities with Heroicons
 
-We can use regular Tailwind CSS utlities like `h-6 w-6`:
+We can use regular Tailwind CSS utilities like `h-6 w-6`:
 
 ```tsx
   <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
 ```
 
-In this case, we are using spacing utilties for height, width and margin.
+In this case, we are using spacing utilities for height, width and margin.
 
 
 ### Using `SVG` Related TailwindCSS Utilities with Heroicons

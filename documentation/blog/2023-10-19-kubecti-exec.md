@@ -191,7 +191,7 @@ kubectl exec -it my-demo-pod -c redis -- redis-cli
 ## Security Implications 
 ### Best practices for secure usage 
 **Restrict 'kubectl exec' Commands:** It is possible to restrict or even prevent the use of exec commands for specific pods by using an admission controller. In order to protect crucial or sensitive Pods, this may be particularly useful.
-**Utilise TLS Verification:** When using kubectl exec, you can prevent attacks by specifying certificate authority files for TLS verification.
+**Utilize TLS Verification:** When using kubectl exec, you can prevent attacks by specifying certificate authority files for TLS verification.
 **Mandatory Authentication:** Use client certificates and keys to authenticate users before they can execute commands in containers to enhance security.
 
 ## Monitoring and logging exec activities 

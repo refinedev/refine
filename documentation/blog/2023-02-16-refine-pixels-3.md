@@ -50,7 +50,7 @@ Below, we go over these steps one by one.
 
 ### 1. Creating a PostgreSQL Server with Supabase
 
-Creating a database server is quite intutive in **Supabase**. Just go over to your organization's dashboard and start doing something. For me, I have initialized a server with the name `refine-pixels` under a free tier. If you need a quick hand, please follow [this quickstart guide](https://supabase.com/docs/guides/with-react#create-a-project).
+Creating a database server is quite intuitive in **Supabase**. Just go over to your organization's dashboard and start doing something. For me, I have initialized a server with the name `refine-pixels` under a free tier. If you need a quick hand, please follow [this quickstart guide](https://supabase.com/docs/guides/with-react#create-a-project).
 
 ### 2. Adding Tables to a Supabase Database
 

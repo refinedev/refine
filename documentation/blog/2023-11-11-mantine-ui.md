@@ -215,7 +215,7 @@ export default function App() {
   const [scroll, scrollTo] = useWindowScroll();
 
   return (
-    <Group className="centre">
+    <Group className="center">
       <Button onClick={() => scrollTo({ y: document.body.scrollHeight })}>
         Scroll to Bottom
       </Button>

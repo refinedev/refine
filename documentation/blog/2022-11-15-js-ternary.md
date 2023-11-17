@@ -27,7 +27,7 @@ The ternary operator in JavaScript is an operator denoted by the question mark, 
 conditionalExpression ? exprIfTruthy : valueIfFalsy;
 ```
 
-If the `conditionalExperssion` evaluates to a truthy value `exprIfTruthy` is executed. If it evaluates to a falsy value, `exprIfFalsy` is executed.
+If the `conditionalExpression` evaluates to a truthy value `exprIfTruthy` is executed. If it evaluates to a falsy value, `exprIfFalsy` is executed.
 
 ## How to Use the JS Ternary Operator?
 

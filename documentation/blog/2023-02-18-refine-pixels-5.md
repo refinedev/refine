@@ -27,7 +27,7 @@ This is Day 5, and **refineWeek** is a seven-part tutorial series that aims to h
 
 ## Overview
 
-In this episode, we implement user authentication and CRUD functionalities of the dashboard. As it was in the case of the **Pixels** client app, for this app also, we implement an email-based authenticaiton along with social logins with Google and GitHub.
+In this episode, we implement user authentication and CRUD functionalities of the dashboard. As it was in the case of the **Pixels** client app, for this app also, we implement an email-based authentication along with social logins with Google and GitHub.
 
 We use the same **Supabase** client for connecting to the database we already have in place for the **Pixels** app.
 
@@ -1095,7 +1095,7 @@ We can customize the content inside our table cell by passing a function to the 
 />
 ```
 
-We also grouped content inside a cell, with `<Buttom />` and `<DeleteButton />` being sibling flex items:
+We also grouped content inside a cell, with `<Button />` and `<DeleteButton />` being sibling flex items:
 
 ```tsx
 <Table.Column<TCanvas>

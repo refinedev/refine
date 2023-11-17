@@ -57,7 +57,7 @@ npm create refine-app@latest demo-refine-project -- -b v3
 
 -   UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design.
 
--   Out-of-the-box: Routing, networking, authentication, state managment, i18n and UI.
+-   Out-of-the-box: Routing, networking, authentication, state management, i18n and UI.
 
 -   SSR: **refine** can be used with Next.js and Remix to SSR your pages.
 
@@ -379,7 +379,7 @@ Here we only make requests for queries that are necessary. As you can see, all y
 
 [Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/packages/documentation/data-providers/graphql/)
 
-### Refine Avaible Providers
+### Refine Available Providers
 
 Connects to any REST or GraphQL custom backend.
 
@@ -504,7 +504,7 @@ AdminBro can be connected to many different types of resources. Right now, they 
 -   Sequelize
 -   TypeORM
 
-To add resources , you first have to intall an adapter for the resource you want to use.
+To add resources , you first have to install an adapter for the resource you want to use.
 
 #### Install the Database Adapter and add resources
 

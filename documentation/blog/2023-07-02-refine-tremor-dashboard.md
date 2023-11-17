@@ -1160,7 +1160,7 @@ We have finished creating the Overview section. Let's create the Details section
 We will create a separate component for our Details section. Create the `src/pages/dashboard/details/index.tsx` file. Copy and paste the code below into it.
 
 <details>
-<summary>Show Dasboard Details code</summary>
+<summary>Show Dashboard Details code</summary>
 <p>
 
 
@@ -1323,7 +1323,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
               orderNumber,
               createdAt,
               user: { fullName, gender, gsm },
-              adress,
+              address,
               status,
             } = dataObj;
 
@@ -1335,7 +1335,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
               fullName,
               gender,
               gsm,
-              address: adress?.text,
+              address: address?.text,
               status: status?.text,
               statusId: status?.id,
             });

@@ -85,7 +85,7 @@ const Profile = () => {
 }
 ```
 
-What's interesting to note is that `next/image` automatically generates `width`, `height`, and `blurDataURL` values for statically imported images. These values are used to prevent [Cummulative Layout Shift](https://web.dev/cls/) (CLS) before the image is finally loaded. It's also possible to pass these values explicitly.
+What's interesting to note is that `next/image` automatically generates `width`, `height`, and `blurDataURL` values for statically imported images. These values are used to prevent [Cumulative Layout Shift](https://web.dev/cls/) (CLS) before the image is finally loaded. It's also possible to pass these values explicitly.
 
 Alternatively, you can pass a remote image string value to the `src` prop by using either relative or absolute URLs: 
 
@@ -229,7 +229,7 @@ An integer that specifies the quality of the optimized image. Its values range b
 ```
 
 ### **`sizes`**
- One effective way to dramatically reduce [Cummulative Layout Shift](https://web.dev/cls/) is by sizing images responsively. This helps the browser to allocate enough space for the image before it's fully loaded, so it doesn't distort the page's layout.  
+ One effective way to dramatically reduce [Cumulative Layout Shift](https://web.dev/cls/) is by sizing images responsively. This helps the browser to allocate enough space for the image before it's fully loaded, so it doesn't distort the page's layout.  
   
 One powerful feature of `next/image` Image component is automatic source set generation. This means NextJS can internally generate different sizes of an image and determine which of the images to download for a specific viewport size.
 

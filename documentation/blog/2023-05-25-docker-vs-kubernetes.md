@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 ## Brief introduction to Docker and Kubernetes
 
-Containerization is one of the core aspects of application modernization, and almost all new application development uses containers to package their applications. Enterprise applications even use container orchestration platforms like Kubernetes. Today we will discuss both Docker and Kubernetes in detail. 
+Containerization is one of the core aspects of application modernization, and almost all new application development uses containers to package their applications. Enterprise applications even use container orchestration platforms like Kubernetes. Today we will discuss both Docker and Kubernetes in detail.
 
 We will compare both in terms of features, pros, and cons and in which scenario you should prefer one over another. Note that Docker is just a container runtime, whereas Kubernetes is a container orchestration platform, so both complement each other. Let’s start with a brief introduction of both technologies.
 
@@ -82,9 +82,9 @@ While setting up the docker environment, you do not have to pay anything, and it
 
 #### The benefit of Docker Container for this use case:
 
-Using Docker Containers, developers don’t need to install any service directly on their operating system because the container has its own isolated operating system layer with Linux Base Image. They have everything packaged in one isolated environment. So, they have PostGresSQL with a specific version packaged with the configuration inside the container. Instead of Downloading Binaries and going through all steps, the developer needs to check the container repository, download the specific container with just a single command, and start it at the same time regardless of which operating system they are using.
+Using Docker Containers, developers don’t need to install any service directly on their operating system because the container has its own isolated operating system layer with Linux Base Image. They have everything packaged in one isolated environment. So, they have PostgresSQL with a specific version packaged with the configuration inside the container. Instead of Downloading Binaries and going through all steps, the developer needs to check the container repository, download the specific container with just a single command, and start it at the same time regardless of which operating system they are using.
 
-### *Use case 2*- Application deployment with installation and configuration on the server through artifacts provided by the development team to the operations team. 
+### *Use case 2*- Application deployment with installation and configuration on the server through artifacts provided by the development team to the operations team.
 
 #### The benefit of Docker Container for this use case:
 
@@ -94,11 +94,11 @@ The process in the above use case will be simplified using docker containers. Be
 
 ## What is Kubernetes?
 
-Kubernetes is a container orchestration platform through which you can manage your containers. Kubernetes provides a built-in mechanism for providing load balancing to different applications. It's a platform developed by Google that helps you manage applications made up of containers in different environments (e.g., Physical, Virtual, or Cloud). 
+Kubernetes is a container orchestration platform through which you can manage your containers. Kubernetes provides a built-in mechanism for providing load balancing to different applications. It's a platform developed by Google that helps you manage applications made up of containers in different environments (e.g., Physical, Virtual, or Cloud).
 
 It also offers automated deployment and scaling. Using Kubernetes, you can achieve high availability and fault tolerance in your application. Overall, Kubernetes consists of two types of components, the worker nodes and the control plane nodes. Let’s go through the main concepts of Kubernetes.
 
-[Kubernetes](https://kubernetes.io/) 
+[Kubernetes](https://kubernetes.io/)
 
 ### Kubernetes Nodes:
 
@@ -199,7 +199,7 @@ Docker can also attach storage volume with each container on a single node, but 
 | **No Built-in Storage Orchestration:** Docker does not have built-in storage orchestration ability. It depends on other tools like Flocker, Portworx, Convoy, etc. | **It has built-in storage orchestration capability:** Kubernetes can take care of storage orchestration with the support of different storage systems.                                                                  |
 | **No Web UI Dashboard:** Docker does not provide any dashboard.                                                                                                    | **It has a Web UI Dashboard:** Kubernetes provides a Web UI dashboard where you can see the stats of all ongoing tasks.                                                                                                 |
 
-## Factors to consider when choosing between Docker and Kubernetes 
+## Factors to consider when choosing between Docker and Kubernetes
 
 ### Choosing Docker over Kubernetes:
 

@@ -20,7 +20,7 @@ Just be aware that the source code example in this post have been updated to ver
 :::
 
 ## Introduction
-We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/)  feature using industry-standard best tools. 
+We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/)  feature using industry-standard best tools.
 
 Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including  [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [refine](https://refine.dev/) to build a high-quality admin panel.
 
@@ -31,9 +31,9 @@ UI design can be a complex and time-consuming process, but a tool like Material 
 We'll walk through the process of listing, creating and deleting posts in a refine application and make use of refine's components and hooks to build out our functionality.
 
 Steps we'll cover includes:
- 
+
 - [Introduction](#introduction)
-- [Prerequisities](#prerequisities)
+- [Prerequisites](#prerequisites)
 - [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
 - [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
@@ -50,14 +50,14 @@ Steps we'll cover includes:
 
 
 
-## Prerequisities
-Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using. 
+## Prerequisites
+Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using.
 - [refine](https://refine.dev/docs/)
 - [refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [refine Material UI Tutorial](https://refine.dev/docs/tutorial/introduction/index/)
 
-Your node version need to be mininum `v16.14.0`
+Your node version need to be minimum `v16.14.0`
 
 ##  What are the benefits of using refine?
 
@@ -231,7 +231,7 @@ export * from "./list";
 
 
 
-[Refer to offical refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev//docs/tutorial/adding-crud-pages/mui/add-show-page/)
+[Refer to official refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev//docs/tutorial/adding-crud-pages/mui/add-show-page/)
 
 
 <br/>
@@ -312,7 +312,7 @@ After setup is complete, navigate to the project folder and start your project w
 npm run dev
 ```
 
-The application should redirect now to an URL defined by the `name` property. 
+The application should redirect now to an URL defined by the `name` property.
 
 It'll ask you to login to the app. Try with these credentials:
 
@@ -329,7 +329,7 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 ### Handling relational data
 Relations are not populated when fetching entries. We'll use `meta` option to use relational population for Strapi v4 API.
 
-The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population) feature of Strapi v4. 
+The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population) feature of Strapi v4.
 
 We'll set `populate` parameter to define which fields will be populated.
 
@@ -824,7 +824,7 @@ export const PostList: React.FC = () => {
 
     const columns = React.useMemo<GridColumns<IPost>>(
       ...
-         
+
             {
                 headerName: "Actions",
                 headerAlign: "center",
@@ -866,7 +866,7 @@ export const PostList: React.FC = () => {
 ```
 
 
-Now we are able to delete record by clicking delete button and confirmation. 
+Now we are able to delete record by clicking delete button and confirmation.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif" alt="Create record action" />
 
@@ -877,7 +877,7 @@ The second way is showing delete button in `<PostEdit>` page. To show delete but
 
 
 ```tsx title="src/App.tsx"
-... 
+...
 
 function App() {
     return (
@@ -926,7 +926,7 @@ If we briefly describe:
 
 `undoable`:  UI updates are immediately updated, but you can undo the mutation.
 
-We'll implement `undoable` mutation mode. The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. 
+We'll implement `undoable` mutation mode. The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout period before mutation is applied.
 
 During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
@@ -976,7 +976,7 @@ export default App;
 
 
 :::tip
-The default timeout period setted to 5000ms. You can change it by setting `undoableTimeout` property to the `<Refine>` component.
+The default timeout period set to 5000ms. You can change it by setting `undoableTimeout` property to the `<Refine>` component.
 :::
 
 <br/>
@@ -1007,10 +1007,10 @@ function App() {
             <RefineSnackbarProvider>
                 <Refine
                     ...
-                    options={{ 
-                        mutationMode: "undoable", 
+                    options={{
+                        mutationMode: "undoable",
                         //highlight-next-line
-                        syncWithLocation: true 
+                        syncWithLocation: true
                     }}
                 />
             </RefineSnackbarProvider>
@@ -1025,7 +1025,7 @@ Now, we can get current information from URL as a query parameters. We can eithe
 
  ## Conclusion
 
-In this article, we'll show you how to build a **CRUD admin panel** using refine and **Material UI**. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode. 
+In this article, we'll show you how to build a **CRUD admin panel** using refine and **Material UI**. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode.
 
 We covered:
 - How to bootstrap refine app

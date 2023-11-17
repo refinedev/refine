@@ -61,7 +61,7 @@ There are two possible ways to set up a refine project: manually or using superp
 
 We'll use `create refine-app` to set up a refine project with Material UI. It’ll save us the trouble of setting it up from scratch.
 
-As a first step, navigate to a preferred folder on your computer and run the command below to initialise CLI installer:
+As a first step, navigate to a preferred folder on your computer and run the command below to initialize CLI installer:
 
 ```shell
 npm create refine-app@latest dynamic-form-example -- -b v3
@@ -320,7 +320,7 @@ The Controller component accepts three major props:
 
 - `render`: A function that returns a component that will be controlled by React hook form.
 
-To use the controller component, we must first create a `deafultValue` object, type interface and destructure the `control` and other necessary properties from the `useForm` hook:
+To use the controller component, we must first create a `defaultValue` object, type interface and destructure the `control` and other necessary properties from the `useForm` hook:
 
 ```tsx title="src/pages/UserCreate.tsx"
 interface IPost {
@@ -410,7 +410,7 @@ Now our input fields are registered to React hook form. We can add dynamic field
 
 ## Using the usefieldsArray hook.
 
-The `useFieldArray` hook is a custom function for working with field arrays. It exposes a `field` property that returns a dynamic array of fields alongside methods for appending, removing, and prepending fields from the array.
+The `useFieldArray` hook is a custom function for working with field arrays. It exposes a `field` property that returns a dynamic array of fields alongside methods for appending, removing, and perpending fields from the array.
 
 In this section, we'll iterate through the fields array and append a TextField each time a button is clicked.
 
@@ -692,7 +692,7 @@ The `Box` component will create a Flexbox context around both components and ali
 
 
 
-Alternatively, we can use a Material UI bin icon instead of a button. This will give the form a better aesthetical feel.
+Alternatively, we can use a Material UI bin icon instead of a button. This will give the form a better esthetical feel.
 
 To do this, import the `DeleteIcon` icon component from Material UI like so:
 

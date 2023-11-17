@@ -37,10 +37,10 @@ cd test-prj
 ```
 
 
-The testing tools that we will use are [Jest](https://jestjs.io/) and [React Testing Libary](https://testing-library.com/docs/react-testing-library/intro/).
+The testing tools that we will use are [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 - **Jest**: This is a popular testing library built by Facebook. It has simple APIs that make testing very easy.
-- **React Testing Libary**: This is a testing built on-top DOM Testing Library that gives us the power to test React components. It comes with React project scaffolded with the `create-react-app` tool, if it is not present you can install it using `npm install --save-dev @testing-library/react`.
+- **React Testing Library**: This is a testing built on-top DOM Testing Library that gives us the power to test React components. It comes with React project scaffolded with the `create-react-app` tool, if it is not present you can install it using `npm install --save-dev @testing-library/react`.
 
 To install Jest we run the command: `npm install --save-dev jest`.
 

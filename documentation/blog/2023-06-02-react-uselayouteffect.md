@@ -13,7 +13,7 @@ hide_table_of_contents: false
 ## Introduction
 
 
-In recent years, [React](https://react.dev/) has solidified itself in the ever-changing landscape of web development as one of the most efficient ways of building highly performant and interactive user interfaces. With the introduction of a new feature called [Hooks](https://react.dev/reference/react), React has revolutionised the way developers manage stateful and reusable logic within functional components.
+In recent years, [React](https://react.dev/) has solidified itself in the ever-changing landscape of web development as one of the most efficient ways of building highly performant and interactive user interfaces. With the introduction of a new feature called [Hooks](https://react.dev/reference/react), React has revolutionized the way developers manage stateful and reusable logic within functional components.
 
 With Hooks you can use state and other React features without the need to write ES6 class components. One important hook though not very popular is the `useLayoutEffect` hook, which allows developers to handle and perform side effects in React components.
 
@@ -44,7 +44,7 @@ A component's primary responsibilities include rendering the user interface (UI)
 
 A side effect is anything that happens within your application that is not (at least not directly) related to UI rendering. For example, send HTTP requests to servers, store data in the browser's memory, and set time functions. There are no UI changes in these scenarios. In other words, React will not re-render your component for these scenarios. 
 
-Although they can be very helpful in our application and are a key concept in functional programming, side effects can also be challenging to manage and, if done incorrectly, can result in unexpected behaviour and performance problems.
+Although they can be very helpful in our application and are a key concept in functional programming, side effects can also be challenging to manage and, if done incorrectly, can result in unexpected behavior and performance problems.
 
 To handle side effects you can make use of a set of built-in hooks called [Effect Hooks](https://react.dev/reference/react#effect-hooks) namely; `useEffect`, `useLayoutEffect`, `useInsertionEffect`.
 
@@ -292,7 +292,7 @@ There is no right or wrong hook to use it all depends on your specific use case.
 
 ## Conclusion
 
-Throughout this article, you have learnt a lot about `useLayoutEffect` hook, similarities and differences, best practices etc. By now I am confident you know enough to properly make use of effect hooks in your applications to improve the overall experience and solve great problems.
+Throughout this article, you have learned a lot about `useLayoutEffect` hook, similarities and differences, best practices etc. By now I am confident you know enough to properly make use of effect hooks in your applications to improve the overall experience and solve great problems.
 
 
 

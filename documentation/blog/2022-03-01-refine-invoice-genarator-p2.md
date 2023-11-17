@@ -724,7 +724,7 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                     </View>
                     <View style={styles.dividerLG} />
 
-                    <View style={styles.inoviceForFromCotnainer}>
+                    <View style={styles.inoviceForFromContainer}>
                         <View style={styles.inoviceFor}>
                             <Text style={styles.inoviceForFromTitle}>
                                 Inovice For:
@@ -922,7 +922,7 @@ const styles = StyleSheet.create({
     inoviceId: {
         textAlign: "center",
     },
-    inoviceForFromCotnainer: {
+    inoviceForFromContainer: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",

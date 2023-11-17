@@ -11,7 +11,7 @@ hide_table_of_contents: false
 
 ## Introduction
 
-Material UI offers a wide range of component and utilities that empowers developers with the appropriate tools to create more responsive web designs and bolster the UX of their apps. A checkbox is a small box that, when selected by the user, indicates that a specific feature or option has been enabled. Material UI provides this valuable component on a platter and makes them customisable to apply to your project fittingly. This article will deeply traverse the Material UI Checkbox component, investigate its processes and highlight its syntax application. We will also explore a potential use case in a real-world application.
+Material UI offers a wide range of component and utilities that empowers developers with the appropriate tools to create more responsive web designs and bolster the UX of their apps. A checkbox is a small box that, when selected by the user, indicates that a specific feature or option has been enabled. Material UI provides this valuable component on a platter and makes them customizable to apply to your project fittingly. This article will deeply traverse the Material UI Checkbox component, investigate its processes and highlight its syntax application. We will also explore a potential use case in a real-world application.
 
 Steps we'll cover:
 - [What is Material UI?](#what-is-material-ui)
@@ -72,7 +72,7 @@ Here’s the result:
 
 
 ## Customizing your Material UI Checkbox
-The Material UI Checkbox showcases the dynamism of the Material UI framework because it offers several props and utilities with which you can easily customise it to fit your web application. Below are some ways to use the Material UI Checkbox: 
+The Material UI Checkbox showcases the dynamism of the Material UI framework because it offers several props and utilities with which you can easily customize it to fit your web application. Below are some ways to use the Material UI Checkbox: 
 
 ### Adding Labels
 The FormControlLabel component allows you to give the Checkbox a label.
@@ -102,7 +102,7 @@ export default function CheckboxLabels() {
 <br/>
 
 ### Controlling the Checkbox Size
-The `size` prop denotes the size of the component. You can customise the size of your Material UI Checkbox with the `size` prop. Here’s how:
+The `size` prop denotes the size of the component. You can customize the size of your Material UI Checkbox with the `size` prop. Here’s how:
 
 ```ts
 import * as React from 'react';
@@ -133,7 +133,7 @@ export default function SizeCheckboxes() {
 
 
 ### Controlling the Checkbox Color
-You can customise the color of your Material UI Checkbox with the `color` prop like this: 
+You can customize the color of your Material UI Checkbox with the `color` prop like this: 
 
 ```ts
 import * as React from 'react';
@@ -187,7 +187,7 @@ Here’s the result:
 <br/>
 
 ### Label Placement
-You can customise your Checkbox labels to be positioned on the top, bottom, start or end of the checkbox.
+You can customize your Checkbox labels to be positioned on the top, bottom, start or end of the checkbox.
 
 Check this out:
 
@@ -475,7 +475,7 @@ A setting requires an on/off or show/hide function to display the results.
 The user has to perform additional steps for changes to become effective.
 The user must take immediate actions that do not require review or confirmation.
 The user must choose one or more options from a list of related items.
-The user is switching between independent features or behaviours.
+The user is switching between independent features or behaviors.
 There is only one binary yes/no option.
 A single choice is required, and you want to provide two options for an on/off decision.
 
@@ -545,7 +545,7 @@ Here’s the result:
 
 
 ## Material UI Checkbox Accessibility
-All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilising the <Label/>` component. You can also add an attribute to the input component with the `inputProps` prop. Some of these attributes include `aria-label`, `aria-labelledby`, and `title`. 
+All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilizing the <Label/>` component. You can also add an attribute to the input component with the `inputProps` prop. Some of these attributes include `aria-label`, `aria-labelledby`, and `title`. 
 
 ```ts
 <Checkbox

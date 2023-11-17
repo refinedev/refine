@@ -228,7 +228,7 @@ Now let's add our own translation. Let's create two separate json files in Engli
         "posts": "Einträge",
         "fields": {
             "id": "Id",
-            "title": "Titel",
+            "title": "Title",
             "category": "Kategorie",
             "status": {
                 "title": "Status",
@@ -686,7 +686,7 @@ import {
     IResourceComponentsProps,
     useMany,
     useTranslate,
-    //highligt-next-line
+    //highlight-next-line
     useCan,
 } from "@refinedev/core";
 

@@ -19,21 +19,21 @@ hide_table_of_contents: false
 
 ## Introduction
 
-Material UI is a dynamic React framework that offers abundant customisable components and utilities that help developers create better web apps with improved UI/UX. One such component is the Material UI Tooltip, which is a custom-made Material UI component that displays informative text on an element’s hover, click, focus, or tap.  
+Material UI is a dynamic React framework that offers abundant customizable components and utilities that help developers create better web apps with improved UI/UX. One such component is the Material UI Tooltip, which is a custom-made Material UI component that displays informative text on an element’s hover, click, focus, or tap.
 
-This article will deeply dive into the Material UI Tooltip component and highlight its functionalities, variations, and event placements. We will also explore a potential use case in a typical React application. 
+This article will deeply dive into the Material UI Tooltip component and highlight its functionalities, variations, and event placements. We will also explore a potential use case in a typical React application.
 
 Steps we'll cover:
 - [What is Material UI?](#what-is-material-ui)
 - [Getting started with Material UI Tooltip](#getting-started-with-material-ui-tooltip)
 - [Positioning Material UI Tooltips](#positioning-material-ui-tooltips)
-- [How to customise your Material UI Tooltip component](#how-to-customise-your-material-ui-tooltip-component)
+- [How to customize your Material UI Tooltip component](#how-to-customize-your-material-ui-tooltip-component)
 - [Material UI Tooltip Event Triggers](#material-ui-tooltip-event-triggers)
-- [Material UI Tooltip custom child(ren) elements](#material-ui-tooltip-custom-children-elements)
+- [Material UI Tooltip custom children elements](#material-ui-tooltip-custom-children-elements)
 - [Building a Login form UI with React and Material UI Tooltip](#building-a-login-form-ui-with-react-and-material-ui-tooltip)
 
 ## What is Material UI?
-Material UI is a user interface framework that provides pre-defined and customisable React components to help with web development. The Material UI components are based on Google's top Material Design. Many developers now structure their projects with Material UI because it simplifies and improves web design.
+Material UI is a user interface framework that provides pre-defined and customizable React components to help with web development. The Material UI components are based on Google's top Material Design. Many developers now structure their projects with Material UI because it simplifies and improves web design.
 
 Material UI comes with several component categories, including
 - Data Display components
@@ -41,7 +41,7 @@ Material UI comes with several component categories, including
 - Navigation components
 - Layout components, e.t.c.
 
-The Material UI Tooltip is a vivid example of the Data display components. 
+The Material UI Tooltip is a vivid example of the Data display components.
 
 ## Getting started with Material UI Tooltip
 Tooltips reveal explanatory text when an element is hovered, focused, or tapped. Material UI includes custom Tooltip components that help highlight the context of an element on the DOM.
@@ -168,8 +168,8 @@ export default function PositionedTooltips() {
 
 **Note**: Tooltip positioning is critical when using them in a web application. A poorly placed Tooltip may detract from the overall UX of the app.
 
-## How to customise your Material UI Tooltip component
-Material UI Tooltip is a very dynamic component, so it has several variations. Here are a few ways you can customise Material UI Tooltip in your next project:
+## How to customize your Material UI Tooltip component
+Material UI Tooltip is a very dynamic component, so it has several variations. Here are a few ways you can customize Material UI Tooltip in your next project:
 
 ### Arrow Tooltips
 You can use the `arrow` prop to add an arrow to your tooltip, indicating which element it refers to. This gives the Tooltip element more definition as it points at the element it describes.
@@ -290,7 +290,7 @@ export default function TransitionsTooltips() {
 
 ```
 
-In the code above, three tooltips have been set to display with varying transitions. The tooltips will grow, fade and zoom with a 1000ms delay. 
+In the code above, three tooltips have been set to display with varying transitions. The tooltips will grow, fade and zoom with a 1000ms delay.
 
 Here’s the result:
 
@@ -365,7 +365,7 @@ export default function AnchorElTooltips() {
 }
 ```
 
-In the code above, 
+In the code above,
 
 Here’s the result:
 
@@ -378,7 +378,7 @@ Here’s the result:
 
 
 ## Material UI Tooltip Event Triggers
-You can control the kind of events that have to be carried out for your Tooltip to display. You can customise the actions required to show a Tooltip like this:
+You can control the kind of events that have to be carried out for your Tooltip to display. You can customize the actions required to show a Tooltip like this:
 
 ```tsx
 import * as React from 'react';
@@ -447,7 +447,7 @@ Here’s the result:
 </a>
 </div>
 
-## Material UI Tooltip custom child(ren) elements
+## Material UI Tooltip custom children elements
 The Material UI tooltip's child element must have DOM event listeners. If the child is a custom React element, you must ensure that its props are distributed to the underlying DOM element.
 
 ```tsx
@@ -481,10 +481,10 @@ import Zoom from '@mui/material/Zoom';
 export default function TransitionsTooltips() {
   return (
     <div className="login-container">
-      <Tooltip 
-      title="Please fill in this field." 
+      <Tooltip
+      title="Please fill in this field."
       placement='right'>
-            <input className='input' 
+            <input className='input'
             type='text'
             placeholder='Username'
             />
@@ -495,22 +495,22 @@ export default function TransitionsTooltips() {
         title="Password should be at least 10 characters and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive. "
         placement="right"
       >
-            <input 
+            <input
             type='password'
             className='input'
             placeholder='Password'
             placement="right"
             />
       </Tooltip>
-      <Tooltip TransitionComponent={Zoom} 
-      title="" 
+      <Tooltip TransitionComponent={Zoom}
+      title=""
       placement='right'>
         <button className='button'>Login</button>
       </Tooltip>
     </div>
   );
 }
-``` 
+```
 
 The code above illustrates a simple login form UI with instructions provided to users with the Material UI Tooltip component.
 
@@ -522,15 +522,15 @@ Here’s the result:
 
 
 ## Conclusion
-This article showcased the importance of Material UI to web applications. We then put the spotlight on the Material UI Tooltip component describing its striking functionalities and application in a React application. We also looked into a Login page with instructions displayed in Material UI Tooltips as a potential use case.  
-
-
- 
+This article showcased the importance of Material UI to web applications. We then put the spotlight on the Material UI Tooltip component describing its striking functionalities and application in a React application. We also looked into a Login page with instructions displayed in Material UI Tooltips as a potential use case.
 
 
 
 
- 
+
+
+
+
 
 
 

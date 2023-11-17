@@ -12,21 +12,21 @@ hide_table_of_contents: false
 ## Introduction:
 React is a well-known front-end framework used to create interactive user interfaces. It has aided in the building of data-intensive front-end applications like admin dashboards, and analytics applications, among others. However, in building these applications, there exists a tedious, repetitive process that usually comprises the setup of the boilerplate application, the application design, styling, API Client setup, server state, and client state management setup, amongst others.
 
- [refine](https://github.com/refinedev/refine) is a React-based front-end application framework that eliminates these tedious, repetitive processes. It is a "headless" framework by design, which implies that it is not opinionated about your styling and design choices. It has built-in router providers for the most popular React routing libraries, like React Router, Next.js Router, React Location and Remix Router, and is shipped with integrations of popular component libraries and design systems, like Ant Design, Material UI, Chakra UI, and Mantime. It also contains hooks and providers, that allow for data management and easy integration with custom backend APIs and popular backend services such as Appwrite, Hasura, Strapi, and others. 
- 
+ [refine](https://github.com/refinedev/refine) is a React-based front-end application framework that eliminates these tedious, repetitive processes. It is a "headless" framework by design, which implies that it is not opinionated about your styling and design choices. It has built-in router providers for the most popular React routing libraries, like React Router, Next.js Router, React Location and Remix Router, and is shipped with integrations of popular component libraries and design systems, like Ant Design, Material UI, Chakra UI, and Mantime. It also contains hooks and providers, that allow for data management and easy integration with custom backend APIs and popular backend services such as Appwrite, Hasura, Strapi, and others.
+
  In this tutorial, we will be building a React admin dashboard application using refine and highlighting the features of refine that may convince you to use refine to build your next frontend React admin application.
 
 [You can find the live example demo here](https://example.admin.refine.dev/)
 
 
 ## Why use refine?
-refine as a framework of React is headless in design. this implies that you can build an app with refine with so much customization or you can integrate component libraries like Ant Design, Material UI, Chakra UI, and Mantime into your application with less difficulty.  
+refine as a framework of React is headless in design. this implies that you can build an app with refine with so much customization or you can integrate component libraries like Ant Design, Material UI, Chakra UI, and Mantime into your application with less difficulty.
 
 refine creates a higher abstraction of functionalities like authentication, routing, client state management, internationalization and many more. You can integrate external API services and BAAS(Backend as a service) with little effort and you are sure of building scalable applications without the unnecessary overhead accompanied with building applications from scratch.
 
 
 
-## A short note on migrating from refine 3 to refine 4 
+## A short note on migrating from refine 3 to refine 4
 Recently, the refine team decided to address and tackle most of the issues raised by the community on refine version 3 such as developer experience and core functionality issues by releasing refine version 4 which addresses those issues while also adding new functionality to the framework. Some of the significant changes and improvements added to the new version are:
 
 * **Codemod support**: The addition of codemod to the refine core package implies that one can easily migrate from refine version 3 to refine version 4 with a single command on the root directory of your project:
@@ -38,7 +38,7 @@ The command above handles the changes on your existing project and ensures that 
 
 * **New NPM Organization**: The Refine NPM organization changes from `@pankod` to `@refinedev` thus implies that the package name for refine changes to `@refinedev` automatically.
 
-* **Enterprise based Routing and Router independence**: In Refine version 4, the `routerProvider` acts solely a bridge between the router and refine and doesn’t specify the manner at which routes are created as opposed to version 3. Routes are detached from refine and are more flexible and custoizable.
+* **Enterprise based Routing and Router independence**: In Refine version 4, the `routerProvider` acts solely a bridge between the router and refine and doesn’t specify the manner at which routes are created as opposed to version 3. Routes are detached from refine and are more flexible and customizable.
 
 In order to view more on the updates on refine version 4, refer to the [comprehensive guide](https://refine.dev/docs/migration-guide/3x-to-4x/) on the documentation. Its guide is comprehensive enough to get you up to speed in using the new version.
 
@@ -75,7 +75,7 @@ Following installation, we will go into our newly created project directory and 
 npm run dev
 ```
 
-The refine application should be up on http://localhost:3000 after you run the command. To access it, go to 
+The refine application should be up on http://localhost:3000 after you run the command. To access it, go to
 
 
 
@@ -607,7 +607,7 @@ export const DashboardPage: React.FC = () => {
 </p>
 </details>
 
-In the code above, we divided the page into 5 columns and styled the columns appropriately. 
+In the code above, we divided the page into 5 columns and styled the columns appropriately.
 We will dive into creating the `<DailyRevenue/>`, `<DailyOrders/>`, `<NewCustomers/>`, `<DeliveryMap/>` and the `<OrderTimeline/>`, components which will occupy the columns.
 
 
@@ -615,7 +615,7 @@ We will dive into creating the `<DailyRevenue/>`, `<DailyOrders/>`, `<NewCustome
 
 The daily revenue component will be made up of two components
 * The component that styles the daily revenue component
-* The daily revenue component with its business logic. 
+* The daily revenue component with its business logic.
 
 Before creating these components, there are packages we need to install for these components.
 
@@ -724,7 +724,7 @@ export const RangePicker = styled(DatePicker.RangePicker)`
 Before we going to creating the core `dailyRevenue` component, let's explain what we are trying to achieve.
 
 * We will import the styles into the `dailyRevenue` component.
-* We will fetch the daily revenue data from the API 
+* We will fetch the daily revenue data from the API
 * We will Add a date picker which we can use to get the daily revenue of date ranges.
 * We will visualize the daily revenue using the ant-design chart library
 * We will memoize the daily revenue values represented on the chart to optimize performance.
@@ -901,12 +901,12 @@ export const DailyRevenue: React.FC = () => {
 </p>
 </details>
 
-In the code above: 
+In the code above:
 * We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/docs/api-reference/core/hooks/data/useApiUrl/).
-* We used the `useCustom()` hook to handle sending a request to the endpoint. The `useCustom` hook expects a `url`, `method` and `config` properties. 
+* We used the `useCustom()` hook to handle sending a request to the endpoint. The `useCustom` hook expects a `url`, `method` and `config` properties.
     * the `url` property accepts the endpoint url.
     * the `method` property accepts the type of method of the endpoint (a "`get`" endpoint in our case)
-    * the `config` property accepts values like the `headers` for the endpoint, `query` parameters, `sorters`, `filters`, `payloads` and many more. 
+    * the `config` property accepts values like the `headers` for the endpoint, `query` parameters, `sorters`, `filters`, `payloads` and many more.
 
 To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
 * These parameters will be passed to the `custom` method from the `dataProvider` as a parameter. When properties are changed, the `useCustom` hook will trigger a new request.
@@ -926,7 +926,7 @@ To get more information on the `useCustom` hook, take a look at its documentatio
 The `dailyRevenue` directory will also be made up of two components:
 
 * The component that styles the daily orders component
-* The daily revenue component with its business logic. 
+* The daily revenue component with its business logic.
 
 Create a `styled.tsx `file in the `src/components/dashboard/dailyOrders` directory and add the appropriate styling as shown in the code below:
 
@@ -991,7 +991,7 @@ export const TitleAreNumber = styled.div`
 
 Before we going to creating the core `dailyOrders` component, let's explain what we are trying to achieve:
 * We will import the styles into the `dailyOrders` component.
-* We will fetch the daily orders data from the API 
+* We will fetch the daily orders data from the API
 * Visualize the daily Orders using the `ant-design chart` library.
 * We will memoize the daily orders data represented on the chart to optimize performance.
 
@@ -1084,7 +1084,7 @@ export const DailyOrders: React.FC = () => {
 </p>
 </details>
 
-In the code above, 
+In the code above,
 * We use the use `useApiUrl()` hook to get the base url of the API endpoint.
 * We used the `useCustom()` hook to handle sending a request to the endpoint.
 * On getting the data back from the endpoint using the `useCustom` hook, we add the data to the `Column` chart component from `@ant-design charts`.we also memoize the data represented on the chart to optimize performance.
@@ -1098,11 +1098,11 @@ In the code above,
 </div>
 
 
-### Building the new customers component. 
+### Building the new customers component.
 The `newCustomers` directory will also be made up of two components:
 
 * The component that styles the daily orders component
-* The new Customers component with its business logic. 
+* The new Customers component with its business logic.
 
 Create a `styled.tsx `file in the `src/components/dashboard/newCustomers` directory and add the appropriate styling as shown in the code below:
 
@@ -1159,14 +1159,14 @@ export const HeaderNumbers = styled.div`
 
 Before we going to creating the core `newCustomers` component, let's explain what we are trying to achieve:
 * We will import the styles into the `newCustomers` component.
-* We will fetch the new customers data from the API 
+* We will fetch the new customers data from the API
 * visualize the daily Orders using the `ant-design chart` library.
 * We will memoize the new customers data represented on the chart to optimize performance.
 
 Now, we create the `newCustomers` component. Create an `index.tsx` file in the `src/components/dashboard/newCustomers` directory and add the code below:
 
 <details>
-<summary>Show new customers componenet code</summary>
+<summary>Show new customers component code</summary>
 <p>
 
 ```tsx title="src/components/dashboard/newCustomers/index.tsx"
@@ -1322,7 +1322,7 @@ export const Number = styled(Typography.Text)`
 
 Before we going to creating the core `orderTimeline` component, let's explain what we are trying to achieve:
 * We will import the styles into the `orderTimeline` component.
-* We will fetch the new customers data from the API 
+* We will fetch the new customers data from the API
 * Visualize the daily Orders using the `ant-design chart` library.
 * We will memoize the new customers data represented on the chart to optimize performance.
 
@@ -1343,7 +1343,7 @@ export interface IOrder {
     createdAt: string;
     products: IProduct[];
     status: IOrderStatus;
-    adress: IAddress;
+    address: IAddress;
     store: IStore;
     courier: ICourier;
     events: IEvent[];
@@ -1505,7 +1505,7 @@ import {
 dayjs.extend(relativeTime);
 
 export const OrderTimeline: React.FC = () => {
-    
+
     const { show } = useNavigation();
 
     const { listProps } = useSimpleList<IOrder>({
@@ -1605,7 +1605,7 @@ export const OrderTimeline: React.FC = () => {
                                         </CreatedAt>
                                     </Tooltip>
                                     <Text>
-                                        Food Order { 
+                                        Food Order {
                                             orderStatusColor(
                                                 status.id.toString(),
                                             )?.text
@@ -1631,11 +1631,11 @@ export const OrderTimeline: React.FC = () => {
 </p>
 </details>
 
-In the code above: 
-* We used the `useSimpleList()` hook to handle sending a request to the endpoint. The `useSimpleList()` hook in refine allows you to get data directly from the API in a list format that is compatible with Ant Design List component. some parameters that the `useSimpleList()` passes include: 
+In the code above:
+* We used the `useSimpleList()` hook to handle sending a request to the endpoint. The `useSimpleList()` hook in refine allows you to get data directly from the API in a list format that is compatible with Ant Design List component. some parameters that the `useSimpleList()` passes include:
     * The resource parameter. This parameter is usually used as an API endpoint path.
     * The `pagination` parameter which accounts for paginating the endpoint using the `pageSize` and `pageNumber` params.
-    * The `sorters` property which contains an `initial` property that sets the inital sorting method and a `permanent` property that set the sorting value as a permanent one.
+    * The `sorters` property which contains an `initial` property that sets the initial sorting method and a `permanent` property that set the sorting value as a permanent one.
 
         To get more information about the hook, visit its documentation [here](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/).
 
@@ -1652,11 +1652,11 @@ In the code above:
 
 
 ### Building the delivery map component
-The delivery map section displays the position of orders on transit on the map. In the section will: 
+The delivery map section displays the position of orders on transit on the map. In the section will:
 
 * Create the `Map` component using google map.
 * Create the `Marker` component that will be used to tag the orders on the map.
-* We will fetch the orders data from the API 
+* We will fetch the orders data from the API
 * render the orders on the `Map` component and Mark the orders using the markers.
 
 
@@ -1827,14 +1827,14 @@ export default memo(Marker);
 
 
 
-After creating the Map component and Marker component, we will create an `index.tsx` on the `src/components/map` directory where we will import the `Map` and `MapMarker` componets so that they could be both exported from one file.
+After creating the Map component and Marker component, we will create an `index.tsx` on the `src/components/map` directory where we will import the `Map` and `MapMarker` components so that they could be both exported from one file.
 
 ```tsx title="src/components/map/index.tsx"
 import Map from "./map";
 import MapMarker from "./marker";
 
 export { MapMarker, Map };
-``` 
+```
 
 
 We will go further to create the `deliveryMap` component. Create an `index.tsx` file in the `src/components/dashboard/deliveryMap` directory and add the code below:
@@ -1886,8 +1886,8 @@ export const DeliveryMap: React.FC = () => {
                             url: "/images/marker-courier.svg",
                         }}
                         position={{
-                            lat: Number(order.adress.coordinate[0]),
-                            lng: Number(order.adress.coordinate[1]),
+                            lat: Number(order.address.coordinate[0]),
+                            lng: Number(order.address.coordinate[1]),
                         }}
                     />
                 );
@@ -1915,7 +1915,7 @@ export const DeliveryMap: React.FC = () => {
 </p>
 </details>
 
-In the code above: 
+In the code above:
 * We used the `useList()` hook to handle sending a request to the endpoint. The `useList()` hook in refine allows you to get data directly from the API in a list format. This is a different hook from the `useSimpleList()`hook. While the `useSimpleList()`hook returns a list compatible with Ant design's [List](https://ant.design/components/list/) component, the `useList()` hook returns a regular list.
 To get more information about the hook, visit its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
 
@@ -2327,8 +2327,8 @@ Admin Dashboard:
 
 
 # Conclusion
-In this Article, We covered how to create a React Admin Dashboard with Refine. We also learnt:
-* How to migrate sucessfully from Refine version 3 to Refine version 4.
+In this Article, We covered how to create a React Admin Dashboard with Refine. We also learned:
+* How to migrate successfully from Refine version 3 to Refine version 4.
 * How to work with `jsonServerDataProvider`.
 * How to add resources and work with Refine's new routing pattern.
 * How to use utility hooks like `UseSimpleList`, `useList`, `useCustom` and many more.

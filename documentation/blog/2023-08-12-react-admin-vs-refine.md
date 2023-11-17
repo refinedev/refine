@@ -20,7 +20,7 @@ This is why you won't find explicit code examples. refine's philosophy fully emb
 
 refine doesn't focus on problems that have already been solved; instead, it centers around tackling the unresolved ones. On the contrary, refine’s philosophy is to provide the best developer experience for any use case without interfering the developer’s way of doing things but providing critical solutions for the common problems.
 
-If we were to summarize the comparison with an analogy, if you think refine as Lego Technic, then React-admin would be like Lego Duplo.
+If we were to summarize the comparison with an analogy, if you think refine as Lego Technique, then React-admin would be like Lego Duplo.
 
 Whether you are an experienced developer seeking a powerful and adaptable framework or a newcomer venturing into web development, this article aims to equip you with the knowledge to make an informed decision.
 
@@ -602,7 +602,7 @@ Check out the [Mutation Modes](https://refine.dev/docs/advanced-tutorials/mutati
 
 GraphQL implementation is the one of the strengths of refine. refine's GraphQL data provider package uses `gql-query-builder` and `graphql-request` under the hood and gives the user the ability to construct custom queries and mutations for their needs. This will allow users to define their own queries and mutations just by passing the necessary fields, operations and variables to the data hooks of refine.
 
-On the other hand, react-admin **does not** offer a meaningfull GraphQL support. By saying that, we mean that react-admin's way of using GraphQL is a limiting one and doesn't allow the user to define their own queries and mutations properly. Limiting the freedom of GraphQL and forcing it to work like any other REST API doesn't seem like a proper support for GraphQL.
+On the other hand, react-admin **does not** offer a meaningful GraphQL support. By saying that, we mean that react-admin's way of using GraphQL is a limiting one and doesn't allow the user to define their own queries and mutations properly. Limiting the freedom of GraphQL and forcing it to work like any other REST API doesn't seem like a proper support for GraphQL.
 
 **Tip**: refine provides multiple data providers for GraphQL. Other than the `@refinedev/graphql` package, you can also use the `@refinedev/hasura`, `@refinedev/nhost` or `@refinedev/strapi-graphql` packages to integrate with your GraphQL API or use one of them as a reference to create your own data provider.
 

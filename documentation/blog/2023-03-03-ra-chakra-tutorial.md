@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 ## Introduction
 
-In building data-intensive applications like React admin dashboards and in-house applications, among others, speed, customizability, and performance are of the essence as these applications are pivotal in the management of most businesses and software. This has led developers to opt for solutions like refine that provide these qualities out of the box.  
+In building data-intensive applications like React admin dashboards and in-house applications, among others, speed, customizability, and performance are of the essence as these applications are pivotal in the management of most businesses and software. This has led developers to opt for solutions like refine that provide these qualities out of the box.
 [refine](https://github.com/refinedev/refine) is a React-based framework that helps to build data-intensive applications in due time. It does this by providing hooks, providers, and components that provide room for UI customizability, and data management, as well as easy integration with any custom backend APIs and popular backend services like Strapi, Hasura, etc.
 
 In this React admin panel tutorial, we will be creating an admin application with refine that will be built with [ChakraUI](https://chakra-ui.com/), an enterprise-level React component library, and [Strapi](https://strapi.io/), a popular backend service, as its backend provider.
@@ -34,11 +34,11 @@ Strapi provides a user-friendly admin panel for content editors to manage conten
 
 ## Constituents of A refine Application
 
-Before delving in to build the CRUD React admin tutorial app, we need to know the constitutents of an refine application.
+Before delving in to build the CRUD React admin tutorial app, we need to know the constitutes of an refine application.
 
 ### The `<Refine/>` Component
 
-The [`<Refine/>`](https://refine.dev/docs/api-reference/core/components/refine-config/) acts as the entrypoint of the application. it is a component that recieves the configurations passed into it as [react props](https://reactjs.org/docs/components-and-props.html).
+The [`<Refine/>`](https://refine.dev/docs/api-reference/core/components/refine-config/) acts as the entrypoint of the application. it is a component that receives the configurations passed into it as [react props](https://reactjs.org/docs/components-and-props.html).
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -117,7 +117,7 @@ export default App;
 #### Resource
 A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
-To create a resource; define our resources and their action paths. This will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action. 
+To create a resource; define our resources and their action paths. This will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 In accordance with the path definitions in a resource object, we have to assign a `<Route />` for each path and an element to display at that path.
 
 The `<Route>` corresponding to the created actions is defined. It is important to remember that the path specified in the resource definition should match the `path` specified in the route definition.
@@ -1628,7 +1628,7 @@ export default App;
 
 ## Conclusion
 
-In this article, we covered how to create a React admin panel with refine. We also learnt:
+In this article, we covered how to create a React admin panel with refine. We also learned:
 
 -   How to bootstrap a refine application.
 -   Connecting a Strapiv4 data provider to a refine application.

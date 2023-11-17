@@ -37,7 +37,7 @@ The discussion of this article is focused on optimizing performance by memoizing
 ## Pass Callback from Parent to Child
 In this example, we'll consider the `<UserPostsIndex />`, `<UserPostsList />` and `<UserPosts />` components.
 
-As you can see below, `<UserPostsIndex />` fetches and sets `userPosts` when the compnent renders:
+As you can see below, `<UserPostsIndex />` fetches and sets `userPosts` when the component renders:
 
 ```tsx title="components/UserPostIndex.jsx"
 import React, { useEffect, useState } from "react";
@@ -131,7 +131,7 @@ and this one in `<UserPostsList />`:
 console.log('Rendering UserPostsList component');
 ```
 
-If we check our console, we can see the logs for the inital rendering of the components.  
+If we check our console, we can see the logs for the initial rendering of the components.  
 Then if we click the `SignOut` button on the navbar, we see batches of renders from `<UserPostsIndex />`, `<UserPostsList />` and `<UserPost />`:
 
 <div class="img-container" align-items="center" >

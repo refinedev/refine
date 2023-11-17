@@ -230,7 +230,7 @@ const App = () => {
 };
 ```
 
-After obtaining more insight on the constitutents of a **refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
+After obtaining more insight on the constitutes of a **refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
 
 <details>
 <summary>Show App.tsx Code</summary>
@@ -444,7 +444,7 @@ function App() {
 export default App;
 ```
 
-</p>    
+</p>
 </details>
 
 When you navigate to `/posts` route, you can see our placeholder page. We will build page components that will retrieve `posts`, view a post and create a post and present them in a table format and pass these components to our resource as list props.

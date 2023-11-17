@@ -497,7 +497,7 @@ export interface IOrder {
     user: IUser;
     createdAt: string;
     status: IOrderStatus;
-    adress: IAddress;
+    address: IAddress;
     amount: number;
 }
 
@@ -956,7 +956,7 @@ export const RecentSales = () => {
                     style={{ minWidth: "12rem" }}
                 />
                 <Column
-                    field="adress.text"
+                    field="address.text"
                     header="Delivery Address"
                     style={{ minWidth: "16rem" }}
                 />

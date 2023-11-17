@@ -327,7 +327,7 @@ export interface IOrder {
   user: IUser;
   createdAt: string;
   status: IOrderStatus;
-  adress: IAddress;
+  address: IAddress;
   amount: number;
 }
 
@@ -969,7 +969,7 @@ const columns = [
   { header: "Ordered By", key: "user", sortable: true },
   { header: "Gender", key: "gender", sortable: true },
   { header: "Tel", key: "gsm", sortable: false },
-  { header: "Delivery Address", key: "adress", sortable: true },
+  { header: "Delivery Address", key: "address", sortable: true },
   { header: "Delivery Status", key: "status", sortable: true },
   { header: "Created At", key: "createdAt", sortable: false },
 ];
@@ -1036,7 +1036,7 @@ export const RecentSalesTable = () => {
     if (columnKey === "user") return item.user.fullName;
     if (columnKey === "gender") return item.user.gender;
     if (columnKey === "gsm") return item.user.gsm;
-    if (columnKey === "adress") return item.adress.text;
+    if (columnKey === "address") return item.address.text;
     if (columnKey === "createdAt") return formatDateTime(item.createdAt);
     if (columnKey === "status")
       return (
@@ -1066,8 +1066,8 @@ export const RecentSalesTable = () => {
           case "gsm":
             sorter.field = "user.gsm";
             break;
-          case "adress":
-            sorter.field = "adress.text";
+          case "address":
+            sorter.field = "address.text";
             break;
           case "status":
             sorter.field = "status.text";

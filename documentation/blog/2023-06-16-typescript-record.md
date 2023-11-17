@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 
 
-The `Record<>` utility type in TypeScript is typically associated with a record or a collection of records returned from an API enpoint. It helps define a type with property names such as `id` and map the values to the type of the data.
+The `Record<>` utility type in TypeScript is typically associated with a record or a collection of records returned from an API endpoint. It helps define a type with property names such as `id` and map the values to the type of the data.
 
 
 ## Introduction
@@ -179,7 +179,7 @@ Property 'another3xamp1eUSERIdSTOR3DinAdb' is missing in type '{ "3xamp1eUSERIdS
 */
 ```
 
-This is not the case with the values though. For example, in the below code, the values include `TProjectManager` type and there is no such member in the map, and TypeScript acts as usual and does not comlain:
+This is not the case with the values though. For example, in the below code, the values include `TProjectManager` type and there is no such member in the map, and TypeScript acts as usual and does not complain:
 
 ```ts
 // No error with missing a type in values.

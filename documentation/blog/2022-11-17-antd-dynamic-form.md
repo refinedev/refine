@@ -810,7 +810,7 @@ The `rule` prop accepts an array of config objects that returns a promise. Each 
 
 Some of these properties include;
 
--   `required`: This property is for initialising validation on an input field.
+-   `required`: This property is for initializing validation on an input field.
 -   `min`: This property is for setting the minimum characters allowed on a field.
 -   `max`: This is for setting the maximum characters allowed on a field.
 -   `whitespace`: This property is for preventing whitespace on a field. It is mostly used on a password input field.

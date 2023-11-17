@@ -144,15 +144,15 @@ Please, go ahead to configure the consent screen by providing some information o
 
 <br/>
 
-After entering the name of your OAuth 2.0 client. You will see a section that requests adding an **"Authorised JavaScript origins"**, click on the "+ ADD URI" action button to add your app origin. Since we are working in the development environment, all we need to do is to copy/paste our app URL which is running on localhost.
+After entering the name of your OAuth 2.0 client. You will see a section that requests adding an **"Authorized JavaScript origins"**, click on the "+ ADD URI" action button to add your app origin. Since we are working in the development environment, all we need to do is to copy/paste our app URL which is running on localhost.
 
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/authorised-origins.png" alt="Authorised origins" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/authorised-origins.png" alt="Authorized origins" />
 
 <br/>
 
 
-For the **"Authorised redirect URIs"**, you must include your full domain and end in the callback path.
+For the **"Authorized redirect URIs"**, you must include your full domain and end in the callback path.
 * For production: `https://{YOUR_DOMAIN}/api/auth/callback/google`
 * For development: `http://localhost:3000/api/auth/callback/google`
 
@@ -163,7 +163,7 @@ For the **"Authorised redirect URIs"**, you must include your full domain and en
 
 
 :::note 
-If you eventually push to production, you need to change the Authorised JavaScript Origin and Authorised redirect URIs to the production URIs.
+If you eventually push to production, you need to change the Authorized JavaScript Origin and Authorized redirect URIs to the production URIs.
 :::
 
 <br/>

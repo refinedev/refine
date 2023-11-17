@@ -37,7 +37,7 @@ TypeScript is an object-oriented programming language that provides all JavaScri
 
 Next.js provides integrated support for TypeScript with built-in types for pages, API routes, the three data fetching methods, etc.
 
-Basically, there are two ways in which we can add TypeScript to our project. The first is with `create-next-app`, and the second is by adding TypeSript manually to an existing project.
+Basically, there are two ways in which we can add TypeScript to our project. The first is with `create-next-app`, and the second is by adding TypeScript manually to an existing project.
 
 #### `create-next-app`
 

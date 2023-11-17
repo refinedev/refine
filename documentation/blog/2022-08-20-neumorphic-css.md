@@ -41,9 +41,9 @@ Steps we’ll cover:
 
 
 ## What is Neumorphism?
-Neumorphism often referred to as Soft design, is a skeuomorphic design adaption coupled with flat design. It is a visual effect that mixes background colours, shadows, shapes, gradients, and highlights to achieve intense yet minimal real-life graphic effects on the user interface elements. 
+Neumorphism often referred to as Soft design, is a skeuomorphic design adaption coupled with flat design. It is a visual effect that mixes background colors, shadows, shapes, gradients, and highlights to achieve intense yet minimal real-life graphic effects on the user interface elements. 
 
-Neumorphism has made a significant impact on web design, simplifying and improving the user interface while facilitating interaction for people who are colour-blind or visually impaired. 
+Neumorphism has made a significant impact on web design, simplifying and improving the user interface while facilitating interaction for people who are color-blind or visually impaired. 
 Neumorphism's uniformity and scalability are additional advantages. 
 
 Let's see how Neumorphism affects the user interface using what we know about it.
@@ -71,12 +71,12 @@ The image below illustrates the simplest UI design template for Neumorphism; fee
 <br/>
 
 The following are crucial guidelines from this recipe: 
-- Elements have background colours that match the parent element's background.
+- Elements have background colors that match the parent element's background.
 - Elements have almost transparent or no border. 
 - Shadows are in pairs, one with positive values and the other with negative values.
   
 ## Neumorphism in Accessibility/User Experience
-The main issue Neumorphism has in terms of accessibility is contrast; you'll notice that most Neumorphic designs use a grey-on-white colour scheme making it challenging for people to see if not implemented well, especially in bright light. 
+The main issue Neumorphism has in terms of accessibility is contrast; you'll notice that most Neumorphic designs use a grey-on-white color scheme making it challenging for people to see if not implemented well, especially in bright light. 
 
 
 The image below displays an original Neumorphic design and the outcome under low vision.
@@ -320,20 +320,20 @@ It is not sufficient to implement a concept; you also need to understand the req
 
 When creating websites that demand users to interact with them for a long time, consider Neumorphism. Users dislike cluttered and complex user interfaces, and Neumorphism helps to keep things simple.
 
-Neumorphism helps simplify decision-making when selecting colours. Additionally, since some people struggle with colour combinations, using Neumorphism reduces the chance of using conflicting colour schemes.
+Neumorphism helps simplify decision-making when selecting colors. Additionally, since some people struggle with color combinations, using Neumorphism reduces the chance of using conflicting color schemes.
 
-Elements resemble one another. It is easier to implement transitions without worrying about colour discrepancies.
-It is easier to switch between light and dark mode because there are fewer colours to convert.
+Elements resemble one another. It is easier to implement transitions without worrying about color discrepancies.
+It is easier to switch between light and dark mode because there are fewer colors to convert.
 ## Cons of using Neumorphism
 Neumorphism is a great option to consider when designing, but it has some limitations, which does not imply that you shouldn't use it; you may need to take additional measures to get the best outcome.
 
-Because Neumorphism elements share the same colour as the background, the contrast ratio is the most important concern. You should therefore handle contrast more carefully to prevent straining users' eyes.
+Because Neumorphism elements share the same color as the background, the contrast ratio is the most important concern. You should therefore handle contrast more carefully to prevent straining users' eyes.
 
 Another issue is spacing; elements have pairs of shadows, which takes up more space than usual. You will need to manage space since pairing the shadow is necessary.
 
 Users tend to miss Call To Actions(CTA) when Neumorphism is poorly implemented.
 
-Neumorphism streamlines your creative options. Designers need to follow specific guidelines when applying elements like shadows, colours, and so on.
+Neumorphism streamlines your creative options. Designers need to follow specific guidelines when applying elements like shadows, colors, and so on.
 ## Conclusion
 Using Neumorphism appropriately can produce mind-blowing results. You will have realistic-looking 3D effects, which improve your users' experience. 
 

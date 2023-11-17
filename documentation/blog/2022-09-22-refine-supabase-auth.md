@@ -42,7 +42,7 @@ In this guide, you will implement OTP-based login in **refine** using the Supaba
 
 [refine](https://github.com/refinedev/refine) is a React-based open-source frameworks for building admin panels, dashboards, internal tools and storefront apps rapidly. It helps developers to avoid from repetitive tasks demanded by CRUD operations and provides solutions for like authentication, access control, routing, networking, state management.
 
-One of the great features of refine is its out-of-the-box data providers integrations. refine has a built-in data provider for supabase and we'll see how to use it propery.
+One of the great features of refine is its out-of-the-box data providers integrations. refine has a built-in data provider for supabase and we'll see how to use it properly.
 
 ## Prerequisites
 
@@ -238,7 +238,7 @@ export const LoginPage = () => {
     const mobileFormRender = () => (
         <>
             <label className="text-dark font-medium">
-                Enter your mobile mumber
+                Enter your mobile number
             </label>
             <Input
                 className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
@@ -427,7 +427,7 @@ The `authProvider` is an object that refine uses to authenticate and authorize t
 
 [You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
-Allright, now coming back to the `<LoginPage />` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
+Alright, now coming back to the `<LoginPage />` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
 
 We'll use the input field in this guide for brevity.
 

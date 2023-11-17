@@ -9,7 +9,7 @@ hide_table_of_contents: false
 ---
 
 
- In this post, we build on our existing understanding of `dataProvider` and `authProvider` props of `<Refine />` to implement CRUD operations in our **Pdf Invoice Genrator** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's `resources` and routing conventions as well.
+ In this post, we build on our existing understanding of `dataProvider` and `authProvider` props of `<Refine />` to implement CRUD operations in our **Pdf Invoice Generator** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's `resources` and routing conventions as well.
 
 CRUD actions are supported by the [**Strapi**](https://strapi.io/) data provider we chose for our project and in this post we use them to build pages for **Company**, **Client** and **Contact** resources. We implement appropriate pages and partial components with `list`, `create`, `edit` and `delete` actions. We also add auth features we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine-strapi/) series.
 
@@ -274,7 +274,7 @@ In versions `< v4`, `resources` items used to include view definitions (for exam
 
 However, view definitions are not used in `v4` `resources` items. Instead, as we will see below, **path definitions** are specified. Version `v4` allows flexible routing with `<Route />` components, and so view definitions for each `resources` item are now configured inside `<Route />` components.
 
-In the mean time, legacy resource defintions, data and auth providers are still functional in **refine** `v4`. If you want to use the legacy `resources` convention, you have to use the `legacyRouterProvider` prop instead of `routerProvider` and `legacyAuthProvider` prop instead of the `authProvider` prop of the `<Refine />` component. More on this [here](https://refine.dev/docs/api-reference/core/providers/router-provider/#legacy-router-provider).
+In the mean time, legacy resource definitions, data and auth providers are still functional in **refine** `v4`. If you want to use the legacy `resources` convention, you have to use the `legacyRouterProvider` prop instead of `routerProvider` and `legacyAuthProvider` prop instead of the `authProvider` prop of the `<Refine />` component. More on this [here](https://refine.dev/docs/api-reference/core/providers/router-provider/#legacy-router-provider).
 
 In this app, we are using the new definitions introduced in `v4`.
 
@@ -1564,7 +1564,7 @@ Again, the `<CreateContact />` component is derived from a `<Modal />` which is 
 
 ### `edit` Action for `contacts`
 
-`<ContactList />` has an `<EditButton />` which on click navigates to `/contacts/:id/edit` path. We have specified the resource and routes definitions for this earler.
+`<ContactList />` has an `<EditButton />` which on click navigates to `/contacts/:id/edit` path. We have specified the resource and routes definitions for this earlier.
 
 The component `/contacts/:id/edit` looks like this:
 

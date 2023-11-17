@@ -35,7 +35,7 @@ We have to go to [Supabase](https://supabase.io/) and create an organization and
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/start.png" alt="overview" />
 <br />
- 
+
 The tables we need to create for our project are as follows:
 
 > label
@@ -47,14 +47,14 @@ The tables we need to create for our project are as follows:
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_table.png" alt="overview" />
 <br />
 
-> priority 
+> priority
 * `id` bigint
 * `title` varchar
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 <br />
- 
+
 
 > status
 * `id` bigint
@@ -72,7 +72,7 @@ The tables we need to create for our project are as follows:
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/user_table.png" alt="overview" />
 <br />
 
- 
+
 > tasks
 * `id` bigint
 * `title` varchar
@@ -81,13 +81,13 @@ The tables we need to create for our project are as follows:
 * `end_time` date
 * `label` bigint
 * `priority` bigint
-* `statuts` bigint
+* `statutes` bigint
 * `users` uuid
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_table.png" alt="overview" />
 <br />
- 
+
 
 We created our database tables. The important part here is that as you can see, in our tasks table, label, priority, status and users values ​​are defined as bigint. To summarize the reason for this, we relation the label, priority, status and users tables that we created above with the corresponding values ​​in our tasks table.
 
@@ -120,13 +120,13 @@ Now let's go to the Supabase Table editor and create our constant values.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/priority_value.png" alt="overview" />
 <br />
 
- 
+
 `Status Table`
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/status_value.png" alt="overview" />
 <br />
- 
-Let's create a test task to better understand key relation. 
+
+Let's create a test task to better understand key relation.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.gif" alt="overview" />
 <br />
@@ -174,7 +174,7 @@ Now we can access and list the tables we created via the supabase.
 - Add custom login and signup page in App.tsx
 
 Our purpose here is to log in if there is a registered user in the supabase. If you do not have a registered user, saving a user to the supabase with refine.
- 
+
 ## Custom Login Page
 
 ```tsx title="src/pages/login/index.tsx"
@@ -316,7 +316,7 @@ export const Login: React.FC = () => {
   justify-content: center;
   margin-bottom: 16px;
 }
-  
+
 ```
 ## Custom Signup Page
 
@@ -465,7 +465,7 @@ export const Signup: React.FC = () => {
   margin-bottom: 16px;
 }
 
-  
+
 ```
 
 ```tsx title="App.tsx"
@@ -515,10 +515,10 @@ Here we define our login and signup pages. We then use the refine's [router-prov
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
 <br />
- 
+
 
 We can now create supabase users and log in from our refine interface.
- 
+
 ## Add Resource
 **Adding resources according to the table name we created in Supabase**
 
@@ -576,10 +576,10 @@ export default App;
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/list.png" alt="overview" />
 <br />
- 
+
 We can now create lists of tasks and make changes to them.
 
-## Add List and Filter 
+## Add List and Filter
 
 ```tsx title="src/pages/task/list.tsx"
 import React from "react";
@@ -875,7 +875,7 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
         resource: "status",
     });
 
-    const { selectProps: assigneProps } = useSelect<IAuthUser>({
+    const { selectProps: assigneeProps } = useSelect<IAuthUser>({
         resource: "users",
         optionValue: "id",
         optionLabel: "email",
@@ -890,14 +890,14 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
                 <Select
                     {...labelSelectProps}
                     allowClear
-                    placeholder="Seach Label"
+                    placeholder="Search Label"
                 />
             </Form.Item>
             <Form.Item label="Priority" name="priority">
                 <Select
                     {...priorityProps}
                     allowClear
-                    placeholder="Seach Priority"
+                    placeholder="Search Priority"
                 />
             </Form.Item>
             <Form.Item label="Status" name="status">
@@ -909,7 +909,7 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
             </Form.Item>
             <Form.Item label="Assigned" name="users">
                 <Select
-                    {...assigneProps}
+                    {...assigneeProps}
                     allowClear
                     placeholder="Search Assignee"
                 />
@@ -979,7 +979,7 @@ export interface ITaskFilterVariables {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="overview" />
 <br />
 
- Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering. 
+ Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering.
 
 As seen in the example, we listed and showed the task table we created in supabase with refine. Now you can make changes as you want with refine.
 
@@ -1013,7 +1013,7 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
         resource: "priority",
     });
 
-    const { selectProps: assigneSelectProps } = useSelect<IAuthUser>({
+    const { selectProps: assigneeSelectProps } = useSelect<IAuthUser>({
         resource: "users",
         optionValue: "id",
         optionLabel: "email",
@@ -1046,8 +1046,8 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
                 <Form.Item label="Priority" name="priority">
                     <Select {...prioritySelectPorps} />
                 </Form.Item>
-                <Form.Item label="Assigne To" name="users">
-                    <Select {...assigneSelectProps} />
+                <Form.Item label="Assign To" name="users">
+                    <Select {...assigneeSelectProps} />
                 </Form.Item>
                 <Form.Item label="Select Status" name="status">
                     <Select {...statusSelectProps} />
@@ -1096,7 +1096,7 @@ export const EditTask: React.FC<IResourceComponentsProps> = () => {
         resource: "priority",
     });
 
-    const { selectProps: assigneProps } = useSelect<IAuthUser>({
+    const { selectProps: assigneeProps } = useSelect<IAuthUser>({
         resource: "users",
         optionValue: "id",
         optionLabel: "email",
@@ -1124,8 +1124,8 @@ export const EditTask: React.FC<IResourceComponentsProps> = () => {
                 <Form.Item label="Status" name="status">
                     <Select {...statusProps} />
                 </Form.Item>
-                <Form.Item label="Assigne" name="users">
-                    <Select {...assigneProps} />
+                <Form.Item label="Assignee" name="users">
+                    <Select {...assigneeProps} />
                 </Form.Item>
             </Form>
         </Edit>
@@ -1178,7 +1178,7 @@ export const TaskShow: React.FC = () => {
             <Title level={5}>Task:</Title>
             <Text>{record?.title || "-"}</Text>
 
-            <Title level={5}>Task Desciption:</Title>
+            <Title level={5}>Task Description:</Title>
             <Text>{record?.description}</Text>
 
             <Title level={5}>Assigned To:</Title>
@@ -1209,14 +1209,14 @@ export const TaskShow: React.FC = () => {
 ```
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/show.png" alt="overview" />
 <br />
- 
+
 
 By using Refine's basic views such as [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
 
 
 Let's see how to add a dashboard page to our project together.
 
-## Add Custom Chart 
+## Add Custom Chart
 
 ```tsx title="src/components/task/pie.tsx"
 import React from "react";
@@ -1359,7 +1359,7 @@ export const Dashboard = () => {
 <br/>
 
 
- 
+
 Final version of our `<App.tsx/>`.
 
 ```tsx
@@ -1441,9 +1441,9 @@ Our project is done. Lets see how its look like.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
 <br />
 
-As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider. 
+As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider.
 
-[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker) 
+[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker)
 
 For more information about Refine: [Refine Github Page](https://github.com/refinedev/refine)
 
@@ -1452,5 +1452,5 @@ For other examples and articles that will interest you with refine:  [https://re
 ## Example
 
 <CodeSandboxExample path="blog-issue-tracker" />
- 
+
 

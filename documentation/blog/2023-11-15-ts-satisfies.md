@@ -82,12 +82,12 @@ const joe = {
 console.log(joe.address.postCode); // 12345
 ```
 
-Notice in the example that, we have used `TUser` on `joe` for its value validation with `satisfies`. And `TUser` is a tranformed record with `Record<UserKeys, string | TAddress>`
+Notice in the example that, we have used `TUser` on `joe` for its value validation with `satisfies`. And `TUser` is a transformed record with `Record<UserKeys, string | TAddress>`
 
 
-### TypeSript satisfies Leverages Contextual Typing
+### TypeScript satisfies Leverages Contextual Typing
 
-It is necessary to undestand that type inference before assignment is different from type validation of the assigned value with `satisfies`. In other words, `joe` above has a contextual typing: its type is set to itself and then `satisfies` checks `joe`'s internals against it to validate the types for all properties and their values, including nested ones. You can find `joe`'s type when you hover over `joe`. You'll see this:
+It is necessary to understand that type inference before assignment is different from type validation of the assigned value with `satisfies`. In other words, `joe` above has a contextual typing: its type is set to itself and then `satisfies` checks `joe`'s internals against it to validate the types for all properties and their values, including nested ones. You can find `joe`'s type when you hover over `joe`. You'll see this:
 
 ```ts
 // joe's inferred type is the object itself
@@ -190,7 +190,7 @@ Since we are using a number for `joe.address.postCode` above, `satisfies` correc
 
 ## TypeScript satisfies - Property Name Constraining
 
-Notice that we are using the `Record<>` utility to derive a record type for the user. TypeScript `satisfies` is generally used in conjuction with the `Record<>` type. And as you notice already, we are applying property name constraints to limit `TUser`'s keys with: `type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";`.
+Notice that we are using the `Record<>` utility to derive a record type for the user. TypeScript `satisfies` is generally used in conjunction with the `Record<>` type. And as you notice already, we are applying property name constraints to limit `TUser`'s keys with: `type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";`.
 
 Due to this, property overloading is prevented. In the below version, `role` is not included in `UserKeys`, so we get a complain:
 
@@ -302,4 +302,4 @@ const joe = {
 
 ## Summary
 
-In this post, we covered the `satisfies` operator, a `v4.9` addition to TypeScript. We discovered that TypeScript `satisfies` offers a set of features primarily aimed for type validation of assigned variable values and their nested properties and values. We illustrated through examples that the `satisfies` operator is used in conjunction with the `Record<>` utility type. In our examples, we found out that property name constraining, fulfillment associated with a `Record<>` derived type are handled well by TypeScript `satisfies`. Finally, we also saw how `satisfies` can be used to enforce partial member conformance with `Partial<>` tranformation of a variable's value.
+In this post, we covered the `satisfies` operator, a `v4.9` addition to TypeScript. We discovered that TypeScript `satisfies` offers a set of features primarily aimed for type validation of assigned variable values and their nested properties and values. We illustrated through examples that the `satisfies` operator is used in conjunction with the `Record<>` utility type. In our examples, we found out that property name constraining, fulfillment associated with a `Record<>` derived type are handled well by TypeScript `satisfies`. Finally, we also saw how `satisfies` can be used to enforce partial member conformance with `Partial<>` transformation of a variable's value.

@@ -205,9 +205,9 @@ const myBuildQuery = (introspection) => (fetchType, resource, params) => {
 export default buildGraphQLProvider({ buildQuery: myBuildQuery });
 ```
 
-Although this is a solution, it complicates your project in many ways (debugging, maintenence, etc...).
+Although this is a solution, it complicates your project in many ways (debugging, maintenance, etc...).
 
-### React-Admin Avaible Providers
+### React-Admin Available Providers
 
 The providers that React admin supports are as follows:
 
@@ -215,7 +215,7 @@ The providers that React admin supports are as follows:
 -   Json Server: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server)
 -   Simple GraphQL: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple)
 -   Local JSON: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
--   Local Strage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
+-   Local Storage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
 -   Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
 
 [You can view the full list of providers here ->](https://marmelab.com/react-admin/DataProviders.html)
@@ -276,7 +276,7 @@ npm create refine-app@latest demo-refine-project -- -b v3
 
 -   UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design.
 
--   Out-of-the-box: Routing, networking, authentication, state managment, i18n and UI.
+-   Out-of-the-box: Routing, networking, authentication, state management, i18n and UI.
 
 -   Next.js / SSR integration: refine can be used with Next.js to SSR your pages.
 
@@ -598,7 +598,7 @@ Here we only make requests for queries that are necessary. As you can see, all y
 
 [Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/packages/documentation/data-providers/graphql)
 
-### Refine Avaible Providers
+### Refine Available Providers
 
 Connects to any REST or GraphQL custom backend.
 

@@ -47,7 +47,7 @@ Steps we'll cover:
   - [autocomplete/autofill](#autocompleteautofill)
 
 ## What is Material UI?
-Developed in 2014, Material UI is a React framework that provides adequate tools(components and utilities) to create a web application. Material UI enables the use of various customisable components to create a UI for a company's web and mobile apps. Many developers now use Material UI to structure their projects because it makes web design more straightforward and effective.
+Developed in 2014, Material UI is a React framework that provides adequate tools(components and utilities) to create a web application. Material UI enables the use of various customizable components to create a UI for a company's web and mobile apps. Many developers now use Material UI to structure their projects because it makes web design more straightforward and effective.
 
 Material UI offers several component categories, including Navigations components, Input components, Data Display components, Feedback components, e.t.c. The **Material UI Autocomplete** component is a prime example of the Input components.
 
@@ -58,7 +58,7 @@ npm `npm install @mui/material @emotion/react @emotion/styled`
 yarn: `yarn add @mui/material @emotion/react @emotion/styled`
 
 ## Getting Started with Material UI Autocomplete
-The Material UI `<Autocomplete />` component can be identified as an improved React text input that includes several suggested options for better optimisation. It is an enhanced version of `react-select` or `downshift` packages.
+The Material UI `<Autocomplete />` component can be identified as an improved React text input that includes several suggested options for better optimization. It is an enhanced version of `react-select` or `downshift` packages.
 
 The `<Autocomplete />` component is best used for modifying single-line textbox values to accommodate more options. The component’s `value` is obtained from a predetermined range of acceptable values/options.
 
@@ -81,7 +81,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 // Top 5 Nigerian songs on Apple Music 
 const top5Songs = [
-  { label: 'Organise'},
+  { label: 'Organize'},
   { label: 'Joha'},
   { label: 'Terminator'},
   { label: 'Dull'},
@@ -113,7 +113,7 @@ The code above showcases an input text field that displays 5 songs as predefined
 ## Material UI Autocomplete props
 
 ### RenderInput
-The `renderInput` prop allows you to customise the rendered input to display the option values in whatever form you please.
+The `renderInput` prop allows you to customize the rendered input to display the option values in whatever form you please.
 
 Consider the code below:
 
@@ -159,7 +159,7 @@ Here’s the result:
 
 ```tsx
 const top5Songs = [
-  { title: 'Organise'},
+  { title: 'Organize'},
   { title: 'Joha'},
   { title: 'Terminator'},
   { title: 'Dull'},
@@ -180,7 +180,7 @@ The `getOptionSelected` is used to determine the selected value of a specified a
 
 ```tsx
 const top5Songs = [
-  { title: 'Organise'},
+  { title: 'Organize'},
   { title: 'Joha'},
   { title: 'Terminator'},
   { title: 'Dull'},
@@ -212,7 +212,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 // Top 5 Nigerian songs on Apple Music 
 const top5Songs = [
-  { title: 'Organise'},
+  { title: 'Organize'},
   { title: 'Joha'},
   { title: 'Terminator'},
   { title: 'Dull'},
@@ -405,7 +405,7 @@ const Listbox = styled('ul')(({ theme }) => ({
 
 // Top 5 Nigerian songs on Apple Music
 const top5Songs = [
-  { label: 'Organise'},
+  { label: 'Organize'},
   { label: 'Joha'},
   { label: 'Terminator'},
   { label: 'Dull'},
@@ -481,7 +481,7 @@ function sleep(delay = 0) {
 
 // Top 5 Nigerian songs on Apple Music
 const top5Songs = [
-  { title: 'Organise'},
+  { title: 'Organize'},
   { title: 'Joha'},
   { title: 'Terminator'},
   { title: 'Dull'},
@@ -576,7 +576,7 @@ import Stack from '@mui/material/Stack';
 
 // Top 5 Nigerian songs on Apple Music
 const top5Songs = [
-  { title: 'Organise'},
+  { title: 'Organize'},
   { title: 'Joha'},
   { title: 'Terminator'},
   { title: 'Dull'},
@@ -703,7 +703,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 // Top 5 Nigerian songs on Apple Music
 const top5Songs = [
-  { title: 'Organise'},
+  { title: 'Organize'},
   { title: 'Joha'},
   { title: 'Terminator'},
   { title: 'Dull'},
@@ -759,7 +759,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 
 // Top 5 Nigerian songs on Apple Music 
 const top5Songs = [
-    { title: 'Organise'},
+    { title: 'Organize'},
     { title: 'Joha'},
     { title: 'Terminator'},
     { title: 'Dull'},
@@ -857,7 +857,7 @@ Here’s the result:
 Heuristics are built into browsers to assist users in filling out form inputs, but tend to hurt the component's UX. With the `autoComplete="off"` attribute, the component disables the input `autocomplete` feature (remembering what the user wrote for a specific field in a previous session). One possible fix is removing the id and letting the component generate one randomly.
 
 In addition to remembering previously entered information, the browser may make autofill suggestions (saved login, address, or username). If you wish to avoid autofill, you can attempt the following:
-Name the input without revealing any information that the browser can utilise. id="field1" instead of id="country" If you leave the id field empty, the component generates a random id.
+Name the input without revealing any information that the browser can utilize. id="field1" instead of id="country" If you leave the id field empty, the component generates a random id.
 Set `autoComplete="new-password"`. Some browsers will recommend a secure password for inputs with this attribute set.
 
 

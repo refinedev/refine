@@ -320,7 +320,7 @@ const customComparator = (prevProps, nextProps) => {
 export default React.memo(Post, customComparator);
 //highlight-end
 ```
-Here, we are omiting `signedIn` from being compared by comparing only `post` 's values. Now, if we click on `Sign Out` button, `Post` is not being re-rendered:
+Here, we are omitting `signedIn` from being compared by comparing only `post` 's values. Now, if we click on `Sign Out` button, `Post` is not being re-rendered:
 
 
 <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo4.png" alt="memo4" />
