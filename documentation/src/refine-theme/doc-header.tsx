@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import clsx from "clsx";
 import SearchBar from "@theme/SearchBar";
-import { DocVersionDropdown } from "./doc-version-dropdown";
-import { CommonThemeToggle } from "./common-theme-toggle";
-import { CommonHomeButton } from "./common-home-button";
+import clsx from "clsx";
+import React, { useState } from "react";
 import { CommonGithubStarButton } from "./common-github-star-button";
-import { DocSidebarModal } from "./doc-sidebar-modal";
-import { RefineLogo } from "./common-refine-logo";
 import { CommonHamburgerIcon } from "./common-hamburger-icon";
+import { CommonHomeButton } from "./common-home-button";
+import { RefineLogo } from "./common-refine-logo";
+import { CommonThemeToggle } from "./common-theme-toggle";
 import { DocSearchButton } from "./doc-search-button";
+import { DocSidebarModal } from "./doc-sidebar-modal";
+import { DocVersionDropdown } from "./doc-version-dropdown";
 import { TopAnnouncement } from "./top-announcement";
 
 export const HEADER_HEIGHT = 67;
@@ -34,7 +34,7 @@ const Desktop = () => {
                 "w-full",
                 "hidden lg:flex items-center",
                 "mx-auto",
-                "max-w-[1644px]",
+                // "max-w-[1644px]",
             )}
         >
             <RefineLogo
@@ -62,9 +62,18 @@ const Desktop = () => {
                 >
                     <div className={clsx("xl:hidden flex")}>
                         <SearchBar
-                            CustomButton={(props) => (
-                                <DocSearchButton {...props} iconOnly />
-                            )}
+                            CustomButton={React.forwardRef<
+                                HTMLButtonElement,
+                                React.PropsWithChildren<{}>
+                            >(function CustomButton(props, ref) {
+                                return (
+                                    <DocSearchButton
+                                        ref={ref}
+                                        {...props}
+                                        iconOnly
+                                    />
+                                );
+                            })}
                         />
                     </div>
                     <DocVersionDropdown />
@@ -95,9 +104,14 @@ export const Mobile = () => {
             <RefineLogo title="Documentation" />
             <div className={clsx("flex items-center gap-4")}>
                 <SearchBar
-                    CustomButton={(props) => (
-                        <DocSearchButton {...props} iconOnly />
-                    )}
+                    CustomButton={React.forwardRef<
+                        HTMLButtonElement,
+                        React.PropsWithChildren<{}>
+                    >(function CustomButton(props, ref) {
+                        return (
+                            <DocSearchButton ref={ref} {...props} iconOnly />
+                        );
+                    })}
                 />
                 <CommonThemeToggle
                     className={clsx("scale-75", "sm:scale-100")}

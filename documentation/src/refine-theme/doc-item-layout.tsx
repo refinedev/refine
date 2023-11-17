@@ -1,19 +1,18 @@
-import React from "react";
-import clsx from "clsx";
-import { useDoc } from "@docusaurus/theme-common/internal";
+import { useDoc, useDocsVersion } from "@docusaurus/theme-common/internal";
+import DocItemContent from "@theme/DocItem/Content";
+import DocItemFooter from "@theme/DocItem/Footer";
 import DocItemPaginator from "@theme/DocItem/Paginator";
 import DocVersionBanner from "@theme/DocVersionBanner";
-import DocItemFooter from "@theme/DocItem/Footer";
-import DocItemContent from "@theme/DocItem/Content";
+import clsx from "clsx";
+import React from "react";
 import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
 import { useCurrentTutorial } from "../hooks/use-current-tutorial";
-import { DocTOC } from "./doc-toc";
 import { DocBreadcrumbs } from "./doc-breadcrumbs";
-import { SwizzleBadge } from "./doc-swizzle-badge";
 import { SourceCodeBadge } from "./doc-sourcecode-badge";
-import { useDocsVersion } from "@docusaurus/theme-common/internal";
-import { DocVersionBadge } from "./doc-version-badge";
+import { SwizzleBadge } from "./doc-swizzle-badge";
+import { DocTOC } from "./doc-toc";
 import { DocTOCMobile } from "./doc-toc-mobile";
+import { DocVersionBadge } from "./doc-version-badge";
 
 export const DocItemLayout = ({ children }) => {
     const docTOC = useDocTOCwithTutorial();
@@ -31,6 +30,7 @@ export const DocItemLayout = ({ children }) => {
                     "flex flex-col",
                     "items-center justify-start",
                     "px-4 sm:px-0 py-4 sm:py-14",
+                    "relative",
                     "w-full",
                 )}
             >

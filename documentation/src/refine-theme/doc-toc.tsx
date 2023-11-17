@@ -1,6 +1,6 @@
-import React from "react";
-import clsx from "clsx";
 import { useDoc } from "@docusaurus/theme-common/internal";
+import clsx from "clsx";
+import React from "react";
 // import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
 import { useLocation } from "@docusaurus/router";
 
@@ -60,7 +60,8 @@ export const TOCItem = ({
                 level === 2 && "pl-3",
                 level === 3 && "pl-7",
                 level === 4 && "pl-11",
-                "py-2 pr-3",
+                level === 5 && "pl-11",
+                "py-1 pr-3",
                 "hover:bg-gray-200/40 dark:hover:bg-gray-700/80",
                 activeId === id &&
                     `dark:text-gray-0 text-gray-900 hover:text-gray-900 
@@ -106,21 +107,23 @@ export const DocTOC = () => {
             )}
         >
             <ul>
-                {toc.map((item) => {
-                    return (
-                        <li key={item.id}>
-                            <TOCItem
-                                id={item.id}
-                                value={item.value}
-                                activeId={activeId}
-                                level={item.level}
-                                onIdChange={(id) => {
-                                    setActiveId(id);
-                                }}
-                            />
-                        </li>
-                    );
-                })}
+                {toc
+                    .filter((item) => item.level < 5)
+                    .map((item) => {
+                        return (
+                            <li key={item.id}>
+                                <TOCItem
+                                    id={item.id}
+                                    value={item.value}
+                                    activeId={activeId}
+                                    level={item.level}
+                                    onIdChange={(id) => {
+                                        setActiveId(id);
+                                    }}
+                                />
+                            </li>
+                        );
+                    })}
             </ul>
         </div>
     );
