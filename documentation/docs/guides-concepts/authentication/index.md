@@ -10,13 +10,24 @@ import AuthProviderInterface from "./auth-provider-interface.md";
 import AuthHooks from "@site/src/partials/auth-provider/auth-hooks.md";
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
-Authentication is the process of verifying the identity of a user or client. It's a critical component of security, ensuring that only authorized users can access certain features or data within the application.
+Authentication is the process of verifying the identity of a user or client. It's a critical component of security, ensuring that only authorized users can access certain features or data within the application. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, **Refine**'s authentication system provides the necessary infrastructure to protect your pages and ensure that users interact with your application in a secure and controlled manner.
 
-Refine handles authentication by [auth provider](#auth-provider) and consumes the auth provider methods by [auth hooks](#auth-hooks).
+Refine's **flexible architecture** allows you to easily implement various authentication strategies:
+
+- [Google](https://developers.google.com/identity/protocols/oauth2)
+- [Amazon Cognito](https://aws.amazon.com/cognito/)
+- [Okta](https://www.okta.com/)
+- [Auth0](https://auth0.com/)
+
+You can implement your own authentication system or use one of the [supported auth providers](#supported-auth-providers).
+
+[To learn more about how to create auth provider, check out the tutorial page.][create-auth-provider-tutorial]
 
 ## Auth Provider
 
-Auth provider is an object that contains methods to handles authentication in your app, designed to return promises for use with async methods. By offering a structured architecture it simplifies authentication implementation and management through your app. With its flexible architecture, it allows for easy integration of your **own** or [third-party authentication systems](#supported-auth-provider) into Refine.
+Refine handles authentication by [auth provider](#auth-provider) and consumes the auth provider methods by [auth hooks](#auth-hooks).
+
+Auth provider is an object that contains methods to handles authentication in your app, designed to return promises for use with async methods. By offering a structured architecture it simplifies authentication implementation and management through your app.
 
 To activate authentication in your app, you need to pass an `authProvider` to the `<Refine />` as a prop. Once you provide auth provider, you can utilize our auth hooks (useLogin, useRegister, useIsAuthenticated etc.) to easily manage your authentication.
 
