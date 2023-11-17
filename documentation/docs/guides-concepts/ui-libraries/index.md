@@ -12,10 +12,10 @@ Refine has out of the box support for the four libraries that are widely used in
 
 These integrations are made to provide solutions for common use cases such as menus, layouts, action buttons, tables, forms and more while providing a consistent design language with the UI library. Rather than a constraint, these integrations are designed as helpers and extensions to the core functionalities of Refine and the UI libraries.
 
-- [Ant Design with `@refinedev/antd`](ui-integrations/ant-design/introduction/index.md)
-- [Material UI with `@refinedev/mui`](ui-integrations/material-ui/introduction/index.md)
-- [Chakra UI with `@refinedev/chakra-ui`](ui-integrations/chakra-ui/introduction/index.md)
-- [Mantine with `@refinedev/mantine`](ui-integrations/mantine/introduction/index.md)
+-   [Ant Design with `@refinedev/antd`](/docs/api-reference/antd/)
+-   [Material UI with `@refinedev/mui`](/docs/api-reference/mui/)
+-   [Chakra UI with `@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/)
+-   [Mantine with `@refinedev/mantine`](/docs/api-reference/mantine/)
 
 ## Prebuilt Components
 
@@ -35,16 +35,16 @@ Refine's UI integrations offer variety of buttons that are built using the appro
 
 The list of buttons that are available in the UI integrations are:
 
-- `<CreateButton />`
-- `<EditButton />`
-- `<ListButton />`
-- `<ShowButton />`
-- `<CloneButton />`
-- `<DeleteButton />`
-- `<SaveButton />`
-- `<RefreshButton />`
-- `<ImportButton />`
-- `<ExportButton />`
+-   `<CreateButton />`
+-   `<EditButton />`
+-   `<ListButton />`
+-   `<ShowButton />`
+-   `<CloneButton />`
+-   `<DeleteButton />`
+-   `<SaveButton />`
+-   `<RefreshButton />`
+-   `<ImportButton />`
+-   `<ExportButton />`
 
 ### Views
 
@@ -52,10 +52,10 @@ Views are designed as wrappers around the content of the pages in the applicatio
 
 The list of views that are available in the UI integrations are:
 
-- `<List />`
-- `<Show />`
-- `<Edit />`
-- `<Create />`
+-   `<List />`
+-   `<Show />`
+-   `<Edit />`
+-   `<Create />`
 
 ### Fields
 
@@ -63,16 +63,16 @@ Field components can be used to render values with appropriate design and format
 
 The list of provided field components are:
 
-- `<BooleanField />`
-- `<DateField />`
-- `<EmailField />`
-- `<FileField />`
-- `<ImageField />`
-- `<MarkdownField />`
-- `<NumberField />`
-- `<TagsField />`
-- `<TextField />`
-- `<UrlField />`
+-   `<BooleanField />`
+-   `<DateField />`
+-   `<EmailField />`
+-   `<FileField />`
+-   `<ImageField />`
+-   `<MarkdownField />`
+-   `<NumberField />`
+-   `<TagsField />`
+-   `<TextField />`
+-   `<UrlField />`
 
 ### Auth Pages
 
@@ -80,10 +80,10 @@ Auth pages are designed to be used as the pages of the authentication flow of th
 
 The list of types of auth pages that are available in the UI integrations are:
 
-- `<AuthPage type="login" />`
-- `<AuthPage type="register" />`
-- `<AuthPage type="forgot-password" />`
-- `<AuthPage type="reset-password" />`
+-   `<AuthPage type="login" />`
+-   `<AuthPage type="register" />`
+-   `<AuthPage type="forgot-password" />`
+-   `<AuthPage type="reset-password" />`
 
 ### Error Pages
 
@@ -101,9 +101,9 @@ In many of these components, you'll be able to pass props to override or extend 
 import { EditButton } from "@refinedev/antd";
 
 <EditButton
-  accessControl={{
-    hideIfUnauthorized: true,
-  }}
+    accessControl={{
+        hideIfUnauthorized: true,
+    }}
 />;
 ```
 
@@ -176,13 +176,13 @@ import { Refine } from "@refinedev/core";
 import { notificationProvider } from "@refinedev/mantine";
 
 const App = () => (
-  <Refine
-    // highlight-next-line
-    notificationProvider={notificationProvider}
-    /* ... */
-  >
-    {/* ... */}
-  </Refine>
+    <Refine
+        // highlight-next-line
+        notificationProvider={notificationProvider}
+        /* ... */
+    >
+        {/* ... */}
+    </Refine>
 );
 ```
 
