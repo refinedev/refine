@@ -694,7 +694,7 @@
     },
     {
       "from": "/docs/general-concepts/",
-      "to": "/docs/api-reference/general-concepts/"
+      "to": "/docs/guides-concepts/general-concepts/"
     },
     {
       "from": "/docs/getting-started/components/",
@@ -823,7 +823,7 @@
     },
     {
       "from": "/docs/api-reference/",
-      "to": "/docs/api-reference/general-concepts/"
+      "to": "/docs/guides-concepts/general-concepts/"
     },
     {
       "from": "/examples/",
