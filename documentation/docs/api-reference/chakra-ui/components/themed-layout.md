@@ -820,7 +820,7 @@ const App = () => {
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
                     authProvider={authProvider}
-                    Dashboar
+                    Dashboard
                     resources={[
                         // highlight-start
                         {

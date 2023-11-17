@@ -187,7 +187,7 @@ Finally, you need to replace the `<thead/>` element with the following code:
 In the above code, we have added a basic text input to the column header. When the user types in the input, the `setFilterValue` method of the column will be called which will set the filter value of the column.
 
 :::tip
-We added the `enableColumnFilter` property to the column definition, which will call the `getCanFilter` method of the column to determine whether the column should have a filter input or not. If you want to disable the filtering for a spesific column, set the `enableColumnFilter` property of the column to false in the column definition:
+We added the `enableColumnFilter` property to the column definition, which will call the `getCanFilter` method of the column to determine whether the column should have a filter input or not. If you want to disable the filtering for a specific column, set the `enableColumnFilter` property of the column to false in the column definition:
 
 ```tsx
 {

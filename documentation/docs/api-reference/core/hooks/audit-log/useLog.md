@@ -56,7 +56,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                        | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
@@ -97,7 +97,7 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                        | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |

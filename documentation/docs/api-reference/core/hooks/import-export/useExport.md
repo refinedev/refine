@@ -321,7 +321,7 @@ This will save the data as follows:
 
 ### Type Parameters
 
-| Property   | Desription                                                                 | Default                    |
+| Property   | Description                                                                 | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TVariables | Values for params                                                          | `any`                      |

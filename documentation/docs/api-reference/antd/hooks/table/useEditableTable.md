@@ -6,7 +6,7 @@ source: packages/antd/src/hooks/table/useTable
 
 import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
-`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Design's [`<Table>`][table] and [`<Form>`][form] components.
 
 :::info
 `useEditeableTable` hook is extended from the [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
@@ -304,7 +304,7 @@ All `useForm` and [`useTable`][usetable] properties are available in `useEditabl
 
 ### `autoSubmitClose`
 
-`autoSubmitClose` makes the table's row close after a succecful submit. It is `true` by default.
+`autoSubmitClose` makes the table's row close after a successful submit. It is `true` by default.
 
 For this effect, `useEditableTable` automatically calls the `setId` function with `undefined` after successful submit.
 
@@ -360,7 +360,7 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 
 ### Type Parameters
 
-| Property         | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                          | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

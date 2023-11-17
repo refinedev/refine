@@ -508,7 +508,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 -   Title: text
 -   CategoryId: text
 -   Content: text
--   Images: wilcard
+-   Images: wildcard
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/posts.png" alt="posts" />
 
@@ -524,7 +524,7 @@ Then we need to create an appwrite user to be able to login with **refine**.
 
 In order to list posts and categories, you need to give read and write permission by Appwrite.
 
-Example: `Post Collection Permissons`
+Example: `Post Collection Permissions`
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/permission.png" alt="permission" />
 <br/>

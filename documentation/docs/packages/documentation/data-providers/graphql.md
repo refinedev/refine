@@ -105,7 +105,7 @@ You can see the fields of the collections we created as below.
 {
     "id": 1,
     "title": "Eius ea autem.",
-    "content": "Explicabo nihil delectus. Nam aliquid sunt numquam...",
+    "content": "Explicabo nihil delectus. Name aliquid sunt numquam...",
     "category": {
         "id": 24,
         "title": "Placeat fuga"

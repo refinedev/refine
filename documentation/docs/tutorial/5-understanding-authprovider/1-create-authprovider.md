@@ -1315,7 +1315,7 @@ const App = () => {
 };
 ```
 
-> For mor information, refer to the [interceptors section of the `axios` documentation &#8594](https://axios-http.com/docs/interceptors)
+> For more information, refer to the [interceptors section of the `axios` documentation &#8594](https://axios-http.com/docs/interceptors)
 
 ## Implementing Refresh Token Mechanism
 

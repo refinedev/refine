@@ -1158,7 +1158,7 @@ All [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) return va
 
 The return values needed by the manage state steps.
 
-#### `currenStep`
+#### `currentStep`
 
 Current step, counting from `0`.
 
@@ -1181,7 +1181,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                          | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

@@ -592,7 +592,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It is usefull when you want to `edit` or `clone` a `resource` from a different page.
+It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 > Note: `id` is required when `action: "edit"` or `action: "clone"`.
 
@@ -1229,7 +1229,7 @@ const {
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                          | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

@@ -373,7 +373,7 @@ render(<App />);
 
 ## Access Control
 
-`refine-kbar` respects the access control settings of your App. To learn more about access control, please refer to the [Access Control Provider][access-contol] section of the documentation. Also, we can use the `canDelete` in the `resources` to check the delete accessibility of the command palette.  
+`refine-kbar` respects the access control settings of your App. To learn more about access control, please refer to the [Access Control Provider][access-control] section of the documentation. Also, we can use the `canDelete` in the `resources` to check the delete accessibility of the command palette.  
 
 For more information check out the source code of [`refine-kbar`][refine-kbar] package
 
@@ -416,6 +416,6 @@ Since `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar), you use
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
 [refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
-[access-contol]: https://refine.dev/docs/core/providers/accessControl-provider/
+[access-control]: https://refine.dev/docs/core/providers/accessControl-provider/
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
 [refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx

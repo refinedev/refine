@@ -579,7 +579,7 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 ### `liveMode`
 
-`liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is recieved. The `off` value can be used to avoid creating a subscription all together.
+`liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is received. The `off` value can be used to avoid creating a subscription all together.
 
 > For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#livemode)
 
@@ -591,7 +591,7 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 ### `redirect`
 
-By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behaviour based on the form [action](/api-reference/core/hooks/useForm.md#actions), set `redirect` as follows:
+By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/api-reference/core/hooks/useForm.md#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App: React.FC = () => {

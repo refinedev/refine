@@ -55,8 +55,8 @@ const accessControlProvider: IAccessControlContext = {
 };
 ```
 
-It's also possible to globally configure buttons' behaviour by passing `options` to the `accessControlProvider`.
-You can still change the behaviour of the buttons independently, however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
+It's also possible to globally configure buttons' behavior by passing `options` to the `accessControlProvider`.
+You can still change the behavior of the buttons independently, however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
 By default, `enableAccessControl` is **true** and `hideIfUnauthorized` is **false**.
 
 ```ts

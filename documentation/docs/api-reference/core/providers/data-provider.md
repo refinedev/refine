@@ -205,7 +205,7 @@ useTable({
 });
 ```
 
-Or use the `meta.dataProviderName` property in your resource config, which will be the default data provider but can be overriden in data hooks and components:
+Or use the `meta.dataProviderName` property in your resource config, which will be the default data provider but can be overridden in data hooks and components:
 
 ```tsx
 const App = () => {

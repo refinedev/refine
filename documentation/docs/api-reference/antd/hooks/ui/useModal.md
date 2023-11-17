@@ -3,7 +3,7 @@ id: useModal
 title: useModal
 ---
 
-The `useModal` hook helps you manage the [Ant Desing Modal](https://ant.design/components/modal) component.
+The `useModal` hook helps you manage the [Ant Design Modal](https://ant.design/components/modal) component.
 
 ```ts
 const { show, close, modalProps } = useModal();

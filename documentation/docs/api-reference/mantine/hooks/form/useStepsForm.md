@@ -1122,7 +1122,7 @@ All [`useForm`](/docs/api-reference/mantine/hooks/form/useForm) return values al
 
 The props needed by the `<Stepper>` component.
 
-#### `currenStep`
+#### `currentStep`
 
 Current step, counting from `0`.
 
@@ -1193,7 +1193,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                          | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

@@ -7,7 +7,7 @@ title: General Concepts
 
 ## `resource`
 
-`resource` is a prop that gets passed to `dataProvider` as a paremeter by **refine**. It is usually used as an API endpoint path but it all depends on how you handle it in your `dataProvider`
+`resource` is a prop that gets passed to `dataProvider` as a parameter by **refine**. It is usually used as an API endpoint path but it all depends on how you handle it in your `dataProvider`
 
 > For an example, refer to the [`Creating a data provider from scratch part of the tutorial`](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
 
@@ -53,7 +53,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-This value however can be overriden by passing the `resource` prop to the hook:
+This value however can be overridden by passing the `resource` prop to the hook:
 
 ```tsx title="src/pages/posts/list.tsx"
 import { useTable } from "@refinedev/core";

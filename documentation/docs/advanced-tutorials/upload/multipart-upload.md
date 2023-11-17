@@ -433,7 +433,7 @@ This data is sent to the API when the form is submitted.
 ```
 
 :::caution
-The following datas are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
+The following data are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
 :::
 
 | Property | Description                              |

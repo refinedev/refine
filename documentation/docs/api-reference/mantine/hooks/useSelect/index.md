@@ -122,7 +122,7 @@ useSelect({
 
 ### `defaultValue`
 
-`deafultValue` allows you to make options selected by default and adds extra options to `<select>` component. In some cases, like if there are too many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A seperate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
+`defaultValue` allows you to make options selected by default and adds extra options to `<select>` component. In some cases, like if there are too many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A separate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
 
 ```tsx
 useSelect({
@@ -479,7 +479,7 @@ return <Select options={options} />;
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                          | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

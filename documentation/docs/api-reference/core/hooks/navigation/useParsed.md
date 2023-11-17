@@ -72,6 +72,6 @@ This is the object that contains all the parameters that are parsed from the URL
 
 ## Type Parameters
 
-| Property | Desription            | Default               |
+| Property | Description            | Default               |
 | -------- | --------------------- | --------------------- |
 | TParams  | Query parameters type | `Record<string, any>` |

@@ -336,7 +336,7 @@ export const DashboardPage: React.FC = () => {
             notification["success"]({
                 message: "Transaction Success",
                 description:
-                    "Transaction successfull you can check on Etherscan.io",
+                    "Transaction successful you can check on Etherscan.io",
             });
         } else {
             notification["warning"]({
@@ -398,7 +398,7 @@ export const DashboardPage: React.FC = () => {
                 okButtonProps={{ loading: loading }}
             >
                 <Form layout="vertical" onFinish={handleModal} form={form}>
-                    <Form.Item name="receiver" label="Receiver Public Adress">
+                    <Form.Item name="receiver" label="Receiver Public Address">
                         <Input />
                     </Form.Item>
                     <Form.Item name="amount" label="Amaount Ether">

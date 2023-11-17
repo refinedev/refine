@@ -945,7 +945,7 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 
 ```tsx
 import { json, LoaderFunction } from "@remix-run/node";
-// highligt-next-line
+// highlight-next-line
 import { parseTableParams } from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -955,7 +955,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     const { resource } = params;
     const url = new URL(request.url);
 
-    // highligt-next-line
+    // highlight-next-line
     const tableParams = parseTableParams(url.search);
 
     try {

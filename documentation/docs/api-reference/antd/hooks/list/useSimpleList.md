@@ -828,7 +828,7 @@ Use `setSorters` instead.
 
 ### Type Parameters
 
-| Property         | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                          | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

@@ -986,7 +986,7 @@ export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
 ```tsx
-// highligt-next-line
+// highlight-next-line
 import { parseTableParams } from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -995,7 +995,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 export const getServerSideProps = ({ params, resolvedUrl }) => {
     const { resource } = params;
 
-    // highligt-next-line
+    // highlight-next-line
     const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
 
     try {

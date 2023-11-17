@@ -372,7 +372,7 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                        | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |

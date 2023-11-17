@@ -290,7 +290,7 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Type Parameters
 
-| Property   | Desription                                                                 | Default                    |
+| Property   | Description                                                                 | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TItem      | Interface of parsed csv data                                               | `any`                      |
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |

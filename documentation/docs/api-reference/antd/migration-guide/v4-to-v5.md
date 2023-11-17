@@ -87,7 +87,7 @@ And it's done. Now your project uses `@refinedev/antd@4.x.x`.
 
 ### Updating Props
 
-`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and has been removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to incosistency with all UI packages. Use the `headerButtons` and `headerProps` props instead.
+`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and has been removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to inconsistency with all UI packages. Use the `headerButtons` and `headerProps` props instead.
 
 ```diff title="List.tsx"
 - <List actionButtons={actionButtons} pageHeaderProps={pageHeaderProps}>

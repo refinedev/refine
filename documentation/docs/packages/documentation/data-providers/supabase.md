@@ -98,7 +98,7 @@ Also, we need to install npm packages to use markdown editor:
 npm i @uiw/react-md-editor
 ```
 
-This will create a new refine app with Supabase data provider and Ant Desing as a UI framework. We'll be using this project as a base to implement our example.
+This will create a new refine app with Supabase data provider and Ant Design as a UI framework. We'll be using this project as a base to implement our example.
 
   </TabItem>
     <TabItem value="nopreset">
@@ -1462,7 +1462,7 @@ function App() {
 ```
 
 :::note
-For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
+For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
 [Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
 :::

@@ -26,7 +26,7 @@ useSubscription({
 
 ### Properties
 
-`useSubscription` will be passed to the [subscribe][live-provider-subscribe] method from the [liveProvider][live-provider] as a parameter. You can use the following properties of this method while subcribing to a channel.
+`useSubscription` will be passed to the [subscribe][live-provider-subscribe] method from the [liveProvider][live-provider] as a parameter. You can use the following properties of this method while subscribing to a channel.
 
 ### channel <PropTag required/>
 
@@ -54,7 +54,7 @@ You can pass any additional parameters to the [`liveProvider`][live-provider]'s 
 
 Hooks that use `useSubscription` internally send the query's parameters' (pagination, meta, sort, filters, etc.) information along with this prop.
 
-> For more information on which hooks use `useSubcription` internally, refer to the [LiveProvider's "Supported Hooks Subscription" section&#8594][supported-hooks-subscription]
+> For more information on which hooks use `useSubscription` internally, refer to the [LiveProvider's "Supported Hooks Subscription" section&#8594][supported-hooks-subscription]
 
 ### dataProviderName
 

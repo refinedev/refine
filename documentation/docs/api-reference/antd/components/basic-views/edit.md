@@ -998,7 +998,7 @@ render(
 
 ### `headerButtonProps`
 
-You can use the `headerButtonProps` proeprty to customize the wrapper element of the buttons at the header:
+You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
