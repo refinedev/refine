@@ -57,6 +57,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
                     "mt-8 landing-sm:mt-12 landing-lg:mt-20",
                     "grid grid-cols-12",
                     "gap-6",
+                    "items-stretch",
                 )}
             >
                 {testimonialsFirstThree.map((testimonial, index) => {
@@ -66,7 +67,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
                             className={clsx(
                                 "block landing-md:hidden landing-lg:block",
                                 "col-span-full landing-lg:col-span-4",
-                                "h-full",
+                                "h-auto",
                             )}
                             {...testimonial}
                         />
@@ -79,7 +80,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
                             className={clsx(
                                 "hidden landing-md:block landing-lg:hidden",
                                 "col-span-6",
-                                "h-full",
+                                "h-auto",
                             )}
                             {...testimonial}
                         />

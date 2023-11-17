@@ -56,9 +56,9 @@ export const BannerImageWithText: FC<Props> = ({
                 "rounded-2xl",
                 "p-6",
                 "flex",
-                "flex-col md:flex-row",
+                "flex-col 2xl:flex-row",
                 "items-center",
-                "gap-4 md:gap-10",
+                "gap-4 2xl:gap-10",
                 "not-prose",
                 variant === "gray" && "bg-banner-examples-gray",
                 variant === "purple" && "bg-banner-examples-purple",
@@ -71,7 +71,7 @@ export const BannerImageWithText: FC<Props> = ({
                 className={clsx(
                     "flex",
                     "max-w-[360px]",
-                    "h-auto xl:h-[192px]",
+                    "h-auto",
                     "flex-shrink-0",
                     "rounded-lg",
                     "overflow-hidden",
@@ -85,20 +85,21 @@ export const BannerImageWithText: FC<Props> = ({
             </Link>
             <div
                 className={clsx(
-                    "w-[360px] md:w-max",
                     "flex",
                     "flex-col",
                     "gap-6",
-                    "justify-center md:justify-start",
-                    "items-center md:items-start",
-                    "text-center md:text-start",
+                    "justify-center 2xl:justify-start",
+                    "items-center 2xl:items-start",
+                    "text-center 2xl:text-start",
                     "not-prose",
                 )}
             >
                 {title && (
-                    <h2 className={clsx("text-2xl", "text-gray-0")}>{title}</h2>
+                    <h2 className={clsx("text-xl md:text-2xl", "text-gray-0")}>
+                        {title}
+                    </h2>
                 )}
-                <p className={clsx("text-base", "text-gray-100")}>
+                <p className={clsx("text-sm md:text-base", "text-gray-100")}>
                     {description}
                 </p>
                 <LandingRainbowButton
@@ -112,13 +113,19 @@ export const BannerImageWithText: FC<Props> = ({
                     <div
                         className={clsx(
                             "text-gray-900",
-                            "text-base",
+                            "text-sm md:text-base",
                             "font-bold",
                         )}
                     >
                         {button.text}
                     </div>
-                    <ArrowRightIcon className={clsx("ml-2", "w-4", "h-4")} />
+                    <ArrowRightIcon
+                        className={clsx(
+                            "ml-1 md:ml-2",
+                            "w-[14px] h-[14px]",
+                            "md:w-4 md:h-4",
+                        )}
+                    />
                 </LandingRainbowButton>
             </div>
             <RefineLogoSeal

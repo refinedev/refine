@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Tag } from "antd";
 
-import { QuoteStatus } from "@interfaces";
+import { QuoteStatus } from "@/interfaces";
 
 const variant: Record<QuoteStatus, any> = {
     DRAFT: {
