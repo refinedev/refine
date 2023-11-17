@@ -188,7 +188,13 @@ import { MantineAuth } from './auth-pages/mantine';
 
 Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/docs/api-reference/core/providers/notification-provider) to the `<Refine />` component.
 
-Once you provide `notificationProvider`, Refine will automatically notify users about the authentication errors.
+Once you provide `notificationProvider`, Refine will automatically notify users about the authentication errors on following auth provider methods:
+
+- register
+- login
+- logout
+- forgotPassword
+- updatePassword
 
 For example, when you return `error` object from the `authProvider.login` method, Refine will automatically notify users about the error.
 
@@ -199,7 +205,7 @@ import { handleLogin } from "./utils";
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
-    if (status === 401) {
+    if (status === 418) {
       return {
         success: false,
         error: { name: "Login Error", message: "Invalid credentials" },
@@ -214,6 +220,15 @@ export const authProvider: AuthBindings = {
 
 Refine provides a automatic routing system to redirect users to the desired page after the authentication process. To use this feature, you need to pass [`routerProvider`](/docs/api-reference/core/providers/router-provider) to the `<Refine />` component.
 
+Once you provide `routerProvider`, Refine will automatically redirect users to the desired page on following auth provider methods:
+
+- register
+- login
+- logout
+- onError
+- forgotPassword
+- updatePassword
+
 For example, when you return `redirectTo` object from the `authProvider.register` method, Refine will automatically redirect users to the desired page.
 
 ```tsx
@@ -223,7 +238,7 @@ import { handleLogin } from "./utils";
 export const authProvider: AuthBindings = {
   register: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
-    if (status === 409) {
+    if (status === 418) {
       return {
         success: false,
         redirectTo: "/forgot-password",
@@ -231,6 +246,7 @@ export const authProvider: AuthBindings = {
       };
     }
   },
+  ...
 };
 ```
 
