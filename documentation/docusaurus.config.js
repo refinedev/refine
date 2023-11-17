@@ -21,7 +21,6 @@ const siteConfig = {
     trailingSlash: true,
     favicon: "img/refine_favicon.svg",
     scripts: ["https://platform.twitter.com/widgets.js"],
-    onBrokenLinks: "warn",
     presets: [
         [
             "@docusaurus/preset-classic",
