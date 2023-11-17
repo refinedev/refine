@@ -14,6 +14,7 @@ export const BadgeTooltip = ({ children, content }: Props) => {
                 "relative",
                 "group",
                 "inline-flex",
+                "align-middle",
             )}
         >
             {children}
