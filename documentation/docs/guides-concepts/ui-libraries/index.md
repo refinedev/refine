@@ -12,53 +12,14 @@ Refine has out of the box support for the four libraries that are widely used in
 
 These integrations are made to provide solutions for common use cases such as menus, layouts, action buttons, tables, forms and more while providing a consistent design language with the UI library. Rather than a constraint, these integrations are designed as helpers and extensions to the core functionalities of Refine and the UI libraries.
 
--   [Ant Design with `@refinedev/antd`](ui-integrations/ant-design/introduction/index.md)
--   [Material UI with `@refinedev/mui`](ui-integrations/material-ui/introduction/index.md)
--   [Chakra UI with `@refinedev/chakra-ui`](ui-integrations/chakra-ui/introduction/index.md)
--   [Mantine with `@refinedev/mantine`](ui-integrations/mantine/introduction/index.md)
+- [Ant Design with `@refinedev/antd`](ui-integrations/ant-design/introduction/index.md)
+- [Material UI with `@refinedev/mui`](ui-integrations/material-ui/introduction/index.md)
+- [Chakra UI with `@refinedev/chakra-ui`](ui-integrations/chakra-ui/introduction/index.md)
+- [Mantine with `@refinedev/mantine`](ui-integrations/mantine/introduction/index.md)
 
 ## Prebuilt Components
 
 Refine's UI integration packages exposes prebuilt components that are designed to be used with the UI libraries. These components are compositions of the Refine's functionalities and the UI libraries' components. Since their implementation is based on the UI libraries, they are easy to customize and extend to fit your needs.
-
-### Buttons
-
-Refine's UI integrations offer variety of buttons that are built using the appropriate components of the UI libraries and includes many logical functionalities such as authorization checks, confirmation dialogs, loading states, invalidation, navigation and more.
-
-The list of buttons that are available in the UI integrations are:
-
--   `<CreateButton />`
--   `<EditButton />`
--   `<ListButton />`
--   `<ShowButton />`
--   `<CloneButton />`
--   `<DeleteButton />`
--   `<SaveButton />`
--   `<RefreshButton />`
--   `<ImportButton />`
--   `<ExportButton />`
-
-### Views
-
-Views are designed as wrappers around the content of the pages in the application. They are designed to be used within the layouts and provide basic functionalities such as titles based on the resource, breadcrumbs, related actions and authorization checks.
-
-The list of views that are available in the UI integrations are:
-
--   `<List />`
--   `<Show />`
--   `<Edit />`
--   `<Create />`
-
-### Auth Pages
-
-Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine.
-
-The list of types of auth pages that are available in the UI integrations are:
-
--   `<AuthPage type="login" />`
--   `<AuthPage type="register" />`
--   `<AuthPage type="forgot-password" />`
--   `<AuthPage type="reset-password" />`
 
 ### Layouts and Menus
 
@@ -67,6 +28,66 @@ Layouts and menus are one of the common elements of an application, this is why 
 These components are designed to fit the most common needs of an application with a flexibility to customize them to fit your needs. For example, a `<Sider>` component is available in all of the UI integrations which includes a navigation menu with a multi-level support, an authorization check for menu items and a logout button which leverages the `useLogout` hook of refine.
 
 As an addition to the layouts, there is also `<Breadcrumb />` component that is designed to be used with the layouts which offers a breadcrumb navigation for the views.
+
+### Buttons
+
+Refine's UI integrations offer variety of buttons that are built using the appropriate components of the UI libraries and includes many logical functionalities such as authorization checks, confirmation dialogs, loading states, invalidation, navigation and more.
+
+The list of buttons that are available in the UI integrations are:
+
+- `<CreateButton />`
+- `<EditButton />`
+- `<ListButton />`
+- `<ShowButton />`
+- `<CloneButton />`
+- `<DeleteButton />`
+- `<SaveButton />`
+- `<RefreshButton />`
+- `<ImportButton />`
+- `<ExportButton />`
+
+### Views
+
+Views are designed as wrappers around the content of the pages in the application. They are designed to be used within the layouts and provide basic functionalities such as titles based on the resource, breadcrumbs, related actions and authorization checks.
+
+The list of views that are available in the UI integrations are:
+
+- `<List />`
+- `<Show />`
+- `<Edit />`
+- `<Create />`
+
+### Fields
+
+Field components can be used to render values with appropriate design and format of the UI libraries. These components are built on top of respective components of the UI library and also provide logic for formatting of the values. While these components might not always be suitable for your use case, they can be combined or extended to provide the desired functionality.
+
+The list of provided field components are:
+
+- `<BooleanField />`
+- `<DateField />`
+- `<EmailField />`
+- `<FileField />`
+- `<ImageField />`
+- `<MarkdownField />`
+- `<NumberField />`
+- `<TagsField />`
+- `<TextField />`
+- `<UrlField />`
+
+### Auth Pages
+
+Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine.
+
+The list of types of auth pages that are available in the UI integrations are:
+
+- `<AuthPage type="login" />`
+- `<AuthPage type="register" />`
+- `<AuthPage type="forgot-password" />`
+- `<AuthPage type="reset-password" />`
+
+### Error Pages
+
+UI integrations of Refine also provides an `<ErrorPage />` component that you can use to render a 404 page in your app. While these components does not offer much functionality, they are provided as an easy way to render an error page with a consistent design language.
 
 ## Customization
 
@@ -80,9 +101,9 @@ In many of these components, you'll be able to pass props to override or extend 
 import { EditButton } from "@refinedev/antd";
 
 <EditButton
-    accessControl={{
-        hideIfUnauthorized: true,
-    }}
+  accessControl={{
+    hideIfUnauthorized: true,
+  }}
 />;
 ```
 
@@ -155,13 +176,13 @@ import { Refine } from "@refinedev/core";
 import { notificationProvider } from "@refinedev/mantine";
 
 const App = () => (
-    <Refine
-        // highlight-next-line
-        notificationProvider={notificationProvider}
-        /* ... */
-    >
-        {/* ... */}
-    </Refine>
+  <Refine
+    // highlight-next-line
+    notificationProvider={notificationProvider}
+    /* ... */
+  >
+    {/* ... */}
+  </Refine>
 );
 ```
 
