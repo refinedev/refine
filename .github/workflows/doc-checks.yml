@@ -9,11 +9,14 @@ on:
 
 jobs:
   misspell:
+    concurrency:
+      group: ${{ github.ref }}-misspell-lint
+      cancel-in-progress: true
     name: Check spelling using misspell
     runs-on: ubuntu-latest
     steps:
       - name: Check out code.
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: misspell
         id: check_for_typos
