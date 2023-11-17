@@ -66,7 +66,7 @@ export const App = () => {
 };
 ```
 
-> See [Access Control Provider](/docs/core/providers/access-control-provider) page for more information.
+[To learn more about the `Access Control Provider`, check out the reference page.](/docs/core/providers/access-control-provider)
 
 ## CanAccess Component
 
@@ -97,7 +97,7 @@ export const ListPage = () => {
 };
 ```
 
-`CanAccess` component accepts more props such as `fallback` on `onUnauthorized`. To learn more about these props, please refer to the [API Reference](/docs/core/components/can-access).
+[To learn more about the `CanAccess` component, check out the reference page.](/docs/core/components/can-access)
 
 ### Router Integrations
 
@@ -137,6 +137,8 @@ export const ListPage = () => {
   );
 };
 ```
+
+[To learn more about the `useCan` hook, check out the reference page.](/docs/core/hooks/use-can)
 
 ## Handling Authorization
 
