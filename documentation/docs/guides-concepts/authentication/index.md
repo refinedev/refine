@@ -21,7 +21,7 @@ Refine's **flexible architecture** allows you to easily implement various authen
 
 You can implement your own authentication system or use one of the [supported auth providers](#supported-auth-providers).
 
-[To learn more about how to create auth provider, check out the tutorial page.][create-auth-provider-tutorial]
+> [To learn more about how to create auth provider, check out the tutorial page.][create-auth-provider-tutorial]
 
 ## Auth Provider
 
@@ -32,10 +32,30 @@ Auth provider is an object that contains methods to handles authentication in yo
 To activate authentication in your app, you need to pass an `authProvider` to the `<Refine />` as a prop. Once you provide auth provider, you can utilize our auth hooks (useLogin, useRegister, useIsAuthenticated etc.) to easily manage your authentication.
 
 ```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
+import { Refine, AuthBindings } from "@refinedev/core";
 
-// highlight-next-line
-import authProvider from "./auth-provider";
+export const authProvider: AuthBindings = {
+  login: async ({ email, password }) => {
+    const { status } = handleLogin(email, password);
+
+    if (status === 200) {
+      return { success: true, redirectTo: "/dashboard" };
+    } else {
+      return {
+        success: false,
+        error: { name: "Login Error", message: "Invalid credentials" },
+      };
+    }
+  },
+  check: async (params) => ({}),
+  logout: async (params) => ({}),
+  onError: async (params) => ({}),
+  register: async (params) => ({}),
+  forgotPassword: async (params) => ({}),
+  updatePassword: async (params) => ({}),
+  getPermissions: async (params) => ({}),
+  getIdentity: async (params) => ({}),
+};
 
 const App = () => {
   // highlight-next-line

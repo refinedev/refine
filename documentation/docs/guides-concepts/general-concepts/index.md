@@ -118,9 +118,9 @@ The Authentication Provider centralizes the authentication and authorization pro
 It handles authentication and authorization processes such as login, logout, redirection, error handling, and more.
 
 ```tsx title=auth-provider.ts
-import { AuthProvider } from "@refinedev/core'";
+import { AuthBindings } from "@refinedev/core'";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
 
