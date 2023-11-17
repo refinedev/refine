@@ -271,7 +271,7 @@ The best way to customize your theme is by changing the configuration variables.
 import { RefineThemes } from "@refinedev/mui";
 import { createTheme } from "@mui/material/styles";
 
-const overridedLightTheme = createTheme({
+const overriddenLightTheme = createTheme({
     ...RefineThemes.Blue,
     // highlight-start
     palette: {
@@ -311,7 +311,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { SampleList } from "./pages/samples";
 
-const overridedLightTheme = {
+const overriddenLightTheme = {
     ...RefineThemes.Blue,
     // highlight-start
     palette: {
@@ -329,7 +329,7 @@ const overridedLightTheme = {
 const App: React.FC = () => {
     return (
         // highlight-next-line
-        <ThemeProvider theme={overridedLightTheme}>
+        <ThemeProvider theme={overriddenLightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <BrowserRouter>
@@ -391,7 +391,7 @@ const typography: TypographyVariantsOptions = {
     ].join(","),
 };
 
-const overridedLightTheme = createTheme({
+const overriddenLightTheme = createTheme({
     ...RefineThemes.Blue,
     typography: {
         ...typographyOptions,
