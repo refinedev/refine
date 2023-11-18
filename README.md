@@ -155,11 +155,7 @@ Once the setup is complete, navigate to the project folder and start your projec
 npm run dev
 ```
 
-The command above uses pre-set options for ease. For a different tech stack, simply run:
 
-```
- npm create refine-app@latest
-```
 <br/>
 
 Your **Refine** application will be accessible at [http://localhost:5173](http://localhost:5173):
@@ -167,6 +163,13 @@ Your **Refine** application will be accessible at [http://localhost:5173](http:/
 <a href="http://localhost:5173">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/welcome.png)</a>
 
 <br/>
+
+
+> Note: The command above uses pre-set options for ease. For a different tech stack, simply run:
+>
+>```
+>npm create refine-app@latest
+>```
 
 Let's consume a public `fake REST API` and add two resources (_blog_posts_ and _categories_) to our project. Replace the contents of `src/App.tsx` with the following code:
 
@@ -250,7 +253,8 @@ export default App;
 
 <br/>
 
-🚀 Thanks to the **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.
+
+🚀 The [**Refine Inferencer package**](https://refine.dev/docs/packages/documentation/inferencer/) automatically generates `list`, `show`, `create`, and `edit` pages by guessing configurations from API data. We've used it here for a quick, clear start, but you can also choose to code your pages from scratch instead of using the Inferencer feature.
 
 Now, you should see the output as a table populated with `blog_posts` & `category` data:
 
@@ -269,9 +273,9 @@ You can get the auto-generated page codes by clicking the `Show Code` button on 
 👉 Read more on [Advanced Tutorials
 ](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
-👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
+👉 See the real-life [CRM Application](https://example.crm.refine.dev/) project built using Refine.
 
-👉 Play with interactive [examples.](https://refine.dev/docs/examples/)
+👉 Play with interactive [examples](https://refine.dev/docs/examples/).
 
 
 
@@ -281,9 +285,7 @@ You can get the auto-generated page codes by clicking the `Show Code` button on 
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord server](https://discord.gg/refine).
 
-## Our ♥️ Contributors
-
-
+## Contributors ♥️
 
 <a href="https://github.com/refinedev/refine/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=refinedev/refine&max=400&columns=20" />
