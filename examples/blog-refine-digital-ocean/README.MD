@@ -1,16 +1,9 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
+    <picture  style="display: inline-block;" >
+    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </picture>
-
-<br />
-<br />
 </a>
-
-<br />
-<br />
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -20,8 +13,6 @@
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
-
-<br />
 
 <div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.<br>An open source, headless web application framework developed with flexibility in mind.
 

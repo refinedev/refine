@@ -2,14 +2,11 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
-</picture>
-
-<br />
-<br />
+    <picture  style="display: inline-block;" >
+    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
+    </picture>
 </a>
+
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -20,7 +17,6 @@
 </div>
 </div>
 
-<br />
 
 <div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open-source, headless web application framework developed with flexibility in mind.
 
