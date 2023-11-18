@@ -5,8 +5,10 @@
     <picture  style="display: inline-block;" >
     <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
     </picture>
+    <br/>
 </a>
-
+  
+<br/>
 <br/>
 
 <div align="center">
@@ -50,33 +52,33 @@
 
 [![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.jpg)](https://refine.dev)
 
-## What is refine?
+## What is Refine?
 
-**refine** is a meta **React** framework that enables the rapid✨ development of a wide range of web applications.
+**Refine** is a meta **React** framework that enables the rapid✨ development of a wide range of web applications.
 
 From internal tools to admin panels, B2B apps, and dashboards, it serves as a comprehensive solution for building any type of **CRUD** application.
 
-refine's internal hooks and components simplify the development process and eliminate repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+Refine's internal hooks and components simplify the development process and eliminate repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-**refine** is _headless by design_, thereby offering unlimited styling and customization options.
+**Refine** is _headless by design_, thereby offering unlimited styling and customization options.
 
 ## What do you mean by "headless" ?
 
-Instead of being limited to a set of pre-styled components, **refine** provides collections of helper `hooks`, `components`, `providers`, and more. Since business logic and the UI are completely decoupled, you can customize the UI without constraints.
+Instead of being limited to a set of pre-styled components, **Refine** provides collections of helper `hooks`, `components`, `providers`, and more. Since business logic and the UI are completely decoupled, you can customize the UI without constraints.
 
-It means that **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
+It means that **Refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are a set of components that are nicely integrated with the headless `@refinedev/core` package.
+Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are a set of components that are nicely integrated with the headless `@refinedev/core` package.
 
 ### Headless in Routing
 
-For the routing, refine's headless approach shines too. It doesn't tie you to a single routing method or library. Instead, it offers a simple routing interface with built-in integrations for popular libraries.
+For the routing, Refine's headless approach shines too. It doesn't tie you to a single routing method or library. Instead, it offers a simple routing interface with built-in integrations for popular libraries.
 
-This means you can use refine seamlessly on different platforms like React Native, Electron, Next.js, Remix, etc. without any extra setup steps.
+This means you can use Refine seamlessly on different platforms like React Native, Electron, Next.js, Remix, etc. without any extra setup steps.
 
-## 🔥 Try refine
+## 🔥 Try Refine
 
-refine's [browser-based app scaffolder](https://refine.dev/#playground) lets you create refine app by making step-by-step selections directly in your browser
+Refine's [browser-based app scaffolder](https://refine.dev/#playground) lets you create Refine app by making step-by-step selections directly in your browser
 
 You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
 
@@ -133,15 +135,15 @@ You can take a look at some live examples that can be built using **refine** fro
 
 ⌛️ Built-in CLI with time-saving features
 
-💻 refine [Devtools](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md) - dive deeper into your app and provide useful insights
+💻 Refine [Devtools](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md) - dive deeper into your app and provide useful insights
 
 ✅ Full **test coverage**
 
 ## Quick Start
 
-The fastest way to get started with **refine** is by using the `create refine-app` CLI tool or the [browser-based app scaffolder](https://refine.dev/#playground).
+There are two ways to create a Refine app: either by using the `create refine-app` CLI tool or the [browser-based app scaffolder](https://refine.dev/#playground).
 
-For this example, we'll use the CLI tool. Simply run the following command to create a new **refine** project configured with [Ant Design](https://ant.design/) as the default UI framework:
+To quickly start a Refine project with [Ant Design](https://ant.design/) as the default UI framework, run the following command. 
 
 ```
 npm create refine-app@latest -- -o refine-antd
@@ -153,9 +155,14 @@ Once the setup is complete, navigate to the project folder and start your projec
 npm run dev
 ```
 
+The command above uses pre-set options for ease. For a different tech stack, simply run:
+
+```
+ npm create refine-app@latest
+```
 <br/>
 
-Your **refine** application will be accessible at [http://localhost:5173](http://localhost:5173):
+Your **Refine** application will be accessible at [http://localhost:5173](http://localhost:5173):
 
 <a href="http://localhost:5173">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/welcome.png)</a>
 
