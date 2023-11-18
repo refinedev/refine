@@ -7,6 +7,7 @@
     </picture>
 </a>
 
+<br/>
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -16,6 +17,9 @@
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
+
+<br/>
+<br/>
 
 
 <div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open-source, headless web application framework developed with flexibility in mind.
