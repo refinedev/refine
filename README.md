@@ -1,11 +1,8 @@
-<br/>
-
 <div align="center">
 <a href="https://refine.dev/">
     <picture  style="display: inline-block;" >
     <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
     </picture>
-    <br/>
 </a>
   
 <br/>
@@ -76,13 +73,11 @@ For the routing, Refine's headless approach shines too. It doesn't tie you to a 
 
 This means you can use Refine seamlessly on different platforms like React Native, Electron, Next.js, Remix, etc. without any extra setup steps.
 
-## 🔥 Try Refine
+## ⚡ Try Refine
 
-Refine's [browser-based app scaffolder](https://refine.dev/#playground) lets you create Refine app by making step-by-step selections directly in your browser
+Refine's [browser-based app scaffolder](https://refine.dev/#playground) enables you to build a Refine app through an interactive, step-by-step process in your browser. 
 
-You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
-
-This allows you to preview, modify, and download the project immediately, thereby streamlining the development process.
+You have the freedom to select your preferred libraries and frameworks, and the tool generates a ready-to-download boilerplate code. This feature not only lets you preview and tweak your project on the fly but also accelerates the overall development workflow.
 
 <br/>
 

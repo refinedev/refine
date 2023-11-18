@@ -30,7 +30,7 @@
 
 ## About
 
-⭐ You can view the live demo off the application [here](https://example.crm.refine.dev/).
+⭐ Check out the live demo of the application [here](https://example.crm.refine.dev/).
 
 This is a complete CRM (Customer Relationship Management) example project built using [refine](https://refine.dev/) and [Ant Design](https://ant.design/). It provides a set of tools and features to manage customer data, track interactions, and streamline business processes.
 
