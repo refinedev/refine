@@ -40,13 +40,13 @@ Source code is commented to help you understand what's going on.
 
 Feel free to explore the code and play around with it.
 
-## Try it out on your local
+## Try this example on your local
 
 ```bash
 npm create refine-app@latest -- --example new-routing-example
 ```
 
-## Try it out on CodeSandbox
+## Try this example on CodeSandbox
 
 <br/>
 
