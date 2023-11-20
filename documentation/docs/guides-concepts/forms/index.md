@@ -360,7 +360,7 @@ return (
 
 ## Redirections <GlobalConfigBadge />
 
-In many of the cases, you'll want to redirect the user to a different page after a successful mutation. `useForm` handles this for you, when the mutation succeeds it will redirect the user to the desired page. This behavior can be customized or disabled using the `redirect` prop.
+In many of the cases, you'll want to redirect the user to a different page after a successful mutation. `useForm` handles this for you, when the mutation succeeds it will redirect the user to the desired page.
 
 By default, all the form actions will redirect the user to the list page of the resource after a successful mutation. This behavior can be customized or disabled by passing a `redirect` prop. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/api-reference/core/components/refine-config.md).
 
