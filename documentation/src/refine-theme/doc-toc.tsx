@@ -2,7 +2,7 @@ import { useDoc } from "@docusaurus/theme-common/internal";
 import clsx from "clsx";
 import React from "react";
 // import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
-import { useLocation } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
 
 export const TOCItem = ({
     id,
@@ -25,17 +25,7 @@ export const TOCItem = ({
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            const hash = `#${id}`;
-                            if (hash !== window.location.hash) {
-                                onIdChange(id);
-                                if (typeof window !== "undefined") {
-                                    window.history.replaceState(
-                                        undefined,
-                                        undefined,
-                                        hash,
-                                    );
-                                }
-                            }
+                            onIdChange(id);
                         }
                     });
                 },
@@ -87,8 +77,21 @@ export const TOCItem = ({
 };
 
 export const DocTOC = () => {
-    // const docTOC = useDocTOCwithTutorial();
+    const location = useLocation();
+    const history = useHistory();
+
     const { toc, hasTOC, activeId, setActiveId } = useTOC();
+
+    const onIdChange = (id) => {
+        if (id !== `${location.hash ?? ""}`.replace("#", "")) {
+            setActiveId(id);
+            // history.replace({
+            //     ...location,
+            //     hash: `#${id}`,
+            // });
+            window.history.replaceState({}, "", `#${id}`);
+        }
+    };
 
     return (
         <div
@@ -117,9 +120,7 @@ export const DocTOC = () => {
                                     value={item.value}
                                     activeId={activeId}
                                     level={item.level}
-                                    onIdChange={(id) => {
-                                        setActiveId(id);
-                                    }}
+                                    onIdChange={onIdChange}
                                 />
                             </li>
                         );
