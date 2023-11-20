@@ -40,7 +40,7 @@ const App = () => (
 );
 ```
 
-[Check out React Router documentation for detailed information](router-integrations/react-router/index)
+[Check out React Router documentation for detailed information](/docs/packages/documentation/routers/react-router-v6)
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
@@ -63,7 +63,7 @@ export function MyApp({ Component, pageProps }) {
 
 > While using this integration, you won't be missing out Next.js features such as **SSR** and **ISR**.
 
-[Check out Next.js Router documentation for detailed information](router-integrations/next-js/index)
+[Check out Next.js Router documentation for detailed information](/docs/packages/documentation/routers/nextjs)
 
 </TabItem>
 <TabItem value="remix" label="Remix">
@@ -90,7 +90,7 @@ export default function App() {
 
 > While using this integration, you won't be missing out Remix features such as **SSR** and **ISR**.
 
-[Check out Remix Router documentation for detailed information](router-integrations/remix/index)
+[Check out Remix Router documentation for detailed information](/docs/packages/documentation/routers/remix)
 
 </TabItem>
 <TabItem value="expo-router" label="Expo Router (React Native)">

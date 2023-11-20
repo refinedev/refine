@@ -155,7 +155,7 @@ Pages
 (Move up and down to reveal more choices)
 ```
 
-[To learn more about the `swizzle` command, check out the CLI documentation.](/docs/packages/cli/index)
+[To learn more about the `swizzle` command, check out the CLI documentation.](/docs/packages/documentation/cli/)
 
 :::caution Warning
 
