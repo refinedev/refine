@@ -73,9 +73,6 @@
     "cli-table3": "^0.6.3",
     "center-align": "1.0.1"
   },
-  "overrides": {
-    "node-emoji": "^2.1.3"
-  },
   "author": "refine",
   "license": "MIT",
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
