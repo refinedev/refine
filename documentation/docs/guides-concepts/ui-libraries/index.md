@@ -157,11 +157,7 @@ Pages
 
 [To learn more about the `swizzle` command, check out the CLI documentation.](/docs/packages/documentation/cli/)
 
-:::caution Warning
-
-While `swizzle` provides a way to customize the components, it's a one time operation and it may be hard to maintain the changes and keep track of the new features in the future. Swizzling a component will detach it from the related package and it will be your responsibility to keep it up to date.
-
-:::
+> While `swizzle` provides a way to customize the components, it's a one time operation and it may be hard to maintain the changes and keep track of the new features in the future. Swizzling a component will detach it from the related package and it will be your responsibility to keep it up to date.
 
 ## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
 
