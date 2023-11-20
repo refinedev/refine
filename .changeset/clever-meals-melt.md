@@ -2,8 +2,6 @@
 "@refinedev/cli": patch
 ---
 
-fix: use node-emoji@v2.1.2 to include latest release.
+fix: override `node-emoji` package version used by `marked-terminal` to `2.1.0`
 
-fixes Fixes the issue: https://github.com/refinedev/refine/issues/5279
-
-`node-emoji` package released a new version to fix this import issue: https://github.com/omnidan/node-emoji/pull/154
+fixes the issue: https://github.com/refinedev/refine/issues/5279
