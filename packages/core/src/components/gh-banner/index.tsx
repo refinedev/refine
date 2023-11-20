@@ -147,8 +147,6 @@ const Text = ({ text }: { text: string }) => {
             rel="noreferrer"
             style={{
                 position: "absolute",
-                // left: "calc(50% + 200px)",
-                // transform: "translateX(calc(-50%))",
                 height: "100%",
                 padding: "0 60px",
                 display: "flex",
