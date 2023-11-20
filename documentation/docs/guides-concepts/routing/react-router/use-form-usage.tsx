@@ -2,37 +2,37 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function ReactRouterUseFormUsage() {
-    return (
-        <Sandpack
-            showNavigator
-            showFiles
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/my-products"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                    hidden: true,
-                },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "list.tsx": {
-                    code: ListTsxCode,
-                },
-                "edit.tsx": {
-                    code: EditTsxCode,
-                    active: true,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      showFiles
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      startRoute="/my-products"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+          hidden: true,
+        },
+        "/style.css": {
+          code: StyleCssCode,
+          hidden: true,
+        },
+        "list.tsx": {
+          code: ListTsxCode,
+        },
+        "edit.tsx": {
+          code: EditTsxCode,
+          active: true,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* jsx */ `

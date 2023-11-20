@@ -2,37 +2,37 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function ChakraUILayout() {
-    return (
-        <Sandpack
-            showNavigator
-            previewOnly
-            dependencies={{
-                "@refinedev/chakra-ui": "latest",
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "@refinedev/inferencer": "latest",
-                "@refinedev/react-table": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-                "@tabler/icons": "^1.119.0",
-                "@chakra-ui/react": "^2.5.1",
-            }}
-            startRoute="/my-products"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-                "/pages/products/list.tsx": {
-                    code: ListTsxCode,
-                },
-                "/pages/products/show.tsx": {
-                    code: ShowTsxCode,
-                    active: true,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      previewOnly
+      dependencies={{
+        "@refinedev/chakra-ui": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/inferencer": "latest",
+        "@refinedev/react-table": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+        "@tabler/icons": "^1.119.0",
+        "@chakra-ui/react": "^2.5.1",
+      }}
+      startRoute="/my-products"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+        "/pages/products/list.tsx": {
+          code: ListTsxCode,
+        },
+        "/pages/products/show.tsx": {
+          code: ShowTsxCode,
+          active: true,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `

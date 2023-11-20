@@ -2,31 +2,31 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function RemixResourceAndRoutesUsage() {
-    return (
-        <Sandpack
-            hidePreview
-            showFiles
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/remix-router": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            files={{
-                "/app/root.tsx": {
-                    code: RootTsxCode,
-                },
-                "/app/routes/my-products._index.tsx": {
-                    code: ListTsxCode,
-                },
-                "/app/routes/my-products.$id.tsx": {
-                    code: ShowTsxCode,
-                    active: true,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      hidePreview
+      showFiles
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/remix-router": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      files={{
+        "/app/root.tsx": {
+          code: RootTsxCode,
+        },
+        "/app/routes/my-products._index.tsx": {
+          code: ListTsxCode,
+        },
+        "/app/routes/my-products.$id.tsx": {
+          code: ShowTsxCode,
+          active: true,
+        },
+      }}
+    />
+  );
 }
 
 const RootTsxCode = /* tsx */ `

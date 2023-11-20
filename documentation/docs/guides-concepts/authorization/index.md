@@ -6,17 +6,17 @@ Authorization is a key aspect of security and user experience in web application
 
 refine's **flexible architecture** allows you to easily implement various authorization strategies:
 
--   Role-Based Access Control (**RBAC**)
--   Attribute-Based Access Control (**ABAC**)
--   Access Control List (**ACL**)
+- Role-Based Access Control (**RBAC**)
+- Attribute-Based Access Control (**ABAC**)
+- Access Control List (**ACL**)
 
 With **any** authorization solution. (i.e. [Okta](https://help.okta.com/wf/en-us/content/topics/workflows/connector-reference/okta/overviews/authorization.htm), [Casbin](https://casbin.org/), [Cerbos](https://cerbos.dev), or more)
 
 Refine offers several features to help you implement authorization in your application:
 
--   `<CanAccess />` component: Conditionally renders child components based on the user's access to a resource.
--   `useCan` hook: Returns a value indicating whether the user has access to a resource based on the given parameters.
--   **UI Integrations**: Conditionally renders UI elements such as **buttons**, **menu items**, etc. based on the user's access to a resource.
+- `<CanAccess />` component: Conditionally renders child components based on the user's access to a resource.
+- `useCan` hook: Returns a value indicating whether the user has access to a resource based on the given parameters.
+- **UI Integrations**: Conditionally renders UI elements such as **buttons**, **menu items**, etc. based on the user's access to a resource.
 
 In order to enable these features, Refine uses the **Access Control Provider** as an interface to connect your application with your authorization solution and provides necessary parameters to make access control decisions.
 
@@ -30,20 +30,20 @@ A basic **Access Control Provider** looks like this:
 import { AccessControlProvider } from "@refinedev/core";
 
 export const accessControlProvider: AccessControlProvider = {
-    can: async ({ resource, action, params }) => {
-        console.log(resource); // products, orders, etc.
-        console.log(action); // list, edit, delete, etc.
-        console.log(params); // { id: 1 }, { id: 2 }, etc.
+  can: async ({ resource, action, params }) => {
+    console.log(resource); // products, orders, etc.
+    console.log(action); // list, edit, delete, etc.
+    console.log(params); // { id: 1 }, { id: 2 }, etc.
 
-        if (meetSomeCondition) {
-            return { can: true };
-        }
+    if (meetSomeCondition) {
+      return { can: true };
+    }
 
-        return {
-            can: false,
-            reason: "Unauthorized",
-        };
-    },
+    return {
+      can: false,
+      reason: "Unauthorized",
+    };
+  },
 };
 ```
 
@@ -55,14 +55,14 @@ import { Refine } from "@refinedev/core";
 import { accessControlProvider } from "./access-control-provider";
 
 export const App = () => {
-    return (
-        <Refine
-            // highlight-next-line
-            accessControlProvider={accessControlProvider}
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      accessControlProvider={accessControlProvider}
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -80,20 +80,16 @@ Here's a basic example of how to use the `CanAccess` component:
 import { CanAccess } from "@refinedev/core";
 
 export const ListPage = () => {
-    return (
-        <CanAccess
-            resource="products"
-            action="list"
-            fallback={<h1>You are not authorized to see this page.</h1>}
-        >
-            <>
-                <h1>Products</h1>
-                <CanAccess resource="products" action="show" params={{ id: 1 }}>
-                    <Button>See Details</Button>
-                </CanAccess>
-            </>
+  return (
+    <CanAccess resource="products" action="list" fallback={<h1>You are not authorized to see this page.</h1>}>
+      <>
+        <h1>Products</h1>
+        <CanAccess resource="products" action="show" params={{ id: 1 }}>
+          <Button>See Details</Button>
         </CanAccess>
-    );
+      </>
+    </CanAccess>
+  );
 };
 ```
 
@@ -119,18 +115,18 @@ Here's a basic example of how to use the `useCan` hook:
 import { useCan } from "@refinedev/core";
 
 export const ListPage = () => {
-    const { data } = useCan({
-        resource: "products",
-        action: "show",
-        params: { id: 1 },
-    });
+  const { data } = useCan({
+    resource: "products",
+    action: "show",
+    params: { id: 1 },
+  });
 
-    return (
-        <>
-            <h1>Products</h1>
-            {data?.can && <Button>See Details</Button>}
-        </>
-    );
+  return (
+    <>
+      <h1>Products</h1>
+      {data?.can && <Button>See Details</Button>}
+    </>
+  );
 };
 ```
 
@@ -169,11 +165,11 @@ If you are using one of our buttons from our UI Integrations in your application
 ```tsx title=button-example.ts
 // Following buttons call `can` method with commented parameters.
 import {
-    CreateButton, //  { resource: "products", action: "create", params: { resource }}
-    ListButton, //    { resource: "products", action: "list" , params: { resource }}
-    EditButton, //    { resource: "products", action: "edit", params: { id: 1, resource } }
-    ShowButton, //    { resource: "products", action: "show", params: { id: 1, resource } }
-    DeleteButton, //  { resource: "products", action: "delete", params: { id: 1, resource } }
-    CloneButton, //   { resource: "products", action: "clone", params: { id: 1, resource } }
+  CreateButton, //  { resource: "products", action: "create", params: { resource }}
+  ListButton, //    { resource: "products", action: "list" , params: { resource }}
+  EditButton, //    { resource: "products", action: "edit", params: { id: 1, resource } }
+  ShowButton, //    { resource: "products", action: "show", params: { id: 1, resource } }
+  DeleteButton, //  { resource: "products", action: "delete", params: { id: 1, resource } }
+  CloneButton, //   { resource: "products", action: "clone", params: { id: 1, resource } }
 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
 ```

@@ -27,15 +27,11 @@ To learn more about the usage and see `useForm` in action, check out the referen
 import { useForm } from "@refinedev/core";
 
 const EditPage = () => {
-    const { queryResult, formLoading, onFinish } = useForm<
-        IProduct,
-        HttpError,
-        FormValues
-    >({
-        resource: "products",
-        action: "edit",
-        id: 123,
-    });
+  const { queryResult, formLoading, onFinish } = useForm<IProduct, HttpError, FormValues>({
+    resource: "products",
+    action: "edit",
+    id: 123,
+  });
 };
 ```
 
@@ -48,19 +44,19 @@ const EditPage = () => {
 import { useForm } from "@refinedev/react-hook-form";
 
 const EditPage = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        formState: { errors },
-        saveButtonProps,
-    } = useForm<IProduct, HttpError, FormValues>({
-        refineCoreProps: {
-            resource: "products",
-            action: "edit",
-            id: 123,
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    formState: { errors },
+    saveButtonProps,
+  } = useForm<IProduct, HttpError, FormValues>({
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
+  });
 };
 ```
 
@@ -73,15 +69,11 @@ const EditPage = () => {
 import { useForm } from "@refinedev/antd";
 
 const EditPage = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<
-        IProduct,
-        HttpError,
-        FormValues
-    >({
-        resource: "products",
-        action: "edit",
-        id: 123,
-    });
+  const { formProps, saveButtonProps, queryResult } = useForm<IProduct, HttpError, FormValues>({
+    resource: "products",
+    action: "edit",
+    id: 123,
+  });
 };
 ```
 
@@ -94,26 +86,26 @@ const EditPage = () => {
 import { useForm } from "@refinedev/react-hook-form";
 
 const EditPage = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        formState: { errors },
-        saveButtonProps,
-    } = useForm<IProduct, HttpError, FormValues>({
-        refineCoreProps: {
-            resource: "products",
-            action: "edit",
-            id: 123,
-        },
-        initialValues: {
-            name: "",
-            description: "",
-            category: {
-                id: "",
-            },
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    formState: { errors },
+    saveButtonProps,
+  } = useForm<IProduct, HttpError, FormValues>({
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
+    initialValues: {
+      name: "",
+      description: "",
+      category: {
+        id: "",
+      },
+    },
+  });
 };
 ```
 
@@ -174,9 +166,9 @@ All three modes have their own use cases and benefits, you'll be able to choose 
 
 ```tsx
 <Refine
-    options={{
-        mutationMode: "optimistic", // default is "pessimistic"
-    }}
+  options={{
+    mutationMode: "optimistic", // default is "pessimistic"
+  }}
 />
 ```
 
@@ -200,11 +192,11 @@ In some cases, you may want to change the default invalidation behavior such as 
 
 ```tsx
 const { formProps } = useForm({
-    resource: "posts",
-    action: "edit",
-    id: 1,
-    // highlight-next-line
-    invalidates: ["many", "detail"], // default is ["list", "many", "detail"]
+  resource: "posts",
+  action: "edit",
+  id: 1,
+  // highlight-next-line
+  invalidates: ["many", "detail"], // default is ["list", "many", "detail"]
 });
 ```
 
@@ -216,18 +208,18 @@ import { useInvalidate } from "@refinedev/core";
 const invalidate = useInvalidate();
 
 useForm({
-    resource: "categories",
-    action: "edit",
-    id: 1,
-    // highlight-start
-    invalidates: false,
-    onMutationSuccess() {
-        invalidate({
-            resource: "posts",
-            invalidates: ["resourceAll"],
-        });
-    },
-    // highlight-end
+  resource: "categories",
+  action: "edit",
+  id: 1,
+  // highlight-start
+  invalidates: false,
+  onMutationSuccess() {
+    invalidate({
+      resource: "posts",
+      invalidates: ["resourceAll"],
+    });
+  },
+  // highlight-end
 });
 ```
 
@@ -251,31 +243,31 @@ In some cases such as the data being submitted is slightly different from the da
 
 ```tsx
 useForm({
-    resource: "posts",
-    id: 1,
-    mutationMode: "optimistic",
-    optimisticUpdateMap: {
-        list: (
-            previous, // Previous query data
-            variables, // Variables used in the query
-            id, // Record id
-        ) => {
-            // update the `previous` data using the `variables` and `id`, then return it
-        },
-        many: (
-            previous, // Previous query data
-            variables, // Variables used in the query
-            id, // Record id
-        ) => {
-            // update the `previous` data using the `variables` and `id`, then return it
-        },
-        detail: (
-            previous, // Previous query data
-            variables, // Variables used in the query
-        ) => {
-            // update the `previous` data using the `variables`, then return it
-        },
+  resource: "posts",
+  id: 1,
+  mutationMode: "optimistic",
+  optimisticUpdateMap: {
+    list: (
+      previous, // Previous query data
+      variables, // Variables used in the query
+      id, // Record id
+    ) => {
+      // update the `previous` data using the `variables` and `id`, then return it
     },
+    many: (
+      previous, // Previous query data
+      variables, // Variables used in the query
+      id, // Record id
+    ) => {
+      // update the `previous` data using the `variables` and `id`, then return it
+    },
+    detail: (
+      previous, // Previous query data
+      variables, // Variables used in the query
+    ) => {
+      // update the `previous` data using the `variables`, then return it
+    },
+  },
 });
 ```
 
@@ -289,18 +281,18 @@ Server-side form validation is a technique used to validate form data on the ser
 import { HttpError } from "@refinedev/core";
 
 const error: HttpError = {
-    message: "An error occurred while updating the record.",
-    statusCode: 400,
-    // the errors field is required for server-side validation.
-    // when the errors field is set, useForm will automatically display the error messages in the form with the corresponding fields.
-    errors: {
-        title: ["Title is required"],
-        content: {
-            key: "form.error.content",
-            message: "Content is required.",
-        },
-        tags: true,
+  message: "An error occurred while updating the record.",
+  statusCode: 400,
+  // the errors field is required for server-side validation.
+  // when the errors field is set, useForm will automatically display the error messages in the form with the corresponding fields.
+  errors: {
+    title: ["Title is required"],
+    content: {
+      key: "form.error.content",
+      message: "Content is required.",
     },
+    tags: true,
+  },
 };
 ```
 
@@ -312,22 +304,22 @@ These props accepts both a function that returns the configuration or a static c
 
 ```tsx
 useForm({
-    // highlight-next-line
-    successNotification: (data, values, resource) => {
-        return {
-            message: `Successfully created ${data.title}`,
-            description: "good job!",
-            type: "success",
-        };
-    },
-    // highlight-next-line
-    errorNotification: (error, values, resource) => {
-        return {
-            message: `Failed to create ${values.title}`,
-            description: error.message,
-            type: "error",
-        };
-    },
+  // highlight-next-line
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Successfully created ${data.title}`,
+      description: "good job!",
+      type: "success",
+    };
+  },
+  // highlight-next-line
+  errorNotification: (error, values, resource) => {
+    return {
+      message: `Failed to create ${values.title}`,
+      description: error.message,
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -345,16 +337,16 @@ refine's corea nd ui integrations are shipped with an `<AutoSaveIndicator />` co
 import { AutoSaveIndicator } from "@refinedev/core";
 
 const { autoSaveProps } = useForm({
-    resource: "posts",
-    action: "edit",
-    id: 1,
+  resource: "posts",
+  action: "edit",
+  id: 1,
 });
 
 return (
-    <form>
-        {/* ... */}
-        <AutoSaveIndicator {...autoSaveProps} />
-    </form>
+  <form>
+    {/* ... */}
+    <AutoSaveIndicator {...autoSaveProps} />
+  </form>
 );
 ```
 
@@ -385,34 +377,34 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FieldValues } from "react-hook-form";
 
 const EditPage = () => {
-    const {
-        refineCore: { onFinish },
-        register,
-        handleSubmit,
-    } = useForm();
+  const {
+    refineCore: { onFinish },
+    register,
+    handleSubmit,
+  } = useForm();
 
-    // highlight-start
-    const onFinishHandler = (data: FieldValues) => {
-        onFinish({
-            fullName: `${data.name} ${data.surname}`,
-        });
-    };
-    // highlight-end
+  // highlight-start
+  const onFinishHandler = (data: FieldValues) => {
+    onFinish({
+      fullName: `${data.name} ${data.surname}`,
+    });
+  };
+  // highlight-end
 
-    return (
-        // highlight-next-line
-        <form onSubmit={handleSubmit(onFinishHandler)}>
-            <label>
-                Name:
-                <input {...register("name")} />
-            </label>
-            <label>
-                Surname:
-                <input {...register("surname")} />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    // highlight-next-line
+    <form onSubmit={handleSubmit(onFinishHandler)}>
+      <label>
+        Name:
+        <input {...register("name")} />
+      </label>
+      <label>
+        Surname:
+        <input {...register("surname")} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -426,55 +418,55 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Button, Box, TextField } from "@mui/material";
 
 type FormValues = {
-    name: string;
-    surname: string;
+  name: string;
+  surname: string;
 };
 
 export const UserCreate: React.FC = () => {
-    const {
-        saveButtonProps,
-        refineCore: { onFinish },
-        handleSubmit,
-    } = useForm<FormValues, HttpError, FormValues>();
+  const {
+    saveButtonProps,
+    refineCore: { onFinish },
+    handleSubmit,
+  } = useForm<FormValues, HttpError, FormValues>();
 
-    const handleSubmitPostCreate = (values: FormValues) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values: FormValues) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <Create
-            saveButtonProps={{
-                ...saveButtonProps,
-                onClick: handleSubmit(handleSubmitForm),
-            }}
-        >
-            <Box component="form">
-                <TextField
-                    {...register("name", {
-                        required: "This field is required",
-                    })}
-                    name="name"
-                    label="Name"
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
-                />
-                <TextField
-                    {...register("surname", {
-                        required: "This field is required",
-                    })}
-                    name="surname"
-                    label="Surname"
-                    error={!!errors.surname}
-                    helperText={errors.surname?.message}
-                />
-            </Box>
-        </Create>
-    );
+  return (
+    <Create
+      saveButtonProps={{
+        ...saveButtonProps,
+        onClick: handleSubmit(handleSubmitForm),
+      }}
+    >
+      <Box component="form">
+        <TextField
+          {...register("name", {
+            required: "This field is required",
+          })}
+          name="name"
+          label="Name"
+          error={!!errors.name}
+          helperText={errors.name?.message}
+        />
+        <TextField
+          {...register("surname", {
+            required: "This field is required",
+          })}
+          name="surname"
+          label="Surname"
+          error={!!errors.surname}
+          helperText={errors.surname?.message}
+        />
+      </Box>
+    </Create>
+  );
 };
 ```
 
@@ -490,55 +482,51 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 
 type FormValues = {
-    name: string;
-    surname: string;
+  name: string;
+  surname: string;
 };
 
 export const UserCreate: React.FC = () => {
-    const {
-        saveButtonProps,
-        refineCore: { onFinish },
-        handleSubmit,
-    } = useForm<FormValues, HttpError, FormValues>();
+  const {
+    saveButtonProps,
+    refineCore: { onFinish },
+    handleSubmit,
+  } = useForm<FormValues, HttpError, FormValues>();
 
-    const handleSubmitPostCreate = (values: FormValues) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values: FormValues) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <Create
-            saveButtonProps={{
-                ...saveButtonProps,
-                onClick: handleSubmit(handleSubmitForm),
-            }}
-        >
-            <form>
-                <FormControl mb="3">
-                    <FormLabel>Name</FormLabel>
-                    <Input
-                        id="name"
-                        type="text"
-                        {...register("name", { required: "Name is required" })}
-                    />
-                </FormControl>
-                <FormControl mb="3">
-                    <FormLabel>Surname</FormLabel>
-                    <Input
-                        id="surname"
-                        type="text"
-                        {...register("surname", {
-                            required: "Surname is required",
-                        })}
-                    />
-                </FormControl>
-            </form>
-        </Create>
-    );
+  return (
+    <Create
+      saveButtonProps={{
+        ...saveButtonProps,
+        onClick: handleSubmit(handleSubmitForm),
+      }}
+    >
+      <form>
+        <FormControl mb="3">
+          <FormLabel>Name</FormLabel>
+          <Input id="name" type="text" {...register("name", { required: "Name is required" })} />
+        </FormControl>
+        <FormControl mb="3">
+          <FormLabel>Surname</FormLabel>
+          <Input
+            id="surname"
+            type="text"
+            {...register("surname", {
+              required: "Surname is required",
+            })}
+          />
+        </FormControl>
+      </form>
+    </Create>
+  );
 };
 ```
 
@@ -557,28 +545,28 @@ import { useForm, Create } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 const EditPage = () => {
-    const { formProps, saveButtonProps, onFinish } = useForm();
+  const { formProps, saveButtonProps, onFinish } = useForm();
 
-    // highlight-start
-    const handleOnFinish = (values) => {
-        onFinish({
-            fullName: `${values.name} ${values.surname}`,
-        });
-    };
-    // highlight-end
+  // highlight-start
+  const handleOnFinish = (values) => {
+    onFinish({
+      fullName: `${values.name} ${values.surname}`,
+    });
+  };
+  // highlight-end
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
-                <Form.Item label="Name" name="name">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Surname" name="surname">
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Surname" name="surname">
+          <Input />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -592,36 +580,26 @@ import { useForm, Create } from "@refinedev/mantine";
 import { TextInput } from "@mantine/core";
 
 const CreatePage = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            name: "",
-            surname: "",
-        },
-        // highlight-start
-        transformValues: (values) => ({
-            fullName: `${values.name} ${values.surname}`,
-        }),
-        // highlight-end
-    });
+  const { saveButtonProps, getInputProps } = useForm({
+    initialValues: {
+      name: "",
+      surname: "",
+    },
+    // highlight-start
+    transformValues: (values) => ({
+      fullName: `${values.name} ${values.surname}`,
+    }),
+    // highlight-end
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Name"
-                    placeholder="Name"
-                    {...getInputProps("name")}
-                />
-                <TextInput
-                    mt={8}
-                    label="Surname"
-                    placeholder="Surname"
-                    {...getInputProps("surname")}
-                />
-            </form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Name" placeholder="Name" {...getInputProps("name")} />
+        <TextInput mt={8} label="Surname" placeholder="Surname" {...getInputProps("surname")} />
+      </form>
+    </Create>
+  );
 };
 ```
 

@@ -2,32 +2,32 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function MantineAuth() {
-    return (
-        <Sandpack
-            showNavigator
-            previewOnly
-            dependencies={{
-                "@refinedev/mantine": "latest",
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "@refinedev/react-table": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-                "@tabler/icons": "^1.119.0",
-                "@emotion/react": "^11.8.2",
-                "@mantine/core": "^5.10.4",
-                "@mantine/hooks": "^5.10.4",
-                "@mantine/notifications": "^5.10.4",
-            }}
-            startRoute="/login"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      previewOnly
+      dependencies={{
+        "@refinedev/mantine": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-table": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+        "@tabler/icons": "^1.119.0",
+        "@emotion/react": "^11.8.2",
+        "@mantine/core": "^5.10.4",
+        "@mantine/hooks": "^5.10.4",
+        "@mantine/notifications": "^5.10.4",
+      }}
+      startRoute="/login"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `

@@ -2,37 +2,37 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function ReactRouterUseTableUsage() {
-    return (
-        <Sandpack
-            showNavigator
-            showFiles
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/my-products"
-            theme={{}}
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "/pages/products/list.tsx": {
-                    code: ListPageTsxCode,
-                    active: true,
-                },
-                "/components/products/list.tsx": {
-                    code: ListTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      showFiles
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      startRoute="/my-products"
+      theme={{}}
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+        "/style.css": {
+          code: StyleCssCode,
+          hidden: true,
+        },
+        "/pages/products/list.tsx": {
+          code: ListPageTsxCode,
+          active: true,
+        },
+        "/components/products/list.tsx": {
+          code: ListTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `

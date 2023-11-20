@@ -2,34 +2,34 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function Authentication() {
-    return (
-        <Sandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-                axios: "^0.26.1",
-            }}
-            startRoute="/"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                    hidden: false,
-                },
-                "/home-page.tsx": {
-                    code: HomePageTsxCode,
-                    hidden: false,
-                    active: true,
-                },
-                "/data-provider.ts": {
-                    code: DataProviderCode,
-                    hidden: false,
-                },
-                "/auth-provider.ts": {
-                    code: AuthProviderCode,
-                    hidden: false,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      dependencies={{
+        "@refinedev/core": "latest",
+        axios: "^0.26.1",
+      }}
+      startRoute="/"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+          hidden: false,
+        },
+        "/home-page.tsx": {
+          code: HomePageTsxCode,
+          hidden: false,
+          active: true,
+        },
+        "/data-provider.ts": {
+          code: DataProviderCode,
+          hidden: false,
+        },
+        "/auth-provider.ts": {
+          code: AuthProviderCode,
+          hidden: false,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = `

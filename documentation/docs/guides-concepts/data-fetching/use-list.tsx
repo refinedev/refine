@@ -2,29 +2,29 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function UseList() {
-    return (
-        <Sandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-            }}
-            startRoute="/"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                    hidden: false,
-                },
-                "/home-page.tsx": {
-                    code: HomePageTsxCode,
-                    hidden: false,
-                    active: true,
-                },
-                "/data-provider.ts": {
-                    code: DataProviderCode,
-                    hidden: false,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      dependencies={{
+        "@refinedev/core": "latest",
+      }}
+      startRoute="/"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+          hidden: false,
+        },
+        "/home-page.tsx": {
+          code: HomePageTsxCode,
+          hidden: false,
+          active: true,
+        },
+        "/data-provider.ts": {
+          code: DataProviderCode,
+          hidden: false,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = `

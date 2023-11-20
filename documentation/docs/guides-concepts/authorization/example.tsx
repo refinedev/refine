@@ -3,36 +3,36 @@ import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
 export function AccessControlExample() {
-    return (
-        <Sandpack
-            showNavigator
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/payments/1"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                    hidden: true,
-                },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "/access-control.ts": {
-                    code: AccessControlCode,
-                    active: true,
-                },
-                "/show.tsx": {
-                    code: ShowTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      startRoute="/payments/1"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+          hidden: true,
+        },
+        "/style.css": {
+          code: StyleCssCode,
+          hidden: true,
+        },
+        "/access-control.ts": {
+          code: AccessControlCode,
+          active: true,
+        },
+        "/show.tsx": {
+          code: ShowTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AccessControlCode = /* ts */ `

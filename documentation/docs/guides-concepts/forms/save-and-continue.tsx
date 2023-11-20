@@ -2,39 +2,39 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function BasicUsage() {
-    return (
-        <Sandpack
-            // showNavigator
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "@refinedev/react-hook-form": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/products/create"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "/list.tsx": {
-                    code: ListTsxCode,
-                },
-                "/create.tsx": {
-                    code: CreateTsxCode,
-                    active: true,
-                },
-                "/edit.tsx": {
-                    code: EditTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      // showNavigator
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-hook-form": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      startRoute="/products/create"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+        "/style.css": {
+          code: StyleCssCode,
+          hidden: true,
+        },
+        "/list.tsx": {
+          code: ListTsxCode,
+        },
+        "/create.tsx": {
+          code: CreateTsxCode,
+          active: true,
+        },
+        "/edit.tsx": {
+          code: EditTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* jsx */ `

@@ -2,29 +2,29 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function NextJSResourceAndRoutesUsage() {
-    return (
-        <Sandpack
-            template="nextjs"
-            showFiles
-            startRoute="/my-products"
-            files={{
-                "/pages/_app.tsx": {
-                    code: AppTsxCode,
-                },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "/pages/my-products/index.tsx": {
-                    code: ListTsxCode,
-                },
-                "/pages/my-products/[id].tsx": {
-                    code: ShowTsxCode,
-                    active: true,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      template="nextjs"
+      showFiles
+      startRoute="/my-products"
+      files={{
+        "/pages/_app.tsx": {
+          code: AppTsxCode,
+        },
+        "/style.css": {
+          code: StyleCssCode,
+          hidden: true,
+        },
+        "/pages/my-products/index.tsx": {
+          code: ListTsxCode,
+        },
+        "/pages/my-products/[id].tsx": {
+          code: ShowTsxCode,
+          active: true,
+        },
+      }}
+    />
+  );
 }
 
 const StyleCssCode = /* css */ `

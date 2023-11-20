@@ -2,29 +2,29 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export default function OneToOne() {
-    return (
-        <Sandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-            }}
-            startRoute="/"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                    hidden: false,
-                },
-                "/product.tsx": {
-                    code: ProductTsxCode,
-                    hidden: false,
-                    active: true,
-                },
-                "/data-provider.ts": {
-                    code: DataProviderCode,
-                    hidden: false,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      dependencies={{
+        "@refinedev/core": "latest",
+      }}
+      startRoute="/"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+          hidden: false,
+        },
+        "/product.tsx": {
+          code: ProductTsxCode,
+          hidden: false,
+          active: true,
+        },
+        "/data-provider.ts": {
+          code: DataProviderCode,
+          hidden: false,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = `

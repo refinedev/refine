@@ -2,25 +2,25 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function NextJSUseTableUsage() {
-    return (
-        <Sandpack
-            template="nextjs"
-            showFiles
-            startRoute="/my-products"
-            files={{
-                "/pages/_app.tsx": {
-                    code: AppTsxCode,
-                },
-                "/pages/my-products/index.tsx": {
-                    code: ListPageTsxCode,
-                    active: true,
-                },
-                "/components/products/list.tsx": {
-                    code: ListTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      template="nextjs"
+      showFiles
+      startRoute="/my-products"
+      files={{
+        "/pages/_app.tsx": {
+          code: AppTsxCode,
+        },
+        "/pages/my-products/index.tsx": {
+          code: ListPageTsxCode,
+          active: true,
+        },
+        "/components/products/list.tsx": {
+          code: ListTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `

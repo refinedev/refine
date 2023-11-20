@@ -2,37 +2,37 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function ReactRouterUseModalFormUsage() {
-    return (
-        <Sandpack
-            showNavigator
-            showFiles
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "@refinedev/react-hook-form": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/my-products"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-                "/style.css": {
-                    code: StyleCssCode,
-                    hidden: true,
-                },
-                "/components/modal.tsx": {
-                    code: ModalComponentTsxCode,
-                },
-                "/pages/products/list.tsx": {
-                    code: ListTsxCode,
-                    active: true,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      showFiles
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-hook-form": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      startRoute="/my-products"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+        "/style.css": {
+          code: StyleCssCode,
+          hidden: true,
+        },
+        "/components/modal.tsx": {
+          code: ModalComponentTsxCode,
+        },
+        "/pages/products/list.tsx": {
+          code: ListTsxCode,
+          active: true,
+        },
+      }}
+    />
+  );
 }
 
 const ModalComponentTsxCode = /* tsx */ `

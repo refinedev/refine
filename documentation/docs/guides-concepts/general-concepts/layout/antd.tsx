@@ -2,35 +2,35 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function AntdLayout() {
-    return (
-        <Sandpack
-            showNavigator
-            previewOnly
-            dependencies={{
-                "@refinedev/antd": "latest",
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "@refinedev/inferencer": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-                antd: "^5.0.5",
-            }}
-            startRoute="/my-products"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-                "/pages/products/list.tsx": {
-                    code: ListTsxCode,
-                },
-                "/pages/products/show.tsx": {
-                    code: ShowTsxCode,
-                    active: true,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      previewOnly
+      dependencies={{
+        "@refinedev/antd": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/inferencer": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+        antd: "^5.0.5",
+      }}
+      startRoute="/my-products"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+        "/pages/products/list.tsx": {
+          code: ListTsxCode,
+        },
+        "/pages/products/show.tsx": {
+          code: ShowTsxCode,
+          active: true,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `

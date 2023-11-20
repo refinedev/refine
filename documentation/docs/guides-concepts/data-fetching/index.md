@@ -75,9 +75,9 @@ The capabilities of `meta` properties depend on your data provider's implementat
 
 Here are some examples of `meta` usage:
 
--   Passing additional headers or parameters to the request.
--   Generate GraphQL queries.
--   Multi-tenancy support (passing the tenant id to the request).
+- Passing additional headers or parameters to the request.
+- Generate GraphQL queries.
+- Multi-tenancy support (passing the tenant id to the request).
 
 In the example below, we are passing `meta.foo` property to the `useOne` hook. Then, we are using this property to pass additional headers to the request.
 
@@ -172,13 +172,13 @@ This flexibility is handy when dealing with various data structures and APIs.
 
 For example, we want to fetch:
 
--   `products` from `https://api.finefoods.refine.dev`
--   `user` from `https://api.fake-rest.refine.dev`.
+- `products` from `https://api.finefoods.refine.dev`
+- `user` from `https://api.fake-rest.refine.dev`.
 
 As you can see the example below:
 
--   We are defining multiple data providers in `App.tsx`.
--   Using `dataProviderName` field to specify which data provider to use in data hooks in `home-page.tsx`.
+- We are defining multiple data providers in `App.tsx`.
+- Using `dataProviderName` field to specify which data provider to use in data hooks in `home-page.tsx`.
 
 <MultipleDataProvider />
 
@@ -188,9 +188,9 @@ As you can see the example below:
 
 When implemented correctly, **refine** offers several advantages in error handling:
 
--   **Notification**: If you have [`notificationProvider` ](/docs/api-reference/core/providers/notification-provider/), **refine** will automatically show a notification when an error occurs.
--   **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
--   **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
+- **Notification**: If you have [`notificationProvider` ](/docs/api-reference/core/providers/notification-provider/), **refine** will automatically show a notification when an error occurs.
+- **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
+- **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
 <ErrorHandling />
 
@@ -210,9 +210,9 @@ Now let's make it more realistic example by adding filters, sorters, and paginat
 
 We want to:
 
--   Fetch 5 products
--   With `material` field equals to `wooden`
--   Sorted by `ID` field in `descending` order
+- Fetch 5 products
+- With `material` field equals to `wooden`
+- Sorted by `ID` field in `descending` order
 
 For this purpose, we can pass additional parameters to `useList` hook like [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination].
 
@@ -224,35 +224,35 @@ While the example above is simple, it's also possible to build more complex quer
 
 For instance, we can fetch products:
 
--   With wooden material
--   Belongs to category ID 45
--   **OR** have a price between 1000 and 2000.
+- With wooden material
+- Belongs to category ID 45
+- **OR** have a price between 1000 and 2000.
 
 ```tsx
 import { DataProvider, useList } from "@refinedev/core";
 
 useList({
-    resource: "products",
-    pagination: {
-        current: 1,
-        pageSize: 10,
+  resource: "products",
+  pagination: {
+    current: 1,
+    pageSize: 10,
+  },
+  filters: [
+    {
+      operator: "and",
+      value: [
+        { field: "material", operator: "eq", value: "wooden" },
+        { field: "category.id", operator: "eq", value: 45 },
+      ],
     },
-    filters: [
-        {
-            operator: "and",
-            value: [
-                { field: "material", operator: "eq", value: "wooden" },
-                { field: "category.id", operator: "eq", value: 45 },
-            ],
-        },
-        {
-            operator: "or",
-            value: [
-                { field: "price", operator: "gte", value: 1000 },
-                { field: "price", operator: "lte", value: 2000 },
-            ],
-        },
-    ],
+    {
+      operator: "or",
+      value: [
+        { field: "price", operator: "gte", value: 1000 },
+        { field: "price", operator: "lte", value: 2000 },
+      ],
+    },
+  ],
 });
 ```
 
@@ -339,23 +339,23 @@ In this case, we can use the `useMany` hook to fetch the categories of a product
 import { DataProvider, useMany } from "@refinedev/core";
 
 const { data: productCategories } = useList({
-    resource: "productCategories",
+  resource: "productCategories",
 });
 
 const { data: products } = useMany({
-    resource: "products",
-    ids: productCategories.map((productCategory) => productCategory.productId),
-    queryOptions: {
-        enabled: productCategories.length > 0,
-    },
+  resource: "products",
+  ids: productCategories.map((productCategory) => productCategory.productId),
+  queryOptions: {
+    enabled: productCategories.length > 0,
+  },
 });
 
 const { data: categories } = useMany({
-    resource: "categories",
-    ids: productCategories.map((productCategory) => productCategory.categoryId),
-    queryOptions: {
-        enabled: productCategories.length > 0,
-    },
+  resource: "categories",
+  ids: productCategories.map((productCategory) => productCategory.categoryId),
+  queryOptions: {
+    enabled: productCategories.length > 0,
+  },
 });
 ```
 

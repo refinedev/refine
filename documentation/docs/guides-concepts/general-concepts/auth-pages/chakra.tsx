@@ -2,29 +2,29 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function ChakraUIAuth() {
-    return (
-        <Sandpack
-            showNavigator
-            previewOnly
-            dependencies={{
-                "@refinedev/chakra-ui": "latest",
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "@refinedev/react-table": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-                "@tabler/icons": "^1.119.0",
-                "@chakra-ui/react": "^2.5.1",
-            }}
-            startRoute="/login"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      previewOnly
+      dependencies={{
+        "@refinedev/chakra-ui": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-table": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+        "@tabler/icons": "^1.119.0",
+        "@chakra-ui/react": "^2.5.1",
+      }}
+      startRoute="/login"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `import React from "react";

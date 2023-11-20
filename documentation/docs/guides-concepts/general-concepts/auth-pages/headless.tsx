@@ -2,25 +2,25 @@ import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
 export function HeadlessAuth() {
-    return (
-        <Sandpack
-            showNavigator
-            previewOnly
-            dependencies={{
-                "@refinedev/core": "latest",
-                "@refinedev/simple-rest": "latest",
-                "@refinedev/react-router-v6": "latest",
-                "react-router-dom": "latest",
-                "react-router": "latest",
-            }}
-            startRoute="/login"
-            files={{
-                "/App.tsx": {
-                    code: AppTsxCode,
-                },
-            }}
-        />
-    );
+  return (
+    <Sandpack
+      showNavigator
+      previewOnly
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
+      }}
+      startRoute="/login"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+        },
+      }}
+    />
+  );
 }
 
 const AppTsxCode = /* tsx */ `
