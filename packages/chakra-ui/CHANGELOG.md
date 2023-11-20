@@ -1,5 +1,11 @@
 # @refinedev/chakra-ui
 
+## 2.26.17
+
+### Patch Changes
+
+-   [#5259](https://github.com/refinedev/refine/pull/5259) [`eac3df87ffb`](https://github.com/refinedev/refine/commit/eac3df87ffbf61c913a6c8ea584e1d8c61e8d82e) Thanks [@aliemir](https://github.com/aliemir)! - Updated `<AutoSaveIndicator />` component to extend the `<AutoSaveIndicator />` from `@refinedev/core` with custom elements and render appropriate element based on the state.
+
 ## 2.26.16
 
 ### Patch Changes

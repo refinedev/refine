@@ -417,11 +417,7 @@ In this case, we pass the `supabaseClient` as the data provider. Supabase is sup
 
 [You can learn more about data provider in the refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
----
 
-<BannerRandom />
-
----
 
 ## Auth Provider
 

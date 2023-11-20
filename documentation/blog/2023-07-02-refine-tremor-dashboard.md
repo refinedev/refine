@@ -578,11 +578,7 @@ export default App;
 
 When you navigate the `/dashboard` page, you will see `Hello world!` instead of the error message. Let us now create our dashboard.
 
----
 
-<BannerRandom />
-
----
 
 ### Step 3 — Create Overview section of the dashboard
 

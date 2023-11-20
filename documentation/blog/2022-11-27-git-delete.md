@@ -50,11 +50,7 @@ Steps we'll cover:
 ## Why you might need to remove a branch
 You need to ensure that your Git repository is not a mess of outdated and old branches that are not being worked on anymore. You should perform periodic cleanup of the branches where you would either remove the old branches or you would merge them into the master. Your code repository should be neat, tidy, and easy to navigate.
 
----
 
-<BannerRandom />
-
----
 
 ## Deleting a GIT local branch
 Please note that deleting a branch locally will not delete the remote branch. Here is the command to delete branch locally:  

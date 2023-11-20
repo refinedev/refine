@@ -573,11 +573,7 @@ The `defaultValue` object properties will serve as the default value for our for
 
 That’s it, our form has been successfully integrated with React Hook Form. Next, we’ll look at how we can validate the form.
 
----
 
-<BannerRandom />
-
----
 
 ## Validating forms with React Hook Forms
 

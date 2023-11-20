@@ -44,11 +44,7 @@ Turborepo is designed to be adopted incrementally, so you can add it to our code
 
 Turborepo's magic lies in the execution of its tasks. For package installation, you can still use pnpm or npm. Turborepo complements pnpm/npm, where these package managers install your packages, and Turborepo runs your tasks efficiently. 
 
----
 
-<BannerRandom />
-
----
 
 ## Unique Features of Turborepo
 ### Remote caching 

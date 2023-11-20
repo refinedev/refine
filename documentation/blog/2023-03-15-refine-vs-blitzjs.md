@@ -486,14 +486,7 @@ The login page should be available at [localhost:3000/auth/login](http://localho
 
 Create a new account and sign up, so we have a user record in the SQLite database and you can log in to access the pages we will build further.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ## Creating pages

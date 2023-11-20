@@ -43,16 +43,25 @@ import { CategoryList } from "./pages/categories";
 import { ColorModeContextProvider } from "./contexts";
 import { Header, Title, OffLayoutArea } from "./components";
 import { BikeWhiteIcon } from "./components/icons/bike-white";
+import { useAutoLoginForDemo } from "./hooks";
 
 const API_URL = "https://api.finefoods.refine.dev";
 
 const App: React.FC = () => {
+    // This hook is used to automatically login the user.
+    // We use this hook to skip the login page and demonstrate the application more quickly.
+    const { loading } = useAutoLoginForDemo();
+
     const { t, i18n } = useTranslation();
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
+
+    if (loading) {
+        return null;
+    }
 
     return (
         <BrowserRouter>

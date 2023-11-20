@@ -16,6 +16,8 @@ import {
 import clsx from "clsx";
 
 import { Date, ReadingTime } from "@site/src/components/blog/common";
+import { BannerRandom } from "@site/src/components/banner/banner-random";
+
 import { Twitter } from "../icons";
 
 export const BlogPostPageView = ({ children }) => {
@@ -75,7 +77,7 @@ export const BlogPostPageView = ({ children }) => {
                         title={title}
                         hashtags={tags.map((tag) => tag.label)}
                     >
-                        <Twitter />
+                        <Twitter width={26} height={26} />
                     </TwitterShareButton>
                     <RedditShareButton
                         className="flex"
@@ -126,6 +128,9 @@ export const BlogPostPageView = ({ children }) => {
                                 </>
                             )}
                         </div>
+                    </div>
+                    <div className="m-6 mb-12">
+                        <BannerRandom />
                     </div>
                 </div>
                 <h1 className="text-xl md:text-4xl" itemProp="headline">

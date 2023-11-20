@@ -253,12 +253,7 @@ If you navigate to the [refine landing page](https://refine.dev/) and use Lighth
 
 It is worth mentioning that PWAs have several features and best practices to follow. Google lighthouse can audit only a  handful of these features. You need to check some of them manually. Google lighthouse will also hint at the items you need to check manually.
 
----
 
-<BannerRandom />
-
-
----
 
 ## How to view Google lighthouse report
 

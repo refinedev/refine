@@ -185,11 +185,7 @@ export default StarWarsCharactersContainer;
 
 ```
 
----
 
-<BannerRandom />
-
----
 
 ## State management with Reducers
 

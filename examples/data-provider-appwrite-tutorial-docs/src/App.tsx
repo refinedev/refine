@@ -102,16 +102,7 @@ const App: React.FC = () => {
                                 <Route
                                     path="/login"
                                     element={
-                                        <AuthPage
-                                            formProps={{
-                                                initialValues: {
-                                                    remember: false,
-                                                    email: "necatiozmn@gmail.com",
-                                                    password: "156987987a",
-                                                },
-                                            }}
-                                            forgotPasswordLink={false}
-                                        />
+                                        <AuthPage forgotPasswordLink={false} />
                                     }
                                 />
                                 <Route

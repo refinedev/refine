@@ -119,11 +119,7 @@ If we look at the console, we see that `Sorting posts...` is being logged at 100
 This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensive function, invoked every second for no obvious reason, is too much of an ask from the app. We don't want `sortPosts()` to be called if `updatedPosts` is not changed.
 
 
----
 
-<BannerRandom />
-
----
 
 ## Enter `useMemo()`
 `useMemo()` helps us memoize the value of `sortPosts()` when `updatedPosts` doesn't change. Let's use the memoized function:

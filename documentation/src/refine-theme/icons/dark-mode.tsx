@@ -3,15 +3,17 @@ import React from "react";
 export const DarkModeIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={18}
-        height={18}
-        viewBox="0 0 18 18"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
         fill="none"
         {...props}
     >
         <path
             fill="currentColor"
-            d="M6.37 2.51A7.35 7.35 0 0 0 6.1 4.5c0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27A7.014 7.014 0 0 1 9 16c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49ZM9 0a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26A5.403 5.403 0 0 1 10.36.1C9.92.04 9.46 0 9 0Z"
+            fillRule="evenodd"
+            d="M6.563 1.66a6.5 6.5 0 1 0 7.778 7.777A5.5 5.5 0 0 1 6.563 1.66ZM0 8A8 8 0 0 1 9.526.146a.75.75 0 0 1 .033 1.465A4.002 4.002 0 0 0 10.5 9.5a4.002 4.002 0 0 0 3.889-3.06.75.75 0 0 1 1.466.034A8 8 0 1 1 0 8Z"
+            clipRule="evenodd"
         />
     </svg>
 );

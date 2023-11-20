@@ -1,10 +1,9 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 
 import { Header } from "./header";
-import { Sidebar } from "./sidebar";
 import { ProjectIdFixBanner } from "./project-id-fix-banner";
-import { HalloweenGhosts } from "./halloween-ghosts";
+import { Sidebar } from "./sidebar";
 
 type Props = React.PropsWithChildren<{}>;
 
@@ -50,7 +49,6 @@ export const Layout = ({ children }: Props) => {
                     {children}
                 </div>
             </div>
-            <HalloweenGhosts />
         </div>
     );
 };

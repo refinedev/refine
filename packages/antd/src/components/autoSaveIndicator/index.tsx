@@ -1,5 +1,9 @@
 import React from "react";
-import { AutoSaveIndicatorProps, useTranslate } from "@refinedev/core";
+import {
+    AutoSaveIndicatorProps,
+    useTranslate,
+    AutoSaveIndicator as AutoSaveIndicatorCore,
+} from "@refinedev/core";
 import { Typography, theme } from "antd";
 import {
     EllipsisOutlined,
@@ -10,34 +14,62 @@ import {
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     status,
+    elements: {
+        success = (
+            <Message
+                key="autoSave.success"
+                defaultMessage="saved"
+                icon={<CheckCircleOutlined />}
+            />
+        ),
+        error = (
+            <Message
+                key="autoSave.error"
+                defaultMessage="auto save failure"
+                icon={<ExclamationCircleOutlined />}
+            />
+        ),
+        loading = (
+            <Message
+                key="autoSave.loading"
+                defaultMessage="saving..."
+                icon={<SyncOutlined />}
+            />
+        ),
+        idle = (
+            <Message
+                key="autoSave.idle"
+                defaultMessage="waiting for changes"
+                icon={<EllipsisOutlined />}
+            />
+        ),
+    } = {},
+}) => {
+    return (
+        <AutoSaveIndicatorCore
+            status={status}
+            elements={{
+                success,
+                error,
+                loading,
+                idle,
+            }}
+        />
+    );
+};
+
+const Message = ({
+    key,
+    defaultMessage,
+    icon,
+}: {
+    key: string;
+    defaultMessage: string;
+    icon: React.ReactNode;
 }) => {
     const translate = useTranslate();
     const { useToken } = theme;
     const { token } = useToken();
-
-    let message = null;
-    let icon = <EllipsisOutlined />;
-
-    switch (status) {
-        case "success":
-            message = translate("autoSave.success", "saved");
-            icon = <CheckCircleOutlined />;
-            break;
-        case "error":
-            message = translate("autoSave.error", "auto save failure");
-            icon = <ExclamationCircleOutlined />;
-
-            break;
-        case "loading":
-            message = translate("autoSave.loading", "saving...");
-            icon = <SyncOutlined />;
-
-            break;
-        default:
-            // for idle
-            message = translate("autoSave.idle", "waiting for changes");
-            break;
-    }
 
     return (
         <Typography.Text
@@ -47,7 +79,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
                 fontSize: ".8rem",
             }}
         >
-            {message}
+            {translate(key, defaultMessage)}
             <span style={{ marginLeft: ".2rem" }}>{icon}</span>
         </Typography.Text>
     );
