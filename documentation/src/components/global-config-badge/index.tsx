@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const GlobalConfigBadge = ({
-    id = "core/refine-component",
+    id = "api-reference/core/components/refine-config",
     description = "This value can be configured globally. Click to see the guide for more information.",
     text,
 }: Props) => {

@@ -371,7 +371,7 @@ After obtaining the token, we'll use Axios interceptors to include the token in 
 
 ## TanStack Query `QueryClient`
 
-To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/docs/core/refine-component/) component.
+To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/docs/api-reference/core/components/refine-config/) component.
 
 ## `dataProvider` interface
 

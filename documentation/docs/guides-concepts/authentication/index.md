@@ -14,10 +14,10 @@ Authentication is the process of verifying the identity of a user or client. It'
 
 Refine's **flexible architecture** allows you to easily implement various authentication strategies:
 
-- [Google](https://developers.google.com/identity/protocols/oauth2)
-- [Amazon Cognito](https://aws.amazon.com/cognito/)
-- [Okta](https://www.okta.com/)
-- [Auth0](https://auth0.com/)
+-   [Google](https://developers.google.com/identity/protocols/oauth2)
+-   [Amazon Cognito](https://aws.amazon.com/cognito/)
+-   [Okta](https://www.okta.com/)
+-   [Auth0](https://auth0.com/)
 
 You can implement your own authentication system or use one of the [supported auth providers](#supported-auth-providers).
 
@@ -35,31 +35,31 @@ To activate authentication in your app, you need to pass an `authProvider` to th
 import { Refine, AuthBindings } from "@refinedev/core";
 
 export const authProvider: AuthBindings = {
-  login: async ({ email, password }) => {
-    const { status } = handleLogin(email, password);
+    login: async ({ email, password }) => {
+        const { status } = handleLogin(email, password);
 
-    if (status === 200) {
-      return { success: true, redirectTo: "/dashboard" };
-    } else {
-      return {
-        success: false,
-        error: { name: "Login Error", message: "Invalid credentials" },
-      };
-    }
-  },
-  check: async (params) => ({}),
-  logout: async (params) => ({}),
-  onError: async (params) => ({}),
-  register: async (params) => ({}),
-  forgotPassword: async (params) => ({}),
-  updatePassword: async (params) => ({}),
-  getPermissions: async (params) => ({}),
-  getIdentity: async (params) => ({}),
+        if (status === 200) {
+            return { success: true, redirectTo: "/dashboard" };
+        } else {
+            return {
+                success: false,
+                error: { name: "Login Error", message: "Invalid credentials" },
+            };
+        }
+    },
+    check: async (params) => ({}),
+    logout: async (params) => ({}),
+    onError: async (params) => ({}),
+    register: async (params) => ({}),
+    forgotPassword: async (params) => ({}),
+    updatePassword: async (params) => ({}),
+    getPermissions: async (params) => ({}),
+    getIdentity: async (params) => ({}),
 };
 
 const App = () => {
-  // highlight-next-line
-  return <Refine authProvider={authProvider}>...</Refine>;
+    // highlight-next-line
+    return <Refine authProvider={authProvider}>...</Refine>;
 };
 ```
 
@@ -97,14 +97,14 @@ Refine also provides `<Auhtenticated />` component to easily handle authenticati
 import { Authenticated } from "@refinedev/core";
 
 const Page = () => {
-  return (
-    <Authenticated
-      loading={<div>loading...</div>}
-      fallback={<div>You cannot access this section</div>}
-    >
-      <h1>Welcome to your dashboard</h1>
-    </Authenticated>
-  );
+    return (
+        <Authenticated
+            loading={<div>loading...</div>}
+            fallback={<div>You cannot access this section</div>}
+        >
+            <h1>Welcome to your dashboard</h1>
+        </Authenticated>
+    );
 };
 ```
 
@@ -132,11 +132,11 @@ Once you implement `authProvider.onError` method, you can call this method with 
 
 While Refine itself is headless, it offers `<AuthPage />` Integrations for popular UI libraries for:
 
-- [Headless](/docs/api-reference/core/components/auth-page)
-- [Ant Design](/docs/api-reference/antd/components/antd-auth-page/)
-- [Material UI](/docs/api-reference/mui/components/mui-auth-page/)
-- [Chakra UI](/docs/api-reference/chakra-ui/components/chakra-auth-page/)
-- [Mantine](/docs/api-reference/mantine/components/mantine-auth-page/)
+-   [Headless](/docs/api-reference/core/components/auth-page)
+-   [Ant Design](/docs/api-reference/antd/components/antd-auth-page/)
+-   [Material UI](/docs/api-reference/mui/components/mui-auth-page/)
+-   [Chakra UI](/docs/api-reference/chakra-ui/components/chakra-auth-page/)
+-   [Mantine](/docs/api-reference/mantine/components/mantine-auth-page/)
 
 With `<AuthPage />` component you can easily handle authentication pages (login, register, update password, forgot passowrd) and speed up your development process.
 
@@ -184,17 +184,17 @@ import { MantineAuth } from './auth-pages/mantine';
 
 </Tabs>
 
-### Notification <GuideBadge id="guides-concepts/notifications/" />
+### Notification <GuideBadge id="api-reference/core/providers/notification-provider" />
 
 Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/docs/api-reference/core/providers/notification-provider) to the `<Refine />` component.
 
 Once you provide `notificationProvider`, Refine will automatically notify users about the authentication errors on following auth provider methods:
 
-- register
-- login
-- logout
-- forgotPassword
-- updatePassword
+-   register
+-   login
+-   logout
+-   forgotPassword
+-   updatePassword
 
 For example, when you return `error` object from the `authProvider.login` method, Refine will automatically notify users about the error.
 
@@ -222,12 +222,12 @@ Refine provides a automatic routing system to redirect users to the desired page
 
 Once you provide `routerProvider`, Refine will automatically redirect users to the desired page on following auth provider methods:
 
-- register
-- login
-- logout
-- onError
-- forgotPassword
-- updatePassword
+-   register
+-   login
+-   logout
+-   onError
+-   forgotPassword
+-   updatePassword
 
 For example, when you return `redirectTo` object from the `authProvider.register` method, Refine will automatically redirect users to the desired page.
 
@@ -260,14 +260,14 @@ Flexible architecture of auth provider allows you to integrate your **own** or [
 
 You can use the following oAuth provider implementations as a starting point for your own auth provider or you can use them as it is.
 
-- [Google](https://github.com/refinedev/refine/tree/master/examples/auth-google-login)
-- [Auth0](https://github.com/refinedev/refine/tree/master/examples/auth-auth0)
-- [Kinde](https://github.com/refinedev/refine/tree/master/examples/auth-kinde)
-- [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
-- [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
-- [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
-- [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
+-   [Google](https://github.com/refinedev/refine/tree/master/examples/auth-google-login)
+-   [Auth0](https://github.com/refinedev/refine/tree/master/examples/auth-auth0)
+-   [Kinde](https://github.com/refinedev/refine/tree/master/examples/auth-kinde)
+-   [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
+-   [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
+-   [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
 
 [To learn more about the `authProvider` interface, check out the reference page.](/docs/api-reference/core/providers/auth-provider/)
 

@@ -713,7 +713,7 @@ export const myAccessControlProvider = {
 
 These are some but not all examples of how you can use the `meta` property.
 
-> See the [Refine Component](/docs/core/refine-component) page for more information.
+> See the [Refine Component](/docs/api-reference/core/components/refine-config/) page for more information.
 
 ## State Management
 

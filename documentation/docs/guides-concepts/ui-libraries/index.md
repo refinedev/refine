@@ -126,7 +126,7 @@ import { Refine } from "@refinedev/core";
 />
 ```
 
-[To learn more about the options, check out the `<Refine>` component documentation.](core/refine-component/index)
+[To learn more about the options, check out the `<Refine>` component documentation.](/docs/api-reference/core/components/refine-config)
 
 ### Using the `swizzle` command
 
@@ -155,7 +155,7 @@ Pages
 (Move up and down to reveal more choices)
 ```
 
-[To learn more about the `swizzle` command, check out the CLI documentation.](packages/cli/index)
+[To learn more about the `swizzle` command, check out the CLI documentation.](/docs/packages/cli/index)
 
 :::caution Warning
 
@@ -163,7 +163,7 @@ While `swizzle` provides a way to customize the components, it's a one time oper
 
 :::
 
-## Notifications <GuideBadge id="guides-concepts/notifications" />
+## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
 
 One of the most important parts of an application is the notifications and the visual feedbacks. refine has this built-in notification integration that works automatically when it's needed in cases such as when a request fails or when a form is submitted.
 
