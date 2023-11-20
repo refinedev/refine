@@ -212,6 +212,7 @@ const SandpackBase = ({
                             {!previewOnly && (
                                 <SandpackCodeEditor
                                     {...codeEditorOptions}
+                                    initMode="lazy"
                                     style={{
                                         height: options.editorHeight ?? height,
                                         ...(layout?.includes("col")
