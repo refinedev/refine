@@ -377,6 +377,9 @@ Each of these form implementations have a way to modify the data before submissi
 
 To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/react-hook-form`](/packages/documentation/react-hook-form/useForm.md##how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
 
+<Tabs>
+<TabItem value="headless" label="Headless">
+
 ```tsx title="edit.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { FieldValues } from "react-hook-form";
@@ -399,19 +402,150 @@ const EditPage = () => {
     return (
         // highlight-next-line
         <form onSubmit={handleSubmit(onFinishHandler)}>
-            <label>Name: </label>
-            <input {...register("name")} />
-            <br />
-
-            <label>Surname: </label>
-            <input {...register("surname")} />
-            <br />
-
+            <label>
+                Name:
+                <input {...register("name")} />
+            </label>
+            <label>
+                Surname:
+                <input {...register("surname")} />
+            </label>
             <button type="submit">Submit</button>
         </form>
     );
 };
 ```
+
+</TabItem>
+<TabItem value="material-ui" label="With Material UI">
+
+```tsx title="edit.tsx"
+import { HttpError } from "@refinedev/core";
+import { Create } from "@refinedev/mui";
+import { useForm } from "@refinedev/react-hook-form";
+import { Button, Box, TextField } from "@mui/material";
+
+type FormValues = {
+    name: string;
+    surname: string;
+};
+
+export const UserCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        refineCore: { onFinish },
+        handleSubmit,
+    } = useForm<FormValues, HttpError, FormValues>();
+
+    const handleSubmitPostCreate = (values: FormValues) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            ...value,
+            fullName,
+        });
+    };
+
+    return (
+        <Create
+            saveButtonProps={{
+                ...saveButtonProps,
+                onClick: handleSubmit(handleSubmitForm),
+            }}
+        >
+            <Box component="form">
+                <TextField
+                    {...register("name", {
+                        required: "This field is required",
+                    })}
+                    name="name"
+                    label="Name"
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
+                />
+                <TextField
+                    {...register("surname", {
+                        required: "This field is required",
+                    })}
+                    name="surname"
+                    label="Surname"
+                    error={!!errors.surname}
+                    helperText={errors.surname?.message}
+                />
+            </Box>
+        </Create>
+    );
+};
+```
+
+Check out the [`<Create />`](/docs/api-reference/mui/components/basic-views/create/#savebuttonprops) component and [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to learn more about their usage.
+
+</TabItem>
+<TabItem value="chakra-ui" label="With Chakra UI">
+
+```tsx title="edit.tsx"
+import { HttpError } from "@refinedev/core";
+import { Create } from "@refinedev/chakra-ui";
+import { useForm } from "@refinedev/react-hook-form";
+import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+
+type FormValues = {
+    name: string;
+    surname: string;
+};
+
+export const UserCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        refineCore: { onFinish },
+        handleSubmit,
+    } = useForm<FormValues, HttpError, FormValues>();
+
+    const handleSubmitPostCreate = (values: FormValues) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            ...value,
+            fullName,
+        });
+    };
+
+    return (
+        <Create
+            saveButtonProps={{
+                ...saveButtonProps,
+                onClick: handleSubmit(handleSubmitForm),
+            }}
+        >
+            <form>
+                <FormControl mb="3">
+                    <FormLabel>Name</FormLabel>
+                    <Input
+                        id="name"
+                        type="text"
+                        {...register("name", { required: "Name is required" })}
+                    />
+                </FormControl>
+                <FormControl mb="3">
+                    <FormLabel>Surname</FormLabel>
+                    <Input
+                        id="surname"
+                        type="text"
+                        {...register("surname", {
+                            required: "Surname is required",
+                        })}
+                    />
+                </FormControl>
+            </form>
+        </Create>
+    );
+};
+```
+
+Check out the [`<Create />`](/docs/api-reference/chakra-ui/components/basic-views/create/#savebuttonprops) component and [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to learn more about their usage.
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="antd" label="Ant Design">
