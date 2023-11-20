@@ -1,3 +1,4 @@
+import React from "react";
 import { BaseRecord, HttpError, UpdateResponse } from ".";
 import { UseUpdateReturnType } from "../hooks/data/useUpdate";
 
@@ -25,6 +26,10 @@ export type AutoSaveReturnType<
     ) => Promise<UpdateResponse<TData> | void> | void;
 };
 
+export type AutoSaveIndicatorElements = Partial<
+    Record<"success" | "error" | "loading" | "idle", React.ReactNode>
+>;
+
 export type AutoSaveIndicatorProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -42,4 +47,8 @@ export type AutoSaveIndicatorProps<
      * The status of the update request.
      */
     status: UseUpdateReturnType<TData, TError, TVariables>["status"];
+    /**
+     * The elements to display for each status.
+     */
+    elements?: AutoSaveIndicatorElements;
 };

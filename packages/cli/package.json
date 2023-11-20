@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/cli",
-  "version": "2.16.14",
+  "version": "2.16.17",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "main": "dist/index.js",
@@ -34,10 +34,10 @@
     "ts-jest": "^29.0.3",
     "tsup": "^6.7.0",
     "typescript": "^4.7.4",
-    "@refinedev/core": "^4.44.7"
+    "@refinedev/core": "^4.44.12"
   },
   "dependencies": {
-    "@refinedev/devtools-server": "1.1.19",
+    "@refinedev/devtools-server": "1.1.21",
     "boxen": "^5.1.2",
     "cardinal": "^2.1.1",
     "chalk": "^4.1.2",
@@ -69,6 +69,7 @@
     "tslib": "^2.3.1",
     "marked": "^4.3.0",
     "marked-terminal": "^6.0.0",
+    "node-emoji": "2.1.0",
     "cli-table3": "^0.6.3",
     "center-align": "1.0.1"
   },

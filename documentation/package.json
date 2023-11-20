@@ -27,6 +27,7 @@
     "base64url": "^3.0.1",
     "clsx": "^1.2.1",
     "copy-text-to-clipboard": "^3.1.0",
+    "dedent": "^0.7.0",
     "docusaurus-plugin-copy": "^0.1.1",
     "dotenv": "^16.0.2",
     "framer-motion": "^6.5.1",
@@ -43,7 +44,7 @@
     "react-use-cookie": "^1.4.0",
     "snarkdown": "^2.0.0",
     "swc-loader": "^0.2.3",
-    "tailwindcss": "^3.1.8",
+    "tailwindcss": "^3.3.5",
     "title-case": "^3.0.3"
   },
   "browserslist": {
@@ -62,6 +63,7 @@
     "@docusaurus/module-type-aliases": "2.4.0",
     "@tailwindcss/typography": "^0.5.9",
     "@tsconfig/docusaurus": "^1.0.4",
+    "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^9.0.13",
     "@types/gtag.js": "^0.0.12",
     "@types/react": "^17.0.19",

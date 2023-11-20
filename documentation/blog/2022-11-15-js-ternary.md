@@ -48,14 +48,7 @@ The value from this conditional expression is used to decide the value of the st
 
 In JavaScript, falsy values include `false`, `0`, `-0`, `0n` `""`, `null`, `undefined` and `NaN`. All other values are considered truthy.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ##  When to Use the Ternary Operator

@@ -1,5 +1,39 @@
 # @refinedev/antd
 
+## 5.36.19
+
+### Patch Changes
+
+-   [#5259](https://github.com/refinedev/refine/pull/5259) [`eac3df87ffb`](https://github.com/refinedev/refine/commit/eac3df87ffbf61c913a6c8ea584e1d8c61e8d82e) Thanks [@aliemir](https://github.com/aliemir)! - Updated `<AutoSaveIndicator />` component to extend the `<AutoSaveIndicator />` from `@refinedev/core` with custom elements and render appropriate element based on the state.
+
+## 5.36.18
+
+### Patch Changes
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Now `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks accept 4th generic type `TOption` which allows you to change the type of options. By default `TOption` will be equal to `BaseOption` type which is `{ label: any; value: any; }`. If you want to change the type of options, you can do it like this:
+
+    ```tsx
+    import { useSelect } from "@refinedev/antd";
+    import { HttpError } from "@refinedev/core";
+
+    type MyData = {
+        id: number;
+        title: string;
+        description: string;
+        category: { id: string };
+    };
+
+    type Option = { label: MyData["title"]; value: MyData["id"] }; // equals to { label: string; value: number; }
+
+    useSelect<MyData, HttpError, MyData, Option>({
+        resource: "posts",
+    });
+    ```
+
+-   [#5199](https://github.com/refinedev/refine/pull/5199) [`2b8d658a17a`](https://github.com/refinedev/refine/commit/2b8d658a17a20ae347ba92b63487418f04ec255c) Thanks [@aliemir](https://github.com/aliemir)! - Updated return types of `useSelect`, `useRadioGroup` and `useCheckboxGroup` hooks to only include properties that actually being returned from the hook. Previously, the return types included all properties of the respective components, which was not correct.
+
+-   [#5201](https://github.com/refinedev/refine/pull/5201) [`760cfbaaa2a`](https://github.com/refinedev/refine/commit/760cfbaaa2ac8b8c070ade1e174784358cc112b0) Thanks [@aliemir](https://github.com/aliemir)! - Handle nested server side validation errors properly in `useForm`
+
 ## 5.36.17
 
 ### Patch Changes

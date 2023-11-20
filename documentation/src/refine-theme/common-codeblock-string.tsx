@@ -1,18 +1,18 @@
-import React from "react";
-import clsx from "clsx";
-import { useThemeConfig, usePrismTheme } from "@docusaurus/theme-common";
+import { usePrismTheme, useThemeConfig } from "@docusaurus/theme-common";
 import {
+    containsLineNumbers,
     parseCodeBlockTitle,
     parseLanguage,
     parseLines,
-    containsLineNumbers,
     useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
-import Highlight, { defaultProps } from "prism-react-renderer";
 import Line from "@theme/CodeBlock/Line";
+import clsx from "clsx";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import React from "react";
 import { CommonCodeBlockContainer } from "./common-codeblock-container";
-import { CommonWordWrapButton } from "./common-wordwrap-button";
 import { CommonCopyButton } from "./common-copy-button";
+import { CommonWordWrapButton } from "./common-wordwrap-button";
 
 const CodeBlockTitle = ({
     children,
@@ -118,7 +118,6 @@ export const CodeBlockString = ({
                                 "m-0",
                                 "px-0",
                                 "pt-0",
-                                "pb-px",
                                 "font-mono",
                                 "thin-scrollbar",
                                 "pb-4",

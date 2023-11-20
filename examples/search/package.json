@@ -3,9 +3,9 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.36.17",
-    "@refinedev/core": "^4.44.10",
-    "@refinedev/cli": "^2.16.14",
+    "@refinedev/antd": "^5.36.19",
+    "@refinedev/core": "^4.45.0",
+    "@refinedev/cli": "^2.16.17",
     "@refinedev/react-router-v6": "^4.5.4",
     "@refinedev/simple-rest": "^4.5.4",
     "lodash": "^4.17.21",

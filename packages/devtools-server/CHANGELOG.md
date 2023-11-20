@@ -1,5 +1,21 @@
 # @refinedev/devtools-server
 
+## 1.1.21
+
+### Patch Changes
+
+-   Updated dependencies [[`e29a3d37064`](https://github.com/refinedev/refine/commit/e29a3d37064500710dfa588ed5ca9074b93512c5)]:
+    -   @refinedev/devtools-ui@1.1.14
+
+## 1.1.20
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update feed URL from next to master branch.
+
+-   Updated dependencies [[`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88)]:
+    -   @refinedev/devtools-ui@1.1.13
+
 ## 1.1.19
 
 ### Patch Changes

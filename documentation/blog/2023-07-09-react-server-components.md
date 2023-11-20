@@ -407,11 +407,7 @@ const PostEditor = ({ blogPost }) => {
 export default PostEditor;
 ```
 
----
 
-<BannerRandom />
-
----
 
 ## Pros and Cons of React server components.
 We will go through the advantages of including server components to development as well as the disadvantages that comes with utilizing it in development.

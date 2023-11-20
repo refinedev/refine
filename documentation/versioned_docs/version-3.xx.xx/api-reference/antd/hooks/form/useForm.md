@@ -123,7 +123,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from [@pankod/refine-core](https://github.com/refinedev/refine/tree/next/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from [@pankod/refine-core](https://github.com/refinedev/refine/tree/v3/packages/core) package.
 
 <GeneralConceptsLink />
 

@@ -19,7 +19,7 @@ const siteConfig = {
     projectName: "refine",
     organizationName: "refinedev",
     trailingSlash: true,
-    favicon: "img/refine_favicon.png",
+    favicon: "img/refine_favicon.svg",
     scripts: ["https://platform.twitter.com/widgets.js"],
     presets: [
         [
@@ -122,6 +122,7 @@ const siteConfig = {
                   ],
               ]),
         "./plugins/intercom.js",
+        "./plugins/clarity.js",
     ],
     themeConfig: {
         prism: {
@@ -141,7 +142,7 @@ const siteConfig = {
                 },
             ],
         },
-        image: "img/refine_social_new.png",
+        image: "img/refine_social.png",
         algolia: {
             appId: "KRR9VEUPCT",
             apiKey: "cd0188125dcd31fb4b011b5e536d963a",
@@ -242,7 +243,7 @@ const siteConfig = {
                     items: [
                         {
                             label: "License",
-                            to: "https://github.com/refinedev/refine/blob/next/LICENSE",
+                            to: "https://github.com/refinedev/refine/blob/master/LICENSE",
                         },
                         // {
                         //     label: "Terms",
@@ -289,6 +290,9 @@ const siteConfig = {
             sidebar: {
                 autoCollapseCategories: true,
             },
+        },
+        colorMode: {
+            defaultMode: "dark",
         },
     },
     customFields: {

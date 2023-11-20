@@ -1,5 +1,27 @@
 # @refinedev/cli
 
+## 2.16.17
+
+### Patch Changes
+
+-   [#5281](https://github.com/refinedev/refine/pull/5281) [`97d5d9c98b28`](https://github.com/refinedev/refine/commit/97d5d9c98b28a1d69cada0a746202f82bec45622) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the version of `node-emoji` to `2.1.0`. Since `v2.1.1` depends on an ESM-only package, it breaks the build.
+
+## 2.16.16
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @refinedev/devtools-server@1.1.21
+
+## 2.16.15
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update announcements source from next to master branch.
+
+-   Updated dependencies [[`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88)]:
+    -   @refinedev/devtools-server@1.1.20
+
 ## 2.16.14
 
 ### Patch Changes

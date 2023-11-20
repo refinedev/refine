@@ -378,11 +378,7 @@ export default function App() {
 If you want users to enter their own time instead of selecting it, replace the **showTimeSelect** with the **showTimeInput** boolean prop.
 
 
----
 
-<BannerRandom />
-
----
 
 ### Conditionally disable dates
 

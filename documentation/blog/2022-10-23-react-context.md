@@ -510,14 +510,7 @@ In the `example.context.tsx`, we called the `useContext` hook and passed the `Ex
 <br />
 
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 ## Share Data across components
 

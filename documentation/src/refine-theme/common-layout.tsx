@@ -52,9 +52,12 @@ export const CommonLayout = (props: any) => {
             <div
                 className={clsx(
                     "main-wrapper",
-                    "min-h-screen",
+                    "min-h-[100dvh]",
                     "flex flex-col",
                     "dark:bg-gray-900 bg-gray-0",
+                    "transition-colors",
+                    "duration-150",
+                    "ease-in-out",
                 )}
             >
                 <ErrorBoundary

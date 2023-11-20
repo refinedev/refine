@@ -1,5 +1,17 @@
 # @refinedev/devtools-ui
 
+## 1.1.14
+
+### Patch Changes
+
+-   [#5248](https://github.com/refinedev/refine/pull/5248) [`e29a3d37064`](https://github.com/refinedev/refine/commit/e29a3d37064500710dfa588ed5ca9074b93512c5) Thanks [@aliemir](https://github.com/aliemir)! - Removed the halloween decorations from the UI.
+
+## 1.1.13
+
+### Patch Changes
+
+-   [#5208](https://github.com/refinedev/refine/pull/5208) [`72f9f608f42`](https://github.com/refinedev/refine/commit/72f9f608f4205cf4f3266068326d029546cd9f88) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update T&C link from next to master branch.
+
 ## 1.1.12
 
 ### Patch Changes

@@ -74,14 +74,6 @@ The above code will strip out the script in the data that has been rendered on t
  lorem test <img src="">
 ```
 
----
-
-<BannerRandom />
-
-
-
----
-
 
 ### Building a simple example app
 To demonstrate how dangerouslySetInnerHTML works in a React application, let's build a simple blog application. To make things easier, we'll use  [superplate](https://github.com/pankod/superplate) CLI to create React apps.

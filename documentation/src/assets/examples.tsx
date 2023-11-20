@@ -50,7 +50,7 @@ export const SHOW_CASES: Examples = [
         source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui",
     },
     {
-        title: "refine Swag Store",
+        title: "Refine Swag Store",
         description:
             "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
         image: "/examples/swag-store.jpg",
@@ -175,7 +175,7 @@ export const EXAMPLES: Examples = [
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
-        source: "https://github.com/refinedev/refine/tree/next/examples/multi-tenancy-strapi",
+        source: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
     },
     {
         title: "Multi-Tenancy Example with Appwrite",
@@ -195,6 +195,6 @@ export const EXAMPLES: Examples = [
                 icon: (props) => <ShareIcon {...props} />,
             },
         ],
-        source: "https://github.com/refinedev/refine/tree/next/examples/multi-tenancy-appwrite",
+        source: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-appwrite",
     },
 ];

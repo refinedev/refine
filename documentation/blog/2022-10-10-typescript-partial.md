@@ -98,14 +98,7 @@ console.log(subscriber);
 
 But this comes with the overhead of defining `Subscriber` manually in the first place and additionally then setting individual optional properties. In real APIs, it's not a good idea to define a shape manually.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ## Enter TypeScript `Partial<Type>`

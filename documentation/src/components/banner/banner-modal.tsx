@@ -34,11 +34,11 @@ export const BannerModal: FC<Props> = ({
     image = {
         src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/playground.gif",
         alt: "refine App screenshot",
-        href: "https://s.refine.dev/banner-modal&ref=banner-modal",
+        href: "https://s.refine.dev/banner-modal?ref=banner-modal",
     },
     button = {
         text: "Try online",
-        href: "https://s.refine.dev/banner-modal&ref=banner-modal",
+        href: "https://s.refine.dev/banner-modal?ref=banner-modal",
         onClick: undefined,
     },
 }) => {
@@ -65,6 +65,20 @@ export const BannerModal: FC<Props> = ({
             }
         }
     }, [tracker.scrollY]);
+
+    useEffect(() => {
+        if (
+            isOpen &&
+            typeof window !== "undefined" &&
+            typeof window.gtag !== "undefined"
+        ) {
+            window.gtag("event", "view_banner", {
+                banner_name: "banner-modal",
+                banner_text: title,
+                banner_image: image.src,
+            });
+        }
+    }, [isOpen]);
 
     return (
         <Transition appear show={isOpen} as={Fragment}>

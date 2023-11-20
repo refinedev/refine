@@ -95,11 +95,7 @@ const handleInput = () => {
 ```
 In the code snippet above, we created a function that gets the current value of the input element and assigned it to `textValue`. We also updated the value of the input element to “Hello World”.
 
----
 
-<BannerRandom />
-
----
 ## Difference between Ref and useRef
 As discussed in the previous sections of this article, we can understand clearly that useRef is used to create a reference object, while `ref` is used to access and assign DOM nodes or react components inside the render method to a reference object.
 

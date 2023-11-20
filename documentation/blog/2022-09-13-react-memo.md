@@ -56,12 +56,7 @@ The focus of this article will be the `<Post />` component, but `<App />`, `<Blo
 
 
 
----
 
-<BannerRandom />
-
-
----
 
 ## Memoizing a Functional Component using `React.memo()`
 To begin the example, we have an `<App />` component that houses `<Blog />`.

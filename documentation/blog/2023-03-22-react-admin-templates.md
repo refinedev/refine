@@ -150,14 +150,7 @@ Another key feature of the Wieldy template is its real-time chat integration. It
 
 Finally, the Wieldy react admin template is highly customizable. It comes with a range of theme options and customization tools, allowing businesses to tailor the design to their specific needs. It also has a range of customization options for the pre-built components, making it easy to create a unique and user-friendly admin interface that meets the specific needs of the business.
 
----
 
-
-<BannerRandom />
-
-
-
----
 
 
 ## Conclusion

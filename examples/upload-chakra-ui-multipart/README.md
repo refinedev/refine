@@ -15,8 +15,8 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
@@ -45,4 +45,4 @@ npm create refine-app@latest -- --example upload-chakra-ui-multipart
 
 <br/>
 
-[![Open upload-chakra-ui-multipart example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/upload-chakra-ui-multipart?view=preview&theme=dark&codemirror=1)
+[![Open upload-chakra-ui-multipart example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/upload-chakra-ui-multipart?view=preview&theme=dark&codemirror=1)

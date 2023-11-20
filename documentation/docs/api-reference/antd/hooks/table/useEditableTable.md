@@ -9,7 +9,7 @@ import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 `useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
 :::info
-`useEditeableTable` hook is extended from the [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
+`useEditeableTable` hook is extended from the [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
 :::
 
 ## Basic Usage

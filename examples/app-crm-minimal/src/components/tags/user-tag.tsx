@@ -1,6 +1,6 @@
 import { Space, Tag } from "antd";
 
-import { User } from "@interfaces";
+import { User } from "@/interfaces";
 
 import { CustomAvatar } from "../custom-avatar";
 
