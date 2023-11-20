@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^2.16.18",
+    "@refinedev/cli": "^2.16.19",
     "@refinedev/core": "^4.45.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
