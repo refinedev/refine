@@ -1,5 +1,11 @@
 # @refinedev/cli
 
+## 2.16.19
+
+### Patch Changes
+
+-   [#5292](https://github.com/refinedev/refine/pull/5292) [`714841da4b24`](https://github.com/refinedev/refine/commit/714841da4b24ef0b392eb9cbb7320cb3be122292) Thanks [@aliemir](https://github.com/aliemir)! - Bump `node-emoji` dependency resolution to `^2.1.3` to fix broken CJS builds.
+
 ## 2.16.18
 
 ### Patch Changes
