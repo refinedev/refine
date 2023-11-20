@@ -30,6 +30,7 @@ module.exports = {
                 "guides-concepts/data-fetching/index",
                 "guides-concepts/forms/index",
                 "guides-concepts/routing/index",
+                "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
                 {
