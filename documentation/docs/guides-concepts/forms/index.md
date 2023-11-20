@@ -21,8 +21,6 @@ To learn more about the usage and see `useForm` in action, check out the referen
 <Tabs>
 <TabItem value="core" label="Refine's Core">
 
-[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/core/hooks/useForm.md)
-
 ```tsx title="edit.tsx"
 import { useForm } from "@refinedev/core";
 
@@ -32,13 +30,35 @@ const EditPage = () => {
     action: "edit",
     id: 123,
   });
+
+  const record = queryResult.data?.data;
+
+  const onSubmit = (event) => {
+    const data = Object.fromEntries(new FormData(event.target).entries());
+
+    onFinish(data);
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label>
+        Name:
+        <input defaultValue={record?.name} />
+      </label>
+      <label>
+        Material:
+        <input defaultValue={record?.material} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
+[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/core/hooks/useForm.md)
+
 </TabItem>
 <TabItem value="hook-form" label="React Hook Form" default>
-
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/packages/documentation/react-hook-form/useForm.md)
 
 ```tsx title="edit.tsx"
 import { useForm } from "@refinedev/react-hook-form";
@@ -57,16 +77,31 @@ const EditPage = () => {
       id: 123,
     },
   });
+
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>
+        Name:
+        <input {...register("name")} />
+      </label>
+      <label>
+        Material:
+        <input {...register("material")} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
+
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/packages/documentation/react-hook-form/useForm.md)
 
 </TabItem>
 <TabItem value="antd" label="Ant Design">
 
-[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/antd/hooks/form/useForm.md)
-
 ```tsx title="edit.tsx"
-import { useForm } from "@refinedev/antd";
+import { useForm, Edit } from "@refinedev/antd";
+import { Form, Input } from "antd";
 
 const EditPage = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IProduct, HttpError, FormValues>({
@@ -74,16 +109,30 @@ const EditPage = () => {
     action: "edit",
     id: 123,
   });
+
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Material" name="material">
+          <Input />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
+
+[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/antd/hooks/form/useForm.md)
 
 </TabItem>
 <TabItem value="mantine" label="Mantine">
 
-[Check out Mantine Form'ss `useForm` reference page to learn more about the usage and see it in action.](/api-reference/mantine/hooks/form/useForm.md)
-
 ```tsx title="edit.tsx"
-import { useForm } from "@refinedev/react-hook-form";
+import { useForm, Edit } from "@refinedev/mantine";
+import { TextInput } from "@mantine/core";
 
 const EditPage = () => {
   const {
@@ -100,23 +149,143 @@ const EditPage = () => {
     },
     initialValues: {
       name: "",
-      description: "",
-      category: {
-        id: "",
-      },
+      material: "",
     },
   });
+
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Name" placeholder="Name" {...getInputProps("name")} />
+        <TextInput mt={8} label="Material" placeholder="Material" {...getInputProps("material")} />
+      </form>
+    </Edit>
+  );
 };
 ```
+
+[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/mantine/hooks/form/useForm.md)
+
+</TabItem>
+<TabItem value="material-ui" label={(<span><span className="block">Material UI</span><small className="block">React Hook Form</small></span>)}>
+
+```tsx title="edit.tsx"
+import { HttpError } from "@refinedev/core";
+import { Edit } from "@refinedev/mui";
+import { useForm } from "@refinedev/react-hook-form";
+import { Button, Box, TextField } from "@mui/material";
+
+const EditPage = () => {
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    saveButtonProps,
+  } = useForm<IProduct, HttpError, FormValues>({
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
+  });
+
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Box component="form">
+        <TextField
+          {...register("name", {
+            required: "This field is required",
+          })}
+          name="name"
+          label="Name"
+        />
+        <TextField
+          {...register("material", {
+            required: "This field is required",
+          })}
+          name="material"
+          label="Material"
+        />
+      </Box>
+    </Edit>
+  );
+};
+```
+
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/packages/documentation/react-hook-form/useForm.md)
+
+</TabItem>
+<TabItem value="chakra-ui" label={(<span><span className="block">Chakra UI</span><small className="block">React Hook Form</small></span>)}>
+
+```tsx title="edit.tsx"
+import { HttpError } from "@refinedev/core";
+import { Edit } from "@refinedev/chakra-ui";
+import { useForm } from "@refinedev/react-hook-form";
+import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+
+const EditPage = () => {
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    saveButtonProps,
+  } = useForm<IProduct, HttpError, FormValues>({
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
+  });
+
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <FormControl mb="3">
+          <FormLabel>Name</FormLabel>
+          <Input id="name" type="text" {...register("name", { required: "Name is required" })} />
+        </FormControl>
+        <FormControl mb="3">
+          <FormLabel>Material</FormLabel>
+          <Input
+            id="material"
+            type="text"
+            {...register("material", {
+              required: "Material is required",
+            })}
+          />
+        </FormControl>
+      </form>
+    </Edit>
+  );
+};
+```
+
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/packages/documentation/react-hook-form/useForm.md)
 
 </TabItem>
 </Tabs>
 
 ## Integration with Routers
 
-To get the most out of refine's hooks and implementations, you'll also want to integrate it with your routing system. This enables refine to infer the resource, actions and record id from the current route and provide them to the hooks such as `useForm`. In most of the cases, this will prevent the need of passing explicit `resource`, `action` and `id` props to the hooks including `useForm`.
+If a router integration is made, in most of the cases this enables Refine to infer the `resource`, `action` and `id` from the current route and provide them to `useForm` hook. In most of the cases, this will prevent the need of passing explicit `resource`, `action` and `id` props to the hooks including `useForm`.
 
-To learn more about the routing, check out the [Routing](/guides-concepts/routing/index.md) guide and the [General Concepts](/guides-concepts/general-concepts/index.md) guide to learn more about how it benefits the development experience.
+`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/api-reference/core/components/refine-config.md).
+
+```tsx
+import { useForm } from "@refinedev/core";
+
+useForm({
+  // These properties will be inferred from the current route
+  // removed-start
+  resource: "posts",
+  action: "edit",
+  id: 1,
+  // removed-end
+  redirect: "show", // Can also be "list", "edit" or false
+});
+```
+
+To learn more about the routing, check out the [Routing](/guides-concepts/routing/index.md#router-integrations) guide and the [General Concepts](/guides-concepts/general-concepts/index.md#router-provider) guide to learn more about how it benefits the development experience.
 
 ## Actions <RouterBadge />
 
@@ -329,6 +498,18 @@ In many forms, it is a good practice to save the form data automatically as the 
 
 While `@refinedev/core`'s `useForm` packs this feature, the auto save is not triggered automatically. In the extensions of the `useForm` hook in the other libraries, the auto save is handled internally and is triggered automatically.
 
+```tsx title="edit.tsx"
+import { useForm } from "@refinedev/core";
+
+const { autoSaveProps } = useForm({
+  autoSave: {
+    enabled: true, // Enables the auto save feature, defaults to false
+    debounce: 2000, // Debounce interval to trigger the auto save, defaults to 1000
+    invalidateOnUnmount: true, // Invalidates the queries when the form is unmounted, defaults to false
+  },
+});
+```
+
 ### `<AutoSaveIndicator />`
 
 Refine's core and ui integrations are shipped with an `<AutoSaveIndicator />` component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
@@ -349,14 +530,6 @@ return (
   </form>
 );
 ```
-
-## Redirections <GlobalConfigBadge />
-
-In many of the cases, you'll want to redirect the user to a different page after a successful mutation. `useForm` handles this for you, when the mutation succeeds it will redirect the user to the desired page.
-
-By default, all the form actions will redirect the user to the list page of the resource after a successful mutation. This behavior can be customized or disabled by passing a `redirect` prop. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/api-reference/core/components/refine-config.md).
-
-Redirection feature enables implementations such as **Save and Continue**; where the user in a create form can save the record and continue editing it in the edit form by simply defining the `redirect` prop of the `useForm` hook.
 
 ## Modifying Data Before Submission
 
