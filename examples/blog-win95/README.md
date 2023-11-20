@@ -1,9 +1,10 @@
 <br/>
 
 <div align="center" style="margin: 30px;">
-<a href="https://github.com/refinedev/refine">
-  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:350px;" align="center" />
+<a href="https://refine.dev/">
+  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
+
 <br />
 <br />
 
