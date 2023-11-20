@@ -1121,12 +1121,12 @@ html[data-theme="dark"] .sourcecode-badge {
 }
 
 .theme-code-block-added-line {
-    background-color: rgb(87 171 90 / 50%);
+    background-color: rgb(87 171 90 / 15%);
     display: block;
 }
 
 .theme-code-block-removed-line {
-    background-color: rgb(229 83 75 / 50%);
+    background-color: rgb(229 83 75 / 15%);
     display: block;
 }
 
@@ -1191,4 +1191,18 @@ html[data-theme="dark"] .sourcecode-badge {
         rgba(255, 255, 255, 0.25) 80%,
         rgba(255, 255, 255, 0) 100%
     );
+}
+
+form.DocSearch-Form {
+    height: 44px;
+    font-size: 14px;
+}
+
+form.DocSearch-Form input.DocSearch-Input {
+    font-size: 1em;
+}
+
+form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
+    width: 18px;
+    height: 18px;
 }
