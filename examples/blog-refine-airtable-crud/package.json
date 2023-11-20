@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@refinedev/airtable": "^4.4.4",
-    "@refinedev/cli": "^2.16.16",
+    "@refinedev/cli": "^2.16.17",
     "@refinedev/core": "^4.45.0",
     "@refinedev/inferencer": "^4.5.14",
     "@refinedev/react-hook-form": "^4.8.12",
