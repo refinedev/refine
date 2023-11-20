@@ -36,4 +36,12 @@ describe("transformErrorMessages", () => {
             ],
         });
     });
+
+    it("should not throw error with empty array", () => {
+        const errorMessages: any = [];
+
+        const expectedOutput = {};
+
+        expect(transformErrorMessages(errorMessages)).toEqual(expectedOutput);
+    });
 });
