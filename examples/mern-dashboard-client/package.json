@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.8.3",
-    "@refinedev/cli": "^2.16.17",
+    "@refinedev/cli": "^2.16.18",
     "@refinedev/core": "^4.45.0",
     "@refinedev/inferencer": "^4.5.14",
     "@refinedev/mui": "^5.13.18",

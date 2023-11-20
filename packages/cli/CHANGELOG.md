@@ -1,5 +1,13 @@
 # @refinedev/cli
 
+## 2.16.18
+
+### Patch Changes
+
+-   [#5290](https://github.com/refinedev/refine/pull/5290) [`404f16a947f3`](https://github.com/refinedev/refine/commit/404f16a947f330aad494f11545022684133bf2d0) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: override `node-emoji` package version used by `marked-terminal` to `2.1.0`
+
+    fixes the issue: https://github.com/refinedev/refine/issues/5279
+
 ## 2.16.17
 
 ### Patch Changes
