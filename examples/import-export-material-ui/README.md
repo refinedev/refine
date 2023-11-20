@@ -1,8 +1,6 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-    <picture  style="display: inline-block;" >
-    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
-</picture>
+  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
 
 </br>
