@@ -11,7 +11,7 @@ Data provider acts as a data layer for your app, making HTTP requests and encaps
 You don’t need to worry about creating data providers from scratch, as **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers).
 
 <div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
 </div>
 
 :::note

@@ -23,7 +23,7 @@ Data providers can also communicate with `REST`, `GraphQL`, `RPC` and `SOAP` bas
 You don’t need to worry about creating data providers from scratch, as **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). If you want, we will also show how you can create your own data provider in the coming sections.
 
 <div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
 </div>
 <br/>
 <br/>

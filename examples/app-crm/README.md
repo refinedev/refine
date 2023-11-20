@@ -1,16 +1,9 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
+    <picture  style="display: inline-block;" >
+    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </picture>
-
-<br />
-<br />
 </a>
-
-<br />
-<br />
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -20,8 +13,6 @@
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
-
-<br />
 
 <div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.<br>An open source, headless web application framework developed with flexibility in mind.
 
@@ -39,7 +30,7 @@
 
 ## About
 
-⭐ You can view the live demo off the application [here](https://example.crm.refine.dev/).
+⭐ Check out the live demo of the application [here](https://example.crm.refine.dev/).
 
 This is a complete CRM (Customer Relationship Management) example project built using [refine](https://refine.dev/) and [Ant Design](https://ant.design/). It provides a set of tools and features to manage customer data, track interactions, and streamline business processes.
 
@@ -76,13 +67,13 @@ refine is a React-based powerful framework for building low-code applications. I
 
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/login.png "Product Edit Page")
 
-## Try it out on your local
+## Try this example on your local
 
 ```bash
 npm create refine-app@latest -- --example app-crm
 ```
 
-## Try it out on CodeSandbox
+## Try this example on CodeSandbox
 
 <br/>
 
