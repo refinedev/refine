@@ -18,21 +18,21 @@ A typical resource definition looks like this:
 import { Refine } from "@refinedev/core";
 
 export const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "products",
-          list: "/my-products",
-          show: "/my-products/:id",
-          edit: "/my-products/:id/edit",
-          create: "/my-products/new",
-        },
-      ]}
-    >
-      {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "products",
+                    list: "/my-products",
+                    show: "/my-products/:id",
+                    edit: "/my-products/:id/edit",
+                    create: "/my-products/new",
+                },
+            ]}
+        >
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
@@ -42,13 +42,13 @@ Providers are the building blocks of Refine, used to manage different aspects of
 
 They are pluggable, which means you can use the **built-in providers** or **create your own**. This allows you to customize the behavior of your application to suit your needs.
 
-- **Data Provider**: Communication with the backend data source, handling data operations such as fetching, creating, updating, deleting records, caching, and invalidation.
-- **Authentication Provider**: Manages user authentication and authorization processes. Handles redirection, error cases.
-- **Access Control Provider**: Handles authorization and access control. Used to hide/disable buttons and menu items, or to protect routes and components.
-- **Notification Provider**: Enables notification features like showing notification after successful mutations or errors.
-- **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
-- **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
-- **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
+-   **Data Provider**: Communication with the backend data source, handling data operations such as fetching, creating, updating, deleting records, caching, and invalidation.
+-   **Authentication Provider**: Manages user authentication and authorization processes. Handles redirection, error cases.
+-   **Access Control Provider**: Handles authorization and access control. Used to hide/disable buttons and menu items, or to protect routes and components.
+-   **Notification Provider**: Enables notification features like showing notification after successful mutations or errors.
+-   **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
+-   **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
+-   **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
 
 ## Hook Concept
 
@@ -80,10 +80,10 @@ Each data operation in the Data Provider is typically associated with a specific
 import { DataProvider } from "@refinedev/core";
 
 const myDataProvider: DataProvider = {
-  getOne: ({ resource, id }) => {
-    fetch(`https://example.com/api/v1/${resource}/${id}`);
-  },
-  // other methods...
+    getOne: ({ resource, id }) => {
+        fetch(`https://example.com/api/v1/${resource}/${id}`);
+    },
+    // other methods...
 };
 ```
 
@@ -99,13 +99,13 @@ You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetc
 import { useOne } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { data, isLoading } = useOne({ resource: "products", id: 1 });
+    const { data, isLoading } = useOne({ resource: "products", id: 1 });
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
-  return <>{data.name}</>;
+    return <>{data.name}</>;
 };
 ```
 
@@ -121,26 +121,26 @@ It handles authentication and authorization processes such as login, logout, red
 import { AuthBindings } from "@refinedev/core'";
 
 export const authProvider: AuthBindings = {
-  login: async ({ email, password }) => {
-    const { status } = handleLogin(email, password);
+    login: async ({ email, password }) => {
+        const { status } = handleLogin(email, password);
 
-    if (status === 200) {
-      return { success: true, redirectTo: "/dashboard" };
-    } else {
-      return {
-        success: false,
-        error: { name: "Login Error", message: "Invalid credentials" },
-      };
-    }
-  },
-  check: async (params) => ({}),
-  logout: async (params) => ({}),
-  onError: async (params) => ({}),
-  register: async (params) => ({}),
-  forgotPassword: async (params) => ({}),
-  updatePassword: async (params) => ({}),
-  getPermissions: async (params) => ({}),
-  getIdentity: async (params) => ({}),
+        if (status === 200) {
+            return { success: true, redirectTo: "/dashboard" };
+        } else {
+            return {
+                success: false,
+                error: { name: "Login Error", message: "Invalid credentials" },
+            };
+        }
+    },
+    check: async (params) => ({}),
+    logout: async (params) => ({}),
+    onError: async (params) => ({}),
+    register: async (params) => ({}),
+    forgotPassword: async (params) => ({}),
+    updatePassword: async (params) => ({}),
+    getPermissions: async (params) => ({}),
+    getIdentity: async (params) => ({}),
 };
 ```
 
@@ -154,9 +154,9 @@ You can use `Authenticated` component from `@refinedev/core` to protect your rou
 import { Authenticated } from "@refinedev/core";
 
 const MyPage = () => (
-  <Authenticated>
-    <YourComponent />
-  </Authenticated>
+    <Authenticated>
+        <YourComponent />
+    </Authenticated>
 );
 ```
 
@@ -170,11 +170,11 @@ You can use `useGetIdentity` hook to get current user.
 import { useGetIdentity } from "@refinedev/core";
 
 export const DashboardPage = () => {
-  const {
-    data: { name },
-  } = useGetIdentity();
+    const {
+        data: { name },
+    } = useGetIdentity();
 
-  return <>Welcome {name}!</>;
+    return <>Welcome {name}!</>;
 };
 ```
 
@@ -200,19 +200,21 @@ It uses the resource definition to determine access rights. For instance, it can
 import { AccessControlProvider, Refine } from "@refinedev/core";
 
 const myAccessControlProvider: AccessControlProvider = {
-  can: async ({ resource, action }) => {
-    if (resource === "products" && action === "delete") {
-      return { can: false };
-    }
+    can: async ({ resource, action }) => {
+        if (resource === "products" && action === "delete") {
+            return { can: false };
+        }
 
-    return { can: true };
-  },
+        return { can: true };
+    },
 };
 
 export const App = () => {
-  return (
-    <Refine accessControlProvider={myAccessControlProvider}>{/* ... */}</Refine>
-  );
+    return (
+        <Refine accessControlProvider={myAccessControlProvider}>
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
@@ -226,17 +228,17 @@ You can wrap `CanAccess` component to wrap relevant parts of your application to
 import { CanAccess } from "@refinedev/core";
 
 export const ShowPage = () => {
-  return (
-    <CanAccess resource="users" action="show">
-      <>
-        User Page
-        <CanAccess resource="users" action="block">
-          // Only authorized users can see this.
-          <BlockUserButton />
+    return (
+        <CanAccess resource="users" action="show">
+            <>
+                User Page
+                <CanAccess resource="users" action="block">
+                    // Only authorized users can see this.
+                    <BlockUserButton />
+                </CanAccess>
+            </>
         </CanAccess>
-      </>
-    </CanAccess>
-  );
+    );
 };
 ```
 
@@ -248,19 +250,19 @@ You can use `useCan` hook to control access in your components.
 import { ErrorComponent, useCan } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { data: show } = useCan({ resource: "users", action: "show" });
-  const { data: block } = useCan({ resource: "users", action: "block" });
+    const { data: show } = useCan({ resource: "users", action: "show" });
+    const { data: block } = useCan({ resource: "users", action: "block" });
 
-  if (!show?.can) {
-    return <ErrorComponent />;
-  }
+    if (!show?.can) {
+        return <ErrorComponent />;
+    }
 
-  return (
-    <>
-      User Details Page
-      {block?.can && <BlockUserButton />}
-    </>
-  );
+    return (
+        <>
+            User Details Page
+            {block?.can && <BlockUserButton />}
+        </>
+    );
 };
 ```
 
@@ -276,12 +278,12 @@ Or if the current user isn't authorized to delete a product, the delete button w
 import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
 
 export const ShowPage = () => {
-  return (
-    <>
-      Product Details Page
-      <DeleteButton /> // Only admins can see this.
-    </>
-  );
+    return (
+        <>
+            Product Details Page
+            <DeleteButton /> // Only admins can see this.
+        </>
+    );
 };
 ```
 
@@ -295,7 +297,7 @@ For example, after creating, updating, or deleting a record for `products` resou
 
 **refine** has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
 
-> See the [Notifications](/docs/guides-concepts/notifications/) guide for more information.
+> See the [Notifications](/docs/api-reference/core/providers/notification-provider) guide for more information.
 
 #### Hooks
 
@@ -307,28 +309,29 @@ It's also possible to modify these notifications per hook.
 import { useDelete } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { mutate } = useDelete({ resource: "products" });
+    const { mutate } = useDelete({ resource: "products" });
 
-  return (
-    <Button
-      onClick={() => {
-        mutate({
-          successNotification: () => ({
-            message: "Product Deleted",
-            description: "Product has been deleted successfully.",
-            type: "success",
-          }),
-          errorNotification: () => ({
-            message: "Product Delete Error",
-            description: "An error occurred while deleting the product.",
-            type: "error",
-          }),
-        });
-      }}
-    >
-      Delete Product
-    </Button>
-  );
+    return (
+        <Button
+            onClick={() => {
+                mutate({
+                    successNotification: () => ({
+                        message: "Product Deleted",
+                        description: "Product has been deleted successfully.",
+                        type: "success",
+                    }),
+                    errorNotification: () => ({
+                        message: "Product Delete Error",
+                        description:
+                            "An error occurred while deleting the product.",
+                        type: "error",
+                    }),
+                });
+            }}
+        >
+            Delete Product
+        </Button>
+    );
 };
 ```
 
@@ -338,31 +341,31 @@ If you have a use-case that isn't covered, you can use `useNotification` hook to
 import { useNotification } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { open, close } = useNotification();
+    const { open, close } = useNotification();
 
-  return (
-    <>
-      <Button
-        onClick={() => {
-          open?.({
-            key: "my-notification",
-            message: "Test Notification",
-            description: "This is a test notification.",
-            type: "success", // success | error | progress
-          });
-        }}
-      >
-        Show notification
-      </Button>
-      <Button
-        onClick={() => {
-          close?.("my-notification");
-        }}
-      >
-        Close Notification
-      </Button>
-    </>
-  );
+    return (
+        <>
+            <Button
+                onClick={() => {
+                    open?.({
+                        key: "my-notification",
+                        message: "Test Notification",
+                        description: "This is a test notification.",
+                        type: "success", // success | error | progress
+                    });
+                }}
+            >
+                Show notification
+            </Button>
+            <Button
+                onClick={() => {
+                    close?.("my-notification");
+                }}
+            >
+                Close Notification
+            </Button>
+        </>
+    );
 };
 ```
 
@@ -419,7 +422,7 @@ When provided, our UI Integrations works out-of-the-box with I18n Provider.
 
 For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
 
-> See the [Internationalization](/docs/guides-concepts/internationalization/) guide for more information.
+> See the [Internationalization](/docs/api-reference/core/providers/i18n-provider/) guide for more information.
 
 ### Router Provider
 
@@ -427,10 +430,10 @@ Router provider helps **refine** understand the relationship between resources a
 
 We have built-in router integrations for the following packages:
 
-- React Router v6
-- Next.js
-- Remix
-- Expo Router (React Native)
+-   React Router v6
+-   Next.js
+-   Remix
+-   Expo Router (React Native)
 
 > See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
@@ -446,13 +449,13 @@ With **router provider** current resource information will be inferred from the 
 import { List, CreateButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
 
 export const ProductsListPage = () => {
-  return (
-    // Instead of <List resource="products">
-    <List>
-      {/* Instead of <CreateButton resource="products" /> */}
-      <CreateButton /> // Redirects to /products/new
-    </List>
-  );
+    return (
+        // Instead of <List resource="products">
+        <List>
+            {/* Instead of <CreateButton resource="products" /> */}
+            <CreateButton /> // Redirects to /products/new
+        </List>
+    );
 };
 ```
 
@@ -468,15 +471,15 @@ For example, `useOne` hook can infer `resource` and `id` parameters from the cur
 import { useOne } from "@refinedev/core";
 
 export const ShowPage = () => {
-  //   const { data, isLoading } = useOne({ resource: "products", id: 1 });
-  //   We don't need to pass "resource" and "id" parameters manually.
-  const { data, isLoading } = useOne();
+    //   const { data, isLoading } = useOne({ resource: "products", id: 1 });
+    //   We don't need to pass "resource" and "id" parameters manually.
+    const { data, isLoading } = useOne();
 
-  if (isLoading) {
-    return <Loading />;
-  }
+    if (isLoading) {
+        return <Loading />;
+    }
 
-  return <>{data.name}</>;
+    return <>{data.name}</>;
 };
 ```
 
@@ -488,11 +491,11 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
 
-- [Headless](/docs/api-reference/core/components/auth-page)
-- [Ant Design](/docs/)
-- [Material UI](/docs/)
-- [Chakra UI](/docs/)
-- [Mantine](/docs)
+-   [Headless](/docs/api-reference/core/components/auth-page)
+-   [Ant Design](/docs/)
+-   [Material UI](/docs/)
+-   [Chakra UI](/docs/)
+-   [Mantine](/docs)
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 
@@ -552,15 +555,15 @@ It automatically renders the sidebar menu based on the **resource definitions**,
 
 These components provides layout view based on the resource information automatically like:
 
-- Header with title
-- Breadcrumb
-- Translated texts
-- CRUD Buttons
+-   Header with title
+-   Breadcrumb
+-   Translated texts
+-   CRUD Buttons
 
 On top of that, **refine** adds some features to these layouts:
 
-- **Access Control**: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
-- **Translation**: buttons, titles, columns will be translated to the current language of the user.
+-   **Access Control**: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
+-   **Translation**: buttons, titles, columns will be translated to the current language of the user.
 
 ### Buttons
 
@@ -568,9 +571,9 @@ For example, our **UI Integrations** exports `CreateButton`, for redirecting the
 
 While the button itself is imported from underlying UI package, **refine** adds some capabilities to it:
 
-- **Routing**: when the button is clicked, the user will be redirected to the create page of the resource.
-- **Access Control**: if current user isn't authorized, this button will be disabled or hidden automatically.
-- **Translation**: the button's text will be translated to the current language of the user.
+-   **Routing**: when the button is clicked, the user will be redirected to the create page of the resource.
+-   **Access Control**: if current user isn't authorized, this button will be disabled or hidden automatically.
+-   **Translation**: the button's text will be translated to the current language of the user.
 
 ### Auth Pages
 
@@ -631,23 +634,23 @@ There are 3 ways to populate meta, they all will be **merged into a single meta 
 import { Refine } from "@refinedev/core";
 
 export const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "products",
-          list: "/my-products",
-          // highlight-start
-          meta: {
-            fromResource: "Hello from resource.meta",
-          },
-          // highlight-end
-        },
-      ]}
-    >
-      {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "products",
+                    list: "/my-products",
+                    // highlight-start
+                    meta: {
+                        fromResource: "Hello from resource.meta",
+                    },
+                    // highlight-end
+                },
+            ]}
+        >
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
@@ -658,15 +661,15 @@ export const App = () => {
 import { useOne } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { data, isLoading } = useOne({
-    resource: "products",
-    id: 1,
-    // highlight-start
-    meta: {
-      fromHook: "Hello from hook.meta",
-    },
-    // highlight-end
-  });
+    const { data, isLoading } = useOne({
+        resource: "products",
+        id: 1,
+        // highlight-start
+        meta: {
+            fromHook: "Hello from hook.meta",
+        },
+        // highlight-end
+    });
 };
 ```
 
@@ -688,28 +691,28 @@ Given the above examples, meta fields from **3 different sources** will be avail
 import { AccessControlProvider, DataProvider } from "@refinedev/core";
 
 export const myDataProvider = {
-  getOne: async ({ meta }) => {
-    console.log(meta.fromResource); // "Hello from resource.meta"
-    console.log(meta.fromHook); // "Hello from hook.meta"
-    console.log(meta.fromURL); // "Hello from URL"
-  },
+    getOne: async ({ meta }) => {
+        console.log(meta.fromResource); // "Hello from resource.meta"
+        console.log(meta.fromHook); // "Hello from hook.meta"
+        console.log(meta.fromURL); // "Hello from URL"
+    },
 };
 
 export const myAccessControlProvider = {
-  can: async ({ meta }) => {
-    console.log(meta.fromResource); // "Hello from resource.meta"
-    console.log(meta.fromHook); // "Hello from hook.meta"
-    console.log(meta.fromURL); // "Hello from URL"
-  },
+    can: async ({ meta }) => {
+        console.log(meta.fromResource); // "Hello from resource.meta"
+        console.log(meta.fromHook); // "Hello from hook.meta"
+        console.log(meta.fromURL); // "Hello from URL"
+    },
 };
 ```
 
 ### Example Use Cases
 
-- **Global filters**: pass a filter to your **data provider**.
-- **Multi-tenancy**: make current tenant available id to providers.
-- **Advanced Access Control**: configuration per resource.
-- **Customize UI**: manage sidebar label and icon per resource.
+-   **Global filters**: pass a filter to your **data provider**.
+-   **Multi-tenancy**: make current tenant available id to providers.
+-   **Advanced Access Control**: configuration per resource.
+-   **Customize UI**: manage sidebar label and icon per resource.
 
 These are some but not all examples of how you can use the `meta` property.
 
@@ -721,13 +724,13 @@ These are some but not all examples of how you can use the `meta` property.
 
 Key Aspects of State Management in refine:
 
-- **Data Fetching and Caching**: **refine** handles data fetching with **built-in hooks** that automatically manage the loading states, caching, and updating of data. This integration means fewer boilerplate codes and a more streamlined approach to handling server-state.
+-   **Data Fetching and Caching**: **refine** handles data fetching with **built-in hooks** that automatically manage the loading states, caching, and updating of data. This integration means fewer boilerplate codes and a more streamlined approach to handling server-state.
 
-- **Invalidation and Refetching**: One of the challenges in state management is knowing when to invalidate and refetch data. refine, through React Query, provides simple yet powerful mechanisms to control data refetching. This ensures that the UI always reflects the most current data.
+-   **Invalidation and Refetching**: One of the challenges in state management is knowing when to invalidate and refetch data. refine, through React Query, provides simple yet powerful mechanisms to control data refetching. This ensures that the UI always reflects the most current data.
 
-- **Query Keys Structure**: Each data fetching operation in refine is associated with a unique query key. These keys are used to uniquely identify and cache server responses, making it easy to optimize performance by reusing cached data when needed.
+-   **Query Keys Structure**: Each data fetching operation in refine is associated with a unique query key. These keys are used to uniquely identify and cache server responses, making it easy to optimize performance by reusing cached data when needed.
 
-- **Mutation and Cache Updates**: When a mutation (create, update, delete) occurs, refine allows for the automatic or manual invalidation of related queries. This ensures that the data your users interact with is always fresh and consistent with the backend.
+-   **Mutation and Cache Updates**: When a mutation (create, update, delete) occurs, refine allows for the automatic or manual invalidation of related queries. This ensures that the data your users interact with is always fresh and consistent with the backend.
 
 ## Developer Experience
 
@@ -735,7 +738,7 @@ Key Aspects of State Management in refine:
 
 refine CLI allows you to interact with your **refine** project and perform certain tasks such as creating a new resource, managing version updates, swizzling components, running your project (build, start, dev).
 
-> See the [CLI](/docs/packages/cli/) page for more information.
+> See the [CLI](/docs/packages/documentation/cli/) page for more information.
 
 ### Devtools
 
@@ -753,7 +756,7 @@ Inferencer **scaffolds** some basic boilerplate code to be used as a **starting 
 It's not **guaranteed** to work in all cases, and it's not meant to be used on **production**.
 :::
 
-> See the [Inferencer](/docs/packages/inferencer/) page for more information.
+> See the [Inferencer](/docs/packages/documentation/inferencer/) page for more information.
 
 For example, the following code:
 
@@ -762,23 +765,23 @@ import { AntdInferencer } from "@refinedev/inferencer/antd";
 // or @refinedev/inferencer/mui, @refinedev/inferencer/chakra, @refinedev/inferencer/mantine, @refinedev/inferencer/headless
 
 export const ProductList = () => {
-  // Scaffolds List page.
-  return <AntdInferencer />;
+    // Scaffolds List page.
+    return <AntdInferencer />;
 };
 
 export const ProductShow = () => {
-  // Scaffolds Show page.
-  return <AntdInferencer />;
+    // Scaffolds Show page.
+    return <AntdInferencer />;
 };
 
 export const ProductEdit = () => {
-  // Scaffolds Edit page with form.
-  return <AntdInferencer />;
+    // Scaffolds Edit page with form.
+    return <AntdInferencer />;
 };
 
 export const ProductCreate = () => {
-  // Scaffolds Create page with form.
-  return <AntdInferencer />;
+    // Scaffolds Create page with form.
+    return <AntdInferencer />;
 };
 ```
 
@@ -791,27 +794,31 @@ import { Space, Table } from "antd";
 import React from "react";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps } = useTable({
-    syncWithLocation: true,
-  });
+    const { tableProps } = useTable({
+        syncWithLocation: true,
+    });
 
-  return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
-        <Table.Column dataIndex="price" title="Price" />
-        <Table.Column
-          title="Actions"
-          dataIndex="actions"
-          render={(_, record: BaseRecord) => (
-            <Space>
-              <ShowButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
-      </Table>
-    </List>
-  );
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="Id" />
+                <Table.Column dataIndex="name" title="Name" />
+                <Table.Column dataIndex="price" title="Price" />
+                <Table.Column
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record: BaseRecord) => (
+                        <Space>
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
+    );
 };
 ```

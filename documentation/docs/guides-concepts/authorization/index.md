@@ -66,7 +66,7 @@ export const App = () => {
 };
 ```
 
-[To learn more about the `Access Control Provider`, check out the reference page.](/docs/api-reference/core/providers/access-control-provider)
+[To learn more about the `Access Control Provider`, check out the reference page.](/docs/api-reference/core/providers/accessControl-provider)
 
 ## CanAccess Component
 
