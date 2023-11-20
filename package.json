@@ -32,6 +32,9 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint -c ./.eslintrc --quiet --fix --cache"
+    ],
+    "*.{md,mdx}": [
+      "prettier --config ./.prettierrc --write"
     ]
   },
   "devDependencies": {
