@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { SVGProps, useEffect } from "react";
 import { CSSRules } from "./styles";
 
 export const GitHubBanner = () => {
@@ -10,78 +10,269 @@ export const GitHubBanner = () => {
         );
     }, []);
 
-
-    const texts = ["Be a part of our journey. Star Refine on GitHub!", "Join our community. Star Refine on GitHub!", "Let's elevate Refine together. Star us on GitHub!", "Enhance Refine's reach. Give us a star on GitHub!"]
+    const texts = [
+        "Be a part of our journey. Star Refine on GitHub!",
+        "Join our community. Star Refine on GitHub!",
+        "Let's elevate Refine together. Star us on GitHub!",
+        "Enhance Refine's reach. Give us a star on GitHub!",
+    ];
+    const text = texts[Math.floor(Math.random() * texts.length)];
 
     return (
         <div
-            className="banner"
+            className="banner bg-top-announcement"
             style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                padding: "8px 16px",
-                backgroundColor: "#0d0d0d",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
+                width: "100%",
+                height: "48px",
             }}
         >
-            {/* sider offset for center alignment */}
             <div
                 style={{
-                    width: "200px",
+                    position: "relative",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingLeft: "200px",
+                    width: "100%",
+                    maxWidth: "100vw",
+                    height: "100%",
+                    borderBottom: "1px solid #47ebeb26",
                 }}
-            />
-            <a
-                className="gh-link"
-                href="https://s.refine.dev/github-support"
-                target="_blank"
-                rel="noreferrer"
             >
                 <div
-                    className="content"
+                    className="top-announcement-mask"
                     style={{
-                        position: "relative",
-                        zIndex: 2,
-                        color: "#fff",
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "8px",
+                        position: "absolute",
+                        left: 0,
+                        top: 0,
+                        width: "100%",
+                        height: "100%",
+                        borderBottom: "1px solid #47ebeb26",
                     }}
                 >
-                    <span
+                    <div
                         style={{
+                            position: "relative",
+                            width: "960px",
+                            height: "100%",
                             display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: "space-between",
+                            margin: "0 auto",
                         }}
                     >
-                        ⭐️
-                    </span>
-                    <span
-                        className="text"
-                        style={{
-                            padding: "4px 0",
-                            fontSize: "16px",
-                            lineHeight: "24px",
-                            textShadow: "0px 0px 4px rgba(255, 255, 255, 0.5)",
-                        }}
-                    >
-                        {texts[Math.floor(Math.random() * texts.length)]}
-                    </span>
-                    <span
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        ⭐️
-                    </span>
+                        <div
+                            style={{
+                                width: "calc(50% - 300px)",
+                                height: "100%",
+                                position: "relative",
+                            }}
+                        >
+                            <GlowSmall
+                                style={{
+                                    animationDelay: "1.5s",
+                                    position: "absolute",
+                                    top: "2px",
+                                    right: "220px",
+                                }}
+                                id={"1"}
+                            />
+                            <GlowSmall
+                                style={{
+                                    animationDelay: "1s",
+                                    position: "absolute",
+                                    top: "8px",
+                                    right: "100px",
+                                    transform: "rotate(180deg)",
+                                }}
+                                id={"2"}
+                            />
+                            <GlowBig
+                                style={{
+                                    position: "absolute",
+                                    right: "10px",
+                                }}
+                                id={"3"}
+                            />
+                        </div>
+
+                        <div
+                            style={{
+                                width: "calc(50% - 300px)",
+                                height: "100%",
+                                position: "relative",
+                            }}
+                        >
+                            <GlowSmall
+                                style={{
+                                    animationDelay: "2s",
+                                    position: "absolute",
+                                    top: "6px",
+                                    right: "180px",
+                                    transform: "rotate(180deg)",
+                                }}
+                                id={"4"}
+                            />
+                            <GlowSmall
+                                style={{
+                                    animationDelay: "0.5s",
+                                    transitionDelay: "1.3s",
+                                    position: "absolute",
+                                    top: "2px",
+                                    right: "40px",
+                                }}
+                                id={"5"}
+                            />
+                            <GlowBig
+                                style={{
+                                    position: "absolute",
+                                    right: "-70px",
+                                }}
+                                id={"6"}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </a>
+                <Text text={text} />
+            </div>
         </div>
     );
 };
+
+const Text = ({ text }: { text: string }) => {
+    return (
+        <a
+            className="gh-link"
+            href="https://s.refine.dev/github-support"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+                position: "absolute",
+                // left: "calc(50% + 200px)",
+                // transform: "translateX(calc(-50%))",
+                height: "100%",
+                padding: "0 60px",
+                display: "flex",
+                flexWrap: "nowrap",
+                whiteSpace: "nowrap",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundImage:
+                    "linear-gradient(90deg, rgba(31, 63, 72, 0.00) 0%, #1F3F48 10%, #1F3F48 90%, rgba(31, 63, 72, 0.00) 100%)",
+            }}
+        >
+            <div
+                style={{
+                    color: "#fff",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                }}
+            >
+                <span
+                    style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    ⭐️
+                </span>
+                <span
+                    className="text"
+                    style={{
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                    }}
+                >
+                    {text}
+                </span>
+                <span
+                    style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    ⭐️
+                </span>
+            </div>
+        </a>
+    );
+};
+
+const GlowSmall = ({ style, ...props }: SVGProps<SVGSVGElement>) => {
+    console.log(style);
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={80}
+            height={40}
+            fill="none"
+            style={{
+                opacity: 1,
+                animation:
+                    "top-announcement-glow 1s ease-in-out infinite alternate",
+                ...style,
+            }}
+        >
+            <circle
+                cx={40}
+                r={40}
+                fill={`url(#${props.id}-a)`}
+                fillOpacity={0.5}
+            />
+            <defs>
+                <radialGradient
+                    id={`${props.id}-a`}
+                    cx={0}
+                    cy={0}
+                    r={1}
+                    gradientTransform="matrix(0 40 -40 0 40 0)"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stopColor="#47EBEB" />
+                    <stop offset={1} stopColor="#47EBEB" stopOpacity={0} />
+                </radialGradient>
+            </defs>
+        </svg>
+    );
+};
+
+const GlowBig = ({ style, ...props }: SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={120}
+        height={48}
+        fill="none"
+        {...props}
+        style={{
+            opacity: 1,
+            animation:
+                "top-announcement-glow 1s ease-in-out infinite alternate",
+            ...style,
+        }}
+    >
+        <circle
+            cx={60}
+            cy={24}
+            r={60}
+            fill={`url(#${props.id}-a)`}
+            fillOpacity={0.5}
+        />
+        <defs>
+            <radialGradient
+                id={`${props.id}-a`}
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="matrix(0 60 -60 0 60 24)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#47EBEB" />
+                <stop offset={1} stopColor="#47EBEB" stopOpacity={0} />
+            </radialGradient>
+        </defs>
+    </svg>
+);
