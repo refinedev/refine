@@ -37,7 +37,7 @@ describe("transformErrorMessages", () => {
         });
     });
 
-    it("should not throw error with empty array", () => {
+    it("should not throw an error with an empty array", () => {
         const errorMessages: any = [];
 
         const expectedOutput = {};
