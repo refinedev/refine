@@ -37,7 +37,7 @@ export default function BasicUsage() {
   );
 }
 
-const AppTsxCode = /* jsx */ `
+const AppTsxCode = /* tsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";

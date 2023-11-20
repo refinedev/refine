@@ -35,7 +35,7 @@ export function ReactRouterUseFormUsage() {
   );
 }
 
-const AppTsxCode = /* jsx */ `
+const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { Refine } from "@refinedev/core";

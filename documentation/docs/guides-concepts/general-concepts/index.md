@@ -458,23 +458,25 @@ export const ProductsListPage = () => {
 
 #### Hooks
 
-**refine** hooks can synchronize certain parameters from the current URL eliminates the need to pass them manually.
+**refine** hooks can synchronize **resource**, **id**, **action** parameters from the current URL eliminates the need to pass them manually.
 
-For example, `useOne` hook can infer `resource` and `id` parameters from the current URL.
+For example, `useShow` hook can infer `resource` and `id` parameters from the current URL.
 
 ```tsx title=show.tsx
-import { useOne } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
 export const ShowPage = () => {
-  //   const { data, isLoading } = useOne({ resource: "products", id: 1 });
-  //   We don't need to pass "resource" and "id" parameters manually.
-  const { data, isLoading } = useOne();
+  // const { queryResult } = useShow({ resource: "products", id: 1 });
+  // We don't need to pass "resource" and "id" parameters manually.
+  const { queryResult } = useShow();
+
+  const { data, isLoading } = queryResult;
 
   if (isLoading) {
     return <Loading />;
   }
 
-  return <>{data.name}</>;
+  return <>{data?.data.name}</>;
 };
 ```
 

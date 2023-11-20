@@ -170,8 +170,8 @@ import { RemixResourceAndRoutesUsage } from "./remix/resource-and-routes-usage";
 
 ### useForm
 
-Router integration of **refine** allows you to use `useForm` without passing any parameters.
-It will also redirect you to the correct route after a successful form submission.
+Router integration of **refine** allows you to use `useForm` without passing **resource**, **id** and **action** parameters.
+It will also redirect you to resource's action route defined in `redirect` prop. `redirect` prop is `list` by default.
 
 import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 
