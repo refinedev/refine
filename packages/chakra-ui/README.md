@@ -54,20 +54,20 @@ import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
-    return (
-        <ChakraProvider>
-            <Refine
-            /* ... */
-            >
-                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-            </Refine>
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider>
+      <Refine
+      /* ... */
+      >
+        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+      </Refine>
+    </ChakraProvider>
+  );
 };
 ```
 
 ## Documentation
 
--   For more detailed information and usage, refer to the [refine Chakra UI documentation](https://refine.dev/docs/api-reference/chakra-ui/).
--   [Refer to complete refine tutorial with Chakra UI](https://refine.dev/docs/tutorial/introduction/select-framework/)
--   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- For more detailed information and usage, refer to the [refine Chakra UI documentation](https://refine.dev/docs/api-reference/chakra-ui/).
+- [Refer to complete refine tutorial with Chakra UI](https://refine.dev/docs/tutorial/introduction/select-framework/)
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).

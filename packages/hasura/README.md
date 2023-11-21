@@ -51,25 +51,25 @@ npm install @refinedev/hasura
 import dataProvider, { GraphQLClient } from "@refinedev/hasura";
 
 const client = new GraphQLClient("HASURA_API_URL", {
-    headers: {
-        "x-hasura-role": "public",
-    },
+  headers: {
+    "x-hasura-role": "public",
+  },
 });
 
 const App = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(client)}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(client)}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
 ## Documentation
 
--   For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
--   [Refer to documentation for more info about refine](https://refine.dev/docs/).
--   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

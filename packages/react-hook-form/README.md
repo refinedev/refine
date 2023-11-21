@@ -51,19 +51,19 @@ npm install @refinedev/react-hook-form react-hook-form
 import { useForm } from "@refinedev/react-hook-form";
 
 const EditPost = () => {
-    const { register, handleSubmit, formState, refineCore } = useForm({
-        refineCoreProps: {
-            resource: "posts",
-            id: "1",
-        },
-    });
+  const { register, handleSubmit, formState, refineCore } = useForm({
+    refineCoreProps: {
+      resource: "posts",
+      id: "1",
+    },
+  });
 
-    return; /* ... */
+  return; /* ... */
 };
 ```
 
 ## Documentation
 
--   For more detailed information and usage, refer to the [refine React Hook Form documentation](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
--   [Refer to documentation for more info about refine](https://refine.dev/docs/).
--   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [refine React Hook Form documentation](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

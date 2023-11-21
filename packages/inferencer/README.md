@@ -51,19 +51,19 @@ npm install @refinedev/inferencer
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 const App = () => {
-    return (
-        <Refine
-        /* ... */
-        >
-            <AntdInferencer action="list" resource="posts" />
-        </Refine>
-    );
+  return (
+    <Refine
+    /* ... */
+    >
+      <AntdInferencer action="list" resource="posts" />
+    </Refine>
+  );
 };
 ```
 
 ## Documentation
 
--   For more detailed information and usage, refer to the [refine Inferencer documentation](https://refine.dev/docs/packages/documentation/inferencer/).
--   [Refer to Inferencer section in tutorial](https://refine.dev/docs/tutorial/getting-started/antd/generate-crud-pages/#inferencer)
--   [Refer to documentation for more info about refine](https://refine.dev/docs/).
--   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [refine Inferencer documentation](https://refine.dev/docs/packages/documentation/inferencer/).
+- [Refer to Inferencer section in tutorial](https://refine.dev/docs/tutorial/getting-started/antd/generate-crud-pages/#inferencer)
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
