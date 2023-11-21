@@ -1,7 +1,16 @@
-import React, { SVGProps, useEffect } from "react";
+import React, { SVGProps, useEffect, useState } from "react";
 import { CSSRules } from "./styles";
 
+const texts = [
+    "Be a part of our journey. Star Refine on GitHub!",
+    "Join our community. Star Refine on GitHub!",
+    "Let's elevate Refine together. Star us on GitHub!",
+    "Enhance Refine's reach. Give us a star on GitHub!",
+];
+
 export const GitHubBanner = () => {
+    const [text, setText] = useState<string | null>(null);
+
     useEffect(() => {
         const styleTag = document.createElement("style");
         document.head.appendChild(styleTag);
@@ -10,13 +19,9 @@ export const GitHubBanner = () => {
         );
     }, []);
 
-    const texts = [
-        "Be a part of our journey by starring Refine on GitHub.",
-        "Join our community and star Refine on GitHub.",
-        "Let's elevate Refine together - star us on GitHub.",
-        "Enhance Refine's reach by giving us a star on GitHub.",
-    ];
-    const text = texts[Math.floor(Math.random() * texts.length)];
+    useEffect(() => {
+        setText(texts[Math.floor(Math.random() * texts.length)]);
+    }, []);
 
     return (
         <div
@@ -132,7 +137,7 @@ export const GitHubBanner = () => {
                         </div>
                     </div>
                 </div>
-                <Text text={text} />
+                {text && <Text text={text} />}
             </div>
         </div>
     );
@@ -201,7 +206,6 @@ const Text = ({ text }: { text: string }) => {
 };
 
 const GlowSmall = ({ style, ...props }: SVGProps<SVGSVGElement>) => {
-    console.log(style);
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
