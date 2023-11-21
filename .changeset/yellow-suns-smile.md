@@ -4,4 +4,4 @@
 
 feat: `<GitHubBanner />` styles updated.
 
-fixed: `<GitHubBanner />` hydration error. #5295
+fix: `<GitHubBanner />` hydration error. #5295
