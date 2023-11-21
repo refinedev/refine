@@ -8,25 +8,20 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-inv
 hide_table_of_contents: false
 ---
 
-
-
-
-
 In this post, we add pdf renderer to **PDF Invoice Generator** app that we have been building last few days. This is also where we summarize our accomplishments and wrap up the series.
 
 This is Day 5, the final day of the running [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series and this [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
 
 ### refineWeek ft. Strapi series
 
- - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
- - Day 2 - [Setting Up the Invoicer App](https://refine.dev/blog/refine-react-invoice-generator-2/)
- - Day 3 - [Adding CRUD Actions & Views](https://refine.dev/blog/refine-react-invoice-generator-3/)
- - Day 4 - [Creating Mission and Invoices Pages](https://refine.dev/blog/refine-react-invoice-generator-4/)
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
+- Day 2 - [Setting Up the Invoicer App](https://refine.dev/blog/refine-react-invoice-generator-2/)
+- Day 3 - [Adding CRUD Actions & Views](https://refine.dev/blog/refine-react-invoice-generator-3/)
+- Day 4 - [Creating Mission and Invoices Pages](https://refine.dev/blog/refine-react-invoice-generator-4/)
 
 [👉 The live version of the app is be available here.](https://invoice-generator.refine.dev/)
 
 [👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator)
-
 
 ## Overview
 
@@ -54,333 +49,222 @@ And build the PDF layout component like this:
 <summary>Show PDFlayout code</summary>
 <p>
 
-
 ```tsx title="src/components/pd/pdfLayout.tsx"
-import {
-    Document,
-    Image,
-    Page,
-    StyleSheet,
-    View,
-    Text,
-    PDFViewer,
-} from "@react-pdf/renderer";
+import { Document, Image, Page, StyleSheet, View, Text, PDFViewer } from "@react-pdf/renderer";
 import { IInvoice } from "interfaces";
 import { API_URL } from "../../constants";
 
 type PdfProps = {
-    record: IInvoice | undefined;
+  record: IInvoice | undefined;
 };
 
 export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
-    const subtotal =
-        record?.missions.reduce((prev, cur) => {
-            return prev + cur?.day * cur?.daily_rate;
-        }, 0) ?? 0;
+  const subtotal =
+    record?.missions.reduce((prev, cur) => {
+      return prev + cur?.day * cur?.daily_rate;
+    }, 0) ?? 0;
 
-    return (
-        <PDFViewer style={styles.viewer}>
-            <Document>
-                <Page style={styles.page} size="A4">
-                    <View>
-                        <Image
-                            src={API_URL + record?.company?.logo?.url}
-                            style={{ width: "120px", height: "auto" }}
-                        />
-                        <View style={styles.inoviceTextNumberContainer}>
-                            <Text style={styles.inoviceText}>
-                                {`Invoice: Invoice_#${record?.id}${record?.name}`}
-                            </Text>
-                            <Text
-                                style={styles.inoviceId}
-                            >{`Invoice ID: INVOICE_#${record?.id}`}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.dividerLG} />
+  return (
+    <PDFViewer style={styles.viewer}>
+      <Document>
+        <Page style={styles.page} size="A4">
+          <View>
+            <Image src={API_URL + record?.company?.logo?.url} style={{ width: "120px", height: "auto" }} />
+            <View style={styles.invoiceTextNumberContainer}>
+              <Text style={styles.invoiceText}>{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
+              <Text style={styles.invoiceId}>{`Invoice ID: INVOICE_#${record?.id}`}</Text>
+            </View>
+          </View>
+          <View style={styles.dividerLG} />
 
-                    <View style={styles.inoviceForFromContainer}>
-                        <View style={styles.inoviceFor}>
-                            <Text style={styles.inoviceForFromTitle}>
-                                Inovice For:
-                            </Text>
-                            <View>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.client?.name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.first_name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.last_name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.email}
-                                </Text>
-                            </View>
-                        </View>
+          <View style={styles.invoiceForFromContainer}>
+            <View style={styles.invoiceFor}>
+              <Text style={styles.invoiceForFromTitle}>invoice For:</Text>
+              <View>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.client?.name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.first_name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.last_name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.email}</Text>
+              </View>
+            </View>
 
-                        <View style={styles.inoviceFrom}>
-                            <Text style={styles.inoviceForFromTitle}>
-                                From:
-                            </Text>
-                            <View>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.company.name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.company.city}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.company.address},{" "}
-                                    {record?.company.country}
-                                </Text>
-                            </View>
-                            <View style={styles.dividerSM} />
-                            <View>
-                                <Text
-                                    style={styles.inoviceForFromText}
-                                >{`Invoice ID: ${record?.id}`}</Text>
-                                <Text
-                                    style={styles.inoviceForFromText}
-                                >{`Invoice Custom ID: ${record?.custom_id}`}</Text>
-                                <Text
-                                    style={styles.inoviceForFromText}
-                                >{`Invoice Date: ${record?.date}`}</Text>
-                            </View>
-                        </View>
-                    </View>
+            <View style={styles.invoiceFrom}>
+              <Text style={styles.invoiceForFromTitle}>From:</Text>
+              <View>
+                <Text style={styles.invoiceForFromText}>{record?.company.name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.company.city}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.address}, {record?.company.country}
+                </Text>
+              </View>
+              <View style={styles.dividerSM} />
+              <View>
+                <Text style={styles.invoiceForFromText}>{`Invoice ID: ${record?.id}`}</Text>
+                <Text style={styles.invoiceForFromText}>{`Invoice Custom ID: ${record?.custom_id}`}</Text>
+                <Text style={styles.invoiceForFromText}>{`Invoice Date: ${record?.date}`}</Text>
+              </View>
+            </View>
+          </View>
 
-                    <View style={styles.table}>
-                        <View style={styles.tableHeader}>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "40%" },
-                                ]}
-                            >
-                                Mission
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "20%" },
-                                ]}
-                            >
-                                Day
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "20%" },
-                                ]}
-                            >
-                                Day Rate
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "20%" },
-                                ]}
-                            >
-                                Total
-                            </Text>
-                        </View>
-                        {record?.missions.map((item) => {
-                            return (
-                                <View key={item.id} style={styles.tableRow}>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "40%" },
-                                        ]}
-                                    >
-                                        {item.mission}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "20%" },
-                                        ]}
-                                    >
-                                        {item?.day}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "20%" },
-                                        ]}
-                                    >
-                                        {item?.daily_rate}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "20%" },
-                                        ]}
-                                    >
-                                        {item?.daily_rate * item?.day}
-                                    </Text>
-                                </View>
-                            );
-                        })}
-                    </View>
+          <View style={styles.table}>
+            <View style={styles.tableHeader}>
+              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>Mission</Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day</Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day Rate</Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Total</Text>
+            </View>
+            {record?.missions.map((item) => {
+              return (
+                <View key={item.id} style={styles.tableRow}>
+                  <Text style={[styles.tableCol, { width: "40%" }]}>{item.mission}</Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>{item?.day}</Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>{item?.daily_rate}</Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>{item?.daily_rate * item?.day}</Text>
+                </View>
+              );
+            })}
+          </View>
 
-                    <View style={styles.signatureTotalContainer}>
-                        <View style={styles.signatureContainer}>
-                            <Text style={styles.signatureText}>
-                                Signature: ________________
-                            </Text>
-                            <Text style={styles.signatureText}>
-                                Date: {record?.date.toString()}
-                            </Text>
-                        </View>
+          <View style={styles.signatureTotalContainer}>
+            <View style={styles.signatureContainer}>
+              <Text style={styles.signatureText}>Signature: ________________</Text>
+              <Text style={styles.signatureText}>Date: {record?.date.toString()}</Text>
+            </View>
 
-                        <View style={styles.totalContainer}>
-                            <Text style={styles.totalText}>
-                                SUBTOTAL: {subtotal}
-                            </Text>
-                            <Text style={styles.totalText}>
-                                Discount(%): {record?.discount}
-                            </Text>
-                            <Text style={styles.totalText}>
-                                Tax(%): {record?.tax}
-                            </Text>
-                            <Text style={styles.totalText}>
-                                Total($):
-                                {subtotal +
-                                    (subtotal * (record?.tax as number)) / 100 -
-                                    (subtotal * (record?.discount as number)) /
-                                        100}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.footer}>
-                        <Text style={styles.footerText}>
-                            {record?.company.city}
-                        </Text>
-                        <Text style={styles.footerText}>
-                            {record?.company.address}, {record?.company.country}
-                        </Text>
-                    </View>
-                </Page>
-            </Document>
-        </PDFViewer>
-    );
+            <View style={styles.totalContainer}>
+              <Text style={styles.totalText}>SUBTOTAL: {subtotal}</Text>
+              <Text style={styles.totalText}>Discount(%): {record?.discount}</Text>
+              <Text style={styles.totalText}>Tax(%): {record?.tax}</Text>
+              <Text style={styles.totalText}>
+                Total($):
+                {subtotal +
+                  (subtotal * (record?.tax as number)) / 100 -
+                  (subtotal * (record?.discount as number)) / 100}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>{record?.company.city}</Text>
+            <Text style={styles.footerText}>
+              {record?.company.address}, {record?.company.country}
+            </Text>
+          </View>
+        </Page>
+      </Document>
+    </PDFViewer>
+  );
 };
 
 const styles = StyleSheet.create({
-    viewer: {
-        paddingTop: 32,
-        width: "100%",
-        height: "80vh",
-        border: "none",
-    },
-    page: {
-        display: "flex",
-        padding: "0.4in 0.4in",
-        fontSize: 12,
-        color: "#333",
-        backgroundColor: "#fff",
-    },
-    inoviceTextNumberContainer: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    inoviceText: {
-        color: "#3aabf0",
-    },
-    inoviceId: {
-        textAlign: "center",
-    },
-    inoviceForFromContainer: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    inoviceForFromTitle: {
-        marginBottom: 24,
-    },
-    inoviceFor: {
-        flex: 1.5,
-    },
-    inoviceFrom: {
-        flex: 1,
-    },
-    inoviceForFromText: {
-        color: "#787878",
-        lineHeight: 1.5,
-    },
-    dividerSM: {
-        width: "100%",
-        height: 1,
-        marginTop: 12,
-        marginBottom: 12,
-        backgroundColor: "#e5e5e5",
-    },
-    dividerLG: {
-        width: "100%",
-        height: 1,
-        marginTop: 40,
-        marginBottom: 40,
-        backgroundColor: "#e5e5e5",
-    },
-    table: {
-        marginTop: 32,
-    },
-    tableHeader: {
-        display: "flex",
-        flexDirection: "row",
-        textAlign: "center",
-    },
-    tableHeaderItem: {
-        paddingVertical: 8,
-        border: "1px solid #000",
-        borderBottom: "none",
-    },
-    tableRow: {
-        display: "flex",
-        flexDirection: "row",
-    },
-    tableCol: {
-        paddingVertical: 8,
-        paddingHorizontal: 4,
-        border: "1px solid #000",
-    },
-    signatureTotalContainer: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 32,
-    },
-    signatureContainer: {},
-    totalContainer: {},
-    signatureText: {
-        marginTop: 32,
-    },
-    totalText: {
-        marginTop: 16,
-    },
-    footer: {
-        borderTop: "1px solid #e5e5e5",
-        paddingTop: 8,
-        marginTop: "auto",
-    },
-    footerText: {
-        color: "#787878",
-        lineHeight: 1.5,
-    },
+  viewer: {
+    paddingTop: 32,
+    width: "100%",
+    height: "80vh",
+    border: "none",
+  },
+  page: {
+    display: "flex",
+    padding: "0.4in 0.4in",
+    fontSize: 12,
+    color: "#333",
+    backgroundColor: "#fff",
+  },
+  invoiceTextNumberContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  invoiceText: {
+    color: "#3aabf0",
+  },
+  invoiceId: {
+    textAlign: "center",
+  },
+  invoiceForFromContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  invoiceForFromTitle: {
+    marginBottom: 24,
+  },
+  invoiceFor: {
+    flex: 1.5,
+  },
+  invoiceFrom: {
+    flex: 1,
+  },
+  invoiceForFromText: {
+    color: "#787878",
+    lineHeight: 1.5,
+  },
+  dividerSM: {
+    width: "100%",
+    height: 1,
+    marginTop: 12,
+    marginBottom: 12,
+    backgroundColor: "#e5e5e5",
+  },
+  dividerLG: {
+    width: "100%",
+    height: 1,
+    marginTop: 40,
+    marginBottom: 40,
+    backgroundColor: "#e5e5e5",
+  },
+  table: {
+    marginTop: 32,
+  },
+  tableHeader: {
+    display: "flex",
+    flexDirection: "row",
+    textAlign: "center",
+  },
+  tableHeaderItem: {
+    paddingVertical: 8,
+    border: "1px solid #000",
+    borderBottom: "none",
+  },
+  tableRow: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  tableCol: {
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    border: "1px solid #000",
+  },
+  signatureTotalContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 32,
+  },
+  signatureContainer: {},
+  totalContainer: {},
+  signatureText: {
+    marginTop: 32,
+  },
+  totalText: {
+    marginTop: 16,
+  },
+  footer: {
+    borderTop: "1px solid #e5e5e5",
+    paddingTop: 8,
+    marginTop: "auto",
+  },
+  footerText: {
+    color: "#787878",
+    lineHeight: 1.5,
+  },
 });
 ```
-
 
 </p>
 </details>
 
-
 Everything here is React-PDF stuff so we won't be delving into any of the components here. However, if you are interested in exploring what's happening, please feel free to check out the cool [`@react-pdf/renderer` docs here](https://react-pdf.org/components).
-
 
 ### Displaying PDF Renderer in refine Modal
 
@@ -397,15 +281,7 @@ Here's the updated `<InvoiceList />` component:
 ```tsx title="src/pages/invoices/list.tsx"
 import { useState } from "react";
 import { useModal } from "@refinedev/core";
-import {
-    List,
-    useTable,
-    DateField,
-    TagField,
-    EmailField,
-    DeleteButton,
-    EditButton,
-} from "@refinedev/antd";
+import { List, useTable, DateField, TagField, EmailField, DeleteButton, EditButton } from "@refinedev/antd";
 
 // It is recommended to use explicit import as seen below to reduce bundle size.
 // import { IconName } from "@ant-design/icons";
@@ -419,119 +295,89 @@ import { PdfLayout } from "components/pdf";
 const { FilePdfOutlined } = Icons;
 
 export const InvoiceList: React.FC = () => {
-    const [record, setRecord] = useState<IInvoice>();
+  const [record, setRecord] = useState<IInvoice>();
 
-    const { tableProps } = useTable<IInvoice>({
-        meta: {
-            populate: {
-                contact: { populate: ["client"] },
-                company: { populate: ["logo"] },
-                missions: "*",
-            },
-        },
-    });
+  const { tableProps } = useTable<IInvoice>({
+    meta: {
+      populate: {
+        contact: { populate: ["client"] },
+        company: { populate: ["logo"] },
+        missions: "*",
+      },
+    },
+  });
 
-    const { show, visible, close } = useModal();
+  const { show, visible, close } = useModal();
 
-    return (
-        <>
-            <List>
-                <Table {...tableProps}>
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column<IInvoice>
-                        dataIndex="name"
-                        title="Invoice Name"
-                        render={(_, record) => {
-                            return `Invoice_#${record.id}${record?.name}`;
-                        }}
-                    />
-                    <Table.Column<IInvoice>
-                        dataIndex="date"
-                        title="Invoice Date"
-                        render={(value) => (
-                            <DateField format="LL" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex={["company", "name"]}
-                        title="Company"
-                    />
-                    <Table.Column
-                        dataIndex={"missions"}
-                        title="Missions"
-                        render={(value) => {
-                            return value.map((item: IMission) => {
-                                return (
-                                    <TagField
-                                        key={item?.id}
-                                        color="blue"
-                                        value={item?.mission}
-                                    />
-                                );
-                            });
-                        }}
-                    />
-                    <Table.Column
-                        dataIndex="discount"
-                        title="Discount(%)"
-                        render={(value) => (
-                            <TagField color="blue" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="tax"
-                        title="Tax(%)"
-                        render={(value) => (
-                            <TagField color="cyan" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="custom_id"
-                        title="Custom Invoice ID"
-                    />
+  return (
+    <>
+      <List>
+        <Table {...tableProps}>
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column<IInvoice>
+            dataIndex="name"
+            title="Invoice Name"
+            render={(_, record) => {
+              return `Invoice_#${record.id}${record?.name}`;
+            }}
+          />
+          <Table.Column<IInvoice>
+            dataIndex="date"
+            title="Invoice Date"
+            render={(value) => <DateField format="LL" value={value} />}
+          />
+          <Table.Column dataIndex={["company", "name"]} title="Company" />
+          <Table.Column
+            dataIndex={"missions"}
+            title="Missions"
+            render={(value) => {
+              return value.map((item: IMission) => {
+                return <TagField key={item?.id} color="blue" value={item?.mission} />;
+              });
+            }}
+          />
+          <Table.Column
+            dataIndex="discount"
+            title="Discount(%)"
+            render={(value) => <TagField color="blue" value={value} />}
+          />
+          <Table.Column dataIndex="tax" title="Tax(%)" render={(value) => <TagField color="cyan" value={value} />} />
+          <Table.Column dataIndex="custom_id" title="Custom Invoice ID" />
 
-                    <Table.Column
-                        dataIndex={["contact", "email"]}
-                        title="Contact"
-                        render={(value) => <EmailField value={value} />}
+          <Table.Column
+            dataIndex={["contact", "email"]}
+            title="Contact"
+            render={(value) => <EmailField value={value} />}
+          />
+          <Table.Column<IInvoice>
+            title="Actions"
+            dataIndex="actions"
+            render={(_, record) => {
+              return (
+                <Space>
+                  <EditButton hideText size="small" recordItemId={record?.id} />
+                  <DeleteButton hideText size="small" recordItemId={record?.id} />
+                  {record.company && (
+                    <Button
+                      size="small"
+                      icon={<FilePdfOutlined />}
+                      onClick={() => {
+                        setRecord(record);
+                        show();
+                      }}
                     />
-                    <Table.Column<IInvoice>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_, record) => {
-                            return (
-                                <Space>
-                                    <EditButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record?.id}
-                                    />
-                                    <DeleteButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record?.id}
-                                    />
-                                    {record.company && (
-                                        <Button
-                                            size="small"
-                                            icon={<FilePdfOutlined />}
-                                            onClick={() => {
-                                                setRecord(record);
-                                                show();
-                                            }}
-                                        />
-                                    )}
-                                </Space>
-                            );
-                        }}
-                    />
-                </Table>
-            </List>
-            <Modal visible={visible} onCancel={close} width="80%" footer={null}>
-                <PdfLayout record={record} />
-            </Modal>
-        </>
-    );
+                  )}
+                </Space>
+              );
+            }}
+          />
+        </Table>
+      </List>
+      <Modal visible={visible} onCancel={close} width="80%" footer={null}>
+        <PdfLayout record={record} />
+      </Modal>
+    </>
+  );
 };
 ```
 
@@ -544,9 +390,7 @@ Do take note of the `meta.populate` property of the `useTable()` hook's argument
 
 OK. With this done, we can now go ahead and test our app and should be able to view the pdf document by clicking on the pdf document icon.
 
-
-
-<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/pdf.gif"  alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/pdf.gif" alt="react invoice generator" />
 
 <br />
 

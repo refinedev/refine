@@ -49,20 +49,20 @@ import dataProvider from "refine-sanity";
 import { createClient } from "@sanity/client";
 
 const client = createClient({
-    token: "EDITOR_SANITY_ACCESS_TOKEN",
-    projectId: "SANITY_PROJECT_ID",
-    dataset: "SANITY_DATASET",
+  token: "EDITOR_SANITY_ACCESS_TOKEN",
+  projectId: "SANITY_PROJECT_ID",
+  dataset: "SANITY_DATASET",
 });
 
 const App = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(client)}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(client)}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -92,6 +92,6 @@ npm create refine-app@latest -- --example data-provider-sanity
 
 ## Resources
 
--   [Refer to Sanity docs](https://www.sanity.io/docs/getting-started-with-sanity).
--   [Refer to refine tutorial](https://refine.dev/docs/tutorial/introduction/index/).
--   [Refer to refine-sanity data provider package](https://www.npmjs.com/package/refine-sanity).
+- [Refer to Sanity docs](https://www.sanity.io/docs/getting-started-with-sanity).
+- [Refer to refine tutorial](https://refine.dev/docs/tutorial/introduction/index/).
+- [Refer to refine-sanity data provider package](https://www.npmjs.com/package/refine-sanity).

@@ -3,7 +3,6 @@
   <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
 
-
 </br>
 
 <div align="center">
@@ -39,7 +38,6 @@ PrimeReact is a collection of rich UI components. It offers a wide range of comp
 
 On the other hand, refine is a React-based framework for building internal tooling such as admin panel, dashboards, and CRUD apps. It comes with ready-made features like data handling, authentication, access control, and more. Most importantly, it's highly customizable and extensible. In this example, you'll have the opportunity to understand how refine works.
 
-
 Refer to complete tutorial of this app[here](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/)
 
 ## Quick Start
@@ -65,8 +63,6 @@ Your application will be accessible at http://localhost:5173
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/final-product-edit.png "Product Edit Page")
 
 ### Resources
-
-
 
 Refer to [PrimeReact docs](https://primereact.org/) for more information.
 

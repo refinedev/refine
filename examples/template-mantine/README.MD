@@ -43,7 +43,6 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 - **Mantine** [Docs](#)
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 
-
 ## License
 
 MIT

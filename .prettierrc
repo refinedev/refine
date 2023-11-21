@@ -13,7 +13,10 @@
             }
         },
         {
-            "files": ["documentation/docs/**/*.{md,mdx,tsx,js,ts}", "documentation/blog/**/*.{md,mdx,tsx,js,ts}"],
+            "files": [
+                "documentation/docs/**/*.{md,mdx,tsx,js,ts}",
+                "documentation/blog/**/*.{md,mdx,tsx,js,ts}"
+            ],
             "options": {
                 "tabWidth": 2,
                 "printWidth": 120
@@ -21,4 +24,3 @@
         }
     ]
 }
-

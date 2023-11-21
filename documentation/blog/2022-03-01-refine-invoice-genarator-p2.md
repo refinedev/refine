@@ -3,12 +3,7 @@ title: Building an Customizable Invoice Generator App with Refine, Strapi & Ant 
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-invoice-generator
 authors: melih
-tags:
-    [
-        refine,
-        react,
-        strapi,
-    ]
+tags: [refine, react, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -45,24 +40,24 @@ In our Part I article, we created our company, contact and client collections. I
 
 `Mission Collection:`
 
--   Mission(Mission Title): Text
--   Mission_description: Text
--   Day: Number
--   Daily_rate: Number
+- Mission(Mission Title): Text
+- Mission_description: Text
+- Day: Number
+- Daily_rate: Number
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/missions.png" alt="Strapi Mission Collection" />
 <br />
 
 `Invoice Collection:`
 
--   Name: Text
--   Date: Date
--   Company : Relation with Company
--   Discount : Number
--   Tax: Number
--   Custom_id: Text
--   Contact: Relation with Contact
--   Missions: Relation with Mission
+- Name: Text
+- Date: Date
+- Company : Relation with Company
+- Discount : Number
+- Tax: Number
+- Custom_id: Text
+- Contact: Relation with Contact
+- Missions: Relation with Mission
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
 <br />
@@ -74,65 +69,45 @@ We created our missions and invoice collections fields. Our goal here is to defi
 Let's use the refine-antd package's [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook to create our page, and let's define the fields in our Table Component.
 
 ```tsx title="src/pages/MissionList.tsx"
-import {
-    List,
-    Table,
-    useTable,
-    TagField,
-    useModalForm,
-    EditButton,
-} from "@refinedev/antd";
+import { List, Table, useTable, TagField, useModalForm, EditButton } from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 
 export const MissionList: React.FC = () => {
-    //highlight-next-line
-    const { tableProps } = useTable<IMission>();
+  //highlight-next-line
+  const { tableProps } = useTable<IMission>();
 
-    return (
-        <List>
-            <Table {...tableProps}>
-                //highlight-start
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="mission" title="Mission" />
-                <Table.Column
-                    dataIndex="mission_description"
-                    title="Mission Description"
-                />
-                <Table.Column dataIndex="day" title="Day(s)" />
-                <Table.Column
-                    dataIndex="daily_rate"
-                    title="Daily Rate"
-                    render={(value) => <TagField value={value} color="red" />}
-                />
-                <Table.Column<IMission>
-                    title="Total"
-                    render={(_, record) => {
-                        return (
-                            <TagField
-                                value={`${record.daily_rate * record.day} $`}
-                                color="green"
-                            />
-                        );
-                    }}
-                />
-                <Table.Column<IMission>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
-                        <EditButton
-                            hideText
-                            size="small"
-                            recordItemId={record.id}
-                            onClick={() => editShow(record.id)}
-                        />
-                    )}
-                />
-                //highlight-end
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps}>
+        //highlight-start
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="mission" title="Mission" />
+        <Table.Column dataIndex="mission_description" title="Mission Description" />
+        <Table.Column dataIndex="day" title="Day(s)" />
+        <Table.Column
+          dataIndex="daily_rate"
+          title="Daily Rate"
+          render={(value) => <TagField value={value} color="red" />}
+        />
+        <Table.Column<IMission>
+          title="Total"
+          render={(_, record) => {
+            return <TagField value={`${record.daily_rate * record.day} $`} color="green" />;
+          }}
+        />
+        <Table.Column<IMission>
+          title="Actions"
+          dataIndex="actions"
+          key="actions"
+          render={(_value, record) => (
+            <EditButton hideText size="small" recordItemId={record.id} onClick={() => editShow(record.id)} />
+          )}
+        />
+        //highlight-end
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -153,53 +128,50 @@ Let's create a modal component for our `Mission Create` page. Let's connect our 
 
 ```tsx title="src/components/mission/CreateMission.tsx"
 import {
-    //highlight-start
-    Modal,
-    Form,
-    //highlight-end
-    Input,
-    ModalProps,
-    FormProps,
-    InputNumber,
+  //highlight-start
+  Modal,
+  Form,
+  //highlight-end
+  Input,
+  ModalProps,
+  FormProps,
+  InputNumber,
 } from "@refinedev/antd";
 
 type CreateMissionProps = {
-    modalProps: ModalProps;
-    formProps: FormProps;
+  modalProps: ModalProps;
+  formProps: FormProps;
 };
 
-export const CreateMission: React.FC<CreateMissionProps> = ({
-    modalProps,
-    formProps,
-}) => {
-    return (
-        //highlight-start
-        <Modal {...modalProps} title="Create Contact">
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="mission"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Description" name="mission_description">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Day(s)" name="day">
-                    <InputNumber defaultValue={1} />
-                </Form.Item>
-                <Form.Item label="Daily Rate" name="daily_rate">
-                    <InputNumber defaultValue={1} />
-                </Form.Item>
-            </Form>
-        </Modal>
-        //highlight-end
-    );
+export const CreateMission: React.FC<CreateMissionProps> = ({ modalProps, formProps }) => {
+  return (
+    //highlight-start
+    <Modal {...modalProps} title="Create Contact">
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="mission"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Description" name="mission_description">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Day(s)" name="day">
+          <InputNumber defaultValue={1} />
+        </Form.Item>
+        <Form.Item label="Daily Rate" name="daily_rate">
+          <InputNumber defaultValue={1} />
+        </Form.Item>
+      </Form>
+    </Modal>
+    //highlight-end
+  );
 };
 ```
 
@@ -209,73 +181,55 @@ export const CreateMission: React.FC<CreateMissionProps> = ({
 Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **refine** [**useModalForm**](https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm/).
 
 ```tsx title="src/pages/MissionList.tsx"
-import {
-    List,
-    Table,
-    useTable,
-    TagField,
-    useModalForm,
-} from "@refinedev/antd";
+import { List, Table, useTable, TagField, useModalForm } from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 import { CreateMission, EditMission } from "components/mission";
 
 export const MissionList: React.FC = () => {
-    const { tableProps } = useTable<IMission>();
+  const { tableProps } = useTable<IMission>();
 
-    //highlight-start
-    const { formProps, modalProps, show } = useModalForm({
-        resource: "missions",
-        action: "create",
-    });
-    //highlight-end
+  //highlight-start
+  const { formProps, modalProps, show } = useModalForm({
+    resource: "missions",
+    action: "create",
+  });
+  //highlight-end
 
-    return (
-        <>
-            <List
-                //highlight-start
-                createButtonProps={{
-                    onClick: () => {
-                        show();
-                    },
-                }}
-                //highlight-end
-            >
-                <Table {...tableProps}>
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="mission" title="Mission" />
-                    <Table.Column
-                        dataIndex="mission_description"
-                        title="Mission Description"
-                    />
-                    <Table.Column dataIndex="day" title="Day(s)" />
-                    <Table.Column
-                        dataIndex="daily_rate"
-                        title="Daily Rate"
-                        render={(value) => (
-                            <TagField value={value} color="red" />
-                        )}
-                    />
-                    <Table.Column<IMission>
-                        title="Total"
-                        render={(_, record) => {
-                            return (
-                                <TagField
-                                    value={`${
-                                        record.daily_rate * record.day
-                                    } $`}
-                                    color="green"
-                                />
-                            );
-                        }}
-                    />
-                </Table>
-            </List>
-            //highlight-start
-            <CreateMission modalProps={modalProps} formProps={formProps} />
-            //highlight-end
-        </>
-    );
+  return (
+    <>
+      <List
+        //highlight-start
+        createButtonProps={{
+          onClick: () => {
+            show();
+          },
+        }}
+        //highlight-end
+      >
+        <Table {...tableProps}>
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="mission" title="Mission" />
+          <Table.Column dataIndex="mission_description" title="Mission Description" />
+          <Table.Column dataIndex="day" title="Day(s)" />
+          <Table.Column
+            dataIndex="daily_rate"
+            title="Daily Rate"
+            render={(value) => <TagField value={value} color="red" />}
+          />
+          <Table.Column<IMission>
+            title="Total"
+            render={(_, record) => {
+              return <TagField value={`${record.daily_rate * record.day} $`} color="green" />;
+            }}
+          />
+        </Table>
+      </List>
+      //highlight-start
+      <CreateMission modalProps={modalProps} formProps={formProps} />
+      //highlight-end
+    </>
+  );
 };
 ```
 
@@ -303,18 +257,18 @@ Populate the contacts, companies and missions related with our Invoice collectio
 
 ```tsx title="src/pages/InvoiceList.tsx"
 import {
-    List,
-    Table,
-    useTable,
-    DateField,
-    TagField,
-    EmailField,
-    Space,
-    DeleteButton,
-    EditButton,
-    Icons,
-    Button,
-    Modal,
+  List,
+  Table,
+  useTable,
+  DateField,
+  TagField,
+  EmailField,
+  Space,
+  DeleteButton,
+  EditButton,
+  Icons,
+  Button,
+  Modal,
 } from "@refinedev/antd";
 
 import { IInvoice } from "interfaces";
@@ -323,103 +277,74 @@ import { PdfLayout } from "components/pdf";
 const { FilePdfOutlined } = Icons;
 
 export const InvoiceList: React.FC = () => {
-    //highlight-start
-    const { tableProps } = useTable<IInvoice>({
-        meta: {
-            populate: {
-                contact: { populate: ["client"] },
-                company: { populate: ["logo"] },
-                missions: "*",
-            },
-        },
-    });
-    //highlight-end
+  //highlight-start
+  const { tableProps } = useTable<IInvoice>({
+    meta: {
+      populate: {
+        contact: { populate: ["client"] },
+        company: { populate: ["logo"] },
+        missions: "*",
+      },
+    },
+  });
+  //highlight-end
 
-    return (
-        <>
-            <List>
-                <Table {...tableProps}>
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column<IInvoice>
-                        dataIndex="name"
-                        title="Invoice Name"
-                        render={(_, record) => {
-                            return `Invoice_#${record.id}${record.name}`;
-                        }}
-                    />
-                    <Table.Column<IInvoice>
-                        dataIndex="date"
-                        title="Invoice Date"
-                        render={(value) => (
-                            <DateField format="LL" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex={["company", "name"]}
-                        title="Your Company"
-                    />
-                    <Table.Column
-                        dataIndex={"missions"}
-                        title="Missions"
-                        render={(value) => {
-                            return value.map((item: any) => {
-                                return (
-                                    <TagField
-                                        color="blue"
-                                        value={item.mission}
-                                    />
-                                );
-                            });
-                        }}
-                    />
-                    <Table.Column
-                        dataIndex="discount"
-                        title="Discount(%)"
-                        render={(value) => (
-                            <TagField color="blue" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="tax"
-                        title="Tax(%)"
-                        render={(value) => (
-                            <TagField color="cyan" value={value} />
-                        )}
-                    />
-                    <Table.Column
-                        dataIndex="custom_id"
-                        title="Custom Invoice ID"
-                    />
+  return (
+    <>
+      <List>
+        <Table {...tableProps}>
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column<IInvoice>
+            dataIndex="name"
+            title="Invoice Name"
+            render={(_, record) => {
+              return `Invoice_#${record.id}${record.name}`;
+            }}
+          />
+          <Table.Column<IInvoice>
+            dataIndex="date"
+            title="Invoice Date"
+            render={(value) => <DateField format="LL" value={value} />}
+          />
+          <Table.Column dataIndex={["company", "name"]} title="Your Company" />
+          <Table.Column
+            dataIndex={"missions"}
+            title="Missions"
+            render={(value) => {
+              return value.map((item: any) => {
+                return <TagField color="blue" value={item.mission} />;
+              });
+            }}
+          />
+          <Table.Column
+            dataIndex="discount"
+            title="Discount(%)"
+            render={(value) => <TagField color="blue" value={value} />}
+          />
+          <Table.Column dataIndex="tax" title="Tax(%)" render={(value) => <TagField color="cyan" value={value} />} />
+          <Table.Column dataIndex="custom_id" title="Custom Invoice ID" />
 
-                    <Table.Column
-                        dataIndex={["contact", "email"]}
-                        title="Contact"
-                        render={(value) => <EmailField value={value} />}
-                    />
-                    <Table.Column<IInvoice>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_, record) => {
-                            return (
-                                <Space>
-                                    <EditButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    <DeleteButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                </Space>
-                            );
-                        }}
-                    />
-                </Table>
-            </List>
-        </>
-    );
+          <Table.Column
+            dataIndex={["contact", "email"]}
+            title="Contact"
+            render={(value) => <EmailField value={value} />}
+          />
+          <Table.Column<IInvoice>
+            title="Actions"
+            dataIndex="actions"
+            render={(_, record) => {
+              return (
+                <Space>
+                  <EditButton hideText size="small" recordItemId={record.id} />
+                  <DeleteButton hideText size="small" recordItemId={record.id} />
+                </Space>
+              );
+            }}
+          />
+        </Table>
+      </List>
+    </>
+  );
 };
 ```
 
@@ -449,91 +374,83 @@ Then, we fill our refine [Create](https://refine.dev/docs/ui-frameworks/antd/com
 ```tsx title="src/pages/invoice/CreateInvoice"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    DatePicker,
-} from "@refinedev/antd";
+import { Create, Form, Input, Select, useForm, useSelect, DatePicker } from "@refinedev/antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
 export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IInvoice>();
+  const { formProps, saveButtonProps } = useForm<IInvoice>();
 
-    const { selectProps: companySelectProps } = useSelect<ICompany>({
-        resource: "companies",
-        optionLabel: "name",
-    });
+  const { selectProps: companySelectProps } = useSelect<ICompany>({
+    resource: "companies",
+    optionLabel: "name",
+  });
 
-    const { selectProps: contactSelectProps } = useSelect<IContact>({
-        resource: "contacts",
-        optionLabel: "first_name",
-    });
+  const { selectProps: contactSelectProps } = useSelect<IContact>({
+    resource: "contacts",
+    optionLabel: "first_name",
+  });
 
-    const { selectProps: missionSelectProps } = useSelect<IMission>({
-        resource: "missions",
-        optionLabel: "mission",
-    });
+  const { selectProps: missionSelectProps } = useSelect<IMission>({
+    resource: "missions",
+    optionLabel: "mission",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Invoice Name" name="name">
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Select Your Company"
-                    name="company"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...companySelectProps} />
-                </Form.Item>
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Invoice Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Select Your Company"
+          name="company"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...companySelectProps} />
+        </Form.Item>
 
-                <Form.Item
-                    label="Mission"
-                    name="missions"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...missionSelectProps} mode="multiple" />
-                </Form.Item>
-                <Form.Item label="Discount(%)" name="discount">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Tax(%)" name="tax">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Custom ID" name="custom_id">
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Contact"
-                    name="contact"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...contactSelectProps} />
-                </Form.Item>
-                <Form.Item label="Invoice Date" name="date">
-                    <DatePicker style={{ width: "50%" }} />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+        <Form.Item
+          label="Mission"
+          name="missions"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...missionSelectProps} mode="multiple" />
+        </Form.Item>
+        <Form.Item label="Discount(%)" name="discount">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Tax(%)" name="tax">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Custom ID" name="custom_id">
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Contact"
+          name="contact"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...contactSelectProps} />
+        </Form.Item>
+        <Form.Item label="Invoice Date" name="date">
+          <DatePicker style={{ width: "50%" }} />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -569,12 +486,12 @@ import { IInvoice } from "interfaces";
 
 //highlight-start
 type PdfProps = {
-    record: IInvoice | undefined;
+  record: IInvoice | undefined;
 };
 //highlight-end
 
 export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
-    return <></>;
+  return <></>;
 };
 ```
 
@@ -585,18 +502,18 @@ import { useState } from "react";
 //highlight-next-line
 import { useModal } from "@refinedev/core";
 import {
-    List,
-    Table,
-    useTable,
-    DateField,
-    TagField,
-    EmailField,
-    Space,
-    DeleteButton,
-    EditButton,
-    Icons,
-    Button,
-    Modal,
+  List,
+  Table,
+  useTable,
+  DateField,
+  TagField,
+  EmailField,
+  Space,
+  DeleteButton,
+  EditButton,
+  Icons,
+  Button,
+  Modal,
 } from "@refinedev/antd";
 
 import { IInvoice } from "interfaces";
@@ -605,66 +522,58 @@ import { PdfLayout } from "components/pdf";
 const { FilePdfOutlined } = Icons;
 
 export const InvoiceList: React.FC = () => {
-    //highlight-next-line
-    const [record, setRecord] = useState<IInvoice>();
+  //highlight-next-line
+  const [record, setRecord] = useState<IInvoice>();
 
-    const { tableProps } = useTable<IInvoice>({
-        meta: {
-            populate: {
-                contact: { populate: ["client"] },
-                company: { populate: ["logo"] },
-                missions: "*",
-            },
-        },
-    });
+  const { tableProps } = useTable<IInvoice>({
+    meta: {
+      populate: {
+        contact: { populate: ["client"] },
+        company: { populate: ["logo"] },
+        missions: "*",
+      },
+    },
+  });
 
-    //highlight-next-line
-    const { show, visible, close } = useModal();
+  //highlight-next-line
+  const { show, visible, close } = useModal();
 
-    return (
-        <>
-            <List>
-                <Table {...tableProps}>
-                    ...
-                    <Table.Column<IInvoice>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_, record) => {
-                            return (
-                                <Space>
-                                    <EditButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    <DeleteButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    //highlight-start
-                                    <Button
-                                        size="small"
-                                        icon={<FilePdfOutlined />}
-                                        onClick={() => {
-                                            setRecord(record);
-                                            show();
-                                        }}
-                                    />
-                                    //highlight-end
-                                </Space>
-                            );
-                        }}
-                    />
-                </Table>
-            </List>
-            //highlight-start
-            <Modal visible={visible} onCancel={close} width="80%" footer={null}>
-                <PdfLayout record={record} />
-            </Modal>
-            //highlight-end
-        </>
-    );
+  return (
+    <>
+      <List>
+        <Table {...tableProps}>
+          ...
+          <Table.Column<IInvoice>
+            title="Actions"
+            dataIndex="actions"
+            render={(_, record) => {
+              return (
+                <Space>
+                  <EditButton hideText size="small" recordItemId={record.id} />
+                  <DeleteButton hideText size="small" recordItemId={record.id} />
+                  //highlight-start
+                  <Button
+                    size="small"
+                    icon={<FilePdfOutlined />}
+                    onClick={() => {
+                      setRecord(record);
+                      show();
+                    }}
+                  />
+                  //highlight-end
+                </Space>
+              );
+            }}
+          />
+        </Table>
+      </List>
+      //highlight-start
+      <Modal visible={visible} onCancel={close} width="80%" footer={null}>
+        <PdfLayout record={record} />
+      </Modal>
+      //highlight-end
+    </>
+  );
 };
 ```
 
@@ -681,324 +590,217 @@ Now that we have the data of the Invoices we can edit the PdfLayout.
 import { useRef } from "react";
 
 //highlight-start
-import {
-    Document,
-    Image,
-    Page,
-    StyleSheet,
-    View,
-    Text,
-    PDFViewer,
-} from "@react-pdf/renderer";
+import { Document, Image, Page, StyleSheet, View, Text, PDFViewer } from "@react-pdf/renderer";
 //highlight-end
 import { IInvoice } from "interfaces";
 import { API_URL } from "../../constants";
 
 type PdfProps = {
-    record: IInvoice | undefined;
+  record: IInvoice | undefined;
 };
 
 export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
-    const total = record?.missions.reduce((prev: any, cur: any): any => {
-        return prev + cur.day * cur.daily_rate;
-    }, 0);
+  const total = record?.missions.reduce((prev: any, cur: any): any => {
+    return prev + cur.day * cur.daily_rate;
+  }, 0);
 
-    return (
-        //highlight-start
-        <PDFViewer style={styles.viewer}>
-            <Document>
-                <Page style={styles.page} size="A4">
-                    <View>
-                        <Image
-                            src={API_URL + record?.company?.logo?.url}
-                            style={{ width: "120px", height: "auto" }}
-                        />
-                        <View style={styles.inoviceTextNumberContainer}>
-                            <Text style={styles.inoviceText}>
-                                {`Invoice: Invoice_#${record?.id}${record?.name}`}
-                            </Text>
-                            <Text
-                                style={styles.inoviceId}
-                            >{`Invoice ID: INVOICE_#${record?.id}`}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.dividerLG} />
+  return (
+    //highlight-start
+    <PDFViewer style={styles.viewer}>
+      <Document>
+        <Page style={styles.page} size="A4">
+          <View>
+            <Image src={API_URL + record?.company?.logo?.url} style={{ width: "120px", height: "auto" }} />
+            <View style={styles.invoiceTextNumberContainer}>
+              <Text style={styles.invoiceText}>{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
+              <Text style={styles.invoiceId}>{`Invoice ID: INVOICE_#${record?.id}`}</Text>
+            </View>
+          </View>
+          <View style={styles.dividerLG} />
 
-                    <View style={styles.inoviceForFromContainer}>
-                        <View style={styles.inoviceFor}>
-                            <Text style={styles.inoviceForFromTitle}>
-                                Inovice For:
-                            </Text>
-                            <View>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.client?.name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.first_name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.last_name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.contact?.email}
-                                </Text>
-                            </View>
-                        </View>
+          <View style={styles.invoiceForFromContainer}>
+            <View style={styles.invoiceFor}>
+              <Text style={styles.invoiceForFromTitle}>invoice For:</Text>
+              <View>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.client?.name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.first_name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.last_name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.contact?.email}</Text>
+              </View>
+            </View>
 
-                        <View style={styles.inoviceFrom}>
-                            <Text style={styles.inoviceForFromTitle}>
-                                From:
-                            </Text>
-                            <View>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.company.name}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.company.city}
-                                </Text>
-                                <Text style={styles.inoviceForFromText}>
-                                    {record?.company.address},{" "}
-                                    {record?.company.country}
-                                </Text>
-                            </View>
-                            <View style={styles.dividerSM} />
-                            <View>
-                                <Text
-                                    style={styles.inoviceForFromText}
-                                >{`Invoice ID: ${record?.id}`}</Text>
-                                <Text
-                                    style={styles.inoviceForFromText}
-                                >{`Invoice Custom ID: ${record?.custom_id}`}</Text>
-                                <Text
-                                    style={styles.inoviceForFromText}
-                                >{`Invoice Date: ${record?.date}`}</Text>
-                            </View>
-                        </View>
-                    </View>
+            <View style={styles.invoiceFrom}>
+              <Text style={styles.invoiceForFromTitle}>From:</Text>
+              <View>
+                <Text style={styles.invoiceForFromText}>{record?.company.name}</Text>
+                <Text style={styles.invoiceForFromText}>{record?.company.city}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.address}, {record?.company.country}
+                </Text>
+              </View>
+              <View style={styles.dividerSM} />
+              <View>
+                <Text style={styles.invoiceForFromText}>{`Invoice ID: ${record?.id}`}</Text>
+                <Text style={styles.invoiceForFromText}>{`Invoice Custom ID: ${record?.custom_id}`}</Text>
+                <Text style={styles.invoiceForFromText}>{`Invoice Date: ${record?.date}`}</Text>
+              </View>
+            </View>
+          </View>
 
-                    <View style={styles.table}>
-                        <View style={styles.tableHeader}>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "40%" },
-                                ]}
-                            >
-                                Mission
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "20%" },
-                                ]}
-                            >
-                                Day
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "20%" },
-                                ]}
-                            >
-                                Day Rate
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.tableHeaderItem,
-                                    { width: "20%" },
-                                ]}
-                            >
-                                Total
-                            </Text>
-                        </View>
-                        {record?.missions.map((item) => {
-                            return (
-                                <View key={item.id} style={styles.tableRow}>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "40%" },
-                                        ]}
-                                    >
-                                        {item.mission}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "20%" },
-                                        ]}
-                                    >
-                                        {item.day}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "20%" },
-                                        ]}
-                                    >
-                                        {item.daily_rate}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.tableCol,
-                                            { width: "20%" },
-                                        ]}
-                                    >
-                                        {item.daily_rate * item.day}
-                                    </Text>
-                                </View>
-                            );
-                        })}
-                    </View>
+          <View style={styles.table}>
+            <View style={styles.tableHeader}>
+              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>Mission</Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day</Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day Rate</Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Total</Text>
+            </View>
+            {record?.missions.map((item) => {
+              return (
+                <View key={item.id} style={styles.tableRow}>
+                  <Text style={[styles.tableCol, { width: "40%" }]}>{item.mission}</Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.day}</Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.daily_rate}</Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.daily_rate * item.day}</Text>
+                </View>
+              );
+            })}
+          </View>
 
-                    <View style={styles.signatureTotalContainer}>
-                        <View style={styles.signatureContainer}>
-                            <Text style={styles.signatureText}>
-                                Signature: ________________
-                            </Text>
-                            <Text style={styles.signatureText}>
-                                Date: {record?.date.toString()}
-                            </Text>
-                        </View>
+          <View style={styles.signatureTotalContainer}>
+            <View style={styles.signatureContainer}>
+              <Text style={styles.signatureText}>Signature: ________________</Text>
+              <Text style={styles.signatureText}>Date: {record?.date.toString()}</Text>
+            </View>
 
-                        <View style={styles.totalContainer}>
-                            <Text style={styles.totalText}>
-                                SUBTOTAL: {subtotal}
-                            </Text>
-                            <Text style={styles.totalText}>
-                                Discount(%): {record?.discount}
-                            </Text>
-                            <Text style={styles.totalText}>
-                                Tax(%): {record?.tax}
-                            </Text>
-                            <Text style={styles.totalText}>
-                                Total($):
-                                {subtotal +
-                                    (subtotal * (record?.tax as number)) / 100 -
-                                    (subtotal * (record?.discount as number)) /
-                                        100}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.footer}>
-                        <Text style={styles.footerText}>
-                            {record?.company.city}
-                        </Text>
-                        <Text style={styles.footerText}>
-                            {record?.company.address}, {record?.company.country}
-                        </Text>
-                    </View>
-                </Page>
-            </Document>
-        </PDFViewer>
-        //highlight-end
-    );
+            <View style={styles.totalContainer}>
+              <Text style={styles.totalText}>SUBTOTAL: {subtotal}</Text>
+              <Text style={styles.totalText}>Discount(%): {record?.discount}</Text>
+              <Text style={styles.totalText}>Tax(%): {record?.tax}</Text>
+              <Text style={styles.totalText}>
+                Total($):
+                {subtotal +
+                  (subtotal * (record?.tax as number)) / 100 -
+                  (subtotal * (record?.discount as number)) / 100}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>{record?.company.city}</Text>
+            <Text style={styles.footerText}>
+              {record?.company.address}, {record?.company.country}
+            </Text>
+          </View>
+        </Page>
+      </Document>
+    </PDFViewer>
+    //highlight-end
+  );
 };
 
 //highlight-start
 const styles = StyleSheet.create({
-    viewer: {
-        paddingTop: 32,
-        width: "100%",
-        height: "80vh",
-        border: "none",
-    },
-    page: {
-        display: "flex",
-        padding: "0.4in 0.4in",
-        fontSize: 12,
-        color: "#333",
-        backgroundColor: "#fff",
-    },
-    inoviceTextNumberContainer: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    inoviceText: {
-        color: "#3aabf0",
-    },
-    inoviceId: {
-        textAlign: "center",
-    },
-    inoviceForFromContainer: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    inoviceForFromTitle: {
-        marginBottom: 24,
-    },
-    inoviceFor: {
-        flex: 1.5,
-    },
-    inoviceFrom: {
-        flex: 1,
-    },
-    inoviceForFromText: {
-        color: "#787878",
-        lineHeight: 1.5,
-    },
-    dividerSM: {
-        width: "100%",
-        height: 1,
-        marginTop: 12,
-        marginBottom: 12,
-        backgroundColor: "#e5e5e5",
-    },
-    dividerLG: {
-        width: "100%",
-        height: 1,
-        marginTop: 40,
-        marginBottom: 40,
-        backgroundColor: "#e5e5e5",
-    },
-    table: {
-        marginTop: 32,
-    },
-    tableHeader: {
-        display: "flex",
-        flexDirection: "row",
-        textAlign: "center",
-    },
-    tableHeaderItem: {
-        paddingVertical: 8,
-        border: "1px solid #000",
-        borderBottom: "none",
-    },
-    tableRow: {
-        display: "flex",
-        flexDirection: "row",
-    },
-    tableCol: {
-        paddingVertical: 8,
-        paddingHorizontal: 4,
-        border: "1px solid #000",
-    },
-    signatureTotalContainer: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 32,
-    },
-    signatureContainer: {},
-    totalContainer: {},
-    signatureText: {
-        marginTop: 32,
-    },
-    totalText: {
-        marginTop: 16,
-    },
-    footer: {
-        borderTop: "1px solid #e5e5e5",
-        paddingTop: 8,
-        marginTop: "auto",
-    },
-    footerText: {
-        color: "#787878",
-        lineHeight: 1.5,
-    },
+  viewer: {
+    paddingTop: 32,
+    width: "100%",
+    height: "80vh",
+    border: "none",
+  },
+  page: {
+    display: "flex",
+    padding: "0.4in 0.4in",
+    fontSize: 12,
+    color: "#333",
+    backgroundColor: "#fff",
+  },
+  invoiceTextNumberContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  invoiceText: {
+    color: "#3aabf0",
+  },
+  invoiceId: {
+    textAlign: "center",
+  },
+  invoiceForFromContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  invoiceForFromTitle: {
+    marginBottom: 24,
+  },
+  invoiceFor: {
+    flex: 1.5,
+  },
+  invoiceFrom: {
+    flex: 1,
+  },
+  invoiceForFromText: {
+    color: "#787878",
+    lineHeight: 1.5,
+  },
+  dividerSM: {
+    width: "100%",
+    height: 1,
+    marginTop: 12,
+    marginBottom: 12,
+    backgroundColor: "#e5e5e5",
+  },
+  dividerLG: {
+    width: "100%",
+    height: 1,
+    marginTop: 40,
+    marginBottom: 40,
+    backgroundColor: "#e5e5e5",
+  },
+  table: {
+    marginTop: 32,
+  },
+  tableHeader: {
+    display: "flex",
+    flexDirection: "row",
+    textAlign: "center",
+  },
+  tableHeaderItem: {
+    paddingVertical: 8,
+    border: "1px solid #000",
+    borderBottom: "none",
+  },
+  tableRow: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  tableCol: {
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    border: "1px solid #000",
+  },
+  signatureTotalContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 32,
+  },
+  signatureContainer: {},
+  totalContainer: {},
+  signatureText: {
+    marginTop: 32,
+  },
+  totalText: {
+    marginTop: 16,
+  },
+  footer: {
+    borderTop: "1px solid #e5e5e5",
+    paddingTop: 8,
+    marginTop: "auto",
+  },
+  footerText: {
+    color: "#787878",
+    lineHeight: 1.5,
+  },
 });
 //highlight-end
 ```
@@ -1013,9 +815,9 @@ const styles = StyleSheet.create({
 
 :::note Demo Credentials
 
--   `Username`: demo
--   `Password`: demodemo
-:::
+- `Username`: demo
+- `Password`: demodemo
+  :::
 
 :::note
 PDF download may not work in codeSandbox mode. With [**this**](https://n59710.csb.app/invoices) link, you can open the example in the browser and try it.

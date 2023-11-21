@@ -7,8 +7,6 @@
 </div>
 <br/>
 
-
-
 ## Getting Started
 
 **refine** is a React-based framework for building data-intensive applications in no time ✨
@@ -38,7 +36,6 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 ## Learn More
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
-
 
 ## License
 
