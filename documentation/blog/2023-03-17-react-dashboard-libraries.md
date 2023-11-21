@@ -20,7 +20,7 @@ In this article, we've curated a compilation of the 5 best React admin dashboard
 
 ## Refine
 
-At the top of the list is [refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries.
+At the top of the list is [Refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries.
 
 <div className="centered-image"  >
 <a href="https://github.com/refinedev/refine" >
@@ -34,11 +34,11 @@ You can build production-read enterprise grade internal tools, admin panels, das
 
 Similar to several React-based admin dashboard libraries, [Refine](https://github.com/refinedev/refine) is built on the React framework. However, it is not a self-contained meta-framework, allowing it to function in any environment capable of running React, including CRA, Next.js, Remix, Vite, and others.
 
-This lets refine leverage the wide range of features these frameworks has to offer, including support for SSR as well as various advanced state management, data management, and routing technologies within the React ecosystem - such as React Query, React Router or the Next.js routing system, and React Hook Form. This enables refine to construct perceptive analytic **react admin panels** and **dashboard** applications with intuitive and visually appealing interfaces, equipped with the ability to perform CRUD operations amongst many other functionalities.
+This lets Refine leverage the wide range of features these frameworks has to offer, including support for SSR as well as various advanced state management, data management, and routing technologies within the React ecosystem - such as React Query, React Router or the Next.js routing system, and React Hook Form. This enables Refine to construct perceptive analytic **react admin panels** and **dashboard** applications with intuitive and visually appealing interfaces, equipped with the ability to perform CRUD operations amongst many other functionalities.
 
-One unique feature distinguishing refine from other admin libraries is its headless design. This attribute allows it to seamlessly integrate with custom design or user interface (UI) libraries, such as **Material UI**, **Mantine**, **Ant Design**, and **Chakra**. Consequently, you can fully personalize the appearance of your application according to your preferences and business model.
+One unique feature distinguishing Refine from other admin libraries is its headless design. This attribute allows it to seamlessly integrate with custom design or user interface (UI) libraries, such as **Material UI**, **Mantine**, **Ant Design**, and **Chakra**. Consequently, you can fully personalize the appearance of your application according to your preferences and business model.
 
-Additionally, refine provides an array of helper hooks, components, and data providers that provide complete control over your application's user interface and can easily adapt to different backend architectures like GraphQL, REST, and SOAP, and for seamless authentication and access control flow.
+Additionally, Refine provides an array of helper hooks, components, and data providers that provide complete control over your application's user interface and can easily adapt to different backend architectures like GraphQL, REST, and SOAP, and for seamless authentication and access control flow.
 
 ### Features
 
