@@ -583,16 +583,13 @@ export const Header: React.FC<HeaderProps> = ({ role }) => {
 ```
 
 </details>
- 
 <br/>
 
 Now, let's see how the application will appear when logging in as an `admin` or `editor`.
 
 <Tabs
 defaultValue="admin"
-values={[ {label: 'admin', value: 'admin'}, {label: 'editor', value: 'editor'} ]}
-
->
+values={[ {label: 'admin', value: 'admin'}, {label: 'editor', value: 'editor'} ]}>
 
 <TabItem value="admin">
 
