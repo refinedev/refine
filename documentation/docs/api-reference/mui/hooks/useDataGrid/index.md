@@ -13,11 +13,15 @@ By using `useDataGrid`, you can get properties that are compatible with MUI X [`
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
 :::caution
+
 💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
+
 :::
 
 :::info
+
 This hook is extended from [`useTable`][use-table-core] from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+
 :::
 
 ## Basic usage
@@ -33,7 +37,9 @@ The hook handles pagination by setting the `paginationMode`, `paginationModel` a
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
+
 If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useDataGrid` hook and set it to `"client"`.
+
 :::
 
 ```tsx
@@ -238,7 +244,9 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
@@ -521,7 +529,9 @@ const myDataProvider = {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useDataGrid` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -541,7 +551,9 @@ useDataGrid({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
@@ -561,7 +573,9 @@ useDataGrid({
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -577,7 +591,9 @@ useDataGrid({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
@@ -593,7 +609,9 @@ useDataGrid({
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -627,7 +645,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 Sets the initial value of the page index. It is `1` by default.
@@ -641,7 +661,9 @@ useDataGrid({
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 Sets the initial value of the page size. It is `25` by default.
@@ -655,7 +677,9 @@ useDataGrid({
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 Determines whether to use server-side pagination or not. It is `true` by default.
@@ -669,7 +693,9 @@ useDataGrid({
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -690,7 +716,9 @@ useDataGrid({
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -711,7 +739,9 @@ useDataGrid({
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -733,7 +763,9 @@ useDataGrid({
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -755,7 +787,9 @@ useDataGrid({
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is `merge` by default.
@@ -791,7 +825,9 @@ Current `GridSortModel` compatible with [`<DataGrid>`][data-grid] component.
 When the user sorts a column, this function is called with the new sort model.
 
 :::caution
+
 `dataGridProps.onSortModelChange` automatically transform `GridSortModel` to [`CrudSorting`][crudsorting] and call `setSorter` function. If you want to override it, you can use like this:
+
 :::
 
 ```tsx
@@ -819,7 +855,9 @@ Current `GridFilterModel` compatible with [`<DataGrid>`][data-grid] component.
 When the user filters a column, this function is called with the new filter model.
 
 :::caution
+
 `dataGridProps.onFilterModelChange` automatically transform `GridFilterModel` to [`CrudFilters`][crudfilters] and call `setFilters` function. If you want to override it, you can use like this:
+
 :::
 
 ```tsx
@@ -839,7 +877,9 @@ When the user filters a column, this function is called with the new filter mode
 When the user sorts or filters a column, this function is called with the new state.
 
 :::caution
+
 The `onStateChange` callback is used internally by the `useDataGrid` hook. If you want to override it, you can use like this:
+
 :::
 
 ```tsx
@@ -947,7 +987,9 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 Current [sorters state][crudsorting].
@@ -955,7 +997,9 @@ Current [sorters state][crudsorting].
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 A function to set current [sorters state][crudsorting].

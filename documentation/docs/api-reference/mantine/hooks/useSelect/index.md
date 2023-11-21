@@ -15,6 +15,7 @@ import CrudLivePreview from "./crud-live-preview.md";
 This hook uses the `useList` hook for fetching data. [Refer to useList hook documentation for details. →](/docs/api-reference/core/hooks/data/useList/)
 
 :::info-tip DERIVATIVES
+
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
 
 - refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
@@ -32,7 +33,9 @@ Here is a basic example of how to use `useSelect` hook.
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
+
 :::
 
 When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
@@ -217,7 +220,9 @@ const { options } = useSelect({
 <OnSearchLivePreview />
 
 :::info
+
 If `onSearch` is used, it will override the existing `filters`.
+
 :::
 
 > For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
@@ -302,7 +307,9 @@ useSelect({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
@@ -322,7 +329,9 @@ useSelect({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
@@ -342,7 +351,9 @@ useSelect({
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -358,7 +369,9 @@ useSelect({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function that is executed when new events from a subscription are arrived.
@@ -374,7 +387,9 @@ useSelect({
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -408,13 +423,17 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`sort`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not. It is `false` by default.

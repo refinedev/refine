@@ -73,18 +73,18 @@ import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    //highlight-next-line
-    const dataProvider = DataProvider(API_URL);
+  //highlight-next-line
+  const dataProvider = DataProvider(API_URL);
 
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            //highlight-next-line
-            dataProvider={dataProvider}
-        >
-            <Component {...pageProps} />
-        </Refine>
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      //highlight-next-line
+      dataProvider={dataProvider}
+    >
+      <Component {...pageProps} />
+    </Refine>
+  );
 }
 ```
 
@@ -104,17 +104,17 @@ import { ChakraProvider } from "@chakra-ui/react";
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const dataProvider = DataProvider(API_URL);
+  const dataProvider = DataProvider(API_URL);
 
-    return (
-        <Refine routerProvider={routerProvider} dataProvider={dataProvider}>
-            //highlight-start
-            <ChakraProvider>
-                <Component {...pageProps} />
-            </ChakraProvider>
-            //highlight-end
-        </Refine>
-    );
+  return (
+    <Refine routerProvider={routerProvider} dataProvider={dataProvider}>
+      //highlight-start
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+      //highlight-end
+    </Refine>
+  );
 }
 ```
 
@@ -137,23 +137,18 @@ import { LayoutProps } from "@refinedev/core";
 import { Box, Container, Flex, Image } from "@chakra-ui/react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    return (
-        <Box
-            display={"flex"}
-            flexDirection={"column"}
-            backgroundColor={"#eeeeee"}
-            minH={"100vh"}
-        >
-            <Container maxW={"container.lg"}>
-                <Flex justify={"space-between"} mt={4} alignSelf={"center"}>
-                    <a href="https://refine.dev">
-                        <Image alt="Refine Logo" src={"./refine_logo.png"} />
-                    </a>
-                </Flex>
-                {children}
-            </Container>
-        </Box>
-    );
+  return (
+    <Box display={"flex"} flexDirection={"column"} backgroundColor={"#eeeeee"} minH={"100vh"}>
+      <Container maxW={"container.lg"}>
+        <Flex justify={"space-between"} mt={4} alignSelf={"center"}>
+          <a href="https://refine.dev">
+            <Image alt="Refine Logo" src={"./refine_logo.png"} />
+          </a>
+        </Flex>
+        {children}
+      </Container>
+    </Box>
+  );
 };
 ```
 
@@ -172,20 +167,20 @@ import { Layout } from "src/components";
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const dataProvider = DataProvider(API_URL);
+  const dataProvider = DataProvider(API_URL);
 
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider}
-            //highlight-next-line
-            Layout={Layout}
-        >
-            <ChakraProvider>
-                <Component {...pageProps} />
-            </ChakraProvider>
-        </Refine>
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider}
+      //highlight-next-line
+      Layout={Layout}
+    >
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </Refine>
+  );
 }
 ```
 
@@ -202,50 +197,32 @@ import React from "react";
 import { Box, Image, Badge, Button } from "@chakra-ui/react";
 
 export type ProductProps = {
-    id: string;
-    title: string;
-    description: string;
-    cardImage: string;
+  id: string;
+  title: string;
+  description: string;
+  cardImage: string;
 };
 
-export const ProductCard: React.FC<ProductProps> = ({
-    id,
-    title,
-    description,
-    cardImage,
-}) => {
-    return (
-        <Box maxH={"sm"} borderWidth="1px" borderRadius="lg" overflow="hidden">
-            <Image w={"100%"} h={200} src={cardImage} />
-            <Box p="6" bgColor={"gray.600"}>
-                <Box display="flex" alignItems="baseline" mb={2} ml={-2}>
-                    <Badge borderRadius="full" px="2" colorScheme="teal">
-                        New Product
-                    </Badge>
-                </Box>
-
-                <Box
-                    mt="1"
-                    fontWeight="semibold"
-                    as="h4"
-                    lineHeight="tight"
-                    noOfLines={1}
-                    color={"white"}
-                >
-                    {title}
-                </Box>
-
-                <Box color={"white"}>{}</Box>
-                <Box
-                    color="white"
-                    fontSize="sm"
-                    display={"flex"}
-                    mt={4}
-                    justifyContent={"flex-end"}
-                ></Box>
-            </Box>
+export const ProductCard: React.FC<ProductProps> = ({ id, title, description, cardImage }) => {
+  return (
+    <Box maxH={"sm"} borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image w={"100%"} h={200} src={cardImage} />
+      <Box p="6" bgColor={"gray.600"}>
+        <Box display="flex" alignItems="baseline" mb={2} ml={-2}>
+          <Badge borderRadius="full" px="2" colorScheme="teal">
+            New Product
+          </Badge>
         </Box>
-    );
+
+        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1} color={"white"}>
+          {title}
+        </Box>
+
+        <Box color={"white"}>{}</Box>
+        <Box color="white" fontSize="sm" display={"flex"} mt={4} justifyContent={"flex-end"}></Box>
+      </Box>
+    </Box>
+  );
 };
 ```
 
@@ -271,14 +248,14 @@ const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 //highlight-start
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await DataProvider(API_URL).getList<IProduct>({
-        resource: "products",
-        meta: { populate: ["image"] },
-    });
+  const data = await DataProvider(API_URL).getList<IProduct>({
+    resource: "products",
+    meta: { populate: ["image"] },
+  });
 
-    return {
-        props: { products: data },
-    };
+  return {
+    props: { products: data },
+  };
 };
 //highlight-end
 ```
@@ -301,54 +278,50 @@ const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 //highlight-start
 type ItemProps = {
-    products: GetListResponse<IProduct>;
+  products: GetListResponse<IProduct>;
 };
 //highlight-end
 
 export const ProductList: React.FC<ItemProps> = ({ products }) => {
-    //highlight-start
-    const { tableQueryResult } = useTable<IProduct>({
-        resource: "products",
-        queryOptions: {
-            initialData: products,
-        },
-        meta: { populate: ["image"] },
-    });
-    //highlight-end
+  //highlight-start
+  const { tableQueryResult } = useTable<IProduct>({
+    resource: "products",
+    queryOptions: {
+      initialData: products,
+    },
+    meta: { populate: ["image"] },
+  });
+  //highlight-end
 
-    return (
-        //highlight-start
-        <LayoutWrapper>
-            <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
-                {tableQueryResult.data?.data.map((item) => (
-                    <ProductCard
-                        id={item.id}
-                        title={item.title}
-                        description={item.description}
-                        cardImage={
-                            item.image
-                                ? API_URL + item.image.url
-                                : "./error.png"
-                        }
-                    />
-                ))}
-            </SimpleGrid>
-        </LayoutWrapper>
-        //highlight-end
-    );
+  return (
+    //highlight-start
+    <LayoutWrapper>
+      <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
+        {tableQueryResult.data?.data.map((item) => (
+          <ProductCard
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            cardImage={item.image ? API_URL + item.image.url : "./error.png"}
+          />
+        ))}
+      </SimpleGrid>
+    </LayoutWrapper>
+    //highlight-end
+  );
 };
 
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await DataProvider(API_URL).getList<IProduct>({
-        resource: "products",
-        meta: { populate: ["image"] },
-    });
+  const data = await DataProvider(API_URL).getList<IProduct>({
+    resource: "products",
+    meta: { populate: ["image"] },
+  });
 
-    return {
-        props: { products: data },
-    };
+  return {
+    props: { products: data },
+  };
 };
 ```
 
@@ -363,26 +336,26 @@ First, let's fetch our stores by using the **refine** `useMany` hook within the 
 
 ```tsx title="pages/index.tsx"
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await DataProvider(API_URL).getList<IProduct>({
-        resource: "products",
-        meta: { populate: ["image"] },
-        pagination: { current: 1, pageSize: 9 },
-    });
+  const data = await DataProvider(API_URL).getList<IProduct>({
+    resource: "products",
+    meta: { populate: ["image"] },
+    pagination: { current: 1, pageSize: 9 },
+  });
 
-    //highlight-start
-    const { data: storesData } = await DataProvider(API_URL).getMany({
-        resource: "stores",
-        ids: ["1", "2", "3"],
-    });
-    //highlight-end
+  //highlight-start
+  const { data: storesData } = await DataProvider(API_URL).getMany({
+    resource: "stores",
+    ids: ["1", "2", "3"],
+  });
+  //highlight-end
 
-    return {
-        props: {
-            products: data,
-            //highlight-next-line
-            stores: storesData,
-        },
-    };
+  return {
+    props: {
+      products: data,
+      //highlight-next-line
+      stores: storesData,
+    },
+  };
 };
 ```
 
@@ -398,104 +371,98 @@ import { ProductCard, FilterButton } from "src/components";
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 type ItemProps = {
-    products: GetListResponse<IProduct>;
-    //highlight-next-line
-    stores: IStore[];
+  products: GetListResponse<IProduct>;
+  //highlight-next-line
+  stores: IStore[];
 };
 
 export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
-    const { tableQueryResult, setFilters } = useTable<IProduct>({
-        resource: "products",
-        queryOptions: {
-            initialData: products,
-        },
-        meta: { populate: ["image"] },
-    });
+  const { tableQueryResult, setFilters } = useTable<IProduct>({
+    resource: "products",
+    queryOptions: {
+      initialData: products,
+    },
+    meta: { populate: ["image"] },
+  });
 
-    return (
-        <LayoutWrapper>
-            //highlight-start
-            <Flex mt={6} gap={2}>
-                <FilterButton
-                    setFilters={() =>
-                        setFilters([
-                            {
-                                field: "stores][id]",
-                                operator: "eq",
-                                value: undefined,
-                            },
-                        ])
-                    }
-                >
-                    <Text fontSize={{ base: "12px", md: "14px", lg: "14px" }}>
-                        All Products
-                    </Text>
-                </FilterButton>
-                {stores?.map((item) => {
-                    return (
-                        <FilterButton
-                            setFilters={() =>
-                                setFilters([
-                                    {
-                                        field: "stores][id]",
-                                        operator: "eq",
-                                        value: item.id,
-                                    },
-                                ])
-                            }
-                        >
-                            <Text
-                                fontSize={{
-                                    base: "12px",
-                                    md: "14px",
-                                    lg: "14px",
-                                }}
-                            >
-                                {item.title}
-                            </Text>
-                        </FilterButton>
-                    );
-                })}
-            </Flex>
-            //highlight-end
-            <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
-                {tableQueryResult.data?.data.map((item) => (
-                    <ProductCard
-                        id={item.id}
-                        title={item.title}
-                        description={item.description}
-                        cardImage={
-                            item.image
-                                ? API_URL + item.image.url
-                                : "./error.png"
-                        }
-                    />
-                ))}
-            </SimpleGrid>
-        </LayoutWrapper>
-    );
+  return (
+    <LayoutWrapper>
+      //highlight-start
+      <Flex mt={6} gap={2}>
+        <FilterButton
+          setFilters={() =>
+            setFilters([
+              {
+                field: "stores][id]",
+                operator: "eq",
+                value: undefined,
+              },
+            ])
+          }
+        >
+          <Text fontSize={{ base: "12px", md: "14px", lg: "14px" }}>All Products</Text>
+        </FilterButton>
+        {stores?.map((item) => {
+          return (
+            <FilterButton
+              setFilters={() =>
+                setFilters([
+                  {
+                    field: "stores][id]",
+                    operator: "eq",
+                    value: item.id,
+                  },
+                ])
+              }
+            >
+              <Text
+                fontSize={{
+                  base: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                {item.title}
+              </Text>
+            </FilterButton>
+          );
+        })}
+      </Flex>
+      //highlight-end
+      <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
+        {tableQueryResult.data?.data.map((item) => (
+          <ProductCard
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            cardImage={item.image ? API_URL + item.image.url : "./error.png"}
+          />
+        ))}
+      </SimpleGrid>
+    </LayoutWrapper>
+  );
 };
 
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await DataProvider(API_URL).getList<IProduct>({
-        resource: "products",
-        meta: { populate: ["image"] },
-        pagination: { current: 1, pageSize: 9 },
-    });
+  const data = await DataProvider(API_URL).getList<IProduct>({
+    resource: "products",
+    meta: { populate: ["image"] },
+    pagination: { current: 1, pageSize: 9 },
+  });
 
-    const { data: storesData } = await DataProvider(API_URL).getMany({
-        resource: "stores",
-        ids: ["1", "2", "3"],
-    });
+  const { data: storesData } = await DataProvider(API_URL).getMany({
+    resource: "stores",
+    ids: ["1", "2", "3"],
+  });
 
-    return {
-        props: {
-            products: data,
-            stores: storesData,
-        },
-    };
+  return {
+    props: {
+      products: data,
+      stores: storesData,
+    },
+  };
 };
 ```
 
@@ -520,122 +487,112 @@ import { ProductCard, FilterButton } from "src/components";
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 type ItemProps = {
-    products: GetListResponse<IProduct>;
-    stores: IStore[];
+  products: GetListResponse<IProduct>;
+  stores: IStore[];
 };
 
 export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
-    //highlight-start
-    const { tableQueryResult, setFilters, current, setCurrent, pageSize } =
-        useTable<IProduct>({
-            resource: "products",
-            queryOptions: {
-                initialData: products,
-            },
-            initialPageSize: 9,
-            meta: { populate: ["image"] },
-        });
-    //highlight-end
+  //highlight-start
+  const { tableQueryResult, setFilters, current, setCurrent, pageSize } = useTable<IProduct>({
+    resource: "products",
+    queryOptions: {
+      initialData: products,
+    },
+    initialPageSize: 9,
+    meta: { populate: ["image"] },
+  });
+  //highlight-end
 
-    //highlight-next-line
-    const totalPageCount = Math.ceil(tableQueryResult.data?.total!! / pageSize);
+  //highlight-next-line
+  const totalPageCount = Math.ceil(tableQueryResult.data?.total!! / pageSize);
 
-    return (
-        <LayoutWrapper>
-            <Flex mt={6} gap={2}>
-                <FilterButton
-                    setFilters={() =>
-                        setFilters([
-                            {
-                                field: "stores][id]",
-                                operator: "eq",
-                                value: undefined,
-                            },
-                        ])
-                    }
-                >
-                    <Text fontSize={{ base: "12px", md: "14px", lg: "14px" }}>
-                        All Products
-                    </Text>
-                </FilterButton>
-                {stores?.map((item) => {
-                    return (
-                        <FilterButton
-                            setFilters={() =>
-                                setFilters([
-                                    {
-                                        field: "stores][id]",
-                                        operator: "eq",
-                                        value: item.id,
-                                    },
-                                ])
-                            }
-                        >
-                            <Text
-                                fontSize={{
-                                    base: "12px",
-                                    md: "14px",
-                                    lg: "14px",
-                                }}
-                            >
-                                {item.title}
-                            </Text>
-                        </FilterButton>
-                    );
-                })}
-            </Flex>
-            <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
-                {tableQueryResult.data?.data.map((item) => (
-                    <ProductCard
-                        id={item.id}
-                        title={item.title}
-                        description={item.description}
-                        cardImage={
-                            item.image
-                                ? API_URL + item.image.url
-                                : "./error.png"
-                        }
-                    />
-                ))}
-            </SimpleGrid>
-            //highlight-start
-            <Flex justify={"flex-end"} mt={4} mb={4} gap={2}>
-                {Array.from(Array(totalPageCount), (e, i) => {
-                    if (current > totalPageCount) {
-                        setCurrent(i);
-                    }
-                    return (
-                        <Button
-                            colorScheme={"teal"}
-                            onClick={() => setCurrent(i + 1)}
-                        >
-                            {"Page: " + (i + 1)}
-                        </Button>
-                    );
-                })}
-            </Flex>
-            //highlight-end
-        </LayoutWrapper>
-    );
+  return (
+    <LayoutWrapper>
+      <Flex mt={6} gap={2}>
+        <FilterButton
+          setFilters={() =>
+            setFilters([
+              {
+                field: "stores][id]",
+                operator: "eq",
+                value: undefined,
+              },
+            ])
+          }
+        >
+          <Text fontSize={{ base: "12px", md: "14px", lg: "14px" }}>All Products</Text>
+        </FilterButton>
+        {stores?.map((item) => {
+          return (
+            <FilterButton
+              setFilters={() =>
+                setFilters([
+                  {
+                    field: "stores][id]",
+                    operator: "eq",
+                    value: item.id,
+                  },
+                ])
+              }
+            >
+              <Text
+                fontSize={{
+                  base: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                {item.title}
+              </Text>
+            </FilterButton>
+          );
+        })}
+      </Flex>
+      <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
+        {tableQueryResult.data?.data.map((item) => (
+          <ProductCard
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            cardImage={item.image ? API_URL + item.image.url : "./error.png"}
+          />
+        ))}
+      </SimpleGrid>
+      //highlight-start
+      <Flex justify={"flex-end"} mt={4} mb={4} gap={2}>
+        {Array.from(Array(totalPageCount), (e, i) => {
+          if (current > totalPageCount) {
+            setCurrent(i);
+          }
+          return (
+            <Button colorScheme={"teal"} onClick={() => setCurrent(i + 1)}>
+              {"Page: " + (i + 1)}
+            </Button>
+          );
+        })}
+      </Flex>
+      //highlight-end
+    </LayoutWrapper>
+  );
 };
 
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await DataProvider(API_URL).getList<IProduct>({
-        resource: "products",
-        meta: { populate: ["image"] },
-        pagination: { current: 1, pageSize: 9 },
-    });
+  const data = await DataProvider(API_URL).getList<IProduct>({
+    resource: "products",
+    meta: { populate: ["image"] },
+    pagination: { current: 1, pageSize: 9 },
+  });
 
-    const { data: storesData } = await DataProvider(API_URL).getMany({
-        resource: "stores",
-        ids: ["1", "2", "3"],
-    });
+  const { data: storesData } = await DataProvider(API_URL).getMany({
+    resource: "stores",
+    ids: ["1", "2", "3"],
+  });
 
-    return {
-        props: { products: data, stores: storesData },
-    };
+  return {
+    props: { products: data, stores: storesData },
+  };
 };
 ```
 
@@ -652,38 +609,32 @@ One of the steps that should be in an E-commerce application is the cart and pay
 
 ```tsx title="pages/_app.tsx"
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const dataProvider = DataProvider(API_URL);
+  const dataProvider = DataProvider(API_URL);
 
-    return (
-        <>
-            //highlight-start
-            <Head>
-                <link rel="preconnect" href="https://app.snipcart.com" />
-                <link
-                    rel="stylesheet"
-                    href="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.css"
-                />
-                <script
-                    async
-                    src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js"
-                />
-            </Head>
-            //highlight-end
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider}
-                resources={[{ name: "products" }]}
-                Layout={Layout}
-            >
-                <ChakraProvider>
-                    <Component {...pageProps} />
-                </ChakraProvider>
-            </Refine>
-            //highlight-start
-            <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_TEST_KEY" />
-            //highlight-end
-        </>
-    );
+  return (
+    <>
+      //highlight-start
+      <Head>
+        <link rel="preconnect" href="https://app.snipcart.com" />
+        <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.css" />
+        <script async src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js" />
+      </Head>
+      //highlight-end
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider}
+        resources={[{ name: "products" }]}
+        Layout={Layout}
+      >
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </Refine>
+      //highlight-start
+      <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_TEST_KEY" />
+      //highlight-end
+    </>
+  );
 }
 ```
 
@@ -694,69 +645,45 @@ import React from "react";
 import { Box, Image, Badge, Button } from "@chakra-ui/react";
 
 export type ProductProps = {
-    id: string;
-    title: string;
-    description: string;
-    cardImage: string;
+  id: string;
+  title: string;
+  description: string;
+  cardImage: string;
 };
 
-export const ProductCard: React.FC<ProductProps> = ({
-    id,
-    title,
-    description,
-    cardImage,
-}) => {
-    return (
-        <Box
-            maxH={"sm"}
-            maxW="sm"
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-        >
-            <Image w={"100%"} h={200} src={cardImage} />
-            <Box p="6" bgColor={"gray.600"}>
-                <Box display="flex" alignItems="baseline" mb={2} ml={-2}>
-                    <Badge borderRadius="full" px="2" colorScheme="teal">
-                        New Product
-                    </Badge>
-                </Box>
-
-                <Box
-                    mt="1"
-                    fontWeight="semibold"
-                    as="h4"
-                    lineHeight="tight"
-                    noOfLines={1}
-                    color={"white"}
-                >
-                    {title}
-                </Box>
-                <Box
-                    color="white"
-                    fontSize="sm"
-                    display={"flex"}
-                    mt={4}
-                    justifyContent={"flex-end"}
-                >
-                    //highlight-start
-                    <Button
-                        className="buy-button snipcart-add-item"
-                        bgColor={"green.400"}
-                        data-item-id={id}
-                        data-item-price="5"
-                        data-item-url="/"
-                        data-item-name={title}
-                        data-item-description={description}
-                        data-item-image={cardImage}
-                    >
-                        Add to Basket
-                    </Button>
-                    //highlight-end
-                </Box>
-            </Box>
+export const ProductCard: React.FC<ProductProps> = ({ id, title, description, cardImage }) => {
+  return (
+    <Box maxH={"sm"} maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image w={"100%"} h={200} src={cardImage} />
+      <Box p="6" bgColor={"gray.600"}>
+        <Box display="flex" alignItems="baseline" mb={2} ml={-2}>
+          <Badge borderRadius="full" px="2" colorScheme="teal">
+            New Product
+          </Badge>
         </Box>
-    );
+
+        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1} color={"white"}>
+          {title}
+        </Box>
+        <Box color="white" fontSize="sm" display={"flex"} mt={4} justifyContent={"flex-end"}>
+          //highlight-start
+          <Button
+            className="buy-button snipcart-add-item"
+            bgColor={"green.400"}
+            data-item-id={id}
+            data-item-price="5"
+            data-item-url="/"
+            data-item-name={title}
+            data-item-description={description}
+            data-item-image={cardImage}
+          >
+            Add to Basket
+          </Button>
+          //highlight-end
+        </Box>
+      </Box>
+    </Box>
+  );
 };
 ```
 

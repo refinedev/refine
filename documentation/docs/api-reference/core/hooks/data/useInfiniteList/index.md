@@ -55,7 +55,9 @@ Dynamically changing the `filters` property will trigger a new request.
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. This is useful when you want to subscribe to live updates.
@@ -230,7 +232,9 @@ const myDataProvider = {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useInfiniteList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
@@ -250,7 +254,9 @@ useInfiniteList({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useInfiniteList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
@@ -270,7 +276,9 @@ useInfiniteList({
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -286,7 +294,9 @@ useInfiniteList({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
@@ -302,7 +312,9 @@ useInfiniteList({
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -336,13 +348,17 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`config`~~
 
 :::caution Deprecated
+
 Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
+
 :::
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
@@ -396,7 +412,9 @@ getList: async ({ resource, pagination }) => {
 ```
 
 :::tip
+
 As the `total` data is only needed in the `offset-pagination` method, define it as `0` here.
+
 :::
 
 After this process, we successfully retrieved the first page of data. Let's fill the `cursor` object for the next page.
@@ -444,7 +462,9 @@ const { data, error, hasNextPage, isLoading, fetchNextPage, isFetchingNextPage }
 ```
 
 :::tip
+
 When you override this method, you can access the `lastPage` and `allPages`.
+
 :::
 
 ## API

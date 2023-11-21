@@ -9,26 +9,26 @@ source: packages/mantine/src/components/themedLayoutV2/index.tsx
 
 ```tsx live shared
 const authProvider = {
-    login: async () => ({
-        success: true,
-        redirectTo: "/",
-    }),
-    logout: async () => ({
-        success: true,
-        redirectTo: "/login",
-    }),
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => ({
-        authenticated: true,
-    }),
-    getIdentity: async () => ({
-        id: 1,
-        name: "Jane Doe",
-        avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-    }),
+  login: async () => ({
+    success: true,
+    redirectTo: "/",
+  }),
+  logout: async () => ({
+    success: true,
+    redirectTo: "/login",
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  check: async () => ({
+    authenticated: true,
+  }),
+  getIdentity: async () => ({
+    id: 1,
+    name: "Jane Doe",
+    avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+  }),
 };
 ```
 
@@ -36,14 +36,16 @@ The `<ThemedLayoutV2>` component that uses the [`<Drawer>`][mantine-drawer] from
 
 By using `<ThemedLayoutV2>`, developers can create a consistent look and feel across multiple pages or sections of a website, while also improving code maintainability and reusability. The customizable sections of `<ThemedLayout>` include:
 
--   [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
--   [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
--   [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
--   `<Footer>`: displayed at the bottom of the page.
--   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
+- [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
+- [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
+- [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+- `<Footer>`: displayed at the bottom of the page.
+- `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
 :::note
+
 `Footer` and `OffLayoutArea` do not have any default components.
+
 :::
 
 ## Usage
@@ -69,44 +71,37 @@ import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          authProvider={authProvider}
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -124,9 +119,9 @@ render(<App />);
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
 
--   [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-mantine/src/App.tsx#L180)
--   [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
--   [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
+- [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-mantine/src/App.tsx#L180)
+- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
+- [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
 
 > ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayout>` from `@refinedev/mantine` as same.
 
@@ -145,18 +140,18 @@ import { ThemedLayoutV2 } from "@refinedev/mantine";
 import { CustomSider } from "./CustomSider";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-next-line
-                Sider={() => <CustomSider />}
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-next-line
+        Sider={() => <CustomSider />}
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -171,34 +166,32 @@ import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/mantine";
 import { CustomTitle } from "./CustomTitle";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Sider={() => (
-                    <ThemedSiderV2
-                        Title={({ collapsed }) => (
-                            <CustomTitle collapsed={collapsed} />
-                        )}
-                        render={({ items, logout, collapsed }) => {
-                            return (
-                                <>
-                                    <div>My Custom Element</div>
-                                    {items}
-                                    {logout}
-                                </>
-                            );
-                        }}
-                    />
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Sider={() => (
+          <ThemedSiderV2
+            Title={({ collapsed }) => <CustomTitle collapsed={collapsed} />}
+            render={({ items, logout, collapsed }) => {
+              return (
+                <>
+                  <div>My Custom Element</div>
+                  {items}
+                  {logout}
+                </>
+              );
+            }}
+          />
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -213,10 +206,10 @@ const App: React.FC = () => {
 
 ```tsx
 type SiderRenderFunction = (props: {
-    items: JSX.Element[];
-    logout: React.ReactNode;
-    dashboard: React.ReactNode;
-    collapsed: boolean;
+  items: JSX.Element[];
+  logout: React.ReactNode;
+  dashboard: React.ReactNode;
+  collapsed: boolean;
 }) => React.ReactNode;
 ```
 
@@ -224,15 +217,15 @@ type SiderRenderFunction = (props: {
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
--   `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
--   `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
+- `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
+- `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
 
 ```tsx
 <ThemedLayoutV2
-    // highlight-next-line
-    initialSiderCollapsed={true}
+  // highlight-next-line
+  initialSiderCollapsed={true}
 >
-    {/* ... */}
+  {/* ... */}
 </ThemedLayoutV2>
 ```
 
@@ -250,18 +243,18 @@ import { ThemedLayoutV2 } from "@refinedev/mantine";
 import { CustomHeader } from "./CustomHeader";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-next-line
-                Header={() => <CustomHeader />}
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-next-line
+        Header={() => <CustomHeader />}
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -270,25 +263,25 @@ You can also make it sticky using the `sticky` property, which is optional and d
 ```tsx
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    // highlight-next-line
-    ThemedHeaderV2,
+  ThemedLayoutV2,
+  // highlight-next-line
+  ThemedHeaderV2,
 } from "@refinedev/mantine";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Header={() => <ThemedHeaderV2 sticky />}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Header={() => <ThemedHeaderV2 sticky />}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -307,26 +300,26 @@ import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/mantine";
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Title={({ collapsed }) => (
-                    <ThemedTitleV2V2
-                        // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
-                        collapsed={collapsed}
-                        icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
-                        text="My Project"
-                    />
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Title={({ collapsed }) => (
+          <ThemedTitleV2V2
+            // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
+            collapsed={collapsed}
+            icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
+            text="My Project"
+          />
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -356,58 +349,50 @@ import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          authProvider={authProvider}
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2
+                  Footer={() => (
+                    <Center
+                      w="100%"
+                      h="64px"
+                      sx={(theme) => ({
+                        borderTop: `1px solid ${theme.colors.gray[4]}`,
+                        backgroundColor: theme.colors.gray[2],
+                      })}
+                    >
+                      My Custom Footer
+                    </Center>
+                  )}
                 >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2
-                                    Footer={() => (
-                                        <Center
-                                            w="100%"
-                                            h="64px"
-                                            sx={(theme) => ({
-                                                borderTop: `1px solid ${theme.colors.gray[4]}`,
-                                                backgroundColor:
-                                                    theme.colors.gray[2],
-                                            })}
-                                        >
-                                            My Custom Footer
-                                        </Center>
-                                    )}
-                                >
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -421,30 +406,30 @@ import { ThemedLayoutV2 } from "@refinedev/mantine";
 import { Center } from "@mantine/core";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Footer={() => (
-                    <Center
-                        w="100%"
-                        h="64px"
-                        sx={(theme) => ({
-                            borderTop: `1px solid ${theme.colors.gray[4]}`,
-                            backgroundColor: theme.colors.gray[2],
-                        })}
-                    >
-                        My Custom Footer
-                    </Center>
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Footer={() => (
+          <Center
+            w="100%"
+            h="64px"
+            sx={(theme) => ({
+              borderTop: `1px solid ${theme.colors.gray[4]}`,
+              backgroundColor: theme.colors.gray[2],
+            })}
+          >
+            My Custom Footer
+          </Center>
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -474,60 +459,51 @@ import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          authProvider={authProvider}
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2
+                  OffLayoutArea={() => (
+                    <Button
+                      onClick={() => alert("Off layout are clicked")}
+                      compact
+                      sx={{
+                        position: "fixed",
+                        bottom: "16px",
+                        left: "16px",
+                      }}
+                    >
+                      Send us Feedback 👋
+                    </Button>
+                  )}
                 >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2
-                                    OffLayoutArea={() => (
-                                        <Button
-                                            onClick={() =>
-                                                alert("Off layout are clicked")
-                                            }
-                                            compact
-                                            sx={{
-                                                position: "fixed",
-                                                bottom: "16px",
-                                                left: "16px",
-                                            }}
-                                        >
-                                            Send us Feedback 👋
-                                        </Button>
-                                    )}
-                                >
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -541,38 +517,40 @@ import { ThemedLayoutV2 } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                OffLayoutArea={() => (
-                    <Button
-                        onClick={() => alert("Off layout are clicked")}
-                        compact
-                        sx={{
-                            position: "fixed",
-                            bottom: "16px",
-                            left: "16px",
-                        }}
-                    >
-                        Send us Feedback 👋
-                    </Button>
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        OffLayoutArea={() => (
+          <Button
+            onClick={() => alert("Off layout are clicked")}
+            compact
+            sx={{
+              position: "fixed",
+              bottom: "16px",
+              left: "16px",
+            }}
+          >
+            Send us Feedback 👋
+          </Button>
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
 ## Customizing with swizzle
 
 :::caution
+
 🚨 This feature is available with `@refine/cli`. Please refer to the [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
+
 :::
 
 `<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
@@ -667,19 +645,15 @@ import { ThemedSider } from "components/themedLayout/sider";
 import { ThemedTitle } from "components/themedLayout/title";
 
 const App = () => {
-    return (
-        <Refine
+  return (
+    <Refine
+    /* ... */
+    >
+      <ThemedLayoutV2 Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle}>
         /* ... */
-        >
-            <ThemedLayoutV2
-                Header={ThemedHeader}
-                Sider={ThemedSider}
-                Title={ThemedTitle}
-            >
-                /* ... */
-            </ThemedLayoutV2>
-        </Refine>
-    );
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -781,10 +755,10 @@ import { Refine } from "@refinedev/core";
 
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import {
-    ThemedLayoutV2,
-    RefineThemes,
-    // highlight-next-line
-    HamburgerMenu,
+  ThemedLayoutV2,
+  RefineThemes,
+  // highlight-next-line
+  HamburgerMenu,
 } from "@refinedev/mantine";
 import { MantineProvider, Global, Box } from "@mantine/core";
 
@@ -799,61 +773,54 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 // highlight-start
 const DashboardPage = () => {
-    return (
-        <Box>
-            <HamburgerMenu />
-        </Box>
-    );
+  return (
+    <Box>
+      <HamburgerMenu />
+    </Box>
+  );
 };
 // highlight-end
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          authProvider={authProvider}
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            // highlight-start
+            {
+              name: "Dashboard",
+              list: "/",
+            },
+            // highlight-end
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        // highlight-start
-                        {
-                            name: "Dashboard",
-                            list: "/",
-                        },
-                        // highlight-end
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                // highlight-next-line
-                                <ThemedLayoutV2 Header={() => null}>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route path="/" element={<DashboardPage />} />
-                            <Route
-                                path="/samples"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                // highlight-next-line
+                <ThemedLayoutV2 Header={() => null}>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/samples" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -886,32 +853,30 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ThemedLayoutV2 } from "@refinedev/mantine";
 
 const App: React.FC = () => {
-    // you can get this value from `localStorage` or `cookie`
-    // for persistence between sessions
-    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+  // you can get this value from `localStorage` or `cookie`
+  // for persistence between sessions
+  const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
-    return (
-        <BrowserRouter>
-            <Refine
-            // ...
-            >
-                {/* ... */}
-                <Routes>
-                    <Route
-                        element={
-                            <ThemedLayoutV2
-                                initialSiderCollapsed={initialSiderCollapsed}
-                            >
-                                <Outlet />
-                            </ThemedLayoutV2>
-                        }
-                    >
-                        {/* ... */}
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+      // ...
+      >
+        {/* ... */}
+        <Routes>
+          <Route
+            element={
+              <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+                <Outlet />
+              </ThemedLayoutV2>
+            }
+          >
+            {/* ... */}
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;
@@ -931,30 +896,30 @@ import type { AppProps } from "next/app";
 import type { NextPage } from "next";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    // you can get this value from `localStorage` or `cookie`
-    // for persistence between sessions
-    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+  // you can get this value from `localStorage` or `cookie`
+  // for persistence between sessions
+  const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
-    const renderComponent = () => {
-        if (Component.noLayout) {
-            return <Component {...pageProps} />;
-        }
-
-        return (
-            <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
-                <Component {...pageProps} />
-            </ThemedLayoutV2>
-        );
-    };
+  const renderComponent = () => {
+    if (Component.noLayout) {
+      return <Component {...pageProps} />;
+    }
 
     return (
-        <Refine
-        // ...
-        >
-            {/* ... */}
-            {renderComponent()}
-        </Refine>
+      <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+        <Component {...pageProps} />
+      </ThemedLayoutV2>
     );
+  };
+
+  return (
+    <Refine
+    // ...
+    >
+      {/* ... */}
+      {renderComponent()}
+    </Refine>
+  );
 }
 
 export default MyApp;
@@ -970,15 +935,15 @@ import { Outlet } from "@remix-run/react";
 import { ThemedLayoutV2 } from "@refinedev/mantine";
 
 export default function BaseLayout() {
-    // you can get this value from `localStorage` or `cookie`
-    // for persistence between sessions
-    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+  // you can get this value from `localStorage` or `cookie`
+  // for persistence between sessions
+  const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
-    return (
-        <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
-            <Outlet />
-        </ThemedLayoutV2>
-    );
+  return (
+    <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+      <Outlet />
+    </ThemedLayoutV2>
+  );
 }
 ```
 

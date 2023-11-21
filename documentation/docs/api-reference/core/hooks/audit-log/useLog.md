@@ -24,23 +24,25 @@ const { log } = useLog();
 const { mutate } = log;
 
 mutate({
-    resource: "posts",
-    action: "create",
-    author: {
-        username: "admin",
-    },
-    data: {
-        id: 1,
-        title: "New post",
-    },
-    meta: {
-        id: 1,
-    },
+  resource: "posts",
+  action: "create",
+  author: {
+    username: "admin",
+  },
+  data: {
+    id: 1,
+    title: "New post",
+  },
+  meta: {
+    id: 1,
+  },
 });
 ```
 
 :::caution
+
 This hook can only be used if `auditLogProvider`'s `create` method is provided.
+
 :::
 
 ### Properties
@@ -56,7 +58,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ### Type Parameters
 
-| Property   | Description                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                       | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
@@ -64,8 +66,8 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                      |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                           |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 ## `rename`
@@ -79,13 +81,15 @@ const { rename } = useLog();
 const { mutate } = rename;
 
 mutate({
-    id: 1,
-    name: "Updated Name",
+  id: 1,
+  name: "Updated Name",
 });
 ```
 
 :::caution
+
 This hook can only be used if `auditLogProvider`'s `update` method is provided.
+
 :::
 
 ### Properties
@@ -97,7 +101,7 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 ### Type Parameters
 
-| Property   | Description                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                       | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
@@ -105,12 +109,14 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                      |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                           |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 <br />
 
 :::info
+
 You can get audit logs with [`useLogList`](/api-reference/core/hooks/audit-log/useLogList.md).
+
 :::

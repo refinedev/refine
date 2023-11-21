@@ -18,7 +18,9 @@ title: General Concepts
 For example, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"` because the active route is `/posts`
 
 :::info
+
 To make the inference work, you need to pass the `routerProvider` prop to the `<Refine>` component from your router package choice.
+
 :::
 
 ```tsx title="src/App.tsx"
@@ -30,24 +32,24 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PostList } from "pages/posts/list.tsx";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/posts" element={<PostList />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/posts" element={<PostList />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;
@@ -59,17 +61,19 @@ This value however can be overridden by passing the `resource` prop to the hook:
 import { useTable } from "@refinedev/core";
 
 const PostList: React.FC = () => {
-    const result = useTable({
-        //highlight-next-line
-        resource: "users",
-    });
+  const result = useTable({
+    //highlight-next-line
+    resource: "users",
+  });
 
-    return <div>...</div>;
+  return <div>...</div>;
 };
 ```
 
 :::info
+
 The value passed to the `resource` property is also used to determine the active `resource` from the `resources` array, which is optional for API interactions, but enables useful `refine` features such as redirecting to the list page after create and update operations.
+
 :::
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
@@ -77,16 +81,18 @@ If you have multiple resources with the same name, you can pass the `identifier`
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 :::info
+
 If you want to use `resource` with nested routes, refer to the [related section in FAQ &#8594](/faq.md#how-can-i-request-an-api-with-nested-route)
+
 :::
 
 ## `meta`
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
--   Filling additional parameters in target routes when occurs redirection.
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Filling additional parameters in target routes when occurs redirection.
 
 ### Passing a global `meta` specific to a resource
 
@@ -98,20 +104,20 @@ For instance, to pass the `role` property to all data provider methods for the `
 import { Refine } from "@refinedev/core";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    // highlight-start
-                    meta: {
-                        role: "editor",
-                    },
-                    // highlight-end
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          // highlight-start
+          meta: {
+            role: "editor",
+          },
+          // highlight-end
+        },
+      ]}
+    />
+  );
 };
 ```
 
@@ -151,7 +157,9 @@ For example, you can pass the `headers` property to the `getOne` method by using
 ```
 
 :::note
+
 You can pass any property to handle your specific use cases with the same logic
+
 :::
 
 ### Using URL query parameters as `meta` properties
@@ -170,17 +178,19 @@ const dataProvider = {
 ```
 
 :::info
+
 The order of precedence for creating the `meta` is as follows: first, it is passed to the hook; second, it is defined in the URL query parameters; and third, it is defined in the `resources` prop of the `<Refine>` component.
+
 :::
 
 :::caution
 
 The `meta` property defined in the `resources` prop of the `<Refine>` is passed to the data provider methods only via the following hooks and their derivatives:
 
--   [`useTable`](/docs/api-reference/core/hooks/useTable/)
--   [`useForm`](/docs/api-reference/core/hooks/useForm/)
--   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
--   [`useShow`](/docs/api-reference/core/hooks/show/useShow/)
+- [`useTable`](/docs/api-reference/core/hooks/useTable/)
+- [`useForm`](/docs/api-reference/core/hooks/useForm/)
+- [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
+- [`useShow`](/docs/api-reference/core/hooks/show/useShow/)
 
 :::
 

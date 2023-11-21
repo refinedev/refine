@@ -7,7 +7,9 @@ source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---
 
 :::caution
+
 This hook can only be used if the [`authProvider`][auth-provider] is provided.
+
 :::
 
 `useOnError` calls the [`onError`][on-error] method from the [`authProvider`][auth-provider] under the hood.
@@ -18,17 +20,17 @@ Data that is resolved from the [`onError`][on-error] will be returned as the `da
 
 ```ts
 type OnErrorResponse = {
-    redirectTo?: string;
-    logout?: boolean;
-    error?: Error;
+  redirectTo?: string;
+  logout?: boolean;
+  error?: Error;
 };
 ```
 
 According to the `onError` method's returned values, the following process will be executed:
 
--   `redirectTo`: If it has a value, the app will be redirected to the given URL.
--   `logout`: If it is `true`, `useOnError` calls the `logout` method.
--   `error`: An Error object representing any errors that may have occurred during the operation.
+- `redirectTo`: If it has a value, the app will be redirected to the given URL.
+- `logout`: If it is `true`, `useOnError` calls the `logout` method.
+- `error`: An Error object representing any errors that may have occurred during the operation.
 
 ## Internal Usage
 
@@ -40,28 +42,28 @@ When an error is thrown by any data hook, the `useOnError` function is triggered
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  logout: () => {
     // ---
-    logout: () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    // highlight-start
-    onError: (error) => {
-        const status = error.status;
-        if (status === 418) {
-            return {
-                logout: true,
-                redirectTo: "/login",
-                error: new Error(error),
-            };
-        }
-        return {};
-    },
-    // highlight-end
-    // ---
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  // highlight-start
+  onError: (error) => {
+    const status = error.status;
+    if (status === 418) {
+      return {
+        logout: true,
+        redirectTo: "/login",
+        error: new Error(error),
+      };
+    }
+    return {};
+  },
+  // highlight-end
+  // ---
 };
 ```
 
@@ -78,9 +80,9 @@ import { useOnError } from "@refinedev/core";
 const { mutate: onError } = useOnError();
 
 fetch("http://example.com/payment")
-    .then(() => console.log("Success"))
-    // highlight-next-line
-    .catch((error) => onError(error));
+  .then(() => console.log("Success"))
+  // highlight-next-line
+  .catch((error) => onError(error));
 ```
 
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `onError` method like below.
@@ -89,28 +91,28 @@ We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  logout: () => {
     // ---
-    logout: () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    // highlight-start
-    onError: (error) => {
-        const status = error.status;
-        if (status === 418) {
-            return {
-                logout: true,
-                redirectTo: "/login",
-                error: new Error(error),
-            };
-        }
-        return {};
-    },
-    // highlight-end
-    // ---
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  // highlight-start
+  onError: (error) => {
+    const status = error.status;
+    if (status === 418) {
+      return {
+        logout: true,
+        redirectTo: "/login",
+        error: new Error(error),
+      };
+    }
+    return {};
+  },
+  // highlight-end
+  // ---
 };
 ```
 

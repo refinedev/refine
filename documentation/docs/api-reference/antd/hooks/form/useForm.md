@@ -178,7 +178,9 @@ Submit functionality is provided by `saveButtonProps` which includes all of the 
 `useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as the default type for mutation response.
 
 :::tip
+
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/api-reference/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/api-reference/antd/hooks/form/useDrawerForm.md) hook.
+
 :::
 
 > For more detailed usage examples, refer to the [Ant Design Form](https://ant.design/components/form/) documentation.
@@ -190,9 +192,11 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
+
 By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+
 :::
 
 <Tabs
@@ -480,7 +484,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 :::caution
+
 `id` is required for `action: "edit"` and `action: "clone"`.
+
 :::
 
 ```tsx
@@ -561,7 +567,9 @@ useForm({
 If there is more than one `dataProvider`, you should pass the name of the `dataProvider` you are going to use to `dataProviderName`.
 
 :::tip
+
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+
 :::
 
 ```tsx
@@ -586,7 +594,9 @@ useForm({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 `successNotification` allows you to customize the success notification that pops up after the form is submitted, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
@@ -606,7 +616,9 @@ useForm({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 `errorNotification` allows you to customize the error notification that pops up after the form submission fails, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
@@ -684,7 +696,9 @@ useForm({
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+
 :::
 
 ### `mutationMeta`
@@ -700,13 +714,17 @@ useForm({
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+
 :::
 
 ### `queryOptions`
 
 :::caution
+
 This works only in the `action: "edit"` and the `action: "clone"` mode.
+
 :::
 
 In the `edit` and `clone` modes, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
@@ -722,7 +740,9 @@ useForm({
 ### `createMutationOptions`
 
 :::caution
+
 This option is only available when `action: "create"` or `action: "clone"`.
+
 :::
 
 In the `create` and `clone` modes, **refine** uses the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property.
@@ -738,7 +758,9 @@ useForm({
 ### `updateMutationOptions`
 
 :::caution
+
 This option is only available when `action: "edit"`.
+
 :::
 
 In the `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
@@ -838,7 +860,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -912,7 +936,9 @@ useForm({
 ## Return Values
 
 :::tip
+
 All [`core useForm`](/docs/api-reference/core/hooks/useForm/) return values also available in `useForm`.
+
 :::
 
 ### `form`

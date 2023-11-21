@@ -17,7 +17,9 @@ import PropResource from "@site/src/partials/prop-resource";
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
 :::info
+
 `useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+
 :::
 
 ## Installation
@@ -71,7 +73,9 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
+
 By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
+
 :::
 
 <PaginationLivePreview/>
@@ -105,7 +109,9 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 ## Properties
 
 :::tip
+
 It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
+
 :::
 
 ### `resource`
@@ -501,7 +507,9 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 > Default: `1`
@@ -519,7 +527,9 @@ useTable({
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 > Default: `10`
@@ -537,7 +547,9 @@ useTable({
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 > Default: `true`
@@ -555,7 +567,9 @@ useTable({
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -578,7 +592,9 @@ useTable({
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -601,7 +617,9 @@ useTable({
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -625,7 +643,9 @@ useTable({
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -649,7 +669,9 @@ useTable({
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 > Default: `replace`
@@ -673,7 +695,9 @@ useTable({
 ## Return Values
 
 :::tip
+
 It also have all return values of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
+
 :::
 
 ### `refineCore`
@@ -747,7 +771,9 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 Current [sorters state][crudsorting].
@@ -755,7 +781,9 @@ Current [sorters state][crudsorting].
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 A function to set current [sorters state][crudsorting].

@@ -30,7 +30,9 @@ mutate({
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useUpdate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
@@ -46,7 +48,9 @@ When the `useUpdate` mutation runs successfully, it will invalidate the followin
 ## Audit Logs
 
 :::caution
+
 This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+
 :::
 
 When the `useUpdate` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. It is useful when you want to log the changes to the database.
@@ -212,7 +216,9 @@ const MyComponent = () => {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useUpdate` can calls `open` function from `NotificationProvider`:
@@ -234,7 +240,9 @@ mutate({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useUpdate` calls the `open` function from `NotificationProvider`:
@@ -361,7 +369,9 @@ If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` ho
 When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
 
 :::caution
+
 This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
+
 :::
 
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
@@ -490,7 +500,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many", "detail"]`                                 |
 
 :::note
+
 These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
+
 :::
 
 <br/>

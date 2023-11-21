@@ -266,7 +266,9 @@ export const PostEdit: React.FC = () => {
 ```
 
 :::tip
+
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/packages/documentation/react-hook-form/useModalForm).
+
 :::
 
 ## Properties
@@ -276,9 +278,11 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
+
 By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+
 :::
 
 <Tabs
@@ -641,7 +645,9 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
+
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+
 :::
 
 ```tsx
@@ -770,7 +776,9 @@ useForm({
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+
 :::
 
 ### `mutationMeta`
@@ -786,7 +794,9 @@ useForm({
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+
 :::
 
 ### `queryOptions`
@@ -893,7 +903,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -1142,7 +1154,9 @@ You can use `meta` property to pass common values to the mutation and the query.
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
 :::tip External Props
+
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
+
 :::
 
 <br/>

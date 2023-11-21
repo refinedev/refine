@@ -11,142 +11,112 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        <EditButton
-                            hideText
-                            recordItemId={getValue() as number}
-                        />
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-        refineCoreProps: {
-            initialPageSize: 5,
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return <EditButton hideText recordItemId={getValue() as number} />;
         },
-    });
+      },
+    ],
+    [],
+  );
 
-    return (
-        <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
-        </List>
-    );
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+    refineCoreProps: {
+      initialPageSize: 5,
+    },
+  });
+
+  return (
+    <List>
+      <Table>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <br />
+      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+    </List>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            title: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-        },
-    });
+  const { saveButtonProps, getInputProps } = useForm({
+    initialValues: {
+      title: "",
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+    },
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-            </form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+      </form>
+    </Edit>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            title: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-        },
-    });
+  const { saveButtonProps, getInputProps } = useForm({
+    initialValues: {
+      title: "",
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+    },
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-            </form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+      </form>
+    </Create>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 ```
 
@@ -169,15 +139,15 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider } from "@mantine/core";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider theme={RefineThemes.Blue}>
-            <Refine
-            /* ... */
-            >
-                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-            </Refine>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={RefineThemes.Blue}>
+      <Refine
+      /* ... */
+      >
+        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+      </Refine>
+    </MantineProvider>
+  );
 };
 ```
 
@@ -199,11 +169,11 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    ThemedLayoutV2,
-    notificationProvider,
-    ErrorComponent,
-    // highlight-next-line
-    RefineThemes,
+  ThemedLayoutV2,
+  notificationProvider,
+  ErrorComponent,
+  // highlight-next-line
+  RefineThemes,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -213,58 +183,50 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App = () => {
-    return (
-        <MantineProvider
-            // highlight-next-line
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                edit: "/posts/edit/:id",
-                                create: "/posts/create",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route path="posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider
+      // highlight-next-line
+      theme={RefineThemes.Blue}
+      withNormalizeCSS
+      withGlobalStyles
+    >
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                edit: "/posts/edit/:id",
+                create: "/posts/create",
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route path="posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                </Route>
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -284,11 +246,11 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    ThemedLayoutV2,
-    notificationProvider,
-    ErrorComponent,
-    // highlight-next-line
-    RefineThemes,
+  ThemedLayoutV2,
+  notificationProvider,
+  ErrorComponent,
+  // highlight-next-line
+  RefineThemes,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -298,84 +260,77 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App = () => {
-    return (
-        <MantineProvider
-            // highlight-start
-            theme={{
-                ...RefineThemes.Blue,
-                colors: {
-                    brand: [
-                        "#ECF9F8",
-                        "#C9EEEC",
-                        "#A6E2E1",
-                        "#84D7D5",
-                        "#61CCC9",
-                        "#3EC1BD",
-                        "#329A97",
-                        "#257471",
-                        "#194D4B",
-                        "#0C2726",
-                    ],
-                },
-                globalStyles: (theme: MantineTheme) => ({
-                    body: {
-                        backgroundColor: "#84D7D5",
-                    },
-                }),
-            }}
-            // highlight-end
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                edit: "/posts/edit/:id",
-                                create: "/posts/create",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route path="posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider
+      // highlight-start
+      theme={{
+        ...RefineThemes.Blue,
+        colors: {
+          brand: [
+            "#ECF9F8",
+            "#C9EEEC",
+            "#A6E2E1",
+            "#84D7D5",
+            "#61CCC9",
+            "#3EC1BD",
+            "#329A97",
+            "#257471",
+            "#194D4B",
+            "#0C2726",
+          ],
+        },
+        globalStyles: (theme: MantineTheme) => ({
+          body: {
+            backgroundColor: "#84D7D5",
+          },
+        }),
+      }}
+      // highlight-end
+      withNormalizeCSS
+      withGlobalStyles
+    >
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                edit: "/posts/edit/:id",
+                create: "/posts/create",
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route path="posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                </Route>
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 // visible-block-end
 render(<App />);
 ```
+
 > For more information, refer to the [Mantine colors documentation &#8594](https://mantine.dev/theming/colors/)
 
 ## Theme switching
@@ -389,23 +344,18 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    notificationProvider,
-    RefineThemes,
-} from "@refinedev/mantine";
+import { ThemedLayoutV2, ErrorComponent, notificationProvider, RefineThemes } from "@refinedev/mantine";
 // highlight-start
 import { NotificationsProvider } from "@mantine/notifications";
 import {
-    MantineProvider,
-    Global,
-    useMantineColorScheme,
-    Header as MantineHeader,
-    Group,
-    ActionIcon,
-    ColorScheme,
-    ColorSchemeProvider,
+  MantineProvider,
+  Global,
+  useMantineColorScheme,
+  Header as MantineHeader,
+  Group,
+  ActionIcon,
+  ColorScheme,
+  ColorSchemeProvider,
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 // highlight-end
@@ -418,108 +368,97 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 // highlight-start
 const Header = () => {
-    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-    const dark = colorScheme === "dark";
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
-    return (
-        <MantineHeader height={50} p="xs">
-            <Group position="right">
-                <ActionIcon
-                    variant="outline"
-                    color={dark ? "yellow" : "primary"}
-                    onClick={() => toggleColorScheme()}
-                    title="Toggle color scheme"
-                >
-                    {dark ? <IconSun /> : <IconMoonStars />}
-                </ActionIcon>
-            </Group>
-        </MantineHeader>
-    );
+  return (
+    <MantineHeader height={50} p="xs">
+      <Group position="right">
+        <ActionIcon
+          variant="outline"
+          color={dark ? "yellow" : "primary"}
+          onClick={() => toggleColorScheme()}
+          title="Toggle color scheme"
+        >
+          {dark ? <IconSun /> : <IconMoonStars />}
+        </ActionIcon>
+      </Group>
+    </MantineHeader>
+  );
 };
 // highlight-end
 
 const App = () => {
-    // highlight-start
-    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-        key: "mantine-color-scheme",
-        defaultValue: "light",
-        getInitialValueInEffect: true,
-    });
-    // highlight-end
+  // highlight-start
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "mantine-color-scheme",
+    defaultValue: "light",
+    getInitialValueInEffect: true,
+  });
+  // highlight-end
 
-    // highlight-start
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-    // highlight-end
+  // highlight-start
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+  // highlight-end
 
-    return (
-        // highlight-start
-        <ColorSchemeProvider
-            colorScheme={colorScheme}
-            toggleColorScheme={toggleColorScheme}
-            // highlight-end
-        >
-            <MantineProvider
-                // highlight-next-line
-                theme={{
-                    ...RefineThemes.Blue,
-                    colorScheme: colorScheme,
-                }}
-                withNormalizeCSS
-                withGlobalStyles
+  return (
+    // highlight-start
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+      // highlight-end
+    >
+      <MantineProvider
+        // highlight-next-line
+        theme={{
+          ...RefineThemes.Blue,
+          colorScheme: colorScheme,
+        }}
+        withNormalizeCSS
+        withGlobalStyles
+      >
+        <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+        <NotificationsProvider position="top-right">
+          <BrowserRouter>
+            <Refine
+              routerProvider={routerProvider}
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              notificationProvider={notificationProvider}
+              resources={[
+                {
+                  name: "posts",
+                  list: "/posts",
+                  edit: "/posts/edit/:id",
+                  create: "/posts/create",
+                },
+              ]}
             >
-                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
-                    <BrowserRouter>
-                        <Refine
-                            routerProvider={routerProvider}
-                            dataProvider={dataProvider(
-                                "https://api.fake-rest.refine.dev",
-                            )}
-                            notificationProvider={notificationProvider}
-                            resources={[
-                                {
-                                    name: "posts",
-                                    list: "/posts",
-                                    edit: "/posts/edit/:id",
-                                    create: "/posts/create",
-                                },
-                            ]}
-                        >
-                            <Routes>
-                                <Route
-                                    element={
-                                        <ThemedLayoutV2
-                                            // highlight-next-line
-                                            Header={Header}
-                                        >
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    }
-                                >
-                                    <Route path="posts">
-                                        <Route index element={<PostList />} />
-                                        <Route
-                                            path="create"
-                                            element={<PostCreate />}
-                                        />
-                                        <Route
-                                            path="edit/:id"
-                                            element={<PostEdit />}
-                                        />
-                                    </Route>
-                                    <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
-                                    />
-                                </Route>
-                            </Routes>
-                        </Refine>
-                    </BrowserRouter>
-                </NotificationsProvider>
-            </MantineProvider>
-        </ColorSchemeProvider>
-    );
+              <Routes>
+                <Route
+                  element={
+                    <ThemedLayoutV2
+                      // highlight-next-line
+                      Header={Header}
+                    >
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  }
+                >
+                  <Route path="posts">
+                    <Route index element={<PostList />} />
+                    <Route path="create" element={<PostCreate />} />
+                    <Route path="edit/:id" element={<PostEdit />} />
+                  </Route>
+                  <Route path="*" element={<ErrorComponent />} />
+                </Route>
+              </Routes>
+            </Refine>
+          </BrowserRouter>
+        </NotificationsProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
+  );
 };
 // visible-block-end
 render(<App />);

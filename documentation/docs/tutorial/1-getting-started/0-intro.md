@@ -2,8 +2,8 @@
 id: index
 title: 1. Intro
 tutorial:
-    prev: tutorial/introduction/select-framework
-    next: tutorial/getting-started/prepare-env
+  prev: tutorial/introduction/select-framework
+  next: tutorial/getting-started/prepare-env
 ---
 
 <UIConditional is="antd">
@@ -37,6 +37,7 @@ Now that you have selected the **Material UI** option as your UI preference, let
 </UIConditional>
 
 :::info Using CodeSandbox?
+
 Prefer to go through this tutorial in an online code editor? That's possible!
 
 <details>
@@ -176,28 +177,24 @@ Now you can navigate to [Generate CRUD pages automatically with Inferencer](/doc
 </UIConditional>
 
 </details>
+
 :::
 
 <h3>Where are we going?</h3>
 
 In this unit, we will be covering the following steps:
 
--   Setting up your development environment.
--   Creating a new project.
--   Generating CRUD pages for your data model.
--   Storing your project in a git repository.
--   Deploying your project to the cloud.
+- Setting up your development environment.
+- Creating a new project.
+- Generating CRUD pages for your data model.
+- Storing your project in a git repository.
+- Deploying your project to the cloud.
 
 <h3> What will we be building?</h3>
-
-
-
-
 
 <UIConditional is="antd">
 
 [refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/a4f6eb83-2dd7-453b-b26a-4d3f48eeb543).
-
 
  <div className="centered-image"  >
 <a href="https://refine.new/preview/a4f6eb83-2dd7-453b-b26a-4d3f48eeb543">
@@ -211,7 +208,6 @@ In this unit, we will be covering the following steps:
 
 [refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/abc18685-8a6d-4511-aedd-860ca1b0b5a6).
 
-
  <div className="centered-image">
 <a href="https://refine.new/preview/abc18685-8a6d-4511-aedd-860ca1b0b5a6">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/chakra-intro.png" alt="tutorial chakra" />
@@ -223,7 +219,6 @@ In this unit, we will be covering the following steps:
 
 [refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/c8958d55-8995-4bb7-b91e-e5f924b53aa7).
 
-
  <div className="centered-image">
 <a href="https://refine.new/preview/c8958d55-8995-4bb7-b91e-e5f924b53aa7">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/headless-intro.png" alt="tutorial headless" />
@@ -234,9 +229,7 @@ In this unit, we will be covering the following steps:
 
 <UIConditional is="mantine">
 
-
 [refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/3fd65b0d-534f-4a4b-89eb-c0a325cf6213).
-
 
  <div className="centered-image">
 <a href="https://refine.new/preview/3fd65b0d-534f-4a4b-89eb-c0a325cf6213">
@@ -248,7 +241,6 @@ In this unit, we will be covering the following steps:
 <UIConditional is="mui">
 
 [refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/9203fae6-02ef-4c77-a196-5532e953e29d).
-
 
  <div className="centered-image"  >
 <a href="https://refine.new/preview/9203fae6-02ef-4c77-a196-5532e953e29d">
@@ -262,7 +254,6 @@ In this unit, we will be covering the following steps:
 <br/>
 
 🏄 If you're a busy developer, you can quickly download the final version of the application by clicking on the **"Build & Download"** button.
-
 
 <br/>
 

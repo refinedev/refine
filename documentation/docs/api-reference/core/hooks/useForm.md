@@ -309,6 +309,7 @@ After form is submitted:
 This is the default behavior of `useForm`. You can customize it by passing your own [`redirect`](/docs/api-reference/core/hooks/useForm/#redirect), [`onFinish`](/docs/api-reference/core/hooks/useForm/##how-can-i-change-the-form-data-before-submitting-it-to-the-api), [`onMutationSuccess`](/docs/api-reference/core/hooks/useForm/#onmutationsuccess) and [`onMutationError`](/docs/api-reference/core/hooks/useForm/#onmutationerror) props.
 
 :::info
+
 `useForm` does not manage any state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
 
 - [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
@@ -778,7 +779,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 :::note
+
 `id` is required when `action: "edit"` or `action: "clone"`.
+
 :::
 
 ```tsx
@@ -860,7 +863,9 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
+
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+
 :::
 
 ```tsx
@@ -885,7 +890,9 @@ useForm({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After form is submitted successfully, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -905,7 +912,9 @@ useForm({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After form is submit is failed, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -982,7 +991,9 @@ useForm({
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+
 :::
 
 ### `mutationMeta`
@@ -998,13 +1009,17 @@ useForm({
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+
 :::
 
 ### `queryOptions`
 
 :::caution
+
 Works only in `action: "edit"` or `action: "clone"` mode.
+
 :::
 
 in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
@@ -1020,7 +1035,9 @@ useForm({
 ### `createMutationOptions`
 
 :::caution
+
 This option is only available when `action: "create"` or `action: "clone"`.
+
 :::
 
 In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
@@ -1036,7 +1053,9 @@ useForm({
 ### `updateMutationOptions`
 
 :::caution
+
 This option is only available when `action: "edit"`.
+
 :::
 
 In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
@@ -1112,7 +1131,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -1168,7 +1189,9 @@ useForm({
 If the mutation mode is defined as `optimistic` or `undoable` the `useForm` hook will automatically update the cache without waiting for the response from the server. You may want to disable or customize this behavior. You can do this by passing the `optimisticUpdateMap` prop.
 
 :::caution
+
 This feature is only work with the `mutationMode` is set to `optimistic` and `undoable`
+
 :::
 
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. For automatically updating the cache, you should pass the `true`. If you want not update the cache, you should pass the `false`.
@@ -1415,7 +1438,9 @@ You can use `meta` property to pass common values to the mutation and the query.
 <PropsTable module="@refinedev/core/useForm" />
 
 :::caution
+
 These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+
 :::
 
 ### Type Parameters

@@ -9,7 +9,9 @@ swizzle: true
 It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Usage
@@ -17,50 +19,50 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    List,
-    useTable,
-    // highlight-next-line
-    EditButton,
+  List,
+  useTable,
+  // highlight-next-line
+  EditButton,
 } from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        // highlight-next-line
-                        <EditButton size="small" recordItemId={record.id} />
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="100%" />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          key="actions"
+          render={(_, record) => (
+            // highlight-next-line
+            <EditButton size="small" recordItemId={record.id} />
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -76,40 +78,42 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            resource="posts"
-            // highlight-next-line
-            recordItemId="123"
-        />
-    );
+  return (
+    <EditButton
+      resource="posts"
+      // highlight-next-line
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <RefineAntd.List>List page here...</RefineAntd.List>;
-                },
-                edit: () => {
-                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-                },
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
 
 :::note
+
 `<EditButton>` component reads the id information from the route by default.
+
 :::
 
 ### `resource`
@@ -123,42 +127,42 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            // highlight-next-line
-            resource="categories"
-            recordItemId="123"
-        />
-    );
+  return (
+    <EditButton
+      // highlight-next-line
+      resource="categories"
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <RefineAntd.List>List page here...</RefineAntd.List>;
-                },
-                edit: () => {
-                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-                },
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return <RefineAntd.List>List page here...</RefineAntd.List>;
-                },
-                edit: () => {
-                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-                },
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+      {
+        name: "categories",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
@@ -176,7 +180,7 @@ If the `edit` action route is defined by the pattern: `/posts/:authorId/edit/:id
 
 ```tsx
 const MyComponent = () => {
-    return <EditButton meta={{ authorId: "10" }} />;
+  return <EditButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -191,30 +195,30 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            recordItemId="123"
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <EditButton
+      recordItemId="123"
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyEditComponent,
-                edit: () => {
-                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-                },
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyEditComponent,
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+  />,
 );
 ```
 
@@ -226,16 +230,16 @@ This prop can be used to skip access control check with its `enabled` property o
 import { EditButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
-    return (
-        <EditButton
-            // highlight-start
-            accessControl={{
-                enabled: true,
-                hideIfUnauthorized: true,
-            }}
-            // highlight-end
-        />
-    );
+  return (
+    <EditButton
+      // highlight-start
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 
@@ -252,42 +256,42 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-            recordItemId="123"
-        />
-    );
+  return (
+    <EditButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <RefineAntd.List>List page here...</RefineAntd.List>;
-                },
-                edit: () => {
-                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-                },
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return <RefineAntd.List>List page here...</RefineAntd.List>;
-                },
-                edit: () => {
-                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-                },
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+      {
+        name: "categories",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
@@ -300,5 +304,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 <PropsTable module="@refinedev/antd/EditButton" />
 
 :::tip External Props
+
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+
 :::

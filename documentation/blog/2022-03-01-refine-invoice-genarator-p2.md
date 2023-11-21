@@ -29,7 +29,9 @@ We are almost ready to launch our **refine** Invoice Generator. In this Part II 
 In this part, we will create a missions part for the services your company provides. Then we will create our invoice page using these missions and the clients and contacts we created in Part I. In addition, you will not only be able to create your invoices, but you will also be able to view and download these invoices as PDF.
 
 :::caution
+
 This article is written as a continuation of our [Develop your Own Customizable Invoice Generator with Refine](https://refine.dev/blog/refine-react-admin-invoice-genarator/) article. If you have not read Part I, we recommend that you read Part I before reading this article.
+
 :::
 
 Let's see together how easily and in a short time we can develop our project with its refine features.

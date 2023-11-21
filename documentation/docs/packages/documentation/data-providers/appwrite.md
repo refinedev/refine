@@ -14,291 +14,258 @@ appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => {
-        window.__refineAuthStatus = true;
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        window.__refineAuthStatus = false;
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    check: async () => {
-        return {
-            authenticated: window.__refineAuthStatus ? true : false,
-            redirectTo: window.__refineAuthStatus ? undefined : "/login",
-        };
-    },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => null,
+  login: () => {
+    window.__refineAuthStatus = true;
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    window.__refineAuthStatus = false;
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: async () => {
+    return {
+      authenticated: window.__refineAuthStatus ? true : false,
+      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+    };
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => null,
+  getIdentity: async () => null,
 };
 
+import { useMany as CoreUseMany, useShow as RefineCoreUseShow, useOne as RefineCoreUseOne } from "@refinedev/core";
 import {
-    useMany as CoreUseMany,
-    useShow as RefineCoreUseShow,
-    useOne as RefineCoreUseOne,
-} from "@refinedev/core";
-import {
-    List as RefineAntdList,
-    TextField as RefineAntdTextField,
-    useTable as RefineAntdUseTable,
-    EditButton as RefineAntdEditButton,
-    ShowButton as RefineAntdShowButton,
-    getDefaultSortOrder as RefineAntdGetDefaultSortOrder,
-    useForm as RefineAntdUseForm,
-    useSelect as RefineAntdUseSelect,
-    Create as RefineAntdCreate,
-    Show as RefineAntdShow,
+  List as RefineAntdList,
+  TextField as RefineAntdTextField,
+  useTable as RefineAntdUseTable,
+  EditButton as RefineAntdEditButton,
+  ShowButton as RefineAntdShowButton,
+  getDefaultSortOrder as RefineAntdGetDefaultSortOrder,
+  useForm as RefineAntdUseForm,
+  useSelect as RefineAntdUseSelect,
+  Create as RefineAntdCreate,
+  Show as RefineAntdShow,
 } from "@refinedev/antd";
 import {
-    Table as AntdTable,
-    Space as AntdSpace,
-    Form as AntdForm,
-    Select as AntdSelect,
-    Input as AntdInput,
-    Typography as AntdTypography,
+  Table as AntdTable,
+  Space as AntdSpace,
+  Form as AntdForm,
+  Select as AntdSelect,
+  Input as AntdInput,
+  Typography as AntdTypography,
 } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps, sorter } = RefineAntdUseTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "$id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = RefineAntdUseTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "$id",
+          order: "asc",
         },
-    });
+      ],
+    },
+  });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-    const { data, isLoading } = CoreUseMany<ICategory>({
-        resource: "61c43adc284ac",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+  const { data, isLoading } = CoreUseMany<ICategory>({
+    resource: "61c43adc284ac",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <RefineAntdList>
-            <AntdTable {...tableProps} rowKey="id">
-                <AntdTable.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter
-                    defaultSortOrder={RefineAntdGetDefaultSortOrder(
-                        "id",
-                        sorter,
-                    )}
-                />
-                <AntdTable.Column dataIndex="title" title="Title" sorter />
-                <AntdTable.Column
-                    dataIndex="categoryId"
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <RefineAntdTextField value="Loading..." />;
-                        }
+  return (
+    <RefineAntdList>
+      <AntdTable {...tableProps} rowKey="id">
+        <AntdTable.Column
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={RefineAntdGetDefaultSortOrder("id", sorter)}
+        />
+        <AntdTable.Column dataIndex="title" title="Title" sorter />
+        <AntdTable.Column
+          dataIndex="categoryId"
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return <RefineAntdTextField value="Loading..." />;
+            }
 
-                        return (
-                            <RefineAntdTextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <AntdTable.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <AntdSpace>
-                            <RefineAntdEditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <RefineAntdShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </AntdSpace>
-                    )}
-                />
-            </AntdTable>
-        </RefineAntdList>
-    );
+            return <RefineAntdTextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <AntdTable.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <AntdSpace>
+              <RefineAntdEditButton hideText size="small" recordItemId={record.id} />
+              <RefineAntdShowButton hideText size="small" recordItemId={record.id} />
+            </AntdSpace>
+          )}
+        />
+      </AntdTable>
+    </RefineAntdList>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps } = RefineAntdUseForm<IPost>();
 
-    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>(
-        {
-            resource: "61bc4afa9ee2c",
-            optionLabel: "title",
-            optionValue: "id",
-        },
-    );
+  const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
+    resource: "61bc4afa9ee2c",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <RefineAntdCreate saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdSelect {...categorySelectProps} />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </RefineAntdCreate>
-    );
+  return (
+    <RefineAntdCreate saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdSelect {...categorySelectProps} />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </RefineAntdCreate>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps, queryResult } =
-        RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } = RefineAntdUseForm<IPost>();
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>(
-        {
-            defaultValue: postData?.categoryId,
-            resource: "61c43adc284ac",
-            optionLabel: "title",
-            optionValue: "id",
-        },
-    );
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
+    defaultValue: postData?.categoryId,
+    resource: "61c43adc284ac",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <RefineAntdCreate saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdSelect {...categorySelectProps} />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </RefineAntdCreate>
-    );
+  return (
+    <RefineAntdCreate saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdSelect {...categorySelectProps} />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </RefineAntdCreate>
+  );
 };
 
 const PostShow: React.FC = () => {
-    const { queryResult } = RefineCoreUseShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = RefineCoreUseShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        RefineCoreUseOne<ICategory>({
-            resource: "categories",
-            id: record?.category?.id || "",
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
+  const { data: categoryData, isLoading: categoryIsLoading } = RefineCoreUseOne<ICategory>({
+    resource: "categories",
+    id: record?.category?.id || "",
+    queryOptions: {
+      enabled: !!record,
+    },
+  });
 
-    return (
-        <RefineAntdShow isLoading={isLoading}>
-            <AntdTypography.Title level={5}>Id</AntdTypography.Title>
-            <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+  return (
+    <RefineAntdShow isLoading={isLoading}>
+      <AntdTypography.Title level={5}>Id</AntdTypography.Title>
+      <AntdTypography.Text>{record?.id}</AntdTypography.Text>
 
-            <AntdTypography.Title level={5}>
-                AntdTypography.Title
-            </AntdTypography.Title>
-            <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+      <AntdTypography.Title level={5}>AntdTypography.Title</AntdTypography.Title>
+      <AntdTypography.Text>{record?.title}</AntdTypography.Text>
 
-            <AntdTypography.Title level={5}>Category</AntdTypography.Title>
-            <AntdTypography.Text>
-                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
-            </AntdTypography.Text>
+      <AntdTypography.Title level={5}>Category</AntdTypography.Title>
+      <AntdTypography.Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</AntdTypography.Text>
 
-            <AntdTypography.Title level={5}>Content</AntdTypography.Title>
-            <AntdTypography.Text>{record?.content}</AntdTypography.Text>
-        </RefineAntdShow>
-    );
+      <AntdTypography.Title level={5}>Content</AntdTypography.Title>
+      <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+    </RefineAntdShow>
+  );
 };
 ```
 
@@ -307,13 +274,17 @@ const PostShow: React.FC = () => {
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
 
 :::info
+
 [Appwrite](https://appwrite.io/) version >= 1.0 is required
+
 :::
 
 You can only focus on your UI as we can handle your data quickly and simply.
 
 :::caution
+
 This guide has been prepared assuming you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+
 :::
 
 ## Setup
@@ -323,7 +294,9 @@ npm install @refinedev/appwrite
 ```
 
 :::caution
+
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+
 :::
 
 ## Usage
@@ -360,81 +333,81 @@ import { AuthBindings } from "@refinedev/core";
 import { account } from "./appwriteClient";
 
 const authProvider: AuthBindings = {
-    login: async ({ email, password }) => {
-        try {
-            await account.createEmailSession(email, password);
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        } catch (e) {
-            const { type, message, code } = e as AppwriteException;
-            return {
-                success: false,
-                error: {
-                    message,
-                    name: `${code} - ${type}`,
-                },
-            };
-        }
-    },
-    logout: async () => {
-        try {
-            await account.deleteSession("current");
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
+  login: async ({ email, password }) => {
+    try {
+      await account.createEmailSession(email, password);
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    } catch (e) {
+      const { type, message, code } = e as AppwriteException;
+      return {
+        success: false,
+        error: {
+          message,
+          name: `${code} - ${type}`,
+        },
+      };
+    }
+  },
+  logout: async () => {
+    try {
+      await account.deleteSession("current");
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
 
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  check: async () => {
+    try {
+      const session = await account.get();
+
+      if (session) {
         return {
-            success: true,
-            redirectTo: "/login",
+          authenticated: true,
         };
-    },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => {
-        try {
-            const session = await account.get();
+      }
+    } catch (error: any) {
+      return {
+        authenticated: false,
+        error: error,
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
 
-            if (session) {
-                return {
-                    authenticated: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                error: error,
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
+    return {
+      authenticated: false,
+      error: {
+        message: "Check failed",
+        name: "Session not found",
+      },
+      logout: true,
+      redirectTo: "/login",
+    };
+  },
+  getPermissions: async () => null,
+  getIdentity: async () => {
+    const user = await account.get();
 
-        return {
-            authenticated: false,
-            error: {
-                message: "Check failed",
-                name: "Session not found",
-            },
-            logout: true,
-            redirectTo: "/login",
-        };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => {
-        const user = await account.get();
+    if (user) {
+      return user;
+    }
 
-        if (user) {
-            return user;
-        }
-
-        return null;
-    },
+    return null;
+  },
 };
 ```
 
@@ -442,12 +415,7 @@ const authProvider: AuthBindings = {
 
 ```tsx title="App.tsx"
 import { Refine, AuthBindings } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -462,33 +430,35 @@ import authProvider from "./authProvider";
 //highlight-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                //highlight-start
-                dataProvider={dataProvider(appwriteClient, {
-                    databaseId: "default",
-                })}
-                liveProvider={liveProvider(appwriteClient, {
-                    databaseId: "default",
-                })}
-                options={{ liveMode: "auto" }}
-                authProvider={authProvider}
-                //highlight-end
-                routerProvider={routerProvider}
-                notificationProvider={notificationProvider}
-            >
-                {/* ... */}
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        //highlight-start
+        dataProvider={dataProvider(appwriteClient, {
+          databaseId: "default",
+        })}
+        liveProvider={liveProvider(appwriteClient, {
+          databaseId: "default",
+        })}
+        options={{ liveMode: "auto" }}
+        authProvider={authProvider}
+        //highlight-end
+        routerProvider={routerProvider}
+        notificationProvider={notificationProvider}
+      >
+        {/* ... */}
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
 :::tip Live/Realtime 🚀
+
 `@refinedev/appwrite` package supports Live/Realtime Provider natively 🚀
 
 [Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/api-reference/core/providers/live-provider.md)
+
 :::
 
 ## Create Collections
@@ -497,7 +467,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 `Category Collection`:
 
--   Title: text
+- Title: text
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/category.png" alt="category" />
 
@@ -505,10 +475,10 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 `Post Collection`:
 
--   Title: text
--   CategoryId: text
--   Content: text
--   Images: wildcard
+- Title: text
+- CategoryId: text
+- Content: text
+- Images: wildcard
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/posts.png" alt="posts" />
 
@@ -547,125 +517,115 @@ setInitialRoutes(["/"]);
 // src/App.tsx
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    List,
-    EditButton,
-    ShowButton,
-    useTable,
-    AuthPage,
-    ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  List,
+  EditButton,
+  ShowButton,
+  useTable,
+  AuthPage,
+  ErrorComponent,
 } from "@refinedev/antd";
 import { ConfigProvider, Layout, Table, Space } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "61c43ad33b857",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                label: "Post",
-                            },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          dataProvider={dataProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          liveProvider={liveProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          authProvider={authProvider}
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "61c43ad33b857",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+              show: "/posts/show/:id",
+              meta: {
+                label: "Post",
+              },
+            },
+          ]}
+          notificationProvider={notificationProvider}
+          options={{
+            liveMode: "auto",
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
+            </Route>
+
+            {/* highlight-start */}
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="61c43ad33b857" />
+                </Authenticated>
+              }
+            >
+              <Route
+                path="/login"
+                element={
+                  <AuthPage
+                    type="login"
+                    formProps={{
+                      initialValues: {
+                        email: "demo@refine.dev",
+                        password: "demodemo",
+                      },
                     }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                }
-                            />
+                  />
+                }
+              />
+            </Route>
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-                        </Route>
-
-                        {/* highlight-start */}
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                        {/* highlight-end */}
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+            {/* highlight-end */}
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -674,40 +634,41 @@ render(<App />);
 Now we can login with the user we created by Appwrite. We can then list, create and edit posts.
 
 :::tip
+
 **refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource meta.
 
 ```tsx
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            liveProvider={liveProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            options={{ liveMode: "auto" }}
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            LoginPage={Login}
-            resources={[
-                {
-                    //highlight-start
-                    name: "61bc3660648a6",
-                    //highlight-end
-                    meta: {
-                        //highlight-start
-                        label: "Post",
-                        //highlight-end
-                    },
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(appwriteClient, {
+        databaseId: "default",
+      })}
+      liveProvider={liveProvider(appwriteClient, {
+        databaseId: "default",
+      })}
+      options={{ liveMode: "auto" }}
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      LoginPage={Login}
+      resources={[
+        {
+          //highlight-start
+          name: "61bc3660648a6",
+          //highlight-end
+          meta: {
+            //highlight-start
+            label: "Post",
+            //highlight-end
+          },
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -725,89 +686,61 @@ Now that we've created our collections, we can create and list documents. Let's 
 
 ```tsx
 import { useMany } from "@refinedev/core";
-import {
-    List,
-    TextField,
-    useTable,
-    EditButton,
-    ShowButton,
-    getDefaultSortOrder,
-} from "@refinedev/antd";
+import { List, TextField, useTable, EditButton, ShowButton, getDefaultSortOrder } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "$id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "$id",
+          order: "asc",
         },
-    });
+      ],
+    },
+  });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "61bc4afa9ee2c",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "61bc4afa9ee2c",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column dataIndex="title" title="Title" sorter />
-                <Table.Column
-                    dataIndex="categoryId"
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
+        <Table.Column dataIndex="title" title="Title" sorter />
+        <Table.Column
+          dataIndex="categoryId"
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -818,128 +751,118 @@ export const PostsList: React.FC = () => {
 setInitialRoutes(["/"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    List,
-    EditButton,
-    ShowButton,
-    useTable,
-    AuthPage,
-    ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  List,
+  EditButton,
+  ShowButton,
+  useTable,
+  AuthPage,
+  ErrorComponent,
 } from "@refinedev/antd";
 import { ConfigProvider, Layout, Table, Space } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    authProvider={{
-                        ...authProvider,
-                        check: async () => ({
-                            authenticated: true,
-                        }),
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          dataProvider={dataProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          liveProvider={liveProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          authProvider={{
+            ...authProvider,
+            check: async () => ({
+              authenticated: true,
+            }),
+          }}
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "61c43ad33b857",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+              show: "/posts/show/:id",
+              meta: {
+                label: "Post",
+              },
+            },
+          ]}
+          notificationProvider={notificationProvider}
+          options={{
+            liveMode: "auto",
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
+            </Route>
+
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="61c43ad33b857" />
+                </Authenticated>
+              }
+            >
+              <Route
+                path="/login"
+                element={
+                  <AuthPage
+                    type="login"
+                    formProps={{
+                      initialValues: {
+                        email: "demo@refine.dev",
+                        password: "demodemo",
+                      },
                     }}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "61c43ad33b857",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                label: "Post",
-                            },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                }
-                            />
+                  />
+                }
+              />
+            </Route>
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 render(<App />);
 ```
@@ -965,95 +888,77 @@ import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
 export const PostsCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "61bc4afa9ee2c",
-        optionLabel: "title",
-        optionValue: "id",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "61bc4afa9ee2c",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="images"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                try {
-                                    const rcFile = file as RcFile;
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                try {
+                  const rcFile = file as RcFile;
 
-                                    const { $id } = await storage.createFile(
-                                        "default",
-                                        rcFile.name,
-                                        rcFile,
-                                    );
+                  const { $id } = await storage.createFile("default", rcFile.name, rcFile);
 
-                                    const url = storage.getFileView(
-                                        "default",
-                                        $id,
-                                    );
+                  const url = storage.getFileView("default", $id);
 
-                                    onSuccess?.({ url }, new XMLHttpRequest());
-                                } catch (error) {
-                                    onError?.(new Error("Upload Error"));
-                                }
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag &amp; drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+                  onSuccess?.({ url }, new XMLHttpRequest());
+                } catch (error) {
+                  onError?.(new Error("Upload Error"));
+                }
+              }}
+            >
+              <p className="ant-upload-text">Drag &amp; drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -1064,133 +969,124 @@ export const PostsCreate: React.FC = () => {
 setInitialRoutes(["/posts/create"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    List,
-    EditButton,
-    ShowButton,
-    useTable,
-    AuthPage,
-    ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  List,
+  EditButton,
+  ShowButton,
+  useTable,
+  AuthPage,
+  ErrorComponent,
 } from "@refinedev/antd";
 import { ConfigProvider, Layout, Table, Space } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    authProvider={{
-                        ...authProvider,
-                        check: async () => ({
-                            authenticated: true,
-                        }),
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          dataProvider={dataProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          liveProvider={liveProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          authProvider={{
+            ...authProvider,
+            check: async () => ({
+              authenticated: true,
+            }),
+          }}
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "61c43ad33b857",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+              show: "/posts/show/:id",
+              meta: {
+                label: "Post",
+              },
+            },
+          ]}
+          notificationProvider={notificationProvider}
+          options={{
+            liveMode: "auto",
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
+            </Route>
+
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="61c43ad33b857" />
+                </Authenticated>
+              }
+            >
+              <Route
+                path="/login"
+                element={
+                  <AuthPage
+                    type="login"
+                    formProps={{
+                      initialValues: {
+                        email: "demo@refine.dev",
+                        password: "demodemo",
+                      },
                     }}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "61c43ad33b857",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                label: "Post",
-                            },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                }
-                            />
+                  />
+                }
+              />
+            </Route>
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 render(<App />);
 ```
 
 :::tip
+
 As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **refine** UI.
 
 If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
@@ -1198,10 +1094,10 @@ If you want to restrict [permissions](https://appwrite.io/docs/permissions#permi
 ```tsx
 import { Permission, Role } from "@refinedev/appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
-    meta: {
-        writePermissions: [Permission.read(Role.any())],
-        readPermissions: [Permission.read(Role.any())],
-    },
+  meta: {
+    writePermissions: [Permission.read(Role.any())],
+    readPermissions: [Permission.read(Role.any())],
+  },
 });
 ```
 
@@ -1228,97 +1124,79 @@ import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
 export const PostsEdit: React.FC = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "61bc4afa9ee2c",
-        defaultValue: postData?.categoryId,
-        optionLabel: "title",
-        optionValue: "id",
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "61bc4afa9ee2c",
+    defaultValue: postData?.categoryId,
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="images"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                try {
-                                    const rcFile = file as RcFile;
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                try {
+                  const rcFile = file as RcFile;
 
-                                    const { $id } = await storage.createFile(
-                                        "default",
-                                        rcFile.name,
-                                        rcFile,
-                                    );
+                  const { $id } = await storage.createFile("default", rcFile.name, rcFile);
 
-                                    const url = storage.getFileView(
-                                        "default",
-                                        $id,
-                                    );
+                  const url = storage.getFileView("default", $id);
 
-                                    onSuccess?.({ url }, new XMLHttpRequest());
-                                } catch (error) {
-                                    onError?.(new Error("Upload Error"));
-                                }
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag &amp; drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+                  onSuccess?.({ url }, new XMLHttpRequest());
+                } catch (error) {
+                  onError?.(new Error("Upload Error"));
+                }
+              }}
+            >
+              <p className="ant-upload-text">Drag &amp; drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -1329,131 +1207,122 @@ export const PostsEdit: React.FC = () => {
 setInitialRoutes(["/posts/edit/61c4697ab9ff9"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    List,
-    EditButton,
-    ShowButton,
-    useTable,
-    AuthPage,
-    ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  List,
+  EditButton,
+  ShowButton,
+  useTable,
+  AuthPage,
+  ErrorComponent,
 } from "@refinedev/antd";
 import { ConfigProvider, Layout, Table, Space } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "default",
-                    })}
-                    authProvider={{
-                        ...authProvider,
-                        check: async () => ({
-                            authenticated: true,
-                        }),
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          dataProvider={dataProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          liveProvider={liveProvider(appwriteClient, {
+            databaseId: "default",
+          })}
+          authProvider={{
+            ...authProvider,
+            check: async () => ({
+              authenticated: true,
+            }),
+          }}
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "61c43ad33b857",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+              show: "/posts/show/:id",
+              meta: {
+                label: "Post",
+              },
+            },
+          ]}
+          notificationProvider={notificationProvider}
+          options={{
+            liveMode: "auto",
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
+            </Route>
+
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="61c43ad33b857" />
+                </Authenticated>
+              }
+            >
+              <Route
+                path="/login"
+                element={
+                  <AuthPage
+                    type="login"
+                    formProps={{
+                      initialValues: {
+                        email: "demo@refine.dev",
+                        password: "demodemo",
+                      },
                     }}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "61c43ad33b857",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                            meta: {
-                                label: "Post",
-                            },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                }
-                            />
+                  />
+                }
+              />
+            </Route>
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="61c43ad33b857" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 render(<App />);
 ```
+
 ## Example
 
 :::additional

@@ -6,39 +6,33 @@ swizzle: true
 
 ```tsx live shared
 setRefineProps({
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  notificationProvider: RefineMantine.notificationProvider,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={MantineCore.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
+  return (
+    <MantineCore.MantineProvider theme={MantineCore.LightTheme} withNormalizeCSS withGlobalStyles>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -59,60 +53,60 @@ import { Show, MarkdownField } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+  return (
+    <Show isLoading={isLoading}>
+      <Title order={5}>Id</Title>
+      <Text mt="sm">{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
-                Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+      <Title mt="sm" order={5}>
+        Title
+      </Title>
+      <Text mt="sm">{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
-                Content
-            </Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title mt="sm" order={5}>
+        Content
+      </Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -133,41 +127,39 @@ import { Show } from "@refinedev/mantine";
 import { Title } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show title={<Title order={3}>Custom Title</Title>}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show title={<Title order={3}>Custom Title</Title>}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -187,40 +179,40 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show resource="categories">
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show resource="categories">
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom/:id",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom/:id",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -249,100 +241,96 @@ import { usePermissions } from "@refinedev/core";
 import { Title } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
+  const { data: permissionsData } = usePermissions();
 
-    return (
-        <Show
-            /* highlight-start */
-            canDelete={permissionsData?.includes("admin")}
-            canEdit={permissionsData?.includes("admin")}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      canEdit={permissionsData?.includes("admin")}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    const simpleRestDataProvider = dataProvider(
-        "https://api.fake-rest.refine.dev",
-    );
+  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
-    const customDataProvider = {
-        ...simpleRestDataProvider,
-        deleteOne: async ({ resource, id, variables }) => {
-            return {
-                data: {},
-            };
-        },
-    };
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
 
-    const authProvider = {
-        login: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        register: async () => {
-            return {
-                success: true,
-            };
-        },
-        forgotPassword: async () => {
-            return {
-                success: true,
-            };
-        },
-        updatePassword: async () => {
-            return {
-                success: true,
-            };
-        },
-        logout: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        check: async () => ({
-            authenticated: true,
-        }),
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => null,
-    };
+  const authProvider = {
+    login: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    register: async () => {
+      return {
+        success: true,
+      };
+    },
+    forgotPassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    updatePassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    logout: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    check: async () => ({
+      authenticated: true,
+    }),
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
+  };
 
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={customDataProvider}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={customDataProvider}
+      authProvider={authProvider}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -364,65 +352,65 @@ import { Show, useModalForm } from "@refinedev/mantine";
 import { Modal, Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    const {
-        modal: { visible, close, show },
-        id,
-    } = useModalForm({
-        action: "show",
-    });
+  const {
+    modal: { visible, close, show },
+    id,
+  } = useModalForm({
+    action: "show",
+  });
 
-    return (
-        <div>
-            <Button onClick={() => show()}>Show Button</Button>
-            <Modal
-                opened={visible}
-                onClose={close}
-                // hide-start
-                size={700}
-                withCloseButton={false}
-                // hide-end
-            >
-                {/* highlight-next-line */}
-                <Show recordItemId={id}>
-                    <p>Rest of your page here</p>
-                </Show>
-            </Modal>
-        </div>
-    );
+  return (
+    <div>
+      <Button onClick={() => show()}>Show Button</Button>
+      <Modal
+        opened={visible}
+        onClose={close}
+        // hide-start
+        size={700}
+        withCloseButton={false}
+        // hide-end
+      >
+        {/* highlight-next-line */}
+        <Show recordItemId={id}>
+          <p>Rest of your page here</p>
+        </Show>
+      </Modal>
+    </div>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::note
+
 The `<Edit>` component needs the `id` information for the `<RefreshButton>` to work properly.
+
 :::
 
 ### `dataProviderName`
@@ -436,23 +424,23 @@ import dataProvider from "@refinedev/simple-rest";
 
 // highlight-start
 const PostShow = () => {
-    return <Show dataProviderName="other">...</Show>;
+  return <Show dataProviderName="other">...</Show>;
 };
 // highlight-end
 
 export const App: React.FC = () => {
-    return (
-        <Refine
-            // highlight-start
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev/"),
-                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
-            }}
-            // highlight-end
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-start
+      dataProvider={{
+        default: dataProvider("https://api.fake-rest.refine.dev/"),
+        other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+      }}
+      // highlight-end
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -471,41 +459,39 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show goBack="😊">
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show goBack="😊">
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -524,41 +510,39 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show isLoading={true}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show isLoading={true}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -567,7 +551,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
@@ -581,57 +567,55 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const CustomBreadcrumb: React.FC = () => {
-    return (
-        <p
-            style={{
-                padding: "3px 6px",
-                border: "2px dashed cornflowerblue",
-            }}
-        >
-            My Custom Breadcrumb
-        </p>
-    );
+  return (
+    <p
+      style={{
+        padding: "3px 6px",
+        border: "2px dashed cornflowerblue",
+      }}
+    >
+      My Custom Breadcrumb
+    </p>
+  );
 };
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            breadcrumb={<CustomBreadcrumb />}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      breadcrumb={<CustomBreadcrumb />}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -652,49 +636,47 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      wrapperProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -715,49 +697,47 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -778,49 +758,47 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      contentProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -854,51 +832,49 @@ import { Show } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button variant="outline" type="primary">
-                        Custom Button
-                    </Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button variant="outline" type="primary">
+            Custom Button
+          </Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -912,94 +888,62 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import {
-    Show,
-    ListButton,
-    EditButton,
-    DeleteButton,
-    RefreshButton,
-} from "@refinedev/mantine";
+import { Show, ListButton, EditButton, DeleteButton, RefreshButton } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtons={({
-                deleteButtonProps,
-                editButtonProps,
-                listButtonProps,
-                refreshButtonProps,
-            }) => (
-                <>
-                    {listButtonProps && (
-                        <ListButton
-                            {...listButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    {editButtonProps && (
-                        <EditButton
-                            {...editButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    {deleteButtonProps && (
-                        <DeleteButton
-                            {...deleteButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    <RefreshButton
-                        {...refreshButtonProps}
-                        meta={{ foo: "bar" }}
-                    />
-                    <Button variant="outline" type="primary">
-                        Custom Button
-                    </Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtons={({ deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => (
+        <>
+          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
+          {editButtonProps && <EditButton {...editButtonProps} meta={{ foo: "bar" }} />}
+          {deleteButtonProps && <DeleteButton {...deleteButtonProps} meta={{ foo: "bar" }} />}
+          <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
+          <Button variant="outline" type="primary">
+            Custom Button
+          </Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 ### `headerButtonProps`
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
-
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -1013,54 +957,52 @@ import { Show } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={
-                <Button variant="outline" type="primary">
-                    Custom Button
-                </Button>
-            }
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={
+        <Button variant="outline" type="primary">
+          Custom Button
+        </Button>
+      }
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -1082,49 +1024,47 @@ import { Show } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button variant="gradient">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button variant="gradient">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -1144,58 +1084,56 @@ import { Show } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            footerButtons={
-                <Button variant="outline" type="primary">
-                    Custom Button
-                </Button>
-            }
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      footerButtonProps={{
+        style: {
+          // hide-start
+          float: "right",
+          marginRight: 24,
+          // hide-end
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      footerButtons={
+        <Button variant="outline" type="primary">
+          Custom Button
+        </Button>
+      }
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

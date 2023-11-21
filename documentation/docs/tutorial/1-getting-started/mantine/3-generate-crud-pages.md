@@ -2,8 +2,8 @@
 id: generate-crud-pages
 title: 4. Generating CRUD pages automatically with Inferencer
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/store-your-repository
+  prev: tutorial/getting-started/{preferredUI}/create-project
+  next: tutorial/getting-started/store-your-repository
 ---
 
 ## Inferencer
@@ -40,17 +40,9 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-    ErrorComponent,
-} from "@refinedev/mantine";
+import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -58,75 +50,57 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 export default App;
@@ -155,24 +129,18 @@ To preview the list page, go back to your browser and go to <a href="localhost:3
 You should see the list page for the `blog_posts` resource that was generated by Inferencer like below:
 
 :::note
+
 When you navigate to the `localhost:3000`, **refine** will redirect you to the initial resource's list page registered to `<Refine/>` component, like `localhost:3000/blog-posts`
+
 :::
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/blog-posts
 setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-    ErrorComponent,
-} from "@refinedev/mantine";
+import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -180,75 +148,57 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -264,17 +214,9 @@ You should see the create page for the `blog_posts` resource that was generated 
 setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-    ErrorComponent,
-} from "@refinedev/mantine";
+import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -282,75 +224,57 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -366,17 +290,9 @@ You should see the edit page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-    ErrorComponent,
-} from "@refinedev/mantine";
+import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -384,75 +300,57 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -468,17 +366,9 @@ You should see the show page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-    ErrorComponent,
-} from "@refinedev/mantine";
+import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -486,73 +376,55 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);

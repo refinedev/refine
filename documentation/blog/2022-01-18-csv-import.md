@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
 :::caution
 
 This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
@@ -18,7 +17,6 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
 :::
-
 
 In this guide, we will learn how to import any CSV file received from the user with React. Our application will consist of two parts. We will create a form for the user to select a file. Next, we will do some operations with JavaScript to be able to view this CSV file. Let's start with our example.
 
@@ -30,17 +28,17 @@ First, let's create a [Form](https://tr.reactjs.org/docs/forms.html) in React so
 
 ```tsx title="App.js"
 function App() {
-    return (
-        <div style={{ textAlign: "center" }}>
-            <h1>REACTJS CSV IMPORT EXAMPLE </h1>
-            <form>
-                //highlight-start
-                <input type={"file"} accept={".csv"} />
-                //highlight-end
-                <button>IMPORT CSV</button>
-            </form>
-        </div>
-    );
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>REACTJS CSV IMPORT EXAMPLE </h1>
+      <form>
+        //highlight-start
+        <input type={"file"} accept={".csv"} />
+        //highlight-end
+        <button>IMPORT CSV</button>
+      </form>
+    </div>
+  );
 }
 ```
 
@@ -50,47 +48,42 @@ We created a simple form and our input items. With the accept feature of the inp
 import React, { useState } from "react";
 
 function App() {
-    const [file, setFile] = useState();
+  const [file, setFile] = useState();
 
-    const fileReader = new FileReader();
+  const fileReader = new FileReader();
 
-    const handleOnChange = (e) => {
-        setFile(e.target.files[0]);
-    };
+  const handleOnChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
-    const handleOnSubmit = (e) => {
-        e.preventDefault();
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
 
-        if (file) {
-            fileReader.onload = function (event) {
-                const csvOutput = event.target.result;
-            };
+    if (file) {
+      fileReader.onload = function (event) {
+        const csvOutput = event.target.result;
+      };
 
-            fileReader.readAsText(file);
-        }
-    };
+      fileReader.readAsText(file);
+    }
+  };
 
-    return (
-        <div style={{ textAlign: "center" }}>
-            <h1>REACTJS CSV IMPORT EXAMPLE </h1>
-            <form>
-                <input
-                    type={"file"}
-                    id={"csvFileInput"}
-                    accept={".csv"}
-                    onChange={handleOnChange}
-                />
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>REACTJS CSV IMPORT EXAMPLE </h1>
+      <form>
+        <input type={"file"} id={"csvFileInput"} accept={".csv"} onChange={handleOnChange} />
 
-                <button
-                    onClick={(e) => {
-                        handleOnSubmit(e);
-                    }}
-                >
-                    IMPORT CSV
-                </button>
-            </form>
-        </div>
-    );
+        <button
+          onClick={(e) => {
+            handleOnSubmit(e);
+          }}
+        >
+          IMPORT CSV
+        </button>
+      </form>
+    </div>
+  );
 }
 ```
 
@@ -198,8 +191,6 @@ function App() {
 
 We formatted the CSV file that came in plain text format, using Javascript [slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) and [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) methods, and created two separate array. Then we converted Header and Rows arrays to Array of Object format as Key, Value.
 
-
-
 ## Live Codesandbox Example
 
 <iframe src="https://codesandbox.io/embed/csv-import-example-hw3ne?autoresize=1&fontsize=14&theme=dark&view=preview"
@@ -208,8 +199,6 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
-
 
 ## How to CSV Import with Refine?
 
@@ -228,47 +217,47 @@ Importing CSV files is simple and fast using the [`useImport`](https://refine.de
 
 ```tsx
 import {
-    List,
-    Table,
-    useTable,
-    //highlight-start
-    useImport,
-    ImportButton,
-    //highlight-end
+  List,
+  Table,
+  useTable,
+  //highlight-start
+  useImport,
+  ImportButton,
+  //highlight-end
 } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    //highlight-start
-    const importProps = useImport<IPostFile>();
-    //highlight-end
+  //highlight-start
+  const importProps = useImport<IPostFile>();
+  //highlight-end
 
-    return (
-        <List
-            pageHeaderProps={{
-                //highlight-start
-                extra: <ImportButton {...importProps} />,
-                //highlight-end
-            }}
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column dataIndex="status" title="Status" />
-            </Table>
-        </List>
-    );
+  return (
+    <List
+      pageHeaderProps={{
+        //highlight-start
+        extra: <ImportButton {...importProps} />,
+        //highlight-end
+      }}
+    >
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column dataIndex="status" title="Status" />
+      </Table>
+    </List>
+  );
 };
 
 interface IPostFile {
-    title: string;
-    categoryId: string;
+  title: string;
+  categoryId: string;
 }
 interface IPost {
-    id: string;
-    title: string;
-    status: string;
+  id: string;
+  title: string;
+  status: string;
 }
 ```
 

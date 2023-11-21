@@ -15,7 +15,9 @@ Data providers function like an adapter system infrastructure, communicating wit
 We will begin developing our data provider by creating a file and adding additional methods to it as we proceed. We will use `axios` as our HTTP client in this tutorial. It will allow us to make efficient and reliable HTTP requests to our server.
 
 :::info
+
 `axios` also provides interceptors, which are methods that trigger before the main method. They also provide benefits such as centralized error handling, modifying request or response data and showing global loading indicators.
+
 :::
 
 To get started, install `axios` in your project.
@@ -345,6 +347,7 @@ getList: async ({ resource, pagination, sorters, filters }) => {
 ```
 
 :::info
+
 The conditional filters can also be made using `and` and `or`. For example:
 
 ```bash
@@ -453,7 +456,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | variables | `TVariables` | `{}`    |
 
 :::note
+
 `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
+
 :::
 <br/>
 
@@ -503,7 +508,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | variables | `TVariables`                                              | `{}`    |
 
 :::note
+
 `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
+
 :::
 <br/>
 
@@ -554,7 +561,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | variables | `TVariables[]`                                            | `{}`    |
 
 :::note
+
 `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
+
 :::
 <br/>
 
@@ -795,7 +804,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | variables | `TVariables[]` | `{}`    |
 
 :::note
+
 `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) to type `variables`
+
 :::
 
 <br/>
@@ -850,7 +861,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | variables | `TVariables[]`                                              | `{}`    |
 
 :::note
+
 `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/api-reference/core/hooks/data/useDeleteMany/) to type `variables`
+
 :::
 
 <br/>
@@ -959,7 +972,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 ```
 
 :::tip
+
 The `meta` parameter can be used in all data, form, and table hooks.
+
 :::
 
 <br/>

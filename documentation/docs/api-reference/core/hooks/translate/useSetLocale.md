@@ -13,18 +13,20 @@ You can use the features of your own i18n library to change the locale in your o
 import { useSetLocale } from "@refinedev/core";
 
 export const LanguageSwicher = () => {
-    const changeLanguage = useSetLocale();
+  const changeLanguage = useSetLocale();
 
-    return (
-        <div>
-            <span>Languages</span>
-            <button onClick={() => changeLanguage("en")}>English</button>
-            <button onClick={() => changeLanguage("es")}>Spanish</button>
-        </div>
-    );
+  return (
+    <div>
+      <span>Languages</span>
+      <button onClick={() => changeLanguage("en")}>English</button>
+      <button onClick={() => changeLanguage("es")}>Spanish</button>
+    </div>
+  );
 };
 ```
 
 :::caution
+
 This hook can only be used if `i18nProvider` is provided.
+
 :::

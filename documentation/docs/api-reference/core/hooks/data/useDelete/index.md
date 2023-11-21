@@ -26,7 +26,9 @@ mutate({
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useDelete` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
@@ -42,7 +44,9 @@ When the `useDelete` mutation runs successfully, it will invalidate the followin
 ## Audit Logs
 
 :::caution
+
 This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+
 :::
 
 When the `useDelete` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. This is useful when you want to log the changes to the database.
@@ -216,7 +220,9 @@ const MyComponent = () => {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDelete` calls the `open` function from `NotificationProvider`:
@@ -238,7 +244,9 @@ mutate({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDelete` calls the `open` function from `NotificationProvider`:
@@ -367,7 +375,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                  |
 
 :::note
+
 These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
+
 :::
 
 <br/>

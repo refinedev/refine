@@ -7,7 +7,9 @@ source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---
 
 :::caution
+
 This hook can only be used if the `authProvider` is provided.
+
 :::
 
 `useGetIdentity` calls the `getIdentity` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
@@ -28,16 +30,16 @@ We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // ---
-    // highlight-start
-    getIdentity: async () => {
-        return {
-            id: 1,
-            fullName: "Jane Doe",
-        };
-    },
-    // highlight-end
-    // ---
+  // ---
+  // highlight-start
+  getIdentity: async () => {
+    return {
+      id: 1,
+      fullName: "Jane Doe",
+    };
+  },
+  // highlight-end
+  // ---
 };
 ```
 
@@ -50,12 +52,12 @@ You can access identity data like below:
 import { useGetIdentity } from "@refinedev/core";
 
 export const User: React.FC = () => {
-    // highlight-next-line
-    const { data: identity } = useGetIdentity<{
-        id: number;
-        fullName: string;
-    }>();
+  // highlight-next-line
+  const { data: identity } = useGetIdentity<{
+    id: number;
+    fullName: string;
+  }>();
 
-    return <span>{identity?.fullName}</span>;
+  return <span>{identity?.fullName}</span>;
 };
 ```

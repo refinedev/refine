@@ -11,7 +11,9 @@ source: packages/core/src/hooks/data/useUpdateMany.ts
 It is useful when you want to update many records at once.
 
 :::caution
+
 If your data provider does not have a `updateMany` method, `useUpdateMany` will use the `update` method instead. It is not recommended, because it will make requests one by one for each id. It is better to implement the `updateMany` method in the data provider.
+
 :::
 
 ## Basic Usage
@@ -351,7 +353,9 @@ If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` ho
 When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
 
 :::caution
+
 This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
+
 :::
 
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.

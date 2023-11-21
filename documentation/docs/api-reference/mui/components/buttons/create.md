@@ -7,7 +7,9 @@ swizzle: true
 `<CreateButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -16,45 +18,45 @@ You can swizzle this component with the [**refine CLI**](/docs/packages/document
 const { Create } = RefineMui;
 // visible-block-start
 import {
-    useDataGrid,
-    List,
-    // highlight-next-line
-    CreateButton,
+  useDataGrid,
+  List,
+  // highlight-next-line
+  CreateButton,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        // highlight-next-line
-        <List headerButtons={<CreateButton />}>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    // highlight-next-line
+    <List headerButtons={<CreateButton />}>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                create: () => <Create>Rest of the page here...</Create>,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        create: () => <Create>Rest of the page here...</Create>,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -71,35 +73,35 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@refinedev/mui";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            resource="categories"
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      resource="categories"
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: CreatePage,
-            },
-        ]}
-        DashboardPage={MyCreateComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: CreatePage,
+      },
+    ]}
+    DashboardPage={MyCreateComponent}
+  />,
 );
 ```
 
@@ -117,9 +119,7 @@ If the `create` action route is defined by the pattern: `/posts/:authorId/create
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <CreateButton meta={{ authorId: "10" }} />
-    );
+  return <CreateButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -134,32 +134,32 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@refinedev/mui";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyCreateComponent,
-                create: CreatePage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyCreateComponent,
+        create: CreatePage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -171,11 +171,7 @@ The `accessControl` prop can be used to skip access control check with its `enab
 import { CreateButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-    return (
-        <CreateButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -192,35 +188,35 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@refinedev/mui";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: CreatePage,
-            },
-        ]}
-        DashboardPage={MyCreateComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: CreatePage,
+      },
+    ]}
+    DashboardPage={MyCreateComponent}
+  />,
 );
 ```
 
@@ -233,5 +229,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 <PropsTable module="@refinedev/mui/CreateButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
+
 :::

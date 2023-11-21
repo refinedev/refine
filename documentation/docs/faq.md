@@ -30,28 +30,28 @@ import React, { useState } from "react";
 import { useForm } from "@refinedev/core";
 
 export const UserCreate: React.FC = () => {
-    const [name, setName] = useState();
-    const [surname, setSurname] = useState();
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
 
-    const { onFinish } = useForm();
+  const { onFinish } = useForm();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            fullName: fullName,
-            name,
-            surname,
-        });
-    };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      fullName: fullName,
+      name,
+      surname,
+    });
+  };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <input onChange={(e) => setName(e.target.value)} />
-            <input onChange={(e) => setSurname(e.target.value)} />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    <form onSubmit={onSubmit}>
+      <input onChange={(e) => setName(e.target.value)} />
+      <input onChange={(e) => setSurname(e.target.value)} />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -66,32 +66,32 @@ import { useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
-    const { formProps } = useForm();
+  const { formProps } = useForm();
 
-    return (
-        <Form
-            {...formProps}
-            onFinish={(values) => {
-                const { name, surname } = values;
-                const fullName = `${name} ${surname}`;
+  return (
+    <Form
+      {...formProps}
+      onFinish={(values) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
 
-                return (
-                    formProps.onFinish &&
-                    formProps.onFinish({
-                        ...values,
-                        fullName,
-                    })
-                );
-            }}
-        >
-            <Form.Item label="Name" name="name">
-                <Input />
-            </Form.Item>
-            <Form.Item label="Surname" name="surname">
-                <Input />
-            </Form.Item>
-        </Form>
-    );
+        return (
+          formProps.onFinish &&
+          formProps.onFinish({
+            ...values,
+            fullName,
+          })
+        );
+      }}
+    >
+      <Form.Item label="Name" name="name">
+        <Input />
+      </Form.Item>
+      <Form.Item label="Surname" name="surname">
+        <Input />
+      </Form.Item>
+    </Form>
+  );
 };
 ```
 
@@ -105,27 +105,27 @@ import React from "react";
 import { useForm } from "@refinedev/react-hook-form";
 
 export const UserCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+  } = useForm();
 
-    const handleSubmitPostCreate = (values) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
-            <input {...register("name")} />
-            <input {...register("surname")} />
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
+      <input {...register("name")} />
+      <input {...register("surname")} />
+    </form>
+  );
 };
 ```
 
@@ -142,49 +142,49 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Button, Box, TextField } from "@mui/material";
 
 type FormValues = {
-    name: string;
-    surname: string;
+  name: string;
+  surname: string;
 };
 
 export const UserCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish },
-        register,
-        handleSubmit,
-    } = useForm<FormValues, HttpError, FormValues>();
+  const {
+    refineCore: { onFinish },
+    register,
+    handleSubmit,
+  } = useForm<FormValues, HttpError, FormValues>();
 
-    const handleSubmitPostCreate = (values: FormValues) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values: FormValues) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <Box component="form" onSubmit={handleSubmit(handleSubmitPostCreate)}>
-            <TextField
-                {...register("name", {
-                    required: "This field is required",
-                })}
-                name="name"
-                label="Name"
-                error={!!errors.name}
-                helperText={errors.name?.message}
-            />
-            <TextField
-                {...register("surname", {
-                    required: "This field is required",
-                })}
-                name="surname"
-                label="Surname"
-                error={!!errors.surname}
-                helperText={errors.surname?.message}
-            />
-            <Button type="submit">Submit</Button>
-        </Box>
-    );
+  return (
+    <Box component="form" onSubmit={handleSubmit(handleSubmitPostCreate)}>
+      <TextField
+        {...register("name", {
+          required: "This field is required",
+        })}
+        name="name"
+        label="Name"
+        error={!!errors.name}
+        helperText={errors.name?.message}
+      />
+      <TextField
+        {...register("surname", {
+          required: "This field is required",
+        })}
+        name="surname"
+        label="Surname"
+        error={!!errors.surname}
+        helperText={errors.surname?.message}
+      />
+      <Button type="submit">Submit</Button>
+    </Box>
+  );
 };
 ```
 
@@ -198,55 +198,55 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Button, Box, TextField } from "@mui/material";
 
 type FormValues = {
-    name: string;
-    surname: string;
+  name: string;
+  surname: string;
 };
 
 export const UserCreate: React.FC = () => {
-    const {
-        saveButtonProps,
-        refineCore: { onFinish },
-        handleSubmit,
-    } = useForm<FormValues, HttpError, FormValues>();
+  const {
+    saveButtonProps,
+    refineCore: { onFinish },
+    handleSubmit,
+  } = useForm<FormValues, HttpError, FormValues>();
 
-    const handleSubmitPostCreate = (values: FormValues) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values: FormValues) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <Create
-            saveButtonProps={{
-                ...saveButtonProps,
-                onClick: handleSubmit(handleSubmitForm),
-            }}
-        >
-            <Box component="form">
-                <TextField
-                    {...register("name", {
-                        required: "This field is required",
-                    })}
-                    name="name"
-                    label="Name"
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
-                />
-                <TextField
-                    {...register("surname", {
-                        required: "This field is required",
-                    })}
-                    name="surname"
-                    label="Surname"
-                    error={!!errors.surname}
-                    helperText={errors.surname?.message}
-                />
-            </Box>
-        </Create>
-    );
+  return (
+    <Create
+      saveButtonProps={{
+        ...saveButtonProps,
+        onClick: handleSubmit(handleSubmitForm),
+      }}
+    >
+      <Box component="form">
+        <TextField
+          {...register("name", {
+            required: "This field is required",
+          })}
+          name="name"
+          label="Name"
+          error={!!errors.name}
+          helperText={errors.name?.message}
+        />
+        <TextField
+          {...register("surname", {
+            required: "This field is required",
+          })}
+          name="surname"
+          label="Surname"
+          error={!!errors.surname}
+          helperText={errors.surname?.message}
+        />
+      </Box>
+    </Create>
+  );
 };
 ```
 
@@ -260,62 +260,50 @@ export const UserCreate: React.FC = () => {
 import React from "react";
 import { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import {
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Button,
-} from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel, Input, Button } from "@chakra-ui/react";
 
 type FormValues = {
-    name: string;
-    surname: string;
+  name: string;
+  surname: string;
 };
 
 export const UserCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish },
-        register,
-        handleSubmit,
-    } = useForm<FormValues, HttpError, FormValues>();
+  const {
+    refineCore: { onFinish },
+    register,
+    handleSubmit,
+  } = useForm<FormValues, HttpError, FormValues>();
 
-    const handleSubmitPostCreate = (values: FormValues) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values: FormValues) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
-            <FormControl mb="3" isInvalid={!!errors?.name}>
-                <FormLabel>Name</FormLabel>
-                <Input
-                    id="name"
-                    type="text"
-                    {...register("name", { required: "Name is required" })}
-                />
-                <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.surname}>
-                <FormLabel>Surname</FormLabel>
-                <Input
-                    id="surname"
-                    type="text"
-                    {...register("surname", {
-                        required: "Surname is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {`${errors.title?.surname}`}
-                </FormErrorMessage>
-                <Button type="submit">Submit</Button>
-            </FormControl>
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
+      <FormControl mb="3" isInvalid={!!errors?.name}>
+        <FormLabel>Name</FormLabel>
+        <Input id="name" type="text" {...register("name", { required: "Name is required" })} />
+        <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.surname}>
+        <FormLabel>Surname</FormLabel>
+        <Input
+          id="surname"
+          type="text"
+          {...register("surname", {
+            required: "Surname is required",
+          })}
+        />
+        <FormErrorMessage>{`${errors.title?.surname}`}</FormErrorMessage>
+        <Button type="submit">Submit</Button>
+      </FormControl>
+    </form>
+  );
 };
 ```
 
@@ -326,68 +314,56 @@ import React from "react";
 import { HttpError } from "@refinedev/core";
 import { Create } from "@refinedev/chakra-ui";
 import { useForm } from "@refinedev/react-hook-form";
-import {
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Button,
-} from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel, Input, Button } from "@chakra-ui/react";
 
 type FormValues = {
-    name: string;
-    surname: string;
+  name: string;
+  surname: string;
 };
 
 export const UserCreate: React.FC = () => {
-    const {
-        saveButtonProps,
-        refineCore: { onFinish },
-        handleSubmit,
-    } = useForm<FormValues, HttpError, FormValues>();
+  const {
+    saveButtonProps,
+    refineCore: { onFinish },
+    handleSubmit,
+  } = useForm<FormValues, HttpError, FormValues>();
 
-    const handleSubmitPostCreate = (values: FormValues) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values: FormValues) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <Create
-            saveButtonProps={{
-                ...saveButtonProps,
-                onClick: handleSubmit(handleSubmitForm),
-            }}
-        >
-            <form>
-                <FormControl mb="3" isInvalid={!!errors?.name}>
-                    <FormLabel>Name</FormLabel>
-                    <Input
-                        id="name"
-                        type="text"
-                        {...register("name", { required: "Name is required" })}
-                    />
-                    <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
-                </FormControl>
-                <FormControl mb="3" isInvalid={!!errors?.surname}>
-                    <FormLabel>Surname</FormLabel>
-                    <Input
-                        id="surname"
-                        type="text"
-                        {...register("surname", {
-                            required: "Surname is required",
-                        })}
-                    />
-                    <FormErrorMessage>
-                        {`${errors.title?.surname}`}
-                    </FormErrorMessage>
-                </FormControl>
-            </form>
-        </Create>
-    );
+  return (
+    <Create
+      saveButtonProps={{
+        ...saveButtonProps,
+        onClick: handleSubmit(handleSubmitForm),
+      }}
+    >
+      <form>
+        <FormControl mb="3" isInvalid={!!errors?.name}>
+          <FormLabel>Name</FormLabel>
+          <Input id="name" type="text" {...register("name", { required: "Name is required" })} />
+          <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
+        </FormControl>
+        <FormControl mb="3" isInvalid={!!errors?.surname}>
+          <FormLabel>Surname</FormLabel>
+          <Input
+            id="surname"
+            type="text"
+            {...register("surname", {
+              required: "Surname is required",
+            })}
+          />
+          <FormErrorMessage>{`${errors.title?.surname}`}</FormErrorMessage>
+        </FormControl>
+      </form>
+    </Create>
+  );
 };
 ```
 
@@ -429,28 +405,28 @@ const invalidate = useInvalidate();
 
 // To invalidate the list and many states of the Posts resource
 invalidate({
-    resource: "posts",
-    invalidates: ["list", "many"],
+  resource: "posts",
+  invalidates: ["list", "many"],
 });
 
 // To invalidate the state of a Posts with an id of 1
 invalidate({
-    resource: "posts",
-    invalidates: ["detail"],
-    id: 1,
+  resource: "posts",
+  invalidates: ["detail"],
+  id: 1,
 });
 
 // To invalidate the list and many states of the Posts resource of the dataProvider named "second-data-provider"
 invalidate({
-    resource: "posts",
-    dataProviderName: "second-data-provider",
-    invalidates: ["list"],
+  resource: "posts",
+  dataProviderName: "second-data-provider",
+  invalidates: ["list"],
 });
 
 // To invalidate all states of dataprovider named "second-data-provider"
 invalidate({
-    dataProviderName: "second-data-provider",
-    invalidates: ["all"],
+  dataProviderName: "second-data-provider",
+  invalidates: ["all"],
 });
 ```
 
@@ -469,7 +445,7 @@ For example, If you want to make a request of the URL `/user/1/posts`.
 import { useTable, useOne } from "@refinedev/core";
 
 useTable({
-    resource: "/users/1/posts",
+  resource: "/users/1/posts",
 });
 ```
 
@@ -479,14 +455,14 @@ Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `
 
 [Refer to react-query docs on **dependent queries** for more information → ](https://react-query.tanstack.com/guides/dependent-queries)
 
--   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
+- Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
 
 ```tsx
 useMany({
-    resource: "categories",
-    ids: categoryIds,
-    // highlight-next-line
-    queryOptions: { enabled: categoryIds.length > 0 },
+  resource: "categories",
+  ids: categoryIds,
+  // highlight-next-line
+  queryOptions: { enabled: categoryIds.length > 0 },
 });
 ```
 
@@ -507,16 +483,16 @@ import dataProvider from "@refinedev/simple-rest";
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
-    ...simpleRestProvider,
-    update: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, variables);
+    const { data } = await httpClient.put(url, variables);
 
-        return {
-            data,
-        };
-    },
+    return {
+      data,
+    };
+  },
 };
 
 <Refine dataProvider={myDataProvider} />;
@@ -529,42 +505,42 @@ What if we want to select `PUT` or `PATCH` on a request basis?
 ```tsx
 // PATCH Request
 useUpdate({
-    resource: "this-is-patch",
-    id: 1,
-    variables: {
-        foo: "bar",
-    },
-    meta: {
-        httpMethod: "patch",
-    },
+  resource: "this-is-patch",
+  id: 1,
+  variables: {
+    foo: "bar",
+  },
+  meta: {
+    httpMethod: "patch",
+  },
 });
 
 // PUT Request
 useUpdate({
-    resource: "this-is-put",
-    id: 1,
-    variables: {
-        foo: "bar",
-    },
-    meta: {
-        httpMethod: "put",
-    },
+  resource: "this-is-put",
+  id: 1,
+  variables: {
+    foo: "bar",
+  },
+  meta: {
+    httpMethod: "put",
+  },
 });
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
-    ...simpleRestProvider,
-    update: async ({ resource, id, variables, meta }) => {
-        const method = meta.httpMethod ?? "patch";
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables, meta }) => {
+    const method = meta.httpMethod ?? "patch";
 
-        const url = `${apiUrl}/${resource}/${id}`;
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient[method](url, variables);
+    const { data } = await httpClient[method](url, variables);
 
-        return {
-            data,
-        };
-    },
+    return {
+      data,
+    };
+  },
 };
 ```
 
@@ -626,23 +602,23 @@ values={[
 import { Layout, Sider } from "@refinedev/antd";
 
 const CustomSider = () => {
-    return (
-        <Sider
-            render={({ items, logout }) => {
-                return (
-                    <>
-                        <a href="https://refine.dev/">👋 Navigation Link</a>
-                        {items}
-                        {logout}
-                    </>
-                );
-            }}
-        />
-    );
+  return (
+    <Sider
+      render={({ items, logout }) => {
+        return (
+          <>
+            <a href="https://refine.dev/">👋 Navigation Link</a>
+            {items}
+            {logout}
+          </>
+        );
+      }}
+    />
+  );
 };
 
 const CustomLayout = () => {
-    return <Layout Sider={CustomSider}>...</Layout>;
+  return <Layout Sider={CustomSider}>...</Layout>;
 };
 ```
 
@@ -653,23 +629,23 @@ const CustomLayout = () => {
 import { Layout, Sider } from "@refinedev/mui";
 
 const CustomSider = () => {
-    return (
-        <Sider
-            render={({ items, logout }) => {
-                return (
-                    <>
-                        <a href="https://refine.dev/">👋 Navigation Link</a>
-                        {items}
-                        {logout}
-                    </>
-                );
-            }}
-        />
-    );
+  return (
+    <Sider
+      render={({ items, logout }) => {
+        return (
+          <>
+            <a href="https://refine.dev/">👋 Navigation Link</a>
+            {items}
+            {logout}
+          </>
+        );
+      }}
+    />
+  );
 };
 
 const CustomLayout = () => {
-    return <Layout Sider={CustomSider}>...</Layout>;
+  return <Layout Sider={CustomSider}>...</Layout>;
 };
 ```
 
@@ -680,23 +656,23 @@ const CustomLayout = () => {
 import { Layout, Sider } from "@refinedev/mantine";
 
 const CustomSider = () => {
-    return (
-        <Sider
-            render={({ items, logout }) => {
-                return (
-                    <>
-                        <a href="https://refine.dev/">👋 Navigation Link</a>
-                        {items}
-                        {logout}
-                    </>
-                );
-            }}
-        />
-    );
+  return (
+    <Sider
+      render={({ items, logout }) => {
+        return (
+          <>
+            <a href="https://refine.dev/">👋 Navigation Link</a>
+            {items}
+            {logout}
+          </>
+        );
+      }}
+    />
+  );
 };
 
 const CustomLayout = () => {
-    return <Layout Sider={CustomSider}>...</Layout>;
+  return <Layout Sider={CustomSider}>...</Layout>;
 };
 ```
 
@@ -707,23 +683,23 @@ const CustomLayout = () => {
 import { Layout, Sider } from "@refinedev/chakra-ui";
 
 const CustomSider = () => {
-    return (
-        <Sider
-            render={({ items, logout }) => {
-                return (
-                    <>
-                        <a href="https://refine.dev/">👋 Navigation Link</a>
-                        {items}
-                        {logout}
-                    </>
-                );
-            }}
-        />
-    );
+  return (
+    <Sider
+      render={({ items, logout }) => {
+        return (
+          <>
+            <a href="https://refine.dev/">👋 Navigation Link</a>
+            {items}
+            {logout}
+          </>
+        );
+      }}
+    />
+  );
 };
 
 const CustomLayout = () => {
-    return <Layout Sider={CustomSider}>...</Layout>;
+  return <Layout Sider={CustomSider}>...</Layout>;
 };
 ```
 
@@ -744,9 +720,9 @@ To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` 
 
 Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
 
--   Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
--   Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/pages/_app.tsx#L47)
--   Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
+- Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
+- Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/pages/_app.tsx#L47)
+- Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
 
 ## Module "X" has no exported member "Y"
 
@@ -756,10 +732,10 @@ Here are a couple of examples of reported errors and their corresponding fix:
 
 1. Error: "Module '@refinedev/mantine' has no exported member 'HamburgerMenu'"
 
-    - Solution: Run `npm i @refinedev/mantine@latest` to install the latest version of the `@refinedev/mantine` module.
+   - Solution: Run `npm i @refinedev/mantine@latest` to install the latest version of the `@refinedev/mantine` module.
 
 2. Error: "Module '@refinedev/antd' has no exported member 'ThemedLayoutV2'"
-    - Solution: Execute `npm i @refinedev/antd@latest` to install the latest version of the `@refinedev/antd` module.
+   - Solution: Execute `npm i @refinedev/antd@latest` to install the latest version of the `@refinedev/antd` module.
 
 By following these steps and updating to the latest module versions, you should be able to resolve the "not exported" error.
 
@@ -773,13 +749,12 @@ import { Refine } from "@refinedev/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const App = () => {
-    return (
-        <Refine>
-            ...
-            // highlight-next-line
-            <ReactQueryDevtools />
-        </Refine>
-    );
+  return (
+    <Refine>
+      ... // highlight-next-line
+      <ReactQueryDevtools />
+    </Refine>
+  );
 };
 ```
 

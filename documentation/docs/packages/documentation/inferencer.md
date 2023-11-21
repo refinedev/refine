@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-`@refinedev/inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
+`@refinedev/inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily.
 
 The package exports components for **List**, **Show**, **Create** and **Edit** views inside UI package scopes. For example, `@refinedev/inferencer/antd` exports components for `@refinedev/antd` package.
 
@@ -40,13 +40,17 @@ yarn add @refinedev/inferencer
 - [Headless](/docs/api-reference/core/components/inferencer)
 
 :::info
+
 `@refinedev/inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
 
 If you have any suggestions or feedback, please let us know in the [**GitHub Discussions**](https://github.com/refinedev/refine/discussions/3046)
+
 :::
 
 :::caution Warning
+
 `@refinedev/inferencer` components are meant to be used in development environments. They are not meant to be used in production environments.
+
 :::
 
 ## How it works?
@@ -55,7 +59,7 @@ Simply, `@refinedev/inferencer` generates views and codes based on the data stru
 
 ### How the data is obtained?
 
-For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app. 
+For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app.
 
 ### How the fields are inferred?
 
@@ -66,19 +70,25 @@ Properties with multiple values are identified as `array` type but also repeats 
 If the property is an `object` type, we try to pick a key to represent that property. For example, if we have a `category` field with `{ label: string; id: string; }` type, we pick `label` as the key to represent the property. These `object` fields with keys to represent them have the property `fieldable` set to `true` in the return value.
 
 :::tip Available field types and functions
+
 ```
 "relation" | "array" | "object" | "date" | "email" | "image" | "url" | "richtext" | "text" | "number" | "boolean" | "unknown" | "custom_{string}"
 ```
+
 :::
 
 :::note List of keys that can be used to represent an `object` type property
+
 ```
 "name" | "label" | "title" | "count" | "content" | "username" | "nickname" | "login" | "firstName" | "lastName" | "url"
 ```
+
 :::
 
 :::note
+
 `custom_${string}` is used by the inferencer components of UI packages when they have custom representations, for now users can't pass custom types and functions to the inferencer components.
+
 :::
 
 ### How the relations are determined?
@@ -110,20 +120,24 @@ If your `dataProvider` and `resources` has a different way of work that makes it
 ### How the components are rendered and the code is generated?
 
 :::tip rendering
+
 To render the components we use a [fork](https://github.com/aliemir/react-live) of [`react-live`](https://github.com/FormidableLabs/react-live) package with Typescript support.
+
 :::
 
-After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@refinedev/inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions. 
+After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@refinedev/inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions.
 
 `renderer` function returns a `string` that includes the code for the component which is presented to user to copy and paste to their project. The same code is also used to render the component in the view.
 
 :::note
+
 Component name is determined by the active `resource` element and the active action. If the resource has `option.label` field, it will be used as the part of the component name. Otherwise, the `resource.name` will be used. For example, if the resource name is `categories` and the action is `list`, the component name will be `CategoryList`.
+
 :::
 
 ### Usage with GraphQL backends and `meta` values
 
-**refine* handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
+\*_refine_ handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
 
 Here's the syntax for defining the `meta` values in Inferencer components:
 
@@ -145,27 +159,20 @@ This structure is designed to let users provide `meta` values for multiple resou
 
 ```tsx
 <AntdListInferencer
-    meta={{
-        posts: {
-            getList: {
-                fields: [
-                    "id",
-                    "title",
-                    "content",
-                    "category_id",
-                    "created_at",
-                ],
-            },
-        },
-        categories: {
-            default: {
-                fields: ["id", "title"],
-            },
-        },
-    }}
+  meta={{
+    posts: {
+      getList: {
+        fields: ["id", "title", "content", "category_id", "created_at"],
+      },
+    },
+    categories: {
+      default: {
+        fields: ["id", "title"],
+      },
+    },
+  }}
 />
 ```
-
 
 ### Modifying the inferred fields
 

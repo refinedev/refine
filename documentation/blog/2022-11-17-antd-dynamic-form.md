@@ -37,9 +37,9 @@ Steps we'll cover:
 
 To follow along with this tutorial, you need to have a good understanding of Typescript and the following:
 
--   The latest version of Node.js installed on your machine
--   Fundamental knowledge of React and [refine](https://github.com/refinedev/refine)
--   Basic understanding of Ant design
+- The latest version of Node.js installed on your machine
+- Fundamental knowledge of React and [refine](https://github.com/refinedev/refine)
+- Basic understanding of Ant design
 
 ## What is a dynamic form?
 
@@ -61,11 +61,11 @@ refine is a headless React-based framework for rapidly building CRUD application
 
 There are a lot of benefits to using refine in your applications, to name a few:
 
--   refine is UI agnostic by default; its headless design lets it integrate seamlessly with different UI frameworks and custom designs.
--   it has an easy learning curve
--   refine is also backend agnostic by default; it has support for every backend technology.
--   Authentication, state management, data fetching, and routing come out of the box.
--   refine is open source, so you don't have to worry about constraints.
+- refine is UI agnostic by default; its headless design lets it integrate seamlessly with different UI frameworks and custom designs.
+- it has an easy learning curve
+- refine is also backend agnostic by default; it has support for every backend technology.
+- Authentication, state management, data fetching, and routing come out of the box.
+- refine is open source, so you don't have to worry about constraints.
 
 One of refine's core features is its out-of-the-box integration with UI frameworks such as Material UI and Ant design. We'll look at how to use the latter in this guide.
 
@@ -133,7 +133,7 @@ To prevent Typescript from throwing an error, you can add a placeholder code in 
 import React from "react";
 
 function UserCreate() {
-    return <div>UserCreate</div>;
+  return <div>UserCreate</div>;
 }
 
 export default UserCreate;
@@ -153,23 +153,23 @@ Then, set up the `<Refine>` component by defining the `resources` prop and assig
 import { Refine } from "@refinedev/core";
 
 function App() {
-    return (
-        <Refine
-            // ...
-            // highlight-start
-            resources={[
-                {
-                    name: "users",
-                    list: "/users",
-                    create: "/users/create",
-                    edit: "/users/edit/:id",
-                },
-            ]}
-            // highlight-end
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // ...
+      // highlight-start
+      resources={[
+        {
+          name: "users",
+          list: "/users",
+          create: "/users/create",
+          edit: "/users/edit/:id",
+        },
+      ]}
+      // highlight-end
+    >
+      {/* ... */}
+    </Refine>
+  );
 }
 
 export default App;
@@ -189,9 +189,9 @@ You can simply copy and paste the code below into the `App.tsx` file:
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -200,45 +200,42 @@ import UserEdit from "./pages/UserEdit";
 import UserList from "./pages/UserList";
 
 function App() {
-    return (
-        // highlight-next-line
-        <BrowserRouter>
-            <Refine
-                // ...
-                resources={[
-                    {
-                        name: "users",
-                        list: "/users",
-                        create: "/users/create",
-                        edit: "/users/edit/:id",
-                    },
-                ]}
-            >
-                {/* highlight-start */}
-                <Routes>
-                    <Route
-                        element={
-                            <ThemedLayoutV2>
-                                <Outlet />
-                            </ThemedLayoutV2>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="users" />}
-                        />
-                        <Route path="users">
-                            <Route index element={<UserList />} />
-                            <Route path="create" element={<UserCreate />} />
-                            <Route path="edit/:id" element={<UserEdit />} />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                {/* highlight-end */}
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    // highlight-next-line
+    <BrowserRouter>
+      <Refine
+        // ...
+        resources={[
+          {
+            name: "users",
+            list: "/users",
+            create: "/users/create",
+            edit: "/users/edit/:id",
+          },
+        ]}
+      >
+        {/* highlight-start */}
+        <Routes>
+          <Route
+            element={
+              <ThemedLayoutV2>
+                <Outlet />
+              </ThemedLayoutV2>
+            }
+          >
+            <Route index element={<NavigateToResource resource="users" />} />
+            <Route path="users">
+              <Route index element={<UserList />} />
+              <Route path="create" element={<UserCreate />} />
+              <Route path="edit/:id" element={<UserEdit />} />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+        {/* highlight-end */}
+      </Refine>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -250,17 +247,12 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-} from "@refinedev/antd";
+import { notificationProvider, ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
@@ -270,56 +262,49 @@ import UserEdit from "./pages/UserEdit";
 import UserList from "./pages/UserList";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    // highlight-start
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                            create: "/users/create",
-                            edit: "/users/edit/:id",
-                        },
-                    ]}
-                    // highlight-end
-                >
-                    {/* highlight-start */}
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="users" />
-                                }
-                            />
-                            <Route path="users">
-                                <Route index element={<UserList />} />
-                                <Route path="create" element={<UserCreate />} />
-                                <Route path="edit/:id" element={<UserEdit />} />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    {/* highlight-end */}
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          notificationProvider={notificationProvider}
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          // highlight-start
+          resources={[
+            {
+              name: "users",
+              list: "/users",
+              create: "/users/create",
+              edit: "/users/edit/:id",
+            },
+          ]}
+          // highlight-end
+        >
+          {/* highlight-start */}
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource resource="users" />} />
+              <Route path="users">
+                <Route index element={<UserList />} />
+                <Route path="create" element={<UserCreate />} />
+                <Route path="edit/:id" element={<UserEdit />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          {/* highlight-end */}
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -348,24 +333,24 @@ import { List, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 interface IFormValue {
-    name: string;
-    email: string;
-    skills: string;
-    id: number;
+  name: string;
+  email: string;
+  skills: string;
+  id: number;
 }
 
 export default function UserList() {
-    const { tableProps } = useTable<IFormValue>();
+  const { tableProps } = useTable<IFormValue>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="firstName" title="First Name" />
-                <Table.Column dataIndex="email" title="Email" />
-                <Table.Column dataIndex="skills" title="Skills" />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="firstName" title="First Name" />
+        <Table.Column dataIndex="email" title="Email" />
+        <Table.Column dataIndex="skills" title="Skills" />
+      </Table>
+    </List>
+  );
 }
 ```
 
@@ -374,7 +359,9 @@ export default function UserList() {
 In the code above, we're using the `useTable` hook to fetch data from our endpoint and pass its value to the Table component via the `tableProps` property. Then we set unique keys for each record from the API using the `rowkey` prop.
 
 :::note
+
 refine handles every fetch request under the hood. The `useTable` hook is one of many hooks it uses to distribute API responses and manage functionalities across its components.
+
 :::
 
 The `<Table.column>` component is a sub-component of the `<Table>` component, it is used for formatting each field shown in the table.
@@ -420,22 +407,22 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space } from "antd";
 
 interface IFormValue {
-    name: string;
-    email: string;
-    skills: string;
+  name: string;
+  email: string;
+  skills: string;
 }
 
 export default function UserCreate() {
-    const { formProps, saveButtonProps } = useForm<IFormValue>();
+  const { formProps, saveButtonProps } = useForm<IFormValue>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps}>
-                <Input placeholder="e.g John" />
-                <Input placeholder="e.g john@email.com" />
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps}>
+        <Input placeholder="e.g John" />
+        <Input placeholder="e.g john@email.com" />
+      </Form>
+    </Create>
+  );
 }
 ```
 
@@ -459,26 +446,22 @@ The `<Form.Item>` component is a sub-component of the `<Form>` component. It acc
 
 Here's a list of some of its props:
 
--   `name`: This is for setting a unique name for an input field.
--   `label`: This prop is for assigning a label to input fields
--   `rules`: This prop is for setting custom validation rules on an input field
+- `name`: This is for setting a unique name for an input field.
+- `label`: This prop is for assigning a label to input fields
+- `rules`: This prop is for setting custom validation rules on an input field
 
 Since it is a sub-component of the `<Form>` component, we don't have to import any other components to use it. All we have to do is wrap it around our form's input fields like so:
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Create saveButtonProps={saveButtonProps}>
-    <Form {...formProps} layout="vertical">
-        <Form.Item
-            name={"firstName"}
-            label="First Name"
-            style={{ maxWidth: "893px" }}
-        >
-            <Input placeholder="e.g John" />
-        </Form.Item>
-        <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }}>
-            <Input placeholder="e.g developer" />
-        </Form.Item>
-    </Form>
+  <Form {...formProps} layout="vertical">
+    <Form.Item name={"firstName"} label="First Name" style={{ maxWidth: "893px" }}>
+      <Input placeholder="e.g John" />
+    </Form.Item>
+    <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }}>
+      <Input placeholder="e.g developer" />
+    </Form.Item>
+  </Form>
 </Create>
 ```
 
@@ -519,46 +502,40 @@ We can also add a basic validation to both fields by passing an array of objects
 
 In the subsequent sections, we'll learn how to add a more complex validation to our form. For now, this will do.
 
-
-
 ## Adding form list
 
 Much like the `<Form.Item>` component, Ant design also provides a `<Form.List>` sub-component that lets us create dynamic fields that can be added and removed on command.
 
 The component accepts a child function with three parameters:
 
--   `fields`: The fields parameter is used to create a list of dynamic fields
--   `operations`: The operations parameter is an object with two action functions for adding and removing fields on the list.
--   `errors`: This parameter does what its name implies - it is used to handle errors for validation.
+- `fields`: The fields parameter is used to create a list of dynamic fields
+- `operations`: The operations parameter is an object with two action functions for adding and removing fields on the list.
+- `errors`: This parameter does what its name implies - it is used to handle errors for validation.
 
 To add a list to the form, first, declare the `<Form.List>` component and add the following code within it.
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Form.List name={"skills"}>
-    {(fields, operator) => {
-        return (
-            <>
-                {fields.map((field, index) => {
-                    return (
-                        <div key={field.key}>
-                            <Form.Item
-                                name={field.name}
-                                label={`skill - ${index + 1}`}
-                                rules={[{ required: true }]}
-                            >
-                                <Input placeholder="e.g javascript" />
-                            </Form.Item>
-                        </div>
-                    );
-                })}
-                <Form.Item>
-                    <Button type="dashed" block>
-                        Add a skill
-                    </Button>
-                </Form.Item>
-            </>
-        );
-    }}
+  {(fields, operator) => {
+    return (
+      <>
+        {fields.map((field, index) => {
+          return (
+            <div key={field.key}>
+              <Form.Item name={field.name} label={`skill - ${index + 1}`} rules={[{ required: true }]}>
+                <Input placeholder="e.g javascript" />
+              </Form.Item>
+            </div>
+          );
+        })}
+        <Form.Item>
+          <Button type="dashed" block>
+            Add a skill
+          </Button>
+        </Form.Item>
+      </>
+    );
+  }}
 </Form.List>
 ```
 
@@ -578,36 +555,31 @@ What we can do first is destructure the `add()` and `remove()` functions from th
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Form.List name={"skills"}>
-    {(fields, { add, remove }) => {
-        return (
-            <>
-                {fields.map((field, index) => {
-                    return (
-                        <div key={field.key}>
-                            <Form.Item
-                                name={field.name}
-                                label={`skill - ${index + 1}`}
-                                style={{ width: "400px" }}
-                                rules={[{ required: true }]}
-                            >
-                                <Input placeholder="e.g javascript" />
-                            </Form.Item>
-                        </div>
-                    );
-                })}
-                <Form.Item>
-                    <Button
-                        type="dashed"
-                        block
-                        onClick={() => add()}
-                        style={{ maxWidth: "893px" }}
-                    >
-                        Add a skill
-                    </Button>
-                </Form.Item>
-            </>
-        );
-    }}
+  {(fields, { add, remove }) => {
+    return (
+      <>
+        {fields.map((field, index) => {
+          return (
+            <div key={field.key}>
+              <Form.Item
+                name={field.name}
+                label={`skill - ${index + 1}`}
+                style={{ width: "400px" }}
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="e.g javascript" />
+              </Form.Item>
+            </div>
+          );
+        })}
+        <Form.Item>
+          <Button type="dashed" block onClick={() => add()} style={{ maxWidth: "893px" }}>
+            Add a skill
+          </Button>
+        </Form.Item>
+      </>
+    );
+  }}
 </Form.List>
 ```
 
@@ -628,84 +600,72 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space } from "antd";
 
 interface IFormValue {
-    name: string;
-    email: string;
-    skills: string;
+  name: string;
+  email: string;
+  skills: string;
 }
 
 export default function UserCreate() {
-    const { formProps, saveButtonProps } = useForm<IFormValue>();
+  const { formProps, saveButtonProps } = useForm<IFormValue>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    name={"firstName"}
-                    label="First Name"
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item name={"firstName"} label="First Name" style={{ maxWidth: "893px" }} rules={[{ required: true }]}>
+          <Input placeholder="e.g John" />
+        </Form.Item>
+        <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }} rules={[{ required: true }]}>
+          <Input placeholder="e.g john@email.com" />
+        </Form.Item>
+        <Form.List name={"skills"}>
+          {(fields, { add, remove }) => {
+            return (
+              <>
+                {fields.map((field, index) => {
+                  return (
+                    <Space
+                      key={field.key}
+                      direction="horizontal"
+                      style={{
+                        position: "relative",
+                        marginRight: "13px",
+                      }}
+                    >
+                      <Form.Item
+                        name={field.name}
+                        label={`skill - ${index + 1}`}
+                        style={{ width: "400px" }}
+                        rules={[{ required: true }]}
+                      >
+                        <Input placeholder="e.g javascript" />
+                      </Form.Item>
+                      <Button
+                        danger
+                        onClick={() => remove(field.name)}
+                        style={{ marginTop: "5px" }}
+                        icon={<DeleteOutlined />}
+                      />
+                    </Space>
+                  );
+                })}
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    block
                     style={{ maxWidth: "893px" }}
-                    rules={[{ required: true }]}
-                >
-                    <Input placeholder="e.g John" />
+                    icon={<PlusOutlined />}
+                    onClick={() => add()}
+                  >
+                    Add a skill
+                  </Button>
                 </Form.Item>
-                <Form.Item
-                    name={"email"}
-                    label="Email"
-                    style={{ maxWidth: "893px" }}
-                    rules={[{ required: true }]}
-                >
-                    <Input placeholder="e.g john@email.com" />
-                </Form.Item>
-                <Form.List name={"skills"}>
-                    {(fields, { add, remove }) => {
-                        return (
-                            <>
-                                {fields.map((field, index) => {
-                                    return (
-                                        <Space
-                                            key={field.key}
-                                            direction="horizontal"
-                                            style={{
-                                                position: "relative",
-                                                marginRight: "13px",
-                                            }}
-                                        >
-                                            <Form.Item
-                                                name={field.name}
-                                                label={`skill - ${index + 1}`}
-                                                style={{ width: "400px" }}
-                                                rules={[{ required: true }]}
-                                            >
-                                                <Input placeholder="e.g javascript" />
-                                            </Form.Item>
-                                            <Button
-                                                danger
-                                                onClick={() =>
-                                                    remove(field.name)
-                                                }
-                                                style={{ marginTop: "5px" }}
-                                                icon={<DeleteOutlined />}
-                                            />
-                                        </Space>
-                                    );
-                                })}
-                                <Form.Item>
-                                    <Button
-                                        type="dashed"
-                                        block
-                                        style={{ maxWidth: "893px" }}
-                                        icon={<PlusOutlined />}
-                                        onClick={() => add()}
-                                    >
-                                        Add a skill
-                                    </Button>
-                                </Form.Item>
-                            </>
-                        );
-                    }}
-                </Form.List>
-            </Form>
-        </Create>
-    );
+              </>
+            );
+          }}
+        </Form.List>
+      </Form>
+    </Create>
+  );
 }
 ```
 
@@ -729,20 +689,10 @@ All we have to do is append an icon name to the `<Icons>` component we imported 
 
 ```tsx title="src/pages/UserCreate.tsx"
 <div key={field.key}>
-    <Form.Item
-        name={field.name}
-        label={`skill - ${index + 1}`}
-        style={{ width: "400px" }}
-        rules={[{ required: true }]}
-    >
-        <Input placeholder="e.g javascript" />
-    </Form.Item>
-    <Button
-        danger
-        onClick={() => remove(field.name)}
-        style={{ marginTop: "5px" }}
-        icon={<DeleteOutlined />}
-    />
+  <Form.Item name={field.name} label={`skill - ${index + 1}`} style={{ width: "400px" }} rules={[{ required: true }]}>
+    <Input placeholder="e.g javascript" />
+  </Form.Item>
+  <Button danger onClick={() => remove(field.name)} style={{ marginTop: "5px" }} icon={<DeleteOutlined />} />
 </div>
 ```
 
@@ -752,27 +702,17 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Space
-    key={field.key}
-    direction="horizontal"
-    style={{
-        position: "relative",
-        marginRight: "13px",
-    }}
+  key={field.key}
+  direction="horizontal"
+  style={{
+    position: "relative",
+    marginRight: "13px",
+  }}
 >
-    <Form.Item
-        name={field.name}
-        label={`skill - ${index + 1}`}
-        style={{ width: "400px" }}
-        rules={[{ required: true }]}
-    >
-        <Input placeholder="e.g javascript" />
-    </Form.Item>
-    <Button
-        danger
-        onClick={() => remove(field.name)}
-        style={{ marginTop: "5px" }}
-        icon={<DeleteOutlined />}
-    />
+  <Form.Item name={field.name} label={`skill - ${index + 1}`} style={{ width: "400px" }} rules={[{ required: true }]}>
+    <Input placeholder="e.g javascript" />
+  </Form.Item>
+  <Button danger onClick={() => remove(field.name)} style={{ marginTop: "5px" }} icon={<DeleteOutlined />} />
 </Space>
 ```
 
@@ -783,14 +723,8 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
 Using the same process, we can also add icons to the `Add a skill` button.
 
 ```tsx title="src/pages/UserCreate.tsx"
-<Button
-    type="dashed"
-    block
-    style={{ maxWidth: "893px" }}
-    icon={<PlusOutlined />}
-    onClick={() => add()}
->
-    Add a skill
+<Button type="dashed" block style={{ maxWidth: "893px" }} icon={<PlusOutlined />} onClick={() => add()}>
+  Add a skill
 </Button>
 ```
 
@@ -810,11 +744,11 @@ The `rule` prop accepts an array of config objects that returns a promise. Each 
 
 Some of these properties include;
 
--   `required`: This property is for initializing validation on an input field.
--   `min`: This property is for setting the minimum characters allowed on a field.
--   `max`: This is for setting the maximum characters allowed on a field.
--   `whitespace`: This property is for preventing whitespace on a field. It is mostly used on a password input field.
--   `message`: This property is for displaying error messages.
+- `required`: This property is for initializing validation on an input field.
+- `min`: This property is for setting the minimum characters allowed on a field.
+- `max`: This is for setting the maximum characters allowed on a field.
+- `whitespace`: This property is for preventing whitespace on a field. It is mostly used on a password input field.
+- `message`: This property is for displaying error messages.
 
 We added the `required` property to the `rule` props in the previous sections. Now, we'll add other properties accompanied by the `message` property for displaying personalized error messages.
 
@@ -828,115 +762,111 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space } from "antd";
 
 interface IFormValue {
-    name: string;
-    email: string;
-    skills: string;
+  name: string;
+  email: string;
+  skills: string;
 }
 
 export default function UserCreate() {
-    const { formProps, saveButtonProps } = useForm<IFormValue>();
+  const { formProps, saveButtonProps } = useForm<IFormValue>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    name={"firstName"}
-                    label="First Name"
-                    style={{ maxWidth: "893px" }}
-                    rules={[
-                        { required: true, message: "please enter your name" },
-                        {
-                            whitespace: true,
-                        },
-                        {
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          name={"firstName"}
+          label="First Name"
+          style={{ maxWidth: "893px" }}
+          rules={[
+            { required: true, message: "please enter your name" },
+            {
+              whitespace: true,
+            },
+            {
+              min: 3,
+              message: "field must be at least 3 characters",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input placeholder="e.g John" />
+        </Form.Item>
+        <Form.Item
+          name={"email"}
+          label="Email"
+          style={{ maxWidth: "893px" }}
+          rules={[
+            { required: true, message: "please enter your email" },
+            { whitespace: true },
+            {
+              min: 3,
+              message: "field must be at least 3 characters",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input placeholder="e.g john@email.com" />
+        </Form.Item>
+        <Form.List name={"skills"}>
+          {(fields, { add, remove }) => {
+            return (
+              <>
+                {fields.map((field, index) => {
+                  return (
+                    <Space
+                      key={field.key}
+                      direction="horizontal"
+                      style={{
+                        position: "relative",
+                        marginRight: "13px",
+                      }}
+                    >
+                      <Form.Item
+                        name={field.name}
+                        label={`skill - ${index + 1}`}
+                        style={{ width: "400px" }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "please enter your skill",
+                          },
+                          { whitespace: true },
+                          {
                             min: 3,
                             message: "field must be at least 3 characters",
-                        },
-                    ]}
-                    hasFeedback
-                >
-                    <Input placeholder="e.g John" />
-                </Form.Item>
-                <Form.Item
-                    name={"email"}
-                    label="Email"
+                          },
+                        ]}
+                        hasFeedback
+                      >
+                        <Input placeholder="e.g javascript" />
+                      </Form.Item>
+                      <Button
+                        danger
+                        onClick={() => remove(field.name)}
+                        style={{ marginTop: "5px" }}
+                        icon={<DeleteOutlined />}
+                      />
+                    </Space>
+                  );
+                })}
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    block
                     style={{ maxWidth: "893px" }}
-                    rules={[
-                        { required: true, message: "please enter your email" },
-                        { whitespace: true },
-                        {
-                            min: 3,
-                            message: "field must be at least 3 characters",
-                        },
-                    ]}
-                    hasFeedback
-                >
-                    <Input placeholder="e.g john@email.com" />
+                    icon={<PlusOutlined />}
+                    onClick={() => add()}
+                  >
+                    Add a skill
+                  </Button>
                 </Form.Item>
-                <Form.List name={"skills"}>
-                    {(fields, { add, remove }) => {
-                        return (
-                            <>
-                                {fields.map((field, index) => {
-                                    return (
-                                        <Space
-                                            key={field.key}
-                                            direction="horizontal"
-                                            style={{
-                                                position: "relative",
-                                                marginRight: "13px",
-                                            }}
-                                        >
-                                            <Form.Item
-                                                name={field.name}
-                                                label={`skill - ${index + 1}`}
-                                                style={{ width: "400px" }}
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message:
-                                                            "please enter your skill",
-                                                    },
-                                                    { whitespace: true },
-                                                    {
-                                                        min: 3,
-                                                        message:
-                                                            "field must be at least 3 characters",
-                                                    },
-                                                ]}
-                                                hasFeedback
-                                            >
-                                                <Input placeholder="e.g javascript" />
-                                            </Form.Item>
-                                            <Button
-                                                danger
-                                                onClick={() =>
-                                                    remove(field.name)
-                                                }
-                                                style={{ marginTop: "5px" }}
-                                                icon={<DeleteOutlined />}
-                                            />
-                                        </Space>
-                                    );
-                                })}
-                                <Form.Item>
-                                    <Button
-                                        type="dashed"
-                                        block
-                                        style={{ maxWidth: "893px" }}
-                                        icon={<PlusOutlined />}
-                                        onClick={() => add()}
-                                    >
-                                        Add a skill
-                                    </Button>
-                                </Form.Item>
-                            </>
-                        );
-                    }}
-                </Form.List>
-            </Form>
-        </Create>
-    );
+              </>
+            );
+          }}
+        </Form.List>
+      </Form>
+    </Create>
+  );
 }
 ```
 
@@ -949,22 +879,22 @@ All we need to do is add a `hasFeedback` prop to each `<Form.Item>` like so:
 
 ```tsx title="src/pages/UserCreate.tsx"
 <Form.Item
-    name={"firstName"}
-    label="First Name"
-    style={{ maxWidth: "893px" }}
-    rules={[
-        { required: true, message: "please enter your name" },
-        {
-            whitespace: true,
-        },
-        {
-            min: 3,
-            message: "field must be at least 3 characters",
-        },
-    ]}
-    hasFeedback
+  name={"firstName"}
+  label="First Name"
+  style={{ maxWidth: "893px" }}
+  rules={[
+    { required: true, message: "please enter your name" },
+    {
+      whitespace: true,
+    },
+    {
+      min: 3,
+      message: "field must be at least 3 characters",
+    },
+  ]}
+  hasFeedback
 >
-    <Input placeholder="e.g John" />
+  <Input placeholder="e.g John" />
 </Form.Item>
 ```
 
@@ -1001,40 +931,36 @@ import { EditButton, List, useTable } from "@refinedev/antd";
 import { Space, Table } from "antd";
 
 interface IFormValue {
-    name: string;
-    email: string;
-    skills: string;
-    id: number;
+  name: string;
+  email: string;
+  skills: string;
+  id: number;
 }
 
 export default function UserList() {
-    const { tableProps } = useTable<IFormValue>();
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="firstName" title="First Name" />
-                <Table.Column dataIndex="email" title="Email" />
-                <Table.Column dataIndex="skills" title="Skills" />
-                {/* highlight-start */}
-                <Table.Column<IFormValue>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(__text_, _record_): React.ReactNode => {
-                        return (
-                            <Space>
-                                <EditButton
-                                    size="small"
-                                    recordItemId={_record_.id}
-                                    hideText
-                                />
-                            </Space>
-                        );
-                    }}
-                />
-                {/* highlight-end */}
-            </Table>
-        </List>
-    );
+  const { tableProps } = useTable<IFormValue>();
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="firstName" title="First Name" />
+        <Table.Column dataIndex="email" title="Email" />
+        <Table.Column dataIndex="skills" title="Skills" />
+        {/* highlight-start */}
+        <Table.Column<IFormValue>
+          title="Actions"
+          dataIndex="actions"
+          render={(__text_, _record_): React.ReactNode => {
+            return (
+              <Space>
+                <EditButton size="small" recordItemId={_record_.id} hideText />
+              </Space>
+            );
+          }}
+        />
+        {/* highlight-end */}
+      </Table>
+    </List>
+  );
 }
 ```
 
@@ -1061,128 +987,123 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Form, Input, Button, Space } from "antd";
 
 interface IFormValue {
-    name: string;
-    email: string;
-    skills: string;
+  name: string;
+  email: string;
+  skills: string;
 }
 
 export default function UserEdit() {
-    const { formProps, saveButtonProps } = useForm<IFormValue>();
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} size="large" layout="vertical">
-                <Form.Item
-                    name={"firstName"}
-                    label="First Name"
-                    style={{ maxWidth: "600px" }}
-                    rules={[
-                        {
+  const { formProps, saveButtonProps } = useForm<IFormValue>();
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} size="large" layout="vertical">
+        <Form.Item
+          name={"firstName"}
+          label="First Name"
+          style={{ maxWidth: "600px" }}
+          rules={[
+            {
+              required: true,
+              message: "please enter your first name",
+            },
+            {
+              whitespace: true,
+            },
+            {
+              min: 3,
+              message: "field must be at least 3 characters",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input placeholder="e.g John" />
+        </Form.Item>
+        <Form.Item
+          name={"email"}
+          label="Email"
+          style={{ maxWidth: "600px" }}
+          rules={[
+            {
+              required: true,
+              message: "please enter your email: e.g john@email.com",
+            },
+            {
+              whitespace: true,
+            },
+            {
+              min: 3,
+              message: "field must be at least 3 characters",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input placeholder="e.g john@email.com" />
+        </Form.Item>
+        <Form.List name={"skills"}>
+          {(fields, { add, remove }) => {
+            return (
+              <>
+                {fields.map((field, index) => {
+                  return (
+                    <Space
+                      key={field.key}
+                      direction="horizontal"
+                      style={{
+                        display: "flex",
+                        position: "relative",
+                      }}
+                    >
+                      <Form.Item
+                        name={field.name}
+                        label={`skill - ${index + 1}`}
+                        style={{ width: "400px" }}
+                        rules={[
+                          {
                             required: true,
-                            message: "please enter your first name",
-                        },
-                        {
+                            message: "please enter a skill",
+                          },
+                          {
                             whitespace: true,
-                        },
-                        {
+                          },
+                          {
                             min: 3,
                             message: "field must be at least 3 characters",
-                        },
-                    ]}
-                    hasFeedback
-                >
-                    <Input placeholder="e.g John" />
-                </Form.Item>
-                <Form.Item
-                    name={"email"}
-                    label="Email"
+                          },
+                        ]}
+                        hasFeedback
+                      >
+                        <Input placeholder="e.g javascript" />
+                      </Form.Item>
+                      <Button
+                        danger
+                        onClick={() => remove(field.name)}
+                        style={{
+                          position: "absolute",
+                          top: "47px",
+                        }}
+                        icon={<DeleteOutlined />}
+                      ></Button>
+                    </Space>
+                  );
+                })}
+                <Form.Item>
+                  <Button
+                    icon={<PlusOutlined />}
+                    type="dashed"
+                    block
                     style={{ maxWidth: "600px" }}
-                    rules={[
-                        {
-                            required: true,
-                            message:
-                                "please enter your email: e.g john@email.com",
-                        },
-                        {
-                            whitespace: true,
-                        },
-                        {
-                            min: 3,
-                            message: "field must be at least 3 characters",
-                        },
-                    ]}
-                    hasFeedback
-                >
-                    <Input placeholder="e.g john@email.com" />
+                    onClick={() => add()}
+                  >
+                    Add a skill
+                  </Button>
                 </Form.Item>
-                <Form.List name={"skills"}>
-                    {(fields, { add, remove }) => {
-                        return (
-                            <>
-                                {fields.map((field, index) => {
-                                    return (
-                                        <Space
-                                            key={field.key}
-                                            direction="horizontal"
-                                            style={{
-                                                display: "flex",
-                                                position: "relative",
-                                            }}
-                                        >
-                                            <Form.Item
-                                                name={field.name}
-                                                label={`skill - ${index + 1}`}
-                                                style={{ width: "400px" }}
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message:
-                                                            "please enter a skill",
-                                                    },
-                                                    {
-                                                        whitespace: true,
-                                                    },
-                                                    {
-                                                        min: 3,
-                                                        message:
-                                                            "field must be at least 3 characters",
-                                                    },
-                                                ]}
-                                                hasFeedback
-                                            >
-                                                <Input placeholder="e.g javascript" />
-                                            </Form.Item>
-                                            <Button
-                                                danger
-                                                onClick={() =>
-                                                    remove(field.name)
-                                                }
-                                                style={{
-                                                    position: "absolute",
-                                                    top: "47px",
-                                                }}
-                                                icon={<DeleteOutlined />}
-                                            ></Button>
-                                        </Space>
-                                    );
-                                })}
-                                <Form.Item>
-                                    <Button
-                                        icon={<PlusOutlined />}
-                                        type="dashed"
-                                        block
-                                        style={{ maxWidth: "600px" }}
-                                        onClick={() => add()}
-                                    >
-                                        Add a skill
-                                    </Button>
-                                </Form.Item>
-                            </>
-                        );
-                    }}
-                </Form.List>
-            </Form>
-        </Edit>
-    );
+              </>
+            );
+          }}
+        </Form.List>
+      </Form>
+    </Edit>
+  );
 }
 ```
 

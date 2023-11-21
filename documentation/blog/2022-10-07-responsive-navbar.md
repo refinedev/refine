@@ -3,7 +3,7 @@ title: Creating a Responsive React Navbar with Tailwind CSS
 description: In this brief guide, we'll create a responsive navbar with Tailwind CSS and Bootstrap in React.
 slug: react-navbar-responsive-tailwind
 authors: muhammed_arslan
-tags: [tailwind, css,react]
+tags: [tailwind, css, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/social.png
 hide_table_of_contents: false
 ---
@@ -18,13 +18,6 @@ Just be aware that the source code example in this post have been updated to ver
 
 :::
 
-
-
-
-
-
-
-
 ## Introduction
 
 In this article, you'll see how to create responsive navbars in **refine** apps using the following CSS frameworks:
@@ -32,12 +25,10 @@ In this article, you'll see how to create responsive navbars in **refine** apps 
 1. Tailwind CSS
 2. Bootstrap
 
-
 refine is a React-based framework for building internal tools using helper hooks, components, and providers. It provides amazing functionality for rapid development while ensuring extreme customizability. Everything is separate from your UI components and business logic in refine-based Apps. So, you can create UI components or code your flow. You can build admin panels, B2B applications, and dashboards using refine. But it's not limited to only these three scenarios.
 
-
-
 Steps we'll cover:
+
 - [Setting Up a refine App](#setting-up-a-refine-app)
 - [Responsive Navbar with Tailwind](#responsive-navbar-with-tailwind)
 - [Add navigation functionality to the navbar](#add-navigation-functionality-to-the-navbar)
@@ -45,47 +36,43 @@ Steps we'll cover:
 - [Add React Router to Bootstrap Navbar](#add-react-router-to-bootstrap-navbar)
 
 ## Setting Up a refine App
+
 We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **refine** application.
 
 ```
 npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
 ```
 
-
-
 Navigate to the `refine-navbar` folder and run `npm run dev` command.
-
 
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-1.png" alt="app welcome page" />
 
 <br/>
-
-
 
 We're using four resources `posts`, `categories`, `users` and `events` for the navigation purpose.
 
 Create `pages/posts` folder
 
 ```tsx title="src/pages/posts/list.tsx"
-export const postList = () => <p className="post">Post Page</p>
+export const postList = () => <p className="post">Post Page</p>;
 ```
 
 Create `pages/categories` folder
 
 ```tsx title="src/pages/categories/list.tsx"
-export const categoryList = () => <p className="category">Category Page</p>
+export const categoryList = () => <p className="category">Category Page</p>;
 ```
 
 Create `pages/users` folder
 
 ```tsx title="src/pages/users/list.tsx"
-export const userList = () => <p className="user">User Page</p>
+export const userList = () => <p className="user">User Page</p>;
 ```
 
 Create `pages/events` folder
 
 ```tsx title="src/pages/events/list.tsx"
-export const eventList = () => <p className="event">Event Page</p>
+export const eventList = () => <p className="event">Event Page</p>;
 ```
 
 Create `index.tsx` file inside `pages` folder and add the following code to it.
@@ -99,30 +86,33 @@ export * from "./events";
 
 `<Refine />` is the root component of the application. `resources` is a property of `<Refine />` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API.
 
-
- `resources` use Page components to handle data and perform rendering. Page components are passed to resources as an array of objects.
+`resources` use Page components to handle data and perform rendering. Page components are passed to resources as an array of objects.
 
 Add these `resources` as a prop to the `<Refine />` component:
-
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import React from "react";
-import 'App.css'
+import "App.css";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
 import { postList, categoryList, userList, eventList } from "pages";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            //highlight-next-line
-            resources={[{ name: "posts", list: postList }, { name: "categories", list: categoryList }, { name: "users", list: userList }, { name: "events", list: eventList }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      //highlight-next-line
+      resources={[
+        { name: "posts", list: postList },
+        { name: "categories", list: categoryList },
+        { name: "users", list: userList },
+        { name: "events", list: eventList },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -130,32 +120,31 @@ export default App;
 
 **refine** works based on consuming data from APIs. You can consume Rest APIs using `dataproviders`. Data providers are **refine** components that make it possible to consume APIs and data services easily.
 
-For this tutorial, we don't want consume API since we only want to focus navigating. The key point is `dataProvider` is required property. So we need give it anyway even if we don't want to consume the API.  We  use the fake Rest API available at `https://api.fake-rest.refine.dev/`.
-
+For this tutorial, we don't want consume API since we only want to focus navigating. The key point is `dataProvider` is required property. So we need give it anyway even if we don't want to consume the API. We use the fake Rest API available at `https://api.fake-rest.refine.dev/`.
 
 Also, add following code inside `App.css`:
 
 ```css title="src/App.css"
-.post, .category, .user, .event {
+.post,
+.category,
+.user,
+.event {
   text-align: center;
 }
 ```
+
 and import it inside `App.tsx`:
 
 ```tsx title="src/App.tsx"
-import 'App.css'
+import "App.css";
 ```
-
 
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-2.png" alt="post page" />
 
 <br/>
 
+## Responsive Navbar with Tailwind
 
-
-
-
-##  Responsive Navbar with Tailwind
 Tailwind provides utility classes for creating components. We need to set up Tailwind CSS before starting to create a navbar with it.
 
 Install tailwindcss and its peer dependencies using the following command:
@@ -174,7 +163,7 @@ Now, add paths of all template files in `tailwind.config.js` file:
 
 ```tsx title="tailwind.config.js"
 module.exports = {
-    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
 };
 ```
 
@@ -188,31 +177,29 @@ After that, add all @tailwind directives in `src/index.css` file:
 
 Add "index.css" import inside the `src/App.tsx` file.
 
-
-
 ```tsx title="src/App.tsx"
-import 'index.css';
+import "index.css";
 ```
 
 Now, We can use Tailwind to style our application.
 
 We're using the following tailwind classes for creating a responsive navbar layout:
--  `flex` sets the display mode of container to flex.
--  `flex-col` changes the flex direction to column.
--  `min-h-screen` sets the minimum height of the element to min-height: 100vh.
--  `container max-auto` centers the container.
--  `flex justify-between` adds space between the flex items.
--  `w-32` indicates that element has (32*4) 128px width.
--  `ml-2` provides 8px margin to the element from left.
--  `items-center` pushes items to the center.
--  `hidden` sets element visibility to hidden.
--  `md:flex` displays flex when screen size is atleast medium.
--  `md:hidden` sets visibility to hidden when screen size is atleast medium.
--  `text-green-500` changes text color to green with 500 font weight.
--  `bg-white` sets the background color of the element to white.
+
+- `flex` sets the display mode of container to flex.
+- `flex-col` changes the flex direction to column.
+- `min-h-screen` sets the minimum height of the element to min-height: 100vh.
+- `container max-auto` centers the container.
+- `flex justify-between` adds space between the flex items.
+- `w-32` indicates that element has (32\*4) 128px width.
+- `ml-2` provides 8px margin to the element from left.
+- `items-center` pushes items to the center.
+- `hidden` sets element visibility to hidden.
+- `md:flex` displays flex when screen size is atleast medium.
+- `md:hidden` sets visibility to hidden when screen size is atleast medium.
+- `text-green-500` changes text color to green with 500 font weight.
+- `bg-white` sets the background color of the element to white.
 
 Layout component is used for the customization of **refine** app's layout. Create `components/Layout.tsx` file inside the `src` folder.
-
 
 Create the following navbar using Tailwind CSS inside the `Layout` component. We can get all the `menuItems` from `<Refine />` using `useMenu()` hook.
 
@@ -221,36 +208,29 @@ import { useMenu, LayoutProps } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { menuItems } = useMenu();
 
-    const { menuItems } = useMenu();
-
-    return (
-        <div className="flex min-h-screen flex-col">
-            <div className="mb-2 md:border-b py-2">
-                <div className="container mx-auto">
-                    <div className="flex justify-between gap-2">
-                            <img
-                                className="w-32 ml-2"
-                                src="https://refine.dev/img/refine_logo.png"
-                                alt="Logo"
-                            />
-                        <ul className="hidden md:flex">
-                            {menuItems.map(({ name, route }) => (
-                                <li key={name} className="float-left">
-                                    <a
-                                        className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 mt-2 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition   duration-300 ease-in-out"
-                                    >
-                                        <span className="text-green-500">{name}</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white">{children}</div>
+  return (
+    <div className="flex min-h-screen flex-col">
+      <div className="mb-2 md:border-b py-2">
+        <div className="container mx-auto">
+          <div className="flex justify-between gap-2">
+            <img className="w-32 ml-2" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            <ul className="hidden md:flex">
+              {menuItems.map(({ name, route }) => (
+                <li key={name} className="float-left">
+                  <a className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 mt-2 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition   duration-300 ease-in-out">
+                    <span className="text-green-500">{name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-    );
+      </div>
+      <div className="bg-white">{children}</div>
+    </div>
+  );
 };
 ```
 
@@ -277,8 +257,6 @@ The output of the above code is as follows:
 
 <br/>
 
-
-
 Let's make it mobile responsive by adding the mobile menu:
 
 ```tsx title="src/components/Layout.tsx"
@@ -294,14 +272,11 @@ Let's make it mobile responsive by adding the mobile menu:
 ...
 ```
 
-
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-4.png" alt="post page" />
 
 <br/>
 
-
 ## Add navigation functionality to the navbar
-
 
 We need to use `Link` component in the `Layout.tsx` will look like this:
 
@@ -311,49 +286,42 @@ import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { menuItems } = useMenu();
+  //highlight-next-line
+  const { Link } = useRouterContext();
 
-    const { menuItems } = useMenu();
-//highlight-next-line
-      const { Link } = useRouterContext();
-
-    return (
-        <div className="flex min-h-screen flex-col">
-            <div className="mb-2 md:border-b py-2">
-                <div className="container mx-auto">
-                    <div className="flex justify-between gap-2">
-                        <img
-                            className="w-32 ml-2"
-                            src="https://refine.dev/img/refine_logo.png"
-                            alt="Logo"
-                        />
-                        <ul className="hidden md:flex">
-                            {menuItems.map(({ name, route }) => (
-                                <li key={name} className="float-left">
-                                //highlight-start
-                                    <Link
-                                        className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 mt-2 capitalize
+  return (
+    <div className="flex min-h-screen flex-col">
+      <div className="mb-2 md:border-b py-2">
+        <div className="container mx-auto">
+          <div className="flex justify-between gap-2">
+            <img className="w-32 ml-2" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            <ul className="hidden md:flex">
+              {menuItems.map(({ name, route }) => (
+                <li key={name} className="float-left">
+                  //highlight-start
+                  <Link
+                    className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 mt-2 capitalize
                                     decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out"
-                                        to={name}
-                                    >
-                                        <span className="text-green-500">{name}</span>
-                                    </Link>
-                                       //highlight-
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white">{children}</div>
+                    to={name}
+                  >
+                    <span className="text-green-500">{name}</span>
+                  </Link>
+                  //highlight-
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-    );
+      </div>
+      <div className="bg-white">{children}</div>
+    </div>
+  );
 };
-
 ```
 
-
-
 ## Responsive Navbar with Bootstrap
+
 I've already walked you through [setting up refine app](#refine-setup). Now, we'll create navbar inside `Layout.tsx` and pass it as a prop to `<Refine />` component.
 
 First, install **react-bootstrap**:
@@ -364,88 +332,92 @@ npm install bootstrap react-bootstrap
 
 `react-bootstrap` comes only with js. It doesn't have any CSS styles. That's why we installed bootstrap, which contains CSS.
 
-
 ```tsx title="App.tsx"
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 ```
 
 Add navbar component inside the layout component and then create navbar items. We'll use **refine** logo for our navbar.
 
 ```tsx title="src/components/Layout.tsx"
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav } from "react-bootstrap";
 
 <div>
-  <Navbar className="navbar-border" >
-    <img className="brand-image" src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" width="100px" height="100px" />
+  <Navbar className="navbar-border">
+    <img
+      className="brand-image"
+      src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
+      width="100px"
+      height="100px"
+    />
     <Nav>
-        {menuItems.map(({ name, label, icon, route }) => (
-            <Nav.Link className="nav-link">{name}</Nav.Link>
-        ))}
+      {menuItems.map(({ name, label, icon, route }) => (
+        <Nav.Link className="nav-link">{name}</Nav.Link>
+      ))}
     </Nav>
   </Navbar>
   <div>{children}</div>
-</div>
-
+</div>;
 ```
 
 Add following CSS classes to `App.css` file:
 
 ```css title="src/App.css"
 .navbar-border {
-    border-bottom: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 .nav-link {
-    margin-top: 5px;
-    text-transform: capitalize;
+  margin-top: 5px;
+  text-transform: capitalize;
 }
 
 .brand-image {
-    margin: 0 15px !important;
+  margin: 0 15px !important;
 }
 ```
+
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-5.png" alt="post page" />
 
 <br/>
 
-
-
 `<Navbar.Toggle />` creates hamburger menu when screen size equals to minimum width set by `expand` attribute in `Navbar` component. You can do this in the following way:
-
 
 ```tsx title="src/components/Layout.tsx"
 import { useMenu, LayoutProps } from "@refinedev/core";
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"
-import { Navbar, Nav } from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, Nav } from "react-bootstrap";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { menuItems } = useMenu();
 
-    const { menuItems } = useMenu();
-
-    return (
-        <div>
-            <Navbar className="navbar-border" expand="lg" >
-                <img className="brand-image" src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" width="100px" height="100px" />
-                <Navbar.Toggle />
-                <Navbar.Collapse>
-                    <Nav>
-                        {menuItems.map(({ name, label, icon, route }) => (
-                            <Nav.Link className="nav-link">{name}</Nav.Link>
-                        ))}
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-            <div>{children}</div>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar className="navbar-border" expand="lg">
+        <img
+          className="brand-image"
+          src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
+          width="100px"
+          height="100px"
+        />
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          <Nav>
+            {menuItems.map(({ name, label, icon, route }) => (
+              <Nav.Link className="nav-link">{name}</Nav.Link>
+            ))}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <div>{children}</div>
+    </div>
+  );
 };
 ```
 
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-6.png" alt="post page" />
 
 <br/>
-
 
 <br/>
 <div>
@@ -454,58 +426,57 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 </a>
 </div>
 
-##  Add React Router to Bootstrap Navbar
+## Add React Router to Bootstrap Navbar
+
 Now, we're done with creating a responsive navbar using `react-bootstrap`.
 
-
 Add `<Link>` component inside `<Nav>` like this:
-
-
-
 
 ```tsx title="src/components/Layout.tsx"
 //highlight-next-line
 import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import { Navbar, Nav } from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, Nav } from "react-bootstrap";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-
-    const { menuItems } = useMenu();
+  const { menuItems } = useMenu();
   //highlight-next-line
-    const { Link } = useRouterContext();
+  const { Link } = useRouterContext();
 
-    return (
-        <div>
-            <Navbar className="navbar-border" expand="lg" >
-                <img className="brand-image" src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" width="100px" height="100px" />
-                <Navbar.Toggle />
-                <Navbar.Collapse>
-                   //highlight-start
-                    <Nav>
-                        {menuItems.map(({ name, label, icon, route }) => (
-                            <Link className="nav-link" to={name}>
-                                <span>{name}</span>
-                            </Link>
-                        ))}
-                    </Nav>
-                  //highlight-end
-
-                </Navbar.Collapse>
-            </Navbar>
-            <div>{children}</div>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar className="navbar-border" expand="lg">
+        <img
+          className="brand-image"
+          src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
+          width="100px"
+          height="100px"
+        />
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          //highlight-start
+          <Nav>
+            {menuItems.map(({ name, label, icon, route }) => (
+              <Link className="nav-link" to={name}>
+                <span>{name}</span>
+              </Link>
+            ))}
+          </Nav>
+          //highlight-end
+        </Navbar.Collapse>
+      </Navbar>
+      <div>{children}</div>
+    </div>
+  );
 };
 ```
 
 ## Conclusion
-**Refine**  works with any custom design or UI framework. Every UI framework helps in creating layouts by providing utility classes or pre-designed components. In this article we implemented responsive navbar using Tailwind and Bootstrap.  You can choose any framework and design components according to your needs.
+
+**Refine** works with any custom design or UI framework. Every UI framework helps in creating layouts by providing utility classes or pre-designed components. In this article we implemented responsive navbar using Tailwind and Bootstrap. You can choose any framework and design components according to your needs.
 
 ## Example
 
 <CodeSandboxExample path="blog-responsive-navbar" />
-
-

@@ -7,7 +7,9 @@ source: packages/core/src/hooks/live/useSubscription/index.ts
 `useSubscription` calls the [`subscribe`][live-provider-subscribe] method from [`liveProvider`][live-provider] when mounted. It is useful when you want to subscribe to a Realtime channel.
 
 :::info-tip
+
 **refine** use this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Supported Hooks Subscriptions][supported-hooks-subscription] section for more information.
+
 :::
 
 ## Usage

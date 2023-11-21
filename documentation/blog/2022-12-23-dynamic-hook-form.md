@@ -69,11 +69,9 @@ npm create refine-app@latest dynamic-form-example -- -b v3
 
 The installer will prompt you to select your preference for the project. Select the following options to proceed:
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/cli.png"  alt="react hook form dynamic forms" />
 
 <br />
-
 
 Next, `cd` into the newly created folder and run the following command to install React hook form extension package for refine:
 
@@ -92,8 +90,6 @@ npm run dev
 
 If your default browser doesn't automatically open the app after starting the server, open your browser and navigate to `localhost:8000` to view the app.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/welcome.png"  alt="react hook form dynamic forms" />
 
 <br />
@@ -103,9 +99,6 @@ If your default browser doesn't automatically open the app after starting the se
 For this project, we'll build a refine app with CRUD pages that handle functionalities for listing, creating, and editing records from a fake API endpoint. And as a first step, we'll create these pages and pass them to the `list`, `create`, and `edit` properties on the `<Refine>` component's `resources` prop. We'll also handle dynamic forms using React hook form.
 
 To begin with, create a `pages` folder inside the `src` folder and add a `userList`, `userCreate`, and `userEdit` files:
-
-
-
 
 Next, import the `Create`, `List `, and `Edit` components from refine into their respective files and declare them in the body of the components.
 
@@ -120,11 +113,9 @@ export default UserCreate;
 
 These components provide a layout to display the List, Create, and Edit pages. They do not contain any logic, but they add action buttons like the `Create` and `save` buttons on the list and create pages.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-1-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
-
 
 Now, open the `App.jsx` file, import each file and add them to the `resources` prop like so:
 
@@ -184,13 +175,11 @@ Notice the link being passed to the `<Refine>`'s `dataProvider` prop. This is th
 
 Refer to the documentation to learn more about the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and [`dataProvider`](https://refine.dev/docs/api-reference/core/components/refine-config/#dataprovider) properties.
 
-
-
 ## Listing Records
 
 With the setup out of the way, we can populate the List page with data from the API using MUI X’s `<DataGrid>` component before we delve into the form creation process.
 
-``<DataGrid>`` is a component for rendering tabular data in React. The component comes with several features out of the box, with the prominent ones being automatic pagination, sorting, and filtering.
+`<DataGrid>` is a component for rendering tabular data in React. The component comes with several features out of the box, with the prominent ones being automatic pagination, sorting, and filtering.
 
 The `<DataGrid>` component accepts two major props:
 
@@ -227,7 +216,7 @@ const columns = React.useMemo<GridColumns<IPost>>(
       flex: 1,
     },
   ],
-  []
+  [],
 );
 ```
 
@@ -251,8 +240,6 @@ Notice that we only pass the columns prop to the `<DataGrid>` component. This is
 
 Now save your progress and return to the browser; you should see a rendered table with the response data from our API.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-2.png"  alt="react hook form dynamic forms" />
 
 <br />
@@ -265,11 +252,7 @@ As a first step, navigate to the `UserCreate` file and import the following comp
 
 ```tsx title="src/pages/UserCreate.tsx"
 import { Create, Box, TextField, Button } from "@refinedev/mui";
-import {
-  useForm,
-  Controller,
-  useFieldArray,
-} from "@refinedev/react-hook-form";
+import { useForm, Controller, useFieldArray } from "@refinedev/react-hook-form";
 ```
 
 Next, destructure the `saveButtonProps` variable from the `useForm` hook and add it to the Create component:
@@ -299,8 +282,6 @@ Moving on, create a barebone form composition using Material UI's `Box` and `Tex
 ```
 
 If you go to the browser after saving your progress and route to the `create` page, you should see a simple form similar to what's shown in the image below rendered on the page.
-
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-3.png"  alt="react hook form dynamic forms" />
 
@@ -520,7 +501,6 @@ Next, declare the button component with an event handler below the dynamic field
 
 That's all it takes to use `useFieldArray` actions in a form. If you save your progress and return to the browser, you should be able to perform the actions shown in the gif below:
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-4-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
@@ -529,20 +509,15 @@ That's all it takes to use `useFieldArray` actions in a form. If you save your p
 
 As you might have noticed in the previous section, our dynamic field values are not properly being sent to the API.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/small.png"  alt="react hook form dynamic forms" />
 
 <br />
-
 
 This is because the `useFieldArray` returns an array of objects with each field value instead of string values.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-5.png"  alt="react hook form dynamic forms" />
 
 <br />
-
-
 
 When handling the form's submission, refine automatically grabs the expected value from each input field and sends it to the server. The `fullName` and `email` records expect a `string` value, while the `skills` record expects an array of strings.
 
@@ -624,8 +599,6 @@ Now, if you save your progress and go back to the browser, everything should wor
 
 <br />
 
-
-
 Notice we can add fields but can't remove them. Next, we'll look at how we can use the `remove` action property to delete fields on the form.
 
 ## Removing fields
@@ -690,8 +663,6 @@ The `Box` component will create a Flexbox context around both components and ali
 
 <br />
 
-
-
 Alternatively, we can use a Material UI bin icon instead of a button. This will give the form a better esthetical feel.
 
 To do this, import the `DeleteIcon` icon component from Material UI like so:
@@ -736,8 +707,6 @@ Then remove the `delete` button and add the icon in its place:
 </Box>
 ```
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-9-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
@@ -767,13 +736,9 @@ Now, if you try to submit the form without appending at least one field, you'll 
 
 The form composition is complete. Next, we'll look at how to set up the Edit page for updating records.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-validation.gif"  alt="react hook form dynamic forms" />
 
 <br />
-
-
 
 ## Creating the Edit page
 
@@ -782,11 +747,7 @@ To properly edit records inside the `<Edit>` page, we need an identical composit
 ```tsx title="src/pages/UserEdit.tsx"
 import React from "react";
 import { Edit, Box, TextField, Button } from "@refinedev/mui";
-import {
-  useForm,
-  Controller,
-  useFieldArray,
-} from "@refinedev/react-hook-form";
+import { useForm, Controller, useFieldArray } from "@refinedev/react-hook-form";
 
 interface IPost {
   firstName: string;
@@ -926,14 +887,7 @@ We'll do this by adding an `action` column to the table on the List page and an 
 First, return to the `UserList` file and import the `EditButton` components from refine:
 
 ```tsx title="src/pages/UserList.tsx"
-import {
-  useDataGrid,
-  DataGrid,
-  GridColumns,
-  List,
-  Stack,
-  EditButton,
-} from "@refinedev/mui";
+import { useDataGrid, DataGrid, GridColumns, List, Stack, EditButton } from "@refinedev/mui";
 ```
 
 The `EditButton` component uses refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.
@@ -967,8 +921,6 @@ Here, we added a `renderCell` property to the fourth object and passed it a func
 
 This way, when the edit icon is clicked, refine will know to redirect users to the Edit page of the corresponding record on the same row as the icon.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-10-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
@@ -982,7 +934,6 @@ In this article, we introduced refine and React hook forms and looked at their b
 We also looked at how to set up a dynamic form using React hook form’s `useFieldArray` hook and how to fix the quirks that come with using the tool.
 
 <a rel="dofollow" href="https://www.freecodecamp.org/news/how-to-build-an-react-admin-panel-with-refine/">Refer to building React admin panel with refine article </a>
-
 
 ## Live CodeSandbox Example
 

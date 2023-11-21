@@ -9,26 +9,26 @@ source: packages/antd/src/components/themedLayoutV2/index.tsx
 
 ```tsx live shared
 const authProvider = {
-    login: async () => ({
-        success: true,
-        redirectTo: "/",
-    }),
-    logout: async () => ({
-        success: true,
-        redirectTo: "/login",
-    }),
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => ({
-        authenticated: true,
-    }),
-    getIdentity: async () => ({
-        id: 1,
-        name: "Jane Doe",
-        avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-    }),
+  login: async () => ({
+    success: true,
+    redirectTo: "/",
+  }),
+  logout: async () => ({
+    success: true,
+    redirectTo: "/login",
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  check: async () => ({
+    authenticated: true,
+  }),
+  getIdentity: async () => ({
+    id: 1,
+    name: "Jane Doe",
+    avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+  }),
 };
 ```
 
@@ -36,11 +36,11 @@ const authProvider = {
 
 By using `<ThemedLayoutV2>`, developers can create a consistent look and feel across multiple pages or sections of a website, while also improving code maintainability and reusability. The customizable sections of `<ThemedLayoutV2>` include:
 
--   [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
--   [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
--   [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
--   `<Footer>`: displayed at the bottom of the page.
--   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
+- [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
+- [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
+- [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+- `<Footer>`: displayed at the bottom of the page.
+- `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
 > `Footer` and `OffLayoutArea` do not have any default components.
 
@@ -69,39 +69,36 @@ import { authProvider } from "./authProvider";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    authProvider={authProvider}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                // highlight-next-line
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route
-                                path="/samples"
-                                element={<AntdInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          authProvider={authProvider}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                // highlight-next-line
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="/samples" element={<AntdInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -119,9 +116,9 @@ render(<App />);
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
 
--   [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L186)
--   [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
--   [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
+- [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L186)
+- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
+- [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
 
 :::
 
@@ -138,18 +135,18 @@ import { ThemedLayoutV2 } from "@refinedev/antd";
 import { CustomSider } from "./CustomSider";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-next-line
-                Sider={() => <CustomSider />}
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-next-line
+        Sider={() => <CustomSider />}
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -164,34 +161,32 @@ import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
 import { CustomTitle } from "./CustomTitle";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Sider={() => (
-                    <ThemedSiderV2
-                        Title={({ collapsed }) => (
-                            <CustomTitle collapsed={collapsed} />
-                        )}
-                        render={({ items, logout, collapsed }) => {
-                            return (
-                                <>
-                                    <div>My Custom Element</div>
-                                    {items}
-                                    {logout}
-                                </>
-                            );
-                        }}
-                    />
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Sider={() => (
+          <ThemedSiderV2
+            Title={({ collapsed }) => <CustomTitle collapsed={collapsed} />}
+            render={({ items, logout, collapsed }) => {
+              return (
+                <>
+                  <div>My Custom Element</div>
+                  {items}
+                  {logout}
+                </>
+              );
+            }}
+          />
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -202,19 +197,19 @@ import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Sider={() => <ThemedSiderV2 fixed />}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Sider={() => <ThemedSiderV2 fixed />}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -230,10 +225,10 @@ const App: React.FC = () => {
 
 ```tsx
 type SiderRenderFunction = (props: {
-    items: JSX.Element[];
-    logout: React.ReactNode;
-    dashboard: React.ReactNode;
-    collapsed: boolean;
+  items: JSX.Element[];
+  logout: React.ReactNode;
+  dashboard: React.ReactNode;
+  collapsed: boolean;
 }) => React.ReactNode;
 ```
 
@@ -241,15 +236,15 @@ type SiderRenderFunction = (props: {
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
--   `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
--   `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
+- `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
+- `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
 
 ```tsx
 <ThemedLayoutV2
-    // highlight-next-line
-    initialSiderCollapsed={true}
+  // highlight-next-line
+  initialSiderCollapsed={true}
 >
-    {/* ... */}
+  {/* ... */}
 </ThemedLayoutV2>
 ```
 
@@ -267,18 +262,18 @@ import { ThemedLayoutV2 } from "@refinedev/antd";
 import { CustomHeader } from "./CustomHeader";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-next-line
-                Header={() => <CustomHeader />}
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-next-line
+        Header={() => <CustomHeader />}
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -287,25 +282,25 @@ You can also make it sticky using the `sticky` property:
 ```tsx
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    // highlight-next-line
-    ThemedHeaderV2,
+  ThemedLayoutV2,
+  // highlight-next-line
+  ThemedHeaderV2,
 } from "@refinedev/antd";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Header={() => <ThemedHeaderV2 sticky />}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Header={() => <ThemedHeaderV2 sticky />}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -324,26 +319,26 @@ import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                Title={({ collapsed }) => (
-                    <ThemedTitleV2
-                        // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
-                        collapsed={collapsed}
-                        icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
-                        text="My Project"
-                    />
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        Title={({ collapsed }) => (
+          <ThemedTitleV2
+            // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
+            collapsed={collapsed}
+            icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
+            text="My Project"
+          />
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -374,50 +369,50 @@ import { authProvider } from "./authProvider";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    authProvider={authProvider}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          authProvider={authProvider}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                // highlight-next-line
+                <ThemedLayoutV2
+                  Footer={() => (
+                    <Layout.Footer
+                      style={{
+                        textAlign: "center",
+                        color: "#fff",
+                        backgroundColor: "#7dbcea",
+                      }}
+                    >
+                      My Custom Footer
+                    </Layout.Footer>
+                  )}
                 >
-                    <Routes>
-                        <Route
-                            element={
-                                // highlight-next-line
-                                <ThemedLayoutV2
-                                    Footer={() => (
-                                        <Layout.Footer
-                                            style={{
-                                                textAlign: "center",
-                                                color: "#fff",
-                                                backgroundColor: "#7dbcea",
-                                            }}
-                                        >
-                                            My Custom Footer
-                                        </Layout.Footer>
-                                    )}
-                                >
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="samples">
-                                <Route index element={<AntdInferencer />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="samples">
+                <Route index element={<AntdInferencer />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -431,28 +426,28 @@ import { ThemedLayoutV2 } from "@refinedev/antd";
 import { Layout } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-next-line
-                Footer={() => (
-                    <Layout.Footer
-                        style={{
-                            textAlign: "center",
-                            color: "#fff",
-                            backgroundColor: "#7dbcea",
-                        }}
-                    >
-                        My Custom Footer
-                    </Layout.Footer>
-                )}
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-next-line
+        Footer={() => (
+          <Layout.Footer
+            style={{
+              textAlign: "center",
+              color: "#fff",
+              backgroundColor: "#7dbcea",
+            }}
+          >
+            My Custom Footer
+          </Layout.Footer>
+        )}
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -483,57 +478,52 @@ import { authProvider } from "./authProvider";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    authProvider={authProvider}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          authProvider={authProvider}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                // highlight-next-line
+                <ThemedLayoutV2
+                  OffLayoutArea={() => (
+                    <Button
+                      type="primary"
+                      size="small"
+                      onClick={() => alert("Off layout are clicked")}
+                      style={{
+                        position: "fixed",
+                        left: "8px",
+                        bottom: "8px",
+                        zIndex: 1000,
+                      }}
+                    >
+                      Send us Feedback 👋
+                    </Button>
+                  )}
                 >
-                    <Routes>
-                        <Route
-                            element={
-                                // highlight-next-line
-                                <ThemedLayoutV2
-                                    OffLayoutArea={() => (
-                                        <Button
-                                            type="primary"
-                                            size="small"
-                                            onClick={() =>
-                                                alert("Off layout are clicked")
-                                            }
-                                            style={{
-                                                position: "fixed",
-                                                left: "8px",
-                                                bottom: "8px",
-                                                zIndex: 1000,
-                                            }}
-                                        >
-                                            Send us Feedback 👋
-                                        </Button>
-                                    )}
-                                >
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route
-                                path="/samples"
-                                element={<AntdInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="/samples" element={<AntdInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -547,33 +537,33 @@ import { ThemedLayoutV2 } from "@refinedev/antd";
 import { Button } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        // ...
-        >
-            <ThemedLayoutV2
-                // highlight-start
-                OffLayoutArea={() => (
-                    <Button
-                        type="primary"
-                        size="small"
-                        onClick={() => alert("Off layout are clicked")}
-                        style={{
-                            position: "fixed",
-                            left: "8px",
-                            bottom: "8px",
-                            zIndex: 1000,
-                        }}
-                    >
-                        Send us Feedback 👋
-                    </Button>
-                )}
-                // highlight-end
-            >
-                {/* ... */}
-            </ThemedLayoutV2>
-        </Refine>
-    );
+  return (
+    <Refine
+    // ...
+    >
+      <ThemedLayoutV2
+        // highlight-start
+        OffLayoutArea={() => (
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => alert("Off layout are clicked")}
+            style={{
+              position: "fixed",
+              left: "8px",
+              bottom: "8px",
+              zIndex: 1000,
+            }}
+          >
+            Send us Feedback 👋
+          </Button>
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -673,19 +663,15 @@ import { ThemedSiderV2 } from "components/themedLayout/sider";
 import { ThemedTitleV2 } from "components/themedLayout/title";
 
 const App = () => {
-    return (
-        <Refine
+  return (
+    <Refine
+    /* ... */
+    >
+      <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2}>
         /* ... */
-        >
-            <ThemedLayoutV2
-                Header={ThemedHeaderV2}
-                Sider={ThemedSiderV2}
-                Title={ThemedTitleV2}
-            >
-                /* ... */
-            </ThemedLayoutV2>
-        </Refine>
-    );
+      </ThemedLayoutV2>
+    </Refine>
+  );
 };
 ```
 
@@ -743,73 +729,59 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 // highlight-start
 const DashboardPage = () => {
-    const {
-        siderCollapsed,
-        setSiderCollapsed,
-        mobileSiderOpen,
-        setMobileSiderOpen,
-    } = useThemedLayoutContext();
+  const { siderCollapsed, setSiderCollapsed, mobileSiderOpen, setMobileSiderOpen } = useThemedLayoutContext();
 
-    return (
-        <Space style={{ paddingTop: 30 }}>
-            <Button
-                type="primary"
-                onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
-            >
-                toggle mobile sider
-            </Button>
-            <Button
-                type="primary"
-                onClick={() => setSiderCollapsed(!siderCollapsed)}
-            >
-                toggle collapse of sider
-            </Button>
-        </Space>
-    );
+  return (
+    <Space style={{ paddingTop: 30 }}>
+      <Button type="primary" onClick={() => setMobileSiderOpen(!mobileSiderOpen)}>
+        toggle mobile sider
+      </Button>
+      <Button type="primary" onClick={() => setSiderCollapsed(!siderCollapsed)}>
+        toggle collapse of sider
+      </Button>
+    </Space>
+  );
 };
 // highlight-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    authProvider={authProvider}
-                    resources={[
-                        // highlight-start
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        // highlight-end
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route path="/" element={<DashboardPage />} />
-                            <Route
-                                path="/samples"
-                                element={<AntdInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          authProvider={authProvider}
+          resources={[
+            // highlight-start
+            {
+              name: "dashboard",
+              list: "/",
+            },
+            // highlight-end
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/samples" element={<AntdInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -842,32 +814,30 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 const App: React.FC = () => {
-    // you can get this value from `localStorage` or `cookie`
-    // for persistence between sessions
-    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+  // you can get this value from `localStorage` or `cookie`
+  // for persistence between sessions
+  const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
-    return (
-        <BrowserRouter>
-            <Refine
-            // ...
-            >
-                {/* ... */}
-                <Routes>
-                    <Route
-                        element={
-                            <ThemedLayoutV2
-                                initialSiderCollapsed={initialSiderCollapsed}
-                            >
-                                <Outlet />
-                            </ThemedLayoutV2>
-                        }
-                    >
-                        {/* ... */}
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+      // ...
+      >
+        {/* ... */}
+        <Routes>
+          <Route
+            element={
+              <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+                <Outlet />
+              </ThemedLayoutV2>
+            }
+          >
+            {/* ... */}
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;
@@ -887,30 +857,30 @@ import type { AppProps } from "next/app";
 import type { NextPage } from "next";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    // you can get this value from `localStorage` or `cookie`
-    // for persistence between sessions
-    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+  // you can get this value from `localStorage` or `cookie`
+  // for persistence between sessions
+  const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
-    const renderComponent = () => {
-        if (Component.noLayout) {
-            return <Component {...pageProps} />;
-        }
-
-        return (
-            <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
-                <Component {...pageProps} />
-            </ThemedLayoutV2>
-        );
-    };
+  const renderComponent = () => {
+    if (Component.noLayout) {
+      return <Component {...pageProps} />;
+    }
 
     return (
-        <Refine
-        // ...
-        >
-            {/* ... */}
-            {renderComponent()}
-        </Refine>
+      <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+        <Component {...pageProps} />
+      </ThemedLayoutV2>
     );
+  };
+
+  return (
+    <Refine
+    // ...
+    >
+      {/* ... */}
+      {renderComponent()}
+    </Refine>
+  );
 }
 
 export default MyApp;
@@ -926,15 +896,15 @@ import { Outlet } from "@remix-run/react";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 export default function BaseLayout() {
-    // you can get this value from `localStorage` or `cookie`
-    // for persistence between sessions
-    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+  // you can get this value from `localStorage` or `cookie`
+  // for persistence between sessions
+  const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
-    return (
-        <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
-            <Outlet />
-        </ThemedLayoutV2>
-    );
+  return (
+    <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+      <Outlet />
+    </ThemedLayoutV2>
+  );
 }
 ```
 

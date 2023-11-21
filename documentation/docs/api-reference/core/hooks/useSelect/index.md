@@ -34,7 +34,9 @@ Here is a basic example of how to use `useSelect` hook.
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
+
 :::
 
 When `useSelect` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
@@ -222,11 +224,15 @@ It allows us to `AutoComplete` the `options`.
 <OnSearchLivePreview />
 
 :::tip
+
 The HTML select tag does not natively support AutoComplete. If AutoComplete is desired, it can be used with [React Select](https://react-select.com/async) or [use-select](https://github.com/tannerlinsley/use-select).
+
 :::
 
 :::info
+
 If `onSearch` is used, it will override the existing `filters`.
+
 :::
 
 > For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
@@ -289,7 +295,9 @@ useSelect({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
@@ -309,7 +317,9 @@ useSelect({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
@@ -329,7 +339,9 @@ useSelect({
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
@@ -343,7 +355,9 @@ useSelect({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function that is executed when new events from a subscription are arrived.
@@ -359,7 +373,9 @@ useSelect({
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -393,13 +409,17 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`sort`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 > Default: `false`
@@ -419,7 +439,9 @@ useSelect({
 You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/docs/api-reference/core/hooks/useSelect/#haspagination) prop.
 
 :::caution
+
 Don't forget to implement it in the [data provider](/docs/api-reference/core/providers/data-provider/#getlist).
+
 :::
 
 ### How to add search to options (Autocomplete)?

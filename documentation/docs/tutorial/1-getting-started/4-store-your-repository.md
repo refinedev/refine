@@ -2,8 +2,8 @@
 id: store-your-repository
 title: 5. Storing your repository online
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/generate-crud-pages
-    next: tutorial/getting-started/deploy-project
+  prev: tutorial/getting-started/{preferredUI}/generate-crud-pages
+  next: tutorial/getting-started/deploy-project
 ---
 
 In this tutorial, we will use GitHub to store and manage our repository, and to connect to a web host. If you prefer to use a different online git provider, feel free to do so.
@@ -11,6 +11,7 @@ In this tutorial, we will use GitHub to store and manage our repository, and to 
 :::info
 
 If you are already proficient in git, and have your own preferred workflow, you can create a new GitHub repository for your project using your method of choice. Once you have done so, you can move on to the next page: ["Deploy your app to the Web"](/docs/tutorial/getting-started/deploy-project).
+
 :::
 
 ## Create a repository on GitHub

@@ -9,7 +9,9 @@ The [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a 
 We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
 :::info
+
 The `useDrawerForm` hook is extended from the [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/master/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+
 :::
 
 ## Basic Usage
@@ -31,212 +33,167 @@ In this example, we will show you how to `"create"` a record with `useDrawerForm
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
+import { Box, Drawer, Group, Pagination, ScrollArea, Select, Table, TextInput } from "@mantine/core";
 import {
-    Box,
-    Drawer,
-    Group,
-    Pagination,
-    ScrollArea,
-    Select,
-    Table,
-    TextInput,
-} from "@mantine/core";
-import {
-    List,
-    SaveButton,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
+  List,
+  SaveButton,
+  // highlight-next-line
+  useModalForm as useDrawerForm,
 } from "@refinedev/mantine";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import React from "react";
 
 const PostList: React.FC = () => {
-    // highlight-start
-    const {
-        getInputProps,
-        saveButtonProps,
-        modal: { show, close, title, visible },
-    } = useDrawerForm({
-        refineCoreProps: { action: "create" },
-        initialValues: {
-            title: "",
-            status: "",
-            content: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-        },
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    getInputProps,
+    saveButtonProps,
+    modal: { show, close, title, visible },
+  } = useDrawerForm({
+    refineCoreProps: { action: "create" },
+    initialValues: {
+      title: "",
+      status: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+    },
+  });
+  // highlight-end
 
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-                meta: {
-                    filterElement: function render(props: FilterElementProps) {
-                        return (
-                            <Select
-                                defaultValue="published"
-                                data={[
-                                    { label: "Published", value: "published" },
-                                    { label: "Draft", value: "draft" },
-                                    { label: "Rejected", value: "rejected" },
-                                ]}
-                                {...props}
-                            />
-                        );
-                    },
-                    filterOperator: "eq",
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+        meta: {
+          filterOperator: "contains",
         },
-    } = useTable({
-        columns,
-    });
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "status",
+        meta: {
+          filterElement: function render(props: FilterElementProps) {
+            return (
+              <Select
+                defaultValue="published"
+                data={[
+                  { label: "Published", value: "published" },
+                  { label: "Draft", value: "draft" },
+                  { label: "Rejected", value: "rejected" },
+                ]}
+                {...props}
+              />
+            );
+          },
+          filterOperator: "eq",
+        },
+      },
+    ],
+    [],
+  );
 
-    return (
-        <>
-            {/* highlight-start */}
-            <Drawer
-                opened={visible}
-                onClose={close}
-                title={title}
-                padding="xl"
-                size="xl"
-                position="right"
-            >
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                    {...getInputProps("status")}
-                />
-                <Box
-                    mt={8}
-                    sx={{ display: "flex", justifyContent: "flex-end" }}
-                >
-                    <SaveButton {...saveButtonProps} />
-                </Box>
-            </Drawer>
-            {/* highlight-end */}
-            <ScrollArea>
-                {/* highlight-next-line */}
-                <List createButtonProps={{ onClick: () => show() }}>
-                    <Table highlightOnHover>
-                        <thead>
-                            {getHeaderGroups().map((headerGroup) => (
-                                <tr key={headerGroup.id}>
-                                    {headerGroup.headers.map((header) => {
-                                        return (
-                                            <th key={header.id}>
-                                                {!header.isPlaceholder && (
-                                                    <Group spacing="xs" noWrap>
-                                                        <Box>
-                                                            {flexRender(
-                                                                header.column
-                                                                    .columnDef
-                                                                    .header,
-                                                                header.getContext(),
-                                                            )}
-                                                        </Box>
-                                                    </Group>
-                                                )}
-                                            </th>
-                                        );
-                                    })}
-                                </tr>
-                            ))}
-                        </thead>
-                        <tbody>
-                            {getRowModel().rows.map((row) => {
-                                return (
-                                    <tr key={row.id}>
-                                        {row.getVisibleCells().map((cell) => {
-                                            return (
-                                                <td key={cell.id}>
-                                                    {flexRender(
-                                                        cell.column.columnDef
-                                                            .cell,
-                                                        cell.getContext(),
-                                                    )}
-                                                </td>
-                                            );
-                                        })}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </Table>
-                    <br />
-                    <Pagination
-                        position="right"
-                        total={pageCount}
-                        page={current}
-                        onChange={setCurrent}
-                    />
-                </List>
-            </ScrollArea>
-        </>
-    );
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      setCurrent,
+      pageCount,
+      current,
+      tableQueryResult: { data: tableData },
+    },
+  } = useTable({
+    columns,
+  });
+
+  return (
+    <>
+      {/* highlight-start */}
+      <Drawer opened={visible} onClose={close} title={title} padding="xl" size="xl" position="right">
+        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <Select
+          mt={8}
+          label="Status"
+          placeholder="Pick one"
+          data={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+          {...getInputProps("status")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <SaveButton {...saveButtonProps} />
+        </Box>
+      </Drawer>
+      {/* highlight-end */}
+      <ScrollArea>
+        {/* highlight-next-line */}
+        <List createButtonProps={{ onClick: () => show() }}>
+          <Table highlightOnHover>
+            <thead>
+              {getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <th key={header.id}>
+                        {!header.isPlaceholder && (
+                          <Group spacing="xs" noWrap>
+                            <Box>{flexRender(header.column.columnDef.header, header.getContext())}</Box>
+                          </Group>
+                        )}
+                      </th>
+                    );
+                  })}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {getRowModel().rows.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+          <br />
+          <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+        </List>
+      </ScrollArea>
+    </>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
@@ -252,268 +209,218 @@ In this example, we will show you how to `"edit"` a record with `useDrawerForm`:
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
+import { Box, Drawer, Group, Pagination, ScrollArea, Select, Table, TextInput } from "@mantine/core";
 import {
-    Box,
-    Drawer,
-    Group,
-    Pagination,
-    ScrollArea,
-    Select,
-    Table,
-    TextInput,
-} from "@mantine/core";
-import {
-    EditButton,
-    List,
-    SaveButton,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
+  EditButton,
+  List,
+  SaveButton,
+  // highlight-next-line
+  useModalForm as useDrawerForm,
 } from "@refinedev/mantine";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import React from "react";
 
 const PostList: React.FC = () => {
-    // highlight-start
-    const {
-        getInputProps,
-        saveButtonProps,
-        modal: { show, close, title, visible },
-    } = useDrawerForm({
-        refineCoreProps: { action: "edit" },
-        initialValues: {
-            title: "",
-            status: "",
-            content: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-        },
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    getInputProps,
+    saveButtonProps,
+    modal: { show, close, title, visible },
+  } = useDrawerForm({
+    refineCoreProps: { action: "edit" },
+    initialValues: {
+      title: "",
+      status: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+    },
+  });
+  // highlight-end
 
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-                meta: {
-                    filterElement: function render(props: FilterElementProps) {
-                        return (
-                            <Select
-                                defaultValue="published"
-                                data={[
-                                    { label: "Published", value: "published" },
-                                    { label: "Draft", value: "draft" },
-                                    { label: "Rejected", value: "rejected" },
-                                ]}
-                                {...props}
-                            />
-                        );
-                    },
-                    filterOperator: "eq",
-                },
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                enableColumnFilter: false,
-                enableSorting: false,
-                cell: function render({ getValue }) {
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+        meta: {
+          filterOperator: "contains",
+        },
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "status",
+        meta: {
+          filterElement: function render(props: FilterElementProps) {
+            return (
+              <Select
+                defaultValue="published"
+                data={[
+                  { label: "Published", value: "published" },
+                  { label: "Draft", value: "draft" },
+                  { label: "Rejected", value: "rejected" },
+                ]}
+                {...props}
+              />
+            );
+          },
+          filterOperator: "eq",
+        },
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        enableColumnFilter: false,
+        enableSorting: false,
+        cell: function render({ getValue }) {
+          return (
+            <Group spacing="xs" noWrap>
+              {/* highlight-start */}
+              <EditButton hideText onClick={() => show(getValue() as number)} />
+              {/* highlight-end */}
+            </Group>
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      setCurrent,
+      pageCount,
+      current,
+      tableQueryResult: { data: tableData },
+    },
+  } = useTable({
+    columns,
+  });
+
+  return (
+    <>
+      {/* highlight-start */}
+      <Drawer opened={visible} onClose={close} title={title} padding="xl" size="xl" position="right">
+        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <Select
+          mt={8}
+          label="Status"
+          placeholder="Pick one"
+          data={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+          {...getInputProps("status")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <SaveButton {...saveButtonProps} />
+        </Box>
+      </Drawer>
+      {/* highlight-end */}
+      <ScrollArea>
+        <List>
+          <Table highlightOnHover>
+            <thead>
+              {getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
                     return (
-                        <Group spacing="xs" noWrap>
-                            {/* highlight-start */}
-                            <EditButton
-                                hideText
-                                onClick={() => show(getValue() as number)}
-                            />
-                            {/* highlight-end */}
-                        </Group>
+                      <th key={header.id}>
+                        {!header.isPlaceholder && (
+                          <Group spacing="xs" noWrap>
+                            <Box>{flexRender(header.column.columnDef.header, header.getContext())}</Box>
+                          </Group>
+                        )}
+                      </th>
                     );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
-        columns,
-    });
-
-    return (
-        <>
-            {/* highlight-start */}
-            <Drawer
-                opened={visible}
-                onClose={close}
-                title={title}
-                padding="xl"
-                size="xl"
-                position="right"
-            >
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                    {...getInputProps("status")}
-                />
-                <Box
-                    mt={8}
-                    sx={{ display: "flex", justifyContent: "flex-end" }}
-                >
-                    <SaveButton {...saveButtonProps} />
-                </Box>
-            </Drawer>
-            {/* highlight-end */}
-            <ScrollArea>
-                <List>
-                    <Table highlightOnHover>
-                        <thead>
-                            {getHeaderGroups().map((headerGroup) => (
-                                <tr key={headerGroup.id}>
-                                    {headerGroup.headers.map((header) => {
-                                        return (
-                                            <th key={header.id}>
-                                                {!header.isPlaceholder && (
-                                                    <Group spacing="xs" noWrap>
-                                                        <Box>
-                                                            {flexRender(
-                                                                header.column
-                                                                    .columnDef
-                                                                    .header,
-                                                                header.getContext(),
-                                                            )}
-                                                        </Box>
-                                                    </Group>
-                                                )}
-                                            </th>
-                                        );
-                                    })}
-                                </tr>
-                            ))}
-                        </thead>
-                        <tbody>
-                            {getRowModel().rows.map((row) => {
-                                return (
-                                    <tr key={row.id}>
-                                        {row.getVisibleCells().map((cell) => {
-                                            return (
-                                                <td key={cell.id}>
-                                                    {flexRender(
-                                                        cell.column.columnDef
-                                                            .cell,
-                                                        cell.getContext(),
-                                                    )}
-                                                </td>
-                                            );
-                                        })}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </Table>
-                    <br />
-                    <Pagination
-                        position="right"
-                        total={pageCount}
-                        page={current}
-                        onChange={setCurrent}
-                    />
-                </List>
-            </ScrollArea>
-        </>
-    );
+                  })}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {getRowModel().rows.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+          <br />
+          <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+        </List>
+      </ScrollArea>
+    </>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
 ```
 
 :::caution
+
 **refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Drawer>` can fetch data by the record `id`.
 
 ```tsx
 const columns = React.useMemo<ColumnDef<IPost>[]>(
-    () => [
-        // --
-        {
-            id: "actions",
-            header: "Actions",
-            accessorKey: "id",
-            enableColumnFilter: false,
-            enableSorting: false,
-            cell: function render({ getValue }) {
-                return (
-                    <Group spacing="xs" noWrap>
-                        <EditButton
-                            hideText
-                            onClick={() => show(getValue() as number)}
-                        />
-                    </Group>
-                );
-            },
-        },
-    ],
-    [],
+  () => [
+    // --
+    {
+      id: "actions",
+      header: "Actions",
+      accessorKey: "id",
+      enableColumnFilter: false,
+      enableSorting: false,
+      cell: function render({ getValue }) {
+        return (
+          <Group spacing="xs" noWrap>
+            <EditButton hideText onClick={() => show(getValue() as number)} />
+          </Group>
+        );
+      },
+    },
+  ],
+  [],
 );
 
 const table = useTable({
-    columns,
+  columns,
 });
 ```
 
@@ -533,11 +440,11 @@ All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties are also
 
 ```tsx
 const drawerForm = useDrawerForm({
-    refineCoreProps: {
-        action: "edit",
-        resource: "posts",
-        id: "1",
-    },
+  refineCoreProps: {
+    action: "edit",
+    resource: "posts",
+    id: "1",
+  },
 });
 ```
 
@@ -551,9 +458,9 @@ Default values for the form. Use this to pre-populate the form with data that ne
 
 ```tsx
 const drawerForm = useDrawerForm({
-    initialValues: {
-        title: "Hello World",
-    },
+  initialValues: {
+    title: "Hello World",
+  },
 });
 ```
 
@@ -563,9 +470,9 @@ When `true`, drawer will be visible by default. It is `false` by default.
 
 ```tsx
 const drawerForm = useDrawerForm({
-    modalProps: {
-        defaultVisible: true,
-    },
+  modalProps: {
+    defaultVisible: true,
+  },
 });
 ```
 
@@ -575,9 +482,9 @@ When `true`, drawer will be closed after successful submit. It is `true` by defa
 
 ```tsx
 const drawerForm = useDrawerForm({
-    modalProps: {
-        autoSubmitClose: false,
-    },
+  modalProps: {
+    autoSubmitClose: false,
+  },
 });
 ```
 
@@ -587,9 +494,9 @@ When `true`, form will be reset after successful submit. It is `true` by default
 
 ```tsx
 const drawerForm = useDrawerForm({
-    modalProps: {
-        autoResetForm: false,
-    },
+  modalProps: {
+    autoResetForm: false,
+  },
 });
 ```
 
@@ -601,7 +508,7 @@ This property can also be set as an object `{ key: string; syncId?: boolean }` t
 
 ```tsx
 const drawerForm = useDrawerForm({
-    syncWithLocation: { key: "my-modal", syncId: true },
+  syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 
@@ -614,20 +521,20 @@ Return the `overtime` object from this hook. It becomes `undefined` when the req
 
 ```tsx
 const { overtime } = useDrawerForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -653,11 +560,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useDrawerForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
     },
+  },
 });
 ```
 
@@ -669,13 +576,13 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useDrawerForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            debounce: 2000,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
     },
+  },
 });
 ```
 
@@ -687,13 +594,13 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnUnmount: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
     },
+  },
 });
 ```
 
@@ -705,13 +612,13 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnClose: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnClose: true,
     },
+  },
 });
 ```
 
@@ -729,7 +636,7 @@ Current visibility state of the drawer.
 
 ```tsx
 const drawerForm = useDrawerForm({
-    defaultVisible: true,
+  defaultVisible: true,
 });
 
 console.log(drawerForm.modal.visible); // true
@@ -741,12 +648,12 @@ Title of the drawer. Based on resource and action values
 
 ```tsx
 const {
-    modal: { title },
+  modal: { title },
 } = useDrawerForm({
-    refineCoreProps: {
-        resource: "posts",
-        action: "create",
-    },
+  refineCoreProps: {
+    resource: "posts",
+    action: "create",
+  },
 });
 
 console.log(title); // "Create Post"
@@ -758,23 +665,18 @@ console.log(title); // "Create Post"
 
 ```tsx
 const {
-    getInputProps,
-    modal: { close, visible, title },
+  getInputProps,
+  modal: { close, visible, title },
 } = useDrawerForm();
 
 return (
-    <Drawer opened={visible} onClose={close} title={title}>
-        <TextInput
-            mt={8}
-            label="Title"
-            placeholder="Title"
-            {...getInputProps("title")}
-        />
-        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <SaveButton {...saveButtonProps} />
-            <Button onClick={close}>Cancel</Button>
-        </Box>
-    </Drawer>
+  <Drawer opened={visible} onClose={close} title={title}>
+    <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+    <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <SaveButton {...saveButtonProps} />
+      <Button onClick={close}>Cancel</Button>
+    </Box>
+  </Drawer>
 );
 ```
 
@@ -784,23 +686,18 @@ return (
 
 ```tsx
 const {
-    modal: { submit },
+  modal: { submit },
 } = useDrawerForm();
 
 // ---
 
 return (
-    <Drawer opened={visible} onClose={close} title={title}>
-        <TextInput
-            mt={8}
-            label="Title"
-            placeholder="Title"
-            {...getInputProps("title")}
-        />
-        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={submit}>Save</Button>
-        </Box>
-    </Drawer>
+  <Drawer opened={visible} onClose={close} title={title}>
+    <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+    <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Button onClick={submit}>Save</Button>
+    </Box>
+  </Drawer>
 );
 ```
 
@@ -810,30 +707,25 @@ return (
 
 ```tsx
 const {
-    getInputProps,
-    modal: { close, visible, title, show },
+  getInputProps,
+  modal: { close, visible, title, show },
 } = useDrawerForm();
 
 const onFinishHandler = (values) => {
-    onFinish(values);
-    show();
+  onFinish(values);
+  show();
 };
 
 return (
-    <>
-        <Button onClick={}>Show Modal</Button>
-        <Drawer opened={visible} onClose={close} title={title}>
-            <TextInput
-                mt={8}
-                label="Title"
-                placeholder="Title"
-                {...getInputProps("title")}
-            />
-            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <SaveButton {...saveButtonProps} />
-            </Box>
-        </Drawer>
-    </>
+  <>
+    <Button onClick={}>Show Modal</Button>
+    <Drawer opened={visible} onClose={close} title={title}>
+      <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+      <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <SaveButton {...saveButtonProps} />
+      </Box>
+    </Drawer>
+  </>
 );
 ```
 
@@ -845,23 +737,18 @@ return (
 const { getInputProps, modal, saveButtonProps } = useDrawerForm();
 
 return (
-    <Drawer {...modal}>
-        <TextInput
-            mt={8}
-            label="Title"
-            placeholder="Title"
-            {...getInputProps("title")}
-        />
-        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button
-                {...saveButtonProps}
-                onClick={(e) => {
-                    // -- your custom logic
-                    saveButtonProps.onClick(e);
-                }}
-            />
-        </Box>
-    </Drawer>
+  <Drawer {...modal}>
+    <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+    <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Button
+        {...saveButtonProps}
+        onClick={(e) => {
+          // -- your custom logic
+          saveButtonProps.onClick(e);
+        }}
+      />
+    </Box>
+  </Drawer>
 );
 ```
 
@@ -893,48 +780,38 @@ import { useDrawerForm } from "@refinedev/mantine";
 import React from "react";
 
 const UserCreate: React.FC = () => {
-    const {
-        getInputProps,
-        saveButtonProps,
-        modal: { show, close, title, visible },
-    } = useDrawerForm({
-        refineCoreProps: { action: "create" },
-        initialValues: {
-            name: "",
-            surname: "",
-        },
-        // highlight-start
-        transformValues: (values) => ({
-            fullName: `${values.name} ${values.surname}`,
-        }),
-        // highlight-end
-    });
+  const {
+    getInputProps,
+    saveButtonProps,
+    modal: { show, close, title, visible },
+  } = useDrawerForm({
+    refineCoreProps: { action: "create" },
+    initialValues: {
+      name: "",
+      surname: "",
+    },
+    // highlight-start
+    transformValues: (values) => ({
+      fullName: `${values.name} ${values.surname}`,
+    }),
+    // highlight-end
+  });
 
-    return (
-        <Drawer opened={visible} onClose={close} title={title}>
-            <TextInput
-                mt={8}
-                label="Name"
-                placeholder="Name"
-                {...getInputProps("name")}
-            />
-            <TextInput
-                mt={8}
-                label="Surname"
-                placeholder="Surname"
-                {...getInputProps("surname")}
-            />
-            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button
-                    {...saveButtonProps}
-                    onClick={(e) => {
-                        // -- your custom logic
-                        saveButtonProps.onClick(e);
-                    }}
-                />
-            </Box>
-        </Drawer>
-    );
+  return (
+    <Drawer opened={visible} onClose={close} title={title}>
+      <TextInput mt={8} label="Name" placeholder="Name" {...getInputProps("name")} />
+      <TextInput mt={8} label="Surname" placeholder="Surname" {...getInputProps("surname")} />
+      <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button
+          {...saveButtonProps}
+          onClick={(e) => {
+            // -- your custom logic
+            saveButtonProps.onClick(e);
+          }}
+        />
+      </Box>
+    </Drawer>
+  );
 };
 ```
 
@@ -950,7 +827,7 @@ const UserCreate: React.FC = () => {
 
 <br />
 
-> -   #### ModalPropsType
+> - #### ModalPropsType
 >
 > | Property        | Description                                                   | Type      | Default |
 > | --------------- | ------------------------------------------------------------- | --------- | ------- |
@@ -960,7 +837,7 @@ const UserCreate: React.FC = () => {
 
 ### Type Parameters
 
-| Property       | Description                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
@@ -981,7 +858,7 @@ const UserCreate: React.FC = () => {
 
 <br />
 
-> -   #### ModalReturnValues
+> - #### ModalReturnValues
 >
 > | Property        | Description                                    | Type                                                                             |
 > | --------------- | ---------------------------------------------- | -------------------------------------------------------------------------------- |

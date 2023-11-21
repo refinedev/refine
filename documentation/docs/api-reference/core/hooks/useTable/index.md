@@ -14,6 +14,7 @@ import PropResource from "@site/src/partials/prop-resource";
 `useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::info
+
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
 - [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
@@ -63,7 +64,9 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 `setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the second parameter. You can change the default behavior with the [`filters.defaultBehavior`](#filtersdefaultbehavior) prop.
 
 :::info
+
 If you are using `merge` behavior and want to remove one of the filters, you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
+
 :::
 
 <FilteringLivePreview/>
@@ -71,7 +74,9 @@ If you are using `merge` behavior and want to remove one of the filters, you sho
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
@@ -383,7 +388,9 @@ const myDataProvider = {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -404,7 +411,9 @@ useTable({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
@@ -425,7 +434,9 @@ useTable({
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -442,7 +453,9 @@ useTable({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
@@ -459,7 +472,9 @@ useTable({
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -494,7 +509,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 > Default: `1`
@@ -511,7 +528,9 @@ useTable({
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 > Default: `10`
@@ -528,7 +547,9 @@ useTable({
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 > Default: `true`
@@ -545,7 +566,9 @@ useTable({
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -567,7 +590,9 @@ useTable({
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -589,7 +614,9 @@ useTable({
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -612,7 +639,9 @@ useTable({
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -635,7 +664,9 @@ useTable({
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 > Default: `merge`
@@ -735,7 +766,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 Current [sorters state][crudsorting].
@@ -743,7 +776,9 @@ Current [sorters state][crudsorting].
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 A function to set current [sorters state][crudsorting].

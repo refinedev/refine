@@ -16,7 +16,9 @@ By using `useTable`, you can get properties that are compatible with Ant Design 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
 :::info
+
 `useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+
 :::
 
 ## Basic usage
@@ -52,7 +54,9 @@ const { tableProps } = useTable<IPost>();
 ```
 
 :::info
+
 By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
+
 :::
 
 ## Sorting
@@ -71,7 +75,9 @@ It can be used when your DataIndex and your sorting key are different.
 :::
 
 :::tip
+
 When using multiple sorting, `multiple` value is required for `sorter` property. Which specifies the priority of the column in sorting.
+
 :::
 
 ## Filtering
@@ -85,6 +91,7 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 ## Initial Filter and Sorter
 
 :::caution
+
 If you're using the `initial`, don't forget to add `getDefaultSortOrder` or `defaultFilteredValue` to your `<Table.Column>` component. Otherwise, hook states may not sync with the table.
 
 ```tsx
@@ -146,7 +153,9 @@ We can use the [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops)
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
@@ -468,7 +477,9 @@ const myDataProvider = {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -488,7 +499,9 @@ useTable({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
@@ -508,7 +521,9 @@ useTable({
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 `liveMode` determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -524,7 +539,9 @@ useTable({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
@@ -540,7 +557,9 @@ useTable({
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -575,7 +594,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 Sets the initial value of the page index. It is set to `1` by default.
@@ -589,7 +610,9 @@ useTable({
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 Sets the initial value of the page size. It is set to `10` by default.
@@ -603,7 +626,9 @@ useTable({
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 Determines whether to use server-side pagination or not. It is set to `true` by default.
@@ -617,7 +642,9 @@ useTable({
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -636,7 +663,9 @@ useTable({
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -655,7 +684,9 @@ useTable({
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -675,7 +706,9 @@ useTable({
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -695,7 +728,9 @@ useTable({
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is set to `merge` by default.
@@ -723,7 +758,9 @@ useTable({
 The `onChange` callback function is executed when a user interacts(filter, sort, etc.) with the table.
 
 :::caution
+
 `useTable` handles sorting, filtering, and pagination with this function. If you override this function, you need to handle these operations manually.
+
 :::
 
 ```tsx
@@ -879,7 +916,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 `sorter` is the current [sorters state][crudsorting].
@@ -887,7 +926,9 @@ Use `sorters` instead.
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 `setSorter` is a function to set the current [sorters state][crudsorting].

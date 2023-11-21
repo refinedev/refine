@@ -6,16 +6,18 @@ source: packages/core/src/hooks/breadcrumb
 ---
 
 :::info Congratulations 🥇
+
 The feature won first place with the joint votes of our team members in a May 2022 internal hackathon!
 
 Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great seeing your project take first place! We're all very proud of you. Keep up the good work and don't forget to have fun while working here 🎉
+
 :::
 
 It is a hook that returns `breadcrumbs` to create breadcrumbs for the current page. The `breadcrumbs` is an array of objects with the following properties:
 
--   `label`: the label of the resource.
--   `href`: the route of the resource's list action.
--   `icon`: the icon of the resource.
+- `label`: the label of the resource.
+- `href`: the route of the resource's list action.
+- `icon`: the icon of the resource.
 
 ## Basic Usage
 
@@ -24,18 +26,18 @@ import React from "react";
 import { useBreadcrumb } from "@refinedev/core";
 
 export const Breadcrumb: React.FC = () => {
-    const { breadcrumbs } = useBreadcrumb();
+  const { breadcrumbs } = useBreadcrumb();
 
-    return (
-        <ul>
-            {breadcrumbs.map(({ label, href, icon }) => (
-                <li key={label}>
-                    {icon}
-                    {href ? <a href={href}>{label}</a> : label}
-                </li>
-            ))}
-        </ul>
-    );
+  return (
+    <ul>
+      {breadcrumbs.map(({ label, href, icon }) => (
+        <li key={label}>
+          {icon}
+          {href ? <a href={href}>{label}</a> : label}
+        </li>
+      ))}
+    </ul>
+  );
 };
 ```
 
@@ -47,42 +49,44 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 
 ```tsx
 [
-    {
-        name: "posts",
-        icon: <PostsIcon />,
-        list: "/posts",
-        create: "/posts/create",
-    },
+  {
+    name: "posts",
+    icon: <PostsIcon />,
+    list: "/posts",
+    create: "/posts/create",
+  },
 ];
 ```
 
--   On the `list` page of the `posts` resource, the breadcrumbs look like this:
+- On the `list` page of the `posts` resource, the breadcrumbs look like this:
 
-    ```tsx
-    [
-        {
-            label: "Posts",
-            href: "/posts",
-            icon: <PostsIcon />,
-        },
-    ];
-    ```
+  ```tsx
+  [
+    {
+      label: "Posts",
+      href: "/posts",
+      icon: <PostsIcon />,
+    },
+  ];
+  ```
 
--   On the `create` page of the `posts` resource, the breadcrumbs look like this:
+- On the `create` page of the `posts` resource, the breadcrumbs look like this:
 
-    ```tsx
-    [
-        {
-            label: "Posts",
-            href: "/posts",
-            icon: <PostsIcon />,
-        },
-        { label: "Create" },
-    ];
-    ```
+  ```tsx
+  [
+    {
+      label: "Posts",
+      href: "/posts",
+      icon: <PostsIcon />,
+    },
+    { label: "Create" },
+  ];
+  ```
 
 :::info
+
 If the resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
+
 :::
 
 ### Nested resource
@@ -91,42 +95,42 @@ If you have a nested resource definition as below:
 
 ```tsx
 [
-    {
-        name: "cms",
-    },
-    {
-        name: "users",
-        list: "/users",
-        create: "/users/create",
-        meta: { parent: "cms" },
-    },
+  {
+    name: "cms",
+  },
+  {
+    name: "users",
+    list: "/users",
+    create: "/users/create",
+    meta: { parent: "cms" },
+  },
 ];
 ```
 
--   On the `list` page of the `users` resource, the breadcrumbs look like this:
+- On the `list` page of the `users` resource, the breadcrumbs look like this:
 
-    ```tsx
-    [
-        { label: "Cms" },
-        {
-            label: "Users",
-            href: "/users",
-        },
-    ];
-    ```
+  ```tsx
+  [
+    { label: "Cms" },
+    {
+      label: "Users",
+      href: "/users",
+    },
+  ];
+  ```
 
--   On the `create` page of the `users` resource, the breadcrumbs look like this:
+- On the `create` page of the `users` resource, the breadcrumbs look like this:
 
-    ```tsx
-    [
-        { label: "Cms" },
-        {
-            label: "Users",
-            href: "/users",
-        },
-        { label: "Create" },
-    ];
-    ```
+  ```tsx
+  [
+    { label: "Cms" },
+    {
+      label: "Users",
+      href: "/users",
+    },
+    { label: "Create" },
+  ];
+  ```
 
 ### Adding a Home/Root Page
 
@@ -136,10 +140,10 @@ In earlier versions, the home icon in the `Breadcrumb` was created by the `Dashb
 
 ```tsx
 [
-    {
-        name: "dashboard", // name of the resource is not important for the `useBreadcrumb` hook
-        list: "/", // If any one of your resources has a list action with `/` route, the home icon will be rendered
-    },
+  {
+    name: "dashboard", // name of the resource is not important for the `useBreadcrumb` hook
+    list: "/", // If any one of your resources has a list action with `/` route, the home icon will be rendered
+  },
 ];
 ```
 
@@ -169,8 +173,8 @@ For example, `create` action should look like: `` translate(`actions.create`) ``
 >
 > ```tsx
 > type BreadcrumbsType = {
->     label: string;
->     href?: string;
->     icon?: React.ReactNode;
+>   label: string;
+>   href?: string;
+>   icon?: React.ReactNode;
 > };
 > ```

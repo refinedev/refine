@@ -9,11 +9,13 @@ source: packages/core/src/hooks/data/useCustomMutation.ts
 It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 :::danger attention
+
 `useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/).
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
 If you need to custom query request, use the [useCustom](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
+
 :::
 
 ## Basic Usage
@@ -145,7 +147,9 @@ mutate({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustomMutation` calls the `open` function from `NotificationProvider`:

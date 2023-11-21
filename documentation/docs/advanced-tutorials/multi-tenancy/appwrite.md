@@ -15,7 +15,9 @@ In this guide, we will create an application with you in the logic of Multi Tena
 We will make a Cake House application using **refine** and [Appwrite](https://appwrite.io/). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products, and orders separately.
 
 :::caution
+
 This guide has been prepared to assume you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+
 :::
 
 ## Setup
@@ -25,19 +27,16 @@ npm install @refinedev/appwrite
 ```
 
 :::caution
+
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+
 :::
 
 ## Usage
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-    ThemedLayoutV2,
-    notificationProvider,
-    ErrorComponent,
-    RefineThemes,
-} from "@refinedev/antd";
+import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import { dataProvider } from "@refinedev/appwrite";
 import routerProvider from "@refinedev/react-router-v6";
 
@@ -50,22 +49,22 @@ import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    //highlight-start
-                    dataProvider={dataProvider(appwriteClient)}
-                    authProvider={authProvider}
-                    //highlight-end
-                    routerProvider={routerProvider}
-                    notificationProvider={notificationProvider}
-                >
-                    <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          //highlight-start
+          dataProvider={dataProvider(appwriteClient)}
+          authProvider={authProvider}
+          //highlight-end
+          routerProvider={routerProvider}
+          notificationProvider={notificationProvider}
+        >
+          <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -74,7 +73,9 @@ const App: React.FC = () => {
 We need three collections for our Cake House application. Let's create these collections in the appwrite database.
 
 :::info
+
 [Check out how you can create collections with refine Appwrite guide →](/docs/packages/documentation/data-providers/appwrite/#create-collections)
+
 :::
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/collections.png" alt="Collections" />
@@ -82,23 +83,23 @@ We need three collections for our Cake House application. Let's create these col
 
 `stores`
 
--   title: text
+- title: text
 
 `products`
 
--   title: text
--   description: text
--   image: text
--   storeId: text
+- title: text
+- description: text
+- image: text
+- storeId: text
 
 `orders`
 
--   productId: text
--   customerName: text
--   customerAddress: text
--   status: text
--   quantity: numeric
--   storeId: text
+- productId: text
+- customerName: text
+- customerAddress: text
+- status: text
+- quantity: numeric
+- storeId: text
 
 Now that we have completed the setup and our collections, we can now log in with the **refine** and start the listing processes.
 
@@ -108,93 +109,79 @@ To view the products and orders of two different stores separately, we need to f
 
 ```tsx title="src/App.tsx"
 function App() {
-    // highlight-start
-    // When `domain.com` is entered, we set the default tenant to redirect `domain.com/name`.
-    const tenant = "refine";
-    // highlight-end
+  // highlight-start
+  // When `domain.com` is entered, we set the default tenant to redirect `domain.com/name`.
+  const tenant = "refine";
+  // highlight-end
 
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    liveProvider={liveProvider(appwriteClient, {
-                        databaseId: "multi-tenancy",
-                    })}
-                    dataProvider={dataProvider(appwriteClient, {
-                        databaseId: "multi-tenancy",
-                    })}
-                    authProvider={authProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    // highlight-start
-                    // The path definition for `list`, `create`, `show`, `edit` pages is as follows and variables can be used as in `react-router`. 
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/:tenant/products",
-                            show: "/:tenant/products/show/:id",
-                            // Compose with the `meta` object.
-                            meta: {
-                                tenant,
-                            },
-                        },
-                        {
-                            name: "orders",
-                            list: "/:tenant/orders",
-                            create: "/:tenant/orders/create",
-                            edit: "/:tenant/orders/edit/:id",
-                            meta: {
-                                tenant,
-                            },
-                        },
-                        // highlight-end
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        {/* ... */}
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="products" />
-                            }
-                        />
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          liveProvider={liveProvider(appwriteClient, {
+            databaseId: "multi-tenancy",
+          })}
+          dataProvider={dataProvider(appwriteClient, {
+            databaseId: "multi-tenancy",
+          })}
+          authProvider={authProvider}
+          options={{
+            liveMode: "auto",
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+          // highlight-start
+          // The path definition for `list`, `create`, `show`, `edit` pages is as follows and variables can be used as in `react-router`.
+          resources={[
+            {
+              name: "products",
+              list: "/:tenant/products",
+              show: "/:tenant/products/show/:id",
+              // Compose with the `meta` object.
+              meta: {
+                tenant,
+              },
+            },
+            {
+              name: "orders",
+              list: "/:tenant/orders",
+              create: "/:tenant/orders/create",
+              edit: "/:tenant/orders/edit/:id",
+              meta: {
+                tenant,
+              },
+            },
+            // highlight-end
+          ]}
+          notificationProvider={notificationProvider}
+        >
+          <Routes>
+            {/* ... */}
+            <Route index element={<NavigateToResource resource="products" />} />
 
-                        {/* highlight-start */}
-                        {/* prefix `resources` paths. */}
-                        <Route path="/:tenant">
-                        {/* highlight-end */}
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                            </Route>
+            {/* highlight-start */}
+            {/* prefix `resources` paths. */}
+            <Route path="/:tenant">
+              {/* highlight-end */}
+              <Route path="products">
+                <Route index element={<ProductList />} />
+                <Route path="show/:id" element={<ProductShow />} />
+              </Route>
 
-                            <Route path="orders">
-                                <Route index element={<OrderList />} />
-                                <Route
-                                    path="create"
-                                    element={<OrderCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<OrderEdit />}
-                                />
-                            </Route>
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route path="orders">
+                <Route index element={<OrderList />} />
+                <Route path="create" element={<OrderCreate />} />
+                <Route path="edit/:id" element={<OrderEdit />} />
+              </Route>
+            </Route>
+          </Routes>
+          <UnsavedChangesNotifier />
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 ```
 
@@ -222,44 +209,44 @@ import { Select } from "antd";
 import { IStore } from "interfaces";
 
 export const StoreSelect: React.FC = () => {
-    // highlight-start
-    const getToPath = useGetToPath();
-    const go = useGo();
-    const { resource, action, params } = useParsed<{ tenant: string }>();
-    // highlight-end
+  // highlight-start
+  const getToPath = useGetToPath();
+  const go = useGo();
+  const { resource, action, params } = useParsed<{ tenant: string }>();
+  // highlight-end
 
-    const { selectProps: storeSelectProps } = useSelect<IStore>({
-        resource: "stores",
-        optionLabel: "title",
-        optionValue: "id",
-    });
+  const { selectProps: storeSelectProps } = useSelect<IStore>({
+    resource: "stores",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <Select
-            defaultValue={params?.tenant}
-            style={{ width: 120 }}
-            // highlight-start
-            onChange={(tenant) =>
-                go({
-                    to: getToPath({
-                        resource,
-                        action: action || "list",
-                        meta: {
-                            tenant,
-                        },
-                    }),
-                })
-            }
-            // highlight-end
-            onSelect={() => false}
-        >
-            {storeSelectProps.options?.map(({ value, label }) => (
-                <Select.Option key={value} value={value}>
-                    {label}
-                </Select.Option>
-            ))}
-        </Select>
-    );
+  return (
+    <Select
+      defaultValue={params?.tenant}
+      style={{ width: 120 }}
+      // highlight-start
+      onChange={(tenant) =>
+        go({
+          to: getToPath({
+            resource,
+            action: action || "list",
+            meta: {
+              tenant,
+            },
+          }),
+        })
+      }
+      // highlight-end
+      onSelect={() => false}
+    >
+      {storeSelectProps.options?.map(({ value, label }) => (
+        <Select.Option key={value} value={value}>
+          {label}
+        </Select.Option>
+      ))}
+    </Select>
+  );
 };
 ```
 
@@ -285,51 +272,49 @@ const { Text } = Typography;
 const { useToken } = theme;
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
-    const { token } = useToken();
+  const { token } = useToken();
 
-    const authProvider = useActiveAuthProvider();
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+  const authProvider = useActiveAuthProvider();
+  const { data: user } = useGetIdentity({
+    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+  });
 
-    const shouldRenderHeader = user && (user.name || user.avatar);
+  const shouldRenderHeader = user && (user.name || user.avatar);
 
-    if (!shouldRenderHeader) {
-        return null;
-    }
+  if (!shouldRenderHeader) {
+    return null;
+  }
 
-    return (
-        <AntdLayout.Header
-            style={{
-                backgroundColor: token.colorBgElevated,
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "64px",
-                position: "sticky",
-                top: 0,
-                zIndex: 1,
-            }}
-        >
-            <Space
-                style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                }}
-            >
-                { /* highlight-next-line */}
-                <StoreSelect />
-                <Space size="middle">
-                    {user?.name && <Text strong>{user.name}</Text>}
-                    {user?.avatar && (
-                        <Avatar src={user?.avatar} alt={user?.name} />
-                    )}
-                </Space>
-            </Space>
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        backgroundColor: token.colorBgElevated,
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        padding: "0px 24px",
+        height: "64px",
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
+      }}
+    >
+      <Space
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* highlight-next-line */}
+        <StoreSelect />
+        <Space size="middle">
+          {user?.name && <Text strong>{user.name}</Text>}
+          {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
+        </Space>
+      </Space>
+    </AntdLayout.Header>
+  );
 };
 ```
 
@@ -354,11 +339,11 @@ const { params } = useParsed<{ tenant?: string }>();
 //highlight-end
 
 const { listProps } = useSimpleList<IProduct>({
-    //highlight-start
-    filters: {
-        permanent: [{ field: "storeId", operator: "eq", value: params?.tenant }],
-    },
-    //highlight-end
+  //highlight-start
+  filters: {
+    permanent: [{ field: "storeId", operator: "eq", value: params?.tenant }],
+  },
+  //highlight-end
 });
 ```
 
@@ -367,97 +352,82 @@ const { listProps } = useSimpleList<IProduct>({
 <p>
 
 ```tsx title="src/pages/ProductList.tsx"
-import {
-    IResourceComponentsProps,
-    HttpError,
-    useParsed,
-} from "@refinedev/core";
+import { IResourceComponentsProps, HttpError, useParsed } from "@refinedev/core";
 
-import {
-    useSimpleList,
-    useModalForm,
-    CreateButton,
-    List,
-} from "@refinedev/antd";
+import { useSimpleList, useModalForm, CreateButton, List } from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 import { ProductItem, EditProduct, CreateProduct } from "components/product";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const { params } = useParsed<{ tenant?: string }>();
-    const { listProps } = useSimpleList<IProduct>({
-        // highlight-start
-        filters: {
-            permanent: [
-                {
-                    field: "storeId",
-                    operator: "eq",
-                    value: params?.tenant,
-                },
-            ],
+  const { params } = useParsed<{ tenant?: string }>();
+  const { listProps } = useSimpleList<IProduct>({
+    // highlight-start
+    filters: {
+      permanent: [
+        {
+          field: "storeId",
+          operator: "eq",
+          value: params?.tenant,
         },
-        // highlight-end
-    });
+      ],
+    },
+    // highlight-end
+  });
 
-    const {
-        modalProps: createModalProps,
-        formProps: createFormProps,
-        show: createShow,
-    } = useModalForm<IProduct, HttpError, IProduct>({
-        resource: "products",
-        action: "create",
-        redirect: false,
-    });
+  const {
+    modalProps: createModalProps,
+    formProps: createFormProps,
+    show: createShow,
+  } = useModalForm<IProduct, HttpError, IProduct>({
+    resource: "products",
+    action: "create",
+    redirect: false,
+  });
 
-    const {
-        modalProps: editModalProps,
-        formProps: editFormProps,
-        show: editShow,
-    } = useModalForm<IProduct, HttpError>({
-        action: "edit",
-        queryOptions: {
-            select: ({ data }) => {
-                return {
-                    data: {
-                        ...data,
-                        image: data.image ? JSON.parse(data.image) : undefined,
-                    },
-                };
-            },
-        },
-    });
+  const {
+    modalProps: editModalProps,
+    formProps: editFormProps,
+    show: editShow,
+  } = useModalForm<IProduct, HttpError>({
+    action: "edit",
+    queryOptions: {
+      select: ({ data }) => {
+        return {
+          data: {
+            ...data,
+            image: data.image ? JSON.parse(data.image) : undefined,
+          },
+        };
+      },
+    },
+  });
 
-    return (
-        <>
-            <List
-                headerProps={{
-                    extra: <CreateButton onClick={() => createShow()} />,
-                }}
-            >
-                <AntdList
-                    grid={{ gutter: 16, xs: 1 }}
-                    style={{
-                        justifyContent: "center",
-                    }}
-                    {...listProps}
-                    renderItem={(item) => (
-                        <AntdList.Item>
-                            <ProductItem item={item} editShow={editShow} />
-                        </AntdList.Item>
-                    )}
-                />
-            </List>
-            <EditProduct
-                modalProps={editModalProps}
-                formProps={editFormProps}
-            />
-            <CreateProduct
-                modalProps={createModalProps}
-                formProps={createFormProps}
-            />
-        </>
-    );
+  return (
+    <>
+      <List
+        headerProps={{
+          extra: <CreateButton onClick={() => createShow()} />,
+        }}
+      >
+        <AntdList
+          grid={{ gutter: 16, xs: 1 }}
+          style={{
+            justifyContent: "center",
+          }}
+          {...listProps}
+          renderItem={(item) => (
+            <AntdList.Item>
+              <ProductItem item={item} editShow={editShow} />
+            </AntdList.Item>
+          )}
+        />
+      </List>
+      <EditProduct modalProps={editModalProps} formProps={editFormProps} />
+      <CreateProduct modalProps={createModalProps} formProps={createFormProps} />
+    </>
+  );
 };
 ```
 
@@ -473,24 +443,24 @@ In this example, we used the `filter.permanent` object to filter the data, as Ap
 
 You can check out the [swizzle data provider guide](/docs/packages/documentation/cli/#swizzle) for more information.
 
-The `resource.meta` object is passed as `meta` to **all methods** in the data providers. For this you have to swizzle the data provider. 
+The `resource.meta` object is passed as `meta` to **all methods** in the data providers. For this you have to swizzle the data provider.
 
 ```tsx title="src/dataProvider.ts"
 //...
 export const dataProvider = (): Required<DataProvider> => {
-    //...
-    return {
-        getList: async ({ resource, pagination, filters, sorters, meta }) => {
-            // ...
-            console.log(meta.tenant); // { tenant: "refine" }
-        },
-        getOne: async ({ resource, id, meta }) => {
-            // ...
-            console.log(meta.tenant); // { tenant: "refine" }
-        }
-        // ...
-    }
-}
+  //...
+  return {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
+      // ...
+      console.log(meta.tenant); // { tenant: "refine" }
+    },
+    getOne: async ({ resource, id, meta }) => {
+      // ...
+      console.log(meta.tenant); // { tenant: "refine" }
+    },
+    // ...
+  };
+};
 ```
 
 :::
@@ -537,95 +507,75 @@ import { RcFile } from "antd/lib/upload/interface";
 import { normalizeFile, storage } from "utility";
 
 type CreateProductProps = {
-    modalProps: ModalProps;
-    formProps: FormProps;
+  modalProps: ModalProps;
+  formProps: FormProps;
 };
 
-export const CreateProduct: React.FC<CreateProductProps> = ({
-    modalProps,
-    formProps,
-}) => {
-    // highlight-next-line
-    const { params } = useParsed<{ tenant?: string }>();
-    return (
-        <Modal {...modalProps}>
-            <Form
-                {...formProps}
-                layout="vertical"
-                initialValues={{
-                    isActive: true,
-                }}
-                // highlight-start
-                onFinish={(values) =>
-                    formProps.onFinish?.({
-                        ...values,
-                        storeId: params?.tenant,
-                        image: JSON.stringify(values.image),
-                    })
+export const CreateProduct: React.FC<CreateProductProps> = ({ modalProps, formProps }) => {
+  // highlight-next-line
+  const { params } = useParsed<{ tenant?: string }>();
+  return (
+    <Modal {...modalProps}>
+      <Form
+        {...formProps}
+        layout="vertical"
+        initialValues={{
+          isActive: true,
+        }}
+        // highlight-start
+        onFinish={(values) =>
+          formProps.onFinish?.({
+            ...values,
+            storeId: params?.tenant,
+            image: JSON.stringify(values.image),
+          })
+        }
+        // highlight-end
+      >
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Description" name="description">
+          <Input />
+        </Form.Item>
+
+        <Form.Item label="Images">
+          <Form.Item name="image" valuePropName="fileList" normalize={normalizeFile} noStyle>
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                try {
+                  const rcFile = file as RcFile;
+
+                  const { $id } = await storage.createFile("default", rcFile.name, rcFile, [
+                    Permission.read(Role.any()),
+                  ]);
+
+                  const url = storage.getFileView("default", $id);
+
+                  onSuccess?.({ url }, new XMLHttpRequest());
+                } catch (error) {
+                  onError?.(new Error("Upload Error"));
                 }
-                // highlight-end
+              }}
             >
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Description" name="description">
-                    <Input />
-                </Form.Item>
-
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="image"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                try {
-                                    const rcFile = file as RcFile;
-
-                                    const { $id } = await storage.createFile(
-                                        "default",
-                                        rcFile.name,
-                                        rcFile,
-                                        [Permission.read(Role.any())],
-                                    );
-
-                                    const url = storage.getFileView(
-                                        "default",
-                                        $id,
-                                    );
-
-                                    onSuccess?.({ url }, new XMLHttpRequest());
-                                } catch (error) {
-                                    onError?.(new Error("Upload Error"));
-                                }
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag &amp; drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Modal>
-    );
+              <p className="ant-upload-text">Drag &amp; drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
 };
 ```
 
@@ -645,17 +595,9 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
-import {
-    ThemedLayoutV2,
-    notificationProvider,
-    ErrorComponent,
-    RefineThemes,
-} from "@refinedev/antd";
+import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -672,68 +614,61 @@ import { ProductShow } from "components/product";
 import { StoreProvider } from "context/store";
 
 function App() {
-    return (
-        <StoreProvider>
-            <BrowserRouter>
-                <ConfigProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        routerProvider={routerProvider}
-                        //highlight-start
-                        liveProvider={liveProvider(appwriteClient)}
-                        options={{ liveMode: "auto" }}
-                        //highlight-end
-                        dataProvider={dataProvider(appwriteClient)}
-                        authProvider={authProvider}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "61cb01b17ef57",
-                                list: "/products",
-                                show: "/products/show:id",
-                                meta: {
-                                    label: "Products",
-                                },
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2 Sider={CustomSider}>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="products">
-                                    <Route index element={<ProductList />} />
-                                    <Route
-                                        path="show:id"
-                                        element={<ProductShow />}
-                                    />
-                                </Route>
-                            </Route>
-                            <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="/login" element={<Login />} />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Refine>
-                </ConfigProvider>
-            </BrowserRouter>
-        </StoreProvider>
-    );
+  return (
+    <StoreProvider>
+      <BrowserRouter>
+        <ConfigProvider theme={RefineThemes.Blue}>
+          <Refine
+            routerProvider={routerProvider}
+            //highlight-start
+            liveProvider={liveProvider(appwriteClient)}
+            options={{ liveMode: "auto" }}
+            //highlight-end
+            dataProvider={dataProvider(appwriteClient)}
+            authProvider={authProvider}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "61cb01b17ef57",
+                list: "/products",
+                show: "/products/show:id",
+                meta: {
+                  label: "Products",
+                },
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                    <ThemedLayoutV2 Sider={CustomSider}>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route path="products">
+                  <Route index element={<ProductList />} />
+                  <Route path="show:id" element={<ProductShow />} />
+                </Route>
+              </Route>
+              <Route
+                element={
+                  <Authenticated fallback={<Outlet />}>
+                    <NavigateToResource />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<Login />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Routes>
+          </Refine>
+        </ConfigProvider>
+      </BrowserRouter>
+    </StoreProvider>
+  );
 }
 
 export default App;

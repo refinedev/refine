@@ -50,38 +50,35 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    edit: "/posts/edit/:id",
-                    show: "/posts/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-            ]}
-        >
-            <Routes>
-                <Route
-                    index
-                    element={<NavigateToResource resource="posts" />}
-                />
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+          edit: "/posts/edit/:id",
+          show: "/posts/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+      ]}
+    >
+      <Routes>
+        <Route index element={<NavigateToResource resource="posts" />} />
 
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    <Route path="create" element={<PostCreate />} />
-                    <Route path="edit/:id" element={<PostEdit />} />
-                    <Route path="show/:id" element={<PostShow />} />
-                </Route>
-            </Routes>
-        </Refine>
-    );
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          <Route path="create" element={<PostCreate />} />
+          <Route path="edit/:id" element={<PostEdit />} />
+          <Route path="show/:id" element={<PostShow />} />
+        </Route>
+      </Routes>
+    </Refine>
+  );
 };
 
 export default App;
@@ -90,6 +87,7 @@ export default App;
 There are a variety of configurations that can be passed into a refine application. They are:
 
 #### Data Provider
+
 Data provider enables a refine application to connect to an external API or service. A `dataProvider` sends HTTP requests and receives responses via predefined methods.
 
 Here is a sample on how to adding a dataProvider to the refine component.
@@ -102,19 +100,20 @@ import { DataProvider } from "@refinedev/strapi-v4";
 // highlight-end
 
 function App() {
-    return (
-        <Refine
-            // highlight-next-line
-            dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
-            //...
-        />
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+      //...
+    />
+  );
 }
 
 export default App;
 ```
 
 #### Resource
+
 A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
 To create a resource; define our resources and their action paths. This will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
@@ -131,36 +130,36 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            //...
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    edit: "/posts/edit/:id",
-                    show: "/posts/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-            ]}
-            // highlight-end
-        >
-            {/* highlight-start */}
-            <Routes>
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    <Route path="create" element={<PostCreate />} />
-                    <Route path="edit/:id" element={<PostEdit />} />
-                    <Route path="show/:id" element={<PostShow />} />
-                </Route>
-            </Routes>
-            {/* highlight-end */}
-        </Refine>
-    );
+  return (
+    <Refine
+      //...
+      // highlight-start
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+          edit: "/posts/edit/:id",
+          show: "/posts/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+      ]}
+      // highlight-end
+    >
+      {/* highlight-start */}
+      <Routes>
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          <Route path="create" element={<PostCreate />} />
+          <Route path="edit/:id" element={<PostEdit />} />
+          <Route path="show/:id" element={<PostShow />} />
+        </Route>
+      </Routes>
+      {/* highlight-end */}
+    </Refine>
+  );
 };
 
 export default App;
@@ -253,40 +252,38 @@ import { AuthPage } from "@refinedev/chakra-ui";
 import { Outlet, Route, Routes } from "react-router-dom";
 
 function App() {
-    return (
-        <Refine
-        //...
+  return (
+    <Refine
+    //...
+    >
+      <Routes>
+        {/* highlight-start */}
+        <Route
+          element={
+            <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+              <ThemedLayoutV2>
+                <Outlet />
+              </ThemedLayoutV2>
+            </Authenticated>
+          }
         >
-            <Routes>
-                {/* highlight-start */}
-                <Route
-                    element={
-                        <Authenticated
-                            fallback={<CatchAllNavigate to="/login" />}
-                        >
-                            <ThemedLayoutV2>
-                                <Outlet />
-                            </ThemedLayoutV2>
-                        </Authenticated>
-                    }
-                >
-                    {/* We will define `resource` routes here. */}
-                </Route>
-                <Route
-                    element={
-                        <Authenticated fallback={<Outlet />}>
-                            <NavigateToResource resource="posts" />
-                        </Authenticated>
-                    }
-                >
-                    <Route path="/login" element={<AuthPage type="login" />} />
-                </Route>
-                {/* highlight-end */}
-                //...
-            </Routes>
-            //...
-        </Refine>
-    );
+          {/* We will define `resource` routes here. */}
+        </Route>
+        <Route
+          element={
+            <Authenticated fallback={<Outlet />}>
+              <NavigateToResource resource="posts" />
+            </Authenticated>
+          }
+        >
+          <Route path="/login" element={<AuthPage type="login" />} />
+        </Route>
+        {/* highlight-end */}
+        //...
+      </Routes>
+      //...
+    </Refine>
+  );
 }
 
 export default App;
@@ -297,6 +294,7 @@ export default App;
 The [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) is a basic component to navigate to a resource page. It is useful when you want to navigate to a resource page from the index route of your app.
 
 The [`<ThemedLayoutV2>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/)component offers a convenient way to integrate both a sidebar and a header into your application. This is a helpful feature if you aim to include these elements in your app's layout.
+
 :::
 
 ## Implementing CRUD operations on React admin panel
@@ -315,12 +313,12 @@ If you don't already have one, we'll create one under the `src` folder called `i
 
 ```tsx title="src/interfaces/index.d.ts"
 export interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    category: any;
-    publishedAt: string;
-    createdAt: string;
+  id: number;
+  title: string;
+  content: string;
+  category: any;
+  publishedAt: string;
+  createdAt: string;
 }
 ```
 
@@ -335,113 +333,87 @@ import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { List, ShowButton, EditButton, DateField } from "@refinedev/chakra-ui";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-    HStack,
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, HStack } from "@chakra-ui/react";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "title",
-                accessorKey: "title",
-                header: "Title",
-            },
-            {
-                id: "createdAt",
-                accessorKey: "createdAt",
-                header: "Created At",
-                cell: function render({ getValue }) {
-                    return (
-                        <DateField value={getValue() as string} format="LLL" />
-                    );
-                },
-            },
-            {
-                id: "actions",
-                accessorKey: "id",
-                header: "Actions",
-                cell: function render({ getValue }) {
-                    return (
-                        <HStack>
-                            <ShowButton
-                                hideText
-                                recordItemId={getValue() as string}
-                            />
-                            <EditButton
-                                hideText
-                                recordItemId={getValue() as string}
-                            />
-                        </HStack>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const { getHeaderGroups, getRowModel, setOptions } = useTable({
-        columns,
-    });
-
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "title",
+        accessorKey: "title",
+        header: "Title",
+      },
+      {
+        id: "createdAt",
+        accessorKey: "createdAt",
+        header: "Created At",
+        cell: function render({ getValue }) {
+          return <DateField value={getValue() as string} format="LLL" />;
         },
-    }));
+      },
+      {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        cell: function render({ getValue }) {
+          return (
+            <HStack>
+              <ShowButton hideText recordItemId={getValue() as string} />
+              <EditButton hideText recordItemId={getValue() as string} />
+            </HStack>
+          );
+        },
+      },
+    ],
+    [],
+  );
 
-    return (
-        <List>
-            <TableContainer whiteSpace="pre-line">
-                <Table variant="simple">
-                    <Thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <Tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <Th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                    </Th>
-                                ))}
-                            </Tr>
-                        ))}
-                    </Thead>
-                    <Tbody>
-                        {getRowModel().rows.map((row) => (
-                            <Tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <Td key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext(),
-                                        )}
-                                    </Td>
-                                ))}
-                            </Tr>
-                        ))}
-                    </Tbody>
-                </Table>
-            </TableContainer>
-        </List>
-    );
+  const { getHeaderGroups, getRowModel, setOptions } = useTable({
+    columns,
+  });
+
+  setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+    },
+  }));
+
+  return (
+    <List>
+      <TableContainer whiteSpace="pre-line">
+        <Table variant="simple">
+          <Thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <Tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <Th key={header.id}>
+                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                  </Th>
+                ))}
+              </Tr>
+            ))}
+          </Thead>
+          <Tbody>
+            {getRowModel().rows.map((row) => (
+              <Tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>
+                ))}
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </List>
+  );
 };
 ```
 
@@ -454,19 +426,19 @@ After this, we need to add a path (`/posts`) for the `list` action to our `resou
 
 ```tsx title="src/App.tsx"
 function App() {
-    return (
-        <Refine
-            //...
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                },
-            ]}
-            // highlight-end
-        />
-    );
+  return (
+    <Refine
+      //...
+      // highlight-start
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+      // highlight-end
+    />
+  );
 }
 
 export default App;
@@ -481,25 +453,22 @@ import { PostList } from "./pages/posts/list";
 // highlight-end
 
 function App() {
-    return (
-        <Refine
-            //...
-        >
-            <Routes>
-                //...
-                {/* highlight-start */}
-                <Route
-                    index
-                    element={<NavigateToResource resource="posts" />}
-                />
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                </Route>
-                {/* highlight-end */}
-                //...
-            </Routes>
-        </Refine>
-    );
+  return (
+    <Refine
+    //...
+    >
+      <Routes>
+        //...
+        {/* highlight-start */}
+        <Route index element={<NavigateToResource resource="posts" />} />
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+        </Route>
+        {/* highlight-end */}
+        //...
+      </Routes>
+    </Refine>
+  );
 }
 
 export default App;
@@ -526,14 +495,14 @@ We'll use the populate parameter to specify which fields should be filled in. we
 
 ```tsx title="src/pages/posts/list.tsx"
 const { getHeaderGroups, getRowModel, setOptions } = useTable({
-    columns,
-    // highlight-start
-    refineCoreProps: {
-        meta: {
-            populate: ["category"],
-        },
+  columns,
+  // highlight-start
+  refineCoreProps: {
+    meta: {
+      populate: ["category"],
     },
-    // highlight-end
+  },
+  // highlight-end
 });
 ```
 
@@ -541,19 +510,19 @@ To show category field in table, we need to add new column to the `PostList` com
 
 ```tsx title="src/pages/posts/list.tsx"
 const columns = React.useMemo<GridColumns<IPost>>(
-    () => [
-        // ...
-        {
-            id: "category",
-            accessorKey: "category.title",
-            header: "Category",
-            cell: function render({ getValue }) {
-                return getValue();
-            },
-        },
-        // ...
-    ],
-    [],
+  () => [
+    // ...
+    {
+      id: "category",
+      accessorKey: "category.title",
+      header: "Category",
+      cell: function render({ getValue }) {
+        return getValue();
+      },
+    },
+    // ...
+  ],
+  [],
 );
 ```
 
@@ -565,9 +534,9 @@ Next, we will add Pagination to our application. In order to achieve this, the `
 
 Create a new file called `pagination.tsx` under the `components` folder. This file will contain the code for the pagination component.
 
--   `current`: This property holds the current page number obtained from the `useTable()` hook,
--   `pageCount`: This property holds the total amount of pages present from the `useTable()` hook,
--   `setCurrent()`: This property sets the current page number to an value. it handles the navigation to either the next page or the previous page.
+- `current`: This property holds the current page number obtained from the `useTable()` hook,
+- `pageCount`: This property holds the total amount of pages present from the `useTable()` hook,
+- `setCurrent()`: This property sets the current page number to an value. it handles the navigation to either the next page or the previous page.
 
 <details>
 <summary>Show code </summary>
@@ -582,61 +551,48 @@ import { usePagination } from "@refinedev/chakra-ui";
 import { IconButton } from "@chakra-ui/react";
 
 type PaginationProps = {
-    current: number;
-    pageCount: number;
-    setCurrent: (page: number) => void;
+  current: number;
+  pageCount: number;
+  setCurrent: (page: number) => void;
 };
 
-export const Pagination: FC<PaginationProps> = ({
+export const Pagination: FC<PaginationProps> = ({ current, pageCount, setCurrent }) => {
+  const pagination = usePagination({
     current,
     pageCount,
-    setCurrent,
-}) => {
-    const pagination = usePagination({
-        current,
-        pageCount,
-    });
+  });
 
-    return (
-        <Box display="flex" justifyContent="flex-end">
-            <HStack my="3" spacing="1">
-                {pagination?.prev && (
-                    <IconButton
-                        aria-label="previous page"
-                        onClick={() => setCurrent(current - 1)}
-                        disabled={!pagination?.prev}
-                        variant="outline"
-                    >
-                        <IconChevronLeft size="18" />
-                    </IconButton>
-                )}
+  return (
+    <Box display="flex" justifyContent="flex-end">
+      <HStack my="3" spacing="1">
+        {pagination?.prev && (
+          <IconButton
+            aria-label="previous page"
+            onClick={() => setCurrent(current - 1)}
+            disabled={!pagination?.prev}
+            variant="outline"
+          >
+            <IconChevronLeft size="18" />
+          </IconButton>
+        )}
 
-                {pagination?.items.map((page) => {
-                    if (typeof page === "string")
-                        return <span key={page}>...</span>;
+        {pagination?.items.map((page) => {
+          if (typeof page === "string") return <span key={page}>...</span>;
 
-                    return (
-                        <Button
-                            key={page}
-                            onClick={() => setCurrent(page)}
-                            variant={page === current ? "solid" : "outline"}
-                        >
-                            {page}
-                        </Button>
-                    );
-                })}
-                {pagination?.next && (
-                    <IconButton
-                        aria-label="next page"
-                        onClick={() => setCurrent(current + 1)}
-                        variant="outline"
-                    >
-                        <IconChevronRight size="18" />
-                    </IconButton>
-                )}
-            </HStack>
-        </Box>
-    );
+          return (
+            <Button key={page} onClick={() => setCurrent(page)} variant={page === current ? "solid" : "outline"}>
+              {page}
+            </Button>
+          );
+        })}
+        {pagination?.next && (
+          <IconButton aria-label="next page" onClick={() => setCurrent(current + 1)} variant="outline">
+            <IconChevronRight size="18" />
+          </IconButton>
+        )}
+      </HStack>
+    </Box>
+  );
 };
 ```
 
@@ -653,34 +609,30 @@ We'll update the `<PostList/>` component with the code below:
 import { Pagination } from "../../components/pagination";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    //...
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        // highlight-next-line
-        refineCore: { current, pageCount, setCurrent },
-    } = useTable({
-        columns,
-        refineCoreProps: {
-            meta: {
-                populate: ["category"],
-            },
-        },
-    });
+  //...
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    // highlight-next-line
+    refineCore: { current, pageCount, setCurrent },
+  } = useTable({
+    columns,
+    refineCoreProps: {
+      meta: {
+        populate: ["category"],
+      },
+    },
+  });
 
-    return (
-        <List>
-            ...
-            {/* highlight-start */}
-            <Pagination
-                current={current}
-                pageCount={pageCount}
-                setCurrent={setCurrent}
-            />
-            {/* highlight-end */}
-        </List>
-    );
+  return (
+    <List>
+      ...
+      {/* highlight-start */}
+      <Pagination current={current} pageCount={pageCount} setCurrent={setCurrent} />
+      {/* highlight-end */}
+    </List>
+  );
 };
 ```
 
@@ -704,66 +656,62 @@ import { Show, NumberField, TextField, DateField } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
-    const { queryResult } = useShow({
-        metaData: {
-            populate: ["category"],
-        },
-    });
-    const { data, isLoading } = queryResult;
+  const { queryResult } = useShow({
+    metaData: {
+      populate: ["category"],
+    },
+  });
+  const { data, isLoading } = queryResult;
 
-    const record = data?.data;
+  const record = data?.data;
 
-    const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-        resource: "categories",
-        id: record?.category?.id || "",
-        queryOptions: {
-            enabled: !!record,
-        },
-    });
+  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+    resource: "categories",
+    id: record?.category?.id || "",
+    queryOptions: {
+      enabled: !!record,
+    },
+  });
 
-    return (
-        <Show isLoading={isLoading}>
-            <Heading as="h5" size="sm" mt={4}>
-                Id
-            </Heading>
-            <NumberField value={record?.id ?? ""} />
+  return (
+    <Show isLoading={isLoading}>
+      <Heading as="h5" size="sm" mt={4}>
+        Id
+      </Heading>
+      <NumberField value={record?.id ?? ""} />
 
-            <Heading as="h5" size="sm" mt={4}>
-                Title
-            </Heading>
-            <TextField value={record?.title} />
+      <Heading as="h5" size="sm" mt={4}>
+        Title
+      </Heading>
+      <TextField value={record?.title} />
 
-            <Heading as="h5" size="sm" mt={4}>
-                Category
-            </Heading>
+      <Heading as="h5" size="sm" mt={4}>
+        Category
+      </Heading>
 
-            {categoryIsLoading ? (
-                <>Loading...</>
-            ) : (
-                <>{categoryData?.data?.title}</>
-            )}
+      {categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>}
 
-            <Heading as="h5" size="sm" mt={4}>
-                Content
-            </Heading>
-            <TextField value={record?.content} />
+      <Heading as="h5" size="sm" mt={4}>
+        Content
+      </Heading>
+      <TextField value={record?.content} />
 
-            <Heading as="h5" size="sm" mt={4}>
-                Created At
-            </Heading>
-            <DateField value={record?.createdAt} />
+      <Heading as="h5" size="sm" mt={4}>
+        Created At
+      </Heading>
+      <DateField value={record?.createdAt} />
 
-            <Heading as="h5" size="sm" mt={4}>
-                Published At
-            </Heading>
-            <DateField value={record?.publishedAt} />
+      <Heading as="h5" size="sm" mt={4}>
+        Published At
+      </Heading>
+      <DateField value={record?.publishedAt} />
 
-            <Heading as="h5" size="sm" mt={4}>
-                Locale
-            </Heading>
-            <TextField value={record?.locale} />
-        </Show>
-    );
+      <Heading as="h5" size="sm" mt={4}>
+        Locale
+      </Heading>
+      <TextField value={record?.locale} />
+    </Show>
+  );
 };
 ```
 
@@ -775,40 +723,37 @@ After this, we can now add the component `<PostShow/>` in the `show.tsx` file to
 ```tsx title="src/App.tsx"
 //...
 import {
-    PostList,
-    // highlight-next-line
-    PostShow,
+  PostList,
+  // highlight-next-line
+  PostShow,
 } from "./pages/posts";
 
 function App() {
-    return (
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    // highlight-next-line
-                    show: "/posts/show/:id",
-                },
-            ]}
-        >
-            <Routes>
-                //...
-                <Route
-                    index
-                    element={<NavigateToResource resource="posts" />}
-                />
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    {/* highlight-start */}
-                    <Route path="/posts/show/:id" element={<PostShow />} />
-                    {/* highlight-end */}
-                </Route>
-                //...
-            </Routes>
-        </Refine>
-    );
+  return (
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          // highlight-next-line
+          show: "/posts/show/:id",
+        },
+      ]}
+    >
+      <Routes>
+        //...
+        <Route index element={<NavigateToResource resource="posts" />} />
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          {/* highlight-start */}
+          <Route path="/posts/show/:id" element={<PostShow />} />
+          {/* highlight-end */}
+        </Route>
+        //...
+      </Routes>
+    </Refine>
+  );
 }
 
 export default App;
@@ -817,8 +762,6 @@ export default App;
 At this point, the `Show` page looks like this:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100 rounded"  alt="react admin tutorial" />
-
-
 
 ### Creating a record
 
@@ -834,84 +777,71 @@ Next, in the `posts` folder under the `pages` folder, we'll include a `create.ts
 ```tsx title="src/pages/posts/create.tsx"
 import React from "react";
 import { Create } from "@refinedev/chakra-ui";
-import {
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    Input,
-    Textarea,
-    Select,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, FormErrorMessage, Input, Textarea, Select } from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 export const PostCreate = () => {
-    const {
-        refineCore: { formLoading, queryResult },
-        saveButtonProps,
-        register,
-        resetField,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { formLoading, queryResult },
+    saveButtonProps,
+    register,
+    resetField,
+    formState: { errors },
+  } = useForm();
 
-    const postsData = queryResult?.data?.data;
+  const postsData = queryResult?.data?.data;
 
-    const { options: categoryOptions } = useSelect({
-        resource: "categories",
-        defaultValue: postsData?.category?.id,
-    });
+  const { options: categoryOptions } = useSelect({
+    resource: "categories",
+    defaultValue: postsData?.category?.id,
+  });
 
-    React.useEffect(() => {
-        resetField("category.id");
-    }, [categoryOptions]);
+  React.useEffect(() => {
+    resetField("category.id");
+  }, [categoryOptions]);
 
-    return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    type="text"
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.title?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+  return (
+    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
+        <FormLabel>Title</FormLabel>
+        <Input
+          type="text"
+          {...register("title", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.title?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
-                <FormLabel>Content</FormLabel>
-                <Textarea
-                    {...register("content", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.title?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
+        <FormLabel>Content</FormLabel>
+        <Textarea
+          {...register("content", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.title?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!errors?.category}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    placeholder="Select category"
-                    {...register("category.id", {
-                        required: "This field is required",
-                    })}
-                >
-                    {categoryOptions?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {(errors as any)?.category?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-        </Create>
-    );
+      <FormControl mb="3" isInvalid={!!errors?.category}>
+        <FormLabel>Category</FormLabel>
+        <Select
+          placeholder="Select category"
+          {...register("category.id", {
+            required: "This field is required",
+          })}
+        >
+          {categoryOptions?.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+        <FormErrorMessage>{(errors as any)?.category?.id?.message as string}</FormErrorMessage>
+      </FormControl>
+    </Create>
+  );
 };
 ```
 
@@ -937,43 +867,40 @@ After this, we can now add the component `<PostCreate/>` in the `create.tsx` fil
 ```tsx title="src/App.tsx"
 //...
 import {
-    PostList,
-    PostShow,
-    // highlight-next-line
-    PostCreate,
+  PostList,
+  PostShow,
+  // highlight-next-line
+  PostCreate,
 } from "./pages/posts";
 
 function App() {
-    return (
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    show: "/posts/show/:id",
-                    // highlight-next-line
-                    create: "/posts/create",
-                },
-            ]}
-        >
-            <Routes>
-                //...
-                <Route
-                    index
-                    element={<NavigateToResource resource="posts" />}
-                />
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    <Route path="/posts/show/:id" element={<PostShow />} />
-                    {/* highlight-start */}
-                    <Route path="/posts/create" element={<PostCreate />} />
-                    {/* highlight-end */}
-                </Route>
-                //...
-            </Routes>
-        </Refine>
-    );
+  return (
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+          // highlight-next-line
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <Routes>
+        //...
+        <Route index element={<NavigateToResource resource="posts" />} />
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          <Route path="/posts/show/:id" element={<PostShow />} />
+          {/* highlight-start */}
+          <Route path="/posts/create" element={<PostCreate />} />
+          {/* highlight-end */}
+        </Route>
+        //...
+      </Routes>
+    </Refine>
+  );
 }
 
 export default App;
@@ -992,157 +919,135 @@ For editing a record, we will add an `edit.tsx` file In the `posts` folder under
 ```tsx title="src/pages/posts/edit.tsx"
 import React from "react";
 import { Edit } from "@refinedev/chakra-ui";
-import {
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    Input,
-    Select,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, FormErrorMessage, Input, Select } from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
 
 export const PostEdit = () => {
-    const {
-        refineCore: { formLoading, queryResult },
-        saveButtonProps,
-        register,
-        resetField,
-        formState: { errors },
-    } = useForm({
-        refineCoreProps: {
-            metaData: {
-                populate: ["category"],
-            },
-        },
-    });
+  const {
+    refineCore: { formLoading, queryResult },
+    saveButtonProps,
+    register,
+    resetField,
+    formState: { errors },
+  } = useForm({
+    refineCoreProps: {
+      metaData: {
+        populate: ["category"],
+      },
+    },
+  });
 
-    const postsData = queryResult?.data?.data;
+  const postsData = queryResult?.data?.data;
 
-    const { options: categoryOptions } = useSelect({
-        resource: "categories",
-        defaultValue: postsData?.category?.id,
-    });
+  const { options: categoryOptions } = useSelect({
+    resource: "categories",
+    defaultValue: postsData?.category?.id,
+  });
 
-    React.useEffect(() => {
-        resetField("category.id");
-    }, [categoryOptions]);
+  React.useEffect(() => {
+    resetField("category.id");
+  }, [categoryOptions]);
 
-    return (
-        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.id}>
-                <FormLabel>Id</FormLabel>
-                <Input
-                    disabled
-                    type="number"
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+  return (
+    <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.id}>
+        <FormLabel>Id</FormLabel>
+        <Input
+          disabled
+          type="number"
+          {...register("id", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.id?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    type="text"
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.title?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
+        <FormLabel>Title</FormLabel>
+        <Input
+          type="text"
+          {...register("title", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.title?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.content}>
-                <FormLabel>Content</FormLabel>
-                <Input
-                    type="text"
-                    {...register("content", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.content?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.content}>
+        <FormLabel>Content</FormLabel>
+        <Input
+          type="text"
+          {...register("content", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.content?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!errors?.category}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    placeholder="Select category"
-                    {...register("category.id", {
-                        required: "This field is required",
-                    })}
-                >
-                    {categoryOptions?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {(errors as any)?.category?.id?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.category}>
+        <FormLabel>Category</FormLabel>
+        <Select
+          placeholder="Select category"
+          {...register("category.id", {
+            required: "This field is required",
+          })}
+        >
+          {categoryOptions?.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+        <FormErrorMessage>{(errors as any)?.category?.id?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
-                <FormLabel>Created At</FormLabel>
-                <Input
-                    disabled
-                    {...register("createdAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.createdAt?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
+        <FormLabel>Created At</FormLabel>
+        <Input
+          disabled
+          {...register("createdAt", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.createdAt?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.updatedAt}>
-                <FormLabel>Updated At</FormLabel>
-                <Input
-                    disabled
-                    {...register("updatedAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.updatedAt?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.updatedAt}>
+        <FormLabel>Updated At</FormLabel>
+        <Input
+          disabled
+          {...register("updatedAt", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.updatedAt?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.publishedAt}>
-                <FormLabel>Published At</FormLabel>
-                <Input
-                    disabled
-                    {...register("publishedAt", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.publishedAt?.message as string}
-                </FormErrorMessage>
-            </FormControl>
+      <FormControl mb="3" isInvalid={!!(errors as any)?.publishedAt}>
+        <FormLabel>Published At</FormLabel>
+        <Input
+          disabled
+          {...register("publishedAt", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.publishedAt?.message as string}</FormErrorMessage>
+      </FormControl>
 
-            <FormControl mb="3" isInvalid={!!(errors as any)?.locale}>
-                <FormLabel>Locale</FormLabel>
-                <Input
-                    disabled
-                    type="text"
-                    {...register("locale", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.locale?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-        </Edit>
-    );
+      <FormControl mb="3" isInvalid={!!(errors as any)?.locale}>
+        <FormLabel>Locale</FormLabel>
+        <Input
+          disabled
+          type="text"
+          {...register("locale", {
+            required: "This field is required",
+          })}
+        />
+        <FormErrorMessage>{(errors as any)?.locale?.message as string}</FormErrorMessage>
+      </FormControl>
+    </Edit>
+  );
 };
 ```
 
@@ -1157,46 +1062,43 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
 ```tsx title="src/App.tsx"
 //...
 import {
-    PostList,
-    PostShow,
-    PostCreate,
-    // highlight-next-line
-    PostEdit,
+  PostList,
+  PostShow,
+  PostCreate,
+  // highlight-next-line
+  PostEdit,
 } from "./pages/posts";
 
 function App() {
-    return (
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    show: "/posts/show/:id",
-                    create: "/posts/create",
-                    // highlight-next-line
-                    edit: "/posts/edit/:id",
-                },
-            ]}
-        >
-            <Routes>
-                //...
-                <Route
-                    index
-                    element={<NavigateToResource resource="posts" />}
-                />
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    <Route path="/posts/show/:id" element={<PostShow />} />
-                    <Route path="/posts/create" element={<PostCreate />} />
-                    {/* highlight-start */}
-                    <Route path="/posts/edit/:id" element={<PostEdit />} />
-                    {/* highlight-end */}
-                </Route>
-                //...
-            </Routes>
-        </Refine>
-    );
+  return (
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+          create: "/posts/create",
+          // highlight-next-line
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <Routes>
+        //...
+        <Route index element={<NavigateToResource resource="posts" />} />
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          <Route path="/posts/show/:id" element={<PostShow />} />
+          <Route path="/posts/create" element={<PostCreate />} />
+          {/* highlight-start */}
+          <Route path="/posts/edit/:id" element={<PostEdit />} />
+          {/* highlight-end */}
+        </Route>
+        //...
+      </Routes>
+    </Refine>
+  );
 }
 
 export default App;
@@ -1249,24 +1151,24 @@ Another way to include a delete button on the `<PostEdit>` page. To display the 
 ```tsx title="src/App.tsx"
 //...
 function App() {
-    return (
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    show: "/posts/show/:id",
-                    create: "/posts/create",
-                    // highlight-start
-                    meta: {
-                        canDelete: true,
-                    },
-                    // highlight-end
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+          create: "/posts/create",
+          // highlight-start
+          meta: {
+            canDelete: true,
+          },
+          // highlight-end
+        },
+      ]}
+    />
+  );
 }
 
 export default App;
@@ -1290,45 +1192,44 @@ import { IconButton } from "@chakra-ui/react";
 import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
 import { Column } from "@tanstack/react-table";
 
-export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
-    column,
-}) => {
-    if (!column.getCanSort()) {
-        return null;
+export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+  if (!column.getCanSort()) {
+    return null;
+  }
+
+  const sorted = column.getIsSorted();
+
+  const Icon = () => {
+    if (!sorted) {
+      return <IconSelector size={18} />;
     }
 
-    const sorted = column.getIsSorted();
+    if (sorted === "asc") {
+      return <IconChevronDown size={18} />;
+    }
 
-    const Icon = () => {
-        if (!sorted) {
-            return <IconSelector size={18} />;
-        }
+    if (sorted === "desc") {
+      return <IconChevronUp size={18} />;
+    }
 
-        if (sorted === "asc") {
-            return <IconChevronDown size={18} />;
-        }
+    return null;
+  };
 
-        if (sorted === "desc") {
-            return <IconChevronUp size={18} />;
-        }
-
-        return null;
-    };
-
-    return (
-        <IconButton
-            aria-label="Sort"
-            size="xs"
-            onClick={column.getToggleSortingHandler()}
-            style={{
-                transition: "transform 0.25s",
-                transform: `rotate(${sorted === "asc" ? "180" : "0"}deg)`,
-            }}
-            icon={<Icon />}
-        />
-    );
+  return (
+    <IconButton
+      aria-label="Sort"
+      size="xs"
+      onClick={column.getToggleSortingHandler()}
+      style={{
+        transition: "transform 0.25s",
+        transform: `rotate(${sorted === "asc" ? "180" : "0"}deg)`,
+      }}
+      icon={<Icon />}
+    />
+  );
 };
 ```
+
 </p>
 </details>
 
@@ -1394,107 +1295,82 @@ we create a new folder named `components` under the `src` folder. Under that fol
 
 ```tsx title="src/components/ColumnFilter.tsx"
 import React, { useState } from "react";
-import {
-    Input,
-    Menu,
-    IconButton,
-    MenuButton,
-    MenuList,
-    VStack,
-    HStack,
-} from "@chakra-ui/react";
+import { Input, Menu, IconButton, MenuButton, MenuList, VStack, HStack } from "@chakra-ui/react";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import { Column } from "@tanstack/react-table";
 
-export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
-    column,
-}) => {
-    const [state, setState] = useState(null as null | { value: any });
+export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+  const [state, setState] = useState(null as null | { value: any });
 
-    if (!column.getCanFilter()) {
-        return null;
+  if (!column.getCanFilter()) {
+    return null;
+  }
+
+  const open = () =>
+    setState({
+      value: column.getFilterValue(),
+    });
+
+  const close = () => setState(null);
+
+  const change = (value: any) => setState({ value });
+
+  const clear = () => {
+    column.setFilterValue(undefined);
+    close();
+  };
+
+  const save = () => {
+    if (!state) return;
+    column.setFilterValue(state.value);
+    close();
+  };
+
+  const renderFilterElement = () => {
+    const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
+
+    if (!FilterComponent && !!state) {
+      return (
+        <Input
+          borderRadius="md"
+          size="sm"
+          autoComplete="off"
+          value={state.value}
+          onChange={(e) => change(e.target.value)}
+        />
+      );
     }
 
-    const open = () =>
-        setState({
-            value: column.getFilterValue(),
-        });
+    return <FilterComponent value={state?.value} onChange={(e: any) => change(e.target.value)} />;
+  };
 
-    const close = () => setState(null);
-
-    const change = (value: any) => setState({ value });
-
-    const clear = () => {
-        column.setFilterValue(undefined);
-        close();
-    };
-
-    const save = () => {
-        if (!state) return;
-        column.setFilterValue(state.value);
-        close();
-    };
-
-    const renderFilterElement = () => {
-        const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
-
-        if (!FilterComponent && !!state) {
-            return (
-                <Input
-                    borderRadius="md"
-                    size="sm"
-                    autoComplete="off"
-                    value={state.value}
-                    onChange={(e) => change(e.target.value)}
-                />
-            );
-        }
-
-        return (
-            <FilterComponent
-                value={state?.value}
-                onChange={(e: any) => change(e.target.value)}
-            />
-        );
-    };
-
-    return (
-        <Menu isOpen={!!state} onClose={close}>
-            <MenuButton
-                onClick={open}
-                as={IconButton}
-                aria-label="Options"
-                icon={<IconFilter size="16" />}
-                variant="ghost"
-                size="xs"
-            />
-            <MenuList p="2">
-                {!!state && (
-                    <VStack align="flex-start">
-                        {renderFilterElement()}
-                        <HStack spacing="1">
-                            <IconButton
-                                aria-label="Clear"
-                                size="sm"
-                                colorScheme="red"
-                                onClick={clear}
-                            >
-                                <IconX size={18} />
-                            </IconButton>
-                            <IconButton
-                                aria-label="Save"
-                                size="sm"
-                                onClick={save}
-                                colorScheme="green"
-                            >
-                                <IconCheck size={18} />
-                            </IconButton>
-                        </HStack>
-                    </VStack>
-                )}
-            </MenuList>
-        </Menu>
-    );
+  return (
+    <Menu isOpen={!!state} onClose={close}>
+      <MenuButton
+        onClick={open}
+        as={IconButton}
+        aria-label="Options"
+        icon={<IconFilter size="16" />}
+        variant="ghost"
+        size="xs"
+      />
+      <MenuList p="2">
+        {!!state && (
+          <VStack align="flex-start">
+            {renderFilterElement()}
+            <HStack spacing="1">
+              <IconButton aria-label="Clear" size="sm" colorScheme="red" onClick={clear}>
+                <IconX size={18} />
+              </IconButton>
+              <IconButton aria-label="Save" size="sm" onClick={save} colorScheme="green">
+                <IconCheck size={18} />
+              </IconButton>
+            </HStack>
+          </VStack>
+        )}
+      </MenuList>
+    </Menu>
+  );
 };
 ```
 
@@ -1596,9 +1472,9 @@ We can also disable filtering for the `actions` column by setting the column's e
 
 Mutation modes controls how side-effects or actions like deletion, creation, updating, etc are applied. refine provides three mutation modes namely:
 
--   pessimistic: In this mode, UI updates are delayed until the server confirms the mutation.
--   undoable: In this mode, UI updates are immediately applied, but the mutation can be reversed.
--   optimistic: UI updates are immediately updated before confirmed by server.
+- pessimistic: In this mode, UI updates are delayed until the server confirms the mutation.
+- undoable: In this mode, UI updates are immediately applied, but the mutation can be reversed.
+- optimistic: UI updates are immediately updated before confirmed by server.
 
 We will implement undoable mutation mode. The mutation is applied locally, and redirection and UI updates are performed as soon as the mutation is successful. It then Waits for a configurable amount of time before applying the mutation.
 
@@ -1630,9 +1506,9 @@ export default App;
 
 In this article, we covered how to create a React admin panel with refine. We also learned:
 
--   How to bootstrap a refine application.
--   Connecting a Strapiv4 data provider to a refine application.
--   implemented CRUD operations on a refine application.
+- How to bootstrap a refine application.
+- Connecting a Strapiv4 data provider to a refine application.
+- implemented CRUD operations on a refine application.
 
 If you're looking to build a robust and dynamic admin panel for your web application, then this React admin tutorial is just what you need.
 

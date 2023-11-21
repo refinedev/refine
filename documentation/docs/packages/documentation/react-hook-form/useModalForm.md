@@ -6,96 +6,98 @@ sidebar_label: useModalForm
 
 ```tsx live shared
 type ModalPropsType = {
-    isOpen: boolean;
-    onClose: () => void;
-    children: React.ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
 };
 
 const Modal: React.FC<ModalPropsType> = ({ isOpen, onClose, children }) => {
-    if (!isOpen) return null;
-    return (
-        <>
-            <div className="overlay" onClick={onClose}></div>
-            <div className="modal">
-                <div className="modal-title">
-                    <button className="close-button" onClick={onClose}>
-                        &times;
-                    </button>
-                </div>
-                <div className="modal-content">{children}</div>
-            </div>
-        </>
-    );
+  if (!isOpen) return null;
+  return (
+    <>
+      <div className="overlay" onClick={onClose}></div>
+      <div className="modal">
+        <div className="modal-title">
+          <button className="close-button" onClick={onClose}>
+            &times;
+          </button>
+        </div>
+        <div className="modal-content">{children}</div>
+      </div>
+    </>
+  );
 };
 ```
 
 ```css live shared
 html,
 body {
-    background: white;
+  background: white;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
 }
 
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    z-index: 1000;
-    width: 500px;
-    overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 1000;
+  width: 500px;
+  overflow-y: auto;
 }
 
 .modal .modal-title {
-    display: flex;
-    justify-content: flex-end;
-    padding: 4px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px;
 }
 
 .modal .modal-content {
-    padding: 0px 16px 16px 16px;
+  padding: 0px 16px 16px 16px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .form input,
 select,
 textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 ```
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal.
 
 :::info
+
 `useModalForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means that you can use all the features of [`useForm`][refine-react-hook-form-use-form] hook.
+
 :::
 
 ## Basic Usage
@@ -122,101 +124,101 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+  const { tableQueryResult } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
         },
-    });
+      ],
+    },
+  });
 
-    // highlight-start
-    const {
-        formState: { errors },
-        refineCore: { onFinish, formLoading },
-        modal: { visible, close, show },
-        register,
-        handleSubmit,
-        saveButtonProps,
-    } = useModalForm<IPost, HttpError, IPost>({
-        refineCoreProps: { action: "create" },
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    formState: { errors },
+    refineCore: { onFinish, formLoading },
+    modal: { visible, close, show },
+    register,
+    handleSubmit,
+    saveButtonProps,
+  } = useModalForm<IPost, HttpError, IPost>({
+    refineCoreProps: { action: "create" },
+  });
+  // highlight-end
 
-    const loading = tableQueryResult?.isLoading;
+  const loading = tableQueryResult?.isLoading;
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <div>
-            {/* highlight-start */}
-            <Modal isOpen={visible} onClose={close}>
-                <form className="form" onSubmit={handleSubmit(onFinish)}>
-                    <div className="form-group">
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </div>
-                    <div className="form-group">
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </div>
-                    <button type="submit" {...saveButtonProps}>
-                        {formLoading ? "Loading" : "Save"}
-                    </button>
-                </form>
-            </Modal>
-            <button onClick={() => show()}>Create Post</button>
-            {/* highlight-end */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>{post.status}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div>
+      {/* highlight-start */}
+      <Modal isOpen={visible} onClose={close}>
+        <form className="form" onSubmit={handleSubmit(onFinish)}>
+          <div className="form-group">
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </div>
+          <div className="form-group">
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </div>
+          <button type="submit" {...saveButtonProps}>
+            {formLoading ? "Loading" : "Save"}
+          </button>
+        </form>
+      </Modal>
+      <button onClick={() => show()}>Create Post</button>
+      {/* highlight-end */}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
@@ -236,130 +238,131 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+  const { tableQueryResult } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
         },
-    });
+      ],
+    },
+  });
 
-    // highlight-start
-    const {
-        formState: { errors },
-        refineCore: { onFinish, formLoading },
-        modal: { visible, close, show },
-        register,
-        handleSubmit,
-        saveButtonProps,
-    } = useModalForm<IPost, HttpError, IPost>({
-        refineCoreProps: { action: "edit" },
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    formState: { errors },
+    refineCore: { onFinish, formLoading },
+    modal: { visible, close, show },
+    register,
+    handleSubmit,
+    saveButtonProps,
+  } = useModalForm<IPost, HttpError, IPost>({
+    refineCoreProps: { action: "edit" },
+  });
+  // highlight-end
 
-    const loading = tableQueryResult?.isLoading;
+  const loading = tableQueryResult?.isLoading;
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <div>
-            {/* highlight-start */}
-            <Modal isOpen={visible} onClose={close}>
-                <form className="form" onSubmit={handleSubmit(onFinish)}>
-                    <div className="form-group">
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </div>
-                    <div className="form-group">
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </div>
-                    <button type="submit" {...saveButtonProps}>
-                        {formLoading ? "Loading" : "Save"}
-                    </button>
-                </form>
-            </Modal>
-            {/* highlight-end */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>{post.status}</td>
-                            <td>
-                                {/* highlight-start */}
-                                <button onClick={() => show(post.id)}>
-                                    Edit
-                                </button>
-                                {/* highlight-end */}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div>
+      {/* highlight-start */}
+      <Modal isOpen={visible} onClose={close}>
+        <form className="form" onSubmit={handleSubmit(onFinish)}>
+          <div className="form-group">
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </div>
+          <div className="form-group">
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </div>
+          <button type="submit" {...saveButtonProps}>
+            {formLoading ? "Loading" : "Save"}
+          </button>
+        </form>
+      </Modal>
+      {/* highlight-end */}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.status}</td>
+              <td>
+                {/* highlight-start */}
+                <button onClick={() => show(post.id)}>Edit</button>
+                {/* highlight-end */}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
 ```
 
 :::caution
+
 **refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
 ```tsx
 <td>
-    {/* highlight-start */}
-    <button onClick={() => show(post.id)}>Edit</button>
-    {/* highlight-end */}
+  {/* highlight-start */}
+  <button onClick={() => show(post.id)}>Edit</button>
+  {/* highlight-end */}
 </td>
 ```
 
 :::
 
 :::caution
+
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+
 :::
 
 </TabItem>
@@ -376,128 +379,129 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-    });
+  const { tableQueryResult } = useTable<IPost>({
+    initialSorter: [
+      {
+        field: "id",
+        order: "desc",
+      },
+    ],
+  });
 
-    // highlight-start
-    const {
-        formState: { errors },
-        refineCore: { onFinish, formLoading },
-        modal: { visible, close, show },
-        register,
-        handleSubmit,
-        saveButtonProps,
-    } = useModalForm<IPost, HttpError, IPost>({
-        refineCoreProps: { action: "clone" },
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    formState: { errors },
+    refineCore: { onFinish, formLoading },
+    modal: { visible, close, show },
+    register,
+    handleSubmit,
+    saveButtonProps,
+  } = useModalForm<IPost, HttpError, IPost>({
+    refineCoreProps: { action: "clone" },
+  });
+  // highlight-end
 
-    const loading = tableQueryResult?.isLoading;
+  const loading = tableQueryResult?.isLoading;
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <div>
-            {/* highlight-start */}
-            <Modal isOpen={visible} onClose={close}>
-                <form className="form" onSubmit={handleSubmit(onFinish)}>
-                    <div className="form-group">
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </div>
-                    <div className="form-group">
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </div>
-                    <button type="submit" {...saveButtonProps}>
-                        {formLoading ? "Loading" : "Save"}
-                    </button>
-                </form>
-            </Modal>
-            {/* highlight-end */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>{post.status}</td>
-                            <td>
-                                {/* highlight-start */}
-                                <button onClick={() => show(post.id)}>
-                                    Clone
-                                </button>
-                                {/* highlight-end */}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div>
+      {/* highlight-start */}
+      <Modal isOpen={visible} onClose={close}>
+        <form className="form" onSubmit={handleSubmit(onFinish)}>
+          <div className="form-group">
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </div>
+          <div className="form-group">
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </div>
+          <button type="submit" {...saveButtonProps}>
+            {formLoading ? "Loading" : "Save"}
+          </button>
+        </form>
+      </Modal>
+      {/* highlight-end */}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.status}</td>
+              <td>
+                {/* highlight-start */}
+                <button onClick={() => show(post.id)}>Clone</button>
+                {/* highlight-end */}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
 ```
 
 :::caution
+
 **refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 
 ```tsx
 <td>
-    {/* highlight-start */}
-    <button onClick={() => show(post.id)}>clone</button>
-    {/* highlight-end */}
+  {/* highlight-start */}
+  <button onClick={() => show(post.id)}>clone</button>
+  {/* highlight-end */}
 </td>
 ```
 
 :::
 
 :::caution
+
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+
 :::
 
 </TabItem>
@@ -510,26 +514,26 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ```tsx title="src/components/Modal/index.tsx"
 type ModalPropsType = {
-    isOpen: boolean;
-    onClose: () => void;
-    children: React.ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
 };
 
 const Modal: React.FC<ModalPropsType> = ({ isOpen, onClose, children }) => {
-    if (!isOpen) return null;
-    return (
-        <>
-            <div className="overlay" onClick={onClose}></div>
-            <div className="modal">
-                <div className="modal-title">
-                    <button className="close-button" onClick={onClose}>
-                        &times;
-                    </button>
-                </div>
-                <div className="modal-content">{children}</div>
-            </div>
-        </>
-    );
+  if (!isOpen) return null;
+  return (
+    <>
+      <div className="overlay" onClick={onClose}></div>
+      <div className="modal">
+        <div className="modal-title">
+          <button className="close-button" onClick={onClose}>
+            &times;
+          </button>
+        </div>
+        <div className="modal-content">{children}</div>
+      </div>
+    </>
+  );
 };
 ```
 
@@ -542,59 +546,59 @@ const Modal: React.FC<ModalPropsType> = ({ isOpen, onClose, children }) => {
 
 ```css title="src/styles.css"
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
 }
 
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    z-index: 1000;
-    width: 500px;
-    overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 1000;
+  width: 500px;
+  overflow-y: auto;
 }
 
 .modal .modal-title {
-    display: flex;
-    justify-content: flex-end;
-    padding: 4px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px;
 }
 
 .modal .modal-content {
-    padding: 0px 16px 16px 16px;
+  padding: 0px 16px 16px 16px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .form input,
 select,
 textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 ```
 
@@ -604,9 +608,11 @@ textarea {
 ## Properties
 
 :::tip
+
 All [`useForm`][refine-react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#properties) docs.
 
 All [`React Hook Form useForm`][react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`React Hook Form`][react-hook-form-use-form] docs.
+
 :::
 
 ### `defaultValues`
@@ -617,9 +623,9 @@ Default values for the form. Use this to pre-populate the form with data that ne
 
 ```tsx
 const modalForm = useModalForm({
-    defaultValues: {
-        title: "Hello World",
-    },
+  defaultValues: {
+    title: "Hello World",
+  },
 });
 ```
 
@@ -631,9 +637,9 @@ When `true`, modal will be visible by default.
 
 ```tsx
 const modalForm = useModalForm({
-    modalProps: {
-        defaultVisible: true,
-    },
+  modalProps: {
+    defaultVisible: true,
+  },
 });
 ```
 
@@ -645,9 +651,9 @@ When `true`, modal will be closed after successful submit.
 
 ```tsx
 const modalForm = useModalForm({
-    modalProps: {
-        autoSubmitClose: false,
-    },
+  modalProps: {
+    autoSubmitClose: false,
+  },
 });
 ```
 
@@ -659,9 +665,9 @@ When `true`, form will be reset after successful submit.
 
 ```tsx
 const modalForm = useModalForm({
-    modalProps: {
-        autoResetForm: false,
-    },
+  modalProps: {
+    autoResetForm: false,
+  },
 });
 ```
 
@@ -675,7 +681,7 @@ You can also set this value in [`<Refine>`](/docs/api-reference/core/components/
 
 ```tsx
 const modalForm = useModalForm({
-    warnWhenUnsavedChanges: true,
+  warnWhenUnsavedChanges: true,
 });
 ```
 
@@ -689,7 +695,7 @@ This property can also be set as an object `{ key: string; syncId?: boolean }` t
 
 ```tsx
 const modalForm = useModalForm({
-    syncWithLocation: { key: "my-modal", syncId: true },
+  syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 
@@ -702,7 +708,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -715,11 +723,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useModalForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
     },
+  },
 });
 ```
 
@@ -731,13 +739,13 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            debounce: 2000,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
     },
+  },
 });
 ```
 
@@ -747,19 +755,19 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useModalForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-start
-            onFinish: (values) => {
-                return {
-                    foo: "bar",
-                    ...values,
-                };
-            },
-            // highlight-end
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-start
+      onFinish: (values) => {
+        return {
+          foo: "bar",
+          ...values,
+        };
+      },
+      // highlight-end
     },
+  },
 });
 ```
 
@@ -771,13 +779,13 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnUnmount: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
     },
+  },
 });
 ```
 
@@ -789,22 +797,24 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnClose: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnClose: true,
     },
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 All [`useForm`][refine-react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
 
 All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
+
 :::
 
 ### `visible`
@@ -813,7 +823,7 @@ Current visibility state of the modal.
 
 ```tsx
 const modalForm = useModalForm({
-    defaultVisible: true,
+  defaultVisible: true,
 });
 
 console.log(modalForm.modal.visible); // true
@@ -825,12 +835,12 @@ Title of the modal. Based on resource and action values
 
 ```tsx
 const {
-    modal: { title },
+  modal: { title },
 } = useModalForm({
-    refineCoreProps: {
-        resource: "posts",
-        action: "create",
-    },
+  refineCoreProps: {
+    resource: "posts",
+    action: "create",
+  },
 });
 
 console.log(title); // "Create Post"
@@ -842,33 +852,33 @@ A function that can close the modal. It's useful when you want to close the moda
 
 ```tsx
 const {
-    getInputProps,
-    handleSubmit,
-    register,
-    modal,
-    refineCore: { onFinish },
+  getInputProps,
+  handleSubmit,
+  register,
+  modal,
+  refineCore: { onFinish },
 } = useModalForm();
 
 return (
-    <>
-        <button onClick={show}>Show Modal</button>
-        <Modal {...modal}>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div>
-                    <label>Title: </label>
-                    <input {...register("title")} />
-                </div>
-                <div>
-                    <button type="submit" onClick={modal.close}>
-                        Cancel
-                    </button>
-                    <button type="submit" onClick={modal.submit}>
-                        Save
-                    </button>
-                </div>
-            </form>
-        </Modal>
-    </>
+  <>
+    <button onClick={show}>Show Modal</button>
+    <Modal {...modal}>
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div>
+          <label>Title: </label>
+          <input {...register("title")} />
+        </div>
+        <div>
+          <button type="submit" onClick={modal.close}>
+            Cancel
+          </button>
+          <button type="submit" onClick={modal.submit}>
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal>
+  </>
 );
 ```
 
@@ -878,32 +888,32 @@ A function that can submit the form. It's useful when you want to submit the for
 
 ```tsx
 const {
-    getInputProps,
-    handleSubmit,
-    register,
-    modal,
-    refineCore: { onFinish },
+  getInputProps,
+  handleSubmit,
+  register,
+  modal,
+  refineCore: { onFinish },
 } = useModalForm();
 
 // ---
 
 return (
-    <>
-        <button onClick={show}>Show Modal</button>
-        <Modal {...modal}>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div>
-                    <label>Title: </label>
-                    <input {...register("title")} />
-                </div>
-                <div>
-                    <button type="submit" onClick={modal.submit}>
-                        Save
-                    </button>
-                </div>
-            </form>
-        </Modal>
-    </>
+  <>
+    <button onClick={show}>Show Modal</button>
+    <Modal {...modal}>
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div>
+          <label>Title: </label>
+          <input {...register("title")} />
+        </div>
+        <div>
+          <button type="submit" onClick={modal.submit}>
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal>
+  </>
 );
 ```
 
@@ -913,30 +923,30 @@ A function that can show the modal.
 
 ```tsx
 const {
-    saveButtonProps,
-    handleSubmit,
-    register,
-    modal,
-    refineCore: { onFinish, formLoading },
+  saveButtonProps,
+  handleSubmit,
+  register,
+  modal,
+  refineCore: { onFinish, formLoading },
 } = useModalForm();
 
 return (
-    <>
-        <button onClick={show}>Show Modal</button>
-        <Modal {...modal}>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div>
-                    <label>Title: </label>
-                    <input {...register("title")} />
-                </div>
-                <div>
-                    <button type="submit" {...saveButtonProps}>
-                        Save
-                    </button>
-                </div>
-            </form>
-        </Modal>
-    </>
+  <>
+    <button onClick={show}>Show Modal</button>
+    <Modal {...modal}>
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div>
+          <label>Title: </label>
+          <input {...register("title")} />
+        </div>
+        <div>
+          <button type="submit" {...saveButtonProps}>
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal>
+  </>
 );
 ```
 
@@ -946,37 +956,37 @@ It contains all the props needed by the "submit" button within the modal (disabl
 
 ```tsx
 const {
-    saveButtonProps,
-    handleSubmit,
-    register,
-    modal,
-    refineCore: { onFinish, formLoading },
+  saveButtonProps,
+  handleSubmit,
+  register,
+  modal,
+  refineCore: { onFinish, formLoading },
 } = useModalForm();
 
 return (
-    <>
-        <button onClick={show}>Show Modal</button>
-        <Modal {...modal}>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div>
-                    <label>Title: </label>
-                    <input {...register("title")} />
-                </div>
-                <div>
-                    <button
-                        type="submit"
-                        disabled={saveButtonProps.disabled}
-                        onClick={(e) => {
-                            // -- your custom logic
-                            saveButtonProps.onClick(e);
-                        }}
-                    >
-                        Save
-                    </button>
-                </div>
-            </form>
-        </Modal>
-    </>
+  <>
+    <button onClick={show}>Show Modal</button>
+    <Modal {...modal}>
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div>
+          <label>Title: </label>
+          <input {...register("title")} />
+        </div>
+        <div>
+          <button
+            type="submit"
+            disabled={saveButtonProps.disabled}
+            onClick={(e) => {
+              // -- your custom logic
+              saveButtonProps.onClick(e);
+            }}
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal>
+  </>
 );
 ```
 
@@ -989,12 +999,14 @@ return (
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
 :::tip External Props
+
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
+
 :::
 
 ### Type Parameters
 
-| Property       | Description                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
@@ -1014,7 +1026,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 <br />
 
-> -   #### ModalReturnValues
+> - #### ModalReturnValues
 >
 > | Property        | Description                                    | Type                                                                     |
 > | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------ |

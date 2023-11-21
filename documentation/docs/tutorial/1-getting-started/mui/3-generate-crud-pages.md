@@ -2,8 +2,8 @@
 id: generate-crud-pages
 title: 4. Generating CRUD pages automatically with Inferencer
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/store-your-repository
+  prev: tutorial/getting-started/{preferredUI}/create-project
+  next: tutorial/getting-started/store-your-repository
 ---
 
 ## Inferencer
@@ -41,84 +41,70 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-    RefineSnackbarProvider,
-    notificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 export default App;
@@ -147,7 +133,9 @@ To preview the list page, go back to your browser and go to <a href="localhost:3
 You should see the list page for the `blog_posts` resource that was generated by Inferencer like below:
 
 :::note
+
 When you navigate to the `localhost:3000`, **refine** will redirect you to the initial resource's list page registered to `<Refine/>` component, like `localhost:3000/blog-posts`
+
 :::
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/blog-posts
@@ -155,86 +143,72 @@ setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-    RefineSnackbarProvider,
-    notificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -251,86 +225,72 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-    RefineSnackbarProvider,
-    notificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -347,86 +307,72 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-    RefineSnackbarProvider,
-    notificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -443,86 +389,72 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-    RefineSnackbarProvider,
-    notificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        //highlight-start
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        //highlight-end
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route index element={<NavigateToResource resource="blog_posts" />} />
-                                {/* highlight-start */}
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
-                                {/* highlight-end */}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            //highlight-start
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            //highlight-end
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
+                {/* highlight-start */}
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
+                {/* highlight-end */}
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);

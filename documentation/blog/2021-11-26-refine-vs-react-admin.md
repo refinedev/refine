@@ -28,7 +28,9 @@ When you decide to use these types of frameworks, we need to know to what extent
 We will examine how the frameworks we will talk about solve our work and how customizable they are under the title of `Customization`.
 
 :::note
+
 This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) contact info@refine.dev or you can open a issue on [Github](https://github.com/refinedev/refine).
+
 :::
 
 ## React-Admin
@@ -43,8 +45,8 @@ React-admin is a framework that has been developed for a long time and has a wid
 
 ### Installation
 
--   Can be included in another React app
--   Installation is very simple
+- Can be included in another React app
+- Installation is very simple
 
 ```bash
 npm install react-admin
@@ -54,12 +56,12 @@ yarn add react-admin
 
 ### Features
 
--   It can be used with any backend(Rest, GraphQL, SOAP)
--   API-based. The UI fetches the data from an API connected to the data source.
--   Powered by Material UI, Redux, Redux Saga, React-router.
--   Supports any authentication provider of your choice(REST API, OAuth, Basic Auth)
--   Internationalization : Uses i18n
--   Supports data validation
+- It can be used with any backend(Rest, GraphQL, SOAP)
+- API-based. The UI fetches the data from an API connected to the data source.
+- Powered by Material UI, Redux, Redux Saga, React-router.
+- Supports any authentication provider of your choice(REST API, OAuth, Basic Auth)
+- Internationalization : Uses i18n
+- Supports data validation
 
 ### SSR - Next.js Support
 
@@ -75,10 +77,7 @@ import { Route } from "react-router-dom";
 import Foo from "./Foo";
 import Bar from "./Bar";
 
-export default [
-    <Route exact path="/foo" component={Foo} />,
-    <Route exact path="/bar" component={Bar} />,
-];
+export default [<Route exact path="/foo" component={Foo} />, <Route exact path="/bar" component={Bar} />];
 ```
 
 Then, pass this array as customRoutes prop in the `<Admin>` component:
@@ -90,12 +89,9 @@ import { Admin } from "react-admin";
 import customRoutes from "./customRoutes";
 
 const App = () => (
-    <Admin
-        customRoutes={customRoutes}
-        dataProvider={simpleRestProvider("http://path.to.my.api")}
-    >
-        ...
-    </Admin>
+  <Admin customRoutes={customRoutes} dataProvider={simpleRestProvider("http://path.to.my.api")}>
+    ...
+  </Admin>
 );
 
 export default App;
@@ -113,15 +109,15 @@ Here are the React-Admin data provider methods:
 
 ```ts
 const dataProvider = {
-    getList: (resource, params) => Promise,
-    getOne: (resource, params) => Promise,
-    getMany: (resource, params) => Promise,
-    getManyReference: (resource, params) => Promise,
-    create: (resource, params) => Promise,
-    update: (resource, params) => Promise,
-    updateMany: (resource, params) => Promise,
-    delete: (resource, params) => Promise,
-    deleteMany: (resource, params) => Promise,
+  getList: (resource, params) => Promise,
+  getOne: (resource, params) => Promise,
+  getMany: (resource, params) => Promise,
+  getManyReference: (resource, params) => Promise,
+  create: (resource, params) => Promise,
+  update: (resource, params) => Promise,
+  updateMany: (resource, params) => Promise,
+  delete: (resource, params) => Promise,
+  deleteMany: (resource, params) => Promise,
 };
 ```
 
@@ -140,29 +136,22 @@ import { Admin, Resource } from "react-admin";
 import { PostCreate, PostEdit, PostList } from "./posts";
 
 const App = () => {
-    const [dataProvider, setDataProvider] = React.useState(null);
-    React.useEffect(() => {
-        buildGraphQLProvider({
-            clientOptions: { uri: "http://localhost:4000" },
-        }).then((graphQlDataProvider) =>
-            setDataProvider(() => graphQlDataProvider),
-        );
-    }, []);
+  const [dataProvider, setDataProvider] = React.useState(null);
+  React.useEffect(() => {
+    buildGraphQLProvider({
+      clientOptions: { uri: "http://localhost:4000" },
+    }).then((graphQlDataProvider) => setDataProvider(() => graphQlDataProvider));
+  }, []);
 
-    if (!dataProvider) {
-        return <div>Loading</div>;
-    }
+  if (!dataProvider) {
+    return <div>Loading</div>;
+  }
 
-    return (
-        <Admin dataProvider={dataProvider}>
-            <Resource
-                name="Post"
-                list={PostList}
-                edit={PostEdit}
-                create={PostCreate}
-            />
-        </Admin>
-    );
+  return (
+    <Admin dataProvider={dataProvider}>
+      <Resource name="Post" list={PostList} edit={PostEdit} create={PostCreate} />
+    </Admin>
+  );
 };
 
 export default App;
@@ -176,30 +165,30 @@ The way to prevent this is to override all your queries.
 import buildGraphQLProvider, { buildQuery } from "ra-data-graphql-simple";
 
 const myBuildQuery = (introspection) => (fetchType, resource, params) => {
-    const builtQuery = buildQuery(introspection)(fetchType, resource, params);
+  const builtQuery = buildQuery(introspection)(fetchType, resource, params);
 
-    if (resource === "Command" && fetchType === "GET_ONE") {
-        return {
-            // Use the default query variables and parseResponse
-            ...builtQuery,
-            // Override the query
-            query: gql`
-                query Command($id: ID!) {
-                    data: Command(id: $id) {
-                        id
-                        reference
-                        customer {
-                            id
-                            firstName
-                            lastName
-                        }
-                    }
-                }
-            `,
-        };
-    }
+  if (resource === "Command" && fetchType === "GET_ONE") {
+    return {
+      // Use the default query variables and parseResponse
+      ...builtQuery,
+      // Override the query
+      query: gql`
+        query Command($id: ID!) {
+          data: Command(id: $id) {
+            id
+            reference
+            customer {
+              id
+              firstName
+              lastName
+            }
+          }
+        }
+      `,
+    };
+  }
 
-    return builtQuery;
+  return builtQuery;
 };
 
 export default buildGraphQLProvider({ buildQuery: myBuildQuery });
@@ -211,12 +200,12 @@ Although this is a solution, it complicates your project in many ways (debugging
 
 The providers that React admin supports are as follows:
 
--   Simple Rest: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-simple-rest](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-simple-rest)
--   Json Server: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server)
--   Simple GraphQL: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple)
--   Local JSON: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
--   Local Storage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
--   Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
+- Simple Rest: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-simple-rest](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-simple-rest)
+- Json Server: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server)
+- Simple GraphQL: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple)
+- Local JSON: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
+- Local Storage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
+- Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
 
 [You can view the full list of providers here ->](https://marmelab.com/react-admin/DataProviders.html)
 
@@ -238,11 +227,11 @@ In addition to these features it provides, React-Admin offers some modules as En
 
 A few of these modules are as follows:
 
--   RBAC
--   Editable-Datagrid
--   Realtime
--   Search
--   Navigation
+- RBAC
+- Editable-Datagrid
+- Realtime
+- Search
+- Navigation
 
 [For more information about Enterprise-Edition and other modules](https://marmelab.com/ra-enterprise)
 
@@ -262,7 +251,7 @@ Although **refine** is a newer framework, it is successful in identifying defici
 
 ### Installation
 
--   Installation is very simple and customizable options can be added.
+- Installation is very simple and customizable options can be added.
 
 ```bash
 npm create refine-app@latest demo-refine-project -- -b v3
@@ -272,15 +261,15 @@ npm create refine-app@latest demo-refine-project -- -b v3
 
 ### Features
 
--   Configuration: One-line setup with superplate. Project setup is very simple. Using superplate you can choose the content of your project and the features you want to add.
+- Configuration: One-line setup with superplate. Project setup is very simple. Using superplate you can choose the content of your project and the features you want to add.
 
--   UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design.
+- UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design.
 
--   Out-of-the-box: Routing, networking, authentication, state management, i18n and UI.
+- Out-of-the-box: Routing, networking, authentication, state management, i18n and UI.
 
--   Next.js / SSR integration: refine can be used with Next.js to SSR your pages.
+- Next.js / SSR integration: refine can be used with Next.js to SSR your pages.
 
--   React Location: React Location router provider support
+- React Location: React Location router provider support
 
 ### SSR - Next.js Support
 
@@ -308,14 +297,11 @@ import routerProvider from "@refinedev/nextjs-router";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-        >
-            <Component {...pageProps} />
-        </Refine>
-    );
+  return (
+    <Refine routerProvider={routerProvider} dataProvider={dataProvider(API_URL)}>
+      <Component {...pageProps} />
+    </Refine>
+  );
 }
 
 export default MyApp;
@@ -348,11 +334,13 @@ const routerProvider = {
 ```
 
 :::info
+
 **refine** includes many router providers to use in your projects like:
 
--   React Router
--   React Location
--   Next.js Router
+- React Router
+- React Location
+- Next.js Router
+
 :::
 
 [To take a look at how other router providers are defined and working](https://refine.dev/docs/api-reference/core/providers/router-provider/)
@@ -373,7 +361,7 @@ import { Refine } from "@pankod/refine";
 import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
+  return <Refine routerProvider={routerProvider} />;
 };
 ```
 
@@ -385,7 +373,7 @@ import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
+  return <Refine routerProvider={routerProvider} />;
 };
 ```
 
@@ -397,7 +385,7 @@ import { Refine } from "@pankod/refine";
 import routerProvider from "@refinedev/nextjs-router";
 
 const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
+  return <Refine routerProvider={routerProvider} />;
 };
 ```
 
@@ -416,31 +404,24 @@ A data provider must include following methods:
 
 ```ts
 const dataProvider = {
-    create: ({ resource, variables, meta }) => Promise,
-    createMany: ({ resource, variables, meta }) => Promise,
-    deleteOne: ({ resource, id, meta }) => Promise,
-    deleteMany: ({ resource, ids, meta }) => Promise,
-    getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
-    getMany: ({ resource, ids, meta }) => Promise,
-    getOne: ({ resource, id, meta }) => Promise,
-    update: ({ resource, id, variables, meta }) => Promise,
-    updateMany: ({ resource, ids, variables, meta }) => Promise,
-    custom: ({
-        url,
-        method,
-        sorters,
-        filters,
-        payload,
-        query,
-        headers,
-        meta,
-    }) => Promise,
-    getApiUrl: () => "",
+  create: ({ resource, variables, meta }) => Promise,
+  createMany: ({ resource, variables, meta }) => Promise,
+  deleteOne: ({ resource, id, meta }) => Promise,
+  deleteMany: ({ resource, ids, meta }) => Promise,
+  getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
+  getMany: ({ resource, ids, meta }) => Promise,
+  getOne: ({ resource, id, meta }) => Promise,
+  update: ({ resource, id, variables, meta }) => Promise,
+  updateMany: ({ resource, ids, variables, meta }) => Promise,
+  custom: ({ url, method, sorters, filters, payload, query, headers, meta }) => Promise,
+  getApiUrl: () => "",
 };
 ```
 
 :::note
+
 Data hooks uses React Query to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
+
 :::
 
 #### GraphQL Data Provider
@@ -463,12 +444,7 @@ import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(client)}
-        />
-    );
+  return <Refine routerProvider={routerProvider} dataProvider={dataProvider(client)} />;
 };
 ```
 
@@ -485,93 +461,71 @@ values={[
 
 ```tsx
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "asc",
         },
-        // highlight-start
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-            ],
+      ],
+    },
+    // highlight-start
+    meta: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["title"],
         },
-        // highlight-end
-    });
+      ],
+    },
+    // highlight-end
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        // highlight-start
-        meta: {
-            fields: ["id", "title"],
-        },
-        // highlight-end
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    // highlight-start
+    meta: {
+      fields: ["id", "title"],
+    },
+    // highlight-end
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column<IPost>
-                    dataIndex="category"
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    render={(_, record) => record.category.title}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter={{ multiple: 2 }}
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
+        <Table.Column key="title" dataIndex="title" title="Title" sorter={{ multiple: 1 }} />
+        <Table.Column<IPost>
+          dataIndex="category"
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+          render={(_, record) => record.category.title}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -602,20 +556,20 @@ Here we only make requests for queries that are necessary. As you can see, all y
 
 Connects to any REST or GraphQL custom backend.
 
--   NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
--   Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
--   Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
--   Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
--   Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
--   Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
--   Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
--   Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
--   Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
+- NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
+- Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
+- Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
+- Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
+- Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
+- Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
+- Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
+- Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
+- Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
 
 ### Customization
 
--   **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility."
--   While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
+- **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility."
+- While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
 
 #### UI/UX Customization:
 
@@ -629,10 +583,10 @@ Connects to any REST or GraphQL custom backend.
 
 All features of **refine** are available as **open source**.
 
--   Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
--   Realtime
--   Search
--   Navigation and more features are available
+- Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
+- Realtime
+- Search
+- Navigation and more features are available
 
 If you want to get information about the Enterprise, refine ready to help you for Support and Training.
 [For more info about Enterprise->](https://refine.dev/enterprise/)
@@ -647,14 +601,14 @@ In general, these frameworks that we are comparing have appeared for the same pu
 
 At this point, the questions you should ask when choosing these of framework may be as follows:
 
--   How flexible are they in offering solutions to the different business demands we may encounter?
+- How flexible are they in offering solutions to the different business demands we may encounter?
 
--   How difficult will it be to implement the providers and features we will be using?
+- How difficult will it be to implement the providers and features we will be using?
 
--   If any problem arises, can I easily find a solution from the documentation?
+- If any problem arises, can I easily find a solution from the documentation?
 
--   How dependent am I on this framework when using it in my project and does it offer customization possibilities?
+- How dependent am I on this framework when using it in my project and does it offer customization possibilities?
 
--   What does it offer me as an extra feature?
+- What does it offer me as an extra feature?
 
 In this article, we tried to answer these questions. By reading this article, you can choose the appropriate framework for your project and use it.

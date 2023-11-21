@@ -8,7 +8,9 @@ swizzle: true
 A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Mantine [Breadcrumb][mantine-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 :::info Legacy Behavior (Dashboard Page)
@@ -29,14 +31,14 @@ The `<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] c
 import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-next-line
-            breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-next-line
+      breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 ```
 
@@ -48,14 +50,14 @@ If you have a page with route `/`, it will be used as the root of the hierarchy 
 import { List, Breadcrumb } from "@refinedev/mantine";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb showHome={true} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb showHome={true} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -67,14 +69,14 @@ If your routes has additional parameters in their paths, you can pass the `meta`
 import { List, Breadcrumb } from "@refinedev/mantine";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -86,14 +88,14 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-next-line
-            breadcrumb={<Breadcrumb hideIcons />}
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-next-line
+      breadcrumb={<Breadcrumb hideIcons />}
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 ```
 

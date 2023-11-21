@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-ful
 hide_table_of_contents: false
 ---
 
-
 :::caution
 
 This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
@@ -16,12 +15,6 @@ This post was created using version 3.x.x of **refine**. Although we plan to upd
 You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 :::
-
-
-
-
-
-
 
 We frequently require quick development and sometimes flexibility while developing a Full Stack application. Aside from speed and flexibility, we must establish the application architecture correctly at the start so that we are not subjected to any more needless work throughout the development process.
 
@@ -72,18 +65,18 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 
 **refine** includes many out-of-the-box data providers to use in your projects like:
 
--   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
--   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
--   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
--   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
--   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
--   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
--   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
--   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi)
--   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
--   [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
--   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
--   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+- [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+- [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+- [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+- [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+- [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+- [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+- [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi)
+- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+- [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+- [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+- [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/api-reference/core/providers/data-provider/)
 
@@ -91,12 +84,12 @@ You can develop a full-featured web application by using any your custom backend
 
 Check out the Full Stack application examples created with **refine** and out-of-the-box data providers:
 
--   [E-commerce Example](/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/)
--   [Invoice Genarator Example | Part I](/blog/refine-react-admin-invoice-genarator/) - [Invoice Genarator Example | Part II](/blog/refine-invoice-generator/)
--   [Windows95 UI Admin Panel](/blog/awesome-react-windows95-ui-with-refine/)
--   [Feedback Admin Panel](/blog/create-a-feedback-admin-panel-with-refine-and-strapi/)
--   [Job Posting Admin Panel](/blog/customizable-admin-panel-with-nestjs/)
--   [E-mail Subscription Example](/blog/e-mail-subscription-panel-with-refine/)
+- [E-commerce Example](/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/)
+- [Invoice Genarator Example | Part I](/blog/refine-react-admin-invoice-genarator/) - [Invoice Genarator Example | Part II](/blog/refine-invoice-generator/)
+- [Windows95 UI Admin Panel](/blog/awesome-react-windows95-ui-with-refine/)
+- [Feedback Admin Panel](/blog/create-a-feedback-admin-panel-with-refine-and-strapi/)
+- [Job Posting Admin Panel](/blog/customizable-admin-panel-with-nestjs/)
+- [E-mail Subscription Example](/blog/e-mail-subscription-panel-with-refine/)
 
 ## How to use Refine
 
@@ -129,11 +122,11 @@ We will use refine's `https://api.fake-rest.refine.dev/` API to fetch the titles
 
 ```json
 {
-    "id": 1,
-    "title": "Facilis voluptas sit consequatur commodi.",
-    "slug": "enim-possimus-nostrum",
-    "content": "Laborum consequatur illo illum sit. Dolorem et recusandae consequatur qui voluptas fuga mollitia voluptate. Et excepturi magnam. Et fugiat doloribus et. Ipsa aperiam et. Qui saepe repudiandae quam tempora. Eos necessitatibus voluptatem facilis maxime. Nobis et accusantium rerum libero tempore earum autem suscipit quas. Dolorem consequatur quam. Repellat praesentium veniam tempora excepturi iste veritatis quia sit.",
-    "hit": 798263
+  "id": 1,
+  "title": "Facilis voluptas sit consequatur commodi.",
+  "slug": "enim-possimus-nostrum",
+  "content": "Laborum consequatur illo illum sit. Dolorem et recusandae consequatur qui voluptas fuga mollitia voluptate. Et excepturi magnam. Et fugiat doloribus et. Ipsa aperiam et. Qui saepe repudiandae quam tempora. Eos necessitatibus voluptatem facilis maxime. Nobis et accusantium rerum libero tempore earum autem suscipit quas. Dolorem consequatur quam. Repellat praesentium veniam tempora excepturi iste veritatis quia sit.",
+  "hit": 798263
 }
 ```
 
@@ -145,12 +138,7 @@ import dataProvider from "@refinedev/simple-rest";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        />
-    );
+  return <Refine routerProvider={routerProvider} dataProvider={dataProvider("https://api.fake-rest.refine.dev")} />;
 };
 
 export default App;
@@ -164,21 +152,21 @@ import { List, Table, useTable } from "@refinedev/antd";
 //highlight-end
 
 export const PostList: React.FC = () => {
-    //highlight-next-line
-    const { tableProps } = useTable<IPost>();
-    return (
-        //highlight-start
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="TITLE" />
-            </Table>
-        </List>
-        //highlight-end
-    );
+  //highlight-next-line
+  const { tableProps } = useTable<IPost>();
+  return (
+    //highlight-start
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="title" title="TITLE" />
+      </Table>
+    </List>
+    //highlight-end
+  );
 };
 
 interface IPost {
-    title: string;
+  title: string;
 }
 ```
 
@@ -194,14 +182,14 @@ import "@refinedev/antd/dist/reset.css";
 import { PostList } from "pages/post";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            //highlight-next-line
-            resource={[{ name: "posts", list: PostList }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      //highlight-next-line
+      resource={[{ name: "posts", list: PostList }]}
+    />
+  );
 };
 
 export default App;
@@ -214,7 +202,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 
 ## Refine Demo Apps
 
--   Refine Client Example -> [Refine Headless + Refine Core + Next.js (SSR) + Tailwind CSS](https://refine.dev/demo/)
+- Refine Client Example -> [Refine Headless + Refine Core + Next.js (SSR) + Tailwind CSS](https://refine.dev/demo/)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_home.png" alt="Refine Client App" />
 <br />
@@ -222,7 +210,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_menu.png" alt="Refine Client App" />
 <br />
 
--   Refine Admin Panel Example -> [Refine Antd + Refine Core ](https://example.admin.refine.dev/)
+- Refine Admin Panel Example -> [Refine Antd + Refine Core ](https://example.admin.refine.dev/)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/dashboard.png" alt="Refine Dashboard" />
 <br />
@@ -235,18 +223,18 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 
 ## Powerful Features of Refine
 
--   Headless
--   Next.js/SSR Support 🚀🚀🚀
--   Realtime
--   Access Control (RBAC, ACL, ABAC, etc.)
--   i18n (internationalization)
--   Audit Log(Coming Soon)
--   Material UI Support(Coming Soon)
--   CSV Import/Export
--   Multi Level Menu
--   GraphQL Support
--   Dynamic Multi-level Menus
--   All features of **refine** are available as **open source**.
+- Headless
+- Next.js/SSR Support 🚀🚀🚀
+- Realtime
+- Access Control (RBAC, ACL, ABAC, etc.)
+- i18n (internationalization)
+- Audit Log(Coming Soon)
+- Material UI Support(Coming Soon)
+- CSV Import/Export
+- Multi Level Menu
+- GraphQL Support
+- Dynamic Multi-level Menus
+- All features of **refine** are available as **open source**.
 
 [For more information about all **refine** features and **refine** →](/docs/)
 

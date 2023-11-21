@@ -15,13 +15,17 @@ You don’t need to worry about creating data providers from scratch, as **refin
 </div>
 
 :::note
+
 If you want to create your own data provider, check out the ["Creating a data provider from scratch" tutorial][create-a-data-provider]
+
 :::
 
 ---
 
 :::note
+
 Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetching, which handles important concerns like caching, invalidation, loading states, etc.
+
 :::
 
 <br/>
@@ -174,6 +178,7 @@ render(<App />);
 ```
 
 :::caution
+
 When using multiple data providers, the `default` key is required for defining the default data provider.
 
 ```tsx title="App.tsx"
@@ -273,7 +278,9 @@ const dataProvider: DataProvider = {
 ```
 
 :::info-tip
+
 **refine** consumes these data provider methods using [data hooks](#supported-hooks), which are used for CRUD actions like creating a new record, listing a resource or deleting a record, etc.
+
 :::
 
 [Refer to the Data Provider tutorial for more information and usage examples&#8594][data-provider-tutorial]
@@ -301,7 +308,9 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 ```
 
 :::tip
+
 `getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/docs/api-reference/core/hooks/data/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
+
 :::
 
 **Parameter Types:**
@@ -645,7 +654,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 ```
 
 :::note
+
 Interceptors are methods that are triggered before the main method.
+
 :::
 
 ## meta Usage
@@ -698,7 +709,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 ```
 
 :::tip
+
 The `meta` parameter can be used in all data, form, and table hooks.
+
 :::
 
 ## Supported Data Providers

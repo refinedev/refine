@@ -15,17 +15,17 @@ import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -51,20 +51,17 @@ To activate multiple data provider in refine, we have to pass the default key wi
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 
-import {
-    default as defaultDataProvider,
-    default as exampleDataProvider,
-} from "./dataProvider";
+import { default as defaultDataProvider, default as exampleDataProvider } from "./dataProvider";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={{
+        default: defaultDataProvider,
+        example: exampleDataProvider,
+      }}
+    />
+  );
 };
 ```
 
@@ -75,9 +72,9 @@ const App: React.FC = () => {
 
 **refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **refine**. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
 
--   React Router via `@refinedev/react-router-v6`
--   Next.js via `@refinedev/nextjs-router`
--   Remix via `@refinedev/remix-router`
+- React Router via `@refinedev/react-router-v6`
+- Next.js via `@refinedev/nextjs-router`
+- Remix via `@refinedev/remix-router`
 
 It's also possible to create a custom router bindings for your routing needs.
 
@@ -106,29 +103,31 @@ import dataProvider from "@refinedev/json-server";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts", // Means that the list action of this resource will be available at /posts in your app
-                    create: "/posts/create", // Means that the create action of this resource will be available at /posts/create in your app
-                    edit: "/posts/edit/:id", // Means that the edit action of this resource will be available at /posts/edit/:id in your app
-                    show: "/posts/show/:id", // Means that the show action of this resource will be available at /posts/show/:id in your app
-                },
-            ]}
-            // highlight-end
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_URL)}
+      // highlight-start
+      resources={[
+        {
+          name: "posts",
+          list: "/posts", // Means that the list action of this resource will be available at /posts in your app
+          create: "/posts/create", // Means that the create action of this resource will be available at /posts/create in your app
+          edit: "/posts/edit/:id", // Means that the edit action of this resource will be available at /posts/edit/:id in your app
+          show: "/posts/show/:id", // Means that the show action of this resource will be available at /posts/show/:id in your app
+        },
+      ]}
+      // highlight-end
+    />
+  );
 };
 
 export default App;
 ```
 
 :::tip
+
 You can use [useResource](/api-reference/core/hooks/resource/useResource.md) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+
 :::
 
 ### `name`
@@ -190,16 +189,16 @@ As you can see in the example above, we have two resources with the same `name` 
 import { useTable } from "@refinedev/core";
 
 useTable({
-    resource: "featured-posts",
+  resource: "featured-posts",
 });
 
 const typicodeDataProvider = {
-    //...
-    getList: async ({ resource, meta }) => {
-        console.log(resource); // "posts"
-        console.log(meta); // { foo: "baz", filter: { featured: true } }
-    },
-    //...
+  //...
+  getList: async ({ resource, meta }) => {
+    console.log(resource); // "posts"
+    console.log(meta); // { foo: "baz", filter: { featured: true } }
+  },
+  //...
 };
 ```
 
@@ -212,11 +211,15 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
+
 Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
+
 :::
 
 :::caution Legacy Router
+
 When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+
 :::
 
 ### `create`
@@ -228,11 +231,15 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
+
 Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
+
 :::
 
 :::caution Legacy Router
+
 When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+
 :::
 
 ### `edit`
@@ -244,11 +251,15 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
+
 Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
+
 :::
 
 :::caution Legacy Router
+
 When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+
 :::
 
 ### `show`
@@ -260,15 +271,21 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
+
 Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/documentation/routers/) is used in the app to render the routes.
+
 :::
 
 :::caution Legacy Router
+
 When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+
 :::
 
 :::tip Nested Routes and Parameters
+
 Additional parameters can also be used in the paths for the actions of the resources. Paths like `/:authorId/posts/:id/details` are also valid and supported. When these actions are used in the navigation helpers, the existing parameters from the URL and the `meta` property of these functions will be used to determine the additional parameters when composing the path.
+
 :::
 
 ### `meta`
@@ -316,7 +333,9 @@ An icon element can be passed as properties for the icon in the menu.
 This value will be passed to all CRUD pages defined as the `resources` element.
 
 :::tip
+
 **refine**'s <[Edit](/api-reference/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
+
 :::
 
 #### `parent`
@@ -324,24 +343,26 @@ This value will be passed to all CRUD pages defined as the `resources` element.
 You can set this value if you want to nest your resource into another resource. Usually this value represents the name of the parent resource but you can also pass a custom string. In this case, it will still be interpreted as a parent resource.
 
 :::tip
+
 This value is used by the `useMenu` and `useBreadcrumb` hooks.
+
 :::
 
 ```tsx
 <Refine
-    /* ... */
-    resources={[
-        {
-            name: "parent",
-        },
-        {
-            name: "child",
-            meta: {
-                // highlight-next-line
-                parent: "parent",
-            },
-        },
-    ]}
+  /* ... */
+  resources={[
+    {
+      name: "parent",
+    },
+    {
+      name: "child",
+      meta: {
+        // highlight-next-line
+        parent: "parent",
+      },
+    },
+  ]}
 />
 ```
 
@@ -427,18 +448,18 @@ To disable this behavior, you can set the `disableServerSideValidation` option t
 import { Refine } from "@refinedev/core";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            // ...
-            // highlight-start
-            options={{
-                disableServerSideValidation: true,
-            }}
-            // highlight-end
-        >
-            // ...
-        </Refine>
-    );
+  return (
+    <Refine
+      // ...
+      // highlight-start
+      options={{
+        disableServerSideValidation: true,
+      }}
+      // highlight-end
+    >
+      // ...
+    </Refine>
+  );
 };
 ```
 
@@ -566,7 +587,9 @@ When you have unsaved changes and try to leave the current page, **refine** show
 `warnWhenUnsavedChanges`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
 :::caution
+
 This feature also requires `UnsavedChangesNotifier` component to be mounted. You can import this component from your router package.
+
 :::
 
 <br />
@@ -726,16 +749,16 @@ You have the flexibility to customize these messages by using the `textTransform
 
 ```tsx
 const App: React.FC = () => (
-    <Refine
-        // ...
-        options={{
-            textTransformers: {
-                humanize: (text) => text,
-                plural: (text) => text,
-                singular: (text) => text,
-            },
-        }}
-    />
+  <Refine
+    // ...
+    options={{
+      textTransformers: {
+        humanize: (text) => text,
+        plural: (text) => text,
+        singular: (text) => text,
+      },
+    }}
+  />
 );
 ```
 
@@ -782,8 +805,8 @@ The callback function that will be called on every interval. The default value i
 
 The callback function receives two parameters:
 
--   `elapsedInterval`: The elapsed interval in milliseconds.
--   `context`:
+- `elapsedInterval`: The elapsed interval in milliseconds.
+- `context`:
 
 | Description  | Type                                                                       |
 | ------------ | -------------------------------------------------------------------------- |
@@ -1024,7 +1047,9 @@ const App: React.FC = () => (
 ```
 
 :::note
+
 children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
+
 :::
 
 > For more information, refer to the [Custom Layout documentation &#8594](/advanced-tutorials/custom-layout.md)

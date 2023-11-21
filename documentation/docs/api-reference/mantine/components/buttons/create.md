@@ -8,58 +8,50 @@ swizzle: true
 const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    legacyRouterProvider: routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  legacyRouterProvider: routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
+  return (
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
 };
 
 const CreatePage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <div>
-            <MantineCore.Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </MantineCore.Text>
-            <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
-            <MantineCore.Space h="md" />
-            <MantineCore.Button
-                size="xs"
-                variant="outline"
-                onClick={() => list("posts")}
-            >
-                Go back
-            </MantineCore.Button>
-        </div>
-    );
+  return (
+    <div>
+      <MantineCore.Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </MantineCore.Text>
+      <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+      <MantineCore.Space h="md" />
+      <MantineCore.Button size="xs" variant="outline" onClick={() => list("posts")}>
+        Go back
+      </MantineCore.Button>
+    </div>
+  );
 };
 ```
 
 `<CreateButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -75,99 +67,84 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+    ],
+    [],
+  );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
 
-    return (
-        // highlight-next-line
-        <List headerButtons={<CreateButton />}>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
-        </List>
-    );
+  return (
+    // highlight-next-line
+    <List headerButtons={<CreateButton />}>
+      <Table>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <br />
+      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -186,32 +163,32 @@ import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
 
 const MyCreateComponent = () => {
-    return <CreateButton resource="categories" />;
+  return <CreateButton resource="categories" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCreateComponent,
-                },
-                {
-                    name: "categories",
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: MyCreateComponent,
+        },
+        {
+          name: "categories",
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -229,7 +206,7 @@ If the `create` action route is defined by the pattern: `/posts/:authorId/create
 
 ```tsx
 const MyComponent = () => {
-    return <CreateButton meta={{ authorId: "10" }} />;
+  return <CreateButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -246,29 +223,29 @@ import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
 
 const MyCreateComponent = () => {
-    return <CreateButton hideText />;
+  return <CreateButton hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCreateComponent,
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: MyCreateComponent,
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -280,11 +257,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CreateButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-    return (
-        <CreateButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -303,32 +276,32 @@ import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
 
 const MyCreateComponent = () => {
-    return <CreateButton resourceNameOrRouteName="categories" />;
+  return <CreateButton resourceNameOrRouteName="categories" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCreateComponent,
-                },
-                {
-                    name: "categories",
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: MyCreateComponent,
+        },
+        {
+          name: "categories",
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

@@ -16,9 +16,11 @@ Auth provider is an object that contains methods to handle authentication and ac
 You can use any third-party authentication service like Auth0, Okta, etc. or your own custom methods while creating an auth provider from scratch, which we will explore in the next section.
 
 :::tip
+
 **refine** does offer built-in examples for auth providers that you can use as a starting point for your own auth providers as well.
 
 Refer to the [Auth Provider Examples &#8594](#auth-provider-examples)
+
 :::
 
 The typical auth provider has the following methods:
@@ -118,7 +120,9 @@ const authProvider: AuthBindings = {
 ```
 
 :::info
+
 All auth hooks are identical in usage
+
 :::
 
 > For more information about each hook, refer to the [Auth Hooks documentation&#8594](/docs/api-reference/core/hooks/authentication/useIsAuthenticated/)

@@ -7,7 +7,9 @@ swizzle: true
 `<ShowButton>` uses Material UI's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -15,57 +17,55 @@ You can swizzle this component with the [**refine CLI**](/docs/packages/document
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import {
-    useDataGrid,
-    List,
-    // highlight-next-line
-    ShowButton,
+  useDataGrid,
+  List,
+  // highlight-next-line
+  ShowButton,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            // highlight-next-line
-            return <ShowButton size="small" recordItemId={row.id} />;
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+      // highlight-next-line
+      return <ShowButton size="small" recordItemId={row.id} />;
     },
+    align: "center",
+    headerAlign: "center",
+    minWidth: 80,
+  },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                show: () => (
-                    <RefineMui.Show>Rest of the page here...</RefineMui.Show>
-                ),
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        show: () => <RefineMui.Show>Rest of the page here...</RefineMui.Show>,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -81,40 +81,42 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            resource="posts"
-            // highlight-next-line
-            recordItemId="1"
-        />
-    );
+  return (
+    <ShowButton
+      resource="posts"
+      // highlight-next-line
+      recordItemId="1"
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                show: ShowPage,
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        show: ShowPage,
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 :::note
+
 `<ShowButton>` component reads the id information from the route by default.
+
 :::
 
 ### `resource`
@@ -128,36 +130,36 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            // highlight-next-line
-            resource="categories"
-            recordItemId="2"
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-next-line
+      resource="categories"
+      recordItemId="2"
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                show: ShowPage,
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        show: ShowPage,
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
 
@@ -175,9 +177,7 @@ If the `show` action route is defined by the pattern: `/posts/:authorId/show/:id
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <ShowButton meta={{ authorId: "10" }} />
-    );
+  return <ShowButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -192,32 +192,32 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyShowComponent,
-                show: ShowPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyShowComponent,
+        show: ShowPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -229,11 +229,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-    return (
-        <ShowButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -250,36 +246,36 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-            recordItemId="2"
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+      recordItemId="2"
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                show: ShowPage,
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        show: ShowPage,
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
 
@@ -292,5 +288,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 <PropsTable module="@refinedev/mui/ShowButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
+
 :::

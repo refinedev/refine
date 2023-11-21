@@ -9,9 +9,11 @@ source: packages/core/src/hooks/data/useDeleteMany.ts
 It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 :::caution
+
 If your data provider does not have a `deleteMany` method, `useDeleteMany` will use the `deleteOne` method instead. This is not recommended since it will make requests one by one for each id.
 
 It is better to implement the `deleteMany` method in the data provider.
+
 :::
 
 ## Basic Usage
@@ -32,7 +34,9 @@ mutate({
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useDeleteMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
@@ -212,7 +216,9 @@ const MyComponent = () => {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDeleteMany` calls `open` function from `NotificationProvider`:
@@ -234,7 +240,9 @@ mutate({
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDeleteMany` calls `open` function from `NotificationProvider`:
@@ -364,7 +372,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                                           |
 
 :::note
+
 These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useDeleteMany` will use what is passed to `<Refine>` as default but a local value will override it.
+
 :::
 
 <br/>

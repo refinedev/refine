@@ -9,7 +9,9 @@ swizzle: true
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -17,59 +19,55 @@ You can swizzle this component with the [**refine CLI**](/docs/packages/document
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import {
-    useDataGrid,
-    List,
-    // highlight-next-line
-    CloneButton,
+  useDataGrid,
+  List,
+  // highlight-next-line
+  CloneButton,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            // highlight-next-line
-            return <CloneButton size="small" recordItemId={row.id} />;
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+      // highlight-next-line
+      return <CloneButton size="small" recordItemId={row.id} />;
     },
+    align: "center",
+    headerAlign: "center",
+    minWidth: 80,
+  },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                create: () => (
-                    <RefineMui.Create>
-                        Rest of the page here...
-                    </RefineMui.Create>
-                ),
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        create: () => <RefineMui.Create>Rest of the page here...</RefineMui.Create>,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -85,34 +83,36 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-    return <CloneButton resource="posts" recordItemId="1" />;
+  return <CloneButton resource="posts" recordItemId="1" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 :::note
+
 **`<CloneButton>`** component reads the id information from the route by default.
+
 :::
 
 ### `resource`
@@ -126,32 +126,30 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton resource="categories" recordItemId="2" />
-    );
+  return <CloneButton resource="categories" recordItemId="2" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
@@ -169,9 +167,7 @@ If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:
 
 ```tsx
 const MyCloneComponent = () => {
-    return (
-        <CloneButton meta={{ authorId: "10" }} />
-    );
+  return <CloneButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -186,32 +182,32 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <CloneButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyCloneComponent,
-                create: ClonedPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyCloneComponent,
+        create: ClonedPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -223,11 +219,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@refinedev/mui";
 
 export const MyCloneComponent = () => {
-    return (
-        <CloneButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -244,42 +236,41 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
-    );
+  return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
-
 
 ## API Reference
 
 <PropsTable module="@refinedev/mui/CloneButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
+
 :::

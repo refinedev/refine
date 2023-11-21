@@ -17,55 +17,55 @@ npm install @refinedev/simple-rest
 
 The package exports a function that accepts two parameters: `apiUrl` and `httpClient`.
 
--   **`apiUrl`:** The base URL for your API endpoints. All requests made through the data provider will be made relative to this URL.
+- **`apiUrl`:** The base URL for your API endpoints. All requests made through the data provider will be made relative to this URL.
 
-    ```tsx
-    import { Refine } from "@refinedev/core";
-    import dataProvider from "@refinedev/simple-rest";
+  ```tsx
+  import { Refine } from "@refinedev/core";
+  import dataProvider from "@refinedev/simple-rest";
 
-    const App = () => {
-        return (
-            <Refine
-                dataProvider={dataProvider("https://my.api.com")}
-                /* ... */
-            />
-        );
-    };
-    ```
-
--   **`httpClient`:** An axios instance used to make HTTP requests. You can provide your own instance otherwise the data provider will create one for you.
-
-    ```tsx
-    import { Refine, HttpError } from "@refinedev/core";
-    import dataProvider from "@refinedev/simple-rest";
-    import axios from "axios";
-
-    const httpClient = axios.create();
-
-    httpClient.interceptors.response.use(
-        (response) => {
-            return response;
-        },
-        (error) => {
-            const customError: HttpError = {
-                ...error,
-                message: error.response?.data?.message,
-                statusCode: error.response?.status,
-            };
-
-            return Promise.reject(customError);
-        },
+  const App = () => {
+    return (
+      <Refine
+        dataProvider={dataProvider("https://my.api.com")}
+        /* ... */
+      />
     );
+  };
+  ```
 
-    const App = () => {
-        return (
-            <Refine
-                dataProvider={dataProvider("https://my.api.com", httpClient)}
-                /* ... */
-            />
-        );
-    };
-    ```
+- **`httpClient`:** An axios instance used to make HTTP requests. You can provide your own instance otherwise the data provider will create one for you.
+
+  ```tsx
+  import { Refine, HttpError } from "@refinedev/core";
+  import dataProvider from "@refinedev/simple-rest";
+  import axios from "axios";
+
+  const httpClient = axios.create();
+
+  httpClient.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      const customError: HttpError = {
+        ...error,
+        message: error.response?.data?.message,
+        statusCode: error.response?.status,
+      };
+
+      return Promise.reject(customError);
+    },
+  );
+
+  const App = () => {
+    return (
+      <Refine
+        dataProvider={dataProvider("https://my.api.com", httpClient)}
+        /* ... */
+      />
+    );
+  };
+  ```
 
 ## URL design
 
@@ -101,16 +101,16 @@ import { useUpdate } from "@refinedev/core";
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "posts",
-    id: 1,
-    variables: {
-        title: "New title",
-    },
-    //highlight-start
-    meta: {
-        method: "put",
-    },
-    //highlight-end
+  resource: "posts",
+  id: 1,
+  variables: {
+    title: "New title",
+  },
+  //highlight-start
+  meta: {
+    method: "put",
+  },
+  //highlight-end
 });
 ```
 
@@ -122,15 +122,15 @@ You can pass custom headers to the data provider by passing a `headers` property
 import { useOne } from "@refinedev/core";
 
 useOne({
-    resource: "posts",
-    id: 1,
-    //highlight-start
-    meta: {
-        headers: {
-            "X-Custom-Header": "Custom header value",
-        },
+  resource: "posts",
+  id: 1,
+  //highlight-start
+  meta: {
+    headers: {
+      "X-Custom-Header": "Custom header value",
     },
-    //highlight-end
+  },
+  //highlight-end
 });
 ```
 
@@ -146,9 +146,9 @@ The `swizzle` command is only available in the `@refinedev/cli` package. If you 
 
 1. Run the `swizzle` command in the project directory:
 
-    ```bash
-    npm run refine swizzle
-    ```
+   ```bash
+   npm run refine swizzle
+   ```
 
 2. Select `@refinedev/simple-rest` from the list of available data providers.
 
@@ -156,17 +156,17 @@ The `swizzle` command is only available in the `@refinedev/cli` package. If you 
 
 4. Pass the customized data provider to the `dataProvider` prop of the `Refine` component.
 
-    ```tsx
-    import { Refine } from "@refinedev/core";
+   ```tsx
+   import { Refine } from "@refinedev/core";
 
-    import { dataProvider } from "./rest-data-provider";
+   import { dataProvider } from "./rest-data-provider";
 
-    const App = () => {
-        return (
-            <Refine
-                dataProvider={dataProvider}
-                /* ... */
-            />
-        );
-    };
-    ```
+   const App = () => {
+     return (
+       <Refine
+         dataProvider={dataProvider}
+         /* ... */
+       />
+     );
+   };
+   ```

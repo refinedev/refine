@@ -8,51 +8,41 @@ swizzle: true
 const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    legacyRouterProvider: routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  legacyRouterProvider: routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
+  return (
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
 };
 
 const ClonePage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <div>
-            <MantineCore.Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </MantineCore.Text>
-            <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
-            <MantineCore.Space h="md" />
-            <MantineCore.Button
-                size="xs"
-                variant="outline"
-                onClick={() => list("posts")}
-            >
-                Go back
-            </MantineCore.Button>
-        </div>
-    );
+  return (
+    <div>
+      <MantineCore.Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </MantineCore.Text>
+      <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+      <MantineCore.Space h="md" />
+      <MantineCore.Button size="xs" variant="outline" onClick={() => list("posts")}>
+        Go back
+      </MantineCore.Button>
+    </div>
+  );
 };
 ```
 
@@ -60,7 +50,9 @@ const ClonePage = () => {
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Usage
@@ -77,119 +69,101 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        // highlight-start
-                        <CloneButton
-                            size="xs"
-                            recordItemId={getValue() as number}
-                        />
-                        // highlight-end
-                    );
-                },
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            // highlight-start
+            <CloneButton size="xs" recordItemId={getValue() as number} />
+            // highlight-end
+          );
+        },
+      },
+    ],
+    [],
+  );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
 
-    //hide-start
-    List.defaultProps = {
-        headerButtons: <></>,
-    };
-    //hide-end
+  //hide-start
+  List.defaultProps = {
+    headerButtons: <></>,
+  };
+  //hide-end
 
-    return (
-        <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
-        </List>
-    );
+  return (
+    <List>
+      <Table>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <br />
+      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: ClonePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: ClonePage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -207,35 +181,37 @@ import { Refine } from "@refinedev/core";
 import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
-    return <CloneButton recordItemId="123" />;
+  return <CloneButton recordItemId="123" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: ClonePage,
-                    list: MyCloneComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: ClonePage,
+          list: MyCloneComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 :::note
+
 **`<CloneButton>`** component reads the id information from the route by default.
+
 :::
 
 ### `resource`
@@ -251,31 +227,31 @@ import { Refine } from "@refinedev/core";
 import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
-    return <CloneButton resource="categories" recordItemId="2" />;
+  return <CloneButton resource="categories" recordItemId="2" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCloneComponent,
-                },
-                {
-                    name: "categories",
-                    create: ClonePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          list: MyCloneComponent,
+        },
+        {
+          name: "categories",
+          create: ClonePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -289,7 +265,7 @@ If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:
 
 ```tsx
 const MyComponent = () => {
-    return <CloneButton meta={{ authorId: "10" }} />;
+  return <CloneButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -310,28 +286,28 @@ import { Refine } from "@refinedev/core";
 import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
-    return <CloneButton hideText />;
+  return <CloneButton hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCloneComponent,
-                    create: ClonePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          list: MyCloneComponent,
+          create: ClonePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -343,11 +319,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-    return (
-        <CloneButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -366,33 +338,31 @@ import { Refine } from "@refinedev/core";
 import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
-    );
+  return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCloneComponent,
-                },
-                {
-                    name: "categories",
-                    create: ClonePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          list: MyCloneComponent,
+        },
+        {
+          name: "categories",
+          create: ClonePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

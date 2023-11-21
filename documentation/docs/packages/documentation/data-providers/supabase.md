@@ -120,6 +120,7 @@ Then choose the following options:
 ```
 
 :::tip
+
 If you want to add Supabase data provider to existed **refine** app, you add it by running:
 
 ```
@@ -159,7 +160,9 @@ We'll use this example API credentials and `createClient` method that exposes fr
 [You can find your Supabase URL and key from your Supabase dashboard &#8594 ](https://supabase.com/docs/guides/with-react#get-the-api-keys)
 
 :::tip
+
 You can also use environment variables to store your Supabase URL and key. This is a good practice to keep your sensitive information safe.
+
 :::
 
 ### Register Supabase data provider
@@ -457,7 +460,9 @@ export default authProvider;
 </details>
 
 :::tip
+
 Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/authentication/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
+
 :::
 
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
@@ -524,7 +529,9 @@ Now it's time to add some resources to our app.
 Before diving into Supabase features, we'll add simple CRUD pages to make the app more interactive.
 
 :::note
+
 Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorial/introduction/index/) to learn more about creating CRUD pages.
+
 :::
 
 ### Adding a List page
@@ -1335,13 +1342,17 @@ function App() {
 ```
 
 :::note
+
 For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
 [Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
+
 :::
 
 :::caution
+
 With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
+
 :::
 
 ### Let see how real-time feature works in the app
@@ -1349,6 +1360,7 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time-min.gif" className="border border-gray-200 rounded" alt="realTime" />
 
 :::tip
+
 **refine** offers out-of-the-box live provider support:
 
 - **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
@@ -1489,7 +1501,9 @@ const { tableProps, sorter } = useTable({
 ```
 
 :::caution
+
 If you filter based on a table from an inner join, you will need to use `.select('*, mytable!inner(*)')` within Supabase.
+
 :::
 
 ### `getList` - performance

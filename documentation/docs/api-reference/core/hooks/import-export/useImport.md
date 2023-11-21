@@ -16,14 +16,14 @@ Here is a basic usage example of the `useImport` hook:
 import { useImport } from "@refinedev/core";
 
 interface IPostFile {
-    title: string;
-    categoryId: string;
+  title: string;
+  categoryId: string;
 }
 
 export const PostList: React.FC = () => {
-    const { inputProps } = useImport<IPostFile>();
+  const { inputProps } = useImport<IPostFile>();
 
-    return <input {...inputProps} />;
+  return <input {...inputProps} />;
 };
 ```
 
@@ -37,7 +37,7 @@ Determines which resource is passed to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    resource: "posts",
+  resource: "posts",
 });
 ```
 
@@ -51,12 +51,12 @@ If you want to map the data before sending it to a data provider method, you can
 
 ```ts
 useImport({
-    mapData: (data) => ({
-        ...data,
-        category: {
-            id: data.categoryId,
-        },
-    }),
+  mapData: (data) => ({
+    ...data,
+    category: {
+      id: data.categoryId,
+    },
+  }),
 });
 ```
 
@@ -66,9 +66,9 @@ You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to 
 
 ```ts
 useImport({
-    paparseOptions: {
-        header: true,
-    },
+  paparseOptions: {
+    header: true,
+  },
 });
 ```
 
@@ -80,7 +80,7 @@ If you want to send the data in batches, you can use the `batchSize` property. W
 
 ```ts
 useImport({
-    batchSize: 1,
+  batchSize: 1,
 });
 ```
 
@@ -90,17 +90,17 @@ If you want to do something after the import is finished, you can use the `onFin
 
 ```ts
 useImport({
-    onFinish: (result) => {
-        // success requests response
-        result.succeeded.forEach((item) => {
-            console.log(item);
-        });
+  onFinish: (result) => {
+    // success requests response
+    result.succeeded.forEach((item) => {
+      console.log(item);
+    });
 
-        // failed requests response
-        result.errored.forEach((item) => {
-            console.log(item);
-        });
-    },
+    // failed requests response
+    result.errored.forEach((item) => {
+      console.log(item);
+    });
+  },
 });
 ```
 
@@ -110,9 +110,9 @@ If you want to send additional data to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    meta: {
-        foo: "bar",
-    },
+  meta: {
+    foo: "bar",
+  },
 });
 ```
 
@@ -122,10 +122,10 @@ A callback function that is called when the import progress changes. It returns 
 
 ```ts
 useImport({
-    onProgress: ({ totalAmount, processedAmount }) => {
-        // progress percentage
-        console.log((processedAmount / totalAmount) * 100);
-    },
+  onProgress: ({ totalAmount, processedAmount }) => {
+    // progress percentage
+    console.log((processedAmount / totalAmount) * 100);
+  },
 });
 ```
 
@@ -135,14 +135,16 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useImport({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### ~~`resourceName`~~
 
 :::caution Deprecated
+
 Use `resource` instead.
+
 :::
 
 ## Return Values
@@ -177,16 +179,16 @@ It handles the file change event. If the file exists, it will call the `handleCh
 const { handleChange } = useImport();
 
 return (
-    <input
-        type="file"
-        onChange={(event) => {
-            if (event.target.files) {
-                handleChange({
-                    file: event.target.files[0],
-                });
-            }
-        }}
-    />
+  <input
+    type="file"
+    onChange={(event) => {
+      if (event.target.files) {
+        handleChange({
+          file: event.target.files[0],
+        });
+      }
+    }}
+  />
 );
 ```
 
@@ -219,27 +221,27 @@ When creating these resources back, we should map it back to our backend API's r
 
 ```ts
 useImport<IPostFile>({
-    mapData: (item) => {
-        return {
-            title: item.title,
-            content: item.content,
-            status: item.status,
-            category: {
-                id: item.categoryId,
-            },
-            user: {
-                id: item.userId,
-            },
-        };
-    },
+  mapData: (item) => {
+    return {
+      title: item.title,
+      content: item.content,
+      status: item.status,
+      category: {
+        id: item.categoryId,
+      },
+      user: {
+        id: item.userId,
+      },
+    };
+  },
 });
 
 interface IPostFile {
-    title: string;
-    status: string;
-    content: string;
-    categoryId: string;
-    userId: string;
+  title: string;
+  status: string;
+  content: string;
+  categoryId: string;
+  userId: string;
 }
 ```
 
@@ -253,16 +255,16 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Return Values
 
-| Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                          |
-| -------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| inputProps     | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                                                                          |
-| handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                    |
-| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                     |
+| Property       | Description                                                            | Type                                                                                                                                                                                                                                   |
+| -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| inputProps     | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                   |
+| handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                             |
+| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                              |
 | mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]},TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
 
 ### Type Parameters
 
-| Property   | Description                                                                 | Default                    |
+| Property   | Description                                                                | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TItem      | Interface of parsed csv data                                               | `any`                      |
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |

@@ -10,7 +10,9 @@ Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 It will return properties that are compatible with Ant Design's [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
 
 :::info
+
 The `useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
+
 :::
 
 ## Basic Usage
@@ -21,9 +23,9 @@ Here is a basic usage example of `useImport` hook:
 import { ImportButton, useImport } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    const importProps = useImport();
+  const importProps = useImport();
 
-    return <ImportButton {...importProps}>Import</ImportButton>;
+  return <ImportButton {...importProps}>Import</ImportButton>;
 };
 ```
 
@@ -36,13 +38,13 @@ import { useImport } from "@refinedev/antd";
 import { Upload, Button } from "antd";
 
 export const PostList: React.FC = () => {
-    const { buttonProps, uploadProps } = useImport();
+  const { buttonProps, uploadProps } = useImport();
 
-    return (
-        <Upload {...uploadProps}>
-            <Button {...buttonProps}>Import</Button>
-        </Upload>
-    );
+  return (
+    <Upload {...uploadProps}>
+      <Button {...buttonProps}>Import</Button>
+    </Upload>
+  );
 };
 ```
 
@@ -54,7 +56,7 @@ export const PostList: React.FC = () => {
 
 ```ts
 useImport({
-    resource: "posts",
+  resource: "posts",
 });
 ```
 
@@ -68,12 +70,12 @@ If you want to map the data before sending it to a data provider method, you can
 
 ```ts
 useImport({
-    mapData: (data) => ({
-        ...data,
-        category: {
-            id: data.categoryId,
-        },
-    }),
+  mapData: (data) => ({
+    ...data,
+    category: {
+      id: data.categoryId,
+    },
+  }),
 });
 ```
 
@@ -83,9 +85,9 @@ You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to 
 
 ```ts
 useImport({
-    paparseOptions: {
-        header: true,
-    },
+  paparseOptions: {
+    header: true,
+  },
 });
 ```
 
@@ -95,7 +97,7 @@ If you want to send the data in batches, you can use the `batchSize` property. W
 
 ```ts
 useImport({
-    batchSize: 1,
+  batchSize: 1,
 });
 ```
 
@@ -105,17 +107,17 @@ If you want to do something after the import is finished, you can use the `onFin
 
 ```ts
 useImport({
-    onFinish: (result) => {
-        // success requests response
-        result.succeeded.forEach((item) => {
-            console.log(item);
-        });
+  onFinish: (result) => {
+    // success requests response
+    result.succeeded.forEach((item) => {
+      console.log(item);
+    });
 
-        // failed requests response
-        result.errored.forEach((item) => {
-            console.log(item);
-        });
-    },
+    // failed requests response
+    result.errored.forEach((item) => {
+      console.log(item);
+    });
+  },
 });
 ```
 
@@ -125,9 +127,9 @@ If you want to send additional data to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    meta: {
-        foo: "bar",
-    },
+  meta: {
+    foo: "bar",
+  },
 });
 ```
 
@@ -137,10 +139,10 @@ A callback function that is called when the import progress changes. It returns 
 
 ```ts
 useImport({
-    onProgress: ({ totalAmount, processedAmount }) => {
-        // progress percentage
-        console.log((processedAmount / totalAmount) * 100);
-    },
+  onProgress: ({ totalAmount, processedAmount }) => {
+    // progress percentage
+    console.log((processedAmount / totalAmount) * 100);
+  },
 });
 ```
 
@@ -152,14 +154,16 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useImport({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### ~~`resourceName`~~
 
 :::caution Deprecated
+
 Use `resource` instead.
+
 :::
 
 ## Return Values
@@ -173,9 +177,9 @@ import { useImport } from "@refinedev/antd";
 import { Button } from "antd";
 
 export const PostList: React.FC = () => {
-    const { buttonProps } = useImport();
+  const { buttonProps } = useImport();
 
-    return <Button {...buttonProps}>Import</Button>;
+  return <Button {...buttonProps}>Import</Button>;
 };
 ```
 
@@ -196,9 +200,9 @@ import { useImport } from "@refinedev/antd";
 import { Upload } from "antd";
 
 export const PostList: React.FC = () => {
-    const { uploadProps } = useImport();
+  const { uploadProps } = useImport();
 
-    return <Upload {...uploadProps}>Import</Upload>;
+  return <Upload {...uploadProps}>Import</Upload>;
 };
 ```
 
@@ -247,27 +251,27 @@ When creating these resources back, we should map them back to our backend API's
 
 ```ts
 useImport<IPostFile>({
-    mapData: (item) => {
-        return {
-            title: item.title,
-            content: item.content,
-            status: item.status,
-            category: {
-                id: item.categoryId,
-            },
-            user: {
-                id: item.userId,
-            },
-        };
-    },
+  mapData: (item) => {
+    return {
+      title: item.title,
+      content: item.content,
+      status: item.status,
+      category: {
+        id: item.categoryId,
+      },
+      user: {
+        id: item.userId,
+      },
+    };
+  },
 });
 
 interface IPostFile {
-    title: string;
-    status: string;
-    content: string;
-    categoryId: string;
-    userId: string;
+  title: string;
+  status: string;
+  content: string;
+  categoryId: string;
+  userId: string;
 }
 ```
 
@@ -281,16 +285,16 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Return Values
 
-| Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                          |
-| -------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| buttonProps    | Properties that are compatible with Ant Design `<Button>` component    | [`ButtonProps`](#buttonprops)                                                                                                                                                                                                                                                                 |
-| uploadProps    | Properties that are compatible with Ant Design `<Upload>` component    | [`UploadProps`](#uploadprops)                                                                                                                                                                                                                                                                 |
-| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                     |
+| Property       | Description                                                            | Type                                                                                                                                                                                                                                    |
+| -------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| buttonProps    | Properties that are compatible with Ant Design `<Button>` component    | [`ButtonProps`](#buttonprops)                                                                                                                                                                                                           |
+| uploadProps    | Properties that are compatible with Ant Design `<Upload>` component    | [`UploadProps`](#uploadprops)                                                                                                                                                                                                           |
+| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                               |
 | mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
 
 ### Type Parameters
 
-| Property   | Description                                                                 | Default                    |
+| Property   | Description                                                                | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TItem      | Interface of parsed csv data                                               | `any`                      |
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
