@@ -4,7 +4,7 @@ title: Authentication
 
 import Register from "./register";
 import Login from "./login";
-import IsAuthentcated from "./is-authenticated";
+import IsAuthenticated from "./is-authenticated";
 import OnError from "./on-error";
 import AuthProviderInterface from "./auth-provider-interface.md";
 import AuthHooks from "@site/src/partials/auth-provider/auth-hooks.md";
@@ -87,7 +87,7 @@ By using `useIsAuthenticated` hook, we can easily check if the user is authentic
 
 Additionally, in this example, we will implement `authProvider.logout` and `authProvider.getIdentity` methods. We will call these methods with `useLogout` and `useGetIdentity` hooks. These hooks make it easy to log out users and get their identity information.
 
-<IsAuthentcated />
+<IsAuthenticated />
 
 Refine also provides `<Auhtenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
 
@@ -135,7 +135,7 @@ While Refine itself is headless, it offers `<AuthPage />` Integrations for popul
 - [Chakra UI](/docs/api-reference/chakra-ui/components/chakra-auth-page/)
 - [Mantine](/docs/api-reference/mantine/components/mantine-auth-page/)
 
-With `<AuthPage />` component you can easily handle authentication pages (login, register, update password, forgot passowrd) and speed up your development process.
+With `<AuthPage />` component you can easily handle authentication pages (login, register, update password, forgot password) and speed up your development process.
 
 <Tabs wrapContent={false}>
 

@@ -69,7 +69,7 @@ Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It 
 
 ## Meta usage <GuideBadge id="guides-concepts/general-concepts#meta" />
 
-[`meta`][meta] is a special property that can be used to pass additional information to your data provider methods through data hooks like `useOne`, `useList`, `useForm` from anywhere accros your application.
+[`meta`][meta] is a special property that can be used to pass additional information to your data provider methods through data hooks like `useOne`, `useList`, `useForm` from anywhere across your application.
 
 The capabilities of `meta` properties depend on your data provider's implementation. While some may use additional features through `meta`, others may not use them or follow a different approach.
 
