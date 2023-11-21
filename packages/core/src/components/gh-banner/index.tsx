@@ -1,26 +1,16 @@
-import React, { SVGProps, useEffect, useState } from "react";
+import React, { SVGProps, useEffect } from "react";
 import { CSSRules } from "./styles";
 
-const texts = [
-    "Be a part of our journey by starring Refine on GitHub.",
-    "Join our community and star Refine on GitHub.",
-    "Let's elevate Refine together - star us on GitHub.",
-    "Enhance Refine's reach by giving us a star on GitHub.",
-];
+const text =
+    "If you find Refine useful, you can contribute to its growth by giving it a star on GitHub";
 
 export const GitHubBanner = () => {
-    const [text, setText] = useState<string | null>(null);
-
     useEffect(() => {
         const styleTag = document.createElement("style");
         document.head.appendChild(styleTag);
         CSSRules.forEach((rule) =>
             styleTag.sheet?.insertRule(rule, styleTag.sheet.cssRules.length),
         );
-    }, []);
-
-    useEffect(() => {
-        setText(texts[Math.floor(Math.random() * texts.length)]);
     }, []);
 
     return (
