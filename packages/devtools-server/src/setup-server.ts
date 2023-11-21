@@ -17,7 +17,12 @@ export const setupServer = (app: Express) => {
                     )} failed to start. Port ${SERVER_PORT} is already in use, please make sure no other devtools server is running\n`,
                 );
             } else {
-                console.error(error);
+                console.error(
+                    `\n${cyanBright.bold("\u2717 ")}${bold(
+                        "error from refine devtools",
+                    )}`,
+                    error,
+                );
             }
             process.exit(1);
         })
