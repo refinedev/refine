@@ -11,7 +11,7 @@ export const GitHubBanner = () => {
     }, []);
 
     const texts = [
-        "Be a part of our journey. Star Refine on GitHub!",
+        "Be a part of our journey by starring Refine on GitHub.",
         "Join our community. Star Refine on GitHub!",
         "Let's elevate Refine together. Star us on GitHub!",
         "Enhance Refine's reach. Give us a star on GitHub!",
