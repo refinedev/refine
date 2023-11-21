@@ -14,7 +14,8 @@ export const CommonFooter = () => {
         >
             <div
                 className={clsx(
-                    "max-w-[1644px] mx-auto",
+                    // "max-w-[1644px]",
+                    "mx-auto",
                     "flex w-full items-center justify-between",
                     "flex-col-reverse sm:flex-row",
                 )}

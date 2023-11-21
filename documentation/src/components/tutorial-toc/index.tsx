@@ -3,7 +3,7 @@ import snarkdown from "snarkdown";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 // @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
-import { useLocation } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
@@ -119,7 +119,9 @@ type TocLinkProps = {
 };
 
 const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
-    const { hash: locationHash } = useLocation();
+    const location = useLocation();
+    const history = useHistory();
+    const { hash: locationHash } = location;
 
     React.useEffect(() => {
         const targetElement = document.getElementById(item.id);
@@ -132,13 +134,7 @@ const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
                             const hash = `#${item.id}`;
                             if (hash !== locationHash) {
                                 setActiveId(item.id);
-                                if (typeof window !== "undefined") {
-                                    window.history.replaceState(
-                                        undefined,
-                                        undefined,
-                                        hash,
-                                    );
-                                }
+                                window.history.replaceState({}, "", hash);
                             }
                         }
                     });

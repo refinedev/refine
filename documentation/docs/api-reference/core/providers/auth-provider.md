@@ -4,7 +4,7 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 
-import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
+import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
 Auth provider is an object that contains methods to handle authentication and access control in your app by having **refine** consume them. These methods expect to return a promise, so they can be used with async methods.
 

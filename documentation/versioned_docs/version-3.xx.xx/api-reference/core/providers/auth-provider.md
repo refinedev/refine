@@ -4,7 +4,7 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 
-import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
+import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
 Auth provider is an object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
 

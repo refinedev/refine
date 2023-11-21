@@ -126,8 +126,8 @@ const siteConfig = {
     ],
     themeConfig: {
         prism: {
-            theme: require("prism-react-renderer/themes/nightOwl"),
-            darkTheme: require("prism-react-renderer/themes/nightOwl"),
+            theme: require("prism-react-renderer/themes/nightOwlLight"),
+            darkTheme: require("prism-react-renderer/themes/vsDark"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!
                 {
@@ -139,6 +139,16 @@ const siteConfig = {
                     className: "code-block-hidden",
                     line: "hide-next-line",
                     block: { start: "hide-start", end: "hide-end" },
+                },
+                {
+                    className: "theme-code-block-added-line",
+                    line: "added-line",
+                    block: { start: "added-start", end: "added-end" },
+                },
+                {
+                    className: "theme-code-block-removed-line",
+                    line: "removed-line",
+                    block: { start: "removed-start", end: "removed-end" },
                 },
             ],
         },

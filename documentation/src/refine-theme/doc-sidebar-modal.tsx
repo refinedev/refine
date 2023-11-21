@@ -106,7 +106,13 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                                         <DocVersionTabs />
                                     </div>
 
-                                    <div className={clsx("px-4", "relative")}>
+                                    <div
+                                        className={clsx(
+                                            "px-4",
+                                            "py-4",
+                                            "relative",
+                                        )}
+                                    >
                                         {items}
                                     </div>
                                 </div>
