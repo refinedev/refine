@@ -45,11 +45,17 @@ refine is a React-based powerful framework for building low-code applications. I
 ## Features
 
 **Dashboard**: Gain insights into your business with interactive charts and analytics.
+
 **Calendar**: Schedule and manage appointments, meetings, and events.
+
 **Scrumboard**: Organize and track tasks using a Kanban-style board.
+
 **Companies**: Create, update, and delete company records.
+
 **Contacts**: Manage your customer contacts efficiently.
+
 **Quotes**: Generate and manage quotes for your clients.
+
 **Administration**: Configure application settings and user roles.
 
 <br>
