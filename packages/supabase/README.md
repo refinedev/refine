@@ -9,11 +9,11 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> |
-    <a href="https://refine.dev/blog/">Blog</a> |
+    <a href="https://refine.dev/examples/">Examples</a> | 
+    <a href="https://refine.dev/blog/">Blog</a> | 
     <a href="https://refine.dev/docs/">Documentation</a>
 
-<br/>
+<br/>   
 <br/>
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
@@ -69,7 +69,7 @@ const App = () => {
 
 - For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
 - [Refer to refine Supabase docs](https://refine.dev/docs/packages/documentation/data-providers/supabase/#introduction).
-- [Refer to refine integration on Supabase official docs](https://supabase.com/docs/guides/getting-started/tutorials/with-refine).
+- [Refer to refine integration on Supabase offical docs](https://supabase.com/docs/guides/getting-started/tutorials/with-refine).
 - [Refer to refine Supabase data provider example](https://refine.dev/docs/examples/data-provider/supabase/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
