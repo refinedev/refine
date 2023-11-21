@@ -265,7 +265,9 @@ Now, we can use `<ColumnFilter/>` in our table header.
    ```
 
    :::tip
+
    There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/documentation/react-table/#filtering)
+
    :::
 
 4. Disable filtering for the "actions" column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below:
@@ -282,7 +284,9 @@ Now, we can use `<ColumnFilter/>` in our table header.
    ```
 
    :::tip
+
    You can similarly disable filtering for specific columns by setting their `enableColumnFilter` property to `false`.
+
    :::
 
 Now, we can filter the table by clicking on the filter button in the table header.

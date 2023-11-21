@@ -97,6 +97,7 @@ mutate(
 ```
 
 :::
+
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ### `overtimeOptions`

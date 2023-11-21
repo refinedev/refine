@@ -44,6 +44,7 @@ Data providers also act as adapters for refine, making it possible for it to con
 A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
 
 [Refer to the Data Provider documentation for detailed information. &#8594](/api-reference/core/providers/data-provider.md)
+
 :::tip
 
 To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for the default data provider and we can pass other data providers with any key to the `<Refine />` component.
@@ -66,7 +67,6 @@ const App: React.FC = () => {
 ```
 
 :::
-<br />
 
 ## `routerProvider`
 

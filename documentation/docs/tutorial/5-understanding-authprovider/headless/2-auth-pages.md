@@ -530,7 +530,9 @@ You can also customize the auth pages by using the `<AuthPage>` component's prop
 
 For more information, refer to the [component props section of the `<AuthPage/>` documentation &#8594](/docs/api-reference/core/components/auth-page.md#props)
 
-:::<br/>
+:::
+
+<br/>
 
 <Checklist>
 

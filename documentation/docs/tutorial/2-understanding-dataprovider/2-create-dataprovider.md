@@ -460,6 +460,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 :::
+
 <br/>
 
 **refine** will consume the `create` method using the `useCreate` data hook.
@@ -512,6 +513,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 :::
+
 <br/>
 
 **refine** will consume the `update` method using the `useUpdate` data hook.
@@ -565,6 +567,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
 
 :::
+
 <br/>
 
 **refine** will consume the `deleteOne` method using the `useDelete` data hook.

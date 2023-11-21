@@ -533,7 +533,6 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 :::
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
-> :::
 
 ### `wrapperProps`
 

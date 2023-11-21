@@ -343,6 +343,7 @@ useSelect({
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 :::
+
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 

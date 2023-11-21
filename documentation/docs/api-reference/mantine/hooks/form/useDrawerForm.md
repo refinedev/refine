@@ -425,7 +425,9 @@ const table = useTable({
 ```
 
 :::caution
+
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+
 :::
 
 </TabItem>
@@ -451,7 +453,9 @@ const drawerForm = useDrawerForm({
 ### `initialValues`
 
 :::caution
+
 Only available in `"create"` form.
+
 :::
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
@@ -547,7 +551,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -625,9 +631,11 @@ useDrawerForm({
 ## Return Values
 
 :::tip
+
 All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) documentation.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
+
 :::
 
 ### `visible`

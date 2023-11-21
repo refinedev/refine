@@ -72,6 +72,7 @@ Thanks to its flexibility, **refine** can be seamlessly integrated into any exis
 It’s important to note that route management will be handled by your preferred framework (React Router, Next.js, Remix) which is what makes it possible to use **refine** with any React (Web, Electron, React Native etc.) application freely.
 
 :::
+
 <UIConditional is="headless">
 
 ```tsx title="src/App.tsx"
