@@ -26,7 +26,10 @@ const dev = (program: Command) => {
             ),
         )
         .addOption(
-            new Option("-d, --devtools", "Start refine's devtools server"),
+            new Option(
+                "-d, --devtools <devtools>",
+                "Start refine's devtools server",
+            ),
         )
         .argument("[args...]")
         .action(action);
@@ -34,7 +37,7 @@ const dev = (program: Command) => {
 
 const action = async (
     args: string[],
-    { platform, devtools }: { devtools: boolean; platform: ProjectTypes },
+    { platform, ...params }: { devtools: string; platform: ProjectTypes },
 ) => {
     const projectType = getProjectType(platform);
 
@@ -46,7 +49,13 @@ const action = async (
 
     const devtoolsDefault = await isDevtoolsInstalled();
 
-    if (devtools ?? devtoolsDefault) {
+    const devtools = Boolean(
+        params.devtools === "false"
+            ? false
+            : params.devtools ?? devtoolsDefault,
+    );
+
+    if (devtools) {
         devtoolsRunner();
     }
 
