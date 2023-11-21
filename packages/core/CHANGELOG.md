@@ -1,5 +1,13 @@
 # @refinedev/core
 
+## 4.45.1
+
+### Patch Changes
+
+-   [#5289](https://github.com/refinedev/refine/pull/5289) [`0d1e269c0283`](https://github.com/refinedev/refine/commit/0d1e269c02837bea4c1df3f4a56dfad52974bd7a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `<GitHubBanner />` styles updated.
+
+    fix: `<GitHubBanner />` hydration error. #5295
+
 ## 4.45.0
 
 ### Minor Changes
