@@ -1,5 +1,3 @@
-import boxen from "boxen";
-
 import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
 import { Command, Option } from "commander";
@@ -29,7 +27,7 @@ const dev = (program: Command) => {
             new Option(
                 "-d, --devtools <devtools>",
                 "Start refine's devtools server",
-            ),
+            ).default("true", "true if devtools is installed"),
         )
         .argument("[args...]")
         .action(action);
