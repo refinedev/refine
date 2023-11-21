@@ -51,20 +51,20 @@ npm install @refinedev/simple-rest
 import dataProvider from "@refinedev/simple-rest";
 
 const App = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider("API_URL")}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("API_URL")}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
 ## Documentation
 
--   For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
--   [Refer to refine simple-rest docs.](https://refine.dev/docs/packages/documentation/data-providers/simple-rest/).
--   [Refer to documentation for more info about refine](https://refine.dev/docs/).
--   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+- [Refer to refine simple-rest docs.](https://refine.dev/docs/packages/documentation/data-providers/simple-rest/).
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

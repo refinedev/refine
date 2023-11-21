@@ -51,20 +51,20 @@ npm install @refinedev/medusa
 import dataProvider, { authProvider } from "@refinedev/medusa";
 
 const App = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider("API_URL")}
-            authProvider={authProvider("API_URL")}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("API_URL")}
+      authProvider={authProvider("API_URL")}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
 ## Documentation
 
--   For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
--   [Refer to documentation for more info about refine](https://refine.dev/docs/).
--   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
